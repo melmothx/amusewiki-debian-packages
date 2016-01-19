@@ -1,0 +1,53 @@
+libcam-pdf-perl (1.60-1) unstable; urgency=low
+
+  * Imported Upstream version 1.60
+  * Refresh patch
+
+ -- Xavier Guimard <x.guimard@free.fr>  Mon, 09 Sep 2013 06:04:37 +0200
+
+libcam-pdf-perl (1.59-1) unstable; urgency=low
+
+  [ Salvatore Bonaccorso ]
+  * Change search.cpan.org based URIs to metacpan.org based URIs
+
+  [ gregor herrmann ]
+  * New upstream release.
+  * Refresh patch.
+  * Add /me to Uploaders.
+  * Bump versioned build dependency on Module::Build.
+  * debian/control: Update long description (mention module name, update
+    link to PDF specs).
+
+ -- gregor herrmann <gregoa@debian.org>  Sun, 17 Feb 2013 14:04:59 +0100
+
+libcam-pdf-perl (1.58-3) unstable; urgency=low
+
+  [ Salvatore Bonaccorso ]
+  * Change Vcs-Git to canonical URI (git://anonscm.debian.org)
+
+  [ Xavier Guimard ]
+  * Remove README from docs
+  * Update debian/copyright (format and Debian uploaders)
+  * Update patch comments
+  * Remove unnecessary directory in libcam-pdf-perl.dirs
+  * Bump Standards-Version to 3.9.4
+  * Update description
+  * Clean debian/rules and change scripts names inside manpages
+  * Move asciify into examples
+
+ -- Xavier Guimard <x.guimard@free.fr>  Thu, 24 Jan 2013 22:28:17 +0100
+
+libcam-pdf-perl (1.58-2) unstable; urgency=low
+
+  * Team upload.
+  * Add missing (build-)dependencies.
+    Add missing (Build-)Depends(-Indep) on libcrypt-rc4-perl and
+    libtext-pdf-perl. (Closes: #680797)
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 08 Jul 2012 20:02:18 +0200
+
+libcam-pdf-perl (1.58-1) unstable; urgency=low
+
+  * Initial Release (closes: Bug#679050).
+
+ -- Ivan Kohler <ivan-debian@420.am>  Mon, 25 Jun 2012 17:44:29 -0700

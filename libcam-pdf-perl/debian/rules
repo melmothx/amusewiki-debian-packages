@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+
+PACKAGE = $(shell dh_listpackages)
+TMP     = $(CURDIR)/debian/$(PACKAGE)
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	dh_auto_install
+	# Remove asciify, unnecessary script written for tcsh
+	rm -f $(TMP)/usr/bin/asciify
+	# Change scripts.pl to script
+	prename 's/\.pl//' $(TMP)/usr/bin/*.pl $(TMP)/usr/share/man/man1/*.pl*
+	# Rename pdfinfo into pdfinfo.cam-pdf
+	prename 's/pdfinfo/pdfinfo.cam-pdf/' $(TMP)/usr/bin/pdfinfo $(TMP)/usr/share/man/man1/pdfinfo*
+	# Same change inside manpages
+	perl -i -pe 'BEGIN{$$i=join("|",split(/\s+/,"'"$$(ls $(TMP)/usr/bin)"'"));} \
+		s/($$i)\.pl/$$1/g; \
+		s/pdfinfo/pdfinfo.cam-pdf/g' $(TMP)/usr/share/man/man1/*
+	# mv template into /usr/share/libcam-pdf-perl/
+	mv $(TMP)/usr/bin/crunchjpg_tmpl.pdf $(TMP)/usr/share/libcam-pdf-perl/
+
+override_dh_fixperms:
+	dh_fixperms
+	chmod a-x $(TMP)/usr/share/libcam-pdf-perl/crunchjpg_tmpl.pdf

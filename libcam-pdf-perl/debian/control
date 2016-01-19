@@ -1,0 +1,41 @@
+Source: libcam-pdf-perl
+Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
+Uploaders: Ivan Kohler <ivan-debian@420.am>,
+           Xavier Guimard <x.guimard@free.fr>,
+           gregor herrmann <gregoa@debian.org>
+Section: perl
+Priority: optional
+Build-Depends: debhelper (>= 8),
+ libmodule-build-perl (>= 0.400000) | perl (>= 5.17.1)
+Build-Depends-Indep: libcrypt-rc4-perl,
+                     libtext-pdf-perl,
+                     perl
+Standards-Version: 3.9.4
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-perl/packages/libcam-pdf-perl.git
+Vcs-Git: git://anonscm.debian.org/pkg-perl/packages/libcam-pdf-perl.git
+Homepage: https://metacpan.org/release/CAM-PDF/
+
+Package: libcam-pdf-perl
+Architecture: all
+Depends: ${misc:Depends},
+         ${perl:Depends},
+         libcrypt-rc4-perl,
+         libtext-pdf-perl,
+         tcsh | csh | c-shell
+Description: PDF manipulation library
+ CAM::PDF reads and writes any document that conforms to the PDF specification
+ generously provided by Adobe at
+ https://www.adobe.com/devnet/pdf/pdf_reference.html (link last checked Feb
+ 2013).
+ .
+ The file format through PDF 1.5 is well-supported, with the exception of the
+ "linearized" or "optimized" output format, which this module can read but not
+ write. Many specific aspects of the document model are not manipulable with
+ this package (like fonts), but if the input document is correctly written,
+ then this module will preserve the model integrity.
+ .
+ The PDF writing feature saves as PDF 1.4-compatible. That means that
+ compressed object streams cannot be written. The consequence is that reading
+ and then writing a PDF 1.5+ document may enlarge the resulting file by a fair
+ margin.
+
