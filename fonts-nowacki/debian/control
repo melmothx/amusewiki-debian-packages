@@ -1,0 +1,53 @@
+Source: fonts-nowacki
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: http://jmn.pl/en/kurier-i-iwona/
+
+Package: fonts-nowacki
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Kurier and Iwona fonts
+ A two-element sans-seriff typeface, created by Małgorzata Budyta from
+ Warszawa in 1973. The project was a diploma work in typographic
+ lettering at the Academy of Fine Arts in Warsaw. (Helena Nowak
+ designed another font, Helikon, also as a diploma work.) The Kurier
+ typeface project was supervised by Roman Tomaszewski, running then
+ practical classes and giving lectures on typographic lettering.
+ .
+ The work was continued at the Centre of Printing Types (Ośrodek Pism
+ Drukarskich) until 1975. Kurier was shown – among other fonts –
+ during the ATypI Congress in Warsaw that year (an exhibition in the
+ Wilanów Poster Museum).
+ .
+ Kurier was created as a typeface destined for newspapers and other
+ kinds of press typeset using the linotype technology. So, it had a
+ classical triad of fonts (normal, italic and semi-bold) adapted for
+ linotype matrices. Particular letters and other characters were
+ designed in fields corresponding the to width units used in that
+ technology. By the design principle the types had to endure a series
+ of technological processes destructive to their graphic shape, for
+ instance: casting a row from a linotype metal alloy, so-called
+ burning of brass matrices during casting, preparation of duplicate
+ printing forms (stereotypes), printing on rotating machines with the
+ use of a liquid paint on low-quality press paper (from rolls). All
+ that contributed to the provision of adequate light inside and
+ between letters as well as of the so-called paint traps at certain
+ crossings of the character elements in the design.
+ .
+ The types were to be produced by the Katowice Linotype Matrices
+ Factory. The full documentation from the Centre of Printing Types was
+ sent to the Factory. However, the Kurier types were never produced
+ industrially. The so-called hot metal typesetting technology of texts
+ reached its end during the eighties and the fall of the Matrices
+ Factory.
+ .
+ The present printing technologies do not impose the above mentioned
+ limitations. Nevertheless, the aesthetic quality of the typeface
+ inclined me to making of the digital version of the Kurier font. An
+ alternative version, called Iwona, without the paint traps, was also
+ made.
