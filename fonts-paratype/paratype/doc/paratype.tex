@@ -1,0 +1,325 @@
+%% Copyright 2011 Pavel Farar
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Pavel Farar
+
+
+\documentclass[oneside]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[czech, english]{babel}
+\usepackage[IL2, T1]{fontenc}
+\usepackage{paratype}
+
+\usepackage{booktabs}
+
+\newcommand{\code}{\texttt}
+\newcommand{\program}{\texttt}
+
+\usepackage{color}
+\newcommand{\faked}{\textcolor{red}}
+
+
+\usepackage{textcomp}
+\usepackage[colorlinks]{hyperref}
+\hypersetup{pdfauthor={Pavel Farar}}
+
+
+\title{Support package for free fonts by ParaType}
+\author{Pavel Farář\\
+\href{mailto:pavel.farar@centrum.cz}{pavel.farar@centrum.cz}}
+
+\begin{document}
+
+\selectlanguage{english}%
+
+\maketitle
+
+\tableofcontents
+
+
+\section{Introduction}
+
+This package contains the LaTeX support for the fonts PT Sans,
+PT Serif and PT Mono released by ParaType.
+PT Sans has four basic styles, two narrow styles and two caption styles.
+PT Serif has four basic styles and two caption styles. PT Mono has just
+the regular and bold styles.
+
+\begin{figure}[!htb]
+\centering{%
+  \begin{tabular}{ll}
+    {\usefont{T1}{PTSans-TLF}{m}{n}PT Sans Regular} &
+    {\usefont{T1}{PTSans-TLF}{b}{n}PT Sans Bold} \\
+    {\usefont{T1}{PTSans-TLF}{m}{it}PT Sans Italic} &
+    {\usefont{T1}{PTSans-TLF}{b}{it}PT Sans Bold Italic} \\
+    {\usefont{T1}{PTSansNarrow-TLF}{m}{n}PT Sans Narrow} &
+    {\usefont{T1}{PTSansNarrow-TLF}{b}{n}PT Sans Narrow Bold} \\
+    {\usefont{T1}{PTSansCaption-TLF}{m}{n}PT Sans Caption} &
+    {\usefont{T1}{PTSansCaption-TLF}{b}{n}PT Sans Caption Bold}
+  \end{tabular}
+\caption{The styles of PT Sans}}
+\end{figure}
+
+
+\begin{figure}[!htb]
+\centering{%
+  \begin{tabular}{ll}
+    {\usefont{T1}{PTSerif-TLF}{m}{n}PT Serif Regular} &
+    {\usefont{T1}{PTSerif-TLF}{b}{n}PT Serif Bold} \\
+    {\usefont{T1}{PTSerif-TLF}{m}{it}PT Serif Italic} &
+    {\usefont{T1}{PTSerif-TLF}{b}{it}PT Serif Bold Italic} \\
+    {\usefont{T1}{PTSerifCaption-TLF}{m}{n}PT Serif Caption} &
+    {\usefont{T1}{PTSerifCaption-TLF}{m}{it}PT Serif Caption Italic}
+  \end{tabular}
+\caption{The styles of PT Serif}}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering{%
+  \begin{tabular}{ll}
+    {\usefont{T1}{PTMono-TLF}{m}{n}PT Mono Regular} &
+    {\usefont{T1}{PTMono-TLF}{b}{n}PT Mono Bold}
+  \end{tabular}
+\caption{The styles of PT Mono}}
+\end{figure}
+
+The fonts cover standard Western, Central European and Cyrillic code
+pages and contain also characters of all title languages of the
+Russian Federation.This package supports encodings T1, OT1, OT2, IL2,
+TS1, T2A, T2B, T2C and X2. The fonts are included in the original
+TrueType format and in the Type 1 format (without PT Mono Bold).
+
+The fonts were developed by ParaType for the project \emph{Public Types
+of Russian Federation} and released under an open user license.
+They were designed by Alexandra Korolkova, Olga Umpeleva, Isabella Chaeva
+and Vladimir Yefimov. For more information see the
+web-site of \href{http://www.paratype.com}{ParaType}.
+
+
+\section{License}
+
+The fonts (both TrueType and Type 1) are licensed under Paratype Free
+Font License (the license is included).
+
+The fonts in TrueType format are original files designed by ParaType. The
+fonts in Type 1 format are also original files kindly provided by ParaType.
+
+All the support files are licensed under \LaTeX\ Project Public License,
+either version 1.3 of this license or (at  your option) any later version.
+
+
+\section{Using the package}
+
+The package was created using \code{fontools}, but with some changes. From
+\code{fontools} also come the mixed case names and the suffix \code{-TLF}
+(tabular lining figures) of the font families and also the mixed case
+names of the packages for the individual font families.
+
+
+\subsection{Choosing the right map file}
+
+There are two map files: \code{paratype-truetype.map} and
+\code{paratype-type1.map}.
+You should use just one of these map files. 
+
+The map file \code{paratype-type1.map} is good for \program{dvips}. It sets
+Type~1 fonts for PT Sans, PT Serif and PT Mono.
+This map file is a safe choice if you do not know which map file to use.
+
+The map file \code{paratype-truetype.map} is good for \program{pdf\TeX}. It sets
+TrueType fonts for PT Sans, PT Serif and PT Mono. You can use it if you prefer
+TrueType fonts.
+
+You install the required map file with a command like:
+\begin{verbatim}
+updmap-sys --enable Map=paratype-type1.map
+\end{verbatim}
+
+If you want to change the used map file, remember to uninstall the old map file
+before you install the new one:
+\begin{verbatim}
+updmap-sys --disable paratype-type1.map
+updmap-sys --enable Map=paratype-truetype.map
+\end{verbatim}
+
+
+\subsection{Setting the fonts in a document}
+
+There are several packages that you can use to set the fonts. You
+must explicitly use the package \code{fontenc} or \code{textcomp} (if
+needed). The easiest way to use the fonts is the package \code{paratype}:
+\begin{verbatim}
+\usepackage[T1]{fontenc}
+\usepackage{paratype}
+\end{verbatim}
+
+This sets the font \code{PTSerif-TLF} as the default serif family,
+the font \code{PTSans-TLF} as the default sans serif family and the
+font \code{PTMono-TLF} as the default monospaced family.
+
+There are also several packages that set the individual font families.
+They have the same name as the font family, but without the suffix:
+\code{PTSerif}, \code{PTSerifCaption},
+\code{PTSans}, \code{PTSansNarrow}, \code{PTSansCaption}
+and \code{PTMono}.
+
+For example the package \code{PTSerif} sets the font \code{PTSerif-TLF}
+and you use it this way:
+\begin{verbatim}
+\usepackage[T1]{fontenc}
+\usepackage{PTSerif}
+\end{verbatim}
+
+
+If you want to use this font together with another font that has different
+x-height, you can use the option \code{scaled}:
+\begin{verbatim}
+\usepackage[scaled=0.9]{PTSerif}
+\end{verbatim}
+
+You can also typeset some text in a desired font like this:
+\begin{verbatim}
+{\usefont{T1}{PTSerifCaption-TLF}{m}{it}Text in PT Serif
+Caption Italic}
+\end{verbatim}
+
+
+\subsection{Faked styles}
+\label{faked-styles}
+
+PT Serif and PT Serif Caption have faked slanted and upright italic styles. PT Serif has them also in bold weight.
+PT Sans Caption, PT Sans Narrow and PT Mono have faked slanted and bold
+slanted styles.
+
+As all faked styles, they can not reach the quality of the true designed
+styles and there can be some problems. In PT Serif, there are problems with
+e.g. mathematical operators---look at the font samples, it is especially obvious
+for the upright italic style.
+
+However, these styles can be useful when used reasonably and not too often.
+You have the choice now.
+
+Different engines treat these styles differently, \program{dvips} embeds just
+the original fonts in the document, while \program{pdf\TeX} embeds faked fonts.
+Moreover, \program{pdf\TeX} behaves differently for Type 1 and TrueType fonts.
+In the former case it slants the Type 1 fonts and embeds them, in the latter
+case it does not slant the TrueType fonts and embeds bitmap Type 3 fonts instead.
+
+
+\subsection{The available series/shape combinations}
+
+You can see the available series/shape combinations in the
+table~\ref{tableShape}. The table shows the combinations that really
+exist in the fonts in black and faked styles in red.
+
+There is also automatic substitution. If you request the bold extended series,
+you will get the bold series instead.
+
+\begin{table}[!htb]
+\centering{%
+  \begin{tabular}{ll}
+    \toprule
+    font family & series/shape combinations \\
+    \midrule
+    PTSans-TLF & m/n, m/it, b/n, b/it, c/n, bc/n \\
+    PTSansNarrow-TLF & m/n, b/n, \faked{m/sl}, \faked{b/sl} \\
+    PTSansCaption-TLF & m/n, b/n, \faked{m/sl}, \faked{b/sl} \\
+    PTSerif-TLF & m/n, m/it, b/n, b/it,
+      \faked{m/sl}, \faked{m/ui}, \faked{b/sl}, \faked{b/ui} \\
+    PTSerifCaption-TLF & m/n, m/it, \faked{m/sl}, \faked{m/ui} \\
+    PTMono-TLF & m/n, b/n, \faked{m/sl}, \faked{b/sl} \\
+    \bottomrule
+  \end{tabular}
+\caption{The series/shape combinations for the fonts}\label{tableShape}}
+\end{table}
+
+The family PTSans-TLF has also both narrow styles. The caption styles
+for both PT Sans and PT Serif are available only as separate families.
+Especially the caption styles in PT Serif are more different from the
+four basic styles than it is usual for other fonts, therefore everyone
+should decide if and where he will use them.
+
+
+\subsection{Notes for the Czech and Slovak users}
+
+I changed the width of some letters in the encoding IL2: Lcaron
+in PT Serif Bold and PT Serif Bold Italic; tcaron in PT Serif Bold;
+dcaron in PT Sans Regular and PT Sans Bold and tcaron in PT Sans Bold.
+In all cased I made the width equal to that of the unaccented letter.
+Now all letters dcaron, tcaron, lcaron and Lcaron have the same width
+as the unaccented letter in the encoding IL2. The encoding T1 was left
+untouched. You can see the differences in the following samples (first
+line is in T1 and second in IL2).
+
+\selectlanguage{czech}
+V kódování IL2 jsem změnil šířku znaku Ľ ve fontech PT Serif Bold a
+PT Serif Bold Italic; dále šířku znaku ť ve fontu PT Serif Bold; pak
+šířku znaku ď ve fontech PT Sans Regular a PT Sans Bold a nakonec
+šířku znaku ť ve fontu PT Sans Bold. Ve všech případech jsem změnil
+šířku tak, že je stejná jako šířka stejného písmene bez diakritiky.
+Nyní mají v kódování IL2 všechny znaky ď, ť, ľ a Ľ stejnou šířku
+jako stejné znaky bez háčku. Kódování T1 bylo ponecháno beze změny.
+Rozdíly je možno vidět v následujících ukázkách (první řádka je pro
+kódování T1, druhá pro IL2).
+
+\begin{figure}[!htb]
+\centering{%
+  {\Huge%
+  \begin{tabular}{llllll}%
+    {\usefont{T1}{PTSerif-TLF}{b}{n}Ľubomír} &
+    {\usefont{T1}{PTSerif-TLF}{b}{it}Ľubomír} &
+    {\usefont{T1}{PTSerif-TLF}{b}{n}šťovík} &
+    {\usefont{T1}{PTSerif-TLF}{b}{n}laťka}\\
+    {\usefont{IL2}{PTSerif-TLF}{b}{n}Ľubomír} &
+    {\usefont{IL2}{PTSerif-TLF}{b}{it}Ľubomír} &
+    {\usefont{IL2}{PTSerif-TLF}{b}{n}šťovík} &
+    {\usefont{IL2}{PTSerif-TLF}{b}{n}laťka}
+  \end{tabular}}
+  \caption{Changes in PT Serif}}
+\end{figure}
+
+
+\begin{figure}[!htb]
+\centering{%
+  {\Huge%
+  \begin{tabular}{llllll}%
+    {\usefont{T1}{PTSans-TLF}{m}{n}ďas} &
+    {\usefont{T1}{PTSans-TLF}{m}{n}loďka} &
+    {\usefont{T1}{PTSans-TLF}{b}{n}ďas} &
+    {\usefont{T1}{PTSans-TLF}{b}{n}loďka} &
+    {\usefont{T1}{PTSans-TLF}{b}{n}šťovík} &
+    {\usefont{T1}{PTSans-TLF}{b}{n}laťka}\\
+    {\usefont{IL2}{PTSans-TLF}{m}{n}ďas} &
+    {\usefont{IL2}{PTSans-TLF}{m}{n}loďka} &
+    {\usefont{IL2}{PTSans-TLF}{b}{n}ďas} &
+    {\usefont{IL2}{PTSans-TLF}{b}{n}loďka} &
+    {\usefont{IL2}{PTSans-TLF}{b}{n}šťovík} &
+    {\usefont{IL2}{PTSans-TLF}{b}{n}laťka}
+  \end{tabular}}
+  \caption{Changes in PT Sans}}
+\end{figure}
+
+\selectlanguage{english}
+
+
+\section{Known bugs}
+
+I put the letters \emph{Cyrillic letter short I with tail} and \emph{Cyrillic
+letter EM with tail} to the slots where the same letters with descender
+should be. They are somewhat similar and some languages should use exactly
+these letters. I think that it is better than leaving the slots empty.
+
+Please \href{mailto:pavel.farar@centrum.cz}{send me} bug reports and
+suggestions about this package.
+
+\end{document}

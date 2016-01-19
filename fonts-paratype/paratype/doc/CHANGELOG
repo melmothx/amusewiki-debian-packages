@@ -1,0 +1,104 @@
+2014-02-02
+----------
+
+- Added OT2 encoding. Now, you can write some cyrillic text
+	using the Latin transcription.
+
+2013-05-21
+----------
+
+- Added PT Mono Bold in the Type 1 format provided by ParaType.
+	Now, all the fonts are in both the TrueType and Type 1
+	format.
+
+- Removed paratype-mixed.map. There is no need to mix TrueType
+	and Type 1 fonts.
+
+
+2013-05-19
+----------
+
+- Added PT Mono Regular in the Type 1 format provided by ParaType.
+	PT Mono Bold in the Type 1 format is still missing.
+
+- Changed paratype-type1.map and paratype-mixed.map to use the
+	PT Mono Regular in the Type 1 format.
+
+
+2013-04-01
+----------
+
+- Added faked (bold) slanted style where there is no true (bold) italic
+	style. That means that these styles were added for families
+	PT Sans Caption, PT Sans Narrow and PT Mono. There is no automatic
+	substitution from the italic style to the faked slanted style.
+
+
+2012-06-03
+----------
+
+- Added PT Mono Bold, updated PT Mono Regular.
+
+
+2012-02-24
+----------
+
+- The files with the license of fonts in English and Russian contained
+	spaces in the file names (these were original file names).
+	Replaced spaces by underscores in these file names. Pointed out
+	by Karl Berry.
+
+
+2012-02-22
+----------
+
+- Added font PT Mono (currently just TrueType format).
+
+- My converted Type 1 version of fonts PT Sans and PT Serif is replaced
+	by Type 1 fonts kindly provided by ParaType. It has two important
+	advantages: First, they are of much higher quality. Second,
+	the distribution of the fonts is not limited to TeX.
+
+- Added map file paratype-mixed.map that sets Type 1 version of PT Sans
+	and PT Serif and TrueType version of PT Mono. It is just temporary
+	sollution before I get Type 1 version of PT Mono. This map file
+	may disappear in future releases of this package.
+
+- Added support for faked styles UprightItalic and Slanted of PT Serif.
+	Requested by A. Jan Kutylowski. There are no font files containing
+	these styles, the styles are generated on the fly. There is small
+	incompatibility: In the previous version of paratype, if you
+	requested slanted shape of PT Serif, it was replaced by italic
+	shape. Now, there is both italic and slanted shape and they are
+	different.
+
+- Removed f-ligatures from the TS1 and X2 encodings. They were set explicitely
+	for all encodings on the command line, no matter if they were really
+	needed.
+
+- The file paratype.sty sets PTMono-TLF as the default monospaced font.
+
+
+2011-05-09
+----------
+
+- This package was created by merging packages ptsans and ptserif.
+	It was suggested by Karl Berry, because I was updating both
+	packages at the same time and there were similar changes. The
+	fonts are designed to be used together and the maintenance
+	of one package will be easier. LaTeX sources that worked with
+	package ptsans or ptserif should also work with package
+	paratype without any changes.
+
+- The font activated by package PTSans can use also condensed and bold
+	condensed series now.
+
+- Removed unusable substitutions (like bx/sl --> b/it) in the font
+	definition files for PTSansNarrow, PTSansCaption and PTSerifCaption.
+	It was caused by my script that applied patch with these
+	substitutions for PTSans/T1 also to all other *.fd files. I simply
+	forgot to take into account that there are only two narrow and
+	two caption styles.
+
+- Added file paratype.sty that sets PTSans-TLF as the sans serif
+	family and PTSerif-TLF as the serif family.

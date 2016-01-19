@@ -1,0 +1,127 @@
+%% Copyright 2011 Pavel Farar
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Pavel Farar
+
+
+\documentclass[oneside]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian, english]{babel}
+
+\usepackage{paratype}
+\usepackage[T2A, T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[colorlinks]{hyperref}
+\hypersetup{pdfauthor={Pavel Farar}}
+
+
+\newcommand{\SampleText}{Basic Latin alphabet:
+a b c d e f g h i j k l m n o p q r s t u v w x y z
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z;
+some accented letters and germandbls: Š š Ť ť É é Ů ů Ü ü \ss;
+basic Cyrillic alphabet:
+\selectlanguage{russian}%
+а б в г д е ё ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я
+А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я;
+\selectlanguage{english}%
+figures: 
+0 1 2 3 4 5 6 7 8 9;
+Latin ligatures: fi fl;
+fractions: \textonequarter\ \textonehalf\ \textthreequarters;
+some currency: \texteuro\ \$ \pounds\ \textcent\ \textyen;
+some mathematical symbols: + \textminus\ \textpm\ \texttimes\ \textdiv\ /
+= \textless\ \textgreater\ \textmu\ \textohm.}
+
+
+\begin{document}
+
+\selectlanguage{english}
+
+
+\section*{PT Serif}
+
+{\usefont{T1}{PTSerif-TLF}{m}{n}\SampleText}\par
+{\usefont{T1}{PTSerif-TLF}{m}{it}\SampleText}\par
+{\usefont{T1}{PTSerif-TLF}{b}{n}\SampleText}\par
+{\usefont{T1}{PTSerif-TLF}{b}{it}\SampleText}
+
+
+\section*{PT Serif---faked styles}
+
+{\usefont{T1}{PTSerif-TLF}{m}{sl}\SampleText}\par
+{\usefont{T1}{PTSerif-TLF}{m}{ui}\SampleText}\par
+{\usefont{T1}{PTSerif-TLF}{b}{sl}\SampleText}\par
+{\usefont{T1}{PTSerif-TLF}{b}{ui}\SampleText}
+
+
+\section*{PT Serif Caption}
+
+{\usefont{T1}{PTSerifCaption-TLF}{m}{n}\SampleText}\par
+{\usefont{T1}{PTSerifCaption-TLF}{m}{it}\SampleText}
+
+
+\section*{PT Serif Caption---faked styles}
+
+{\usefont{T1}{PTSerifCaption-TLF}{m}{sl}\SampleText}\par
+{\usefont{T1}{PTSerifCaption-TLF}{m}{ui}\SampleText}
+
+
+\section*{PT Sans}
+
+{\usefont{T1}{PTSans-TLF}{m}{n}\SampleText}\par
+{\usefont{T1}{PTSans-TLF}{m}{it}\SampleText}\par
+{\usefont{T1}{PTSans-TLF}{b}{n}\SampleText}\par
+{\usefont{T1}{PTSans-TLF}{b}{it}\SampleText}
+
+
+\section*{PT Sans Narrow}
+
+{\usefont{T1}{PTSansNarrow-TLF}{m}{n}\SampleText}\par
+{\usefont{T1}{PTSansNarrow-TLF}{b}{n}\SampleText}
+
+
+\section*{PT Sans Narrow---faked styles}
+
+{\usefont{T1}{PTSansNarrow-TLF}{m}{sl}\SampleText}\par
+{\usefont{T1}{PTSansNarrow-TLF}{b}{sl}\SampleText}
+
+
+\section*{PT Sans Caption}
+
+{\usefont{T1}{PTSansCaption-TLF}{m}{n}\SampleText}\par
+{\usefont{T1}{PTSansCaption-TLF}{b}{n}\SampleText}
+
+
+\section*{PT Sans Caption---faked styles}
+
+{\usefont{T1}{PTSansCaption-TLF}{m}{sl}\SampleText}\par
+{\usefont{T1}{PTSansCaption-TLF}{b}{sl}\SampleText}
+
+
+\section*{PT Mono}
+
+\begin{flushleft}
+{\usefont{T1}{PTMono-TLF}{m}{n}\SampleText}\par
+{\usefont{T1}{PTMono-TLF}{b}{n}\SampleText}
+\end{flushleft}
+
+
+\section*{PT Mono--faked styles}
+
+\begin{flushleft}
+{\usefont{T1}{PTMono-TLF}{m}{sl}\SampleText}\par
+{\usefont{T1}{PTMono-TLF}{b}{sl}\SampleText}
+\end{flushleft}
+
+
+\end{document}
