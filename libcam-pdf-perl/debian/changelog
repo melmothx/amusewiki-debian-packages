@@ -1,3 +1,9 @@
+libcam-pdf-perl (1.60-2) unstable; urgency=medium
+
+  * Fix RT bug #97560
+
+ -- Marco Pessotto <melmothx@gmail.com>  Tue, 19 Jan 2016 17:16:43 +0100
+
 libcam-pdf-perl (1.60-1) unstable; urgency=low
 
   * Imported Upstream version 1.60
