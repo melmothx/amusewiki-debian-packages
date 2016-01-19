@@ -1,0 +1,3 @@
+[submodule "amusewiki"]
+	path = amusewiki
+	url = https://github.com/melmothx/amusewiki.git
