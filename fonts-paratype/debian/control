@@ -1,0 +1,23 @@
+Source: fonts-paratype
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: https://www.ctan.org/tex-archive/fonts/paratype?lang=en
+
+Package: fonts-paratype
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: ParaType fonts
+ PT Sans, PT Serif and PT Mono developed by ParaType for the project
+ "Public Types of Russian Federation", and released under an open user
+ license.
+ .
+ PT Sans has four basic styles, two narrow styles and two caption
+ styles. PT Serif has four basic styles and two caption styles. PT
+ Mono has just the regular and bold styles.
+ .
+ The fonts are licensed under the Paratype Free Font License.
