@@ -1,0 +1,32 @@
+Source: fonts-antykwa-poltawskiego
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: http://jmn.pl/en/antykwa-poltawskiego/
+
+Package: fonts-antykwa-poltawskiego
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Antykwa Półtawskiego fonts
+ This font was designed in the ‘twenties and the ‘thirties of XX
+ century by a Polish graphic artist and a typographer Adam Półtawski.
+ It was widely used by Polish printing houses as long as metal types
+ were in use (until ca the ‘sixties).
+ .
+ The electronic replica of Antykwa Półtawskiego was prepared by
+ Bogusław Jackowski, Janusz M. Nowacki and Piotr Strzelczyk (JNS TEAM)
+ and released during the meeting of the Polish TeX Users Group (GUST)
+ (Bachotek, Poland, April-May, 2000) as a preliminary version.
+ .
+ The main source of Antykwa Półtawskiego were printouts of metal
+ types. Janusz M. Nowacki programmed glyphs in METATYPE1 using tools
+ prepared by Bogusław Jackowski and Piotr Strzelczyk. The tools make
+ use of METAPOST, AWK, TeX, Type 1 utilities, Ghostscript, and perl. A
+ lot of testing and tuning was carried out in the BOP firm.
+ .
+ The current version of Antykwa Półtawskiego is meant for bold people,
+ primarily for testing purposes.
