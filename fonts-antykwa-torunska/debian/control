@@ -1,0 +1,29 @@
+Source: fonts-antykwa-torunska
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: http://jmn.pl/en/antykwa-torunska/
+
+Package: fonts-antykwa-torunska
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Antykwa Toruńska fonts
+ Antykwa Toruńska (meaning just “Antiqua of Torun”) is a two-element
+ typeface designed by Zygfryd Gardzielewski (1914–2001).
+ .
+ The font is mainly used for typesetting of small prints. Its
+ characteristic features are the widening of vertical stems at the top
+ and the wave-like form of some of the horizontal and diagonal lines
+ as well as of the serifs. Antykwa Torunska was first cast in metal in
+ 1960 in the Grafmasz typefoundry in Warsaw. It was produced in the
+ ordinary, semibold and slanted faces in sizes from 6 to 48 dd.
+ .
+ Janusz M. Nowacki began digitizing Antykwa Torunska in early 1995.
+ Version 1.0, which deserves to be called computerised in that it was
+ precise and reused character building elements across the font, was
+ released in 1998 and comprised (similarly as the original) of three
+ faces: upright, bold and italic.
