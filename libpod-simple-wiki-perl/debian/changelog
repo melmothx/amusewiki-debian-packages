@@ -1,0 +1,87 @@
+libpod-simple-wiki-perl (0.20-1) unstable; urgency=medium
+
+  * Team upload.
+  * Import upstream version 0.20.
+  * Drop pod-syntax.patch, merged upstream.
+
+ -- gregor herrmann <gregoa@debian.org>  Tue, 10 Nov 2015 19:37:10 +0100
+
+libpod-simple-wiki-perl (0.19-1) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Salvatore Bonaccorso ]
+  * Update Vcs-Browser URL to cgit web frontend
+
+  [ gregor herrmann ]
+  * Add debian/upstream/metadata.
+  * Import upstream version 0.19.
+  * Update years of upstream copyright.
+  * Mark package as autopkgtest-able.
+  * Declare compliance with Debian Policy 3.9.6.
+  * Bump debhelper compatibility level to 9.
+  * Drop patches, fixed upstream.
+  * Add a patch to fix a POD syntax error.
+
+ -- gregor herrmann <gregoa@debian.org>  Mon, 09 Nov 2015 21:13:39 +0100
+
+libpod-simple-wiki-perl (0.16-1) unstable; urgency=low
+
+  [ Salvatore Bonaccorso ]
+  * Change Vcs-Git to canonical URI (git://anonscm.debian.org)
+  * Change search.cpan.org based URIs to metacpan.org based URIs
+
+  [ gregor herrmann ]
+  * Strip trailing slash from metacpan URLs.
+
+  [ Xavier Guimard ]
+  * Imported Upstream version 0.16
+  * Bump Standards-Version to 3.9.5
+  * Add spelling and pod error patches
+
+  [ gregor herrmann ]
+  * Update years of upstream copyright.
+
+ -- Xavier Guimard <x.guimard@free.fr>  Wed, 14 May 2014 22:38:31 +0200
+
+libpod-simple-wiki-perl (0.15-1) unstable; urgency=low
+
+  * Take over for the Debian Perl Group on maintainer's request
+    (http://bugs.debian.org/677732#10)
+  * Imported Upstream version 0.15
+  * Update source format to 3.0 (quilt)
+  * Add example files in examples dir
+  * Update debian/copyright (years and format)
+  * Bump Standards-Version to 3.9.4
+  * Bump debhelper compatibility to 8
+  * Update description
+  * Remove libpod-simple-perl dependency
+  * Update debian/rules to use "dh $@"
+
+ -- Xavier Guimard <x.guimard@free.fr>  Sun, 30 Dec 2012 18:18:15 +0100
+
+libpod-simple-wiki-perl (0.11-1) unstable; urgency=low
+
+  * New upstream release
+  * Fix debian/watch file
+
+ -- Ivan Kohler <ivan-debian@420.am>  Wed, 24 Mar 2010 17:35:50 -0700
+
+libpod-simple-wiki-perl (0.08-3) unstable; urgency=low
+
+  * Update debian/rules to current dh-make-perl template to fix "unconditional
+    rmdir" FTBFS (closes: Bug#468003)
+
+ -- Ivan Kohler <ivan-debian@420.am>  Wed, 27 Feb 2008 15:33:07 -0800
+
+libpod-simple-wiki-perl (0.08-2) unstable; urgency=low
+
+  * Update synopsis/description
+
+ -- Ivan Kohler <ivan-debian@420.am>  Fri, 12 Oct 2007 10:45:35 -0700
+
+libpod-simple-wiki-perl (0.08-1) unstable; urgency=low
+
+  * Initial Release (closes: Bug#445209).
+
+ -- Ivan Kohler <ivan-debian@420.am>  Wed, 03 Oct 2007 14:38:49 -0700

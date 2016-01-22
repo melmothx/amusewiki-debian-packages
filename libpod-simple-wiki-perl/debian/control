@@ -1,0 +1,27 @@
+Source: libpod-simple-wiki-perl
+Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
+Uploaders: Ivan Kohler <ivan-debian@420.am>,
+           Xavier Guimard <x.guimard@free.fr>
+Section: perl
+Testsuite: autopkgtest-pkg-perl
+Priority: optional
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: perl
+Standards-Version: 3.9.6
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-perl/packages/libpod-simple-wiki-perl.git
+Vcs-Git: git://anonscm.debian.org/pkg-perl/packages/libpod-simple-wiki-perl.git
+Homepage: https://metacpan.org/release/Pod-Simple-Wiki
+
+Package: libpod-simple-wiki-perl
+Architecture: all
+Depends: ${misc:Depends},
+         ${perl:Depends}
+Description: Perl class for creating Pod to Wiki filters
+ Pod::Simple::Wiki is used to convert Pod text to Wiki text.
+ .
+ Pod (Plain Old Documentation) is a simple markup language used for writing
+ Perl documentation.
+ .
+ A Wiki is a user extensible web site. It uses very simple mark-up that is
+ converted to Html. For an introduction to Wikis see:
+ http://en.wikipedia.org/wiki/Wiki
