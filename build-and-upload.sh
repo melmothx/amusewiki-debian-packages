@@ -8,7 +8,7 @@ if [ ! -d "$dir" ]; then
     exit 2;
 fi
 
-rm -v ${dir}*.{deb,build,changes}
+rm -fv ${dir}*.{deb,build,changes}
 cd $dir
 debuild -i -us -uc -b
 cd ..
