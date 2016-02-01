@@ -1,3 +1,6 @@
 [submodule "amusewiki"]
 	path = amusewiki
 	url = https://github.com/melmothx/amusewiki.git
+[submodule "libtext-amuse-perl"]
+	path = libtext-amuse-perl
+	url = git@github.com:melmothx/text-amuse.git
