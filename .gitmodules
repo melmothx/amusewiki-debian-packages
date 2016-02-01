@@ -7,3 +7,6 @@
 [submodule "libebook-epub-lite-perl"]
 	path = libebook-epub-lite-perl
 	url = git@github.com:melmothx/EBook-EPUB-Lite.git
+[submodule "libpdf-cropmarks-perl"]
+	path = libpdf-cropmarks-perl
+	url = git@github.com:melmothx/pdf-cropmarks-perl.git
