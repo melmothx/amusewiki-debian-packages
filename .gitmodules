@@ -4,3 +4,6 @@
 [submodule "libtext-amuse-perl"]
 	path = libtext-amuse-perl
 	url = git@github.com:melmothx/text-amuse.git
+[submodule "libebook-epub-lite-perl"]
+	path = libebook-epub-lite-perl
+	url = git@github.com:melmothx/EBook-EPUB-Lite.git
