@@ -10,3 +10,6 @@
 [submodule "libpdf-cropmarks-perl"]
 	path = libpdf-cropmarks-perl
 	url = git@github.com:melmothx/pdf-cropmarks-perl.git
+[submodule "libpdf-imposition-perl"]
+	path = libpdf-imposition-perl
+	url = git@github.com:melmothx/pdf-imposition-perl.git
