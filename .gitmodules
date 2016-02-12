@@ -13,3 +13,6 @@
 [submodule "libpdf-imposition-perl"]
 	path = libpdf-imposition-perl
 	url = git@github.com:melmothx/pdf-imposition-perl.git
+[submodule "libtext-amuse-compile-perl"]
+	path = libtext-amuse-compile-perl
+	url = git@github.com:melmothx/text-amuse-compile.git
