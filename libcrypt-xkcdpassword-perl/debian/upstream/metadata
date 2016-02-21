@@ -1,0 +1,7 @@
+---
+Archive: CPAN
+Bug-Database: http://rt.cpan.org/Dist/Display.html?Queue=Crypt-XkcdPassword
+Contact: Toby Inkster (TOBYINK) <tobyink@cpan.org>
+Name: Crypt-XkcdPassword
+Repository: git://github.com/tobyink/p5-crypt-xkcdpassword.git
+Repository-Browse: https://github.com/tobyink/p5-crypt-xkcdpassword
