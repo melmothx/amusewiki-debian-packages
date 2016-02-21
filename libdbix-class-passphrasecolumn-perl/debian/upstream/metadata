@@ -1,0 +1,8 @@
+---
+Archive: CPAN
+Bug-Database: http://rt.cpan.org/Public/Dist/Display.html?Name=DBIx-Class-PassphraseColumn
+Bug-Submit: bug-DBIx-Class-PassphraseColumn@rt.cpan.org
+Contact: Florian Ragwitz <rafl@debian.org>
+Name: DBIx-Class-PassphraseColumn
+Repository: git://github.com/rafl/dbix-class-passphrasecolumn.git
+Repository-Browse: http://github.com/rafl/dbix-class-passphrasecolumn

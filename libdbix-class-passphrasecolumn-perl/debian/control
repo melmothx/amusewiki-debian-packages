@@ -1,0 +1,28 @@
+Source: libdbix-class-passphrasecolumn-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libauthen-passphrase-perl,
+ libclass-load-perl,
+ libdbix-class-inflatecolumn-authen-passphrase-perl,
+ libdbix-class-perl,
+ libnamespace-clean-perl,
+ libsql-translator-perl,
+ libsub-name-perl,
+ perl
+Standards-Version: 3.9.6
+Homepage: https://metacpan.org/release/DBIx-Class-PassphraseColumn
+
+Package: libdbix-class-passphrasecolumn-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ libclass-load-perl,
+ libdbix-class-inflatecolumn-authen-passphrase-perl,
+ libdbix-class-perl,
+ libnamespace-clean-perl,
+ libsub-name-perl
+Description: Automatically hash password/passphrase columns
+ (no description was found)
+ .
+ This description was automagically extracted from the module by dh-make-perl.
