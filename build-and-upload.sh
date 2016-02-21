@@ -11,5 +11,6 @@ fi
 rm -fv ${dir}*.{deb,build,changes}
 cd $dir
 debuild -i -us -uc -b
+debuild clean
 cd ..
 scp ${dir}*.deb melmothx@packages.amusewiki.org:
