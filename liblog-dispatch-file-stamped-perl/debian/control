@@ -21,5 +21,3 @@ Depends: ${misc:Depends}, ${perl:Depends},
 Description: Logging to date/time stamped files
  Log::Dispatch::File::Stamped subclasses Log::Dispatch::File for logging to
  date/time stamped files, respecting all its configuration options.
- .
- This description was automagically extracted from the module by dh-make-perl.
