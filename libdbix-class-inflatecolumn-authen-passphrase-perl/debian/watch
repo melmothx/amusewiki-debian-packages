@@ -1,0 +1,2 @@
+version=3
+https://metacpan.org/release/DBIx-Class-InflateColumn-Authen-Passphrase   .*/DBIx-Class-InflateColumn-Authen-Passphrase-v?(\d[\d.-]*)\.(?:tar(?:\.gz|\.bz2)?|tgz|zip)$

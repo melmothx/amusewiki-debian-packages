@@ -1,0 +1,8 @@
+---
+Archive: CPAN
+Bug-Database: http://rt.cpan.org/Public/Dist/Display.html?Name=DBIx-Class-InflateColumn-Authen-Passphrase
+Bug-Submit: bug-DBIx-Class-InflateColumn-Authen-Passphrase@rt.cpan.org
+Contact: Florian Ragwitz <rafl@debian.org>
+Name: DBIx-Class-InflateColumn-Authen-Passphrase
+Repository: git://github.com/rafl/dbix-class-inflatecolumn-authen-passphrase.git
+Repository-Browse: http://github.com/rafl/dbix-class-inflatecolumn-authen-passphrase

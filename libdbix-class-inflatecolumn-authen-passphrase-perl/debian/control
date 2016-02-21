@@ -1,0 +1,21 @@
+Source: libdbix-class-inflatecolumn-authen-passphrase-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libauthen-passphrase-perl,
+ libdbix-class-perl,
+ libsql-translator-perl,
+ perl
+Standards-Version: 3.9.6
+Homepage: https://metacpan.org/release/DBIx-Class-InflateColumn-Authen-Passphrase
+
+Package: libdbix-class-inflatecolumn-authen-passphrase-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ libauthen-passphrase-perl,
+ libdbix-class-perl
+Description: Inflate/deflate columns to Authen::Passphrase instances
+ (no description was found)
+ .
+ This description was automagically extracted from the module by dh-make-perl.
