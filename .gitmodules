@@ -16,3 +16,6 @@
 [submodule "libtext-amuse-compile-perl"]
 	path = libtext-amuse-compile-perl
 	url = git@github.com:melmothx/text-amuse-compile.git
+[submodule "libtext-amuse-preprocessor-perl"]
+	path = libtext-amuse-preprocessor-perl
+	url = git@github.com:melmothx/text-amuse-preprocessor.git
