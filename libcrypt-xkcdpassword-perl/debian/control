@@ -1,7 +1,7 @@
 Source: libcrypt-xkcdpassword-perl
 Section: perl
 Priority: optional
-Maintainer: Marco <melmoth@universe.krase.net>
+Maintainer: Marco Pessotto <melmothx@gmail.com>
 Build-Depends: debhelper (>= 9)
 Build-Depends-Indep: libmatch-simple-perl,
  libmodule-runtime-perl,
@@ -20,5 +20,3 @@ Depends: ${misc:Depends}, ${perl:Depends},
  libtype-tiny-perl (>= 1.000000)
 Description: see http://xkcd.com/936/
  Yet another password generator module inspired by http://xkcd.com/936/.
- .
- This description was automagically extracted from the module by dh-make-perl.

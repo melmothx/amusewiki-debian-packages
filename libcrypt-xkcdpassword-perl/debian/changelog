@@ -1,5 +1,11 @@
+libcrypt-xkcdpassword-perl (0.009-2) unstable; urgency=medium
+
+  * Fixed deb metadata
+
+ -- Marco Pessotto <melmothx@gmail.com>  Sun, 21 Feb 2016 12:26:29 +0100
+
 libcrypt-xkcdpassword-perl (0.009-1) unstable; urgency=low
 
   * Initial Release.
 
- -- Marco <melmoth@universe.krase.net>  Sun, 21 Feb 2016 12:23:03 +0100
+ -- Marco Pessotto <melmothx@gmail.com>  Sun, 21 Feb 2016 12:23:03 +0100
