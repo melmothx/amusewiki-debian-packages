@@ -1,3 +1,9 @@
+libdbix-class-schema-config-perl (0.001011-2) unstable; urgency=medium
+
+  * Fixed metadata
+
+ -- Marco Pessotto <melmothx@gmail.com>  Sun, 21 Feb 2016 12:56:25 +0100
+
 libdbix-class-schema-config-perl (0.001011-1) unstable; urgency=low
 
   * Initial Release.

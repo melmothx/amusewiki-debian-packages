@@ -22,6 +22,8 @@ Depends: ${misc:Depends}, ${perl:Depends},
  libhash-merge-perl,
  libnamespace-clean-perl
 Description: Credential Management for DBIx::Class
- (no description was found)
- .
- This description was automagically extracted from the module by dh-make-perl.
+ DBIx::Class::Schema::Config is a subclass of DBIx::Class::Schema that
+ allows the loading of credentials & configuration from a file. The
+ actual code itself would only need to know about the name used in the
+ configuration file. This aims to make it simpler for operations teams
+ to manage database credentials.
