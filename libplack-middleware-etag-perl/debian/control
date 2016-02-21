@@ -16,15 +16,3 @@ Depends: ${misc:Depends}, ${perl:Depends},
 Description: Adds automatically an ETag header.
  Plack::Middleware::ETag adds automatically an ETag header. You may want to
  use it with Plack::Middleware::ConditionalGET.
- .
- my $app = builder {
- .
- enable "Plack::Middleware::ConditionalGET";
- .
- enable "Plack::Middleware::ETag", file_etag => "inode";
- .
- sub {['200', ['Content-Type' => 'text/html'}, ['hello world']]};
- .
- };
- .
- This description was automagically extracted from the module by dh-make-perl.
