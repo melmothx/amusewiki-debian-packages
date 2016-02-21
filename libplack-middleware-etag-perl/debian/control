@@ -1,0 +1,30 @@
+Source: libplack-middleware-etag-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libhttp-message-perl,
+ libplack-perl,
+ perl
+Standards-Version: 3.9.6
+Homepage: https://metacpan.org/release/Plack-Middleware-ETag
+
+Package: libplack-middleware-etag-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ libplack-perl
+Description: Adds automatically an ETag header.
+ Plack::Middleware::ETag adds automatically an ETag header. You may want to
+ use it with Plack::Middleware::ConditionalGET.
+ .
+ my $app = builder {
+ .
+ enable "Plack::Middleware::ConditionalGET";
+ .
+ enable "Plack::Middleware::ETag", file_etag => "inode";
+ .
+ sub {['200', ['Content-Type' => 'text/html'}, ['hello world']]};
+ .
+ };
+ .
+ This description was automagically extracted from the module by dh-make-perl.

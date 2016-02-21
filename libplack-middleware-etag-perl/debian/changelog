@@ -1,0 +1,5 @@
+libplack-middleware-etag-perl (0.05-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Marco Pessotto <melmothx@gmail.com>  Sun, 21 Feb 2016 13:01:35 +0100

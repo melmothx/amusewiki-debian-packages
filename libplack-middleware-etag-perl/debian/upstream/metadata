@@ -1,0 +1,6 @@
+---
+Archive: CPAN
+Bug-Database: https://github.com/franckcuny/plack-middleware-etag/issues
+Contact: Franck Cuny <franckcuny@gmail.com>
+Name: Plack-Middleware-ETag
+Repository: https://github.com/franckcuny/plack-middleware-etag
