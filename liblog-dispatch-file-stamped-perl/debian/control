@@ -1,0 +1,25 @@
+Source: liblog-dispatch-file-stamped-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: liblog-dispatch-perl (>= 2.38),
+ libnamespace-clean-perl (>= 0.19),
+ libparams-validate-perl,
+ libpath-tiny-perl,
+ libtest-deep-perl,
+ perl
+Standards-Version: 3.9.6
+Homepage: https://metacpan.org/release/Log-Dispatch-File-Stamped
+
+Package: liblog-dispatch-file-stamped-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ liblog-dispatch-perl (>= 2.38),
+ libnamespace-clean-perl (>= 0.19),
+ libparams-validate-perl
+Description: Logging to date/time stamped files
+ Log::Dispatch::File::Stamped subclasses Log::Dispatch::File for logging to
+ date/time stamped files, respecting all its configuration options.
+ .
+ This description was automagically extracted from the module by dh-make-perl.
