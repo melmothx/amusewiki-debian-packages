@@ -23,6 +23,6 @@ Depends: ${misc:Depends}, ${perl:Depends},
  libnamespace-clean-perl,
  libsub-name-perl
 Description: Automatically hash password/passphrase columns
- (no description was found)
- .
- This description was automagically extracted from the module by dh-make-perl.
+ This component can be used to automatically hash password columns
+ using any scheme supported by Authen::Passphrase whenever the value of
+ these columns is changed.

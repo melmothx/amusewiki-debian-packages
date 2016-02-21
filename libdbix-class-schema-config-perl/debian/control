@@ -1,0 +1,27 @@
+Source: libdbix-class-schema-config-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libconfig-any-perl (>= 0.23),
+ libdbd-sqlite3-perl,
+ libdbix-class-perl (>= 0.08100),
+ libfile-homedir-perl,
+ libhash-merge-perl,
+ libnamespace-clean-perl,
+ perl
+Standards-Version: 3.9.6
+Homepage: https://metacpan.org/release/DBIx-Class-Schema-Config
+
+Package: libdbix-class-schema-config-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ libconfig-any-perl (>= 0.23),
+ libdbix-class-perl (>= 0.08100),
+ libfile-homedir-perl,
+ libhash-merge-perl,
+ libnamespace-clean-perl
+Description: Credential Management for DBIx::Class
+ (no description was found)
+ .
+ This description was automagically extracted from the module by dh-make-perl.

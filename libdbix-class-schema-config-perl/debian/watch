@@ -1,0 +1,2 @@
+version=3
+https://metacpan.org/release/DBIx-Class-Schema-Config   .*/DBIx-Class-Schema-Config-v?(\d[\d.-]*)\.(?:tar(?:\.gz|\.bz2)?|tgz|zip)$
