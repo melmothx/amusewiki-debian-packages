@@ -16,6 +16,5 @@ Depends: ${misc:Depends}, ${perl:Depends},
  libauthen-passphrase-perl,
  libdbix-class-perl
 Description: Inflate/deflate columns to Authen::Passphrase instances
- (no description was found)
- .
- This description was automagically extracted from the module by dh-make-perl.
+ Provides inflation and deflation for Authen::Passphrase instances from
+ and to either RFC 2307 or crypt encoding.
