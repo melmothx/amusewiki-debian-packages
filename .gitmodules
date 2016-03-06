@@ -19,3 +19,6 @@
 [submodule "libtext-amuse-preprocessor-perl"]
 	path = libtext-amuse-preprocessor-perl
 	url = git@github.com:melmothx/text-amuse-preprocessor.git
+[submodule "libxml-opds-perl"]
+	path = libxml-opds-perl
+	url = git@github.com:melmothx/libxml-opds-perl
