@@ -1,0 +1,28 @@
+Source: libpdf-api2-perl
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Section: perl
+Priority: optional
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: perl,
+                     libfont-ttf-perl
+Standards-Version: 3.9.6
+Homepage: http://pdfapi2.sourceforge.net/
+
+Package: libpdf-api2-perl
+Architecture: all
+Depends: ${misc:Depends},
+         ${perl:Depends},
+         libfont-ttf-perl
+Description: module for creating or modifying PDF documents in Perl
+ PDF::API2 started as a nice API around the Text::PDF modules created by
+ Martin Hosken.
+ .
+ Features:
+  - Works with more than one PDF file open at once
+  - It presents a object-oriented API to the user 
+  - Supports the 14 base PDF Core Fonts
+  - Supports TrueType/OpenType fonts with both TT and CFF Outlines
+  - Supports Adobe-Type1 Fonts (pfb/pfa/afm)
+  - Supports native Embedding of bitmap images (jpeg,ppm,png)
+  - Supports modification of existing pdfs and import/cloning of pages
+  - Lite version of the API for first-timers

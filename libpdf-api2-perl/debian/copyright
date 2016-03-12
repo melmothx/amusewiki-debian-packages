@@ -1,0 +1,74 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: PDF-API2
+Upstream-Contact: Steve Simms <steve@deefs.net>
+Source: https://metacpan.org/release/PDF-API2
+
+Files: *
+Copyright: 2015, Steve Simms <steve@deefs.net>
+License: LGPL-2.1
+
+Files: contrib/text2pdf.pl
+Copyright: mcollins@fcnetwork.com
+License: LGPL-2.1
+Comment: This file is assumed to be released under the same conditions as
+ PDF-API2.
+
+Files: lib/PDF/API2/Matrix.pm
+Copyright: 1995-96, Ulrich Pfeifer
+ Alfred Reibenschuh <areibens@cpan.org>
+License: Artistic or GPL-1+
+
+Files: lib/PDF/API2/Resource/XObject/Image/PNM.pm
+Copyright: 1989-1991, Jef Poskanzer
+ 2003, Benjamin Elijah Griffin
+License: other
+ Contains code from Image::PBMLib
+ Copyright by Benjamin Elijah Griffin (28 Feb 2003)
+ This library is free software; you can redistribute it and/or modify
+ it under the same terms as Perl itself.
+ .
+ Includes text of the pam(5), pbm(5), pgm(5), ppm(5), pnm(5) and libmnm(3)
+ manpage.  Copyright (C) 1989, 1991 by Jef Poskanzer
+ Permission to use, copy, modify, and distribute this software and its
+ documentation for any purpose and without fee is hereby granted, provided
+ that the above copyright notice appear in all copies and that both that
+ copyright notice and this permission notice appear in supporting
+ documentation.  This software is provided "as is" without express or implied
+ warranty.
+
+Files: lib/PDF/API2/Basic/PDF/*
+Copyright: Martin Hosken <Martin_Hosken@sil.org>
+License: Artistic
+
+Files: debian/*
+Copyright: 2003-2008, Gunnar Wolf <gwolf@debian.org>
+ 2006-2015, gregor herrmann <gregoa@debian.org>
+ 2006, Krzysztof Krzyzaniak (eloy) <eloy@debian.org>
+ 2007-2008, Damyan Ivanov <dmn@debian.org>
+ 2009, Ryan Niebur <ryan@debian.org>
+ 2011, Jonathan Yu <jawnsy@cpan.org>
+License: LGPL-2.1 or Artistic or GPL-1+
+
+License: Artistic
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the Artistic License, which comes with Perl.
+ .
+ On Debian systems, the complete text of the Artistic License can be
+ found in `/usr/share/common-licenses/Artistic'.
+
+License: GPL-1+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 1, or (at your option)
+ any later version.
+ .
+ On Debian systems, the complete text of version 1 of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-1'.
+
+License: LGPL-2.1
+ This library is free software; you can redistribute it and/or modify it under
+ the terms of the GNU Lesser General Public License as published by the Free
+ Software Foundation; version 2.1 of the License.
+ .
+ On Debian systems, the complete text of version 2.1 of the GNU Lesser General
+ Public License can be found in `/usr/share/common-licenses/LGPL-2.1'.

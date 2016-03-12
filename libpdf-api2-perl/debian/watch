@@ -1,0 +1,2 @@
+version=3
+https://metacpan.org/release/PDF-API2     .+/PDF-API2-v?(\d[\d.]*)\.(?:tar\.gz|tar\.bz2|tgz|zip)

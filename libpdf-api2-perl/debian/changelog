@@ -1,0 +1,520 @@
+libpdf-api2-perl (2.027-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Marco Pessotto <melmothx@gmail.com>  Sat, 12 Mar 2016 10:11:43 +0100
+
+libpdf-api2-perl (2.025-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Add debian/upstream/metadata.
+  * Update years of upstream and packaging copyright.
+  * Bump debhelper compatibility level to 9.
+
+ -- gregor herrmann <gregoa@debian.org>  Mon, 30 Nov 2015 23:27:38 +0100
+
+libpdf-api2-perl (2.023-1) unstable; urgency=medium
+
+  [ Salvatore Bonaccorso ]
+  * Update Vcs-Browser URL to cgit web frontend
+
+  [ gregor herrmann ]
+  * New upstream release.
+  * debian/rules: don't install PDF/API2/Win32.pm.
+    Doesn't work on Debian, would need some Win32::* modules.
+  * Remove machinery to not install manpages from debian/*.
+    Not used since quite some time ...
+  * Mark package as autopkgtest-able.
+  * Declare compliance with Debian Policy 3.9.6.
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 18 Oct 2014 21:34:12 +0200
+
+libpdf-api2-perl (2.022-1) unstable; urgency=medium
+
+  * Fix last changelog entry. The dropped file is CONTACT, not README.
+
+  * New upstream release.
+  * Drop fix-whatis.patch, fixed upstream.
+
+ -- gregor herrmann <gregoa@debian.org>  Fri, 04 Jul 2014 21:43:43 +0200
+
+libpdf-api2-perl (2.021-1) unstable; urgency=medium
+
+  * Drop xz compression for {binary,source} package, set by default by
+    dpkg since 1.17.{0,6}.
+  * Strip trailing slash from metacpan URLs.
+
+  * New upstream release.
+  * Update copyright years.
+  * Remove dropped file CONTACT from debian/libpdf-api2-perl.docs.
+
+ -- gregor herrmann <gregoa@debian.org>  Wed, 14 May 2014 21:27:27 +0200
+
+libpdf-api2-perl (2.020-2) unstable; urgency=low
+
+  * Team upload.
+  * Remove Gustavo Franco from Uploaders (Closes: #729407)
+  * Remove the Depends on ttf-dejavu as they are not used anymore directly
+    (Closes: #735584)
+  * Remove Pre-Depends on dpkg (>= 1.15.6~)
+    dpkg (>= 1.15.6~) is now satisfied also on Squeeze (oldstable).
+  * Declare compliance with Debian Policy 3.9.5
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Thu, 16 Jan 2014 18:54:40 +0100
+
+libpdf-api2-perl (2.020-1) unstable; urgency=low
+
+  [ Ansgar Burchardt ]
+  * debian/control: Convert Vcs-* fields to Git.
+  * Use XZ compression for source and binary packages.
+
+  [ gregor herrmann ]
+  * Add a Pre-Depends on dpkg (>= 1.15.6~) for the xz compression.
+  * debian/control: update {versioned,alternative} (build) dependencies.
+
+  [ Salvatore Bonaccorso ]
+  * Change search.cpan.org based URIs to metacpan.org based URIs
+
+  [ gregor herrmann ]
+  * New upstream release.
+    Fixes "FTBFS with perl 5.18: test failures"
+    (Closes: #710966)
+  * Remove `HACKING' from debian/libpdf-api2-perl.docs.
+    The file was removed upstream.
+  * debian/copyright: switch formatting to Copyright-Format 1.0.
+  * Update years of upstream and packaging copyright.
+  * Update and forward fix-whatis.patch.
+  * Set Standards-Version to 3.9.4 (no further changes).
+
+ -- gregor herrmann <gregoa@debian.org>  Tue, 04 Jun 2013 19:27:04 +0200
+
+libpdf-api2-perl (2.019-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Jonathan Yu <jawnsy@cpan.org>  Fri, 11 Mar 2011 20:39:54 -0500
+
+libpdf-api2-perl (2.018-1) unstable; urgency=low
+
+  * New upstream release
+  * Added myself to Uploaders and Copyright
+  * Refreshed copyright information
+    + Embedded fonts removed upstream
+  * Bump to debhelper compat 8
+  * Remove obsolete overrides from rules
+  * Refresh whatis patch
+
+ -- Jonathan Yu <jawnsy@cpan.org>  Sun, 06 Mar 2011 12:48:03 -0500
+
+libpdf-api2-perl (2.016-1) unstable; urgency=low
+
+  [ Nathan Handler ]
+  * debian/watch: Update to ignore development releases.
+
+  [ Ryan Niebur ]
+  * Update ryan52's email address
+
+  [ gregor herrmann ]
+  * debian/control: Changed: (build-)depend on perl instead of perl-
+    modules.
+
+  * New upstream release (closes: #611356):
+    - includes fix for "Warnings whilst creating PDF with TTF"
+      (closes: #596202)
+  * Switch to source format 3.0 (quilt).
+  * Remove (build) dependencies for Compress::Zlib (in core since 5.10); add
+    (build) dependency on libfont-ttf-perl.
+  * debian/copyright: update copyright information and formatting.
+  * Remove prerm and postinst, only needed for up-/downgrades prior to lenny.
+  * Patches: remove createmanpages.diff, fix_typo_in_manpage.patch,
+    fix_unmatched_back.patch (not needed anymore). Rewrite the whatis patch.
+  * Minimize debian/rules.
+  * debian/rules: fix hashbang in examples.
+  * Update debian/ignored-manpages; comment out manpage removal in
+    debian/rules, they don't get installed for the time being. Leave the
+    framework around just in case.
+  * Set Standards-Version to 3.9.1 (no changes).
+
+ -- gregor herrmann <gregoa@debian.org>  Sun, 30 Jan 2011 17:23:59 +0100
+
+libpdf-api2-perl (0.73-1) unstable; urgency=low
+
+  [ gregor herrmann ]
+  * debian/control: Added: ${misc:Depends} to Depends: field.
+
+  [ Ryan Niebur ]
+  * New upstream release
+  * add myself to uploaders
+  * add descriptions to patches
+  * debian policy 3.8.1
+  * fix capitalization of API in long description
+  * improve the ignore-manpages set of scripts to allow for easier
+    updating of the md5sums
+  * machine readable copyright format
+  * add contrib/* to copyright and examples
+
+  [ gregor herrmann ]
+  * debian/{control,copyright}: change my email address.
+  * debian/copyright: point to CPAN instead of sourceforge for the upstream
+    source location.
+  * debian/control: change short description into a noun phrase.
+
+ -- Ryan Niebur <ryanryan52@gmail.com>  Thu, 02 Apr 2009 21:16:21 -0700
+
+libpdf-api2-perl (0.72.003-1) unstable; urgency=low
+
+  [ gregor herrmann ]
+  * debian/control: Changed: Switched Vcs-Browser field to ViewSVN
+    (source stanza).
+
+  [ Damyan Ivanov ]
+  * New upstream release
+  * refresh createmanpages.diff
+  * ship PDF::API2::Version manpage
+  * move changes to =over/=back from fix_manpage_NAMEs.patch to
+    fix_unmatched_back.patch; fill the later with more fixes
+    refresh fix_typo_in_manpage.patch
+  * convert debian/rules to debhelper7; adjust compat and control accordingly,
+    add debian/examples
+
+ -- Damyan Ivanov <dmn@debian.org>  Mon, 24 Nov 2008 09:17:16 +0200
+
+libpdf-api2-perl (0.71.001-1) unstable; urgency=low
+
+  [ gregor herrmann ]
+  * Add debian/README.source to document quilt usage, as required by
+    Debian Policy since 3.8.0.
+
+  [ Gunnar Wolf ]
+  * Standards-version -> 3.8.0
+  * New upstream release
+  * Fixed remaining manpage-related warnings (Closes: #467444)
+
+ -- Gunnar Wolf <gwolf@debian.org>  Tue, 12 Aug 2008 10:19:58 -0500
+
+libpdf-api2-perl (0.69-2) unstable; urgency=medium
+
+  [ David Paleino ]
+  * debian/control: removed myself from Uploaders
+
+  [ Damyan Ivanov ]
+  * fonts directory vs. symlink
+    + add debian/postinst that converts fonts/ dir to a symlink to the fonts
+      provided by ttf-dejavu
+    + also add debian/prerm reverting the symlink to a directory when
+      downgrading to a version prior to 0.66-1
+    Closes: #476242 -- Upgrades from Etch make fonts disappear
+    + medium urgency for serious bug fix
+  * fix_manpage_NAMEs.patch: add two more NAMEs
+
+ -- Damyan Ivanov <dmn@debian.org>  Sun, 04 May 2008 20:28:29 +0300
+
+libpdf-api2-perl (0.69-1) unstable; urgency=low
+
+  [ gregor herrmann ]
+  * debian/rules: delete /usr/lib/perl5 only if it exists.
+
+  [ Damyan Ivanov ]
+  * New upstream release
+    Closes: #461167 -- $pdf->info() metadata improperly handles Unicode
+    strings
+  * debian/watch: use dist-based URL, add v? to the pattern, require that
+    version starts with a digit and contains digits, dots and underscores only
+  * Standards-Version 3.7.3 (no changes)
+  * improvements to short and long description
+  * debhelper compatibility level 6
+  * debian/remove-ignored-manpages.sh: louder warning in checksum
+    mismatch
+  * Update checksums of Version and
+    Resource::CIDFont::TrueType::FontFile in debian/ignored-manpages
+
+ -- Damyan Ivanov <dmn@debian.org>  Fri, 18 Jan 2008 09:50:22 +0200
+
+libpdf-api2-perl (0.68-1) unstable; urgency=low
+
+  [ gregor herrmann ]
+  * New upstream release.
+  * Update debian/ignored-manpages.
+  * Update patch fix_unmatched_back.patch.
+  * Add patch fix_typo_in_manpage.patch that fixes typos in the inline docs.
+
+  [ Damyan Ivanov ]
+  * Add explicit $(MAKE) call. I don't knwo why, but this fixes parallel build
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Sat, 17 Nov 2007 22:55:03 +0100
+
+libpdf-api2-perl (0.66-1) unstable; urgency=low
+
+  [ Damyan Ivanov ]
+  * New upstream release
+  * Add missing Homepage field to source stanza in debian/control.
+  * Add examples to the package
+  * Add patch to fix manpage NAMEs
+  * Add support for more automatic deletion of dummy/stub/useless manpages
+    ignored-manpages, ignore-mapnage.sh, remove-ignored-manpages.sh
+    this way we ony have to fix manpages that are worth seeing.
+  * Clean up debian/rules
+    + Use $(TMP)
+    + make build-stamp depend on $(QUILT_STAMPFN)
+    + touch $@ in build-stamp
+    + remove stamps before distclean
+    + work around Makefile.PL wanting to re-generate Makefile when it is older
+      (after clean f.ex. when Makefile.PL is unpatched)
+    + Use prooper DESTDIR and PREFIX in install
+  * Fix pointer to LGPL in debian/copyright. Also change the packaging license
+    to actually match upstream's
+  * Drop Provides/Conflicts: libpdf-api2-perl-snapshot
+  * Add more information to debian/copyright
+
+  [ gregor herrmann ]
+  * Add patch to create manpages.
+  * Change Homepage to "real" homepage.
+  * debian/control: Added: Vcs-Svn field (source stanza); Vcs-Browser
+    field (source stanza). Removed: XS-Vcs-Svn fields.
+
+  [ David Paleino ]
+  * fonts are not carried anymore -- we now depend on ttf-dejavu
+    (16Mb lighter!)
+  * added debian/patches/fix_unmatched_back.patch
+  * added debian/links to symlink to ttf-dejavu files
+  * added dh_link to debian/rules
+  * added myself to Uploaders
+
+ -- Damyan Ivanov <dmn@debian.org>  Fri, 16 Nov 2007 16:32:51 +0200
+
+libpdf-api2-perl (0.64-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Damyan Ivanov <dmn@debian.org>  Mon, 17 Sep 2007 23:36:25 +0300
+
+libpdf-api2-perl (0.63-1) unstable; urgency=low
+
+  * New upstream release
+  * Moved test suite from install to build target
+
+ -- Damyan Ivanov <dmn@debian.org>  Tue, 11 Sep 2007 12:38:48 +0300
+
+libpdf-api2-perl (0.62-1) unstable; urgency=low
+
+  * New upstream release
+    Closes: #356419 -- bogen function exhibits strange behaviour
+  * Give debian/copyright a little bit of structure. Add copyrights and
+    licensing for the packaging
+    + Updated FSF address
+  * [debian/rules]
+    + Remove unused dh_strip and dh_link calls
+    + Remove unneeded dh_installdirs and debian/dirs
+  * Removed unneeded debian/lintian_overrides
+  * Added myself to Uploaders: (and wrapped it)
+
+ -- Damyan Ivanov <dmn@debian.org>  Fri, 17 Aug 2007 11:19:41 +0300
+
+libpdf-api2-perl (0.61-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Wed, 09 May 2007 10:18:25 -0500
+
+libpdf-api2-perl (0.59.002-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Wed, 21 Mar 2007 12:11:14 -0600
+
+libpdf-api2-perl (0.57-1) unstable; urgency=high (should enter Etch despite freeze)
+
+  * New upstream release. Fixes alignment problem with generated PDFs
+    opened under latest Adobe Acrobat Reader (Closes: #406248)
+
+ -- Gunnar Wolf <gwolf@debian.org>  Wed, 10 Jan 2007 09:04:23 -0600
+
+libpdf-api2-perl (0.55-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/control: added me to uploaders
+  * debian/watch updated
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Mon, 25 Sep 2006 15:00:36 +0200
+
+libpdf-api2-perl (0.51-2) unstable; urgency=low
+
+  * Moved debhelper to Build-Depends.
+  * Set Standards-Version to 3.7.2 (no changes).
+  * Set Debhelper Compatibility Level to 5.
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Fri, 16 Jun 2006 17:12:18 +0200
+
+libpdf-api2-perl (0.51-1) unstable; urgency=low
+
+  * New upstream release (Closes: #339521)
+
+ -- Gunnar Wolf <gwolf@debian.org>  Mon,  5 Dec 2005 11:38:55 -0600
+
+libpdf-api2-perl (0.50-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Fri, 11 Nov 2005 17:16:24 -0600
+
+libpdf-api2-perl (0.49-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Mon, 24 Oct 2005 12:08:42 -0500
+
+libpdf-api2-perl (0.46-1) unstable; urgency=low
+
+  * New upstream release
+  * Somehow, I managed to lose the documentation generation changes I
+    introduced in 0.4.91-2 - Introducing them back :-/ (and fixing a couple
+    of not-man-friendly characters here and there)
+  * Added Lintian overrides for manpage-has-errors-from-man (a pod2man
+    bug, reporting it)
+
+ -- Gunnar Wolf <gwolf@debian.org>  Wed, 14 Sep 2005 12:58:40 -0500
+
+libpdf-api2-perl (0.45-1) unstable; urgency=low
+
+  * New upstream release
+  * No longer ignores the result of make distclean in the clean target
+    (Re: bug #325452)
+
+ -- Gunnar Wolf <gwolf@debian.org>  Thu,  1 Sep 2005 18:18:12 -0500
+
+libpdf-api2-perl (0.44-1) unstable; urgency=low
+
+  * New upstream release
+  * Bumped up standards-version
+
+ -- Gunnar Wolf <gwolf@debian.org>  Fri, 15 Jul 2005 15:31:57 +0300
+
+libpdf-api2-perl (0.42-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Fri, 10 Jun 2005 09:16:28 -0500
+
+libpdf-api2-perl (0.41.00-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Thu, 31 Mar 2005 17:03:54 -0600
+
+libpdf-api2-perl (0.40.97-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Thu, 17 Mar 2005 18:49:07 -0600
+
+libpdf-api2-perl (0.40.96-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Tue,  1 Mar 2005 19:31:26 -0600
+
+libpdf-api2-perl (0.40.91-2) unstable; urgency=low
+
+  * The documentation is finally built as it should, with all the
+    that _do_ have documentation generating a valid manpage
+
+ -- Gunnar Wolf <gwolf@debian.org>  Tue,  1 Mar 2005 19:10:44 -0600
+
+libpdf-api2-perl (0.40.91-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Tue, 15 Feb 2005 20:17:25 -0600
+
+libpdf-api2-perl (0.40.86-2) unstable; urgency=low
+
+  * Dropped Reccomends: relation on libpdf-api2-perl-doc, as that
+    package will soon be dropped (documentation now provided in this
+    same package)
+
+ -- Gunnar Wolf <gwolf@debian.org>  Thu, 27 Jan 2005 09:59:37 -0600
+
+libpdf-api2-perl (0.40.86-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Mon, 24 Jan 2005 19:14:49 -0600
+
+libpdf-api2-perl (0.40.83-2) unstable; urgency=low
+
+  * Added build-dependency on libcompress-zlib-perl (Closes: #289128)
+
+ -- Gunnar Wolf <gwolf@debian.org>  Fri,  7 Jan 2005 13:05:56 -0600
+
+libpdf-api2-perl (0.40.83-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Wed,  5 Jan 2005 15:09:37 -0600
+
+libpdf-api2-perl (0.40.59-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Tue, 04 Nov 2004 18:49:00 -0600
+
+libpdf-api2-perl (0.3r77-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Tue, 15 Jul 2003 18:09:09 +0200
+
+libpdf-api2-perl (0.3r74-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Fri, 27 Jun 2003 15:05:40 -0500
+
+libpdf-api2-perl (0.3d72-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Thu, 12 Jun 2003 18:28:57 -0500
+
+libpdf-api2-perl (0.3d70-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Thu,  5 Jun 2003 12:00:43 -0500
+
+libpdf-api2-perl (0.3d69-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Sun, 18 May 2003 21:34:41 -0500
+
+libpdf-api2-perl (0.3d67-2) unstable; urgency=low
+
+  * A little error in the control file, excuse me ;-)
+
+ -- Gunnar Wolf <gwolf@debian.org>  Mon, 21 Apr 2003 18:44:18 -0500
+
+libpdf-api2-perl (0.3d67-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Wolf <gwolf@debian.org>  Mon, 21 Apr 2003 17:46:48 -0500
+
+libpdf-api2-perl (0.3d65-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Gunnar Eyal Wolf Iszaevich <gwolf@gwolf.cx>  Wed,  9 Apr 2003 09:22:56 -0500
+
+libpdf-api2-perl (0.3b59-2) unstable; urgency=low
+
+  * Fixed some details in the pod documentation format
+  * Sponsored by Amaya Rodrigo <amaya@debian.org>
+
+ -- Gunnar Eyal Wolf Iszaevich <gwolf@gwolf.cx>  Thu, 27 Mar 2003 11:11:37 -0600
+libpdf-api2-perl (0.3b59-1) unstable; urgency=low
+
+  * Initial Release.
+  * Closes: #179074.
+
+ -- Gunnar Eyal Wolf Iszaevich <gwolf@gwolf.cx>  Wed, 19 Mar 2003 12:49:07 -0600

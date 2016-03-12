@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+
+PACKAGE = $(shell dh_listpackages)
+TMP     = $(CURDIR)/debian/$(PACKAGE)
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	dh_auto_install
+	# doesn't work on Debian, needs Win32::TieRegistry
+	$(RM) -v $(TMP)/usr/share/perl5/PDF/API2/Win32.pm
+
+override_dh_installexamples:
+	dh_installexamples
+	sed -i '1s|^#!/usr/local/bin/perl|#!/usr/bin/perl|' $(TMP)/usr/share/doc/$(PACKAGE)/examples/*
