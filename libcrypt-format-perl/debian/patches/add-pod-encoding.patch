@@ -1,0 +1,18 @@
+Description: Add POD encoding
+Origin: vendor
+Author: Salvatore Bonaccorso <carnil@debian.org>
+Last-Update: 2016-02-05
+Forwarded: https://rt.cpan.org/Ticket/Display.html?id=111797
+Bug: https://rt.cpan.org/Ticket/Display.html?id=111797
+
+--- a/lib/Crypt/Format.pm
++++ b/lib/Crypt/Format.pm
+@@ -7,6 +7,8 @@ our $VERSION = '0.06';
+ 
+ our $BASE64_MODULE = 'MIME::Base64';
+ 
++=encoding UTF-8
++
+ =head1 NAME
+ 
+ Crypt::Format - Conversion utilities for encryption applications

@@ -1,0 +1,5 @@
+libcrypt-format-perl (0.06-1) unstable; urgency=low
+
+  * Initial Release (Closes: #813785).
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Fri, 05 Feb 2016 07:47:01 +0100

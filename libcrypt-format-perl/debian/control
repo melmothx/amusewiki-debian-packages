@@ -1,0 +1,20 @@
+Source: libcrypt-format-perl
+Section: perl
+Priority: optional
+Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
+Uploaders: Salvatore Bonaccorso <carnil@debian.org>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libtest-exception-perl,
+ perl
+Standards-Version: 3.9.7
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-perl/packages/libcrypt-format-perl.git
+Vcs-Git: https://anonscm.debian.org/git/pkg-perl/packages/libcrypt-format-perl.git
+Homepage: https://metacpan.org/release/Crypt-Format
+Testsuite: autopkgtest-pkg-perl
+
+Package: libcrypt-format-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends}
+Description: Perl interface to conversion utilities for encryption applications
+ Crypt::Format provides an interface to a set of conversions for encryption
+ applications (der2pem, pem2der, normalize_pem).
