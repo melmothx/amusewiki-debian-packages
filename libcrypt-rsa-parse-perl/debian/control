@@ -1,0 +1,29 @@
+Source: libcrypt-rsa-parse-perl
+Section: perl
+Priority: optional
+Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
+Uploaders: Salvatore Bonaccorso <carnil@debian.org>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libclass-accessor-perl,
+ libconvert-asn1-perl (>= 0.27),
+ libcrypt-format-perl,
+ libtest-nowarnings-perl,
+ perl
+Standards-Version: 3.9.7
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-perl/packages/libcrypt-rsa-parse-perl.git
+Vcs-Git: https://anonscm.debian.org/git/pkg-perl/packages/libcrypt-rsa-parse-perl.git
+Homepage: https://metacpan.org/release/Crypt-RSA-Parse
+Testsuite: autopkgtest-pkg-perl
+
+Package: libcrypt-rsa-parse-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ libclass-accessor-perl,
+ libconvert-asn1-perl (>= 0.27),
+ libcrypt-format-perl
+Description: Perl module to parse RSA keys
+ Crypt::RSA::Parse provides an interface for parsing RSA keys for useful
+ information.
+ .
+ The public keys are represented via the Crypt::RSA::Parse::Public class,
+ while private keys are represented via  Crypt::RSA::Parse::Private.

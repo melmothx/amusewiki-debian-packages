@@ -1,0 +1,5 @@
+libcrypt-rsa-parse-perl (0.041-1) unstable; urgency=low
+
+  * Initial Release (Closes: #813921).
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 07 Feb 2016 18:17:50 +0100
