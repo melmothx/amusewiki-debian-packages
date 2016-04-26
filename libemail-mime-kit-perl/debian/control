@@ -25,6 +25,7 @@ Depends: ${misc:Depends}, ${perl:Depends},
  libtest-deep-perl,
  libyaml-libyaml-perl
 Description: build messages from templates
- (no description was found)
- .
- This description was automagically extracted from the module by dh-make-perl.
+ Email::MIME::Kit is a templating system for email messages. Instead
+ of trying to be yet another templating system for chunks of text, it
+ makes it easy to build complete email messages.
+
