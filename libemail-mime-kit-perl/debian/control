@@ -1,0 +1,30 @@
+Source: libemail-mime-kit-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libemail-messageid-perl (>= 1.400),
+ libemail-mime-perl (>= 1.900),
+ libjson-perl (>= 2),
+ libmoose-perl (>= 0.65),
+ libstring-rewriteprefix-perl,
+ libtest-deep-perl,
+ libyaml-libyaml-perl,
+ perl (>= 5.13.4)
+Standards-Version: 3.9.6
+Homepage: https://metacpan.org/release/Email-MIME-Kit
+
+Package: libemail-mime-kit-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ libemail-messageid-perl (>= 1.400),
+ libemail-mime-perl (>= 1.900),
+ libjson-perl (>= 2),
+ libmoose-perl (>= 0.65),
+ libstring-rewriteprefix-perl,
+ libtest-deep-perl,
+ libyaml-libyaml-perl
+Description: build messages from templates
+ (no description was found)
+ .
+ This description was automagically extracted from the module by dh-make-perl.
