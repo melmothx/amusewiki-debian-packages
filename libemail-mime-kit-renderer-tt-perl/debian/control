@@ -1,0 +1,43 @@
+Source: libemail-mime-kit-renderer-tt-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libcapture-tiny-perl,
+ libemail-mime-kit-perl (>= 2),
+ libmoose-perl,
+ libtemplate-perl (>= 2.1),
+ perl (>= 5.13.4)
+Standards-Version: 3.9.6
+Homepage: https://metacpan.org/release/Email-MIME-Kit-Renderer-TT
+
+Package: libemail-mime-kit-renderer-tt-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ libemail-mime-kit-perl (>= 2),
+ libmoose-perl,
+ libtemplate-perl (>= 2.1)
+Description: render parts of your mail with Template-Toolkit
+ This is a renderer plugin for Email::MIME::Kit, and renders message parts
+ using Template Toolkit 2|Template. When specifying a renderer in
+ manifest.json, you might write something like this:
+ .
+ { ..., "renderer": "TT" }
+ .
+ Or, to supply options:
+ .
+ {
+ .
+ ...,
+ .
+ "renderer": [
+ .
+ "TT",
+ .
+ { ...params go here... }
+ .
+ ]
+ .
+ }
+ .
+ This description was automagically extracted from the module by dh-make-perl.
