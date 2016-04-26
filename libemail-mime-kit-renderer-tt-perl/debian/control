@@ -19,25 +19,4 @@ Depends: ${misc:Depends}, ${perl:Depends},
  libtemplate-perl (>= 2.1)
 Description: render parts of your mail with Template-Toolkit
  This is a renderer plugin for Email::MIME::Kit, and renders message parts
- using Template Toolkit 2|Template. When specifying a renderer in
- manifest.json, you might write something like this:
- .
- { ..., "renderer": "TT" }
- .
- Or, to supply options:
- .
- {
- .
- ...,
- .
- "renderer": [
- .
- "TT",
- .
- { ...params go here... }
- .
- ]
- .
- }
- .
- This description was automagically extracted from the module by dh-make-perl.
+ using Template Toolkit 2.
