@@ -1,0 +1,40 @@
+Source: libprotocol-acme-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libcrypt-format-perl (>= 0.04),
+ libcrypt-openssl-bignum-perl (>= 0.04),
+ libcrypt-openssl-rsa-perl (>= 0.28),
+ libcrypt-rsa-parse-perl (>= 0.02),
+ libhttp-tiny-perl (>= 0.050) | perl (>= 5.21.5),
+ libjson-perl (>= 2.61),
+ liblog-any-adapter-perl (>= 0.11),
+ liblog-any-perl (>= 0.15),
+ libtest-exception-perl (>= 0.35),
+ perl (>= 5.19.10)
+Standards-Version: 3.9.6
+Homepage: https://metacpan.org/release/Protocol-ACME
+
+Package: libprotocol-acme-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ libcrypt-format-perl (>= 0.04),
+ libcrypt-openssl-bignum-perl (>= 0.04),
+ libcrypt-openssl-rsa-perl (>= 0.28),
+ libcrypt-rsa-parse-perl (>= 0.02),
+ libhttp-tiny-perl (>= 0.050) | perl (>= 5.21.5),
+ libjson-perl (>= 2.61),
+ liblog-any-adapter-perl (>= 0.11),
+ liblog-any-perl (>= 0.15),
+ libtest-exception-perl (>= 0.35),
+ perl (>= 5.19.10)
+Description: Interface to the Let's Encrypt ACME API
+ The Protocol::ACME is a class implementing an interface for the Let's Encrypt
+ ACME API.
+ .
+ NOTE: This code at this point is functional but should be considered 'alpha'
+ quality.
+ .
+ The class handles the protocol details behind provisioning a Let's Encrypt
+ certificate.

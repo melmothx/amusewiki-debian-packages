@@ -1,0 +1,11 @@
+libprotocol-acme-perl (0.12-2) unstable; urgency=medium
+
+  * Bumped up
+
+ -- Marco Pessotto <melmothx@gmail.com>  Sun, 01 May 2016 11:49:25 +0200
+
+libprotocol-acme-perl (0.12-1) unstable; urgency=low
+
+  * Initial Release. (Closes: #813556)
+
+ -- Marco Pessotto <melmothx@gmail.com>  Sun, 1 May 2016 11:48:00 +0200
