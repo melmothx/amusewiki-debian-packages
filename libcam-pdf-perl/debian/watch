@@ -1,2 +1,0 @@
-version=3
-https://metacpan.org/release/CAM-PDF/   .*/CAM-PDF-v?(\d[\d.-]+)\.(?:tar(?:\.gz|\.bz2)?|tgz|zip)$
