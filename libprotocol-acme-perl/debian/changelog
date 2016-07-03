@@ -1,3 +1,15 @@
+libprotocol-acme-perl (0.12-4) unstable; urgency=medium
+
+  * Fix again liblog-any-adapter-perl dependency for newer releases
+
+ -- Marco Pessotto <melmothx@gmail.com>  Sun, 03 Jul 2016 14:12:13 +0200
+
+libprotocol-acme-perl (0.12-3) unstable; urgency=medium
+
+  * Fix liblog-any-adapter-perl dependency for newer releases
+
+ -- Marco Pessotto <melmothx@gmail.com>  Sun, 03 Jul 2016 14:09:11 +0200
+
 libprotocol-acme-perl (0.12-2) unstable; urgency=medium
 
   * Bumped up
