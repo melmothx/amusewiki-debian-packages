@@ -1,11 +1,11 @@
 package PDF::API2::Resource::Font::CoreFont::trebuchet;
 
-our $VERSION = '2.027'; # VERSION
-
 use strict;
 use warnings;
 
-our $FONTDATA = {
+our $VERSION = '2.030'; # VERSION
+
+sub data { return {
     'fontname' => 'TrebuchetMS',
     'type' => 'TrueType',
     'apiname' => 'Treb',
@@ -570,4 +570,6 @@ our $FONTDATA = {
         'fi' => '579',                           # U+0xFB01
         'fl' => '600',                           # U+0xFB02
     }, # HORIZ. WIDTH TABLE
-};
+} };
+
+1;

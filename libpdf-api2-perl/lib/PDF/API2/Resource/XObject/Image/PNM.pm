@@ -1,23 +1,23 @@
 package PDF::API2::Resource::XObject::Image::PNM;
 
-our $VERSION = '2.027'; # VERSION
-
 # For spec details, see man pages pam(5), pbm(5), pgm(5), pnm(5),
 # ppm(5), which were pasted into the __END__ of this file in an
 # earlier revision.
 
 use base 'PDF::API2::Resource::XObject::Image';
 
+use strict;
+no warnings qw[ deprecated recursion uninitialized ];
+
+our $VERSION = '2.030'; # VERSION
+
 use IO::File;
 use PDF::API2::Util;
 use PDF::API2::Basic::PDF::Utils;
 
-no warnings qw[ deprecated recursion uninitialized ];
-
 sub new {
     my ($class,$pdf,$file,$name) = @_;
     my $self;
-    my $fh = IO::File->new;
 
     $class = ref $class if ref $class;
 
@@ -40,18 +40,18 @@ sub new_api {
     return($obj);
 }
 
-# READPPMHEADER 
+# READPPMHEADER
 # taken from Image::PBMLib
 # Copyright by Benjamin Elijah Griffin (28 Feb 2003)
 #
-sub readppmheader($) {
+sub readppmheader {
   my $gr = shift; # input file glob ref
   my $in = '';
   my $no_comments;
   my %info;
   my $rc;
   $info{error} = undef;
-  
+
   $rc = read($gr, $in, 3);
 
   if (!defined($rc) or $rc != 3) {
@@ -122,16 +122,23 @@ sub read_pnm {
 
     my ($buf,$t,$s,$line);
     my ($w,$h,$bpc,$cs,$img,@img)=(0,0,'','','');
-    open(INF,$file);
-    binmode(INF,':raw');
-    my $info=readppmheader(INF);
+    my $inf;
+    if (ref($file)) {
+        $inf = $file;
+    }
+    else {
+        open $inf, "<", $file or die "$!: $file";
+    }
+    binmode($inf,':raw');
+    $inf->seek(0,0);
+    my $info=readppmheader($inf);
     if($info->{type} == 4) {
         $bpc=1;
-        read(INF,$self->{' stream'},($info->{width}*$info->{height}/8));
+        read($inf,$self->{' stream'},($info->{width}*$info->{height}/8));
         $cs='DeviceGray';
         $self->{Decode}=PDFArray(PDFNum(1),PDFNum(0));
     } elsif($info->{type} == 5) {
-        $buf.=<INF>;
+        $buf.=<$inf>;
         if($info->{max}==255){
             $s=0;
         } else {
@@ -140,11 +147,11 @@ sub read_pnm {
         $bpc=8;
         if($s>0) {
             for($line=($info->{width}*$info->{height});$line>0;$line--) {
-                read(INF,$buf,1);
+                read($inf,$buf,1);
                 $self->{' stream'}.=pack('C',(unpack('C',$buf)*$s));
             }
         } else {
-            read(INF,$self->{' stream'},$info->{width}*$info->{height});
+            read($inf,$self->{' stream'},$info->{width}*$info->{height});
         }
         $cs='DeviceGray';
     } elsif($info->{type} == 6) {
@@ -156,19 +163,19 @@ sub read_pnm {
         $bpc=8;
         if($s>0) {
             for($line=($info->{width}*$info->{height});$line>0;$line--) {
-                read(INF,$buf,1);
+                read($inf,$buf,1);
                 $self->{' stream'}.=pack('C',(unpack('C',$buf)*$s));
-                read(INF,$buf,1);
+                read($inf,$buf,1);
                 $self->{' stream'}.=pack('C',(unpack('C',$buf)*$s));
-                read(INF,$buf,1);
+                read($inf,$buf,1);
                 $self->{' stream'}.=pack('C',(unpack('C',$buf)*$s));
             }
         } else {
-            read(INF,$self->{' stream'},$info->{width}*$info->{height}*3);
+            read($inf,$self->{' stream'},$info->{width}*$info->{height}*3);
         }
         $cs='DeviceRGB';
     }
-    close(INF);
+    close($inf);
 
     $self->width($info->{width});
     $self->height($info->{height});

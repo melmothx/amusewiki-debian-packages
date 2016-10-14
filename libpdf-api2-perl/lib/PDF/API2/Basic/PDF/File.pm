@@ -14,7 +14,9 @@
 #=======================================================================
 package PDF::API2::Basic::PDF::File;
 
-our $VERSION = '2.027'; # VERSION
+use strict;
+
+our $VERSION = '2.030'; # VERSION
 
 =head1 NAME
 
@@ -82,7 +84,7 @@ have been made to the memory representation.
 
 =item maxobj (R)
 
-Contains the first useable object number above any that have already appeared
+Contains the first usable object number above any that have already appeared
 in the file so far.
 
 =item outlist (P)
@@ -137,9 +139,6 @@ is in PDF which contains the location of the previous cross-reference table.
 =head1 METHODS
 
 =cut
-
-use strict;
-no strict "refs";
 
 use Scalar::Util qw(blessed);
 
@@ -227,7 +226,7 @@ sub open {
     }
     else {
         die "File '$filename' does not exist !" unless -f $filename;
-        $fh = IO::File->new(($update ? '+' : '') . "<$filename") || return undef;
+        $fh = IO::File->new(($update ? '+' : '') . "<$filename") || return;
         $self->{' INFILE'} = $fh;
         if ($update) {
             $self->{' update'} = 1;
@@ -324,7 +323,7 @@ Appends the objects for output to the read file and then appends the appropriate
 
 sub append_file {
     my $self = shift();
-    return undef unless $self->{' update'};
+    return unless $self->{' update'};
 
     my $fh = $self->{' INFILE'};
 
@@ -456,7 +455,7 @@ sub readval {
     my ($result, $value);
 
     my $update = defined($opts{update}) ? $opts{update} : 1;
-    $str = update($fh, $str);
+    $str = update($fh, $str) if $update;
 
     $str =~ s/^$ws_char+//;               # Ignore initial white space
     $str =~ s/^\%[^\015\012]*$ws_char+//; # Ignore comments
@@ -475,16 +474,19 @@ sub readval {
                 my $key = PDF::API2::Basic::PDF::Name::name_to_string($1, $self);
                 ($value, $str) = $self->readval($str, %opts);
                 $result->{$key} = $value;
-            } 
-            elsif ($str =~ s|^/$ws_char+||) { 
+            }
+            elsif ($str =~ s|^/$ws_char+||) {
                 # fixes a broken key problem of acrobat. -- fredo
                 ($value, $str) = $self->readval($str, %opts);
                 $result->{'null'} = $value;
-            } 
-            elsif ($str =~ s|^//|/|) { 
+            }
+            elsif ($str =~ s|^//|/|) {
                 # fixes again a broken key problem of illustrator/enfocus. -- fredo
                 ($value, $str) = $self->readval($str, %opts);
                 $result->{'null'} = $value;
+            }
+            else {
+                die "Invalid dictionary key";
             }
             $str = update($fh, $str) if $update; # thanks gareth.jones@stud.man.ac.uk
         }
@@ -496,12 +498,6 @@ sub readval {
             my $length = $result->{'Length'}->val;
             $result->{' streamsrc'} = $fh;
             $result->{' streamloc'} = $fh->tell - length($str);
-
-            # The following line was added as part of the initial XRef Stream patch, but it breaks
-            # streams that are near the end of a file (starting the stream one byte early, resulting
-            # in corruption).
-            #
-            # $result->{' streamloc'}-- if $fh->eof;
 
             unless ($opts{'nostreams'}) {
                 if ($length > length($str)) {
@@ -515,7 +511,7 @@ sub readval {
                 $value .= substr($str, 0, $length);
                 $result->{' stream'} = $value;
                 $result->{' nofilt'} = 1;
-                $str = update($fh, $str, 1) if $update;  # tell update we are in-stream and only need an endstream 
+                $str = update($fh, $str, 1) if $update;  # tell update we are in-stream and only need an endstream
                 $str = substr($str, index($str, 'endstream') + 9);
             }
         }
@@ -542,7 +538,7 @@ sub readval {
         $result->{' realised'} = 0;
         # gdj: FIXME: if any of the ws chars were crs, then the whole
         # string might not have been read.
-    } 
+    }
 
     # Object
     elsif ($str =~ m/^([0-9]+)$ws_char+([0-9]+)$ws_char+obj/s) {
@@ -550,7 +546,7 @@ sub readval {
         my $num = $1;
         $value = $2;
         $str =~ s/^([0-9]+)$ws_char+([0-9]+)$ws_char+obj//s;
-        ($obj, $str) = $self->readval($str, %opts, 'objnum' => $num, 'objgen' => $value);
+        ($obj, $str) = $self->readval($str, %opts);
         if ($result = $self->test_obj($num, $value)) {
             $result->merge($obj);
         }
@@ -568,7 +564,7 @@ sub readval {
         $value = $1;
         $str =~ s|^/($reg_char*)||s;
         $result = PDF::API2::Basic::PDF::Name->from_pdf($value, $self);
-    } 
+    }
 
     # Literal String
     elsif ($str =~ m/^\(/) {
@@ -622,7 +618,7 @@ sub readval {
         }
 
         $result = PDF::API2::Basic::PDF::String->from_pdf($value);
-    } 
+    }
 
     # Hex String
     elsif ($str =~ m/^</) {
@@ -630,7 +626,7 @@ sub readval {
         $fh->read($str, 255, length($str)) while (0 > index($str, '>'));
         ($value, $str) = ($str =~ /^(.*?)>(.*)/s);
         $result = PDF::API2::Basic::PDF::String->from_pdf('<' . $value . '>');
-    } 
+    }
 
     # Array
     elsif ($str =~ m/^\[/) {
@@ -646,27 +642,27 @@ sub readval {
             $str = update($fh, $str) if $update;   # str might just be exhausted!
         }
         $str =~ s/^\]//;
-    } 
+    }
 
     # Boolean
     elsif ($str =~ m/^(true|false)$irreg_char/) {
         $value = $1;
         $str =~ s/^(?:true|false)//;
         $result = PDF::API2::Basic::PDF::Bool->from_pdf($value);
-    } 
+    }
 
     # Number
     elsif ($str =~ m/^([+-.0-9]+)$irreg_char/) {
         $value = $1;
         $str =~ s/^([+-.0-9]+)//;
         $result = PDF::API2::Basic::PDF::Number->from_pdf($value);
-    } 
+    }
 
     # Null
     elsif ($str =~ m/^null$irreg_char/) {
         $str =~ s/^null//;
         $result = PDF::API2::Basic::PDF::Null->new;
-    } 
+    }
 
     else {
         die "Can't parse `$str' near " . ($fh->tell()) . " length " . length($str) . ".";
@@ -687,7 +683,7 @@ the read in object.
 sub read_obj {
     my ($self, $objind, %opts) = @_;
 
-    my $res = $self->read_objnum($objind->{' objnum'}, $objind->{' objgen'}, %opts) || return undef;
+    my $res = $self->read_objnum($objind->{' objnum'}, $objind->{' objgen'}, %opts) || return;
     $objind->merge($res) unless $objind eq $res;
     return $objind;
 }
@@ -702,7 +698,7 @@ Returns a fully read object of given number and generation in this file
 sub read_objnum {
     my ($self, $num, $gen, %opts) = @_;
 
-    my $object_location = $self->locate_obj($num, $gen) || return undef;
+    my $object_location = $self->locate_obj($num, $gen) || return;
     my $object;
 
     if (ref $object_location)
@@ -731,13 +727,13 @@ sub read_objnum {
         my $length = $index > $count ? length($objects) : $mappings[$index];
         my $stream = "$num 0 obj" . substr($objects, $start, $length);
 
-        ($object) = $self->readval($stream, %opts, objnum => $num, objgen => $gen, update => 0);
+        ($object) = $self->readval($stream, %opts, update => 0);
         return $object;
     }
 
     my $current_location = $self->{' INFILE'}->tell;
     $self->{' INFILE'}->seek($object_location, 0);
-    ($object) = $self->readval('', %opts, 'objnum' => $num, 'objgen' => $gen);
+    ($object) = $self->readval('', %opts);
     $self->{' INFILE'}->seek($current_location, 0);
     return $object;
 }
@@ -988,13 +984,13 @@ sub locate_obj {
             return $ref unless scalar(@$ref) == 3;
 
             if ($ref->[1] == $gen) {
-                return $ref->[0] if ($ref->[2] eq 'n');
-                return undef; # if $ref->[2] eq 'f'
+                return $ref->[0] if $ref->[2] eq 'n';
+                return         # if $ref->[2] eq 'f';
             }
         }
-        $tdict = $tdict->{' prev'}
+        $tdict = $tdict->{' prev'};
     }
-    return undef;
+    return;
 }
 
 
@@ -1098,7 +1094,7 @@ sub readxrtr {
     $fh->seek($xpos, 0);
     $fh->read($buf, 22);
     $buf = update($fh, $buf); # fix for broken JAWS xref calculation.
-    
+
     my $xlist = {};
 
     ## seams that some products calculate wrong prev entries (short)
@@ -1108,7 +1104,7 @@ sub readxrtr {
     #    $buf =~ s/^(\s+|\S+|.)//i;
     #    $buf=update($fh,$buf);
     #}
-    
+
     if ($buf =~ s/^xref$cr//i) {
         # Plain XRef tables.
         while ($buf =~ m/^$ws_char*([0-9]+)$ws_char+([0-9]+)$ws_char*$cr(.*?)$/s) {
@@ -1123,7 +1119,7 @@ sub readxrtr {
             $xdiff = length($buf);
 
             $fh->read($buf, 20 * $xnum - $xdiff + 15, $xdiff);
-            while ($xnum-- > 0 and $buf =~ s/^0*([0-9]*)$ws_char+0*([0-9]+)$ws_char+([nf])$cr//) { 
+            while ($xnum-- > 0 and $buf =~ s/^0*([0-9]*)$ws_char+0*([0-9]+)$ws_char+([nf])$cr//) {
                 $xlist->{$xmin} = [$1, $2, $3] unless exists $xlist->{$xmin};
                 $xmin++;
             }
@@ -1170,28 +1166,32 @@ sub readxrtr {
             $start = shift(@index);
             $last = $start + shift(@index) - 1;
 
-            for $xmin ($start...$last)
+            for my $i ($start...$last)
             {
+                # Replaced "for $xmin" because it creates a loop-specific local variable, and we
+                # need $xmin to be correct for maxobj below.
+                $xmin = $i;
+
                 my @cols;
-    
+
                 for my $w (@widths)
                 {
                     my $data;
                     $data = $self->_unpack_xref_stream($w, substr($stream, 0, $w, '')) if $w;
-    
+
                     push @cols, $data;
                 }
-    
+
                 $cols[0] = 1 unless defined $cols[0];
                 if ($cols[0] > 2) {
                     die "Invalid XRefStm entry type ($cols[0]) at $xref_obj $xref_gen obj";
                 }
-    
+
                 next if exists $xlist->{$xmin};
-    
+
                 my @objind = ($cols[1], defined($cols[2]) ? $cols[2] : ($xmin ? 0 : 65535));
                 push @objind, ($cols[0] == 0 ? 'f' : 'n') if $cols[0] < 2;
-    
+
                 $xlist->{$xmin} = \@objind;
             }
         }

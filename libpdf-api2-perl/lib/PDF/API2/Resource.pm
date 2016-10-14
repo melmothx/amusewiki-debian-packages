@@ -1,11 +1,11 @@
 package PDF::API2::Resource;
 
-our $VERSION = '2.027'; # VERSION
-
 use base 'PDF::API2::Basic::PDF::Dict';
 
 use strict;
 use warnings;
+
+our $VERSION = '2.030'; # VERSION
 
 use PDF::API2::Util qw(pdfkey);
 use PDF::API2::Basic::PDF::Utils; # PDFName

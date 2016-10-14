@@ -1,11 +1,11 @@
 package PDF::API2::Resource::XObject::Form::Hybrid;
 
-our $VERSION = '2.027'; # VERSION
-
 use base qw(PDF::API2::Content PDF::API2::Resource::XObject::Form);
 
 use strict;
 use warnings;
+
+our $VERSION = '2.030'; # VERSION
 
 use PDF::API2::Basic::PDF::Dict;
 use PDF::API2::Basic::PDF::Utils;

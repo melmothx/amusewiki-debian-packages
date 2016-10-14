@@ -1,15 +1,16 @@
 package PDF::API2::Resource::XObject::Image::TIFF;
 
-our $VERSION = '2.027'; # VERSION
-
 use base 'PDF::API2::Resource::XObject::Image';
+
+use strict;
+no warnings qw[ deprecated recursion uninitialized ];
+
+our $VERSION = '2.030'; # VERSION
 
 use Compress::Zlib;
 
 use PDF::API2::Basic::PDF::Utils;
 use PDF::API2::Util;
-
-no warnings qw[ deprecated recursion uninitialized ];
 
 =head1 NAME
 
@@ -25,16 +26,16 @@ Returns a tiff-image object.
 
 =cut
 
-sub new 
+sub new
 {
     my ($class,$pdf,$file,$name) = @_;
     my $self;
 
     my $tif=PDF::API2::Resource::XObject::Image::Tiff::File->new($file);
-    
-    # in case of problematic things 
+
+    # in case of problematic things
     #  proxy to other modules
-    
+
     $class = ref $class if ref $class;
 
     $self=$class->SUPER::new($pdf,$name|| 'Ix'.pdfkey());
@@ -56,7 +57,7 @@ it needs an PDF::API2-object rather than a Text::PDF::File-object.
 
 =cut
 
-sub new_api 
+sub new_api
 {
     my ($class,$api,@opts)=@_;
 
@@ -66,7 +67,7 @@ sub new_api
     return($obj);
 }
 
-sub deLZW 
+sub deLZW
 {
     my ($ibits,$stream)=@_;
     my $bits=$ibits;
@@ -84,10 +85,10 @@ sub deLZW
 
     my @d=map { chr($_) } (0..$resetcode-1);
 
-    while(($ptr+$bits)<=$maxptr) 
+    while(($ptr+$bits)<=$maxptr)
     {
         $tag=0;
-        foreach my $off (reverse 1..$bits) 
+        foreach my $off (reverse 1..$bits)
         {
             $tag<<=1;
             $tag|=substr($stream,$ptr+$bits-$off,1);
@@ -95,21 +96,21 @@ sub deLZW
 #        print STDERR "ptr=$ptr,tag=$tag,bits=$bits,next=$nextcode\n";
 #        print STDERR "tag to large\n" if($tag>$nextcode);
         $ptr+=$bits;
-        if($tag==$resetcode) 
+        if($tag==$resetcode)
         {
             $bits=$ibits;
             $nextcode=$endcode+1;
             next;
-        } 
+        }
         elsif($tag==$endcode) {
             last;
-        } 
+        }
         elsif($tag<$resetcode) {
             $d[$nextcode]=$d[$tag];
             $out.=$d[$nextcode];
             $nextcode++;
-        } 
-        elsif($tag>$endcode) 
+        }
+        elsif($tag>$endcode)
         {
             $d[$nextcode]=$d[$tag];
             $d[$nextcode].=substr($d[$tag+1],0,1);
@@ -121,51 +122,51 @@ sub deLZW
     return($out);
 }
 
-sub handle_generic 
+sub handle_generic
 {
     my ($self,$pdf,$tif)=@_;
-    
-    if($tif->{filter}) 
+
+    if($tif->{filter})
     {
         # should we die here ?
         # die "unknown tiff-compression ";
         $self->filters($tif->{filter});
         $self->{' nofilt'}=1;
-    } 
-    else 
+    }
+    else
     {
         $self->filters('FlateDecode');
     }
 
-    if(ref($tif->{imageOffset})) 
+    if(ref($tif->{imageOffset}))
     {
         $self->{' stream'}='';
         my $d=scalar @{$tif->{imageOffset}};
-        foreach (1..$d) 
+        foreach (1..$d)
         {
             my $buf;
             $tif->{fh}->seek(shift @{$tif->{imageOffset}},0);
             $tif->{fh}->read($buf,shift @{$tif->{imageLength}});
             $self->{' stream'}.=$buf;
         }
-    } 
-    else 
+    }
+    else
     {
         $tif->{fh}->seek($tif->{imageOffset},0);
         $tif->{fh}->read($self->{' stream'},$tif->{imageLength});
     }
 }
 
-sub handle_flate 
+sub handle_flate
 {
     my ($self,$pdf,$tif)=@_;
     $self->filters('FlateDecode');
 
-    if(ref($tif->{imageOffset})) 
+    if(ref($tif->{imageOffset}))
     {
         $self->{' stream'}='';
         my $d=scalar @{$tif->{imageOffset}};
-        foreach (1..$d) 
+        foreach (1..$d)
         {
             my $buf;
             $tif->{fh}->seek(shift @{$tif->{imageOffset}},0);
@@ -173,8 +174,8 @@ sub handle_flate
             $buf=uncompress($buf);
             $self->{' stream'}.=$buf;
         }
-    } 
-    else 
+    }
+    else
     {
         $tif->{fh}->seek($tif->{imageOffset},0);
         $tif->{fh}->read($self->{' stream'},$tif->{imageLength});
@@ -182,24 +183,31 @@ sub handle_flate
     }
 }
 
-sub handle_lzw 
+sub handle_lzw
 {
     my ($self,$pdf,$tif)=@_;
     $self->filters('FlateDecode');
+    my $imageWidth = $tif->{imageWidth};
+    my $mod = $imageWidth % 8;
+    if ($mod > 0) {$imageWidth += 8 - $mod}
+    my $max_raw_strip = $imageWidth*$tif->{bitsPerSample}*$tif->{RowsPerStrip}/8;
 
     if(ref($tif->{imageOffset})) {
         $self->{' stream'}='';
         my $d=scalar @{$tif->{imageOffset}};
-        foreach (1..$d) 
+        foreach (1..$d)
         {
             my $buf;
             $tif->{fh}->seek(shift @{$tif->{imageOffset}},0);
             $tif->{fh}->read($buf,shift @{$tif->{imageLength}});
             $buf=deLZW(9,$buf);
+            if (length($buf) > $max_raw_strip) {
+                $buf = substr($buf, 0, $max_raw_strip)
+            }
             $self->{' stream'}.=$buf;
         }
-    } 
-    else 
+    }
+    else
     {
         $tif->{fh}->seek($tif->{imageOffset},0);
         $tif->{fh}->read($self->{' stream'},$tif->{imageLength});
@@ -207,7 +215,7 @@ sub handle_lzw
     }
 }
 
-sub handle_ccitt 
+sub handle_ccitt
 {
     my ($self,$pdf,$tif)=@_;
 
@@ -218,7 +226,7 @@ sub handle_ccitt
     $self->{DecodeParms}->{Columns}=PDFNum($tif->{imageWidth});
     $self->{DecodeParms}->{Rows}=PDFNum($tif->{imageHeight});
     $self->{DecodeParms}->{Blackls1}=PDFBool($tif->{whiteIsZero}==1?1:0);
-    if(defined($tif->{g3Options}) && ($tif->{g3Options}&0x4)) 
+    if(defined($tif->{g3Options}) && ($tif->{g3Options}&0x4))
     {
         $self->{DecodeParms}->{EndOfLine}=PDFBool(1);
         $self->{DecodeParms}->{EncodedByteAlign}=PDFBool(1);
@@ -226,24 +234,24 @@ sub handle_ccitt
     # $self->{DecodeParms}=PDFArray($self->{DecodeParms});
     $self->{DecodeParms}->{DamagedRowsBeforeError}=PDFNum(100);
 
-    if(ref($tif->{imageOffset})) 
+    if(ref($tif->{imageOffset}))
     {
         die "chunked ccitt g4 tif not supported.";
-    } 
-    else 
+    }
+    else
     {
         $tif->{fh}->seek($tif->{imageOffset},0);
         $tif->{fh}->read($self->{' stream'},$tif->{imageLength});
     }
 }
 
-sub read_tiff 
+sub read_tiff
 {
     my ($self,$pdf,$tif)=@_;
 
     $self->width($tif->{imageWidth});
     $self->height($tif->{imageHeight});
-    if($tif->{colorSpace} eq 'Indexed') 
+    if($tif->{colorSpace} eq 'Indexed')
     {
         my $dict=PDFDict();
         $pdf->new_obj($dict);
@@ -255,14 +263,14 @@ sub read_tiff
         $tif->{fh}->read($colormap,$tif->{colorMapLength});
         $dict->{' stream'}='';
         map { $straight.=pack('C',($_/256)) } unpack($tif->{short}.'*',$colormap);
-        foreach my $c (0..(($tif->{colorMapSamples}/3)-1)) 
+        foreach my $c (0..(($tif->{colorMapSamples}/3)-1))
         {
             $dict->{' stream'}.=substr($straight,$c,1);
             $dict->{' stream'}.=substr($straight,$c+($tif->{colorMapSamples}/3),1);
             $dict->{' stream'}.=substr($straight,$c+($tif->{colorMapSamples}/3)*2,1);
         }
-    } 
-    else 
+    }
+    else
     {
         $self->colorspace($tif->{colorSpace});
     }
@@ -270,40 +278,40 @@ sub read_tiff
     $self->{Interpolate}=PDFBool(1);
     $self->bpc($tif->{bitsPerSample});
 
-    if($tif->{whiteIsZero}==1 && $tif->{filter} ne 'CCITTFaxDecode') 
+    if($tif->{whiteIsZero}==1 && $tif->{filter} ne 'CCITTFaxDecode')
     {
         $self->{Decode}=PDFArray(PDFNum(1),PDFNum(0));
     }
 
-    # check filters and handle seperately 
-    if($tif->{filter} eq 'CCITTFaxDecode') 
+    # check filters and handle seperately
+    if($tif->{filter} eq 'CCITTFaxDecode')
     {
         $self->handle_ccitt($pdf,$tif);
-    } 
-    elsif($tif->{filter} eq 'LZWDecode') 
+    }
+    elsif($tif->{filter} eq 'LZWDecode')
     {
         $self->handle_lzw($pdf,$tif);
-    } 
-    elsif($tif->{filter} eq 'FlateDecode') 
+    }
+    elsif($tif->{filter} eq 'FlateDecode')
     {
         $self->handle_flate($pdf,$tif);
-    } 
-    else 
+    }
+    else
     {
         $self->handle_generic($pdf,$tif);
     }
 
-    if($tif->{fillOrder}==2) 
+    if($tif->{fillOrder}==2)
     {
         my @bl=();
-        foreach my $n (0..255) 
+        foreach my $n (0..255)
         {
             my $b=$n;
             my $f=0;
-            foreach (0..7) 
+            foreach (0..7)
             {
                 my $bit=0;
-                if($b &0x1) 
+                if($b &0x1)
                 {
                     $bit=1;
                 }
@@ -314,7 +322,7 @@ sub read_tiff
             $bl[$n]=$f;
         }
         my $l=length($self->{' stream'})-1;
-        foreach my $n (0..$l) 
+        foreach my $n (0..$l)
         {
             vec($self->{' stream'},$n,8)=$bl[vec($self->{' stream'},$n,8)];
         }
@@ -356,7 +364,7 @@ sub new {
     seek($self->{fh},0,0);
   } else {
     $self->{fh} = IO::File->new;
-    open($self->{fh},"< $file");
+    open($self->{fh}, "<", $file) or die "$!: $file";
   }
   binmode($self->{fh},':raw');
   my $fh = $self->{fh};
@@ -560,6 +568,9 @@ sub readTags {
       } elsif($valTag==277) {
         # samples per pixel
         $self->{samplesPerPixel}=$valOffset;
+      } elsif($valTag==278) {
+        # RowsPerStrip
+        $self->{RowsPerStrip}=$valOffset;
       } elsif($valTag==279) {
         # image data length/strip lengths
         if($valCount==1) {

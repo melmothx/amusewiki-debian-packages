@@ -12,7 +12,10 @@
 #=======================================================================
 package PDF::API2::Basic::PDF::Objind;
 
-our $VERSION = '2.027'; # VERSION
+use strict;
+use warnings;
+
+our $VERSION = '2.030'; # VERSION
 
 =head1 NAME
 
@@ -56,9 +59,6 @@ Holds a direct reference to the next free object in the free list.
 =head1 METHODS
 
 =cut
-
-use strict;
-use warnings;
 
 use Scalar::Util qw(blessed reftype);
 
@@ -121,10 +121,10 @@ sub release {
 
         if (blessed($item) and $item->can('release')) {
             $item->release();
-        } 
+        }
         elsif ($ref eq 'ARRAY') {
             push @tofree, @$item;
-        } 
+        }
         elsif (defined(reftype($ref)) and reftype($ref) eq 'HASH') {
             release($item);
         }

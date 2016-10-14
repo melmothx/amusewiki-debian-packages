@@ -1,13 +1,14 @@
 package PDF::API2::Resource::ColorSpace::Separation;
 
-our $VERSION = '2.027'; # VERSION
-
 use base 'PDF::API2::Resource::ColorSpace';
+
+use strict;
+no warnings qw[ deprecated recursion uninitialized ];
+
+our $VERSION = '2.030'; # VERSION
 
 use PDF::API2::Basic::PDF::Utils;
 use PDF::API2::Util;
-
-no warnings qw[ deprecated recursion uninitialized ];
 
 =head1 NAME
 
@@ -26,9 +27,9 @@ Returns a new colorspace object.
 sub new {
     my ($class,$pdf,$key,@opts)=@_;
     my ($name,@clr)=@opts;
-    
+
     $class = ref $class if ref $class;
-    $self=$class->SUPER::new($pdf,$key,@opts);
+    my $self=$class->SUPER::new($pdf,$key,@opts);
     $pdf->new_obj($self) unless($self->is_obj($pdf));
     $self->{' apipdf'}=$pdf;
 
@@ -116,7 +117,7 @@ sub new_api {
     my ($class,$api,@opts)=@_;
 
     my $obj=$class->new($api->{pdf},pdfkey(),@opts);
-    $self->{' api'}=$api;
+    $obj->{' api'}=$api;
 
     return($obj);
 }

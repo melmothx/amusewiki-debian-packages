@@ -1,11 +1,11 @@
 package PDF::API2::Basic::PDF::Filter::ASCII85Decode;
 
-our $VERSION = '2.027'; # VERSION
-
 use base 'PDF::API2::Basic::PDF::Filter';
 
 use strict;
 use warnings;
+
+our $VERSION = '2.030'; # VERSION
 
 sub outfilt {
     my ($self, $str, $isend) = @_;

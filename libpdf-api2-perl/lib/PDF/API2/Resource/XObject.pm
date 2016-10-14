@@ -1,11 +1,11 @@
 package PDF::API2::Resource::XObject;
 
-our $VERSION = '2.027'; # VERSION
-
 use base 'PDF::API2::Resource';
 
 use strict;
 use warnings;
+
+our $VERSION = '2.030'; # VERSION
 
 use PDF::API2::Basic::PDF::Utils;
 

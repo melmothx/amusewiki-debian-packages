@@ -1,11 +1,11 @@
 package PDF::API2::Resource::Font::CoreFont::georgia;
 
-our $VERSION = '2.027'; # VERSION
-
 use strict;
 use warnings;
 
-our $FONTDATA = {
+our $VERSION = '2.030'; # VERSION
+
+sub data { return {
     'fontname' => 'Georgia',
     'type' => 'TrueType',
     'apiname' => 'Geor',
@@ -856,4 +856,6 @@ our $FONTDATA = {
         'fi' => '582',                           # U+0xFB01
         'fl' => '589',                           # U+0xFB02
     }, # HORIZ. WIDTH TABLE
-};
+} };
+
+1;

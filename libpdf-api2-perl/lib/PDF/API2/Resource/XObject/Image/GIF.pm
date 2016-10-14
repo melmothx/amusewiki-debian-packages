@@ -1,20 +1,21 @@
 package PDF::API2::Resource::XObject::Image::GIF;
 
-our $VERSION = '2.027'; # VERSION
-
 use base 'PDF::API2::Resource::XObject::Image';
+
+use strict;
+no warnings qw[ deprecated recursion uninitialized ];
+
+our $VERSION = '2.030'; # VERSION
 
 use IO::File;
 use PDF::API2::Util;
 use PDF::API2::Basic::PDF::Utils;
 
-no warnings qw[ deprecated recursion uninitialized ];
-
 # added from PDF::Create:
 # PDF::Image::GIFImage - GIF image support
 # Author: Michael Gross <mdgrosse@sbox.tugraz.at>
 # modified for internal use. (c) 2004 fredo.
-sub unInterlace { 
+sub unInterlace {
     my $self = shift;
     my $data = $self->{' stream'};
     my $row;
@@ -30,7 +31,7 @@ sub unInterlace {
         $row+=8;
         $idx++;
     }
-    
+
     #Pass 2 - every 8th row, starting with row 4
     $row = 4;
     while ($row < $height) {
@@ -38,7 +39,7 @@ sub unInterlace {
         $row+=8;
         $idx++;
     }
-    
+
     #Pass 3 - every 4th row, starting with row 2
     $row = 2;
     while ($row < $height) {
@@ -46,7 +47,7 @@ sub unInterlace {
         $row+=4;
         $idx++;
     }
-    
+
     #Pass 4 - every 2th row, starting with row 1
     $row = 1;
     while ($row < $height) {
@@ -54,7 +55,7 @@ sub unInterlace {
         $row+=2;
         $idx++;
     }
-    
+
     $self->{' stream'}=join('', @result);
 }
 
@@ -121,9 +122,15 @@ sub new {
     $self->{' apipdf'}=$pdf;
 
     my $fh = IO::File->new;
-    open($fh,$file);
-    binmode($fh,':raw');
+    if (ref($file)) {
+        $fh = $file;
+    }
+    else {
+        open $fh, "<", $file or die "$!: $file";
+    }
+    binmode $fh, ':raw';
     my $buf;
+    $fh->seek(0,0);
     $fh->read($buf,6); # signature
     die "unknown image signature '$buf' -- not a gif." unless($buf=~/^GIF[0-9][0-9][a-b]/);
 

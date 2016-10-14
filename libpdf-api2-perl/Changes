@@ -1,3 +1,49 @@
+2.030     2016-10-13
+
+    - Fix a font naming issue introduced while satisfying
+      Perl::Critic.
+
+
+2.029     2016-10-10
+
+    - [RT #113293] Files with cross-reference streams weren't
+      correctly setting the max object number (report and
+      troubleshooting by Marco Pessotto).
+
+    - Handle TIFF images with strips that are wider than the image
+      (report and patch by Jeffrey Ratcliffe).
+
+    - [RT #98574] Increase test coverage of PDF::API2::Content (tests
+      by Phil Perry).
+
+    - A bunch of code cleanup and documentation updates by Paul
+      Cochrane.
+
+    - Add a missing prereq on Win32 systems (patch by Michiel Beijen).
+
+    - [RT #113514, #98552] Fix the dash() and renderingintent()
+      methods in ExtGState (reported by Vadim Repin and Phil Perry).
+
+    - Satisfy all Perl::Critic severity 5 policies.
+
+    - [RT #117940] Allow PNG, GIF, and PNM files to be opened from
+      filehandles in addition to filenames (patch by Johan Vromans).
+
+    - [RT #33970] Fail fast when a referenced file can't be opened
+      (requested by Barrie Slaymaker a mere 8.5 years ago).
+
+    - Add -simplex, -duplexfliplongedge and -duplexflipshortedge as
+      options to $pdf->preferences() (requested by Doug Poulin).
+
+
+2.028     2016-06-08
+
+    - [RT #113290] Fix for reading objects inside an object stream in
+      a large PDF (patch by Marco Pessotto).
+
+    - Eliminate an infinite loop when reading a corrupt dictionary.
+
+
 2.027     2016-03-11
 
     - This release contains seven fixes for parsing PDFs.  They mostly
@@ -223,28 +269,28 @@
 2.016     2011-01-24
 
     - New Maintainer: Steve Simms (http://deefs.net)
-    
+
     - This release jumps from version 0.73 to 2.016 in order to
       provide a consistent version number across all modules in the
       distribution without breaking any existing code or going
       backwards.
-    
+
     - Lots of updates to the documentation, particularly in
       PDF::API2::Content, which was almost completely rewritten and
       reorganized.
-    
+
     - Font::TTF has been added as a dependency instead of being
       embedded in the distribution.
-    
+
     - Everything that worked in 0.73 should work unmodified in 2.016,
       at least if it used the published documentation, and most
       everything should still work even if it didn't.
-    
+
     - PDF::API2 used to read and parse three text files, one of which
       was over 500kB, on every load.  These files have been turned
       into modules, and while I haven't done any performance testing,
       I'd have a hard time believing that it isn't faster now.
-    
+
     - There are now a few tests forming the beginning of a test suite.
       Contributions of tests would be most welcome!
 

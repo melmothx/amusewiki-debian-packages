@@ -5,8 +5,8 @@ author:
 build_requires: {}
 configure_requires:
   ExtUtils::MakeMaker: '0'
-dynamic_config: 0
-generated_by: 'Dist::Zilla version 5.039, CPAN::Meta::Converter version 2.150005'
+dynamic_config: 1
+generated_by: 'Dist::Zilla version 6.007, CPAN::Meta::Converter version 2.150005'
 license: lgpl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -18,4 +18,5 @@ requires:
   perl: v5.8.5
 resources:
   repository: git://github.com/ssimms/pdfapi2.git
-version: '2.027'
+version: '2.030'
+x_serialization_backend: 'YAML::Tiny version 1.69'

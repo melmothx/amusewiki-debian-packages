@@ -1,9 +1,9 @@
 package PDF::API2::Resource::Glyphs;
 
-our $VERSION = '2.027'; # VERSION
-
 use strict;
 use warnings;
+
+our $VERSION = '2.030'; # VERSION
 
 # The data in this file is generated from uniglyph.txt.  In earlier
 # versions of PDF::API2, this file was parsed and sorted every time

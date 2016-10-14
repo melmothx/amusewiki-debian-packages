@@ -1,22 +1,22 @@
 package PDF::API2::Util;
 
-our $VERSION = '2.027'; # VERSION
-
+use strict;
 no warnings qw[ recursion uninitialized ];
+
+our $VERSION = '2.030'; # VERSION
 
 BEGIN {
 
     use Encode qw(:all);
 
     use vars qw(
-        @ISA 
-        @EXPORT 
-        @EXPORT_OK 
-        %colors 
-        $key_var 
-        $key_var2 
-        %u2n 
-        %n2u 
+        @ISA
+        @EXPORT
+        @EXPORT_OK
+        %colors
+        $key_var
+        %u2n
+        %n2u
         $pua
         %PaperSizes
     );
@@ -62,7 +62,6 @@ BEGIN {
     no warnings qw[ recursion uninitialized ];
 
     $key_var='CBA';
-    $key_var2=0;
 
     $pua=0xE000;
 
@@ -81,8 +80,7 @@ sub digestx {
     my $mdkey='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789gT';
     my $xdata="0" x $len;
     my $off=0;
-    my $set;
-    foreach $set (0..(length($ddata)<<1)) {
+    foreach my $set (0..(length($ddata)<<1)) {
         $off+=vec($ddata,$set,4);
         $off+=vec($xdata,($set & $mask),8);
         vec($xdata,($set & ($mask<<1 |1)),4)=vec($mdkey,($off & 0x7f),4);
@@ -238,9 +236,9 @@ sub _HSVtoRGB { # test
         ## achromatic (grey)
         return ($v,$v,$v);
     }
-    
+
     $h %= 360;
-    
+
     $r = 2*cos(deg2rad($h));
     $g = 2*cos(deg2rad($h+120));
     $b = 2*cos(deg2rad($h+240));
@@ -249,7 +247,7 @@ sub _HSVtoRGB { # test
     $q = min($r,$g,$b);
     ($p,$q) = map { ($_<0 ? 0 : ($_>1 ? 1 : $_)) } ($p,$q);
     $f = $p - $q;
-    
+
     #if($p>=$v) {
     #    ($r,$g,$b) = map { $_*$v/$p } ($r,$g,$b);
     #} else {
@@ -267,7 +265,7 @@ sub _HSVtoRGB { # test
     return ($r,$g,$b);
 }
 
-sub RGBquant ($$$) {
+sub RGBquant {
     my($q1,$q2,$h)=@_;
     while($h<0){$h+=360;}
     $h%=360;
@@ -542,15 +540,15 @@ sub namecolor_lab {
     }
 }
 
-sub unfilter 
+sub unfilter
 {
     my ($filter,$stream)=@_;
 
-    if(defined $filter) 
+    if(defined $filter)
     {
         # we need to fix filter because it MAY be
         # an array BUT IT COULD BE only a name
-        if(ref($filter)!~/Array$/) 
+        if(ref($filter)!~/Array$/)
         {
                $filter = PDFArray($filter);
         }
@@ -560,7 +558,7 @@ sub unfilter
 
         @filts=(map { ("PDF::API2::Basic::PDF::Filter::".($_->val))->new } $filter->elementsof);
 
-        foreach my $f (@filts) 
+        foreach my $f (@filts)
         {
             $stream = $f->infilt($stream, 1);
         }

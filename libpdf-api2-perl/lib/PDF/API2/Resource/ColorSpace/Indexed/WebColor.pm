@@ -1,19 +1,20 @@
 package PDF::API2::Resource::ColorSpace::Indexed::WebColor;
 
-our $VERSION = '2.027'; # VERSION
-
 use base 'PDF::API2::Resource::ColorSpace::Indexed';
+
+use strict;
+no warnings qw[ deprecated recursion uninitialized ];
+
+our $VERSION = '2.030'; # VERSION
 
 use PDF::API2::Basic::PDF::Utils;
 use PDF::API2::Util;
-
-no warnings qw[ deprecated recursion uninitialized ];
 
 sub new {
     my ($class,$pdf)=@_;
 
     $class = ref $class if ref $class;
-    $self=$class->SUPER::new($pdf,pdfkey());
+    my $self=$class->SUPER::new($pdf,pdfkey());
     $pdf->new_obj($self) unless($self->is_obj($pdf));
     $self->{' apipdf'}=$pdf;
     my $csd=PDFDict();

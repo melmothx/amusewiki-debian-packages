@@ -1,6 +1,9 @@
 package PDF::API2;
 
-our $VERSION = '2.027'; # VERSION
+use strict;
+no warnings qw[ deprecated recursion uninitialized ];
+
+our $VERSION = '2.030'; # VERSION
 
 use Carp;
 use Encode qw(:all);
@@ -20,8 +23,6 @@ use PDF::API2::Resource::Pattern;
 use PDF::API2::Resource::Shading;
 
 use PDF::API2::NamedDestination;
-
-no warnings qw[ deprecated recursion uninitialized ];
 
 our @FontDirs = ( (map { "$_/PDF/API2/fonts" } @INC),
                   qw[ /usr/share/fonts /usr/local/share/fonts c:/windows/fonts c:/winnt/fonts ] );
@@ -112,7 +113,9 @@ sub new {
         $self->{'pdf'}->create_file($options{'-file'});
     }
     $self->{'infoMeta'}=[qw(Author CreationDate ModDate Creator Producer Title Subject Keywords)];
-    $self->info('Producer' => "PDF::API2 $VERSION [$^O]");
+
+    my $version = eval { $PDF::API2::VERSION } || '(Unreleased Version)';
+    $self->info('Producer' => "PDF::API2 $version [$^O]");
 
     return $self;
 }
@@ -295,6 +298,18 @@ Document outline visible after Full-screen mode.
 
 Set the default print setting for page scaling to none.
 
+=item -simplex
+
+Print single-sided by default.
+
+=item -duplexflipshortedge
+
+Print duplex by default and flip on the short edge of the sheet.
+
+=item -duplexfliplongedge
+
+Print duplex by default and flip on the long edge of the sheet.
+
 =back
 
 B<Initial Page Options>:
@@ -456,6 +471,16 @@ sub preferences {
 
     if ($options{'-printscalingnone'}) {
         $self->{'catalog'}->{'ViewerPreferences'}->{'PrintScaling'} = PDFName('None');
+    }
+
+    if ($options{'-simplex'}) {
+        $self->{'catalog'}->{'ViewerPreferences'}->{'Duplex'} = PDFName('Simplex');
+    }
+    elsif ($options{'-duplexfliplongedge'}) {
+        $self->{'catalog'}->{'ViewerPreferences'}->{'Duplex'} = PDFName('DuplexFlipLongEdge');
+    }
+    elsif ($options{'-duplexflipshortedge'}) {
+        $self->{'catalog'}->{'ViewerPreferences'}->{'Duplex'} = PDFName('DuplexFlipShortEdge');
     }
 
     # Open Action
@@ -1023,15 +1048,8 @@ Returns a new page object.  By default, the page is added to the end
 of the document.  If you include an existing page number, the new page
 will be inserted in that position, pushing existing pages back.
 
-$page_number can also have one of the following values:
-
-=over
-
-=item -1 inserts the new page as the second-last page
-
-=item 0 inserts the page as the last page
-
-=back
+If $page_number is -1, the new page is inserted as the second-last page;
+if $page_number is 0, the new page is inserted as the last page.
 
 B<Example:>
 
@@ -1183,54 +1201,51 @@ sub openpage {
 }
 
 
-# $target_object = walk_obj $obj_cache, $source_pdf, $target_pdf, $source_object [, @keys_to_copy ]
-
 sub walk_obj {
-    my ($objs,$spdf,$tpdf,$obj,@keys)=@_;
+    my ($object_cache, $source_pdf, $target_pdf, $source_object, @keys) = @_;
 
-    my $tobj;
-
-
-    if(ref($obj)=~/Objind$/) {
-        $obj->realise;
+    if (ref($source_object) =~ /Objind$/) {
+        $source_object->realise();
     }
 
-    return($objs->{scalar $obj}) if(defined $objs->{scalar $obj});
-####die "infinite loop while copying objects" if($obj->{' copied'});
+    return $object_cache->{scalar $source_object} if defined $object_cache->{scalar $source_object};
+####die "infinite loop while copying objects" if($source_object->{' copied'});
 
-    $tobj=$obj->copy($spdf); ## thanks to: yaheath // Fri, 17 Sep 2004
+    my $target_object = $source_object->copy($source_pdf); ## thanks to: yaheath // Fri, 17 Sep 2004
 
-####$obj->{' copied'}=1;
-    $tpdf->new_obj($tobj) if($obj->is_obj($spdf));
+####$source_object->{' copied'}=1;
+    $target_pdf->new_obj($target_object) if $source_object->is_obj($source_pdf);
 
-    $objs->{scalar $obj}=$tobj;
+    $object_cache->{scalar $source_object} = $target_object;
 
-    if(ref($obj)=~/Array$/) {
-        $tobj->{' val'}=[];
-        foreach my $k ($obj->elementsof) {
-            $k->realise if(ref($k)=~/Objind$/);
-            $tobj->add_elements(walk_obj($objs,$spdf,$tpdf,$k));
+    if (ref($source_object) =~ /Array$/) {
+        $target_object->{' val'} = [];
+        foreach my $k ($source_object->elementsof()) {
+            $k->realise() if ref($k) =~ /Objind$/;
+            $target_object->add_elements(walk_obj($object_cache, $source_pdf, $target_pdf, $k));
         }
-    } elsif(ref($obj)=~/Dict$/) {
-        @keys=keys(%{$tobj}) if(scalar @keys <1);
+    }
+    elsif (ref($source_object) =~ /Dict$/) {
+        @keys = keys(%$target_object) unless scalar @keys;
         foreach my $k (@keys) {
-            next if($k=~/^ /);
-            next unless(defined($obj->{$k}));
-            $tobj->{$k}=walk_obj($objs,$spdf,$tpdf,$obj->{$k});
+            next if $k =~ /^ /;
+            next unless defined $source_object->{$k};
+            $target_object->{$k} = walk_obj($object_cache, $source_pdf, $target_pdf, $source_object->{$k});
         }
-        if($obj->{' stream'}) {
-            if($tobj->{Filter}) {
-                $tobj->{' nofilt'}=1;
-            } else {
-                delete $tobj->{' nofilt'};
-                $tobj->{Filter}=PDFArray(PDFName('FlateDecode'));
+        if ($source_object->{' stream'}) {
+            if ($target_object->{'Filter'}) {
+                $target_object->{' nofilt'} = 1;
             }
-            $tobj->{' stream'}=$obj->{' stream'};
+            else {
+                delete $target_object->{' nofilt'};
+                $target_object->{'Filter'} = PDFArray(PDFName('FlateDecode'));
+            }
+            $target_object->{' stream'} = $source_object->{' stream'};
         }
     }
-    delete $tobj->{' streamloc'};
-    delete $tobj->{' streamsrc'};
-    return($tobj);
+    delete $target_object->{' streamloc'};
+    delete $target_object->{' streamsrc'};
+    return $target_object;
 }
 
 =item $xoform = $pdf->importPageIntoForm($source_pdf, $source_page_number)
@@ -1655,9 +1670,9 @@ See Also: L<PDF::API2::Resource::Font::CoreFont>.
 =cut
 
 sub corefont {
-    my ($self,$name,@opts)=@_;
+    my ($self,$name,%opts)=@_;
     require PDF::API2::Resource::Font::CoreFont;
-    my $obj=PDF::API2::Resource::Font::CoreFont->new_api($self,$name,@opts);
+    my $obj=PDF::API2::Resource::Font::CoreFont->new_api($self,$name,%opts);
     $self->{pdf}->out_obj($self->{pages});
     $obj->tounicodemap if($opts{-unicodemap}==1);
     return($obj);
@@ -1836,10 +1851,10 @@ See Also: L<PDF::API2::Resource::Font::SynFont>
 =cut
 
 sub synfont {
-    my ($self,@opts)=@_;
+    my ($self,%opts)=@_;
 
     require PDF::API2::Resource::Font::SynFont;
-    my $obj=PDF::API2::Resource::Font::SynFont->new_api($self,@opts);
+    my $obj=PDF::API2::Resource::Font::SynFont->new_api($self,%opts);
 
     $self->{pdf}->out_obj($self->{pages});
     $obj->tounicodemap if($opts{-unicodemap}==1);
@@ -1902,7 +1917,7 @@ sub unifont {
 
 =item $jpeg = $pdf->image_jpeg($file)
 
-Imports and returns a new JPEG image object.
+Imports and returns a new JPEG image object.  C<$file> may be either a filename or a filehandle.
 
 =cut
 
@@ -1918,7 +1933,7 @@ sub image_jpeg {
 
 =item $tiff = $pdf->image_tiff($file)
 
-Imports and returns a new TIFF image object.
+Imports and returns a new TIFF image object.  C<$file> may be either a filename or a filehandle.
 
 =cut
 
@@ -1934,7 +1949,7 @@ sub image_tiff {
 
 =item $pnm = $pdf->image_pnm($file)
 
-Imports and returns a new PNM image object.
+Imports and returns a new PNM image object.  C<$file> may be either a filename or a filehandle.
 
 =cut
 
@@ -1950,7 +1965,7 @@ sub image_pnm {
 
 =item $png = $pdf->image_png($file)
 
-Imports and returns a new PNG image object.
+Imports and returns a new PNG image object.  C<$file> may be either a filename or a filehandle.
 
 =cut
 
@@ -1966,7 +1981,7 @@ sub image_png {
 
 =item $gif = $pdf->image_gif($file)
 
-Imports and returns a new GIF image object.
+Imports and returns a new GIF image object.  C<$file> may be either a filename or a filehandle.
 
 =cut
 

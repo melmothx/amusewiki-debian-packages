@@ -1,13 +1,14 @@
 package PDF::API2::Resource::XObject::Image::GD;
 
-our $VERSION = '2.027'; # VERSION
-
 use base 'PDF::API2::Resource::XObject::Image';
+
+use strict;
+no warnings qw[ deprecated recursion uninitialized ];
+
+our $VERSION = '2.030'; # VERSION
 
 use PDF::API2::Util;
 use PDF::API2::Basic::PDF::Utils;
-
-no warnings qw[ deprecated recursion uninitialized ];
 
 sub new {
     my ($class,$pdf,$obj,$name,@opts) = @_;
@@ -38,7 +39,7 @@ sub read_gd {
     my $self = shift @_;
     my $gd = shift @_;
     my %opts = @_;
-    
+
     my ($w,$h) = $gd->getBounds();
     my $c = $gd->colorsTotal();
 

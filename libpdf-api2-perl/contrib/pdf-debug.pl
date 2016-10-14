@@ -23,10 +23,10 @@ unless ($command) {
     print "Root:        " . _obj_reference($pdf->{'Root'}) . "\n" if $pdf->{'Root'};
     print "\n";
     print "To view an object:\n";
-    print "$0 obj <id> [generation]\n";
+    print "$0 <file.pdf> obj <id> [generation]\n";
     print "\n";
     print "To view a cross-reference dictionary (with optional offset in bytes):\n";
-    print "$0 xref [offset]\n";
+    print "$0 <file.pdf> xref [offset]\n";
     print "\n";
 }
 elsif ($command eq 'xref') {
@@ -70,6 +70,9 @@ sub _print_obj {
             print $object->as_pdf() . "\n";
         }
     }
+    elsif ($object->isa('PDF::API2::Basic::PDF::Null')) {
+        print "<Null>\n"
+    }
     else {
         print "[" . ref($object) . "]\n";
     }
@@ -82,7 +85,7 @@ sub _print_obj {
         if ($@) {
             print "[Stream could not be read or decoded]\n";
         }
-        elsif ($ENV{'FORCE'} or $object->{' stream'} =~ /^[[:print:]]+$/) {
+        elsif ($ENV{'FORCE'} or $object->{' stream'} =~ /^[[:print:]\s]*$/) {
             print $object->{' stream'} . "\n";
         }
         else {
@@ -131,6 +134,9 @@ sub _obj_dictionary {
                     $data->{$key} = $object->{$key}->as_pdf();
                 }
             }
+            elsif ($object->{$key}->isa('PDF::API2::Basic::PDF::Null')) {
+                $data->{$key} = '<Null>';
+            }
             elsif ($object->{$key}->isa('PDF::API2::Basic::PDF::Objind') and $object->{$key}->{' objnum'}) {
                 $data->{$key} = '<Object ' . $object->{$key}->{' objnum'} . ($object->{$key}->{' objgen'} ? ' ' . $object->{$key}->{' objgen'} : '') . '>';
             }
@@ -172,7 +178,10 @@ sub _obj_array {
             push @elements, $element;
         }
         else {
-            if ($element->isa('PDF::API2::Basic::PDF::Dict')) {
+            if ($element->isa('PDF::API2::Basic::PDF::Array')) {
+                push @elements, _obj_array($element, $indent + 1);
+            }
+            elsif ($element->isa('PDF::API2::Basic::PDF::Dict')) {
                 if ($element->{' objnum'}) {
                     push @elements, '<Object ' . $element->{' objnum'} . ($element->{' objgen'} ? ' ' . $element->{' objgen'} : '') . '>';
                 }
@@ -196,6 +205,9 @@ sub _obj_array {
                 else {
                     push @elements, $element->as_pdf();
                 }
+            }
+            elsif ($element->isa('PDF::API2::Basic::PDF::Null')) {
+                push @elements, '<Null>';
             }
             elsif ($element->isa('PDF::API2::Basic::PDF::Objind') and $element->{' objnum'}) {
                 push @elements, '<Object ' . $element->{' objnum'} . ($element->{' objgen'} ? ' ' . $element->{' objgen'} : '') . '>';
