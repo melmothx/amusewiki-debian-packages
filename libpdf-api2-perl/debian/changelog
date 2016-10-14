@@ -1,3 +1,9 @@
+libpdf-api2-perl (2.030-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Marco Pessotto <melmothx@gmail.com>  Fri, 14 Oct 2016 16:46:15 +0200
+
 libpdf-api2-perl (2.027-2) unstable; urgency=medium
 
   * Patched for RT #113290
