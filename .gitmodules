@@ -22,6 +22,3 @@
 [submodule "libxml-opds-perl"]
 	path = libxml-opds-perl
 	url = git@github.com:melmothx/libxml-opds-perl
-[submodule "fonts-cormorant-garamond/Cormorant"]
-	path = fonts-cormorant-garamond/Cormorant
-	url = https://github.com/CatharsisFonts/Cormorant
