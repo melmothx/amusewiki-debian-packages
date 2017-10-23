@@ -1,0 +1,87 @@
+#!/usr/bin/env perl
+# usable fonts from from https://www.typewolf.com/google-fonts
+
+use strict;
+use warnings;
+use Path::Tiny;
+use Data::Dumper::Concise;
+use DateTime;
+use HTML::TreeBuilder;
+
+foreach my $font (qw/librefranklin
+                     spacemono
+                     rubik
+                     firasans
+                     alegreya
+                     alegreyasans
+                     lora
+                     anonymouspro
+                     merriweather
+                     vollkorn/) {
+    my $dir = path('fonts-master/ofl', $font);
+    die "Couldn't find $dir!" unless $dir->exists;
+    print "$_\n" for $dir->children;
+    my $license = $dir->child('OFL.txt');
+    die "Couldn't find the license" unless $license->exists;
+    my $body = $license->slurp_utf8;
+    # regexp for the win
+    $body =~ s/\r\n/\n/gs;
+    if ($body =~ m/\A(Copyright.*?)\n+(This Font.*?Version 1\.1\.)\n.*?(PREAMBLE.*)\z/s){
+        my $copyright = $1;
+        my $grant = $2;
+        my $license = $3;
+        s/\n/ /gs for ($grant, $copyright);
+        $license = format_stanza($license);
+        my $license_file = <<"COPYRIGHT";
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: $font
+Upstream-Contact: https://github.com/google/fonts/ofl/$font
+Source: https://github.com/google/fonts/ofl/$font
+
+Files: *
+Copyright: $copyright
+License-Grant: $grant
+License: SIL-1.1
+
+Files: debian/*
+Copyright: 2017, Marco Pessotto <melmothx\@gmail.com>
+License-Grant:
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as published by the
+ Free Software Foundation; either version 3, or (at your option) any
+ later version.
+License: GPL-3+
+
+License: SIL-1.1
+ $license
+
+COPYRIGHT
+        my $debian_name = "fonts-$font";
+        my $version = '20171023'; # totally fake
+        my $changelog = <<"CHANGELOG";
+$debian_name ($version) unstable; urgency=medium
+
+ * Initial upload
+
+ -- Marco Pessotto <melmothx\@gmail.com>  Mon, 23 Oct 2017 17:16:43 +0200
+
+CHANGELOG
+        my $description = $dir->child('DESCRIPTION.en_us.html');
+        die "$description doesn't exist" unless $description->exists;
+        my $html = HTML::TreeBuilder->new_from_content($description->slurp_utf8);
+        $html->elementify;
+        my (@pars) = map { $_->as_text } grep { ref($_) } $html->look_down(_tag => 'body')->content_list;
+        print format_stanza(join("\n\n", @pars));
+    }
+    else {
+        die "Unparsable $body";
+    }
+}
+
+sub format_stanza {
+    my $license = shift;
+    $license =~ s/^ //gm;
+    $license =~ s/\n\n+/\n.\n/gs;
+    $license =~ s/\n/\n /gs;
+    return $license;
+}
