@@ -7,17 +7,24 @@ use Path::Tiny;
 use Data::Dumper::Concise;
 use DateTime;
 use HTML::TreeBuilder;
+use Text::Wrapper;
 
-foreach my $font (qw/librefranklin
-                     spacemono
-                     rubik
-                     firasans
-                     alegreya
-                     alegreyasans
-                     lora
-                     anonymouspro
-                     merriweather
-                     vollkorn/) {
+binmode STDOUT, ":encoding(UTF-8)";
+
+#                     librefranklin
+#                      spacemono
+#                      rubik
+#                      firasans
+#                      alegreya
+#                      alegreyasans
+#                      lora
+#                      anonymouspro
+#                      merriweather
+#                      vollkorn/
+
+my $date = 'Mon, 23 Oct 2017 17:16:43 +0200';
+
+foreach my $font (@ARGV) {
     my $dir = path('fonts-master/ofl', $font);
     die "Couldn't find $dir!" unless $dir->exists;
     print "$_\n" for $dir->children;
@@ -53,17 +60,34 @@ License-Grant:
 License: GPL-3+
 
 License: SIL-1.1
- $license
+$license
+
+License: GPL-3+
+License-Reference: /usr/share/common-licenses/GPL-3
 
 COPYRIGHT
         my $debian_name = "fonts-$font";
+        my $rules =<<'RULES';
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+RULES
+        my %deb = (compat => 7,
+                   copyright => $license_file,
+                   install => "ttf/*.ttf usr/share/fonts/truetype/$font\n",
+                   rules => $rules,
+                   name => $debian_name,
+                   ttfs => [ $dir->children(qr{\.ttf\z}i) ],
+                  );
         my $version = '20171023'; # totally fake
-        my $changelog = <<"CHANGELOG";
+        $deb{changelog} = <<"CHANGELOG";
 $debian_name ($version) unstable; urgency=medium
 
- * Initial upload
+  * Initial upload
 
- -- Marco Pessotto <melmothx\@gmail.com>  Mon, 23 Oct 2017 17:16:43 +0200
+ -- Marco Pessotto <melmothx\@gmail.com>  $date
 
 CHANGELOG
         my $description = $dir->child('DESCRIPTION.en_us.html');
@@ -71,7 +95,27 @@ CHANGELOG
         my $html = HTML::TreeBuilder->new_from_content($description->slurp_utf8);
         $html->elementify;
         my (@pars) = map { $_->as_text } grep { ref($_) } $html->look_down(_tag => 'body')->content_list;
-        print format_stanza(join("\n\n", @pars));
+        my $desc = format_stanza(join("\n\n", @pars));
+        # print $license_file;
+        # print $desc;
+        $deb{control} = << "CONTROL";
+Source: $debian_name
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx\@gmail.com>
+Uploaders: Marco Pessotto <melmothx\@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: https://github.com/google/fonts/ofl/$font
+
+Package: $debian_name
+Architecture: all
+Multi-Arch: foreign
+Depends: \${misc:Depends}
+Description: $font fonts
+$desc
+CONTROL
+        create(\%deb);
     }
     else {
         die "Unparsable $body";
@@ -79,9 +123,32 @@ CHANGELOG
 }
 
 sub format_stanza {
-    my $license = shift;
-    $license =~ s/^ //gm;
-    $license =~ s/\n\n+/\n.\n/gs;
-    $license =~ s/\n/\n /gs;
-    return $license;
+    my $text = shift;
+    $text =~ s/^ //gm;
+    $text = Text::Wrapper->new(columns => 60)->wrap($text);
+    $text =~ s/\n\n+/\n.\n/gs;
+    $text =~ s/^/ /gm;
+    return $text;
+}
+
+sub create {
+    my $deb = shift;
+    foreach my $f (qw/changelog compat control copyright install rules name ttfs/) {
+        die Dumper($deb) . "Missing $f" unless $deb->{$f};
+    }
+    my $name = delete $deb->{name};
+    my $target = path($name);
+    my $ttf = path($target, 'ttf');
+    my $debian = path($target, 'debian');
+    $_->mkpath for ($debian, $ttf);
+    foreach my $f (@{delete $deb->{ttfs}}) {
+        $f->copy($ttf);
+    }
+    foreach my $f (keys %$deb) {
+        my $created = path($debian, $f);
+        $created->spew_utf8($deb->{$f});
+        if ($f eq 'rules') {
+            $created->chmod(0755);
+        }
+    }
 }
