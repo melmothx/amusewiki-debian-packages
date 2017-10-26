@@ -21,6 +21,7 @@ for i in librefranklin spacemono rubik firasans alegreya alegreyasans lora \
          merriweather vollkorn crimsontext karla arvo inknutantiqua; do
     apt-cache search fonts $i    
     ./create-deb-font googlefonts/fonts-master/ofl/$i || break
+    ./build-and-upload.sh fonts-$i || break
 done
 
 =cut
