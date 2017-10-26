@@ -11,23 +11,35 @@ use Text::Wrapper;
 
 binmode STDOUT, ":encoding(UTF-8)";
 
-#                     librefranklin
-#                      spacemono
-#                      rubik
-#                      firasans
-#                      alegreya
-#                      alegreyasans
-#                      lora
-#                      anonymouspro
-#                      merriweather
-#                      vollkorn/
+
+=pod
+
+# Usable fonts from https://www.typewolf.com/google-fonts
+
+for i in librefranklin spacemono rubik firasans alegreya alegreyasans lora \
+         chivo anonymouspro sourcesanspro poppins archivonarrow crimsontext \
+         merriweather vollkorn crimsontext karla arvo inknutantiqua; do
+    apt-cache search fonts $i    
+    ./create-deb-font googlefonts/fonts-master/ofl/$i || break
+done
+
+=cut
 
 my $date = 'Mon, 23 Oct 2017 17:16:43 +0200';
 
-foreach my $font (@ARGV) {
-    my $dir = path('fonts-master/ofl', $font);
+foreach my $dir (@ARGV) {
+    $dir = path($dir);
     die "Couldn't find $dir!" unless $dir->exists;
-    print "$_\n" for $dir->children;
+    my $font = $dir->basename;
+    my $font_capitalized_name;
+    # print "$_\n" for $dir->children;
+    {
+        my ($first) = $dir->children(qr/\.ttf$/);
+        $font_capitalized_name = $first->basename;
+        $font_capitalized_name =~ s/(-.*?)\.ttf$//g;
+    }
+    die unless $font_capitalized_name;
+    print "Creating deb for $font_capitalized_name\n";
     my $license = $dir->child('OFL.txt');
     die "Couldn't find the license" unless $license->exists;
     my $body = $license->slurp_utf8;
@@ -41,7 +53,7 @@ foreach my $font (@ARGV) {
         $license = format_stanza($license);
         my $license_file = <<"COPYRIGHT";
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: $font
+Upstream-Name: $font_capitalized_name
 Upstream-Contact: https://github.com/google/fonts/ofl/$font
 Source: https://github.com/google/fonts/ofl/$font
 
@@ -81,9 +93,11 @@ RULES
                    name => $debian_name,
                    ttfs => [ $dir->children(qr{\.ttf\z}i) ],
                   );
-        my $version = '20171023'; # totally fake
+        my $version = '0.00201710'; # totally fake, we keep it very
+                                      # low, so any official debian
+                                      # package would take precedence
         $deb{changelog} = <<"CHANGELOG";
-$debian_name ($version) unstable; urgency=medium
+$debian_name ($version+amw1) unstable; urgency=medium
 
   * Initial upload
 
@@ -112,7 +126,7 @@ Package: $debian_name
 Architecture: all
 Multi-Arch: foreign
 Depends: \${misc:Depends}
-Description: $font fonts
+Description: $font_capitalized_name fonts
 $desc
 CONTROL
         create(\%deb);
@@ -137,7 +151,9 @@ sub create {
         die Dumper($deb) . "Missing $f" unless $deb->{$f};
     }
     my $name = delete $deb->{name};
+    die unless $name =~ m/\Afonts-.+/;
     my $target = path($name);
+    $target->remove_tree;
     my $ttf = path($target, 'ttf');
     my $debian = path($target, 'debian');
     $_->mkpath for ($debian, $ttf);
