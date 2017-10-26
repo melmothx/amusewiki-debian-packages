@@ -1,3 +1,9 @@
+fonts-coelacanth (0.005+amw2) unstable; urgency=medium
+
+  * Keep only the main fonts
+
+ -- Marco Pessotto <melmothx@gmail.com>  Thu, 26 Oct 2017 11:39:46 +0200
+
 fonts-coelacanth (0.005+amw1) unstable; urgency=medium
 
   * Initial upload

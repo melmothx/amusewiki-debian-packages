@@ -12,4 +12,7 @@ Architecture: all
 Multi-Arch: foreign
 Depends: ${misc:Depends}
 Description: Coelacanth fonts
- Open-source professional-quality type family for general typesetting 
+ Open-source professional-quality type family for general typesetting.
+ .
+ This package contains only the main fonts (not display and exotic
+ variants.
