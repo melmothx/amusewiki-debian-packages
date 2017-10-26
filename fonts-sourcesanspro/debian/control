@@ -1,0 +1,18 @@
+Source: fonts-sourcesanspro
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: https://github.com/google/fonts/ofl/sourcesanspro
+
+Package: fonts-sourcesanspro
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: SourceSansPro fonts
+ Source® Sans Pro, Adobe's first open source typeface family,
+ was designed by Paul D. Hunt. It is a sans serif typeface
+ intended to work well in user interfaces.
+

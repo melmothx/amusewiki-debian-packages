@@ -1,0 +1,29 @@
+Source: fonts-alegreyasans
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: https://github.com/google/fonts/ofl/alegreyasans
+
+Package: fonts-alegreyasans
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: AlegreyaSans fonts
+ Alegreya Sans is a humanist sans serif family with a
+ calligraphic feeling that conveys a dynamic and varied
+ rhythm. This gives a pleasant feeling to readers of long
+ texts. There is also a Small Caps companion family.
+ .
+ The Alegreya type system is a "super family", originally
+ intended for literature, and includes sans and serif sister
+ families. The family follows humanist proportions and
+ principles, and achieves a ludic and harmonious paragraph
+ through elements carefully designed in an atmosphere of
+ diversity. The italics bring a strong emphasis to the roman
+ styles.
+ .
+ Designed by Juan Pablo del Peral for Huerta Tipográfica.
+

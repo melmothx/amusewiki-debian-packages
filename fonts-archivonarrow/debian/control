@@ -1,0 +1,29 @@
+Source: fonts-archivonarrow
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: https://github.com/google/fonts/ofl/archivonarrow
+
+Package: fonts-archivonarrow
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: ArchivoNarrow fonts
+ Archivo Narrow was designed to be used simultaneously in
+ print and digital platforms. The technical and aesthetic
+ characteristics of the font are both crafted for high
+ performance typography. It was designed to be used
+ simultaneously in print and online platforms and supports
+ over 200 world languages.
+ .
+ Archivo is a grotesque sans serif typeface family from
+ Omnibus-Type. It was originally designed for highlights and
+ headlines. This family is reminiscent of late nineteenth
+ century American typefaces. It includes normal, Narrow and
+ Black styles, and was derived from Chivo
+ .
+ To contribute to the project visit github.com/Omnibus-Type
+

@@ -1,0 +1,26 @@
+Source: fonts-firasans
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: https://github.com/google/fonts/ofl/firasans
+
+Package: fonts-firasans
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: FiraSans fonts
+ Designed to integrate with the character of the Mozilla
+ FirefoxOS, the Fira typefaces also aim to cover the
+ legibility needs for a large range of handsets varying in
+ screen quality and rendering.
+ .
+ The Fira font family comes in 3 widths, all accompanied by
+ italic styles. The package also includes a Mono Spaced
+ variant.
+ .
+ This project is led by Carrois, a type foundry based in
+ Berlin. To contribute, see github.com/mozilla/Fira
+

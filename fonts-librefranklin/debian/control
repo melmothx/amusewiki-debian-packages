@@ -1,0 +1,21 @@
+Source: fonts-librefranklin
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: https://github.com/google/fonts/ofl/librefranklin
+
+Package: fonts-librefranklin
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: LibreFranklin fonts
+ Libre Franklin is an interpretation and expansion of the
+ 1912 Morris Fuller Benton classic.
+ .
+ The Libre Franklin project is led by Impallari Type, a type
+ design foundry based in Rosario, Argentina. To contribute,
+ see github.com/impallari/Libre-Franklin
+

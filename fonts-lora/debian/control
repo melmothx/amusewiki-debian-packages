@@ -1,0 +1,26 @@
+Source: fonts-lora
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: https://github.com/google/fonts/ofl/lora
+
+Package: fonts-lora
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Lora fonts
+ Lora is a well-balanced contemporary serif with roots in
+ calligraphy. It is a text typeface with moderate contrast
+ well suited for body text.
+ .
+ A paragraph set in Lora will make a memorable appearance
+ because of its brushed curves in contrast with driving
+ serifs. The overall typographic voice of Lora perfectly
+ conveys the mood of a modern-day story, or an art essay.
+ .
+ Technically Lora is optimised for screen appearance, and
+ works equally well in print.
+

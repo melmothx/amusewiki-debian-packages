@@ -1,0 +1,25 @@
+Source: fonts-rubik
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: https://github.com/google/fonts/ofl/rubik
+
+Package: fonts-rubik
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Rubik fonts
+ Rubik is a sans serif font family with slightly rounded
+ corners designed by Philipp Hubert and Sebastian Fischer at
+ Hubert & Fischer as part of the Chrome Cube Lab project.
+ .
+ Rubik is a 5 weight family with Roman and Italic styles,
+ that accompanies Rubik Mono One, a monospaced variation of
+ the Black roman design.
+ .
+ Meir Sadan redesigned the Hebrew component in 2015. Alexei
+ Vanyashin redesigned the Cyrillic component in 2016.
+

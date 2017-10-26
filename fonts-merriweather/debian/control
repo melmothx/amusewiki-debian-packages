@@ -1,0 +1,23 @@
+Source: fonts-merriweather
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: https://github.com/google/fonts/ofl/merriweather
+
+Package: fonts-merriweather
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Merriweather fonts
+ Merriweather was designed to be a text face that is pleasant
+ to read on screens. It features a very large x height,
+ slightly condensed letterforms, a mild diagonal stress,
+ sturdy serifs and open forms.
+ .
+ There is also Merriweather Sans, a sans-serif version which
+ closely harmonizes with the weights and styles of this serif
+ family.
+
