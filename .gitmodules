@@ -1,24 +1,24 @@
 [submodule "amusewiki"]
 	path = amusewiki
-	url = git@github.com:melmothx/amusewiki.git
+	url = https://github.com/melmothx/amusewiki.git
 [submodule "libtext-amuse-perl"]
 	path = libtext-amuse-perl
-	url = git@github.com:melmothx/text-amuse.git
+	url = https://github.com/melmothx/text-amuse.git
 [submodule "libebook-epub-lite-perl"]
 	path = libebook-epub-lite-perl
-	url = git@github.com:melmothx/EBook-EPUB-Lite.git
+	url = https://github.com/melmothx/EBook-EPUB-Lite.git
 [submodule "libpdf-cropmarks-perl"]
 	path = libpdf-cropmarks-perl
-	url = git@github.com:melmothx/pdf-cropmarks-perl.git
+	url = https://github.com/melmothx/pdf-cropmarks-perl.git
 [submodule "libpdf-imposition-perl"]
 	path = libpdf-imposition-perl
-	url = git@github.com:melmothx/pdf-imposition-perl.git
+	url = https://github.com/melmothx/pdf-imposition-perl.git
 [submodule "libtext-amuse-compile-perl"]
 	path = libtext-amuse-compile-perl
-	url = git@github.com:melmothx/text-amuse-compile.git
+	url = https://github.com/melmothx/text-amuse-compile.git
 [submodule "libtext-amuse-preprocessor-perl"]
 	path = libtext-amuse-preprocessor-perl
-	url = git@github.com:melmothx/text-amuse-preprocessor.git
+	url = https://github.com/melmothx/text-amuse-preprocessor.git
 [submodule "libxml-opds-perl"]
 	path = libxml-opds-perl
-	url = git@github.com:melmothx/libxml-opds-perl
+	url = https://github.com/melmothx/libxml-opds-perl
