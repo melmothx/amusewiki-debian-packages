@@ -10,7 +10,9 @@ fi
 
 rm -fv ${dir}*.{deb,build,changes}
 cd $dir
-debuild -i -us -uc -b
-debuild clean
+debuild -i -us -uc --pre-clean --post-clean -b
+fakeroot debian/rules clean
 cd ..
-scp ${dir}*.deb melmothx@packages.amusewiki.org:
+for i in ${dir}*.deb; do
+    dpkg --contents $i
+done
