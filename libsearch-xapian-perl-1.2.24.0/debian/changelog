@@ -1,0 +1,420 @@
+libsearch-xapian-perl (1.2.24.0-1) unstable; urgency=medium
+
+  [ gregor herrmann ]
+  * Remove Frank Lichtenheld from Uploaders. Thanks for your work!
+  * Remove Jonathan Yu from Uploaders. Thanks for your work!
+  * Remove Jose Luis Rivas from Uploaders. Thanks for your work!
+  * Remove Ryan Niebur from Uploaders. Thanks for your work!
+
+  [ Olly Betts ]
+  * New upstream release:
+    + Incorporates patch 0001-spelling-error-in-manpage.patch so drop.
+  * Version BD on libxapian-dev for xapian-core 1.4 transition.
+  * Wrap long SEE ALSO lists to fix warnings from man:
+    + New patch: fix-long-see-also-lines.patch
+    + debian/libsearch-xapian-perl.lintian-overrides: Drop, no longer needed.
+
+ -- Olly Betts <olly@survex.com>  Fri, 30 Sep 2016 16:29:14 +1300
+
+libsearch-xapian-perl (1.2.23.0-1) unstable; urgency=medium
+
+  Team upload
+
+  [ gregor herrmann ]
+  * Rename autopkgtest configuration file(s) as per new pkg-perl-
+    autopkgtest schema.
+
+  [ Salvatore Bonaccorso ]
+  * debian/control: Use HTTPS transport protocol for Vcs-Git URI
+
+  [ Olly Betts ]
+  * debian/control,debian/watch: Use HTTPS for xapian.org.
+
+  [ gregor herrmann ]
+  * Remove Xavier Oswald from Uploaders. (Closes: #824321)
+  * debian/copyright: change Copyright-Format 1.0 URL to HTTPS.
+
+  [ Nick Morrott ]
+  * New upstream release
+  * Add myself to Uploaders
+  * Update years of upstream and packaging copyright
+  * Bump Standards-Version to 3.9.8 (no changes)
+  * Remove unnecessary minimum versioned dependency on libxapian-dev
+  * Add hardening=+bindnow build flag
+  * Add 0001-spelling-error-in-manpage.patch
+  * Add libsearch-xapian-perl.lintian-overrides
+
+ -- Nick Morrott <knowledgejunkie@gmail.com>  Sun, 24 Jul 2016 23:27:22 +0100
+
+libsearch-xapian-perl (1.2.21.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update years of upstream and packaging copyright.
+  * autopkgtest: skip a new test.
+
+ -- gregor herrmann <gregoa@debian.org>  Sun, 12 Jul 2015 17:54:18 +0200
+
+libsearch-xapian-perl (1.2.19.0-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Florian Schlichting ]
+  * Import Upstream version 1.2.16.0, 1.2.17.0, 1.2.18.0
+  * Declare compliance with Debian Policy 3.9.5
+  * Bump years of upstream copyright
+
+  [ gregor herrmann ]
+  * Strip trailing slash from metacpan URLs.
+
+  [ Salvatore Bonaccorso ]
+  * Update Vcs-Browser URL to cgit web frontend
+
+  [ Damyan Ivanov ]
+  * Add debian/upstream/metadata
+  * watch, upstream/signing-key: verify upstream sources
+  * Imported Upstream version 1.2.19.0
+  * add libdevel-leak-perl to build-dependencies
+  * Declare conformance with Policy 3.9.6
+  * add 'Testsuite: autopkgtest-pkg-perl' source header
+
+ -- Damyan Ivanov <dmn@debian.org>  Wed, 22 Oct 2014 13:09:24 +0000
+
+libsearch-xapian-perl (1.2.15.0-1) unstable; urgency=low
+
+  * Team upload
+
+  [ Salvatore Bonaccorso ]
+  * Change Vcs-Git to canonical URI (git://anonscm.debian.org)
+  * Change search.cpan.org based URIs to metacpan.org based URIs
+
+  [ Florian Schlichting ]
+  * Import Upstream version 1.2.15.0 (closes: #720893)
+  * Update years of upstream copyright
+  * Bump Standards-Version to 3.9.4 (update to copyright-format 1.0)
+  * Switch dh compatibility to level 9 to enable passing of hardening flags
+
+ -- Florian Schlichting <fsfs@debian.org>  Mon, 26 Aug 2013 07:45:24 +0200
+
+libsearch-xapian-perl (1.2.10.0-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/copyright: Update copyright years.
+  * debian/control: Standards-Version: 3.9.3 (no changes required).
+
+ -- Olly Betts <olly@survex.com>  Fri, 11 May 2012 01:50:55 +0000
+
+libsearch-xapian-perl (1.2.8.0-2) unstable; urgency=low
+
+  * Actually include the changes in 1.2.8.0.
+
+ -- Olly Betts <olly@survex.com>  Sat, 17 Dec 2011 12:57:09 +0000
+
+libsearch-xapian-perl (1.2.8.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/rules: Simplify.
+
+ -- Olly Betts <olly@survex.com>  Sat, 17 Dec 2011 12:33:02 +0000
+
+libsearch-xapian-perl (1.2.7.0-2) unstable; urgency=low
+
+  [Olly Betts]
+  * debian/control: Requires at least libxapian-dev 1.2.6 for
+    QueryParser::set_max_wildcard_expansion(). (Closes: #638937)
+
+ -- Olly Betts <olly@survex.com>  Tue, 23 Aug 2011 06:25:51 +0000
+
+libsearch-xapian-perl (1.2.7.0-1) unstable; urgency=low
+
+  [ Ansgar Burchardt ]
+  * debian/copyright: Add an additional copyright holder; update formatting.
+  * debian/control: Convert Vcs-* fields to Git.
+
+  [ Olly Betts ]
+  * New upstream release.
+  * debian/control: Reflect upstream xapian-core API compatibility policy by
+    adding "libxapian-dev (<< 1.3.0)" build-dependency.
+
+ -- Olly Betts <olly@survex.com>  Fri, 12 Aug 2011 20:14:04 +0000
+
+libsearch-xapian-perl (1.2.5.0-3) unstable; urgency=low
+
+  * Bump revision because of botched upload.
+
+ -- Olly Betts <olly@survex.com>  Mon, 09 May 2011 03:21:16 +0000
+
+libsearch-xapian-perl (1.2.5.0-2) unstable; urgency=low
+
+  * Rebuild with correct distribution.
+
+ -- Olly Betts <olly@survex.com>  Tue, 12 Apr 2011 08:24:36 +0000
+
+libsearch-xapian-perl (1.2.5.0-1) maverick; urgency=low
+
+  * New upstream release
+  * debian/control: Standards-Version: 3.9.2 (no changes required).
+  * debian/copyright: Update for 2011.
+
+ -- Olly Betts <olly@survex.com>  Sun, 10 Apr 2011 12:46:50 +0000
+
+libsearch-xapian-perl (1.2.4.0-1) unstable; urgency=low
+
+  [ Salvatore Bonaccorso ]
+  * Update my email address.
+
+  [ Olly Betts ]
+  * New upstream release
+
+ -- Olly Betts <olly@survex.com>  Wed, 22 Dec 2010 12:13:34 +0000
+
+libsearch-xapian-perl (1.2.3.0-1) unstable; urgency=low
+
+  * New upstream release
+  * Upload to unstable
+  * debian/control.in: Standards-Version: 3.9.1 (no changes required).
+  * debian/source/format: Set to "3.0 (quilt)".
+
+ -- Olly Betts <olly@survex.com>  Tue, 24 Aug 2010 12:53:15 +0000
+
+libsearch-xapian-perl (1.2.2.0-1) experimental; urgency=low
+
+  * New upstream release
+
+ -- Olly Betts <olly@survex.com>  Tue, 06 Jul 2010 16:02:36 +0000
+
+libsearch-xapian-perl (1.2.0.0-1) experimental; urgency=low
+
+  * New upstream release
+    + Needs xapian-core >= 1.2.0.
+
+ -- Olly Betts <olly@survex.com>  Mon, 03 May 2010 13:25:14 +0000
+
+libsearch-xapian-perl (1.0.20.0-1) unstable; urgency=low
+
+  * New upstream release
+    + Avoid importing isa from UNIVERSAL to fix Perl 5.12 deprecation
+      warning. (Closes: #578559)
+    + Fix testcase t/04functions.t to work with Perl compiled with
+      -Duselongdouble. (Closes: #578558)
+
+ -- Olly Betts <olly@survex.com>  Wed, 28 Apr 2010 03:53:29 +0000
+
+libsearch-xapian-perl (1.0.19.0-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/rules: Add xapian.org download page as alternative location.
+
+ -- Olly Betts <olly@survex.com>  Fri, 16 Apr 2010 07:34:14 +0000
+
+libsearch-xapian-perl (1.0.18.0-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/copyright:
+    - Fix some infelicities in the details.
+    - Update for 2010 copyrights.
+  * Bump Standards-Version to 3.8.4 (no changes).
+
+ -- Olly Betts <olly@survex.com>  Mon, 15 Feb 2010 08:54:43 +0000
+
+libsearch-xapian-perl (1.0.17.0-1) unstable; urgency=low
+
+  [Olly Betts]
+  * New upstream release
+  * debian/control:
+    - Add myself to Uploaders.
+    - Drop "www." from homepage URL as to avoid a redirect.
+    - Bump build dependency on libxapian-dev to >= 1.0.17.
+
+ -- Olly Betts <olly@survex.com>  Sat, 21 Nov 2009 14:17:23 +0000
+
+libsearch-xapian-perl (1.0.16.0-1) unstable; urgency=low
+
+  [ Ryan Niebur ]
+  * Update jawnsy's email address
+  * Update ryan52's email address
+
+  [ Salvatore Bonaccorso ]
+  * New upstream release
+  * debian/control:
+    - Add myself to Uploaders
+    - Drop versioned Build-Depends on perl for version older that the one in
+      etch (5.8.8).
+  * Drop debian/patches and quilt Build-Depends since patch is integrated
+    upstream. Remove README.source. Update debian/rules to not using patch
+    system.
+  * Bump Standards-Version to 3.8.3 (no changes). 
+
+  [ gregor herrmann ]
+  * Bump build dependency on libxapian-dev to >= 1.0.16.
+
+  [ Xavier Oswald ]
+  * Add myself to Uploaders
+  * Update debian/copyright
+
+ -- Jonathan Yu <jawnsy@cpan.org>  Mon, 12 Oct 2009 15:20:47 -0400
+
+libsearch-xapian-perl (1.0.14.0-1) unstable; urgency=low
+
+  [ Jonathan Yu ]
+  * New upstream release
+    + Add handling of C++ exceptions from methods of Document
+  * Forward the coverage test patch upstream and note it
+  * Added myself to Uploaders and Copyright
+  * Minor fixes to the control description
+  * Updated copyright years on everything
+
+  [ Ryan Niebur ]
+  * make work with older dh versions again, as Olly requested
+
+ -- Ryan Niebur <ryanryan52@gmail.com>  Tue, 11 Aug 2009 22:56:13 -0700
+
+libsearch-xapian-perl (1.0.13.1-1) unstable; urgency=low
+
+  [ Ryan Niebur ]
+  * New upstream release
+
+  [ gregor herrmann ]
+  * debian/copyright: add information for new example scripts.
+
+  [ Nathan Handler ]
+  * debian/watch: Update to ignore development releases.
+
+  [ gregor herrmann ]
+  * Set Standards-Version to 3.8.2 (no changes).
+  * Bump build dependency on libxapian-dev to >= 1.0.13.
+  * Minimize debian/rules, update build dependencies.
+
+ -- gregor herrmann <gregoa@debian.org>  Fri, 26 Jun 2009 15:01:11 +0200
+
+libsearch-xapian-perl (1.0.12.0-1) unstable; urgency=low
+
+  [ gregor herrmann ]
+  * Remove patch stop_failing_tests_on_values_begin.patch, not needed any
+    more; thanks to Olly Betts for the bug report (closes: #517660).
+
+  [ Ryan Niebur ]
+  * New upstream release
+  * update debian/copyright
+  * standards version 3.8.1
+  * update version of dependency on libxapian-dev
+  * New upstream release
+
+  [ gregor herrmann ]
+  * debian/copyright: update formatting.
+
+ -- Ryan Niebur <ryanryan52@gmail.com>  Fri, 08 May 2009 00:34:54 -0700
+
+libsearch-xapian-perl (1.0.10.0-1) unstable; urgency=low
+
+  [ Jose Luis Rivas ]
+  * New upstream release.
+  * debian/control:
+   + Added me as uploader.
+  * debian/copyright:
+   + Updated formatting.
+
+  [ gregor herrmann ]
+  * debian/copyright: attribute copyright for the packaging to members of the
+    Debian Perl Group instead of to the group as a whole.
+  * Set debhelper compatibility level to 7; adapt
+    debian/{control,compat,rules}.
+  * debian/control: change my email address.
+  * debian/control: Changed: Switched Vcs-Browser field to ViewSVN
+    (source stanza).
+
+  [ Ryan Niebur ]
+  * add description to patch
+  * bump versioned dependency on libxapian-dev
+  * remove the test databases in the clean target
+  * add me to uploaders
+
+ -- Jose Luis Rivas <ghostbar38@gmail.com>  Sun, 02 Nov 2008 02:56:27 -0430
+
+libsearch-xapian-perl (1.0.7.0-1) unstable; urgency=low
+
+  [ gregor herrmann ]
+  * New upstream release (closes: #486138).
+  * debian/copyright: change upstream source location.
+  * debian/control:
+    - add /me to Uploaders
+    - make build dependency on quilt versioned
+  * debian/rules: remove obsolete source and diff targets, add install
+    target to .PHONY.
+
+  [ Frank Lichtenheld ]
+  * debian/control:
+    - Bump Standards-Version to 3.8.0
+  * debian/README.source:
+    - Add to satisfy policy.
+
+ -- Frank Lichtenheld <djpig@debian.org>  Tue, 29 Jul 2008 18:53:38 +0200
+
+libsearch-xapian-perl (1.0.5.0-1) unstable; urgency=low
+
+  [ gregor herrmann ]
+  * New upstream release.
+  * Set Standards-Version to 3.7.3 (no changes needed).
+  * debian/watch: use dist-based URL.
+  * debian/rules: only remove /usr/share/perl5 if it exists.
+
+  [ Damyan Ivanov ]
+  * be verbose when removing usr/share/perl5
+  * update years of copyright
+  * strip Uploaders
+
+ -- Damyan Ivanov <dmn@debian.org>  Mon, 07 Jan 2008 22:31:55 +0200
+
+libsearch-xapian-perl (1.0.4.0-1) unstable; urgency=low
+
+  [ gregor herrmann ]
+  * New upstream release.
+  * Move homepage to real field in debian/control.
+  * Versioned build-dependency of libxapian-dev adjusted to ">= 1.0.4".
+  * debian/control: Added: Vcs-Svn field (source stanza); Vcs-Browser
+    field (source stanza). Removed: XS-Vcs-Svn fields.
+
+  [ Frank Lichtenheld ]
+  * Move tests from install to build target.
+
+  [ Damyan Ivanov ]
+  * Add libtest-pod-coverage-perl to B-D-I, but do not enable the test yet, as
+    most of them fail :/
+  * Update copyright years and download URL
+  * Add patch siggested by upstream for avoiding failing in t/threads.t
+    See http://thread.gmane.org/gmane.comp.search.xapian.general/5425
+  * Migrate the change to t/03podcoverage.t to a separate patch
+  * Add quilt to Build-Depends and debian/rules
+  * Add myself to Uploaders
+  * Move stamp-removal before distclean
+  * Remove unused dh_link call
+
+ -- Damyan Ivanov <dmn@debian.org>  Wed, 14 Nov 2007 16:38:17 +0200
+
+libsearch-xapian-perl (1.0.2.0-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Frank Lichtenheld <djpig@debian.org>  Fri, 06 Jul 2007 00:50:01 +0200
+
+libsearch-xapian-perl (1.0.0.0-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/control: added me to Uploaders
+
+ -- Krzysztof Krzyzaniak (eloy) <eloy@debian.org>  Wed, 30 May 2007 11:09:45 +0200
+
+libsearch-xapian-perl (0.9.10.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Remove empty /usr/share/perl5 directory from binary package.
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Fri, 13 Apr 2007 20:42:05 +0200
+
+libsearch-xapian-perl (0.9.9.0-1) unstable; urgency=low
+
+  * Initial release. (Closes: #402074)
+  * t/03podcoverage.t: Use TEST_POD_COVERAGE instead of
+    TEST_POD to be able to run t/02pod.t which is useful and
+    not t/03podcoverage.t which will currently always fail.
+
+ -- Frank Lichtenheld <djpig@debian.org>  Fri,  8 Dec 2006 01:19:45 +0100

@@ -1,0 +1,4 @@
+version=3
+opts=pgpsigurlmangle=s/$/.asc/ \
+https://xapian.org/download http://oligarchy.co.uk/xapian/.*/Search-Xapian-v?(\d[\d.]+)\.(?:tar(?:\.gz|\.bz2)?|tgz|zip)
+https://metacpan.org/release/Search-Xapian .*/Search-Xapian-v?(\d[\d.]+)\.(?:tar(?:\.gz|\.bz2)?|tgz|zip)

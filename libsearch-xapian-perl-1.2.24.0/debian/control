@@ -1,0 +1,38 @@
+Source: libsearch-xapian-perl
+Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
+Uploaders: Krzysztof Krzyzaniak (eloy) <eloy@debian.org>,
+           Damyan Ivanov <dmn@debian.org>,
+           gregor herrmann <gregoa@debian.org>,
+           Salvatore Bonaccorso <carnil@debian.org>,
+           Olly Betts <olly@survex.com>,
+           Nick Morrott <knowledgejunkie@gmail.com>
+Section: perl
+Testsuite: autopkgtest-pkg-perl
+Priority: optional
+Build-Depends: debhelper (>= 9.20120312),
+               libdevel-leak-perl,
+               libtest-pod-perl,
+               libxapian-dev (>= 1.4.0~),
+               perl
+Standards-Version: 3.9.8
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-perl/packages/libsearch-xapian-perl.git
+Vcs-Git: https://anonscm.debian.org/git/pkg-perl/packages/libsearch-xapian-perl.git
+Homepage: https://xapian.org/
+
+Package: libsearch-xapian-perl
+Architecture: any
+Depends: ${misc:Depends},
+         ${perl:Depends},
+         ${shlibs:Depends}
+Suggests: xapian-doc
+Description: Perl bindings for the Xapian search library
+ Search::Xapian provides Perl bindings for the Xapian Open Source Search
+ Engine library.
+ .
+ The Xapian search engine library is a highly adaptable toolkit which allows
+ developers to easily add advanced indexing and search facilities to their own
+ applications. It implements the probabilistic model of information retrieval,
+ and provides facilities for performing ranked free-text searches, relevance
+ feedback, phrase searching, boolean searching, stemming, and simultaneous
+ update and searching. It is highly scalable and is capable of working with
+ collections containing hundreds of millions of documents.

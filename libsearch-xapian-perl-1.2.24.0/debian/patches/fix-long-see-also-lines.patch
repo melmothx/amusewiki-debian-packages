@@ -1,0 +1,147 @@
+Description: Fix long SEE ALSO lines
+ Put a newline after each comma in the SEE ALSO lists, fixing warnings from
+ man such as:
+
+ <standard input>:109: warning [p 1, 8.0i]: can't break line
+Author: Olly Betts <olly@survex.com>
+Origin: upstream
+Forwarded: https://git.xapian.org/?p=xapian;a=commit;h=f12a81e444124e4365720369414d4851da20c32c
+Last-Update: 2016-09-30
+
+--- libsearch-xapian-perl-1.2.24.0.orig/Xapian/BM25Weight.pm
++++ libsearch-xapian-perl-1.2.24.0/Xapian/BM25Weight.pm
+@@ -55,6 +55,7 @@ Constructor. Either takes no parameters,
+ 
+ =head1 SEE ALSO
+ 
+-L<Search::Xapian>,L<Search::Xapian::Enquire>
++L<Search::Xapian>,
++L<Search::Xapian::Enquire>
+ 
+ =cut
+--- libsearch-xapian-perl-1.2.24.0.orig/Xapian/BoolWeight.pm
++++ libsearch-xapian-perl-1.2.24.0/Xapian/BoolWeight.pm
+@@ -52,6 +52,7 @@ Constructor. Takes no arguments.
+ 
+ =head1 SEE ALSO
+ 
+-L<Search::Xapian>,L<Search::Xapian::Enquire>
++L<Search::Xapian>,
++L<Search::Xapian::Enquire>
+ 
+ =cut
+--- libsearch-xapian-perl-1.2.24.0.orig/Xapian/Database.pm
++++ libsearch-xapian-perl-1.2.24.0/Xapian/Database.pm
+@@ -200,6 +200,8 @@ Get the number of elements indexed by a
+ 
+ =head1 SEE ALSO
+ 
+-L<Search::Xapian>,L<Search::Xapian::Enquire>,L<Search::Xapian::WritableDatabase>
++L<Search::Xapian>,
++L<Search::Xapian::Enquire>,
++L<Search::Xapian::WritableDatabase>
+ 
+ =cut
+--- libsearch-xapian-perl-1.2.24.0.orig/Xapian/MatchSpy.pm
++++ libsearch-xapian-perl-1.2.24.0/Xapian/MatchSpy.pm
+@@ -52,6 +52,8 @@ Reimplemented in Xapian::ValueCountMatch
+ 
+ =head1 SEE ALSO
+ 
+-L<Search::Xapian>,L<Search::Xapian::ValueCountMatchSpy>,L<Search::Xapian::PerlMatchSpy>
++L<Search::Xapian>,
++L<Search::Xapian::ValueCountMatchSpy>,
++L<Search::Xapian::PerlMatchSpy>
+ 
+ =cut
+--- libsearch-xapian-perl-1.2.24.0.orig/Xapian/PositionIterator.pm
++++ libsearch-xapian-perl-1.2.24.0/Xapian/PositionIterator.pm
+@@ -128,6 +128,7 @@ Return a description of this object.  Al
+ 
+ =head1 SEE ALSO
+ 
+-L<Search::Xapian>,L<Search::Xapian::Document>
++L<Search::Xapian>,
++L<Search::Xapian::Document>
+ 
+ =cut
+--- libsearch-xapian-perl-1.2.24.0.orig/Xapian/PostingIterator.pm
++++ libsearch-xapian-perl-1.2.24.0/Xapian/PostingIterator.pm
+@@ -149,6 +149,7 @@ Return a description of this object.
+ 
+ =head1 SEE ALSO
+ 
+-L<Search::Xapian>,L<Search::Xapian::Database>
++L<Search::Xapian>,
++L<Search::Xapian::Database>
+ 
+ =cut
+--- libsearch-xapian-perl-1.2.24.0.orig/Xapian/TermIterator.pm
++++ libsearch-xapian-perl-1.2.24.0/Xapian/TermIterator.pm
+@@ -122,7 +122,8 @@ as the C<ne> and C<!=> operators.
+ 
+ =head1 SEE ALSO
+ 
+-L<Search::Xapian>,L<Search::Xapian::Document>
++L<Search::Xapian>,
++L<Search::Xapian::Document>
+ 
+ =cut
+ 
+--- libsearch-xapian-perl-1.2.24.0.orig/Xapian/TradWeight.pm
++++ libsearch-xapian-perl-1.2.24.0/Xapian/TradWeight.pm
+@@ -56,6 +56,7 @@ If k isn't specified, the default value
+ 
+ =head1 SEE ALSO
+ 
+-L<Search::Xapian>,L<Search::Xapian::Enquire>
++L<Search::Xapian>,
++L<Search::Xapian::Enquire>
+ 
+ =cut
+--- libsearch-xapian-perl-1.2.24.0.orig/Xapian/ValueCountMatchSpy.pm
++++ libsearch-xapian-perl-1.2.24.0/Xapian/ValueCountMatchSpy.pm
+@@ -92,6 +92,7 @@ End iterator corresponding to top_values
+ 
+ =head1 SEE ALSO
+ 
+-L<Search::Xapian>,L<Search::Xapian::MatchSpy>
++L<Search::Xapian>,
++L<Search::Xapian::MatchSpy>
+ 
+ =cut
+--- libsearch-xapian-perl-1.2.24.0.orig/Xapian/ValueIterator.pm
++++ libsearch-xapian-perl-1.2.24.0/Xapian/ValueIterator.pm
+@@ -106,6 +106,7 @@ as the C<ne> and C<!=> operators.
+ 
+ =head1 SEE ALSO
+ 
+-L<Search::Xapian>,L<Search::Xapian::Document>
++L<Search::Xapian>,
++L<Search::Xapian::Document>
+ 
+ =cut
+--- libsearch-xapian-perl-1.2.24.0.orig/Xapian/Weight.pm
++++ libsearch-xapian-perl-1.2.24.0/Xapian/Weight.pm
+@@ -21,6 +21,8 @@ This is an abstract base class for weigh
+ 
+ =head1 SEE ALSO
+ 
+-L<Search::Xapian>,L<Search::Xapian::BoolWeight>,L<Search::Xapian::BM25Weight>
++L<Search::Xapian>,
++L<Search::Xapian::BoolWeight>,
++L<Search::Xapian::BM25Weight>
+ 
+ =cut
+--- libsearch-xapian-perl-1.2.24.0.orig/Xapian/WritableDatabase.pm
++++ libsearch-xapian-perl-1.2.24.0/Xapian/WritableDatabase.pm
+@@ -208,6 +208,8 @@ progress.
+ 
+ =head1 SEE ALSO
+ 
+-L<Search::Xapian>,L<Search::Xapian::Enquire>,L<Search::Xapian::Database>
++L<Search::Xapian>,
++L<Search::Xapian::Enquire>,
++L<Search::Xapian::Database>
+ 
+ =cut

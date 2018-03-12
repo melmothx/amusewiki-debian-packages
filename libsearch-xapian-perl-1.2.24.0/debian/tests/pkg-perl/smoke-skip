@@ -1,0 +1,2 @@
+# needs unbuilt and built source tree
+t/symbol-test.t

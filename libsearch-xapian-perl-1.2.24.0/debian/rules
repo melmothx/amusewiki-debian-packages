@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+# Please keep this working with debhelper version 7.0.13, Olly Betts wants it
+# that way for backporting.
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+bindnow
+export TEST_POD=1
+
+%:
+	dh $@
