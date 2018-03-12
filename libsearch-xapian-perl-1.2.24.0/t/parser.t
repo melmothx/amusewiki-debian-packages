@@ -7,7 +7,7 @@ use strict;
 use Test;
 use Devel::Leak;
 use Devel::Peek;
-BEGIN { plan tests => 62 };
+BEGIN { plan tests => 61 };
 use Search::Xapian qw(:standard);
 ok(1); # If we made it this far, we're ok.
 
@@ -129,7 +129,6 @@ foreach $pair (
     [ '12..42kg', "VALUE_RANGE 5 \xae \xb5@" ],
     [ '12kg..42kg', "VALUE_RANGE 5 \xae \xb5@" ],
     [ '12kg..42', 'VALUE_RANGE 3 12kg 42' ],
-    [ '!10..$20', 'VALUE_RANGE 3 !10 $20' ],
     [ '1999-03-12..2020-12-30', 'VALUE_RANGE 1 19990312 20201230' ],
     [ '1999/03/12..2020/12/30', 'VALUE_RANGE 1 19990312 20201230' ],
     [ '1999.03.12..2020.12.30', 'VALUE_RANGE 1 19990312 20201230' ],

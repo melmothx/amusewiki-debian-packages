@@ -12,7 +12,7 @@ Priority: optional
 Build-Depends: debhelper (>= 9.20120312),
                libdevel-leak-perl,
                libtest-pod-perl,
-               libxapian-dev (>= 1.4.0~),
+               libxapian-dev (>= 1.2.0~),
                perl
 Standards-Version: 3.9.8
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-perl/packages/libsearch-xapian-perl.git

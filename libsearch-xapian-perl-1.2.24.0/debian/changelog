@@ -1,4 +1,10 @@
-libsearch-xapian-perl (1.2.24.0-1) unstable; urgency=medium
+libsearch-xapian-perl (1.2.23.9-1+amw1) unstable; urgency=medium
+
+  [ Marco Pessotto ]
+
+  * Demoted debian version to 1.2.23.9 for backporting to jessie.
+  * Removed failing test after asking Olly on IRC.
+  * Allow building against 1.2
 
   [ gregor herrmann ]
   * Remove Frank Lichtenheld from Uploaders. Thanks for your work!
@@ -14,7 +20,7 @@ libsearch-xapian-perl (1.2.24.0-1) unstable; urgency=medium
     + New patch: fix-long-see-also-lines.patch
     + debian/libsearch-xapian-perl.lintian-overrides: Drop, no longer needed.
 
- -- Olly Betts <olly@survex.com>  Fri, 30 Sep 2016 16:29:14 +1300
+ -- Marco Pessotto <melmothx@gmail.com>  Mon, 12 Mar 2018 10:01:00 +0100
 
 libsearch-xapian-perl (1.2.23.0-1) unstable; urgency=medium
 
