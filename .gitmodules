@@ -22,3 +22,6 @@
 [submodule "libxml-opds-perl"]
 	path = libxml-opds-perl
 	url = https://github.com/melmothx/libxml-opds-perl
+[submodule "libwordpress-dbic-schema-perl"]
+	path = libwordpress-dbic-schema-perl
+	url = https://github.com/melmothx/wordpress-dbic-schema-perl.git
