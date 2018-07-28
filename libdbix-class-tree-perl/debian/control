@@ -1,0 +1,19 @@
+Source: libdbix-class-tree-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libdbix-class-perl (>= 0.08100),
+ libtest-exception-perl,
+ perl
+Standards-Version: 3.9.8
+Homepage: https://metacpan.org/release/DBIx-Class-Tree
+
+Package: libdbix-class-tree-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ libdbix-class-perl (>= 0.08100)
+Description: Manipulate and anaylze tree structured data.
+ (no description was found)
+ .
+ This description was automagically extracted from the module by dh-make-perl.
