@@ -99,15 +99,6 @@
       "type" : "serif"
    },
    {
-      "bold" : "/usr/share/fonts/truetype/crimsontext/CrimsonText-Bold.ttf",
-      "bolditalic" : "/usr/share/fonts/truetype/crimsontext/CrimsonText-BoldItalic.ttf",
-      "desc" : "Crimson Text",
-      "italic" : "/usr/share/fonts/truetype/crimsontext/CrimsonText-Italic.ttf",
-      "name" : "Crimson Text",
-      "regular" : "/usr/share/fonts/truetype/crimsontext/CrimsonText-Regular.ttf",
-      "type" : "serif"
-   },
-   {
       "bold" : "/usr/share/fonts/truetype/lora/Lora-Bold.ttf",
       "bolditalic" : "/usr/share/fonts/truetype/lora/Lora-BoldItalic.ttf",
       "desc" : "Lora",
