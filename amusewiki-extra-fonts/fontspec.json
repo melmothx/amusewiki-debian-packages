@@ -1,0 +1,340 @@
+[
+   {
+      "bold" : "/usr/share/fonts/truetype/cmu/cmunbx.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/cmu/cmunbi.ttf",
+      "desc" : "CMU Serif",
+      "italic" : "/usr/share/fonts/truetype/cmu/cmunti.ttf",
+      "name" : "CMU Serif",
+      "regular" : "/usr/share/fonts/truetype/cmu/cmunrm.ttf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/fonts/opentype/linux-libertine/LinLibertine_RB.otf",
+      "bolditalic" : "/usr/share/fonts/opentype/linux-libertine/LinLibertine_RBI.otf",
+      "desc" : "Linux Libertine O",
+      "italic" : "/usr/share/fonts/opentype/linux-libertine/LinLibertine_RI.otf",
+      "name" : "Linux Libertine O",
+      "regular" : "/usr/share/fonts/opentype/linux-libertine/LinLibertine_R.otf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyretermes-bold.otf",
+      "bolditalic" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyretermes-bolditalic.otf",
+      "desc" : "TeX Gyre Termes",
+      "italic" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyretermes-italic.otf",
+      "name" : "TeX Gyre Termes",
+      "regular" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyretermes-regular.otf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrepagella-bold.otf",
+      "bolditalic" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrepagella-bolditalic.otf",
+      "desc" : "TeX Gyre Pagella",
+      "italic" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrepagella-italic.otf",
+      "name" : "TeX Gyre Pagella",
+      "regular" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrepagella-regular.otf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreschola-bold.otf",
+      "bolditalic" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreschola-bolditalic.otf",
+      "desc" : "TeX Gyre Schola",
+      "italic" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreschola-italic.otf",
+      "name" : "TeX Gyre Schola",
+      "regular" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreschola-regular.otf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrebonum-bold.otf",
+      "bolditalic" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrebonum-bolditalic.otf",
+      "desc" : "TeX Gyre Bonum",
+      "italic" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrebonum-italic.otf",
+      "name" : "TeX Gyre Bonum",
+      "regular" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrebonum-regular.otf",
+      "type" : "serif"
+   },
+   {
+      "desc" : "Coelacanth",
+      "name" : "Coelacanth",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/alegreya/Alegreya-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/alegreya/Alegreya-BoldItalic.ttf",
+      "desc" : "Alegreya",
+      "italic" : "/usr/share/fonts/truetype/alegreya/Alegreya-Italic.ttf",
+      "name" : "Alegreya",
+      "regular" : "/usr/share/fonts/truetype/alegreya/Alegreya-Regular.ttf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/arvo/Arvo-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/arvo/Arvo-BoldItalic.ttf",
+      "desc" : "Arvo",
+      "italic" : "/usr/share/fonts/truetype/arvo/Arvo-Italic.ttf",
+      "name" : "Arvo",
+      "regular" : "/usr/share/fonts/truetype/arvo/Arvo-Regular.ttf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/crimsontext/CrimsonText-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/crimsontext/CrimsonText-BoldItalic.ttf",
+      "desc" : "Crimson Text",
+      "italic" : "/usr/share/fonts/truetype/crimsontext/CrimsonText-Italic.ttf",
+      "name" : "Crimson Text",
+      "regular" : "/usr/share/fonts/truetype/crimsontext/CrimsonText-Regular.ttf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/lora/Lora-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/lora/Lora-BoldItalic.ttf",
+      "desc" : "Lora",
+      "italic" : "/usr/share/fonts/truetype/lora/Lora-Italic.ttf",
+      "name" : "Lora",
+      "regular" : "/usr/share/fonts/truetype/lora/Lora-Regular.ttf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/merriweather/Merriweather-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/merriweather/Merriweather-BoldItalic.ttf",
+      "desc" : "Merriweather",
+      "italic" : "/usr/share/fonts/truetype/merriweather/Merriweather-Italic.ttf",
+      "name" : "Merriweather",
+      "regular" : "/usr/share/fonts/truetype/merriweather/Merriweather-Regular.ttf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/vollkorn/Vollkorn-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/vollkorn/Vollkorn-BoldItalic.ttf",
+      "desc" : "Vollkorn",
+      "italic" : "/usr/share/fonts/truetype/vollkorn/Vollkorn-Italic.ttf",
+      "name" : "Vollkorn",
+      "regular" : "/usr/share/fonts/truetype/vollkorn/Vollkorn-Regular.ttf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/fonts/opentype/antykwa-poltawskiego/antpolt-bold.otf",
+      "bolditalic" : "/usr/share/fonts/opentype/antykwa-poltawskiego/antpolt-bolditalic.otf",
+      "desc" : "Antykwa Poltawskiego",
+      "italic" : "/usr/share/fonts/opentype/antykwa-poltawskiego/antpolt-italic.otf",
+      "name" : "Antykwa Poltawskiego",
+      "regular" : "/usr/share/fonts/opentype/antykwa-poltawskiego/antpolt-regular.otf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/fonts/opentype/antykwa-torunska/AntykwaTorunska-Bold.otf",
+      "bolditalic" : "/usr/share/fonts/opentype/antykwa-torunska/AntykwaTorunska-BoldItalic.otf",
+      "desc" : "Antykwa Torunska",
+      "italic" : "/usr/share/fonts/opentype/antykwa-torunska/AntykwaTorunska-Italic.otf",
+      "name" : "Antykwa Torunska",
+      "regular" : "/usr/share/fonts/opentype/antykwa-torunska/AntykwaTorunska-Regular.otf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/fonts/opentype/charis/CharisSIL-B.ttf",
+      "bolditalic" : "/usr/share/fonts/opentype/charis/CharisSIL-BI.ttf",
+      "desc" : "Charis SIL",
+      "italic" : "/usr/share/fonts/opentype/charis/CharisSIL-I.ttf",
+      "name" : "Charis SIL",
+      "regular" : "/usr/share/fonts/opentype/charis/CharisSIL-R.ttf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/paratype/PTF75F.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/paratype/PTF76F.ttf",
+      "desc" : "PT Serif",
+      "italic" : "/usr/share/fonts/truetype/paratype/PTF56F.ttf",
+      "name" : "PT Serif",
+      "regular" : "/usr/share/fonts/truetype/paratype/PTF55F.ttf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/gentium-basic/GenBkBasB.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/gentium-basic/GenBkBasBI.ttf",
+      "desc" : "Gentium Book Basic",
+      "italic" : "/usr/share/fonts/truetype/gentium-basic/GenBkBasI.ttf",
+      "name" : "Gentium Book Basic",
+      "regular" : "/usr/share/fonts/truetype/gentium-basic/GenBkBasR.ttf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/cormorant-garamond/CormorantGaramond-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/cormorant-garamond/CormorantGaramond-BoldItalic.ttf",
+      "desc" : "Cormorant Garamond",
+      "italic" : "/usr/share/fonts/truetype/cormorant-garamond/CormorantGaramond-Italic.ttf",
+      "name" : "Cormorant Garamond",
+      "regular" : "/usr/share/fonts/truetype/cormorant-garamond/CormorantGaramond-Regular.ttf",
+      "type" : "serif"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/cmu/cmunsx.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/cmu/cmunso.ttf",
+      "desc" : "CMU Sans Serif",
+      "italic" : "/usr/share/fonts/truetype/cmu/cmunsi.ttf",
+      "name" : "CMU Sans Serif",
+      "regular" : "/usr/share/fonts/truetype/cmu/cmunss.ttf",
+      "type" : "sans"
+   },
+   {
+      "bold" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreheros-bold.otf",
+      "bolditalic" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreheros-bolditalic.otf",
+      "desc" : "TeX Gyre Heros",
+      "italic" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreheros-italic.otf",
+      "name" : "TeX Gyre Heros",
+      "regular" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreheros-regular.otf",
+      "type" : "sans"
+   },
+   {
+      "bold" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreadventor-bold.otf",
+      "bolditalic" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreadventor-bolditalic.otf",
+      "desc" : "TeX Gyre Adventor",
+      "italic" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreadventor-italic.otf",
+      "name" : "TeX Gyre Adventor",
+      "regular" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyreadventor-regular.otf",
+      "type" : "sans"
+   },
+   {
+      "bold" : "/usr/share/fonts/opentype/nowacki/Iwona-Bold.otf",
+      "bolditalic" : "/usr/share/fonts/opentype/nowacki/Iwona-BoldItalic.otf",
+      "desc" : "Iwona",
+      "italic" : "/usr/share/fonts/opentype/nowacki/Iwona-Italic.otf",
+      "name" : "Iwona",
+      "regular" : "/usr/share/fonts/opentype/nowacki/Iwona-Regular.otf",
+      "type" : "sans"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf",
+      "desc" : "DejaVu Sans",
+      "italic" : "/usr/share/fonts/truetype/dejavu/DejaVuSans-Oblique.ttf",
+      "name" : "DejaVu Sans",
+      "regular" : "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+      "type" : "sans"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/paratype/PTS75F.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/paratype/PTS76F.ttf",
+      "desc" : "PT Sans",
+      "italic" : "/usr/share/fonts/truetype/paratype/PTS56F.ttf",
+      "name" : "PT Sans",
+      "regular" : "/usr/share/fonts/truetype/paratype/PTS55F.ttf",
+      "type" : "sans"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/alegreyasans/AlegreyaSans-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/alegreyasans/AlegreyaSans-BoldItalic.ttf",
+      "desc" : "Alegreya Sans",
+      "italic" : "/usr/share/fonts/truetype/alegreyasans/AlegreyaSans-Italic.ttf",
+      "name" : "Alegreya Sans",
+      "regular" : "/usr/share/fonts/truetype/alegreyasans/AlegreyaSans-Regular.ttf",
+      "type" : "sans"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/archivonarrow/ArchivoNarrow-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/archivonarrow/ArchivoNarrow-BoldItalic.ttf",
+      "desc" : "Archivo Narrow",
+      "italic" : "/usr/share/fonts/truetype/archivonarrow/ArchivoNarrow-Italic.ttf",
+      "name" : "Archivo Narrow",
+      "regular" : "/usr/share/fonts/truetype/archivonarrow/ArchivoNarrow-Regular.ttf",
+      "type" : "sans"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/firasans/FiraSans-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/firasans/FiraSans-BoldItalic.ttf",
+      "desc" : "Fira Sans",
+      "italic" : "/usr/share/fonts/truetype/firasans/FiraSans-Italic.ttf",
+      "name" : "Fira Sans",
+      "regular" : "/usr/share/fonts/truetype/firasans/FiraSans-Regular.ttf",
+      "type" : "sans"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/karla/Karla-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/karla/Karla-BoldItalic.ttf",
+      "desc" : "Karla",
+      "italic" : "/usr/share/fonts/truetype/karla/Karla-Italic.ttf",
+      "name" : "Karla",
+      "regular" : "/usr/share/fonts/truetype/karla/Karla-Regular.ttf",
+      "type" : "sans"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/librefranklin/LibreFranklin-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/librefranklin/LibreFranklin-BoldItalic.ttf",
+      "desc" : "Libre Franklin",
+      "italic" : "/usr/share/fonts/truetype/librefranklin/LibreFranklin-Italic.ttf",
+      "name" : "Libre Franklin",
+      "regular" : "/usr/share/fonts/truetype/librefranklin/LibreFranklin-Regular.ttf",
+      "type" : "sans"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/poppins/Poppins-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/poppins/Poppins-BoldItalic.ttf",
+      "desc" : "Poppins",
+      "italic" : "/usr/share/fonts/truetype/poppins/Poppins-Italic.ttf",
+      "name" : "Poppins",
+      "regular" : "/usr/share/fonts/truetype/poppins/Poppins-Regular.ttf",
+      "type" : "sans"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/rubik/Rubik-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/rubik/Rubik-BoldItalic.ttf",
+      "desc" : "Rubik",
+      "italic" : "/usr/share/fonts/truetype/rubik/Rubik-Italic.ttf",
+      "name" : "Rubik",
+      "regular" : "/usr/share/fonts/truetype/rubik/Rubik-Regular.ttf",
+      "type" : "sans"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/sourcesanspro/SourceSansPro-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/sourcesanspro/SourceSansPro-BoldItalic.ttf",
+      "desc" : "Source Sans Pro",
+      "italic" : "/usr/share/fonts/truetype/sourcesanspro/SourceSansPro-Italic.ttf",
+      "name" : "Source Sans Pro",
+      "regular" : "/usr/share/fonts/truetype/sourcesanspro/SourceSansPro-Regular.ttf",
+      "type" : "sans"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/cmu/cmuntb.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/cmu/cmuntx.ttf",
+      "desc" : "CMU Typewriter Text",
+      "italic" : "/usr/share/fonts/truetype/cmu/cmunit.ttf",
+      "name" : "CMU Typewriter Text",
+      "regular" : "/usr/share/fonts/truetype/cmu/cmuntt.ttf",
+      "type" : "mono"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-BoldOblique.ttf",
+      "desc" : "DejaVu Sans Mono",
+      "italic" : "/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Oblique.ttf",
+      "name" : "DejaVu Sans Mono",
+      "regular" : "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",
+      "type" : "mono"
+   },
+   {
+      "bold" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrecursor-bold.otf",
+      "bolditalic" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrecursor-bolditalic.otf",
+      "desc" : "TeX Gyre Cursor",
+      "italic" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrecursor-italic.otf",
+      "name" : "TeX Gyre Cursor",
+      "regular" : "/usr/share/texmf/fonts/opentype/public/tex-gyre/texgyrecursor-regular.otf",
+      "type" : "mono"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/anonymouspro/AnonymousPro-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/anonymouspro/AnonymousPro-BoldItalic.ttf",
+      "desc" : "Anonymous Pro",
+      "italic" : "/usr/share/fonts/truetype/anonymouspro/AnonymousPro-Italic.ttf",
+      "name" : "Anonymous Pro",
+      "regular" : "/usr/share/fonts/truetype/anonymouspro/AnonymousPro-Regular.ttf",
+      "type" : "mono"
+   },
+   {
+      "bold" : "/usr/share/fonts/truetype/spacemono/SpaceMono-Bold.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/spacemono/SpaceMono-BoldItalic.ttf",
+      "desc" : "Space Mono",
+      "italic" : "/usr/share/fonts/truetype/spacemono/SpaceMono-Italic.ttf",
+      "name" : "Space Mono",
+      "regular" : "/usr/share/fonts/truetype/spacemono/SpaceMono-Regular.ttf",
+      "type" : "mono"
+   }
+]

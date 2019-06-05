@@ -1,0 +1,13 @@
+amusewiki-extra-fonts (1.1+amw1) unstable; urgency=medium
+
+  * Install fontspec.json
+  * Remove crimson-text
+
+ -- Marco Pessotto <melmothx@gmail.com>  Wed, 05 Jun 2019 14:34:32 +0200
+
+amusewiki-extra-fonts (1.0+amw1) unstable; urgency=medium
+
+  * Initial creation
+
+ -- Marco Pessotto <melmothx@gmail.com>  Thu, 26 Oct 2017 12:17:25 +0200
+

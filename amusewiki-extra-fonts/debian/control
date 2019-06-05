@@ -5,22 +5,26 @@
 Source: amusewiki-extra-fonts
 Section: misc
 Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
 Homepage: https://amusewiki.org
 Standards-Version: 3.9.2
 
 Package: amusewiki-extra-fonts
-Maintainer: melmothX <melmothx@gmail.com>
-Depends: fonts-cormorant-garamond,
+Multi-Arch: foreign
+Depends: fonts-ebgaramond,
  fonts-sil-gentium-basic,
+ fonts-freefont-otf,
  fonts-antykwa-poltawskiego, fonts-antykwa-torunska, fonts-nowacki,
  fonts-dejavu, fonts-linuxlibertine, fonts-sil-charis,
  fonts-paratype, lmodern, fonts-lmodern,
  fonts-alegreya, fonts-alegreyasans, fonts-anonymouspro,
- fonts-archivonarrow, fonts-arvo, fonts-crimsontext,
+ fonts-archivonarrow, fonts-arvo, fonts-hosny-amiri,
  fonts-firasans, fonts-karla, fonts-coelacanth,
  fonts-librefranklin, fonts-lora, fonts-merriweather, fonts-poppins,
  fonts-rubik, fonts-sourcesanspro, fonts-spacemono, fonts-vollkorn
-Changelog: changelog
 Architecture: all
 Description: Extra font for amusewiki
- This package install a large set of fonts
+ This package installs a large set of fonts and a fontspec.json to be
+ used with amusewiki.
