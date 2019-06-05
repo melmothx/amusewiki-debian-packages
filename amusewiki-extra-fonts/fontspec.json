@@ -54,9 +54,31 @@
       "type" : "serif"
    },
    {
-      "desc" : "Coelacanth",
-      "name" : "Coelacanth",
-      "type" : "serif"
+       "desc" : "Coelacanth",
+       "name" : "Coelacanth",
+       "regular": "/usr/share/fonts/opentype/coelacanth/Coelacanth.otf",
+       "italic": "/usr/share/fonts/opentype/coelacanth/CoelacanthItalic.otf",
+       "bold": "/usr/share/fonts/opentype/coelacanth/CoelacanthBold.otf",
+       "bolditalic": "/usr/share/fonts/opentype/coelacanth/CoelacanthBold.otf",
+       "type" : "serif"
+   },
+   {
+       "name" : "FreeSerif",
+       "desc" : "Free Serif",
+       "bold" : "/usr/share/fonts/opentype/freefont/FreeSerifBold.otf",
+       "bolditalic" : "/usr/share/fonts/opentype/freefont/FreeSerifBoldItalic.otf",
+       "italic" : "/usr/share/fonts/opentype/freefont/FreeSerifItalic.otf",
+       "regular" : "/usr/share/fonts/opentype/freefont/FreeSerif.otf",
+       "type" : "serif"
+   },
+   {
+       "name" : "Amiri",
+       "desc" : "Amiri",
+       "bolditalic": "/usr/share/fonts/opentype/fonts-hosny-amiri/amiri-boldslanted.ttf",
+       "bold": "/usr/share/fonts/opentype/fonts-hosny-amiri/amiri-bold.ttf",
+       "regular": "/usr/share/fonts/opentype/fonts-hosny-amiri/amiri-regular.ttf",
+       "italic": "/usr/share/fonts/opentype/fonts-hosny-amiri/amiri-slanted.ttf",
+       "type" : "serif"
    },
    {
       "bold" : "/usr/share/fonts/truetype/alegreya/Alegreya-Bold.ttf",
