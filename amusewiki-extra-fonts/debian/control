@@ -13,17 +13,34 @@ Standards-Version: 3.9.2
 
 Package: amusewiki-extra-fonts
 Multi-Arch: foreign
-Depends: fonts-ebgaramond,
+Depends: fonts-alegreya,
+ fonts-alegreyasans,
+ fonts-anonymouspro,
+ fonts-antykwa-poltawskiego,
+ fonts-antykwa-torunska,
+ fonts-archivonarrow,
+ fonts-arvo,
+ fonts-cmu,
+ fonts-cormorant-garamond,
+ fonts-crimsontext,
+ fonts-dejavu-core,
+ fonts-dejavu-extra,
+ fonts-firasans,
+ fonts-karla,
+ fonts-librefranklin,
+ fonts-linuxlibertine,
+ fonts-lora,
+ fonts-merriweather,
+ fonts-nowacki,
+ fonts-paratype,
+ fonts-poppins,
+ fonts-rubik,
+ fonts-sil-charis,
  fonts-sil-gentium-basic,
- fonts-freefont-otf,
- fonts-antykwa-poltawskiego, fonts-antykwa-torunska, fonts-nowacki,
- fonts-dejavu, fonts-linuxlibertine, fonts-sil-charis,
- fonts-paratype, lmodern, fonts-lmodern,
- fonts-alegreya, fonts-alegreyasans, fonts-anonymouspro,
- fonts-archivonarrow, fonts-arvo, fonts-hosny-amiri,
- fonts-firasans, fonts-karla, fonts-coelacanth,
- fonts-librefranklin, fonts-lora, fonts-merriweather, fonts-poppins,
- fonts-rubik, fonts-sourcesanspro, fonts-spacemono, fonts-vollkorn
+ fonts-sourcesanspro,
+ fonts-spacemono,
+ fonts-texgyre,
+ fonts-vollkorn
 Architecture: all
 Description: Extra font for amusewiki
  This package installs a large set of fonts and a fontspec.json to be
