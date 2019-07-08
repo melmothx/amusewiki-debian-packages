@@ -144,12 +144,12 @@
       "type" : "serif"
    },
    {
-      "bold" : "/usr/share/fonts/opentype/charis/CharisSIL-B.ttf",
-      "bolditalic" : "/usr/share/fonts/opentype/charis/CharisSIL-BI.ttf",
+      "bold" : "/usr/share/fonts/truetype/charis/CharisSIL-B.ttf",
+      "bolditalic" : "/usr/share/fonts/truetype/charis/CharisSIL-BI.ttf",
       "desc" : "Charis SIL",
-      "italic" : "/usr/share/fonts/opentype/charis/CharisSIL-I.ttf",
+      "italic" : "/usr/share/fonts/truetype/charis/CharisSIL-I.ttf",
       "name" : "Charis SIL",
-      "regular" : "/usr/share/fonts/opentype/charis/CharisSIL-R.ttf",
+      "regular" : "/usr/share/fonts/truetype/charis/CharisSIL-R.ttf",
       "type" : "serif"
    },
    {
