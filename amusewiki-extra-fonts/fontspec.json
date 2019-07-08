@@ -74,10 +74,10 @@
    {
        "name" : "Amiri",
        "desc" : "Amiri",
-       "bolditalic": "/usr/share/fonts/opentype/fonts-hosny-amiri/amiri-boldslanted.ttf",
-       "bold": "/usr/share/fonts/opentype/fonts-hosny-amiri/amiri-bold.ttf",
-       "regular": "/usr/share/fonts/opentype/fonts-hosny-amiri/amiri-regular.ttf",
-       "italic": "/usr/share/fonts/opentype/fonts-hosny-amiri/amiri-slanted.ttf",
+       "bolditalic": "/usr/share/fonts/opentype/fonts-hosny-amiri/Amiri-BoldSlanted.ttf",
+       "bold": "/usr/share/fonts/opentype/fonts-hosny-amiri/Amiri-Bold.ttf",
+       "regular": "/usr/share/fonts/opentype/fonts-hosny-amiri/Amiri-Regular.ttf",
+       "italic": "/usr/share/fonts/opentype/fonts-hosny-amiri/Amiri-Slanted.ttf",
        "type" : "serif"
    },
    {
