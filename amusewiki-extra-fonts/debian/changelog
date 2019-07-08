@@ -1,3 +1,9 @@
+amusewiki-extra-fonts (2.0+amw1~buster) unstable; urgency=medium
+
+  * Update location of Charis and Amiri fonts 
+
+ -- Marco Pessotto <melmothx@gmail.com>  Mon, 08 Jul 2019 19:16:16 +0200
+
 amusewiki-extra-fonts (1.1+amw1) unstable; urgency=medium
 
   * Install fontspec.json
