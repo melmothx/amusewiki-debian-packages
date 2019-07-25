@@ -1,0 +1,10 @@
+Revision history for Perl module Call::Context
+
+0.01 Sat Nov 12 17:02:00 2016
+    - original version
+
+0.02 Sat Nov 12 20:05:00 2016
+    - fixed docs
+
+0.03 Fri Oct 26 2018
+    - added must_not_be_scalar()
