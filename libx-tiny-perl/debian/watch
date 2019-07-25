@@ -1,0 +1,2 @@
+version=3
+https://metacpan.org/release/X-Tiny   .*/X-Tiny-v?(\d[\d.-]*)\.(?:tar(?:\.gz|\.bz2)?|tgz|zip)$

@@ -1,0 +1,18 @@
+.appveyor.yml
+.gitignore
+.travis.yml
+Changes
+LICENSE
+MANIFEST
+Makefile.PL
+README.md
+lib/X/Tiny.pm
+lib/X/Tiny/Base.pm
+t/basic.t
+t/lib/MyDist/X.pm
+t/lib/MyDist/X/BadArg.pm
+t/lib/MyDist/X/Base.pm
+t/loader.t
+t/no_overload.t
+META.yml                                 Module YAML meta-data (added by MakeMaker)
+META.json                                Module JSON meta-data (added by MakeMaker)

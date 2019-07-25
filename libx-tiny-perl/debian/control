@@ -1,0 +1,18 @@
+Source: libx-tiny-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libmodule-runtime-perl,
+ perl
+Standards-Version: 3.9.8
+Homepage: https://metacpan.org/release/X-Tiny
+
+Package: libx-tiny-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ libmodule-runtime-perl
+Description: Super-lightweight exception framework
+ (no description was found)
+ .
+ This description was automagically extracted from the module by dh-make-perl.

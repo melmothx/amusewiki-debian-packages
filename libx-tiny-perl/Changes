@@ -1,0 +1,43 @@
+Revision history for Perl module X::Tiny
+
+0.18 Tue Apr 23 2019
+- Switch implementation to use Module::Runtime rather than Module::Load.
+
+0.17 Mon Mar 11 2019
+- Fix the fix to the test from RT #128809. (Blegh, oops.)
+
+0.16 Sun Mar 10 2019
+- No production changes.
+- Adjust test not to assume that Test::More doesn’t load overload.pm.
+  (RT #128809)
+- Fix Makefile.PL to mention GitHub bug tracker.
+- Remove superfluous autodie.pm dependency.
+- Switch from README.pod to README.md.
+
+0.15 Fri Aug 24 2018
+- Fix LICENSE file (again).
+
+0.14 Fri Aug 24 2018
+- Fix LICENSE file.
+
+0.13 Fri Jan 18 2018
+- Fix copyright notice and spelling (no production changes)
+
+0.12 Sat Jan 13 2018
+- Fix stack trace not to warn on undefined arguments in stack trace.
+This means that all scalar values will be quoted in the stack trace.
+- Reorder this file to descending chronological order.
+
+0.11 Tue Aug 15 2017
+- Fix stack trace logic to preserve arguments.
+
+0.1
+- Add stack trace to stringified output. This doesn’t appear to present
+any memory or performance liabilities, at least in modern Perl versions.
+
+0.02 Sun Apr 2 2017
+- Added “get_message” to X::Tiny::Base
+- Set minimum version to 5.10 since 5.8 doesn’t grok overload.pm lazy-load
+
+0.01 Wed Mar 1 2017
+- Initial release
