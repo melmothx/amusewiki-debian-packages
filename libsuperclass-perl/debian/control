@@ -1,0 +1,17 @@
+Source: libsuperclass-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: perl (>= 5.17.9)
+Standards-Version: 3.9.8
+Homepage: https://metacpan.org/release/superclass
+
+Package: libsuperclass-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ perl (>= 5.17.9)
+Description: Like parent, but with version checks
+ (no description was found)
+ .
+ This description was automagically extracted from the module by dh-make-perl.
