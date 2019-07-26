@@ -1,0 +1,56 @@
+* Present
+
+ - libautodie-perl
+ - libcrypt-format-perl
+ - libhttp-tiny-perl
+ - libio-socket-ssl-perl
+ - libjson-perl
+ - libmodule-runtime-perl
+ - libclass-tiny-perl
+ - libclass-accessor-perl
+ - libmath-bigint-perl
+ - libtest-class-perl
+ - libmath-bigint-gmp-perl
+
+* Present in Buster 
+
+ - libmath-utils-perl (rebuilt)
+
+* Recommend to install
+
+ - libcryptx-perl
+ - libcrypt-openssl-rsa-perl (from stretch backports)
+
+* Build chain:
+
+ - libcall-context-perl
+ - libsuperclass-perl
+ - libhttp-tiny-ua-perl
+ - libx-tiny-perl
+ - libsymbol-get-perl
+ - libbytes-random-secure-tiny-perl
+ - libmath-provableprime-perl
+ - libcrypt-perl-perl
+ - libnet-acme2-perl
+
+* To package
+
+** DONE Call::Context 
+   CLOSED: [2019-07-25 Thu 17:27]
+** Crypt::Perl
+** DONE superclass
+   CLOSED: [2019-07-25 Thu 17:40]
+*** DONE HTTP::Tiny::UA::Response
+    CLOSED: [2019-07-25 Thu 17:44]
+** DONE X::Tiny
+   CLOSED: [2019-07-25 Thu 17:50]
+** DONE Symbol::Get
+   CLOSED: [2019-07-26 Fri 07:59]
+** DONE Bytes::Random::Secure::Tiny
+   CLOSED: [2019-07-26 Fri 08:02]
+** DONE Math::ProvablePrime
+   CLOSED: [2019-07-26 Fri 08:14]
+** DONE Crypt::Perl
+   CLOSED: [2019-07-26 Fri 08:40]
+** DONE Net::ACME2
+   CLOSED: [2019-07-26 Fri 08:43]
