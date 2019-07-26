@@ -1,0 +1,48 @@
+Source: libcrypt-perl-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libbytes-random-secure-tiny-perl (>= 1.008),
+ libcall-context-perl,
+ libclass-accessor-perl (>= 0.34),
+ libconvert-asn1-perl (>= 0.27),
+ libcrypt-format-perl (>= 0.06),
+ libfile-slurp-perl,
+ libfile-which-perl,
+ libmath-bigint-perl (>= 1.999805) | perl-modules-5.24 (>= 1.999805),
+ libmath-provableprime-perl (>= 0.043),
+ libmath-utils-perl (>= 1.07),
+ libsymbol-get-perl (>= 0.02),
+ libtest-class-perl (>= 0.4),
+ libtest-deep-perl,
+ libtest-exception-perl (>= 0.4),
+ libtest-failwarnings-perl,
+ libtest-nowarnings-perl,
+ libtry-tiny-perl,
+ perl (>= 5.19.6)
+Standards-Version: 3.9.8
+Homepage: https://metacpan.org/release/Crypt-Perl
+
+Package: libcrypt-perl-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ libbytes-random-secure-tiny-perl (>= 1.008),
+ libclass-accessor-perl (>= 0.34),
+ libconvert-asn1-perl (>= 0.27),
+ libcrypt-format-perl (>= 0.06),
+ libmath-bigint-perl (>= 1.999805) | perl-modules-5.24 (>= 1.999805),
+ libmath-provableprime-perl (>= 0.043),
+ libmath-utils-perl (>= 1.07),
+ libsymbol-get-perl (>= 0.02),
+ libtry-tiny-perl,
+ perl (>= 5.15.4)
+Description: Cryptography in pure Perl
+ Just as it sounds: cryptography with no non-core XS dependencies! This is
+ useful if you don’t have access to other tools that do this work like
+ OpenSSL|http://openssl.org, CryptX, etc. Of course, if you do have access to
+ one of those tools, they may suit your purpose better.
+ .
+ See submodules for usage examples of:
+ .
+ This description was automagically extracted from the module by dh-make-perl.
