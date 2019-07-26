@@ -1,0 +1,16 @@
+Source: libbytes-random-secure-tiny-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: perl
+Standards-Version: 3.9.8
+Homepage: https://metacpan.org/release/Bytes-Random-Secure-Tiny
+
+Package: libbytes-random-secure-tiny-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends}
+Description: tiny Perl extension to generate cryptographically-secure random bytes.
+ (no description was found)
+ .
+ This description was automagically extracted from the module by dh-make-perl.
