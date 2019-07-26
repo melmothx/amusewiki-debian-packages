@@ -25,3 +25,6 @@
 [submodule "libwordpress-dbic-schema-perl"]
 	path = libwordpress-dbic-schema-perl
 	url = https://github.com/melmothx/wordpress-dbic-schema-perl.git
+[submodule "libmath-utils-perl"]
+	path = libmath-utils-perl
+	url = https://salsa.debian.org/perl-team/modules/packages/libmath-utils-perl
