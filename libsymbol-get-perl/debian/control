@@ -1,0 +1,24 @@
+Source: libsymbol-get-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libcall-context-perl,
+ libtest-deep-perl,
+ libtest-exception-perl,
+ perl
+Standards-Version: 3.9.8
+Homepage: https://metacpan.org/release/Symbol-Get
+
+Package: libsymbol-get-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ libcall-context-perl
+Description: Read Perl’s symbol table programmatically
+ Occasionally I have need to reference a variable programmatically.
+ Symbol::Get facilitates that by providing an easy, syntactic-sugar-y,
+ read-only interface to the symbol table.
+ .
+ The SYNOPSIS above should pretty well cover usage.
+ .
+ This description was automagically extracted from the module by dh-make-perl.
