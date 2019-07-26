@@ -1,0 +1,25 @@
+Source: libmath-provableprime-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libbytes-random-secure-tiny-perl (>= 1.008),
+ libfile-which-perl,
+ libmath-bigint-perl (>= 1.999806) | perl-modules-5.24 (>= 1.999806),
+ libtest-class-perl (>= 0.4),
+ libtest-deep-perl,
+ libtest-exception-perl,
+ libtest-nowarnings-perl,
+ perl
+Standards-Version: 3.9.8
+Homepage: https://metacpan.org/release/Math-ProvablePrime
+
+Package: libmath-provableprime-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ libbytes-random-secure-tiny-perl (>= 1.008),
+ libmath-bigint-perl (>= 1.999806) | perl-modules-5.24 (>= 1.999806)
+Description: Generate a provable prime number, in pure Perl
+ (no description was found)
+ .
+ This description was automagically extracted from the module by dh-make-perl.
