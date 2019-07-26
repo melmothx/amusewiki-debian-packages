@@ -1,0 +1,135 @@
+Revision history for Perl module Net::ACME2
+
+0.30 18 July 2019
+- Fix (internal?) error when newNonce is not called.
+- Fix MANIFEST.
+
+0.29 13 July 2019
+- Fix Net::ACME2::Challenge::error() breakage from 0.28.
+
+0.28 13 July 2019
+- UPDATE: In fact, this change broke callers. 0.29 fixes it, and the error()
+  return will continue to include the necessary pieces to preserve backward
+  compatibility with pre-0.28 callers. The following note is retained for
+  historical interest:
+
+  WARNING: Net::ACME2::Challenge::error() now returns a Net::ACME2::Error
+  instance rather than a plain hash reference. Since the internals of
+  N::A2::Error line up with the hash reference, this should not break
+  existing clients; however, the object’s internal state may eventually
+  change, which *would* break any pre-0.28 callers. Implementors SHOULD
+  migrate to the object accessors before upgrading to this release.
+- Fix debug=1 left in from previous change … oops.
+- Use Module::Runtime rather than Module::Load.
+- Make http_01.pm’s create_handler() optionally accept a Net::ACME2 instance
+  in lieu of the key authorization. This simplifies the use of that method
+  a bit and makes it consistent with dns_01.pm’s get_record_value().
+- get_terms_of_service() is now callable as either a class method or an
+  instance method.
+- Improved documentation of error classes.
+
+0.27 18 March 2019
+- Prefer Crypt::OpenSSL::RSA or CryptX for cryptography rather than
+  Crypt::Perl. This provides a modest performance boost and is likely
+  preferable from a security standpoint since OpenSSL and LibTomCrypt
+  have received much more scrutiny and wider use. Crypt::Perl is still
+  used for parsing.
+
+0.26 11 March 2019
+- No production changes.
+- Upgrade declared status to production-ready.
+- Update documentation to link to publication of RFC 8555.
+- Link to GitHub issues tracker in distribution metadata.
+
+0.25 6 November 2018
+- BREAKING (?) CHANGE: Convert get_authorization() to POST-as-GET.
+  See 0.24 for a discussion of the impact of this change. This complements
+  and completes the changes in 0.24.
+- Minor documentation formatting updates.
+
+0.24 6 November 2018
+- BREAKING (?) CHANGE: Convert poll functions to POST-as-GET. This
+  accommodates the corresponding protocol change made in draft 15 of
+  the ACME specification. This will break only those applications whose
+  ACME server does not yet implement POST-as-GET for polling. I don’t think
+  there are any such servers in production, though; in particular,
+  Let’s Encrypt continues to work.
+- Add $acme->get_certificate_chain() method. This implements POST-as-GET
+  logic for certificate chain. Callers that previously fetched
+  $order->certificate() directly via their own HTTP logic will need to
+  switch to this new method unless the ACME server they’re interacting
+  with continues to allow plain GET for certificates.
+
+0.23 24 Aug 2018
+- Fix LICENSE file (again)
+
+0.22 24 Aug 2018
+- Rename create_new_account() and create_new_order() to create_account()
+  and create_order(). (“Create new” is redundant.)
+- Fix LICENSE file.
+
+0.21 25 Jul 2018
+- Make LetsEncrypt.pm default to the production server.
+- Make LetsEncrypt.pm accept an “environment” to simplify testing.
+- Pass constructor arguments to the HOST() method.
+- Make tests flex ECDSA keys as strenuously as they flex RSA keys.
+- Add aviso about speed to the main POD.
+- Acknowledge need for XS-based TLS functionality. This module can’t run
+  “anywhere that Perl runs” because of this. :-(
+
+0.2 19 Jun 2018
+- BREAKING: poll_authorization() and poll_order() now return the object’s
+new status rather than boolean and no longer throw an exception on an
+unrecognized status.
+- finalize_order() now returns the object’s new status.
+- “http_01” challenges now have get_path() and get_content() methods.
+- “dns_01” challenges now have get_record_name() and get_record_value() methods.
+- Experimental support for the “tls-alpn-01” ACME challenge.
+- Most exceptions are now converted to Net::ACME::X::Generic or subclasses
+thereof. The remaining plain-string exceptions “really should not happen”.
+- Some unused logic (e.g., compact JWS serialization) is pruned away.
+- We no longer send undef/null values to newAccount.
+- Example scripts are a bit more refined.
+- More substantive tests are added.
+- Fix versioning issue with PAUSE. (Thanks to Dan Book for mentioning it.)
+- I now consider this to be a “beta” release.
+
+0.12 11 Jun 2018
+- Remove Types::Serialiser (thanks, Chris Novakovic!)
+
+0.11 1 Jun 2018
+- Add Types::Serialiser to Makefile.PL (thanks, Chris Novakovic!)
+
+0.10 2 Apr 2018
+- Add “Content-Type” header to outgoing POSTs.
+
+0.09 14 Mar 2018
+- Fix MANIFEST (sorry!)
+- Update documentation a bit for the production endpoint.
+
+0.08 13 Mar 2018
+- Make the Let’s Encrypt module default to the production server.
+- DNS challenges are now instantiated as dns_01.pm instances.
+- Tweaks to documentation.
+
+0.07 11 Feb 2018
+- Fix to request new nonce when there is none set.
+
+0.06 9 Feb 2018
+- Remove unused “Pending” modules (holdovers from Net::ACME)
+
+0.05 18 Jan 2018
+- Minimum X::Tiny version of 0.12.
+
+0.04 18 Jan 2018
+- Fix flaw in example logic.
+
+0.03 15 Jan 2018
+- Verbiage tweak in POD, search visibility
+
+0.02 14 Jan 2018
+- Fix examples to show generated key.
+- A bit of additional documentation.
+
+0.01 13 Jan 2018
+- Initial ALPHA release

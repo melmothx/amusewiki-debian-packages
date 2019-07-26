@@ -1,0 +1,2 @@
+version=3
+https://metacpan.org/release/Net-ACME2   .*/Net-ACME2-v?(\d[\d.-]*)\.(?:tar(?:\.gz|\.bz2)?|tgz|zip)$

@@ -1,0 +1,41 @@
+Source: libnet-acme2-perl
+Section: perl
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: libcall-context-perl (>= 0.02),
+ libcrypt-format-perl (>= 0.06),
+ libcrypt-perl-perl (>= 0.18),
+ libfile-slurp-perl,
+ libhttp-message-perl,
+ libhttp-tiny-perl (>= 0.058) | perl-modules-5.24 (>= 0.058),
+ libhttp-tiny-ua-perl (>= 0.004),
+ libio-socket-ssl-perl,
+ libjson-perl (>= 2.9),
+ libmodule-runtime-perl,
+ libtest-deep-perl,
+ libtest-exception-perl (>= 0.4),
+ libtest-failwarnings-perl,
+ libtest-nowarnings-perl,
+ libx-tiny-perl (>= 0.12),
+ perl (>= 5.19.6)
+Standards-Version: 3.9.8
+Homepage: https://metacpan.org/release/Net-ACME2
+
+Package: libnet-acme2-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ libcall-context-perl (>= 0.02),
+ libcrypt-format-perl (>= 0.06),
+ libcrypt-perl-perl (>= 0.18),
+ libhttp-tiny-perl (>= 0.058) | perl-modules-5.24 (>= 0.058),
+ libhttp-tiny-ua-perl (>= 0.004),
+ libio-socket-ssl-perl,
+ libjson-perl (>= 2.9),
+ libmodule-runtime-perl,
+ libx-tiny-perl (>= 0.12),
+ perl (>= 5.15.4)
+Description: Client logic for the ACME (Let’s Encrypt) protocol
+ (no description was found)
+ .
+ This description was automagically extracted from the module by dh-make-perl.
