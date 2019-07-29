@@ -20,6 +20,7 @@ Build-Depends-Indep: libbytes-random-secure-tiny-perl (>= 1.008),
  libtest-failwarnings-perl,
  libtest-nowarnings-perl,
  libtry-tiny-perl,
+ libmath-bigint-gmp-perl,
  perl (>= 5.19.6)
 Standards-Version: 3.9.8
 Homepage: https://metacpan.org/release/Crypt-Perl
@@ -37,12 +38,9 @@ Depends: ${misc:Depends}, ${perl:Depends},
  libsymbol-get-perl (>= 0.02),
  libtry-tiny-perl,
  perl (>= 5.15.4)
+Recommends: libmath-bigint-gmp-perl
 Description: Cryptography in pure Perl
  Just as it sounds: cryptography with no non-core XS dependencies! This is
  useful if you don’t have access to other tools that do this work like
  OpenSSL|http://openssl.org, CryptX, etc. Of course, if you do have access to
  one of those tools, they may suit your purpose better.
- .
- See submodules for usage examples of:
- .
- This description was automagically extracted from the module by dh-make-perl.
