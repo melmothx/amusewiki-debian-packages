@@ -13,6 +13,8 @@ Architecture: all
 Depends: ${misc:Depends}, ${perl:Depends},
  libmodule-runtime-perl
 Description: Super-lightweight exception framework
- (no description was found)
- .
- This description was automagically extracted from the module by dh-make-perl.
+ This stripped-down exception framework provides a baseline of
+ functionality for distributions that want to expose exception
+ hierarchies with minimal fuss. It’s a pattern that I implemented in
+ some other distributions I created and didn’t want to copy/paste
+ around.
