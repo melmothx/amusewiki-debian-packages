@@ -16,6 +16,4 @@ Depends: ${misc:Depends}, ${perl:Depends},
  libsuperclass-perl,
  perl (>= 5.19.5)
 Description: Higher-level UA features for HTTP::Tiny
- (no description was found)
- .
- This description was automagically extracted from the module by dh-make-perl.
+ This module extends HTTP::Tiny with higher-level convenience features.
