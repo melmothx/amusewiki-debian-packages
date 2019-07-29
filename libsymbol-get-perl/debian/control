@@ -15,10 +15,5 @@ Architecture: all
 Depends: ${misc:Depends}, ${perl:Depends},
  libcall-context-perl
 Description: Read Perl’s symbol table programmatically
- Occasionally I have need to reference a variable programmatically.
- Symbol::Get facilitates that by providing an easy, syntactic-sugar-y,
- read-only interface to the symbol table.
- .
- The SYNOPSIS above should pretty well cover usage.
- .
- This description was automagically extracted from the module by dh-make-perl.
+ Symbol::Get provides an easy, syntactic-sugar-y, read-only interface
+ to the symbol table.
