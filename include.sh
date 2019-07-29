@@ -137,7 +137,7 @@ EOF
 
 reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list buster | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
 
-cat <<EOF > /var/www/packages.amusewiki.org/repos/apt/index.html
+cat <<EOF >> /var/www/packages.amusewiki.org/repos/apt/index.html
       </pre>
     </div>
     <div><a href="amusewiki-debian-packages.tar.gz">Get all the package here if you want to install them without apt.<a> <a href="amusewiki-debian-packages.tar.gz.sig">Signature.</a> <a href="https://github.com/melmothx/amusewiki-debian-packages">Sources</a></div>
