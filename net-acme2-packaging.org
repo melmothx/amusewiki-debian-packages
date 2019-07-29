@@ -12,26 +12,42 @@
  - libtest-class-perl
  - libmath-bigint-gmp-perl
 
-* Present in Buster 
+* DONE Present in Buster
+  CLOSED: [2019-07-29 Mon 08:11]
 
  - libmath-utils-perl (rebuilt)
 
-* Recommend to install
+Included in stretch only.
+
+* DONE Recommend to install
+  CLOSED: [2019-07-29 Mon 09:27]
 
  - libcryptx-perl
  - libcrypt-openssl-rsa-perl (from stretch backports)
+ - libmath-bigint-gmp-perl
+
+Added relevant Suggest: directives
 
 * Build chain:
 
- - libcall-context-perl
- - libsuperclass-perl
- - libhttp-tiny-ua-perl
- - libx-tiny-perl
- - libsymbol-get-perl
- - libbytes-random-secure-tiny-perl
- - libmath-provableprime-perl
- - libcrypt-perl-perl
- - libnet-acme2-perl
+** DONE libcall-context-perl
+   CLOSED: [2019-07-29 Mon 08:22]
+** DONE libsuperclass-perl
+   CLOSED: [2019-07-29 Mon 08:27]
+** DONE libhttp-tiny-ua-perl
+   CLOSED: [2019-07-29 Mon 08:35]
+** DONE libx-tiny-perl
+   CLOSED: [2019-07-29 Mon 08:44]
+** DONE libsymbol-get-perl
+   CLOSED: [2019-07-29 Mon 08:51]
+** DONE libbytes-random-secure-tiny-perl
+   CLOSED: [2019-07-29 Mon 08:56]
+** DONE libmath-provableprime-perl
+   CLOSED: [2019-07-29 Mon 09:03]
+** DONE libcrypt-perl-perl
+   CLOSED: [2019-07-29 Mon 09:13]
+** DONE libnet-acme2-perl
+   CLOSED: [2019-07-29 Mon 09:27]
 
 * To package
 
