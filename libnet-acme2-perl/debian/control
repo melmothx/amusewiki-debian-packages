@@ -35,7 +35,8 @@ Depends: ${misc:Depends}, ${perl:Depends},
  libmodule-runtime-perl,
  libx-tiny-perl (>= 0.12),
  perl (>= 5.15.4)
-Description: Client logic for the ACME (Let’s Encrypt) protocol
- (no description was found)
- .
- This description was automagically extracted from the module by dh-make-perl.
+Recommends: libcrypt-openssl-rsa-perl, libcryptx-perl
+Description: Client logic for the ACME (Let's Encrypt) protocol
+ This library implements client logic for the ACME (Automated
+ Certificate Management Environment) protocol, as standardized in RFC
+ 8555 and popularized by Let's Encrypt.
