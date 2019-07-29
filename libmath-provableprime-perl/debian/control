@@ -20,6 +20,5 @@ Depends: ${misc:Depends}, ${perl:Depends},
  libbytes-random-secure-tiny-perl (>= 1.008),
  libmath-bigint-perl (>= 1.999806)
 Description: Generate a provable prime number, in pure Perl
- (no description was found)
- .
- This description was automagically extracted from the module by dh-make-perl.
+ This module will be deprecated once Math::Prime::Util is installable
+ without a compiler.
