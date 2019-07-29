@@ -3,7 +3,7 @@
 cd ~
 set -e
 if [ -f "$1" ]; then
-    reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb jessie $1
+    # reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb jessie $1
     reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb stretch $1
     reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb buster $1
     mkdir -p uploaded
