@@ -35,19 +35,26 @@ cat <<EOF > /var/www/packages.amusewiki.org/repos/apt/index.html
     <title>Amusewiki debian packages</title>
   </head>
   <body>
-    <h1>How to install <a href="https://amusewiki.org">amusewiki</a> in 4 commands (on Debian Jessie/Stretch/Buster and Ubuntu starting from 16.04 LTS)</h1>
+    <h1>How to install <a href="https://amusewiki.org">amusewiki</a> in 4 commands (on Debian Stretch/Buster and Ubuntu 18.04 LTS)</h1>
 
 <p>Please note that the .deb packages provided here are fully compatible for Debian and Ubuntu, and the instructions are the same
 even if the source list will say <code>debian</code>.</p>
+
+<p>Existing packages for Jessie and Ubuntu 16.04 (see below) are
+still provided, but the support for them has stopped with Amusewiki
+release 2.390. You can still run Amusewiki on such systems using the
+<a href="https://amusewiki.org/library/install">manual
+installation</a>.</p>
+
 
     <h2>Add the key</h2>
     <pre>
 # wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -
     </pre>
     <h2>Add a source list entry</h2>
-    <p>You can put <code>stretch</code> or <code>jessie</code> instead of <code>buster</code>, depending on your distribution.</p>
+    <p>Please use <code>buster</code> (for Debian Buster) instead of <code>stretch</code> (Debian Stretch and Ubuntu 18.04) depending on your distribution. See below for the details.</p>
     <pre>
-# echo 'deb http://packages.amusewiki.org/debian buster main' &gt; /etc/apt/sources.list.d/amusewiki.list
+# echo 'deb http://packages.amusewiki.org/debian stretch main' &gt; /etc/apt/sources.list.d/amusewiki.list
     </pre>
     <h2>Install amusewiki</h2>
     <pre>
@@ -92,12 +99,45 @@ be prompted to choose which one to use.</p>
       <a href="/debian/pool">You can browse them here</a>
     </p>
     <div>
+      <h2>Jessie (and Ubuntu 16.04 LTS). [ARCHIVED]</h2>
+    <pre>
+# echo 'deb http://packages.amusewiki.org/debian jessie main' &gt; /etc/apt/sources.list.d/amusewiki.list
+    </pre>
+
       <pre>
 EOF
 
 reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list jessie | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
 
 cat <<EOF>>/var/www/packages.amusewiki.org/repos/apt/index.html
+      </pre>
+    </div>
+    <div>
+      <h2>Stretch (and Ubuntu 18.04 LTS)</h2>
+    <pre>
+# echo 'deb http://packages.amusewiki.org/debian stretch main' &gt; /etc/apt/sources.list.d/amusewiki.list
+    </pre>
+
+      <pre>
+EOF
+
+reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list stretch | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
+
+cat <<EOF>>/var/www/packages.amusewiki.org/repos/apt/index.html
+      </pre>
+    </div>
+    <div>
+      <h2>Buster</h2>
+    <pre>
+# echo 'deb http://packages.amusewiki.org/debian buster main' &gt; /etc/apt/sources.list.d/amusewiki.list
+    </pre>
+
+      <pre>
+EOF
+
+reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list buster | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
+
+cat <<EOF > /var/www/packages.amusewiki.org/repos/apt/index.html
       </pre>
     </div>
     <div><a href="amusewiki-debian-packages.tar.gz">Get all the package here if you want to install them without apt.<a> <a href="amusewiki-debian-packages.tar.gz.sig">Signature.</a> <a href="https://github.com/melmothx/amusewiki-debian-packages">Sources</a></div>
