@@ -1,7 +1,15 @@
 #!/bin/bash
 
-cd ~
 set -e
+
+if [ `pwd` != "$HOME" ]; then
+    if [ -f "$1" ]; then
+        mv "$1" $HOME
+    fi
+fi
+
+cd ~
+
 if [ -f "$1" ]; then
     # reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb jessie $1
     reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb stretch $1
