@@ -12,6 +12,5 @@ Architecture: all
 Depends: ${misc:Depends}, ${perl:Depends},
  perl (>= 5.17.9)
 Description: Like parent, but with version checks
- (no description was found)
- .
- This description was automagically extracted from the module by dh-make-perl.
+ Allows you to both load one or more modules, while setting up
+ inheritance from those modules at the same time.
