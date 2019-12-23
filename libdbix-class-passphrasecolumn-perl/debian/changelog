@@ -1,3 +1,9 @@
+libdbix-class-passphrasecolumn-perl (0.05-1) unstable; urgency=medium
+
+  * New upstream release with fix for Unicode passwords
+
+ -- Marco Pessotto <melmothx@gmail.com>  Mon, 23 Dec 2019 08:24:23 +0100
+
 libdbix-class-passphrasecolumn-perl (0.02-2) unstable; urgency=medium
 
   * Fixed metadata
