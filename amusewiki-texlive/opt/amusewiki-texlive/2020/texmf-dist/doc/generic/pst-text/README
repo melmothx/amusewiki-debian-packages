@@ -1,0 +1,23 @@
+# pst-text: text along a different path and char manipulations #
+
+\pscharpath
+\pstextpath
+\psCircleText
+\psWarp
+
+
+pst-text.sty     - The LaTeX file
+pst-text.tex     - The TeX file
+pst-text.pro     - The dvips header file
+pst-text-doc.pdf - The documentation
+pst-text-doc.tex - The documentation, source
+pst-text-doc.bib - The documentation, bibfile
+
+
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+
+
+--
+Herbert Voss 2018-12-22  hvoss@tug.org

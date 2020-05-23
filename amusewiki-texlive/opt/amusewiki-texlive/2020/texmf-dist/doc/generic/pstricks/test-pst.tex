@@ -1,0 +1,257 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -*- Mode: Latex -*- %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% test-pst.tex --- Various PSTricks tests, from the PSTricks chapter
+%%                  of "The LaTeX Graphics Companion" (by Goossens, Rahtz,
+%%                  Mittelbach, Addison Wesley, 1997)
+%%
+%% Author          : Sebastian RAHTZ (Oxford University - GB)
+%%                   <sebastian.rahtz@computing-services.oxford.ac.uk>
+%% Created the     : Tue Feb  3 20:37:47 1998
+%% Last mod. by    : Denis GIROU (CNRS/IDRIS - France) <Denis.Girou@idris.fr>
+%% Last mod. the   : Wed May  5 20:09:18 1999
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+
+\usepackage[latin1]{inputenc} % From LaTeX distribution
+\usepackage{calc}         % From LaTeX distribution
+\usepackage{graphicx}     % From LaTeX distribution
+\usepackage{ifthen}       % From LaTeX distribution
+\usepackage{subfigure}    % From CTAN/macros/latex/contrib/supported/subfigure
+\usepackage{pst-all}      % From PSTricks
+\usepackage{pst-poly}     % From pstricks/contrib/pst-poly
+\usepackage{multido}      % From PSTricks
+\input{random.tex}        % From CTAN/macros/generic
+
+% Take care that on some non Unix systems, you may have to replace
+% the / character by, for instance, the : one (\input{lgc:#2.inl}})
+\newcommand{\ExampleSubFigure}[2][0.3333]{%
+\subfigure[Example #2]{%
+  \begin{minipage}[t]{#1\textwidth}
+    \parbox[b]{\textwidth}{%
+      \centering
+      \input{lgc/#2.inl}}
+  \end{minipage}}}
+
+\newpsobject{showgrid}{psgrid}{subgriddiv=1,griddots=10,gridlabels=6pt}
+
+% New colors defined
+\definecolor{brown}{rgb}{.65, .16, .16}
+\definecolor{lightblue}{rgb}{.68, .85, .9}
+\definecolor{palegreen}{rgb}{.6, .98, .6}
+\definecolor{pink}{rgb}{1, .75, .8}
+\definecolor{wheat}{rgb}{.96, .87, .7}
+
+% Layout changes
+\textheight=23cm
+\topmargin=-2cm
+\textwidth=16cm
+\oddsidemargin=0cm
+\evensidemargin=0cm
+
+\begin{document}
+
+\title{Test file for the PSTricks 97 distribution:\\
+       most of the PSTricks examples of\\
+       \emph{The \LaTeX{} Graphics Companion}}
+\author{Sebastian \textsc{Rahtz} --- March 1997}
+\date{Version 1.3 (September 9, 1998)}
+\maketitle
+
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure{4-2-1}%
+  \ExampleSubFigure{4-2-2}%
+  \ExampleSubFigure{4-2-3}
+  \ExampleSubFigure{4-2-4}%
+  \ExampleSubFigure{4-2-5}
+  \caption{Section 2}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure{4-3-1}%
+  \ExampleSubFigure{4-3-2}
+  \caption{Section 3}
+\end{figure}
+
+\clearpage
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure{4-4-1}%
+  \ExampleSubFigure{4-4-2}%
+  \ExampleSubFigure{4-4-3}
+  \ExampleSubFigure{4-4-4}%
+  \ExampleSubFigure{4-4-5}%
+  \ExampleSubFigure{4-4-6}
+  \ExampleSubFigure{4-4-7}%
+  \ExampleSubFigure{4-4-8}%
+  \ExampleSubFigure{4-4-9}
+  \ExampleSubFigure{4-4-10}%
+  \ExampleSubFigure{4-4-11}%
+  \ExampleSubFigure{4-4-12}
+  \caption{Section 4}
+\end{figure}
+
+\clearpage
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure[0.5]{4-5-1}%
+  \ExampleSubFigure[0.5]{4-5-2}
+  \ExampleSubFigure[0.75]{4-5-3}%
+  \ExampleSubFigure[0.25]{4-5-4}
+  \ExampleSubFigure[0.15]{4-5-5}%
+  \ExampleSubFigure[0.25]{4-5-6}%
+  \ExampleSubFigure[0.2]{4-5-7}%
+  \ExampleSubFigure[0.2]{4-5-8}%
+  \ExampleSubFigure[0.2]{4-5-9}
+  \ExampleSubFigure[0.5]{4-5-10}%
+  \ExampleSubFigure[0.5]{4-5-11}
+  \caption{Section 5-A}
+\end{figure}
+
+\clearpage
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure[1]{4-5-13}
+  \ExampleSubFigure[1]{4-5-14}
+  \ExampleSubFigure[1]{4-5-16}
+  \caption{Section 5-B}
+\end{figure}
+
+\clearpage
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure{4-6-1}%
+  \ExampleSubFigure{4-6-2}%
+  \ExampleSubFigure{4-6-3}
+  \ExampleSubFigure{4-6-4}%
+  \ExampleSubFigure{4-6-5}%
+  \ExampleSubFigure{4-6-6}
+  \ExampleSubFigure{4-6-7}%
+  \ExampleSubFigure{4-6-8}%
+  \ExampleSubFigure{4-6-9}
+  \ExampleSubFigure{4-6-10}%
+  \ExampleSubFigure{4-6-11}%
+  \ExampleSubFigure{4-6-12}
+  \ExampleSubFigure{4-6-13}%
+  \ExampleSubFigure{4-6-14}%
+  \ExampleSubFigure{4-6-15}
+  \ExampleSubFigure{4-6-16}%
+  \ExampleSubFigure{4-6-17}%
+  \ExampleSubFigure{4-6-18}
+  \caption{Section 6-A}
+\end{figure}
+
+\clearpage
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure{4-6-19}%
+  \ExampleSubFigure{4-6-20}%
+  \ExampleSubFigure{4-6-21}
+  \ExampleSubFigure{4-6-22}%
+  \ExampleSubFigure{4-6-23}%
+  \ExampleSubFigure{4-6-24}
+  \ExampleSubFigure{4-6-25}
+  \caption{Section 6-B}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure[1]{4-6-26}
+  \ExampleSubFigure{4-6-27}%
+  \ExampleSubFigure{4-6-28}%
+  \ExampleSubFigure{4-6-29}
+  \ExampleSubFigure[0.3333]{4-6-30}%
+  \ExampleSubFigure[0.6667]{4-6-31}
+  \ExampleSubFigure[1]{4-6-32}
+  \caption{Section 6-C}
+\end{figure}
+
+\clearpage
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure[1]{4-6-33}
+  \ExampleSubFigure[0.5]{4-6-34}%
+  \ExampleSubFigure[0.5]{4-6-35}
+  \ExampleSubFigure[0.5]{4-6-36}%
+  \ExampleSubFigure[0.5]{4-6-37}
+  \caption{Section 6-D}
+\end{figure}
+
+\clearpage
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure[1]{4-6-38}
+  \ExampleSubFigure[1]{4-6-39}
+  \ExampleSubFigure[0.5]{4-6-40}%
+  \ExampleSubFigure[0.5]{4-6-41}
+  \caption{Section 6-E}
+\end{figure}
+
+\clearpage
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure[0.5]{4-6-42}%
+  \ExampleSubFigure[0.5]{4-6-43}
+  \ExampleSubFigure{4-6-44}%
+  \ExampleSubFigure{4-6-45}%
+  \ExampleSubFigure{4-6-46}
+  \caption{Section 6-F}
+\end{figure}
+
+\clearpage
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure[1]{4-7-1}
+  \ExampleSubFigure[1]{4-7-2}
+  \ExampleSubFigure[1]{4-7-4}
+  \caption{Section 7}
+\end{figure}
+
+\clearpage
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure[0.5]{4-8-1}%
+  \ExampleSubFigure[0.25]{4-8-2}%
+  \ExampleSubFigure[0.25]{4-8-3}
+  \ExampleSubFigure[1]{4-8-4}
+  \caption{Section 8-A}
+\end{figure}
+
+\clearpage
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure[1]{4-8-5}
+  \caption{Section 8-B}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure[0.5]{4-9-1}%
+  \ExampleSubFigure[0.5]{4-9-2}
+  \caption{Section 9}
+\end{figure}
+
+\clearpage
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure[0.4]{4-10-1}%
+  \ExampleSubFigure[0.2]{4-10-2}%
+  \ExampleSubFigure[0.2]{4-10-3}%
+  \ExampleSubFigure[0.2]{4-10-4}
+  \ExampleSubFigure[0.4]{4-10-5}%
+  \ExampleSubFigure[0.2]{4-10-6}%
+  \ExampleSubFigure[0.4]{4-10-7}
+  \caption{Section 10-A}
+\end{figure}
+
+\clearpage
+\begin{figure}[!htbp]
+  \centering
+  \ExampleSubFigure[1]{4-10-8}
+  \ExampleSubFigure[1]{4-10-9}
+  \ExampleSubFigure[1]{4-10-10}
+  \caption{Section 10-B}
+\end{figure}
+
+\end{document}

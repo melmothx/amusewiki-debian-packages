@@ -1,0 +1,252 @@
+%% $Id: pst-news13.tex 165 2015-07-26 07:27:55Z herbert $
+\documentclass[11pt,english,BCOR10mm,DIV12,bibliography=totoc,parskip=false,smallheadings
+    headexclude,footexclude,oneside]{pst-doc}
+\listfiles
+\let\Lfile\LFile
+\usepackage[utf8]{inputenc}
+\usepackage{pst-node}
+\let\pstnodeFV\fileversion
+\let\pstnodeFD\filedate
+\usepackage{pst-plot}
+\usepackage{xkvview}
+\renewcommand\bgImage{\psscalebox{15}{\color{blue!20}2013}}
+\def\textat{\char064}
+\lstset{explpreset={pos=l,width=-99pt,overhang=0pt,hsep=\columnsep,vsep=\bigskipamount,rframe={}},
+    escapechar=?}
+\begin{document}
+
+%\psset{PstDebug=1}
+\title{\texttt{News -- 2013}\\ \Large new macros and bugfixes for the
+basic package \nxLFile{pstricks}}
+\author{Herbert Voß}
+\date{\today}
+
+\maketitle
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\part{\texttt{pstricks} -- package}
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.sty}}
+%--------------------------------------------------------------------------------------
+
+There are new optional arguments \Lkeyword{monochrome} and \Lkeyword{grayscale} to convert \emph{all} RGB and CMYK colors
+into black and white or grayscale. The equations are:
+
+\subsection{RGB to gray}
+\[ \text{gray} = 0.07 \text{red} + 0.71 \text{green} + 0.21 \text{blue} \]
+
+\subsection{CMYK to gray}
+\begin{align*} 
+    c &= c  (1 - k) + k\\
+    m &= m  (1 - k) + k\\
+    y &= y  (1 - k) + k\\
+    r, g, b &= (1 - c), (1 - m), (1 - y)\\
+  \text{gray} &= 0.299 r + 0.587 g + 0.114 b
+\end{align*}
+
+This change will be global and effects also all other color setting!
+See section~\vref{subsec:monochrome} for a local change of the color output.
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.tex} (\pstricksFV -- \pstricksFD)}
+%--------------------------------------------------------------------------------------
+There is a new optional argument \Lkeyword{pgffunctions} for the environment \Lenv{pspicture}.
+With this option one can force the loading of the special pgf PostScript function
+which in some cases are missing, when using the package \LPack{auto-pst-pdf} and another
+package which uses pgf macros.
+
+\lstinline|\begin{pspicture}[pgffunctions,...](...)(...)|
+
+\subsection{labelsep}
+The \Lkeyword{labelsep} is the first -- optional -- argument of \Lcs{uput}. 
+It is now possible to use the PostScript notation for this \emph{length}, eg \verb|{! 45 sin 3 mul}|.
+Then the unit which is active when \Lcs{uput} is active is used. With a unit the PS notation
+ist not allowed and leads to an error!
+
+
+\subsection{Customization}
+
+\Lcs{pscustom} now knows the PostScript function \Lcs{reversepath}:
+
+\begin{LTXexample}[width=5cm]
+\begin{pspicture}(5,3)
+  \pnode(5;30){A}
+  \psline(A)(0,0)(5;0)
+  \pscustom[fillstyle=vlines]{%
+    \psarcAB(A)(0,0)(2,0)
+    \reversepath
+    \psarcAB(A)(0,0)(4,0)}
+\end{pspicture}
+\end{LTXexample}
+
+
+\subsection{Coordinates}
+\subsubsection{Postscript mode}
+A preceeding \verb|!| in coordinates will interpret the following expressing in Postfix notation.
+The expression is automatically translated from user into screen coordinates. With a double \verb|!!|
+this can be omitted and the Postscript expression will not be translated. This is useful in some
+special cases:
+
+\begin{LTXexample}[width=5cm]
+\begin{pspicture}[showgrid](2,2)(5,5)
+\pscustom{
+  \psarc(3,3){1}{0}{90}
+  \rmoveto(.5;-90)
+  \psarc[liftpen=2](!!CP){.5}{90}{180}}
+\end{pspicture}
+\end{LTXexample}
+
+\verb|CP| is the internal abbreviation for the Postscript function \texttt{currentpoint}.
+
+
+\subsubsection{Algebraic mode}
+Additionally to the special pair of coordinates \verb|(*x f(x))| where $x$ must be a value in
+PostScript notation and $f(x)$ in algebraic noatation, there is now a \verb|(**{f(y), y})| 
+which is vice versa, $f(y)$ in algebraic and $y$ in PostScript notation. And there is also
+a \verb|(+{x}, {f(x)})|, where both expressions must be in algebraic notation and \verb|{x}| must expand to a value
+or an expression which uses known system or user defined PostScript functions.
+
+
+\begin{LTXexample}[width=5cm]
+\def\f(#1){#1^2} \def\y{2}
+\begin{pspicture}[showgrid](5,5)
+\pnode(+{sqrt(Pi),1.5*(sin(x)^2+cos(x)^2)}){A} 
+\psdot(A) \psline[arrowscale=1.5]{->}(A)
+\psline{->}(*2 {x^2})  \psline{->}(**{y^2} 2)
+\psline(1,1)(**{\f(y)} 2.2)(2;45)(*2 {\f(x)})
+\psline[linecolor=blue]{->}(+{sqrt(2),\f(x)}) 
+\psline[linecolor=blue]{->}(+{sqrt(3)},{\f(x)}) 
+\psline(+1,x+0.5)
+\end{pspicture}
+\end{LTXexample}
+
+
+Important: If the expression contains itself a parenthesis like \verb|)| then the argument must
+be inside braces; otherwise \TeX\ will take the first closing parenthesis as clsong delimiter 
+for the complete coordinate argument \verb|(...)| which then gives an error.
+
+
+
+
+
+
+
+
+\subsection{Fillstyle \texttt{dots}}
+A fix for the fill style \Lkeyval{dots} to make it work again:
+
+\begin{LTXexample}[width=5cm]
+\pspicture(4,3) 
+\psframe[fillstyle=dots](4,3) 
+\endpspicture 
+\end{LTXexample}
+
+\subsection{New macro \nxLcs{psRing}}
+
+\begin{BDef}
+\LcsStar{psRing}\OptArgs\Largr{\CAny}\Largb{Inner Radius}\Largb{Outer Radius}
+\end{BDef}
+
+
+\begin{LTXexample}[width=5cm]
+\begin{pspicture}[showgrid](4,4)
+  \psRing[linecolor=red](2,2){0.3}{0.8}
+  \psRing*[opacity=0.5](2,2){1}{2}
+\psdot(2,2)
+\end{pspicture}
+\end{LTXexample}
+
+\subsection{New macros \nxLcs{pssetMonochrome}, \nxLcs{pssetGrayscale},  and \nxLcs{psresetColor}}\label{subsec:monochrome}
+
+\begin{BDef}
+\Lcs{pssetMonochrome}\\
+\Lcs{pssetGrayscale}\\
+\Lcs{psresetColor}
+\end{BDef}
+
+
+
+\begin{LTXexample}[width=5cm]
+\begin{pspicture}[showgrid](4,4)
+  \pssetMonochrome%
+  \psRing[linecolor=red](2,2){0.3}{0.8}
+  \psRing*[linecolor=red!30](2,2){1}{2}
+\psresetColor%
+\psdot[linecolor=red,dotscale=3](2,2)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=5cm]
+\begin{pspicture}[showgrid](4,4)
+  \pssetGrayscale%
+  \psRing[linecolor=red](2,2){0.3}{0.8}
+  \psRing*[linecolor=red!30](2,2){1}{2}
+\psresetColor%
+\psdot[linecolor=red,dotscale=3](2,2)
+\end{pspicture}
+\end{LTXexample}
+
+
+
+\section{The PostScript header files}
+\subsection{\nxLFile{pstricks.pro}}
+%--------------------------------------------------------------------------------------
+
+\clearpage
+\part{Other packages}
+\section{\texttt{pst-node} -- version \pstnodeFV\ | \pstnodeFD}
+
+\small
+\begin{verbatim}
+1.29  2013-07-13 - fix bug with missing angle in special node coordinates
+                 - fix for fnpnodes (argument must be in {})
+                 - fix typo in the documentation
+1.28  2013-07-10 - added \pnodes (plural) for multiple node definition
+1.27  2013-04-12 - added macro \Lcs{Cnodeput} which takes radius=...
+                   into account
+1.26  2013-04-09 - added macros \Lcs{psncurve} and \Lcs{psnccurve}
+                   for a sequence of nodes created by \Lcs{curvepnodes}
+1.25  2012-09-21 - Global node coordinates only with saveNodeCoors
+\end{verbatim}
+
+\normalsize
+
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}[showgrid](0,-0.5)(7,6)
+  \pnode(3,3){A}\psdot(A)\uput[-35](A){A}
+  \pnode(6,5){B}\psdot(B)\uput[135](B){B}
+  \psline[linestyle=dotted](A)\psline[linestyle=dotted](A)(B)
+  \pscircle[linestyle=dotted](A){!5 sqrt}
+  \pnode([nodesep=2]{B}A){P0}\psdot(P0)
+  \pnode([offset=1]{B}A){P1}\psdot(P1)
+  \pnode([nodesep=2,offset=1]{B}A){P}\psdot(P)
+  \psline(A)([nodesep=2]{B}A) \psline[linestyle=dashed](P0)(P)
+  \psline(A)([offset=1]{B}A)  \psline[linestyle=dashed](P1)(P)
+  \pnode([nodesep=2,offset=1,angle=135]{B}A){Q}\psdot(Q)
+  \psarc[origin={A},arrowscale=2]{->}(A){!5 sqrt}{(P)}{(Q)}
+%
+  \pnode([nodesep=2,offset=2]{B}A){P}\psdot(P)
+  \pnode([nodesep=2,offset=2,angle=135]{B}A){Q}\psdot(Q)
+  \psarc[origin={A},arrowscale=2]{->}(A){!8 sqrt}{(P)}{(Q)}
+\end{pspicture}
+\end{LTXexample}
+
+
+
+
+\clearpage
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{PSTricks}
+
+\printindex
+
+
+\end{document}
+
+

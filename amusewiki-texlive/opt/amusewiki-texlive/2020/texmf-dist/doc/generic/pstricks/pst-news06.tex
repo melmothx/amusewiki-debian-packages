@@ -1,0 +1,198 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+%\usepackage{geometry}
+\usepackage{pst-all,pst-news}
+\let\CMD\cs
+\usepackage{showexpl}
+\usepackage{tabularx,array,longtable}
+\SpecialCoor
+\usepackage[colorlinks,linktocpage]{hyperref}
+\def\UrlFont{\small\ttfamily}
+\makeatletter
+\def\verbatim@font{\small\normalfont\ttfamily}
+\makeatother
+\definecolor{hellgelb}{rgb}{1,1,0.8}
+\definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{1,0,0}
+\definecolor{colString}{rgb}{0,0.5,0}
+%
+\usepackage{listings}
+\lstset{%
+    language=PSTricks,%
+    float=hbp,%
+    basicstyle=\ttfamily\small, %
+    identifierstyle=\color{colIdentifier}, %
+    keywordstyle=\color{colKeys}, %
+    stringstyle=\color{colString}, %
+    commentstyle=\color{colComments}, %
+    columns=flexible, %
+    tabsize=4, %
+    frame=single, %
+    extendedchars=true, %
+    showspaces=false, %
+    showstringspaces=false, %
+    numbers=left, %
+    numberstyle=\tiny, %
+    breaklines=true, %
+%    backgroundcolor=\color{hellgelb}, %
+    breakautoindent=true, %
+    captionpos=b,%
+	xleftmargin=0pt%
+}
+
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+\def\PS{PostScript}
+%
+\begin{document}
+\title{\texttt{PSTricks -- 2006}\\ new macros and bugfixes for the
+basic packages \Lcs{pstricks}, \Lcs{pst-tree}, and \Lcs{pst-node}}
+\author{Herbert Voß\thanks{%
+\url{Herbert.Voss@pstricks.de}}}
+\date{\today}
+
+\maketitle
+
+\begin{abstract}
+This new version of \LFile{pstricks.tex} depends on the also new prologue file
+\LFile{pstricks.pro} (v 1.01) and \LFile{pst-dots.pro} (v. 2.00), which should go into 
+the local \TeX-directory  \url{$TEXMFLOCAL/dvips/}.
+\end{abstract}
+
+
+\tableofcontents
+
+\clearpage
+%--------------------------------------------------------------------------------------
+\section{linecap}
+%--------------------------------------------------------------------------------------
+This was already introduced with version 1.14, but I forgot to mentioned it.
+For the line ends one can use the ,,arrows``{} \texttt{c-c}, but only for the ends. For dashed
+lines the option \verb+linecap+ can be set to the value 1 to get the dashes with 
+rounded ends, too.
+
+\begin{pspicture}(5,3)
+\psline[linestyle=dashed,linewidth=8pt,dash=5mm 5mm,linecap=2](0,2.5)(5,2.5)
+\psline[linestyle=dashed,linewidth=8pt,dash=5mm 5mm,linecap=1](0,1.5)(5,1.5)
+\psline[linestyle=dashed,linewidth=8pt,dash=5mm 5mm](0,0.5)(5,0.5)
+\end{pspicture}
+
+\begin{lstlisting}
+\begin{pspicture}(5,3)
+\psline[linestyle=dashed,linewidth=8pt,dash=5mm 5mm,linecap=2](0,2.5)(5,2.5)
+\psline[linestyle=dashed,linewidth=8pt,dash=5mm 5mm,linecap=1](0,1.5)(5,1.5)
+\psline[linestyle=dashed,linewidth=8pt,dash=5mm 5mm](0,0.5)(5,0.5)
+\end{pspicture}
+\end{lstlisting}
+
+It is obvious that only the value 1 makes sense for the dashed lines.
+
+\section{Dots}
+Long time ago, Etienne Riga sent the code for some new dotstyles
+which are now part of pstricks.
+
+\psset{dotscale=1.5}
+\let\Loption\texttt
+\def\multiDot#1{\multido{\nA=0+1}{3}{\psdot[dotstyle=#1]\kern1em}}
+\def\cmultiDot#1{\multido{\nA=0+1}{3}{\psdot*[dotstyle=#1]\kern1em}}%}
+\begin{longtable}{@{}l@{\kern2em}>{\ttfamily}c>{\ttfamily}c|
+		   l@{\kern2em}>{\ttfamily}c>{\ttfamily}c@{}}
+\emph{Name} & \Lcs{psdot}    & \Lcs{psdot*} & 
+\emph{Name} & \Lcs{psdot}    & \Lcs{psdot*} \\\hline
+\endhead
+\Loption{*}             & \multiDot{*}        & \cmultiDot{*} &%\\        
+\Loption{o}             & \multiDot{o}         & \cmultiDot{o}\\
+\Loption{Bo}            & \multiDot{Bo}        & \cmultiDot{Bo}&%\\
+\Loption{x}             & \multiDot{x}        & \cmultiDot{x}\\
+\Loption{+}             & \multiDot{+}        & \cmultiDot{+}&%\\
+\Loption{B+}            & \multiDot{B+}        & \cmultiDot{B+}\\
+\Loption{Add}        & \multiDot{Add}    & \cmultiDot{Add}&%\\
+\Loption{BoldAdd}        & \multiDot{BoldAdd}    & \cmultiDot{BoldAdd}\\
+\Loption{Oplus}      & \multiDot{Oplus}        & \cmultiDot{Oplus}&%\\
+\Loption{BoldOplus}     & \multiDot{BoldOplus}        & \cmultiDot{BoldOplus}\\
+\Loption{SolidOplus}     & \multiDot{SolidOplus}        & \cmultiDot{SolidOplus} &
+\Loption{Hexagon}      & \multiDot{Hexagon}        & \cmultiDot{Hexagon}\\
+\Loption{BoldHexagon}     & \multiDot{BoldHexagon}        & \cmultiDot{BoldHexagon}& 
+\Loption{SolidHexagon}     & \multiDot{SolidHexagon}        & \cmultiDot{SolidHexagon}\\
+\Loption{asterisk}      & \multiDot{asterisk}        & \cmultiDot{asterisk}&%\\
+\Loption{Basterisk}     & \multiDot{Basterisk}        & \cmultiDot{Basterisk}\\
+\Loption{Asterisk}      & \multiDot{Asterisk}        & \cmultiDot{Asterisk}&%\\
+\Loption{BoldAsterisk}     & \multiDot{BoldAsterisk}        & \cmultiDot{BoldAsterisk}\\
+\Loption{SolidAsterisk}     & \multiDot{SolidAsterisk}        & \cmultiDot{SolidAsterisk}&
+\Loption{oplus}         & \multiDot{oplus}     & \cmultiDot{oplus}\\
+\Loption{otimes}        & \multiDot{otimes}    & \cmultiDot{otimes}&
+\Loption{Otimes}      & \multiDot{Otimes}        & \cmultiDot{Otimes}\\
+\Loption{BoldOtimes}     & \multiDot{BoldOtimes}        & \cmultiDot{BoldOtimes}&
+\Loption{SolidOtimes}     & \multiDot{SolidOtimes}        & \cmultiDot{SolidOtimes}\\
+\Loption{Mul}        & \multiDot{Mul}    & \cmultiDot{Mul}&%\\
+\Loption{BoldMul}        & \multiDot{BoldMul}    & \cmultiDot{BoldMul}\\
+\Loption{|}              & \multiDot{|}    & \cmultiDot{|}&%\\
+\Loption{B|}\iffalse\index{B*@\texttt{B}|}\fi & \multiDot{B|}  & \cmultiDot{B|}\\
+\Loption{Bar}      & \multiDot{Bar}        & \cmultiDot{Bar}&%\\
+\Loption{BoldBar}     & \multiDot{BoldBar}        & \cmultiDot{BoldBar}\\
+\Loption{Bullet}        & \multiDot{Bullet}    & \cmultiDot{Bullet}&%\\
+\Loption{Circle}        & \multiDot{Circle}    & \cmultiDot{Circle}\\
+\Loption{BoldCircle}        & \multiDot{BoldCircle}    & \cmultiDot{BoldCircle}&%\\
+\Loption{square}        & \multiDot{square}    & \cmultiDot{square}\\
+\Loption{Bsquare}       & \multiDot{Bsquare}   & \cmultiDot{Bsquare} &
+\Loption{square*}       & \multiDot{square*}    & \cmultiDot{square*}\\
+\Loption{Square}      & \multiDot{Square}        & \cmultiDot{Square}&%\\
+\Loption{BoldSquare}     & \multiDot{BoldSquare}        & \cmultiDot{BoldSquare}\\
+\Loption{SolidSquare}     & \multiDot{SolidSquare}        & \cmultiDot{SolidSquare}&
+\Loption{diamond}       & \multiDot{diamond}   & \cmultiDot{diamond}\\
+\Loption{Bdiamond}      & \multiDot{Bdiamond}  & \cmultiDot{Bdiamond}&%\\
+\Loption{diamond*}      & \multiDot{diamond*}    & \cmultiDot{diamond}\\
+\Loption{Diamond}      & \multiDot{Diamond}        & \cmultiDot{Diamond}&%\\
+\Loption{BoldDiamond}     & \multiDot{BoldDiamond}        & \cmultiDot{BoldDiamond}\\
+\Loption{SolidDiamond}     & \multiDot{SolidDiamond}        & \cmultiDot{SolidDiamond}&
+\Loption{triangle}      & \multiDot{triangle}  & \cmultiDot{triangle}\\
+\Loption{Btriangle}     & \multiDot{Btriangle} & \cmultiDot{Btriangle}&
+\Loption{triangle*}     & \multiDot{triangle*} & \cmultiDot{triangle*}\\
+\Loption{Triangle}      & \multiDot{Triangle}        & \cmultiDot{Triangle}&%\\
+\Loption{BoldTriangle}     & \multiDot{BoldTriangle}        & \cmultiDot{BoldTriangle}\\
+\Loption{SolidTriangle}     & \multiDot{SolidTriangle}        & \cmultiDot{SolidTriangle}&
+\Loption{pentagon}      & \multiDot{pentagon}  & \cmultiDot{pentagon}\\
+\Loption{Bpentagon}     & \multiDot{Bpentagon} & \cmultiDot{Bpentagon}&%\\
+\Loption{pentagon*}     & \multiDot{pentagon*}& \cmultiDot{pentagon*}\\
+\Loption{Pentagon}      & \multiDot{Pentagon}        & \cmultiDot{Pentagon}&%\\
+\Loption{BoldPentagon}     & \multiDot{BoldPentagon}        & \cmultiDot{BoldPentagon}\\
+\Loption{SolidPentagon}     & \multiDot{SolidPentagon}        & \cmultiDot{SolidPentagon}&
+\Loption{Hexagon}      & \multiDot{Hexagon}        & \cmultiDot{Hexagon}\\
+\Loption{BoldHexagon}     & \multiDot{BoldHexagon}        & \cmultiDot{BoldHexagon}&
+\Loption{SolidHexagon}     & \multiDot{SolidHexagon}        & \cmultiDot{SolidHexagon}
+\end{longtable}
+
+
+\section{\texttt{pstricks.pro}}
+The PostScript header file defines the following functions and constants, which 
+can be used
+in arguments for \CMD{psplot} or any other macro, which reads PostScript code. 
+
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize]
+/Sqrt { dup 0 lt { pop 0 } { sqrt } ifelse } def% return 0 for negative arguments 
+/Atan { /atan load stopped { pop pop 0 } if } def% return 0 if atan not known
+/ATAN1 {neg -1 atan 180 sub } def		% atan(x) (only one parameter)
+/Div { dup 0 eq { pop } { div } ifelse } def  	% control the division
+/NET { neg exch neg exch T } def	      	% change coordinate system to the negative one		
+/Pyth { dup mul exch dup mul add sqrt } def   	% Pythagoras, epects 2 parameter
+/PtoC { 2 copy cos mul 3 1 roll sin mul } def 	% Polar to Cartesian
+%----------------- hv added 20050516 ---------------
+/Pi 3.14159265359 def 
+/TwoPi 6.28318530718 def
+/Euler 2.71828182846 def 
+/RadtoDeg { 180 mul Pi div } bind def % convert from radian to degrees
+/DegtoRad { Pi mul 180 div } bind def % viceversa
+\end{lstlisting}
+
+\section{Packages}
+The package \texttt{pst-char} is now part of \texttt{pst-text} and the
+package \texttt{pst-ghsb} is now part of \texttt{pst-grad}. The macros
+and enviroments will work in the same way.
+
+The documented source code of \texttt{pstricks} and \texttt{pst-node} is
+now available as a pdf file with a source which can be run by pdf\LaTeX.
+Rolf Niepraschk modified the old sources from Timothy Van Zandt for
+running with \LaTeX\ and/or pdf\LaTeX.
+
+\end{document}

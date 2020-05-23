@@ -1,0 +1,11 @@
+\RequirePackage{pstricks}
+\ProvidesPackage{pst-text}[2018/12/28 package wrapper for pst-text.tex (hv)]
+\input{pst-text.tex}
+\ProvidesFile{pst-text.tex}
+  [\filedate\space \fileversion\space `pst-text' (tvz)]
+\IfFileExists{pst-text.pro}{%
+   \ProvidesFile{pst-text.pro}[2018/12/28 v. 1.02,  PostScript prologue file]
+   \@addtofilelist{pst-text.pro}}{}%
+\endinput
+
+%% $Id: pst-text.sty 891 2018-12-29 19:42:20Z herbert $

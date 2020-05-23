@@ -1,0 +1,11 @@
+This file is part of the multitoc package.
+-----------------------------------------
+
+\ProvidesFile{multitoc.bug}[1999/06/08 v2.01 MultiToc Package Bugs (MS)]
+
+This file contains problem-records and bug-reports. Unsolved problems
+and uncorrected but known bugs (so called features) start out with two
+exclamation marks before the number. Fixed problems will start with two
+asterisks.
+
+No bugs so far.

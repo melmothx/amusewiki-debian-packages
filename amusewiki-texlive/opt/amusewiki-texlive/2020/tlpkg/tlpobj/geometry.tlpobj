@@ -1,0 +1,41 @@
+name geometry
+category Package
+revision 54080
+shortdesc Flexible and complete interface to document dimensions
+longdesc The package provides an easy and flexible user interface to
+longdesc customize page layout, implementing auto-centering and
+longdesc auto-balancing mechanisms so that the users have only to give
+longdesc the least description for the page layout. For example, if you
+longdesc want to set each margin 2cm without header space, what you need
+longdesc is just \usepackage[margin=2cm,nohead]{geometry}. The package
+longdesc knows about all the standard paper sizes, so that the user need
+longdesc not know what the nominal 'real' dimensions of the paper are,
+longdesc just its standard name (such as a4, letter, etc.). An important
+longdesc feature is the package's ability to communicate the paper size
+longdesc it's set up to the output (whether via DVI \specials or via
+longdesc direct interaction with pdf(La)TeX).
+depend graphics
+depend iftex
+containersize 8700
+containerchecksum ca5393e23639894401094084c3c2e30acf12491dcbd3968a4af79037b6dfb6b86f07acfec6886d89a261991cbdebdc846d9804f125aecd4cd77c3e71968bcfe4
+doccontainersize 864536
+doccontainerchecksum 4bd5ec66f725516ef4d5d3e83e3b75a9b4408fe947161e3d885b929b34c4b60437c3fcd32472486aec12c9665b5c0d71a22896055a613c641bda4c4aa987f76f
+docfiles size=230
+ texmf-dist/doc/latex/geometry/README.md details="Package Readme"
+ texmf-dist/doc/latex/geometry/changes.txt
+ texmf-dist/doc/latex/geometry/geometry-de.pdf details="Package documentation (German)" language="de"
+ texmf-dist/doc/latex/geometry/geometry-samples-de.tex
+ texmf-dist/doc/latex/geometry/geometry-samples.tex
+ texmf-dist/doc/latex/geometry/geometry.cfg
+ texmf-dist/doc/latex/geometry/geometry.pdf details="Package documentation (English)" language="en"
+srccontainersize 47940
+srccontainerchecksum 03c27863d6bded295176550743bbe7cbe6aea2b8f1365f7d0cadabd6d29b699efab98b98d2ea5f8baeaf19963a681b9852b2bd01769b326942c781fd0644644e
+runfiles size=11
+ texmf-dist/tex/latex/geometry/geometry.sty
+catalogue-also vmargin typearea geometry-de
+catalogue-contact-bugs https://github.com/davidcarlisle/geometry/issues
+catalogue-contact-repository https://github.com/davidcarlisle/geometry
+catalogue-ctan /macros/latex/contrib/geometry
+catalogue-license lppl1.3c
+catalogue-topics geometry
+catalogue-version 5.9

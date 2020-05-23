@@ -1,0 +1,403 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+%\usepackage{geometry}
+\usepackage{pst-all}
+\usepackage{showexpl}
+\usepackage{tabularx,array,longtable}
+\SpecialCoor
+\usepackage[colorlinks,linktocpage]{hyperref}
+\def\UrlFont{\small\ttfamily}
+\makeatletter
+\def\verbatim@font{\small\normalfont\ttfamily}
+\makeatother
+%\usepackage{color}
+\definecolor{hellgelb}{rgb}{1,1,0.8}
+\definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{1,0,0}
+\definecolor{colString}{rgb}{0,0.5,0}
+%
+\usepackage{listings}
+\lstset{%
+    language=PSTricks,%
+    float=hbp,%
+    basicstyle=\ttfamily\small, %
+    identifierstyle=\color{colIdentifier}, %
+    keywordstyle=\color{colKeys}, %
+    stringstyle=\color{colString}, %
+    commentstyle=\color{colComments}, %
+    columns=flexible, %
+    tabsize=4, %
+    frame=single, %
+    extendedchars=true, %
+    showspaces=false, %
+    showstringspaces=false, %
+    numbers=left, %
+    numberstyle=\tiny, %
+    breaklines=true, %
+%    backgroundcolor=\color{hellgelb}, %
+    breakautoindent=true, %
+    captionpos=b,%
+	xleftmargin=0pt%
+}
+
+%\parindent=0pt
+\newcommand\verbI[1]{{\small\texttt{#1}}}
+\newcommand\CMD[1]{{\texttt{\textbackslash#1}}}
+\let\Lcs\CMD
+%
+%\psset{subgriddiv=0,griddots=5,gridlabels=7pt}
+%
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+\def\PS{PostScript}
+%
+\begin{document}
+\title{\texttt{PSTricks -- 2005}\\ new macros and bugfixes for the
+basic packages \Lcs{pstricks}, \Lcs{pst-tree}, and \Lcs{pst-node}}
+\author{Herbert Voﬂ\thanks{%
+\url{Herbert.Voss@pstricks.de}}}
+\date{\today}
+
+\maketitle
+
+\begin{abstract}
+This new version of \texttt{pstricks.tex} depends on the also new prologue file
+\texttt{pstricks.pro} (v 1.01) and pst-dots.pro (v. 2.00), which should go into 
+the local \TeX-directory  \url{$TEXMFLOCAL/dvips/}.
+\end{abstract}
+
+
+\tableofcontents
+
+\clearpage
+
+\part{General informations}
+%--------------------------------------------------------------------------------------
+\section{Color handling}
+%--------------------------------------------------------------------------------------
+The new color package \verb+xcolor+ has a lot of interesting features, but it needs
+some modification to the code of \verb+pstricks.sty+ and \verb+pstricks.tex+. The
+package \verb+pstricks.sty+ superseded the old package \verb+pstcol.sty+, which is
+now obsolet. The version on CTAN now does nothing else as loading \verb+pstricks.sty+.
+
+There are some important facts for using colors inside PSTricks with \LaTeX:
+
+\begin{itemize}
+\item load always \verb+pstricks+ as first package;
+\item use always the \LaTeX\ syntax for defining colors and \textbf{not} the PSTricks own one.\\
+    \verb+\definecolor ...+ is the correct setting!
+\item do not use the PSTricks style for using color, use always \verb+\color{<name>}+.
+\end{itemize}
+
+
+\part{\texttt{pstricks} -- package}
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.sty}}
+%--------------------------------------------------------------------------------------
+New otions:
+
+\begin{description}
+\item[\texttt{noxcolor}] load package \verb+color+ instead of  \verb+xcolor+;
+\item[\texttt{plain}] do nothing else as a \CMD{input\{pstricks\}}; 
+\item[\texttt{DIA}] a bug fix for the \verb+PSTricks+-export of the garfic program DIA.
+\end{description}
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.pro}}
+%--------------------------------------------------------------------------------------
+
+this file now contains the PostScript code for arcs of an ellipse.
+
+
+\section{\texttt{pstricks.tex}}
+The new version 1.10 has some minor but important changes; it is not compatible
+to older versions when using the vertical shift option for the \verb+pspicture+
+environment.
+
+\subsection{New and modified option for {pspicture}}\label{sec:option}
+
+Table~\ref{tab:pspicture} shows the two new options for the  \verb+pspicture+ environment.
+
+\begin{table}[htb]
+\caption{Optionen der \texttt{pspicture}-Umgebung}\label{tab:pspicture}
+\centering
+\begin{tabular}{@{}lll@{}}
+\textrm{\emph{name}}  & \emph{meaning}   & \emph{default}\\\hline
+\verb+shift+  & vertical shift & $0$ \\
+\verb+showgrid+ & show grid & \verb+false+\\
+\end{tabular}
+\end{table}
+
+
+% ---------------------------------------------------------------------------------------
+\subsubsection{\texttt{shift}}\label{subsubsec:shift}
+% ---------------------------------------------------------------------------------------
+This option is the known one from older \texttt{PSTricks} version, but now with the
+usual syntax for options. The shift is relative to the height of the defined \verb+pspicture+
+environment, its lower left corner is by deafult on the base line. For older versions
+the shift depends with its value to the baseline, a negative value raised up the \verb+pspicture+
+box. Now the \verb+shift+ option works similiar to the known \CMD{raisebox} makro, except that
+\verb+shift+ is relative to the box height. A positive \verb+shift+ value raises up the box
+and vice versa for a negative value.
+
+\begin{figure}[htb]
+\centering
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}[shift=0.5](-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){-0.5}
+\end{pspicture}%
+\textcolor{red}{\rule{5mm}{1pt}}
+\hspace{1cm}%
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}(-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){0}
+\end{pspicture}\textcolor{red}{\rule{5mm}{1pt}}
+\hspace{1cm}%
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}[shift=-0.5](-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){0.5}
+\end{pspicture}%
+\textcolor{red}{\rule{5mm}{1pt}}
+\caption{Meaning of the \texttt{shift} option}\label{fig:baseline}
+\end{figure}
+
+%\begin{lstlisting}[caption={Vertikale Verschiebung der Baseline}]
+\begin{lstlisting}
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}[shift=0.5](-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){-0.5}
+\end{pspicture}%
+\textcolor{red}{\rule{5mm}{1pt}}
+\hspace{1cm}%
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}(-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){0}
+\end{pspicture}\textcolor{red}{\rule{5mm}{1pt}}
+\hspace{1cm}%
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}[shift=-0.5](-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){0.5}
+\end{pspicture}%
+\textcolor{red}{\rule{5mm}{1pt}}
+\end{lstlisting}
+
+
+% ---------------------------------------------------------------------------------------
+\subsubsection{\texttt{showgrid}}\label{subsubsec:showgrid}
+% ---------------------------------------------------------------------------------------
+This new version of \texttt{PSTricks} defines internally a special grid style
+
+\begin{lstlisting}
+\newpsstyle{gridstyle}{%
+  subgriddiv=0,gridcolor=lightgray,griddots=10,gridlabels=8pt}
+\end{lstlisting}
+
+which can be overwritten by the user. This style is only used for the \verb+showgrid+
+option of the \verb+pspicture+ environment. The macro \verb+\psgrid+ doesn't use this predefined
+style and works in the usual way. However, the user can use it like all
+other self defined styles: \verb+\psgrid[style=gridstyle]+.
+
+
+\begin{LTXexample}[width=3.5cm]
+\begin{pspicture}[showgrid=true](-1,0)(2,1)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=3.5cm]
+\newpsstyle{gridstyle}{%
+  subgriddiv=2,subgridcolor=lightgray}
+\begin{pspicture}[showgrid=true](-1,0)(2,1)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=3.5cm]
+\newpsstyle{gridstyle}{}
+\begin{pspicture}[showgrid=true](-1,0)(2,1)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=3.5cm]
+\begin{pspicture}(-1,0)(2,1)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=3.5cm]
+\begin{pspicture}(-1,0)(2,1)
+  \psgrid
+\end{pspicture}
+\end{LTXexample}
+
+Depending to the internal structure of the \verb+pspicture+ environment it is not possible
+to set the \verb+shift+ option global by \CMD{psset}, it must always be locally defined
+with optional part of the parameter, as seen in the above examples.
+
+
+%--------------------------------------------------------------------------------------
+\subsection{New arrows}
+%--------------------------------------------------------------------------------------
+
+\verb+pstricks now contains the missing arrow ends \verb+]-[+ and \verb+)-(+.
+
+\begin{LTXexample}[width=4cm]
+\begin{pspicture}(4,3)
+  \psset{arrowscale=2,linewidth=1pt}
+  \psline{]-[}(4,0)
+  \psline{)-(}(0,1)(4,1)
+  \psline{)->}(0,2)(4,2)
+  \psline{]->>}(0,3)(4,3)
+\end{pspicture}
+\end{LTXexample}
+
+
+%--------------------------------------------------------------------------------------
+\subsection{\Lcs{psdot} and \Lcs{psdots}}
+%--------------------------------------------------------------------------------------
+\verb+\psdot*+ and \verb+\psdots*+ are now supported by PSTricks. Both were missing
+in the old versions.
+
+
+%--------------------------------------------------------------------------------------
+\subsection{Other changes}
+%--------------------------------------------------------------------------------------
+\texttt{pstricks.tex} defined the PostScript subroutines for arcs of an ellipse.
+This code now moved into the appropriate \texttt{pstricks.pro}, which holds the
+pure PostScript code of \texttt{PSTricks}. This in not important for user until
+the newest \texttt{pstricks.pro} \textbf{and} \texttt{pstricks.tex} are installed. 
+
+
+\subsection{Bugfixes}
+\subsubsection{\texttt{origin}}
+
+There were several mailings in the past to the \verb+origin+ option, which worked the other
+way round than expected. Now the coordinates work realtive to the current origin.
+
+
+\begin{LTXexample}[width=3cm]
+\begin{pspicture}(-1,-1)(2,1.25)
+  \psaxes{->}(0,0)(-1,-1)(2,1.25)
+  \psset{linewidth=1.5pt}
+  \parabola[linestyle=dashed](-1,1)(0,0)
+  \parabola[origin={0.5,-0.5}](-1,1)(0,0)
+  \qdisk(0.5,-0.5){2pt}
+\end{pspicture}
+\end{LTXexample}
+
+\subsubsection{Empty parameter}
+\sloppy
+To prevent some problems with empty arrow definitions in macros like \verb+\psline[...]{}(..)(...)+,
+which makes no sense, but should be possible, there is now a check before setting the values.
+
+
+\subsection{\CMD{psscalebox} and \CMD{psscaleboxto}}
+To prevent clashes with the \verb+graphicx+ package, which also defines a \CMD{scalebox} macro
+with different syntax,
+\verb+PSTricks+ now defines \CMD{psscalebox} and \CMD{psscaleboxto}. For some compatibility reasons the old
+names are still supported. With the new names it doesn'r matter if \verb+pstricks+ is loaded before or after
+\verb+graphicx+. There are also some other changes:
+
+
+\begin{verbatim}
+  \scalebox    -> \psscalebox
+  \scaleboxto  -> \psscaleboxto
+  \rotateleft  -> \psrotateleft
+  \rotateright -> \psrotateright
+  \rotatedown  -> \psrotatedown
+\end{verbatim}
+
+%--------------------------------------------------------------------------------------
+\section{New fill options}
+%--------------------------------------------------------------------------------------
+For the fillstyles \verb+hlines+, \verb+vlines+ and \verb+crosshatch+ there are two new
+options to get increasing line widths and/or increasing whitespace. Both options are 
+lengths and can be set as usual for PSTricks, with or without a unit.
+
+\bigskip\noindent
+\begin{tabularx}{\linewidth}{lXc}
+\emph{name} & \emph{meaning} & \emph{default}\\\hline
+\verb|hatchsepinc| & additional increasing space between two hatch lines & 0\tabularnewline
+\verb|hatchwidthinc| & value for the increasing line width of two hatch lines & 0
+\end{tabularx}
+
+
+
+\bigskip
+\begin{LTXexample}[pos=t]
+\begin{pspicture}(\linewidth,3)
+  \psframe[fillstyle=vlines,hatchangle=0,hatchsep=.5pt,%
+     hatchwidth=1pt,hatchwidthinc=0.25pt](\linewidth,3)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}(\linewidth,3)
+  \psframe[fillstyle=hlines,hatchangle=0,%
+     hatchwidth=1pt,hatchsep=0.5pt,hatchsepinc=0.1pt](\linewidth,3)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}(\linewidth,3)
+  \psframe[fillstyle=vlines,hatchangle=0,hatchsep=0.6pt,%
+     hatchwidth=1pt,hatchwidthinc=0.3pt,hatchangle=60,
+     hatchcolor=red](\linewidth,3)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}(\linewidth,3)
+  \psframe[fillstyle=hlines,hatchangle=0,hatchangle=-60,%
+     hatchwidth=1pt,hatchsep=0.5pt,hatchsepinc=0.1pt,
+     hatchcolor=blue](\linewidth,3)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}(\linewidth,4)
+  \pscircle[fillstyle=vlines,hatchangle=0,hatchsep=0.6pt,%
+     hatchwidth=1pt,hatchwidthinc=0.3pt,hatchangle=90,
+     hatchcolor=red](2,2){2}
+  \pscircle[fillstyle=vlines,hatchangle=0,hatchsep=0.6pt,%
+     hatchwidth=1pt,hatchwidthinc=0.3pt,hatchangle=-45,
+     hatchcolor=green](7,2){2}
+  \pscircle[fillstyle=hlines,hatchangle=0,hatchsep=0.6pt,%
+     hatchwidth=1pt,hatchwidthinc=0.3pt,hatchangle=45,
+     hatchcolor=blue](12,2){2}
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}(\linewidth,3)
+  \psframe[fillstyle=crosshatch,hatchangle=0,hatchangle=-90,%
+     hatchwidth=1pt,hatchsep=0.5pt,hatchsepinc=0.1pt,
+     hatchcolor=blue](\linewidth,3)
+\end{pspicture}
+\end{LTXexample}
+
+\part{\texttt{pst-node} -- package}
+
+\section{\texttt{pst-node.tex}}
+\subsection{\CMD{nccircle}}
+With some modification to \CMD{psarc\@iv} it is now possible to get the loops in any direction
+and above or below the node.
+
+\begin{LTXexample}[width=.35\linewidth]
+\psscalebox{1.5}{%
+  \circlenode{A}{A}
+  \nccircle{->}{A}{1.5em} \nbput{foo}
+  \nccircle{<-}{A}{-1.5em}\naput{bar}}
+%
+\hspace{1cm}
+\psscalebox{1.5}{%
+  \circlenode{A}{A}
+  \nccircle{<-}{A}{1.5em} \nbput{foo}
+  \nccircle{->}{A}{-1.5em}\naput{bar}}
+\end{LTXexample}
+
+\part{\texttt{pst-tree} -- package}
+\section{\texttt{pst-tree.tex}}
+
+\end{document}

@@ -21,6 +21,57 @@ depend opt_sys_man:/usr/local/share/man
 depend opt_w32_multi_user:0
 depend setting_available_architectures:x86_64-linux
 
+name amscls
+category Package
+revision 46099
+shortdesc AMS document classes for LaTeX
+longdesc This bundle contains three AMS classes, amsart (for writing
+longdesc articles for the AMS), amsbook (for books) and amsproc (for
+longdesc proceedings), together with some supporting material. This
+longdesc material forms one branch of what was originally the AMS-LaTeX
+longdesc distribution. The other branch, amsmath, is now maintained and
+longdesc distributed separately. The user documentation can be found in
+longdesc the package amscls-doc.
+containersize 32232
+containerchecksum 0b69a69452e148113c208d52b8221056378e6f869fa2efb0c52d49980ab574ac21a04d9957a2450a6881514645cd156580ad2a0ff2879e240e217642061afac2
+doccontainersize 1152212
+doccontainerchecksum 8c98528cd59e8da8c017fb49bc9a7cb617261f899770be56d92b1d52be274993b1777923189957f2ff70ef339223be569db586b80db7285cc824f321f258591a
+docfiles size=306
+ texmf-dist/doc/latex/amscls/00LICENSE.txt
+ texmf-dist/doc/latex/amscls/README details="Readme"
+ texmf-dist/doc/latex/amscls/amsart-template.tex
+ texmf-dist/doc/latex/amscls/amsbook-template.tex
+ texmf-dist/doc/latex/amscls/amsbooka.pdf
+ texmf-dist/doc/latex/amscls/amsclass.pdf details="Code with documentation"
+ texmf-dist/doc/latex/amscls/amsdtx.pdf
+ texmf-dist/doc/latex/amscls/amsmidx.pdf
+ texmf-dist/doc/latex/amscls/amsproc-template.tex
+ texmf-dist/doc/latex/amscls/amsthdoc.pdf
+ texmf-dist/doc/latex/amscls/diffs-c.txt
+ texmf-dist/doc/latex/amscls/manifest.txt
+ texmf-dist/doc/latex/amscls/thmtest.pdf
+ texmf-dist/doc/latex/amscls/upref.pdf
+srccontainersize 76360
+srccontainerchecksum a6eb2d6fd0a9640ec2ba625e91703403b80564d069bf8b873b40cb38810c30f1d0f7d372b81a194e4022a33393ebc612288d4d833a38db756ef9c344b4cd1726
+runfiles size=79
+ texmf-dist/bibtex/bst/amscls/amsalpha.bst
+ texmf-dist/bibtex/bst/amscls/amsplain.bst
+ texmf-dist/tex/latex/amscls/amsart.cls
+ texmf-dist/tex/latex/amscls/amsbook.cls
+ texmf-dist/tex/latex/amscls/amsbooka.sty
+ texmf-dist/tex/latex/amscls/amsdtx.cls
+ texmf-dist/tex/latex/amscls/amsldoc.cls
+ texmf-dist/tex/latex/amscls/amsmidx.sty
+ texmf-dist/tex/latex/amscls/amsproc.cls
+ texmf-dist/tex/latex/amscls/amsthm.sty
+ texmf-dist/tex/latex/amscls/upref.sty
+catalogue-also amslatex amscls-doc
+catalogue-contact-home http://www.ams.org/tex/amslatex.html
+catalogue-ctan /macros/latex/required/amscls
+catalogue-license lppl1.3c
+catalogue-topics class maths
+catalogue-version 2.20.4
+
 name amsfonts
 category Package
 revision 29208
@@ -675,6 +726,67 @@ catalogue-ctan /fonts/amsfonts
 catalogue-license ofl
 catalogue-topics font font-maths font-symbol-maths font-bbd font-type1 font-mf
 catalogue-version 3.04
+
+name amsmath
+category Package
+revision 53640
+catalogue latex-amsmath
+shortdesc AMS mathematical facilities for LaTeX
+longdesc The package provides the principal packages in the AMS-LaTeX
+longdesc distribution. It adapts for use in LaTeX most of the
+longdesc mathematical features found in AMS-TeX; it is highly
+longdesc recommended as an adjunct to serious mathematical typesetting
+longdesc in LaTeX. When amsmath is loaded, AMS-LaTeX packages amsbsy
+longdesc (for bold symbols), amsopn (for operator names) and amstext
+longdesc (for text embedded in mathematics) are also loaded. amsmath is
+longdesc part of the LaTeX required distribution; however, several
+longdesc contributed packages add still further to its appeal; examples
+longdesc are empheq, which provides functions for decorating and
+longdesc highlighting mathematics, and ntheorem, for specifying theorem
+longdesc (and similar) definitions.
+containersize 30312
+containerchecksum 1982aa9f7345f47e50efe9f1e8be307491458e3689838cda328afdd704fa8e04e232187c0778b05848e46d49fada532b14b74bb0d327ebd91f821190b7bf1306
+doccontainersize 2364048
+doccontainerchecksum 9a9f7d065b3486d31a9db681757fa48d14d319232d918ad07fa5a8cca205a6e0023584eefbf36542bc5dfbd609b69b4801a8c95d7e38cfd9594cbd2afa862e50
+docfiles size=671
+ texmf-dist/doc/latex/amsmath/README.md details="General README" language="en"
+ texmf-dist/doc/latex/amsmath/ams-external.txt
+ texmf-dist/doc/latex/amsmath/ams-internal.txt
+ texmf-dist/doc/latex/amsmath/amsbsy.pdf
+ texmf-dist/doc/latex/amsmath/amscd.pdf
+ texmf-dist/doc/latex/amsmath/amsgen.pdf
+ texmf-dist/doc/latex/amsmath/amsldoc.pdf details="User guide (English)" language="en"
+ texmf-dist/doc/latex/amsmath/amsldoc.tex
+ texmf-dist/doc/latex/amsmath/amsmath.pdf
+ texmf-dist/doc/latex/amsmath/amsopn.pdf
+ texmf-dist/doc/latex/amsmath/amstext.pdf
+ texmf-dist/doc/latex/amsmath/amsxtra.pdf
+ texmf-dist/doc/latex/amsmath/changes.txt
+ texmf-dist/doc/latex/amsmath/diffs-m.txt details="Differences from previous versions" language="en"
+ texmf-dist/doc/latex/amsmath/manifest.txt
+ texmf-dist/doc/latex/amsmath/subeqn.pdf details="Sub-equation usage" language="en"
+ texmf-dist/doc/latex/amsmath/subeqn.tex
+ texmf-dist/doc/latex/amsmath/technote.pdf details="Technical details" language="en"
+ texmf-dist/doc/latex/amsmath/technote.tex
+ texmf-dist/doc/latex/amsmath/testmath.pdf details="Examples paper" language="en"
+ texmf-dist/doc/latex/amsmath/testmath.tex
+srccontainersize 64156
+srccontainerchecksum c7f680fe62fcf225ae466f71d78578a8d48e34fa9a8444b4ad7730d6309eb8c7b74bc798e1b116aa6385a810f52c165505d915de66840b5ff42dc82b9f74acab
+runfiles size=69
+ texmf-dist/tex/latex/amsmath/amsbsy.sty
+ texmf-dist/tex/latex/amsmath/amscd.sty
+ texmf-dist/tex/latex/amsmath/amsgen.sty
+ texmf-dist/tex/latex/amsmath/amsmath-2018-12-01.sty
+ texmf-dist/tex/latex/amsmath/amsmath.sty
+ texmf-dist/tex/latex/amsmath/amsopn.sty
+ texmf-dist/tex/latex/amsmath/amstex.sty
+ texmf-dist/tex/latex/amsmath/amstext.sty
+ texmf-dist/tex/latex/amsmath/amsxtra.sty
+catalogue-also nath mathtools
+catalogue-contact-home http://www.ams.org/tex/amslatex.html
+catalogue-ctan /macros/latex/required/amsmath
+catalogue-license lppl1.3c
+catalogue-topics maths
 
 name atbegshi
 category Package
@@ -1468,6 +1580,250 @@ catalogue-ctan /macros/latex/required/babel/base
 catalogue-license lppl1.3
 catalogue-topics multilingual
 catalogue-version 3.44
+
+name beamer
+category Package
+revision 55046
+shortdesc A LaTeX class for producing presentations and slides
+longdesc The beamer LaTeX class can be used for producing slides. The
+longdesc class works in both PostScript and direct PDF output modes,
+longdesc using the pgf graphics system for visual effects. Content is
+longdesc created in the frame environment, and each frame can be made up
+longdesc of a number of slides using a simple notation for specifying
+longdesc material to appear on each slide within a frame. Short versions
+longdesc of title, authors, institute can also be specified as optional
+longdesc parameters. Whole frame graphics are supported by plain frames.
+longdesc The class supports figure and table environments, transparency
+longdesc effects, varying slide transitions and animations. Beamer also
+longdesc provides compatibility with other packages like prosper. The
+longdesc package now incorporates the functionality of the former
+longdesc translator package, which is used for customising the package
+longdesc for use in other language environments. Beamer depends on the
+longdesc following other packages: atbegshi, etoolbox, hyperref, ifpdf,
+longdesc pgf, and translator.
+depend amscls
+depend amsfonts
+depend amsmath
+depend atbegshi
+depend etoolbox
+depend geometry
+depend hyperref
+depend iftex
+depend pgf
+depend translator
+depend xcolor
+containersize 165324
+containerchecksum 0485dcb99a1bdde0941a1fe2e6dcbac27034cbd3bacf1668a9d7b34d0c0c2648bd18a8a66a2f507d0c283dae95b9b6a9240b1e1cd8f6329ef99e9acf8c33459f
+doccontainersize 2295184
+doccontainerchecksum 0d9b9c95d27cfbeec0c8679eb326c4c324cdbde85e3a14c59ea026425c07a22d9e0c3070af30f3f75a667cf9d9f6cf8efa5a1449b68175f05557bcffe4b37871
+docfiles size=896
+ texmf-dist/doc/latex/beamer/AUTHORS.md
+ texmf-dist/doc/latex/beamer/CHANGELOG.md
+ texmf-dist/doc/latex/beamer/LICENSE.md
+ texmf-dist/doc/latex/beamer/README.md details="Readme"
+ texmf-dist/doc/latex/beamer/beamercolorthemeexample.tex
+ texmf-dist/doc/latex/beamer/beamerexample-conference-talk.pdf
+ texmf-dist/doc/latex/beamer/beamerexample-lecture-beamer-version.pdf
+ texmf-dist/doc/latex/beamer/beamerexample-lecture-print-version.pdf
+ texmf-dist/doc/latex/beamer/beamerfontthemeexample.tex
+ texmf-dist/doc/latex/beamer/beamerinnerthemeexample.tex
+ texmf-dist/doc/latex/beamer/beamerlogo.pdf
+ texmf-dist/doc/latex/beamer/beamerouterthemeexample.tex
+ texmf-dist/doc/latex/beamer/beamerthemeexample.tex
+ texmf-dist/doc/latex/beamer/beamerthemeexamplebase.tex
+ texmf-dist/doc/latex/beamer/beamerug-animations.tex
+ texmf-dist/doc/latex/beamer/beamerug-color.tex
+ texmf-dist/doc/latex/beamer/beamerug-compatibility.tex
+ texmf-dist/doc/latex/beamer/beamerug-elements.tex
+ texmf-dist/doc/latex/beamer/beamerug-emulation.tex
+ texmf-dist/doc/latex/beamer/beamerug-fonts.tex
+ texmf-dist/doc/latex/beamer/beamerug-frames.tex
+ texmf-dist/doc/latex/beamer/beamerug-globalstructure.tex
+ texmf-dist/doc/latex/beamer/beamerug-graphics.tex
+ texmf-dist/doc/latex/beamer/beamerug-guidelines.tex
+ texmf-dist/doc/latex/beamer/beamerug-installation.tex
+ texmf-dist/doc/latex/beamer/beamerug-interaction.tex
+ texmf-dist/doc/latex/beamer/beamerug-introduction.tex
+ texmf-dist/doc/latex/beamer/beamerug-license.tex
+ texmf-dist/doc/latex/beamer/beamerug-localstructure.tex
+ texmf-dist/doc/latex/beamer/beamerug-macros.tex
+ texmf-dist/doc/latex/beamer/beamerug-nonpresentation.tex
+ texmf-dist/doc/latex/beamer/beamerug-notes.tex
+ texmf-dist/doc/latex/beamer/beamerug-overlays.tex
+ texmf-dist/doc/latex/beamer/beamerug-solutions.tex
+ texmf-dist/doc/latex/beamer/beamerug-themes.tex
+ texmf-dist/doc/latex/beamer/beamerug-transparencies.tex
+ texmf-dist/doc/latex/beamer/beamerug-tricks.tex
+ texmf-dist/doc/latex/beamer/beamerug-tutorial.tex
+ texmf-dist/doc/latex/beamer/beamerug-twoscreens.tex
+ texmf-dist/doc/latex/beamer/beamerug-workflow.tex
+ texmf-dist/doc/latex/beamer/beameruserguide.pdf details="Package documentation"
+ texmf-dist/doc/latex/beamer/beameruserguide.tex
+ texmf-dist/doc/latex/beamer/emulation-examples/beamerexample-foils.tex
+ texmf-dist/doc/latex/beamer/emulation-examples/beamerexample-prosper.tex
+ texmf-dist/doc/latex/beamer/emulation-examples/beamerexample-seminar.tex
+ texmf-dist/doc/latex/beamer/emulation-examples/beamerexample-texpower.tex
+ texmf-dist/doc/latex/beamer/examples/a-conference-talk/beamerexample-conference-talk.tex
+ texmf-dist/doc/latex/beamer/examples/a-lecture/beamerexample-lecture-beamer-version.tex
+ texmf-dist/doc/latex/beamer/examples/a-lecture/beamerexample-lecture-body.tex
+ texmf-dist/doc/latex/beamer/examples/a-lecture/beamerexample-lecture-logo.pdf
+ texmf-dist/doc/latex/beamer/examples/a-lecture/beamerexample-lecture-pic1.jpg
+ texmf-dist/doc/latex/beamer/examples/a-lecture/beamerexample-lecture-pic2.jpg
+ texmf-dist/doc/latex/beamer/examples/a-lecture/beamerexample-lecture-pic3.jpg
+ texmf-dist/doc/latex/beamer/examples/a-lecture/beamerexample-lecture-pic4.jpg
+ texmf-dist/doc/latex/beamer/examples/a-lecture/beamerexample-lecture-pic5.jpg
+ texmf-dist/doc/latex/beamer/examples/a-lecture/beamerexample-lecture-pic6.jpg
+ texmf-dist/doc/latex/beamer/examples/a-lecture/beamerexample-lecture-print-version.tex
+ texmf-dist/doc/latex/beamer/examples/a-lecture/beamerexample-lecture-style.tex
+ texmf-dist/doc/latex/beamer/licenses/fdl.txt
+ texmf-dist/doc/latex/beamer/licenses/gpl-2.0.txt
+ texmf-dist/doc/latex/beamer/licenses/lppl-1-3c.txt
+ texmf-dist/doc/latex/beamer/licenses/manifest-code.txt
+ texmf-dist/doc/latex/beamer/licenses/manifest-documentation.txt
+ texmf-dist/doc/latex/beamer/solutions/conference-talks/conference-ornate-20min.de.tex
+ texmf-dist/doc/latex/beamer/solutions/conference-talks/conference-ornate-20min.en.tex
+ texmf-dist/doc/latex/beamer/solutions/conference-talks/conference-ornate-20min.fr.tex
+ texmf-dist/doc/latex/beamer/solutions/generic-talks/generic-ornate-15min-45min.de.tex
+ texmf-dist/doc/latex/beamer/solutions/generic-talks/generic-ornate-15min-45min.en.tex
+ texmf-dist/doc/latex/beamer/solutions/generic-talks/generic-ornate-15min-45min.fr.tex
+ texmf-dist/doc/latex/beamer/solutions/short-talks/speaker_introduction-ornate-2min.de.tex
+ texmf-dist/doc/latex/beamer/solutions/short-talks/speaker_introduction-ornate-2min.en.tex
+ texmf-dist/doc/latex/beamer/solutions/short-talks/speaker_introduction-ornate-2min.fr.tex
+runfiles size=253
+ texmf-dist/tex/latex/beamer/beamer.cls
+ texmf-dist/tex/latex/beamer/beamerarticle.sty
+ texmf-dist/tex/latex/beamer/beamerbasearticle.sty
+ texmf-dist/tex/latex/beamer/beamerbaseauxtemplates.sty
+ texmf-dist/tex/latex/beamer/beamerbaseboxes.sty
+ texmf-dist/tex/latex/beamer/beamerbasecolor.sty
+ texmf-dist/tex/latex/beamer/beamerbasecompatibility.sty
+ texmf-dist/tex/latex/beamer/beamerbasedecode.sty
+ texmf-dist/tex/latex/beamer/beamerbasefont.sty
+ texmf-dist/tex/latex/beamer/beamerbaseframe.sty
+ texmf-dist/tex/latex/beamer/beamerbaseframecomponents.sty
+ texmf-dist/tex/latex/beamer/beamerbaseframesize.sty
+ texmf-dist/tex/latex/beamer/beamerbaselocalstructure.sty
+ texmf-dist/tex/latex/beamer/beamerbasemisc.sty
+ texmf-dist/tex/latex/beamer/beamerbasemodes.sty
+ texmf-dist/tex/latex/beamer/beamerbasenavigation.sty
+ texmf-dist/tex/latex/beamer/beamerbasenotes.sty
+ texmf-dist/tex/latex/beamer/beamerbaseoptions.sty
+ texmf-dist/tex/latex/beamer/beamerbaseoverlay.sty
+ texmf-dist/tex/latex/beamer/beamerbaserequires.sty
+ texmf-dist/tex/latex/beamer/beamerbasesection.sty
+ texmf-dist/tex/latex/beamer/beamerbasetemplates.sty
+ texmf-dist/tex/latex/beamer/beamerbasethemes.sty
+ texmf-dist/tex/latex/beamer/beamerbasetheorems.sty
+ texmf-dist/tex/latex/beamer/beamerbasetitle.sty
+ texmf-dist/tex/latex/beamer/beamerbasetoc.sty
+ texmf-dist/tex/latex/beamer/beamerbasetranslator.sty
+ texmf-dist/tex/latex/beamer/beamerbasetwoscreens.sty
+ texmf-dist/tex/latex/beamer/beamerbaseverbatim.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemealbatross.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemebeaver.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemebeetle.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemecrane.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemedefault.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemedolphin.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemedove.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemefly.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemelily.sty
+ texmf-dist/tex/latex/beamer/beamercolorthememonarca.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemeorchid.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemerose.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemeseagull.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemeseahorse.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemesidebartab.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemespruce.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemestructure.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty
+ texmf-dist/tex/latex/beamer/beamercolorthemewolverine.sty
+ texmf-dist/tex/latex/beamer/beamerfoils.sty
+ texmf-dist/tex/latex/beamer/beamerfontthemedefault.sty
+ texmf-dist/tex/latex/beamer/beamerfontthemeprofessionalfonts.sty
+ texmf-dist/tex/latex/beamer/beamerfontthemeserif.sty
+ texmf-dist/tex/latex/beamer/beamerfontthemestructurebold.sty
+ texmf-dist/tex/latex/beamer/beamerfontthemestructureitalicserif.sty
+ texmf-dist/tex/latex/beamer/beamerfontthemestructuresmallcapsserif.sty
+ texmf-dist/tex/latex/beamer/beamericonarticle.20.eps
+ texmf-dist/tex/latex/beamer/beamericonarticle.20.pdf
+ texmf-dist/tex/latex/beamer/beamericonarticle.eps
+ texmf-dist/tex/latex/beamer/beamericonarticle.pdf
+ texmf-dist/tex/latex/beamer/beamericonarticle.tex
+ texmf-dist/tex/latex/beamer/beamericonbook.20.eps
+ texmf-dist/tex/latex/beamer/beamericonbook.20.pdf
+ texmf-dist/tex/latex/beamer/beamericonbook.eps
+ texmf-dist/tex/latex/beamer/beamericonbook.pdf
+ texmf-dist/tex/latex/beamer/beamericonbook.tex
+ texmf-dist/tex/latex/beamer/beamericononline.20.eps
+ texmf-dist/tex/latex/beamer/beamericononline.20.pdf
+ texmf-dist/tex/latex/beamer/beamericononline.eps
+ texmf-dist/tex/latex/beamer/beamericononline.pdf
+ texmf-dist/tex/latex/beamer/beamerinnerthemecircles.sty
+ texmf-dist/tex/latex/beamer/beamerinnerthemedefault.sty
+ texmf-dist/tex/latex/beamer/beamerinnerthemeinmargin.sty
+ texmf-dist/tex/latex/beamer/beamerinnerthemerectangles.sty
+ texmf-dist/tex/latex/beamer/beamerinnerthemerounded.sty
+ texmf-dist/tex/latex/beamer/beamerouterthemedefault.sty
+ texmf-dist/tex/latex/beamer/beamerouterthemeinfolines.sty
+ texmf-dist/tex/latex/beamer/beamerouterthememiniframes.sty
+ texmf-dist/tex/latex/beamer/beamerouterthemeshadow.sty
+ texmf-dist/tex/latex/beamer/beamerouterthemesidebar.sty
+ texmf-dist/tex/latex/beamer/beamerouterthemesmoothbars.sty
+ texmf-dist/tex/latex/beamer/beamerouterthemesmoothtree.sty
+ texmf-dist/tex/latex/beamer/beamerouterthemesplit.sty
+ texmf-dist/tex/latex/beamer/beamerouterthemetree.sty
+ texmf-dist/tex/latex/beamer/beamerpatchparalist.sty
+ texmf-dist/tex/latex/beamer/beamerprosper.sty
+ texmf-dist/tex/latex/beamer/beamerseminar.sty
+ texmf-dist/tex/latex/beamer/beamertexpower.sty
+ texmf-dist/tex/latex/beamer/beamerthemeAnnArbor.sty
+ texmf-dist/tex/latex/beamer/beamerthemeAntibes.sty
+ texmf-dist/tex/latex/beamer/beamerthemeBergen.sty
+ texmf-dist/tex/latex/beamer/beamerthemeBerkeley.sty
+ texmf-dist/tex/latex/beamer/beamerthemeBerlin.sty
+ texmf-dist/tex/latex/beamer/beamerthemeBoadilla.sty
+ texmf-dist/tex/latex/beamer/beamerthemeCambridgeUS.sty
+ texmf-dist/tex/latex/beamer/beamerthemeCopenhagen.sty
+ texmf-dist/tex/latex/beamer/beamerthemeDarmstadt.sty
+ texmf-dist/tex/latex/beamer/beamerthemeDresden.sty
+ texmf-dist/tex/latex/beamer/beamerthemeEastLansing.sty
+ texmf-dist/tex/latex/beamer/beamerthemeFrankfurt.sty
+ texmf-dist/tex/latex/beamer/beamerthemeGoettingen.sty
+ texmf-dist/tex/latex/beamer/beamerthemeHannover.sty
+ texmf-dist/tex/latex/beamer/beamerthemeIlmenau.sty
+ texmf-dist/tex/latex/beamer/beamerthemeJuanLesPins.sty
+ texmf-dist/tex/latex/beamer/beamerthemeLuebeck.sty
+ texmf-dist/tex/latex/beamer/beamerthemeMadrid.sty
+ texmf-dist/tex/latex/beamer/beamerthemeMalmoe.sty
+ texmf-dist/tex/latex/beamer/beamerthemeMarburg.sty
+ texmf-dist/tex/latex/beamer/beamerthemeMontpellier.sty
+ texmf-dist/tex/latex/beamer/beamerthemePaloAlto.sty
+ texmf-dist/tex/latex/beamer/beamerthemePittsburgh.sty
+ texmf-dist/tex/latex/beamer/beamerthemeRochester.sty
+ texmf-dist/tex/latex/beamer/beamerthemeSingapore.sty
+ texmf-dist/tex/latex/beamer/beamerthemeSzeged.sty
+ texmf-dist/tex/latex/beamer/beamerthemeWarsaw.sty
+ texmf-dist/tex/latex/beamer/beamerthemebars.sty
+ texmf-dist/tex/latex/beamer/beamerthemeboxes.sty
+ texmf-dist/tex/latex/beamer/beamerthemeclassic.sty
+ texmf-dist/tex/latex/beamer/beamerthemecompatibility.sty
+ texmf-dist/tex/latex/beamer/beamerthemedefault.sty
+ texmf-dist/tex/latex/beamer/beamerthemelined.sty
+ texmf-dist/tex/latex/beamer/beamerthemeplain.sty
+ texmf-dist/tex/latex/beamer/beamerthemeshadow.sty
+ texmf-dist/tex/latex/beamer/beamerthemesidebar.sty
+ texmf-dist/tex/latex/beamer/beamerthemesplit.sty
+ texmf-dist/tex/latex/beamer/beamerthemetree.sty
+ texmf-dist/tex/latex/beamer/multimedia.sty
+ texmf-dist/tex/latex/beamer/multimediasymbols.sty
+ texmf-dist/tex/latex/beamer/xmpmulti.sty
+catalogue-contact-bugs https://github.com/josephwright/beamer/issues
+catalogue-contact-repository https://github.com/josephwright/beamer
+catalogue-ctan /macros/latex/contrib/beamer
+catalogue-license lppl1.3c gpl2+ fdl
+catalogue-topics presentation class
+catalogue-version 3.58
 
 name bibtex
 category Package
@@ -3905,6 +4261,83 @@ catalogue-ctan /macros/latex/contrib/fontspec
 catalogue-license lppl1.3c
 catalogue-topics font-sel luatex xetex
 catalogue-version 2.7i
+
+name fp
+category Package
+revision 49719
+shortdesc Fixed point arithmetic
+longdesc An extensive collection of arithmetic operations for fixed
+longdesc point real numbers of high precision.
+containersize 19252
+containerchecksum 27e60a78da80caf0e50d1fc83d227d19982e30950650845df710949f4d88db67dad96212331182561c43d37cdeabd3b68f9af55763f30175ab27a6b5f089870e
+doccontainersize 218964
+doccontainerchecksum 79b62424943f725ffc6c1698cadb9ba2fa6d9f0694741a951bbed23c43f870b930d966f110bbe722c17249c7211f08a3a95a5ce7e9da69b7487aec37e99e5152
+docfiles size=59
+ texmf-dist/doc/latex/fp/README details="Readme"
+ texmf-dist/doc/latex/fp/documentation.pdf details="Documentation"
+ texmf-dist/doc/latex/fp/fp.tex
+runfiles size=37
+ texmf-dist/tex/latex/fp/defpattern.sty
+ texmf-dist/tex/latex/fp/fp-addons.sty
+ texmf-dist/tex/latex/fp/fp-basic.sty
+ texmf-dist/tex/latex/fp/fp-eqn.sty
+ texmf-dist/tex/latex/fp/fp-eval.sty
+ texmf-dist/tex/latex/fp/fp-exp.sty
+ texmf-dist/tex/latex/fp/fp-pas.sty
+ texmf-dist/tex/latex/fp/fp-random.sty
+ texmf-dist/tex/latex/fp/fp-snap.sty
+ texmf-dist/tex/latex/fp/fp-trigo.sty
+ texmf-dist/tex/latex/fp/fp-upn.sty
+ texmf-dist/tex/latex/fp/fp.sty
+ texmf-dist/tex/latex/fp/lfp.sty
+ texmf-dist/tex/plain/fp/fp.tex
+catalogue-also fltpoint
+catalogue-ctan /macros/latex/contrib/fp
+catalogue-license lppl
+catalogue-topics arithmetic calculation
+catalogue-version 2.1d
+
+name geometry
+category Package
+revision 54080
+shortdesc Flexible and complete interface to document dimensions
+longdesc The package provides an easy and flexible user interface to
+longdesc customize page layout, implementing auto-centering and
+longdesc auto-balancing mechanisms so that the users have only to give
+longdesc the least description for the page layout. For example, if you
+longdesc want to set each margin 2cm without header space, what you need
+longdesc is just \usepackage[margin=2cm,nohead]{geometry}. The package
+longdesc knows about all the standard paper sizes, so that the user need
+longdesc not know what the nominal 'real' dimensions of the paper are,
+longdesc just its standard name (such as a4, letter, etc.). An important
+longdesc feature is the package's ability to communicate the paper size
+longdesc it's set up to the output (whether via DVI \specials or via
+longdesc direct interaction with pdf(La)TeX).
+depend graphics
+depend iftex
+containersize 8700
+containerchecksum ca5393e23639894401094084c3c2e30acf12491dcbd3968a4af79037b6dfb6b86f07acfec6886d89a261991cbdebdc846d9804f125aecd4cd77c3e71968bcfe4
+doccontainersize 864536
+doccontainerchecksum 4bd5ec66f725516ef4d5d3e83e3b75a9b4408fe947161e3d885b929b34c4b60437c3fcd32472486aec12c9665b5c0d71a22896055a613c641bda4c4aa987f76f
+docfiles size=230
+ texmf-dist/doc/latex/geometry/README.md details="Package Readme"
+ texmf-dist/doc/latex/geometry/changes.txt
+ texmf-dist/doc/latex/geometry/geometry-de.pdf details="Package documentation (German)" language="de"
+ texmf-dist/doc/latex/geometry/geometry-samples-de.tex
+ texmf-dist/doc/latex/geometry/geometry-samples.tex
+ texmf-dist/doc/latex/geometry/geometry.cfg
+ texmf-dist/doc/latex/geometry/geometry.pdf details="Package documentation (English)" language="en"
+srccontainersize 47940
+srccontainerchecksum 03c27863d6bded295176550743bbe7cbe6aea2b8f1365f7d0cadabd6d29b699efab98b98d2ea5f8baeaf19963a681b9852b2bd01769b326942c781fd0644644e
+runfiles size=11
+ texmf-dist/tex/latex/geometry/geometry.sty
+catalogue-also vmargin typearea geometry-de
+catalogue-contact-bugs https://github.com/davidcarlisle/geometry/issues
+catalogue-contact-repository https://github.com/davidcarlisle/geometry
+catalogue-ctan /macros/latex/contrib/geometry
+catalogue-license lppl1.3c
+catalogue-topics geometry
+catalogue-version 5.9
 
 name gettitlestring
 category Package
@@ -8768,6 +9201,44 @@ catalogue-license pd
 catalogue-topics font-devel
 catalogue-version 4.1
 
+name ms
+category Package
+revision 51784
+shortdesc Various LaTeX packages by Martin Schroder
+longdesc A bundle of LaTeX packages by Martin Schroder; the collection
+longdesc comprises: count1to, make use of TeX counters; everysel, set
+longdesc commands to execute every time a font is selected; everyshi,
+longdesc set commands to execute whenever a page is shipped out;
+longdesc multitoc, typeset the table of contents in multiple columns;
+longdesc and prelim2e, mark typeset pages as preliminary. ragged2e,
+longdesc which used to be part of this bundle, has become an independent
+longdesc package.
+containersize 4576
+containerchecksum 883832298e0135980808249f5af0b28e3dad7941f401e3ac031cd558b9c6b895bde1f5dc459de9f4c5f6ae41d6a6aac08137be09f9a91b26761399868ac7457a
+doccontainersize 1516220
+doccontainerchecksum adc189823e89d6cd90369497dc4468b72a36af808eb2c8d6738b3a00082335f139ecc54ad6b601a027b6961890b5bb6975e46d1de26a1e0ac7dfc9e8766fa6f1
+docfiles size=434
+ texmf-dist/doc/latex/ms/count1to.pdf
+ texmf-dist/doc/latex/ms/everysel.pdf
+ texmf-dist/doc/latex/ms/everyshi.asc
+ texmf-dist/doc/latex/ms/everyshi.bug
+ texmf-dist/doc/latex/ms/everyshi.pdf
+ texmf-dist/doc/latex/ms/multitoc.asc
+ texmf-dist/doc/latex/ms/multitoc.bug
+ texmf-dist/doc/latex/ms/multitoc.pdf
+ texmf-dist/doc/latex/ms/prelim2e.pdf
+srccontainersize 18728
+srccontainerchecksum 41bdc589f6553ca981a7f0e7340f4e1163396a12acb1b7210fb5e9efc83924961d0e04f8ae1aa10b0db3266f63d4cdfa4f52d59f7624c321dfe0bda53ec6776e
+runfiles size=9
+ texmf-dist/tex/latex/ms/count1to.sty
+ texmf-dist/tex/latex/ms/everysel.sty
+ texmf-dist/tex/latex/ms/everyshi.sty
+ texmf-dist/tex/latex/ms/multitoc.sty
+ texmf-dist/tex/latex/ms/prelim2e.sty
+catalogue-ctan /macros/latex/contrib/ms
+catalogue-license lppl
+catalogue-topics collection
+
 name ncctools
 category Package
 revision 51810
@@ -9045,6 +9516,886 @@ catalogue-ctan /macros/latex/contrib/pdftexcmds
 catalogue-license lppl1.3c
 catalogue-topics macro-supp
 catalogue-version 0.31
+
+name pgf
+category Package
+revision 54512
+shortdesc Create PostScript and PDF graphics in TeX
+longdesc PGF is a macro package for creating graphics. It is platform-
+longdesc and format-independent and works together with the most
+longdesc important TeX backend drivers, including pdfTeX and dvips. It
+longdesc comes with a user-friendly syntax layer called TikZ. Its usage
+longdesc is similar to pstricks and the standard picture environment.
+longdesc PGF works with plain (pdf-)TeX, (pdf-)LaTeX, and ConTeXt.
+longdesc Unlike pstricks, it can produce either PostScript or PDF
+longdesc output.
+depend ms
+containersize 703864
+containerchecksum a52e1ad12c3f177c0896a6e1bbb9eff373d6647328fa3ed9234feeeb97d1e3ff74320af842abf915f6e06f07508a3f6dd278c689273bc41cdb08609d12e780e1
+doccontainersize 10555588
+doccontainerchecksum 00c8b5094ae59cb8f43c8e3c18add93db02ba567e8e56812e75b04c78f5c204ad7f53fc94cdda968fda62050335714ca738ff691effdaf51de3c714ad27cd1bf
+docfiles size=3952
+ texmf-dist/doc/generic/pgf/AUTHORS
+ texmf-dist/doc/generic/pgf/ChangeLog
+ texmf-dist/doc/generic/pgf/FILES
+ texmf-dist/doc/generic/pgf/INSTALL
+ texmf-dist/doc/generic/pgf/README details="Readme"
+ texmf-dist/doc/generic/pgf/extract.lua
+ texmf-dist/doc/generic/pgf/images/brave-gnu-world-logo-mask.bb
+ texmf-dist/doc/generic/pgf/images/brave-gnu-world-logo-mask.jpg
+ texmf-dist/doc/generic/pgf/images/brave-gnu-world-logo.25.bb
+ texmf-dist/doc/generic/pgf/images/brave-gnu-world-logo.25.eps
+ texmf-dist/doc/generic/pgf/images/brave-gnu-world-logo.25.jpg
+ texmf-dist/doc/generic/pgf/images/brave-gnu-world-logo.bb
+ texmf-dist/doc/generic/pgf/images/brave-gnu-world-logo.eps
+ texmf-dist/doc/generic/pgf/images/brave-gnu-world-logo.jpg
+ texmf-dist/doc/generic/pgf/images/brave-gnu-world-logo.xbb
+ texmf-dist/doc/generic/pgf/images/pgfmanual-mindmap-1.pdf
+ texmf-dist/doc/generic/pgf/images/pgfmanual-mindmap-2.pdf
+ texmf-dist/doc/generic/pgf/licenses/LICENSE
+ texmf-dist/doc/generic/pgf/licenses/gnu-free-documentation-license-1.2.txt
+ texmf-dist/doc/generic/pgf/licenses/gnu-public-license-2.txt
+ texmf-dist/doc/generic/pgf/licenses/latex-project-public-license-1.3c.txt
+ texmf-dist/doc/generic/pgf/licenses/manifest-code.txt
+ texmf-dist/doc/generic/pgf/licenses/manifest-documentation.txt
+ texmf-dist/doc/generic/pgf/macros/pgfmanual-en-macros.tex
+ texmf-dist/doc/generic/pgf/pgfmanual.pdf details="PGF Manual"
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-actions.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-animations.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-arrows.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-decorations.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-design.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-external.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-images.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-internalregisters.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-layers.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-matrices.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-nodes.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-paths.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-patterns.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-plots.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-points.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-quick.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-scopes.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-shadings.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-transformations.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-base-transparency.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-drivers.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-dv-axes.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-dv-backend.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-dv-examples.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-dv-formats.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-dv-introduction.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-dv-main.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-dv-polar.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-dv-stylesheets.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-dv-visualizers.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-algorithm-layer.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-algorithms-in-c.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-binding-layer.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-circular.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-display-layer.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-edge-routing.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-examples.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-force.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-layered.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-misc.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-ogdf.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-overview.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-phylogenetics.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-trees.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-usage-pgf.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-gd-usage-tikz.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-guidelines.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-installation.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-introduction.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-3d.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-angles.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-arrows.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-automata.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-babel.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-backgrounds.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-bbox.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-calc.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-calendar.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-chains.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-circuits.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-decorations.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-edges.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-er.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-external.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-fadings.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-fit.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-fixedpoint.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-folding.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-fpu.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-lsystems.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-math.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-matrices.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-mindmaps.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-patterns.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-perspective.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-petri.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-plot-handlers.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-plot-marks.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-profiler.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-rdf.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-shadings.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-shadows.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-shapes.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-spy.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-svg-path.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-through.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-trees.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-turtle.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-library-views.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-license.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-main-body.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-main-preamble.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-main.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-math-algorithms.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-math-commands.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-math-design.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-math-numberprinting.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-math-parsing.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-module-parser.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-oo.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-pages.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-pgfcalendar.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-pgffor.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-pgfkeys.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-pgfkeysfiltered.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-pgfsys-animations.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-pgfsys-commands.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-pgfsys-overview.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-pgfsys-paths.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-pgfsys-protocol.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-actions.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-animations.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-arrows.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-coordinates.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-decorations.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-design.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-graphs.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-matrices.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-paths.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-pics.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-plots.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-scopes.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-shapes.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-transformations.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-transparency.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tikz-trees.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tutorial-Euclid.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tutorial-chains.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tutorial-map.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tutorial-nodes.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-tutorial.tex
+ texmf-dist/doc/generic/pgf/text-en/pgfmanual-en-xxcolor.tex
+ texmf-dist/doc/generic/pgf/text-en/plots/pgf-asymptotic-example.gnuplot
+ texmf-dist/doc/generic/pgf/text-en/plots/pgf-asymptotic-example.table
+ texmf-dist/doc/generic/pgf/text-en/plots/pgf-exp.gnuplot
+ texmf-dist/doc/generic/pgf/text-en/plots/pgf-exp.table
+ texmf-dist/doc/generic/pgf/text-en/plots/pgf-parametric-example.gnuplot
+ texmf-dist/doc/generic/pgf/text-en/plots/pgf-parametric-example.table
+ texmf-dist/doc/generic/pgf/text-en/plots/pgf-sin.gnuplot
+ texmf-dist/doc/generic/pgf/text-en/plots/pgf-sin.table
+ texmf-dist/doc/generic/pgf/text-en/plots/pgf-tan-example.gnuplot
+ texmf-dist/doc/generic/pgf/text-en/plots/pgf-tan-example.table
+ texmf-dist/doc/generic/pgf/text-en/plots/pgf-x.gnuplot
+ texmf-dist/doc/generic/pgf/text-en/plots/pgf-x.table
+ texmf-dist/doc/generic/pgf/text-en/plots/pgfmanual-sine.gnuplot
+ texmf-dist/doc/generic/pgf/text-en/plots/pgfmanual-sine.table
+ texmf-dist/doc/generic/pgf/text-en/plots/pgfplotgnuplot-example.gnuplot
+ texmf-dist/doc/generic/pgf/text-en/plots/pgfplotgnuplot-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/Makefile
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/pgfmanual.tex
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgf-asymptotic-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgf-asymptotic-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgf-exp.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgf-exp.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgf-parametric-example-cut.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgf-parametric-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgf-parametric-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgf-sin.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgf-sin.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgf-tan-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgf-tan-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgf-x.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgf-x.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgfmanual-sine.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgfmanual-sine.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgfplotgnuplot-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/en/plots/pgfplotgnuplot-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfm/pgfmanual-dvipdfm.cfg
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/Makefile
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/pgfmanual-test.tex
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/pgfmanual.tex
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgf-asymptotic-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgf-asymptotic-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgf-exp.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgf-exp.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgf-parametric-example-cut.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgf-parametric-example-cut.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgf-parametric-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgf-parametric-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgf-sin.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgf-sin.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgf-tan-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgf-tan-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgf-x.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgf-x.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgfmanual-sine.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgfmanual-sine.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgfplotgnuplot-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/en/plots/pgfplotgnuplot-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvipdfmx/pgfmanual-dvipdfmx.cfg
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/Makefile
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/pgfmanual-test.tex
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/pgfmanual.tex
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgf-asymptotic-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgf-asymptotic-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgf-exp.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgf-exp.table
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgf-parametric-example-cut.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgf-parametric-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgf-parametric-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgf-sin.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgf-sin.table
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgf-tan-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgf-tan-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgf-x.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgf-x.table
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgfmanual-sine.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgfmanual-sine.table
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgfplotgnuplot-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvips/en/plots/pgfplotgnuplot-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvips/pgfmanual-dvips.cfg
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/Makefile
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/color.cfg
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/pgfmanual-test.html
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/pgfmanual-test.tex
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/pgfmanual.html
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/pgfmanual.tex
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgf-asymptotic-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgf-asymptotic-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgf-exp.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgf-exp.table
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgf-parametric-example-cut.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgf-parametric-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgf-parametric-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgf-sin.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgf-sin.table
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgf-tan-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgf-tan-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgf-x.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgf-x.table
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgfmanual-sine.table
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgfplotgnuplot-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/en/plots/pgfplotgnuplot-example.table
+ texmf-dist/doc/generic/pgf/version-for-dvisvgm/pgfmanual-dvisvgm.cfg
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/Makefile
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/pgfmanual-test.tex
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/pgfmanual.tex
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/plots/pgf-asymptotic-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/plots/pgf-asymptotic-example.table
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/plots/pgf-exp.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/plots/pgf-exp.table
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/plots/pgf-parametric-example-cut.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/plots/pgf-parametric-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/plots/pgf-parametric-example.table
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/plots/pgf-sin.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/plots/pgf-sin.table
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/plots/pgf-tan-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/plots/pgf-tan-example.table
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/plots/pgf-x.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/plots/pgf-x.table
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/plots/pgfplotgnuplot-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-luatex/en/plots/pgfplotgnuplot-example.table
+ texmf-dist/doc/generic/pgf/version-for-luatex/pgfmanual-luatex.cfg
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/Makefile
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/pgfmanual.tex
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgf-asymptotic-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgf-asymptotic-example.table
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgf-exp.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgf-exp.table
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgf-parametric-example-cut.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgf-parametric-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgf-parametric-example.table
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgf-sin.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgf-sin.table
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgf-tan-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgf-tan-example.table
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgf-x.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgf-x.table
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgfmanual-sine.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgfmanual-sine.table
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgfplotgnuplot-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-pdftex/en/plots/pgfplotgnuplot-example.table
+ texmf-dist/doc/generic/pgf/version-for-pdftex/pgfmanual-pdftex.cfg
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/Makefile
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/pgfmanual.tex
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/plots/pgf-asymptotic-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/plots/pgf-asymptotic-example.table
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/plots/pgf-exp.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/plots/pgf-exp.table
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/plots/pgf-parametric-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/plots/pgf-parametric-example.table
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/plots/pgf-sin.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/plots/pgf-sin.table
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/plots/pgf-x.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/plots/pgf-x.table
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/plots/pgfmanual-sine.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/plots/pgfmanual-sine.table
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/plots/pgfplotgnuplot-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/en/plots/pgfplotgnuplot-example.table
+ texmf-dist/doc/generic/pgf/version-for-tex4ht/pgfmanual-tex4ht.cfg
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/Makefile
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/pgfmanual.tex
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/plots/pgf-asymptotic-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/plots/pgf-asymptotic-example.table
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/plots/pgf-exp.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/plots/pgf-exp.table
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/plots/pgf-parametric-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/plots/pgf-parametric-example.table
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/plots/pgf-sin.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/plots/pgf-sin.table
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/plots/pgf-x.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/plots/pgf-x.table
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/plots/pgfmanual-sine.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/plots/pgfmanual-sine.table
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/plots/pgfplotgnuplot-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-vtex/en/plots/pgfplotgnuplot-example.table
+ texmf-dist/doc/generic/pgf/version-for-vtex/pgfmanual-vtex.cfg
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/Makefile
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/pgfmanual.tex
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgf-asymptotic-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgf-asymptotic-example.table
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgf-exp.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgf-exp.table
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgf-parametric-example-cut.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgf-parametric-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgf-parametric-example.table
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgf-sin.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgf-sin.table
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgf-tan-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgf-tan-example.table
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgf-x.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgf-x.table
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgfmanual-sine.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgfmanual-sine.table
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgfplotgnuplot-example.gnuplot
+ texmf-dist/doc/generic/pgf/version-for-xetex/en/plots/pgfplotgnuplot-example.table
+ texmf-dist/doc/generic/pgf/version-for-xetex/pgfmanual-xetex.cfg
+srccontainersize 33484
+srccontainerchecksum 958f8c03491f34f163ecc9d58081418f09d8403ce20252f02628523d0078680877cf6771d9de826eebc3bd939c5e15a35ecca87ad1e7cb3c2856f98f1b86003d
+runfiles size=1500
+ texmf-dist/scripts/pgf/Makefile.pgf_release
+ texmf-dist/scripts/pgf/pgfrevisionfile.sh
+ texmf-dist/tex/context/third/pgf/basiclayer/t-pgf.tex
+ texmf-dist/tex/context/third/pgf/basiclayer/t-pgfbim.tex
+ texmf-dist/tex/context/third/pgf/basiclayer/t-pgfbla.tex
+ texmf-dist/tex/context/third/pgf/basiclayer/t-pgfbma.tex
+ texmf-dist/tex/context/third/pgf/basiclayer/t-pgfbpl.tex
+ texmf-dist/tex/context/third/pgf/basiclayer/t-pgfbpt.tex
+ texmf-dist/tex/context/third/pgf/basiclayer/t-pgfbsh.tex
+ texmf-dist/tex/context/third/pgf/basiclayer/t-pgfbsn.tex
+ texmf-dist/tex/context/third/pgf/basiclayer/t-pgfcor.tex
+ texmf-dist/tex/context/third/pgf/frontendlayer/t-tikz.tex
+ texmf-dist/tex/context/third/pgf/math/t-pgfmat.tex
+ texmf-dist/tex/context/third/pgf/systemlayer/t-pgfsys.tex
+ texmf-dist/tex/context/third/pgf/utilities/t-pgfcal.tex
+ texmf-dist/tex/context/third/pgf/utilities/t-pgffor.tex
+ texmf-dist/tex/context/third/pgf/utilities/t-pgfkey.tex
+ texmf-dist/tex/context/third/pgf/utilities/t-pgfmod.tex
+ texmf-dist/tex/context/third/pgf/utilities/t-pgfrcs.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+ texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/circuits/tikzlibrarycircuits.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/circuits/tikzlibrarycircuits.ee.IEC.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/circuits/tikzlibrarycircuits.ee.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/circuits/tikzlibrarycircuits.logic.CDH.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/circuits/tikzlibrarycircuits.logic.IEC.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/circuits/tikzlibrarycircuits.logic.US.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/circuits/tikzlibrarycircuits.logic.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/datavisualization/tikzlibrarydatavisualization.3d.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/datavisualization/tikzlibrarydatavisualization.barcharts.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/datavisualization/tikzlibrarydatavisualization.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/datavisualization/tikzlibrarydatavisualization.formats.functions.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/datavisualization/tikzlibrarydatavisualization.polar.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/datavisualization/tikzlibrarydatavisualization.sparklines.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/graphs/tikzlibrarygraphs.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/graphs/tikzlibrarygraphs.standard.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzexternalshared.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary3d.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryangles.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryanimations.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryautomata.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybabel.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybackgrounds.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybending.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalendar.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarychains.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.footprints.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.fractals.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.markings.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.shapes.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.text.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryer.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadings.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfit.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfixedpointarithmetic.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfolding.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfpu.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryintersections.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarylindenmayersystems.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymath.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymindmap.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypatterns.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypatterns.meta.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryperspective.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypetri.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplothandlers.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryquotes.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryrdf.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryscopes.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshadings.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshadows.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.arrows.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.callouts.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.gates.logic.IEC.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.gates.logic.US.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.geometric.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.multipart.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.symbols.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarysnakes.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryspy.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarysvg.path.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarythrough.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytrees.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryturtle.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryviews.code.tex
+ texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/LUA_CODING_STYLE
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/bindings.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/bindings/Binding.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/bindings/BindingToPGF.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/circular.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/circular/Tantau2012.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/circular/doc.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/circular/library.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control/Anchoring.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control/ComponentAlign.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control/ComponentDirection.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control/ComponentDistance.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control/ComponentOrder.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control/Components.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control/Distances.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control/FineTune.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control/LayoutPipeline.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control/NodeAnchors.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control/Orientation.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control/Sublayouts.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control/doc.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/control/library.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/deprecated/Cluster.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/deprecated/Edge.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/deprecated/Graph.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/deprecated/Iterators.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/deprecated/Node.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/deprecated/Vector.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/FMMMLayout.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/FastMultipoleEmbedder.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/GEMLayout.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/MultilevelLayout.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/SpringEmbedderFR.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/SpringEmbedderFRExact.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/SpringEmbedderKK.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/multilevelmixer/BarycenterPlacer.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/multilevelmixer/CirclePlacer.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/multilevelmixer/EdgeCoverMerger.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/multilevelmixer/IndependentSetMerger.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/multilevelmixer/LocalBiconnectedMerger.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/multilevelmixer/MatchingMerger.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/multilevelmixer/MedianPlacer.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/multilevelmixer/RandomMerger.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/multilevelmixer/RandomPlacer.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/multilevelmixer/SolarMerger.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/multilevelmixer/SolarPlacer.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/energybased/multilevelmixer/ZeroPlacer.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered/BarycenterHeuristic.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered/CoffmanGrahamRanking.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered/DfsAcyclicSubgraph.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered/FastHierarchyLayout.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered/FastSimpleHierarchyLayout.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered/GreedyCycleRemoval.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered/GreedyInsertHeuristic.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered/LongestPathRanking.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered/MedianHeuristic.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered/OptimalRanking.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered/SiftingHeuristic.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered/SplitHeuristic.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/layered/SugiyamaLayout.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/misclayout.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/misclayout/BalloonLayout.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/misclayout/CircularLayout.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/module/AcyclicSubgraphModule.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/module/HierarchyLayoutModule.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/module/InitialPlacer.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/module/MultilevelBuilder.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/module/RankingModule.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/module/TwoLayerCrossMin.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/planarity.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/doc/ogdf/planarity/PlanarizationLayout.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/examples.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/examples/ASCIIDisplayer.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/examples/BindingToASCII.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/examples/SimpleDemo.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/examples/SimpleEdgeDemo.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/examples/SimpleHuffman.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/examples/example_graph_for_ascii_displayer.txt
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/examples/library.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/experimental/evolving/GraphAnimationCoordination.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/experimental/evolving/GreedyTemporalCycleRemoval.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/experimental/evolving/Skambath2016.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/experimental/evolving/Supergraph.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/experimental/evolving/SupergraphVertexSplitOptimization.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/experimental/evolving/TimeSpec.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/experimental/evolving/doc.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/experimental/evolving/layered.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/experimental/evolving/library.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/CoarseGraph.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/ControlCoarsening.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/ControlDeclare.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/ControlElectric.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/ControlIteration.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/ControlSprings.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/ControlStart.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/QuadTree.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/SpringElectricalHu2006.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/SpringElectricalLayouts.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/SpringElectricalWalshaw2000.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/SpringHu2006.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/SpringLayouts.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/algorithms/FruchtermanReingold.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/algorithms/HuSpringElectricalFW.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/algorithms/SimpleSpring.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/algorithms/SocialGravityCloseness.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/algorithms/SocialGravityDegree.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/base/CoarseGraphFW.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/base/ForceController.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/base/ForceTemplate.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/base/InitialTemplate.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/base/PathLengthsFW.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/base/Preprocessing.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/doc.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/forcetypes/ForceAbsoluteValue.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/forcetypes/ForceCanvasDistance.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/forcetypes/ForceCanvasPosition.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/forcetypes/ForceGraphDistance.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/forcetypes/ForcePullToGrid.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/forcetypes/ForcePullToPoint.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/initialpositioning/CircularInitialPositioning.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/initialpositioning/GridInitialPositioning.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/initialpositioning/RandomInitialPositioning.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/jedi/library.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/force/library.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/interface.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/interface/InterfaceCore.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/interface/InterfaceToAlgorithms.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/interface/InterfaceToC.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/interface/InterfaceToDisplay.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/interface/Scope.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/CrossingMinimizationGansnerKNV1993.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/CycleRemovalBergerS1990a.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/CycleRemovalBergerS1990b.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/CycleRemovalEadesLS1993.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/CycleRemovalGansnerKNV1993.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/EdgeRoutingGansnerKNV1993.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/NetworkSimplex.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/NodePositioningGansnerKNV1993.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/NodeRankingGansnerKNV1993.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/NodeRankingMinimumHeight.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/Ranking.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/Sugiyama.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/crossing_minimization.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/cycle_removal.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/edge_routing.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/library.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/node_positioning.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/layered/node_ranking.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/lib.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/lib/Bezier.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/lib/DepthFirstSearch.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/lib/Direct.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/lib/Event.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/lib/LookupTable.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/lib/PathLengths.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/lib/PriorityQueue.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/lib/Simplifiers.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/lib/Stack.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/lib/Storage.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/lib/Transform.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/model.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/model/Arc.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/model/Collection.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/model/Coordinate.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/model/Digraph.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/model/Edge.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/model/Hyperedge.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/model/Path.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/model/Path_arced.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/model/Vertex.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/model/library.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/ogdf.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/ogdf/library.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/pedigrees.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/pedigrees/Koerner2015.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/pedigrees/library.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/phylogenetics.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/phylogenetics/AuthorDefinedPhylogeny.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/phylogenetics/BalancedMinimumEvolution.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/phylogenetics/BalancedNearestNeighbourInterchange.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/phylogenetics/DistanceMatrix.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/phylogenetics/Maeusle2012.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/phylogenetics/PhylogeneticTree.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/phylogenetics/SokalMichener1958.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/phylogenetics/library.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/planar.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/planar/BoyerMyrvold2004.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/planar/Embedding.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/planar/LinkedList.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/planar/List.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/planar/PDP.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/planar/PlanarLayout.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/planar/ShiftMethod.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/planar/library.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/planar/parameters.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/routing.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/routing/Hints.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/routing/NecklaceRouting.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/routing/library.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/tools/make_gd_wrap.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/trees.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/trees/ChildSpec.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/trees/ReingoldTilford1981.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/trees/SpanningTreeComputation.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/trees/doc.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/lua/pgf/gd/trees/library.lua
+ texmf-dist/tex/generic/pgf/graphdrawing/tex/experimental/tikzlibrarygraphdrawing.evolving.code.tex
+ texmf-dist/tex/generic/pgf/graphdrawing/tex/pgflibrarygraphdrawing.circular.code.tex
+ texmf-dist/tex/generic/pgf/graphdrawing/tex/pgflibrarygraphdrawing.code.tex
+ texmf-dist/tex/generic/pgf/graphdrawing/tex/pgflibrarygraphdrawing.examples.code.tex
+ texmf-dist/tex/generic/pgf/graphdrawing/tex/pgflibrarygraphdrawing.force.code.tex
+ texmf-dist/tex/generic/pgf/graphdrawing/tex/pgflibrarygraphdrawing.layered.code.tex
+ texmf-dist/tex/generic/pgf/graphdrawing/tex/pgflibrarygraphdrawing.trees.code.tex
+ texmf-dist/tex/generic/pgf/graphdrawing/tex/tikzlibrarygraphdrawing.code.tex
+ texmf-dist/tex/generic/pgf/libraries/datavisualization/pgflibrarydatavisualization.barcharts.code.tex
+ texmf-dist/tex/generic/pgf/libraries/datavisualization/pgflibrarydatavisualization.formats.functions.code.tex
+ texmf-dist/tex/generic/pgf/libraries/datavisualization/pgflibrarydatavisualization.polar.code.tex
+ texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.footprints.code.tex
+ texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.fractals.code.tex
+ texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.markings.code.tex
+ texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex
+ texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex
+ texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.shapes.code.tex
+ texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.text.code.tex
+ texmf-dist/tex/generic/pgf/libraries/luamath/pgf/luamath/functions.lua
+ texmf-dist/tex/generic/pgf/libraries/luamath/pgf/luamath/parser.lua
+ texmf-dist/tex/generic/pgf/libraries/luamath/pgflibraryluamath.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.spaced.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibrarybbox.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibrarycurvilinear.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibraryfixedpointarithmetic.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibraryintersections.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibrarylindenmayersystems.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.meta.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibraryprofiler.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibraryshadings.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibrarysnakes.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibrarysvg.path.code.tex
+ texmf-dist/tex/generic/pgf/libraries/pgflibrarytimelines.code.tex
+ texmf-dist/tex/generic/pgf/libraries/shapes/circuits/pgflibraryshapes.gates.ee.IEC.code.tex
+ texmf-dist/tex/generic/pgf/libraries/shapes/circuits/pgflibraryshapes.gates.ee.code.tex
+ texmf-dist/tex/generic/pgf/libraries/shapes/circuits/pgflibraryshapes.gates.logic.IEC.code.tex
+ texmf-dist/tex/generic/pgf/libraries/shapes/circuits/pgflibraryshapes.gates.logic.US.code.tex
+ texmf-dist/tex/generic/pgf/libraries/shapes/circuits/pgflibraryshapes.gates.logic.code.tex
+ texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.arrows.code.tex
+ texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.callouts.code.tex
+ texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.code.tex
+ texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.geometric.code.tex
+ texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.misc.code.tex
+ texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multipart.code.tex
+ texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.symbols.code.tex
+ texmf-dist/tex/generic/pgf/lua/pgf/manual.lua
+ texmf-dist/tex/generic/pgf/lua/pgf/manual/DocumentParser.lua
+ texmf-dist/tex/generic/pgf/math/pgfint.code.tex
+ texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+ texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+ texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+ texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex
+ texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex
+ texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+ texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex
+ texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex
+ texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex
+ texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex
+ texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex
+ texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex
+ texmf-dist/tex/generic/pgf/math/pgfmathode.code.tex
+ texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+ texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex
+ texmf-dist/tex/generic/pgf/modules/pgfmoduleanimations.code.tex
+ texmf-dist/tex/generic/pgf/modules/pgfmodulebending.code.tex
+ texmf-dist/tex/generic/pgf/modules/pgfmoduledatavisualization.code.tex
+ texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
+ texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+ texmf-dist/tex/generic/pgf/modules/pgfmodulenonlineartransformations.code.tex
+ texmf-dist/tex/generic/pgf/modules/pgfmoduleoo.code.tex
+ texmf-dist/tex/generic/pgf/modules/pgfmoduleparser.code.tex
+ texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+ texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+ texmf-dist/tex/generic/pgf/modules/pgfmodulesnakes.code.tex
+ texmf-dist/tex/generic/pgf/modules/pgfmodulesorting.code.tex
+ texmf-dist/tex/generic/pgf/pgf.revision.tex
+ texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf-via-dvi.def
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-postscript.def
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-svg.def
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvi.def
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvipdfm.def
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvipdfmx.def
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvips.def
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvisvgm.def
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.def
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys-tex4ht.def
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys-textures.def
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys-vtex.def
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys-xetex.def
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsysanimations.code.tex
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+ texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+ texmf-dist/tex/generic/pgf/utilities/pgfcalendar.code.tex
+ texmf-dist/tex/generic/pgf/utilities/pgfexternal.tex
+ texmf-dist/tex/generic/pgf/utilities/pgfexternalwithdepth.tex
+ texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+ texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+ texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
+ texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+ texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex
+ texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+ texmf-dist/tex/generic/pgf/utilities/pgfutil-context.def
+ texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+ texmf-dist/tex/generic/pgf/utilities/pgfutil-plain.def
+ texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+ texmf-dist/tex/latex/pgf/basiclayer/pgfbaseimage.sty
+ texmf-dist/tex/latex/pgf/basiclayer/pgfbaselayers.sty
+ texmf-dist/tex/latex/pgf/basiclayer/pgfbasematrix.sty
+ texmf-dist/tex/latex/pgf/basiclayer/pgfbasepatterns.sty
+ texmf-dist/tex/latex/pgf/basiclayer/pgfbaseplot.sty
+ texmf-dist/tex/latex/pgf/basiclayer/pgfbaseshapes.sty
+ texmf-dist/tex/latex/pgf/basiclayer/pgfbasesnakes.sty
+ texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+ texmf-dist/tex/latex/pgf/compatibility/pgfarrows.sty
+ texmf-dist/tex/latex/pgf/compatibility/pgfautomata.sty
+ texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+ texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+ texmf-dist/tex/latex/pgf/compatibility/pgfheaps.sty
+ texmf-dist/tex/latex/pgf/compatibility/pgflibraryarrows.sty
+ texmf-dist/tex/latex/pgf/compatibility/pgflibraryautomata.sty
+ texmf-dist/tex/latex/pgf/compatibility/pgflibraryplothandlers.sty
+ texmf-dist/tex/latex/pgf/compatibility/pgflibraryplotmarks.sty
+ texmf-dist/tex/latex/pgf/compatibility/pgflibraryshapes.sty
+ texmf-dist/tex/latex/pgf/compatibility/pgflibrarysnakes.sty
+ texmf-dist/tex/latex/pgf/compatibility/pgflibrarytikzbackgrounds.sty
+ texmf-dist/tex/latex/pgf/compatibility/pgflibrarytikztrees.sty
+ texmf-dist/tex/latex/pgf/compatibility/pgfnodes.sty
+ texmf-dist/tex/latex/pgf/compatibility/pgfshade.sty
+ texmf-dist/tex/latex/pgf/doc/pgfmanual.code.tex
+ texmf-dist/tex/latex/pgf/doc/pgfmanual.pdflinks.code.tex
+ texmf-dist/tex/latex/pgf/doc/pgfmanual.prettyprinter.code.tex
+ texmf-dist/tex/latex/pgf/doc/pgfmanual.sty
+ texmf-dist/tex/latex/pgf/frontendlayer/libraries/tikzlibraryexternal.code.tex
+ texmf-dist/tex/latex/pgf/frontendlayer/pgfpict2e.sty
+ texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+ texmf-dist/tex/latex/pgf/math/pgfmath.sty
+ texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+ texmf-dist/tex/latex/pgf/utilities/pgfcalendar.sty
+ texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+ texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+ texmf-dist/tex/latex/pgf/utilities/pgfpages.sty
+ texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+ texmf-dist/tex/latex/pgf/utilities/tikzexternal.sty
+ texmf-dist/tex/latex/pgf/utilities/xxcolor.sty
+ texmf-dist/tex/plain/pgf/basiclayer/pgf.tex
+ texmf-dist/tex/plain/pgf/basiclayer/pgfbaseimage.tex
+ texmf-dist/tex/plain/pgf/basiclayer/pgfbaselayers.tex
+ texmf-dist/tex/plain/pgf/basiclayer/pgfbasematrix.tex
+ texmf-dist/tex/plain/pgf/basiclayer/pgfbasepatterns.tex
+ texmf-dist/tex/plain/pgf/basiclayer/pgfbaseplot.tex
+ texmf-dist/tex/plain/pgf/basiclayer/pgfbaseshapes.tex
+ texmf-dist/tex/plain/pgf/basiclayer/pgfbasesnakes.tex
+ texmf-dist/tex/plain/pgf/basiclayer/pgfcore.tex
+ texmf-dist/tex/plain/pgf/frontendlayer/tikz.tex
+ texmf-dist/tex/plain/pgf/math/pgfmath.tex
+ texmf-dist/tex/plain/pgf/systemlayer/pgfsys.tex
+ texmf-dist/tex/plain/pgf/utilities/pgfcalendar.tex
+ texmf-dist/tex/plain/pgf/utilities/pgffor.tex
+ texmf-dist/tex/plain/pgf/utilities/pgfkeys.tex
+ texmf-dist/tex/plain/pgf/utilities/pgfrcs.tex
+catalogue-alias tikz
+catalogue-contact-bugs https://github.com/pgf-tikz/pgf/issues
+catalogue-contact-repository https://github.com/pgf-tikz/pgf
+catalogue-contact-support https://tug.org/mailman/listinfo/pgf-tikz
+catalogue-ctan /graphics/pgf/base
+catalogue-license lppl1.3c gpl2 fdl
+catalogue-topics pgf-tikz graphics-in-tex
+catalogue-version 3.1.5b
 
 name plain
 category Package
@@ -9384,6 +10735,146 @@ catalogue-ctan /macros/latex/contrib/polyglossia
 catalogue-license mit lppl1.3 cc0
 catalogue-topics multilingual use-xetex use-luatex
 catalogue-version 1.49
+
+name pst-text
+category Package
+revision 49542
+shortdesc Text and character manipulation in PSTricks
+longdesc Pst-text is a PSTricks based package for plotting text along a
+longdesc different path and manipulating characters. It includes the
+longdesc functionality of the old package pst-char.
+containersize 4204
+containerchecksum 6cf40d3dffb7803959a187f6a19b137b824d46ea73bd31430e983abec0b828d49c6d404287382242ad224e2f51feae74b3bee374443e9f421ae70d1ea2c0c3b6
+doccontainersize 169860
+doccontainerchecksum 87f213f037227c05ceefbcee7ab8a316b88ee6f9ddc366c40cfa7676a714ec6802f3781db8357224769216241feb9171668184534572ebe5c5776c1553c1b62d
+docfiles size=59
+ texmf-dist/doc/generic/pst-text/Changes
+ texmf-dist/doc/generic/pst-text/README details="Package README"
+ texmf-dist/doc/generic/pst-text/pst-text-doc.bib
+ texmf-dist/doc/generic/pst-text/pst-text-doc.pdf details="Package documentation"
+ texmf-dist/doc/generic/pst-text/pst-text-doc.tex
+runfiles size=5
+ texmf-dist/dvips/pst-text/pst-text.pro
+ texmf-dist/tex/generic/pst-text/pst-text.tex
+ texmf-dist/tex/latex/pst-text/pst-char.sty
+ texmf-dist/tex/latex/pst-text/pst-text.sty
+catalogue-also textpath
+catalogue-ctan /graphics/pstricks/contrib/pst-text
+catalogue-license lppl
+catalogue-topics graphics-subpic
+catalogue-version 1.02
+
+name pstricks
+category Package
+revision 54080
+catalogue pstricks-base
+shortdesc PostScript macros for TeX
+longdesc PSTricks offers an extensive collection of macros for
+longdesc generating PostScript that is usable with most TeX macro
+longdesc formats, including Plain TeX, LaTeX, AMS-TeX, and AMS-LaTeX.
+longdesc Included are macros for colour, graphics, pie charts, rotation,
+longdesc trees and overlays. It has many special features, including a
+longdesc wide variety of graphics (picture drawing) macros, with a
+longdesc flexible interface and with colour support. There are macros
+longdesc for colouring or shading the cells of tables. The package
+longdesc pstricks-add contains bug-fixes and additions for PSTricks
+longdesc (among other things). PSTricks ordinarily uses PostScript
+longdesc \special commands, which are not supported by pdf(La)TeX. This
+longdesc limitation may be overcome by using either the pst-pdf or the
+longdesc pdftricks package, to generate a PDF inclusion from a PSTricks
+longdesc diagram. PSTricks macros can also generate PDF output when the
+longdesc document is processed XeTeX, without the need for other
+longdesc supporting packages.
+containersize 77248
+containerchecksum c913d53530c9c80885cca6899351013934f0deae29b2a4b33dfef45ffd6c1b4a9c5e048532745c727f40c8728372a1d907ada67e3bc8ee7f4cfd9e9edd11479c
+doccontainersize 7134420
+doccontainerchecksum 89577444afbd332ab86fdf491be17debc3b92624fcf6fb1128234eb97a5dcb1ed5a2c503d00ad8732ba9ae17f31e792f2d4dea1673873ff290c3603cef3335c5
+docfiles size=2189
+ texmf-dist/doc/generic/pstricks/PSTricks.bib
+ texmf-dist/doc/generic/pstricks/README details="Readme"
+ texmf-dist/doc/generic/pstricks/ctandir.sty
+ texmf-dist/doc/generic/pstricks/images/flowers.eps
+ texmf-dist/doc/generic/pstricks/images/tiger.eps
+ texmf-dist/doc/generic/pstricks/images/tiger.pdf
+ texmf-dist/doc/generic/pstricks/pst-doc.bst
+ texmf-dist/doc/generic/pstricks/pst-doc.ist
+ texmf-dist/doc/generic/pstricks/pst-doc.pdf
+ texmf-dist/doc/generic/pstricks/pst-news.sty
+ texmf-dist/doc/generic/pstricks/pst-news.tex
+ texmf-dist/doc/generic/pstricks/pst-news05.pdf
+ texmf-dist/doc/generic/pstricks/pst-news05.tex
+ texmf-dist/doc/generic/pstricks/pst-news06.pdf
+ texmf-dist/doc/generic/pstricks/pst-news06.tex
+ texmf-dist/doc/generic/pstricks/pst-news08.pdf
+ texmf-dist/doc/generic/pstricks/pst-news08.tex
+ texmf-dist/doc/generic/pstricks/pst-news09.pdf
+ texmf-dist/doc/generic/pstricks/pst-news09.tex
+ texmf-dist/doc/generic/pstricks/pst-news10.pdf
+ texmf-dist/doc/generic/pstricks/pst-news10.tex
+ texmf-dist/doc/generic/pstricks/pst-news11.pdf
+ texmf-dist/doc/generic/pstricks/pst-news11.tex
+ texmf-dist/doc/generic/pstricks/pst-news12.pdf
+ texmf-dist/doc/generic/pstricks/pst-news12.tex
+ texmf-dist/doc/generic/pstricks/pst-news13.pdf
+ texmf-dist/doc/generic/pstricks/pst-news13.tex
+ texmf-dist/doc/generic/pstricks/pst-news14.pdf
+ texmf-dist/doc/generic/pstricks/pst-news14.tex
+ texmf-dist/doc/generic/pstricks/pst-news15.pdf
+ texmf-dist/doc/generic/pstricks/pst-news15.tex
+ texmf-dist/doc/generic/pstricks/pst-news16.pdf
+ texmf-dist/doc/generic/pstricks/pst-news16.tex
+ texmf-dist/doc/generic/pstricks/pst-news17.pdf
+ texmf-dist/doc/generic/pstricks/pst-news17.tex
+ texmf-dist/doc/generic/pstricks/pst-news18.pdf
+ texmf-dist/doc/generic/pstricks/pst-news18.tex
+ texmf-dist/doc/generic/pstricks/pst-news19.pdf details="Latest news bulletin"
+ texmf-dist/doc/generic/pstricks/pst-news19.tex
+ texmf-dist/doc/generic/pstricks/pst-user.pdf details="Package documentation"
+ texmf-dist/doc/generic/pstricks/pst-user.tgz
+ texmf-dist/doc/generic/pstricks/pstricks-bug.tex
+ texmf-dist/doc/generic/pstricks/pstricks-doc.pdf
+ texmf-dist/doc/generic/pstricks/test-pst.pdf
+ texmf-dist/doc/generic/pstricks/test-pst.tex
+runfiles size=124
+ texmf-dist/dvips/pstricks/pst-algparser.pro
+ texmf-dist/dvips/pstricks/pst-dots.pro
+ texmf-dist/dvips/pstricks/pst-dots97.pro
+ texmf-dist/dvips/pstricks/pstricks-fonts-lm.pro
+ texmf-dist/dvips/pstricks/pstricks-fonts-ps.pro
+ texmf-dist/dvips/pstricks/pstricks-fonts-urw.pro
+ texmf-dist/dvips/pstricks/pstricks.pro
+ texmf-dist/dvips/pstricks/pstricks97.pro
+ texmf-dist/tex/generic/pstricks/config/README.cfg
+ texmf-dist/tex/generic/pstricks/config/distiller.cfg
+ texmf-dist/tex/generic/pstricks/config/dvips.cfg
+ texmf-dist/tex/generic/pstricks/config/dvipsone.cfg
+ texmf-dist/tex/generic/pstricks/config/gastex.cfg
+ texmf-dist/tex/generic/pstricks/config/textures.cfg
+ texmf-dist/tex/generic/pstricks/config/vtex.cfg
+ texmf-dist/tex/generic/pstricks/config/xdvipdfmx.cfg
+ texmf-dist/tex/generic/pstricks/pst-fp.tex
+ texmf-dist/tex/generic/pstricks/pst-key.tex
+ texmf-dist/tex/generic/pstricks/pstricks-tex.def
+ texmf-dist/tex/generic/pstricks/pstricks-xetex.def
+ texmf-dist/tex/generic/pstricks/pstricks.con
+ texmf-dist/tex/generic/pstricks/pstricks.tex
+ texmf-dist/tex/generic/pstricks/pstricks97.tex
+ texmf-dist/tex/latex/pstricks/pst-all.sty
+ texmf-dist/tex/latex/pstricks/pst-doc.cls
+ texmf-dist/tex/latex/pstricks/pst-key.sty
+ texmf-dist/tex/latex/pstricks/pst-platform.sty
+ texmf-dist/tex/latex/pstricks/pstcol.sty
+ texmf-dist/tex/latex/pstricks/pstricks-pdf.sty
+ texmf-dist/tex/latex/pstricks/pstricks.sty
+catalogue-alias pstricks
+catalogue-also pstricks-add
+catalogue-contact-home http://tug.org/PSTricks
+catalogue-contact-repository https://archiv.dante.de/~herbert/TeXnik/
+catalogue-contact-support http://tug.org/mailman/listinfo/pstricks
+catalogue-ctan /graphics/pstricks/base
+catalogue-license lppl1.3
+catalogue-topics graphics-in-tex colour pstricks dvips-special xetex
+catalogue-version 2.97
 
 name refcount
 category Package
@@ -10482,6 +11973,140 @@ catalogue-ctan /macros/latex/required/tools
 catalogue-license lppl1.3c
 catalogue-topics collection
 
+name translator
+category Package
+revision 54512
+shortdesc Easy translation of strings in LaTeX
+longdesc This LaTeX package provides a flexible mechanism for
+longdesc translating individual words into different languages. For
+longdesc example, it can be used to translate a word like "figure" into,
+longdesc say, the German word "Abbildung". Such a translation mechanism
+longdesc is useful when the author of some package would like to
+longdesc localize the package such that texts are correctly translated
+longdesc into the language preferred by the user. This package is not
+longdesc intended to be used to automatically translate more than a few
+longdesc words.
+containersize 25384
+containerchecksum 974a4cb1f13a1a3af2a3284d2401a790c198051241820a9d6a09f008bed730e9cfae9cd80bff5ea1eef4c3d37e8a267644634339653e0464ef5c3c449f612e32
+doccontainersize 210748
+doccontainerchecksum b822891841bc5ef7bcb1a60e1d71421d95c64c6ae6d3fa62776bc317e1dc02e1c3cf6d3993304af36b4d1c4d8af825092aa38313a15688c75751df372522755e
+docfiles size=57
+ texmf-dist/doc/latex/translator/README.md details="Readme"
+ texmf-dist/doc/latex/translator/translator.pdf details="Package documentation"
+ texmf-dist/doc/latex/translator/translator.tex
+runfiles size=111
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Bulgarian.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Catalan.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Croatian.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Danish.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-French.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-German.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Greek.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Italian.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Norsk.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Nynorsk.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Polish.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Portuguese.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Russian.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Serbian.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Spanish.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Swedish.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Turkish.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Bulgarian.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Catalan.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Croatian.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Danish.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-English.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-French.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-German.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Greek.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Italian.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Polish.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Portuguese.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Russian.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Serbian.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Spanish.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Swedish.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Turkish.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Bulgarian.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Catalan.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Croatian.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Danish.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-English.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-French.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-German.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Greek.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Italian.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Polish.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Portuguese.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Russian.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Serbian.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Spanish.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Swedish.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Turkish.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Bulgarian.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Catalan.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Croatian.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Danish.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-English.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-French.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-German.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Greek.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Italian.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Norsk.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Nynorsk.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Polish.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Portuguese.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Russian.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Serbian.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Spanish.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Swedish.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Turkish.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Bulgarian.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Catalan.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Croatian.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Danish.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-English.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-French.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-German.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Greek.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Italian.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Norsk.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Nynorsk.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Polish.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Portuguese.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Russian.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Serbian.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Spanish.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Swedish.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Turkish.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Bulgarian.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Catalan.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Croatian.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Danish.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-English.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-French.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-German.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Greek.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Italian.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Norsk.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Polish.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Portuguese.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Russian.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Serbian.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Spanish.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Swedish.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Turkish.dict
+ texmf-dist/tex/latex/translator/translator.sty
+catalogue-also translations
+catalogue-contact-bugs https://github.com/josephwright/translator/issues
+catalogue-contact-repository https://github.com/josephwright/translator
+catalogue-ctan /macros/latex/contrib/translator
+catalogue-license lppl gpl
+catalogue-topics multilingual package-supp
+catalogue-version 1.12a
+
 name ukrhyph
 category Package
 revision 21081
@@ -10699,6 +12324,46 @@ catalogue-ctan /macros/latex/contrib/wrapfig
 catalogue-license lppl
 catalogue-topics text-flow
 catalogue-version 3.6
+
+name xcolor
+category Package
+revision 41044
+shortdesc Driver-independent color extensions for LaTeX and pdfLaTeX
+longdesc The package starts from the basic facilities of the color
+longdesc package, and provides easy driver-independent access to several
+longdesc kinds of color tints, shades, tones, and mixes of arbitrary
+longdesc colors. It allows a user to select a document-wide target color
+longdesc model and offers complete tools for conversion between eight
+longdesc color models. Additionally, there is a command for alternating
+longdesc row colors plus repeated non-aligned material (like horizontal
+longdesc lines) in tables. Colors can be mixed like
+longdesc \color{red!30!green!40!blue}.
+containersize 17300
+containerchecksum 9fba18460e4488cf2836082952ffff6e5e481b964570ee515f503aed3c8790778e054919e4e24070ff6cf608e21c1356859341eae5704558b1293b01ba8c0925
+doccontainersize 669996
+doccontainerchecksum 65f15207df8a112a4bccbac1c5259053364b52da3f0d2fdf566e1e734f61e0649ae6cc674c96f775d8c668cc6238dad2993f06b81153d38713ebf96e747e0353
+docfiles size=211
+ texmf-dist/doc/latex/xcolor/ChangeLog
+ texmf-dist/doc/latex/xcolor/README details="Readme"
+ texmf-dist/doc/latex/xcolor/xcolor.lox
+ texmf-dist/doc/latex/xcolor/xcolor.pdf details="Package documentation"
+ texmf-dist/doc/latex/xcolor/xcolor1.tex
+ texmf-dist/doc/latex/xcolor/xcolor2.pdf details="Examples of usage with pstricks"
+ texmf-dist/doc/latex/xcolor/xcolor2.tex
+ texmf-dist/doc/latex/xcolor/xcolor3.tex
+ texmf-dist/doc/latex/xcolor/xcolor4.tex
+srccontainersize 76980
+srccontainerchecksum 236eb7d2f94c297e743c2b0508e55910b00495915b7910dba7e0bc107f2ee37b24e3975242bb11c2c64a99f2abc5a55bd799277b9fbcd98058ee8add005d2be7
+runfiles size=20
+ texmf-dist/dvips/xcolor/xcolor.pro
+ texmf-dist/tex/latex/xcolor/svgnam.def
+ texmf-dist/tex/latex/xcolor/x11nam.def
+ texmf-dist/tex/latex/xcolor/xcolor.sty
+catalogue-contact-home http://www.ukern.de/tex/xcolor.html
+catalogue-ctan /macros/latex/contrib/xcolor
+catalogue-license lppl1.2
+catalogue-topics colour
+catalogue-version 2.12
 
 name xdvi
 category TLCore

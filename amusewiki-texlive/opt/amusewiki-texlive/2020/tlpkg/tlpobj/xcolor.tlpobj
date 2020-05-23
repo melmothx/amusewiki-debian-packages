@@ -1,0 +1,39 @@
+name xcolor
+category Package
+revision 41044
+shortdesc Driver-independent color extensions for LaTeX and pdfLaTeX
+longdesc The package starts from the basic facilities of the color
+longdesc package, and provides easy driver-independent access to several
+longdesc kinds of color tints, shades, tones, and mixes of arbitrary
+longdesc colors. It allows a user to select a document-wide target color
+longdesc model and offers complete tools for conversion between eight
+longdesc color models. Additionally, there is a command for alternating
+longdesc row colors plus repeated non-aligned material (like horizontal
+longdesc lines) in tables. Colors can be mixed like
+longdesc \color{red!30!green!40!blue}.
+containersize 17300
+containerchecksum 9fba18460e4488cf2836082952ffff6e5e481b964570ee515f503aed3c8790778e054919e4e24070ff6cf608e21c1356859341eae5704558b1293b01ba8c0925
+doccontainersize 669996
+doccontainerchecksum 65f15207df8a112a4bccbac1c5259053364b52da3f0d2fdf566e1e734f61e0649ae6cc674c96f775d8c668cc6238dad2993f06b81153d38713ebf96e747e0353
+docfiles size=211
+ texmf-dist/doc/latex/xcolor/ChangeLog
+ texmf-dist/doc/latex/xcolor/README details="Readme"
+ texmf-dist/doc/latex/xcolor/xcolor.lox
+ texmf-dist/doc/latex/xcolor/xcolor.pdf details="Package documentation"
+ texmf-dist/doc/latex/xcolor/xcolor1.tex
+ texmf-dist/doc/latex/xcolor/xcolor2.pdf details="Examples of usage with pstricks"
+ texmf-dist/doc/latex/xcolor/xcolor2.tex
+ texmf-dist/doc/latex/xcolor/xcolor3.tex
+ texmf-dist/doc/latex/xcolor/xcolor4.tex
+srccontainersize 76980
+srccontainerchecksum 236eb7d2f94c297e743c2b0508e55910b00495915b7910dba7e0bc107f2ee37b24e3975242bb11c2c64a99f2abc5a55bd799277b9fbcd98058ee8add005d2be7
+runfiles size=20
+ texmf-dist/dvips/xcolor/xcolor.pro
+ texmf-dist/tex/latex/xcolor/svgnam.def
+ texmf-dist/tex/latex/xcolor/x11nam.def
+ texmf-dist/tex/latex/xcolor/xcolor.sty
+catalogue-contact-home http://www.ukern.de/tex/xcolor.html
+catalogue-ctan /macros/latex/contrib/xcolor
+catalogue-license lppl1.2
+catalogue-topics colour
+catalogue-version 2.12

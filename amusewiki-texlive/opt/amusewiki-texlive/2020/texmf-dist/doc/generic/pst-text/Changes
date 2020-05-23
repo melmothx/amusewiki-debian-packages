@@ -1,0 +1,20 @@
+pst-text.sty --------
+2018-12-28  - added version info for pro file
+2006-01-01
+
+
+pst-text.tex --------
+1.02  2018-12-28  - added \psCircleText for circled outline text
+1.01  2018-12-22  - added \psWarp for warping text
+1.00  2006-11-06  - integrate the pst-char stuff, which is
+                    now obsolete. (hv)
+
+
+pst-text.pro --------
+1.02  2018-12-28  - added \psCircleText for circled text
+1.01  2018-12-22  - added \psWarp for warping text
+1.00  2006-11-06  - add a patch for japanese text (hv)
+                  - first CTAN contrib version (hv)
+
+
+pst-text-doc.tex --------

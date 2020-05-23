@@ -1,0 +1,561 @@
+%% $Id: pst-text-doc.tex 887 2018-12-29 13:17:59Z herbert $
+\documentclass[fontsize=11pt,english,BCOR=10mm,DIV=12,bibliography=totoc,parskip=false,
+   headings=small, headinclude=false,footinclude=false,oneside,abstract=on]{pst-doc}
+\usepackage{pst-plot,pst-grad,pst-text}
+\let\pstTextFV\fileversion
+\usepackage{dtk-logos}
+
+
+\renewcommand\bgImage{%
+\begin{pspicture}(10,5)
+\psWarp[fillcolor=red!40,fontsize=0.5cm,font=Times-Roman]{Some Text manipulations}%
+\end{pspicture}%
+}
+
+\addbibresource{\jobname.bib}
+
+
+\begin{document}
+
+\title{\texttt{pst-text}}
+\subtitle{Manipulate text and characters; v.\pstTextFV}
+\author{Timothy Van Zandt\\Herbert Voß}
+\docauthor{Herbert Voß}
+\date{\today}
+\maketitle
+
+\tableofcontents
+
+\clearpage% 
+
+\begin{abstract}
+In general \PS does not know lines in the proper meaning of the word, but only
+paths\index{path} and those can have any arbitrary form. Along such paths
+arbitrary text may be arranged. The package
+\LPack{pst-text} supports the setting of text along a path
+and other character manipulations, where several characters 
+naturally result in a text again of course.
+
+It should be noted that the correct result is not guaranteed with every \Lprog{dvips} driver.
+This package was written for Rokicki's\index{Rokicki} 
+\Lprog{dvips} programme, which is practically part of every \TeX{}
+distribution.
+
+\vfill
+Thanks to: Lars Kotthoff, Geoff Mercer
+\end{abstract}
+
+\clearpage
+
+% ---------------------------------------------------------------------------------------
+\section{Text manipulations}\label{sec:psttext:Textmanipulationen}
+% ---------------------------------------------------------------------------------------
+The package \LPack{pst-text} defines only one macro for text manipulations.
+\begin{BDef}
+\Lcs{pstextpath}\OptArg{\Largr{x,y}}\Largb{Graphic object}\Largb{Text}
+\end{BDef}
+
+\begin{description}
+\item[\texttt{position}] specifies the alignment of the text referring to the path.
+\begin{description}
+\item[\texttt{l}] text starts at the beginning of the path (default).
+\item[\texttt{c}] text is aligned symmetrically to the middle of the path.
+\item[\texttt{r}] text ends at the end of the path.
+\end{description}
+As a basic principle it is to be kept in mind that when the text is longer 
+than the path this option has no effect since the path is filled with text 
+and any overflowing text disappears.
+\item[(x,y)] is an offset\index{offset} and denotes the values by which the
+	particular characters shall be translated in $x$ and $y$ direction 
+	relative to the path.
+	\verb+(x,y)+ have to be cartesian coordinates as the support for special
+	coordinates allowed by \PST is not
+	possible here. The dimensions of  $x$ and $y$ refer to the current scale. The default is
+	\verb+(0,\TPoffset)+, where \Ldim{TPoffset} is set to a length of \verb+-0.7ex+.
+\item[Graphic object] any arbitrary object which creates a path.
+\item[Text] the text to set, which may only consist of alphanumeric
+	characters. No macros are possible within the text, 
+	but the text may be put into a \Lcs{parbox}.
+\end{description}
+
+\PS does not reserve any space for the output, so that the current text
+is overwritten if corresponding white space has not been  provided by \TeX.
+This can be achieved with a vertical feed (\Lcs{vspace}) or with a \Lenv{pspicture} environment.
+
+\begin{minipage}{4.5cm}
+\begin{pspicture}(-2,-2.5)(2,2.5)
+\psset{linewidth=0.2pt}
+\pstextpath[c](0,0){\pscircle{2}}%
+	{\Large Now just text is written in a circle.}
+\end{pspicture}
+\end{minipage}\hfill%
+\begin{minipage}{\linewidth-4.5cm-1em}
+\begin{lstlisting}
+\begin{pspicture}(-2,-2.5)(2,2.5)
+\psset{linewidth=0.2pt}
+\pstextpath[c](0,0){\pscircle{2}}%
+	{\Large Now just text is written in a circle.}
+\end{pspicture}
+\end{lstlisting}
+\end{minipage}
+
+This first example shows the relatively easy use of the macro. If the path 
+is not required to be drawn the line style\index{line style} can be set to \Lkeyval{none}.
+The following example shows the use of the offset option. It is clear that
+every single character is translated, because the beginning and the end of the
+text stayed the same. Since the text was written in a circle, a positive
+specification for \verb+TPoffset+ causes a translation towards the centre of the circle.
+
+\medskip\noindent
+\begin{LTXexample}[width=4.5cm,pos=l]
+\begin{pspicture}(-2,-2.5)(2,2.5)
+\psset{linewidth=0.2pt}
+\pstextpath[c](0,2ex){\pscircle{2}}%
+	{\Large Now just text is written in a circle.}
+\end{pspicture}
+\end{LTXexample}
+
+% ---------------------------------------------------------------------------------------
+\subsection{Examples}
+% ---------------------------------------------------------------------------------------
+With \Lcs{pscustom} one is offered unlimited
+possibilities for paths. The following example uses the circle again, but
+forms an eight, which is composed of four circle parts to get a continuous path. In
+the second example a square has been appended to a circle. The starting point of the
+path is always the circle at $0$, here marked by $\Rightarrow$.
+
+
+\medskip\noindent
+\begin{LTXexample}[width=4cm,pos=l]
+\psset{unit=0.75,linestyle=none}
+\begin{pspicture}(-2,-4)(2,4)
+\pstextpath[l](0,0){%
+    \pscustom{
+        \psarcn(0,2){2}{0}{-90}
+        \psarc(0,-2){2}{90}{0}
+        \psarc(0,-2){2}{0}{90}
+        \psarcn(0,2){2}{-90}{0}
+    }%
+}{\large $\Rightarrow$Now we are writing some nonsense text which appears in
+   a large eight in the correct direction.}
+\end{pspicture}
+\end{LTXexample}
+
+\medskip\noindent
+It can be easily seen that in the above example the upper circle is larger than
+the lower. This is because the text is always written on the path, which faces
+towards the inner on the upper circle and towards the outer on the lower circle (or square)
+due to the
+change in direction.
+
+
+\medskip\noindent
+\begin{LTXexample}[width=4cm,pos=l]
+\begin{pspicture}(-2,-3.25)(2,3.25)
+\psset{linestyle=none}
+\pstextpath[l](0,0){%
+    \pscustom[unit=0.75]{
+        \psarcn(0,2){2}{0}{-90}
+        \pspolygon(0,0)(-1.7,0)(-1.7,-3.4)(1.7,-3.4)(1.7,0)(0,0)
+        \psarcn(0,2){2}{-90}{0}
+    }%
+}{\large $\Rightarrow$Jetzt wollen wir
+   einfach mal einen Text in einer 
+   ziemlich gro\ss en ACHT schreiben, 
+   aber richtig rum.}
+\end{pspicture}
+\end{LTXexample}
+
+\medskip\noindent
+The setting of the text along a path is very memory and calculation intensive on the
+\PS side, so that with longer texts some seconds may pass until the desired
+result appears even on faster computers. This is shown in the following example.  
+Note how the text is truncated as the path is too short to fit the entire text in.
+
+\medskip\noindent
+\begin{center}
+\begin{pspicture}(-3,-3)(3,3)
+\psset{linestyle=none}
+\pstextpath[l](0,0){%
+  \parametricplot[plotstyle=curve,%
+     plotpoints=500]{0}{3000}{%
+       /r {t 1000 div} def t sin r mul t cos r mul } 
+}{
+Du nimmst alles wahr, die Augen sind offen -
+Doch Du verstehst nichts, du bist zu betroffen -
+Die Angst bestimmt dein Handeln - 
+Es ist, als w\"urdest du dich verwandeln -
+Ein anderer Mensch scheint es sehr - 
+Bist du nun und es geht gar nichts mehr -
+Verzweifelt legst du dich nieder -
+Doch der Frieden, er kommt nicht wieder -
+Die Augen sind hellwach -
+Es beginnt doch erst die Nacht -
+Leicht d\"ammerst du in den Schlaf -
+und kommst dir vor, wie in einem Grab -
+Mit einem Mal bist du hellwach -
+Es ist, als h\"attest du dauernd gedacht, -
+Nun verstehst du alles, wie es war \ldots
+}
+\end{pspicture}
+\end{center}
+
+\begin{lstlisting}
+%\usepackage{pst-plot}
+
+\begin{pspicture}(-3,-3)(3,3)
+\psset{linestyle=none}
+\pstextpath[l](0,0){%
+  \parametricplot[plotstyle=curve,%
+     plotpoints=500]{0}{3000}{%
+       /r {t 1000 div} def t sin r mul t cos r mul } 
+}{
+Du nimmst alles wahr, die Augen sind offen -
+Doch Du verstehst nichts, du bist zu betroffen -
+Die Angst bestimmt dein Handeln - 
+Es ist, als w\"urdest du dich verwandeln -
+Ein anderer Mensch scheint es sehr - 
+Bist du nun und es geht gar nichts mehr -
+Verzweifelt legst du dich nieder -
+Doch der Frieden, er kommt nicht wieder -
+Die Augen sind hellwach -
+Es beginnt doch erst die Nacht -
+Leicht d\"ammerst du in den Schlaf -
+und kommst dir vor, wie in einem Grab -
+Mit einem Mal bist du hellwach -
+Es ist, als h\"attest du dauernd gedacht, -
+Nun verstehst du alles, wie es war \ldots
+}
+\end{pspicture}
+\end{lstlisting}
+
+
+
+
+\section{Character manipulations}\label{sec:psttext:Zeichenmanipulationen}
+% ---------------------------------------------------------------------------------------
+With character manipulations the same issue with the \verb+DVI-PS+ driver applies, 
+namely that the results are only guaranteed for Rokicki's\index{Rokicki} 
+\Lprog{dvips} programme.\index{outline font}
+
+% ---------------------------------------------------------------------------------------
+\subsection{\nxLcs{pscharpath}}\label{sec:psttext:pscharpath}
+% ---------------------------------------------------------------------------------------
+Although the macro \Lcs{pscharpath} has a name similar to \Lcs{pstextpath}, it has a 
+completely different meaning.
+%
+\begin{BDef}
+\Lcs{pscharpath}\OptArgs\Largb{Text}\\
+\Lcs{pscharpath*}\OptArgs\Largb{Text}
+\end{BDef}
+
+\begin{description}
+\item[Options] All \PST parameters, insofar as they make sense, may be
+	specified here.
+\item[Text] The text to set, which may only consist of alphanumeric
+	characters, therefore no macros are possible within the text.
+\end{description}
+
+Normally, one will define ones own font size, which is best  done with 
+\Lcs{DeclareFixedFont}, since this macro is very
+fast because it simply sets the size without having to look up any font tables.
+
+\medskip\noindent
+\begin{LTXexample}[width=6.5cm,pos=l]
+%\usepackage{pst-grad}
+\DeclareFixedFont{\RM}{T1}{ptm}{b}{n}{2cm}
+\pscharpath{\RM TeXnik}\\
+\pscharpath[linecolor=lightgray]{\RM TeXnik}\\
+\psset{fillstyle=gradient,gradbegin=red,gradend=cyan}
+\pscharpath[gradangle=90]{\RM TeXnik}\\
+\pscharpath[linestyle=none,gradangle=-90]{\RM TeXnik}
+\end{LTXexample}
+
+\medskip\noindent
+Normally the path, here the outer line of the characters, is deleted after the
+macro \Lcs{pscharpath} has ended. With the asterisk version it is preserved
+and can be used for other ``baubles''{}, for instance for \Lcs{pstextpath},
+where the saved path can be used as input for the text to set.
+
+
+\medskip\noindent
+\DeclareFixedFont{\SF}{T1}{phv}{b}{n}{2.45cm}
+\begin{center}
+\pstextpath(0,-1ex){\pscharpath*[linestyle=none]{\SF Herbert Vo\ss}}{
+\scriptsize Du nimmst alles wahr, die Augen sind offen -
+Doch Du verstehst nichts, du bist zu betroffen -
+Die Angst bestimmt dein Handeln - 
+Es ist, als w\"urdest du dich verwandeln -
+Ein anderer Mensch scheint es sehr - 
+Bist du nun und es geht gar nichts mehr -
+Verzweifelt legst du dich nieder -
+Doch der Frieden, er kommt nicht wieder -
+Die Augen sind hellwach -
+Es beginnt doch erst die Nacht -
+Leicht d\"mmerst du in den Schlaf -
+und kommst dir vor, wie in einem Grab -
+Mit einem Mal bist du hellwach -
+Es ist, als h\"ttest du dauernd gedacht, -
+Nun verstehst du alles, wie es war \ldots
+}
+\end{center}
+
+\begin{lstlisting}
+\DeclareFixedFont{\SF}{T1}{phv}{b}{n}{2.5cm}
+\pstextpath(0,-1ex){%
+  \pscharpath*[linestyle=none]{\SF Herbert Vo\ss}}{
+    \scriptsize < ... Text ... > 
+  }
+\end{lstlisting}
+
+% ---------------------------------------------------------------------------------------
+\subsection{\nxLcs{pscharclip}}\label{sec:psttext:pscharclip}
+% ---------------------------------------------------------------------------------------
+\Lcs{pscharclip} is practically identical to
+\Lcs{pscharpath} with the only difference being that it sets the clipping
+path\index{clipping path} to the current path.
+%
+\begin{BDef}
+\Lcs{pscharclip}\OptArgs\Largb{<text>} \%  TeX example\\
+\quad\ldots\\
+\Lcs{endpscharclip}\\
+\Lcs{pscharclip*}\OptArgs\Largb{<text>}\%  TeX example\\
+\quad\ldots\\
+\Lcs{endpscharclip}\\
+\LBEG{pscharclip}\OptArgs\Largb{<text>} \%  LaTeX example\\
+\quad\ldots\\
+\LEND{pscharclip}\\
+\LBEG{pscharclip*}\OptArgs\Largb{<text>}\%  LaTeX example\\
+\quad\ldots\\
+\LEND{pscharclip}
+\end{BDef}
+%
+Using this one can ``write''{} \emph{within} a font, whereas it is not really
+easy to get the ``base''{} congruent. How to deal with this best shall is shown
+in the following worked example. 
+
+The base is best formed as a \Lenv{minipage},
+thus enabling it to be moved to arbitrary spots. To have clear coordinates on one hand
+and only the interesting area shown on the other hand, one uses a
+\Lenv{pspicture*} environment. Let us presume that we use a
+font size of $3$cm and want to use the width of the whole page.
+%
+\begin{BDef}
+\LBEG{pspicture*}\Largr{\Ldim{linewidth},3cm}\\
+\quad\ldots\\
+\LEND{pspicture}
+\end{BDef}
+%
+The text can be set exactly into the centre with a \Lcs{rput} instruction.
+
+\DeclareFixedFont{\RM}{T1}{ptm}{b}{n}{3cm}
+\begin{pspicture*}[showgrid=true](\linewidth,3cm)
+  \begin{pscharclip}[linewidth=0.1pt]{%
+    \rput(0.5\linewidth,1.5){\RM PSTricks}}%
+  \end{pscharclip}
+\end{pspicture*}
+
+\begin{lstlisting}
+\DeclareFixedFont{\RM}{T1}{ptm}{b}{n}{3cm}
+\begin{pspicture*}[showgrid=true](\linewidth,3cm)
+  \begin{pscharclip}[linewidth=0.1pt]{%
+    \rput(0.5\linewidth,1.5){\RM PSTricks}}%
+  \end{pscharclip}
+\end{pspicture*}
+\end{lstlisting}
+
+\medskip
+The text ``lying below''{} the font is put into a \Lenv{minipage} of the
+width \Ldim{linewidth}. Since this text underlies the
+clipping path, it does not matter how long it really is, the essential thing is that the
+the whole area is covered. This is especially important when the text is further 
+manipulated such as rotated.  So one may view the following example with
+\verb+\begin{minipage}{\linewidth}+.
+
+\medskip
+\DeclareFixedFont{\Rm}{T1}{ptm}{m}{n}{2mm}
+\begin{pspicture*}[showgrid=true](\linewidth,3cm)
+  \rput{60}(0.5\linewidth,1.5){%
+    \begin{minipage}{0.6\linewidth}
+       \setstretch{0.5}
+       \color{red}
+       \multido{\i=1+1}{500}{\Rm PSTricks }
+    \end{minipage}%
+  }
+\end{pspicture*}
+
+
+\begin{lstlisting}
+\DeclareFixedFont{\Rm}{T1}{ptm}{m}{n}{2mm}
+\begin{pspicture*}[showgrid=true](\linewidth,3cm)
+  \rput{60}(0.5\linewidth,1.5){%
+    \begin{minipage}{0.6\linewidth}
+       \setstretch{0.5}
+       \color{red}
+       \multido{\i=1+1}{500}{\Rm PSTricks }
+    \end{minipage}%
+  }
+\end{pspicture*}
+\end{lstlisting}
+
+\medskip
+Both of these can be overlaid where, because of the clipping
+path,\index{clipping path} only the inner of the large letters seems transparent.
+In the second example the \Lenv{minipage} has been additionally rotated, the
+line colour was ignored and the line spacing within the \Lenv{minipage} was
+halved (package \LPack{setspace}).
+
+\medskip
+\begin{pspicture*}(\linewidth,3cm)
+  \begin{pscharclip}[linewidth=0.1pt]{%
+    \rput(0.5\linewidth,1.5){\RM PSTricks}}%
+  \rput{60}(0.5\linewidth,1.5){%
+    \begin{minipage}{0.6\linewidth}
+       \setstretch{0.5}
+       \color{red}
+       \multido{\i=1+1}{500}{\Rm PSTricks }
+    \end{minipage}%
+  }
+  \end{pscharclip}
+\end{pspicture*}
+
+\begin{pspicture*}(\linewidth,3cm)
+  \begin{pscharclip}[linewidth=0.1pt,linestyle=none]{%
+    \rput(0.5\linewidth,1.5){\RM PSTricks}}%
+    \rput{-60}(0.5\linewidth,1.5){%
+      \begin{minipage}{0.6\linewidth}
+         \setstretch{0.5}
+         \multido{\i=1+1}{500}{\Rm  PSTricks }
+      \end{minipage}%
+  }
+  \end{pscharclip}
+\end{pspicture*}
+
+
+\begin{lstlisting}
+\DeclareFixedFont{\RM}{T1}{ptm}{b}{n}{3cm}
+\DeclareFixedFont{\Rm}{T1}{ptm}{m}{n}{2mm}
+\begin{pspicture*}(\linewidth,3cm)
+  \begin{pscharclip}[linewidth=0.1pt]{%
+    \rput(0.5\linewidth,1.5){\RM PSTricks}}%
+  \rput{60}(0.5\linewidth,1.5){%
+    \begin{minipage}{0.6\linewidth}
+       \setstretch{0.5}
+       \color{red}
+       \multido{\i=1+1}{500}{\Rm PSTricks }
+    \end{minipage}%
+  }
+  \end{pscharclip}
+\end{pspicture*}
+
+\begin{pspicture*}(\linewidth,3cm)
+  \begin{pscharclip}[linewidth=0.1pt,linestyle=none]{%
+    \rput(0.5\linewidth,1.5){\RM PSTricks}}%
+    \rput{-60}(0.5\linewidth,1.5){%
+      \begin{minipage}{0.6\linewidth}
+         \setstretch{0.5}
+         \multido{\i=1+1}{500}{\Rm  PSTricks }
+      \end{minipage}%
+  }
+  \end{pscharclip}
+\end{pspicture*}
+\end{lstlisting}
+
+
+\medskip
+Generally it is not of interest what one bases \Lcs{pscharclip} on.  
+Using things sucha as a graphic can lead to some interesting possibilities. 
+It should be kept in mind that alternatively \Lcs{pscharpath} may be
+used in conjunction with \Lcs{psboxfill}.
+
+
+\section{Writing outline text on a circle}
+
+\begin{BDef}
+\Lcs{psCircleText}\OptArgs\OptArg{\Largr{x,y}}\Largb{Text}
+\end{BDef}
+
+Optional arguments are
+
+\begin{description}
+\item[\texttt{font}] Textfont, predefined as NimbusSanL-Regu. It must be a PostScript font.
+\item[\texttt{fontsize}] Predefined to 24pt
+\item[\texttt{fillcolor}] Predefined as red!40
+\item[\texttt{radius}] The radius for the circled text
+\end{description}
+
+
+\begin{pspicture}[showgrid](10,10)
+\psCircleText[fontsize=6.5mm,radius=4cm](5,5){All is Fun with the typesetting system TeX}%
+\psCircleText[fillcolor=blue!40,fontsize=1cm,font=Helvetica](5,5){All is Fun within the World}%
+\end{pspicture}
+
+
+\begin{lstlisting}
+\begin{pspicture}[showgrid](10,10)
+\psCircleText[fontsize=6.5mm,radius=4cm](5,5){All is Fun with the typesetting system TeX}%
+\psCircleText[fillcolor=blue!40,fontsize=1cm,font=Helvetica](5,5){All is Fun within the World}%
+\end{pspicture}
+\end{lstlisting}
+
+The radius is preset to 2cm:
+
+\begin{pspicture}(10,10)
+\psCircleText[fontsize=6.5mm,radius=4cm](5,5){All is Fun with the typesetting system TeX}%
+\psCircleText[fillcolor=blue!40,fontsize=1cm,font=Helvetica](5,5){All is Fun within the World}%
+\pscircle[linecolor=red](5,5){4cm}\pscircle[linecolor=blue](5,5){2cm}
+\end{pspicture}
+
+
+\begin{lstlisting}
+\begin{pspicture}(10,10)
+\psCircleText[fontsize=6.5mm,radius=4cm](5,5){All is Fun with the typesetting system TeX}%
+\psCircleText[fillcolor=blue!40,fontsize=1cm,font=Helvetica](5,5){All is Fun within the World}%
+\pscircle[linecolor=red](5,5){4cm}\pscircle[linecolor=blue](5,5){2cm}
+\end{pspicture}
+\end{lstlisting}
+
+
+
+\section{Warping a text}
+
+\begin{BDef}
+\Lcs{psWarp}\OptArgs\OptArg{\Largr{x,y}}\Largb{Text}
+\end{BDef}
+
+Optional arguments are
+
+\begin{description}
+\item[\texttt{font}] Textfont, predefined as NimbusSanL-Regu. It must be a PostScript font.
+\item[\texttt{fontsize}] Predefined to 24pt
+\item[\texttt{fillcolor}] Predefined as red!40
+\item[\texttt{doublecolor}] The fillcolor for the doubleline, predefined as blue
+\end{description}
+
+
+\begin{pspicture}(10,5)
+\psWarp[fillcolor=red!40,fontsize=0.5cm,font=Times-Roman]{All is Fun with the typesetting system LaTeX}%
+\psWarp[fillcolor=green,fontsize=12pt](0,2){What a wonderfull day, it is raining and
+  I do not know what to do...}%
+\end{pspicture}
+
+
+\begin{lstlisting}
+\begin{pspicture}(10,5)
+\psWarp[fillcolor=red!40,fontsize=0.5cm,font=Times-Roman]{All is Fun with the typesetting system LaTeX}%
+\psWarp[fillcolor=green,fontsize=12pt](0,2){What a wonderfull day, it is raining and
+  I do not know what to do...}%
+\end{pspicture}
+\end{lstlisting}
+
+
+\nocite{*}
+\bgroup
+\RaggedRight
+\printbibliography
+\egroup
+
+\printindex
+
+
+\end{document}

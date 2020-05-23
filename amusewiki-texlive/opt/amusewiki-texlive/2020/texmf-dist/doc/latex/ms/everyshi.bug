@@ -1,0 +1,11 @@
+This file is part of the everyshi package.
+------------------------------------------
+
+\ProvidesFile{everyshi.bug}[1999/06/08 v2.03 EveryShipout Package Bugs (MS)]
+
+This file contains problem-records and bug-reports. Unsolved problems
+and uncorrected but known bugs (so called features) start out with two
+exclamation marks before the number. Fixed problems will start with two
+asterisks.
+
+No bugs so far.

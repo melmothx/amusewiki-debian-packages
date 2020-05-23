@@ -1,0 +1,862 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{pst-news}
+%
+\begin{document}
+\title{\texttt{PSTricks -- 2008}\\ new macros and bugfixes for the
+basic packages \nxLFile{pstricks}, \nxLFile{pst-plot}, \nxLFile{pst-tree},\\ and \nxLFile{pst-node}}
+\author{Herbert Voß\thanks{%
+\url{Herbert.Voss@pstricks.de}; \newline thanks to Patrick Drechsler.}}
+\date{\today}
+
+\maketitle
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\part{\texttt{pstricks} -- package}
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.sty}}
+%--------------------------------------------------------------------------------------
+
+\subsection{Error messages}
+\begin{itemize}
+\item Loading the package \LPack{pstricks} by \LaTeX\ will now write a message
+into the file list of file version and date for the file \LFile{pstricks.pro}.
+\item A frequently done error is choosing a file name for the document, which is
+already a name of one PSTricks package, e.\,g. \LFile{pstricks.tex}. The \Index{error message} 
+in the log file was not really helpful. There is now an extended message
+(example for a dcoument file called \LFile{pstricks.tex}):
+{\small\begin{verbatim}
+! LaTeX Error: `pstricks.tex' is a forbidden name for your document,
+               it is already a name of a package.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 \documentclass
+                   {article}
+? H
+Choose another name for your document
+\end{verbatim}
+}
+\end{itemize}
+
+\subsection{Optional arguments}
+\LPack{pstricks} supports \Index{transparent colors} with Ghostscript's \LPS{.setopacityalpha},
+\LPS{.setblendmode}, and \LPS{.setshapealpha}. These functions are not known to
+\Index{V\TeX} or Adobes \Index{Distiller}. The optional argument \Loption{vtex} disables transparencies
+and \Loption{distiller} overrides the \Index{Ghostscript} functions with the ones from the \Index{Distiller}.
+
+
+
+\clearpage
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.tex} (\PSTfileversion -- \PSTfiledate)}
+%--------------------------------------------------------------------------------------
+
+\subsection{Makro \cs{psDEBUG}}
+\texttt{pstricks.tex} defines the option \texttt{PstDebug=0|1}, which can be used for 
+debugging. The new macro \cs{psDEBUG} makes it easier to write some debugging
+information into the package files. The macro is only valid, if \texttt{PstDebug=1}
+is set, otherwise the macro does nothing.
+
+\begin{verbatim}
+\psDEBUG[optional arg]{text}
+\end{verbatim}
+
+\cs{psDEBUG} writes the argument \texttt{text} into the log file.
+Without an optional argument the word \texttt{pstricks} is used. The following output 
+of the log file 
+
+\begin{lstlisting}
+...
+<key:xticksize>: setting ticksize to max
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 26.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 26.
+<pst@@hlabels>: xticksizeC=0.0pt
+...
+\end{lstlisting}
+
+was possible with \verb+\psset{PstDebug=1}+\footnote{Can also be used locally for a macro when used as optional argument
+in the usual way.} 
+and inside of \texttt{pstricks-add} with 
+(only the first for example):
+\begin{lstlisting}
+...
+  \psDEBUG[key:ticksize]{setting ticksize}
+...
+\end{lstlisting}
+
+
+
+\subsection{Option \texttt{shift}}
+The optional argument \Lkeyword{shift} can be used for a vertical alignment of the
+\Lenv{pspicture} box. With \Lkeyword{shift}=\Lkeyval{*}, instead of a value or a length
+it is possible to center the \Lenv{pspicture} box vertically to the baseline
+of the current line.
+
+\begin{LTXexample}[width=4cm]
+\usepackage{pstricks}
+\rule{5mm}{0.5pt}%
+\psframebox{%
+\begin{pspicture}[showgrid=true,
+    shift=*](-0.3,-0.4)(3.2,3.3)
+  \psarc[showpoints=true](1,1){2}{-45}{120} 
+\end{pspicture}}\rule{5mm}{0.5pt}
+\end{LTXexample}
+
+\subsection{Option \texttt{gridfont}}
+By default the \Index{grid label}s were printed always in \Index{Helvetica}. With the new keyword \Lkeyword{gridfont}
+one can define another \Index{PostScript Font}. Available are at least
+
+\medskip
+{\ttfamily\noindent
+\Lkeyval{Helvetica} (default) -- \Lkeyval{Helvetica-Narrow} -- \Lkeyval{Times-Roman} -- \Lkeyval{Courier} -- \Lkeyval{AvantGard} --\Lkeyval{NewCenturySchlbk} -- 
+\Lkeyval{Palatino-Roman} -- \Lkeyval{Bookman-Demi} -- \linebreak \Lkeyval{ZapfDingbats} -- \Lkeyval{Symbol}}
+
+\begin{LTXexample}[width=4cm]
+\usepackage{pstricks}
+\begin{pspicture}[showgrid=true](3,2)
+\end{pspicture}\\[20pt]
+\begin{pspicture}(3,2)
+  \psgrid[style=gridstyle,gridfont=AvantGard-Demi]
+\end{pspicture}\\[20pt]
+\begin{pspicture}(3,2)
+  \psgrid[style=gridstyle,gridfont=ZapfDingbats]
+\end{pspicture}
+\end{LTXexample}
+
+
+\clearpage
+\subsection{\texttt{linejoin}}
+Connecting lines can be done in several ways and is controlled on PS level
+by the \LPS{setlinejoin} command. With this version of PSTricks it is
+possible to controll this by an optional argument, called \Lkeyword{linejoin}.
+It is preset to 0 and can take values of 0,1,2. Other values will have
+no effect.
+
+\begin{LTXexample}[width=4cm]
+\psset{linewidth=3mm,unit=0.8}
+\begin{pspicture}[showgrid=true](3,2)
+  \psline(0,0)(1,2)(2,0)(3,2)
+\end{pspicture}\\[10pt]
+\begin{pspicture}[showgrid=true](4,2)
+  \psline[linejoin=1](0,0)(1,2)(2,0)(3,2)(4,0)%
+\end{pspicture}\\[10pt]
+\begin{pspicture}[showgrid=true](3,2)
+  \psline[linejoin=2](0,0)(1,2)(2,0)(3,2)%
+\end{pspicture}
+\end{LTXexample}
+
+\clearpage
+\subsection{\texttt{linecap}}
+The value of \Lkeyword{linecap} determines how the line ends are drawn:
+
+\begin{description}
+\item[0] lines are cut (default)
+\item[1] lines are ended by a filled semicircle of radius 0.5$\cdot$\Ldim{pslinewidth}
+\item[2] lines are ended by a filled half square of radius 0.5$\cdot$\Ldim{pslinewidth}
+\end{description}
+ 
+The following example shows that using \Lkeyword{linecap} for lines is the same
+than using the \Index{arrow} option.
+
+\begin{LTXexample}[width=4cm]
+\begin{pspicture}[showgrid=true](4,4)% 
+  \psset{linewidth=5mm}
+  \psline[arrows=C-C](0,3.75)(4,3.75)
+  \psline[linecap=2](0,3)(4,3)
+  \psline[arrows=c-c](0,2.25)(4,2.25)
+  \psline[linecap=1](0,1.5)(4,1.5)
+  \psline[arrows=-](0,0.75)(4,0.75)
+  \psline(4,0)
+\end{pspicture} 
+\end{LTXexample}
+
+Using this optional argument makes only sense in some special cases, because
+it is the same as the \Index{arrow type} \Lkeyval{c-c}. But the arrows are not part 
+of the \Index{current path} and \Index{filling} an \Index{open curve} with the \Lkeyword{linecap} option
+is different to a curve using the \Lkeyval{c-c} arrow.
+
+\begin{LTXexample}[width=3cm,wide]
+\psset{unit=5cm,linewidth=5mm}
+\begin{pspicture}(-0.2,-0.6)(0.2,0.5)% 
+\def\curve{\pscurve(-.1,.1)(-.15,.15)(0,.2)(.15,.15)(.1,.1)}
+\rput(0,.2){\psset{arrows=c-c}\curve}
+\rput(0,-.2){%
+  \psset{fillstyle=solid,fillcolor=red,arrows=c-c}
+  \curve}
+\rput(0,-.6){%
+  \psset{fillstyle=solid,fillcolor=red,linecap=1}
+  \curve}
+\end{pspicture} 
+\end{LTXexample}
+
+
+\clearpage
+\subsection{New arrowtype \texttt{D>} and \texttt{D>D>}}
+All arrows are drawn as polygons. The new arrow type \Lkeyval{D>} or \Lkeyval{<D} for the other way round,
+draws its lines as bezier curves, which looks nicer for big arrows.
+
+\begin{LTXexample}[width=4cm,wide]
+\psset{arrowscale=5}
+\begin{pspicture}(4,2) 
+\psline{<D<D-D>D>}(0,2)(4,2)
+\psline[arrows=<-D>,arrowlength=2](0,1)(4,1)
+\psline[arrowinset=0]{<D-D>}(0,0.25)(4,0.25)
+\end{pspicture} 
+\end{LTXexample}
+
+
+\clearpage
+\subsection{Fill style \texttt{penrose}}
+
+The valid optional arguments are \texttt{penrose}, \texttt{penrose*}, and \texttt{hatchcolor}.
+The star version is only seen, if there is a fillcolor or a background different to white. 
+
+\begin{LTXexample}[pos=t,wide]
+\begin{pspicture}(3,3) 
+\psframe[fillstyle=penrose](3,3)
+\end{pspicture} \qquad
+\begin{pspicture}(3,3) 
+\psframe[fillstyle=penrose,psscale=0.5](3,3)
+\end{pspicture} \qquad
+\begin{pspicture}(3,3) 
+\psccurve[fillstyle=penrose*,fillcolor=red!30,hatchcolor=blue](0,1.5)(1.5,3)(3,1.5)(1.5,0)
+\end{pspicture} 
+\end{LTXexample}
+
+
+\clearpage
+\subsection{Transparent colors}
+The package \LPack{pstricks-add} already defined a fillstyle for
+transparency colors by using the \Index{Ghostscript}'s \Index{blendmode}. 
+It now moves into the main \LPack{pstricks} package, together with
+another possibility for creating transparent colors.
+Transparency is only seen with the \Index{PDF} output (version 1.4 or greater), 
+as nearly all PostScript viewer cannot show transparencies. 
+
+Loading the \LPack{pstricks} package with the option \Loption{vtex}, disables
+the transparency effekts and everything works as before.
+
+\subsubsection{Options \texttt{strokeopacity} and \texttt{opacity}}
+For the existing fill style \Lkeyval{solid} the new option \Lkeyword{opacity} 
+can be used to get also transparent colors. It is predefined by 1 ($0\ldots1$), which
+is the old behaviour, no \Index{transpareny}. The option is valid only for PostScripts 
+fill commands. Lines and curves can be transparent with setting the option\index{transparent lines} 
+\Lkeyword{strokeopacity}, which can have a different value than the \Lkeyword{opacity} option.
+
+\begin{LTXexample}[width=4cm,wide]
+\begin{pspicture}[linewidth=1cm](4,4)
+  \psline[linecolor=red](0,0)(4,4)
+  \psline[linecolor=blue,strokeopacity=0.5](0,4)(4,0)
+  \psline[linecolor=green,strokeopacity=0.5](0,3.5)(4,3.5)
+  \psline[linecolor=yellow,strokeopacity=0.5](0,0.5)(4,0.5)
+\end{pspicture}
+\end{LTXexample}
+
+
+\begin{LTXexample}[width=4cm,wide]
+\begin{pspicture}[linewidth=1cm](4,4)
+\psline[linecolor=red](0,0)(4,4)
+\pscircle*[opacity=0.5](2,2){2}
+\psline[linecolor=blue,strokeopacity=0.6](0,4)(4,0)
+\end{pspicture}
+\end{LTXexample}
+
+
+\begin{LTXexample}[width=4cm,wide]
+\begin{pspicture}[linewidth=3mm](4,5.5)
+  \multido{\rA=0.0+0.5}{9}{%
+    \psline[linecolor=red!40](\rA,0)(\rA,5)}
+  \multido{\rA=0.0+0.5,\rB=0.0+0.1}{11}{%
+    \psline[arrows=<D-D>,linecolor=blue,
+      linewidth=5pt,arrowscale=1.5,
+       strokeopacity=\rB](0,\rA)(4,\rA)}
+\end{pspicture}
+\end{LTXexample}
+
+
+\begin{LTXexample}[width=5cm,wide]
+\begin{pspicture}(5,5)
+  \psset{fillstyle=solid}
+  \psframe[fillcolor=red](0,1)(3,4)
+  \psframe[fillcolor=blue,opacity=0.7](2,2)(5,5)
+  \psframe[fillcolor=green,opacity=0.7](1,0)(4,3)
+  \pscircle[fillcolor=cyan,
+    opacity=0.5](1.5,3.5){1.25}
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=5cm,wide]
+\begin{pspicture}(5,5)
+  \psset{fillstyle=solid}
+  \psframe[fillcolor=red](0,1)(3,4)
+  \psframe[fillcolor=blue,opacity=0.3](2,2)(5,5)
+  \psframe[fillcolor=green,opacity=0.3](1,0)(4,3)
+  \pscircle[fillcolor=cyan,
+    opacity=0.5](1.5,3.5){1.25}
+\end{pspicture}
+\end{LTXexample}
+
+
+\clearpage
+\subsubsection{Fill style \texttt{shape}}
+There is now one more \Index{fill style} for \Index{transparent colors}: \Lkeyword{shape} 
+with using the \Lkeyword{shapealpha} value and one of the possible blendmodes:
+\begin{verbatim}
+ /Normal     ->0
+ /Compatible ->1
+ /Screen     ->2
+ /Multiply   ->3
+\end{verbatim}
+
+
+The fill style \Lkeyval{solid}  uses
+\Index{Ghostscript}'s \LPS{.setopacityalpha} function
+and the new style \Lkeyval{shape} and the \Lkeyword{blendmode} together with \LPS{.setshapealpha}.
+\Lkeyword{shapealpha} is predefined 
+with 0.6 and both alpha values can be chosen from the range $0\le\alpha\le1$.
+
+\begin{pspicture}(5,5)% default blendmode
+  \psframe*[linecolor=red](0,1)(3,4)
+  \psframe[fillcolor=blue,fillstyle=shape](2,2)(5,5)
+  \psframe[fillcolor=green,fillstyle=shape](1,0)(4,3)
+  \pscircle[fillcolor=cyan,fillstyle=shape,
+    shapealpha=0.3](1.5,3.5){1.25}
+  \rput(1.5,3.5){\huge\textbf{0}}
+\end{pspicture}
+\hfill
+\begin{pspicture}(5,5)
+  \psset{blendmode=1}% type /Compatible
+  \psframe*[linecolor=red](0,1)(3,4)
+  \psframe[fillcolor=blue,fillstyle=shape](2,2)(5,5)
+  \psframe[fillcolor=green,fillstyle=shape](1,0)(4,3)
+  \pscircle[fillcolor=cyan,fillstyle=shape,
+    shapealpha=0.3](1.5,3.5){1.25}
+  \rput(1.5,3.5){\huge\textbf{1}}
+\end{pspicture}
+
+\begin{pspicture}(5,5)
+  \psset{blendmode=2}% type /Screen
+  \psframe*[linecolor=red](0,1)(3,4)
+  \psframe[fillcolor=blue,fillstyle=shape](2,2)(5,5)
+  \psframe[fillcolor=green,fillstyle=shape](1,0)(4,3)
+  \pscircle[fillcolor=cyan,fillstyle=shape,
+    shapealpha=0.3](1.5,3.5){1.25}
+  \rput(1.5,3.5){\huge\textbf{2}}
+\end{pspicture}
+\hfill
+\begin{pspicture}(5,5)
+  \psset{blendmode=3}% type /Multiply
+  \psframe*[linecolor=red](0,1)(3,4)
+  \psframe[fillcolor=blue,fillstyle=shape](2,2)(5,5)
+  \psframe[fillcolor=green,fillstyle=shape](1,0)(4,3)
+  \pscircle[fillcolor=cyan,fillstyle=shape,
+    shapealpha=0.3](1.5,3.5){1.25}
+  \rput(1.5,3.5){\huge\textbf{3}}
+\end{pspicture}
+
+\begin{lstlisting}
+\begin{pspicture}(5,5)% default blendmode
+  \psframe*[linecolor=red](0,1)(3,4)
+  \psframe[fillcolor=blue,fillstyle=shape](2,2)(5,5)
+  \psframe[fillcolor=green,fillstyle=shape](1,0)(4,3)
+  \pscircle[fillcolor=cyan,fillstyle=shape,
+    shapealpha=0.3](1.5,3.5){1.25}
+  \rput(1.5,3.5){\huge\textbf{0}}
+\end{pspicture}
+\hfill
+\begin{pspicture}(5,5)
+  \psset{blendmode=1}% type /Compatible
+  \psframe*[linecolor=red](0,1)(3,4)
+  \psframe[fillcolor=blue,fillstyle=shape](2,2)(5,5)
+  \psframe[fillcolor=green,fillstyle=shape](1,0)(4,3)
+  \pscircle[fillcolor=cyan,fillstyle=shape,
+    shapealpha=0.3](1.5,3.5){1.25}
+  \rput(1.5,3.5){\huge\textbf{1}}
+\end{pspicture}
+
+\begin{pspicture}(5,5)
+  \psset{blendmode=2}% type /Screen
+  \psframe*[linecolor=red](0,1)(3,4)
+  \psframe[fillcolor=blue,fillstyle=shape](2,2)(5,5)
+  \psframe[fillcolor=green,fillstyle=shape](1,0)(4,3)
+  \pscircle[fillcolor=cyan,fillstyle=shape,
+    shapealpha=0.3](1.5,3.5){1.25}
+  \rput(1.5,3.5){\huge\textbf{2}}
+\end{pspicture}
+\hfill
+\begin{pspicture}(5,5)
+  \psset{blendmode=3}% type /Multiply
+  \psframe*[linecolor=red](0,1)(3,4)
+  \psframe[fillcolor=blue,fillstyle=shape](2,2)(5,5)
+  \psframe[fillcolor=green,fillstyle=shape](1,0)(4,3)
+  \pscircle[fillcolor=cyan,fillstyle=shape,
+    shapealpha=0.3](1.5,3.5){1.25}
+  \rput(1.5,3.5){\huge\textbf{3}}
+\end{pspicture}
+\end{lstlisting}
+
+
+\iffalse
+\begin{LTXexample}[width=5cm,wide]
+\begin{pspicture}(5,5)
+  \psset{blendmode=4}% type /Hardlight
+  \psframe*[linecolor=red](0,1)(3,4)
+  \psframe[fillcolor=blue,fillstyle=shape](2,2)(5,5)
+  \psframe[fillcolor=green,fillstyle=shape](1,0)(4,3)
+  \pscircle[fillcolor=cyan,fillstyle=shape,
+    shapealpha=0.3](1.5,3.5){1.25}
+\end{pspicture}
+\end{LTXexample}
+
+\fi
+
+\clearpage
+
+\subsection{\nxLcs{addtopsstyle}}
+\begin{verbatim}
+\addtopsstyle{style-name}{settings}
+\end{verbatim}
+
+This macro allows to add some more settings to an existing \Index{style}.
+If the style is not defined, then \Lcs{addtopsstyle} behaves like the
+already defined \Lcs{newpsstyle} macro.
+
+\begin{LTXexample}[width=5cm,wide]
+\newpsstyle{Fiber}{linewidth=2pt}
+\begin{pspicture}(5,5)
+   \psline[style=Fiber](0,0)(5,1)
+   \addtopsstyle{Fiber}{linecolor=green}
+   \psline[style=Fiber](0,1)(5,2)
+   \addtopsstyle{Fiber}{linestyle=dotted}
+   \psline[style=Fiber](0,2)(5,3)
+   \addtopsstyle{Fiber}{}
+   \psline[style=Fiber](0,3)(5,4)
+   \addtopsstyle{Fibber}{linecolor=red}
+   \psline[style=Fibber](0,4)(5,5)
+\end{pspicture}
+\end{LTXexample}
+
+
+\clearpage
+
+\subsection{\nxLcs{pscircleOA}}
+\begin{verbatim}
+\pscircleOA[settings](xO,yO)(xA,yA)
+\end{verbatim}
+
+$(x_0, y_0)$ is the center  and $(x_A, y_A)$ a given point of the
+circle. The radius is calculated by \TeX.
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}[showgrid=true](-2,0)(8,8)
+\pscircleOA(6,4)(4,4)
+\pscircleOA[linecolor=blue](4,6)(4,4)
+\pscircleOA[linewidth=2pt,linecolor=yellow](3,5)(4,4)
+\pscircleOA*[opacity=0.3,linecolor=red](2,2)(4,4)
+\end{pspicture}
+\end{LTXexample}
+
+
+\subsection{\nxLcs{psTextFrame}}
+\begin{verbatim}
+\psTextFrame[settings](x1,y1)(x2,y2){Text}
+\end{verbatim}
+
+The \emph{Text} cannot have a linebreak. In case it is needed, put the \emph{Text}
+into a \Lenv{minipage} or \Lcs{parbox}, as seen in the following example. The
+\Lkeyword{ref}-option allows different placing and the \Lkeyword{rot}-option allows
+the \Index{rotating} of the \emph{Text}. The macro itself first uses the
+\Lcs{psframe} and the \Lcs{rput} macro with \Index{calculated coordinates}.
+
+  
+\begin{LTXexample}[pos=t]
+\begin{pspicture}[showgrid=true](0,-0.5)(10,10)
+ \psTextFrame[linecolor=lightgray,ref=l](0,0.5)(4,1.5){Hallo}
+ \psTextFrame[linecolor=blue](2,4)(4,7){\color{blue}Hallo}
+ \psTextFrame[linestyle=dashed](9,9)(10,10){\huge H}
+ \psTextFrame*[linecolor=red,linestyle=dashed](7,7)(9,9){\Huge H}  
+ \psTextFrame*[linecolor=red!40,ref=lB](7,4)(9,6){\Huge H}  
+ \psTextFrame*[linecolor=blue!40,ref=rt](7,1)(9,3){\Huge H}  
+ \psTextFrame[linestyle=dashed](4.5,0)(6.5,10){%
+  \parbox{2cm}{\centering Here comes some more text over several 
+	lines, which is also horizontally and vertically centered and 
+	written in a parbox.}}
+ \psTextFrame*[linecolor=cyan!20,rot=90](.5,2)(1.5,10){%
+  \parbox{8cm}{\centering Here comes some more text over several 
+	lines and rotated by 90 degrees.}}
+\end{pspicture}
+\end{LTXexample}
+
+\subsection{Special coordinates}
+
+Additionally to the existing \Index{!-operator} for \Index{PostScript} coordinates,
+there is new a \Index{*-operator}, which invokes the \Index{algebraic parser} before
+the coordinates are passed to the default !-operator. The syntax 
+is pretty easy: \verb=(<value> {f(x)})=. In the following example the
+predefined value of Pi\index{$\pi$} from \LFile{pstricks.pro} is used. The x value
+and the function must be enclosed
+in braces when they contain spaces, round braces or sybolic names, like \verb+Pi+ for the
+x value.
+
+\begin{LTXexample}[width=5cm,wide]
+\SpecialCoor
+\begin{pspicture}(0,-1)(5,1)
+  \psaxes{->}(0,0)(0,-1)(5,1)
+  \psline(0,0)(*{Pi} {sqrt(abs(cos(x)))})
+  \psline{<->}(*{Pi} {cos(x)})(*5 {sin(x)*cos(x)})
+\end{pspicture}
+\end{LTXexample}
+
+For a macro definition of the algebraic function the \verb+\string+ command
+has to be used, otherwise \TeX{} expects the math mode in the following
+example.
+
+\begin{LTXexample}[width=4cm,wide]
+\def\F{\string x^2 }
+\begin{pspicture}[showgrid=true](2,4)
+   \psline[linecolor=red](*1 {\F} )(*2 {\F} )
+\end{pspicture}
+\end{LTXexample}
+
+
+
+
+\subsection{Octogon-Symbol}
+
+An octogon symbol was added.
+\begin{verbatim}
+\newpsfontdotH{Octogon}[1 0 0 1 0 0]{PSTricksDotFont}{(f)}{(g)}
+\newpsfontdotH{BoldOctogon}[1 0 0 1 0 0]{PSTricksDotFont}{(F)}{(g)}
+\newpsfontdot{SolidOctogon}[1 0 0 1 0 0]{PSTricksDotFont}{(g)}
+\end{verbatim}
+
+\begin{LTXexample}[width=4cm,wide]
+\psset{dotscale=4}
+\begin{pspicture}[showgrid=true](4,4)
+\psdot[dotstyle=Octogon](1,1)
+\psdot[dotstyle=BoldOctogon](2,2)
+\psdot[dotstyle=SolidOctogon](3,3)
+\end{pspicture}
+\end{LTXexample}
+
+
+\subsection{Code changes}
+
+\begin{verbatim}
+% hv 2007-10-16 to fix the bug in pst-node with \\[name=...]
+\def\ps@ifnextchar#1#2#3{%
+  \let\reserved@d= #1%
+  \def\reserved@a{#2}\def\reserved@b{#3}%
+  \futurelet\@let@token\ps@ifnch}
+\def\ps@ifnch{%
+  \ifx\@let@token\reserved@d \let\reserved@b\reserved@a \fi
+  \reserved@b
+}
+\end{verbatim}
+
+
+
+
+%--------------------------------------------------------------------------------------
+\section{The PostScript header files}
+\subsection{\texttt{pstricks.pro}}
+%--------------------------------------------------------------------------------------
+
+\begin{verbatim}
+/Pyth2 {					% Pythagoras, xA yA xB yB
+  3 -1 roll 		% xA xB yB yA
+  sub			% xA xB yB-yA
+  3 1 roll 		% yB-yA xA xB
+  sub			% yB-yA xA-xB
+  Pyth } def
+\end{verbatim}
+
+This new PostScript function allows to calculate the distance
+between two points, given by their coordinates whereas the
+existing \LPS{/Pyth} does this for two values.
+
+\subsection{\texttt{pst-dots.pro}}
+\verb+pst-dots.pro+ ist the file which defines the so called softfont PSTRocksFontDot, which 
+collects all PSTricks symbols, which are not part of one of the standard PostScript fonts.
+The octogon symbol is defined as:
+\begin{verbatim}
+  /OctogonPath {
+    228 550 moveto 7 { -456 0 rlineto 45 rotate } repeat closepath
+  } def 
+  /SolidOctogon { OctogonPath fill                             } def
+  /Octogon {      OctogonPath .89 .89 scale OctogonPath eofill } def
+  /BoldOctogon {  OctogonPath .79 .79 scale OctogonPath eofill } def
+%
+\end{verbatim}
+
+
+\part{\texttt{pst-node} -- package}
+
+\section{\texttt{pst-node.tex} (\NODEfileversion -- \NODEfiledate)}
+
+\subsection{Bugfix for \texttt{psmatrix}}
+A long standing bug with \Lenv{psmatrix} and using the \Lkeyword{name} option is now fixed.
+The following works as expected:
+
+\begin{LTXexample}[width=2cm]
+\begin{psmatrix}[rowsep=5mm]
+[name=a]a\\
+[name=b]b\\[1cm]
+[name=c]c\\
+\end{psmatrix}
+\ncline{a}{b}
+\ncarc{a}{c}
+\end{LTXexample}
+
+An optional argument after \Lcs{\textbackslash} is now scanned in the correct way.
+
+
+\subsection{New option \texttt{pcRef}}
+There is a new option \Lkeyword{pcRef} for the \Lcs{ncangles} connection\index{node connection}. By default,
+the reference point for the \Lkeyword{armA} option is the border of the node. This makes
+it difficult to get horizontically aligned lines for different node images. 
+With \texttt{pcRef=true} the node center is the reference point and the connection is
+still drawn from the border of the node.
+
+The first three images show the default behaviour:
+
+\makebox[\linewidth]{%
+\begin{pspicture}(5,4)
+  \cnode(2.5,3.5){0.2}{A}
+  \cnode(0.5,1){0.2}{B1}
+  \cnode(1.5,1){0.4}{B2}
+  \cnode(2.6,1){0.6}{B3}
+  \cnode(4,1){0.8}{B4}
+  \psset{angleB=90,angleA=-90,armA=0.5cm}
+  \ncangles{A}{B1}
+  \ncangles{A}{B2}
+  \ncangles{A}{B3}
+  \ncangles{A}{B4}
+\end{pspicture}
+%
+\begin{pspicture}(5,4)
+  \cnode(2.5,3.5){0.4}{A}
+  \cnode(0.5,1){0.2}{B1}
+  \cnode(1.5,1){0.4}{B2}
+  \cnode(2.6,1){0.6}{B3}
+  \cnode(4,1){0.8}{B4}
+  \psset{angleB=90,angleA=-90,armA=0.5cm}
+  \ncangles{A}{B1}
+  \ncangles{A}{B2}
+  \ncangles{A}{B3}
+  \ncangles{A}{B4}
+\end{pspicture}
+%
+\begin{pspicture}(5,4)
+  \cnode(2.5,3.5){0.8}{A}
+  \cnode(0.5,1){0.2}{B1}
+  \cnode(1.5,1){0.4}{B2}
+  \cnode(2.6,1){0.6}{B3}
+  \cnode(4,1){0.8}{B4}
+  \psset{angleB=90,angleA=-90,armA=0.5cm}
+  \ncangles{A}{B1}
+  \ncangles{A}{B2}
+  \ncangles{A}{B3}
+  \ncangles{A}{B4}
+\end{pspicture}
+}
+
+The next three images display the influence of \texttt{pcRef=true}; the horizontal line
+for the three examples is on the same height:
+
+\makebox[\linewidth]{%
+\begin{pspicture}(5,4)
+  \cnode(2.5,3.5){0.2}{A}
+  \cnode(0.5,1){0.2}{B1}
+  \cnode(1.5,1){0.4}{B2}
+  \cnode(2.6,1){0.6}{B3}
+  \cnode(4,1){0.8}{B4}
+  \psset{angleB=90,angleA=-90,armA=1cm}
+  \ncangles[pcRef=true]{A}{B1}
+  \ncangles[pcRef=true]{A}{B2}
+  \ncangles[pcRef=true]{A}{B3}
+  \ncangles[pcRef=true]{A}{B4}
+\end{pspicture}
+%
+\begin{pspicture}(5,4)
+  \cnode(2.5,3.5){0.4}{A}
+  \cnode(0.5,1){0.2}{B1}
+  \cnode(1.5,1){0.4}{B2}
+  \cnode(2.6,1){0.6}{B3}
+  \cnode(4,1){0.8}{B4}
+  \psset{angleB=90,angleA=-90,armA=1cm}
+  \ncangles[pcRef=true]{A}{B1}
+  \ncangles[pcRef=true]{A}{B2}
+  \ncangles[pcRef=true]{A}{B3}
+  \ncangles[pcRef=true]{A}{B4}
+\end{pspicture}
+%
+\begin{pspicture}(5,4)
+  \cnode(2.5,3.5){0.8}{A}
+  \cnode(0.5,1){0.2}{B1}
+  \cnode(1.5,1){0.4}{B2}
+  \cnode(2.6,1){0.6}{B3}
+  \cnode(4,1){0.8}{B4}
+  \psset{angleB=90,angleA=-90,armA=1cm}
+  \ncangles[pcRef=true]{A}{B1}
+  \ncangles[pcRef=true]{A}{B2}
+  \ncangles[pcRef=true]{A}{B3}
+  \ncangles[pcRef=true]{A}{B4}
+\end{pspicture}
+}
+
+\begin{lstlisting}
+\begin{pspicture}(5,4)
+  \cnode(2.5,3.5){0.2}{A}
+  \cnode(0.5,1){0.2}{B1}
+  \cnode(1.5,1){0.4}{B2}
+  \cnode(2.6,1){0.6}{B3}
+  \cnode(4,1){0.8}{B4}
+  \psset{angleB=90,angleA=-90,armA=1cm}
+  \ncangles[pcRef=true]{A}{B1}
+  \ncangles[pcRef=true]{A}{B2}
+  \ncangles[pcRef=true]{A}{B3}
+  \ncangles[pcRef=true]{A}{B4}
+\end{pspicture}
+%
+\begin{pspicture}(5,4)
+  \cnode(2.5,3.5){0.4}{A}
+  \cnode(0.5,1){0.2}{B1}
+  \cnode(1.5,1){0.4}{B2}
+  \cnode(2.6,1){0.6}{B3}
+  \cnode(4,1){0.8}{B4}
+  \psset{angleB=90,angleA=-90,armA=1cm}
+  \ncangles[pcRef=true]{A}{B1}
+  \ncangles[pcRef=true]{A}{B2}
+  \ncangles[pcRef=true]{A}{B3}
+  \ncangles[pcRef=true]{A}{B4}
+\end{pspicture}
+%
+\begin{pspicture}(5,4)
+  \cnode(2.5,3.5){0.8}{A}
+  \cnode(0.5,1){0.2}{B1}
+  \cnode(1.5,1){0.4}{B2}
+  \cnode(2.6,1){0.6}{B3}
+  \cnode(4,1){0.8}{B4}
+  \psset{angleB=90,angleA=-90,armA=1cm}
+  \ncangles[pcRef=true]{A}{B1}
+  \ncangles[pcRef=true]{A}{B2}
+  \ncangles[pcRef=true]{A}{B3}
+  \ncangles[pcRef=true]{A}{B4}
+\end{pspicture}
+\end{lstlisting}
+
+\part{\texttt{pst-plot} -- package}
+
+\section{\texttt{pst-plot.tex} (\PLOTfileversion -- \PLOTfiledate)}
+
+\iffalse
+
+\subsection{Axes}
+The behaviour of the optional argument \Lkeyword{Dx} changed. Using
+negative values will now decrease the labels with the correct
+value of \Lkeyword{Dx}:
+ 
+\psset{xunit=1cm}
+\begin{LTXexample}[wide,width=6cm]
+\begin{pspicture}(-0.5,-1)(6,4)
+  \psaxes[Dy=-2, dy=1,
+    Ox=4000, Dx=-1000, dx=1.5]{->}(10,4)
+\end{pspicture}
+\end{LTXexample}
+
+\vspace{1cm}
+\begin{pspicture}(-0.5,-1)(10,3)
+  \psaxes[Dy=2, dy=1, Ox=4000, Dx=1000, dx=1.5]{->}(10,3)(0,0)
+  \rput(5,2){Positive values for Dx und Dy}
+\end{pspicture}
+
+\begin{pspicture}(-0.5,-1)(10,3)
+  \psaxes[Dy=-2, dy=1, Ox=4000, Dx=-1000, dx=1.5]{->}(10,3)(0,0)
+  \rput(5,2){Negative values for Dx und Dy}
+\end{pspicture}
+
+\begin{lstlisting}
+\begin{pspicture}(-0.5,-1)(10,3)
+  \psaxes[Dy=2, dy=1, Ox=4000, Dx=1000, dx=1.5]{->}(10,3)(0,0)
+  \rput(5,2){Positive values for Dx und Dy}
+\end{pspicture}
+
+\begin{pspicture}(-0.5,-1)(10,3)
+  \psaxes[Dy=-2, dy=1, Ox=4000, Dx=-1000, dx=1.5]{->}(10,3)(0,0)
+  \rput(5,2){Negative values for Dx und Dy}
+\end{pspicture}
+\end{lstlisting}
+%\clearpage
+
+\fi
+\subsection{New options \texttt{LineToXAxis} and \texttt{LineToYAxis}}
+
+  
+\psset{xunit=0.0333cm,yunit=2.5cm}
+\begin{pspicture}(0,-1)(400,1)
+  \psline{->}(0,0)(400,0)
+  \psline{->}(0,-1)(0,1)
+  \psplot[plotstyle=LineToXAxis,linestyle=dashed,plotpoints=50,
+	    linecolor=red!40,
+            showpoints=true,dotstyle=o,dotsize=0.2]{0}{360}{x sin}
+\end{pspicture}
+
+\begin{lstlisting}
+\psset{xunit=0.0333cm,yunit=2.5cm}
+\begin{pspicture}(0,-1)(400,1)
+  \psline{->}(0,0)(400,0)
+  \psline{->}(0,-1)(0,1)
+  \psplot[plotstyle=LineToXAxis,linestyle=dashed,plotpoints=50,
+	    linecolor=red!40,
+            showpoints=true,dotstyle=o,dotsize=0.2]{0}{360}{x sin}
+\end{pspicture}
+\end{lstlisting}
+
+
+
+\psset{xunit=0.0333cm,yunit=2.5cm}
+\begin{pspicture}(0,-1.2)(400,1.4)
+  \psline{->}(0,0)(390,0)
+  \psline{->}(0,-1.1)(0,1.2)
+  \psplot[plotstyle=LineToYAxis,linestyle=dashed,plotpoints=50,
+	    linecolor=blue!40,
+            showpoints=true]{0}{360}{x cos}
+\end{pspicture}
+
+\begin{lstlisting}
+\psset{xunit=0.0333cm,yunit=2.5cm}
+\begin{pspicture}(0,-1.2)(400,1.4)
+  \psline{->}(0,0)(390,0)
+  \psline{->}(0,-1.1)(0,1.2)
+  \psplot[plotstyle=LineToYAxis,linestyle=dashed,plotpoints=50,
+	    linecolor=blue!40,
+            showpoints=true]{0}{360}{x cos}
+\end{pspicture}
+\end{lstlisting}
+
+
+\part{\texttt{pst-tree} -- package}
+\section{\texttt{pst-tree.tex} (\TREEfileversion -- \TREEfiledate)}
+There was a bug with \texttt{style=...} due to a missing \Lcs{use\textat par} in
+\Lcs{pstree\textat ii}.
+
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{PSTricks}
+
+\printindex
+
+
+\end{document}

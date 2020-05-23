@@ -1,0 +1,142 @@
+% $Id: pst-platform.sty 446 2017-04-19 11:40:55Z herbert $
+%%
+%% This is file `pst-platform.sty',
+%%
+%%   Copyright (C) 2017  Herbert Voß <hvoss@tug.org>
+%%
+%% This package may be distributed under the terms of the LaTeX Project 
+%% Public License, as described in lppl.txt in the base LaTeX distribution.
+%% Either version 1.0 or, at your option, any later version.
+%%
+\ProvidesPackage{pst-platform}
+  [2017/03/17 v0.01  Testing for the operating system, patch for luatex]
+\RequirePackage{shellesc,pdftexcmds,catchfile,ifluatex}
+%%
+% The following code is from ifplatform.sty, it fixes a bug with lualatex
+%%
+\newif\ifshellescape
+\newif\ifwindows
+\newif\ifmacosx
+\newif\iflinux
+\newif\ifcygwin
+\newcommand\windowsname{Windows}
+\newcommand\notwindowsname{*NIX}
+\newcommand\linuxname{Linux}
+\newcommand\macosxname{Mac\,OS\,X}
+\newcommand\cygwinname{Cygwin}
+\newcommand\unknownplatform{[Unknown]}
+\edef\ip@file{\jobname.w18}
+\newif\if@ip@nix@
+\ifnum\pdf@shellescape=1\relax
+  \shellescapetrue
+\else
+  \ifluatex\else
+  \PackageWarningNoLine{ifplatform}{^^J \space\space\space
+    shell escape is disabled,
+    so I can only detect \@backslashchar ifwindows%
+  }
+  \fi
+\fi
+\def\ip@cantdecide{%
+  \PackageWarningNoLine{ifplatform}{^^J \space\space\space
+    I can't tell if this is Windows or *nix;
+    you appear to be both%
+  }%
+}
+\ifluatex
+  \csname\directlua{
+      if os.type == "unix" then
+        tex.sprint("@ip@nix@true")
+      elseif os.type == "windows" then
+        tex.sprint("windowstrue")
+      end
+    }\endcsname
+\else
+ \IfFileExists{nul:}{\@ip@nix@false}{\@ip@nix@true}
+ \IfFileExists{/dev/null}{\windowsfalse}{\windowstrue}
+ \edef\ip@windows@echo@test{echo \string# > "\ip@file"}
+ \def\ip@backupplan{%
+  \IfFileExists{\ip@file}{%
+    \PackageWarningNoLine{ifplatform}{^^J \space\space\space
+      Please delete the file "\ip@file" and try again%
+    }%
+    \ip@cantdecide
+  }{%
+    \ShellEscape{\ip@windows@echo@test}%
+    \IfFileExists{\ip@file}{%
+      \ShellEscape{del "\ip@file"}%
+      \windowstrue
+    }{%
+      \@ip@nix@true
+    }%
+  }%
+ }
+ \ifwindows
+  \if@ip@nix@
+    \PackageWarningNoLine{ifplatform}{^^J \space\space\space
+      I can't tell if this is Windows or *nix;
+      you appear to be neither%
+    }
+  \fi
+ \else
+  \if@ip@nix@\else
+    \ifshellescape
+      \ip@backupplan
+    \else
+      \ip@cantdecide
+    \fi
+  \fi
+ \fi
+ \fi
+ \def\ip@only@six#1#2#3#4#5#6#7\@nil{#1#2#3#4#5#6}
+ \if@ip@nix@
+ \ifshellescape
+  \ifwindows\else
+    \ShellEscape{uname -s > "\ip@file"}
+    \CatchFileDef\@tempa{\ip@file}{}
+    \ShellEscape{rm -- "\ip@file"}
+    \edef\@tempa{\expandafter\zap@space\@tempa\@empty}
+    \def\@tempb{Linux}
+    \ifx\@tempa\@tempb
+      \linuxtrue
+    \else
+      \def\@tempb{Darwin}
+      \ifx\@tempa\@tempb
+        \macosxtrue
+      \else
+        \def\@tempb{CYGWIN}
+        \edef\@tempc{\expandafter\ip@only@six\@tempa------\@nil}
+        \ifx\@tempb\@tempc
+          \cygwintrue
+        \else
+          \edef\unknownplatform{\@tempa}
+        \fi
+      \fi
+    \fi
+  \fi
+\fi\fi
+\edef\platformname{%
+  \ifwindows
+    \noexpand\windowsname
+  \else
+    \ifshellescape
+      \iflinux
+        \noexpand\linuxname
+      \else
+        \ifmacosx
+          \noexpand\macosxname
+        \else
+          \ifcygwin
+            \noexpand\cygwinname
+          \else
+            \noexpand\unknownplatform
+          \fi
+        \fi
+      \fi
+    \else
+      \noexpand\notwindowsname
+    \fi
+  \fi
+}
+%%
+%% End of file `pst-platform.sty'.

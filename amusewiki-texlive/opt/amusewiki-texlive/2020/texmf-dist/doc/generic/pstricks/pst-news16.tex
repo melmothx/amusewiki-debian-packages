@@ -1,0 +1,105 @@
+%% $Id: pst-news16.tex 446 2017-04-19 11:40:55Z herbert $
+\documentclass[11pt,english,BCOR=10mm,DIV=12,bibliography=totoc,parskip=false,headings=small,
+    headinclude=false,footinclude=false,twoside]{pst-doc}
+\listfiles
+\let\Lfile\LFile
+\usepackage[utf8]{inputenc}
+\let\pstricksFV\fileversion
+\let\pstricksFD\filedate
+\usepackage{pst-node}
+\let\pstnodeFV\fileversion
+\let\pstnodeFD\filedate
+\usepackage{pst-plot}
+\usepackage{pst-solides3d}
+\usepackage{pst-node}
+\usepackage{pstricks-add}
+\usepackage{xkvview}
+\renewcommand\bgImage{\psscalebox{15}{\color{blue!20}\the\year}}
+\def\textat{\char064}
+\lstset{explpreset={pos=l,width=-99pt,overhang=0pt,hsep=\columnsep,vsep=\bigskipamount,rframe={}},
+    escapechar=?}
+
+\addbibresource{PSTricks.bib}
+
+\begin{document}
+
+%\psset{PstDebug=1}
+\title{\texttt{News -- 2016}\\ \Large new macros and bugfixes for the
+basic package \nxLFile{pstricks}}
+\author{Herbert Voß}
+\date{\today}
+
+\maketitle
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\part{\texttt{pstricks} -- package}
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.sty} -- \texttt{pstricks-pdf.sty}}
+%--------------------------------------------------------------------------------------
+ 
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.tex} (\pstricksFV -- \pstricksFD)}
+%--------------------------------------------------------------------------------------
+\subsection{refangle}
+
+This version fixes a bug with \verb|pst@refangle| which is used inside PostScript.
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}(-1,-1)(10,3.5)
+\psparametricplot[algebraic]{0}{9}{t^2/9 | sin(t)+1}%
+\pscurvepoints{0}{9}{(t^2)/9 | sin(t)+1}{P}%
+\pspolylineticks[metricInitValue=1,ticksize=-2pt 2pt,Os=1,Ds=.2]{P}{ ds }{1}{56}%
+\pspolylineticks[metricInitValue=1,Os=1,Ds=2]{P}{ ds }{0}{6}%
+\multido{\iA=1+1,\iB=3+2}{5}{\Put{6pt;(PNormal\iA)}(PTick\iA){\tiny \iB}}
+\end{pspicture}
+\end{LTXexample}
+
+\begin{sloppypar}
+There is a new optional argument \Lkeyword{draft} which has the same meaning as
+the one for \Lcs{includegraphics}. The PSTricks image is not drawn, only the 
+area of the \Lenv{pspicture}  coordinates is seen by a rectangle (only for \LaTeX).
+\end{sloppypar}
+
+\begin{LTXexample}[pos=t]
+\psset{draft}
+\begin{pspicture}(-1,-1)(10,3.5)
+\psparametricplot[algebraic]{0}{9}{t^2/9 | sin(t)+1}%
+\pscurvepoints{0}{9}{(t^2)/9 | sin(t)+1}{P}%
+\pspolylineticks[metricInitValue=1,ticksize=-2pt 2pt,Os=1,Ds=.2]{P}{ ds }{1}{56}%
+\pspolylineticks[metricInitValue=1,Os=1,Ds=2]{P}{ ds }{0}{6}%
+\multido{\iA=1+1,\iB=3+2}{5}{\Put{6pt;(PNormal\iA)}(PTick\iA){\tiny \iB}}
+\end{pspicture}
+\end{LTXexample}
+
+
+\subsection{\Lcs{newpsstyle}}
+
+The command \Lcs{newpsstyle} has a new syntax:
+
+\begin{BDef}
+\Lcs{newpssytle}\OptArg{package name}\Largb{name}\Largb{definitions}
+\end{BDef}
+
+For example
+
+\begin{verbatim}
+\newpsstyle[pst-shell]{Epiteonium}{D=1,A=9.5,alpha=85.9,beta=9,mu=0,Omega=0,
+  phi=81,a=2.1,b=1.6,L=1.3,P=-60,W1=200,W2=20,N=8.3}
+\end{verbatim}
+
+
+\clearpage
+\nocite{*}
+%\bibliographystyle{plain}
+\printbibliography
+
+\printindex
+
+
+\end{document}
+
+

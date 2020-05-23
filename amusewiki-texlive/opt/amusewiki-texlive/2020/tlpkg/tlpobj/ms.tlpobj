@@ -1,0 +1,37 @@
+name ms
+category Package
+revision 51784
+shortdesc Various LaTeX packages by Martin Schroder
+longdesc A bundle of LaTeX packages by Martin Schroder; the collection
+longdesc comprises: count1to, make use of TeX counters; everysel, set
+longdesc commands to execute every time a font is selected; everyshi,
+longdesc set commands to execute whenever a page is shipped out;
+longdesc multitoc, typeset the table of contents in multiple columns;
+longdesc and prelim2e, mark typeset pages as preliminary. ragged2e,
+longdesc which used to be part of this bundle, has become an independent
+longdesc package.
+containersize 4576
+containerchecksum 883832298e0135980808249f5af0b28e3dad7941f401e3ac031cd558b9c6b895bde1f5dc459de9f4c5f6ae41d6a6aac08137be09f9a91b26761399868ac7457a
+doccontainersize 1516220
+doccontainerchecksum adc189823e89d6cd90369497dc4468b72a36af808eb2c8d6738b3a00082335f139ecc54ad6b601a027b6961890b5bb6975e46d1de26a1e0ac7dfc9e8766fa6f1
+docfiles size=434
+ texmf-dist/doc/latex/ms/count1to.pdf
+ texmf-dist/doc/latex/ms/everysel.pdf
+ texmf-dist/doc/latex/ms/everyshi.asc
+ texmf-dist/doc/latex/ms/everyshi.bug
+ texmf-dist/doc/latex/ms/everyshi.pdf
+ texmf-dist/doc/latex/ms/multitoc.asc
+ texmf-dist/doc/latex/ms/multitoc.bug
+ texmf-dist/doc/latex/ms/multitoc.pdf
+ texmf-dist/doc/latex/ms/prelim2e.pdf
+srccontainersize 18728
+srccontainerchecksum 41bdc589f6553ca981a7f0e7340f4e1163396a12acb1b7210fb5e9efc83924961d0e04f8ae1aa10b0db3266f63d4cdfa4f52d59f7624c321dfe0bda53ec6776e
+runfiles size=9
+ texmf-dist/tex/latex/ms/count1to.sty
+ texmf-dist/tex/latex/ms/everysel.sty
+ texmf-dist/tex/latex/ms/everyshi.sty
+ texmf-dist/tex/latex/ms/multitoc.sty
+ texmf-dist/tex/latex/ms/prelim2e.sty
+catalogue-ctan /macros/latex/contrib/ms
+catalogue-license lppl
+catalogue-topics collection
