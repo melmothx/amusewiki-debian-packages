@@ -857,6 +857,7 @@ bigfoot
 bigintcalc
 bitset
 bookmark
+chngcntr
 enumitem
 epstopdf-pkg
 etexcmds
@@ -1214,6 +1215,11 @@ README.md
 ./doc/latex/bookmark:
 bookmark-example.tex
 bookmark.pdf
+README.md
+
+./doc/latex/chngcntr:
+chngcntr.pdf
+chngcntr.tex
 README.md
 
 ./doc/latex/enumitem:
@@ -9047,6 +9053,7 @@ base
 beamer
 bigfoot
 bookmark
+chngcntr
 enumitem
 epstopdf-pkg
 etex-pkg
@@ -9438,6 +9445,9 @@ bkm-pdftex.def
 bkm-textures.def
 bkm-vtex.def
 bookmark.sty
+
+./tex/latex/chngcntr:
+chngcntr.sty
 
 ./tex/latex/enumitem:
 enumitem.sty

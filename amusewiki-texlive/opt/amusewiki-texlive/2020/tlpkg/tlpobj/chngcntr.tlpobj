@@ -1,0 +1,21 @@
+name chngcntr
+category Package
+revision 47577
+shortdesc Change the resetting of counters
+longdesc Defines commands \counterwithin (which sets up a counter to be
+longdesc reset when another is incremented) and \counterwithout (which
+longdesc unsets such a relationship).
+containersize 2048
+containerchecksum 0fc94f91911c623578912ed43526d18f85a003f797e94ef5610aab8477154078efae7000256892cc3d3103843ac8065c27d56a10c6f57c16d9ff13693930b0b0
+doccontainersize 234200
+doccontainerchecksum 3b63e4676232c05516bb12c189873e4af39b8b34df2690c897c4733203c9f19a30759850979c47b05e5fea0bd1c277a5c1ea0624709cda6a3a4ab0196231afb9
+docfiles size=59
+ texmf-dist/doc/latex/chngcntr/README.md
+ texmf-dist/doc/latex/chngcntr/chngcntr.pdf details="Package documentation"
+ texmf-dist/doc/latex/chngcntr/chngcntr.tex
+runfiles size=2
+ texmf-dist/tex/latex/chngcntr/chngcntr.sty
+catalogue-ctan /macros/latex/contrib/chngcntr
+catalogue-license lppl
+catalogue-topics macro-supp counter-mgmt
+catalogue-version 1.1a
