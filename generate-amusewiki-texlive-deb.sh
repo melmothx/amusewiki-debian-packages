@@ -11,6 +11,7 @@ set -e
 # and should work.
 
 basedir=`pwd`
+build=${BUILD:-1}
 
 if [ "$1" = "bootstrap" ]; then
     rm -rf amusewiki-texlive/opt
@@ -34,7 +35,7 @@ version=`date +%Y%m%d`
 cat <<EOF> DEBIAN/control
 Package: amusewiki-texlive
 Source: amusewiki-texlive
-Version: $version-1
+Version: $version-$build
 Architecture: amd64
 Maintainer: Marco Pessotto <marco@pessotto.hr>
 Installed-Size: $size
@@ -52,4 +53,4 @@ EOF
 cd $basedir
 dpkg-deb --root-owner-group --build \
          $basedir/amusewiki-texlive \
-         amusewiki-texlive_$version-1_amd64.deb
+         amusewiki-texlive_$version-${build}_amd64.deb
