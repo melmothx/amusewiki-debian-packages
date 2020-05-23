@@ -9107,3 +9107,14 @@
 (cmd)mktexlsr: Done.
 --end of output of mktexlsr.
 
+[Sat May 23 11:24:25 2020] install: bidi
+[Sat May 23 11:24:25 2020] install: zref
+[Sat May 23 11:24:25 2020] running mktexlsr
+[Sat May 23 11:24:25 2020] success, output:
+(cmd)mktexlsr: Updating /home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2020/texmf-config/ls-R... 
+(cmd)mktexlsr: Updating /home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2020/texmf-dist/ls-R... 
+(cmd)mktexlsr: Updating /home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2020/texmf-var/ls-R... 
+(cmd)mktexlsr: Updating /home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/texmf-local/ls-R... 
+(cmd)mktexlsr: Done.
+--end of output of mktexlsr.
+
