@@ -1,0 +1,103 @@
+Chào mừng bạn đến với TeX Live
+
+   Bộ  phân phối phần mềm TeX Live giúp cài đặt hoàn chỉnh TeX và các
+   công cụ liên quan để dùng trên các máy GNU, Unix, Macintosh, Windows
+   hay các kiến trúc máy tính khác. Các phần mềm đi kèm giúp soạn thảo,
+   sắp chữ, xem thử hay in ấn tài liệu TeX, hỗ trợ nhiều ngôn ngữ và
+   tập hợp rất nhiều thư viện phông chữ, mẫu macro.
+
+   Bộ phân phối TeX Live cũng gồm rất nhiều tài liệu tổng quan về TeX
+   và về các gói phần mềm đi kèm.
+
+   Để xem thông tin về giấy phép và bản quyền, hãy đọc trong các tập tin
+   [1]LICENSE.TL và [2]LICENSE.CTAN.
+
+  Bắt đầu từ đâu
+
+   Chúng tôi đề nghị bạn đọc tài liệu TeX Live Guide trước khi bắt đầu
+   cài đặt. Tài liệu đó mô tả từng bước cài đặt, cấu trúc thư mục, v.v...
+
+   Khi cài đặt từ DVD, bạn có thể tìm thấy hướng dẫn (TeX Live Guide)
+   phiên bản tiếng Anh và các bản dịch trong thư mục con [3]texlive-doc.
+
+   Sau khi cài đặt, phiên bản tiếng Anh của tài liệu hướng dẫn được
+   chép vào thư mục [4]texmf-dist/doc/texlive/ (bao gồm hai định dạng
+   [5]html và [6]pdf). Các bản dịch của tài liệu có trong thư mục
+   [7]texmf-dist/doc/texlive.
+
+   Chúng tôi cũng [8]liệt kê các liên kết tới bản PDF hay HTML
+   của tài liệu của các gói và chương trình liên quan.
+
+   Các liên kết vừa đề cập không phù hợp khi cài đặt TeX Live từ mạng.
+   Để thay thế, hãy tham khảo [9]tài liệu trên mạng.
+
+   Để xem các thay đổi quan trọng của bộ phân phối TeX Live trong năm,
+   hãy xem phần Release ở cuối của tài liệu hướng dẫn.
+
+  Cài đặt
+
+   Tập tin kịch bản cài đặt là install-tl nằm ở thư mục gốc của TeXLive.
+   Bạn có thể chạy nó bằng lệnh perl install-tl. Nhưng trên máy Windows,
+   bạn chạy lệnh install-tl-windows.bat, còn trên máy Macs, bạn có thể cài
+   đặt TeXLive thông qua trình cài đặt viết riêng cho Macs có trong bộ
+   [10]MacTeX (cũng có trong đĩa DVD, cạnh thư mục texlive/ nơi bạn thấy
+   tập tin này.)
+
+   install-tl có thể chạy ở một trong hai chế độ:
+
+   -gui (mặc định trên Windows và Mac) với giao diện đồ họa giúp đơn giản
+          hóa quá trình cài đặt, nhưng vẫn có tùy chọn để điều chỉnh bộ
+          cài đặt cho phù hợp nhu cầu của bạn.
+
+   -no-gui (mặc định trên các hệ thống khác) hay chế độ dòng lệnh tối giản,
+          giúp điều chỉnh tối đa cài đặt.
+
+   Một số cấu hình và cập nhật gói được thiết lập ở bước sau cùng của
+   quá trình cài đặt, nhờ chương trình tlmgr (TeX Live Package Manager,
+   hay chương trình quản lý TeX Live). Chương trình này cũng có thể
+   chạy ở chế độ đồ họa hoặc dòng lệnh.
+
+   Chương trình [11]install-tl và [12]tlmgr đều in ra các hướng dẫn khi
+   được dùng với tùy chọn --help. Xem các liên kết đã dẫn ở trên để có
+   thêm chi tiết.
+
+  Liên kết
+
+   Cuối cùng, chúng tôi giới thiệu với các bạn vài trang web liên quan
+   (nhưng không phải là một phần của TeX Live):
+
+     * [13]tug.org/begin.html - dành cho người mới làm quen với TeX hay
+       muốn tiếp cận các tài liệu giới thiệu.
+     * [14]tug.org/interest.html - liệt kê các tài nguyên về TeX trên mạng,
+       bao gồm tài liệu, hệ thống, gói, phông chữ, và nhiều thứ khác.
+     * [15]tug.org/ctan.html - điểm bắt đầu của kho CTAN (Comprehensive TeX
+       Archive Network) gồm mọi thứ về TeX.
+     * [16]tug.org/usergroups.html - danh sách các nhóm người dùng TeX
+       trên thế giới cùng địa chỉ liên hệ. Chúng tôi khuyến khích bạn tham
+       gia các nhóm địa phương để hỗ trợ TeX Live và các hoạt động liên quan
+       đến TeX.
+
+    Happy TeXing!
+     __________________________________________________________________
+
+   [17]Trang chủ TeX Live.
+
+Tham khảo
+
+   1. file:../LICENSE.TL
+   2. file:../LICENSE.CTAN
+   3. file:../texlive-doc
+   4. file:../texmf-dist/doc/texlive/texlive-en
+   5. file:../texmf-dist/doc/texlive/texlive-en/texlive-en.html
+   6. file:../texmf-dist/doc/texlive/texlive-en/texlive-en.pdf
+   7. file:../texmf-dist/doc/texlive/
+   8. file:../doc.html
+   9. https://tug.org/texlive/doc.html
+  10. https://tug.org/mactex/
+  11. https://tug.org/texlive/doc/install-tl.html
+  12. https://tug.org/texlive/tlmgr.html
+  13. https://tug.org/begin.html
+  14. https://tug.org/interest.html
+  15. https://tug.org/ctan.html
+  16. https://tug.org/usergroups.html
+  17. https://tug.org/texlive/

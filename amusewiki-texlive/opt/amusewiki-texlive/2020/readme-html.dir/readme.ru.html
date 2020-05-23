@@ -1,0 +1,122 @@
+<html><head>
+<!-- $Id: readme.en.html 53450 2020-01-18 22:26:17Z karl $ -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TeX Live</title></head> 
+ 
+ 
+ 
+ 
+<body>
+
+<h2>Добро пожаловать в систему TeX Live</h2>
+
+<p>Дистрибутив <strong>TeX Live</strong> предлагает полную систему TeX
+для ряда платформ, включая варианты GNU, UNIX, MacOSX, Windows.  В
+него входят программы для редактирования, вёрстки, просмотра и печати
+документов в TeXе на многих языках, а также большая коллекция макросов
+и библиотек шрифтов.
+
+<p>В дистрибутив также входит обширная общая документация о TeXе и
+документация о программах, включённых в дистрибутив. 
+
+<p>Лицензия на программы и документы содержится в файлах: <a
+href="../LICENSE.TL">LICENSE.TL</a>
+и <a
+href="../LICENSE.CTAN">LICENSE.CTAN</a>.
+
+
+<h3>С чего начать</h3>
+
+<p>Мы настоятельно рекомендуем вам прочесть  руководство TeX Live
+Guide до начала установки.  Оно включат описание структуры директорий,
+описание установки и многое другое.
+
+<p>Если вы устанавливаете с DVD, английская версия руководства
+ пользователя и переводы на другие языки находится в
+ директории  <a href="../texlive-doc">texlive-doc</a>.
+
+
+<p>После установки системы английская версия руководства находится в в
+директории <a href="../texmf-dist/doc/texlive/texlive-en">texmf-dist/doc/texlive/texlive-en</a>
+в форматах <a
+<a href="../texmf-dist/doc/texlive/texlive-en/texlive-en.html">html</a>
+и <a href="../texmf-dist/doc/texlive/texlive-en/texlive-en.pdf">pdf</a>
+Переводы на другие языки находятся в
+директориях <a href="../texmf-dist/doc/texlive">texmf-dist/doc/texlive</a>.  В
+частности, русский перевод находится в
+директории <a href="../texmf-dist/doc/texlive/texlive-ru">texmf-dist/doc/texlive/texlive-ru</a>.
+
+<p>Мы также включили список <a href="../doc.html">ссылок на
+документацию в форматах PDF и HTML</a> к имеющимся пакетам и
+программам.
+
+<p>Если вы устанавливаете дистрибутив по сети, эти ссылки работать не
+будут.  В этом случае вы можете найти <a
+href="https://tug.org/texlive/doc.html">документацию на сети</a>.
+
+<p>Список наиболее важных изменений в текущей версии находится в
+разделе "Изменения" в конце документа.
+
+<h3>Установка</h3>
+
+<p>Скрипт установки программы называется <tt>install-tl</tt> и
+  находится в корневой папке.  Вы можете вызвать его командой <tt>perl
+  install-tl</tt>. Под Windows вы можете вместо этого просто
+  запустить <tt>install-tl-windows.bat</tt>. На Маках вы, скорее
+  всего, захотите
+  использовать <a href="https://tug.org/mactex/">MacTeX</a>, у
+  которого есть собственная программа установки (на DVD она тоже есть,
+  рядом с директорией <tt>texlive</tt>, где вы сейчас).
+
+<p><tt>install-tl</tt> работает в двух режимах:
+<dl>
+<dt><b>-gui</b></dt> (по умолчанию под Windows и Mac) по умолчанию
+проводит простую установку используя графический режим, но вместе с тем
+предоставляет дополнительные возможности по настройке.<p>
+
+<dt><b>-no-gui</b></dt> (по умолчанию в других случаях) даёт доступ ко
+всем настраиваемым параметрам используя упрощённый текстовой режим..
+
+</dl>
+
+<p>
+Действия после установки и настройка системы производятся программой
+<tt>tlmgr</tt> (TeX Live Package Manager), который также работает и в
+графическом, и в текстовом режимах.
+
+
+<p>И программа <a
+href="https://tug.org/texlive/doc/install-tl.html">install-tl</a>, и
+программа <a href="https://tug.org/texlive/tlmgr.html">tlmgr</a>
+выводят справку о своей работе при вызове с опцией <tt>--help</tt>.
+Ещё более подробная информация доступна по ссылкам выше.
+
+
+<h3>Ссылки</h3>
+
+
+
+
+<p>Наконец, несколько интересных  ссылок, не включённых в TeX Live:
+
+<ul>
+<li><a href="https://tug.org/begin.html">tug.org/begin.html</a>
+    — материал для новичков
+<li><a href="https://tug.org/interest.html">interest.html</a>
+    — общий список ресурсов для TeXa, включая документацию,
+    системы, пакеты, шрифты и многое другое.
+<li><a href="https://tug.org/ctan.html">tug.org/ctan.html</a>
+    — Comprehensive TeX Archive Network (CTAN),
+    общий архив для всего, что имеет отношение к TeXу.
+<li><a href="https://tug.org/usergroups.html">tug.org/usergroups.html</a>
+    — список групп пользователей TeXа, с контактной информацией.  Мы
+    настоятельно рекомендуем вам вступить в одну из групп, для
+    поддержки TeX Live и другой связанной с TeXом деятельности.
+</ul>
+
+
+<h4>Happy TeX'ing!</h4>
+
+<hr><small><a href="https://tug.org/tex-live/">Страница TeX Live</a></small>
+</body></html>

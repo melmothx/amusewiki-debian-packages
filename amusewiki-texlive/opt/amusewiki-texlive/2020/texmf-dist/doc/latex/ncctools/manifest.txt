@@ -1,0 +1,42 @@
+%
+% Copyright 1998-2018 by Alexander I. Rozhenko
+%
+% CONTENTS OF THE NCCTOOLS BUNDLE, Release 3.5
+%=============================================
+
+afterpackage.dtx
+dcounter.dtx
+desclist.dtx
+extdash.dtx
+manyfoot.dtx
+mboxfill.dtx
+nccbbb.dtx
+nccboxes.dtx
+ncccomma.dtx
+ncccropbox.dtx
+ncccropmark.dtx
+nccfancyhdr.dtx
+nccfloats.dtx
+nccfoots.dtx
+nccmath.dtx
+nccparskip.dtx
+nccpic.dtx
+nccrules.dtx
+nccsect.dtx
+nccstretch.dtx
+nccthm.dtx
+textarea.dtx
+tocenter.dtx
+topsection.dtx
+watermark.dtx
+
+%
+% OTHER FILES
+%=============
+
+manifest.txt  This file
+ncctools.ins  Instructions for unpacking packages prepared in `.dtx' files.
+              See README
+ncctools.tex  Short guide to the bundle
+README        Describes installation and bug reporting procedures.
+              Contains copyright notes and distribution rules.

@@ -1,0 +1,6 @@
+% $Id: test-pdftrailer.tex 737 2016-03-21 22:54:16Z karl $
+% Public domain.
+\pdfoutput=1 \catcode`\{=1  \catcode`\}=2
+\pdftrailer {/mytrlrkey /mytrlrval}
+\pdftrailerid {} % seed for trailer id
+\input test-pdfsuppressptexinfo

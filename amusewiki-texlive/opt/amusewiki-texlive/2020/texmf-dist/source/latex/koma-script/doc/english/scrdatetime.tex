@@ -1,0 +1,443 @@
+% ======================================================================
+% scrdatetime.tex
+% Copyright (c) Markus Kohm, 2001-2019
+%
+% This file is part of the LaTeX2e KOMA-Script bundle.
+%
+% This work may be distributed and/or modified under the conditions of
+% the LaTeX Project Public License, version 1.3c of the license.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3c or later is part of all distributions of LaTeX 
+% version 2005/12/01 or later and of this work.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% The Current Maintainer and author of this work is Markus Kohm.
+%
+% This work consists of all files listed in manifest.txt.
+% ----------------------------------------------------------------------
+% scrdatetime.tex
+% Copyright (c) Markus Kohm, 2001-2019
+%
+% Dieses Werk darf nach den Bedingungen der LaTeX Project Public Lizenz,
+% Version 1.3c, verteilt und/oder veraendert werden.
+% Die neuste Version dieser Lizenz ist
+%   http://www.latex-project.org/lppl.txt
+% und Version 1.3c ist Teil aller Verteilungen von LaTeX
+% Version 2005/12/01 oder spaeter und dieses Werks.
+%
+% Dieses Werk hat den LPPL-Verwaltungs-Status "author-maintained"
+% (allein durch den Autor verwaltet).
+%
+% Der Aktuelle Verwalter und Autor dieses Werkes ist Markus Kohm.
+% 
+% Dieses Werk besteht aus den in manifest.txt aufgefuehrten Dateien.
+% ======================================================================
+%
+% Chapter about scrpage2 of the KOMA-Script guide
+% Maintained by Markus Kohm
+%
+% ----------------------------------------------------------------------
+%
+% Kapitel ueber scrpage2 in der KOMA-Script-Anleitung
+% Verwaltet von Markus Kohm
+%
+% ============================================================================
+
+\KOMAProvidesFile{scrdatetime.tex}
+                 [$Date: 2019-11-15 08:07:56 +0100 (Fri, 15 Nov 2019) $
+                  KOMA-Script guide (chapter: scrdate, scrtime)]
+\translator{Markus Kohm\and Gernot Hassenpflug\and Karl Hagen}
+
+% Date of the translated German file: 2019-11-15
+
+\chapter{The Day of the Week with \Package{scrdate}}
+\labelbase{scrdate}
+\BeginIndexGroup
+\BeginIndex{Package}{scrdate}
+
+Originally, the \Package{scrdate} package could only give the day of the week
+for the current date. Nowadays, it offers this and more for any date in the
+Gregorian calendar.
+
+\begin{Declaration}
+  \Macro{CenturyPart}\Parameter{year}\\%
+  \Macro{DecadePart}\Parameter{year}%
+\end{Declaration}%
+The\ChangedAt{v3.05a}{\Package{scrdate}} \Macro{CenturyPart} command returns
+the value of the century digits\,---\,thousands and hundreds\,---\,of a
+\PName{year}. The \Macro{DecadePart} command, on the other hand, gives the
+value of the remaining digits, i.\,e. the tens and the units. The
+\PName{year} can have any number of digits. You can assign the value directly
+to a counter or use it for calculations with
+\Macro{numexpr}\IndexCmd{numexpr}. To output\textnote{Attention!} it as an
+Arabic number, you should prefix it with \Macro{the}\IndexCmd{the}.
+
+\begin{Example}
+  You want to calculate and print the century of the current year.
+\begin{lstcode}
+  The year \the\year\ is year \the\DecadePart{\year}
+  of the \engord{\numexpr\CenturyPart{\year}+1\relax} century.
+\end{lstcode}
+  The result would be:
+  \begin{ShowOutput}
+    The year \the\year\ is year \the\DecadePart{\year}
+    of the \engordnumber{\numexpr\CenturyPart{\year}+1\relax} century.
+  \end{ShowOutput}
+  This example uses the \Package{engord}\IndexPackage{engord} package.
+  See \cite{package:engord} for more information.
+\end{Example}
+
+Note\textnote{Attention!} that the counting method used here treats the year
+2000 as year~0\,---\,and therefore the first year\,---\,of the 21st~century.
+If necessary, however, you can make a correction with \Macro{numexpr}, as
+shown for the ordinal number in the example.%
+\EndIndexGroup
+
+
+\begin{Declaration}
+  \Macro{DayNumber}\Parameter{year}\Parameter{month}\Parameter{day}\\%
+  \Macro{ISODayNumber}\Parameter{ISO-date}%
+\end{Declaration}%
+These\ChangedAt{v3.05a}{\Package{scrdate}} two commands return the value of
+the day-of-the-week\Index{day>of the week} number for any date. They differ
+only in the method of specifying the date. While the \Macro{DayNumber} command
+requires the \PName{year}, \PName{month}, and \PName{day} as separate
+parameters, the \Macro{ISODayNumber} command expects an \PName{ISO-date} as a
+single argument, \PName{ISO-date}, using the ISO notation
+\PName{year}\texttt{-}\PName{month}\texttt{-}\PName{day}. It does not matter
+if the \PName{month} or \PName{day} have one or two digits. You can use the
+result of both commands to assign directly to a counter or for calculations
+using \Macro{numexpr}\IndexCmd{numexpr}. To print\textnote{Attention!} it as
+an Arabic number, you should prefix it with \Macro{the}\IndexCmd{the}.
+
+\begin{Example}
+  You want to know the number of the day of the week of the 1st~May~2027.
+\begin{lstcode}
+  The 1st~May~2027 has \the\ISODayNumber{2027-5-1}
+  as the number of the day of the week.
+\end{lstcode}
+  The result will be:
+  \begin{ShowOutput}
+    The 1st~May~2027 has \the\ISODayNumber{2027-5-1}
+    as the number of the day of the week.
+  \end{ShowOutput}
+\end{Example}
+
+It is particularly worth noting that you can even step a specified number of
+days into the future or or the past from a given date.
+\begin{Example}
+  You want to know the number of the day of the week 12~days from now
+  and 24~days before the 24th~December~2027.
+\begin{lstcode}
+  In 12~days, the number of the day of the week
+  will be \the\DayNumber{\year}{\month}{\day+12}, and
+  24~days before the 24th~December~2027 it will be
+  \the\ISODayNumber{2027-12-24-24}.
+\end{lstcode}
+  The result could be, for example:
+  \begin{ShowOutput}
+    In 12~days, the number of the day of the week
+    will be \the\DayNumber{\year}{\month}{\day+12}, and
+    24~days before the 24th~December~2027 it will be
+    \the\ISODayNumber{2027-12-24-24}.
+  \end{ShowOutput}
+\end{Example}
+
+The days of the week are numbered as follows: Sunday\,=\,0, Monday\,=\,1,
+Tuesday\,=\,2, Wednesday\,=\,3, Thursday\,=\,4, Friday\,=\,5, and
+Saturday\,=\,6.%
+%
+\EndIndexGroup
+
+
+\begin{Declaration}
+  \Macro{DayNameByNumber}\Parameter{number of the day of the week}\\%
+  \Macro{DayName}\Parameter{year}\Parameter{month}\Parameter{day}\\%
+  \Macro{ISODayName}\Parameter{ISO-date}%
+\end{Declaration}%
+Usually\ChangedAt{v3.05a}{\Package{scrdate}} you are less interested in the
+number of the day of the week than in its name. Therefore, the
+\Macro{DayNameByNumber} command returns the name of the day of the week
+corresponding to a day-of-the-week number. This number can be the result, for
+example, of \Macro{DayNumber} or \Macro{ISODayNumber}. The two commands
+\Macro{DayName} and \Macro{ISODayName} directly return the name of the day of
+the week of a given date.
+
+\begin{Example}
+  You want to know the name of the day of the week of the 24th~December~2027.
+\begin{lstcode}
+  Please pay by \ISODayName{2027-12-24},
+  24th~December~2027 the amount of \dots.
+\end{lstcode}
+  The result will be:
+  \begin{ShowOutput}
+    Please pay by \ISODayName{2027-12-24},
+    24th~December~2027 the amount of \dots.
+  \end{ShowOutput}
+\end{Example}
+
+Once again, it is particularly worth noting that you can perform calculations,
+to a certain extent:
+\begin{Example}
+  You want to know the names of the day of the week 12~days from now
+  and 24~days before the 24th~December~2027.
+\begin{lstcode}
+  In 12~days, the name of the day of the week
+  will be \DayName{\year}{\month}{\day+12}, and
+  24~days before the 24th~December~2027 it will be
+  \ISODayName{2027-12-24-24}, while two weeks
+  and three days after a Wednesday will be a
+  \DayNameByNumber{3+2*7+3}.
+\end{lstcode}
+  The result could be, for example:
+  \begin{ShowOutput}
+    In 12~days, the name of the day of the week
+    will be \DayName{\year}{\month}{\day+12}, and
+    24~days before the 24th~December~2027 it will be
+    \ISODayName{2027-12-24-24}, while two weeks
+    and three days after a Wednesday will be a
+    \DayNameByNumber{3+2*7+3}.
+  \end{ShowOutput}
+\end{Example}%
+%
+\EndIndexGroup
+
+
+\begin{Declaration}
+  \Macro{ISOToday}%
+  \Macro{IsoToday}%
+  \Macro{todaysname}%
+  \Macro{todaysnumber}%
+\end{Declaration}%
+In the previous examples, the current date was always specified cumbersomely
+using the \TeX{} registers \Macro{year}\IndexCmd{year},
+\Macro{month}\IndexCmd{month}, and \Macro{day}\IndexCmd{day}. The
+\Macro{ISOToday}\ChangedAt{v3.05a}{\Package{scrdate}} and \Macro{IsoToday}
+commands directly return the current date in ISO-notation. These commands
+differ only in the fact that \Macro{ISOToday} always outputs a two-digit month
+and day, while \Macro{IsoToday} outputs single-digit numbers for values less
+than 10. The \Macro{todaysname} command directly returns the name of the
+current day of the week, while \Macro{todaysnumber} returns the number of the
+current day of the week. You can find more information about using this value
+in the explanations of \DescRef{scrdate.cmd.DayNumber} and
+\DescRef{scrdate.cmd.ISODayNumber}.
+
+\begin{Example}
+  I want to show you on what day of the week this document was typeset:
+\begin{lstlisting}
+  This document was created on a \todaysname.
+\end{lstlisting}
+  This will result, for example, in:
+  \begin{ShowOutput}
+    This document was created on a \todaysname.
+  \end{ShowOutput}
+\end{Example}
+
+For languages that have a case system for nouns, note that the package cannot
+decline words. The terms are given in the form appropriate for displaying a
+date in a letter, which is the nominative singular for the currently supported
+languages. Given this limitation, the example above will not work correctly if
+translated directly into some other languages.
+
+\begin{Explain}
+  The\textnote{Hint!} names of the weekdays in \Package{scrdate} all have
+  initial capital letters. If you need the names completely in lower case, for
+  example because that is the convention in the relevant language, simply wrap
+  the command with the \LaTeX{} \Macro{MakeLowercase}\IndexCmd{MakeLowercase}%
+  \important{\Macro{MakeLowercase}} command:
+  % Umbruchkorrektur: listings
+\begin{lstcode}
+  \MakeLowercase{\todaysname}
+\end{lstcode}
+  This converts the whole argument into lower-case letters. Of course, you can
+  also do this for
+  \DescRef{scrdate.cmd.DayNameByNumber}\IndexCmd{DayNameByNumber},
+  \DescRef{scrdate.cmd.DayName}\IndexCmd{DayName}, and
+  \DescRef{scrdate.cmd.ISODayName}\IndexCmd{ISODayName} commands described
+  above.%
+\end{Explain}%
+\EndIndexGroup
+
+
+\begin{Declaration}
+  \Macro{nameday}\Parameter{name}
+\end{Declaration}%
+Just as you can directly modify the output of \Macro{today} with
+\DescRef{maincls.cmd.date}\IndexCmd{date}, so you can change the output of
+\DescRef{scrdate.cmd.todaysname} to \PName{name} with \Macro{nameday}.
+\begin{Example}
+  You change the current date to a fixed value using
+  \DescRef{maincls.cmd.date}. You are not interested in the actual name of the
+  day, but want only to show that it is a workday. So you write:
+\begin{lstlisting}
+  \nameday{workday}
+\end{lstlisting}
+  After this, the previous example will result in:
+  \begin{ShowOutput}\nameday{workday}
+    This document was created on a \todaysname.
+  \end{ShowOutput}
+\end{Example}
+There's no corresponding command to change the result of
+\DescRef{scrdate.cmd.ISOToday}\IndexCmd{ISOToday} or
+\DescRef{scrdate.cmd.IsoToday}\IndexCmd{IsoToday}.%
+\EndIndexGroup
+
+
+\begin{Declaration}
+  \Macro{newdaylanguage}\Parameter{language}%
+                        \Parameter{Monday}\Parameter{Tuesday}%
+                        \Parameter{Wednesday}\Parameter{Thursday}%
+                        \Parameter{Friday}\Parameter{Saturday}
+                        \Parameter{Sunday}%
+\end{Declaration}
+Currently the \Package{scrdate} package recognizes the following languages:
+\begin{itemize}\setlength{\itemsep}{.5\itemsep}
+\item Croatian (\PValue{croatian}),
+\item Czech (\PValue{czech}\ChangedAt{v3.13}{\Package{scrdate}}),
+\item Danish (\PValue{danish}),
+\item Dutch (\PValue{dutch}),
+\item English (\PValue{american}\ChangedAt{v3.13}{\Package{scrdate}},
+  \PValue{australian}, \PValue{british}, \PValue{canadian}, \PValue{english},
+  \PValue{UKenglish}, and USenglish),
+\item Finnish (\PValue{finnish}),
+\item French (\PValue{acadian}, \PValue{canadien},
+  \PValue{francais}\ChangedAt{v3.13}{\Package{scrdate}}, and \PValue{french}),
+\item German (\PValue{austrian}\ChangedAt{v3.08b}{\Package{scrdate}},
+  \PValue{german}, \PValue{naustrian}, \PValue{ngerman},
+  \PValue{nswissgerman}, and
+  \PValue{swissgerman}\ChangedAt{v3.13}{\Package{scrdate}}),
+\item Italian (\PValue{italian}),
+\item Norwegian (\PValue{norsk}),
+\item Polish (\PValue{polish}\ChangedAt{v3.13}{\Package{scrdate}}),
+\item Slovak (\PValue{slovak}),
+\item Spanish (\PValue{spanish}),
+\item Swedish (\PValue{swedish}).
+\end{itemize}
+You can also configure it for additional languages. To do so, the first
+argument of \Macro{newdaylanguage} is the name of the language, and the other
+arguments are the names of the corresponding days of the week.
+
+In the current implementation, it does not matter whether you load
+\Package{scrdate} before or after \Package{ngerman}\IndexPackage{ngerman},
+\Package{babel}\IndexPackage{babel}, or similar packages. In each case the
+correct language will be used provided it is supported.
+
+\begin{Explain}
+  To be more precise, as long as you select a language in a way that is
+  compatible with \Package{babel}\IndexPackage{babel}, \Package{scrdate} will
+  use the correct language. If this is not the case, you will get (US) English
+  names.
+\end{Explain}
+
+Of course, if you create definitions for a language that was previously
+unsupported, please mail them to the author of \KOMAScript{}. There is a good
+chance that future versions of \KOMAScript{} will add support for that
+language.%
+\EndIndexGroup
+%
+\EndIndexGroup
+
+
+\chapter{The Current Time with \Package{scrtime}}
+\labelbase{scrtime}
+\BeginIndexGroup
+\BeginIndex{Package}{scrtime}
+
+This package lets you find the current time. Starting with version~3.05, the
+package also supports the option interface already familiar from the
+\KOMAScript{} classes and various other \KOMAScript{} packages. See, for
+example, \autoref{sec:typearea.options} for more information.
+
+\begin{Declaration}%
+  \Macro{thistime}\OParameter{delimiter}%
+  \Macro{thistime*}\OParameter{delimiter}
+\end{Declaration}%
+\Macro{thistime} returns the current time\Index{time} in hours and minutes.
+The delimiter between the values of hour, minutes and seconds can be given in
+the optional argument. The default is the character ``\PValue{:}''.
+
+\Macro{thistime*} works in almost the same way as \Macro{thistime}. The only
+difference is that, unlike \Macro{thistime}, \Macro{thistime*} does not add a
+leading zero to the minute field when its value is less than 10. Thus, with
+\Macro{thistime} the minute field has always two places.
+\begin{Example}
+  The line
+\begin{lstlisting}
+  Your train departs at \thistime.
+\end{lstlisting}
+  results, for example, in:
+  \begin{ShowOutput}
+    Your train departs at \thistime.
+  \end{ShowOutput}
+  or:
+  \begin{ShowOutput}
+    Your train departs at 23:09.
+  \end{ShowOutput}
+  \bigskip
+  In contrast to the previous example a line like:
+\begin{lstlisting}
+  This day is already \thistime*[\ hours and\ ] minutes old.
+\end{lstlisting}
+  results in:
+  \begin{ShowOutput}
+    This day is already \thistime*[\ hours and\ ] minutes old.
+  \end{ShowOutput}
+  or:
+  \begin{ShowOutput}
+    This day is already 12 hours and 25 minutes old.
+  \end{ShowOutput}
+\end{Example}
+\EndIndexGroup
+
+
+\begin{Declaration}%
+ \Macro{settime}\Parameter{time}
+\end{Declaration}%
+\Macro{settime} sets the output of \DescRef{scrtime.cmd.thistime} and
+\DescRef{scrtime.cmd.thistime*} to a fixed value. In this case, the optional
+parameter of \DescRef{scrtime.cmd.thistime} or \DescRef{scrtime.cmd.thistime*}
+is ignored, since the complete string returned by
+\DescRef{scrtime.cmd.thistime} or \DescRef{scrtime.cmd.thistime*} has been
+explicitly defined. \Macro{settime}.%
+\EndIndexGroup
+
+
+\begin{Declaration}
+  \OptionVName{12h}{simple switch}%
+\end{Declaration}%
+\BeginIndex{Option}{24h}%
+With the \Option{12h}\ChangedAt{v3.05a}{\Package{scrtime}} option, you can
+select whether to print the time given by \DescRef{scrtime.cmd.thistime} and
+\DescRef{scrtime.cmd.thistime*} in 12- or 24-hour format. The option accepts
+the values for simple switches listed in \autoref{tab:truefalseswitch},
+\autopageref{tab:truefalseswitch}. Using the option without a value is
+equivalent to \OptionValue{12h}{true}, and therefore activates the
+12-hour-format. The default, however, is \Option{24h}.
+
+You can set this option globally in the optional argument of
+\DescRef{typearea.cmd.documentclass}, as a package option in the optional
+argument of \DescRef{typearea.cmd.usepackage}, or even after loading the
+package using \DescRef{typearea.cmd.KOMAoptions} or
+\DescRef{typearea.cmd.KOMAoption} (see, e.\,g. \autoref{sec:typearea.options},
+\DescPageRef{typearea.cmd.KOMAoptions}). However the option no longer has any
+effect on the if you call \DescRef{scrtime.cmd.settime}. After invoking this
+command, the time is output only with the value and in the format specified
+there.
+
+For\textnote{Attention!} the sake of compatibility with earlier versions of
+\Package{scrtime}, the option \Option{24h} will switch to 24-hour format if
+used in the optional argument of \Macro{documentclass} or \Macro{usepackage}.
+However, you should not use this option any longer.%
+\EndIndexGroup
+%
+\EndIndexGroup
+
+\endinput
+
+%%% Local Variables: 
+%%% mode: latex
+%%% coding: us-ascii
+%%% TeX-master: "../guide"
+%%% End: 

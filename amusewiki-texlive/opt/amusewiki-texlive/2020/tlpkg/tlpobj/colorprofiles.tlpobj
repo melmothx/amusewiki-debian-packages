@@ -1,0 +1,23 @@
+name colorprofiles
+category Package
+revision 49086
+shortdesc Collection of free ICC profiles
+longdesc This package collects free ICC profiles that can be used by
+longdesc color profile aware applications/tools like the pdfx package,
+longdesc as well as TeX and LaTeX packages to access them.
+containersize 87972
+containerchecksum 49be492e62fcd615b08bb6a32767cac54a9535ab859d2a27d1c84788d4e168df2a10133e5408ab1bd3a802ffa8465a61c4144cd9cbafc6fa98f995cb7af89381
+doccontainersize 27632
+doccontainerchecksum ab7cabd369cdde5c2e5108b4d75d71bfa5e6b44d7ecc2eda25509078f26bfbc8515dd10a6dd82adab979170e12552fbecffca1f5bd3a1105db21b31097ec5f12
+docfiles size=33
+ texmf-dist/doc/generic/colorprofiles/FOGRA39L_coated.iccprofile.xml
+ texmf-dist/doc/generic/colorprofiles/README details="Readme"
+runfiles size=33
+ texmf-dist/tex/generic/colorprofiles/FOGRA39L_coated.icc
+ texmf-dist/tex/generic/colorprofiles/colorprofiles.sty
+ texmf-dist/tex/generic/colorprofiles/colorprofiles.tex
+ texmf-dist/tex/generic/colorprofiles/sRGB.icc
+catalogue-ctan /support/colorprofiles
+catalogue-license other-free
+catalogue-topics colour
+catalogue-version 20181105

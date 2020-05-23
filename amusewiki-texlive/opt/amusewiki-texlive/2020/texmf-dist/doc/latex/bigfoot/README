@@ -1,0 +1,72 @@
+This is the bigfoot bundle for critical edition typesetting and other
+concerns, written by David Kastrup (mailto:dak@gnu.org).  The complete
+package in development can be accessed using the CVS instructions at
+<URL:http://sarovar.org/projects/bigfoot>, and
+CTAN:/macros/latex/contrib/bigfoot provides released versions.
+
+The whole bundle is released under the GPL version 2 (or later), see
+the file COPYING for details.  Part of the work has been sponsored or
+commissioned by various parties (including TUG), but further
+functionality and development depends on your support, financially or
+by participation.  The author has a Paypal account which you might
+consider contributing to.
+
+All of the files (except perpage.sty, for historical reasons) need
+eTeX 2 as the LaTeX engine.  All modern distributions provide this by
+default.
+
+A Makefile is provided for generating most files.  In case the
+platform does not support Make, the distribution tarball includes the
+file bigfoot.ins pregenerated from bigfoot.dtx.
+
+File descriptions for available files:
+
+bigfoot.ins: This is a generated file and not in the Git repository (but
+   on CTAN).  Generating it can be done by running `tex docstrip' and
+   answering the prompts
+
+     \infileext=dtx
+     \outfileext=ins
+     \Options=installer
+     \filelist=bigfoot
+
+   If you instead use
+
+     \Options=installer,make
+
+   you will get a version of `bigfoot.ins' which will not ask before
+   overwriting files, but will only place them in the current
+   directory even if your docstrip configuration contains target
+   directory declarations.
+
+   Running TeX on bigfoot.ins will generate a number of style files
+   (with the extension .sty) and a number of documentation driver
+   files (with the extension .drv).
+
+
+Here come the source files themselves:
+
+suffix.dtx: This is the doc source for `suffix.sty', a package that
+   makes it very easy to define command variants like \macro* or
+   \macro\!.  It is included in the critical bundle since typical
+   document classes for real critical editions documents will tend to
+   want weird signs under handy abbreviations, like \< and \<<, or
+   \=>, or things like \footnote' macros, or \footnote<...\footnote>
+   with different formatting/numbering and so on.
+
+perpage.dtx: This is the doc source for `perpage.sty'.  Used for
+   keeping counters sorted in order of page appearance and making
+   numbering per page possible.
+
+bigfoot.dtx: This is the doc source for `bigfoot.sty'.  Used for
+   solving every problem around footnotes and then some.  Deals with
+   nested footnotes in several apparatus, uses a backtracking
+   algorithm for finding the optimal break across several footnotes,
+   automatically breaks in-paragraph style footnotes across pages,
+   uses fuzzy logic for deciding about when to prefer in-paragraph
+   layout to one-footnote-per-paragraph layout on a per-note and
+   per-block basis, deals with colors in footnotes even when broken
+   across pages, adapts the document class's footnote style to
+   in-paragraph footnotes as good as it can, allows customization of
+   styles differing across footnote blocks, allows verbatim text in
+   footnotes and so on.

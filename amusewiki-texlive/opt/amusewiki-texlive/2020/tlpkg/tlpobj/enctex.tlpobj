@@ -1,0 +1,71 @@
+name enctex
+category Package
+revision 34957
+shortdesc A TeX extension that translates input on its way into TeX
+longdesc EncTeX is (another) TeX extension, written at the change-file
+longdesc level. It provides means of translating input on the way into
+longdesc TeX. It allows, for example, translation of multibyte
+longdesc sequences, such as utf-8 encoding.
+containersize 23748
+containerchecksum e6dc0988bd10dcefd63db2a57999637b63187d8a234c46dcb148e9dfe8388800e61237d7b58d271b735d2658d40c1f81016b5018e239d556fb9615d35b4129a0
+doccontainersize 253856
+doccontainerchecksum 2bf47c879c6ed0fc539763c899d8db261135f1a0ef0052904d03a72663cff38d40d2fe7b0daacaf2d54771c7b9eb5e98b73ef71d2a733899d458803f8caee723
+docfiles size=108
+ texmf-dist/doc/generic/enctex/COPYING
+ texmf-dist/doc/generic/enctex/COPYING.UCD
+ texmf-dist/doc/generic/enctex/INSTALL
+ texmf-dist/doc/generic/enctex/INSTALL.eng
+ texmf-dist/doc/generic/enctex/README details="Readme"
+ texmf-dist/doc/generic/enctex/changes.txt
+ texmf-dist/doc/generic/enctex/encdoc-e.pdf details="Reference manual (in English)" language="en"
+ texmf-dist/doc/generic/enctex/encdoc-e.tex
+ texmf-dist/doc/generic/enctex/encdoc.pdf details="Reference manual (in Czech)" language="cs"
+ texmf-dist/doc/generic/enctex/encdoc.tex
+ texmf-dist/doc/generic/enctex/math-example.tex
+ texmf-dist/doc/generic/enctex/unimap.diff
+ texmf-dist/doc/generic/enctex/unimap.py
+ texmf-dist/doc/generic/enctex/vlna.tex
+runfiles size=62
+ texmf-dist/tex/generic/enctex/1250-csf.tex
+ texmf-dist/tex/generic/enctex/1250-il2.tex
+ texmf-dist/tex/generic/enctex/1250-latex.tex
+ texmf-dist/tex/generic/enctex/1250-t1.tex
+ texmf-dist/tex/generic/enctex/852-csf.tex
+ texmf-dist/tex/generic/enctex/852-il2.tex
+ texmf-dist/tex/generic/enctex/852-latex.tex
+ texmf-dist/tex/generic/enctex/852-t1.tex
+ texmf-dist/tex/generic/enctex/csfmacro.tex
+ texmf-dist/tex/generic/enctex/enc-u.tex
+ texmf-dist/tex/generic/enctex/encmacro.tex
+ texmf-dist/tex/generic/enctex/il2-1250.tex
+ texmf-dist/tex/generic/enctex/il2-852.tex
+ texmf-dist/tex/generic/enctex/il2-csf.tex
+ texmf-dist/tex/generic/enctex/il2-kam.tex
+ texmf-dist/tex/generic/enctex/il2-t1.tex
+ texmf-dist/tex/generic/enctex/kam-csf.tex
+ texmf-dist/tex/generic/enctex/kam-il2.tex
+ texmf-dist/tex/generic/enctex/kam-latex.tex
+ texmf-dist/tex/generic/enctex/kam-t1.tex
+ texmf-dist/tex/generic/enctex/mixcodes.tex
+ texmf-dist/tex/generic/enctex/noprefnt.tex
+ texmf-dist/tex/generic/enctex/plain-1250-cs.tex
+ texmf-dist/tex/generic/enctex/plain-852-cs.tex
+ texmf-dist/tex/generic/enctex/plain-il2-cs.tex
+ texmf-dist/tex/generic/enctex/plain-kam-cs.tex
+ texmf-dist/tex/generic/enctex/plain-utf8-cs.tex
+ texmf-dist/tex/generic/enctex/plain-utf8-ec.tex
+ texmf-dist/tex/generic/enctex/polyset.tex
+ texmf-dist/tex/generic/enctex/t1macro.tex
+ texmf-dist/tex/generic/enctex/utf8-csf.tex
+ texmf-dist/tex/generic/enctex/utf8-t1.tex
+ texmf-dist/tex/generic/enctex/utf8cseq.tex
+ texmf-dist/tex/generic/enctex/utf8lat1.tex
+ texmf-dist/tex/generic/enctex/utf8lata.tex
+ texmf-dist/tex/generic/enctex/utf8math.tex
+ texmf-dist/tex/generic/enctex/utf8off.tex
+ texmf-dist/tex/generic/enctex/utf8raw.tex
+ texmf-dist/tex/generic/enctex/utf8unkn.tex
+ texmf-dist/tex/generic/enctex/utf8warn.tex
+catalogue-ctan /systems/enctex
+catalogue-license gpl
+catalogue-topics engine

@@ -1,0 +1,17 @@
+name hyphen-irish
+category TLCore
+revision 54568
+shortdesc Irish hyphenation patterns.
+longdesc Hyphenation patterns for Irish (Gaeilge) in T1/EC and UTF-8
+longdesc encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=irish 	lefthyphenmin=2 	righthyphenmin=3 	file=loadhyph-ga.tex 	file_patterns=hyph-ga.pat.txt 	file_exceptions=hyph-ga.hyp.txt
+containersize 30396
+containerchecksum 92ed3fe2982324b1c233533fa247126d66c5afd6dde06985a45b44f7fcabb572dd2cb33f0a20c8a9955494c067bf559cd2ed3bfc2ed5a233da82f48affab4ad3
+runfiles size=38
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ga.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-ga.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-ga.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-ga.hyp.txt
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-ga.pat.txt

@@ -1,0 +1,59 @@
+README for the `ncctools' distribution
+======================================
+
+This `bundle' consists of LaTeX2e packages written and supported by
+Alexander I. Rozhenko.
+
+Copyright is maintained by Alexander I. Rozhenko.
+
+The `source' subdirectory contains source codes for all packages of
+the bundle prepared in `.dtx' files, and some auxiliary files.
+See the `source/manifext.txt' file.
+
+The `doc' subdirectory contains pdf documentation to all packages.
+The `doc/ncctools.pdf' file gives a brief introduction to
+all packages of the bundle. Opening it with Adobe Reader,
+you can click on a package name at the margin and the
+documentation to the package will be shown.
+
+Additional information on the bundle can be found in the
+`source/README' file.
+
+
+License Agreement
+=================
+
+This material is subject to the LaTeX Project Public License.
+See http://www.ctan.org/tex-archive/help/Catalogue/licenses.lppl.html
+for the details of that license.
+
+
+Reporting Bugs
+==============
+
+To report a problem or bug in any of these packages, describe it in free
+form and send it me to e-mail address
+
+        rozhenko@oapmg.sscc.ru
+
+Type the `NCCTOOLS' word in the subject of letter. This guarantees
+that your letter will be not deleted as spam.
+
+When reporting bugs, please produce a small test file that shows the
+problem, and ensure that you are using the current version of the
+package, and of the base LaTeX software.
+
+
+Distribution of unchanged versions
+==================================
+
+It is allowed provided that the contents of `source' subdirectory
+is included into distribution as is. The files from other
+subdirectories and these file also are optional. The decision to
+include optional files is up to your choice.
+
+
+Distribution of changed versions
+================================
+
+It is allowed under restrictions described in the `source/README' file.

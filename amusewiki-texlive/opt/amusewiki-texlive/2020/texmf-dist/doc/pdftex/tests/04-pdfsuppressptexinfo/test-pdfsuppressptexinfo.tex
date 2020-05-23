@@ -1,0 +1,18 @@
+% $Id: test-pdfsuppressptexinfo.tex 740 2016-04-23 15:08:37Z karl $
+% Public domain.
+\input plain.tex
+\input pdftexconfig.tex
+\input pdftexmagfix.tex
+\pdfcompresslevel=0
+\pdfobjcompresslevel=0
+
+% \pdfsuppressptexinfo=-1
+% \pdfsuppressptexinfo=15
+% \pdfsuppressptexinfo=8
+% \pdfsuppressptexinfo=4
+% \pdfsuppressptexinfo=2
+% \pdfsuppressptexinfo=1
+
+\pdfximage{abc.pdf}
+\hbox{\pdfrefximage\pdflastximage}
+\bye

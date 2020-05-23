@@ -1,0 +1,27 @@
+name atveryend
+category Package
+revision 53108
+shortdesc Hooks at the very end of a document
+longdesc This LaTeX packages provides two hooks for \end{document} that
+longdesc are executed after the hook of \AtEndDocument:
+longdesc \AfterLastShipout can be used for code that is to be executed
+longdesc right after the last \clearpage before the `.aux' file is
+longdesc closed. \AtVeryEndDocument is used for code after closing and
+longdesc final reading of the `.aux' file.
+containersize 3908
+containerchecksum 2a546be6d2109de9db60e94bea3a63a3c7af8ae892c8540a1513fbe4bfa505dcbdde9913b7a4449727df0ccf6957f8010c5b76abd8d6310c118b269bdc7334e4
+doccontainersize 376388
+doccontainerchecksum 5c5948ab7f0ca213bb5fe3ae056cddd392461911e2af7dfff133253f6aae970d525fc752f154921de2186c8a443fa4f90b18d23896a016ebc9ea177d6826613b
+docfiles size=95
+ texmf-dist/doc/latex/atveryend/README.md details="README"
+ texmf-dist/doc/latex/atveryend/atveryend.pdf details="Package documentation"
+srccontainersize 8600
+srccontainerchecksum 1ec0c4752df403e47c4f8d4186167ccb59d2269012d904e9de1ec54acacbdb84b571f5bd1e6b645f7f86972178db2793853701cfa180b66ae7edc1d1488958b2
+runfiles size=5
+ texmf-dist/tex/latex/atveryend/atveryend.sty
+catalogue-contact-bugs https://github.com/ho-tex/atveryend/issues
+catalogue-contact-repository https://github.com/ho-tex/atveryend
+catalogue-ctan /macros/latex/contrib/atveryend
+catalogue-license lppl1.3
+catalogue-topics defer-stuff
+catalogue-version 1.11

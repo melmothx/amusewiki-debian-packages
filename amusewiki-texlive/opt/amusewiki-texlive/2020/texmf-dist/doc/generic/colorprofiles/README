@@ -1,0 +1,131 @@
+colorprofiles
+=============
+
+Version: 20181105
+
+This package collects free ICC profiles that can be used by
+color profile aware applications/tools like the pdfx package,
+as well as TeX and LaTeX packages to access them.
+
+Package maintainer
+------------------
+Norbert Preining <norbert@preining.info>
+
+colorprofiles.{tex,sty}
+-----------------------
+Copyright (c) 2018 Ross Moore <ross.moore@mq.edu.au>
+
+This file may be distributed and/or modified under the conditions
+of the LaTeX Project Public License, either version 1.2 of this
+license or (at your option) any later version.  The latest version
+of this license is in:
+
+ http://www.latex-project.org/lppl.txt
+
+and version 1.2 or later is part of all distributions of LaTeX
+version 1999/12/01 or later.
+
+
+sRGB.icc
+--------
+
+Origin: Argyll Color Management System
+https://www.argyllcms.com/downloadsrc.html
+
+renamed from icc/sRGB.icm
+
+Copyright (c) 1997-2015 Graeme W. Gill
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+
+FOGRA39L_coated.icc
+-------------------
+
+The .icc files were generated from the .xml files using 
+cd-create-profile from the colord package by 
+Peter Selinger.
+
+Quote from his email 
+https://tug.org/pipermail/tex-live/2018-September/042340.html
+/-----
+| The ICC files were generated from the XML files by me, today, using
+| the open-source program /usr/bin/cd-create-profile, which is also part
+| of the Debian colord-1.4.3 package.
+|
+| Since the ICC files just contain the information from the XML files in
+| a different data format, the ICC files are not in themselves original
+| works and therefore not copyrightable in their own right. However, for
+| greater clarity, to the extent that I have any rights to these files
+| as their creator, I hereby waive all of my rights to the work
+| worldwide under copyright law, including all related and neighboring
+| rights, to the extent allowed by law.
+| 
+| Each ICC files also contains a UTF-16 encoding of the statement "This
+| profile is free of known copyright restrictions".
+\----
+
+
+License and Copyright
+---------------------
+
+FOGRA39L_coated
+Copyright:  Kai-Uwe Behrmann <www.behrmann.name>
+            Marti Maria <www.littlecms.com>
+            Photogamut <www.photogamut.org>
+            Graeme Gill <www.argyllcms.com>
+            ColorSolutions <www.basICColor.com>
+
+
+
+The zlib/libpng License
+
+This software is provided 'as-is', without any express or implied
+warranty. In no event will the authors be held liable for any damages
+arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+  1. The origin of this software must not be misrepresented; you must not
+  claim that you wrote the original software. If you use this software
+  in a product, an acknowledgment in the product documentation would be
+  appreciated but is not required.
+
+  2. Altered source versions must be plainly marked as such, and must not be
+  misrepresented as being the original software.
+
+  3. This notice may not be removed or altered from any source
+  distribution.
+
+NO WARRANTY
+
+  BECAUSE THE DATA IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
+FOR THE DATA, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN
+OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
+PROVIDE THE DATA "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
+OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS
+TO THE QUALITY AND PERFORMANCE OF THE DATA IS WITH YOU.  SHOULD THE
+DATA PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,
+REPAIR OR CORRECTION.
+
+ IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
+REDISTRIBUTE THE DATA AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,
+INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING
+OUT OF THE USE OR INABILITY TO USE THE DATA (INCLUDING BUT NOT LIMITED
+TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY
+YOU OR THIRD PARTIES OR A FAILURE OF THE DATA TO OPERATE WITH ANY OTHER
+PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGES.
+

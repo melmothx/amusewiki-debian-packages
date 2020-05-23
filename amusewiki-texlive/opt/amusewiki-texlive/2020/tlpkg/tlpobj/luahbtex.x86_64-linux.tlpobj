@@ -1,0 +1,8 @@
+name luahbtex.x86_64-linux
+category TLCore
+revision 54264
+shortdesc x86_64-linux files of luahbtex
+containersize 2204832
+containerchecksum f5c70475353b554b2e83b102214f7d3ba26cf9e8378d77e7a1cb671b5c1d771343e6ad65d77b5193378f444fb49d756540007795abed5957b666a560c243ab74
+binfiles arch=x86_64-linux size=1882
+ bin/x86_64-linux/luahbtex

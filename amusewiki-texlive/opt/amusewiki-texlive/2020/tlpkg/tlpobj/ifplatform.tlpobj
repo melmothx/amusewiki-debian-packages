@@ -1,0 +1,28 @@
+name ifplatform
+category Package
+revision 45533
+shortdesc Conditionals to test which platform is being used
+longdesc This package uses the (La)TeX extension -shell-escape to
+longdesc establish whether the document is being processed on a Windows
+longdesc or on a Unix-like system (Mac OS X, Linux, etc.), or on Cygwin
+longdesc (Unix environment over a windows system). Booleans provided
+longdesc are: \ifwindows, \iflinux, \ifmacosx and \ifcygwin. The package
+longdesc also preserves the output of uname on a Unix-like system, which
+longdesc may be used to distinguish between various classes of Unix
+longdesc systems.
+containersize 2024
+containerchecksum 952f87877c058c1e8ba3df227ed7332501e7861bdfd2a29878dc4b14e6b95a1b116459bef7f65c5bf277c95d08120c7e9fa9576a7654739e4a26125ca4d5c724
+doccontainersize 151716
+doccontainerchecksum 520004cfa412c2a24ece0e00b11d457405e71a446e554a1d930e60ea7dbd00f61b2b6a7ecbe89b62610316fd3b6fad685d7013042fa71fd7fb270b40748dee56
+docfiles size=38
+ texmf-dist/doc/latex/ifplatform/README details="Readme"
+ texmf-dist/doc/latex/ifplatform/ifplatform.pdf details="Package documentation"
+srccontainersize 5436
+srccontainerchecksum a3c33b16decd5fb443d9b5bb13f3a5e0ed56705d353b0260772d81f963460ff7e914fb1d7f4ee24e249bf15af77368ddc6fea49014202389baaf035f2165e17f
+runfiles size=1
+ texmf-dist/tex/latex/ifplatform/ifplatform.sty
+catalogue-contact-repository https://github.com/wspr/will2e
+catalogue-ctan /macros/latex/contrib/ifplatform
+catalogue-license lppl1.3c
+catalogue-topics env-query
+catalogue-version 0.4a

@@ -1,0 +1,120 @@
+Bienvenue dans TeX Live
+
+   La distribution logicielle TeX Live propose un système TeX complet pour
+   un large choix de plates-formes : Unix, MacOSX, Windows et autres. Ce
+   système inclut des programmes de mise en page, de visualisation et
+   d'impression de documents TeX, une large gamme de macros TeX et de
+   bibliothèques de polices.
+
+   Nous avons inclus dans la distribution une grande quantité de guides
+   généraux sur TeX, ainsi que les documentations qui accompagnent chacun
+   des paquets.
+
+   Pour des informations concernant les licences, veuillez consulter les
+   fichiers [1]LICENSE.TL et [2]LICENSE.CTAN.
+
+  Par où commencer ?
+
+   Nous vous suggérons fortement de lire le guide de TeX Live avant
+   d'entreprendre toute installation. Il vous fournira une description pas
+   à pas du processus d'installation, une description des répertoires de
+   base, et bien d'autres informations.
+
+   Si vous installez depuis le DVD (ou une image de celui-ci), le guide de
+   l'utilisateur en français (et toutes les traductions) sont dans le
+   sous-répertoire [3]texlive-doc.
+
+   Après l'installation, la version française du guide se trouve dans le
+   répetoire [4]texmf-dist/doc/texlive/texlive-fr, aux formats [5]html et
+   [6]pdf. Des traductions dans d'autres langues sont également
+   disponibles dans l'arborescence [7]texmf-dist/doc/texlive.
+
+   Une liste de [8]liens vers la documentation des programmes et paquets
+   de macros inclus (en format PDF et HTML) est disponible.
+
+   Lors de l'installation par Internet, les liens indiqués ci-dessus ne
+   fonctionnent pas ; dans ce cas, la documentation est accessible [9]en
+   ligne.
+
+   Une liste des principaux changements intervenus depuis l'an dernier est
+   disponible à la fin des fichiers de documentation (HTML et PDF).
+
+  Installation
+
+   Le script d'installation est nommé install-tl et se trouve à la racine de
+   l'arborescence de répertoires. Vous pouvez l'invoquer avec perl
+   install-tl. Sous Windows, vous pouvez exécuter le fichier de commandes
+   associé, install-tl-windows.bat. Sur Mac, vous voudrez probablement
+   installer via [10]MacTeX, qui a son propre programme d'installation natif
+   (il est également disponible sur le DVD, à côté du dossier texlive/ dans
+   lequel vous vous trouvez actuellement.)
+
+   install-tl a deux modes opératoires :
+
+   -gui
+          (mode par défaut sous Windows et Mac) qui procède à une installation
+          par interface graphique, simple par défaut mais permettant de
+          spécifier des options avancées si souhaité ;
+
+   -nogui
+          (mode par défaut sous tout autre OS) qui procède à une installation
+          en mode texte donnant accès à toutes les options disponibles.
+
+   Les mises à jour après installation et les autres actions de
+   configuration et maintenance sont effectuées à l'aide du programme
+   tlmgr (TeX Live Package Manager) qui lui aussi fonctionne en mode texte
+   ou en mode graphique.
+
+   Vous pouvez utiliser l'option de ligne de commande --help avec chacune
+   des commandes [11]install-tl et [12]tlmgr pour obtenir des informations
+   détaillées sur leur fonctionnement. Veuillez consulter les liens
+   ci-dessous pour (beaucoup) plus d'informations.
+
+  Liens
+
+   Voici quelques liens vers d'autres pages de référence, sur Internet,
+   qui ne sont pas incluses dans TeX Live.
+     * [13]tug.org/begin.html - si vous êtes un nouvel utilisateur
+       de TeX ou que vous cherchez des tutoriels.
+     * [14]tug.org/interest.html - liste générale de ressources TeX
+       sur le Web : documentation, systèmes, paquets de macros, polices,
+       et plus encore.
+     * [15]tug.org/ctan.html - un point d'entrée vers le
+       Comprehensive TeX Archive Network (CTAN), qui est un dépôt en ligne
+       pour tout ce qui concerne TeX.
+     * [16]tug.org/usergroups.html - une liste de tous les groupes
+       d'utilisateurs TeX à travers le monde, avec leurs contacts.
+     * [17]www.gutenberg.eu.org/ - le groupe francophone
+       d'utilisateurs de TeX.
+     * [18]https://2001-faq-latex.fr/ - une « Foire Aux Questions » en
+       français.
+     * [19]faqfctt.fr.eu.org/ - une autre « Foire Aux Questions »
+       en français.
+
+    Joyeux TeXage !
+     __________________________________________________________________
+
+   [20]Page d'accueil de TeX Live.
+
+Références
+
+   1. file:LICENSE.TL
+   2. file:LICENSE.CTAN
+   3. file:texlive-doc
+   4. file:texmf-dist/doc/texlive/texlive-fr
+   5. file:texmf-dist/doc/texlive/texlive-fr/texlive-fr.html
+   6. file:texmf-dist/doc/texlive/texlive-fr/texlive-fr.pdf
+   7. file:texmf-dist/doc/texlive
+   8. file:doc.html
+   9. https://tug.org/texlive/doc.html
+  10. https://tug.org/mactex/
+  11. https://tug.org/texlive/doc/install-tl.html
+  12. https://tug.org/texlive/tlmgr.html
+  13. https://tug.org/begin.html
+  14. https://tug.org/interest.html
+  15. https://tug.org/ctan.html
+  16. https://tug.org/usergroups.html
+  17. https://www.gutenberg.eu.org/
+  18. https://www.grappa.univ-lille3.fr/FAQ-LaTeX/
+  19. https://faqfctt.fr.eu.org/
+  20. https://tug.org/texlive/

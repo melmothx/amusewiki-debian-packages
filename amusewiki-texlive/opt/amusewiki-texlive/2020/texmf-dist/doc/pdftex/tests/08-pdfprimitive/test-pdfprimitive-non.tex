@@ -1,0 +1,14 @@
+% $Id: test-pdfprimitive-non.tex 784 2017-11-28 23:55:44Z karl $
+% Public domain.
+
+% Check that \pdfprimitive silently gives no error when used
+% on a non-primitive, or on an undefined control sequence.
+% 
+% This is the behavior which the manual has always documented,
+% although for some years up until the 2018 release, pdftex
+% gave an error instead of making it be a no-op.
+%
+\let\mytestcs=\relax
+\pdfprimitive\mytestcs
+\pdfprimitive\undefinedjunky
+\end

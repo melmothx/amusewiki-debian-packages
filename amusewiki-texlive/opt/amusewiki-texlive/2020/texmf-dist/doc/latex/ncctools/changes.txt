@@ -1,0 +1,438 @@
+
+This file lists changes to the LaTeX2e files of `ncctools' bundle in
+reverse chronological order.
+
+=======================================================================
+
+August 3, 2019 (Release 3.5.3)
+
+    manyfoot:   Fix multicol compatibility issues.
+
+
+=======================================================================
+
+June 24, 2018 (Release 3.5.2)
+
+    extdash:   Add more em-dash configuring options.
+=======================================================================
+
+Jan 20, 2006
+
+    nccsect:   Improve \NCC@secflush code to work in rightlast style.
+
+    nccmath:   Introduce \dmulticolumn to use within darray.
+
+=======================================================================
+
+Jan 19, 2006 (Release 3.5)
+
+    nccsect:   Allow caption width be greater than the line width.
+               Smart overlapping technique is used for such captions.
+               Compatibility with the `xtab' package added.
+               The \newplainsectionstyle and \newhangsectionstyle
+               commands are introduced. The predefined section styles are
+               reimplemented on the base of new section style definitions.
+               The `centerlast' section style is introduced. The
+               \adjustsectionmargins command is introduced. Introduce
+               customization of suffices after section and caption tags
+               with \sectiontagsuffix and \captiontagsuffix commands.
+
+Jan 17, 2006
+
+    afterpackage: Renamed from `addtopackage' package. Its command
+               \AddToPackage is also renamed to \AfterPackage.
+
+    nccsect:   Changes concerning with renaming the `addtopackage' package.
+
+    nccthm:    Fix bug in nccthm.dtx -- remove strings concerning to
+               `defaults' package inserted in experiments with the package.
+
+
+Jan 07, 2006
+
+    nccfloats: Expand the syntax of \FloatStyle with optional float-type
+               parameter. Apply float style to the base floating
+               environment. Introduce the generic \newminifloat
+               command.
+
+Jan 06, 2006
+
+    nccsect: Introduce \SetTOCStyle and \ChapterPrefixStyle commands.
+             They were moved from the `nccdefaults' of the `ncclatex'
+             bundle.
+
+=======================================================================
+
+Jan 03, 2006 (Release 3.4)
+
+    nccsect: The \norunningsuffix modifier is introduced. It is applied
+             just in a parameter of running section to remove the suffix
+             after it.
+
+Jan 01, 2006
+
+    nccsect: Introduce \RunningSectionSuffix command.
+             Introduce \NCC@preparesectag and \NCC@preparetocnum hooks.
+             Remove \NCC@defaultsectag command, because it is useless now.
+
+Dec 31, 2005
+
+    nccsect: Insert three more hooks. Fix bugs concerned to
+             \MakeUppercase in section and toc style declarations.
+
+Dec 30, 2005
+
+    nccsect: Insert many hooks to simplify customization of commands.
+             Make all command names except user's level names (\part,
+             \chapter, etc.) completely independent on standard names
+             of LaTeX's commands. This fixes the compatibility with
+             `hyperref' bug.
+
+Dec 29, 2005
+
+    nccsect: Introduce the \aftersectionvspace command.
+             Add the \DeclarePart and \DeclareTOCPart commands.
+
+Dec 28, 2005
+
+    nccsect: Extend the syntax of \sectionstyle command. It now contains
+             an optional `type' parameter to specify particular styles
+             for section levels. The scope of prefix in \DeclareSection
+             is now limited with the section number only. New section
+             styles: hangparindent and hangparindent*.
+
+Dec 26, 2005
+
+    textarea: A new package. It allows expand the text area of a document
+              on other areas: footer, header, and margin. There are two
+              ways for such expansion -- temporary expansion of a current
+              page on the header using a special negative vertical skip,
+              or global change of page layout parameters with possibility
+              of later restoration them to the original values.
+
+    nccsect: Apply conditional definition of \StartFromTextArea and
+             \StartFromHeaderArea for compatibility with the `textarea'
+             package.
+
+Dec 25, 2005
+
+    addtopackage: A new package. It supports customization of default
+                  settings in packages without their loading.
+
+Dec 24, 2005
+
+    topsection: A new package. It implements an unnumbered top-level
+              section (\chapter in books and reports or \section in
+              articles) in class-independent way. Such a section is
+              used as a title for standard document sections such as
+              table of contents, index, bibliography. Using this
+              command allows simplify the definition or redefinition
+              of standard document environments.
+
+=======================================================================
+
+Sep 11, 2005 (Release 3.3)
+
+    manyfoot: Improve calculations of the fudge factor in para-footnotes
+              to remove overflow when baseline skip in footnotes is
+              greater or equal to 16pt. The improved algorithm now works
+              till 64pt.
+
+=======================================================================
+
+Jun 15, 2005 (Release 3.2)
+
+    nccsect: Fixed bug in \DeclareTOCEntry concerning with \applystyle
+             command. 
+
+=======================================================================
+
+Jun 08, 2005 (Release 3.1)
+
+    nccsect: Fix \beforechapter hook to allow \part command in it.
+
+Jun 07, 2005
+
+    ncccropmark: Minor changes in documentation. 
+
+May 22, 2005
+
+    nccsect: Introduce \captionstyle, \captiontagstyle, and
+             \captionwidth commands. Add \TOCMarginDrift command.
+             Allow use the \applystyle command in TOC-entry style.
+
+May 21, 2005
+
+    nccsect: Introduce \epigraph and \epigraphparameters commands.
+
+May 20, 2005
+
+    nccsect: Introduce \beforechapter hook. Add commands
+             \StartFromTextArea and \StartFromHeaderArea
+             (they were moved from the ncc class)
+
+May 13, 2005
+
+    `mboxfill' and `nccrules' packages are introduced.
+
+May 11, 2005
+
+    manyfoot: The \SetFootnoteHook command is introduced.
+
+Apr 25, 2005
+
+    dcounter: Emulate the dynamic style for existing counters declared
+              as dynamic ones.
+
+Apr 15, 2005
+
+    nccsect: Emulate the \@makecaption command for compatibility with
+             packages using it. Provide compatibility with the
+             `supertabular' and `longtable' packages.
+
+Mar 06, 2005
+
+    nccpic: Correct extension lists.
+
+Feb 21, 2005
+
+    nccmath: Improve `darray' to avoid conflict with the `array' package.
+
+Feb 16, 2005
+
+    nccmath: New medium-size math commands: \medmath, \medop, \medint,
+             \medintcorr, \mfrac, \mbinom. New medium-size environments:
+             medsize and mmatrix. Introduce the `mediummath' option.
+             Remove redefinition of equation tag.
+
+Feb 10, 2005
+
+    manyfoot: Replace \NCC@makemark with \NCC@makefnmark.
+    ncccomma: A new package implements the smart math comma.
+
+Feb 07, 2005
+
+    nccboxes: Add \tc command; allow lengths in the \Strut's parameter.
+
+Feb 03, 2005
+
+    nccfoots: Rename \NCC@makemark with \NCC@makefnmark to avoid
+    conflicts with the `nccsect' package using another command with
+    the same name (this was a bug).
+
+Jan 29, 2005
+
+    extdash: Change spaces surround em-dash: decrease space before and
+    increase space after to remove visual effect of larger space before
+    the em-dash.
+
+=======================================================================
+
+Dec 17, 2004 (Release 3.0)
+
+    Prepare the short guide ncctools.tex.
+
+Dec 16, 2004
+
+    nccthm: revise the package and finish documenting it.
+
+Dec 12, 2004
+
+    nccsect: revise the package and finish documenting it.
+    
+
+Dec 09, 2004
+
+    Prepare self-documented code for the nccpic, tocenter, and watermark
+    packages.
+
+Dec 08, 2004
+
+    Prepare self-documented code for the nccparskip package.
+
+    nccmath: revise the package, do \fleqn and \ceqn working with
+    all display equations, finish documenting the package.
+
+Dec 07, 2004
+
+    nccfancyhdr: revise the package, introduce \newpagestyle and floats
+    testing commands, finish documenting the package.
+
+Dec 05, 2004
+
+    nccfloats: Improve calculation of width parameters (units are
+    allowed now). Prepare self-documented code for the package.
+
+Nov 30, 2004
+
+    Introduce a new package nccstretch. It allows stretch a text
+    with something inserted between tokens.
+
+Nov 29, 2004
+
+    Prepare self-documented code for the ncccropmark package.
+   
+Nov 28, 2004
+
+    Prepare self-documented code for the nccboxes package.
+   
+Nov 24, 2004
+
+    Prepare self-documented code for the nccbbb and ncccropbox packages.
+
+Nov 23, 2004
+
+    Prepare self-documented code for the desclist package.
+
+    Minor corrections in documentation to dcounter, extdash, manyfoot,
+    and nccfoot packages.
+
+=======================================================================
+
+Sep 20, 2004 (Release 2.08)
+
+    manyfoot: Version 1.7. The \ExtraParaSkip command introduced.
+
+Sep 04, 2004
+
+    nccpic: Patch for bounding box calculation added. If a graphics
+    rule requires calculations of bounding box via external file,
+    non-existance of the required file does not lead to LaTeX error
+    if the size of graphics is specified in another way (for example,
+    \includegraphics[width=..., height=...]{filename} is enough in
+    this case).
+
+=======================================================================
+
+Apr 08, 2004 (Release 2.07)
+
+    nccthm: Improvements in interpreting spaces after labels
+
+=======================================================================
+
+May 12, 2003 (Release 2.06)
+
+    manyfoot: Version 1.6. Compatibility with footmisc improved:
+    Restore \footnotemargin support that was occasionally removed.
+    Add support for multiple option from footmisc
+
+=======================================================================
+
+Apr 04, 2003 (Release 2.05)
+
+    watermark: hbox underfull removed in empty and plain page styles
+
+Apr 02, 2003
+
+    manyfoot: Version 1.5 prepared. \DeclareNewFootnote command introduced.
+    Compatibility with footmisc improved. Selection of custom footnote rules
+    added. Perpage footnote numbering option added.
+
+Jan 13, 2003
+
+    nccthm: space after label in theorems is ignored now.
+
+May 24, 2002
+
+    nccboxes: bug in \jparbox fixed
+
+May 22, 2002
+
+    nccsect: centering in captions works again.
+
+=======================================================================
+
+May 19, 2002 (Release 2.04)
+
+    nccthm: an extra group added in theorem headers to scope font changes
+
+    nccsect: internal changes in making captions (vertical skips are
+    moved after style settings to allow use the relative units in them,
+    e.g. 1ex or 1em)
+    
+May 17, 2002
+
+    Handling of side floats is improved in `nccfloats' package.
+    In the new version, a strut before the side float is not necessary,
+    \noindent is allowed at the beginning of side float's text, and
+    final strut is inserted at the end of side float's text in horizontal
+    mode only.
+
+=======================================================================
+
+Mar 23, 2002 (Release 2.03)
+
+    The `nccfloats' package is introduced. It covers LaTeX's floats with
+    some service commands (minifloats and side floats).
+
+Mar 20, 2002
+
+    The `nccboxes' package modified: internal changes in the \jvbox command
+    and the \jparbox is introduced.
+
+    The \draftgraphics and \finalgrapgics commands are introduced in the
+    `nccpic' package to toggle draft/final mode for graphics independently
+    on draft/final mode of entire document. In draft mode, graphics are shown
+    as framed boxes with file name marks.
+
+Mar 16, 2002
+
+    The \useshortskip command is introduced in `nccmath' package.
+
+Feb 19, 2002
+
+    Commands \Eq, \Eqs, and \Eqalign are removed from `nccmath' package.
+    They are moved to obsolete commands in the `ncclatex' bungle.
+    \mop command is also removed from `nccmath' package (it is introduced
+    in the `ncclatex' package of the `ncclatex' bungle now).
+
+Feb 17, 2002
+
+    Options of the `nccpic' package are passed now to the graphicx package.
+    Internal modifications in the `nccthm' package.
+
+Feb 13, 2002
+
+    The bug concerning with \noheadingtag is fixed in `nccsect' package.
+    The hbox underful in \thispageheading{} with empty parameter is
+    suppressed in `watermark' package.
+
+Feb 08, 2002
+
+    Internal change in `nccsect' package: the \NCC@thetocchapter hook
+    introduced.
+
+=======================================================================
+    
+Feb 08 2002 (Release 2.02)
+
+    The packages `cropbox' and `cropmark' are renamed to
+    `ncccropbox' and `ncccropmark' to avoid possible name conflicts.
+
+Feb 07, 2002
+
+    The \fancycenter command is introduced in `nccfancyhdr' package.
+    Header and footer struts are moved out of parboxes they were before.
+
+=======================================================================
+
+Feb 07, 2002 (Release 2.01)
+
+    The `parskip' package is renamed to `nccparskip' to avoid conflicts
+    with already existing `parskip' package
+
+=======================================================================
+
+Feb 01, 2002 (Release 2.0)
+
+    The release 2.0 of `ncctools' bundle is completed.  The following
+    packages are added: cropbox, cropmark, desclist, nccbbb, nccboxes,
+    nccfancyhdr, nccmath, nccpic, nccsect, nccthm, parskip, tocenter,
+    watermark.
+
+=======================================================================
+
+Dec 20, 1998 (Release 1.0)
+
+    The initial version of `ncctools' bundle is completed.  It contains
+    4 packages: dcounter, extdash, manyfoot, nccfoots.

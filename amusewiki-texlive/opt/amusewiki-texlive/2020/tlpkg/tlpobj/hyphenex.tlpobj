@@ -1,0 +1,20 @@
+name hyphenex
+category Package
+revision 37354
+shortdesc US English hyphenation exceptions file
+longdesc Exceptions for American English hyphenation patterns are
+longdesc occasionally published in the TeX User Group journal TUGboat.
+longdesc This bundle provides alternative Perl and Bourne shell scripts
+longdesc to convert the source of such an article into an exceptions
+longdesc file, together with a recent copy of the article and
+longdesc machine-readable files.
+containersize 7512
+containerchecksum dfa1f625e736c2c4125209552f084fbd5d64109db5dd5b8f37b5add3fce90984bfa5db855b581396ffad20b1f5a3461cae01e031c086f7db5dc98203bb7bf8d9
+srccontainersize 183836
+srccontainerchecksum cedcf83033a5aaebb44a8270b5e670b9db2fba2b8f65925cddee4684bf50fee5dcadb02921b04288d02c91ca3d003c8da143c7bb1974e7af26b1f392dfd4283f
+runfiles size=6
+ texmf-dist/tex/generic/hyphenex/ushyphex.tex
+catalogue-also tugboat tugboat-plain
+catalogue-ctan /info/digests/tugboat/hyphenex
+catalogue-license other-free
+catalogue-topics hyphenation

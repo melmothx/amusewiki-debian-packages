@@ -1,0 +1,103 @@
+TeX Live vás víta
+  
+   Distribúcia softvéru TeX Live ponúka úplný systém TeX pre rôzne platformy 
+   GNU a Unix, Macintosh, Windows a ďalšie. Zahŕňa programy na úpravu, sadzbu, 
+   náhľad a tlač dokumentov TeXu v mnohých jazykoch a rozsiahlu zbierku makier
+   TeXu a knižnice fontov.
+
+   Distribúcia obsahuje rozsiahlu všeobecnú dokumentáciu o TeXu, rovnako
+   ako aj dokumentáciu k priloženým softvérovým balíkom.
+ 
+   Informácie o licenciách nájdete v textových súboroch na najvyššej úrovni 
+   LICENSE.TL [1] a LICENSE.CTAN [2].
+
+
+Ako začať
+
+   Dôrazne vám odporúčame, aby ste si pred inštaláciou prečítali Príručku TeX Live.
+   Obsahuje pokyny krok za krokom, popis adresárov najvyššej úrovne a ďalšie.
+
+   Ak inštalujete z obrazu DVD, anglická príručka a jej všetky preklady 
+   sú v podadresári texlive-doc [3].
+
+   Po ukončení inštalácie sa anglická verzia príručky nachádza v adresárovej hierarchii 
+   texmf-dist/doc/texlive/ [4], v obidvoch formátoch - html [5] aj  pdf [6].
+   Preklady do iných jazykov sú tiež dostupné na texmf-dist/doc/texlive [7].
+
+   Poskytujeme tiež zoznam odkazov [8] na dostupnú PDF a HTML dokumentáciu 
+   zahrnutých balíkov a programov.
+
+   Ak inštalujete z Internetu, vyššie uvedené odkazy nebudú fungovať. 
+   V takom prípade si však môžete dokumentáciu TeX Live pozrieť na Internete [9].
+
+   Zoznam najdôležitejších zmien v tohtoročnom vydaní nájdete v časti
+   História vydaní na konci dokumentácie.
+
+Inštalácia 
+  
+   Inštalačný skript sa nazýva install-tl a nachádza vo vrchnej úrovni 
+   adresárového stromu. Môžete ho vyvolať pomocou perl install-tl. Pod 
+   pod Windows môžete spustiť sprievodný dávkový súbor install-tl-windows.bat.
+   Na počítačoch Macpravdepodobne budete chcieť inštalovať prostredníctvom 
+   MacTeX [10], ktorý má svoj vlastnýnatívny inštalačný program 
+   (je k dispozícii aj na DVD, za texlive/,v ktorom ste teraz.)
+   
+   install-tl pracuje v dvoch režimoch:
+
+   -gui (prednastavené na Windows a Macs) štandardne vykoná jednoduchú 
+        inštaláciu s použitím grafického rozhrania, na požiadanie však 
+        umožňuje aj pokročilé možnosti.
+
+   -no-gui (prednastavené vo všetkých ostatných systémoch) poskytuje  
+        všetky dostupné voľby pomocou zjednodušeného textového rozhrania.
+
+   Aktualizácie balíkov po inštalácii a ďalšie konfigurácie sa
+   vykonávajú programom tlmgr (TeX Live Package Manager), ktorý
+   má podobne aj GUI aj textový režim.
+
+   Pre obidva programy install-tl [11] a tlmgr [12] môžete zadať voľbu 
+   príkazového riadka --help pre detailné informácie o nich. Na získanie 
+   (oveľa) viac informácií viď vyššie uvedené odkazy na dokumentáciu.
+
+Odkazy
+
+   Na záver uveďme kvôli vášmu prehľadu niekoľko príbuzných www stránok. 
+   Tieto nie sú zaradené v TeX Live:
+
+     * [13] tug.org/begin.html - ak ste začiatočník v TeXu a/alebo máte
+       záujem o úvodný materiál.
+     * [14] tug.org/interest.html - všeobecný zoznam webových prostriedkov
+       TeXu vrátane dokumentácie, balíkov, fontov a ďalšieho.
+     * [15] tug.org/ctan.html - jeden z prístupových bodov na archívnu sieť 
+       Comprehensive TeX Archive Network (CTAN), ktorá je online skladiskom 
+       všetkých TeXovských vecí.
+     * [16] tug.org/usergroups.html - zoznam skupín používateľov TeXu 
+       z celého sveta, s kontaktnými informáciami. Dôrazne vám odporúčame 
+       pripojiť sa do skupiny používateľov podľa vášho výberu, aby ste 
+       podporili TeX Live a iné TeXovské aktivity.
+
+
+    Šťastné a príjemné TeXovanie!
+     __________________________________________________________________
+
+   [17] domovská stránka TeX Live.
+
+Referencie
+
+   1. file:../LICENSE.TL
+   2. file:../LICENSE.CTAN
+   3. file:../texlive-doc
+   4. file:../texmf-dist/doc/texlive/texlive-en
+   5. file:../texmf-dist/doc/texlive/texlive-en/texlive-en.html
+   6. file:../texmf-dist/doc/texlive/texlive-en/texlive-en.pdf
+   7. file:../texmf-dist/doc/texlive/
+   8. file:../doc.html
+   9. https://tug.org/texlive/doc.html
+  10. https://tug.org/mactex/
+  11. https://tug.org/texlive/doc/install-tl.html
+  12. https://tug.org/texlive/tlmgr.html
+  13. https://tug.org/begin.html
+  14. https://tug.org/interest.html
+  15. https://tug.org/ctan.html
+  16. https://tug.org/usergroups.html
+  17. https://tug.org/texlive/

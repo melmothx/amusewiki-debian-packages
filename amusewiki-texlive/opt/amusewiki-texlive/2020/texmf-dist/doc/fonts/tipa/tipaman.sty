@@ -1,0 +1,379 @@
+% tipaman.sty
+% Copyright 2002 FUKUI Rei
+%
+% This program may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.2
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.2 or later is part of all distributions of LaTeX 
+% version 1999/12/01 or later.
+%
+% This program consists of all files listed in Manifest.txt.
+%
+
+% tipaman.sty for TIPA Manual
+
+\usepackage{mflogo}
+\usepackage[tone,extra]{tipa}
+\usepackage{tipx}
+\usepackage{codelist}
+\usepackage{boxchar}
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{,}{,}
+
+%\@twosidefalse
+%\@mparswitchfalse
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% What follows is a format I used recently.
+% Book size is approximately b5, with crop marks indicated
+% on a a4 size of paper.
+%
+%\usepackage[cam,axes,a4center]{crop}
+%\setlength\topmargin {22mm}
+%\setlength\headheight{4mm}
+%\setlength\headsep   {9mm}
+%\setlength\footskip{11mm}
+%\if@compatibility \setlength\maxdepth{5\p@} \else
+%\setlength\maxdepth{.5\topskip} \fi
+%\setlength\textwidth{126mm}
+%\setlength\textheight{187mm}
+%\setlength\paperheight {257mm}
+%\setlength\paperwidth  {182mm}
+%\@twosidetrue
+%\@mparswitchtrue
+%\setlength\oddsidemargin   {28mm}
+%\setlength\evensidemargin  {28mm}
+%\addtolength\topmargin{-1in}
+%\addtolength\oddsidemargin{-1in}
+%\addtolength\evensidemargin{-1in}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\footnotesep.8\baselineskip
+\addtolength{\skip\footins}{2pt}
+
+% to use float materials more easily
+\renewcommand{\topfraction}{1}
+\renewcommand{\bottomfraction}{0}
+\renewcommand{\textfraction}{0}
+
+\newif\ifmainitem 
+\newif\iftimes \timesfalse
+
+{\newcommand\@@ptm@@@{ptm}%
+ \ifx\rmdefault\@@ptm@@@ \global\timestrue\fi}
+
+\newskip\tipamanhskipamount
+\tipamanhskipamount 1em plus .2em minus .6em
+\def\tipamanhskip{\hskip\tipamanhskipamount}
+
+\def\ip@item#1#2#3#4#5#6#7{{\leavevmode
+  \hbox to \textwidth{%
+    \setbox\z@\singleframebox{#1}{\hugeTipa}\dimen\z@\ht\z@
+    \dimen\@ne\hsize \advance\dimen\@ne-\wd\z@ \advance\dimen\@ne-1.5em
+    \setbox\@ne\hbox{\vbox{%\hsize=1.5em
+      \edef\symcode{\ifx\empty#7\empty Macro\else#7\fi}%
+      \ifmainitem\else\edef\symcode{\underline{\symcode}}\fi
+      \hbox to\z@{\hss\scriptsize\textit{\symcode} }}}
+    \setbox\tw@\hbox{\vbox{\hsize=\the\dimen\@ne
+      {\large #2}%
+      \ifx\empty#3\empty\else
+        \tipamanhskip\textit{Usage}: #3\fi\par
+      \ifx\empty#5\empty\textit{Input}: \texttt{#4}\else
+      \textit{Input1}: \texttt{#4}\quad\textit{Input2}: \texttt{#5}\fi\par
+      \textit{Sources}: #6
+      }}%
+    \dimen\@ne\dimen\z@ \advance\dimen\@ne-\ht\@ne
+    \dimen\tw@\dimen\z@ \advance\dimen\tw@-\ht\tw@
+    \raise\dimen\@ne\hbox{\unhbox\@ne}\unhbox\z@\hfill
+    \raise\dimen\tw@\hbox{\unhbox\tw@}%
+    }\par\medskip}}
+
+\def\ipaitem{\mainitemtrue\ip@item}
+\def\ipxitem{\mainitemfalse\ip@item}
+
+\def\usage{\@ifstar{\nonipausage}{\ipausage}}
+\def\nonipausage{Usage: }
+\def\ipausage{{\itshape IPA usage:} }
+\def\ipaall{IPA '49--'96}
+\def\ipaold{IPA '49, '79}
+\def\ipanew{IPA '89--'96}
+\def\psg#1{\PSG\ p.\#1}
+
+\def\tbs{{\ttfamily\char'134}}
+\def\tbi{{\ttfamily\char'173}}
+\def\tbii{{\ttfamily\char'175}}
+\def\ttilde{{\ttfamily\char'176}}
+\def\tcircum{{\ttfamily\char'136}}
+\def\TT#1{\tbi #1\tbii}
+\def\TD#1#2{\tbs #1\tbi #2\tbii}
+\def\Td#1#2{\texttt{\TD{#1}{#2}}}
+\def\Tt#1{\texttt{\tbs #1}}
+
+\def\PSG{\textsl{PSG}}
+\def\Handbook{\textsl{Handbook}}
+\def\New{\textbf{\textsf{New!}}}
+
+\newcount\excnt
+\def\@inout{i}
+\def\yitem{\if i\@inout
+ \item[{\itshape Input\/}:]\def\@inout{o}\else
+ \par\nobreak\item[{\itshape Output\/}:]\def\@inout{i}\fi}
+
+\newenvironment{tipaexample}{%
+  \begin{list}{}{\excnt=1%
+  \setlength\labelsep{1em}%
+  \setlength\labelwidth{5em}%
+  \setlength\leftmargin{6.5em}%
+  \setlength\parsep{0pt}}}%
+  {\end{list}}
+
+\def\xitem{\if i\@inout
+ \item[{\itshape Input \the\excnt\/}:]\def\@inout{o}\else
+ \par\nobreak\item[{\itshape Output \the\excnt\/}:]\def\@inout{i}%
+ \global\advance\excnt by1\fi}
+
+\def\labelenumi{(\theenumi)}
+\newenvironment{Quote}{\begin{quote}}{\end{quote}}
+
+\let\mc\multicolumn
+
+\newskip\sloppyspaceamount
+\newcommand\sloppyspace{\setbox0\hbox{ }%
+  \sloppyspaceamount=\wd0 plus 2\wd0 minus .5\wd0
+  \hskip\sloppyspaceamount}
+
+
+%
+% Below are modifications of LaTeX default styles.
+%
+% Chapter head
+
+\renewcommand\chapter{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \thispagestyle{empty}%
+  \global\@topnum\z@
+  \@afterindentfalse
+  \secdef\@chapter\@schapter}
+\def\@chapter[#1]#2{%
+  \ifnum \c@secnumdepth >\m@ne
+    \if@mainmatter
+      \refstepcounter{chapter}%
+      \typeout{\@chapapp\space\thechapter.}%
+      \addcontentsline{toc}{chapter}%
+        {\protect\numberline{\thechapter}#1}%
+    \else
+      \addcontentsline{toc}{chapter}{#1}%
+    \fi
+  \else
+    \addcontentsline{toc}{chapter}{#1}%
+  \fi
+  \chaptermark{#1}%
+  \addtocontents{lof}{\protect\addvspace{10\p@}}%
+  \addtocontents{lot}{\protect\addvspace{10\p@}}%
+  \if@twocolumn
+    \@topnewpage[\@makechapterhead{#2}]%
+  \else
+    \@makechapterhead{#2}%
+    \@afterheading
+  \fi}
+\def\@makechapterhead#1{%
+%  \vspace*{50\p@}%
+  \vspace*{5\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter
+%        \huge\bfseries \@chapapp\space \thechapter
+        \huge\bfseries \huge\@chapapp\space \thechapter%
+        \par\nobreak
+        \vskip 10\p@
+        \rule[.5ex]{\textwidth}{.8pt}
+        \vskip 10\p@
+      \fi
+    \fi
+    \interlinepenalty\@M
+    \huge \bfseries #1\par\nobreak
+    \vskip 40\p@
+  }}
+\def\@schapter#1{\if@twocolumn
+    \@topnewpage[\@makeschapterhead{#1}]%
+  \else
+    \@makeschapterhead{#1}%
+    \@afterheading
+  \fi}
+\def\@makeschapterhead#1{%
+%  \vspace*{50\p@}%
+  \vspace*{5\p@}%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \huge \bfseries  #1\par\nobreak
+    \vskip 40\p@
+  }}
+
+%
+% heading.
+%
+
+\newcommand\clearemptydoublepage{%
+  \newpage{\pagestyle{empty}\cleardoublepage}}
+
+\def\ps@headings{%
+    \def\@oddfoot{\hfil\thepage\hfil}%
+    \def\@evenfoot{\hfil\thepage\hfil}%
+    \def\@evenhead{\hfil\slshape\leftmark}%
+    \def\@oddhead{{\slshape\rightmark}\hfil}%
+    \let\@mkboth\markboth
+  \def\chaptermark##1{%
+    \markboth {%\MakeUppercase{%
+      \ifnum \c@secnumdepth >\m@ne
+        \if@mainmatter
+          \@chapapp\ \thechapter. \ %
+        \fi
+      \fi
+      ##1}{}}%
+  \def\sectionmark##1{%
+    \markright {%\MakeUppercase{%
+      \ifnum \c@secnumdepth >\z@
+        \thesection. \ %
+      \fi
+      ##1}}}
+
+\pagestyle{headings}
+
+
+%
+% Commands for specimen.
+%
+
+\newcount\codecnt
+\newcommand\tipaallchars[1]{{%
+  \hrule width \textwidth \par\medskip
+  \noindent\font\test=#1\test
+  \codecnt=0 \loop \char\the\codecnt\sloppyspace
+    \ifnum\codecnt<255 \advance\codecnt by 1 \repeat
+  \par\medskip\hrule width \textwidth}}
+
+\newcommand\tipxallchars[1]{{\par\medskip\sloppy
+  \noindent\font\test=#1\test
+  \codecnt=0 \loop \char\the\codecnt\sloppyspace
+    \ifnum\codecnt<8 \advance\codecnt by 1 \repeat
+  \codecnt=32 \loop \char\the\codecnt\sloppyspace
+    \ifnum\codecnt<73 \advance\codecnt by 1 \repeat
+  \codecnt=80 \loop \char\the\codecnt\sloppyspace
+    \ifnum\codecnt<86 \advance\codecnt by 1 \repeat
+  \codecnt=112 \loop \char\the\codecnt\sloppyspace
+    \ifnum\codecnt<123 \advance\codecnt by 1 \repeat
+  \par\medskip\hrule width \textwidth}}
+
+\newcommand\sampletexti[1]{\begin{flushleft}#1
+  D@ "nO;T "wInd @nd D@ "s2n w@ dIs"pju;tIN wItS w@z D@ "str6Ng5,
+  wEn @ "tr\ae vl5 keIm @"l6N "r\ae pt In @ "wO:m "kloUk. DeI
+  @"gri:d D@t D@ "w2n hu; f3;st s@k"si;dId In "meIkiN D@ "tr\ae vl5
+  teIk hIz "kloUk 6f SUd bI k@n"sId@d "str6Ng@ D@n DI "2D@.
+\end{flushleft}}
+
+\newcommand\sampletextii[1]{\begin{flushleft}#1
+  la bi:z e l sOlE:j s@ dispytE, Sak\~{\oe} asyr\~A k il etE l ply
+  fO:r, k\~At iz \~O vy \~{\oe} vwajaZ\oe:r ki s av\~AsE, \~AvlOpe
+  d\~A s\~O m\~Ato. i s\~O t\~Obe dakO:r, k@ s@lyi ki arivE
+  l pr@mje a fEr ote s\~O m\~Ato o vwajaZ\oe:r, s@rE rgarde kOm
+  l ply fO:r.
+\end{flushleft}}
+
+\newcommand\sampletextiii[1]{\begin{flushleft}#1
+  "PaInst St\;RIt@n zI\c{c} "nOKtvInt PUnt "zOn@, "ve:\;R fOn Pi;n@n
+  "baId@n vo:l d5K "StEKk5\;R@ vE:\;R@, PAls PaIn "vAnd5\;R5K, de:K
+  PIn PaIn@n vAKm@n "mAnt@l g@"hYlt va:K, d@s ve:g@s da:"he:K ka:m.
+  zi; vUKd@n "PaIni\c{c}, dAs "de:Kje:nIg@ fy:K d@n "StEKk5\;R@n
+  gElt@n zOlt@, de:K d@n "vAnd5\;R5K "tsvIN@n vyKd@, zaIn@n "mAnt@l
+  "PAptsu;ne:m@n.
+\end{flushleft}}
+
+\newcommand\sampletextiv[1]{\begin{flushleft}#1 \let\H\textcrh
+  marra S Samsi wi r ri:\H\ ka:nu bi jitxanPum Pinhu l PaPwa fi:hum.
+  u baQde:n Sa:fu ra:gil sa:ji\H\ gaj mim baQi:d mitlaffaQ bi
+  Qaba:ja tPi:la. fa ttafaPum Qala Pin illi jixalli:h jiPlaQ il
+  Qaba:ja fi l Pawwal jiku:n huwwa PaPwa mit ta:ni.
+\end{flushleft}}
+
+\newcommand\sampletextv[1]{\begin{flushleft}#1
+  upepo ulikuwa uki\!biSana na \*fua kuwa nani mweNe Nguvu kupita
+  mwenziwe, mara akapita masafiri alijekuwa amevaa \*fu\!ba. walipatana
+  kuwa atakajemvua \*fu\!ba kwanza msafiri ndije mweNe Nguvu.
+\end{flushleft}}
+
+\newcommand\bseries{\fontseries{b}\selectfont}
+\newcommand\rmtipa{\renewcommand\rmdefault{cmr}\renewcommand\sfdefault{cmss}}
+\newcommand\rmxipa{\renewcommand\rmdefault{ptm}\renewcommand\sfdefault{phv}}
+
+\newcount\rotatetextcnt \rotatetextcnt=0
+
+\newcommand\sampletext{%
+ \edef\@rotatetextcnt{\the\rotatetextcnt }%
+ \ifcase\@rotatetextcnt\def\@sampletext{\sampletexti}\or
+  \def\@sampletext{\sampletextii}\or\def\@sampletext{\sampletextiii}\or
+  \def\@sampletext{\sampletextiv}\or\def\@sampletext{\sampletextv}\fi
+ \global\advance\rotatetextcnt by 1
+ \ifnum\the\rotatetextcnt=5 \global\rotatetextcnt=0 \fi
+ \@sampletext}
+
+
+\newcommand\commr[1]{\par\bigskip\begin{flushright}#1\end{flushright}}
+\newcommand\comml[1]{\par\bigskip\begin{flushleft}#1\end{flushleft}}
+
+\newcommand\betacomment{\commr{%
+  For instance,\\
+  the Greek letters included in the International Alphabet\\
+  are cut in roman adaptations. Thus, since the ordinary shape of \\
+  the Greek letter $\beta$ does not harmonise with roman type,\\
+  in the International Phonetic Alphabet it is given the form \textipa{B}.\\
+  (\emph{Principles}, 1949, p.~1)}}
+
+\newcommand\thetacomment{\commr{%
+  ... And of the two form of Greek theta, $\theta$ and $\vartheta$,\\ 
+  it has been necessary to choose the first (in vertical form),\\
+  since the second cannot be made to harmonise with\\
+  roman letters. (\emph{Principles}, 1949, p.~2)}}
+
+\newcommand\Sweet{\comml{%
+  \textsc{Phonetics} is the \textbf{science} of speech-sounds.\\
+  From a practical point of view it is the \textbf{art} of producing\\
+  speech-sounds and recognizing them by ear.\par\medskip
+  (Henry Sweet, \emph{A Primer of Phonetics}, 1906; Boldface by
+  Sweet)}}
+
+\newcommand\IPAshape{\comml{%
+  The non-roman letters of the International Phonetic Alphabet\\
+  have been designed as far as possible to harmonise well with \\
+  the roman letters. The Association does not recognise\\
+  makeshift letters; It recognises only letters which have been\\
+  carefully cut so as to be in harmony with the other letters.\par\medskip
+  (\emph{The Principles of the International Phonetic Association}, 1949)}}
+
+\newcommand\upsiloncomment{\commr{%
+    Some phoneticians refer to Upsilon by the name \emph{Bucket},\\
+    but it looks more like an urn to us.\par\medskip
+    (\emph{PSG}, 1996, p.~185)\par\bigskip
+
+    ....................\\
+    ....................\\
+    O Attic shape! Fair attitude! with brede\\
+    Of marble men and maidens overwrought,\\
+    With forest branches and the trodden weed;\\
+    Thou, silent form, dost tease us out of thought\\
+    As doth eternity: Cold Pastoral!\\
+    When old age shall this generation waste,\\
+    Thou shalt remain, in midst of other woe\\
+    Than ours, a friend to man, to whom thou say'st,\\
+    ``Beauty is truth, truth beauty, ---that is all\\
+    Ye know on earth, and all ye need to know.''\par\medskip
+    (John Keats, \emph{Ode on a Grecian Urn})}}
+
+\endinput
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "tipaman"
+%%% End: 

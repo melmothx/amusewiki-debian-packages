@@ -1,0 +1,8 @@
+% $Id: test-moddate.tex 808 2018-11-13 18:39:00Z karl $
+% Public domain.
+
+\catcode`\{=1 \catcode`\}=2
+
+% Check that \pdffilemoddate returns UTC with envvars set; see Makefile.
+\message{\pdffilemoddate{\jobname.tex}}
+\end

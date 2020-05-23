@@ -1,0 +1,8 @@
+name luaotfload.x86_64-linux
+category Package
+revision 34647
+shortdesc x86_64-linux files of luaotfload
+containersize 348
+containerchecksum 88d1a0e7f084beab1c8d28d25ed0ce3d355619b5d33fa5e7fb312e4b689532c47ac11fb5ddb5df0790c44200b8fc1fbde72d411717183d3796bbd20158265e8d
+binfiles arch=x86_64-linux size=1
+ bin/x86_64-linux/luaotfload-tool

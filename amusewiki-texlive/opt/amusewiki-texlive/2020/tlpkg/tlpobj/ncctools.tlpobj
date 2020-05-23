@@ -1,0 +1,89 @@
+name ncctools
+category Package
+revision 51810
+shortdesc A collection of general packages for LaTeX
+longdesc The NCCtools bundle contains many packages for general use
+longdesc under LaTeX; many are also used by NCC LaTeX. The bundle
+longdesc includes tools for: executing commands after a package is
+longdesc loaded; watermarks; counter manipulation (dynamic counters,
+longdesc changing counter numbering with another counter); improvements
+longdesc to the description environment; hyphenation of compound words;
+longdesc new levels of footnotes; space-filling patterns; "poor man's"
+longdesc Black Board Bold symbols; alignment of the content of a box;
+longdesc use comma as decimal separator; boxes with their own crop
+longdesc marks; page cropmarks; improvements to fancy headers; float
+longdesc "styles", mini floats, side floats; manually marked footnotes;
+longdesc extension of amsmath; control of paragraph skip; an envelope to
+longdesc the graphicx package; dashed and multiple rules; alternative
+longdesc techniques for declarations of sections, captions, and
+longdesc toc-entries; generalised text-stretching; generation of new
+longdesc theorem-like environments; control of the text area; centred
+longdesc page layouts; and un-numbered top-level section.
+containersize 24572
+containerchecksum f7ec6f6c51d2a4f071b85cf28299a4a11eeabaf225c85cd0144bb0971ec3da44ee9aeac7cdd7501d258b7e8cf25b3e3484cd60dbadf0ff3ee05767c713c12dfa
+doccontainersize 2446624
+doccontainerchecksum a594e74455024dff7d38a8a750ee02637341f84d342a83409ad0e20a1b0f292c370e16c1b267c2d6a58975f45a6b4c1092c8518653994392cf4dc08fe8553644
+docfiles size=778
+ texmf-dist/doc/latex/ncctools/README details="Readme"
+ texmf-dist/doc/latex/ncctools/README.source
+ texmf-dist/doc/latex/ncctools/afterpackage.pdf
+ texmf-dist/doc/latex/ncctools/changes.txt
+ texmf-dist/doc/latex/ncctools/dcounter.pdf
+ texmf-dist/doc/latex/ncctools/desclist.pdf
+ texmf-dist/doc/latex/ncctools/extdash.pdf
+ texmf-dist/doc/latex/ncctools/manifest.txt
+ texmf-dist/doc/latex/ncctools/manyfoot.pdf
+ texmf-dist/doc/latex/ncctools/mboxfill.pdf
+ texmf-dist/doc/latex/ncctools/nccbbb.pdf
+ texmf-dist/doc/latex/ncctools/nccboxes.pdf
+ texmf-dist/doc/latex/ncctools/ncccomma.pdf
+ texmf-dist/doc/latex/ncctools/ncccropbox.pdf
+ texmf-dist/doc/latex/ncctools/ncccropmark.pdf
+ texmf-dist/doc/latex/ncctools/nccfancyhdr.pdf
+ texmf-dist/doc/latex/ncctools/nccfloats.pdf
+ texmf-dist/doc/latex/ncctools/nccfoots.pdf
+ texmf-dist/doc/latex/ncctools/nccmath.pdf
+ texmf-dist/doc/latex/ncctools/nccparskip.pdf
+ texmf-dist/doc/latex/ncctools/nccpic.pdf
+ texmf-dist/doc/latex/ncctools/nccrules.pdf
+ texmf-dist/doc/latex/ncctools/nccsect.pdf
+ texmf-dist/doc/latex/ncctools/nccstretch.pdf
+ texmf-dist/doc/latex/ncctools/nccthm.pdf
+ texmf-dist/doc/latex/ncctools/ncctools.pdf
+ texmf-dist/doc/latex/ncctools/ncctools.tex
+ texmf-dist/doc/latex/ncctools/textarea.pdf
+ texmf-dist/doc/latex/ncctools/tocenter.pdf
+ texmf-dist/doc/latex/ncctools/topsection.pdf
+ texmf-dist/doc/latex/ncctools/watermark.pdf
+srccontainersize 91436
+srccontainerchecksum 9fd3fccd2383ba6dd9f32766fbabb5a2c108c335eee1b5fd6dd11d93d5d6944bed22877b640ea676bf9721a69e34f0500a3bee131a4bc65feafc348207d131b5
+runfiles size=43
+ texmf-dist/tex/latex/ncctools/afterpackage.sty
+ texmf-dist/tex/latex/ncctools/dcounter.sty
+ texmf-dist/tex/latex/ncctools/desclist.sty
+ texmf-dist/tex/latex/ncctools/extdash.sty
+ texmf-dist/tex/latex/ncctools/manyfoot.sty
+ texmf-dist/tex/latex/ncctools/mboxfill.sty
+ texmf-dist/tex/latex/ncctools/nccbbb.sty
+ texmf-dist/tex/latex/ncctools/nccboxes.sty
+ texmf-dist/tex/latex/ncctools/ncccomma.sty
+ texmf-dist/tex/latex/ncctools/ncccropbox.sty
+ texmf-dist/tex/latex/ncctools/ncccropmark.sty
+ texmf-dist/tex/latex/ncctools/nccfancyhdr.sty
+ texmf-dist/tex/latex/ncctools/nccfloats.sty
+ texmf-dist/tex/latex/ncctools/nccfoots.sty
+ texmf-dist/tex/latex/ncctools/nccmath.sty
+ texmf-dist/tex/latex/ncctools/nccparskip.sty
+ texmf-dist/tex/latex/ncctools/nccpic.sty
+ texmf-dist/tex/latex/ncctools/nccrules.sty
+ texmf-dist/tex/latex/ncctools/nccsect.sty
+ texmf-dist/tex/latex/ncctools/nccstretch.sty
+ texmf-dist/tex/latex/ncctools/nccthm.sty
+ texmf-dist/tex/latex/ncctools/textarea.sty
+ texmf-dist/tex/latex/ncctools/tocenter.sty
+ texmf-dist/tex/latex/ncctools/topsection.sty
+ texmf-dist/tex/latex/ncctools/watermark.sty
+catalogue-ctan /macros/latex/contrib/ncctools
+catalogue-license lppl
+catalogue-topics collection
+catalogue-version 3.5.3

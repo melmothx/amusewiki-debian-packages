@@ -1,0 +1,19 @@
+name hyphen-danish
+category TLCore
+revision 54568
+catalogue dkhyphen
+shortdesc Danish hyphenation patterns.
+longdesc Hyphenation patterns for Danish in T1/EC and UTF-8 encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=danish 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-da.tex 	file_patterns=hyph-da.pat.txt 	file_exceptions=
+containersize 5752
+containerchecksum b9371cbc489675b1e6e7995a216653daba35b8a14e674ceefa6cc55a4c3ecbd7de85be4ab102aa73074b063f61bb24b53125ae2e160e489811b0a46543b4c7c0
+runfiles size=8
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-da.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-da.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-da.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-da.pat.txt
+catalogue-ctan /language/hyphenation/dkhyphen
+catalogue-license lppl
+catalogue-topics hyphenation danish

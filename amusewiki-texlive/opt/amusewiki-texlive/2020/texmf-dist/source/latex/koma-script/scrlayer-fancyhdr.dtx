@@ -1,0 +1,553 @@
+% \iffalse^^A meta-comment
+% ======================================================================
+% scrlayer-fancyhdr.dtx
+% Copyright (c) Markus Kohm, 2019
+%
+% This file is part of the LaTeX2e KOMA-Script bundle.
+%
+% This work may be distributed and/or modified under the conditions of
+% the LaTeX Project Public License, version 1.3c of the license.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3c or later is part of all distributions of LaTeX
+% version 2005/12/01 and of this work.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% The Current Maintainer and author of this work is Markus Kohm.
+%
+% This work consists of all files listed in manifest.txt and
+% `scrlayer-fancyhdr.dtx'.
+% ----------------------------------------------------------------------
+% scrlayer-fancyhdr.dtx
+% Copyright (c) Markus Kohm, 2019
+%
+% Diese Datei ist Teil der LaTeX2e KOMA-Script-Sammlung.
+%
+% Dieses Werk darf nach den Bedingungen der LaTeX Project Public Lizenz,
+% Version 1.3c.
+% Die neuste Version dieser Lizenz ist
+%   http://www.latex-project.org/lppl.txt
+% und Version 1.3c ist Teil aller Verteilungen von LaTeX
+% Version 2005/12/01 und dieses Werks.
+%
+% Dieses Werk hat den LPPL-Verwaltungs-Status "author-maintained"
+% (allein durch den Autor verwaltet).
+%
+% Der Aktuelle Verwalter und Autor dieses Werkes ist Markus Kohm.
+%
+% Dieses Werk besteht aus den in manifest.txt aufgefuehrten Dateien
+% sowie `scrlayer-fancyhdr.dtx'.
+% ======================================================================
+% \fi^^A meta-comment
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \iffalse^^A meta-comment
+%%% From File: $Id: scrlayer-fancyhdr.dtx 3138 2019-04-04 06:24:53Z kohm $
+%<identify>%%%            (run: identify)
+%<init>%%%            (run: init)
+%<options>%%%            (run: options)
+%<body>%%%            (run: body)
+%<*dtx>
+\ifx\ProvidesFile\undefined\def\ProvidesFile#1[#2]{}\fi
+\begingroup
+  \def\filedate$#1: #2-#3-#4 #5${\gdef\filedate{#2/#3/#4}}
+  \filedate$Date: 2019-04-04 08:24:53 +0200 (Thu, 04 Apr 2019) $
+  \def\filerevision$#1: #2 ${\gdef\filerevision{v0.1.#2 ALPHA}}
+  \filerevision$Revision: 3138 $
+  \edef\reserved@a{%
+    \noexpand\endgroup
+    \noexpand\ProvidesFile{scrlayer-fancyhdr.dtx}%
+                          [\filedate\space\filerevision\space
+                           KOMA-Script package source
+  }%
+\reserved@a
+%</dtx>
+%<*identify>
+%<interface>\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+%<interface>\ProvidesPackage{scrlayer-fancyhdr}[%
+% Sometimes following will be replaced by !KOMAScriptVersion:
+%!SCRLAYERFANCYHDRVERSION
+%<interface>  package
+%</identify>
+%<*dtx|identify>
+  (end user interface for scrlayer)]
+%</dtx|identify>
+%<*dtx>
+\ifx\documentclass\undefined
+  \input scrdocstrip.tex
+  \@@input scrkernel-version.dtx
+  \@@input scrstrip.inc
+  \KOMAdefVariable{COPYRIGHTFROM}{2018}
+  \KOMAdefVariable{SCRLAYERFANCYHDRVERSION}{%
+    \space\space\filedate\space\filerevision\space KOMA-Script
+  }%
+  \expandafter\let\csname ifbetawas\expandafter\endcsname
+  \csname ifbeta\endcsname
+  \expandafter\let\csname ifbeta\expandafter\endcsname
+  \csname iftrue\endcsname
+  \generate{\usepreamble\defaultpreamble
+    \file{scrlayer-fancyhdr.sty}{%
+      \from{scrlayer-fancyhdr.dtx}{interface,trace,fancyhdr,identify}%
+      \from{scrlayer.dtx}{interface,trace,fancyhdr,init}%
+      \from{scrlayer-fancyhdr.dtx}{interface,trace,fancyhdr,init}%
+      \from{scrlayer.dtx}{interface,trace,fancyhdr,options}%
+      \from{scrlayer-fancyhdr.dtx}{interface,trace,fancyhdr,options}%
+      \from{scrlayer.dtx}{interface,trace,fancyhdr,body}%
+      \from{scrlayer-fancyhdr.dtx}{interface,trace,fancyhdr,body}%
+      \from{scrlogo.dtx}{logo}%
+    }%
+  }
+  \expandafter\let\csname ifbeta\expandafter\endcsname
+  \csname ifbetawas\endcsname
+  \@@input scrstrop.inc
+\else
+  \let\endbatchfile\relax
+\fi
+\endbatchfile
+  \documentclass{scrdoc}
+  \addtolength{\textwidth}{-1em}
+  \addtolength{\marginparwidth}{2em}
+  \addtolength{\oddsidemargin}{2em}
+  \usepackage[ngerman,english]{babel}
+  \usepackage{url,babelbib}\bibliographystyle{babalpha-fl}
+  \usepackage{listings}
+  \usepackage{scrhack}
+  \usepackage{etoolbox}
+  \pretocmd\DescribeMacro{\ifhmode\else\bigskip\noindent\fi}{}{}
+  \pretocmd\DescribeEnv{\ifhmode\else\bigskip\noindent\fi}{}{}
+  \pretocmd\DescribeOption{\ifhmode\else\bigskip\noindent\fi}{}{}
+
+  \CodelineIndex
+  \RecordChanges
+  \GetFileInfo{scrlayer-fancyhdr.dtx}
+  \title{The \texttt{scrlayer} interface \texttt{scrlayer-fancyhdr}%
+    \footnote{This is version \fileversion\ of file \texttt{\filename}.}}
+  \date{\filedate}
+  \author{Markus Kohm}
+
+  \newenvironment{Explain}{\par}{\par}
+  \newcommand*{\length}{}
+  \let\length\Length
+  \let\endlength\endLength
+  \let\Macro\cs
+  \let\Length\Macro
+  \let\Package\textsf
+  \let\Class\Package
+  \let\File\texttt
+  \let\Option\texttt
+  \newcommand*{\KOption}[1]{\Option{#1}\texttt{=}}
+  \newcommand*{\OptionValue}[2]{\Option{#1}\texttt{=}\PValue{#2}}
+  \let\Counter\texttt
+  \let\Environment\texttt
+  \let\ShowOutput\quote
+  \let\endShowOutput\endquote
+  \let\Pagestyle\texttt
+  \newcommand*{\Parameter}[1]{\texttt{\marg{#1}}\linebreak[1]}
+  \newcommand*{\OParameter}[1]{\texttt{\oarg{#1}}\linebreak[1]}
+  \newcommand*{\MParameter}[2]{\texttt{(\meta{#1},\meta{#2})}\linebreak[1]}
+  \providecommand\PParameter[1]{\mbox{\texttt{\{#1\}}}\linebreak[1]}
+  \let\PName\meta
+  \let\PValue\texttt
+  \providecommand*{\autoref}[1]{\expandafter\AUTOREF#1:}
+  \providecommand*{\AUTOREF}{}
+  \makeatletter
+  \def\AUTOREF#1:#2:{%
+    \edef\@tempa{#1}%
+    \edef\@tempb{tab}\ifx\@tempa\@tempb table~\fi
+    \edef\@tempb{sec}\ifx\@tempa\@tempb section~\fi
+    \ref{#1:#2}%
+  }
+  \providecommand*{\IndexCmd}[2][]{}
+  \providecommand*{\textnote}[2][]{}
+  \providecommand*\eTeX{\leavevmode\hbox{$\varepsilon$}-\TeX}
+  \providecommand*\NTS{%
+    \leavevmode\hbox{$\cal N\kern-0.35em\lower0.5ex\hbox{$\cal T$}%
+      \kern-0.2emS$}}
+
+  \lstnewenvironment{lstcode}{\lstset{language=[LaTeX]TeX}}{}
+  \makeatother
+  \sloppy% YOU SHOULD NOT DO THIS!!!
+
+  \begin{document}
+  \maketitle
+  \tableofcontents
+  \DocInput{\filename}
+  \PrintChanges
+  \PrintIndex
+  \end{document}
+% \fi^^A meta-comment
+%
+% \selectlanguage{english}
+%
+% \changes{v0.0}{2018/09/01}{start of interface}
+% \let\restorechapter\chapter
+% \let\chapter\section
+% \let\section\subsection
+% \let\subsection\subsubsection
+%
+% \changes{v0.0}{2018/09/05}{some user documentation}
+% \chapter{The Purpose of this Package}
+% This package has been made to give users a chance to combine the features of
+% Piet van Oostrum's \Package{fancyhdr} \cite{pkg:fancyhdr} with the features
+% of \Package{scrlayer} \cite{pkg:komascript}. In other words: It has been
+% made to combine the page layers of \Package{scrlayer} with the page styles
+% of \Package{fancyhdr}.
+%
+% In this combination compatibility with \Package{fancyhdr} is the first
+% aim! Usability and the freedom provided by \Package{scrlayer} is only the
+% second one. Compatibility with other parts of \KOMAScript{} is not a primary
+% aim. Perhaps it will become an optional feature in future. Abolishing any
+% real or virtual limitations of \Package{fancyhdr} other than make it
+% possible to use layers is not an aim and will not be an aim in future.
+%
+% If you need a better combination of page styles and layers, you should
+% either use the low level interface of \Package{scrlayer} to define your page
+% styles or\,---\,and this is the recommendation of the author\,---\,use
+% \Package{scrlayer-scrpage} instead of \Package{scrlayer-fancyhdr} or
+% \Package{fancyhdr}. If you need more compatibility with other parts of
+% \KOMAScript, i.\,e.\@ with the \KOMAScript{} classes, you should use
+% \Package{scrlayer-scrpage} instead of \Package{scrlayer-fancyhdr} or
+% \Package{fancyhdr}.
+%
+%
+% \chapter{How it works}
+% To combine \Package{fancyhdr} and \Package{scrlayer},
+% \Package{scrlayer-scrpage} loads both packages. After loading
+% \Package{fancyhdr} it redefines page style \Pagestyle{@fancy} to make it a
+% layer page style of \Package{scrlayer} using the newly defined layers
+% \texttt{fancy.head.even}, \texttt{fancy.head.odd}, \texttt{fancy.foot.even}
+% and \texttt{fancy.foot.odd}. The \texttt{\dots head\dots} layers are
+% background layers like the page head of \Package{fancyhdr}'s page styles (or
+% other usual page styles). The \texttt{\dots foot\dots} layers are foreground
+% layers like the page footer of \Package{fancyhdr}'s page styles (or other
+% usual page styles). The \texttt{\dots even} layers are restricted to even
+% pages, that means left side pages in two-sided documents. The \texttt{\dots
+% odd} layers are restricted to odd pages, that means right side pages in
+% two-sided documents or all pages in single-sided documents.
+%
+% \DescribeMacro\ps@@fancy
+% \DescribeMacro\ps@fancyplain
+% \DescribeMacro\ps@plain@fancy
+% Note: Page style \Pagestyle{@fancy} is an internal basic page style of
+% package \Package{fancyhdr}. It is used for the user page style
+% \Pagestyle{fancy}. The user page style \Pagestyle{fancy} is also used for
+% \Package{fancyhdr}'s undocumented page style \Pagestyle{fancyplain}, that
+% also redefines page style \Pagestyle{plain} to be \Package{fancyhdr}'s
+% internal page style \Pagestyle{plain@fancy}, that also uses
+% \Pagestyle{fancy} but with \Macro{if@fancyplain} set to
+% \Macro{iftrue}. There is also an undocumented command
+% \Macro{fancyplain}\Parameter{plain code}\Parameter{fancy code}, that uses
+% the \meta{plain code} if \Macro{if@fancyplain} is \Macro{iftrue} and
+% \meta{fancy code} if \Macro{if@fancyplain} is \Macro{iffalse}.
+%
+% Note: Page styles defined using \Package{fancyhdr}'s command
+% \Macro{fancypagestyle} also always use page style \Pagestyle{fancy} and so
+% the internal basic page style \Pagestyle{@fancy}.
+%
+% As a result of the two notes above, every page style of \Package{fancyhdr}
+% always uses page style \Pagestyle{fancy} and the same internal basic page
+% style \Pagestyle{@fancy}. As a result of redefining page style
+% \Pagestyle{@fancy} to be a layer page style, users can add layers to or
+% remove layers from all \Package{fancyhdr} page styles by adding layers to or
+% remove layers from page style \Pagestyle{@fancy}. You cannot add layers to
+% or remove layers from \Package{fancyhdr}'s single page styles
+% \Pagestyle{fancy}, \Pagestyle{fancyplain}, \Pagestyle{plain@fancy} or the
+% page styles defined using \Macro{fancypagestyle} directly. So using layers
+% is a all or nothing feature with \Package{scrlayer-scrpage}. However, you
+% can use the second argument of \Macro{fancypagestyle} to add or remove
+% layers whenever one of the \Package{fancyhdr} page styles is activated. So
+% this is a move from the \Package{scrlayer} interface of adding or removing
+% layers to single page styles to the \Package{fancyhdr} interface of defining
+% modifications of page style \Pagestyle{fancy}.
+%
+% Another such movement from an \Package{scrlayer} user interface to a
+% \Package{fancyhdr} user interface it the decision whether or not automatic
+% running heads are used. \Package{scrlayer} provides the options
+% \Option{automark} and \Option{manualmark} and commands \Macro{automark} and
+% \Macro{manualmark} to do this decision and also to configure commands like
+% \Macro{partmark}, \Macro{chaptermark}, \Macro{sectionmark} etc. With
+% \Package{scrlayer-fancyhdr} also using page style \Pagestyle{@fancy} does
+% switch to automatic running heads. The first activation of page style
+% \Pagestyle{fancy} still redefines \Macro{chaptermark} and
+% \Macro{sectionmark}, if a class with \Macro{chapter} is used, or
+% \Macro{sectionmark} and \Macro{subsectionmark}, if a class without
+% \Macro{chapter} is used. However, you still can use \Macro{manualmark} and
+% \Macro{automark} after switching to a \Package{fancyhdr} page style to
+% configure the running heads. So this movement is only partial.
+%
+% \DescribeMacro\ps@headings
+% \DescribeMacro\ps@myheadings
+% \DescribeMacro\ps@plain
+% Note: Currently, neither \Package{scrlayer} nor \Package{fancyhdr} nor
+% \Package{scrlayer-fancyhdr} do redefine page styles \Pagestyle{headings} or
+% \Pagestyle{myheadings}. And neither \Package{scrlayer} nor
+% \Package{fancyhdr} nor \Package{scrlayer-fancyhdr} do redefine page style
+% \Pagestyle{plain} unless you are activating the undocumented
+% \Package{fancyhdr} page style \Pagestyle{fancyplain}. So if you like to use
+% layers on \Pagestyle{plain} pages, i.\,e. usually the first page of a
+% chapter or part or the page with a title head, you have to either use
+% \Package{fancyhdr}'s undocumented page style \Pagestyle{fancyplain} or
+% redefine page style \Pagestyle{plain} either using \Macro{fancypagestyle} as
+% documented in the \Package{fancyhdr} manual or using
+% \Macro{DeclareNewPageStyleByLayers}, documented in the \KOMAScript{} manual.
+%
+% \DescribeMacro\ps@empty
+% \DescribeMacro\ps@@empty
+% Note: Pagestyle \Pagestyle{empty} is somehow special. \Package{scrlayer}
+% redefines it to be a layer page style. And \Package{fancyhdr}'s internal
+% page style \Pagestyle{@empty} is the same like \Pagestyle{empty}. So
+% \Pagestyle{@empty} also uses the layers of \Pagestyle{empty} but you should
+% not try to modify it directly using the interface of
+% \Package{scrlayer}. Moreover, if \Package{fancyhdr} is loaded before
+% \Package{scrlayer-scrpage}, \Package{fancyhdr}'s internal page style
+% \Pagestyle{@empty} is not a copy of \Package{scrlayer}'s layer page style
+% \Pagestyle{empty} but the original standard page style
+% \Pagestyle{empty}. However, with \Package{scrlayer-fancyhdr} package
+% \Package{fancyhdr} does not longer use the internal page style
+% \Pagestyle{@empty}. So you would not need to know this.
+%
+% \chapter{How to use the Package}
+%
+%^^A TODO: Remove the following alpha note.
+% First of all, this package is experimental and should not be used for
+% anything else but testing whether or not it works as documented! This
+% package even is not an official part of \KOMAScript!
+%
+% To use the package you have to load it, e.\,g., using:
+%\begin{verbatim}
+% \usepackage{scrlayer-fancyhdr}
+%\end{verbatim}
+% instead of loading \Package{scrlayer} and \Package{fancyhdr} or before or
+% after loading one of these packages. However it is recommended to replace
+% loading \Package{scrlayer} and \Package{fancyhdr} by loading
+% \Package{scrlayer-fancyhdr} because this avoids option
+% clashes. \Package{scrlayer-fancyhdr} provides all options of
+% \Package{scrlayer} and passes them to \Package{scrlayer}. Nevertheless
+% sometimes it may be useful to be able to additionally load
+% \Package{scrlayer} or \Package{fancyhdr}.
+%
+% \DescribeMacro\ps@@fancy
+% \DescribeMacro\ps@fancy
+% \DescribeMacro\ps@fancyplain
+% \DescribeMacro\ps@plain@fancy
+% \DescribeMacro\fancypagestyle
+% After this you should be able to use the page styles and commands of
+% \Package{fancyhdr} and to add layers to or remove layers from the
+% \Package{fancyhdr}'s internal basic page style \Package{@fancy}. Note, you
+% are not able to add layers to or remove layers from \Package{fancyhdr}'s
+% page styles \Pagestyle{fancy}, \Pagestyle{fancyplain},
+% \Pagestyle{plain@fancy} or page styles defined by
+% \Macro{fancypagestyle}. However adding layers to or removing layers from
+% \Pagestyle{@fancy} will always change all these page styles!
+%
+% \DescribeMacro\ps@plain
+% \DescribeMacro\ps@headings
+% \DescribeMacro\ps@myheadings
+% \DescribeMacro\ps@empty
+% Note: Loading \Package{scrlayer-fancyhdr} will not make page style
+% \Pagestyle{plain} nor \Pagestyle{headings} nor \Pagestyle{myheadings} or any
+% other page style but \Pagestyle{empty} to automatically be a layer page
+% style!
+%
+% \chapter{Known Issues}
+%
+% Please note, the follow issues are either notes to the package author or
+% notes to the user to avoid them reporting the same issues again and
+% again. Listing these issues does not say they are bugs or features.
+%
+% \begin{itemize}
+% \item
+%   \DescribeMacro\ps@fancy
+%   \DescribeMacro\ps@fancyplain
+%   \DescribeMacro\fancypagestyle
+%   \DescribeMacro\ps@@fancy
+%   You are not able to add layers to the user level page style
+%   \Pagestyle{fancy} or \Pagestyle{fancyplain} or any page style defined by
+%   \Macro{fancypagestyle} but only to the internal page style
+%   \Pagestyle{@fancy}. This is intended as explained in this manual.
+% \item
+%   \DescribeMacro\ps@@empty
+%   Using \Package{fancyhdr}'s internal page style \Pagestyle{@empty}
+%   could have strange results. However, there is a simple solution for this:
+%   Don't use the internal \Pagestyle{@empty} but always the user level page
+%   style \Pagestyle{empty}!
+% \item
+%   \DescribeMacro\ps@@fancy
+%   The vertical position of the page header does differ a little bit, if
+%   \Package{scrlayer-fancyhdr} is used instead of \Package{fancyhdr}. This
+%   could be fixed by a modification of the layers \texttt{fancy.head.odd} and
+%   \texttt{fancy.head.even} using \Option{addvoffset}. More tests are needed.
+% \end{itemize}
+%
+%\iffalse
+%</dtx>
+%\fi
+%
+% \StopEventually{}
+%
+% \chapter{Implementation of \Package{scrlayer-fancyhdr}}
+% \label{sec:scrlayer-fancyhdr}
+%
+% This section if for developers only.
+%
+% \iffalse
+% TODO: Remove this alpha warning (but not the markers)!
+%<*interface>
+%<*identify>
+\PackageWarningNoLine{scrlayer-fancyhdr}{%
+  THIS IS AN ALPHA VERSION OF AN\MessageBreak
+  EXPERIMENTAL PACKAGE!\MessageBreak
+  YOU SHOULD NOT USE THIS PACKAGE FOR\MessageBreak
+  ANYTHING ELSE BUT TESTING%
+}
+%</identify>
+%\fi
+%
+% Note: The main problem of this interface is, that it tries to implement the
+% user interface of package \Package{fancyhdr} by Piet van Oostrum, that is
+% completely different from \Package{scrlayer} and not really compatible with
+% \Package{scrlayer}, using \Package{scrlayer}. This means, that
+% \Package{scrlayer-fancyhdr} never can be a drop-in replacement of
+% \Package{fancyhdr}. Nevertheless it can help to let \Package{scrlayer} and
+% \Package{fancyhdr} coexist. To do so
+% \begin{itemize}
+% \item the lowest level of \Package{fancyhdr} should not be the page style
+% but a layer
+% \item the page styles of \Package{fancyhdr} should be layer page styles
+% \item init code of the page styles of \Package{fancyhdr} should use the
+% layer page init code
+% \end{itemize}
+% Currently it is unsure whether it would be best to do a new implementation
+% or to load original \Package{fancyhdr} and to only modify some things. First
+% I'll try the second method and therefore:
+%    \begin{macrocode}
+%<*body>
+\RequirePackage{fancyhdr}
+%</body>
+%    \end{macrocode}
+%
+% We need at least one new layer for the new layer page style
+% \Pagestyle{fancy}. However, it could be useful to have not only one but
+% four layers (even side head, odd side head, even side foot, odd side foot).
+%    \begin{macrocode}
+%<*body>
+\DeclareNewLayer[%
+  background,oddpage,
+  head,
+  contents={\hb@xt@ \layerwidth{%
+      \f@nch@head\f@nch@Oolh\f@nch@olh\f@nch@och\f@nch@orh\f@nch@Oorh}}
+]{fancy.head.odd}
+\DeclareNewLayer[%
+  background,evenpage,
+  head,
+  contents={\hb@xt@ \layerwidth{%
+      \f@nch@head\f@nch@Oelh\f@nch@elh\f@nch@ech\f@nch@erh\f@nch@Oerh}}
+]{fancy.head.even}
+\DeclareNewLayer[%
+  foreground,oddpage,
+  foot,
+  contents={\hb@xt@ \layerwidth{%
+      \f@nch@foot\f@nch@Oolf\f@nch@olf\f@nch@ocf\f@nch@orf\f@nch@Oorf}}
+]{fancy.foot.odd}
+\DeclareNewLayer[%
+  foreground,evenpage,
+  foot,
+  contents={\hb@xt@ \layerwidth{%
+      \f@nch@foot\f@nch@Oelf\f@nch@elf\f@nch@ecf\f@nch@erf\f@nch@Oerf}}
+]{fancy.foot.even}
+%    \end{macrocode}
+% \begin{macro}{\ps@@fancy}
+% \begin{macro}{\@mkboth}
+% And have to create a layer page style from this new layers, but we do not
+% redefine page style \Pagestyle{fancy} but the low level page style
+% \Pagestyle{@fancy}. 
+%    \begin{macrocode}
+\DeclarePageStyleByLayers[
+%    \end{macrocode}
+% \Package{fancyhdr} does some initialization at the very first call
+% of \cs{pagestyle{fancy}}. To do so \Package{fancyhdr} first uses a different
+% page style definition, that does the initialization and redefines the page
+% style afterwards. This is still active with \Package{scrlayer-fancyhdr}.
+% Additionally, \Package{fancyhdr} redefines \cs{@mkboth} at every selection
+% of the internal page style \Pagestyle{@fancy}. This can be adapted using the
+% \Option{onselect} feature of the new layer page style \Pagestyle{@fancy}. In
+% my opinion, the |\let\@mkboth\markboth| used by page style
+% \Pagestyle{headings} of, e.\,g., the standard classes or the \KOMAScript{}
+% classes would be best here. However, \Package{fancyhdr} uses the uncommon
+% |\def\@mkboth{\protect\markboth}|, which would fail if a class or package
+% tests \cs{@mkboth} using |\ifx\@mkboth\markboth|. However, \KOMAScript's
+% \cs{IfActiveMkBoth} (see the \Package{scrbase} chapter in the \KOMAScript{}
+% manual) does also recognize the \Package{fancyhdr} definition and copying
+% this is more compatible with \Package{fancyhdr}.
+%    \begin{macrocode}
+  onselect={\def\@mkboth{\protect\markboth}},
+]{@fancy}{%
+  fancy.head.odd,fancy.head.even,fancy.foot.odd,fancy.foot.even
+}
+%</body>
+%    \end{macrocode}
+% Note: Redefining page style \Pagestyle{@fancy} instead of \Pagestyle{fancy}
+% does also mean, that features like options \Option{automark} and
+% \Option{manualmark} resp. \cs{automark} and \cs{manualmark} are not fully
+% supported by \Package{scrlayer-fancyhdr}. Also currently the font features
+% of the \KOMAScript{} classes are not supported by
+% \Package{scrlayer-fancyhdr}. However you are now able to combine other
+% features of \Package{scrlayer} with features of \Package{fancyhdr} and you
+% can, e.g., use \Package{scrlayer-notecolumn} with
+% \Package{scrlayer-fancyhdr}.
+% \end{macro}%^^A \@mkboth
+% \end{macro}%^^A \ps@@fancy
+%
+% A future release of \Package{scrlayer-fancyhdr} may even provide the font
+% features of the \KOMAScript{} classes and a working
+% \Option{markcase}. However, in this case I would have to redefine the
+% initial page style \Pagestyle{fancy} and the layers above.
+%
+% \iffalse
+%</interface>
+% \fi
+%
+% \begin{thebibliography}{99}
+% \raggedright
+% \bibitem[1]{pkg:fancyhdr} Piet van Oostrum: \emph{Page layout in \LaTeX},
+%   release 3.9a 2017-06-30,
+%   \url{https://ctan.org/tex-archive/macros/latex/contrib/fancyhdr},
+%   last visited: 2018-09-06.
+% \bibitem[2]{pkg:komascript} Markus Kohm: \emph{\KOMAScript},
+%   release 3.25 2018-03-30,
+%   \url{https://ctan.org/tex-archive/macros/latex/contrib/koma-script},
+%   last visited: 2018-09-06.
+% \end{thebibliography}
+%
+% \Finale
+% \let\subsection\section
+% \let\section\chapter
+% \let\chapter\restorechapter
+%
+\endinput
+%
+% End of file `scrlayer-fancyhdr.dtx'.
+%
+
+%%% Local Variables:
+%%% mode: doctex
+%%% mode: flyspell
+%%% ispell-local-dictionary: "en_GB"
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,475 @@
+% vowel.tex
+% Copyright 2002 FUKUI Rei
+%
+% This program may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.2
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.2 or later is part of all distributions of LaTeX 
+% version 1999/12/01 or later.
+%
+% This program consists of all files listed in Manifest.txt.
+%
+
+\documentclass[a4paper]{article}
+\usepackage{tipa}
+\usepackage{vowel}
+
+\newcommand{\vowelbox}{\raise1ex\hbox to 2.5cm}
+\newenvironment{texsrc}{\begin{minipage}[t]{7cm}}{\end{minipage}}
+
+\title{Vowel package manual}
+\author{FUKUI Rei
+  \thanks{{\tt fkr@tooyoo.l.u-tokyo.ac.jp}}\\
+  \textit{Graduate School of Humanities and Sociology}\\
+  \textit{University of Tokyo}}
+\date{28 October 2001}
+
+\begin{document}
+\maketitle
+
+\section{Drawing vowel diagrams}
+
+\subsection{The {\tt vowel} environment}
+
+The general format of the {\tt vowel} environment is as follows.
+
+\medskip
+
+\verb|\begin{vowel}[|{\it option\/}(,{\it option},...)\verb|]|
+
+{\it commands for inputting vowels}
+
+\verb|\end{vowel}|
+
+\medskip
+
+Options and commands for inputting vowels are explained below.
+
+\subsection{The shapes of the diagram supported}
+
+The default shape of the vowel diagram is the one used in the recent
+IPA chart, as shown below.
+
+\begin{center}
+\begin{tabular}{ll}
+  \begin{vowel}[t]
+  \end{vowel} &
+  \begin{minipage}[t]{5.5cm}
+    \verb|\begin{vowel}|\\
+    \verb|\end{vowel}|
+  \end{minipage}
+\end{tabular}
+\end{center}
+
+In this diagram, the bottom, back, and top sides are in the proportion
+2:3:4, as was prescribed by Daniel Jones.
+
+In order to change the shape of an diagram, specify the following
+options.
+
+\begin{itemize}\itemsep0pt
+\item \texttt{plain}, \texttt{simple}, \texttt{standard},
+  \texttt{ipanew} (=default)
+\item \texttt{rectangle} \quad Draws a rectangular diagram.
+\item \texttt{triangle} \quad Draws a triangular diagram.
+\item \texttt{three} \quad Distinguishes only three levels of vowel
+  height.
+\end{itemize}
+
+The first group of options are mutually exclusive, i.e., only one them
+can be selected at a time.
+
+\begin{center}
+\begin{tabular}{ll}
+  \begin{minipage}[t]{5.5cm}{\small
+    \verb|\begin{vowel}|\\
+    \verb|\end{vowel}|\\
+    \emph{or}\\
+    \verb|\begin{vowel}[ipanew]|\\
+    \verb|\end{vowel}|}
+  \end{minipage} &
+  \begin{minipage}[t]{5.5cm}{\small
+    \verb|\begin{vowel}[plain]|\\
+    \verb|\end{vowel}|}
+  \end{minipage} \\
+  \begin{vowel}[t]\end{vowel} &
+  \begin{vowel}[t,plain]\end{vowel}
+\end{tabular}
+
+\begin{tabular}{ll}
+  \begin{minipage}[t]{5.5cm}{\small
+    \verb|\begin{vowel}[simple]|\\
+    \verb|\end{vowel}|}
+  \end{minipage} &
+  \begin{minipage}[t]{5.5cm}{\small
+    \verb|\begin{vowel}[standard]|\\
+    \verb|\end{vowel}|}
+  \end{minipage} \\
+  \begin{vowel}[t,simple]\end{vowel} &
+  \begin{vowel}[t,standard]\end{vowel}
+\end{tabular}
+\end{center}
+
+Among the other options, \texttt{rectangle}
+and \texttt{triangle} are mutually exclusive but each can be combined
+with one of the options \texttt{plain}, \texttt{simple} or
+\texttt{ipanew}. And the last option \texttt{three} can be combined
+with one of the options \texttt{plain}, \texttt{simple} or
+\texttt{ipanew}, and with one of the options \texttt{rectangle}
+and \texttt{triangle}.
+
+\begin{center}
+\begin{tabular}{ll}
+  \begin{minipage}[t]{5.5cm}{\small
+    \verb|\begin{vowel}[rectangle]|\\
+    \verb|\end{vowel}|}
+  \end{minipage} &
+  \begin{minipage}[t]{5.5cm}{\small
+    \verb|\begin{vowel}[plain,rectangle]|\\
+    \verb|\end{vowel}|}
+  \end{minipage} \\
+  \begin{vowel}[t,rectangle]\end{vowel} &
+  \begin{vowel}[t,plain,rectangle]\end{vowel}
+\end{tabular}
+
+\begin{tabular}{ll}
+  \begin{minipage}[t]{5.5cm}{\small
+    \verb|\begin{vowel}[simple,rectangle]|\\
+    \verb|\end{vowel}|}
+  \end{minipage} &
+  \begin{minipage}[t]{5.5cm}{\small
+    \verb|\begin{vowel}[triangle]|\\
+    \verb|\end{vowel}|}
+  \end{minipage} \\
+  \begin{vowel}[t,simple,rectangle]\end{vowel} &
+  \begin{vowel}[t,triangle]\end{vowel}
+\end{tabular}
+
+\begin{tabular}{ll}
+  \begin{minipage}[t]{5.5cm}{\small
+    \verb|\begin{vowel}[plain,triangle]|\\
+    \verb|\end{vowel}|}
+  \end{minipage} &
+  \begin{minipage}[t]{5.5cm}{\small
+    \verb|\begin{vowel}[simple,triangle]|\\
+    \verb|\end{vowel}|}
+  \end{minipage} \\
+  \begin{vowel}[t,plain,triangle]\end{vowel} &
+  \begin{vowel}[t,simple,triangle]\end{vowel}
+\end{tabular}
+
+\begin{tabular}{ll}
+  \begin{minipage}[t]{5cm}{\small
+    \verb|\begin{vowel}[simple,three]|\\
+    \verb|\end{vowel}|}
+  \end{minipage} &
+  \begin{minipage}[t]{6cm}{\small
+    \verb|\begin{vowel}[simple,triangle,three]|\\
+    \verb|\end{vowel}|}
+  \end{minipage} \\
+  \begin{vowel}[t,simple,three]\end{vowel} &
+  \hspace{.5cm}\begin{vowel}[t,simple,triangle,three]\end{vowel}
+\end{tabular}
+\end{center}
+
+
+\subsection{Placing vowels on a diagram}
+
+The following commands are prepared in order to place vowels in the
+vowel diagram.
+
+\begin{itemize}
+  \item \verb+\putcvowel[l|r]{symbol}{+\emph{cardinal position}\verb+}+
+  \item \verb+\putvowel[l|r]{symbol}{x}{y}+
+\end{itemize}
+
+The former command is used to place a vowel on a {\it cardinal
+position}, and the latter is used to place a vowel on a point specified
+by {\it x} and {\it y}. In each case, an optional argument \verb|[l]|
+or \verb|[r]| can be given, which specifies to put a symbol (usually a
+dot) that indicates the point and a vowel is placed at the left or
+right of the symbol.
+
+The next table shows a diagram indicating the cardinal positions and
+an example of a vowel diagram containing the \verb|\putcvowel| commands.
+
+\begin{center}
+\begin{tabular}{lll}
+  \begin{vowel}[t]
+    \putcvowel{\footnotesize 1}{1}\putcvowel{\footnotesize 2}{2}
+    \putcvowel{\footnotesize 3}{3}\putcvowel{\footnotesize 4}{4}
+    \putcvowel{\footnotesize 5}{5}\putcvowel{\footnotesize 6}{6}
+    \putcvowel{\footnotesize 7}{7}\putcvowel{\footnotesize 8}{8}
+    \putcvowel{\footnotesize 9}{9}\putcvowel{\footnotesize 10}{10}
+    \putcvowel{\footnotesize 11}{11}\putcvowel{\footnotesize 12}{12}
+    \putcvowel{\footnotesize 13}{13}\putcvowel{\footnotesize 14}{14}
+    \putcvowel{\footnotesize 15}{15}\putcvowel{\footnotesize 16}{16}
+  \end{vowel} &
+  \begin{vowel}[t]
+    \putcvowel{i}{1}\putcvowel{e}{2}
+    \putcvowel{\textipa{E}}{3}\putcvowel{a}{4}
+    \putcvowel{\textipa{6}}{5}\putcvowel{\textipa{O}}{6}
+    \putcvowel{o}{7}\putcvowel{u}{8}
+    \putcvowel{\textipa{1}}{9}\putcvowel{\textipa{9}}{10}
+    \putcvowel{\textipa{@}}{11}\putcvowel{\textipa{3}}{12}
+    \putcvowel{\textipa{I}}{13}\putcvowel{\textipa{U}}{14}
+    \putcvowel{\textturna}{15}\putcvowel{\ae}{16}
+  \end{vowel} &
+    \begin{minipage}[t]{4cm}
+{\footnotesize\begin{verbatim}
+  \begin{vowel}
+    \putcvowel{i}{1}
+    \putcvowel{e}{2}
+    \putcvowel{\textipa{E}}{3}
+    \putcvowel{a}{4}
+    ...
+  \end{vowel}
+\end{verbatim}}
+    \end{minipage}
+\end{tabular}
+\end{center}
+
+The cardinal positions from 1 through 8 are the same with the numbers
+of cardinal vowels determined by Daniel Jones. And the remaining
+numbers (from 9 through 16) are extended cardinal positions that are
+used to indicate the positions of all the remaining vowels that appear 
+in the recent IPA chart, having no relation to the Jonesian system of
+cardinal vowels.
+
+In the case of the second form of the command. i.e., \verb+\putvowel+,
+the origin is the upper left corner. And it is convenient to use the
+basic units, \verb|\vowelhunit| and \verb|\vowelvunit| in specifying a 
+point in the $x$--$y$ coordinate. the bottom right corner is indicated 
+by a point (\verb|4\vowelhunit|, \verb|3\vowelhunit|). Thus:
+
+\begin{quote}
+\verb+\putvowel{i}{0pt}{0pt}+ is equivalent to
+\verb+\putcvowel{i}{1}+.
+\end{quote}
+
+and
+
+\begin{quote}
+\verb+\putvowel{\textscripta}{4\vowelhunit}{3\vowelvunit}+ is
+equivalent to \verb+\putcvowel{\textscripta}{5}+.
+\end{quote}
+
+\subsection{Changing the size of a diagram}
+
+The usual commands for changing the size of text fonts such as
+\verb|\small|, \verb|\large|, \verb|\Large|, etc.\ can be used to
+change the size of a vowel diagram. 
+
+\begin{center}
+\begin{tabular}{lll}
+\begin{minipage}{3.2cm}
+{\small\begin{verbatim}
+{\small
+\begin{vowel}
+\putcvowel{i}{1}
+...
+\end{vowel}}
+\end{verbatim}}
+\end{minipage} &
+\begin{minipage}{3.2cm}
+{\small\begin{verbatim}
+\begin{vowel}
+\putcvowel{i}{1}
+...
+\end{vowel}
+\end{verbatim}}
+\end{minipage} &
+\begin{minipage}{3.2cm}
+{\small\begin{verbatim}
+{\large
+\begin{vowel}
+\putcvowel{i}{1}
+...
+\end{vowel}}
+\end{verbatim}}
+\end{minipage} \\
+  {\small \begin{vowel}
+    \putcvowel{i}{1}\putcvowel{e}{2}
+    \putcvowel{\textepsilon}{3}\putcvowel{a}{4}
+    \putcvowel{\textscripta}{5}\putcvowel{\textopeno}{6}
+    \putcvowel{o}{7}\putcvowel{u}{8}
+  \end{vowel}} &
+  \begin{vowel}
+    \putcvowel{i}{1}\putcvowel{e}{2}
+    \putcvowel{\textepsilon}{3}\putcvowel{a}{4}
+    \putcvowel{\textscripta}{5}\putcvowel{\textopeno}{6}
+    \putcvowel{o}{7}\putcvowel{u}{8}
+  \end{vowel} &
+    {\large \begin{vowel}
+    \putcvowel{i}{1}\putcvowel{e}{2}
+    \putcvowel{\textepsilon}{3}\putcvowel{a}{4}
+    \putcvowel{\textscripta}{5}\putcvowel{\textopeno}{6}
+    \putcvowel{o}{7}\putcvowel{u}{8}
+  \end{vowel}}
+\end{tabular}
+\end{center}
+
+It is also possible to change the size of a vowel symbol and the
+size of a diagram independently. 
+
+In order to change only the size of a vowel symbol, use the commands
+such as \verb|\small|, \verb|\large|, etc.\ within the
+\verb|\putcvowel| command.
+
+And in order to change only the size of a diagram, give appropriate
+values to the parameters \verb|\vowelhunit| and \verb|\vowelvunit|.
+\verb|\vowelhunit| stands for the horizontal unit length, and
+\verb|\vowelvunit| the vertical unit length.  By default both
+\verb|\vowelhunit| and \verb|\vowelvunit| are equal to 2em. And if
+only the former is modified by an user, the latter is automatically
+adjusted to the same length.
+
+\begin{quote}
+\begin{tabular}{ll}
+  \vowelbox{\hss
+    \begin{vowel}[t]
+      \putcvowel{i}{1}
+      \putcvowel{\large e}{2}
+      \putcvowel{\Large\textipa{E}}{3}
+      \putcvowel{\huge a}{4}
+    \end{vowel}} &
+\begin{texsrc}
+\begin{verbatim}
+\begin{vowel}
+\putcvowel{i}{1}
+\putcvowel{\large e}{2}
+\putcvowel{\Large\textipa{E}}{3}
+\putcvowel{\huge a}{4}
+\end{vowel}
+\end{verbatim}
+\end{texsrc}
+\end{tabular}
+\end{quote}
+
+\begin{quote}
+\begin{tabular}{ll}
+  \vowelbox{\hss
+    {\vowelhunit=1em
+      \begin{vowel}[t]
+        \putcvowel{i}{1}
+        \putcvowel{e}{2}
+        \putcvowel{\textipa{E}}{3}
+        \putcvowel{a}{4}
+      \end{vowel}}} &
+\begin{texsrc}
+\begin{verbatim}
+{\vowelhunit=1em
+\begin{vowel}
+\putcvowel{i}{1}
+...
+\end{vowel}}
+\end{verbatim}
+\end{texsrc}
+\end{tabular}
+\end{quote}
+
+\begin{quote}
+\begin{tabular}{ll}
+  \vowelbox{\hss
+    {\vowelvunit=2.31em
+      \begin{vowel}[t]
+        \putcvowel{i}{1}
+        \putcvowel{e}{2}
+        \putcvowel{\textipa{E}}{3}
+        \putcvowel{a}{4}
+      \end{vowel}}} &
+\begin{texsrc}
+\begin{verbatim}
+{\vowelvunit=2.31em
+\begin{vowel}
+\putcvowel{i}{1}
+...
+\end{vowel}}
+\end{verbatim}
+\end{texsrc}
+\end{tabular}
+\end{quote}
+
+%In the later works of Daniel Jones, it is reported that he had used
+%such a diagram that the angle of the upper-left corner is 60
+%degrees. In this case, the bottom, right, and top sides are in the
+%proportion of 2:\(\sqrt{12}\):4. %See Ashby.
+
+\newpage
+\section{Example}
+
+The next example shows the IPA vowel chart (updated 1996).
+
+\begin{center}
+{\Large
+\begin{vowel}
+%    \putcvowel[l]{i}{1}
+    \putvowel[l]{i}{0pt}{0pt}
+    \putcvowel[r]{y}{1}
+    \putcvowel[l]{e}{2}
+    \putcvowel[r]{\o}{2}
+    \putcvowel[l]{\textepsilon}{3}
+    \putcvowel[r]{\oe}{3}
+    \putcvowel[l]{a}{4}
+    \putcvowel[r]{\textscoelig}{4}
+    \putcvowel[l]{\textscripta}{5}
+    \putcvowel[r]{\textturnscripta}{5}
+    \putcvowel[l]{\textturnv}{6}
+    \putcvowel[r]{\textopeno}{6}
+    \putcvowel[l]{\textramshorns}{7}
+    \putcvowel[r]{o}{7}
+    \putcvowel[l]{\textturnm}{8}
+    \putcvowel[r]{u}{8}
+    \putcvowel[l]{\textbari}{9}
+    \putcvowel[r]{\textbaru}{9}
+    \putcvowel[l]{\textreve}{10}
+    \putcvowel[r]{\textbaro}{10}
+    \putcvowel{\textschwa}{11}
+    \putcvowel[l]{\textrevepsilon}{12}
+    \putcvowel[r]{\textcloserevepsilon}{12}
+    \putcvowel{\textsci\ \textscy}{13}
+    \putcvowel{\textupsilon}{14}
+    \putcvowel{\textturna}{15}
+    \putcvowel{\ae}{16}
+\end{vowel}
+}
+
+\bigskip
+\begin{texsrc}
+\begin{verbatim}
+\begin{vowel}
+    \putcvowel[l]{i}{1}
+    \putcvowel[r]{y}{1}
+    \putcvowel[l]{e}{2}
+    \putcvowel[r]{\o}{2}
+    \putcvowel[l]{\textepsilon}{3}
+    \putcvowel[r]{\oe}{3}
+    \putcvowel[l]{a}{4}
+    \putcvowel[r]{\textscoelig}{4}
+    \putcvowel[l]{\textscripta}{5}
+    \putcvowel[r]{\textturnscripta}{5}
+    \putcvowel[l]{\textturnv}{6}
+    \putcvowel[r]{\textopeno}{6}
+    \putcvowel[l]{\textramshorns}{7}
+    \putcvowel[r]{o}{7}
+    \putcvowel[l]{\textturnm}{8}
+    \putcvowel[r]{u}{8}
+    \putcvowel[l]{\textbari}{9}
+    \putcvowel[r]{\textbaru}{9}
+    \putcvowel[l]{\textreve}{10}
+    \putcvowel[r]{\textbaro}{10}
+    \putcvowel{\textschwa}{11}
+    \putcvowel[l]{\textrevepsilon}{12}
+    \putcvowel[r]{\textcloserevepsilon}{12}
+    \putcvowel{\textsci\ \textscy}{13}
+    \putcvowel{\textupsilon}{14}
+    \putcvowel{\textturna}{15}
+    \putcvowel{\ae}{16}
+\end{vowel}
+\end{verbatim}
+\end{texsrc}
+\end{center}
+
+\end{document}

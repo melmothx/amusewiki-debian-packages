@@ -1,0 +1,6 @@
+Tlshell is a GUI for tlmgr, and is a somewhat simpler replacement
+for tlmgrgui.
+
+Tlshell is based on Tcl/Tk.  For Windows, a Tcl/Tk runtime is included.
+
+Siep Kroonenberg

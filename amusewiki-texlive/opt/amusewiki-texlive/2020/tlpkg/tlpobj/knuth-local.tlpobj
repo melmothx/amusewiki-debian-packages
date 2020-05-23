@@ -1,0 +1,44 @@
+name knuth-local
+category Package
+revision 38627
+shortdesc Knuth's local information
+longdesc A collection of experimental programs and developments based
+longdesc on, or complementary to, the matter in his distribution
+longdesc directories.
+containersize 23056
+containerchecksum 8ff3f05e2584cbc5301ce6fe74e469db70438f689323617ab0cd762af9f66fcc8db10ef687dbe5a97deb0771a75320ab099cfd8cb7a900f5ce6c65e2f6fc9edc
+runfiles size=52
+ texmf-dist/fonts/source/public/knuth-local/black.mf
+ texmf-dist/fonts/source/public/knuth-local/blackaps.mf
+ texmf-dist/fonts/source/public/knuth-local/blackimagen.mf
+ texmf-dist/fonts/source/public/knuth-local/blacklino.mf
+ texmf-dist/fonts/source/public/knuth-local/blacklj.mf
+ texmf-dist/fonts/source/public/knuth-local/domino.mf
+ texmf-dist/fonts/source/public/knuth-local/gray.mf
+ texmf-dist/fonts/source/public/knuth-local/grayaps.mf
+ texmf-dist/fonts/source/public/knuth-local/grayimagen.mf
+ texmf-dist/fonts/source/public/knuth-local/grayimagen3.mf
+ texmf-dist/fonts/source/public/knuth-local/grayimagenlight.mf
+ texmf-dist/fonts/source/public/knuth-local/graylj.mf
+ texmf-dist/fonts/source/public/knuth-local/local.mf
+ texmf-dist/fonts/source/public/knuth-local/logod10.mf
+ texmf-dist/fonts/source/public/knuth-local/logosl9.mf
+ texmf-dist/fonts/source/public/knuth-local/mfman.mf
+ texmf-dist/fonts/source/public/knuth-local/oneone.mf
+ texmf-dist/fonts/source/public/knuth-local/random.mf
+ texmf-dist/fonts/source/public/knuth-local/slantaps4.mf
+ texmf-dist/fonts/source/public/knuth-local/slantimagen4.mf
+ texmf-dist/fonts/source/public/knuth-local/slantimagen6.mf
+ texmf-dist/fonts/source/public/knuth-local/slantlino4.mf
+ texmf-dist/fonts/source/public/knuth-local/slantlj4.mf
+ texmf-dist/fonts/source/public/knuth-local/snfont.mf
+ texmf-dist/fonts/tfm/public/knuth-local/domino.tfm
+ texmf-dist/fonts/tfm/public/knuth-local/logod10.tfm
+ texmf-dist/fonts/tfm/public/knuth-local/logosl9.tfm
+ texmf-dist/fonts/tfm/public/knuth-local/random.tfm
+ texmf-dist/fonts/tfm/public/knuth-local/snfont.tfm
+ texmf-dist/mft/knuth-local/e.mft
+ texmf-dist/tex/plain/knuth-local/xepsf.tex
+catalogue-ctan /systems/knuth/local
+catalogue-license knuth
+catalogue-topics collection

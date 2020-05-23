@@ -1,0 +1,50 @@
+%%
+%% This is file `colorprofiles.tex'.
+%% 
+%%  Copyright (c) 2018 Ross Moore <ross.moore@mq.edu.au>
+%%
+%%  AIM: ensure that the information for default Color Profiles are recorded,
+%%  if those Profiles are indeed available.
+%%
+%%  This file may be distributed and/or modified under the conditions
+%%  of the LaTeX Project Public License, either version 1.2 of this
+%%  license or (at your option) any later version.  The latest version
+%%  of this license is in:
+%% 
+%%    http://www.latex-project.org/lppl.txt
+%% 
+%%  and version 1.2 or later is part of all distributions of LaTeX
+%%  version 1999/12/01 or later.
+%%
+{
+% ensure the correct catcodes for characters appearing in the info strings 
+	\catcode`\@ 11 \catcode`\_ 11 \catcode `\/ 11 \catcode `\= 11
+%%  RGB Profile specification, used as default for PDF/A
+%%  these strings are the same as, or deducible from, the contents of the profile
+%%
+ \gdef\colorpro@rgb@profile{sRGB.icc}%  valid file name
+ \gdef\colorpro@rgb@identifier{IEC sRGB}%  RGB intent
+ \gdef\colorpro@rgb@info{IEC 61966-2.1 Default RGB colour space - sRGB}%  text string 
+ \gdef\colorpro@rgb@registry{http://www.iec.ch}%  valid URL
+%
+%%  CMYK Profile specification, used as default for PDF/X
+%%  these strings are the same as, or deducible from, the contents of the profile
+%%
+ \gdef\colorpro@cmyk@profile{FOGRA39L_coated.icc}%  valid file name
+ \gdef\colorpro@cmyk@intent{FOGRA39L Coated}%  color intent
+ \gdef\colorpro@cmyk@identifier{%
+  Offset printing, according to ISO 12647-2:2004/Amd 1, OFCOM,  %
+  paper type 1 or 2 = coated art, 115 g/m2, tone value increase curves A (CMY) and B (K)%
+ }%  text string identifier
+ \gdef\colorpro@cmyk@registry{http://www.fogra.org}%  valid URL
+%
+%%  RRM 20181020 : at some point we will also need a Gray profile
+%%
+%%  Gray Profile specification, used as default for PDF/E when not RGB
+%%  these strings are the same as, or deducible from, the contents of the profile
+% \gdef\colorpro@gray@profile{Gray_linear.icc}%  valid file name
+
+}%  end of \catcode s
+
+\endinput
+

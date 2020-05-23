@@ -1,0 +1,11 @@
+% $Id: test-prim.tex 762 2016-07-05 17:44:56Z karl $
+% See the testprim: target in ./Makefile for the invocation.
+
+\catcode`\{ = 1
+\catcode`\} = 2
+
+\ifnum\year=1970 \else \errmessage{year is \the\year, not 1970}\fi
+\ifnum\month=1   \else \errmessage{month is \the\month, not 1}\fi
+\ifnum\day=1     \else \errmessage{day is \the\day, not 1}\fi
+\ifnum\time=2    \else \errmessage{time is \the\time, not 2}\fi
+\end

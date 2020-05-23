@@ -1,0 +1,10 @@
+name xetex.x86_64-linux
+category TLCore
+revision 53999
+shortdesc x86_64-linux files of xetex
+containersize 7354632
+containerchecksum 841594f65185d7803f304c04224857f7503f4c3de73da5d9207768e2ab30c8e166610c52165ea08b61138993b13e086b8dfb8c39da684fb9ece4f50d745b8eee
+binfiles arch=x86_64-linux size=6657
+ bin/x86_64-linux/teckit_compile
+ bin/x86_64-linux/xelatex
+ bin/x86_64-linux/xetex

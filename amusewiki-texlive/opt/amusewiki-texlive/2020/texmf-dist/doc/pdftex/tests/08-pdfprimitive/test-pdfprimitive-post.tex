@@ -1,0 +1,9 @@
+% $Id: test-pdfprimitive-post.tex 784 2017-11-28 23:55:44Z karl $
+% Public domain.
+
+% Check that \pdfprimitive does not swallow following (possibly
+% undefined) control sequences. So this should output three \vrules and
+% give an undefined error:
+\pdfprimitive\vrule\vrule
+\pdfprimitive\vrule\undefinedjunky
+\end

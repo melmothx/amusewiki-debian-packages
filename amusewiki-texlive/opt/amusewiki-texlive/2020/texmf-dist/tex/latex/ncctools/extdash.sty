@@ -1,0 +1,115 @@
+%%
+%% This is file `extdash.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% extdash.dtx  (with options: `package')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% This file is a generated file from the sources of the `ncctools'
+%% bundle.
+%% 
+%% You are not allowed to modify this file.
+%% 
+%% You are allowed to distribute this file if and only if
+%% it is distributed with the corresponding source files in
+%% the `ncctools' bundle.
+%% 
+%% For the copying and distribution conditions of the source files,
+%% see the README file distributed with the ncctools bundle.
+%%
+%% File: extdash.dtx Copyright (C) 1998-2018 by Alexander I. Rozhenko
+%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{extdash}
+      [2018/06/24 v1.3 Extended Dash Package (NCC)]
+\def\EXD@test#1{%
+  \@ifstar{\let\EXD@break\nobreak #1}{\let\EXD@break\@empty #1}%
+}
+\DeclareRobustCommand{\Hyphdash}{\EXD@test{\EXD@dash-}}
+\DeclareRobustCommand{\Endash}{\EXD@test{\EXD@dash{--}}}
+\DeclareRobustCommand{\Emdash}{\EXD@test{\EXD@emd@sh}}
+\DeclareRobustCommand{\Halfspace}{\@tempcnta\z@
+  \@ifstar{\EXD@nobreak\EXD@space\ignorespaces}{\EXD@space\ignorespaces}%
+}
+\def\EXD@nobreak{\ifvmode\leavevmode\else\nobreak\fi}
+\def\EXD@dash#1{%
+  \EXD@nobreak\hbox{#1}\EXD@break\hskip\z@skip \ignorespaces
+}
+\def\EXD@emnobreak{\nobreak}
+\def\EXD@emd@sh{%
+  \ifvmode
+    \leavevmode\EXD@emdash\nobreak\hskip.35em
+  \else
+    \unskip\EXD@emnobreak \@tempcnta\m@ne
+    \EXD@space \EXD@emdash \EXD@break \EXD@space
+  \fi \ignorespaces
+}
+\DeclareOption{allowbreakbefore}{%
+  \let\EXD@emnobreak\@empty
+}
+\def\EXD@spacecalc{%
+  \edef\@tempa{%
+    \ifnum\@tempcnta<\z@ .4\else \ifnum \@tempcnta=\z@ .5\else .6\fi\fi
+  }%
+  \def\@tempb{.5}%
+}
+\def\EXD@space{%
+  \EXD@spacecalc
+  \hskip \@tempa\fontdimen2\font \@plus \@tempb\fontdimen3\font
+  \@minus \@tempa\fontdimen4\font
+  \@tempcnta -\@tempcnta
+}
+\DeclareOption{wordspacearound}{%
+  \def\EXD@spacecalc{%
+    \edef\@tempa{\ifnum \@tempcnta=\z@ .5\fi}%
+    \let\@tempb\@tempa
+  }
+}
+\DeclareOption{nospacearound}{%
+  \def\EXD@spacecalc{%
+    \edef\@tempa{\ifnum \@tempcnta=\z@ .5\else0\fi}%
+    \let\@tempb\@tempa
+  }
+}
+\def\EXD@emdash{\hbox{---}}
+\DeclareOption{shortcuts}{%
+  \DeclareRobustCommand{\HyphOrDash}{%
+    \let\EXD@break\@empty
+    \@ifnextchar/{\EXD@d@sh}{%
+      \@ifnextchar-{\EXD@hdash}{%
+        \@ifnextchar,{\EXD@sp@ce}{\EXD@hyph}%
+      }%
+    }%
+  }
+  \DeclareRobustCommand{\BarOrDash}{%
+    \let\EXD@break\nobreak
+    \@ifnextchar/{\EXD@d@sh}{%
+      \@ifnextchar={\EXD@bdash}{%
+        \@ifnextchar,{\nobreak\EXD@sp@ce}{\EXD@bar}%
+      }%
+    }%
+  }
+  \def\EXD@d@sh/{\EXD@dash-}
+  \def\EXD@sp@ce,{\EXD@space}
+  \def\EXD@hdash-{\@ifnextchar-{\EXD@hhdash}{\EXD@dash{--}}}
+  \def\EXD@bdash={\@ifnextchar={\EXD@bbdash}{\EXD@dash{--}}}
+  \def\EXD@hhdash-{\EXD@emd@sh}
+  \def\EXD@bbdash={\EXD@emd@sh}
+  \AtBeginDocument{%
+    \let\EXD@hyph\- \let\@dischyph\HyphOrDash \let\-\@dischyph
+    \let\EXD@bar\=  \let\@acciii\BarOrDash    \let\=\@acciii
+  }
+}
+\DeclareOption{shortemdash}{%
+  \def\EXD@emdash{\hb@xt@.8\fontdimen6\font{--\hss--}}
+}
+\DeclareOption{cyremdash}{%
+  \def\EXD@emdash{\hb@xt@.8\fontdimen6\font{--\hss--}}
+}
+\ProcessOptions\relax
+\endinput
+%%
+%% End of file `extdash.sty'.

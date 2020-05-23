@@ -1,0 +1,22 @@
+name makecmds
+category Package
+revision 15878
+shortdesc The new \makecommand command always (re)defines a command
+longdesc The package provides a \makecommand command, which is like
+longdesc \(re)newcommand except it always (re)defines a command. There
+longdesc is also \makeenvironment and \provideenvironment for
+longdesc environments.
+containersize 1340
+containerchecksum fb63fdc9cc0aaa531b25417f0c23348971c306b1a93d99e7efdbbfd7c3907b50f28c67f36a88bb2a94154bcbde937e63246ece577ee2440ad4f5c2935eb25b99
+doccontainersize 115620
+doccontainerchecksum f69dbf682df7e3089727570417be3624b496b5ad7db627b344d32b106606cab5299dd23497e137770fdfb9f940503a65e1074e06dd67e0561b36729ab6c3d428
+docfiles size=34
+ texmf-dist/doc/latex/makecmds/README details="Readme"
+ texmf-dist/doc/latex/makecmds/makecmds.pdf
+srccontainersize 5288
+srccontainerchecksum 380eca4f5fed0ae72cded8f6d3a201cacb05a57851c4c207f086dd17762689cd53a6b27daa23d8043c311adc9baed32808d2c7eb1855892f8113ec7f13c02946
+runfiles size=1
+ texmf-dist/tex/latex/makecmds/makecmds.sty
+catalogue-ctan /macros/latex/contrib/makecmds
+catalogue-license lppl
+catalogue-topics macro-supp

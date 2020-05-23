@@ -1,0 +1,60 @@
+name xetex
+category TLCore
+revision 54276
+shortdesc An extended variant of TeX for use with Unicode sources
+longdesc XeTeX is a TeX typesetting engine using Unicode and supporting
+longdesc modern font technologies such as OpenType, TrueType or Apple
+longdesc Advanced Typography (AAT), including OpenType mathematics
+longdesc fonts. XeTeX supports many extensions that reflect its origins
+longdesc in linguistic research; it also supports micro-typography (as
+longdesc available in pdfTeX). XeTeX was developed by the SIL (the first
+longdesc version was specifically developed for those studying
+longdesc linguistics, and using Macintosh computers). XeTeX's immediate
+longdesc output is an extended variant of DVI format, which is
+longdesc ordinarily processed by a tightly bound processor (called
+longdesc xdvipdfmx), that produces PDF. XeTeX is released as part of TeX
+longdesc Live; documentation has arisen separately. Source code is
+longdesc available from ctan:/systems/texlive/Source/.
+depend babel
+depend cm
+depend dvipdfmx
+depend etex
+depend hyphen-base
+depend l3kernel
+depend latex
+depend latex-fonts
+depend lm
+depend plain
+depend tex-ini-files
+depend unicode-data
+depend xetex.ARCH
+depend xetexconfig
+execute AddFormat name=xelatex engine=xetex patterns=language.dat   options="-etex xelatex.ini"   fmttriggers=cm,hyphen-base,tex-ini-files,unicode-data,babel,l3kernel,latex,latex-fonts,lm
+execute AddFormat name=xetex engine=xetex patterns=language.def   options="-etex xetex.ini"   fmttriggers=cm,hyphen-base,tex-ini-files,unicode-data,etex,plain
+postaction script file=tlpkg/tlpostcode/xetex.pl
+containersize 6932
+containerchecksum e1c2920dd2cfa0605582c778ba184cabb7d462a810086398ba9ed6ec5afd0e14b009f37950a2c906c0a2cd2112925bb3e051c01221f90ea36440e20eb32acfbf
+doccontainersize 617016
+doccontainerchecksum 6f18897e5759ffe30b6ae4439a0ce3c9d5748a9b0bda07f904897cc3310d9d601631d031139b58ef3b4f078f2cec298be3583df23b28656f6c2e80f2370159a6
+docfiles size=170
+ texmf-dist/doc/man/man1/xelatex.1
+ texmf-dist/doc/man/man1/xelatex.man1.pdf
+ texmf-dist/doc/man/man1/xetex.1
+ texmf-dist/doc/man/man1/xetex.man1.pdf
+ texmf-dist/doc/xetex/base/NEWS
+ texmf-dist/doc/xetex/base/README
+ texmf-dist/doc/xetex/base/XeTeX-notes.pdf details="About XeTeX"
+ texmf-dist/doc/xetex/base/XeTeX-notes.tex
+runfiles size=6
+ texmf-dist/fonts/misc/xetex/fontmapping/base/qx-unicode.map
+ texmf-dist/fonts/misc/xetex/fontmapping/base/qx-unicode.tec
+ texmf-dist/fonts/misc/xetex/fontmapping/base/tex-text.map
+ texmf-dist/fonts/misc/xetex/fontmapping/base/tex-text.tec
+ tlpkg/tlpostcode/xetex.pl
+catalogue-also luatex
+catalogue-contact-announce http://lists.tug.org/xetex-announce
+catalogue-contact-home http://tug.org/xetex
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/xetexdir
+catalogue-contact-support http://lists.tug.org/xetex
+catalogue-license other-free
+catalogue-topics engine

@@ -1,0 +1,103 @@
+README for the `ncctools' bundle
+================================
+
+This `bundle' consists of LaTeX2e packages written and supported by
+Alexander I. Rozhenko.
+
+The documented source code of all packages is in files with extension
+`.dtx'.  To install the bungle, run
+
+  latex ncctools.ins
+
+It will produce the package files from all `.dtx' files.
+The files with extensions `.sty' should then be moved to a directory
+on LaTeX's standard input path.
+
+License Agreement
+=================
+
+This material is subject to the LaTeX Project Public License.
+See http://www.ctan.org/tex-archive/help/Catalogue/licenses.lppl.html
+for the details of that license.
+
+NOTE (docstrip version)
+***********************
+****
+**** If   latex ncctools.ins
+**** produces the `docstrip interactive mode' prompt:
+****
+****   * First type the extension of your input file(s):  *
+****   \infileext=
+****
+**** Then your version of docstrip is too old.
+**** Quit (eg by hitting `enter' to all questions) and get a newer
+**** docstrip.tex. It must be at least version 2.4.
+****
+**** A suitable docstrip.tex may be found from `CTAN' archives such as
+**** ftp.dante.de   tex-archive/macros/latex/unpacked/docstrip.tex
+****
+**** Docstrip is part of the base LaTeX distribution, so if you have
+**** an old docstrip then your LaTeX is out of date and you may consider
+**** getting the whole of that directory and re-installing LaTeX.
+**** However you need to fetch only the file docstrip.tex to unpack
+**** this tools distribution with your existing format.
+
+
+Documentation for the individual documented packages may then be
+obtained by running LaTeX on the `.dtx' files.
+
+For example:
+
+  latex manyfoot.dtx
+
+will produce the file manyfoot.dvi, documenting the manyfoot package.
+
+***NOTE****
+Copyright is maintained by Alexander I. Rozhenko.
+
+All the packages in this bundle are released under the restrictions
+detailed below.
+
+The file manifest.txt contains a list of files in the distribution.
+
+
+Reporting Bugs
+==============
+
+To report a problem or bug in any of these packages, describe it in free
+form and send it me to e-mail address
+
+        rozhenko@oapmg.sscc.ru
+
+Type the `NCCTOOLS' word in the subject of letter. This guarantees
+that your letter will be not deleted as spam.
+
+When reporting bugs, please produce a small test file that shows the
+problem, and ensure that you are using the current version of the
+package, and of the base LaTeX software.
+
+
+Distribution of unchanged versions
+==================================
+
+  Redistribution of unchanged files is allowed provided that this
+  readme file is included and all the files for a package are
+  distributed together.
+
+Generation and distribution of changed versions
+===============================================
+
+  The generation of changed versions of the files included in these
+  packages is allowed under the restrictions listed in the file
+  legal.txt in the base LaTeX distribution.  In particular you should:
+
+  - rename the file before you make any changes to it.
+
+  - change the error report address so that I do not get sent error
+    reports for files *not* maintained by me.
+
+  The distribution of changed versions of the files included in these
+  packages is allowed under the restrictions listed in the file
+  legal.txt in the base LaTeX distribution.  In particular you should:
+
+  - also distribute the unmodified version of the file.

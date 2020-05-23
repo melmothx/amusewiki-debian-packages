@@ -1,0 +1,8 @@
+name texdoc.x86_64-linux
+category TLCore
+revision 47948
+shortdesc x86_64-linux files of texdoc
+containersize 340
+containerchecksum d2b66ccccab24076063facd08b7689151f7d42f6be63ef6b02e336626c4279df0ab94e96716f1e5079f351c6612f860de0b554bb2da21c01d38e70927dd0cf2c
+binfiles arch=x86_64-linux size=1
+ bin/x86_64-linux/texdoc

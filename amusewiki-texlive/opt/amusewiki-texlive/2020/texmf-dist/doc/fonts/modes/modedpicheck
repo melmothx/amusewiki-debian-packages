@@ -1,0 +1,18 @@
+#!/bin/sh
+# $Id: modedpicheck,v 1.2 2020/01/28 18:57:25 karl Exp $
+# Check that the resolution of all defined modes is as intended,
+# and that landscape works.  Public domain.
+ 
+modes=modes.mf
+
+for j in `grep '^mode_def' $modes | awk '$2 != "help" {print $2}'`; do
+  mf_bdpi=`mf '\mode:='$j';mode_setup;message"BDPI= "&decimal round pixels_per_inch;end.' </dev/null | awk '/DPI=/ {print $2}'`
+  mf_lbdpi=`mf '\mode:='$j';landscape; mode_setup;message"BDPI= "&decimal round pixels_per_inch;end.' </dev/null | awk '/DPI=/ {print $2}'`
+  if test "$mf_bdpi" = "$mf_lbdpi"; then
+    grep "^mode_def $j.*($mf_bdpi dpi)" $modes >/dev/null 2>&1 ||
+      echo $j
+  else
+    grep "^mode_def $j.*(${mf_bdpi}x$mf_lbdpi dpi)" $modes  >/dev/null 2>&1 ||
+      echo $j
+  fi
+done

@@ -1,0 +1,1422 @@
+% tipaman1.tex
+% Copyright 2002 FUKUI Rei
+%
+% This program may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.2
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.2 or later is part of all distributions of LaTeX 
+% version 1999/12/01 or later.
+%
+% This program consists of all files listed in Manifest.txt.
+%
+
+\chapter{Introduction}
+
+\tipa{}\footnote{\tipa{} stands for \emph{\TeX\ IPA} or \emph{Tokyo
+    IPA}. The primary ftp site in which the latest version of \tipa{}
+  is placed is \texttt{ftp://tooyoo.L.u-tokyo.ac.jp/pub/TeX/tipa}, and
+  also it is mirrored onto the directory \texttt{fonts/tipa} of the
+  CTAN archives.} is a system for processing IPA (International
+Phonetic Alphabet) symbols in \LaTeX. It is based on
+\tsipa{}\footnote{\tsipa{} was made in 1992 by Kobayashi Hajime, Fukui
+  Rei and Shirakawa Shun. It is available from a CTAN archive.
+
+  One problem with \tsipa{} was that symbols already included in
+  \texttt{OT1}, \texttt{T1} or Math fonts are excluded, because of the
+  limitation of its 128 character encoding. As a result, a string of
+  phonetic representation had to be often composed of symbols from
+  different fonts, disabling the possibility of automatic inter-word
+  kerning, and also too many symbols had to be realized as macros.}
+but both \MF{} source codes and \LaTeX{} macros have been thoroughly
+rewritten so it can be considered as a new system.
+
+Among many features of \tipa{}, the following are the new features 
+as compared with \tsipa{} or any other existing systems for processing
+IPA symbols.
+
+\begin{itemize}
+\itemsep0pt
+\item A new 256 character encoding for phonetic symbols
+  (`\texttt{T3}'), which includes all the symbols and diacritics found
+  in the recent versions of IPA and some non-IPA symbols.
+\item Complete support of \LaTeXe.
+\item A variety of font styles including roman, slanted, bold, bold
+  extended, sans serif and typewriter.
+\item Easy input method in the IPA environment.
+\item Extended macros for accents and diacritics.\footnote{These
+    macros are now defined in a separate file called
+    `\texttt{exaccent.sty}' in order for the authors of other
+    packages to be able to make use of them. The idea of separating
+    these macros from other ones was suggested by Frank Mittelbach.}
+\item A flexible system of macros for `tone letters'.
+\item An optional package (\texttt{vowel.sty}) for drawing vowel
+  diagrams. This package can be used independently from the \tipa{}
+  package.\footnote{Documentation is also made separately in
+    `\texttt{vowel.tex}' so that no further mention will be made
+    here.}
+\item A slightly modified set of fonts that go well when used with
+  Times Roman and Helvetica fonts.
+\end{itemize}
+
+
+\section{Installation}
+
+\subsection{Basics}
+
+In a CTAN site or any other sites that have a copy of the \tipa{}
+package, the directory structure of \tipa{} looks as follows.
+
+\begin{quote}
+  \verb|sty| --- containing \verb|*.sty|, \verb|*.fd|, \verb|*.def|
+  files.\\
+  \verb|mf | --- containing \MF{} source files.\\
+  \verb|tfm| --- containing font metric files.\\
+  \verb|doc| --- containing document files.\\
+  \verb|dvips| --- containing tipa.map file.\\
+  \verb|type1| --- containing PostScript type1 fonts.
+\end{quote}
+
+If you are using a recent set of \LaTeX2e distribution, all you need
+to do is basically only two things.
+
+\begin{itemize}
+\item Copy all the files in the \verb|sty| directory into an
+  appropriate place.
+\item Copy all the files in the \verb|mf| directory into an
+  appropriate place.
+\end{itemize}
+
+In the case of a popular Unix-like OS, the actual installation
+procedure will look like the following.
+
+(\verb|$texmf| stands for your \TeX{} system directory; %$
+\verb|/usr/local/share/texmf|, for example).
+
+\begin{quote}
+  \verb|mkdir $texmf/tex/latex/tipa| %$
+    --- create a directory for style files.\\
+  \verb|cp sty/* $texmf/tex/latex/tipa| %$
+    --- copy all the files in \verb|sty|.\\
+  \verb|mkdir $texmf/fonts/source/fkr| %$
+    --- create a directory for\\
+  \verb|mkdir $texmf/fonts/source/fkr/tipa| %$
+    \hspace{1em}  mf files.\\
+  \verb|cp mf/* $texmf/fonts/source/fkr/tipa| %$
+    --- copy all the \verb|mf| files.\\
+  \verb|mktexlsr| --- update the kpathsea database.
+\end{quote}
+
+If you are using Windows or Mac, follow the equivalent steps: i.e.,
+create a directory/folder for style files and copy the contents of the 
+\tipa{} \verb|sty| directory/folder; then, create a directory/folder
+for \MF{} source files and copy the contents of the 
+\tipa{} \verb|mf| directory/folder.
+
+If you are going to run \tipa{} on the basis of \texttt{pk} files, all 
+other things such as \texttt{tfm} files and \texttt{pk} files will be
+generated automatically. That's all for the installation.
+
+You may optionally copy all the \texttt{tfm} files into an appropriate
+directory which \TeX{} and device driver programs can find. This will
+save time for the automatic font generation.
+
+\begin{quote}
+  \verb|mkdir $texmf/fonts/tfm/fkr| \\%$
+  \verb|mkdir $texmf/fonts/tfm/fkr/tipa| \\%$
+  \verb|cp tfm/* $texmf/fonts/tfm/fkr/tipa| %$
+\end{quote}
+
+If your \TeX{} system is not equiped with the automatic font
+generation mechanism, you may have to create and install \texttt{pk}
+files by yourself. For example:
+
+\begin{quote}
+  (generate pk font files; please ask someone how to do this.)\\
+  \verb|mkdir $texmf/fonts/pk/ljfour/fkr|\\ %$
+  \verb|mkdir $texmf/fonts/pk/ljfour/fkr/tipa|\\ %$
+  \verb|cp *pk $texmf/fonts/pk/ljfour/fkr/tipa| %$
+\end{quote}
+
+
+\subsection{Installing Type1 fonts}\label{sec:pdf}
+
+If you want to create a PDF document, you need to install Type1 fonts.
+First, copy the contents of the directories \texttt{dvips} and
+\texttt{type1} onto appropriate directories. For example:
+
+\begin{quote}
+  \verb|cp dvips/tipa.map $texmf/dvips/config|\\ %$
+  \verb|mkdir $texmf/fonts/type1/fkr|\\ %$
+  \verb|mkdir $texmf/fonts/type1/fkr/tipa|\\ %$
+  \verb|cp type1/* $texmf/fonts/type1/fkr/tipa|\\ %$
+  \verb|mktexlsr| --- update the kpathsea database.
+\end{quote}
+
+Then, edit config files for your device driver. In the case
+of \texttt{dvips}, edit \texttt{config.ps} and/or \texttt{config.pdf},
+for example, and insert a line containing:
+
+\begin{quote}
+  \texttt{p +tipa.map}
+\end{quote}
+
+There are several ways to make PDF documents. The author of this
+document usually uses \texttt{dvips}. For example:
+
+\begin{quote}
+  \texttt{dvips -Ppdf tipaman}
+\end{quote}
+
+\noindent will produce \texttt{tipaman.ps}. In this case, \texttt{config.pdf}
+has to be modified as explained above. Then, by using Acrobat
+Distiller (this is not free software), you can convert it to a PDF
+file. Alternatively, you can use free software such as
+\texttt{dvipdfm}, \texttt{dvipdf}, \texttt{pdflatex}, and so on.
+
+In the case of \texttt{pdflatex}, for example, you have to copy the file
+\texttt{tipa.map} onto the following directory.
+
+\begin{quote}
+  \verb|$texmf/pdftex/config|%$
+\end{quote}
+
+Then, edit \texttt{pdftex.cfg} and insert a line containing:
+
+\begin{quote}
+  \texttt{map +tipa.map}
+\end{quote}
+
+
+\section{\tipa{} font families}
+
+This version of \tipa{} includes two families of IPA fonts,
+\texttt{tipa} and \texttt{xipa}. The former family of fonts is for
+normal use with \LaTeX, and the latter family is intended to be used
+with `\texttt{times.sty}'(PSNFSS). They all have the same \texttt{T3}
+encoding as explained in the previous section.
+
+\begin{itemize}
+\item \texttt{tipa}
+  \begin{description}
+  \item[Roman:]
+    \texttt{tipa8}, \texttt{tipa9}, \texttt{tipa10}, \texttt{tipa12},
+    \texttt{tipa17}
+  \item[Slanted:]
+    \texttt{tipasl8}, \texttt{tipasl9}, \texttt{tipasl10},
+    \texttt{tipasl12}
+  \item[Bold extended:]
+    \texttt{tipabx8}, \texttt{tipabx9},
+    \texttt{tipabx10}, \texttt{tipabx12}
+  \item[Bold extended Slanted:] \texttt{tipabs10}
+  \item[Sans serif:]
+    \texttt{tipass8}, \texttt{tipass9}, \texttt{tipass10},
+    \texttt{tipass12}, \texttt{tipass17}
+  \item[Sans serif Bold extended:] \texttt{tipasb10}
+  \item[Sans serif Slanted:] \texttt{tipasi10}
+  \item[Bold:] \texttt{tipab10}
+  \item[Typewriter Text:]
+    \texttt{tipatt8}, \texttt{tipatt9}, \texttt{tipatt10},
+    \texttt{tipatt12}
+  \item[Typewriter Text Slanted:] \texttt{tipats10}
+  \end{description}
+\item \texttt{xipa}
+  \begin{description}
+  \item[Roman:] \texttt{xipa10}
+  \item[Slanted:] \texttt{xipasl10}
+  \item[Bold:] \texttt{xipab10}
+  \item[Bold Slanted:] \texttt{xipabs10}
+  \item[Sans serif Bold:] \texttt{xipasb10}
+  \item[Sans serif Slanted:] \texttt{xipasi10}
+  \end{description}
+\end{itemize}
+
+All these fonts are made by \MF{}, based on the Computer Modern font
+series. In the case of the \texttt{xipa} series, parameters are
+adjusted so as to look fine when used with Times Roman (in the cases
+of \texttt{xipa10}, \texttt{xipasl10}, \texttt{xipab10}) and Helvetica
+(in the case of \texttt{xipass10}).
+
+
+\clearemptydoublepage
+\chapter{TIPA Encoding}
+
+\section{Selection of symbols}\label{sec:selection}
+
+\subsection{IPA symbols}
+
+When the first version of \tipa{} (version 1.0) was released, the
+selection of IPA phonetic symbols was made based on the following
+works.
+
+\begin{itemize}
+\item \emph{Phonetic Symbol Guide} \citep{PSG:I}.
+\item The official IPA charts of '49, '79, '89 and '93 versions.
+\item Articles published in the
+  \emph{JIPA}\footnote{\emph{Journal of the International Phonetic
+      Association.}}, such as \cite{IPA:KielConvention},
+  \cite{IPA:FurtherReport}, \cite{Esling:ComputerCodes},
+  \cite{IPA:CouncilActions}, and so on.
+\item An unpublished paper by J.\ C.\ Wells:
+ ``Computer-coding the IPA: a proposed extension of SAM\-PA'' \citep{SAMPA}.
+\item Popular textbooks on phonetics.
+\end{itemize}
+
+More specifically, this first version tried to incorporate all the
+symbols and diacritics defined in the '79, '89 and '93 versions of IPA
+and some non-IPA symbols. And in the case of the '49 version of
+IPA, as was described in the \textit{Principles} \citep{Principles},
+there were too many obsolete symbols and only those symbols that had
+had some popularity at least for some time or for some group of people
+were included.
+
+Then, soon after the first release, several important works were
+published.
+
+\begin{itemize}
+\item The second edition of \emph{Phonetic Symbol Guide}
+  \citep{PSG:II}. (henceforth abbreviated as \PSG.)
+\item The official IPA chart of '96 version.
+\item ``Preview of the IPA Handbook'' \citep{IPA:Preview}.
+\item \emph{Handbook of the International Phonetic Association}
+  \citep{Handbook}. (henceforth abbreviated as \Handbook.)
+\end{itemize}
+
+The differences between '93 and '96 versions of IPA are very
+few. However, the second edition of \PSG\ contains much more symbols
+than before.
+
+The current version of tipa{} (version 1.1) is a result of an effort
+to increase the number of symbols as much as possible and to cover
+almost all the symbols included in \PSG.  However, the 256 character
+encoding (see next section for detail) used in \tipa{} has been
+already filled with symbols assigned in the first release. Therefore,
+it was necessary to create a set of new auxiliary fonts to include
+new symbols, and the new set of fonts is now called \tipx{}.
+
+It should be also noted that \tipa{} includes all the necessary
+elements of `tone letters', enabling all the theoretically possible
+combinations of the tone letter system. This system was devised by
+Yuen-Ren Chao \citep{Chao:ToneLetters} and it is now admitted as an
+official way of representing tones in the recent publication of the
+International Phonetic Association.
+
+But the treatment of tone letters is quite insufficient in that only a
+limited number of combinations is allowed. This is apparently due to
+the fact that there has been no `portable' way of combining symbols
+that can be used across various computer environments. Therefore
+\TeX's productive system of macro is an ideal tool for handling a
+system like tone letters.
+
+In the process of writing \MF{} source codes for \tipa{} phonetic
+symbols there have been many problems besides the one with the
+selection of symbols.  One such problem was that sometimes the
+exact shape of a symbol was unclear.  For example, the shapes of the
+symbols such as \textstretchc\ (Stretched C), and \textctj\ (Curly-tail J)
+differ according to sources. This is partly due to the fact that the
+IPA has been continuously revised for the past few decades, and partly
+due to the fact that different ways of computerizing phonetic symbols
+on different systems have resulted in a diversity of the shapes of
+phonetic symbols.
+
+Although there is no definite answer to such a problem yet, it seems
+to me that it is a privilege of those working with \MF{} to have a
+systematic way of controlling the shapes of phonetic symbols.
+
+\subsection{Non-IPA symbols}
+
+Besides IPA symbols, \tipa{} also contains symbols that are useful for
+the following areas of phonetics and linguistics.
+
+\begin{itemize}
+\itemsep0pt
+\item Symbols used in the American phonetics. (e.g., \textturncelig,
+  \textsce, \textscomega, \textlambda, etc.)
+\item Symbols used in the historical study of Indo-European languages.
+  (e.g., \textthorn, \textwynn, \texthvlig, \textcommatailz,
+  \textsoftsign, \texthardsign, and accents such as \textipa{\'=a},
+  \textipa{\.'e}, etc.)
+\item Symbols used in the phonetic description of languages in East Asia.
+  (e.g., \textlhtlongi, \textvibyi, \textctd, \textctn, \textctt, etc.)
+\item Diacritics used in `ExtIPA Symbols for Disordered
+  Speech' \citep{extIPA} and `VoQS (Voice Quality Symbols)' \citep{VoQS}.
+  (e.g., \bibridge{n}, \subdoublevert{f}, \crtilde{m}, etc.)
+\end{itemize}
+
+
+\section{Encoding}
+
+\begin{table}[t]
+\begin{center}\tabcolsep1em
+\def\zerobox#1{\hbox to0pt{\hss #1\hss}}
+\def\MCL#1#2{\multicolumn{#1}{|c|}{#2}}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+  &{\it'0}&{\it'1}&{\it'2}&{\it'3}&{\it'4}&{\it'5}&{\it'6}&{\it'7}\\
+\hline
+  {\it'00x}& \MCL{8}{} \\
+           & \MCL{8}{Accents and diacritics} \\
+  {\it'04x}& \MCL{8}{} \\
+\hline
+  {\it'05x}& \MCL{8}{Punctuation marks} \\
+\hline
+  {\it'06x}& \MCL{8}{Basic IPA symbols I (vowels)} \\
+\cline{4-9}
+  {\it'07x}& \MCL{2}{} & \MCL{6}{Diacritics, etc.} \\
+\hline
+  {\it'10x}& \MCL{8}{} \\
+           & \MCL{8}{Basic IPA symbols II} \\
+           & \MCL{8}{} \\
+\cline{5-9}
+  {\it'13x}& \MCL{3}{} & \MCL{5}{Diacritics, etc.} \\
+\hline
+  {\it'14x}& \MCL{1}{\zerobox{Punct\kern-.1em.}} & \MCL{7}{} \\
+\cline{2-2}
+           & \MCL{8}{Basic IPA symbols III} \\
+           & \MCL{8}{(lowercase letters)} \\
+\cline{8-9}
+  {\it'17x}& \MCL{6}{} & \MCL{2}{\zerobox{Diacritics}}\\
+\hline
+  {\it'20x}& \MCL{8}{} \\
+           & \MCL{8}{Tone letters and other suprasegmentals} \\
+  {\it'23x}& \MCL{8}{} \\
+\hline
+  {\it'24x}& \MCL{8}{} \\
+           & \MCL{8}{Old IPA, non-IPA symbols} \\
+  {\it'27x}& \MCL{8}{} \\
+\hline
+  {\it'30x}& \MCL{8}{} \\
+           & \MCL{8}{Extended IPA symbols} \\
+\cline{8-9}
+  {\it'33x}& \MCL{6}{} & \MCL{2}{\zerobox{Germanic}}\\
+\hline
+  {\it'34x}& \MCL{8}{} \\
+           & \MCL{8}{Basic IPA symbols IV} \\
+\cline{8-9}
+  {\it'37x}& \MCL{6}{} & \MCL{2}{\zerobox{Germanic}}\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Layout of the {\tt T3} encoding}\label{tab:TIPAenc}
+\end{table}
+
+
+The 256 character encoding of \tipa{} is now officially called the
+`\texttt{T3}' encoding.\footnote{In a discussion with the \LaTeXe{}
+  team it was suggested that the 128 character encoding used in WSUIPA
+  would be referred to as the \texttt{OT3} encoding.} In deciding this
+new encoding, care is taken to harmonize with other existing 
+encodings, especially with the \texttt{T1} encoding. Also the easiness
+of inputting phonetic symbols is taken into consideration in such a
+way that frequently used symbols can be inputted with small number of
+keystrokes.
+
+Table~\ref{tab:TIPAenc} shows the layout of the \texttt{T3} encoding.
+
+The basic structure of the encoding found in the first half of the
+table (character codes \texttt{'000-'177}) is based on normal text
+encodings (ASCII, \texttt{OT1} and \texttt{T1}) in that sectioning of
+this area into several groups, such as the section for accents and
+diacritics, the section for punctuation marks, the section for
+numerals, and the sections for uppercase and lowercase letters, is
+basically the same with these encodings.
+
+Note also that the \texttt{T3} encoding contains not only phonetic
+symbols but also usual punctuation marks that are used with phonetic
+symbols, and in such cases the same codes are assigned as the normal
+text encodings. However, it is a matter of trade-off to decide which
+punctuation marks are to be included. For example `:' and `;' might
+have been preserved in \texttt{T3} but in this case `:' has been
+traditionally used as a substitute for the length mark `\textipa{:}' so
+that I decided to exclude `:' in favor of the easiness of inputting the
+length mark by a single keystroke.
+
+The encoding of the section for accents and diacritics is closely
+related to \texttt{T1} in that the accents commonly included in
+\texttt{T1} and \texttt{T3} have the same encoding.
+
+The sections for numerals and uppercase letters are filled with
+phonetic symbols that are used frequently in many languages, because
+numerals and uppercase letters are usually not used as phonetic
+symbols. Also, the assignments made here are used as the `shortcut
+characters', which will be explained in section~\ref{sec:OrdinarySymbol}.
+
+As for the section for uppercase letters in the usual text encoding, a
+series of discussion among the members of the \texttt{ling-tex}
+mailing list revealed that there seem to be a certain amount of
+consensus on what symbols are to be assigned to each code. For example,
+they were almost unanimous for the assignments such as \textipa{A} for
+\texttt{A}, \textipa{B} for \texttt{B}, \textipa{D} for \texttt{D},
+\textipa{S} for \texttt{S}, \textipa{T} for \texttt{T}, etc. For more
+details, see table~\ref{tab:shortcut}.
+
+\begin{table}[t]
+\begin{center}
+\let\:\texttt \let\;\textipa
+\begin{tabular}{l|cccccccccc}
+\hline
+\textit{ASCII}&\:: &\:; &\:" & & & & & & &\\
+\textit{TIPA} &\;: &\;; &\;" & & & & & & &\\
+\hline
+\textit{ASCII}&\:0 &\:1 &\:2 &\:3 &\:4 &\:5 &\:6 &\:7 &\:8 &\:9\\
+\textit{TIPA} &\;0 &\;1 &\;2 &\;3 &\;4 &\;5 &\;6 &\;7 &\;8 &\;9\\
+\hline
+\textit{ASCII}&\:@ &\:A &\:B &\:C &\:D &\:E &\:F &\:G &\:H &\:I\\
+\textit{TIPA} &\;@ &\;A &\;B &\;C &\;D &\;E &\;F &\;G &\;H &\;I\\
+\hline
+\textit{ASCII}&\:J &\:K &\:L &\:M &\:N &\:O &\:P &\:Q &\:R &\:S\\
+\textit{TIPA} &\;J &\;K &\;L &\;M &\;N &\;O &\;P &\;Q &\;R &\;S\\
+\hline
+\textit{ASCII}&\:T &\:U &\:V &\:W &\:X &\:Y &\:Z &\:| &  &\\
+\textit{TIPA} &\;T &\;U &\;V &\;W &\;X &\;Y &\;Z &\;| &  &\\
+\hline
+\end{tabular}
+\end{center}
+\caption{\tipa{} shortcut characters}\label{tab:shortcut}
+\end{table}
+
+The encoding of the section for numerals was more difficult than the
+above case. One of the possibilities was to assign symbols based on the
+resemblance of shapes. One can easily think of assignments such as
+\textipa{3} for \texttt{3}, \texthtb{} for \texttt{6}, etc. But the
+resemblance of shape alone does not serve as a criteria for all the
+assignments. So I decided to assign basic vowel symbols to this
+section.\footnote{This idea was influenced by the above mentioned
+  article by J.\ C.\ Wells \citep{SAMPA}.} Fortunately the resemblance
+of shape is to some extent maintained as is shown in
+table~\ref{tab:shortcut}.
+
+The encoding of the section for lowercase letters poses no problem
+since they are all used as phonetic symbols. Only one symbol, namely
+`\textipa{g}', needs some attention because its shape should be
+`\textipa{g}', rather than `g', as a phonetic symbol.\footnote{%
+  However, it was declared that these two symbols are equivalent in
+  the most recent version of the IPA.  Anyway, alternative shape
+  `\textg' is preserved in another section and can be used as
+  \texttt{\tbs textg}. }
+
+The second half of the table (character codes \texttt{'200-'377}) is
+divided into four sections. The first section is devoted to the
+elements of tone letters and other suprasegmental symbols.
+
+Among the remaining three sections the last section \texttt{'340-'377}
+contains more basic symbols than the other two sections. This is a
+result of assigning the same character codes as latin-1 (ISO8859-1)
+and T1 encodings to the symbols that are commonly included in \tipa{},
+latin-1 and T1 encoded fonts.\footnote{This is based on a suggestion
+  by J\"org Knappen.} These are the cases of \ae{}, \o, \oe{}, \c{c}
+and \textthorn. And within each section, symbols are arranged largely
+in alphabetical order.
+
+For a table of the \texttt{T3} encoding, see Appendix
+\ref{sec:FontLayout}.
+
+
+
+\clearemptydoublepage
+\chapter{Usage}
+
+\section{Declaration of \tipa{} package}
+
+In order to use \tipa{}, first declare \texttt{tipa.sty} package at
+the preamble of a document.
+
+\begin{verbatim}
+    \documentclass{article}
+    \usepackage{tipa}
+\end{verbatim}
+
+If you want to use an additional set of phonetic symbols, declare
+\texttt{tipx.sty} after the declaration of \texttt{tipa.sty}.
+
+\begin{verbatim}
+    \documentclass{article}
+    \usepackage{tipa}
+    \usepackage{tipx}
+\end{verbatim}
+
+\subsection{Encoding options}
+
+The above declaration uses \texttt{OT1} as the default text encoding. If 
+you want to use \tipa{} symbols with \texttt{T1}, specify the option
+`\texttt{T1}'.
+
+\begin{verbatim}
+    \documentclass{article}
+    \usepackage[T1]{tipa}
+\end{verbatim}
+
+If you want to use a more complex form of encoding, declare the use of
+\texttt{fontenc} package by yourself and specify the option
+`\texttt{noenc}'. In this case the option `\texttt{T3}', which represents
+the \tipa{} encoding, must be included as an option to the
+\texttt{fontenc} package. For example, if you want to use \tipa{} and
+the University Washington Cyrillic (\texttt{OT2}) with the \texttt{T1}
+text encoding, the following command will do this.
+
+\begin{verbatim}
+    \documentclass{article}
+    \usepackage[T3,OT2,T1]{fontenc}
+    \usepackage[noenc]{tipa}
+\end{verbatim}
+
+By default, \tipa{} includes the \texttt{fontenc} package internally but 
+the option \texttt{noenc} suppresses this.
+
+\subsection{Using \tipa{} with PSNFSS}
+
+In order to use \tipa{} with \texttt{times.sty}, declare the use of
+\texttt{times.sty} before declaring \texttt{tipa} packages.
+
+\begin{verbatim}
+    \documentclass{article}
+    \usepackage{times}
+    \usepackage{tipa}
+\end{verbatim}
+
+Font description files \texttt{t3ptm.fd} and \texttt{t3phv.fd} 
+are automatically loaded by the above declaration.
+
+This manual can be typeset with Times Roman and \textsf{XIPA} fonts by
+uncommenting a few lines that appear near the top of the file
+\texttt{tipaman.tex}.
+
+\subsection{Other options}\label{sec:otheroptions}
+
+\tipa{} can be extended by the options \texttt{tone}, \texttt{extra}.
+
+If you want to use the optional package for `tone letters', add
+`\texttt{tone}' option to the \verb|\usepackage| command that declares
+\texttt{tipa} package.
+
+\begin{verbatim}
+    \usepackage[tone]{tipa}
+\end{verbatim}
+
+And if you want to use diacritics for extIPA and Vo\-QS, specify
+`\texttt{extra}' option.
+
+\begin{verbatim}
+    \usepackage[extra]{tipa}
+\end{verbatim}
+
+Finally, there is one more option called `\texttt{safe}', which is used
+to suppress definitions of some possibly `dangerous' commands of
+\tipa.
+
+\begin{verbatim}
+    \usepackage[safe]{tipa}
+\end{verbatim}
+
+More specifically, the following commands are suppressed by declaring
+the \texttt{safe} option.  Explanation on the function of each command
+will be given later.
+
+\begin{itemize}
+\itemsep0pt
+\item \verb|\s| \quad Equivalent to \verb|\textsyllabic|; maybe harmless
+  but too short for a control sequence name.
+\item \verb|\*| \quad Already defined in plain \TeX;  however, many consider
+  its redefinition harmless.
+\item \verb+\|+, \verb|\:|, \verb|\;|, \verb|\!| \quad Already defined in
+  \LaTeX; these redefinitions are obviously the most dangerous
+  ones. However, remedies are prepared even in `unsafe' mode.
+  There is a command called \verb|\Vert| which has the same meaning as 
+  \verb+\|+ and can be used in `unsafe' mode. For the remaining three
+  commands, \tipa{} provides commands called \verb|\tipamedspace|,
+  \verb|\tipathickspace| and \verb|\tipanegthinspace| which retain the
+  meanings of \verb|\:|, \verb|\;| and \verb|\!|, respectively, even in
+  the `unsafe mode'.
+\end{itemize}\label{unsafemode}
+
+Despite the above `remedies', you may sometimes want to use the above
+commands with their original names in the `unsafe' mode. In such
+cases, a command called \texttt{\tbs tipasafemode} can be used. For
+example:
+
+\begin{tipaexample}
+  \yitem
+    \verb+\textipa{[\!b] [\:r] [\;B]}\quad{\tipasafemode+\\
+    \verb+  $ a\:a\quad b\;b\quad c\!c\quad\| $}\quad+\\
+    \verb+\textipa{[\!b] [\:r] [\;B] (back again!)}+
+  \yitem
+    \textipa{[\!b] [\:r] [\;B]}\quad
+    {\tipasafemode $ a\:a\quad b\;b\quad c\!c\quad\| $}\quad
+    \textipa{[\!b] [\:r] [\;B] (back again!)}
+\end{tipaexample}
+
+As is shown in this example, \texttt{\tbs tipasafemode} must be used
+within a group. Otherwise, the meanings of \tipa{}'s special macros
+are lost.
+
+Finally, more than one options can be specified at the same
+time, by separating a comma. For example:
+
+\begin{verbatim}
+    \usepackage[tone,extra,safe]{tipa}
+\end{verbatim}
+
+\section{Input commands for phonetic symbols}
+\subsection{Ordinary phonetic symbols}\label{sec:OrdinarySymbol}
+
+\tipa{} phonetic symbols can be inputted by the following two ways.
+
+\begin{enumerate}
+\itemsep0pt
+\item Input macro names in the normal text environment.
+\item Input macro names or \emph{shortcut characters} with\-in the
+  following groups or environment.
+  \begin{itemize}
+  \item \verb|\textipa{...}|\footnote{I personally prefer a slightly
+      shorter name like \texttt{\tbs ipa} rather than \texttt{\tbs
+        textipa} so that I usually put a command \texttt{\tbs let\tbs
+        ipa\tbs textipa} somewhere in my style file. However, this
+      command was named after the general convention of \LaTeXe. The
+      same can be said for all the symbol names beginning with
+      \texttt{\tbs text}.}
+  \item \verb|{\tipaencoding ...}|
+  \item \verb|\begin{IPA} ... \end{IPA}|
+  \end{itemize}
+  (These groups and environment will be henceforth referred to as the
+  \textsl{IPA environment}.)
+\end{enumerate}
+
+A shortcut character refers to a single character that is assigned to
+a specific phonetic symbol and that can be directly inputted by an
+ordinary keyboard. In \tipa{} fonts, the character codes for numerals
+and uppercase letters in the normal ASCII encoding are assigned to such
+shortcut characters, because numerals and uppercase letters are
+usually not used as phonetic symbols.  Additional shortcut
+characters for symbols such as \ae{}, \oe{}, \o{} may also be used if
+you are using a T1 encoded font and an appropriate input system for
+it.
+
+The following pair of examples show the same phonetic transcription of 
+an English word that are inputted by the above mentioned two input methods.
+
+\begin{tipaexample}
+  \xitem
+    \verb|[\textsecstress\textepsilon kspl\textschwa|\\
+    \verb|\textprimstress ne\textsci\textesh\textschwa n]|
+  \xitem {[\textsecstress\textepsilon kspl\textschwa\textprimstress
+    ne\textsci\textesh\textschwa n]}
+  \xitem \verb|\textipa{[""Ekspl@"neIS@n]}|
+  \xitem \textipa{[""Ekspl@"neIS@n]}
+\end{tipaexample}
+
+It is apparent that inputting shortcut characters in the IPA
+environment is far easier than inputting lengthy symbol names in the
+normal text environment.
+
+Moreover, although the outputs of the above examples look
+almost the same, they are \textsl{not\/} identical, exactly
+speaking. This is because in the IPA environment automatic kerning
+between neighboring symbols is enabled, as is illustrated by the
+following pair of examples.
+
+\begin{tipaexample}
+  \xitem \verb|v\textturnv v w\textsca w |
+         \verb|y\textturny y [\textesh]|
+  \xitem v\textturnv v w\textsca w y\textturny y [\textesh]
+  \xitem \verb|\textipa{v2v w\textsca w yLy [S]}|
+  \xitem \textipa{v2v w\textsca w yLy [S]}
+\end{tipaexample}
+
+In the next example, \emph{Input 2} is far better theen \emph{Input 1}, 
+for the same reason.
+
+\begin{tipaexample}
+  \xitem \verb|[\textipa{S}]|
+  \xitem [\textipa{S}]
+  \xitem \verb|\textipa{[S]}|
+  \xitem \textipa{[S]}
+\end{tipaexample}
+
+Therefore, it is recommended to use \texttt{\tbs textipa} or other IPA
+environments as much as possible.
+
+Table~\ref{tab:shortcut} shows most of the shortcut characters that
+can be used in the IPA environment, together with the corresponding
+characters in the ASCII encoding.
+
+
+\begin{table}
+\begin{center}\tabcolsep1em
+\begin{tabular}{llc}
+\hline
+  \emph{Symbol name}  & \emph{Macro name}  & \emph{Symbol}\\
+\hline
+  Turned A            & \verb|\textturna|      & \textturna  \\
+  Glottal stop        & \verb|\textglotstop|   & \textglotstop \\
+  Right-tail D        & \verb|\textrtaild|     & \textrtaild \\
+  Small capital G     & \verb|\textscg|        & \textscg \\
+  Hooktop B           & \verb|\texthtb|        & \texthtb \\
+  Curly-tail C        & \verb|\textctc|        & \textctc \\
+  Crossed H           & \verb|\textcrh|        & \textcrh \\
+  Old L-Yogh ligature & \verb|\textOlyoghlig|  & \textOlyoghlig \\
+  Beta                & \verb|\textbeta|       & \textbeta \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Naming of \tipa{} symbols}\label{tab:naming}
+\end{table}
+
+\subsection{Naming of phonetic symbols}
+
+Every \tipa{} phonetic symbol has a unique symbol name, such as
+\textsl{Turned A, Hooktop B, Schwa}. Also each symbol has a
+corresponding macro name, such as \verb|\textturna|, \verb|\texthtb|,
+\verb|\textschwa|. The naming was made based on the literature listed
+in section~\ref{sec:selection}.  Among them, \PSG{} is particularly
+important because it gives several explicit principles on naming. As
+an example, the three terms `turned', `inverted' and `reversed' are
+distinguished in the following way (p.\ xxvii):
+
+\begin{quote}
+\begin{description}\itemsep0pt
+\item[Turned] rotated by 180 degrees (e.g., \textipa{t} vs. \textipa{\*t})
+\item[Inverted] vertical mirror image (e.g., \textipa{\;R} vs. \textipa{K})
+\item[Reversed] horizontal mirror image (e.g., \textipa{P} vs. \textipa{Q})
+\end{description}
+\end{quote}
+
+The name used as a control sequence is usually an abbreviated form of
+the corresponding symbol name with a prefix \verb|\text|. The
+conventions used in the abbreviation can be summarized as follows.
+
+\begin{itemize}
+\itemsep0pt
+\item Suffixes and endings such as `-ive', `-al', `-ed' are omitted.
+\item `right', `left' are abbreviated to \texttt{r}, \texttt{l} respectively.
+\item For `small capital' symbols, prefix \texttt{sc} is added.
+\item A symbol with a hooktop is abbreviated as \texttt{ht}...
+\item A symbol with a curly-tail is abbreviated as \texttt{ct}...
+\item A `crossed' symbol is abbreviated as \texttt{cr}...
+\item A ligature is abbreviated as ...\texttt{lig}.
+\item For an old version of a symbol, prefix \texttt{O} is added.
+\end{itemize}
+
+Note that the prefix \texttt{O} (old) should be given in uppercase
+letter.
+
+Table~\ref{tab:naming} shows some examples of correspondence between
+symbol names and control sequence names.
+
+\subsection{Ligatures}
+
+Just like the symbols such as ``, '', --, ---, fi, ff are realized as
+ligatures by inputting \verb|``|, \verb|''|, \verb|--|, \verb|---|,
+\verb|fi|, \verb|ff| in \TeX{}, two of the \tipa{} symbols, namely
+\textsl{Secondary Stress} and \textsl{Double Pipe}, and double
+quotation marks\footnote{Although \tipa{} fonts do not include the
+  symbols `` and '', a negative value of kerning is automatically
+  inserted between ` and `, ' and ', so that the same results can be
+  obtained as in the case of the normal text font.} can be inputted as
+ligatures in the IPA environment.
+
+\begin{tipaexample}
+  \yitem \verb+\textipa{" "" | || `` ''}+
+  \yitem \textipa{" "" | || `` ''}
+\end{tipaexample}
+
+\subsection{Special macros {\tt\tbs*}, {\tt\tbs;}, {\tt\tbs:} and
+  {\tt\tbs!}}\label{sec:specialmacros}
+
+\tipa{} defines {\tt\tbs*}, {\tt\tbs:}, {\tt\tbs;} and {\tt\tbs!} as
+special macros in order to easily input phonetic symbols that do not
+have a shortcut character explained above.  Before explaining how to
+use these macros, it is necessary to note that these macros are
+primarily intended to be used by linguists who usually do not care
+about things in math mode. And they can be `dangerous' in that they
+override existing \LaTeX{} commands used in the math mode. So if you
+want to preserve the original meaning of these commands, declare the
+option `\texttt{safe}' at the preamble.
+(However, \tipa{} provides cammands called \verb|\tipamedspace|,
+\verb|\tipathickspace| and \verb|\tipanegthinspace|, having the same
+meanings as {\tt\tbs:}, {\tt\tbs;} and {\tt\tbs!}, respectively. These
+can be used even in `unsafe' mode.)
+
+
+The macro \verb|\*| is used in three different ways.  First, when this
+macro is followed by one of the letters f, k, r, t or w, it results in
+a turned symbol.\footnote{This idea was pointed out by J\"org
+  Knappen.}
+
+\begin{tipaexample}
+  \yitem \verb|\textipa{\*f \*k \*r \*t \*w}|
+  \yitem \textipa{\*f \*k \*r \*t \*w}
+\end{tipaexample}
+
+Secondly, when this macro is followed by one of the letters j, n, h,
+l or z, it results in a frequently used symbol that otherwise has no
+easy way to input.
+
+\begin{tipaexample}
+  \yitem \verb|\textipa{\*j \*n \*h \*l \*z}|
+  \yitem \textipa{\*j \*n \*h \*l \*z}
+\end{tipaexample}
+
+Thirdly, when this macro is followed by letters other than the above
+cases, they are turned into the symbols of the default text font. This
+is useful in the IPA environment to select symbols temporarily from
+the normal text font.
+
+\begin{tipaexample}
+  \yitem \verb|\textipa{\*A dOg, \*B k\ae{}t, |
+    \verb|ma\super{\*{214}}}|
+  \yitem \textipa{\*A dOg, \*B k\ae{}t, ma\super{\*{214}}}
+\end{tipaexample}
+
+The remaining macros {\tt\tbs;}, {\tt\tbs:} and {\tt\tbs!} are
+used to make small capital symbols, retroflex symbols, and implosives
+or clicks, respectively.
+
+\begin{tipaexample}
+  \yitem \verb|\textipa{\;B \;E \;A \;H \;L \;R}|
+  \yitem \textipa{\;B \;E \;A \;H \;L \;R}
+  \yitem \verb|\textipa{\:d \:l \:n \:r \:s \:z}|
+  \yitem \textipa{\:d \:l \:n \:r \:s \:z}
+  \yitem \verb|\textipa{\!b \!d \!g \!j \!G \!o}|
+  \yitem \textipa{\!b \!d \!g \!j \!G \!o}
+\end{tipaexample}
+
+\subsection{Punctuation marks}
+
+The following punctuation marks and text symbols that are
+normally included in the text encoding are also included in the
+\texttt{T3} encoding so that they can be directly inputted in the IPA
+environment.
+
+\begin{tipaexample}
+ \yitem \verb|\textipa{! ' ( ) * + , - . / = ? [ ] `}|
+ \yitem \textipa{! ' ( ) * + , - .\ / = ? [ ] `}
+\end{tipaexample}
+
+All the other punctuation marks and text symbols that are not included
+in \texttt{T3} need to be inputted with a prefix \verb|\*| explained in
+the last section when they appear in the IPA environment.
+
+\begin{tipaexample}
+ \yitem
+   \verb|\textipa{\*; \*: \*@ \*\# \*\$ \*\& \*\% \*\{ \*\}}|
+ \yitem \textipa{\*; \*: \*@ \*\# \*\$ \*\& \*\% \*\{ \*\}}
+\end{tipaexample}
+
+\subsection{Accents and diacritics}
+
+Table~\ref{tab:accent} shows how to input accents and diacritics in
+\tipa{} with some examples. Here again, there are two kinds of input
+methods; one for the normal text environment, and the other for the
+IPA environment.
+
+\begin{table}
+\begin{center}\tabcolsep1em
+\def\TblShrt#1{\hbox to 2em{#1\hss}}
+\def\TblMvRt#1{\kern 2em #1}
+\begin{tabular}{llc}
+\hline
+\textit{Input in the normal}& \textit{Input in the IPA} & \textit{Output} \\
+\textit{text environment}   & \textit{environment}      & \\
+\hline
+\TblShrt{\Tt{'a}}               & \TblMvRt{\Tt{'a}}        &\textipa{\'a} \\
+\TblShrt{\Tt{"a}}               & \TblMvRt{\Tt{"a}}        &\textipa{\"a} \\
+\TblShrt{\Tt{~a}}               & \TblMvRt{\Tt{\ttilde a}} &\textipa{\~a} \\
+\TblShrt{\Td{r}{a}}             & \TblMvRt{\Td{r}{a}}      &\textipa{\r{a}}\\
+\TblShrt{\Td{textsyllabic}{m}}  & \TblMvRt{\Td{s}{m}}      &\textipa{\s{m}}\\
+\TblShrt{\Td{textsubumlaut}{a}} & \TblMvRt{\Tt{"*a}}       &\textipa{\"*a}\\
+\TblShrt{\Td{textsubtilde}{a}}  & \TblMvRt{\Tt{\ttilde*a}} &\textipa{\~*a}\\
+\TblShrt{\Td{textsubring}{a}}   & \TblMvRt{\Tt{r*a}}       &\textipa{\r*a}\\
+\TblShrt{\Td{textdotacute}{e}}  & \TblMvRt{\Tt{.'e}}       &\textipa{\.'e}\\
+\TblShrt{\Td{textgravedot}{e}}  & \TblMvRt{\Tt{`.e}}       &\textipa{\`.e}\\
+\TblShrt{\Td{textacutemacron}{a}}& \TblMvRt{\Tt{'=a}}      &\textipa{\'=a}\\
+\TblShrt{\Td{textcircumdot}{a}} & \TblMvRt{\Tt{\tcircum.a}}&\textipa{\^.a}\\
+\TblShrt{\Td{texttildedot}{a}}  & \TblMvRt{\Tt{\ttilde.a}} &\textipa{\~.a}\\
+\TblShrt{\Td{textbrevemacron}{a}}& \TblMvRt{\Tt{u=a}}      &\textipa{\u=a}\\
+%\Td{}{a}                    & \Tt{}              &\textipa{}\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Examples of inputting accents and diacritics}\label{tab:accent}
+\end{table}
+
+In the IPA environment, most of the accents and diacritics can be
+inputted more easily than in the normal text environment, especially in
+the cases of subscript symbols that are normally placed over a symbol
+and in the cases of combined accents, as shown in the table.
+
+As can be seen by the above examples, most of the accents that are
+normally placed over a symbol can be placed under a symbol by adding
+an \texttt{*} to the corresponding accent command in the IPA environment.
+
+The advantage of IPA environment is further exemplified by the
+all-purpose accent \verb+\|+, which is used as a macro prefix to
+provide shortcut inputs for the diacritics that otherwise have to be
+inputted by lengthy macro names. Table~\ref{tab:accprefix} shows examples
+of such accents. Note that the macro \verb+\|+ is also `dangerous' in
+that it has been already defined as a math symbol of \LaTeX{}. So if
+you want to preserve the original meaning of this macro, declare
+`\texttt{safe}' option at the preamble.
+(However, there is an alternative command called \verb+\Vert+
+(originally defined in plain \TeX) which has the same meaning as
+\verb+\|+ and can be used even if the \texttt{safe} option is not
+specified.)
+
+\begin{table}
+\begin{center}\tabcolsep1em
+\def\TblShrt#1{\hbox to 2em{#1\hss}}
+\def\TblMvRt#1{\kern 2em #1}
+\begin{tabular}{llc}
+\hline
+\textit{Input in the normal}& \textit{Input in the IPA} & \textit{Output} \\
+\textit{text environment}   & \textit{environment}      & \\
+\hline
+\TblShrt{\Td{textsubbridge}{t}}   & \TblMvRt{\Tt{|[t}}   & \textipa{\|[t}\\
+\TblShrt{\Td{textinvsubbridge}{t}}& \TblMvRt{\Tt{|]t}}   & \textipa{\|]t}\\
+\TblShrt{\Td{textsublhalfring}{a}}& \TblMvRt{\Tt{|(a}}   & \textipa{\|(a}\\
+\TblShrt{\Td{textsubrhalfring}{a}}& \TblMvRt{\Tt{|)a}}   & \textipa{\|)a}\\
+\TblShrt{\Td{textroundcap}{k}}    & \TblMvRt{\Td{|c}{k}} & \textipa{\|c{k}}\\
+\TblShrt{\Td{textsubplus}{o}}     & \TblMvRt{\Tt{|+o}}   & \textipa{\|+o}\\
+\TblShrt{\Td{textraising}{e}}     & \TblMvRt{\Tt{|'e}}   & \textipa{\|'e}\\
+\TblShrt{\Td{textlowering}{e}}    & \TblMvRt{\Tt{|`e}}   & \textipa{\|`e}\\
+\TblShrt{\Td{textadvancing}{o}}   & \TblMvRt{\Tt{|<o}}   & \textipa{\|<o}\\
+\TblShrt{\Td{textretracting}{a}}  & \TblMvRt{\Tt{|>a}}   & \textipa{\|>a}\\
+\TblShrt{\Td{textovercross}{e}}   & \TblMvRt{\Td{|x}{e}} & \textipa{\|x{e}}\\
+\TblShrt{\Td{textsubw}{k}}        & \TblMvRt{\Td{|w}{k}} & \textipa{\|w{k}}\\
+\TblShrt{\Td{textseagull}{t}}     & \TblMvRt{\Td{|m}{t}} & \textipa{\|m{t}}\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Examples of the accent prefix {\tt \tbs|}}\label{tab:accprefix}
+\end{table}
+
+Finally, examples of words with complex accents that are inputted in the
+IPA environment are shown below.
+
+\begin{tipaexample}
+  \yitem \verb+\textipa{*\|c{k}\r*mt\'om +
+    \verb+*bhr\'=at\=er}+
+  \yitem \textipa{*\|c{k}\r*mt\'om *bhr\'=at\=er}
+\end{tipaexample}
+
+For a full list of accents and diacritics, see Appendix~A.
+
+\subsection{Superscript symbols}
+
+In the normal text environment, superscript symbols can be inputted by a
+\LaTeX{} macro called \verb|\textsuperscript|.  This macro takes one
+argument which can be either a symbol or a string of symbols, and can
+be nested.
+
+Since the name of this macro is too long, \tipa{} provides an
+abbreviated form of this macro called \verb|\super|.
+
+\begin{tipaexample}
+  \xitem
+    \verb|t\textsuperscript h |
+    \verb|k\textsuperscript w|\\
+    \verb|a\textsuperscript{bc}|\\
+    \verb|a\textsuperscript{b\textsuperscript{c}}|
+  \xitem
+    t\textsuperscript h k\textsuperscript w a\textsuperscript{bc} 
+      a\textsuperscript{b\textsuperscript{c}}
+  \xitem
+    \verb|\textipa{t\super{h} k\super{w}|\\
+    \verb|  a\super{bc} a\super{b\super{c}}}|
+  \xitem
+    \textipa{\textipa{t\super{h} k\super{w} a\super{bc}
+      a\super{b\super{c}}}}
+\end{tipaexample}
+
+\noindent
+(A quiz question: A careful reader may have noticed that the above
+\textit{Output1} and \textit{Output2} slightly differ. Explain the
+reason.)
+
+\medskip
+
+These macros automatically select the correct size of superscript font 
+no matter what size of text font is used.
+
+\subsection{Tone letters}\label{sec:tone}
+
+\tipa{} provides a flexible system of macros for `tone letters'. A
+tone letter is represented by a macro called `\verb|\tone|', which
+takes one argument consisting of a string of numbers ranging from 1 to
+5. These numbers denote pitch levels, 1 being the lowest and 5, the
+highest. Within this range, any combination is allowed and there is no
+limit in the length of combination.
+
+As an example of the usage of the tone letter macro, the four tones of
+Chinese are shown below.
+
+\begin{tipaexample}
+  \yitem
+    \verb|\tone{55}ma ``mother'', |
+    \verb|\tone{35}ma ``hemp'',|\\
+    \verb|\tone{214}ma ``horse'', |
+    \verb|\tone{51}ma ``scold''|
+  \yitem
+    ma\tone{55} ``mother'', ma\tone{35} ``hemp'',
+    ma\tone{214} ``horse'', ma\tone{51} ``scold''
+\end{tipaexample}
+
+The next example looks ridiculous but shows capabilities of the tone
+letter macro.
+
+\begin{tipaexample}
+  \yitem
+    \verb|\tone{15253545}|
+  \yitem
+    \tone{15253545}
+\end{tipaexample}
+
+\subsubsection{{\tt\tbs stone}}
+
+In some languages, length distinctions accompany the tone letter
+description. In such cases a command called \verb|\stone| can be used
+to represent a tone letter that is shorter than a usual one. The next
+example from Cantonese illustrates this (look at the examples for
+\emph{entering tones}).
+
+\begin{center}
+\begin{tabular}{l|c|c}
+\emph{Tone name} & \emph{Input} & \emph{Output} \\
+\hline
+high level & \verb|\tone{53}| or \verb|\tone{55}|&\tone{53} or \tone{55}\\
+low level  & \verb|\tone{21}| or \verb|\tone{22}|&\tone{21} or \tone{22}\\
+\hline
+high rising     & \verb|\tone{35}|  & \tone{35} \\
+low rising      & \verb|\tone{24}|  & \tone{24} \\
+\hline
+high departing  & \verb|\tone{44}|  & \tone{44} \\
+low departing   & \verb|\tone{33}|  & \tone{33} \\
+\hline
+high entering   & \verb|\stone{55}| & \stone{55} \\
+mid entering    & \verb|\stone{44}| & \stone{44} \\
+low entering    & \verb|\stone{33}| & \stone{33} \\
+\end{tabular}
+\end{center}
+
+\subsubsection{{\tt\tbs rtone}}
+
+In some languages, the level/contour bars are placed at the right hand
+side of the vertical bar. In such cases a command called \verb|\rtone|
+is used instead of \verb|\tone|. The next example is from the Kyoto
+Japanese.
+
+\begin{tipaexample}
+  \yitem
+    \verb|\textipa{[\rtone{11}a\rtone{53}me]} `rain'|
+  \yitem
+    \textipa{[\rtone{11}a\rtone{53}me]} `rain'
+\end{tipaexample}
+
+
+\section{How easy is it to input phonetic symbols?}
+
+Let us briefly estimate here how easy (or difficult) it is to input
+phonetic symbols with \tipa{} in terms of the number of keystrokes.
+
+The following table shows statistics for all the phonetic symbols that
+appear in the '93 version of IPA chart (diacritics and symbols for
+su\-pra\-seg\-men\-tals excluded). It is assumed here that each symbol
+is inputted within the IPA environment and the \texttt{safe} option is
+not specified.
+
+\begin{center}
+\begin{tabular}{c|c|l}
+\emph{keystrokes} & \emph{number} & \emph{examples} \\
+\hline
+1            & 65 & \textipa{a, b, @, A, B, etc.} \\
+2            & 2  & \textipa{\o, ||} \\
+3            & 30 & \textipa{\ae, \:t, \;B, \!b, etc.} \\
+5            & 1  & \textipa{\c{c}} \\
+more than 5  & 7  & \textipa{\textcloseepsilon, \textbarglotstop,
+  \textdoublebarpipe, \textturnmrleg, etc.}
+\end{tabular}
+\end{center}
+
+As is shown in the table, about 92\% of the symbols can be inputted
+within three keystrokes.
+
+\section{Changing font styles}
+
+\begin{table}
+\begin{center}
+\begin{tabular}{@{\hspace{0pt}}lll}
+\hline
+\textit{Font style}& \textit{Input in the IPA environment}& \textit{Output} \\
+\hline
+\emph{Roman}&\verb|\textipa{f@"nEtIks}|        &\textipa{f@"nEtIks} \\
+\emph{Slanted}&\verb|\textipa{\slshape f@"nEtIks}|&\textipa{\slshape f@"nEtIks}\\ 
+or          &\verb|\textipa{\textsl{f@"nEtIks}|&\textipa{\textsl{f@"nEtIks}}\\ 
+or          &\verb|\textsl{\textipa{f@"nEtIks}|&\textsl{\textipa{f@"nEtIks}}\\ 
+\emph{Bold extended} & \verb|\textipa{\bfseries f@"nEtIks}| &
+  \textipa{\bfseries f@"nEtIks}\\
+or          &\verb|\textipa{\textbf{f@"nEtIks}|&\textipa{\textbf{f@"nEtIks}}\\
+or          &\verb|\textbf{\textipa{f@"nEtIks}|&\textbf{\textipa{f@"nEtIks}}\\
+\emph{Sans serif}& \verb|\textipa{\sffamily f@"nEtIks}| &
+  \textipa{\sffamily f@"nEtIks}\\ 
+or          &\verb|\textipa{\textsf{f@"nEtIks}|&\textipa{\textsf{f@"nEtIks}}\\ 
+or          &\verb|\textsf{\textipa{f@"nEtIks}|&\textsf{\textipa{f@"nEtIks}}\\ 
+\emph{Typewriter Text}& \verb|\textipa{\ttfamily f@"nEtIks}| &
+  \textipa{\ttfamily f@"nEtIks}\\ 
+or          &\verb|\textipa{\texttt{f@"nEtIks}|&\textipa{\texttt{f@"nEtIks}}\\ 
+or          &\verb|\texttt{\textipa{f@"nEtIks}|&\texttt{\textipa{f@"nEtIks}}\\ 
+\hline
+\end{tabular}
+\end{center}
+\caption{Examples of font switching}\label{tab:fontswitch}
+\end{table}
+
+This version of \tipa{} includes five styles of fonts, i.e., roman,
+slanted, bold, bold extended, sans serif and typewriter. These styles can be
+switched in much the same way as in the normal text fonts (see
+table~\ref{tab:fontswitch}).
+
+The bold fonts are usually not used within the standard \LaTeX{} class 
+packages so that if you want to use them, it is necessary to use
+low-level font selection commands of \LaTeXe.
+
+\begin{tipaexample}
+  \yitem \verb|{\fontseries{b}\selectfont|
+    \verb|abcdefg \textipa{ABCDEFG}}|
+  \yitem {\fontseries{b}\selectfont abcdefg \textipa{ABCDEFG}}
+\end{tipaexample}
+
+Note also that slanting of \tipa{} symbols should correctly work even
+in the cases of nested accents and in the cases of symbols made up
+by macros.
+
+\begin{tipaexample}
+  \yitem \verb|\textsl{\textipa{\'{\"{\u*{e}}}}}|
+  \yitem \textsl{\textipa{\'{\"{\u*{e}}}}}
+  \yitem \verb|\textsl{\textdoublebaresh}|
+  \yitem \textsl{\textdoublebaresh\/} {\small(This symbol is
+    composed by a macro.)}
+\end{tipaexample}
+
+
+\clearemptydoublepage
+\chapter{Customizing TIPA}
+
+
+\section{Internal commands}
+
+Some of the internal commands of \tipa{} are defined without the
+letter \texttt{@} in order to allow a user to extend the capability of 
+\tipa{}.
+
+\subsection{{\tt\tbs ipabar}}
+
+Some \tipa{} symbols such as \verb|\textbarb| \textbarb,
+\verb|\textcrtwo| \textcrtwo{} are defined by using an internal macro
+command \verb|\ipabar|. This command is useful when you want to make
+barred or crossed symbols not defined in \tipa{}.
+
+This command requires the following five parameters to control the
+position and length of the bar.
+
+\begin{itemize}
+\itemsep0pt
+\item {\tt\#1} the symbol to be barred
+\item {\tt\#2} the height of the bar (in dimen)
+\item {\tt\#3} bar width
+\item {\tt\#4} left kern added to the bar
+\item {\tt\#5} right kern added to the bar
+\end{itemize}
+
+Parameters \texttt{\#3}, \texttt{\#4}, \texttt{\#5} are to be given in
+a scaling factor to the width of the symbol, which is equal to 1 if
+the bar has the same width as the symbol in question. For example,
+the following command states a barred b (\textbarb) of which the bar
+position in the y-coordinate is \verb|.5ex| and the width of the bar
+is slightly larger than that of the letter b.
+
+\begin{verbatim}
+  % Barred B
+  \newcommand\textbarb{%
+    \ipabar{{\tipaencoding b}}{.5ex}{1.1}{}{}}
+\end{verbatim}
+
+Note that the parameters \texttt{\#4} and \texttt{\#5} can be left
+blank if the value is equal to 0.
+
+And the next example declares a barred c (\textbarc) of which the bar
+width is a little more than half as large as the letter c and it has
+the same amount of kerning at the right.
+
+\begin{verbatim}
+  % Barred C
+  \newcommand\textbarc{%
+    \ipabar{{\tipaencoding c}}{.5ex}{.55}{}{.55}}
+\end{verbatim}
+
+More complex examples with the \verb|\ipabar| command are found in
+\texttt{T3enc.def}.
+
+\subsection{{\tt\tbs tipaloweraccent}, {\tt\tbs tipaupperaccent}}
+
+These two commands are used in the definitions of \tipa{} accents and
+diacritics. They are special forms of the commands \verb|\loweraccent|
+and \verb|\upperaccent| that are defined in \texttt{exaccent.sty}. The
+difference between the commands with the prefix \verb|tipa| and the
+ones without it is that the former commands select accents from a T3
+encoded font while the latter ones do so from the current text font.
+
+These commands take two parameters, the code of the accent (in
+decimal, octal or hexadecimal number) and the
+symbol to be accented, as shown below.
+
+\begin{tipaexample}
+  \yitem \verb|\tipaupperaccent{0}{a}|
+  \yitem \tipaupperaccent{0}{a}
+\end{tipaexample}
+
+Optionally, these commands can take an extra parameter to adjust the
+vertical position of the accent. Such an adjustment is sometimes
+necessary in the definition of a nested accent. The next example shows
+\tipa's definition of the `Circumflex Dot Accent' (e.g., 
+\textcircumdot{a}).
+
+\begin{verbatim}
+  % Circumflex Dot Accent
+  \newcommand\textcircumdot[1]{\tipaupperaccent[-.2ex]{2}%
+    {\tipaupperaccent[-.1ex]{10}{#1}}}
+\end{verbatim}
+
+This definition states that a dot accent is placed over a symbol
+thereby reducing the vertical distance between the symbol and the dot
+by \texttt{.1ex}, and a circumflex accent is placed over the dot and
+the distance between the two accents is reduced by \texttt{.2ex}.
+
+If you want to make a combined accent not included in \tipa{}, you can
+do so fairly easily by using these two commands together with the
+optional parameter. For more examples of these commands, see
+\verb|tipa.sty| and \verb|extraipa.sty|.
+
+\subsection{{\tt\tbs tipaLoweraccent}, {\tt\tbs tipaUpperaccent}}
+
+These two commands differ from the two commands explained above in that
+the first parameter should be a symbol (or any other thing, typically
+an \verb|\hbox|), rather than the code of the accent. They are special
+cases of the commands \verb|\Loweraccent| and \verb|\Upperaccent| and
+the difference between the two pairs of commands is the same as before.
+
+The next example makes a schwa an accent.
+
+\begin{tipaexample}
+  \yitem
+    \verb|\tipaUpperaccent[.2ex]%|\\
+    \verb|  {\lower.8ex\hbox{\textipa{\super@}}}{a}|
+  \yitem
+    \tipaUpperaccent[.2ex]{\lower.8ex\hbox{\textipa{\super@}}}{a}
+\end{tipaexample}
+
+The next example is an interesting application of this command for the
+Middle High German (This macro and the example below are provided
+by Christian Folini and now included in \texttt{tipa.sty}).
+
+\begin{verbatim}
+  \newcommand{\sups}[2]{\textipa{\tipaUpperaccent[.2ex]{%
+    \lower.8ex\hbox{\super{#2}}}{#1}}}
+\end{verbatim}
+
+\begin{quote}
+Und swer dc mit flis t\sups{u}{o}t, so stat das gelt und \sups{o}{v}ch
+d\`{u} g\sups{u}{e}ter in deste bessere behabn\`{u}sse und
+beh\`{u}gde.  (1330 AD.\ Translation: And if this is done with
+diligence, the money and the affairs will be in better shape.)
+\end{quote}
+
+In this example, t\sups{u}{o}t is inputted as \verb|t\sups{u}{o}t| and so 
+on.
+
+\subsection{{\tt\tbs ipaclap}}
+
+This command is useful if you need to compose a new symbol by
+overlapping two symbols. This command is different from \TeX's
+commands \texttt{\tbs llap} and \texttt{\tbs rlap} in that the
+alignment is made at the center of each symbol.
+
+The next example shows how to make a Slashed B.
+
+\begin{tipaexample}
+  \yitem \verb|\ipaclap{\textipa{b}}{\textipa{/}}|
+  \yitem \ipaclap{\textipa{b}}{\textipa{/}}
+\end{tipaexample}
+
+
+\section{Manual Kerning}
+
+The shapes of phonetic symbols are sometimes \emph{nasty} in the sense
+that they can have a leftward or rightward protrusion that cannot
+be found in the case of normal text fonts. In such cases it is
+sometimes necessary to input kerning commands manually.
+
+One way to do this is to prepare a set of kerning commands like the
+following:
+
+\begin{verbatim}
+  \newcommand\K{\kern.05em} % small amount of kerning
+  \newcommand\KK{\kern.1em} % middle amount of kerning
+  \newcommand\KKK{\kern.2em} % big amount of kerning
+\end{verbatim}
+
+\newcommand\K{\kern.05em} % small amount of kerning
+\newcommand\KK{\kern.1em} % middle amount of kerning
+\newcommand\KKK{\kern.2em} % big amount of kerning
+
+And then to put these commands whenever necessary. For example:
+
+\begin{tipaexample}
+  \yitem \verb|\textipa{[\textrhooke r]}|
+  \yitem \textipa{[\textrhooke r]} --- This is OK but
+  \yitem \verb|\textipa{[\textrhooke]}|
+  \yitem \textipa{[\textrhooke]} --- this doesn't look good so that
+  \yitem \verb|\textipa{[\textrhooke\KK]}|
+  \yitem \textipa{[\textrhooke\KK]} --- manually fixed like this.
+\end{tipaexample}
+
+\clearemptydoublepage
+\chapter*{Acknowledgments}
+\addcontentsline{toc}{chapter}{Acknowledgments}
+
+First of all, many thanks are due to the co-authors of \tsipa{},
+Kobayashi Hajime and Shirakawa Shun. Ko\-ba\-yashi Hajime was the main
+font designer of \tsipa{}. Shirakawa Shun worked very hard in deciding
+encoding, checking the shapes of symbols and writing the Japanese
+version of the document. \tipa{} was impossible without \tsipa{}.
+
+I would like to thank also J\"org Knappen whose insightful comments
+greatly helped the development of \tipa{} in many ways. I was also
+helped and encouraged by Christina Thiele, Martin Haase, Kirk Sullivan
+and many other members of the \texttt{ling-tex} mailing list.
+
+At the last stage of the development of \tipa{}, Frank Mittelbach gave
+me precious comments on how to incorporate various \tipa{} commands
+into the NFSS. I would like to thank also Barbara Beeton who kindly
+read over the preliminary draft of this document and gave me useful
+comments.
+
+After the first release, I also received useful comments from:
+Dominique Unruh, Peter Zimmermann, Rafael Laboissi\`ere, Yoshinari
+Fujino, Walter Schmidt, Dirk Janssen, Joachim Becker, Christian
+Folini, Conrado Badenas, Alexis Dimitriadis, John Frampton and
+probably from many others. I am very sorry that I haven't recorded all
+the names. Please let me know if your name is missing. I am also sorry
+that I sometimes have been unable to follow all the advice simply
+because of lack of time. Finally, Donna Erickson kindly read over the
+draft of the present version and corrected my English. All remaining
+errors are, of course, my own.
+
+\clearemptydoublepage
+\bibliographystyle{plainnat}
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliography{tipa}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "tipaman"
+%%% End: 

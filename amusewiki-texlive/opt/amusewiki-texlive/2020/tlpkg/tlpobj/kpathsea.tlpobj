@@ -1,0 +1,69 @@
+name kpathsea
+category TLCore
+revision 54764
+shortdesc Path searching library for TeX-related files
+longdesc Kpathsea is a library and utility programs which provide path
+longdesc searching facilities for TeX file types, including the
+longdesc self-locating feature required for movable installations,
+longdesc layered on top of a general search mechanism. It is not
+longdesc distributed separately, but rather is released and maintained
+longdesc as part of the TeX live sources.
+depend kpathsea.ARCH
+containersize 32300
+containerchecksum 8fb0bb4dac85e1b4ecc273cb7430c86726896728e2b157dccc727289df95668d78f8604b4d04c168cd35ab44be617a317edfdd1d5ccd726bf2956b9e47da7b90
+doccontainersize 1066612
+doccontainerchecksum e5fe31bf22af5ef40e03a7b88e43cab1c1a45ce4c55e93d634d89ddbfb87bd0c7d25901dc1e8756695f75bd28181c7e39690ea67511bac3a0f8c906bcd44f0fb
+docfiles size=553
+ texmf-dist/doc/info/dir
+ texmf-dist/doc/info/kpathsea.info
+ texmf-dist/doc/info/tds.info
+ texmf-dist/doc/info/web2c.info
+ texmf-dist/doc/kpathsea/kpathsea.html
+ texmf-dist/doc/kpathsea/kpathsea.pdf details="Package documentation"
+ texmf-dist/doc/man/man1/kpseaccess.1
+ texmf-dist/doc/man/man1/kpseaccess.man1.pdf
+ texmf-dist/doc/man/man1/kpsereadlink.1
+ texmf-dist/doc/man/man1/kpsereadlink.man1.pdf
+ texmf-dist/doc/man/man1/kpsestat.1
+ texmf-dist/doc/man/man1/kpsestat.man1.pdf
+ texmf-dist/doc/man/man1/kpsewhich.1
+ texmf-dist/doc/man/man1/kpsewhich.man1.pdf
+ texmf-dist/doc/web2c/web2c.html
+ texmf-dist/doc/web2c/web2c.pdf
+runfiles size=52
+ texmf-dist/web2c/amiga-pl.tcx
+ texmf-dist/web2c/cp1250cs.tcx
+ texmf-dist/web2c/cp1250pl.tcx
+ texmf-dist/web2c/cp1250t1.tcx
+ texmf-dist/web2c/cp227.tcx
+ texmf-dist/web2c/cp852-cs.tcx
+ texmf-dist/web2c/cp852-pl.tcx
+ texmf-dist/web2c/cp8bit.tcx
+ texmf-dist/web2c/empty.tcx
+ texmf-dist/web2c/fmtutil.cnf
+ texmf-dist/web2c/il1-t1.tcx
+ texmf-dist/web2c/il2-cs.tcx
+ texmf-dist/web2c/il2-pl.tcx
+ texmf-dist/web2c/il2-t1.tcx
+ texmf-dist/web2c/kam-cs.tcx
+ texmf-dist/web2c/kam-t1.tcx
+ texmf-dist/web2c/macce-pl.tcx
+ texmf-dist/web2c/macce-t1.tcx
+ texmf-dist/web2c/maz-pl.tcx
+ texmf-dist/web2c/mktex.cnf
+ texmf-dist/web2c/mktex.opt
+ texmf-dist/web2c/mktexdir
+ texmf-dist/web2c/mktexdir.opt
+ texmf-dist/web2c/mktexnam
+ texmf-dist/web2c/mktexnam.opt
+ texmf-dist/web2c/mktexupd
+ texmf-dist/web2c/natural.tcx
+ texmf-dist/web2c/tcvn-t5.tcx
+ texmf-dist/web2c/texmf.cnf
+ texmf-dist/web2c/viscii-t5.tcx
+catalogue-contact-bugs http://lists.tug.org/tex-k
+catalogue-contact-home http://tug.org/kpathsea
+catalogue-contact-repository http://tug.org/svn/texlive/trunk/Build/source/texk/kpathsea/
+catalogue-contact-support http://lists.tug.org/tex-k
+catalogue-license lgpl2.1
+catalogue-topics sys-supp

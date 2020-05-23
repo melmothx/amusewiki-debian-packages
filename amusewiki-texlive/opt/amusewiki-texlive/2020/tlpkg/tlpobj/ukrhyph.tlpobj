@@ -1,0 +1,41 @@
+name ukrhyph
+category Package
+revision 21081
+shortdesc Hyphenation Patterns for Ukrainian
+longdesc A range of patterns, depending on the encoding of the output
+longdesc font (including the standard T2A, so one can use the patterns
+longdesc with free fonts).
+containersize 39116
+containerchecksum 043338c4e92d84bc2b7bd63610656b53b39bac225c5610089c0c8b58ce9bbe3f414129a6b043a5307ebb7b59cc062ade7bd803fb6949d06a0d0c87e2dd4a0bd3
+doccontainersize 160948
+doccontainerchecksum a283d11ed922181d4f29f521e3019fbca2b1bba1aacb312e22dd8e69d05d7dafbabc5c23b63707f265bcd215d8f517f58ab2ffee2b87d9bc1a968d00e9542840
+docfiles size=73
+ texmf-dist/doc/generic/ukrhyph/README details="Readme"
+ texmf-dist/doc/generic/ukrhyph/rules60.pdf details="Old hyphenation rules" language="uk"
+ texmf-dist/doc/generic/ukrhyph/rules90.pdf details="New hyphenation rules" language="uk"
+ texmf-dist/doc/generic/ukrhyph/rules_ph.pdf details="Old hyphenation rules with phonetics" language="uk"
+runfiles size=45
+ texmf-dist/tex/generic/ukrhyph/catlcy.tex
+ texmf-dist/tex/generic/ukrhyph/lcy2koi.tex
+ texmf-dist/tex/generic/ukrhyph/lcy2lcy.tex
+ texmf-dist/tex/generic/ukrhyph/lcy2ot2.tex
+ texmf-dist/tex/generic/ukrhyph/lcy2t2a.tex
+ texmf-dist/tex/generic/ukrhyph/lcy2ucy.tex
+ texmf-dist/tex/generic/ukrhyph/rules60.tex
+ texmf-dist/tex/generic/ukrhyph/rules90.tex
+ texmf-dist/tex/generic/ukrhyph/rules_ph.tex
+ texmf-dist/tex/generic/ukrhyph/ukrenhyp.tex
+ texmf-dist/tex/generic/ukrhyph/ukrhypfa.tex
+ texmf-dist/tex/generic/ukrhyph/ukrhyph.koi
+ texmf-dist/tex/generic/ukrhyph/ukrhyph.lcy
+ texmf-dist/tex/generic/ukrhyph/ukrhyph.ot2
+ texmf-dist/tex/generic/ukrhyph/ukrhyph.t2a
+ texmf-dist/tex/generic/ukrhyph/ukrhyph.tex
+ texmf-dist/tex/generic/ukrhyph/ukrhyph.ucy
+ texmf-dist/tex/generic/ukrhyph/ukrhypmp.tex
+ texmf-dist/tex/generic/ukrhyph/ukrhypmt.tex
+ texmf-dist/tex/generic/ukrhyph/ukrhypsm.tex
+ texmf-dist/tex/generic/ukrhyph/ukrhypst.tex
+catalogue-ctan /language/hyphenation/ukrhyph
+catalogue-license lppl
+catalogue-topics hyphenation ukrainian

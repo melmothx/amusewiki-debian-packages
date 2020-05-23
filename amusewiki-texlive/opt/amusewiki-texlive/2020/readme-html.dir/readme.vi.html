@@ -1,0 +1,149 @@
+<html>
+  <head>
+    <!-- $Id: readme.vi.html 54530 2020-03-24 21:29:02Z kyanh $ -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>TeX Live</title>
+  </head>
+<body>
+
+<h2>Chào mừng bạn đến với TeX Live</h2>
+
+<p>
+Bộ  phân phối phần mềm <strong>TeX Live</strong> giúp cài đặt hoàn chỉnh TeX
+và các công cụ liên quan để dùng trên các máy GNU, Unix, Macintosh, Windows
+hay các kiến trúc máy tính khác. Các phần mềm đi kèm giúp soạn thảo,
+sắp chữ, xem thử hay in ấn tài liệu TeX, hỗ trợ nhiều ngôn ngữ và
+tập hợp rất nhiều thư viện phông chữ, mẫu macro.
+</p>
+
+<p>
+Bộ phân phối TeX Live cũng gồm rất nhiều tài liệu tổng quan về TeX
+và về các gói phần mềm đi kèm.
+</p>
+
+<p>
+Để xem thông tin về giấy phép và bản quyền, hãy đọc trong các tập tin
+<a href="../LICENSE.TL">LICENSE.TL</a>
+và <a href="../LICENSE.CTAN">LICENSE.CTAN</a>.
+</p>
+
+<h3>Bắt đầu từ đâu</h3>
+
+<p>
+Chúng tôi đề nghị bạn đọc tài liệu TeX Live Guide trước khi bắt đầu
+cài đặt. Tài liệu đó mô tả từng bước cài đặt, cấu trúc thư mục, v.v...
+</p>
+
+<p>
+Khi cài đặt từ DVD, bạn có thể tìm thấy hướng dẫn (TeX Live Guide)
+phiên bản tiếng Anh và các bản dịch trong thư mục con
+<a href="../texlive-doc">texlive-doc</a>.
+</p>
+
+<p>
+Sau khi cài đặt, phiên bản tiếng Anh của tài liệu hướng dẫn được
+chép vào thư mục <a href="../texmf-dist/doc/texlive/texlive-en">texmf-dist/doc/texlive/</a>
+(bao gồm hai định dạng
+<a href="../texmf-dist/doc/texlive/texlive-en/texlive-en.html">html</a>
+và
+<a href="../texmf-dist/doc/texlive/texlive-en/texlive-en.pdf">pdf</a>
+Các bản dịch của tài liệu có trong thư mục
+<a href="../texmf-dist/doc/texlive/">texmf-dist/doc/texlive</a>.
+</p>
+
+<p>
+Chúng tôi cũng liệt kê các liên kết tới
+<a href="../doc.html">bản PDF hay HTML</a> của tài liệu của các gói
+và chương trình liên quan.
+</p>
+
+<p>
+Các liên kết vừa đề cập không phù hợp khi cài đặt TeX Live từ mạng.
+Để thay thế, hãy tham khảo
+<a href="https://tug.org/texlive/doc.html">tài liệu trên mạng</a>.
+</p>
+
+<p>
+Để xem các thay đổi quan trọng của bộ phân phối TeX Live trong năm,
+hãy xem phần Release ở cuối của tài liệu hướng dẫn.
+</p>
+
+<h3>Cài đặt</h3>
+
+<p>
+Kịch bản cài đặt có tên <tt>install-tl</tt> (
+hay <tt>install-tl-windows.bat</tt> cho các máy Windows)
+có thể được dùng ở hai chế độ:
+</p>
+
+<p>
+  Tập tin kịch bản cài đặt là <tt>install-tl</tt> nằm ở thư mục gốc của TeXLive.
+Bạn có thể chạy nó bằng lệnh <tt>perl install-tl</tt>.
+Nhưng trên máy Windows, bạn chạy lệnh <tt>install-tl-windows.bat</tt>,
+còn trên máy Macs, bạn có thể cài đặt TeXLive
+thông qua trình cài đặt viết riêng cho Macs có trong bộ
+<a href="https://tug.org/mactex/">MacTeX</a>
+(cũng có trong đĩa DVD, cạnh thư mục <tt>texlive/</tt> nơi bạn thấy tập tin này.)
+</p>
+
+<p><tt>install-tl</tt> có thể chạy ở một trong hai chế độ:</p>
+
+<dl>
+  <dt><tt><strong>-gui</strong></tt></dt>
+    (mặc định trên Windows và Mac) với giao diện đồ họa giúp đơn giản
+    hóa quá trình cài đặt, nhưng vẫn có tùy chọn để điều chỉnh bộ
+    cài đặt cho phù hợp nhu cầu của bạn.
+  <dt><tt><strong>-no-gui</strong></tt></dt>
+    (mặc định trên các hệ thống khác) hay chế độ dòng lệnh tối giản,
+    giúp điều chỉnh tối đa cài đặt.
+  </dt>
+</dl>
+
+<p>
+Một số cấu hình và cập nhật gói được thiết lập ở bước sau cùng của
+quá trình cài đặt, nhờ chương trình <tt>tlmgr</tt> (TeX Live Package Manager,
+hay chương trình quản lý TeX Live). Chương trình này cũng có thể
+chạy ở chế độ đồ họa hoặc dòng lệnh.
+</p>
+
+<p>
+Chương trình <a href="https://tug.org/texlive/doc/install-tl.html">install-tl</a>
+và <a href="https://tug.org/texlive/tlmgr.html">tlmgr</a>
+đều in ra các hướng dẫn khi được dùng với tùy chọn <tt><strong>--help</strong></tt>.
+Xem các liên kết đã dẫn ở trên để có thêm chi tiết.
+</p>
+
+<h3>Liên kết</h3>
+
+<p>
+Cuối cùng, chúng tôi giới thiệu với các bạn vài trang web liên quan
+(nhưng không phải là một phần của TeX Live):
+</p>
+
+<ul>
+<li><a href="https://tug.org/begin.html">tug.org/begin.html</a>
+  - dành cho người mới làm quen với TeX hay
+  muốn tiếp cận các tài liệu giới thiệu.
+</li>
+<li><a href="https://tug.org/interest.html">tug.org/interest.html</a>
+  - liệt kê các tài nguyên về TeX trên mạng,
+  bao gồm tài liệu, hệ thống, gói, phông chữ, và nhiều thứ khác.
+</li>
+<li><a href="https://tug.org/ctan.html">tug.org/ctan.html</a>
+  - điểm bắt đầu của kho CTAN (Comprehensive TeX Archive Network) gồm mọi thứ về TeX.
+</li>
+<li><a href="https://tug.org/usergroups.html">tug.org/usergroups.html</a>
+  - danh sách các nhóm người dùng TeX
+  trên thế giới cùng địa chỉ liên hệ. Chúng tôi khuyến khích bạn tham
+  gia các nhóm địa phương để hỗ trợ TeX Live và các hoạt động liên quan
+  đến TeX.</li>
+</ul>
+
+<h4>Happy TeXing!</h4>
+
+<hr><small><a href="https://tug.org/texlive/">Trang chủ TeX Live.</a></small>
+
+</body>
+</html>

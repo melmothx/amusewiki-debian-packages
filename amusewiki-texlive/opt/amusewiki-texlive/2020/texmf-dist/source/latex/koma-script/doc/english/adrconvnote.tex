@@ -1,0 +1,99 @@
+% ======================================================================
+% adrconvnote.tex
+% Copyright (c) Markus Kohm, 2001-2019
+%
+% This file is part of the LaTeX2e KOMA-Script bundle.
+%
+% This work may be distributed and/or modified under the conditions of
+% the LaTeX Project Public License, version 1.3c of the license.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3c or later is part of all distributions of LaTeX 
+% version 2005/12/01 or later and of this work.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% The Current Maintainer and author of this work is Markus Kohm.
+%
+% This work consists of all files listed in manifest.txt.
+% ----------------------------------------------------------------------
+% adrconvnote.tex
+% Copyright (c) Markus Kohm, 2001-2019
+%
+% Dieses Werk darf nach den Bedingungen der LaTeX Project Public Lizenz,
+% Version 1.3c, verteilt und/oder veraendert werden.
+% Die neuste Version dieser Lizenz ist
+%   http://www.latex-project.org/lppl.txt
+% und Version 1.3c ist Teil aller Verteilungen von LaTeX
+% Version 2005/12/01 oder spaeter und dieses Werks.
+%
+% Dieses Werk hat den LPPL-Verwaltungs-Status "author-maintained"
+% (allein durch den Autor verwaltet).
+%
+% Der Aktuelle Verwalter und Autor dieses Werkes ist Markus Kohm.
+% 
+% Dieses Werk besteht aus den in manifest.txt aufgefuehrten Dateien.
+% ======================================================================
+%
+% Chapter about adrconv of the KOMA-Script guide
+% Maintained by Jens-Uwe Morawski (with help from Markus Kohm)
+%
+% ----------------------------------------------------------------------
+%
+% Kapitel ueber adrconv in der KOMA-Script-Anleitung
+% Verwaltet von Jens-Uwe Morawski (mit Unterstuetzung von Markus Kohm)
+%
+% ======================================================================
+
+\KOMAProvidesFile{adrconvnote.tex}
+                 [$Date: 2019-10-10 09:50:23 +0200 (Thu, 10 Oct 2019) $
+                  KOMA-Script guide (chapter: adrconv)]
+
+\translator{Jens-Uwe Morawski\and Gernot Hassenpflug\and Markus Kohm\and
+	Karl Hagen}
+
+% Date of the translated German file: 2019-10-10
+
+\chapter{Creating Address Files from an Address Database}%
+\labelbase{addrconv}%
+\Index{address>file}%
+\Index{address>database}%
+\IndexPackage{addrconv}
+
+In previous versions of \KOMAScript{}, the \Package{addrconv} package was an
+integral part of the \KOMAScript{} system.  The main connection to
+\KOMAScript{} was that with the help of this package, it was possible to
+create address files compatible with the \KOMAScript{} letter class or with
+the \Package{scraddr} package from an address database in \BibTeX{} format.
+
+\begin{lstlisting}[morekeywords={@address}]
+  @address{HMUS,
+     name =      {Carl McExample},
+     title =     {Dr.},
+     city =      {Anywhere},
+     zip =       01234,
+     country =   {Great Britain},
+     street =    {A long Road},
+     phone =     {01234 / 5 67 89},
+     note =      {always forget his birthday},
+     key =       {HMUS},
+  }
+\end{lstlisting}
+
+From entries such as the one above, you can use \BibTeX{} and various
+{\BibTeX} styles to create address files. There are also some special \LaTeX{}
+files that make it possible to create various telephone and address lists from
+the address files.
+
+However, the \Package{addrconv} package was actually an independent package,
+including features beyond what is required for \KOMAScript{}. That is why
+\Package{addrconv} has not been included in \KOMAScript{} for some time. The
+\Package{adrconv} package, with a single \emph{d}, entirely replaces
+\Package{addrconv}. If it is not included in your \TeX{} distribution, you can
+download it from \cite{package:adrconv} and install it separately.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% coding: us-ascii
+%%% TeX-master: "../guide"
+%%% End: 

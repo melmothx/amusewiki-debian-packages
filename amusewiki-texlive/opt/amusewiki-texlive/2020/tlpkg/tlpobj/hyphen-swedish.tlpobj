@@ -1,0 +1,15 @@
+name hyphen-swedish
+category TLCore
+revision 54568
+shortdesc Swedish hyphenation patterns.
+longdesc Hyphenation patterns for Swedish in T1/EC and UTF-8 encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=swedish 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-sv.tex 	file_patterns=hyph-sv.pat.txt 	file_exceptions=
+containersize 18224
+containerchecksum 95652229f3410a914cce69e71fbbb63380b02774eeb798c99d7066af61206fdbbdffcdf2acaf79bd8cdc0d97e07fd1cb7492fbba8b812ad6331a7a90b2192c05
+runfiles size=25
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sv.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-sv.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-sv.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-sv.pat.txt

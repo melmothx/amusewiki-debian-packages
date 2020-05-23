@@ -1,0 +1,15 @@
+name hyphen-latvian
+category TLCore
+revision 54568
+shortdesc Latvian hyphenation patterns.
+longdesc Hyphenation patterns for Latvian in L7X and UTF-8 encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=latvian 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-lv.tex 	file_patterns=hyph-lv.pat.txt 	file_exceptions=
+containersize 52420
+containerchecksum fc46050d6d60b87dfc27b06a444588cd241255a7d95a40eaadd106570c4c0d29909e0b5c1a783ea6793e53363c2f2b540c1fb74836e1824598c5eeb4dfd3463c
+runfiles size=68
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-lv.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-lv.l7x.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-lv.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-lv.pat.txt

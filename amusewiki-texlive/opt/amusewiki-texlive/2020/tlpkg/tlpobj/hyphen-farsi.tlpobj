@@ -1,0 +1,10 @@
+name hyphen-farsi
+category TLCore
+revision 54568
+shortdesc (No) Persian hyphenation patterns.
+longdesc Prevent hyphenation in Persian.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=farsi synonyms=persian 	lefthyphenmin= 	righthyphenmin= 	file=zerohyph.tex 	file_patterns=
+containersize 384
+containerchecksum 5b02582769a55bb07d81e748e83170c16aca1c33b0a240cf547fa9c2212f2be52223e258229c760ddc5dd730419bd9e761614cc4fb3b3ba8102841bb779af511

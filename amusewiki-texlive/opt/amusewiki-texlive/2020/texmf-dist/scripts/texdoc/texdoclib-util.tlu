@@ -1,0 +1,127 @@
+-- texdoclib-util.tlu: utility functions for texdoc
+--
+-- The TeX Live Team, GPLv3, see texdoclib.tlu for details
+
+-- dependencies
+local texdoc = {
+    const = require('texdoclib-const'),
+    config = require('texdoclib-config'),
+}
+
+-- shortcuts
+local M = {}
+local C = texdoc.const
+
+-- change '/' to '\' on windows
+-- Note: Internal representation of files always use forward slashes.
+--       This function should be called only before displaying a path.
+if os.type == 'windows' then
+    function M.w32_path(path)
+        return (string.gsub(path, '/', '\\'))
+    end
+else
+    function M.w32_path(path)
+        return path
+    end
+end
+
+-- remove the last directory component of a path
+if os.type == 'windows' then
+    function M.path_parent(path)
+        return string.match(path, '^(.*)[\\/]')
+    end
+else
+    function M.path_parent(path)
+        return string.match(path, '^(.*)/')
+    end
+end
+
+-- generic log display function
+local function log(label, msg, ...)
+    io.stderr:write('texdoc ' .. label .. ': ' .. msg:format(...) .. '\n')
+end
+
+-- generic error display function (see the err_priority constant)
+function M.err_print(lvl, msg, ...)
+    -- be careful: maybe config item "verbosity_level" has not set yet
+    local verbosity_level = texdoc.config.get_value('verbosity_level')
+        or tonumber(C.def_verbosity)
+
+    -- print if the priority is higher than current verbosity level
+    if C.err_priority[lvl] <= verbosity_level then
+        log(lvl, msg, ...)
+    end
+end
+local err_print = M.err_print
+
+do -- begin scope of active_debugs
+local active_debugs
+
+-- set active_debugs
+local function set_active_debugs()
+    local debug_list = texdoc.config.get_value('debug_list')
+
+    if not debug_list then return end
+    active_debugs = {}
+
+    -- all debug options imply version info
+    if debug_list[1] then
+        active_debugs.version = true
+    else
+        return
+    end
+
+    -- if 'all' is the first keyword, just activate all categories
+    if debug_list[1] == 'all' then
+        for dbg in pairs(C.known_debugs) do
+            active_debugs[dbg] = true end
+        return
+    end
+
+    -- activate options from the list
+    for _, dbg in ipairs(debug_list) do
+        local deps = C.known_debugs[dbg]
+        if deps then
+            active_debugs[dbg] = true
+            for _, d in ipairs(deps) do active_debugs[d] = true end
+        else
+            err_print('warning', 'Unknown debug category "' .. dbg .. '".')
+        end
+    end
+end
+
+-- generic debug function
+function M.dbg_print(cat, msg, ...)
+    -- make sure active_debugs is set
+    if not active_debugs then set_active_debugs() end
+
+    -- print message it belongs to an active category
+    if active_debugs and active_debugs[cat] or cat == 'XXX' then
+        log('debug-' .. cat, msg, ...)
+    end
+end
+
+end -- end scope of active_debugs
+
+-- if file is base .. '.' .. zip with zip in zipext_list, return: base, zip
+-- otherwise, return: file, nil
+function M.parse_zip(file)
+    local zip
+    for _, zip in ipairs(texdoc.config.get_value('zipext_list')) do
+        local l = #zip + 1
+        if string.sub(file, -l, -1) == '.' .. zip then
+            return string.sub(file, 1, -l - 1), zip
+        end
+    end
+
+    return file, nil
+end
+
+-- print a usage message
+function M.print_usage()
+    print(C.usage_msg)
+end
+
+return M
+
+-- vim: ft=lua:

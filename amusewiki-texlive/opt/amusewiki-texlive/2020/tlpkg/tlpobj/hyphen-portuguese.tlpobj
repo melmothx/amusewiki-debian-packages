@@ -1,0 +1,17 @@
+name hyphen-portuguese
+category TLCore
+revision 54568
+shortdesc Portuguese hyphenation patterns.
+longdesc Hyphenation patterns for Portuguese in T1/EC and UTF-8
+longdesc encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=portuguese synonyms=portuges 	lefthyphenmin=2 	righthyphenmin=3 	file=loadhyph-pt.tex 	file_patterns=hyph-pt.pat.txt 	file_exceptions=hyph-pt.hyp.txt
+containersize 3256
+containerchecksum 38ea70b8cb3d8ec121115bbd449c23856e105b6abc3f4142a9a1b72d76db06b89cc20d0537b55cc8780a86bac4ab51e38604fcc51cfca8f66ce22e8bd0374e73
+runfiles size=6
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pt.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-pt.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-pt.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-pt.hyp.txt
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-pt.pat.txt

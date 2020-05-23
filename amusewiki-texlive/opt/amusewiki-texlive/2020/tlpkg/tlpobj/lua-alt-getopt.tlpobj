@@ -1,0 +1,27 @@
+name lua-alt-getopt
+category Package
+revision 29349
+shortdesc Process application arguments the same way as getopt_long
+longdesc lua_altgetopt is a MIT-licensed module for Lua, for processing
+longdesc application arguments in the same way as BSD/GNU getopt_long(3)
+longdesc functions do. This module is made available for lua script
+longdesc writers to have consistent command line parsing routines.
+containersize 2028
+containerchecksum 94d186ff2dbaae126995eb2ee71e52145e88b32ed1fa765a6011c0d3935f19dcf41692e47699abd176f680ba8ebed58142cdad7be19526f7b8c249dac43bf3d4
+doccontainersize 3320
+doccontainerchecksum b7cbb2dff24692038f38e6185fbd6471a6979dfd8b659fbd972c810cb701aca59aeaa4d30c510333003819ff08921f3d57b9c43a7044827a35472ee54e3990fd
+docfiles size=7
+ texmf-dist/doc/support/lua-alt-getopt/ChangeLog
+ texmf-dist/doc/support/lua-alt-getopt/Makefile
+ texmf-dist/doc/support/lua-alt-getopt/NEWS
+ texmf-dist/doc/support/lua-alt-getopt/README details="Readme"
+ texmf-dist/doc/support/lua-alt-getopt/alt_getopt
+ texmf-dist/doc/support/lua-alt-getopt/tests/test.out
+ texmf-dist/doc/support/lua-alt-getopt/tests/test.sh
+runfiles size=1
+ texmf-dist/scripts/lua-alt-getopt/alt_getopt.lua
+catalogue-contact-repository https://github.com/cheusov/lua-alt-getopt
+catalogue-ctan /support/lua/lua-alt-getopt
+catalogue-license mit
+catalogue-topics lua-supp
+catalogue-version 0.7.0

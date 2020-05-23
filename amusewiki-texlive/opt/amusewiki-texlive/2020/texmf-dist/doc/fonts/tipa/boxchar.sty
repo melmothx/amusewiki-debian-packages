@@ -1,0 +1,218 @@
+% boxchar.sty --- for displaying large scale character images.
+% Copyright 2002 FUKUI Rei
+%
+% This program may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.2
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.2 or later is part of all distributions of LaTeX 
+% version 1999/12/01 or later.
+%
+% This program consists of all files listed in Manifest.txt.
+%
+% 2001/12/24 Rei Fukui
+
+% For extra huge size fonts, some modifications necessary to the *.fd
+% files.
+
+% Without the following, NFSS will complain because T3 and U/tipx
+% are not declared at this moment.
+
+{\fontencoding{T3}\selectfont
+ \fontencoding{U}\fontfamily{tipx}\selectfont}
+
+% Redefine several font commands. For xipa and xipx fonts, these
+% redefinitions are unnecessary.
+
+\DeclareFontShape{T3}{cmr}{m}{n}{%
+  <5> <6> <7> <8> tipa8
+  <9> tipa9
+  <10> <10.95> tipa10
+  <12> <14.4> tipa12
+  <17.28> <20.74> <24.88> tipa17
+  <25-> tipa10
+}{}
+\DeclareFontShape{U}{tipx}{m}{n}{%
+  <5> <6> <7> <8> tipx8
+  <9> tipx9
+  <10> <10.95> tipx10
+  <12> <14.4> tipx12
+  <17.28> <20.74> <24.88> tipx17
+  <25-> tipx10
+}{}
+
+% An extra huge size font for the MainItem.
+% Can be used with 10pt, 11pt, and 12pt texts.
+
+\def\ExHuge{%
+  \ifnum\@ptsize=0 % 10*1.2^9 = 51.5978
+    \fontsize{51.6}{\f@baselineskip}\selectfont
+  \else\ifnum\@ptsize=1 % 11*1.2^9 = 56.75758
+    \fontsize{56.758}{\f@baselineskip}\selectfont
+  \else\ifnum\@ptsize=2 % 12*1.2^9 = 61.91736
+    \fontsize{61.917}{\f@baselineskip}\selectfont
+  \fi\fi\fi}
+
+\def\ExHugeTipa{%
+  \ifnum\@ptsize=0 % 10*1.2^9 = 51.5978
+    \fontencoding{T3}\fontsize{51.6}{\f@baselineskip}\selectfont
+  \else\ifnum\@ptsize=1 % 11*1.2^9 = 56.75758
+    \fontencoding{T3}\fontsize{56.758}{\f@baselineskip}\selectfont
+  \else\ifnum\@ptsize=2 % 12*1.2^9 = 61.91736
+    \fontencoding{T3}\fontsize{61.917}{\f@baselineskip}\selectfont
+  \fi\fi\fi}
+
+% Another extra huge size font for the SubItem.
+% Can be used with 10pt, 11pt, and 12pt texts.
+
+\def\exHuge{%
+  \ifnum\@ptsize=0 % 10*1.2^8 = 42.998
+    \fontsize{43}{\f@baselineskip}\selectfont
+  \else\ifnum\@ptsize=1 % 11*1.2^8 = 47.298
+    \fontsize{47.298}{\f@baselineskip}\selectfont
+  \else\ifnum\@ptsize=2 % 12*1.2^8 = 51.5978
+    \fontsize{51.6}{\f@baselineskip}\selectfont
+  \fi\fi\fi}
+
+\def\exHugeTipa{%
+  \ifnum\@ptsize=0 % 10*1.2^8 = 42.998
+    \fontencoding{T3}\fontsize{43}{\f@baselineskip}\selectfont
+  \else\ifnum\@ptsize=1 % 11*1.2^8 = 47.298
+    \fontencoding{T3}\fontsize{47.298}{\f@baselineskip}\selectfont
+  \else\ifnum\@ptsize=2 % 12*1.2^8 = 51.5978
+    \fontencoding{T3}\fontsize{51.6}{\f@baselineskip}\selectfont
+  \fi\fi\fi}
+
+% Another extra huge size font for the SubItem.
+% Can be used with 10pt, 11pt, and 12pt texts.
+
+\def\exhuge{%
+  \ifnum\@ptsize=0 % 10*1.2^6 = 29.85984
+    \fontsize{29.86}{\f@baselineskip}\selectfont
+  \else\ifnum\@ptsize=1 % 11*1.2^6 = 32.845824
+    \fontsize{32.846}{\f@baselineskip}\selectfont
+  \else\ifnum\@ptsize=2 % 12*1.2^6 = 35.831808
+    \fontsize{35.832}{\f@baselineskip}\selectfont
+  \fi\fi\fi}
+
+\def\exhugeTipa{%
+  \ifnum\@ptsize=0 % 10*1.2^6 = 29.85984
+    \fontencoding{T3}\fontsize{29.86}{\f@baselineskip}\selectfont
+  \else\ifnum\@ptsize=1 % 11*1.2^6 = 32.845824
+    \fontencoding{T3}\fontsize{32.846}{\f@baselineskip}\selectfont
+  \else\ifnum\@ptsize=2 % 12*1.2^6 = 35.831808
+    \fontencoding{T3}\fontsize{35.832}{\f@baselineskip}\selectfont
+  \fi\fi\fi}
+
+% Produces a super huge image such that 10pt = 10cm.
+
+\def\SuperHuge{%
+  \fontsize{284.52756}{\f@baselineskip}\selectfont}
+
+\def\SuperHugeTipa{%
+  \fontencoding{T3}\fontsize{284.52756}{\f@baselineskip}\selectfont}
+
+
+% A huge size font for the SubSubItem.
+
+\def\hugeTipa{\huge\fontencoding{T3}\selectfont}
+
+% Macros for setting up character box size and margins.
+
+\newcommand\chaboxvmarginrate{.8}
+\newcommand\chaboxhmarginrate{.6}
+
+% Calculate various sizes for an IPA box.
+% global: \ch@rboxxheight, \ch@rboxht, \ch@rboxdp, \ch@rboxwd
+% Sizes can be changed by #1 (font size) and the above two values.
+
+
+\def\ipasetb@xsize#1#2{{%
+  \setbox\z@\hbox{#2{x}}%
+    \xdef\ch@rboxxheight{\the\ht\z@\relax}%
+    \dimen\z@\ht\z@ \dimen\@ne \chaboxvmarginrate\dimen\z@
+    \edef\ch@rboxvmargin{\the\dimen\@ne\relax}%
+    \dimen\z@\wd\z@ \dimen\@ne \chaboxhmarginrate\dimen\z@
+    \edef\ch@rboxhmargin{\the\dimen\@ne\relax}%
+  \setbox\z@\hbox{#2{l}}%
+    \dimen\z@\ht\z@ \advance\dimen\z@ \ch@rboxvmargin
+    \xdef\ch@rboxht{\the\dimen\z@\relax}%
+  \setbox\z@\hbox{#2{p}}%
+    \dimen\z@\dp\z@ \advance\dimen\z@ \ch@rboxvmargin
+    \xdef\ch@rboxdp{\the\dimen\z@\relax}%
+  \setbox\z@\hbox{#2{m}}%
+    \dimen\z@\wd\z@ \advance\dimen\z@ \ch@rboxhmargin
+    \xdef\ch@rboxwd{\the\dimen\z@\relax}}}
+
+\def\ptmxheight{128.0374pt\relax}
+
+\def\ipasetb@xsizevar#1#2{{%
+  \setbox\z@\hbox{#2{x}}%
+%    \xdef\ch@rboxxheight{\the\ht\z@\relax}%
+  \xdef\ch@rboxxheight{\ptmxheight\relax}%
+    \dimen\z@\ht\z@ \dimen\@ne \chaboxvmarginrate\dimen\z@
+    \edef\ch@rboxvmargin{\the\dimen\@ne\relax}%
+    \dimen\z@\wd\z@ \dimen\@ne \chaboxhmarginrate\dimen\z@
+    \edef\ch@rboxhmargin{\the\dimen\@ne\relax}%
+  \setbox\z@\hbox{#2{l}}%
+    \dimen\z@\ht\z@ \advance\dimen\z@ \ch@rboxvmargin
+    \xdef\ch@rboxht{\the\dimen\z@\relax}%
+  \setbox\z@\hbox{#2{p}}%
+    \dimen\z@\dp\z@ \advance\dimen\z@ \ch@rboxvmargin
+    \xdef\ch@rboxdp{\the\dimen\z@\relax}%
+  \setbox\z@\hbox{#2#1}%
+    \dimen\z@\wd\z@ \advance\dimen\z@ \ch@rboxhmargin
+    \xdef\ch@rboxwd{\the\dimen\z@\relax}}}
+
+\def\rigidframe{\let\ipasetb@xsize\ipasetb@xsizevar}
+
+\def\doubleframebox#1#2{%
+  \hbox{\fboxrule.8pt\fboxsep3pt\fbox{%
+    \fboxrule.4pt\fboxsep\z@\fbox{\symbolb@x{#1}{#2}}}}}
+
+\def\singleframebox#1#2{%
+  \hbox{\fboxrule.4pt\fboxsep\z@\fbox{\symbolb@x{#1}{#2}}}}
+
+% The main macro for displaying a large scale image of a character in
+% a framebox with the base and x-height lines indicated.
+% Note that the frame is not drawn by this macro.
+%
+%   Arguments:
+%     #1 = the character to display
+%     #2 = font size
+%
+% The result of this macro is an \hbox of which the width is
+% \ch@rboxwd and the height is \ch@rboxtotalht.
+
+\def\symbolb@x#1#2{{%
+  \ipasetb@xsize{#1}{#2}\setbox\z@\hbox{#2{#1}}%
+  \dimen\z@\ch@rboxht \advance\dimen\z@ by\ch@rboxdp
+  \edef\ch@rboxtotalht{\the\dimen\z@}%
+  \hbox to\ch@rboxwd{\hsize\ch@rboxwd
+    \hss
+    \vbox to\ch@rboxtotalht{\offinterlineskip
+      \dott@dline{\ch@rboxxheight}{\patterni}
+      \dott@dline{\z@}{\patternii}
+      \dimen\z@\ch@rboxht \advance\dimen\z@ by-\ht\z@
+      \kern\dimen\z@
+      \hbox to\hsize{\hfil\box\z@\hfil}
+      \vss}%
+    \hss}}}
+
+% A macro for drawing a dotted line.
+
+\def\dott@dline#1#2{%
+  \dimen\z@\ch@rboxht \advance\dimen\z@ by-#1\relax
+  \vtop to\z@{\kern\the\dimen\z@
+    \hbox to\ch@rboxwd{\xleaders#2\hfil}\vss}}
+
+% Patterns used for dotted lines
+
+\def\patterni{\hbox to 2pt{% thin dotted line
+  \hfil\vrule width .5pt height .1pt depth .1pt \hfil}}
+
+\def\patternii{\hbox to 2pt{% thick dotted line
+  \hfil\vrule width .5pt height .15pt depth .15pt \hfil}}
+
+\endinput

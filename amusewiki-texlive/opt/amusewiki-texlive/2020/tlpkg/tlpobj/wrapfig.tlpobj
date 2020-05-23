@@ -1,0 +1,23 @@
+name wrapfig
+category Package
+revision 22048
+shortdesc Produces figures which text can flow around
+longdesc Allows figures or tables to have text wrapped around them. Does
+longdesc not work in combination with list environments, but can be used
+longdesc in a parbox or minipage, and in twocolumn format. Supports the
+longdesc float package.
+containersize 9360
+containerchecksum ea9d0693a43f985b9ab13a51e0af82b866adc8500dfb9f42e8b20ce8facd07d0534749bda61d13bc86b921300336c9f7e6099f252c4c65370a2e2cb4423589ae
+doccontainersize 337900
+doccontainerchecksum 9ba4292d2641a31f3719ca66e3d80ca70638f9c943bfad9e9e08543f57a53eccc1292930e95d6a3677d0696e0deb1d1ca698b83eb7285baae275b70ac808be33
+docfiles size=87
+ texmf-dist/doc/latex/wrapfig/multiple-span.txt details="How to use wrapfig to span multiple columns"
+ texmf-dist/doc/latex/wrapfig/wrapfig-doc.pdf details="Package documentation"
+ texmf-dist/doc/latex/wrapfig/wrapfig-doc.tex
+runfiles size=7
+ texmf-dist/tex/latex/wrapfig/wrapfig.sty
+catalogue-also floatflt
+catalogue-ctan /macros/latex/contrib/wrapfig
+catalogue-license lppl
+catalogue-topics text-flow
+catalogue-version 3.6

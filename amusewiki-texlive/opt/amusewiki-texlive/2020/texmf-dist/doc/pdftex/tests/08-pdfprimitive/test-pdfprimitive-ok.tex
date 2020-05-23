@@ -1,0 +1,9 @@
+% $Id: test-pdfprimitive-ok.tex 784 2017-11-28 23:55:44Z karl $
+% Public domain.
+
+\catcode`\{=1 \catcode`\}=2
+
+% Check that \pdfprimitive works at all.
+\let\message=\relax
+\pdfprimitive\message{hello}%
+\end

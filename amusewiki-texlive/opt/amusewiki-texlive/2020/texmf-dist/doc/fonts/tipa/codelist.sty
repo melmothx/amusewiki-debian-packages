@@ -1,0 +1,125 @@
+% codelist.sty
+% Copyright 2002 FUKUI Rei
+%
+% This program may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.2
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.2 or later is part of all distributions of LaTeX 
+% version 1999/12/01 or later.
+%
+% This program consists of all files listed in Manifest.txt.
+%
+% examples:
+%  \usepackage{codelist} % necessary in all cases in the preamble
+%
+%  \fonttable{cmr10}
+%
+%  \fonttablescaled{cmr10}{\magstep1}
+%
+%  \fonttable{\empty} % draw an empty code table for a font designer who
+%                     % wants to create a new font from scratch
+%                     % (see also \def\dummyfont below)
+
+%\topmargin -2cm
+%\textheight 24cm
+
+%\newcommand\dummyfont{cmr10} % for 128 empty boxes
+\newcommand\dummyfont{dcr1000} % for 256 empty boxes
+
+\tracinglostchars=0
+\newcount\@@m \newcount\@@n \newcount\@@p \newdimen\dim
+\newif\ifemptybox \emptyboxfalse
+
+\newcommand\fonttable[1]{%
+  \ifx\empty#1\font\testfont=\dummyfont % dummy
+    \emptyboxtrue\def\fontnamestring{empty font}%
+  \else\font\testfont=#1\def\fontnamestring{#1}\fi
+%  \leftline{{\small Test of {\itshape{\fontnamestring}}\unskip\ on \today}}
+%  \smallskip
+  \testfont \setbaselineskip
+  \ifdim\fontdimen6\testfont<10pt \rightskip=0pt plus 20pt
+  \else\rightskip=0pt plus 2em \fi
+  \spaceskip=\fontdimen2\testfont % space between words (\raggedright)
+  \xspaceskip=\fontdimen2\testfont \advance\xspaceskip by\fontdimen7\testfont
+  \f@nttable}
+
+\newcommand\fonttablescaled[2]{%
+  \ifx\empty#1\font\testfont=\dummyfont % dummy
+    \emptyboxtrue\def\fontnamestring{empty font}%
+  \else\font\testfont=#1 scaled #2\def\fontnamestring{#1}\fi
+%  \leftline{{\small Test of {\itshape{\fontnamestring}}\unskip\ on \today}}
+%  \smallskip
+  \testfont \setbaselineskip
+  \ifdim\fontdimen6\testfont<10pt \rightskip=0pt plus 20pt
+  \else\rightskip=0pt plus 2em \fi
+  \spaceskip=\fontdimen2\testfont % space between words (\raggedright)
+  \xspaceskip=\fontdimen2\testfont \advance\xspaceskip by\fontdimen7\testfont
+  \f@nttable}
+
+\newcommand\setbaselineskip{\setbox0=\hbox{\@@n=0
+    \loop\char\@@n \ifnum \@@n<255 \advance\@@n 1 \repeat}
+  \baselineskip=6pt \advance\baselineskip\ht0 \advance\baselineskip\dp0 }
+
+\newcommand\oct[1]{\hbox{\rm\'{}\kern-.2em\it#1\/\kern.05em}} % octal constant
+\newcommand\hex[1]{\hbox{\rm\H{}\tt#1}} % hexadecimal constant
+
+\def\setdigs#1"#2{\gdef\h{#2}% \h=hex prefix; \0\1=corresponding octal
+  \@@m=\@@n \divide\@@m by 64 \xdef\0{\the\@@m}%
+  \multiply\@@m by-64 \advance\@@m by\@@n \divide\@@m by 8 \xdef\1{\the\@@m}}
+
+\newcommand\testrow{\setbox0=\hbox{\penalty 1\def\\{\char"\h}%
+  \\0\\1\\2\\3\\4\\5\\6\\7\\8\\9\\A\\B\\C\\D\\E\\F%
+  \global\@@p=\lastpenalty}} % \@@p=1 if none of the characters exist
+
+\newcommand\oddline{\cr
+  \noalign{\nointerlineskip}
+  \multispan{19}\hrulefill&
+  \setbox0=\hbox{\lower 2.3pt\hbox{\hex{\h x}}}\smash{\box0}\cr
+  \noalign{\nointerlineskip}}
+
+\newif\ifskipping
+
+\newcommand\evenline{\loop\skippingfalse
+  \ifnum\@@n<256 \@@m=\@@n \divide\@@m 16 \chardef\next=\@@m
+  \expandafter\setdigs\meaning\next \testrow
+  \ifnum\@@p=1 \skippingtrue \fi\fi
+  \ifskipping \global\advance\@@n 16 \repeat
+  \ifnum\@@n=256 \let\next=\@endchart\else\let\next=\morechart\fi
+  \next}
+
+\newcommand\morechart{\cr\noalign{\hrule\penalty5000}
+  \chartline \oddline \@@m=\1 \advance\@@m 1 \xdef\1{\the\@@m}
+  \chartline \evenline}
+
+\newcommand\chartline{&\oct{\0\1x}&&\CHAR&&\CHAR&&\CHAR&&\CHAR&&\CHAR&&
+  \CHAR&&\CHAR&&\CHAR&&}
+
+%\newcommand\chartstrut{\lower6pt\vbox to18pt{}}
+\newcommand\chartstrut{\lower5.5pt\vbox to15pt{}}
+
+\newcommand\f@nttable{$$\global\@@n=0
+  \halign to\hsize\bgroup
+    \chartstrut##\tabskip0pt plus10pt&
+    &\hfil##\hfil&\vrule##\cr
+    \lower6.5pt\null
+    &&&\oct0&&\oct1&&\oct2&&\oct3&&\oct4&&\oct5&&\oct6&&\oct7&\evenline}
+
+\newcommand\@endchart{\cr\noalign{\hrule}
+  \raise11.5pt\null&&&\hex 8&&\hex 9&&\hex A&&\hex B&
+  &\hex C&&\hex D&&\hex E&&\hex F&\cr\egroup$$\par}
+
+\newcommand\CHAR{\setbox0=\hbox{\char\@@n}%
+  \ifdim\ht0>7.5pt\reposition
+  \else\ifdim\dp0>2.5pt\reposition\fi\fi
+  \ifemptybox\hbox{}\else \box0\fi
+  \global\advance\@@n 1 }
+
+\newcommand\reposition{\setbox0=\vbox{\kern2pt\box0}\dim=\dp0
+  \advance\dim 2pt \dp0=\dim}
+
+\newcommand\centerlargechars{
+  \newcommand\reposition{\setbox0=\hbox{$\vcenter{\kern2pt\box0\kern2pt}$}}}
+
+\endinput

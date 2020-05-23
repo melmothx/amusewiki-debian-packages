@@ -1,0 +1,41 @@
+name latex-bin
+category TLCore
+revision 54743
+shortdesc LaTeX executables and man pages
+depend babel
+depend cm
+depend dehyph
+depend graphics
+depend hyph-utf8
+depend hyphen-base
+depend l3backend
+depend l3kernel
+depend l3packages
+depend latex
+depend latex-bin.ARCH
+depend latex-fonts
+depend latexconfig
+depend lm
+depend luahbtex
+depend luaotfload
+depend luatex
+depend pdftex
+depend tex-ini-files
+depend unicode-data
+execute AddFormat name=dvilualatex engine=luatex           patterns=language.dat,language.dat.lua           options="dvilualatex.ini"           fmttriggers=babel,cm,hyphen-base,latex-fonts,l3backend,l3kernel,l3packages,tex-ini-files,unicode-data,latex,lm,luaotfload
+execute AddFormat name=latex engine=pdftex           patterns=language.dat           options="-translate-file=cp227.tcx *latex.ini"           fmttriggers=babel,cm,hyphen-base,latex-fonts,l3backend,l3kernel,l3packages,tex-ini-files,unicode-data,latex,dehyph,hyph-utf8,latexconfig
+execute AddFormat name=lualatex engine=luahbtex           patterns=language.dat,language.dat.lua           options="lualatex.ini"           fmttriggers=babel,cm,hyphen-base,latex-fonts,l3backend,l3kernel,l3packages,tex-ini-files,unicode-data,latex,lm,luaotfload
+execute AddFormat name=pdflatex engine=pdftex           patterns=language.dat           options="-translate-file=cp227.tcx *pdflatex.ini"           fmttriggers=babel,cm,hyphen-base,latex-fonts,l3backend,l3kernel,l3packages,tex-ini-files,unicode-data,latex,dehyph,hyph-utf8,latexconfig
+containersize 580
+containerchecksum d0b72d9456e68bf2e6e68e47a879db2e3233e6d49f6edb490419e556df15c7fb5459ea5e86c4d3808545d47605790dbbbfb964fd305019b3bc8ada70cb27b4b0
+doccontainersize 69852
+doccontainerchecksum 6c76c5901ee581eeacbdd106b96de07d06c8a552131de5cd1e41c783697d426da5f08850f5fcfce1027950e63d168e9e2caec258d1edb7c7025453bd0f205740
+docfiles size=32
+ texmf-dist/doc/man/man1/dvilualatex.1
+ texmf-dist/doc/man/man1/dvilualatex.man1.pdf
+ texmf-dist/doc/man/man1/latex.1
+ texmf-dist/doc/man/man1/latex.man1.pdf
+ texmf-dist/doc/man/man1/lualatex.1
+ texmf-dist/doc/man/man1/lualatex.man1.pdf
+ texmf-dist/doc/man/man1/pdflatex.1
+ texmf-dist/doc/man/man1/pdflatex.man1.pdf

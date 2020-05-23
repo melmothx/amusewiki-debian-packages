@@ -1,0 +1,60 @@
+%%
+%% This is file `colorprofiles.sty',
+%% 
+%%  Copyright (c) 2018 Ross Moore <ross.moore@mq.edu.au>
+%%
+%%  AIM: ensure that the information for default Color Profiles are recorded,
+%%  if those Profiles are indeed available.
+%%
+%%  This file may be distributed and/or modified under the conditions
+%%  of the LaTeX Project Public License, either version 1.2 of this
+%%  license or (at your option) any later version.  The latest version
+%%  of this license is in:
+%% 
+%%    http://www.latex-project.org/lppl.txt
+%% 
+%%  and version 1.2 or later is part of all distributions of LaTeX
+%%  version 1999/12/01 or later.
+%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{colorprofiles}
+  [2018/11/01 v1.0.1 color profiles for PDF/X and PDF/A support]
+%
+\begingroup
+
+\def\colorprofile@file{colorprofiles}
+\InputIfFileExists{\colorprofile@file.tex}{}%
+  {\PackageWarning{colorprofiles}{The file \colorprofile@file.tex is not available.}
+    \endinput
+  }%
+ \newcommand*\colorpro@FileNotFound[1]{%
+   \PackageWarning{colorprofiles}%
+    {The file #1 was not found. Please get it from CTAN or elsewhere.}%
+ }
+ %% when the default Color Profile is available the following
+ %% control sequences will have sensible global expansions:
+ %%   \colorpro@rgb@{profile,identifier,info,registry}
+ %%  otherwise all are set globally to  \relax .
+ %%
+ %%  Similarly for CMYK these are set globally:
+%%   \colorpro@cmyk@{profile,intent,identifier,registry}
+ %%  else all are set globally to  \relax .
+ %
+ \def\colorpro@rgb@clear{%
+   \colorpro@FileNotFound\colorpro@rgb@profile
+   \global\let\colorpro@rgb@profile\relax
+   \global\let\colorpro@rgb@identifier\relax
+   \global\let\colorpro@rgb@info\relax
+   \global\let\colorpro@rgb@registry\relax
+  }
+ \def\colorpro@cmyk@clear{%
+   \colorpro@FileNotFound\colorpro@cmyk@profile
+   \global\let\colorpro@cmyk@profile\relax
+   \global\let\colorpro@cmyk@intent\relax
+   \global\let\colorpro@cmyk@identifier\relax
+   \global\let\colorpro@cmyk@registry\relax
+  }
+ \IfFileExists{\colorpro@rgb@profile}{}{\colorpro@rgb@clear}
+ \IfFileExists{\colorpro@cmyk@profile}{}{\colorpro@cmyk@clear}
+\endgroup 
+\endinput

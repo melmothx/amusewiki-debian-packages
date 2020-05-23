@@ -1,0 +1,8 @@
+name tlshell.x86_64-linux
+category TLCore
+revision 45015
+shortdesc x86_64-linux files of tlshell
+containersize 340
+containerchecksum a032d746184fc34956ac74cf3a65ac77674bf2278eb3dea455cd1d1a346cc5292a72b24a07bb685d1758edd8ed28680fb0f94f777b7dcc9aeef50cd676fe9138
+binfiles arch=x86_64-linux size=1
+ bin/x86_64-linux/tlshell

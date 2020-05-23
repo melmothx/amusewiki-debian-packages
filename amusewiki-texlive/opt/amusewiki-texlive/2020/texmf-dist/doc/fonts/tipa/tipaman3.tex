@@ -1,0 +1,504 @@
+% tipaman3.tex
+% Copyright 2002 FUKUI Rei
+%
+% This program may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.2
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.2 or later is part of all distributions of LaTeX 
+% version 1999/12/01 or later.
+%
+% This program consists of all files listed in Manifest.txt.
+%
+
+\begingroup
+\raggedbottom
+
+\chapter{Recent Changes}
+
+\section{Changes from Version 1.2 to 1.3}
+
+Some symbols included in the xipa and related font families have been
+modified. 
+
+\section{Changes from Version 1.1 to 1.2}
+
+The following 
+
+\begin{itemize}
+\item The following symbols are added to the \texttt{tipx} fonts:
+
+  Varieties of glottal stop symbols and a new symbol:\\
+  \textglotstopvari\ (\texttt{\tbs textglotstopvari})\\
+  \textglotstopvarii\ (\texttt{\tbs textglotstopvarii})\\
+  \textglotstopvariii\ (\texttt{\tbs textglotstopvariii})\\
+  \textlfishhookrlig\ (\texttt{\tbs textlfishhookrlig})
+
+\item Symbol shapes of the \texttt{xipa} and \texttt{xipx} font
+  families slightly modified.
+\end{itemize}
+
+\section{Changes from Version 1.0 to 1.1}
+
+The following changes have been made since the first release of
+\tipa\footnote{The first release of \tipa{} has been known as
+  `beta0624'. I originally intended to change it to
+  something like `tipa-1.0' soon after the release but unfortunately
+  I didn't have the opportunity to do so.}.
+
+\begin{itemize}
+\item The following typefaces are newly added in Version
+  1.1. Font description files (\texttt{*.fd}) modified accordingly.
+
+  Bold Extended Slanted Roman: \textbf{\textipa{[\textsl{""Ekspl@"neIS@n}]}}\\
+  Sans Serif Bold Extended: \textbf{\textsf{\textipa{[""Ekspl@"neIS@n]}}}\\
+  Sans Serif Slanted:  \textsf{\textipa{[\textsl{""Ekspl@"neIS@n}]}}\\
+  Typewriter Text: \texttt{\textipa{[\textsl{""Ekspl@"neIS@n}]}}\\
+  Typewriter Text Slanted: \textsl{\texttt{\textipa{[\textsl{""Ekspl@"neIS@n}]}}}
+
+\item Many bugs fixed in the \MF\ source codes; modifications made for
+  almost every symbol. The \texttt{xipa} family of fonts now more closely
+  simulates Times Roman style.\footnote{%
+    I'm not fully satisfied with the result of this simulation and
+    further changes will be made in the next release. However, I have
+    no intention of simulating too closely in order to avoid any
+    possible copyright problems.}
+
+\item \texttt{t3enc.def} and \texttt{tipa.sty} modified.
+
+\item New series of fonts, \textbf{tipx} and \textbf{xipx} have been
+  created. These fonts are collections of symbols missing in the
+  previous version of \tipa{} and cover almost all the symbols that
+  appear in the second edition of \emph{PSG} (1996). (Remember that
+  \tipa{} was released in 1996 and at the time the second edition of
+  \emph{PSG} was not available.) Some of the symbols included in the
+  previous version of \tipa{} are now moved into \textbf{tipx} and
+  \textbf{xipx}. Thus the T3 encoding is slightly modified.
+
+  In order to use newly created fonts, add the following after the
+  declaration of \tipa{}.
+
+  \verb|\usepackage{tipx}|
+
+  For a list of newly created symbols, see next section.
+
+  The encoding of \texttt{tipx} and \texttt{xipx} still has no
+  definite name. The style file (\texttt{tipx.sty}) uses the
+  U encoding and new family names (tipx and xipx which are arbitrary).
+  In the future, it may be possible to use a new encoding name TS3
+  (I experimentally put \texttt{ts3enc.def} and \texttt{ts3*.fd} in
+  the \texttt{sty} directory of the package. Use
+  these files at your own risk, if the system doesn't complain.)
+
+\item Some new tone letter commands, \verb|\stone| and \verb|\rtone|.
+\item Manual updated.
+\item Manual for the \texttt{vowel.sty} completed.
+\item Some diacritic commands added.
+\end{itemize}
+
+\subsection{Newly created symbols}\label{sec:newsymbols}
+
+The following two symbols are newly adopted in the \texttt{tipa}
+encoding (i.e., T3).
+
+\begin{quote}
+Hooktop right-tail D --- \texthtrtaild\\
+Left-hooktop long Y --- \textlhtlongy
+\end{quote}
+
+The following command was realized by a macro in the previous version
+but now is assigned a code of its own in the \texttt{tipa} encoding
+(i.e., T3).
+
+\begin{quote}
+Crossed lambda --- \textcrlambda
+\end{quote}
+
+The following symbols are (mostly) newly created symbols in the
+\texttt{tipx} fonts. (Note that some are moved from the \texttt{tipa}
+because of the encoding change.)
+
+\begin{quote}
+Right-hook A --- \textrhooka\\
+Left-hook four --- \textlhookfour\\
+Inverted script A --- \textinvscripta\\
+A-O ligature --- \textaolig\\
+Inverted small capital A --- \textinvsca\\
+Small capital A-O ligature --- \textscaolig\\
+Stretched C (original form) --- \textstretchcvar\\
+Curly-tail stretched C --- \textctstretchc\\
+Curly-tail stretched C (original form) --- \textctstretchcvar\\
+Front-hook D --- \textfrhookd\\
+Front-hook D (Original) --- \textfrhookdvar\\
+D-B ligature --- \textdblig\\
+Small capital delta --- \textscdelta\\
+Right-hook E --- \textrhooke\\
+Right-hook epsilon --- \textrhookepsilon\\
+Small capital F --- \textscf\\
+Greek gamma --- \textgrgamma\\
+Front-tail gamma --- \textfrtailgamma\\
+Back-tail gamma --- \textbktailgamma\\
+Right-tail hooktop H --- \textrtailhth\\
+Heng --- \textheng\\
+Curly-tail J (a variety found in 1996 IPA) --- \textctjvar\\
+Hooktop barred dotless J (a variety) --- \texthtbardotlessjvar\\
+Small capital K --- \textsck\\
+Turned small capital K --- \textturnsck\\
+Reversed small capital L --- \textrevscl\\
+H-M ligature --- \texthmlig\\
+Small capital M --- \textscm\\
+Front-bar N --- \textfrbarn\\
+Right leg N --- \textnrleg\\
+Bull's eye (an old version) --- \textObullseye\\
+Female sign --- \textfemale\\
+Uncrossed female sign --- \textuncrfemale\\
+Right-hook open O --- \textrhookopeno\\
+Inverted omega --- \textinvomega\\
+Left-hook P --- \textlhookp\\
+Small capital P --- \textscp\\
+A variety of thorn (1) --- \textthornvari\\
+A variety of thorn (2) --- \textthornvarii\\
+A variety of thorn (3) --- \textthornvariii\\
+A variety of thorn (4) --- \textthornvariv\\
+Q-P ligature --- \textqplig\\
+Reversed small capital R --- \textrevscr\\
+Reversed esh with top loop --- \textlooptoprevesh\\
+Front-hook T --- \textfrhookt\\
+Curly-tail turned T --- \textctturnt\\
+Turned small capital U --- \textturnscu\\
+Turned two --- \textturntwo\\
+Bent-tail yogh --- \textbenttailyogh\\
+Turned three --- \textturnthree\\
+Curly-tail inverted glottal stop --- \textctinvglotstop\\
+Turned glottal stop (PSG 1996:211) --- \textturnglotstop\\
+Pipe (a variety with no descender) --- \textpipevar\\
+Double pipe (a variety with no descender) --- \textdoublepipevar\\
+Double-barred pipe (a variety with no descender) --- \textdoublebarpipevar\\
+Superscript left arrow --- \textspleftarrow\\
+Down full arrow --- \textdownfullarrow\\
+Up full arrow --- \textupfullarrow\\
+Subscript right arrow --- \textsubrightarrow\\
+Subscript double arrow --- \textsubdoublearrow\\
+Reversed Polish hook --- an accent command e.g., \textrevpolhook{o}\\
+Retracting sign (a variety) --- \textretractingvar\\
+Right hook (long) --- \textrthooklong\\
+Palatalization hook (long) --- \textpalhooklong\\
+Palatalization hook (a variety) --- \textpalhookvar
+\end{quote}
+
+\subsection{Symbol shape changes}
+
+Shapes of the following symbols have been modified from the first
+version to the present.
+
+\begin{center}\tabcolsep.2em
+\begin{tabular}{llccl}
+Name  & Macro name  & New  & Old  & Old symbol name\\
+\hline
+Pipe                     & \Tt{textpipe}         & \textpipe
+ & \textpipevar          & \Tt{textpipevar}\\
+Double pipe              & \Tt{textdoublepipe}   & \textdoublepipe
+ & \textdoublepipevar    & \Tt{textdoublepipevar}\\
+Double-barred pipe       & \Tt{textdoublebarpipe}& \textdoublebarpipe
+ & \textdoublebarpipevar & \Tt{textdoublebarpipevar}\\
+Down arrow               & \Tt{textdownstep}     & \textdownstep
+ & \textdownfullarrow    & \Tt{textdownfullarrow}\\
+Up arrow                 & \Tt{textupstep}       & \textupstep
+ & \textupfullarrow      & \Tt{textupfullarrow}\\
+Bull's eye               & \Tt{textbullseye}     & \textbullseye
+ & \textObullseye        & \Tt{textObullseye}\\
+Hooktop barred           & \Tt{texthtbardotlessj}& \texthtbardotlessj
+ & \texthtbardotlessjvar & \Tt{texthtbardotlessjvar}\\
+dotless J \\
+\end{tabular}
+\end{center}
+
+For each symbol, the old shape is preserved in the \texttt{tipx} fonts
+and can be accessed by a new name (in most cases \texttt{var} or
+\texttt{O} is attached) indicated at the rightmost column of the above
+table.
+
+
+\clearemptydoublepage
+\chapter{Symbols not included in TIPA}
+
+Although the present version of \tipa{} includes almost all the
+symbols found in \PSG\ and \Handbook, there are still some symbols not
+included or defined in \tipa{}.
+
+Some such symbols can be realized by writing appropriate
+macros, while some others cannot be realized without resorting to
+the Metafont.
+
+This section discusses these problems by classifying such symbols into
+three categories, as shown below.
+
+\begin{enumerate}
+\itemsep0pt
+\item Symbols that can be realized by \TeX{}'s macro level and/or by using
+  symbols from other fonts.
+\item Symbols that can be imitated by \TeX{}'s macro level and/or by using
+  symbols from other fonts (but may not look quite satisfactory).
+\item Symbols that cannot be realized at all, without creating a new
+  font.
+\end{enumerate}
+
+With the addition of the \tipx{} fonts, symbols that belong to the
+third category are virtually non-existent now.
+
+As for the symbols that belong to the first and second categories,
+\tipa{} provides a variety of macros and parts of symbols that can be
+used to compose a desired symbol if you can write an appropriate
+macro for it.
+
+The following table shows symbols that belong to the first category.
+For each symbol, an example of input method and its output is also
+given. Note that barred or crossed symbols can be easily made by
+\tipa{}'s \verb|\ipabar| macro.
+
+\def\SecLine{\>}
+
+\medskip
+\begin{tabbing}
+\iftimes
+x \=xxxxxxxxxxxxxxxxxxxxxxxx \=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \= \kill
+\else
+x \=xxxxxxxxxxxxxxxxxxxxxxxx \=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \= \kill
+\fi
+\> Barred small capital I 
+  \SecLine \verb|\ipabar{\textsci}{.5ex}{1.1}{}{}| \>
+  \ipabar{\textsci}{.5ex}{1.1}{}{} \\
+\> Barred J 
+  \SecLine \verb|\ipabar{j}{.5ex}{1.1}{}{}| \>
+  \ipabar{j}{.5ex}{1.1}{}{} \\
+\> Crossed K 
+  \SecLine \verb|\ipabar{k}{1.2ex}{.6}{}{.4}| \>
+  \ipabar{k}{1.2ex}{.6}{}{.4} \\
+\> Barred open O 
+  \SecLine \verb|\ipabar{\textopeno}{.5ex}{.6}{.4}{}| \>
+  \ipabar{\textopeno}{.5ex}{.5}{.5}{} \\
+\> Barred small capital omega 
+  \SecLine \verb|\ipabar{\textscomega}{.5ex}{1.1}{}{}| \>
+  \ipabar{\textscomega}{.5ex}{1.1}{}{} \\
+\> Barred P 
+  \SecLine \verb|\ipabar{p}{.5ex}{1.1}{}{}| \>
+  \ipabar{p}{.5ex}{1.1}{}{} \\
+\> Half-barred U 
+  \SecLine \verb|\ipabar{u}{.5ex}{.5}{}{.5}| \>
+  \ipabar{u}{.5ex}{.5}{}{.5} \\
+\> Barred small capital U 
+  \SecLine \verb|\ipabar{\textscu}{.5ex}{1.1}{}{}| \>
+  \ipabar{\textscu}{.5ex}{1.1}{}{} \\
+\iftimes
+\> Double slash 
+  \SecLine \verb|/\kern-.1em/| \>
+  /\kern-.1em/ \\
+\> Triple slash 
+  \SecLine \verb|/\kern-.1em/\kern-.1em/| \>
+  /\kern-.1em/\kern-.1em/ 
+\else
+\> Double slash 
+  \SecLine \verb|/\kern-.25em/| \>
+  /\kern-.25em/ \\
+\> Triple slash 
+  \SecLine \verb|/\kern-.25em/\kern-.25em/| \>
+  /\kern-.25em/\kern-.25em/ 
+\fi
+\end{tabbing}
+
+The next definitions attach a tiny `left hook' (which shows
+palatalization) to a symbol. For example:
+
+\iftimes
+\newcommand\textlhookb{{\tipaencoding
+  b\hspace{-.1em}\raisebox{.0ex}{\textpalhookvar}}}
+\newcommand\textlhookm{{\tipaencoding
+  m\hspace{-.1em}\raisebox{.0ex}{\textpalhook}}}
+\begin{verbatim}
+  % Left-hook B
+  \newcommand\textlhookb{{\tipaencoding
+    b\hspace{-.1em}\raisebox{.0ex}{\textpalhookvar}}}
+  % Left-hook M
+  \newcommand\textlhookm{{\tipaencoding
+    m\hspace{-.1em}\raisebox{.0ex}{\textpalhook}}}
+\end{verbatim}
+\else
+\newcommand\textlhookb{{\tipaencoding
+  b\hspace{-.15em}\raisebox{.0ex}{\textpalhookvar}}}
+\newcommand\textlhookm{{\tipaencoding
+  m\hspace{-.15em}\raisebox{.0ex}{\textpalhook}}}
+\begin{verbatim}
+  % Left-hook B
+  \newcommand\textlhookb{{\tipaencoding
+    b\hspace{-.15em}\raisebox{.0ex}{\textpalhookvar}}}
+  % Left-hook M
+  \newcommand\textlhookm{{\tipaencoding
+    m\hspace{-.15em}\raisebox{.0ex}{\textpalhook}}}
+\end{verbatim}
+\fi
+
+The former example uses a left-hook called \Tt{textpalhookvar},
+(\KK\textpalhookvar\KK) and the latter uses a hook called \Tt{textpalhook},
+(\KK\textpalhook\KK).
+
+\begin{quote}
+  Left-hook B --- \textlhookb \\
+  Left-hook M --- \textlhookm
+\end{quote}
+
+Symbols that belong to the second category are shown below. Note that
+slashed symbols can be in fact easily made by a macro. For example, a
+slashed b i.e., \ipaclap{\textipa{b}}{\textipa{/}} can be made by
+\verb|\ipaclap{\textipa{b}}{\textipa{/}}|. The reason why slashed
+symbols are not included in \tipa{} is as follows: first, a simple
+overlapping of a symbol and a slash does not always result in a good
+shape, and secondly, it doesn't seem significant to devise fine-tuned
+macros for symbols which were created essentially for typewriters.
+
+\medskip
+\begin{tabbing}
+xxxx \=xxxxxxxxxxxxxxxxxxxxxxxx \= \kill
+\> Slashed B \>
+  \ipaclap{\textipa{b}}{\textipa{/}} \\
+\> Slashed C \>
+  \ipaclap{\textipa{c}}{\textipa{/}} \\
+\> Slashed D \>
+  \ipaclap{\textipa{d}}{\textipa{/}} \\
+\> Slashed U \>
+  \ipaclap{\textipa{u}}{\textipa{/}} \\
+\> Slashed W \>
+  \ipaclap{\textipa{w}}{\textipa{/}}
+\end{tabbing}
+
+\endgroup
+
+\clearemptydoublepage
+\chapter{FAQ}
+
+\newcount\FAQcnt \FAQcnt=0
+
+\newcommand\QandA[2]{{\par\bigskip\parindent0pt
+  \global\advance\FAQcnt 1
+  \hangindent2em\hangafter1 \textbf{Q\the\FAQcnt:} #1\par\medskip
+  \hangindent2em\hangafter1 \textbf{A\the\FAQcnt:} #2\par\medskip}}
+
+\newcommand\NextPar{\par\hangindent2em\hangafter0\relax}
+
+\QandA {I have installed all the \tipa{} fonts. But the system can't
+  find them. What's wrong?}{Please don't forget to run the command
+  \texttt{mktexlsr} after the installation. Also, try to run the
+  command:\par\begin{quote}\texttt{kpsewhich tipa10.mf}\end{quote}
+  \NextPar If the system shows nothing in return, you must have
+  installed them in a wrong place.}
+
+\QandA {I'm using shortcut letters but there are still many symbols
+  which have no shortcut letters. What can I do? Do I have to use all
+  these long names?}{You are free to define shorter names. \LaTeX's
+  \texttt{\tbs newcommand} is a safe way to do this. For example:
+
+  \begin{quote}
+  \texttt{\tbs newcommand\tbi\tbs vef\tbii\tbi\tbs textbarrevglotstop\tbii}
+  \end{quote}
+
+  \vspace{-5mm}
+  \begin{tipaexample}
+    \yitem \texttt{[\tbs vef] is a voiced epiglottal fricative.}
+    \yitem \textipa{\let\vef\textbarrevglotstop [\vef]} is a
+      voiced epiglottal fricative.
+  \end{tipaexample}}
+
+\QandA {I want to use the \LaTeX\ command \texttt{\tbs |} in the IPA
+  environment. But I don't want to specify the \texttt{safe}
+  option. Is it possible?}{Use a command called \texttt{\tbs Vert}
+  instead of \texttt{\tbs |}. It has the same meaning. Other possibly
+  dangerous commands such as \texttt{\tbs:}, \texttt{\tbs:} and
+  \texttt{\tbs!} have a similar substitute command. For more
+  details, see page~\pageref{unsafemode}.}
+  
+\QandA {I can't input Eng (\texttt{\tbs ng})
+  properly. Why?}{Use \texttt{\tbs textipa\tbi N\tbii}. Technically
+  speaking, this is a matter of priority among the \texttt{OT1},
+  \texttt{T1} and \texttt{T3} encodings. But may be called a bug. I'll
+  work out this problem in the next release.}
+
+\QandA {How can I input \emph{capital letters}, I mean real capital
+  letters, not small capitals, within the IPA environment?}{Use the
+  command \texttt{\tbs*}. For example:
+
+  \begin{tipaexample}
+    \yitem \texttt{\tbs textipa\tbi["pI\tbs *Di]\tbii}
+    \yitem \textipa{["pI\*Di]}
+  \end{tipaexample}\NextPar This command is explained in
+  section~\ref{sec:specialmacros}.}
+
+\QandA {How can I output an accent or diacritic symbol alone? For
+  example, I want to print the umlaut symbol alone, in order to
+  explain the usage of this symbol.}{Try to add an empty argument
+ to the umlaut command.
+
+  \begin{tipaexample}
+    \yitem \texttt{\tbs texipa\tbi[\tbs"\tbi\tbii]\tbii}
+    \yitem \textipa{[\"{}]}
+  \end{tipaexample}}
+
+\QandA {Are there only a limited number of tone letters?}
+  {Absolutely not! Please read section \ref{sec:tone} carefully.}
+
+\QandA {How to create a PDF file?} {You can find a few examples in
+  section \ref{sec:pdf}.}
+
+\QandA {I have succeeded in creating a PDF document. But \tipa{} fonts
+  don't look good (jaggy).  What's wrong?}{Type1 fonts are not
+  embedded in your document and pk fonts are used instead. Install
+  Type1 font files and/or map file correctly.}
+
+\QandA {I have succeeded in creating a PDF document with Type1 fonts
+  embedded. But some symbols are missing. Why?}{In some versions of
+  \texttt{dvips}, the character shifting switch is turned on by
+  default. In order to prevent this, try to invoke \texttt{dvips} in
+  the following way.\par
+  \begin{quote}\texttt{dvips -Ppdf -G0} \textsl{filename}\end{quote}}
+
+\QandA {I find no description on hyphenation of phonetic texts in this
+  manual.}{I haven't seen any description on hyphenation in \Handbook\ 
+  nor in \emph{Principles}. }
+
+\QandA {Why is italic font not included in \tipa? Slanted fonts can be
+  used as substitutes. But I want real italic fonts.}{It isn't
+  difficult to create italic shapes for a limited number of symbols
+  such as Schwa, Turned script A, and so on. However, creating a whole
+  set of IPA symbols in italic is quite a different story. It is
+  difficult to distinguish, for example, Lower-case A and Script A in
+  italic. In the IPA's \emph{Principles}, it is recommended
+  that the IPA symbols should be roman, excluding italic shapes in
+  some of the examples.  Another point that should be made is that
+  there exist several systems of phonetic symbols in which all the
+  symbols appear in italic. These are the ones mainly used in
+  Scandinavian countries, and the problem is, there is no one-to-one
+  correspondences between such systems and the IPA.  Aside from the
+  strictly phonetic use of symbols, however, there is a practical need
+  for italic versions of symbols such as italic Schwa. Therefore, it
+  may be helpful to create a new auxiliary font containing limited
+  number of italic symbols.}
+
+\QandA {Which is the first name of the author of \tipa? I'm confused.}
+  {Rei is his first name.}
+
+\QandA {I can't send e-mail to the author.}
+  {I recently changed my e-mail address.
+
+  \begin{quote}\texttt{fkr@l.u-tokyo.ac.jp}\end{quote}}
+  
+
+\vspace{\stretch{2}}
+
+\betacomment
+\thetacomment
+
+\endinput
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "tipaman"
+%%% End: 

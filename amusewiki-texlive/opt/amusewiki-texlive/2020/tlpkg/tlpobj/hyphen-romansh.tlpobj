@@ -1,0 +1,17 @@
+name hyphen-romansh
+category TLCore
+revision 54568
+shortdesc Romansh hyphenation patterns.
+longdesc Hyphenation patterns for Romansh in ASCII encoding. They are
+longdesc supposed to comply with the rules indicated by the Lia
+longdesc Rumantscha (Romansh language society).
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=romansh 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-rm.tex 	file_patterns=hyph-rm.pat.txt 	file_exceptions=
+containersize 3512
+containerchecksum 02143210121593b7660b2dd2c3f3ea1c57e9c9fdf7a4b192381f2976a295aff605ee083f303135590183284292ced236a43c53c733ba4d989247afd65c05ee8e
+runfiles size=5
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-rm.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-rm.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-rm.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-rm.pat.txt
