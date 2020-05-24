@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+export PATH=/opt/amusewiki-texlive/current/bin/arch:$PATH
 dir=$1
 
 if [ ! -d "$dir" ]; then
