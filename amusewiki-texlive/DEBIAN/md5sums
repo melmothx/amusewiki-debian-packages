@@ -190,6 +190,7 @@ c163e8c297e7eb3bc3b397cfbee8075b  opt/amusewiki-texlive/2020/tlpkg/tlpobj/texliv
 11b8c4eb9e652f0b7a97b85977d6e663  opt/amusewiki-texlive/2020/tlpkg/tlpobj/fontspec.tlpobj
 1c321f945a1b7d471be3da74ceaeae5b  opt/amusewiki-texlive/2020/tlpkg/tlpobj/hyphen-norwegian.tlpobj
 4c40ea9503f7dc1b8c333165ec12c55f  opt/amusewiki-texlive/2020/tlpkg/tlpobj/graphics-cfg.tlpobj
+c14ad1c0cfb2cd1fe884186c8ff64c85  opt/amusewiki-texlive/2020/tlpkg/tlpobj/chngcntr.tlpobj
 ae9575761de1ca14ad073c8da46ca168  opt/amusewiki-texlive/2020/tlpkg/tlpobj/zapfding.tlpobj
 c8848f8dca86bcc2759f0beaa8edab16  opt/amusewiki-texlive/2020/tlpkg/tlpobj/pst-text.tlpobj
 d8632f5669d1f6265818848d70e92364  opt/amusewiki-texlive/2020/tlpkg/tlpobj/luaotfload.tlpobj
@@ -302,7 +303,7 @@ d41d8cd98f00b204e9800998ecf8427e  opt/amusewiki-texlive/2020/tlpkg/gpg/secring.g
 70b4224205bbd9f300d3cb6f6a7e4754  opt/amusewiki-texlive/2020/tlpkg/gpg/pubring.gpg
 0cb9e65158954b666c12a2b3a1f318bb  opt/amusewiki-texlive/2020/tlpkg/gpg/tl-key-extension.txt
 9c64f178674c1514eb5855d2118bd125  opt/amusewiki-texlive/2020/tlpkg/gpg/random_seed
-fff17954f75e4c405f896d9e0ca2a578  opt/amusewiki-texlive/2020/tlpkg/texlive.tlpdb
+03ba813404c21ef3b8e258bcfaf0e174  opt/amusewiki-texlive/2020/tlpkg/texlive.tlpdb
 8ea9ab43c7438a078934c65dcde9492b  opt/amusewiki-texlive/2020/tlpkg/TeXLive/TLTREE.pm
 4346954f2a2efb05107b24323f02c4b8  opt/amusewiki-texlive/2020/tlpkg/TeXLive/TLDownload.pm
 51496d9b27e8cbbac815b4a62a333c87  opt/amusewiki-texlive/2020/tlpkg/TeXLive/TLUtils.pm
@@ -378,7 +379,7 @@ fcf4bb8076867d2221e8e05d1a93e057  opt/amusewiki-texlive/2020/texmf-dist/web2c/na
 6aded70d09124c4a585bb6f38449482f  opt/amusewiki-texlive/2020/texmf-dist/web2c/mktexupd
 8e32e6b7854d889126138b271ff40d20  opt/amusewiki-texlive/2020/texmf-dist/web2c/il2-cs.tcx
 bdaa51da478bcf6f61c31d48d2cdcc21  opt/amusewiki-texlive/2020/texmf-dist/web2c/mktex.opt
-fd75bc9e8a86ceac0010ea7aea982fbe  opt/amusewiki-texlive/2020/texmf-dist/ls-R
+35ba32275c69aebeeb446333fc826f27  opt/amusewiki-texlive/2020/texmf-dist/ls-R
 4d1e346a95e3a566786597499457f08c  opt/amusewiki-texlive/2020/texmf-dist/metafont/base/plain.mf
 8153f2ea78491094378d71fe55c2dd9a  opt/amusewiki-texlive/2020/texmf-dist/metafont/base/mf.mf
 2ff4166ae1bda7b8f7a20f014c51aad5  opt/amusewiki-texlive/2020/texmf-dist/metafont/config/mf.ini
@@ -910,6 +911,9 @@ da6addf565b3a9d611371fcb15ac506a  opt/amusewiki-texlive/2020/texmf-dist/doc/late
 b86f43c7c355be1b9cd1baf706077253  opt/amusewiki-texlive/2020/texmf-dist/doc/latex/imakeidx/manifest.txt
 d5745d29e6747e8e726d41c40b7eb59b  opt/amusewiki-texlive/2020/texmf-dist/doc/latex/imakeidx/README
 277ae09fe780c3ab177cf5abecf5086a  opt/amusewiki-texlive/2020/texmf-dist/doc/latex/imakeidx/imakeidx.pdf
+6cd5517866e38995130548118e649fe7  opt/amusewiki-texlive/2020/texmf-dist/doc/latex/chngcntr/chngcntr.tex
+6acb695949043c410029b6f6f29c1606  opt/amusewiki-texlive/2020/texmf-dist/doc/latex/chngcntr/README.md
+895264f639807ad0a686ccba8d3f41fb  opt/amusewiki-texlive/2020/texmf-dist/doc/latex/chngcntr/chngcntr.pdf
 42b4685b5dbe9408559da83478bfbcf5  opt/amusewiki-texlive/2020/texmf-dist/doc/latex/enumitem/README.md
 c032bd62cd0141fc3cd82b0d358485fe  opt/amusewiki-texlive/2020/texmf-dist/doc/latex/enumitem/enumitem.pdf
 f3b187285de078a2dbdd24b94b353305  opt/amusewiki-texlive/2020/texmf-dist/doc/latex/enumitem/enumitem.tex
@@ -5997,6 +6001,7 @@ a4bf4125bc928e22aece80f9f53a7164  opt/amusewiki-texlive/2020/texmf-dist/tex/late
 3499604f20f3834493519f380c50e9da  opt/amusewiki-texlive/2020/texmf-dist/tex/latex/ncctools/nccstretch.sty
 aaaf173937741a15d062985b54055590  opt/amusewiki-texlive/2020/texmf-dist/tex/latex/ncctools/afterpackage.sty
 125eef0f7c172b11b3241e78413dc5e1  opt/amusewiki-texlive/2020/texmf-dist/tex/latex/imakeidx/imakeidx.sty
+84bc4a8edb126e69abec1a67dc0c36cf  opt/amusewiki-texlive/2020/texmf-dist/tex/latex/chngcntr/chngcntr.sty
 f8f08183cd2080d9d18a41432d651dfb  opt/amusewiki-texlive/2020/texmf-dist/tex/latex/enumitem/enumitem.sty
 3701aebf80ccdef248c0c20dd062fea9  opt/amusewiki-texlive/2020/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 0796eafca5e159e6ec2167a6d22d81b1  opt/amusewiki-texlive/2020/texmf-dist/tex/latex/pgf/math/pgfmath.sty
@@ -9340,7 +9345,7 @@ daa8e7a3a1eaae85f84bc8794677f7b4  opt/amusewiki-texlive/2020/texmf-var/web2c/pdf
 537201c84c2e68ce33b0d3955303ef59  opt/amusewiki-texlive/2020/texmf-var/web2c/xetex/xetex.fmt
 b2ada4e9973ecd003c143772632342b2  opt/amusewiki-texlive/2020/texmf-var/web2c/tex/tex.fmt
 027764808cf9f7c4f998621771283635  opt/amusewiki-texlive/2020/texmf-var/web2c/tex/tex.log
-f379f179e92cf01132e75634f789fe44  opt/amusewiki-texlive/2020/texmf-var/web2c/tlmgr.log
+10b8a7e3fbb3545c7b3aa44167670e75  opt/amusewiki-texlive/2020/texmf-var/web2c/tlmgr.log
 df5fafda4158fb5e606c896d8f4f5c6e  opt/amusewiki-texlive/2020/texmf-var/web2c/updmap.log
 ff893d0b5ebb990269df1bb6e14c8afc  opt/amusewiki-texlive/2020/texmf-var/web2c/luatex/dviluatex.fmt
 a79220678a41de410c61d42cf37b7ca0  opt/amusewiki-texlive/2020/texmf-var/web2c/luatex/dvilualatex.log
