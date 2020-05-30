@@ -1,0 +1,36 @@
+name footmisc
+category Package
+revision 23330
+shortdesc A range of footnote options
+longdesc A collection of ways to change the typesetting of footnotes.
+longdesc The package provides means of changing the layout of the
+longdesc footnotes themselves (including setting them in 'paragraphs' --
+longdesc the para option), a way to number footnotes per page (the
+longdesc perpage option), to make footnotes disappear in a 'moving'
+longdesc argument (stable option) and to deal with multiple references
+longdesc to footnotes from the same place (multiple option). The package
+longdesc also has a range of techniques for labelling footnotes with
+longdesc symbols rather than numbers. Some of the functions of the
+longdesc package are overlap with the functionality of other packages.
+longdesc The para option is also provided by the manyfoot and bigfoot
+longdesc packages, though those are both also portmanteau packages.
+longdesc (Don't be seduced by fnpara, whose implementation is improved
+longdesc by the present package.) The perpage option is also offered by
+longdesc footnpag and by the rather more general-purpose perpage
+containersize 5904
+containerchecksum 50d0d02b243936d2455ad2353c0da1b77aab9f8f822033a98062d979b686163b94798784dc6b8496dda3ef38eadbd04a21e153f0fa9a76b499c50159c169fb85
+doccontainersize 325412
+doccontainerchecksum 3a732fe8a1ca364275a7b0849be097e307ba322ff611a650a4625cc47792410b974055c75165b62ec8d5d2a128b0d6a194d798248bcd6bae266c7638ffe67e01
+docfiles size=81
+ texmf-dist/doc/latex/footmisc/README details="Readme"
+ texmf-dist/doc/latex/footmisc/footmisc.pdf details="Package documentation" language="en"
+srccontainersize 19772
+srccontainerchecksum 3489b4c09a145ba19d25120a48368470d65c2407a8c5697946ae669fdd63f0dc7176ea171ccd2a815055a6fc16f02523f7b2ca084c60159c1768a8a3b2eccf11
+runfiles size=7
+ texmf-dist/tex/latex/footmisc/footmisc.sty
+catalogue-also endnotes ftnright footmisx
+catalogue-contact-bugs https://github.com/FrankMittelbach/fmitex/issues
+catalogue-ctan /macros/latex/contrib/footmisc
+catalogue-license lppl1.3
+catalogue-topics footnote
+catalogue-version 5.5b

@@ -866,6 +866,7 @@ etoolbox
 euenc
 filehook
 fontspec
+footmisc
 fp
 geometry
 gettitlestring
@@ -1259,6 +1260,10 @@ fontspec-example.tex
 fontspec.pdf
 LICENSE
 README.md
+
+./doc/latex/footmisc:
+footmisc.pdf
+README
 
 ./doc/latex/fp:
 documentation.pdf
@@ -9061,6 +9066,7 @@ etoolbox
 euenc
 filehook
 fontspec
+footmisc
 fp
 geometry
 graphics
@@ -9493,6 +9499,9 @@ fontspec.lua
 fontspec-luatex.sty
 fontspec.sty
 fontspec-xetex.sty
+
+./tex/latex/footmisc:
+footmisc.sty
 
 ./tex/latex/fp:
 defpattern.sty
