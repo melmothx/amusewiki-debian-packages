@@ -1,0 +1,35 @@
+Source: libtest-www-mechanize-psgi-perl
+Section: perl
+Priority: optional
+Build-Depends:
+ debhelper,
+ libplack-perl <!nocheck>,
+ libtest-www-mechanize-perl <!nocheck>,
+ libtry-tiny-perl <!nocheck>,
+ perl,
+Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
+Uploaders:
+ Jonas Smedegaard <dr@jones.dk>,
+Standards-Version: 4.3.0
+Vcs-Git: https://salsa.debian.org/perl-team/modules/packages/libtest-www-mechanize-psgi-perl.git
+Vcs-Browser: https://salsa.debian.org/perl-team/modules/packages/libtest-www-mechanize-psgi-perl
+Homepage: https://metacpan.org/release/Test-WWW-Mechanize-PSGI
+Testsuite: autopkgtest-pkg-perl
+Rules-Requires-Root: no
+
+Package: libtest-www-mechanize-psgi-perl
+Architecture: all
+Depends:
+ libplack-perl,
+ libtest-www-mechanize-perl,
+ libtry-tiny-perl,
+ ${misc:Depends},
+ ${perl:Depends},
+Description: test PSGI programs using WWW::Mechanize
+ Test::WWW::Mechanize is a subclass of WWW::Mechanize
+ that incorporates features for web application testing.
+ The Test::WWW::Mechanize::PSGI module meshes the two
+ to allow easy testing of PSGI applications.
+ .
+ PSGI is a specification to decouple web server environments
+ from web application framework code.

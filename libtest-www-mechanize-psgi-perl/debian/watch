@@ -1,0 +1,6 @@
+version=4
+# check: uscan --report
+# update: gbp import-orig --upstream-vcs-tag=vX.Y.Z --uscan
+
+https://metacpan.org/release/Test-WWW-Mechanize-PSGI \
+.*/Test-WWW-Mechanize-PSGI@ANY_VERSION@@ARCHIVE_EXT@

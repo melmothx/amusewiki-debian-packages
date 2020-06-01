@@ -1,0 +1,78 @@
+libtest-www-mechanize-psgi-perl (0.38-1) unstable; urgency=medium
+
+  [ upstream ]
+  * New release(s).
+
+  [ Salvatore Bonaccorso ]
+  * Update Vcs-* headers for switch to salsa.debian.org.
+
+  [ gregor herrmann ]
+  * Update URLs from {search,www}.cpan.org to MetaCPAN.
+  * Update GitHub URLs to use HTTPS.
+
+  [ Jonas Smedegaard ]
+  * Simplify rules.
+    Stop build-depend on licensecheck cdbs.
+  * Update watch file:
+    + Rewrite usage comment.
+    + Use substitution strings.
+  * Tighten lintian overrides regarding License-Reference.
+  * Stop build-depend on dh-buildinfo.
+  * Mark build-dependencies needed only for testsuite as such.
+  * Declare compliance with Debian Policy 4.3.0.
+  * Enable autopkgtest.
+  * Set Rules-Requires-Root: no.
+  * Wrap and sort control file.
+  * Explain PSGI last in long description.
+  * Update copyright info:
+    + Use https protocol in Format URL.
+    + Extend coverage of packaging.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Thu, 21 Feb 2019 16:11:27 +0100
+
+libtest-www-mechanize-psgi-perl (0.36-1) unstable; urgency=medium
+
+  [ upstream ]
+  * New release.
+
+  [ Salvatore Bonaccorso ]
+  * Change Vcs-Git to canonical URI (git://anonscm.debian.org)
+
+  [ Axel Beckert ]
+  * debian/copyright: migrate pre-1.0 format to 1.0 using "cme fix
+    dpkg-copyright"
+
+  [ Jonas Smedegaard ]
+  * Update copyright info:
+    + Use issue tracker as preferred form oc contact.
+    + Add alternate git source.
+    + Use License-Grant and License-Reference fields.
+      Thanks to Ben Finney.
+    + Extend coverage for Debian packaging.
+    + Tighten licensing for Debian packaging to GPL-3+.
+  * Update watch file:
+    + Bump to file format 4.
+    + Watch MetaCPAN URL.
+    + Mention gbp --uscan in usage comment.
+  * Modernize git-buildpackage config: Filter any .git* file.
+  * Add lintian overrides regarding license in License-Reference field.
+    See bug#786450.
+  * Bump debhelper compatibility level to 9.
+  * Declare compliance with Debian Policy 3.9.8.
+  * Modernize Vcs-* fields:
+    + Use https URLs.
+    + Use cgit browser
+  * Drop CDBS get-orig-source target: Use gbp import-orig --uscan.
+  * Modernize CDBS use:
+    + Build-depend on licensecheck (not devscripts).
+    + Relax to build-depend unversioned on cdbs.
+  * Relax to build-depend unversioned on debhelper.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Thu, 15 Dec 2016 23:53:44 +0100
+
+libtest-www-mechanize-psgi-perl (0.35-1) unstable; urgency=low
+
+  * Initial packaging release.
+    Closes: bug#626878.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Mon, 16 May 2011 05:55:41 +0200
