@@ -1,6 +1,6 @@
 name texlive.infra
 category TLCore
-revision 54630
+revision 55382
 shortdesc basic TeX Live infrastructure
 longdesc This package contains the files needed to get tlmgr running:
 longdesc perl modules, xz binaries, plus (sometimes) tar, wget, lz4, and
@@ -8,10 +8,10 @@ longdesc various other support files. This package also represents the
 longdesc tlcritical recovery scripts. The standalone installer is close,
 longdesc but not the same; it's defined in 00texlive.installer.
 depend texlive.infra.ARCH
-containersize 226244
-containerchecksum a1a6611b48a3a2cc7bae0455a6f8fb7c12112136951ca017e3ddcaca3f16f0198a628a5ccf2f6a43095dc3f97f639e0f4d2407901923bea1656fc4877dd764ee
-doccontainersize 203768
-doccontainerchecksum d0f387986cdc8c89388e0b2aa6bd5ab4c6fbd94d57e0969b425856c3538ff18c6e17924eca5ace59272d6a875aa3b63fbf97d3d2d31f6a9a69c21e6d0f199801
+containersize 226888
+containerchecksum 16a1942cf6d76233bd1256f403c1c57c0aefa0e28841ec13387c4ac50103e2d1472db32711b5a1b08c35a7f6142117aecdf5dd6c724fd6240ca1357e23fbc38d
+doccontainersize 204008
+doccontainerchecksum fb9fed36b6816ab069a447921573076257674db6a3f6136bf762355b5a9047980c13ec7e42942f4a1ce396fe31295fd42486c32684c0864f97d121e6ccdc9b7d
 docfiles size=138
  README
  README.usergroups
@@ -53,7 +53,7 @@ docfiles size=138
  texmf-dist/scripts/texlive/NEWS
  tlpkg/README
  tlpkg/installer/COPYING.MinGW-runtime.txt
-runfiles size=260
+runfiles size=261
  LICENSE.CTAN
  LICENSE.TL
  release-texlive.txt

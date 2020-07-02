@@ -2159,12 +2159,16 @@ README
 
 ./doc/xetex:
 base
+xetex-pstricks
 
 ./doc/xetex/base:
 NEWS
 README
 XeTeX-notes.pdf
 XeTeX-notes.tex
+
+./doc/xetex/xetex-pstricks:
+README
 
 ./doc/xindy:
 alphabets-doc.pdf
@@ -6429,6 +6433,7 @@ latex
 luatex
 plain
 xelatex
+xetex
 
 ./tex/context:
 third
@@ -10666,6 +10671,7 @@ pgfrcs.tex
 ./tex/xelatex:
 bidi
 xetexconfig
+xetex-pstricks
 xunicode
 
 ./tex/xelatex/bidi:
@@ -10802,8 +10808,17 @@ xltxtra-xetex-bidi.def
 ./tex/xelatex/xetexconfig:
 crop.cfg
 
+./tex/xelatex/xetex-pstricks:
+pstricks.con
+
 ./tex/xelatex/xunicode:
 xunicode.sty
+
+./tex/xetex:
+xetex-pstricks
+
+./tex/xetex/xetex-pstricks:
+pstricks.con
 
 ./texdoc:
 texdoc.cnf

@@ -1,12 +1,12 @@
 #!/usr/bin/env perl
-# $Id: tlmgr.pl 54446 2020-03-21 16:45:22Z karl $
+# $Id: tlmgr.pl 55369 2020-06-01 00:32:00Z preining $
 #
 # Copyright 2008-2020 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 
-my $svnrev = '$Revision: 54446 $';
-my $datrev = '$Date: 2020-03-21 17:45:22 +0100 (Sat, 21 Mar 2020) $';
+my $svnrev = '$Revision: 55369 $';
+my $datrev = '$Date: 2020-06-01 02:32:00 +0200 (Mon, 01 Jun 2020) $';
 my $tlmgrrevision;
 my $tlmgrversion;
 my $prg;
@@ -25,6 +25,7 @@ our $ismain;
 our $loadmediasrcerror;
 our $packagelogfile;
 our $packagelogged;
+our $commandlogfile;
 our $tlmgr_config_file;
 our $pinfile;
 our $action; # for the pod2usage -sections call
@@ -358,6 +359,7 @@ my %globaloptions = (
   "machine-readable" => 1,
   "no-execute-actions" => 1,
   "package-logfile" => "=s",
+  "command-logfile" => "=s",
   "persistent-downloads" => "!",
   "pause" => 1,
   "pin-file" => "=s",
@@ -653,6 +655,22 @@ for the full story.\n";
     debug("appending to package log file: $packagelogfile\n");
   }
 
+  # output of executed commands are put into -command-logfile
+  $commandlogfile = $opts{"command-logfile"};
+  if ($opts{"usermode"}) {
+    $commandlogfile ||= "$::maintree/web2c/tlmgr-commands.log";
+  } else {
+    $commandlogfile ||= "$texmfsysvar/web2c/tlmgr-commands.log";
+  }
+  # Try to open the packagelog file, but do NOT die when that does not work
+  if (!open(COMMANDLOG, ">>$commandlogfile")) {
+    debug("Cannot open command log file for appending: $commandlogfile\n");
+    debug("Will not log output of executed commands for this run\n");
+    $commandlogfile = "";
+  } else {
+    debug("appending to command log file: $commandlogfile\n");
+  }
+
   $loadmediasrcerror = "Cannot load TeX Live database from ";
 
   # load the config file and set the config options
@@ -815,7 +833,7 @@ sub do_cmd_and_check {
   # tlmgr front ends (MacOSX's TeX Live Utility) can read it
   # and show it to the user before the possibly long delay.
   info("running $cmd ...\n");
-  logpackage("running $cmd");
+  logcommand("running $cmd");
   my ($out, $ret);
   if ($opts{"dry-run"}) {
     $ret = $F_OK;
@@ -829,22 +847,17 @@ sub do_cmd_and_check {
   } else {
     ($out, $ret) = TeXLive::TLUtils::run_cmd("$cmd 2>&1");
   }
-  # Although it is quite verbose to report all the output from every
-  # fmtutil (especially) run, it's the only way to know what's normal
-  # when something fails. Prefix each line to make them easy to see
-  # (and filter out/in).
-  (my $prefixed_out = $out) =~ s/^/(cmd)/gm;
-  $prefixed_out =~ s/\n+$//; # trailing newlines don't seem interesting
-  my $outmsg = "output:\n$prefixed_out\n--end of output of $cmd.\n";
+  $out =~ s/\n+$//; # trailing newlines don't seem interesting
+  my $outmsg = "output:\n$out\n--end of output of $cmd.\n";
   if ($ret == $F_OK) {
     info("done running $cmd.\n");
-    logpackage("success, $outmsg");
+    logcommand("success, $outmsg");
     ddebug("$cmd $outmsg");
     return ($F_OK);
   } else {
     info("\n");
     tlwarn("$prg: $cmd failed (status $ret), output:\n$out\n");
-    logpackage("error, status: $ret, $outmsg");
+    logcommand("error, status: $ret, $outmsg");
     return ($F_ERROR);
   }
 }
@@ -6625,8 +6638,16 @@ sub action_shell {
         init_local_db();
         print "OK\n";
       } elsif ($what eq "remote") {
-        init_tlmedia_or_die();
-        print "OK\n";
+        my ($ret, $err) = init_tlmedia();
+        if ($ret) {
+          print("OK\n");
+        } else {
+          if ($::machinereadable) {
+            # replace \n with \\n to get single line
+            $err =~ s/\n/\\n/g;
+          }
+          print("ERROR $err\n");
+        }
       } else {
         print "ERROR can only load 'local' or 'remote', not $what\n";
       }
@@ -7350,6 +7371,9 @@ sub load_options_from_config {
         tlwarn("$prg: $fn: unknown value for no-checksums: $val\n");
       }
 
+    } elsif ($key eq "tkfontscale") {
+      $config{'tkfontscale'} = $val;
+
     } elsif ($sysmode) {
       # keys here are only allowed in sys mode
       if ($key eq "allowed-actions") {
@@ -7446,6 +7470,13 @@ sub logpackage {
     print PACKAGELOG "[$tim] @_\n";
   }
 }
+sub logcommand {
+  if ($commandlogfile) {
+    my $tim = localtime();
+    print COMMANDLOG "[$tim] @_\n";
+  }
+}
+
 
 # resolve relative paths from tlpdb wrt tlroot 
 sub norm_tlpdb_path {
@@ -7793,6 +7824,13 @@ S<Japanese (ja)>, S<Dutch (nl)>, S<Polish (pl)>, S<Brazilian Portuguese
 (zh_CN)>, and S<traditional Chinese (zh_TW)>.
 
 tlshell shares its message catalog with tlmgr.
+
+=item B<--command-logfile> I<file>
+
+C<tlmgr> logs the output of all programs invoked (mktexlr, mtxrun, fmtutil,
+updmap) to a separate log file, by default
+C<TEXMFSYSVAR/web2c/tlmgr-commands.log>.  This option allows you to specify a
+different file for the log.
 
 =item B<--debug-translation>
 
@@ -9263,6 +9301,9 @@ command-line option.
 =item C<require-verification>, value 0 or 1 (default 0), same as
 command-line option.
 
+=item C<tkfontscale>, value any float.
+Controls the scaling of fonts in the Tk based frontends.
+
 =item C<update-exclude>, value: comma-separated list of packages
 (no space allowed). Same as the command line option C<--exclude>
 for the action C<update>.
@@ -10023,7 +10064,7 @@ This script and its documentation were written for the TeX Live
 distribution (L<https://tug.org/texlive>) and both are licensed under the
 GNU General Public License Version 2 or later.
 
-$Id: tlmgr.pl 54446 2020-03-21 16:45:22Z karl $
+$Id: tlmgr.pl 55369 2020-06-01 00:32:00Z preining $
 =cut
 
 # test HTML version: pod2html --cachedir=/tmp tlmgr.pl >/tmp/tlmgr.html

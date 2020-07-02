@@ -1,4 +1,4 @@
-# $Id: TLCrypto.pm 54064 2020-03-04 01:25:36Z preining $
+# $Id: TLCrypto.pm 55178 2020-05-17 16:46:24Z karl $
 # TeXLive::TLCrypto.pm - handle checksums and signatures.
 # Copyright 2016-2020 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -12,7 +12,7 @@ use TeXLive::TLConfig;
 use TeXLive::TLUtils qw(debug ddebug win32 which platform
                         conv_to_w32_path tlwarn tldie);
 
-my $svnrev = '$Revision: 54064 $';
+my $svnrev = '$Revision: 55178 $';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
@@ -260,7 +260,7 @@ sub verify_checksum_and_check_return {
     if ($is_main) {
       tldie("$0: main database at $path is not signed: $m\n");
     }
-    debug("$0: remote database checksum is not signed, continuing anyway: $m\n");
+    debug("$0: remote database checksum is not signed, continuing anyway\n");
     return(0, $r);
   } elsif ($r == $VS_EXPKEYSIG) {
     debug("$0: good signature bug gpg key expired, continuing anyway!\n");

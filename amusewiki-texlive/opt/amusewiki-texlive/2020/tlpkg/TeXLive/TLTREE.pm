@@ -1,4 +1,4 @@
-# $Id: TLTREE.pm 54067 2020-03-04 02:40:21Z karl $
+# $Id: TLTREE.pm 55106 2020-05-11 21:11:50Z karl $
 # TeXLive::TLTREE.pm - work with the tree of all files
 # Copyright 2007-2020 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -6,7 +6,7 @@
 
 package TeXLive::TLTREE;
 
-my $svnrev = '$Revision: 54067 $';
+my $svnrev = '$Revision: 55106 $';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
@@ -199,8 +199,9 @@ sub _initialize_lines {
       next if ($1 eq "D"); # ignore files which are removed
       next if -d $entry && ! -l $entry; # keep symlinks to dirs (bin/*/man),
                                         # ignore normal dirs.
-      # collect architectures, assuming nothing is in bin/ but arch subdirs.
-      if ($entry =~ m,^bin/([^/]*)/,) {
+      # collect architectures; bin/ has arch subdirs plus the plain man
+      # special case.
+      if ($entry =~ m,^bin/([^/]*)/, && $entry ne "bin/man") {
         $archs{$1} = 1;
       }
       $self->{'_allfiles'}{$entry}{'lastchangedrev'} = $lastchanged;

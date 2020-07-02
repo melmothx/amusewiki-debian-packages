@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "TLMGR 1"
-.TH TLMGR 1 "2020-02-16" "perl v5.30.1" "User Contributed Perl Documentation"
+.TH TLMGR 1 "2020-06-01" "perl v5.30.2" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -339,6 +339,12 @@ Czech\ (cs), German\ (de), French\ (fr), Italian\ (it),
 Japanese\ (ja), Dutch\ (nl), Polish\ (pl), Brazilian\ Portuguese\ (pt_BR), Russian\ (ru), Slovak\ (sk), Slovenian\ (sl), Serbian\ (sr), Ukrainian\ (uk), Vietnamese\ (vi), simplified\ Chinese\ (zh_CN), and traditional\ Chinese\ (zh_TW).
 .Sp
 tlshell shares its message catalog with tlmgr.
+.IP "\fB\-\-command\-logfile\fR \fIfile\fR" 4
+.IX Item "--command-logfile file"
+\&\f(CW\*(C`tlmgr\*(C'\fR logs the output of all programs invoked (mktexlr, mtxrun, fmtutil,
+updmap) to a separate log file, by default
+\&\f(CW\*(C`TEXMFSYSVAR/web2c/tlmgr\-commands.log\*(C'\fR.  This option allows you to specify a
+different file for the log.
 .IP "\fB\-\-debug\-translation\fR" 4
 .IX Item "--debug-translation"
 In \s-1GUI\s0 mode, this switch tells \f(CW\*(C`tlmgr\*(C'\fR to report any untranslated (or
@@ -1674,6 +1680,9 @@ The allowed keys are:
 .ie n .IP """require\-verification"", value 0 or 1 (default 0), same as command-line option." 4
 .el .IP "\f(CWrequire\-verification\fR, value 0 or 1 (default 0), same as command-line option." 4
 .IX Item "require-verification, value 0 or 1 (default 0), same as command-line option."
+.ie n .IP """tkfontscale"", value any float. Controls the scaling of fonts in the Tk based frontends." 4
+.el .IP "\f(CWtkfontscale\fR, value any float. Controls the scaling of fonts in the Tk based frontends." 4
+.IX Item "tkfontscale, value any float. Controls the scaling of fonts in the Tk based frontends."
 .ie n .IP """update\-exclude"", value: comma-separated list of packages (no space allowed). Same as the command line option ""\-\-exclude"" for the action ""update""." 4
 .el .IP "\f(CWupdate\-exclude\fR, value: comma-separated list of packages (no space allowed). Same as the command line option \f(CW\-\-exclude\fR for the action \f(CWupdate\fR." 4
 .IX Item "update-exclude, value: comma-separated list of packages (no space allowed). Same as the command line option --exclude for the action update."
@@ -2364,4 +2373,4 @@ This script and its documentation were written for the TeX Live
 distribution (<https://tug.org/texlive>) and both are licensed under the
 \&\s-1GNU\s0 General Public License Version 2 or later.
 .PP
-\&\f(CW$Id:\fR tlmgr.pl 53803 2020\-02\-16 17:17:22Z karl $
+\&\f(CW$Id:\fR tlmgr.pl 55369 2020\-06\-01 00:32:00Z preining $

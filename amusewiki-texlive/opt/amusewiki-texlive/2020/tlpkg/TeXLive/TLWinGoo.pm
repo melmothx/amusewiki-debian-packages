@@ -1,4 +1,4 @@
-# $Id: TLWinGoo.pm 54289 2020-03-14 10:46:20Z siepo $
+# $Id: TLWinGoo.pm 55175 2020-05-17 09:41:28Z siepo $
 # TeXLive::TLWinGoo.pm - Windows goop.
 # Copyright 2008-2018 Siep Kroonenberg, Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -11,7 +11,7 @@
 
 package TeXLive::TLWinGoo;
 
-my $svnrev = '$Revision: 54289 $';
+my $svnrev = '$Revision: 55175 $';
 my $_modulerevision;
 if ($svnrev =~ m/: ([0-9]+) /) {
   $_modulerevision = $1;
@@ -1424,7 +1424,7 @@ sub maybe_make_ro {
   # /reset is necessary for removing non-standard existing permissions
   my $cmd = 'cmd /c "icacls . /reset && icacls . /inheritance:r'.
     ' /grant:r *S-1-5-32-544:(OI)(CI)F'.
-    ' /grant:r *S-1-5-11:(OI)(CI)RX /grant:r *S-1-5-32-545:(OI)(CI)RX /T"';
+    ' /grant:r *S-1-5-11:(OI)(CI)RX /grant:r *S-1-5-32-545:(OI)(CI)RX"';
   log "Making read-only\n".`$cmd`."\n";
 
   # go back to original directory

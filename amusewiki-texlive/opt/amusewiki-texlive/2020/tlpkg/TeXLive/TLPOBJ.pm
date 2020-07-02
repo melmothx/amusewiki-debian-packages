@@ -1,4 +1,4 @@
-# $Id: TLPOBJ.pm 53204 2019-12-21 23:18:19Z karl $
+# $Id: TLPOBJ.pm 54748 2020-04-15 03:02:45Z preining $
 # TeXLive::TLPOBJ.pm - module for using tlpobj files
 # Copyright 2007-2019 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -6,7 +6,7 @@
 
 package TeXLive::TLPOBJ;
 
-my $svnrev = '$Revision: 53204 $';
+my $svnrev = '$Revision: 54748 $';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
@@ -290,17 +290,17 @@ sub writeout {
     write $fd;  # use that multilineformat
   }
   if (defined($self->{'depends'})) {
-    foreach (@{$self->{'depends'}}) {
+    foreach (sort @{$self->{'depends'}}) {
       print $fd "depend $_\n";
     }
   }
   if (defined($self->{'executes'})) {
-    foreach (@{$self->{'executes'}}) {
+    foreach (sort @{$self->{'executes'}}) {
       print $fd "execute $_\n";
     }
   }
   if (defined($self->{'postactions'})) {
-    foreach (@{$self->{'postactions'}}) {
+    foreach (sort @{$self->{'postactions'}}) {
       print $fd "postaction $_\n";
     }
   }
@@ -381,17 +381,17 @@ sub writeout_simple {
   print $fd "name ", $self->name, "\n";
   print $fd "category ", $self->category, "\n";
   if (defined($self->{'depends'})) {
-    foreach (@{$self->{'depends'}}) {
+    foreach (sort @{$self->{'depends'}}) {
       print $fd "depend $_\n";
     }
   }
   if (defined($self->{'executes'})) {
-    foreach (@{$self->{'executes'}}) {
+    foreach (sort @{$self->{'executes'}}) {
       print $fd "execute $_\n";
     }
   }
   if (defined($self->{'postactions'})) {
-    foreach (@{$self->{'postactions'}}) {
+    foreach (sort @{$self->{'postactions'}}) {
       print $fd "postaction $_\n";
     }
   }

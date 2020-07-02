@@ -1,4 +1,4 @@
-# $Id: TLPDB.pm 54630 2020-04-06 11:49:32Z preining $
+# $Id: TLPDB.pm 55126 2020-05-13 17:27:10Z karl $
 # TeXLive::TLPDB.pm - tlpdb plain text database files.
 # Copyright 2007-2020 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -6,7 +6,7 @@
 
 package TeXLive::TLPDB;
 
-my $svnrev = '$Revision: 54630 $';
+my $svnrev = '$Revision: 55126 $';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
@@ -1972,10 +1972,10 @@ sub _install_data {
     }
     my $ww = ($whatsize || "<unset>");
     my $ss = ($whatcheck || "<unset>");
-    debug("tlpdb:_install_data: what=$what, target=$target, size=$ww, checksum=$ss, tmpdir=$tempdir\n");
+    debug("TLPDB::_install_data: what=$what, target=$target, size=$ww, checksum=$ss, tmpdir=$tempdir\n");
     my ($ret, $pkg) = TeXLive::TLUtils::unpack($what, $target, 'size' => $whatsize, 'checksum' => $whatcheck, 'tmpdir' => $tempdir);
     if (!$ret) {
-      tlwarn("TLPDB::_install_package: $pkg\n");
+      tlwarn("TLPDB::_install_data: $pkg for $what\n"); # $pkg is error msg
       return(0);
     }
     # remove the $pkg.tlpobj, we recreate it anyway again
@@ -1983,7 +1983,7 @@ sub _install_data {
       if (-r "$target/tlpkg/tlpobj/$pkg.tlpobj");
     return(1);
   } else {
-    tlwarn("TLPDB::_install_package: don't know how to install $what\n");
+    tlwarn("TLPDB::_install_data: don't know how to install $what\n");
     return(0);
   }
 }

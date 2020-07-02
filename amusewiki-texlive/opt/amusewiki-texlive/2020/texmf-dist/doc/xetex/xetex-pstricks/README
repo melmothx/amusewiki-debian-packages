@@ -1,0 +1,26 @@
+PSTricks configuration for XeTeX (with the xdvipdfmx driver)
+============================================================
+
+This package provides configuration files to support the use of PSTricks
+with the xdvipdfmx output driver, required by the XeTeX engine.
+
+To enable the xetex and xelatex formats to find the correct configuration,
+without interfering with other programs (e.g, LaTeX + dvips), two files
+named `pstricks.con' are installed as:
+  tex/xetex/xetex-pstricks/pstricks.con
+  tex/xelatex/xetex-pstricks/pstricks.con
+These will be found by default when PSTricks is loaded by Xe(La)TeX, but not
+by other engines which will find the standard `pstricks.con' file in the
+`generic' tree.
+
+These two files simply load the real configuration file `xdvipdfmx.con' from
+the main pstricks package. This allows PSTricks to work automatically with
+XeTeX, without requiring the user to add options to the source or to copy or
+rename configuration files.
+
+
+This work is provided in the hope that it may be useful, but without warranty
+of any kind, either expressed or implied, including, but not limited to, the
+implied warranties of merchantability and fitness for a particular purpose.
+
+This work may be distributed, used and modified freely.
