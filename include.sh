@@ -85,6 +85,11 @@ you will need to <strong>put the hostname on /etc/hosts</strong> to access it fo
 initial configuration.
 </p>
 
+<p>The initial site with documentation is created to give you a way to
+reach the admin panel, where you should create a brand new site from
+<code>/admin/sites</code> and possibly make inactive the default
+one.</p>
+
 <p>
 
 The installation procedure will send a mail to
@@ -93,8 +98,6 @@ nginx configuration instructions. If for some reason you didn't get
 it, you can look at <code>/var/log/amusewiki/installation.log</code>
 (since version 2.310). 
 </p>
-
-
 
     <h1>List of packages provided by this repository</h1>
     <p>
