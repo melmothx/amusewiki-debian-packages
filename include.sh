@@ -46,6 +46,19 @@ release 2.390. You can still run Amusewiki on such systems using the
 <a href="https://amusewiki.org/library/install">manual
 installation</a>.</p>
 
+<p>Supported database are mysql, postgresql and sqlite3. 
+Please install <code>postgresql</code> or
+<code>mysql-server</code> <strong>before starting the installation</strong>. You will
+be prompted to choose which one to use.</p>
+
+<p>
+Amusewiki uses nginx as frontend server, so <strong>if you have Apache
+running, you need to change your setup (and free the HTTP and HTTPS
+ports) before starting the installation.</strong>
+See for example <a href="http://kbeezie.com/apache-with-nginx/">this 
+article</a> for a combined setup Apache/Nginx.
+</p>
+
 
     <h2>Add the key</h2>
     <pre>
@@ -71,13 +84,6 @@ The virtual host used by nginx is roughly a blind guess, so probably
 you will need to <strong>put the hostname on /etc/hosts</strong> to access it for the
 initial configuration.
 </p>
-<p>
-Amusewiki uses nginx as frontend server, so <strong>if you have Apache
-running, you need to change your setup (and free the HTTP and HTTPS
-ports) before starting the installation.</strong>
-See for example <a href="http://kbeezie.com/apache-with-nginx/">this 
-article</a> for a combined setup Apache/Nginx.
-</p>
 
 <p>
 
@@ -88,10 +94,6 @@ it, you can look at <code>/var/log/amusewiki/installation.log</code>
 (since version 2.310). 
 </p>
 
-<p>Supported database are mysql, postgresql and sqlite3. 
-Please install <code>postgresql</code> or
-<code>mysql-server</code> <strong>before starting the installation</strong>. You will
-be prompted to choose which one to use.</p>
 
 
     <h1>List of packages provided by this repository</h1>
