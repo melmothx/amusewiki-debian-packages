@@ -1,6 +1,6 @@
 Package: amusewiki-texlive
 Source: amusewiki-texlive
-Version: 20200702-1
+Version: 20210618-1
 Architecture: amd64
 Maintainer: Marco Pessotto <marco@pessotto.hr>
 Installed-Size: 424544
