@@ -14,6 +14,7 @@ if [ -f "$1" ]; then
     # reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb jessie $1
     reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb stretch $1
     reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb buster $1
+    reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb bullseye $1
     mkdir -p uploaded
     mv $1 uploaded
 fi
@@ -35,7 +36,7 @@ cat <<EOF > /var/www/packages.amusewiki.org/repos/apt/index.html
     <title>Amusewiki debian packages</title>
   </head>
   <body>
-    <h1>How to install <a href="https://amusewiki.org">amusewiki</a> in 4 commands (on Debian Stretch/Buster and Ubuntu 18.04 LTS)</h1>
+    <h1>How to install <a href="https://amusewiki.org">amusewiki</a> in 4 commands (on Debian Stretch/Buster/Bullseye and Ubuntu 18.04 LTS)</h1>
 
 <p>Please note that the .deb packages provided here are fully compatible for Debian and Ubuntu, and the instructions are the same
 even if the source list will say <code>debian</code>.</p>
@@ -65,7 +66,7 @@ article</a> for a combined setup Apache/Nginx.
 # wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -
     </pre>
     <h2>Add a source list entry</h2>
-    <p>Please use <code>buster</code> (for Debian Buster) instead of <code>stretch</code> (Debian Stretch and Ubuntu 18.04) depending on your distribution. See below for the details.</p>
+    <p>Please use <code>bullseye</code> (for Debian Bullseye) or <code>buster</code> (for Debian Buster) instead of <code>stretch</code> (Debian Stretch and Ubuntu 18.04) depending on your distribution. See below for the details.</p>
     <pre>
 # echo 'deb http://packages.amusewiki.org/debian stretch main' &gt; /etc/apt/sources.list.d/amusewiki.list
     </pre>
@@ -104,15 +105,29 @@ it, you can look at <code>/var/log/amusewiki/installation.log</code>
       <a href="/debian/pool">You can browse them here</a>
     </p>
     <div>
-      <h2>Jessie (and Ubuntu 16.04 LTS). [ARCHIVED]</h2>
+      <h2>Bullseye</h2>
     <pre>
-# echo 'deb http://packages.amusewiki.org/debian jessie main' &gt; /etc/apt/sources.list.d/amusewiki.list
+# echo 'deb http://packages.amusewiki.org/debian bullseye main' &gt; /etc/apt/sources.list.d/amusewiki.list
     </pre>
 
       <pre>
 EOF
 
-reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list jessie | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
+reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list bullseye | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
+
+cat <<EOF>>/var/www/packages.amusewiki.org/repos/apt/index.html
+      </pre>
+    </div>
+    <div>
+      <h2>Buster</h2>
+    <pre>
+# echo 'deb http://packages.amusewiki.org/debian buster main' &gt; /etc/apt/sources.list.d/amusewiki.list
+    </pre>
+
+      <pre>
+EOF
+
+reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list buster | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
 
 cat <<EOF>>/var/www/packages.amusewiki.org/repos/apt/index.html
       </pre>
@@ -128,19 +143,22 @@ EOF
 
 reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list stretch | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
 
+
+
 cat <<EOF>>/var/www/packages.amusewiki.org/repos/apt/index.html
       </pre>
     </div>
     <div>
-      <h2>Buster</h2>
+      <h2>Jessie (and Ubuntu 16.04 LTS). [ARCHIVED]</h2>
     <pre>
-# echo 'deb http://packages.amusewiki.org/debian buster main' &gt; /etc/apt/sources.list.d/amusewiki.list
+# echo 'deb http://packages.amusewiki.org/debian jessie main' &gt; /etc/apt/sources.list.d/amusewiki.list
     </pre>
 
       <pre>
 EOF
 
-reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list buster | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
+reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list jessie | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
+
 
 cat <<EOF >> /var/www/packages.amusewiki.org/repos/apt/index.html
       </pre>
