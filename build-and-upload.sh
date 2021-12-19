@@ -9,7 +9,11 @@ if [ ! -d "$dir" ]; then
 fi
 
 rm -fv ${dir}*.{deb,build,changes}
+
 cd $dir
+if [ $dir = 'amusewiki' ]; then
+    rm -rf shared/archive/
+fi
 debuild -i -us -uc --pre-clean --post-clean -b
 fakeroot debian/rules clean
 cd ..
