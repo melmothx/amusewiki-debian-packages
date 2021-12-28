@@ -12,6 +12,7 @@ set -e
 
 basedir=`pwd`
 build=${BUILD:-1}
+year=2021
 
 if [ "$1" = "bootstrap" ]; then
     rm -rf amusewiki-texlive/opt
@@ -24,7 +25,7 @@ fi
 
 # create symbolic links
 rm -f      amusewiki-texlive/opt/amusewiki-texlive/current
-ln -s 2020 amusewiki-texlive/opt/amusewiki-texlive/current
+ln -s $year amusewiki-texlive/opt/amusewiki-texlive/current
 rm -f              amusewiki-texlive/opt/amusewiki-texlive/current/bin/arch
 ln -s x86_64-linux amusewiki-texlive/opt/amusewiki-texlive/current/bin/arch
 cd $basedir/amusewiki-texlive
@@ -42,7 +43,7 @@ Installed-Size: $size
 Section: tex
 Priority: optional
 Homepage: https://amusewiki.org
-Description: Minimal TeX Live installation for Amusewiki
+Description: Minimal TeX Live $year installation for Amusewiki
  This package contains a minimal and portable installation of TeX Live.
  .
  It is meant to be used by the Amusewiki compiler, but can be used
