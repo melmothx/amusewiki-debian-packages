@@ -1,0 +1,18 @@
+Source: fonts-fandol
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: https://ctan.org/tex-archive/fonts/fandol
+
+Package: fonts-fandol
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Fandol fonts
+ These fonts are developed by Fandol team.
+ The member of Fandol team: Clerk Ma & Jie Su.
+ .
+ These fonts's licensing is GPL + GPL font exception.
