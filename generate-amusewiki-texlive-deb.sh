@@ -20,7 +20,7 @@ if [ "$1" = "bootstrap" ]; then
     mkdir -p amusewiki-texlive/opt
     mv amusewiki/local/texlive amusewiki-texlive/opt/amusewiki-texlive
     # cleanup the installation directory
-    # rm -rf amusewiki/local/install-texlive
+    rm -rf amusewiki/local/install-texlive
 fi
 
 # create symbolic links
