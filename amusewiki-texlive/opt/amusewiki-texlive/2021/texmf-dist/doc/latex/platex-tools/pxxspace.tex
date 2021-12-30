@@ -1,0 +1,100 @@
+%# -*- coding: utf-8 -*-
+\ifx\epTeXinputencoding\undefined\else % defined in e-pTeX (> TL2016)
+  \epTeXinputencoding utf8    % ensure utf-8 encoding for platex
+\fi
+
+\documentclass[a4paper]{jsarticle}
+\usepackage{doc}
+\usepackage{pxxspace}
+\GetFileInfo{pxxspace.sty}
+\title{Package \textsf{pxxspace} \fileversion}
+\author{Takayuki Yato}
+\date{\filedate}
+
+%%%%% BEGIN
+%
+% \RESTOREXSPACE: restore original behavior to show difference
+%
+\makeatletter\def\RESTOREXSPACE{%
+%
+%% patch \@xspace
+\patchcmd\@xspace{%from
+  \pxxs@precheck
+  \@xspace@lettoken@if@letter@TF
+}{%to
+  \@xspace@lettoken@if@letter@TF
+}{}{}
+%% patch \@xspace@eTeX@setup
+\patchcmd\@xspace@eTeX@setup{%from
+  \begingroup
+  \pxxs@forcecjktoken
+}{%to
+  \begingroup
+}{}{}
+%
+}\makeatother
+%
+%%%%% END
+
+\begin{document}
+
+\maketitle
+
+The command \verb+\xspace+ of package \textsf{xspace}
+(included in \textsf{latex-tools} bundle)
+results in wrong interword spacing when followed by
+a Japanese character.
+The package \textsf{pxxspace} provides a patch for \textsf{xspace}
+to correct interword spacing with Japanese characters.
+
+This package is part of \textsf{platex-tools} bundle:
+\begin{verbatim}
+  https://github.com/aminophen/platex-tools
+\end{verbatim}
+
+\bigskip
+
+\textsf{xspace}パッケージ（\textsf{latex-tools}バンドルの一つ）が
+提供する \verb+\xspace+ 命令は、その直後に和文文字を伴うときに
+その和文文字との間のスペーシングが正しくなりません。
+そこで、\textsf{pxxspace}パッケージを読み込めば
+和文文字との間のスペーシングが修正されます。
+
+以下に例を示します。
+\begin{verbatim}
+    % Sample code
+    \documentclass{article}
+    \usepackage{pxxspace}% or, \usepackage{xspace}
+    \newcommand\myTeX{\TeX\xspace}
+    \begin{document}
+    % ASCII-Kanji interword spacing should be 20pt.
+    % At the same time, no spacing before JP punctuations.
+    \xkanjiskip 20pt % visible
+    \myTeX is great!\par
+    \myTeX, it's awesome!\par
+    \myTeX は素晴らしい！\par
+    \myTeX、超スゴイ！\par
+    \end{document}
+\end{verbatim}
+
+\begin{quote}
+\begin{multicols}{2}
+  \xkanjiskip 20pt % visible
+  \newcommand\myTeX{\TeX\xspace}
+  \long\def\TEST{%
+    \myTeX is great!\par
+    \myTeX, it's awesome!\par
+    \myTeX は素晴らしい！\par
+    \myTeX、超スゴイ！\par
+  }
+  % 正しいスペーシング：
+  Correct with \verb+\usepackage{pxxspace}+\par
+  \TEST
+  % 誤ったスペーシング：
+  \RESTOREXSPACE
+  Wrong with \verb+\usepackage{xspace}+\par
+  \TEST
+\end{multicols}
+\end{quote}
+
+\end{document}

@@ -1,0 +1,551 @@
+%%
+%% This is file `belarusian.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% belarusian.dtx  (with options: `code')
+%% ----------------------------------------------------------------
+%% Belarusian Language Support for the Babel package
+%% E-mail: andrew@shadura.me
+%% Released under the LaTeX Project Public License v1.3c or later
+%% See http://www.latex-project.org/lppl.txt
+%% ----------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesLanguage{belarusian}[2018/10/09 1.5 Belarusian support for the Babel system]
+\LdfInit{belarusian}{captionsbelarusian}
+\ifdefined\if@uni@ode@be
+  \PackageError{babel}{if@uni@ode already defined.\MessageBreak
+    Please contact author of belarusian.ldf}
+  \relax
+\fi
+\newif\if@uni@ode@be
+\ifdefined\luatexversion \@uni@ode@betrue \else
+\ifdefined\XeTeXrevision \@uni@ode@betrue \fi\fi
+\ifx\l@belarusian\@undefined
+  \@nopatterns{Belarusian}
+  \adddialect\l@belarusian0
+\fi
+\def\@setcyrillicencoding{%
+  \def\sce@a##1##2{%
+    \edef\sce@b{##1}%
+    \edef\sce@c{##2}%
+    \ifx\sce@b\sce@c
+      \let\cyrillicencoding\sce@c
+    \fi}%
+  \def\cdp@elt##1##2##3##4{%
+    \sce@a{##1}{OT2}%
+    \sce@a{##1}{LCY}%
+    \sce@a{##1}{X2}%
+    \sce@a{##1}{T2C}%
+    \sce@a{##1}{T2B}%
+    \sce@a{##1}{T2A}%
+    \if@uni@ode@be
+      \sce@a{##1}{EU1}%
+      \sce@a{##1}{EU2}%
+    \fi}%
+  \cdp@list
+}
+\@setcyrillicencoding
+\@onlypreamble\@setcyrillicencoding
+\@onlypreamble\sce@a
+\@onlypreamble\sce@b
+\@onlypreamble\sce@c
+\ifdefined\cyrillicencoding
+\else
+  \if@uni@ode@be
+    \ifdefined\XeTeXrevision
+      \edef\cyrillicencoding{EU1}
+    \else\ifdefined\luatexversion
+      \edef\cyrillicencoding{EU2}
+    \fi\fi
+  \else
+    \edef\cyrillicencoding{T2A}
+  \fi
+  \PackageWarning{babel}%
+    {No Cyrillic font encoding has been loaded so far.\MessageBreak
+     A font encoding should be declared before babel.\MessageBreak
+     Default `\cyrillicencoding' encoding will be loaded
+    }%
+  \lowercase\expandafter{\expandafter\input\cyrillicencoding enc.def\relax}%
+  \AtBeginDocument{\@setcyrillicencoding}
+\fi
+\DeclareRobustCommand{\Belarusian}{\selectlanguage{\belarusian}}
+\DeclareRobustCommand{\cyrillictext}{%
+  \fontencoding\cyrillicencoding\selectfont
+  \let\encodingdefault\cyrillicencoding
+  \expandafter\set@hyphenmins\belarusianhyphenmins
+  \language\l@belarusian}%
+\let\cyr\cyrillictext
+%%\DeclareRobustCommand{\English}{%
+%%  \fontencoding\latinencoding\selectfont
+%%  \let\encodingdefault\latinencoding
+%%  \expandafter\set@hyphenmins\englishhyphenmins
+%%  \language\l@english}%
+%%\let\Eng\English
+\expandafter\ifx\csname T@X2\endcsname\relax\else
+  \DeclareTextSymbolDefault{\AA}{OT1}
+  \DeclareTextSymbolDefault{\aa}{OT1}
+  \DeclareTextCommand{\aa}{OT1}{\r a}
+  \DeclareTextCommand{\AA}{OT1}{\r A}
+\fi
+\DeclareTextFontCommand{\textcyrillic}{\cyrillictext}
+\@ifpackageloaded{inputenc}{%
+ \if@uni@ode@be
+   \PackageWarning{babel}{inputenc should not be used with LuaTeX or XeTeX}
+ \fi
+}{%
+  %\def\reserved@a{LWN}%
+  %\ifx\reserved@a\cyrillicencoding\else
+    \def\reserved@a{OT2}%
+    \ifx\reserved@a\cyrillicencoding\else
+       \def\reserved@a{EU1}%
+       \ifx\reserved@a\cyrillicencoding\else
+          \def\reserved@a{EU2}%
+          \ifx\reserved@a\cyrillicencoding\else
+             \PackageWarning{babel}%
+                {No input encoding specified for Belarusian language}
+    \fi\fi\fi
+  %\fi
+}
+\initiate@active@char{"}
+\begingroup \catcode`\"12
+\def\reserved@a{\endgroup
+  \def\@SS{\mathchar"7019 }
+  \def\dq{"}}
+\reserved@a
+\declare@shorthand{belarusian}{"`}{\quotedblbase}
+\declare@shorthand{belarusian}{"'}{\textquotedblleft}
+\declare@shorthand{belarusian}{"<}{\guillemotleft}
+\declare@shorthand{belarusian}{">}{\guillemotright}
+\declare@shorthand{belarusian}{""}{\hskip\z@skip}
+\declare@shorthand{belarusian}{"~}{\textormath{\leavevmode\hbox{-}}{-}}
+\declare@shorthand{belarusian}{"=}{\nobreak-\hskip\z@skip}
+\declare@shorthand{belarusian}{"|}{%
+  \textormath{\nobreak\discretionary{-}{}{\kern.03em}\allowhyphens}{}}
+\declare@shorthand{belarusian}{"-}{%
+  \def\belarusian@sh@tmp{%
+    \if\belarusian@sh@next-\expandafter\belarusian@sh@emdash
+    \else\expandafter\belarusian@sh@hyphen\fi}%
+  \futurelet\belarusian@sh@next\belarusian@sh@tmp}
+\def\belarusian@sh@hyphen{\nobreak\-\bbl@allowhyphens}
+\def\belarusian@sh@emdash#1#2{\cdash-#1#2}
+\def\cdash#1#2#3{\def\tempx@{#3}%
+\def\tempa@{-}\def\tempb@{~}\def\tempc@{*}%
+ \ifx\tempx@\tempa@\@Acdash\else
+  \ifx\tempx@\tempb@\@Bcdash\else
+   \ifx\tempx@\tempc@\@Ccdash\else
+    \errmessage{Wrong usage of cdash}\fi\fi\fi}
+\def\@Acdash{\ifdim\lastskip>\z@\unskip\nobreak\hskip.2em\fi
+  \cyrdash\hskip.2em\ignorespaces}%
+\def\@Bcdash{\leavevmode\ifdim\lastskip>\z@\unskip\fi
+ \nobreak\cyrdash\penalty\exhyphenpenalty\hskip\z@skip\ignorespaces}%
+\def\@Ccdash{\leavevmode
+ \nobreak\cyrdash\nobreak\hskip.35em\ignorespaces}%
+\ProvideTextCommandDefault{\cyrdash}{\iflanguage{belarusian}%
+    {\hbox to.8em{--\hss--}}{\textemdash}}
+\declare@shorthand{belarusian}{",}{\nobreak\hskip.2em\ignorespaces}
+\if@uni@ode@be
+  %\captionsbelarusian@official
+  \addto\captionsbelarusian{%
+    \def\prefacename{Прадмова}%   [babel]
+    \def\refname{Спіс літаратуры}% [only article]
+    \def\abstractname{Анатацыя}%    [only article, report]
+    \def\bibname{Літаратура}%        [only book, report]
+    \def\chaptername{Глава}%         [only book, report]
+    \def\appendixname{Дадатак}%
+    \def\contentsname{Змест}%
+    \let\tocname=\contentsname
+    \def\listfigurename{Спіс ілюстрацый}%
+    \def\listtablename{Спіс табліц}%
+    \def\indexname{Прадметны паказальнік}%
+    \def\authorname{Паказальнік імён}%
+    \def\figurename{Рыс.}%
+    \def\tablename{Табліца}%
+    \def\partname{Частка}%
+    \def\enclname{укл.}%
+    \def\ccname{зых.}%
+    \def\headtoname{вх.}%
+    \def\pagename{с.}%               [letter]
+    \def\seename{гл.}%
+    \def\alsoname{гл.\ таксама}%
+    \def\proofname{Доказ}%  [amsthm]
+    \def\glossaryname{Слоўнік тэрмінаў}%
+    \def\acronymname{Абрэвіятуры}%  [glossaries] {Acronyms}
+    \def\lstlistingname{Лістынг}%    [listings]  (the environment) {Listing}
+    \def\lstlistlistingname{Лістынгі}% [listings]  (the "List of") {Listings}
+    \def\notesname{Нататкі}%         [endnotes] {Notes}
+  }%
+  %% =========================================
+  %% nomencl
+  \ifdefined\nomname
+    \addto\captionsbelarusian{%
+        \def\nomname{Азначэнні}%
+        \def\eqdeclaration#1{, гл.\nobreakspace(#1)}%
+        \def\pagedeclaration#1{, стар.\nobreakspace#1}%
+    }%
+  \fi
+  %% =========================================
+  %% RevTeX4 & RevTeX4-1
+  %%\@ifclassloaded{revtex4-1}
+  %%{<true code>}
+  %%{<false coode>}%
+  %\@ifclassloaded{revtex4-1}
+  %{%
+  \ifnum\@ifclassloaded{revtex4}{1}{\@ifclassloaded{revtex4-1}{1}{0}}>0
+    \addto\captionsbelarusian{%
+    \def\lofname{\listfigurename}
+    \def\lotname{\listtablename}
+    \def\figuresname{Рысункі}%{Figures}%
+    \def\tablesname{Табліцы}%{Tables}%
+    \def\appendixesname{Дадаткі}%{Appendixes}%
+    \def\acknowledgmentsname{Падзякі}%{Acknowledgments}
+    \def\andname{и}%{and}
+    \def\@pacs@name{PACS коды: }%{PACS numbers: }%
+    \def\@keys@name{Ключавыя словы: }%{Keywords: }%
+    \def\Dated@name{Дата: }%{Dated: }%
+    \def\Received@name{Атрымана }%{Received }%
+    \def\Revised@name{Выпраўленая версія }%{Revised }%
+    \def\Accepted@name{Прынята }%{Accepted }%
+    \def\Published@name{Апублікавана }%{Published }%
+    }%
+  %}{}%
+  \fi
+  \addto\captionsbelarusian@tarask{%
+    \def\prefacename{Прадмова}%   [babel]
+    \def\refname{Сьпіс літаратуры}% [only article]
+    \def\abstractname{Анатацыя}%    [only article, report]
+    \def\bibname{Літаратура}%        [only book, report]
+    \def\chaptername{Глава}%         [only book, report]
+    \def\appendixname{Дадатак}%
+    \def\contentsname{Зьмест}%
+    \let\tocname=\contentsname
+    \def\listfigurename{Сьпіс ілюстрацый}%
+    \def\listtablename{Сьпіс табліц}%
+    \def\indexname{Прадметны паказальнік}%
+    \def\authorname{Паказальнік імён}%
+    \def\figurename{Рыс.}%
+    \def\tablename{Табліца}%
+    \def\partname{Частка}%
+    \def\enclname{укл.}%
+    \def\ccname{зых.}%
+    \def\headtoname{вх.}%
+    \def\pagename{с.}%               [letter]
+    \def\seename{гл.}%
+    \def\alsoname{гл.\ таксама}%
+    \def\proofname{Доказ}%  [amsthm]
+    \def\glossaryname{Слоўнік тэрмінаў}%
+    \def\acronymname{Абрэвіятуры}%  [glossaries] {Acronyms}
+    \def\lstlistingname{Лістынг}%    [listings]  (the environment) {Listing}
+    \def\lstlistlistingname{Лістынгі}% [listings]  (the "List of") {Listings}
+    \def\nomname{Азначэньні}%
+    \def\notesname{Нататкі}%         [endnotes] {Notes}
+  }
+  %% =========================================
+  %% RevTeX4 & RevTeX4-1
+  %\@ifclassloaded{revtex4-1}
+  %{%
+  \ifnum\@ifclassloaded{revtex4}{1}{\@ifclassloaded{revtex4-1}{1}{0}}>0
+    \addto\captionsbelarusian@tarask{%
+    \def\lofname{\listfigurename}
+    \def\lotname{\listtablename}
+    \def\figuresname{Рысункі}%{Figures}%
+    \def\tablesname{Табліцы}%{Tables}%
+    \def\appendixesname{Дадаткі}%{Appendixes}%
+    \def\acknowledgmentsname{Падзякі}%{Acknowledgments}
+    \def\andname{и}%{and}
+    \def\@pacs@name{PACS коды: }%{PACS numbers: }%
+    \def\@keys@name{Ключавыя словы: }%{Keywords: }%
+    \def\Dated@name{Дата: }%{Dated: }%
+    \def\Received@name{Атрымана }%{Received }%
+    \def\Revised@name{Выпраўленая вэрсыя }%{Revised }%
+    \def\Accepted@name{Прынята }%{Accepted }%
+    \def\Published@name{Апублікавана }%{Published }%
+    }%
+  %}{}%
+  \fi
+  %% =========================================
+\else
+  %\def\captionsbelarusian@official{%
+  \addto\captionsbelarusian{%
+    \def\prefacename{\CYRP\cyrr\cyra\cyrd\cyrm\cyro\cyrv\cyra}%   [babel]
+    \def\refname{\CYRS\cyrp\cyrii\cyrs \cyrl\cyrii\cyrt\cyra\cyrr\cyra\cyrt\cyru\cyrr\cyrery}% [only article]
+    \def\abstractname{\CYRA\cyrn\cyra\cyrt\cyra\cyrc\cyrery\cyrya}%    [only article, report]
+    \def\bibname{\CYRL\cyrii\cyrt\cyra\cyrr\cyra\cyrt\cyru\cyrr\cyra}%        [only book, report]
+    \def\chaptername{\CYRG\cyrl\cyra\cyrv\cyra}%         [only book, report]
+    \def\appendixname{\CYRD\cyra\cyrd\cyra\cyrt\cyra\cyrk}%
+    \def\contentsname{\CYRZ\cyrm\cyre\cyrs\cyrt}%
+    \let\tocname=\contentsname
+    \def\listfigurename{\CYRS\cyrp\cyrii\cyrs \cyrii\cyrl\cyryu\cyrs\cyrt\cyrr\cyra\cyrc\cyrery\cyrishrt}%
+    \def\listtablename{\CYRS\cyrp\cyrii\cyrs \cyrt\cyra\cyrb\cyrl\cyrii\cyrc}%
+    \def\indexname{\CYRP\cyrr\cyra\cyrd\cyrm\cyre\cyrt\cyrn\cyrery \cyrp\cyra\cyrk\cyra\cyrz\cyra\cyrl\cyrsftsn\cyrn\cyrii\cyrk}%
+    \def\authorname{\CYRP\cyra\cyrk\cyra\cyrz\cyra\cyrl\cyrsftsn\cyrn\cyrii\cyrk \cyrii\cyrm\cyryo\cyrn}%
+    \def\figurename{\CYRR\cyrery\cyrs.}%
+    \def\tablename{\CYRT\cyra\cyrb\cyrl\cyrii\cyrc\cyra}%
+    \def\partname{\CYRCH\cyra\cyrs\cyrt\cyrk\cyra}%
+    \def\enclname{\cyru\cyrk\cyrl.}%
+    \def\ccname{\cyrz\cyrery\cyrh.}%
+    \def\headtoname{\cyrv\cyrh.}%
+    \def\pagename{\cyrs.}%               [letter]
+    \def\seename{\cyrg\cyrl.}%
+    \def\alsoname{\cyrg\cyrl.\ \cyrt\cyra\cyrk\cyrs\cyra\cyrm\cyra}%
+    \def\proofname{\CYRD\cyro\cyrk\cyra\cyrz}%  [amsthm]
+    \def\glossaryname{\CYRS\cyrl\cyro\cyrushrt\cyrn\cyrii\cyrk \cyrt\cyrerev\cyrr\cyrm\cyrii\cyrn\cyra\cyrushrt}%
+    \def\acronymname{\CYRA\cyrb\cyrr\cyrerev\cyrv\cyrii\cyrya\cyrt\cyru\cyrr\cyrery}%  [glossaries] {Acronyms}
+    \def\lstlistingname{\CYRL\cyrii\cyrs\cyrt\cyrery\cyrn\cyrg}%    [listings]  (the environment) {Listing}
+    \def\lstlistlistingname{\CYRL\cyrii\cyrs\cyrt\cyrery\cyrn\cyrg\cyrii}% [listings]  (the "List of") {Listings}
+    \def\nomname{\CYRA\cyrz\cyrn\cyra\cyrch\cyrerev\cyrn\cyrn\cyrii}%
+    \def\notesname{\CYRN\cyra\cyrt\cyra\cyrt\cyrk\cyrii}%         [endnotes] {Notes}
+  }%
+  %% =========================================
+  %% RevTeX4 & RevTeX4-1
+  \ifnum \@ifclassloaded{revtex4}{1}{\@ifclassloaded{revtex4-1}{1}{0}}>0
+    \addto\captionsbelarusian{%
+    \def\lofname{\listfigurename}
+    \def\lotname{\listtablename}
+    \def\figuresname{\CYRR\cyrery\cyrs\cyru\cyrn\cyrk\cyrii}%{Figures}%
+    \def\tablesname{\CYRT\cyra\cyrb\cyrl\cyrii\cyrc\cyrery}%{Tables}%
+    \def\appendixesname{\CYRD\cyra\cyrd\cyra\cyrt\cyrk\cyrii}%{Appendixes}%
+    \def\acknowledgmentsname{\CYRP\cyra\cyrd\cyrz\cyrya\cyrk\cyrii}%{Acknowledgments}
+    \def\andname{\cyri}%{and}
+    \def\@pacs@name{PACS \cyrk\cyro\cyrd\cyrery: }%{PACS numbers: }%
+    \def\@keys@name{\CYRK\cyrl\cyryu\cyrch\cyra\cyrv\cyrery\cyrya \cyrs\cyrl\cyro\cyrv\cyrery: }%{Keywords: }%
+    \def\Dated@name{\CYRD\cyra\cyrt\cyra: }%{Dated: }%
+    \def\Received@name{\CYRA\cyrt\cyrr\cyrery\cyrm\cyra\cyrn\cyra }%{Received }%
+    \def\Revised@name{\CYRV\cyrery\cyrp\cyrr\cyra\cyrushrt\cyrl\cyre\cyrn\cyra\cyrya \cyrv\cyre\cyrr\cyrs\cyrii\cyrya }%{Revised }%
+    \def\Accepted@name{\CYRP\cyrr\cyrery\cyrn\cyrya\cyrt\cyra }%{Accepted }%
+    \def\Published@name{\CYRA\cyrp\cyru\cyrb\cyrl\cyrii\cyrk\cyra\cyrv\cyra\cyrn\cyra }%{Published }%
+    }%
+  \fi
+  %% =========================================
+  \addto\captionsbelarusian@tarask{%
+    \def\prefacename{\CYRP\cyrr\cyra\cyrd\cyrm\cyro\cyrv\cyra}%   [babel]
+    \def\refname{\CYRS\cyrsftsn\cyrp\cyrii\cyrs \cyrl\cyrii\cyrt\cyra\cyrr\cyra\cyrt\cyru\cyrr\cyrery}% [only article]
+    \def\abstractname{\CYRA\cyrn\cyra\cyrt\cyra\cyrc\cyrery\cyrya}%    [only article, report]
+    \def\bibname{\CYRL\cyrii\cyrt\cyra\cyrr\cyra\cyrt\cyru\cyrr\cyra}%        [only book, report]
+    \def\chaptername{\CYRG\cyrl\cyra\cyrv\cyra}%         [only book, report]
+    \def\appendixname{\CYRD\cyra\cyrd\cyra\cyrt\cyra\cyrk}%
+    \def\contentsname{\CYRZ\cyrsftsn\cyrm\cyre\cyrs\cyrt}%
+    \let\tocname=\contentsname
+    \def\listfigurename{\CYRS\cyrsftsn\cyrp\cyrii\cyrs \cyrii\cyrl\cyryu\cyrs\cyrt\cyrr\cyra\cyrc\cyrery\cyrishrt}%
+    \def\listtablename{\CYRS\cyrsftsn\cyrp\cyrii\cyrs \cyrt\cyra\cyrb\cyrl\cyrii\cyrc}%
+    \def\indexname{\CYRP\cyrr\cyra\cyrd\cyrm\cyre\cyrt\cyrn\cyrery \cyrp\cyra\cyrk\cyra\cyrz\cyra\cyrl\cyrsftsn\cyrn\cyrii\cyrk}%
+    \def\authorname{\CYRP\cyra\cyrk\cyra\cyrz\cyra\cyrl\cyrsftsn\cyrn\cyrii\cyrk \cyrii\cyrm\cyryo\cyrn}%
+    \def\figurename{\CYRR\cyrery\cyrs.}%
+    \def\tablename{\CYRT\cyra\cyrb\cyrl\cyrii\cyrc\cyra}%
+    \def\partname{\CYRCH\cyra\cyrs\cyrt\cyrk\cyra}%
+    \def\enclname{\cyru\cyrk\cyrl.}%
+    \def\ccname{\cyrz\cyrery\cyrh.}%
+    \def\headtoname{\cyrv\cyrh.}%
+    \def\pagename{\cyrs.}%               [letter]
+    \def\seename{\cyrg\cyrl.}%
+    \def\alsoname{\cyrg\cyrl.\ \cyrt\cyra\cyrk\cyrs\cyra\cyrm\cyra}%
+    \def\proofname{\CYRD\cyro\cyrk\cyra\cyrz}%  [amsthm]
+    \def\glossaryname{\CYRS\cyrl\cyro\cyrushrt\cyrn\cyrii\cyrk \cyrt\cyrerev\cyrr\cyrm\cyrii\cyrn\cyra\cyrushrt}%
+    \def\acronymname{\CYRA\cyrb\cyrr\cyrerev\cyrv\cyrii\cyrya\cyrt\cyru\cyrr\cyrery}%  [glossaries] {Acronyms}
+    \def\lstlistingname{\CYRL\cyrii\cyrs\cyrt\cyrery\cyrn\cyrg}%    [listings]  (the environment) {Listing}
+    \def\lstlistlistingname{\CYRL\cyrii\cyrs\cyrt\cyrery\cyrn\cyrg\cyrii}% [listings]  (the "List of") {Listings}
+    \def\nomname{\CYRA\cyrz\cyrn\cyra\cyrch\cyrerev\cyrn\cyrsftsn\cyrn\cyrii}%
+    \def\notesname{\CYRN\cyra\cyrt\cyra\cyrt\cyrk\cyrii}%         [endnotes] {Notes}
+  }%
+  %% =========================================
+  %% RevTeX4 & RevTeX4-1
+  \ifnum \@ifclassloaded{revtex4}{1}{\@ifclassloaded{revtex4-1}{1}{0}}>0
+    \addto\captionsbelarusian@tarask{%
+    \def\lofname{\listfigurename}
+    \def\lotname{\listtablename}
+    \def\figuresname{\CYRR\cyrery\cyrs\cyru\cyrn\cyrk\cyrii}%{Figures}%
+    \def\tablesname{\CYRT\cyra\cyrb\cyrl\cyrii\cyrc\cyrery}%{Tables}%
+    \def\appendixesname{\CYRD\cyra\cyrd\cyra\cyrt\cyrk\cyrii}%{Appendixes}%
+    \def\acknowledgmentsname{\CYRP\cyra\cyrd\cyrz\cyrya\cyrk\cyrii}%{Acknowledgments}
+    \def\andname{\cyri}%{and}
+    \def\@pacs@name{PACS \cyrk\cyro\cyrd\cyrery: }%{PACS numbers: }%
+    \def\@keys@name{\CYRK\cyrl\cyryu\cyrch\cyra\cyrv\cyrery\cyrya \cyrs\cyrl\cyro\cyrv\cyrery: }%{Keywords: }%
+    \def\Dated@name{\CYRD\cyra\cyrt\cyra: }%{Dated: }%
+    \def\Received@name{\CYRA\cyrt\cyrr\cyrery\cyrm\cyra\cyrn\cyra }%{Received }%
+    \def\Revised@name{\CYRV\cyrery\cyrp\cyrr\cyra\cyrushrt\cyrl\cyre\cyrn\cyra\cyrya \cyrv\cyrerev\cyrr\cyrs\cyrery\cyrya }%{Revised }%
+    \def\Accepted@name{\CYRP\cyrr\cyrery\cyrn\cyrya\cyrt\cyra }%{Accepted }%
+    \def\Published@name{\CYRA\cyrp\cyru\cyrb\cyrl\cyrii\cyrk\cyra\cyrv\cyra\cyrn\cyra }%{Published }%
+    }%
+  \fi
+  %% =========================================
+\fi
+\if@uni@ode@be
+  \addto\datebelarusian{%
+   \def\today{\number\day~\ifcase\month\or
+    студзеня\or
+    лютага\or
+    сакавіка\or
+    красавіка\or
+    мая\or
+    чэрвеня\or
+    ліпеня\or
+    жніўня\or
+    верасня\or
+    кастрычніка\or
+    лістапада\or
+    снежня\fi
+    \space \number\year~г.}}
+  \def\datebelarusian@tarask{%
+   \def\today{\number\day~\ifcase\month\or%
+    студзеня\or
+    лютага\or
+    сакавіка\or
+    красавіка\or
+    траўня\or
+    чэрвеня\or
+    ліпеня\or
+    жніўня\or
+    верасьня\or
+    кастрычніка\or
+    лістапада\or
+    сьнежня\fi%
+    \space \number\year~г.}}
+\else
+  \def\datebelarusian{%
+   \def\today{\number\day~\ifcase\month\or
+    \cyrs\cyrt\cyru\cyrd\cyrz\cyre\cyrn\cyrya\or
+    \cyrl\cyryu\cyrt\cyra\cyrg\cyra\or
+    \cyrs\cyra\cyrk\cyra\cyrv\cyrii\cyrk\cyra\or
+    \cyrk\cyrr\cyra\cyrs\cyra\cyrv\cyrii\cyrk\cyra\or
+    \cyrm\cyra\cyrya\or
+    \cyrch\cyrerev\cyrr\cyrv\cyre\cyrn\cyrya\or
+    \cyrl\cyrii\cyrp\cyre\cyrn\cyrya\or
+    \cyrzh\cyrn\cyrii\cyrushrt\cyrn\cyrya\or
+    \cyrv\cyre\cyrr\cyra\cyrs\cyrn\cyrya\or
+    \cyrk\cyra\cyrs\cyrt\cyrr\cyrery\cyrch\cyrn\cyrii\cyrk\cyra\or
+    \cyrl\cyrii\cyrs\cyrt\cyra\cyrp\cyra\cyrd\cyra\or
+    \cyrs\cyrn\cyre\cyrzh\cyrn\cyrya\fi
+    \space \number\year~\cyrg.}}
+  \def\datebelarusian@tarask{%
+   \def\today{\number\day~\ifcase\month\or
+    \cyrs\cyrt\cyru\cyrd\cyrz\cyre\cyrn\cyrya\or
+    \cyrl\cyryu\cyrt\cyra\cyrg\cyra\or
+    \cyrs\cyra\cyrk\cyra\cyrv\cyrii\cyrk\cyra\or
+    \cyrk\cyrr\cyra\cyrs\cyra\cyrv\cyrii\cyrk\cyra\or
+    \cyrt\cyrr\cyra\cyrushrt\cyrn\cyrya\or
+    \cyrch\cyrerev\cyrr\cyrv\cyre\cyrn\cyrya\or
+    \cyrl\cyrii\cyrp\cyre\cyrn\cyrya\or
+    \cyrzh\cyrn\cyrii\cyrushrt\cyrn\cyrya\or
+    \cyrv\cyre\cyrr\cyra\cyrs\cyrsftsn\cyrn\cyrya\or
+    \cyrk\cyra\cyrs\cyrt\cyrr\cyrery\cyrch\cyrn\cyrii\cyrk\cyra\or
+    \cyrl\cyrii\cyrs\cyrt\cyra\cyrp\cyra\cyrd\cyra\or
+    \cyrs\cyrsftsn\cyrn\cyre\cyrzh\cyrn\cyrya\fi%
+    \space \number\year~\cyrg.}}
+\fi
+\providehyphenmins{\CurrentOption}{\tw@\tw@}
+\providehyphenmins{belarusian}{\tw@\tw@}
+\addto\extrasbelarusian{\cyrillictext}
+\addto\noextrasbelarusian{\latintext}
+\addto\extrasbelarusian{\languageshorthands{belarusian}}
+\addto\extrasbelarusian{\bbl@activate{"}}
+\addto\noextrasbelarusian{\bbl@deactivate{"}}
+\addto\extrasbelarusian{\bbl@frenchspacing}
+\addto\noextrasbelarusian{\bbl@nonfrenchspacing}
+\def\Asbuk#1{\expandafter\belarusian@Alph\csname c@#1\endcsname}
+\if@uni@ode@be
+  \def\belarusian@Alph#1{\ifcase#1\or
+    А\or Б\or В\or Г\or Д\or Е\or Ж\or
+    З\or І\or К\or Л\or М\or Н\or О\or
+    П\or Р\or С\or Т\or У\or Ф\or Х\or
+    Ц\or Ч\or Ш\or Э\or Ю\or Я\else\@ctrerr\fi}
+\else
+  \def\belarusian@Alph#1{\ifcase#1\or
+    \CYRA\or\CYRB\or\CYRV\or\CYRG\or\CYRD\or\CYRE\or\CYRZH\or
+    \CYRZ\or\CYRII\or\CYRK\or\CYRL\or\CYRM\or\CYRN\or\CYRO\or
+    \CYRP\or\CYRR\or\CYRS\or\CYRT\or\CYRU\or\CYRF\or\CYRH\or
+    \CYRC\or\CYRCH\or\CYRSH\or\CYREREV\or\CYRYU\or
+    \CYRYA\else\@ctrerr\fi}
+\fi
+\def\asbuk#1{\expandafter\belarusian@alph\csname c@#1\endcsname}
+\if@uni@ode@be
+  \def\belarusian@alph#1{\ifcase#1\or
+    а\or б\or в\or г\or д\or е\or ж\or
+    з\or і\or к\or л\or м\or н\or о\or
+    п\or р\or с\or т\or у\or ф\or х\or
+    ц\or ч\or ш\or э\or ю\or я\else\@ctrerr\fi}
+\else
+  \def\belarusian@alph#1{\ifcase#1\or
+    \cyra\or\cyrb\or\cyrv\or\cyrg\or\cyrd\or\cyre\or\cyrzh\or
+    \cyrz\or\cyrii\or\cyrk\or\cyrl\or\cyrm\or\cyrn\or\cyro\or
+    \cyrp\or\cyrr\or\cyrs\or\cyrt\or\cyru\or\cyrf\or\cyrh\or
+    \cyrc\or\cyrch\or\cyrsh\or\cyrerev\or\cyryu\or
+    \cyrya\else\@ctrerr\fi}
+\fi
+\bbl@declare@ttribute{belarusian}{classic}{%
+ \PackageInfo{babel}{Belarusian attribute set to classic}%
+ \let\captionsbelarusian=\captionsbelarusian@tarask
+ \let\datebelarusian=\datebelarusian@tarask
+}
+\bbl@declare@ttribute{belarusian}{tarask}{%
+ \PackageInfo{babel}{Belarusian attribute set to tarask}%
+ \let\captionsbelarusian=\captionsbelarusian@tarask
+ \let\datebelarusian=\datebelarusian@tarask
+}
+\@onlypreamble\captionsbelarusian@tarask
+\@onlypreamble\datebelarusian@tarask
+\def\sh{\mathop{\operator@font sh}\nolimits}
+\def\ch{\mathop{\operator@font ch}\nolimits}
+\def\tg{\mathop{\operator@font tg}\nolimits}
+\def\ctg{\mathop{\operator@font ctg}\nolimits}
+\def\arctg{\mathop{\operator@font arctg}\nolimits}
+\def\arcctg{\mathop{\operator@font arcctg}\nolimits}
+\addto\extrasbelarusian{%
+  \babel@save{\th}%
+  \let\ltx@th\th
+  \def\th{\textormath{\ltx@th}%
+                     {\mathop{\operator@font th}\nolimits}}%
+  }
+\def\cth{\mathop{\operator@font cth}\nolimits}
+\def\cosec{\mathop{\operator@font cosec}\nolimits}
+\def\Prob{\mathop{\kern\z@\mathsf{P}}\nolimits}
+\def\Variance{\mathop{\kern\z@\mathsf{D}}\nolimits}
+\if@uni@ode@be
+  \def\nod{\mathop{\mathrm{н.а.д.}}\nolimits}
+  \def\nok{\mathop{\mathrm{н.а.к.}}\nolimits}
+  \def\NOD{\mathop{\mathrm{НАД}}\nolimits}
+  \def\NOK{\mathop{\mathrm{НАК}}\nolimits}
+  \def\nad{\mathop{\mathrm{н.а.д.}}\nolimits}
+  \def\nak{\mathop{\mathrm{н.а.к.}}\nolimits}
+  \def\NAD{\mathop{\mathrm{НАД}}\nolimits}
+  \def\NAK{\mathop{\mathrm{НАК}}\nolimits}
+  \def\Proj{\mathop{\mathrm{Пр}}\nolimits}
+\else
+  \def\nod{\mathop{\textnormal{\cyrn.\cyra.\cyrd.}}\nolimits}
+  \def\nok{\mathop{\textnormal{\cyrn.\cyra.\cyrk.}}\nolimits}
+  \def\NOD{\mathop{\textnormal{\CYRN\CYRA\CYRD}}\nolimits}
+  \def\NOK{\mathop{\textnormal{\CYRN\CYRA\CYRK}}\nolimits}
+  \def\nad{\mathop{\textnormal{\cyrn.\cyra.\cyrd.}}\nolimits}
+  \def\nak{\mathop{\textnormal{\cyrn.\cyra.\cyrk.}}\nolimits}
+  \def\NAD{\mathop{\textnormal{\CYRN\CYRA\CYRD}}\nolimits}
+  \def\NAK{\mathop{\textnormal{\CYRN\CYRA\CYRK}}\nolimits}
+  \def\Proj{\mathop{\textnormal{\CYRP\cyrr}}\nolimits}
+\fi
+\ldf@finish{belarusian}
+%% ----------------------------------------------------------------
+%% Copyright 2016, 2018 Andrej Shadura
+%% Copyright 2011-2016 Igor A. Kotelnikov.
+%% Copyright 2000 Aleksey Novodvorsky
+%% Copyright 1995-2008 Olga Lapko.
+%% Copyright 1989-2012 Johannes L. Braams.
+%% 
+%% This file is a part of the Belarusian-Babel package.
+%% 
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License (LPPL), either
+%% version 1.3c of this license or (at your option) any later
+%% version.  The latest version of this license is in the file:
+%% 
+%%    http://www.latex-project.org/lppl.txt
+%% 
+%% The package is "maintained" (as per LPPL maintenance status) by
+%% Andrej Shadura.
+%% 
+%% The package consists of the file  belarusian.dtx
+%% and the derived files             belarusian.ins,
+%%                                   belarusian.ldf,
+%%                                   belarusian.pdf,
+%%                                   README.md
+%% ----------------------------------------------------------------
+%%
+%% End of file `belarusian.ldf'.

@@ -1,0 +1,35 @@
+name bookmark
+category Package
+revision 56885
+shortdesc A new bookmark (outline) organization for hyperref
+longdesc This package implements a new bookmark (outline) organization
+longdesc for package hyperref. Bookmark properties such as style and
+longdesc color can now be set. Other action types are available (URI,
+longdesc GoToR, Named). The bookmarks are generated in the first compile
+longdesc run. Package hyperref uses two runs.
+containersize 8272
+containerchecksum 56d73af9961348a8436beb957b65cd9cb0bf62c9031fa71e5f247a367ecfbbb15763214710c66e057d2806a0dc0ce09b05a163d74a7687c8f0dc340ebdbd2849
+doccontainersize 469024
+doccontainerchecksum 44491b3165eb356327345f6f7c5b690db6435369e1c58571146982285ef849425935ad03ef1c9bb0e306af740bb6b886b21226093fd083e838da29d09bb005bc
+docfiles size=119
+ texmf-dist/doc/latex/bookmark/README.md details="Readme"
+ texmf-dist/doc/latex/bookmark/bookmark-example.tex
+ texmf-dist/doc/latex/bookmark/bookmark.pdf details="Package documentation"
+srccontainersize 19148
+srccontainerchecksum 9fb4abf83e752b4c1301050feaa4d648d67fedbb6ddd9aa1bc253dd9eca76b91ce02c14fed17364d768d170e8b7ec4e991c23c582d121a4e72e4fe62a02f0442
+runfiles size=25
+ texmf-dist/tex/latex/bookmark/bkm-dvipdfm-2019-12-03.def
+ texmf-dist/tex/latex/bookmark/bkm-dvipdfm.def
+ texmf-dist/tex/latex/bookmark/bkm-dvips-2019-12-03.def
+ texmf-dist/tex/latex/bookmark/bkm-dvips.def
+ texmf-dist/tex/latex/bookmark/bkm-pdftex-2019-12-03.def
+ texmf-dist/tex/latex/bookmark/bkm-pdftex.def
+ texmf-dist/tex/latex/bookmark/bkm-vtex-2019-12-03.def
+ texmf-dist/tex/latex/bookmark/bkm-vtex.def
+ texmf-dist/tex/latex/bookmark/bookmark.sty
+catalogue-contact-bugs https://github.com/ho-tex/bookmark/issues
+catalogue-contact-repository https://github.com/ho-tex/bookmark
+catalogue-ctan /macros/latex/contrib/bookmark
+catalogue-license lppl1.3c
+catalogue-topics hyper
+catalogue-version 1.29

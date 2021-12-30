@@ -1,0 +1,19 @@
+name babel-basque
+category Package
+revision 30256
+shortdesc Babel contributed support for Basque
+longdesc The package establishes Basque conventions in a document.
+containersize 2664
+containerchecksum 40079f02225f81c8838aee6179548f3fcb773fa8e031e07f30df761f298b9980e3a4357a8013bd7802c688a192cd9ef2102be1b6e8e1f3efcd68769a9e5a5a2a
+doccontainersize 155352
+doccontainerchecksum e6342328d62cb0232d38e10b3b38cd4d75c55a5d31d702c167099a2bd4122e40c5e3cac8a9c2940a9f9893d7aa2594b8322cf469924b97e903cab970dee81c6c
+docfiles size=38
+ texmf-dist/doc/generic/babel-basque/basque.pdf details="Package documentation"
+srccontainersize 6464
+srccontainerchecksum 1c924232920a969fa48e6d61bcdfc5150cd1afcef6d98cdd27fbe2e0acb5b7749d2b2dea77db88125128b380f2b4ccca4d49d1d140f2e96880e0daf2d09c2d50
+runfiles size=2
+ texmf-dist/tex/generic/babel-basque/basque.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/basque
+catalogue-license lppl1.3
+catalogue-topics basque multilingual-addon
+catalogue-version 1.0f

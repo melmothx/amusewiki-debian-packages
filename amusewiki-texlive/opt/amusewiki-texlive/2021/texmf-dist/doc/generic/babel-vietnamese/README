@@ -1,0 +1,12 @@
+Vietnamese Support for Babel
+============================
+
+This bundle contains the Babel support files for Vietnamese.  Since version
+1.3 it supersedes the Babel support files in the VnTeX bundle.
+
+
+Version 1.4 (2015-Dec-31)
+-------------------------
+
+Javier Bezos contributed better Unicode support for XeTeX and luatex,
+avoiding a dependency on the (8-bit) T5 font encoding for those two engines.

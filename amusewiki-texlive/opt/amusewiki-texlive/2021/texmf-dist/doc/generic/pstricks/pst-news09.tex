@@ -1,0 +1,298 @@
+%% $Id: pst-news09.tex 4 2020-06-09 08:32:19Z herbert $
+\documentclass[11pt,english,BCOR10mm,DIV12,bibliography=totoc,parskip=false,smallheadings
+    headexclude,footexclude,oneside]{pst-doc}
+\listfiles
+\usepackage[utf8]{inputenc}
+\usepackage{pst-plot}
+\let\pstplotFV\fileversion
+\let\pstplotFD\filedate
+\usepackage{pst-node}
+\let\pstnodeFV\fileversion
+\let\pstnodeFD\filedate
+\usepackage{pst-tree}
+\let\psttreeFV\fileversion
+\let\psttreeFD\filedate
+\usepackage{pst-eucl}
+\renewcommand\bgImage{\psscalebox{15}{\color{blue!20}2009}}
+\begin{document}
+
+%\psset{PstDebug=1}
+\title{\texttt{News -- 2009}\\ \Large new macros and bugfixes for the
+basic packages \nxLFile{pstricks}, \nxLFile{pst-plot}, and \nxLFile{pst-node}}
+\author{Herbert Voß}
+\date{\today}
+
+\maketitle
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\part{\texttt{pstricks} -- package}
+
+\section{General}
+There exists a new document class \LClass{pst-doc} for writing PSTricks documentations,
+like this news document. It depends on the KOMA-Script document class \LClass{scrartcl}.
+\LClass{pst-doc} defines a lot of special macros to create a good index. Take one of
+the already existing package documentation and look into the source file. Then it will be
+easy to understand, how all these macros have to be used.
+
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.sty}}
+%--------------------------------------------------------------------------------------
+
+\subsection{New optional argument}
+With the new optional argument \Lkeyval{97} \LPack{pstricks} has the old behaviour of the
+version of 1997. The \Lenv{pspicture} environment then has only a value as
+optional argument, which shifts the box in vertical direction. The new options
+\Lkeyword{shift} and \Lkeyword{showgrid} do not work in this case.
+The support of transparency colors is also disabled.
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.tex} (\pstricksFV -- \pstricksFD)}
+%--------------------------------------------------------------------------------------
+\subsection{Makro \nxLcs{next}}
+To prevent problems with other packages which also define a \Lcs{next}
+macro, it is now renamed to \Lcs{ps@next}. This should be not important
+for the user, because it is used only by the base system itself.
+
+\subsection{Makro \nxLcs{psDEBUG}}
+\LPack{pstricks} defines the option \texttt{PstDebug=0|1}, which can be used for 
+debugging. The new macro \Lcs{psDEBUG} makes it easier to write some \Index{debugging}
+information into the package files. The macro is only valid, if \Lkeyword{PstDebug}=1
+is set, otherwise the macro does nothing.
+
+\begin{BDef}
+\Lcs{psDEBUG}\OptArgs\Largb{text}
+\end{BDef}
+
+\Lcs{psDEBUG} writes the argument \Larg{text} into the log file.
+Without an optional argument the word \Larg{pstricks} is used. The following output 
+of the log file 
+
+\begin{lstlisting}
+...
+<key:xticksize>: setting ticksize to max
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 26.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 26.
+<pst@@hlabels>: xticksizeC=0.0pt
+...
+\end{lstlisting}
+
+was possible with \Lcs{psset}\Largb{\Lkeyword{PstDebug}}=1\footnote{Can also be used locally for a 
+macro when used as optional argument
+in the usual way.} 
+and inside of \LPack{pstricks-add} with 
+(only the first for example):
+\begin{lstlisting}
+...
+  \psDEBUG[key:ticksize]{setting ticksize}
+...
+\end{lstlisting}
+
+\subsection{Special Coordinates}
+The macros \Lcs{SpecialCoor} and the corresponding \Lcs{NormalCoor} can now be used for
+the \Index{radius} of \Index{arc}s and \Index{circle}s. With a preceeding \Lnotation{!} character the length can
+be of any PostScript expression and will be taken with the unit pt in user coordinates: 
+
+\begin{LTXexample}[width=6cm]
+\begin{pspicture}[showgrid=true](-3,-3)(3,3)
+\pscircle[linecolor=red](0,0){1cm}
+\SpecialCoor
+\pscircle[linecolor=blue](0,0){!3 sqrt}
+\NormalCoor
+\psarc[linewidth=2pt](0,0){2cm}{90}{270}
+\SpecialCoor
+\psarc[linecolor=green](0,0){! 60 sin dup add }{90}{270}
+\end{pspicture}
+\end{LTXexample}
+
+\SpecialCoor
+
+\subsection{\nxLcs{psarcAB} and \nxLcs{psarcnAB}}
+
+\begin{BDef}
+\Lcs{psarcAB}\OptArgs\OptArg*{\Largb{arrows}}\coord{C}\coord{A}\coord{B}\\
+\Lcs{psarcnAB}\OptArgs\OptArg*{\Largb{arrows}}\coord{C}\coord{A}\coord{B}
+\end{BDef}
+
+$(x_C, y_C)$ is the center  and $(x_A, y_A)$ $(x_B, y_B)$ are two given points of the
+\Index{circle}. The angles for the \Index{arc} are calculated by \TeX. The arc is drawn from the first
+to the second point. The radius is the distance from the center to the second point.
+The first point can have another distance, it is only used for calculating the angle.
+The following examples need the package \LPack{pst-eucl}.
+
+\begin{LTXexample}[width=6cm]
+\begin{pspicture}(-3,-3)(3,3)
+\pstTriangle[PosAngle={180,0,90}](-3,0){A}(3,0){B}(0,3){C}
+\pstCircleOA{I}{A} 
+\pstMiddleAB{A}{B}{Iab}
+\pscustom[linestyle=none,fillstyle=solid,fillcolor=blue!50]{%
+  \psarcAB(C)(A)(B)
+  \psarcnAB(Iab)(B)(A)}
+\pstMiddleAB{A}{C}{Iac}
+\pscustom[linestyle=none,fillstyle=solid,fillcolor=red!50]{%
+  \psarcnAB(I)(A)(C)
+  \psarcAB(Iac)(C)(A)}
+\pstMiddleAB{B}{C}{Ibc}
+\pscustom[linestyle=none,fillstyle=solid,fillcolor=green!50]{%
+  \psarcAB(I)(B)(C)
+  \psarcnAB(Ibc)(C)(B)}
+\end{pspicture}
+\end{LTXexample}
+
+
+\subsection{Makro \nxLcs{psPline}}
+\begin{BDef}
+\Lcs{psPline}\OptArgs\coord1\coord2\coord3
+\end{BDef}
+
+The first point P1 is a projection onto the line of $\overline{P_2P_3}$
+and connected with drawing a line similiar to \Lcs{psline}. This macro
+has three mandatory arguments for the three points.
+
+\begin{LTXexample}[pos=t]
+\psset{unit=3}
+\begin{pspicture}[showgrid=true](3,2)
+\pspolygon(0,1)(3,2)(2.5,0)
+\psPline[linestyle=dashed,arrowscale=2]{->}(0,1)(3,2)(2.5,0)
+\psPline[linestyle=dashed,arrowscale=2]{->}(3,2)(2.5,0)(0,1)
+\psPline[linestyle=dashed,arrowscale=2]{->}(2.5,0)(0,1)(3,2)
+\end{pspicture}
+\end{LTXexample}
+
+
+
+%--------------------------------------------------------------------------------------
+\section{The PostScript header files}
+\subsection{\nxLFile{pstricks.pro}}
+Only cosemetic changes to the code to make it more readable.
+%--------------------------------------------------------------------------------------
+\subsection{\nxLFile{pst-node.pro}}
+Only cosemetic changes to the code to make it more readable.
+
+\part{\nxLPack{pst-node} -- package}
+
+\section{\nxLFile{pst-node.tex} (\pstnodeFV -- \pstnodeFD)}
+
+There was a bug in \Lcs{fnode}. It is now fixed.
+
+foo
+
+     z  \quad
+        \pnode{testL1}
+        \fnode[linecolor=lightgray,framesize=6pt 50pt](0,.5ex){eqL}
+        \pnode(0,2ex){testL2}
+        \quad
+     =
+        \quad%
+        \pnode{testR1}
+        \fnode[linecolor=lightgray,framesize=6pt 50pt](0,.5ex){eqR}
+        \pnode(0,2ex){testR2}
+        \quad
+     z
+  \ncline[linecolor=red]{testL1}{testR1}
+  \ncline[linecolor=blue]{testL2}{testR2}
+
+bar
+
+\bigskip now with an aligned node
+\psset{nodealign=true}
+
+foo
+
+     z  \quad
+        \pnode{testL1}
+        \fnode[linecolor=lightgray,framesize=6pt 50pt](0,.5ex){eqL}
+        \pnode(0,2ex){testL2}
+        \quad
+     =
+        \quad%
+        \pnode{testR1}
+        \fnode[linecolor=lightgray,framesize=6pt 50pt](0,.5ex){eqR}
+        \pnode(0,2ex){testR2}
+        \quad
+     z
+  \ncline[linecolor=red]{testL1}{testR1}
+  \ncline[linecolor=blue]{testL2}{testR2}
+
+bar
+
+
+\begin{lstlisting}
+foo
+
+     z  \quad
+        \pnode{testL1}
+        \fnode[linecolor=lightgray,framesize=6pt 50pt](0,.5ex){eqL}
+        \pnode(0,2ex){testL2}
+        \quad
+     =
+        \quad%
+        \pnode{testR1}
+        \fnode[linecolor=lightgray,framesize=6pt 50pt](0,.5ex){eqR}
+        \pnode(0,2ex){testR2}
+        \quad
+     z
+  \ncline[linecolor=red]{testL1}{testR1}
+  \ncline[linecolor=blue]{testL2}{testR2}
+
+bar
+
+\bigskip now with an aligned node
+\psset{nodealign=true}
+
+foo
+
+     z  \quad
+        \pnode{testL1}
+        \fnode[linecolor=lightgray,framesize=6pt 50pt](0,.5ex){eqL}
+        \pnode(0,2ex){testL2}
+        \quad
+     =
+        \quad%
+        \pnode{testR1}
+        \fnode[linecolor=lightgray,framesize=6pt 50pt](0,.5ex){eqR}
+        \pnode(0,2ex){testR2}
+        \quad
+     z
+  \ncline[linecolor=red]{testL1}{testR1}
+  \ncline[linecolor=blue]{testL2}{testR2}
+
+bar
+\end{lstlisting}
+
+
+\part{\nxLPack{pst-plot} -- package}
+
+\section{\nxLFile{pst-plot.tex} (\pstplotFV -- \pstplotFD)}
+
+To be more consistent to other macro names there are now the names
+\Lcs{psparametricplot}, \Lcs{psfileplot}, \Lcs{pslistplot}, and
+\Lcs{psdataplot}. The old macros without the preceeding \verb+ps+
+still work!
+
+There is now a new \PS boolean variable which can control loops.
+With setting \texttt{/\Lps{ps@Exit} true def} you can leave a loop
+for plotting a function with \Lcs{psplot} and \Lcs{psparametricplot}.
+
+
+\part{\nxLPack{pst-tree} -- package}
+\section{\nxLFile{pst-tree.tex} (\psttreeFV -- \psttreeFD)}
+
+The package \LPack{pst-tree} now uses the advanced key handling from \LPack{xkeyval}. The reason
+why it moved from the base into the contrib sections, where all packages uses \LPack{xkeyval}.
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{PSTricks}
+
+\printindex
+
+
+\end{document}

@@ -1,0 +1,55 @@
+%
+% luatexja-fontspec.sty
+%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{luatexja-fontspec}[2020-09-14 fontspec support of LuaTeX-ja]
+\RequirePackage{l3keys2e,luatexja}
+\ExplSyntaxOn
+
+\cs_if_exist:NF \Cjascale {
+  %% Default scale value for jfont.
+  \group_begin:
+  \fontsize{16}{16}\selectfont
+  \cs_gset:Npx \Cjascale { \fp_to_decimal:n {\zw / 16} }
+  \group_end:
+}
+
+\bool_new:N \__ltj_fontspec_match_bool
+\keys_define:nn { luatexja-fontspec }
+  {
+    match .bool_set:N = \__ltj_fontspec_match_bool,
+    match .default:n  = true,
+    pass .code:n = \PassOptionsToPackage{#1} {fontspec},
+      % 互換性のために残したオプション
+    scale .code:n = \gdef\Cjascale{#1},
+    unknown .code:n = \PassOptionsToPackage { \l_keys_key_str } {fontspec},
+  }
+\ProcessKeysOptions{ luatexja-fontspec }
+
+\RequirePackage{fontspec}[2019/03/15]% v2.7c
+\RequirePackage{luatexja-fontspec-27c} % v2.7c
+
+\ExplSyntaxOff
+%%%%%%%% Now we completely ignore kanjifont definition file.
+\def\@ltj@use@fd{false}
+
+% We must redefine \try@load@fontshape to ignore kanjifont definitions at all.
+\def\try@load@fontshape{%
+  \expandafter
+  \ifx\csname \f@encoding+\f@family\endcsname\relax
+  \ltj@@is@kenc{\f@encoding}\ifin@\else % Alphabetic font
+    \@font@info{Trying loading font information for \f@encoding+\f@family}%
+    \global\expandafter\let
+       \csname\f@encoding+\f@family\endcsname\@empty
+     \nfss@catcodes
+     \let\nfss@catcodes\relax
+     \edef\reserved@a{%
+       \lowercase{%
+         \noexpand\InputIfFileExists{\f@encoding\f@family.fd}}}%
+     \reserved@a\relax
+          {\@input@{\f@encoding\f@family.fd}}%
+  \fi
+  \fi}
+
+\endinput

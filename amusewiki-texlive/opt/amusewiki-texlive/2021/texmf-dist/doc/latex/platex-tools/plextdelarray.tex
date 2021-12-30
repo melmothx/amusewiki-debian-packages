@@ -1,0 +1,159 @@
+%# -*- coding: utf-8 -*-
+\ifx\epTeXinputencoding\undefined\else % defined in e-pTeX (> TL2016)
+  \epTeXinputencoding utf8    % ensure utf-8 encoding for platex
+\fi
+
+\documentclass[a4paper]{jsarticle}
+\usepackage{doc}
+\usepackage{delarray}
+\usepackage{plextdelarray}
+\GetFileInfo{plextdelarray.sty}
+\title{Package \textsf{plextdelarray} \fileversion}
+\author{Hironobu Yamashita}
+\date{\filedate}
+\begin{document}
+
+\maketitle
+
+Package \textsf{delarray}, included in \textsf{latex-tools} bundle, is
+incompatible with \textsf{plext} package for p\LaTeX.
+The package \textsf{plextarray} resolves this incompatibility,
+and enables coexistence of both extensions provided by \textsf{plext}
+and \textsf{delarray}. If you are not familiar with Japanese p\LaTeX\
+and \textsf{plext} package, please find the documentation of
+\textsf{plextarray} for brief explanation.
+
+This package is part of \textsf{platex-tools} bundle:
+\begin{verbatim}
+  https://github.com/aminophen/platex-tools
+\end{verbatim}
+
+The rest of this document is written in Japanese, and includes some
+examples of usage.
+
+\bigskip
+
+\textsf{latex-tools}バンドルに含まれる\textsf{delarray}パッケージは、
+p\LaTeX の拡張パッケージである\textsf{plext}パッケージと互換性がありません。
+この\textsf{plextdelarray}パッケージは、\textsf{plext}パッケージの組方向
+オプション拡張と\textsf{delarray}パッケージの拡張の両方を「一応使える」状態
+にするものです。ただし、\textsf{plext}の内部実装の都合上、\textsf{delarray}と
+完全に同じ結果にならない場合があるかもしれません\footnote{本パッケージは
+「\textsf{delarray}を読み込んだだけで\textsf{plext}の部分的な縦書き機能が
+すべて使えなくなってしまって困った」という場合の、あくまで非常手段という
+程度にとらえてください。}。
+
+\section{使いかた}
+
+\textsf{plext}と\textsf{delarray}を共存させたいときに、プリアンブルに
+\verb+\usepackage{plextdelarray}+と書きます。既にいずれかのパッケージが
+読み込まれていても問題ありません。また、\textsf{plextdelarray}パッケージを
+読み込めば、\textsf{plext}と\textsf{delarray}も自動的に読み込まれます。
+また、\textsf{plextarray}パッケージも読み込みます。
+
+以下に例を示します。左側が\textsf{delarray}の機能で左右括弧を付けたもの、
+右側が通常の\textsf{array}の機能で左右括弧を付けたものです。
+特に\verb+[t]+と\verb+[b]+は、\textsf{delarray}なしでは実現できない
+ようです（例は\textsf{delarray}のドキュメントを少し改変）。
+
+\bigskip
+\begin{minipage}{0.5\linewidth}
+\begin{verbatim}
+  \documentclass{jsarticle}
+  %\usepackage{plext}
+  %\usepackage{delarray}
+  \usepackage{plextdelarray}
+  \begin{document}
+  \[
+    \begin{array}[t]\{{c}\}
+      3 \\ 4 \\ 5  \end{array}
+    \begin{array}[c]\{{c}\}
+      2 \\ 3 \\ 4  \end{array}
+    \begin{array}[b]\{{c}\}
+      1 \\ 2 \\ 3  \end{array}
+  \]
+  \[
+    \left\{  \begin{array}[t]{c}
+      3 \\ 4 \\ 5  \end{array}  \right\}
+    \left\{  \begin{array}[c]{c}
+      2 \\ 3 \\ 4  \end{array}  \right\}
+    \left\{  \begin{array}[b]{c}
+      1 \\ 2 \\ 3  \end{array}  \right\}
+  \]
+  \end{document}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+\mbox{}\\[10ex]
+  \[
+    \begin{array}[t]\{{c}\}
+      3 \\ 4 \\ 5  \end{array}
+    \begin{array}[c]\{{c}\}
+      2 \\ 3 \\ 4  \end{array}
+    \begin{array}[b]\{{c}\}
+      1 \\ 2 \\ 3  \end{array}
+  \]
+\\[5ex]
+  \[
+    \left\{  \begin{array}[t]{c}
+      3 \\ 4 \\ 5  \end{array}  \right\}
+    \left\{  \begin{array}[c]{c}
+      2 \\ 3 \\ 4  \end{array}  \right\}
+    \left\{  \begin{array}[b]{c}
+      1 \\ 2 \\ 3  \end{array}  \right\}
+  \]
+\end{minipage}
+\bigskip
+
+\textsf{plext}と\textsf{delarray}の両方の拡張を同じ箇所で使用することも
+できなくはありませんが、役に立つ状況は少ないと思います。
+
+\bigskip
+\begin{minipage}{0.5\linewidth}
+\begin{verbatim}
+  \documentclass{jsarticle}
+  %\usepackage{plext}
+  %\usepackage{delarray}
+  \usepackage{plextdelarray}
+  \begin{document}
+  \[
+    \begin{array}<t>[t]\{{c}\}
+      3 \\ 4 \\ 5  \end{array}
+    \begin{array}<t>[c]\{{c}\}
+      2 \\ 3 \\ 4  \end{array}
+    \begin{array}<t>[b]\{{c}\}
+      1 \\ 2 \\ 3  \end{array}
+  \]
+  \[
+  \newcolumntype{L}{>{$}l<{$}}
+  f(x)=
+    \begin{array}<t>\{{lL}.
+      0 & if $x=0$ \\
+      \sin(x)/x & otherwise
+    \end{array}
+  \]
+  \end{document}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+\mbox{}\\[12ex]
+  \[
+    \begin{array}<t>[t]\{{c}\}
+      3 \\ 4 \\ 5  \end{array}
+    \begin{array}<t>[c]\{{c}\}
+      2 \\ 3 \\ 4  \end{array}
+    \begin{array}<t>[b]\{{c}\}
+      1 \\ 2 \\ 3  \end{array}
+  \]
+\\[6ex]
+  \[
+  \newcolumntype{L}{>{$}l<{$}}
+  f(x)=
+    \begin{array}<t>\{{lL}.
+      0 & if $x=0$ \\
+      \sin(x)/x & otherwise
+    \end{array}
+  \]
+\end{minipage}
+
+\end{document}

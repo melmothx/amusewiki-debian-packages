@@ -1,0 +1,21 @@
+name babel-esperanto
+category Package
+revision 30265
+shortdesc Babel support for Esperanto
+longdesc The package provides the language definition file for support
+longdesc of Esperanto in babel. Some shortcuts are defined, as well as
+longdesc translations to Esperanto of standard "LaTeX names".
+containersize 2584
+containerchecksum 0c3be27d02d4c3157f2b0df0950e0814db3ffbdb2553d2c0f176893f3669123a9130874e93edcfd86480b785bbbfda35f9246dac3b4a0779da51387b0bf12ee8
+doccontainersize 126500
+doccontainerchecksum 166c1b59511b5a01cac11b5cd76c84cfa485c2674b390a167ff165bec1326709437ee843f664fd4ac9e61338481df9e7f3026189f7c29c71778dbd1df98cd35f
+docfiles size=31
+ texmf-dist/doc/generic/babel-esperanto/esperanto.pdf details="Package documentation"
+srccontainersize 5688
+srccontainerchecksum f2fcef5841400c521415c870ae1641549eb702944ebd404b96ff9d5b52ee9c2d484662a50d9b410f62e74580f37fdbd269b3650cee0572b3096e4b0365787d4b
+runfiles size=2
+ texmf-dist/tex/generic/babel-esperanto/esperanto.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/esperanto
+catalogue-license lppl1.3
+catalogue-topics esperanto
+catalogue-version 1.4t

@@ -1,0 +1,22 @@
+name babel-thai
+category Package
+revision 30564
+shortdesc Support for Thai within babel
+longdesc The package provides support for typesetting Thai text. within
+longdesc the babel system.
+containersize 6376
+containerchecksum 4e3e5c6d8944040177a21f04e63bd40e85c24e9327eeddfe98072da38590c58523f676fd7532e4e00d0e3cc88121a2885788d606d2dc9ca02fd91c7f04a6ef57
+doccontainersize 215648
+doccontainerchecksum 791539a57534c4870a81ec2318298b29e9e9ad925161b0a4cf52c49086a865d5b58b60da10829a5fb37e66f0d161b396beb127e586457c556875f1205fac9360
+docfiles size=53
+ texmf-dist/doc/generic/babel-thai/thai.pdf details="Package documentation"
+srccontainersize 11116
+srccontainerchecksum db43b9422d95579f9bec645671e5c0ba654ce2d7ca89c3e98b6d910f6546a30b29656aa7061d03b767aca6eb2a01b001613a8b619d597bb9053a8a0df3376b6f
+runfiles size=8
+ texmf-dist/tex/generic/babel-thai/lthenc.def
+ texmf-dist/tex/generic/babel-thai/thai.ldf
+ texmf-dist/tex/generic/babel-thai/tis620.def
+catalogue-ctan /macros/latex/contrib/babel-contrib/thai
+catalogue-license lppl1.3
+catalogue-topics thai multilingual-addon
+catalogue-version 1.0.0

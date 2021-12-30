@@ -1,0 +1,19 @@
+name hyphen-friulan
+category TLCore
+revision 58652
+shortdesc Friulan hyphenation patterns.
+longdesc Hyphenation patterns for Friulan in ASCII encoding. They are
+longdesc supposed to comply with the common spelling of the Friulan
+longdesc (Furlan) language as fixed by the Regional Law N.15/96 dated
+longdesc November 6, 1996 and its following amendments.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=friulan 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-fur.tex 	file_patterns=hyph-fur.pat.txt 	file_exceptions=
+containersize 3792
+containerchecksum d1775a9b6e6b7fa155e44c93271e2ccb41bd1ec143ea0cf624841ad48a123db924dd134e6e60b862a808ad2058ed5b86cb34d98e5728b9dccd3997ba2f06932e
+runfiles size=6
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fur.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-fur.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-fur.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-fur.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-fur.pat.txt

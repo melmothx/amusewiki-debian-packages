@@ -1,0 +1,793 @@
+%
+% luatexja-core.sty
+%
+
+%! 外から読まれるので仰々しくなってます
+%% Avoid multiple loading.
+\csname\if11luatexjacoreLoaded\fi\endcsname
+\edef\x{%
+\catcode32=\the\catcode32%
+\catcode33=\the\catcode33%
+\catcode35=\the\catcode35%
+\catcode40=\the\catcode40%
+\catcode41=\the\catcode41%
+\catcode42=\the\catcode42%
+\catcode43=\the\catcode43%
+\catcode44=\the\catcode44%
+\catcode45=\the\catcode45%
+\catcode46=\the\catcode46%
+\catcode58=\the\catcode58%
+\catcode59=\the\catcode59%
+\catcode60=\the\catcode60%
+\catcode61=\the\catcode61%
+\catcode62=\the\catcode62%
+\catcode64=\the\catcode64%
+\catcode91=\the\catcode91%
+\catcode93=\the\catcode93%
+\catcode94=\the\catcode94%
+\catcode95=\the\catcode95%
+\catcode126=\the\catcode126%
+\endlinechar=\the\endlinechar
+\relax}
+\catcode32=10 %< >
+\catcode33=12 %<">
+\catcode35=6  %<#>
+\catcode40=12 %<(>
+\catcode41=12 %<)>
+\catcode42=12 %<*>
+\catcode43=12 %<+>
+\catcode44=12 %<,>
+\catcode45=12 %<->
+\catcode46=12 %<.>
+\catcode58=12 %<:>
+\catcode59=12 %<;>
+\catcode60=12 %<<>
+\catcode61=12 %<=>
+\catcode62=12 %<>>
+\catcode64=11 %<@>
+\catcode91=12 %<[>
+\catcode93=12 %<]>
+\catcode94=7  %<^>
+\catcode95=8  %<_>
+\catcode126=13 %<~>
+\endlinechar=-1 %
+%! なお, 上のcatcode設定はcoreとcompatで同一にしておく.
+\edef\ltj@core@AtEnd{\x
+  \noexpand\let\noexpand\ltj@core@AtEnd\relax}
+\def\luatexjacoreLoaded{\endinput}
+
+%% Check if LaTeX is used.
+\begingroup\expandafter\expandafter\expandafter\endgroup
+\expandafter\ifx\csname RequirePackage\endcsname\relax %<*!LaTeX>
+  \expandafter\let\csname ifltj@in@latex\expandafter\endcsname
+    \csname iffalse\endcsname
+\else                           %<*LaTeX>
+  \expandafter\let\csname ifltj@in@latex\expandafter\endcsname
+    \csname iftrue\endcsname
+  \NeedsTeXFormat{LaTeX2e}
+  \ProvidesPackage{luatexja-core}[2021-05-21 Core of LuaTeX-ja]
+\fi                             %</LaTeX>
+
+%% Load prerequisite packages.
+\endlinechar=13 %
+\newif\ifltj@everyhook@avail\ltj@everyhook@availfalse
+%! 外部パッケージは普通の \endlinechar で読まないと危険.
+\ifltj@in@latex                 %<*LaTeX>
+  \RequirePackage{luatexbase}
+  \RequirePackage{luaotfload}
+  \RequirePackage{ltxcmds}    [2011/11/09] % v1.22
+  \RequirePackage{pdftexcmds} [2011/11/29] % v0.20
+  \RequirePackage{xkeyval}    [2012/10/14] % v2.6b
+  \RequirePackage{etoolbox}
+  \IfFileExists{everyhook.sty}{\RequirePackage{everyhook}\ltj@everyhook@availtrue}{}
+\else                           %<*!LaTeX>
+  \input luatexbase.sty
+  \input luaotfload.sty
+  \input ltxcmds.sty
+  \input pdftexcmds.sty
+  \input xkeyval
+\fi                             %</LaTeX>
+\endlinechar=-1 %
+
+%% Check if LuaTeX is used
+\ltx@LocalExpandAfter\ifx\csname directlua\endcsname\relax
+  % Loading is silently aborted, since the notice of the wrong
+  % engine is already shown in luaotfload.
+  \ltj@core@AtEnd
+\expandafter\endinput\fi\relax
+
+%% Check LuaTeX version.
+\ifnum\luatexversion<100
+  \@PackageError{luatexja-core}
+    {This LuaTeX engine is too old for this package;\MessageBreak
+     at least 1.0.0 is needed}
+    {Package loading is aborted now.\MessageBreak}
+\expandafter\endinput\fi\relax
+
+%% \LuaTeXjaAvailable
+%! 環境検査にパスした時に定義される.
+\let\LuaTeXjaAvailable=t %
+
+%%------------------
+\endlinechar=13
+
+%! ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+% LuaTeX-ja core TeX source
+
+\newcount\ltjlineendcomment
+\ltjlineendcomment="FFFFF
+\catcode\ltjlineendcomment=14 %"
+
+\def\ltj@loaded{hoge}
+
+\newdimen\ltj@dimen@zw
+\newdimen\ltj@dimen@zh
+\newdimen\ltj@dimen@jQ \ltj@dimen@jQ=0.25mm
+\let\jQ=\ltj@dimen@jQ \let\jH=\jQ
+
+%%%%%%%% error message
+\def\ltj@defnum{0}
+\def\ltj@defdimen{0}
+
+%%%%%%%% Attributes for Japanese typesetting.
+\newattribute\ltj@icflag    % attribute for italic correction
+\newattribute\ltj@curjfnt   % index for ``current horizontal Japanese font''
+\newattribute\ltj@curtfnt   % index for ``current vertical Japanese font''
+\newattribute\ltj@charclass %
+\newattribute\ltj@charcode %
+\newattribute\ltj@autospc   % attribute for autospacing
+\newattribute\ltj@autoxspc  % attribute for autoxspacing
+\newattribute\ltj@yablshift % attribute for yalbaselineshift
+\newattribute\ltj@ykblshift % attribute for yjabaselineshift
+\newattribute\ltj@tablshift % attribute for talbaselineshift
+\newattribute\ltj@tkblshift % attribute for tjabaselineshift
+\newattribute\jfam          % index for current jfam
+\newattribute\ltj@vert@ori  % <=0: UAX#50, >0: always upright
+
+\newattribute\ltj@dir
+\newlanguage\ltj@@japanese
+\ltj@dir\z@
+\ltj@icflag\z@
+\ltj@charclass\z@
+\ltj@curjfnt\m@ne
+\ltj@curtfnt\m@ne
+\ltj@yablshift\z@
+\ltj@ykblshift\z@
+\ltj@tablshift\z@
+\ltj@tkblshift\z@
+
+%%%%%%%% Attributes for character ranges
+\newcount\ltj@tempcnta
+\ltj@tempcnta\z@
+\loop\ifnum\ltj@tempcnta<7
+  \expandafter\newattribute%
+    \csname ltj@kcat\the\ltj@tempcnta\endcsname
+  \csname ltj@kcat\the\ltj@tempcnta\endcsname=0
+  \advance\ltj@tempcnta\@ne
+\repeat
+
+
+%%%%%%%% Loading luatexja.lua
+%% Quark tokens needed in ltj-base
+\protected\def\ltj@@q@escape{\ltj@@q@escape@}
+\protected\def\ltj@@q@escapenum{\ltj@@q@escapenum@}
+
+\directlua{%
+  luatexja = {};
+  luatexja.lang_ja = \the\ltj@@japanese;
+  dofile(assert(kpse.find_file('luatexja.lua', 'tex'),
+      "File `luatexja.lua' not found"))
+}
+
+%% \RequireLuaTeXjaSubmodule{name}[date]
+% A TeX version of luatexja.load_module(name)
+% The second optional argument [date] is simply ignored.
+\def\RequireLuaTeXjaSubmodule#1{%
+  \@ifnextchar[{\ltj@requirelua@submod{#1}}{\ltj@requirelua@submod{#1}[]}}
+\def\ltj@requirelua@submod#1[#2]{%
+  \directlua{luatexja.load_module("\luatexluaescapestring{#1}")}}
+
+
+%%%%%%%% Load all sub-packages.
+\ifltj@in@latex                 %<*LaTeX>
+  \RequirePackage{ltj-base}
+\else                           %<*!LaTeX>
+  \input ltj-base.sty %
+\fi                             %</LaTeX>
+
+%%%%%%%% \asluastring
+\def\asluastring#1{'\luatexluaescapestring{\detokenize{#1}}'}
+
+%%%%%%%% Redefine \/
+\newluafunction\ltj@@italic@inner
+\newluafunction\ltj@@start@time@measure@inner
+\newluafunction\ltj@@stop@time@measure@inner
+\directlua{
+  local t = lua.get_functions_table()
+  local start_time_measure = luatexja.base.start_time_measure
+  local stop_time_measure = luatexja.base.stop_time_measure
+  local scan_arg = token.scan_argument
+  t[\the\ltj@@italic@inner] = luatexja.jfont.append_italic
+  t[\the\ltj@@start@time@measure@inner] = function()
+    start_time_measure(scan_arg())
+  end
+  t[\the\ltj@@stop@time@measure@inner] = function()
+    stop_time_measure(scan_arg())
+  end
+}
+\begingroup\catcode`\/=11
+\global\let\ltj@@orig@/=\/
+\protected\gdef\ltj@@/{\relax\luafunction\ltj@@italic@inner}
+\global\let\/\ltj@@/ %% PRIMITIVE
+\endgroup
+\luadef\ltj@@start@time@measure\ltj@@start@time@measure@inner
+\luadef\ltj@@stop@time@measure\ltj@@stop@time@measure@inner
+
+%%%%%%%% \jfont\CS={...:...;jfm=metric;...}, \globaljfont
+\protected\def\jfont#1{%
+  \afterassignment\ltj@@jfont\directlua{luatexja.jfont.jfontdefX(false, 'yoko','\luatexluaescapestring{\noexpand#1}')}}
+\protected\def\globaljfont#1{%
+  \afterassignment\ltj@@jfont\directlua{luatexja.jfont.jfontdefX(true,  'yoko','\luatexluaescapestring{\noexpand#1}')}}
+\newluafunction\ltj@@jfont@inner
+\directlua{
+  local t = lua.get_functions_table()
+  t[\the\ltj@@jfont@inner] = luatexja.jfont.jfontdefY
+}
+\def\ltj@@jfont{\luafunction\ltj@@jfont@inner}
+
+%%%%%%%% \tfont\CS={...:...;jfm=metric;...}, \globaltfont
+\protected\def\tfont#1{%
+  \afterassignment\ltj@@jfont\directlua{luatexja.jfont.jfontdefX(false, 'tate','\luatexluaescapestring{\noexpand#1}')}}
+\protected\def\globaltfont#1{%
+  \afterassignment\ltj@@jfont\directlua{luatexja.jfont.jfontdefX(true,  'tate','\luatexluaescapestring{\noexpand#1}')}}
+
+%%%%%%%% \zw, \zh
+\newluafunction\ltj@zw@inner
+\newluafunction\ltj@zh@inner
+\directlua{
+  local t, setdimen, ltjf = lua.get_functions_table(), tex.setdimen, luatexja.jfont
+  t[\the\ltj@zw@inner] = function() setdimen('ltj@dimen@zw', ltjf.get_zw()) end
+  t[\the\ltj@zh@inner] = function() setdimen('ltj@dimen@zh', ltjf.get_zh()) end
+}
+\protected\def\ltj@zw{\luafunction\ltj@zw@inner\ltj@dimen@zw}
+\protected\def\ltj@zh{\luafunction\ltj@zh@inner\ltj@dimen@zh}
+\let\zw=\ltj@zw
+\let\zh=\ltj@zh
+
+%%%%%%%% \inhibitglue
+\newluafunction\ltj@reset@globaldefs@inner
+\newluafunction\ltj@restore@globaldefs@inner
+\newluafunction\ltj@@disihb@inner
+\newluafunction\ltj@@ihb@inner
+\newluafunction\ltj@@fakeparbegin@inner
+\newluafunction\ltj@@fakeboxbdd@inner
+\newluafunction\ltj@@ins@xk@inner
+\newluafunction\ltj@@ins@k@inner
+\directlua{
+  local t = lua.get_functions_table()
+  t[\the\ltj@reset@globaldefs@inner] 
+     = function() luatexja.global_temp = tex.globaldefs; tex.globaldefs = 0 end
+  t[\the\ltj@restore@globaldefs@inner] 
+     = function() tex.globaldefs = luatexja.global_temp end
+  t[\the\ltj@@disihb@inner] = luatexja.jfmglue.create_disinhibitglue_node
+  t[\the\ltj@@ihb@inner] = luatexja.jfmglue.create_inhibitglue_node
+  t[\the\ltj@@fakeparbegin@inner] = luatexja.jfmglue.create_beginpar_node
+  t[\the\ltj@@fakeboxbdd@inner] = luatexja.jfmglue.create_boxbdd_node
+  t[\the\ltj@@ins@xk@inner] = luatexja.jfmglue.insert_xk_skip
+  t[\the\ltj@@ins@k@inner] = luatexja.jfmglue.insert_k_skip
+}
+\protected\luadef\ltj@reset@globaldefs  \ltj@reset@globaldefs@inner
+\protected\luadef\ltj@restore@globaldefs\ltj@restore@globaldefs@inner
+\protected\def\disinhibitglue{\ifhmode\relax\luafunction\ltj@@disihb@inner\fi}
+\protected\def\inhibitglue{\ifhmode\relax\luafunction\ltj@@ihb@inner\fi}
+\protected\def\ltjfakeparbegin{\ifhmode\relax\luafunction\ltj@@fakeparbegin@inner\fi}
+\protected\def\ltjfakeboxbdd{\ifhmode\relax\luafunction\ltj@@fakeboxbdd@inner\fi}
+\protected\luadef\insertxkanjiskip \ltj@@ins@xk@inner
+\protected\luadef\insertkanjiskip  \ltj@@ins@k@inner
+
+
+%%%%%%%% \ltjdefcharrange<name>{100-200,3000-,5000,...}
+\protected\def\ltjdefcharrange#1#2{%
+  {\ltj@tempcntc=#1 \expandafter\ltj@@dcrange#2,,}\ignorespaces}
+\def\ltj@@dcrange#1,{\def\ltj@temp{#1}%
+  \ifx\ltj@temp\empty\let\@next=\relax\else
+  \ltj@@dcrangeA{#1}\let\@next=\ltj@@dcrange\fi\@next}
+\def\ltj@@dcrangeA#1{\ltj@@dcrangeB#1--\@nil}
+\def\ltj@@dcrangeB#1-#2-#3\@nil{\def\ltj@temp{#3}%
+  \ifx\ltj@temp\empty
+    \ltj@tempcnta=#1 \ltj@tempcntb=\ltj@tempcnta
+  \else
+    \def\ltj@temp{#1}%
+    \ifx\ltj@temp\empty\ltj@tempcnta='200\else\ltj@tempcnta=#1\fi\relax
+    \def\ltj@temp{#2}%
+    \ifx\ltj@temp\empty\ltj@tempcntb="10FFFF\else\ltj@tempcntb=#2\fi\relax%"
+  \fi
+  \directlua{luatexja.charrange.add_char_range(\the\ltj@tempcnta,\the\ltj@tempcntb,
+    \the\ltj@tempcntc)}%
+  }
+
+%%%%%%%% \ltjsetparameter
+\newcount\ltj@@stack \newcount\ltj@@group@level
+\ltj@@group@level\z@\ltj@@stack\z@
+
+\setbox\z@\hbox{%
+  \directlua{% This value depends on the version of LuaTeX.
+    luatexja.stack.hmode = -tex.nest[tex.nest.ptr].mode
+  }%
+}
+\setbox\z@\vbox{%
+  \directlua{% This value depends on the version of LuaTeX.
+    luatexja.stack.vmode = -tex.nest[tex.nest.ptr].mode
+  }%
+}
+\setbox\z@\box\voidb@x
+
+% prebreakpenalty = {<char_code>, <penalty>}
+\define@key[ltj]{japaram}{kcatcode}{\ltj@@set@stack{KCAT}{0}{0x7FFFFFFF}#1\relax}
+\define@key[ltj]{japaram}{prebreakpenalty}{\ltj@@set@stack{PRE}{-10000}{10000}#1\relax}
+\define@key[ltj]{japaram}{postbreakpenalty}{\ltj@@set@stack{POST}{-10000}{10000}#1\relax}
+\def\ltj@@set@stack#1#2#3{%
+  \directlua{luatexja.stack.set_stack_perchar(luatexja.stack_table_index.#1,#2,#3)}}
+%\def\ltj@@set@stack#1,#2:#3#4#5{%
+%  \directlua{luatexja.stack.set_stack_perchar(luatexja.stack_table_index.#3,
+%    \ltj@safe@num@or{nil}{#1},\ltj@safe@num@or{nil}{#2},#4,#5)}}
+
+% jatextfont = {<char_code>, <font_cs>}
+% only horizontal font is supported
+\define@key[ltj]{japaram}{jatextfont}{%
+  \expandafter\ltj@@set@stackfont#1:{MJT}}
+\define@key[ltj]{japaram}{jascriptfont}{%
+  \expandafter\ltj@@set@stackfont#1:{MJS}}
+\define@key[ltj]{japaram}{jascriptscriptfont}{%
+  \expandafter\ltj@@set@stackfont#1:{MJSS}}
+\protected\def\ltj@@set@stackfont#1,#2:#3{%
+  \ltj@reset@globaldefs
+  \ltj@tempcnta=\ltj@curjfnt\ltj@curjfnt\m@ne#2%
+  \ifnum\ltj@curjfnt=\m@ne
+    \@PackageError{luatexja-core}%
+    {\string#2 is not a control sequence that represents \MessageBreak
+     a Japanese font}{}%
+  \else
+    \directlua{luatexja.stack.set_stack_font(luatexja.stack_table_index.#3,
+    \ltj@safe@num@or{nil}{#1}, \the\ltj@curjfnt)}%
+  \fi
+  \ltj@curjfnt=\ltj@tempcnta
+  \ltj@restore@globaldefs
+  }
+
+% {y,t}{ja,al}baselineshift = <dimen>
+% yjabaselineshift = <dimen>
+\define@key[ltj]{japaram}{yalbaselineshift}{%
+  \directlua{tex.setattribute(luatexja.isglobal,
+    luatexbase.attributes['ltj@yablshift'], token.scan_dimen())}#1\relax}
+\define@key[ltj]{japaram}{yjabaselineshift}{%
+  \directlua{tex.setattribute(luatexja.isglobal,
+    luatexbase.attributes['ltj@ykblshift'], token.scan_dimen())}#1\relax}
+\define@key[ltj]{japaram}{talbaselineshift}{%
+  \directlua{tex.setattribute(luatexja.isglobal,
+    luatexbase.attributes['ltj@tablshift'], token.scan_dimen())}#1\relax}
+\define@key[ltj]{japaram}{tjabaselineshift}{%
+  \directlua{tex.setattribute(luatexja.isglobal,
+    luatexbase.attributes['ltj@tkblshift'], token.scan_dimen())}#1\relax}
+
+% jaxspmode = {<char_code>, <mode>}
+% mode: inhibit, preonly, postonly, allow
+%    or       0        1         2      3
+\define@key[ltj]{japaram}{jaxspmode}{%        \inhibitxspcode
+  \expandafter\ltj@set@jaxspmode#1:\relax}
+\def\ltj@set@jaxspmode#1,#2:{%
+  \lowercase{\edef\ltj@temp{#2}}%
+  \def\ltj@tempa{inhibit}\ifx\ltj@temp\ltj@tempa\def\ltj@temp{0}\fi
+  \def\ltj@tempa{preonly}\ifx\ltj@temp\ltj@tempa\def\ltj@temp{1}\fi
+  \def\ltj@tempa{postonly}\ifx\ltj@temp\ltj@tempa\def\ltj@temp{2}\fi
+  \def\ltj@tempa{allow}\ifx\ltj@temp\ltj@tempa\def\ltj@temp{3}\fi
+  \ltj@@set@stack{XSP}03#1 \ltj@temp}
+
+% alxspmode = {<char_code>, <mode>}
+% mode: inhibit, preonly, postonly, allow
+%    or       0        1         2      3
+\define@key[ltj]{japaram}{alxspmode}{%        \inhibitxspcode
+  \expandafter\ltj@set@jaxspmode#1:\relax}% same code as jaxspmode
+
+% autospacing = <bool> (default: true)
+\define@boolkey[ltj]{japaram}{autospacing}[true]{%
+  \ifltj@japaram@autospacing
+    \directlua{luatexja.ext_print_global()}\ltj@autospc\@ne
+  \else
+    \directlua{luatexja.ext_print_global()}\ltj@autospc\z@
+  \fi}
+
+% autoxspacing = <bool> (default: true)
+\define@boolkey[ltj]{japaram}{autoxspacing}[true]{%
+  \ifltj@japaram@autoxspacing
+    \directlua{luatexja.ext_print_global()}\ltj@autoxspc\@ne
+  \else
+    \directlua{luatexja.ext_print_global()}\ltj@autoxspc\z@
+  \fi}
+
+% [x]]kanjiskip = <skip>
+\define@key[ltj]{japaram}{kanjiskip}{\ltjsetkanjiskip#1}
+\define@key[ltj]{japaram}{xkanjiskip}{\ltjsetxkanjiskip#1}
+\newluafunction\ltjsetkanjiskip@inner
+\newluafunction\ltjsetxkanjiskip@inner
+\directlua{
+  local t, scan_glue = lua.get_functions_table(), token.scan_glue
+  local sss, sti = luatexja.stack.set_stack_skip, luatexja.stack_table_index
+  t[\the\ltjsetkanjiskip@inner] = function()
+    local d = scan_glue(); sss(sti.KSK, d); node.free(d)
+  end
+  t[\the\ltjsetxkanjiskip@inner] = function()
+    local d = scan_glue(); sss(sti.XSK, d); node.free(d)
+  end
+}
+\protected\luadef\ltjsetkanjiskip \ltjsetkanjiskip@inner
+\protected\luadef\ltjsetxkanjiskip\ltjsetxkanjiskip@inner
+
+% jcharwidowpenalty = <count>
+\define@key[ltj]{japaram}{jcharwidowpenalty}{%      %COUNT
+  \ltj@@set@stack{JWP}{-10000}{10000}\z@#1 }
+
+% differentjfm = { large | small | average | pleft | pright | paverage | both}
+\define@choicekey*+[ltj]{japaram}{differentjfm}[\ltj@temp\ltj@tempr]%
+  {large,small,average,pleft,pright,paverage,both}{%
+  \ifcase\ltj@tempr
+    \directlua{luatexja.jfmglue.diffmet_rule = math.max}\or
+    \directlua{luatexja.jfmglue.diffmet_rule = math.min}\or
+    \directlua{luatexja.jfmglue.diffmet_rule = math.two_average}\or
+    \directlua{luatexja.jfmglue.diffmet_rule = math.two_pleft}\or
+    \directlua{luatexja.jfmglue.diffmet_rule = math.two_pright}\or
+    \directlua{luatexja.jfmglue.diffmet_rule = math.two_paverage}\or
+    \directlua{luatexja.jfmglue.diffmet_rule = math.two_add}
+  \fi
+}{\@PackageError{luatexja}{invalid argument `#1' for `differentjfm'}{%
+  Argument for `differentjfm' must be one of `large', `small', `average',^^J%
+  `pleft', `pright', 'paverage' or `both'. }}
+  % large, small, average, pleft, pright, paverage, both
+
+
+% jacharrange = { +-<range_number> }
+\define@key[ltj]{japaram}{jacharrange}{\expandafter\ltj@@scrange#1,,}
+\def\ltj@@scrange#1,{%
+  \edef\ltj@temp{#1}%
+  \ifx\ltj@temp\empty\let\ltj@@next=\relax\else\let\ltj@@next=\ltj@@scrange
+    \directlua{luatexja.charrange.toggle_char_range(%
+      luatexja.is_global,\ltj@safe@num@or{nil}{#1})}%
+  \fi\ltj@@next
+}
+
+\protected\def\ltj@setpar@global{%
+  \relax\ifnum\globaldefs>0\directlua{luatexja.isglobal='global'}%
+    \else\directlua{luatexja.isglobal=''}\fi
+}
+\protected\def\ltjsetparameter#1{%
+  \ltj@@start@time@measure{set_par}%
+  \ltj@setpar@global\setkeys[ltj]{japaram}{#1}%
+  \ltj@@stop@time@measure{set_par}%
+  \ignorespaces}
+\protected\def\ltjglobalsetparameter#1{%
+  \relax\ifnum\globaldefs<0\directlua{luatexja.isglobal=''}%
+    \else\directlua{luatexja.isglobal='global'}\fi%
+  \ltj@@start@time@measure{set_par}%
+  \setkeys[ltj]{japaram}{#1}%
+  \ltj@@stop@time@measure{set_par}%
+  \ignorespaces}
+
+%%%%%%%% \ltjgetparameter
+\def\ltj@@decl@array@param#1{%
+  \expandafter\let\csname ltj@@array@param/#1\endcsname=t%
+}
+\ltj@@decl@array@param{prebreakpenalty}
+\ltj@@decl@array@param{postbreakpenalty}
+\ltj@@decl@array@param{jaxspmode}
+\ltj@@decl@array@param{alxspmode}
+\ltj@@decl@array@param{kcatcode}
+\ltj@@decl@array@param{jacharrange}
+\ltj@@decl@array@param{chartorange}
+\ltj@@decl@array@param{boxdir}
+\def\ltjgetparameter#1{%
+  \ltj@@start@time@measure{get_par}%
+  % stop call is moved in luatexja.lua
+  \ifcsname ltj@@array@param/#1\endcsname
+    \expandafter\ltx@firstoftwo
+  \else
+    \expandafter\ltx@secondoftwo
+  \fi
+  {\ltj@@getparam@two{#1}}%
+  {\ltj@@getparam@one{#1}}%
+}
+\newluafunction\ltj@@getparam@one@inner
+\directlua{
+  local t = lua.get_functions_table()
+  t[\the\ltj@@getparam@one@inner] = luatexja.ext_get_parameter_unary
+}
+\luadef\ltj@@getparam@one\ltj@@getparam@one@inner
+\def\ltj@@getparam@two#1#2{%
+  \directlua{luatexja.ext_get_parameter_binary('#1', \ltj@safe@num@or{nil}{#2})}%
+}
+
+%%%%%%%% \ltjalchar<number>, \ltjjachar<number>
+\let\ltj@@origchar=\char
+\newluafunction\ltj@alljachar@inner
+\directlua{
+  local t, set_attr = lua.get_functions_table(), tex.setattribute
+  local get_attr, floor = tex.getattribute, math.floor
+  local attr_curjfnt = luatexbase.attributes['ltj@curjfnt']
+  local lang_ja = luatexja.lang_ja
+  t[\the\ltj@alljachar@inner] = function()
+    font.current(get_attr(attr_curjfnt)); tex.language=lang_ja;
+    for i=0,6 do
+      set_attr(luatexbase.attributes['ltj@kcat' .. floor(i)],0)
+    end
+  end
+}
+\protected\luadef\ltj@alljachar\ltj@alljachar@inner
+\protected\def\ltj@allalchar{\relax
+    \csname ltj@kcat0\endcsname="7FFFFFFF %"
+    \csname ltj@kcat1\endcsname="7FFFFFFF %"
+    \csname ltj@kcat2\endcsname="7FFFFFFF %"
+    \csname ltj@kcat3\endcsname="7FFFFFFF %"
+    \csname ltj@kcat4\endcsname="7FFFFFFF %"
+    \csname ltj@kcat5\endcsname="7FFFFFFF %"
+    \csname ltj@kcat6\endcsname="7FFFFFFF }%"
+
+\protected\def\ltjjachar{\leavevmode\afterassignment\ltj@@jachar\ltj@tempcnta}
+\def\ltj@@jachar{{\directlua{tex.globaldefs=0}\ltj@alljachar\ltj@@origchar\ltj@tempcnta}}
+\protected\def\ltjalchar{\leavevmode\afterassignment\ltj@@alchar\ltj@tempcnta}
+\def\ltj@@alchar{{\directlua{tex.globaldefs=0}\ltj@allalchar\ltj@@origchar\ltj@tempcnta}}
+
+%%%%%%%% \ltjsetmathletter<number>, \ltjunsetmathletter<number>
+\protected\def\ltjsetmathletter#1{%
+  \directlua{luatexja.math.is_math_letters[token.scan_int()]=true}#1\relax
+}
+\protected\def\ltjunsetmathletter#1{%
+  \directlua{luatexja.math.is_math_letters[token.scan_int()]=false}#1\relax
+}
+
+%%%%%%%% \ltjdeclarealtfont<base_font_cs><alt_font_cs>{100-200,3000-,5000,...}
+% <base_font_cs> の 第 3 引数の文字達は <alt_font_cs> で組む
+% いつも global
+\def\ltj@@getjfontnumber#1{% result in \ltj@tempcntc
+  \ltj@reset@globaldefs
+  \begingroup\ltj@curjfnt\m@ne\ltj@curtfnt\m@ne\relax
+  #1\directlua{luatexja.__temp = -(\the\ltj@curjfnt)*(\the\ltj@curtfnt)}\endgroup
+  \ltj@tempcntc=\directlua{tex.sprint(luatexja.__temp)}\relax
+  \ifnum\ltj@tempcntc=\m@ne
+    \@PackageError{luatexja-core}%
+    {\string#1 is not a control sequence that represents \MessageBreak
+     a Japanese font}{I'll use the current horizontal Japanese font instead.^^J}%
+    \ltj@tempcntc=\ltj@curjfnt
+  \fi\ltj@restore@globaldefs}
+
+\protected\def\ltjdeclarealtfont#1#2#3{%
+  {\ltj@@getjfontnumber#1\@tempcnta=\ltj@tempcntc% \@tempcnta: 基底フォント
+   \ltj@@getjfontnumber#2%
+   \expandafter\ltj@@altfont#3,,}\ignorespaces}
+\def\ltj@@altfont#1,{\def\ltj@temp{#1}%
+  \ifx\ltj@temp\empty\let\@next=\relax\else
+  \ltj@@altfontA{#1}\let\@next=\ltj@@altfont\fi\@next}
+\def\ltj@@altfontA#1{\ltj@@altfontB#1--\@nil}
+\def\ltj@@altfontB#1-#2-#3\@nil{\def\ltj@temp{#3}%
+  \ifx\ltj@temp\empty
+    \ltj@tempcnta=#1 \ltj@tempcntb=\ltj@tempcnta
+  \else
+    \def\ltj@temp{#1}%
+    \ifx\ltj@temp\empty\ltj@tempcnta='200\else\ltj@tempcnta=#1\fi\relax
+    \def\ltj@temp{#2}%
+    \ifx\ltj@temp\empty\ltj@tempcntb="10FFFF\else\ltj@tempcntb=#2\fi\relax%"
+  \fi
+  \directlua{luatexja.jfont.set_alt_font(
+    \the\ltj@tempcnta,\the\ltj@tempcntb,
+    \the\ltj@tempcntc, \the\@tempcnta)}%
+  }
+
+%%%%%%%% \ltjclearaltfont<font_cs>
+% <font_cs> の文字は全部 <font_cs> 本来の文字で組む
+\protected\def\ltjclearaltfont#1{%
+  {\ltj@@getjfontnumber#1%
+   \directlua{luatexja.jfont.clear_alt_font(\the\ltj@tempcntc)}}\ignorespaces}
+
+
+%%%%%%%% \yoko, \tate,\dtou
+\protected\def\tate{%
+  \directlua{luatexja.direction.set_list_direction(3, 'tate')}%
+}
+\protected\def\yoko{%
+  \directlua{luatexja.direction.set_list_direction(4, 'yoko')}%
+}
+\protected\def\dtou{%
+  \directlua{luatexja.direction.set_list_direction(1, 'dtou')}%
+}
+\protected\def\utod{% 「縦数式ディレクション」
+  \directlua{luatexja.direction.set_list_direction(11, 'utod')}%
+}
+\define@key[ltj]{japaram}{direction}{%% always local
+  \directlua{luatexja.direction.set_list_direction(1, 'ltjsetparameter')}%
+}
+
+\yoko
+
+%%%% insert
+\let\ltj@@orig@insert\insert
+\newluafunction\ltj@@lua@populate@insertwhatsit@inner
+\directlua{
+  local t = lua.get_functions_table()
+  t[\the\ltj@@lua@populate@insertwhatsit@inner]
+    = luatexja.direction.populate_insertion_dir_whatsit
+}
+\luadef\ltj@@lua@populate@insertwhatsit\ltj@@lua@populate@insertwhatsit@inner
+\protected\def\ltj@@insert{\begingroup\afterassignment\ltj@@insert@A\ltj@tempcnta}
+\let\insert\ltj@@insert %% PRIMITIVE
+\protected\def\ltj@@insert@A{\ltj@@orig@insert\ltj@tempcnta\bgroup
+  \aftergroup\ltj@@insert@B\let\ltj@@next}
+\protected\def\ltj@@insert@B{\ltj@@lua@populate@insertwhatsit\endgroup}
+
+%%%% vadjust
+\let\ltj@@orig@vadjust\vadjust
+\newluafunction\ltj@@vadjust@dirhook@inner
+\newluafunction\ltj@@vadjust@check@dir@inner
+\directlua{
+  local t = lua.get_functions_table()
+  t[\the\ltj@@vadjust@dirhook@inner]
+    = function () luatexja.direction.set_list_direction_hook('adj') end
+  t[\the\ltj@@vadjust@check@dir@inner]
+    = luatexja.direction.check_adjust_direction
+}
+\luadef\ltj@@vadjust@dirhook\ltj@@vadjust@dirhook@inner
+\protected\luadef\ltj@@vadjust@check@dir\ltj@@vadjust@check@dir@inner
+\protected\def\ltj@@vadjust{%
+  \ltj@@orig@vadjust\bgroup\ltj@@vadjust@dirhook
+  \aftergroup\ltj@@vadjust@check@dir\let\ltj@@next}
+\let\vadjust\ltj@@vadjust %% PRIMITIVE
+
+%%%% \hbox, \vbox, \vtop
+\setbox\z@\hbox{%
+  \primitive\everymath{}%
+  $\directlua{% This value depends on the version of LuaTeX.
+     luatexja.stack.mmode = -tex.nest[tex.nest.ptr].mode
+  }$%
+}
+\setbox\z@\box\voidb@x
+\newluafunction\ltj@@box@dirhook@inner
+\newluafunction\ltj@@reset@badness@inner
+\directlua{
+  local t, ltjd = lua.get_functions_table(), luatexja.direction
+  t[\the\ltj@@box@dirhook@inner]
+    = function() ltjd.set_list_direction_hook() end
+  t[\the\ltj@@reset@badness@inner] = function()
+    if luatexja.global_temp then
+      tex.hbadness= tex.hbadness or luatexja.hbadness_temp
+      tex.vbadness= tex.vbadness or luatexja.vbadness_temp
+      tex.globaldefs= luatexja.global_temp or tex.globaldefs
+    end
+  end
+}
+\luadef\ltj@@box@dirhook\ltj@@box@dirhook@inner
+\ifltj@everyhook@avail% using everyhook package
+  \PushPreHook{hbox}{\ltj@@box@dirhook\aftergroup\ltj@@reset@badness}
+  \PushPreHook{vbox}{\ltj@@box@dirhook\aftergroup\ltj@@reset@badness}
+\else
+  \let\ltj@@everyhbox\everyhbox\let\ltj@@everyvbox\everyvbox
+  \newtoks\ltj@@i@everyhbox\newtoks\ltj@@i@everyvbox
+  \let\everyhbox\ltj@@i@everyhbox\let\everyvbox\ltj@@i@everyvbox
+  \ltj@@everyhbox{\ltj@@box@dirhook
+    \aftergroup\ltj@@reset@badness\the\ltj@@i@everyhbox}
+  \ltj@@everyvbox{\ltj@@box@dirhook
+    \aftergroup\ltj@@reset@badness\the\ltj@@i@everyvbox}
+\fi
+
+\luadef\ltj@@reset@badness\ltj@@reset@badness@inner
+
+%%%% \raise, \lower, \moveleft, \moveright
+\newluafunction\ltj@@lua@raisebox@inner
+\directlua{
+  local t = lua.get_functions_table()
+  t[\the\ltj@@lua@raisebox@inner]=luatexja.direction.raise_box
+}
+\protected\luadef\ltj@@lua@raisebox\ltj@@lua@raisebox@inner
+\let\ltj@@orig@raise\raise
+\let\ltj@@orig@lower\lower
+\protected\def\ltj@@raise{\ltj@reset@globaldefs\afterassignment\ltj@@raise@\ltj@tempdima}
+\protected\def\ltj@@lower{\ltj@reset@globaldefs\afterassignment\ltj@@raise@\ltj@tempdima-}
+\protected\def\ltj@@raise@{%
+  \ltj@restore@globaldefs
+  \edef\ltj@@raise@a{%
+    \ltj@@lua@raisebox\ltj@@orig@raise\the\ltj@tempdima\noexpand\box\ltj@afbox
+  }\ltj@afterbox\ltj@@raise@a}
+\let\ltj@@orig@moveleft\moveleft
+\let\ltj@@orig@moveright\moveright
+\protected\def\ltj@@moveleft{\ltj@reset@globaldefs\afterassignment\ltj@@moveleft@\ltj@tempdima}
+\protected\def\ltj@@moveright{\ltj@reset@globaldefs\afterassignment\ltj@@moveleft@\ltj@tempdima-}
+\protected\def\ltj@@moveleft@{%
+  \ltj@restore@globaldefs
+  \edef\ltj@@moveleft@a{%
+    \ltj@@lua@raisebox\ltj@@orig@moveleft\the\ltj@tempdima\noexpand\box\ltj@afbox
+  }\ltj@afterbox\ltj@@moveleft@a}
+\let\raise\ltj@@raise %% PRIMITIVE
+\let\lower\ltj@@lower %% PRIMITIVE
+\let\moveleft\ltj@@moveleft %% PRIMITIVE
+\let\moveright\ltj@@moveright %% PRIMITIVE
+
+%%%%\vsplit
+\let\ltj@@orig@vsplit\vsplit
+\protected\def\ltj@@vsplit{\directlua{luatexja.direction.vsplit()}}
+\let\vsplit\ltj@@vsplit %% PRIMITIVE
+
+%%%% \vcenter
+\let\ltj@@orig@vcenter\vcenter
+\protected\def\ltj@@vcenter{\ltj@afterbox\ltj@@vcenter@\vbox}
+\protected\def\ltj@@vcenter@{%
+  \ltj@@lua@raisebox\ltj@@orig@vcenter{\box\ltj@afbox}%
+}
+\let\vcenter\ltj@@vcenter %% PRIMITIVE
+
+%%%% \unhbox and \unvbox
+\newluafunction\ltj@@lua@unboxcheckdir@inner
+\directlua{
+  local t = lua.get_functions_table()
+  t[\the\ltj@@lua@unboxcheckdir@inner]=luatexja.direction.unbox_check_dir
+}
+\luadef\ltj@@lua@unboxcheckdir\ltj@@lua@unboxcheckdir@inner
+\long\def \@gobbletwo #1#2{}
+\let\ltj@@orig@unhbox\unhbox
+\let\ltj@@orig@unvbox\unvbox
+\protected\def\ltj@@unhbox{\ltj@reset@globaldefs\afterassignment\ltj@@unhbox@\ltj@tempcnta}
+\protected\def\ltj@@unvbox{\ltj@reset@globaldefs\afterassignment\ltj@@unvbox@\ltj@tempcnta}
+\protected\def\ltj@@unhbox@{\ltj@@lua@unboxcheckdir\ltj@@orig@unhbox\ltj@tempcnta}
+\protected\def\ltj@@unvbox@{\ltj@@lua@unboxcheckdir\ltj@@orig@unvbox\ltj@tempcnta}
+\let\ltj@@orig@unhcopy\unhcopy
+\let\ltj@@orig@unvcopy\unvcopy
+\protected\def\ltj@@unhcopy{\ltj@reset@globaldefs\afterassignment\ltj@@unhcopy@\ltj@tempcnta}
+\protected\def\ltj@@unvcopy{\ltj@reset@globaldefs\afterassignment\ltj@@unvcopy@\ltj@tempcnta}
+\protected\def\ltj@@unhcopy@{%
+  \directlua{luatexja.direction.unbox_check_dir(true)}%
+  \ltj@@orig@unhcopy\ltj@tempcnta
+  \directlua{luatexja.direction.uncopy_restore_whatsit()}}
+\protected\def\ltj@@unvcopy@{%
+  \directlua{luatexja.direction.unbox_check_dir(true)}%
+  \ltj@@orig@unvcopy\ltj@tempcnta
+  \directlua{luatexja.direction.uncopy_restore_whatsit()}}
+\let\unhbox\ltj@@unhbox %% PRIMITIVE
+\let\unvbox\ltj@@unvbox %% PRIMITIVE
+\let\unhcopy\ltj@@unhcopy %% PRIMITIVE
+\let\unvcopy\ltj@@unvcopy %% PRIMITIVE
+
+%%%% lastbox
+\let\ltj@@orig@lastbox=\lastbox
+\protected\def\ltj@@lastbox{\directlua{luatexja.direction.lastbox_hook()}\ltj@@orig@lastbox}
+\let\lastbox\ltj@@lastbox %% PRIMITIVE
+
+%%%%%%%% \ltjgetwd<box_num> etc.
+\def\ltj@@getwd{\directlua{luatexja.direction.get_box_dim('width', token.scan_int())}}
+\def\ltj@@getht{\directlua{luatexja.direction.get_box_dim('height', token.scan_int())}}
+\def\ltj@@getdp{\directlua{luatexja.direction.get_box_dim('depth', token.scan_int())}}
+\let\ltjgetwd=\ltj@@getwd\let\ltjgetht=\ltj@@getht\let\ltjgetdp=\ltj@@getdp
+
+%%%%%%%% \ltjsetwd<box_num>=<dimen> etc.
+\protected\def\ltjsetwd{\directlua{luatexja.direction.set_box_dim('width')}}
+\protected\def\ltjsetht{\directlua{luatexja.direction.set_box_dim('height')}}
+\protected\def\ltjsetdp{\directlua{luatexja.direction.set_box_dim('depth')}}
+
+
+%%------------------ Load module for the format
+
+\directlua{luatexja.load_kinsoku()}
+\ifltj@in@latex                 %<*LaTeX>
+  \RequirePackage{ltj-latex}
+\else\ifltj@in@plain            %<*plain>
+  \input ltj-plain.sty %
+\fi\fi                          %</LaTeX|plain>
+
+\newcatcodetable\ltj@temp@cctb
+\def\ltj@overwrite@catcodetable#1{%
+  \setluatexcatcodetable\ltj@temp@cctb{\luatexcatcodetable#1}%
+  \setluatexcatcodetable#1{\luatexcatcodetable\ltj@temp@cctb\catcode\ltjlineendcomment=14}%"
+}
+\ltj@overwrite@catcodetable\CatcodeTableLaTeX
+\ltj@overwrite@catcodetable\CatcodeTableLaTeXAtLetter
+\ltj@overwrite@catcodetable\CatcodeTableExpl
+
+
+%%------------------ all done
+\ltj@core@AtEnd
+\endinput
+%% EOF

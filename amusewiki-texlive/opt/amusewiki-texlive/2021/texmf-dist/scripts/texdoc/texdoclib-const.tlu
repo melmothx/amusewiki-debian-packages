@@ -1,0 +1,162 @@
+-- texdoclib-const.tlu: global constants for texdoc
+--
+-- The TeX Live team, GPLv3, see texdoclib.tlu for details
+
+-- use an empty environment that will become texdoc_env.C (see EOF)
+local constants = {}
+local kpse = kpse or require 'kpse'
+local os = os or require 'os'
+local setfenv = setfenv
+local texdoc_env
+
+if setfenv then -- Lua <5.2
+    texdoc_env = getfenv()
+    setfenv(1, constants)
+else
+    texdoc_env = _ENV
+    _ENV = constants
+end
+
+-- BEGIN constants
+
+-- progname and version
+fullname = kpse.find_file('texdoc/texdoclib', 'lua')
+progname = 'Texdoc'
+version = '3.3.1'
+release_date = '2021-05-20'
+
+-- make sure to update setup_config_from_cl() accordingly
+-- and set a default value in setup_config_from_defaults() if relevant
+usage_msg = [[
+Usage: texdoc [OPTION]... NAME...
+   or: texdoc [OPTION]... ACTION
+
+Try to find appropriate TeX documentation for the specified NAME(s).
+Alternatively, perform the given ACTION and exit.
+
+Options:
+  -w, --view        Use view mode: start a viewer. (default)
+  -m, --mixed       Use mixed mode (view or list).
+  -l, --list        Use list mode: show a list of results.
+  -s, --showall     Use showall mode: show also "bad" results.
+
+  -i, --interact    Use interactive menus. (default)
+  -I, --nointeract  Use plain lists, no interaction required.
+  -M, --machine     Machine-readable output for lists (implies -I).
+
+  -q, --quiet       Suppress warnings and most error messages.
+  -v, --verbose     Print additional information (e.g., viewer command).
+  -D, --debug       Activate all debug output (equal to "--debug=all").
+  -d LIST, --debug=LIST
+                    Activate debug output restricted to LIST.
+  -c NAME=VALUE     Set configuration item NAME to VALUE.
+
+Actions:
+  -h, --help        Print this help message.
+  -V, --version     Print the version number.
+  -f, --files       Print the list of configuration files used.
+  --just-view FILE  Display FILE, given with full path (no searching).
+
+Full manual available via `texdoc texdoc'.
+
+Website: <https://tug.org/texdoc/>
+Repository: <https://github.com/TeX-Live/texdoc>
+Please email bugs to <texdoc@tug.org>.]]
+
+copyright_msg = [[
+Copyright 2008-2021 Manuel Pégourié-Gonnard, Takuto Asakura, the TeX Live Team.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.]]
+
+actions_ph = 'Actions:\n'
+
+known_options = {
+    'viewer_.*',
+    'mode',
+    'interact_switch',
+    'machine_switch',
+    'ext_list',
+    'basename_list',
+    'badext_list',
+    'badbasename_list',
+    'suffix_list',
+    'verbosity_level',
+    'debug_list',
+    'lastfile_switch',
+    'rm_dir',
+    'rm_file',
+    'unzip_.*',
+    'zipext_list',
+    'max_lines',
+    'lang',
+    'fuzzy_level',
+    'texlive_tlpdb',
+}
+
+error_msg = [[
+Try `texdoc --help' for short help, `texdoc texdoc' for full manual.]]
+
+notfound_msg = [[
+Sorry, no documentation found for "PKGNAME".
+If you are unsure about the name, try full-text searching on CTAN.
+Search form: <https://www.ctan.org/search/>]]
+notfound_msg_ph = 'PKGNAME'
+
+-- exit codes
+exit_ok = 0
+exit_error = 1 -- apparently hard-coded in Lua
+exit_usage = 2
+exit_notfound = 3
+
+err_priority = {
+    error = 1,
+    warning = 2,
+    info = 3,
+}
+min_verbosity = '0'  -- (nothing at all)
+max_verbosity = '3'
+def_verbosity = '2'
+
+known_debugs = {
+    config = {'files'},
+    files = {},
+    search = {},
+    score = {},
+    texdocs = {},
+    tlpdb = {},
+    version = {},
+    view = {},
+}
+
+-- various cache or non-cache files
+cache_name = 'texdoc/cache-tlpdb.lua' -- relative to TEXMFVAR
+data_tlpdb_name = 'texdoc/Data.tlpdb.lua'
+
+place_holder = '%%s' -- used for viewer commands
+
+-- kpse path separator
+kpse_sep = (os.type == 'windows') and ';' or ':'
+
+-- END constants
+
+-- get our previous environment back
+if setfenv then
+    setfenv(1, texdoc_env)
+else
+    _ENV = texdoc_env
+end
+
+-- Make table C a read-only proxy to the local <constants>.
+-- Note this is not deep read-only: C.known_debugs is read-only, but
+-- C.known_debugs.version isn't, for instance.
+local C = {}
+setmetatable(C, {
+    __index = constants,
+    __newindew = function()
+        error('Internal error: attempt to modify a constant.')
+    end
+})
+
+return C
+
+-- vim: ft=lua:

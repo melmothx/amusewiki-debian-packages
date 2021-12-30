@@ -1,0 +1,157 @@
+%# -*- coding: utf-8 -*-
+\ifx\epTeXinputencoding\undefined\else % defined in e-pTeX (> TL2016)
+  \epTeXinputencoding utf8    % ensure utf-8 encoding for platex
+\fi
+
+\documentclass[a4paper]{jsarticle}
+\usepackage{doc}
+\usepackage{array}
+\usepackage{plextarray}
+\GetFileInfo{plextarray.sty}
+\title{Package \textsf{plextarray} \fileversion}
+\author{Hironobu Yamashita}
+\date{\filedate}
+\begin{document}
+
+\maketitle
+
+Package \textsf{array}, included in \textsf{latex-tools} bundle, is
+incompatible with \textsf{plext} package on Japanese p\LaTeX.
+This is because \textsf{plext} extends \texttt{tabular} and \texttt{array}
+environments to add an optional argument for direction specification.
+The package \textsf{plextarray} resolves this incompatibility,
+and enables coexistence of both extensions provided by \textsf{plext}
+and \textsf{array}.
+
+This package is part of \textsf{platex-tools} bundle:
+\begin{verbatim}
+  https://github.com/aminophen/platex-tools
+\end{verbatim}
+
+\section*{Brief explanation of ``\textsf{plext}'' package}
+
+This section is for people who are not familiar with Japanese p\LaTeX\
+and \textsf{plext} package.
+
+Package \textsf{plext} extends \texttt{tabular} and \texttt{array}
+environments by adding \texttt{<dir>} option, which specifies the
+writing direction:
+\begin{verbatim}
+  \begin{tabular}<dir>[pos]{table spec} ... \end{tabular}
+  \begin{tabular*}<dir>{width}[pos]{table spec} ... \end{tabular*}
+  \begin{array}<dir>[pos]{table spec} ... \end{array}
+\end{verbatim}
+The option \texttt{<dir>} permits one of the following three values.
+If none of them is specified, the direction inside the environment
+is same as that outside the environment.
+\begin{quote}
+  \begin{description}
+  \item[y] \emph{yoko} direction (horizontal writing)
+  \item[t] \emph{tate} direction (vertical writing)
+  \item[z] native direction of \TeX
+\end{description}
+\end{quote}
+The rest of this document is written in Japanese, and includes some
+examples of usage.
+
+\bigskip
+
+\textsf{latex-tools}バンドルに含まれる\textsf{array}パッケージは、
+p\LaTeX の拡張パッケージである\textsf{plext}パッケージと互換性がありません。
+これは、\textsf{plext}パッケージは、文書中で局所的に組方向を変える「組方向
+オプション」の拡張を持っていますが、これと\textsf{array}パッケージによる拡張
+が衝突してしまうためです\footnote{\textsf{plext}→\textsf{array}の順に読み込む
+と\textsf{plext}による拡張がキャンセルされて使えなくなります。
+逆に\textsf{array}→\textsf{plext}の順に読み込むとエラーが出てしまいます。}。
+この\textsf{plextarray}パッケージを読み込むことで、
+\textsf{plext}パッケージの組方向オプション拡張と\textsf{array}パッケージの
+拡張の両方を使うことができるようになります。
+
+\section{使いかた}
+
+\textsf{plext}と\textsf{array}を共存させたいときに、プリアンブルに
+\verb+\usepackage{plextarray}+と書きます。既にいずれかのパッケージが
+読み込まれていても問題ありません。また、\textsf{plextarray}パッケージを
+読み込めば、\textsf{plext}と\textsf{array}\footnote{より正確には、
+\textsf{array}と(u)p\LaTeX の衝突を解消する\textsf{plarray}を読み込む
+ことで、間接的に\textsf{array}も読み込まれます。}も自動的に読み込まれます。
+
+\textsf{dcolumn}や\textsf{tabularx}のような、内部で\textsf{array}を利用
+しているパッケージを\textsf{plext}と共存させたい場合にも、
+\textsf{plextarray}が便利です。
+
+以下に例を示します。横組中で縦組の表を書く例。
+
+\bigskip
+\begin{minipage}{0.5\linewidth}
+\begin{verbatim}
+  \documentclass{jsarticle}
+  \usepackage{plextarray}
+  \begin{document}
+  組方向 \verb+<t>+ 指定
+  \begin{tabular}<t>{|>{$}c<{$}|c|}\hline
+    \exp(x) & 指数関数 \\ \hline
+    \log(x) & 対数関数 \\ \hline
+  \end{tabular}%
+  終わり
+  \end{document}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{0.3\linewidth}
+  組方向 \verb+<t>+ 指定
+  \begin{tabular}<t>{|>{$}c<{$}|c|}\hline
+    \exp(x) & 指数関数 \\ \hline
+    \log(x) & 対数関数 \\ \hline
+  \end{tabular}%
+  終わり
+\end{minipage}
+
+\bigskip
+
+縦組中で横組の表を書く例。\pLaTeX の縦組クラスでは\textsf{plext}パッケージが
+最初から読み込まれているため、\textsf{array}パッケージを使用したい場合には
+必ず\textsf{plextarray}パッケージを読み込む必要があります。
+
+\bigskip
+\begin{minipage}{0.5\linewidth}
+\begin{verbatim}
+  \documentclass{tarticle}
+  %\usepackage{array}
+  \usepackage{plextarray}
+  \begin{document}
+  組方向 \verb+<y>+ 指定
+  \begin{tabular}<y>{|m{8zw}|m{5zw}|m{5zw}|}
+    \hline
+    \multicolumn{3}{|c|}{果物のリスト} \\ \hline
+    品名 & 金額 & 産地 \\ \hline
+    りんご & 170円 & 青森県 \\ \hline
+    みかん & 150円 & 和歌山県 \\ \hline
+    パイナップル & 400円 & 沖縄県 \\ \hline
+    バナナ & 190円 & フィリピン \\ \hline
+  \end{tabular}%
+  終わり
+  \end{document}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}<t>{0.45\linewidth}
+組方向 \verb+<y>+ 指定
+\begin{tabular}<y>{|m{8zw}|m{5zw}|m{5zw}|}
+  \hline
+  \multicolumn{3}{|c|}{果物のリスト} \\ \hline
+  品名 & 金額 & 産地 \\ \hline
+  りんご & 170円 & 青森県 \\ \hline
+  みかん & 150円 & 和歌山県 \\ \hline
+  パイナップル & 400円 & 沖縄県 \\ \hline
+  バナナ & 190円 & フィリピン \\ \hline
+\end{tabular}%
+終わり
+\end{minipage}
+\bigskip
+
+\section{謝辞}
+
+本パッケージの実装にあたっては、
+Lua\TeX-jaプロジェクト\footnote{\texttt{https://osdn.net/projects/luatex-ja/}}の
+\textsf{lltjext}パッケージを参考にしました。
+
+\end{document}

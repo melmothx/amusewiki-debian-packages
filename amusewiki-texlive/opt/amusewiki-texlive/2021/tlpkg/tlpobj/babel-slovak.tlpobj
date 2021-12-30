@@ -1,0 +1,21 @@
+name babel-slovak
+category Package
+revision 30292
+shortdesc Babel support for typesetting Slovak
+longdesc The package provides the language definition file for support
+longdesc of Slovak in babel, including Slovak variants of LaTeX
+longdesc built-in-names. Shortcuts are also defined.
+containersize 5432
+containerchecksum b14b98d2cb66a3f8f5d8a313d9208a700d1c3664a5bd23f5baf0d9aa2e3acf3891a0536871988e7579020570999ea05a9dcd60a404cd6670e3c1cf8110d9094e
+doccontainersize 195272
+doccontainerchecksum da1d663125b913e3480ad147ac1f5c1befa00110e71bbd2d42384db03fe0f0db3133b49e26d1a336b49c10018990763d42ef49b64440c9138d9d938057ac90e0
+docfiles size=48
+ texmf-dist/doc/generic/babel-slovak/slovak.pdf details="Package documentation"
+srccontainersize 13924
+srccontainerchecksum 1668ed3f373e58ee9a507637ed4c17638fc429a30ad6087c7f153f8fa23103c0a93c0c0beec73380d41925ef1ebf25ac214f1afc95793edad65545256e6ce5d8
+runfiles size=5
+ texmf-dist/tex/generic/babel-slovak/slovak.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/slovak
+catalogue-license lppl1.3
+catalogue-topics slovak multilingual-addon
+catalogue-version 3.1a

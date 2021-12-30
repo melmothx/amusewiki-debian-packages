@@ -1,0 +1,21 @@
+name babel-czech
+category Package
+revision 30261
+shortdesc Babel support for Czech
+longdesc The package provides the language definition file for support
+longdesc of Czech in babel. Some shortcuts are defined, as well as
+longdesc translations to Czech of standard "LaTeX names".
+containersize 4880
+containerchecksum 0cc0f07fafefa6d7ea1ae1b2ce143dbec124fe96b36221f1b5a847fd0b789d1974b5990ebd93b8ac0607f63956948bede25c7e690784ca7e9638f48139585a32
+doccontainersize 188640
+doccontainerchecksum 1575fbe0d70725e975cdb0c1c5ca685985d91f23e4a997af4a0db21905ac34962f69653ffe4084065bda70cfbba0f0a1f0885d3afc19e98d0045ebb68cb545c3
+docfiles size=47
+ texmf-dist/doc/generic/babel-czech/czech.pdf details="Package documentation"
+srccontainersize 12536
+srccontainerchecksum 1cbc5de700e32ac2600a50a85f6437b7bada601734753a8ea62b845f7500880195625e827be41e277d76137ca3dac05b230e64e0edcf1807cae2079feceff8a0
+runfiles size=4
+ texmf-dist/tex/generic/babel-czech/czech.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/czech
+catalogue-license lppl1.3
+catalogue-topics czech
+catalogue-version 3.1a

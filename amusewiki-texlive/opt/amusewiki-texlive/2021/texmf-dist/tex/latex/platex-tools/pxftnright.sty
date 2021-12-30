@@ -1,0 +1,153 @@
+%
+% pxftnright.sty
+% written by Hironobu Yamashita (@aminophen)
+%
+% This package is part of the platex-tools bundle.
+% https://github.com/aminophen/platex-tools
+%
+% This package `pxftnright' is based on:
+%   * ftnright.sty in latex-tools (2014/10/28 v1.1f)
+%   * plcore.ltx in platex
+%     (2001/09/26 v1.2a -- 2021/12/08 v1.3l)
+%
+% Problems with ftnright to use with pLaTeX:
+%   * \@startcolumn is redefined
+%     (incompatible with vertical typesetting)
+%   * \@makecol is redefined
+%     (bottom float after footnote)
+%   * \@makefntext is redefined
+%     (incompatible with some pLaTeX classes)
+%   * \footnotesep is not suitable for vertical typesetting
+%     when used with pLaTeX 2016/11/29 or earlier
+%     (rather a problem of \strutbox in pLaTeX2e kernel)
+% so, this package provides patches.
+%
+
+\NeedsTeXFormat{pLaTeX2e}
+\ProvidesPackage{pxftnright}
+  [2021/05/24 v1.1a footnote layout package for pLaTeX]
+
+%% save \@makefntext definition from pLaTeX class
+\@ifpackageloaded{ftnright}{%
+  \PackageError{pxftnright}{%
+    Package ftnright is already loaded!\MessageBreak
+    Load pxftnright earlier}\@ehc
+}{}
+\let\pxftn@makefntext\@makefntext
+
+%% load ftnright package
+\RequirePackage{ftnright}
+
+%% patches for ftnright to work fine with pLaTeX
+%% This code is based on pLaTeX2e 2021-06-01 community ed.
+
+\ifx\pltx@adjust@wd@outputbox\@undefined
+  % pLaTeX2e <2020-10-01>+2 or older
+  \ifx\pdfprimitive\@undefined % just in case ...
+    \def\pltx@adjust@wd@outputbox{%
+      \ifydir\else\vbox{\hskip\z@}\fi}
+  \else                        % same as plcore.dtx 2021/03/25 v1.3i
+    \def\pltx@adjust@wd@outputbox{%
+      \ifydir\else\vbox{\pdfprimitive\everypar{}\hskip\z@}\fi}
+  \fi
+\fi
+
+\def\@startcolumn{%
+ \ifx\@deferlist\@empty
+   \global\@fcolmadefalse
+   \global\@colroom\@colht
+ \else
+   \ifvoid\footins\else
+     \ftn@amount\ht\footins
+     \advance\ftn@amount\dp\footins
+     \advance\ftn@amount\skip\footins
+   \fi
+   \global\advance\@colht-\ftn@amount
+   \global\@colroom\@colht
+   \@xstartcol
+   \global\advance\@colht\ftn@amount
+   \global\advance\@colroom\ftn@amount
+ \fi
+ \if@fcolmade
+  \setbox\@cclv\box\@outputbox
+  \@makecol
+ \else
+%%%%% change for pLaTeX (import from \@reinserts in plcore)
+  \ifvoid\footins\else\insert\footins{%
+    \iftbox\footins\tate\else\yoko\fi
+    \unvbox\footins}\fi
+%%%%%
+ \fi}
+
+\def\@makecol{%
+%%%%% change for pLaTeX
+  \setbox\@outputbox\box\@cclv
+%%%%%
+ \if@firstcolumn
+  \if@twocolumn \else
+    \ifvoid\footins \else
+      \@latexerr{ftnright package
+                 used in one-column mode}%
+   {The ftnright package was designed to
+    work with LaTeX's standard^^Jtwocolumn
+    option. It does *not* work with the
+    multicol package.^^JSo please specify
+    `twocolumn' in the
+    \noexpand\documentclass command.}%
+      \shipout\box\footins \fi\fi
+  \ifnum\insertpenalties>\z@
+      \@latexerr{ftnright package
+                 scrambled footnotes}%
+    {There is too much footnote material in
+     the first column  and ftnright^^Jis
+     unable to cope with this.^^JYou need
+     to reduce the amount to get a properly
+     formatted page.}%
+  \fi
+ \fi
+%%%%% change for pLaTeX (bottom float first)
+  \xdef\@freelist{\@freelist\@midlist}%
+  \global \let \@midlist \@empty
+  \@combinefloats
+  \let\pltx@textbottom\@textbottom %%% pLaTeX
+ \if@firstcolumn\else
+  \ifvoid\footins\else
+    \setbox\@outputbox \vbox {%
+      \boxmaxdepth \@maxdepth
+      \unvbox \@outputbox
+      \@textbottom %%% pLaTeX
+      \vskip \skip\footins
+      \color@begingroup
+        \normalcolor
+        \footnoterule
+        \unvbox \footins
+      \color@endgroup
+      }%
+      \let\@textbottom\relax %%% pLaTeX
+  \fi
+ \fi
+%%%%%
+  \ifvbox\@kludgeins
+    \@makespecialcolbox
+  \else
+   \setbox\@outputbox\vbox to\@colht
+     {\boxmaxdepth\maxdepth
+      \@texttop
+      \dimen@ \dp\@outputbox
+      \unvbox \@outputbox
+      \pltx@adjust@wd@outputbox %%% pLaTeX
+      \vskip -\dimen@
+      \@textbottom}%
+  \fi
+  \let\@textbottom\pltx@textbottom %%% pLaTeX
+  \global\maxdepth\@maxdepth
+}
+
+%% adjust \footnotesep for vertical typesetting
+\AtBeginDocument
+  {\global\footnotesep\ht\iftdir\tstrutbox\else\strutbox\fi}
+
+%% restore \@makefntext
+\let\@makefntext\pxftn@makefntext
+
+\endinput

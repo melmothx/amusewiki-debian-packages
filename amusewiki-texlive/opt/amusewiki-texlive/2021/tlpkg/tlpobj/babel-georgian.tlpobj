@@ -1,0 +1,22 @@
+name babel-georgian
+category Package
+revision 45864
+shortdesc Babel support for Georgian
+longdesc The package provides support for use of Babel in documents
+longdesc written in Georgian. The package is adapted for use both under
+longdesc 'traditional' TeX engines, and under XeTeX and LuaTeX.
+containersize 5028
+containerchecksum 07adf0a76fb15951db5dd01a0a1595aa9c8119d6e39e94eb36ac340932f763975abe284d738a52a1fa2a938a14f87fe7ede10758529c3f68c6d573dbccbcbc82
+doccontainersize 424
+doccontainerchecksum b2f45e828e32fef5e4ac130230050f035ec69607c97562a835ef2157ccc6673d4ae452624d2d1aded3552eb71d85d971a7e35d9774ad7b6e4ca7a8e0a71e48c1
+docfiles size=1
+ texmf-dist/doc/generic/babel-georgian/README
+runfiles size=6
+ texmf-dist/tex/generic/babel-georgian/georgian.ldf
+ texmf-dist/tex/generic/babel-georgian/georgian.sty
+ texmf-dist/tex/generic/babel-georgian/georgiancaps.tex
+catalogue-contact-home http://tex.tsu.ge
+catalogue-ctan /macros/latex/contrib/babel-contrib/georgian
+catalogue-license lppl1.3
+catalogue-topics georgian multilingual-addon
+catalogue-version 2.2

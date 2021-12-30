@@ -1,0 +1,9 @@
+(This file public domain.)
+
+This directory contains Tcl/Tk 8.6.11 compiled for Windows.
+
+The only purpose of this Tcl/Tk is to provide support on Windows for
+Tcl scripts shipped with TeX Live.  It is not intended for general use.
+
+The sources and notes on compilation can be found in
+Master/source/tlgui/tltcl.

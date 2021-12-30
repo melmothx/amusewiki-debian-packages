@@ -1,0 +1,19 @@
+name hyphen-esperanto
+category TLCore
+revision 58652
+shortdesc Esperanto hyphenation patterns.
+longdesc Hyphenation patterns for Esperanto ISO Latin 3 and UTF-8
+longdesc encodings. Note that TeX distributions don't ship any suitable
+longdesc fonts in Latin 3 encoding, so unless you create your own font
+longdesc support or want to use MlTeX, using native Unicode engines is
+longdesc highly recommended.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=esperanto 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-eo.tex 	file_patterns=hyph-eo.pat.txt 	file_exceptions=
+containersize 10668
+containerchecksum ed2976e9fb3eec5d2f0759348b284129e43bf161db571dd21270335388b8aec57e1b8393bc9b246f8a6e9cde22f93a4cb3c1a03dcadd64fdda3d70b576789050
+runfiles size=16
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-eo.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-eo.il3.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-eo.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-eo.pat.txt

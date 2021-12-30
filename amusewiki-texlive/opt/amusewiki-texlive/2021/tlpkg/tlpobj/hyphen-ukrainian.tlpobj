@@ -1,0 +1,23 @@
+name hyphen-ukrainian
+category TLCore
+revision 58652
+shortdesc Ukrainian hyphenation patterns.
+longdesc Hyphenation patterns for Ukrainian in T2A and UTF-8 encodings.
+longdesc For 8-bit engines, the 'ukrhyph' package provides a number of
+longdesc different pattern sets, as well as different (8-bit) encodings,
+longdesc that can be chosen at format-generation time. The UTF-8 version
+longdesc only provides the default pattern set. A mechanism similar to
+longdesc the one used for 8-bit patterns may be implemented in the
+longdesc future.
+depend hyph-utf8
+depend hyphen-base
+depend ukrhyph
+execute AddHyphen 	name=ukrainian 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-uk.tex 	file_patterns=hyph-uk.pat.txt 	file_exceptions=
+containersize 18692
+containerchecksum 05a9111b358c659159c6edfd38b9ce3d78febd794cc82968dc3e2acdc3612786304721fbd07f00f0a8278f4c2e46a1bfad821b5da45e60546d6acb5bf9068d08
+runfiles size=41
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-uk.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-uk.t2a.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-uk.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-uk.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-uk.pat.txt

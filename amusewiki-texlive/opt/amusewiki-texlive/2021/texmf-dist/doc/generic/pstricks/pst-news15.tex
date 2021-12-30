@@ -1,0 +1,105 @@
+%% $Id: pst-news15.tex 4 2020-06-09 08:32:19Z herbert $
+\documentclass[11pt,english,BCOR10mm,DIV12,bibliography=totoc,parskip=false,smallheadings
+    headexclude,footexclude,oneside]{pst-doc}
+\listfiles
+\let\Lfile\LFile
+\usepackage[utf8]{inputenc}
+\usepackage{pst-node}
+\let\pstnodeFV\fileversion
+\let\pstnodeFD\filedate
+\usepackage{pst-solides3d}
+\usepackage{xkvview}
+\renewcommand\bgImage{\psscalebox{15}{\color{blue!20}\the\year}}
+\def\textat{\char064}
+\lstset{explpreset={pos=l,width=-99pt,overhang=0pt,hsep=\columnsep,vsep=\bigskipamount,rframe={}},
+    escapechar=?}
+\begin{document}
+
+%\psset{PstDebug=1}
+\title{\texttt{News -- \the\year}\\ \Large new macros and bugfixes for the
+basic package \nxLFile{pstricks}}
+\author{Herbert Voß}
+\date{\today}
+
+\maketitle
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\part{\texttt{pstricks} -- package}
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.sty} -- \texttt{pstricks-pdf.sty}}
+%--------------------------------------------------------------------------------------
+The code for an automatic loading of package \LPack{auto-pst-pdf} is now moved
+into an own package \LPack{pstricks-pdf}. It allows to run PSTricks code with \Lprog{pdflatex} \texttt{-{}-shell-escape <file>}.
+The option \Loption{pdf} for \LPack{pstricks} itself is now obsolet.
+ 
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.tex} (\pstricksFV -- \pstricksFD)}
+%--------------------------------------------------------------------------------------
+
+PSTricks now takes the optional argument \Loption{draft} of the main document class
+into account. It shows only a frame, given by the coordinates of the \Lenv{pspicture}
+environment.
+
+
+
+\subsection{PostScript code}
+Additionally to the macro \Lcs{pstVerb} there are now the keywords
+\Lkeyword{precode} and \Lkeyword{postscode} which can be used by other
+packages to paste PostScript code before and after the macros.
+
+\begin{LTXexample}[pos=t]
+\psset{viewpoint=40 35 10 rtp2xyz,Decran=40,lightsrc=viewpoint,unit=0.5}
+\begin{pspicture}(-6,-6)(6,6)
+\defFunction{cercle1}(t)
+  {4 t cos mul 2 sub rZ cos mul 4 t sin mul rZ sin mul add} %
+  {4 t cos mul 2 sub rZ sin mul neg 4 t sin mul rZ cos mul add}%
+  {4 t sin mul}%
+\psforeach{\iA}{0,20,..,360}{%
+  \psSolid[object=courbe,
+    precode=/rZ \iA\space def,
+    r=0,range=0 360,resolution=360,function=cercle1]}
+\end{pspicture}
+\end{LTXexample}
+
+\subsection{Background color}
+There is now the optional argument \Lkeyword{bgcolor} (backgound color), 
+which is only valid for the background
+of the environment \Lenv{pspicture} with its defined coordinates.
+Internally it uses the macro \Lcs{psframe*}: 
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture*}[bgcolor=black!20](-12,-5)(-2,5)
+\psset{viewpoint=6 -50 0 rtp2xyz,Decran=4,lightsrc=viewpoint}
+\defFunction[algebraic]{torus}(u,v)
+	  {2*(1+ 0.5*cos(u))*cos(v)}% x=f(u,v)
+	  {2*(1+ 0.5*cos(u))*sin(v)}% y=f(u,v)
+	  {2*0.5*sin(u)}%             z=f(u)    
+\psSolid[object=surfaceparametree,
+  precode=/n1 48 def /n2 90 def /n1n2 n1 n2 mul 2 mul 1 sub def /iS 0 def,
+  base=0 2 pi mul 0 pi 1.5 mul ,
+  fcol=0 2 n1 2 sub {/i exch def
+   i n2 mul 2 i n2 mul n2 add 1 sub {(Black)} for} for
+   1 2 n1 1 sub {/i exch def i n2 mul 1 add 2 i n2 mul n2 add 1 sub {(Black)} for} for,
+  fillcolor=white,incolor=yellow!50,
+  function=torus,
+  linewidth=0.5\pslinewidth,unit=5,ngrid=n1 n2]
+\end{pspicture*}
+\end{LTXexample}
+
+
+
+\clearpage
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{PSTricks}
+
+\printindex
+
+
+\end{document}
+
+

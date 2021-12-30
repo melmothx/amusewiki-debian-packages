@@ -1,0 +1,12 @@
+name xindy.x86_64-linux
+category TLCore
+revision 58249
+shortdesc x86_64-linux files of xindy
+containersize 2248804
+containerchecksum 3476d50bb553b486a7106fef49f93de0505717536d6fc1b2bc955e134732aaef60413851556c348e1c7457b62b90b21564198a6143aae232597c0d51f637e3ef
+binfiles arch=x86_64-linux size=1272
+ bin/x86_64-linux/tex2xindy
+ bin/x86_64-linux/texindy
+ bin/x86_64-linux/xindy
+ bin/x86_64-linux/xindy.mem
+ bin/x86_64-linux/xindy.run

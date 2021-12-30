@@ -1,0 +1,27 @@
+name fandol
+category Package
+revision 37889
+shortdesc Four basic fonts for Chinese typesetting
+longdesc Fandol fonts designed for Chinese typesetting. The current
+longdesc version contains four styles: Song, Hei, Kai, Fang. All fonts
+longdesc are in OpenType format.
+containersize 21582588
+containerchecksum 309b19d6bff9d3e009610d698a73ba191da70cabd57157f274dfca7583a9e9b31fc30ea52b2b2ab3386be7290a680f8eb47dc92381c3da8251b01d8c6a65c3ff
+doccontainersize 12168
+doccontainerchecksum d74e78a1c863d3865ec4b21a4c762bf6e2c30a8656fe0ec830d1e56b9fcb48861f316ccf8d8641e7c674e25f1ac2292d10ff2127315275347096ad325828d7e5
+docfiles size=10
+ texmf-dist/doc/fonts/fandol/COPYING
+ texmf-dist/doc/fonts/fandol/README details="Readme"
+runfiles size=8526
+ texmf-dist/fonts/opentype/public/fandol/FandolBraille-Display.otf
+ texmf-dist/fonts/opentype/public/fandol/FandolBraille-Regular.otf
+ texmf-dist/fonts/opentype/public/fandol/FandolFang-Regular.otf
+ texmf-dist/fonts/opentype/public/fandol/FandolHei-Bold.otf
+ texmf-dist/fonts/opentype/public/fandol/FandolHei-Regular.otf
+ texmf-dist/fonts/opentype/public/fandol/FandolKai-Regular.otf
+ texmf-dist/fonts/opentype/public/fandol/FandolSong-Bold.otf
+ texmf-dist/fonts/opentype/public/fandol/FandolSong-Regular.otf
+catalogue-ctan /fonts/fandol
+catalogue-license gpl
+catalogue-topics font chinese font-cjk font-otf
+catalogue-version 0.3

@@ -1,0 +1,22 @@
+name babel-slovenian
+category Package
+revision 57666
+shortdesc Babel support for typesetting Slovenian
+longdesc The package provides the language definition file for support
+longdesc of Slovenian in babel. Several shortcuts are defined, as well
+longdesc as translations to Slovenian of standard "LaTeX names".
+containersize 2412
+containerchecksum 159e3fd820c39f64897dd26ab589cfb77a9d254cc75a0b1988d164cb9c989bc55ff2320d5d21b698928292a92ea6bd85b9a6cc489270ff13c2c13842d84b4c6a
+doccontainersize 136132
+doccontainerchecksum 8df52574e61776f1d83301caad0f0a9e2042c88048034c6bcea23c4e08155fd1166de4c76584e3d462c5b1f914fcd38fd1eceb740a54e50dc2758ee892778098
+docfiles size=35
+ texmf-dist/doc/generic/babel-slovenian/README.md
+ texmf-dist/doc/generic/babel-slovenian/slovene.pdf details="Package documentation"
+srccontainersize 5412
+srccontainerchecksum 3b630ef8368ba89c235930e9815350bc83331c82230bec549f86374e243c28bb0bb6615f55588245551add88d16284e90c6339ea548fc52b1236bd654b2a5d98
+runfiles size=2
+ texmf-dist/tex/generic/babel-slovenian/slovene.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/slovenian
+catalogue-license lppl1.3
+catalogue-topics slovenian multilingual-addon
+catalogue-version 1.2n

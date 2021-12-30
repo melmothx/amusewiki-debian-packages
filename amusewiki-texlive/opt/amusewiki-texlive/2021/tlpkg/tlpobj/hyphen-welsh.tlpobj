@@ -1,0 +1,15 @@
+name hyphen-welsh
+category TLCore
+revision 58652
+shortdesc Welsh hyphenation patterns.
+longdesc Hyphenation patterns for Welsh in T1/EC and UTF-8 encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=welsh 	lefthyphenmin=2 	righthyphenmin=3 	file=loadhyph-cy.tex 	file_patterns=hyph-cy.pat.txt 	file_exceptions=
+containersize 19992
+containerchecksum 12a23e0b9d00eb4381e3c97ecbb449faf5a73b755a17fc0301f1cbad5d0babb370aeec16dcdd316cefb56e142873abaa685288b1a1d3c7dcb76a07a9ef127ac6
+runfiles size=35
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-cy.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-cy.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-cy.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-cy.pat.txt

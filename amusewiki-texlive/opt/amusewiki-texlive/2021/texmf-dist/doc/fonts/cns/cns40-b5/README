@@ -1,0 +1,10 @@
+This is the README file of the cns40-b5.tar.gz package. 
+
+It contains an HBF header file for a Big 5 encoded font built up from CNS
+bitmap fonts planes 1-3 (the bitmaps itself are in the cns40-1 - cns40-3
+packages), an hbf2gf configuration file and .tfm files to be used with the
+CJK package for LaTeX2e.
+
+The package follows the TDS directory structure.
+
+---End of README---

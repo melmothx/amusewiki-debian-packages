@@ -1,0 +1,11 @@
+The babel-latin package provides the babel languages latin, classiclatin,
+medievallatin and ecclesiasticlatin.
+
+Package author: C. Beccari
+Current maintainer: K. Wehr
+Version: 4.0
+Date: 27th June 2021
+Bug tracker: https://github.com/wehro/babel-latin/issues
+
+The babel-latin package is subject to the LaTeX Project Public License,
+version 1.3 or later.

@@ -1,0 +1,133 @@
+%
+% pxatbegshi.sty
+% written by Hironobu Yamashita (@aminophen)
+%
+% This package is part of the platex-tools bundle.
+% https://github.com/aminophen/platex-tools
+%
+% --------------------------------------------------------------------
+% [Note]
+% Previous version (2018/09/21 v0.4) was largely based on
+%   "cope with tate-direction"
+% of bxpapersize.sty 2017/05/02 v0.3a by T. Yato.
+%   -- concept: execute all hooks in temporary yoko direction,
+%   -- by prepending \yoko and switching back to the original
+% However, it was problematic when used with multicol.sty.
+%
+% Thus, in newer version (2019/09/07 v0.5), I reverted back to
+% the original code (2018/09/21 v0.3), which was largely based on
+% H. Kitagawa's on GitHub:texjporg/tex-jp-build#21.
+%   -- concept: execute all hooks inside yoko direction \vbox
+%
+% Update: version 2020/09/09 v0.6 supports LaTeX2e 2020-10-01
+% based on a method proposed by H. Kitagawa in lltjp-atbegshi.sty.
+%
+% Update: version 2020/09/25 v0.7 does nothing, since
+% pLaTeX2e 2020-10-01 will support the situation natively.
+% --------------------------------------------------------------------
+%
+
+%% package declaration
+\NeedsTeXFormat{pLaTeX2e}
+\ProvidesPackage{pxatbegshi}
+    [2021/05/31 v0.7c Patch to atbegshi for (u)pLaTeX]
+
+%% Since LaTeX2e 2020-10-01, atbegshi.sty is merely
+%% an emulation by atbegshi-ltx.sty from ltshipout.dtx.
+
+\chardef\pxabgs@status=\z@
+\@ifl@t@r\fmtversion{2020/10/01}{\chardef\pxabgs@status=\@ne}{}
+\ifnum\pxabgs@status=\@ne
+  % if LaTeX2e and pLaTeX2e are inconsistent, raise an error!
+  \@ifl@t@r\pfmtversion{2020/10/01}{%
+    \PackageInfo{pxatbegshi}{This package is no longer needed}%
+  }{%
+    \PackageError{pxatbegshi}{Inconsistent LaTeX2e/pLaTeX2e combination}\@ehc
+  }%
+  \RequirePackage{atbegshi}% input anyway
+  \expandafter\endinput
+\fi
+
+%% The rest of this package is meant for
+%% LaTeX2e 2020-02-02 PL5 or older.
+
+\RequirePackage{atbegshi}
+
+\ifx\AtBegShi@Output\@undefined
+  \PackageError{pxatbegshi}{This should not happen}\@ehc
+  \expandafter\endinput
+\fi
+
+%% preparations
+\def\pxabgs@pkgname{pxatbegshi}
+\def\pxabgs@warn{\PackageWarningNoLine\pxabgs@pkgname}
+
+%% internal macros are locally effective
+\begingroup
+
+%--------------------------------------- helpers
+
+%% unique tokens
+\def\pxabgs@mark{\pxabgs@mark@}
+\def\pxabgs@fin{\pxabgs@fin@}
+
+%% \pxabgs@patch@cmd\CMD{<orig>}{<new>}
+\@onlypreamble\pxabgs@patch@cmd
+\def\pxabgs@patch@cmd#1#2#3{%
+  \def\pxabgs@next##1#2##2\pxabgs@mark##3\pxabgs@fin{%
+    \ifx\pxabgs@mark##3\pxabgs@mark
+      \let\pxabgs@fragment\relax
+    \else
+      \def\pxabgs@fragment{##2}%
+      \def#1{##1#3##2}%
+    \fi}%
+  \expandafter\pxabgs@next#1\pxabgs@mark#2\pxabgs@mark\pxabgs@fin}
+
+%---------------------------------------
+
+% prepare
+\let\pxabgs@AtBegShi@Output\AtBegShi@Output
+% try first patch
+\pxabgs@patch@cmd\pxabgs@AtBegShi@Output
+  {\let\AtBegShi@OrgProtect\protect}%
+  {\setbox8\vbox\bgroup\yoko\let\AtBegShi@OrgProtect\protect}
+\ifx\pxabgs@fragment\relax % failure
+  \let\pxabgs@AtBegShi@Output\relax
+\else % success, try second patch
+  \pxabgs@patch@cmd\pxabgs@AtBegShi@Output
+    {\AtBeginShipoutOriginalShipout\box\AtBeginShipoutBox}%
+    {\AtBeginShipoutOriginalShipout\box\AtBeginShipoutBox\egroup}
+  \ifx\pxabgs@fragment\relax % failure
+    \let\pxabgs@AtBegShi@Output\relax
+  \else % success, try third patch
+    \pxabgs@patch@cmd\pxabgs@AtBegShi@Output{%
+      \begingroup
+        \setbox\AtBeginShipoutBox\box\AtBeginShipoutBox
+      \endgroup
+      \let\protect\AtBegShi@OrgProtect
+    }{%
+      \begingroup
+        \setbox\AtBeginShipoutBox\box\AtBeginShipoutBox
+      \endgroup
+      \let\protect\AtBegShi@OrgProtect
+      \egroup
+    }
+    \ifx\pxabgs@fragment\relax % failure
+      \let\pxabgs@AtBegShi@Output\relax
+    \fi
+  \fi
+\fi
+% commit the change only when successful
+\ifx\pxabgs@AtBegShi@Output\relax
+  \pxabgs@warn{Failed in patching \string\AtBegShi@Output}
+\else
+  \global\let\AtBegShi@Output\pxabgs@AtBegShi@Output
+\fi
+
+\endgroup
+%% internal macros are no longer effective
+
+%--------------------------------------- done
+
+\endinput
+%% EOF

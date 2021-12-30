@@ -1,0 +1,391 @@
+%%
+%% This is file `thai.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% thai.dtx  (with options: `code')
+%% This is a generated file.
+%% 
+%% Copyright 1989-2005 Johannes L. Braams and any individual authors
+%% listed elsewhere in this file.  All rights reserved.
+%% 
+%% This file was generated from file(s) of the Babel system.
+%% ---------------------------------------------------------
+%% 
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Johannes Braams.
+%% 
+%% This file may only be distributed together with a copy of the Babel
+%% system. You may however distribute the Babel system without
+%% such generated files.
+%% 
+%% The list of all files belonging to the Babel distribution is
+%% given in the file `manifest.bbl'. See also `legal.bbl for additional
+%% information.
+%% 
+%% The list of derived (unpacked) files belonging to the distribution
+%% and covered by LPPL is defined by the unpacking scripts (with
+%% extension .ins) which are part of the distribution.
+\ProvidesLanguage{thai}
+        [2013/03/31 v1.8 Thai support from the babel system]
+%% File `thai.dtx'
+%% Thai Language Definition File
+%% Copyright (C) 1999 - 2013
+%%           by Surapant Meknavin,
+%%              Theppitak Karoonboonyanan (thep at linux.thai.net),
+%%              Chanop Silpa-Anan (chanop at debian.org),
+%%              Poonlap Veerathanabutr (poonlap at linux.thai.net)
+%%              Thai Linux Working Group
+%%              http://linux.thai.net/
+%%
+%% Please report errors to: Theppitak Karoonboonyanan
+%%                          (thep at linux.thai.net)
+%%
+%%   This file is part of the babel system, it provides the source
+%%   code for the Thai language definition file.  The original version
+%%   was written by Surapant Meknavin.
+%%
+%%   It is currently maintained by Theppitak Karoonboonyanan
+%%   (thep at linux.thai.net), Chanop Silpa-Anan (chanop at debian.org)
+%%   and Poonlap Veerathanabutr (poonlap at linux.thai.net).
+\LdfInit\CurrentOption{captions\CurrentOption}
+\ifx\l@thai\@undefined
+  \@nopatterns{thai}
+  \adddialect\l@thai0\fi
+\InputIfFileExists{lthenc.def}%
+  {\message{Loading the definitions for the Thai font encoding}}%
+  {%
+    \errhelp{I can't find the lthenc.def file for the Thai fonts}%
+    \errmessage{Since I do not know what the LTH encoding means^^J
+      I can't typeset Thai.^^J
+      I stop here, while you get a suitable lthenc.def file}\@@end
+  }
+\DeclareRobustCommand{\thaitext}{%
+  \fontencoding{LTH}\selectfont%
+  \def\encodingdefault{LTH}}
+\DeclareRobustCommand{\textthai}[1]{{\thaitext #1}}
+\DeclareRobustCommand{\textpali}[1]{%
+  \begingroup
+    \def\thaiYoYing{\textYoYingPali{}}%
+    \def\thaiThoThan{\textThoThanPali{}}%
+    \def\wbr{}%
+    \scantokens\expandafter{#1}\relax
+  \endgroup
+}
+\providehyphenmins{thai}{11}
+\addto\captionsthai{%
+  \def\prefacename{\thaiKhoKhwai\thaiSaraAm\thaiNoNu\thaiSaraAm}%
+  \def\refname{\thaiSaraE\thaiOAng\thaiKoKai\thaiSoSua\thaiSaraAa\thaiRoRua%
+               \thaiOAng\thaiMaiTho\thaiSaraAa\thaiNgoNgu%
+               \thaiOAng\thaiSaraI\thaiNgoNgu}%
+  \def\abstractname{\thaiBoBaimai\thaiThoThahan%
+                    \thaiKhoKhwai\thaiMaiHanakat\thaiDoDek%
+                    \thaiYoYak\thaiMaiEk\thaiOAng}%
+  \def\bibname{\thaiBoBaimai\thaiRoRua\thaiRoRua\thaiNoNen\thaiSaraAa%
+               \thaiNoNu\thaiSaraU\thaiKoKai\thaiRoRua\thaiMoMa}%
+  \def\chaptername{\thaiBoBaimai\thaiThoThahan%
+                   \thaiThoThahan\thaiSaraIi\thaiMaiEk}%
+  \def\appendixname{\thaiPhoSamphao\thaiSaraAa\thaiKhoKhwai%
+                    \thaiPhoPhung\thaiNoNu\thaiWoWaen\thaiKoKai}%
+  \def\contentsname{\thaiSoSua\thaiSaraAa\thaiRoRua%
+                    \thaiBoBaimai\thaiMaiHanakat\thaiYoYing}%
+  \def\listfigurename{\thaiSoSua\thaiSaraAa\thaiRoRua%
+                      \thaiBoBaimai\thaiMaiHanakat\thaiYoYing%
+                      \thaiRoRua\thaiSaraUu\thaiPoPla}%
+  \def\listtablename{\thaiSoSua\thaiSaraAa\thaiRoRua%
+                     \thaiBoBaimai\thaiMaiHanakat\thaiYoYing%
+                     \thaiToTao\thaiSaraAa\thaiRoRua\thaiSaraAa\thaiNgoNgu}%
+  \def\indexname{\thaiDoDek\thaiRoRua\thaiRoRua\thaiChoChang%
+                 \thaiNoNu\thaiSaraIi}%
+  \def\figurename{\thaiRoRua\thaiSaraUu\thaiPoPla%
+                  \thaiThoThahan\thaiSaraIi\thaiMaiEk}%
+  \def\tablename{\thaiToTao\thaiSaraAa\thaiRoRua\thaiSaraAa\thaiNgoNgu%
+                 \thaiThoThahan\thaiSaraIi\thaiMaiEk}%
+  \def\partname{\thaiPhoSamphao\thaiSaraAa\thaiKhoKhwai}%
+  \def\enclname{\thaiSoSua\thaiSaraI\thaiMaiEk\thaiNgoNgu%
+                \thaiThoThahan\thaiSaraIi\thaiMaiEk%
+                \thaiSaraAe\thaiNoNu\thaiBoBaimai%
+                \thaiMoMa\thaiSaraAa%
+                \thaiDoDek\thaiMaiTho\thaiWoWaen\thaiYoYak}%
+  \def\ccname{\thaiSoSua\thaiSaraAm\thaiSaraE\thaiNoNu\thaiSaraAa%
+              \thaiThoThung\thaiSaraUe\thaiNgoNgu}%
+  \def\headtoname{\thaiSaraE\thaiRoRua\thaiSaraIi\thaiYoYak\thaiNoNu}%
+  \def\pagename{\thaiHoHip\thaiNoNu\thaiMaiTho\thaiSaraAa}%
+  \def\seename{\thaiDoDek\thaiSaraUu}%
+  \def\alsoname{\thaiDoDek\thaiSaraUu%
+                \thaiSaraE\thaiPhoPhan\thaiSaraI\thaiMaiEk\thaiMoMa%
+                \thaiSaraE\thaiToTao\thaiSaraI\thaiMoMa}%
+  \def\proofname{\thaiPhoPhan\thaiSaraI%
+                 \thaiSoSua\thaiSaraUu\thaiChoChan\thaiNoNu\thaiThanthakhat}%
+  }
+\def\th@month{%
+  \ifcase\month\or
+    \thaiMoMa\thaiKoKai\thaiRoRua\thaiSaraAa\thaiKhoKhwai\thaiMoMa \or
+    \thaiKoKai\thaiSaraU\thaiMoMa\thaiPhoSamphao\thaiSaraAa%
+      \thaiPhoPhan\thaiMaiHanakat\thaiNoNu\thaiThoThong\thaiThanthakhat \or
+    \thaiMoMa\thaiSaraIi\thaiNoNu\thaiSaraAa\thaiKhoKhwai\thaiMoMa \or
+    \thaiSaraE\thaiMoMa\thaiSoRusi\thaiSaraAa\thaiYoYak\thaiNoNu \or
+    \thaiPhoPhan\thaiRu\thaiSoRusi\thaiPhoSamphao\thaiSaraAa%
+      \thaiKhoKhwai\thaiMoMa \or
+    \thaiMoMa\thaiSaraI\thaiThoThung\thaiSaraU\thaiNoNu\thaiSaraAa%
+      \thaiYoYak\thaiNoNu \or
+    \thaiKoKai\thaiRoRua\thaiKoKai\thaiDoChada\thaiSaraAa%
+      \thaiKhoKhwai\thaiMoMa \or
+    \thaiSoSua\thaiSaraI\thaiNgoNgu\thaiHoHip\thaiSaraAa%
+      \thaiKhoKhwai\thaiMoMa \or
+    \thaiKoKai\thaiMaiHanakat\thaiNoNu\thaiYoYak\thaiSaraAa%
+      \thaiYoYak\thaiNoNu \or
+    \thaiToTao\thaiSaraU\thaiLoLing\thaiSaraAa\thaiKhoKhwai\thaiMoMa \or
+    \thaiPhoPhan\thaiRu\thaiSoSala\thaiChoChan\thaiSaraI\thaiKoKai\thaiSaraAa%
+      \thaiYoYak\thaiNoNu \or
+    \thaiThoThong\thaiMaiHanakat\thaiNoNu\thaiWoWaen\thaiSaraAa%
+      \thaiKhoKhwai\thaiMoMa
+  \fi}
+\newcount\th@year
+\th@year=\year
+\advance\th@year by 543
+\def\datethai{%
+  \def\today{\number\day \space \th@month\space %
+             \thaiPhoPhan.\thaiSoSala.~\number\th@year}}
+\addto\extrasthai{\thaitext}
+\addto\noextrasthai{\latintext}
+\def\wbr{\hskip0pt\relax}
+\addto\extrasthai{%
+  \edef\th@restoreemstretch{\emergencystretch=\the\emergencystretch}
+  \setlength{\emergencystretch}{0.6em}}
+\addto\noextrasthai{\th@restoreemstretch}
+\renewcommand{\baselinestretch}{1.2}
+\DeclareOption{thaiindentfirst} {%
+  \addto\extrasthai{%
+    \let\th@afterindentfalse\@afterindentfalse
+    \let\@afterindentfalse\@afterindenttrue
+    \@afterindenttrue
+  }
+  \addto\noextrasthai{%
+    \let\@afterindentfalse\th@afterindentfalse
+  }
+}
+\def\thaitranslate#1{\ifx @#1%
+     \else\ifcase#1
+       \thaizero \or \thaione \or \thaitwo \or \thaithree \or \thaifour \or
+       \thaifive \or \thaisix \or \thaiseven \or \thaieight \or \thainine
+       \else\fi
+       \expandafter\thaitranslate
+     \fi
+}
+\def\@thainum#1{\expandafter\thaitranslate\number#1@}
+\def\thainum#1{\expandafter\@thainum\csname c@#1\endcsname}
+\def\@thaibracenum#1{(\expandafter\thaitranslate\number#1@)}
+\def\thaibracenum#1{\expandafter\@thaibracenum\csname c@#1\endcsname}
+\def\thaialph#1{\expandafter\@thaialph\csname c@#1\endcsname}
+\def\@thaialph#1{%
+  \ifcase#1\or \thaiKoKai\or \thaiKhoKhai\or \thaiKhoKhwai\or \thaiNgoNgu\or
+    \thaiChoChan\or \thaiChoChing\or \thaiChoChang\or \thaiSoSo\or
+    \thaiChoChoe\or \thaiYoYing\or \thaiDoChada\or \thaiToPatak\or
+    \thaiThoThan\or \thaiThoNangmontho\or \thaiThoPhuthao\or \thaiNoNen\or
+    \thaiDoDek\or \thaiToTao\or \thaiThoThung\or \thaiThoThahan\or
+    \thaiThoThong\or \thaiNoNu\or \thaiBoBaimai\or \thaiPoPla\or
+    \thaiPhoPhung\or \thaiFoFa\or \thaiPhoPhan\or \thaiFoFan\or
+    \thaiPhoSamphao\or \thaiMoMa\or \thaiYoYak\or \thaiRoRua\or
+    \thaiLoLing\or \thaiWoWaen\or \thaiSoSala\or \thaiSoRusi\or
+    \thaiSoSua\or \thaiHoHip\or \thaiLoChula\or \thaiOAng\or
+    \thaiHoNokhuk\else\@ctrerr\fi}
+\def\thaiAlph#1{\expandafter\@thaiAlph\csname c@#1\endcsname}
+\def\@thaiAlph#1{%
+  \ifcase#1\or \thaiKoKai\or \thaiKhoKhai\or \thaiKhoKhuat\or \thaiKhoKhwai\or
+    \thaiKhoKhon\or \thaiKhoRakhang\or \thaiNgoNgu\or \thaiChoChan\or
+    \thaiChoChing\or \thaiChoChang\or \thaiSoSo\or \thaiChoChoe\or
+    \thaiYoYing\or \thaiDoChada\or \thaiToPatak\or \thaiThoThan\or
+    \thaiThoNangmontho\or \thaiThoPhuthao\or \thaiNoNen\or \thaiDoDek\or
+    \thaiToTao\or \thaiThoThung\or \thaiThoThahan\or \thaiThoThong\or
+    \thaiNoNu\or \thaiBoBaimai\or \thaiPoPla\or \thaiPhoPhung\or
+    \thaiFoFa\or \thaiPhoPhan\or \thaiFoFan\or \thaiPhoSamphao\or
+    \thaiMoMa\or \thaiYoYak\or \thaiRoRua\or \thaiLoLing\or
+    \thaiWoWaen\or \thaiSoSala\or \thaiSoRusi\or \thaiSoSua\or
+    \thaiHoHip\or \thaiLoChula\or \thaiOAng\or \thaiHoNokhuk\else\@ctrerr\fi}
+\DeclareOption{thainumber}{
+\catcode`\@=11
+\def\@overridecommand#1#2{\ifdefined#1\renewcommand{#1}{#2}\fi}
+\pagenumbering{thainum}
+\@overridecommand\theenumi{\@thainum\c@enumi}
+\@overridecommand\theenumii{\@thaialph\c@enumii}
+\@ifundefined{thechapter}%
+  {\@overridecommand\thesection{\@thainum\c@section}%
+   \@overridecommand\thesubsection{\thesection.\@thainum\c@subsection}%
+   \@overridecommand\thesubsubsection{\thesubsection.\@thainum\c@subsubsection}%
+   \@overridecommand\theparagraph    {\thesubsubsection.\@thainum\c@paragraph}%
+   \@overridecommand\thesubparagraph {\theparagraph.\@thainum\c@subparagraph}%
+   \@overridecommand\theequation{\@thainum\c@equation}%
+   \@overridecommand\thetable{\@thainum\c@table}%
+   \@overridecommand\thefigure{\@thainum\c@figure}}%
+  {\@overridecommand\thepart{\@thainum\c@part}%
+   \@overridecommand\thechapter{\@thainum\c@chapter}%
+   \@overridecommand\thesection{\thechapter.\@thainum\c@section}%
+   \@overridecommand\thesubsection{\thesection.\@thainum\c@subsection}%
+   \@overridecommand\thesubsubsection{\thesubsection.\@thainum\c@subsubsection}%
+   \@overridecommand\theparagraph    {\thesubsubsection.\@thainum\c@paragraph}%
+   \@overridecommand\thesubparagraph {\theparagraph.\@thainum\c@subparagraph}%
+   \@overridecommand\theequation%
+       {\ifnum \c@chapter>\z@ \thechapter.\fi \@thainum\c@equation}%
+   \@overridecommand \thetable%
+       {\ifnum \c@chapter>\z@ \thechapter.\fi \@thainum\c@table}%
+   \@overridecommand \thefigure%
+       {\ifnum \c@chapter>\z@ \thechapter.\fi \@thainum\c@figure}}
+\@overridecommand\thefootnote{\@thainum\c@footnote}
+\def\@thmcounter#1{\noexpand\thainum{#1}}
+\@ifclassloaded{book}{%
+  % redefine page numbering for frontmatter and mainmatter
+  \def\ps@headnum{\let\@mkboth\@gobbletwo
+       \def\@oddhead{\reset@font\hfil\thepage\hfil}\let\@oddfoot\@empty
+       \let\@evenhead\@oddhead\let\@evenfoot\@empty}
+  \let\@ltxfrontmatter\frontmatter
+  \renewcommand\frontmatter%
+    {\@ltxfrontmatter\pagestyle{headnum}\pagenumbering{thaibracenum}}
+  \let\@ltxmainmatter\mainmatter
+  \renewcommand\mainmatter%
+    {\@ltxmainmatter\pagestyle{headings}\pagenumbering{thainum}}
+}{}
+\def\datethai{%
+  \def\today{\@thainum\day\space \th@month\space %
+             \thaiPhoPhan.\thaiSoSala.~\@thainum\th@year}
+}
+\relax
+}
+\@ifclassloaded{book}{%
+\renewcommand\appendix{\par
+  \setcounter{chapter}{0}%
+  \setcounter{section}{0}%
+  \gdef\@chapapp{\appendixname}%
+  \gdef\thechapter{\@thaialph\c@chapter}}
+}{}
+\@ifclassloaded{report}{%
+\renewcommand\appendix{\par
+  \setcounter{chapter}{0}%
+  \setcounter{section}{0}%
+  \gdef\@chapapp{\appendixname}%
+  \gdef\thechapter{\@thaialph\c@chapter}}
+}{}
+\@ifclassloaded{article}{%
+\renewcommand\appendix{\par
+  \setcounter{section}{0}%
+  \setcounter{subsection}{0}%
+  \gdef\thesection{\@thaialph\c@section}}
+}{}
+\catcode`\^^a1=11 \lccode`\^^a1=`\^^a1 \uccode`\^^a1=`\^^a1
+\catcode`\^^a2=11 \lccode`\^^a2=`\^^a2 \uccode`\^^a2=`\^^a2
+\catcode`\^^a3=11 \lccode`\^^a3=`\^^a3 \uccode`\^^a3=`\^^a3
+\catcode`\^^a4=11 \lccode`\^^a4=`\^^a4 \uccode`\^^a4=`\^^a4
+\catcode`\^^a5=11 \lccode`\^^a5=`\^^a5 \uccode`\^^a5=`\^^a5
+\catcode`\^^a6=11 \lccode`\^^a6=`\^^a6 \uccode`\^^a6=`\^^a6
+\catcode`\^^a7=11 \lccode`\^^a7=`\^^a7 \uccode`\^^a7=`\^^a7
+\catcode`\^^a8=11 \lccode`\^^a8=`\^^a8 \uccode`\^^a8=`\^^a8
+\catcode`\^^a9=11 \lccode`\^^a9=`\^^a9 \uccode`\^^a9=`\^^a9
+\catcode`\^^aa=11 \lccode`\^^aa=`\^^aa \uccode`\^^aa=`\^^aa
+\catcode`\^^ab=11 \lccode`\^^ab=`\^^ab \uccode`\^^ab=`\^^ab
+\catcode`\^^ac=11 \lccode`\^^ac=`\^^ac \uccode`\^^ac=`\^^ac
+\catcode`\^^ad=11 \lccode`\^^ad=`\^^ad \uccode`\^^ad=`\^^ad
+\catcode`\^^ae=11 \lccode`\^^ae=`\^^ae \uccode`\^^ae=`\^^ae
+\catcode`\^^af=11 \lccode`\^^af=`\^^af \uccode`\^^af=`\^^af
+\catcode`\^^b0=11 \lccode`\^^b0=`\^^b0 \uccode`\^^b0=`\^^b0
+\catcode`\^^b1=11 \lccode`\^^b1=`\^^b1 \uccode`\^^b1=`\^^b1
+\catcode`\^^b2=11 \lccode`\^^b2=`\^^b2 \uccode`\^^b2=`\^^b2
+\catcode`\^^b3=11 \lccode`\^^b3=`\^^b3 \uccode`\^^b3=`\^^b3
+\catcode`\^^b4=11 \lccode`\^^b4=`\^^b4 \uccode`\^^b4=`\^^b4
+\catcode`\^^b5=11 \lccode`\^^b5=`\^^b5 \uccode`\^^b5=`\^^b5
+\catcode`\^^b6=11 \lccode`\^^b6=`\^^b6 \uccode`\^^b6=`\^^b6
+\catcode`\^^b7=11 \lccode`\^^b7=`\^^b7 \uccode`\^^b7=`\^^b7
+\catcode`\^^b8=11 \lccode`\^^b8=`\^^b8 \uccode`\^^b8=`\^^b8
+\catcode`\^^b9=11 \lccode`\^^b9=`\^^b9 \uccode`\^^b9=`\^^b9
+\catcode`\^^ba=11 \lccode`\^^ba=`\^^ba \uccode`\^^ba=`\^^ba
+\catcode`\^^bb=11 \lccode`\^^bb=`\^^bb \uccode`\^^bb=`\^^bb
+\catcode`\^^bc=11 \lccode`\^^bc=`\^^bc \uccode`\^^bc=`\^^bc
+\catcode`\^^bd=11 \lccode`\^^bd=`\^^bd \uccode`\^^bd=`\^^bd
+\catcode`\^^be=11 \lccode`\^^be=`\^^be \uccode`\^^be=`\^^be
+\catcode`\^^bf=11 \lccode`\^^bf=`\^^bf \uccode`\^^bf=`\^^bf
+\catcode`\^^c0=11 \lccode`\^^c0=`\^^c0 \uccode`\^^c0=`\^^c0
+\catcode`\^^c1=11 \lccode`\^^c1=`\^^c1 \uccode`\^^c1=`\^^c1
+\catcode`\^^c2=11 \lccode`\^^c2=`\^^c2 \uccode`\^^c2=`\^^c2
+\catcode`\^^c3=11 \lccode`\^^c3=`\^^c3 \uccode`\^^c3=`\^^c3
+\catcode`\^^c4=11 \lccode`\^^c4=`\^^c4 \uccode`\^^c4=`\^^c4
+\catcode`\^^c5=11 \lccode`\^^c5=`\^^c5 \uccode`\^^c5=`\^^c5
+\catcode`\^^c6=11 \lccode`\^^c6=`\^^c6 \uccode`\^^c6=`\^^c6
+\catcode`\^^c7=11 \lccode`\^^c7=`\^^c7 \uccode`\^^c7=`\^^c7
+\catcode`\^^c8=11 \lccode`\^^c8=`\^^c8 \uccode`\^^c8=`\^^c8
+\catcode`\^^c9=11 \lccode`\^^c9=`\^^c9 \uccode`\^^c9=`\^^c9
+\catcode`\^^ca=11 \lccode`\^^ca=`\^^ca \uccode`\^^ca=`\^^ca
+\catcode`\^^cb=11 \lccode`\^^cb=`\^^cb \uccode`\^^cb=`\^^cb
+\catcode`\^^cc=11 \lccode`\^^cc=`\^^cc \uccode`\^^cc=`\^^cc
+\catcode`\^^cd=11 \lccode`\^^cd=`\^^cd \uccode`\^^cd=`\^^cd
+\catcode`\^^ce=11 \lccode`\^^ce=`\^^ce \uccode`\^^ce=`\^^ce
+\catcode`\^^cf=11 \lccode`\^^cf=`\^^cf \uccode`\^^cf=`\^^cf
+\catcode`\^^d0=11 \lccode`\^^d0=`\^^d0 \uccode`\^^d0=`\^^d0
+\catcode`\^^d1=11 \lccode`\^^d1=`\^^d1 \uccode`\^^d1=`\^^d1
+\catcode`\^^d2=11 \lccode`\^^d2=`\^^d2 \uccode`\^^d2=`\^^d2
+\catcode`\^^d3=11 \lccode`\^^d3=`\^^d3 \uccode`\^^d3=`\^^d3
+\catcode`\^^d4=11 \lccode`\^^d4=`\^^d4 \uccode`\^^d4=`\^^d4
+\catcode`\^^d5=11 \lccode`\^^d5=`\^^d5 \uccode`\^^d5=`\^^d5
+\catcode`\^^d6=11 \lccode`\^^d6=`\^^d6 \uccode`\^^d6=`\^^d6
+\catcode`\^^d7=11 \lccode`\^^d7=`\^^d7 \uccode`\^^d7=`\^^d7
+\catcode`\^^d8=11 \lccode`\^^d8=`\^^d8 \uccode`\^^d8=`\^^d8
+\catcode`\^^d9=11 \lccode`\^^d9=`\^^d9 \uccode`\^^d9=`\^^d9
+\catcode`\^^da=11 \lccode`\^^da=`\^^da \uccode`\^^da=`\^^da
+\catcode`\^^df=12 \lccode`\^^df=`\^^df \uccode`\^^df=`\^^df
+\catcode`\^^e0=11 \lccode`\^^e0=`\^^e0 \uccode`\^^e0=`\^^e0
+\catcode`\^^e1=11 \lccode`\^^e1=`\^^e1 \uccode`\^^e1=`\^^e1
+\catcode`\^^e2=11 \lccode`\^^e2=`\^^e2 \uccode`\^^e2=`\^^e2
+\catcode`\^^e3=11 \lccode`\^^e3=`\^^e3 \uccode`\^^e3=`\^^e3
+\catcode`\^^e4=11 \lccode`\^^e4=`\^^e4 \uccode`\^^e4=`\^^e4
+\catcode`\^^e5=11 \lccode`\^^e5=`\^^e5 \uccode`\^^e5=`\^^e5
+\catcode`\^^e6=11 \lccode`\^^e6=`\^^e6 \uccode`\^^e6=`\^^e6
+\catcode`\^^e7=11 \lccode`\^^e7=`\^^e7 \uccode`\^^e7=`\^^e7
+\catcode`\^^e8=11 \lccode`\^^e8=`\^^e8 \uccode`\^^e8=`\^^e8
+\catcode`\^^e9=11 \lccode`\^^e9=`\^^e9 \uccode`\^^e9=`\^^e9
+\catcode`\^^ea=11 \lccode`\^^ea=`\^^ea \uccode`\^^ea=`\^^ea
+\catcode`\^^eb=11 \lccode`\^^eb=`\^^eb \uccode`\^^eb=`\^^eb
+\catcode`\^^ec=11 \lccode`\^^ec=`\^^ec \uccode`\^^ec=`\^^ec
+\catcode`\^^ed=11 \lccode`\^^ed=`\^^ed \uccode`\^^ed=`\^^ed
+\catcode`\^^ee=11 \lccode`\^^ee=`\^^ee \uccode`\^^ee=`\^^ee
+\catcode`\^^ef=12 \lccode`\^^ef=`\^^ef \uccode`\^^ef=`\^^ef
+\catcode`\^^f0=12 \lccode`\^^f0=`\^^f0 \uccode`\^^f0=`\^^f0
+\catcode`\^^f1=12 \lccode`\^^f1=`\^^f1 \uccode`\^^f1=`\^^f1
+\catcode`\^^f2=12 \lccode`\^^f2=`\^^f2 \uccode`\^^f2=`\^^f2
+\catcode`\^^f3=12 \lccode`\^^f3=`\^^f3 \uccode`\^^f3=`\^^f3
+\catcode`\^^f4=12 \lccode`\^^f4=`\^^f4 \uccode`\^^f4=`\^^f4
+\catcode`\^^f5=12 \lccode`\^^f5=`\^^f5 \uccode`\^^f5=`\^^f5
+\catcode`\^^f6=12 \lccode`\^^f6=`\^^f6 \uccode`\^^f6=`\^^f6
+\catcode`\^^f7=12 \lccode`\^^f7=`\^^f7 \uccode`\^^f7=`\^^f7
+\catcode`\^^f8=12 \lccode`\^^f8=`\^^f8 \uccode`\^^f8=`\^^f8
+\catcode`\^^f9=12 \lccode`\^^f9=`\^^f9 \uccode`\^^f9=`\^^f9
+\catcode`\^^fa=12 \lccode`\^^fa=`\^^fa \uccode`\^^fa=`\^^fa
+\catcode`\^^fb=12 \lccode`\^^fb=`\^^fb \uccode`\^^fb=`\^^fb
+\ldf@finish{\CurrentOption}
+%%
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+\endinput
+%%
+%% End of file `thai.ldf'.

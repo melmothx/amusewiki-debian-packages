@@ -1,0 +1,21 @@
+name babel-piedmontese
+category Package
+revision 30282
+shortdesc Babel support for Piedmontese
+longdesc The package provides the language definition file for support
+longdesc of Piedmontese in babel. Some shortcuts are defined, as well as
+longdesc translations to Piedmontese of standard "LaTeX names".
+containersize 1804
+containerchecksum 72fe6338ef6f172a23790402a632881906689117e7227b6f2f2fb6129fca9a7d44c42ddd48e8286252f3b5fce9dc34439594882c1f80f33557ef5ef70afe4993
+doccontainersize 106224
+doccontainerchecksum a2fa0cc72a205fcc25c2baeb7717a573bf8f2db5438e49c9de8a90e8da37d4f267ff30f08f8bb79f08756f5d227acddba8c069c8a5c257adf95c3afac271927f
+docfiles size=26
+ texmf-dist/doc/generic/babel-piedmontese/piedmontese.pdf details="Package documentation"
+srccontainersize 4044
+srccontainerchecksum 6020ade081108365e4b23d9b3c9ef789e95764748d06a647a071e8ad77c945593a680c7669c57e989e71104a8bdfbf857eec9599327560e4453e0a81b9d309e8
+runfiles size=1
+ texmf-dist/tex/generic/babel-piedmontese/piedmontese.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/piedmontese
+catalogue-license lppl1.3
+catalogue-topics piedmontese multilingual-addon
+catalogue-version 1.0

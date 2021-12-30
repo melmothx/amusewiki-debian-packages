@@ -1,0 +1,27 @@
+name babel-japanese
+category Package
+revision 57733
+shortdesc Babel support for Japanese
+longdesc This package provides a japanese option for the babel package.
+longdesc It defines all the language definition macros in Japanese.
+longdesc Currently this package works with pLaTeX, upLaTeX, XeLaTeX and
+longdesc LuaLaTeX.
+containersize 2428
+containerchecksum dae227c586eea1b56fc88937f8a99803994622c07cf54290ca1b5ef6cbfe53ade8aec7064820044284cfd70fb6ee2ba908bbb74dedb54bf3c2f0085815c7eb43
+doccontainersize 518004
+doccontainerchecksum cbcda3267222cbf5c38d8e7e8ea5440b94c3d7d0ca70b4f635b0751e824c690a4d495f0906b0d646de5f1ee08c74f72482020baf99d39ad0089002d5e523ccb5
+docfiles size=138
+ texmf-dist/doc/generic/babel-japanese/README.md details="Readme"
+ texmf-dist/doc/generic/babel-japanese/babel-japanese-sample.pdf details="Example of use (Japanese)" language="ja"
+ texmf-dist/doc/generic/babel-japanese/babel-japanese-sample.tex
+ texmf-dist/doc/generic/babel-japanese/babel-japanese.pdf details="Package documentation (Japanese)" language="en,ja"
+ texmf-dist/doc/generic/babel-japanese/japanese.pdf details="User guide"
+ texmf-dist/doc/generic/babel-japanese/japanese.tex
+srccontainersize 8192
+srccontainerchecksum 956aa7cc75bb2a007fbbf4ba4e7209251d3232f585976dc0002429372062e9c1933241bf05c34aefc481a82032594b922df3851d6f88bdbdfd7c181b9a44d6e8
+runfiles size=2
+ texmf-dist/tex/generic/babel-japanese/japanese.ldf
+catalogue-contact-repository https://github.com/texjporg/babel-japanese
+catalogue-ctan /macros/latex/contrib/babel-contrib/japanese
+catalogue-license lppl1.3
+catalogue-topics japanese multilingual-addon

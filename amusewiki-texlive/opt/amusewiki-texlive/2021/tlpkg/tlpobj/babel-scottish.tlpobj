@@ -1,0 +1,21 @@
+name babel-scottish
+category Package
+revision 30289
+shortdesc Babel support for Scottish Gaelic
+longdesc The package provides the language definition file for support
+longdesc of Gaidhlig (Scottish Gaelic) in babel. Some shortcuts are
+longdesc defined, as well as translations of standard "LaTeX names".
+containersize 2260
+containerchecksum a2c708d9e116933fd00619fa8d89e30aecccbfe162c96eac22055bc442276863e8957481787d94a75507c2662ff4fcd13760b454d12b811dc4659205cdf5825b
+doccontainersize 113832
+doccontainerchecksum b32687935329933a733d239a58d7cbb7c4721c4fe37c703891547c2e6e82503235a0420890a9f025cb81a5c86148bd5ac2301da20d538781fa6f2831939c8009
+docfiles size=28
+ texmf-dist/doc/generic/babel-scottish/scottish.pdf details="Package documentation"
+srccontainersize 4100
+srccontainerchecksum 8ec0b8a65d433f978db671a344ff22263929c96b742ab7c11c0b47eb2e2f2d652064fefb4a19cc3f91a95cf0abe3450574a3381917fbd239be1bc89d002f99e2
+runfiles size=1
+ texmf-dist/tex/generic/babel-scottish/scottish.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/scottish
+catalogue-license lppl1.3
+catalogue-topics scottish multilingual-addon
+catalogue-version 1.0g

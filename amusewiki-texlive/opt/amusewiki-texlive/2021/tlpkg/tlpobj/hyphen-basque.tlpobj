@@ -1,0 +1,21 @@
+name hyphen-basque
+category TLCore
+revision 58652
+catalogue bahyph
+shortdesc Basque hyphenation patterns.
+longdesc Hyphenation patterns for Basque in T1/EC and UTF-8 encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=basque 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-eu.tex 	file_patterns=hyph-eu.pat.txt 	file_exceptions=
+containersize 3224
+containerchecksum b90680dc5692824d60ca603e8bdd2fcade7cc772c8c0f9538d579704fb16165db2baf0c466ccaff46d92491b4a678fa86a127c0d106dbef6d640dfd2f887663d
+srccontainersize 2540
+srccontainerchecksum 75a20da77fa056c719ecc1f014bb09c67f62f1c4a3abe04b7cadf45c7a4e06e4492cb0d34a8025f19f3ee5e3330e488212885095335d4a7e97baa5b106576223
+runfiles size=5
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-eu.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-eu.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-eu.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-eu.pat.txt
+catalogue-ctan /language/basque
+catalogue-license other-free
+catalogue-topics basque hyphenation

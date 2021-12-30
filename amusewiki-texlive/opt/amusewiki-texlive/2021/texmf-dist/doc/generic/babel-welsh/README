@@ -1,0 +1,12 @@
+Welsh 1.1a
+------------
+
+This is the babel style for Welsh.
+
+Changes 1.1
+-----------
+* Date fixed
+* UTF-8 encoded strings for XeTeX and LuaTeX
+
+----------
+2015-09-03

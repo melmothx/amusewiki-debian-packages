@@ -1,0 +1,98 @@
+%%
+%% This is file `bosnian.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% bosnian.dtx  (with options: `code')
+%% This is a generated file.
+%% 
+%% Copyright 2015 Samir Halilcevic and any individual authors
+%% listed elsewhere in this file.  All rights reserved.
+%% 
+%% This file was generated from file(s) of the Babel system.
+%% ---------------------------------------------------------
+%% 
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Samir Halilcevic.
+%% 
+%% This file may only be distributed together with a copy of the Babel
+%% system. You may however distribute the Babel system without
+%% such generated files.
+%% 
+%% The list of all files belonging to the Babel distribution is
+%% given in the file `manifest.bbl'. See also `legal.bbl for additional
+%% information.
+%% 
+%% The list of derived (unpacked) files belonging to the distribution
+%% and covered by LPPL is defined by the unpacking scripts (with
+%% extension .ins) which are part of the distribution.
+\ProvidesLanguage{bosnian}
+       [2015/08/20 v1.1 Bosnian support from the babel system]
+\LdfInit{bosnian}\captionsbosnian
+\ifx\l@bosnian\@undefined
+    \@nopatterns{Bosnian}
+    \adddialect\l@bosnian0\fi
+\addto\captionsbosnian{%
+  \def\prefacename{Predgovor}%
+  \def\refname{Literatura}%
+  \def\abstractname{Sa\v{z}etak}%
+  \def\bibname{Bibliografija}%
+  \def\chaptername{Poglavlje}%
+  \def\appendixname{Dodatak}%
+  \def\contentsname{Sadr\v{z}aj}%
+  \def\listfigurename{Popis slika}%
+  \def\listtablename{Popis tablica}%
+  \def\indexname{Indeks}%
+  \def\figurename{Slika}%
+  \def\tablename{Tablica}%
+  \def\partname{Dio}%
+  \def\enclname{Prilozi}%
+  \def\ccname{Kopija}%
+  \def\headtoname{Prima}%
+  \def\pagename{Stranica}%
+  \def\seename{Vidjeti}%
+  \def\alsoname{Tako\dj er vidjeti}%
+  \def\proofname{Dokaz}%
+  \def\glossaryname{Rje\v{c}nik}%
+  }%
+\def\datebosnian{%
+  \def\today{\number\day.~\ifcase\month\or
+    januar\or februar\or mart\or april\or maj\or
+    juni\or juli\or august\or septembar\or oktobar\or novembar\or
+    decembar\fi \space \number\year.~}}
+\addto\extrasbosnian{}
+\addto\noextrasbosnian{}
+\def\tg{\mathop{\operator@font tg}\nolimits}
+\def\ctg{\mathop{\operator@font ctg}\nolimits}
+\def\arctg{\mathop{\operator@font arctg}\nolimits}
+\def\arcctg{\mathop{\operator@font arcctg}\nolimits}
+\ldf@finish{bosnian}
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+\endinput
+%%
+%% End of file `bosnian.ldf'.

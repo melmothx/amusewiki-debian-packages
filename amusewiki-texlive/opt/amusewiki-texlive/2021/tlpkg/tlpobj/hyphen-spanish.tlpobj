@@ -1,0 +1,29 @@
+name hyphen-spanish
+category TLCore
+revision 58652
+shortdesc Spanish hyphenation patterns.
+longdesc Hyphenation patterns for Spanish in T1/EC and UTF-8 encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=spanish synonyms=espanol 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-es.tex 	file_patterns=hyph-es.pat.txt 	file_exceptions=
+containersize 16452
+containerchecksum d6783537ff44a326b83c2004afd63f5bdbd162fa4865138c2e6d34c9e6a103ac41dd7b382454646b09c74970f8e0d5827a5f4af617936f74fd300b2054a096d4
+doccontainersize 128796
+doccontainerchecksum 263fd9480c5f225c7e36169b86e846baa64745b83c1072c9602e873f2e7cf8e63b07ab85b29e9d4263656faff58a39fe83e1eba34517b8ba34720f189c8e7f43
+docfiles size=36
+ texmf-dist/doc/generic/hyph-utf8/languages/es/README
+ texmf-dist/doc/generic/hyph-utf8/languages/es/division.pdf details="Paper on word division (Spanish)" language="es"
+srccontainersize 7912
+srccontainerchecksum b1ceb7602a46ecab68fb767ffb154f0dea9626d81bf6c46dd43be328204f72141842c81efda9d7d51997ed25356746e345f7cd9f9ed88ac2f99746794becb75d
+runfiles size=33
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-es.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-es.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-es.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-es.pat.txt
+catalogue-contact-bugs https://github.com/jbezos/tex-hyphen-spanish/issues
+catalogue-contact-home http://www.cervantex.es/
+catalogue-contact-repository https://github.com/jbezos/tex-hyphen-spanish
+catalogue-ctan /language/spanish/hyphen-spanish
+catalogue-license mit
+catalogue-topics hyphenation spanish
+catalogue-version 5.0

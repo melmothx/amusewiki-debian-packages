@@ -1,0 +1,61 @@
+%%
+%% This is file `pldefs.ltx',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% plfonts.dtx  (with options: `pldefs,xpt')
+%% 
+%% Copyright (c) 2010 ASCII MEDIA WORKS
+%% Copyright (c) 2016-2020 Japanese TeX Development Community
+%% 
+%% This file is part of the pLaTeX2e system (community edition).
+%% -------------------------------------------------------------
+%% 
+%% File: plfonts.dtx
+\ProvidesFile{pldefs.ltx}
+      [2021/01/10 v1.7k pLaTeX Kernel (Default settings)]
+\DeclareKanjiEncodingDefaults{}{}
+\DeclareErrorKanjiFont{JY1}{mc}{m}{n}{10}
+\kanjifamily{mc}
+\def\k@series{m}    % \kanjiseries{m}
+\def\k@shape{n}     % \kanjishape{n}
+\fontsize{10}{10}
+\DeclareYokoKanjiEncoding{JY1}{}{}
+\DeclareKanjiSubstitution{JY1}{mc}{m}{n}
+\DeclareTateKanjiEncoding{JT1}{}{}
+\DeclareKanjiSubstitution{JT1}{mc}{m}{n}
+\KanjiEncodingPair{JY1}{JT1}
+\newcommand\mcdefault{mc}
+\newcommand\gtdefault{gt}
+\newcommand\kanjiencodingdefault{JY1}
+\newcommand\kanjifamilydefault{\mcdefault}
+\newcommand\kanjiseriesdefault{\mddefault}
+\newcommand\kanjishapedefault{n}% formerly \updefault
+\kanjiencoding{JY1}
+\input{jy1mc.fd}
+\input{jy1gt.fd}
+\input{jt1mc.fd}
+\input{jt1gt.fd}
+\fontencoding{JT1}\selectfont
+\fontencoding{JY1}\selectfont
+\DeclarePreloadSizes{JY1}{mc}{m}{n}{5,7,10,12}
+\DeclarePreloadSizes{JY1}{gt}{m}{n}{5,7,10,12}
+\DeclarePreloadSizes{JT1}{mc}{m}{n}{5,7,10,12}
+\DeclarePreloadSizes{JT1}{gt}{m}{n}{5,7,10,12}
+\InputIfFileExists{kinsoku.tex}%
+  {\message{Loading kinsoku patterns for japanese.}}
+  {\errhelp{The configuration for kinsoku is incorrectly installed.^^J%
+            If you don't understand this error message you need
+            to seek^^Jexpert advice.}%
+   \errmessage{OOPS! I can't find any kinsoku patterns for japanese^^J%
+               \space Think of getting some or the
+               platex2e setup will never succeed}\@@end}
+\kanjiskip=0pt plus .4pt minus .5pt
+\autospacing
+\xkanjiskip=.25zw plus1pt minus1pt
+\autoxspacing
+\jcharwidowpenalty=500
+\endinput
+%%
+%% End of file `pldefs.ltx'.

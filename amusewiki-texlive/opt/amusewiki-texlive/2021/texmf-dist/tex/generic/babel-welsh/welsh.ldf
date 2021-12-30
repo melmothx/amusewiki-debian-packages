@@ -1,0 +1,88 @@
+%%
+%% This is file `welsh.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% welsh.dtx  (with options: `code')
+%% This is a generated file.
+%% 
+%% Copyright 1989-2005 Johannes L. Braams and any individual authors
+%% listed elsewhere in this file.  All rights reserved.
+%% 
+%% This file was generated from file(s) of the Babel system.
+%% ---------------------------------------------------------
+%% 
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Johannes Braams.
+%% 
+%% This file may only be distributed together with a copy of the Babel
+%% system. You may however distribute the Babel system without
+%% such generated files.
+%% 
+%% The list of all files belonging to the Babel distribution is
+%% given in the file `manifest.bbl'. See also `legal.bbl for additional
+%% information.
+%% 
+%% The list of derived (unpacked) files belonging to the distribution
+%% and covered by LPPL is defined by the unpacking scripts (with
+%% extension .ins) which are part of the distribution.
+\ProvidesLanguage{welsh}
+        [2015/09/03 v1.1a Welsh support from the babel system]
+%% File `welsh.dtx'
+%% Babel package for LaTeX version 2e
+%% Copyright (C) 1989 -- 2015
+%%           by Johannes Braams, TeXniek
+\LdfInit{welsh}{captionswelsh}
+\ifx\undefined\l@welsh
+  \@nopatterns{welsh}
+  \adddialect\l@welsh0\fi
+\providehyphenmins{\CurrentOption}{\tw@\thr@@}
+\StartBabelCommands*{welsh}{captions}
+  [unicode, charset=utf8, fontenc=EU1 EU2]
+  \SetString{\enclname}{amgaeëdig}
+  \SetString{\ccname}{copï au}
+\StartBabelCommands*{welsh}{captions}
+  \SetString{\prefacename}{Rhagair}
+  \SetString{\refname}{Cyfeiriadau}
+  \SetString{\abstractname}{Crynodeb}
+  \SetString{\bibname}{Llyfryddiaeth}
+  \SetString{\chaptername}{Pennod}
+  \SetString{\appendixname}{Atodiad}
+  \SetString{\contentsname}{Cynnwys}
+  \SetString{\listfigurename}{Rhestr Ddarluniau}
+  \SetString{\listtablename}{Rhestr Dablau}
+  \SetString{\indexname}{Mynegai}
+  \SetString{\figurename}{Darlun}
+  \SetString{\tablename}{Taflen}
+  \SetString{\partname}{Rhan}
+  \SetString{\enclname}{amgae\"edig}
+  \SetString{\ccname}{cop\"\i au}
+  \SetString{\headtoname}{At}
+  \SetString{\pagename}{tudalen}
+  \SetString{\seename}{gweler}
+  \SetString{\alsoname}{gweler hefyd}
+  \SetString{\proofname}{Prawf}
+  \SetString{\glossaryname}{Rhestr termau}
+\StartBabelCommands*{welsh}{date}
+  \SetStringLoop{month#1name}{%
+    Ionawr,Chwefror,Mawrth,Ebrill,Mai,Mehefin,%
+    Gorffennaf,Awst,Medi,Hydref,Tachwedd,Rhagfyr}
+  \SetString\today{%
+    {\number\day} \@nameuse{month\romannumeral\month name} {\number\year}}
+\EndBabelCommands
+\addto\extraswelsh{}
+\addto\noextraswelsh{}
+\ldf@finish{welsh}
+\endinput
+%%
+%% End of file `welsh.ldf'.

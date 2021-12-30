@@ -1,0 +1,44 @@
+!!! 64-BIT BINARIES ARE UNOFFICAL !!!
+
+If you did not press the ABOUT menu item, you probably did not
+previously add 64-bit binaries with this graphical interface.
+
+The 64-bit binaries that you can add with this interface are an
+UNOFFICAL addition to TeX Live.
+
+They are created by Akira Kakuto, who also maintains most 32-bit
+binaries for TeX Live.
+
+Installing these 64-bit binaries will NOT change your searchpath to
+include them. Instead, a new command-prompt shortcut, titled 'TeX
+Live 64-bit' will be created which prefers the 64-bit binaries over
+the 32-bit ones. You can also configure your editor to prefer
+64-bit, but that is up to you.
+
+Shortcut creation may fail on Windows 7.
+
+WARNING
+
+If the 64-bit binaries are not in step with the 32-bit ones, you
+might run into problems with format files. When an update involves a
+TeX compiler ([la]tex, pdf[la]tex, lua[la]tex, xe[la]tex) or
+metafont/metapost, it is best to also rerun this 64-bit installer.
+THIS IS YOUR OWN RESPONSIBILITY!
+
+Normal 32-bit operation should not be affected, but this also
+depends on your editor configuration.
+
+
+RE-SYNCING
+
+Another consideration is the actual set of 64-bit binaries which are
+installed. When installing or updating them, 64-bit binaries which
+do not have a corresponding 32-bit binary are automatically
+removed. Therefore, if you add or remove packages, you should also
+do a re-sync, or an update, which includes a re-sync.
+
+
+GHOSTSCRIPT
+
+You may need to also install a 64-bit ghostscript. An installer can
+be downloaded from https://mirror.ctan.org/systems/win32/TLW64/

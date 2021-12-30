@@ -1,0 +1,28 @@
+%%
+%% This is file `xeCJK-example-CJKecglue.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% xeCJK.dtx  (with options: `ex-ecglue')
+%% 
+\documentclass{minimal}
+\usepackage{xeCJK}
+\setCJKmainfont[BoldFont=SimHei]{SimSun}
+\long\def\showtext{%
+ 这是 English 中文 {\itshape Chinese} 中文    \TeX\
+  间隔 \textit{Italic} 中文\textbf{字体} a 数学 $b$ 数学 $c$ $d$\par
+ 这是English中文{\itshape Chinese}中文\TeX\
+ 间隔\textit{Italic}中文\textbf{字体}a数学$b$数学$c$ $d$\par
+This is an example. 这是一个例子}
+\begin{document}
+\showtext
+
+\hrulefill\bigskip
+
+\xeCJKsetup{xCJKecglue=\quad}
+\showtext
+\end{document}
+%% 
+%%
+%% End of file `xeCJK-example-CJKecglue.tex'.

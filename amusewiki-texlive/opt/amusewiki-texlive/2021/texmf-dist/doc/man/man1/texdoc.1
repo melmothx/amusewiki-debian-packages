@@ -1,0 +1,181 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "TEXDOC" "1" "May 2021" "Texdoc 3.3.1" "Texdoc manual"
+.
+.SH "NAME"
+\fBtexdoc\fR \- find & view documentation in TeX Live
+.
+.SH "SYNOPSIS"
+\fBtexdoc\fR [OPTION]\.\.\. NAME\.\.\.
+.
+.br
+\fBtexdoc\fR [OPTION]\.\.\. ACTION
+.
+.SH "DESCRIPTION"
+Try to find appropriate TeX documentation for the specified NAME(s)\. Alternatively, perform the given ACTION and exit\.
+.
+.SH "OPTIONS"
+.
+.TP
+\fB\-w\fR, \fB\-\-view\fR
+Use view mode: start a viewer\. \fB(default)\fR
+.
+.TP
+\fB\-m\fR, \fB\-\-mixed\fR
+Use mixed mode (view or list)\.
+.
+.TP
+\fB\-l\fR, \fB\-\-list\fR
+Use list mode: show a list of results\.
+.
+.TP
+\fB\-s\fR, \fB\-\-showall\fR
+Use showall mode: show also "bad" results\.
+.
+.TP
+\fB\-i\fR, \fB\-\-interact\fR
+Use interactive menus\. \fB(default)\fR
+.
+.TP
+\fB\-I\fR, \fB\-\-nointeract\fR
+Use plain lists, no interaction required\.
+.
+.TP
+\fB\-M\fR, \fB\-\-machine\fR
+Machine\-readable output for lists (implies \-I)\.
+.
+.TP
+\fB\-q\fR, \fB\-\-quiet\fR
+Suppress warnings and most error messages\.
+.
+.TP
+\fB\-v\fR, \fB\-\-verbose\fR
+Print additional information (e\.g\., viewer command)\.
+.
+.TP
+\fB\-D\fR, \fB\-\-debug\fR
+Activate all debug output (equal to "\-\-debug=all")\.
+.
+.TP
+\fB\-d\fR LIST, \fB\-\-debug\fR=LIST
+Activate debug output restricted to the categories specified in LIST\.
+.
+.br
+Available categories: \fBconfig\fR, \fBfiles\fR, \fBsearch\fR, \fBscore\fR, \fBtexdocs\fR, \fBtlpdb\fR, \fBversion\fR, \fBview\fR, and \fBall\fR to activate all of these\.
+.
+.TP
+\fB\-c\fR NAME=VALUE
+Set configuration item NAME to VALUE\.
+.
+.SH "ACTIONS"
+.
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Print this help message\.
+.
+.TP
+\fB\-V\fR, \fB\-\-version\fR
+Print the version number\.
+.
+.TP
+\fB\-f\fR, \fB\-\-files\fR
+Print the list of configuration files used\.
+.
+.TP
+\fB\-\-just\-view\fR FILE
+Display FILE, given with full path (no searching)\.
+.
+.SH "ENVIRONMENT"
+The following environment variables can be split by colon and used to set viewers:
+.
+.TP
+\fBBROWSER\fR, \fBBROWSER_texdoc\fR
+Set the command to be used for HTML documents\.
+.
+.TP
+\fBDVIVIEWER\fR, \fBDVIVIEWER_texdoc\fR
+Set the command to be used for DVI documents\.
+.
+.TP
+\fBMDVIEWER\fR, \fBMDVIEWER_texdoc\fR
+Set the command to be used for Markdown documents\.
+.
+.TP
+\fBPAGER\fR, \fBPAGER_texdoc\fR
+Set the command to be used for text documents\.
+.
+.TP
+\fBPDFVIEWER\fR, \fBPDFVIEWER_texdoc\fR
+Set the command to be used for PDF documents\.
+.
+.TP
+\fBPSVIEWER\fR, \fBPSVIEWER_texdoc\fR
+Set the command to be used for PS documents\.
+.
+.P
+The following environment variables are also used:
+.
+.TP
+\fBLANG\fR, \fBLC_ALL\fR and so on
+Set the locale (which will influence on the search results)\.
+.
+.TP
+\fBTEXDOCS\fR
+In addition to the documents included in the TeX Live database, Texdoc also searches documentation under TEXMF trees specified by the kpathsea variable \fBTEXDOCS\fR\.
+.
+.SH "FILES"
+\fB<texmf>/texdoc/texdoc\.cnf\fR, see output of the \fB\-\-files\fR option\.
+.
+.SH "EXIT STATUS"
+The \fBtexdoc\fR command exists with one of the following values:
+.
+.TP
+0
+Success\.
+.
+.TP
+1
+Internal error\.
+.
+.TP
+2
+Usage error\.
+.
+.TP
+3
+No documentation found\.
+.
+.SH "REPORTING BUGS"
+Report bugs to \fItexdoc@tug\.org\fR\.
+.
+.br
+Texdoc home page: \fIhttp://tug\.org/texdoc/\fR
+.
+.br
+Source: \fIhttps://github\.com/TeX\-Live/texdoc\fR
+.
+.SH "COPYRIGHT"
+Copyright 2008\-2021 Manuel Pe\'gourie\'\-Gonnard, Takuto Asakura, the TeX Live Team\.
+.
+.br
+License: GNU GPL version 3 or later \fIhttp://gnu\.org/licenses/gpl\.html\fR\.
+.
+.br
+This is free software: you are free to change and redistribute it\.
+.
+.SH "SEE ALSO"
+The full documentation is maintained as a PDF manual\. The command
+.
+.IP "" 4
+.
+.nf
+
+texdoc texdoc
+.
+.fi
+.
+.IP "" 0
+.
+.P
+should give you access to the complete manual\.

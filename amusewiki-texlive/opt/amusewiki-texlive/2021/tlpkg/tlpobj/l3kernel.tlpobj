@@ -1,0 +1,95 @@
+name l3kernel
+category Package
+revision 61121
+shortdesc LaTeX3 programming conventions
+longdesc The l3kernel bundle provides an implementation of the LaTeX3
+longdesc programmers' interface, as a set of packages that run under
+longdesc LaTeX2e. The interface provides the foundation on which the
+longdesc LaTeX3 kernel and other future code are built: it is an API for
+longdesc TeX programmers. The packages are set up so that the LaTeX3
+longdesc conventions can be used with regular LaTeX2e packages.
+depend l3backend
+containersize 169640
+containerchecksum a82e2199e56b039b4ffc50c7c8cb02076d182f4a3df1481b1e1a89510b5bbfb1b0aa35504c9df0d781699837c06f1a72d08efe0898b4456b352f45ad19f5972d
+doccontainersize 11059148
+doccontainerchecksum b97c8810586549231879494f8f162f0d5af47fbee459bb1d173f5e0962205c0e107c4b58fad1b4dc73c98f49a1689961eced9d2ac6954b4f9511f07e14d405b9
+docfiles size=3175
+ texmf-dist/doc/latex/l3kernel/CHANGELOG.md
+ texmf-dist/doc/latex/l3kernel/README.md details="Readme"
+ texmf-dist/doc/latex/l3kernel/expl3.pdf details="The LaTeX3 Programming Language"
+ texmf-dist/doc/latex/l3kernel/interface3.pdf details="The LaTeX3 interfaces"
+ texmf-dist/doc/latex/l3kernel/interface3.tex
+ texmf-dist/doc/latex/l3kernel/l3docstrip.pdf
+ texmf-dist/doc/latex/l3kernel/l3news.pdf
+ texmf-dist/doc/latex/l3kernel/l3news.tex
+ texmf-dist/doc/latex/l3kernel/l3news01.pdf
+ texmf-dist/doc/latex/l3kernel/l3news01.tex
+ texmf-dist/doc/latex/l3kernel/l3news02.pdf
+ texmf-dist/doc/latex/l3kernel/l3news02.tex
+ texmf-dist/doc/latex/l3kernel/l3news03.pdf
+ texmf-dist/doc/latex/l3kernel/l3news03.tex
+ texmf-dist/doc/latex/l3kernel/l3news04.pdf
+ texmf-dist/doc/latex/l3kernel/l3news04.tex
+ texmf-dist/doc/latex/l3kernel/l3news05.pdf
+ texmf-dist/doc/latex/l3kernel/l3news05.tex
+ texmf-dist/doc/latex/l3kernel/l3news06.pdf
+ texmf-dist/doc/latex/l3kernel/l3news06.tex
+ texmf-dist/doc/latex/l3kernel/l3news07.pdf
+ texmf-dist/doc/latex/l3kernel/l3news07.tex
+ texmf-dist/doc/latex/l3kernel/l3news08.pdf
+ texmf-dist/doc/latex/l3kernel/l3news08.tex
+ texmf-dist/doc/latex/l3kernel/l3news09.pdf
+ texmf-dist/doc/latex/l3kernel/l3news09.tex
+ texmf-dist/doc/latex/l3kernel/l3news10.pdf
+ texmf-dist/doc/latex/l3kernel/l3news10.tex
+ texmf-dist/doc/latex/l3kernel/l3news11.pdf
+ texmf-dist/doc/latex/l3kernel/l3news11.tex
+ texmf-dist/doc/latex/l3kernel/l3news12.pdf
+ texmf-dist/doc/latex/l3kernel/l3news12.tex
+ texmf-dist/doc/latex/l3kernel/l3obsolete.txt
+ texmf-dist/doc/latex/l3kernel/l3prefixes.csv
+ texmf-dist/doc/latex/l3kernel/l3prefixes.pdf
+ texmf-dist/doc/latex/l3kernel/l3prefixes.tex
+ texmf-dist/doc/latex/l3kernel/l3styleguide.pdf details="LaTeX3 style guide"
+ texmf-dist/doc/latex/l3kernel/l3styleguide.tex
+ texmf-dist/doc/latex/l3kernel/l3syntax-changes.pdf details="Syntax changes"
+ texmf-dist/doc/latex/l3kernel/l3syntax-changes.tex
+ texmf-dist/doc/latex/l3kernel/l3term-glossary.pdf
+ texmf-dist/doc/latex/l3kernel/l3term-glossary.tex
+ texmf-dist/doc/latex/l3kernel/source3.pdf
+ texmf-dist/doc/latex/l3kernel/source3.tex
+ texmf-dist/doc/latex/l3kernel/source3body.tex
+srccontainersize 584296
+srccontainerchecksum aa3c5069c5670eaf2a4a8f674c4f67e00ff220ca5cd40d0213fd99ca76937dd8bb7f43ed357ca339769c74cb5a5ad82be4a46f689778d9097ff202c098747a31
+runfiles size=344
+ texmf-dist/tex/latex/l3kernel/expl3-code.tex
+ texmf-dist/tex/latex/l3kernel/expl3-generic.tex
+ texmf-dist/tex/latex/l3kernel/expl3.ltx
+ texmf-dist/tex/latex/l3kernel/expl3.lua
+ texmf-dist/tex/latex/l3kernel/expl3.sty
+ texmf-dist/tex/latex/l3kernel/l3debug.def
+ texmf-dist/tex/latex/l3kernel/l3deprecation.def
+ texmf-dist/tex/latex/l3kernel/l3doc.cls
+ texmf-dist/tex/latex/l3kernel/l3docstrip.tex
+ texmf-dist/tex/latex/l3kernel/l3str-enc-iso88591.def
+ texmf-dist/tex/latex/l3kernel/l3str-enc-iso885910.def
+ texmf-dist/tex/latex/l3kernel/l3str-enc-iso885911.def
+ texmf-dist/tex/latex/l3kernel/l3str-enc-iso885913.def
+ texmf-dist/tex/latex/l3kernel/l3str-enc-iso885914.def
+ texmf-dist/tex/latex/l3kernel/l3str-enc-iso885915.def
+ texmf-dist/tex/latex/l3kernel/l3str-enc-iso885916.def
+ texmf-dist/tex/latex/l3kernel/l3str-enc-iso88592.def
+ texmf-dist/tex/latex/l3kernel/l3str-enc-iso88593.def
+ texmf-dist/tex/latex/l3kernel/l3str-enc-iso88594.def
+ texmf-dist/tex/latex/l3kernel/l3str-enc-iso88595.def
+ texmf-dist/tex/latex/l3kernel/l3str-enc-iso88596.def
+ texmf-dist/tex/latex/l3kernel/l3str-enc-iso88597.def
+ texmf-dist/tex/latex/l3kernel/l3str-enc-iso88598.def
+ texmf-dist/tex/latex/l3kernel/l3str-enc-iso88599.def
+catalogue-also l3backend l3packages l3experimental
+catalogue-contact-bugs https://github.com/latex3/latex3/issues
+catalogue-contact-home http://www.latex-project.org/code.html
+catalogue-contact-repository https://github.com/latex3/latex3
+catalogue-ctan /macros/latex/contrib/l3kernel
+catalogue-license lppl1.3c
+catalogue-topics format latex3 pre-release

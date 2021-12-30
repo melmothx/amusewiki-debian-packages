@@ -1,0 +1,184 @@
+%% $Id: pst-news11.tex 4 2020-06-09 08:32:19Z herbert $
+\documentclass[11pt,english,BCOR10mm,DIV12,bibliography=totoc,parskip=false,smallheadings
+    headexclude,footexclude,oneside]{pst-doc}
+\listfiles
+\let\Lfile\LFile
+\usepackage[utf8]{inputenc}
+\usepackage{pst-node}
+\usepackage{xkvview}
+\let\pstnodeFV\fileversion
+\let\pstnodeFD\filedate
+\renewcommand\bgImage{\psscalebox{15}{\color{blue!20}2011}}
+\def\textat{\char064}
+\lstset{explpreset={pos=l,width=-99pt,overhang=0pt,hsep=\columnsep,vsep=\bigskipamount,rframe={}},
+    escapechar=?}
+\begin{document}
+
+%\psset{PstDebug=1}
+\title{\texttt{News -- 2011}\\ \Large new macros and bugfixes for the
+basic package \nxLFile{pstricks}}
+\author{Herbert Voß}
+\date{\today}
+
+\maketitle
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\part{\texttt{pstricks} -- package}
+
+\section{General}
+There exists a new document class \LClass{pst-doc} for writing PSTricks documentations,
+like this news document. It depends on the KOMA-Script document class \LClass{scrartcl}.
+\LClass{pst-doc} defines a lot of special macros to create a good index. Take one of
+the already existing package documentation and look into the source file. Then it will be
+easy to understand, how all these macros have to be used.
+
+When running \Lprog{pdflatex} the title page is created with boxes and inserted 
+with the macro \Lcs{AddToShipoutPicture} from the package \LPack{eso-pic}. It
+inserts the background title page image \Lfile{pst-doc-pdf} to use directly
+\Lprog{pdflatex}.
+When running \Lprog{latex} the title page
+ is created with \PST\ macros.This allows to use the Perl script \Lprog{pst2pdf} or
+the package \LPack{pst-pdf} or \LPack{auto-pst-pdf} or any other program/package which
+supports \PS\ code in the document.
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.sty}}
+%--------------------------------------------------------------------------------------
+\subsection{New optional argument}
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.tex} (\pstricksFV -- \pstricksFD)}
+%--------------------------------------------------------------------------------------
+
+\subsection{Macro \nxLcs{psLoop}}
+\PST\marginpar[2.17]{2.17} already knows \Lcs{psforeach} and \Lcs{psForeach} for loops. The new
+macro \Lcs{psLoop} allows a loop without defining a variable:
+
+\begin{BDef}
+\Lcs{psLoop}\Largb{n}\Largb{argument}
+\end{BDef}
+
+However, the internal \TeX\ counter \Lctr{psLoopIndex} can be used for own purposes.
+
+\begin{LTXexample}[width=7cm]
+  \psLoop{4}{PSTricks }
+\end{LTXexample}
+
+\begin{LTXexample}[width=7cm]
+\tabular{|c|c|c|c|}
+  \psLoop{3}{PSTricks &}\\\hline
+  A & B & C & D\\\hline
+\endtabular
+\end{LTXexample}
+
+\begin{LTXexample}[width=6cm]
+\begin{pspicture}[showgrid](3,3)
+\psLoop{4}{%
+  \psdots(\the\psLoopIndex,\the\psLoopIndex)}
+\end{pspicture}
+\end{LTXexample}
+
+\subsection{New fillstyle \texttt{dots}}
+Instead of using the package \LPack{pst-fill} one can now use the fill style \Lkeyval{dots}.
+The valid parameters are \Lkeyword{hatchsep} for the distance of two dots, \Lkeyword{hatchwidth}
+for the radius of the filled dot, and \Lkeyword{hatchcolor} for the dot color.
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}(-2,-2)(10,2)
+\pscircle[hatchcolor=gray,hatchsep=10pt,hatchwidth=3pt,fillstyle=dots]{2}
+\pscircle[hatchcolor=gray,hatchsep=10pt,hatchwidth=3pt,fillstyle=dots*](4,0){2}
+\psframe[hatchcolor=blue!30,linecolor=red,hatchsep=12pt,hatchwidth=4pt,
+         fillstyle=dots*](6,-2)(10,2)
+\end{pspicture}
+\end{LTXexample}
+
+
+%--------------------------------------------------------------------------------------
+\section{The PostScript header files}
+\subsection{\nxLFile{pstricks.pro}}
+%--------------------------------------------------------------------------------------
+There is a new subroutine \Lps{DotFill}:
+\begin{lstlisting}
+
+/DotFill {%	 on stack: dot radius
+  /dotRadius ED
+  abs CLW add /a ED 
+  a 0 dtransform round exch round exch
+  2 copy idtransform 
+  exch Atan rotate 
+  idtransform pop /a ED 
+  .25 .25 itransform 
+  pathbbox % llx lly urx ury of smallest bounding box
+  /y2 ED /x2 ED /y1 ED /x1 ED 
+  y2 y1 sub a div 2 add cvi /Ny ED
+  x2 x1 sub a div 2 add cvi /Nx ED
+  clip 
+  newpath 
+  /yA y1 dotRadius add CLW add def
+  /xA0 x1 dotRadius add CLW add def
+  Ny {
+     /xA xA0 def
+     Nx { 
+       newpath 
+       xA yA dotRadius 0 360 arc 
+       SolidDot { gsave fill grestore } if 
+       stroke
+       xA a add /xA ED
+     } repeat
+     yA a add /yA ED
+  } repeat
+  grestore
+} def
+\end{lstlisting}
+
+
+%--------------------------------------------------------------------------------------
+%\subsection{\nxLFile{pst-algparser.pro}}
+%--------------------------------------------------------------------------------------
+
+%\section{\nxLcs{psforeach} and \nxLcs{psForeach}}
+%--------------------------------------------------------------------------------------
+
+\section{List of all optional arguments for \texttt{pstricks}}
+
+\makeatletter
+\xkvview{family=pstricks,columns={key,type,default}}
+\makeatother
+
+
+\clearpage
+\part{Other packages}
+\section{\texttt{pst-node} -- version \pstnodeFV\ | \pstnodeFD}
+The command \Lcs{pnode} now knows an optional argument for an offset, which
+expects two values (x,y) separated by a comma:
+
+\begin{BDef}
+\Lcs{pnode}\OptArg*{\Largs{\Larga{offset}}}\Largr{\CAny}\Largb{\Larga{node name}}
+\end{BDef}
+
+
+\begin{LTXexample}[width=6cm]
+\begin{pspicture}[showgrid](0,-2)(6,2)
+\pnode{A}\psdot(A)\uput[90](A){A} 
+\pnode[0,-2]{B}\psdot(B)\uput[90](B){B} 
+\pnode(2,0){C}\psdot(C)\uput[90](C){C} 
+\pnode[1,-2](2,0){D}\psdot(D)\uput[90](D){D} 
+\pnode[2,2](3.5,0){E}\psdot(E)\uput[90](E){E} 
+\end{pspicture}
+\end{LTXexample}
+
+
+\clearpage
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{PSTricks}
+
+\printindex
+
+
+\end{document}

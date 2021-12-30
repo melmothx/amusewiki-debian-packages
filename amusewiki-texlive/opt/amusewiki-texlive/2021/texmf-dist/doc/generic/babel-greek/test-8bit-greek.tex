@@ -1,0 +1,422 @@
+\documentclass[a4paper]{article}
+
+\usepackage[LGR,T1]{fontenc}
+\usepackage[utf8]{luainputenc}
+% XeTeX in 8-bit compatibility mode fails :(
+% LuaTeX in 8-bit compatibility mode:
+% hyphenation in Greek text parts fails!
+% (would require the 8-bit, a loader fix for luatex).
+
+% \usepackage{textalpha}
+\usepackage{textcomp}
+\usepackage[unicode]{hyperref}
+% \usepackage{bookmark}
+\usepackage{parskip}
+\usepackage{booktabs}
+
+\usepackage{lmodern}
+% \usepackage{kerkis}
+% \usepackage{gfsdidot}
+% \usepackage{dejavu}
+
+% Load the Babel package with Greek and English language definitions:
+%
+% Uncomment the desired language variant
+
+% Default: modern monotonic Greek
+\usepackage[greek,english]{babel}
+% Obsolete: used instead of `greek', kept for backwards compatibility:
+% \usepackage[polutonikogreek,english]{babel}
+
+% For backwards compatibility, you can also use
+% \selectlanguage{polutonikogreek} instead of \selectlanguage{greek} etc.
+% if the (modern) polytonic Greek language variant is selected.
+
+% uncomment for  modern polytonic Greek
+% \languageattribute{greek}{polutoniko}
+
+% uncomment for ancient Greek
+\languageattribute{greek}{ancient}
+
+% \message{Latin encoding is \latinencoding}
+
+\begin{document}
+
+\title{Test the Greek support for Babel}
+\author{Günter Milde}
+\date{2020/11/10}
+\maketitle
+
+The babel option ``greek'' activates the support for the Greek language
+defined in the file \texttt{greek.ldf} (source \texttt{greek.dtx}).
+
+\section{Language Switch}
+
+The declaration \verb|\selectlanguage| switches between languages.
+
+\begin{quote}
+  \selectlanguage{greek}
+  Τί φήις; Ἱδὼν ἐνθέδε παῖδ’ ἐλευθέραν
+  τὰς πλησίον Νύμφας στεφανοῦσαν, Σώστρατε,
+  ἐρῶν άπῆλθες εὐθύς;
+\end{quote}
+
+The macro \verb|\foreignlanguage| sets its second argument in the specified
+language. This is intended for short text parts or single words like
+\foreignlanguage{greek}{Βιβλιοθήκη}.
+
+There should be no inserted space before or after the language switch (may
+happen if there are unescaped linebreaks in the font or language definitions):
+
+\begin{quote}
+  Change script with \verb|ensuregreek|: |\ensuregreek{do\~ulos}|. Change
+  language with \verb|\foreignlanguage|: |\foreignlanguage{greek}{do\~ulos}|.
+\end{quote}
+
+\section{Font Encoding}
+
+In Greek text parts, the font encoding is automatically set to LGR if an
+8-bit TeX engine is used. (See \url{test-unicode-greek.tex} for usage of
+babel-greek with XeTeX or LuaTeX.)
+
+LGR has Greek characters in the slots reserved in a TeX \emph{standard text
+font encoding}. This means you need an explicit font encoding change for
+every Latin letter and some other symbols if the current font encoding is
+LGR.
+
+Babel defines the declaration \verb|\latintext| and the command
+\verb|\textlatin| to switch to the T1 or OT1 font encoding or typeset the
+argument using this encoding.
+
+Switching to a font encoding supporting the Greek script is possible without
+switching the Babel language using the declarations \verb|\greekscript| (no
+switch if the current encoding supports Greek script (e.g. the Unicode font
+encoding TU)) or \verb|\greektext| (always switch to LGR) and the
+corresponding macros \verb|\ensuregreek| or \verb|\textgreek|. These
+commands do not start a new paragraph:
+
+\greekscript Φίλων τοῦ \textlatin{TeX} (ΕΦΤ) --
+\latintext Friends (\ensuregreek{F\'ilwn}) of TeX.
+
+\texttt{greek.ldf} has some workarounds, so that macros relying on Latin
+characters in standard positions keep working. We test, that these
+definitions do not overwrite the selection of pre-composed characters for
+``copyright'' and ``registered trade mark'' by \emph{textcomp} (try copy and
+paste from the PDF output):
+
+Latin: A \& O, © ® ™ \\
+Greek (LGR): \ensuregreek{Α \& Ω, © ® ™}
+or input as macro \ensuregreek{\textAlpha{} \textampersand{} \textOmega{},
+\textcopyright{} \textregistered{} \texttrademark{}}.
+
+The ampersand should also work in mathematical mode: $ 1 \& 2 $
+
+To prevent Roman numerals being typeset in Greek letters we need to adopt
+the internal LaTeX commands. Note that this may cause errors when roman
+numerals are used in a situation where the macros need to be expanded:
+
+\makeatletter
+Latin:
+\@roman{1}, \@roman{2}, \@roman{3}, \@roman{4}, \ldots, \@roman{1975}
+\@Roman{1}, \@Roman{2}, \@Roman{3}, \@Roman{4}, \ldots, \@Roman{1975}
+
+Greek: \ensuregreek{
+\@roman{1}, \@roman{2}, \@roman{3}, \@roman{4}, \ldots, \@roman{1975}
+\@Roman{1}, \@Roman{2}, \@Roman{3}, \@Roman{4}, \ldots, \@Roman{1975}
+}
+\makeatother
+
+\section{MakeUppercase, MakeLowercase}
+
+Capital Greek letters have diacritics (except the dialytika and sub-iota) to
+the left (instead of above) and drop them in uppercase, e.g.
+\ensuregreek{μαΐστρος $\mapsto$ \MakeUppercase{μαΐστρος}}.
+
+Upcased letters with diacritics keep the dialytika. This is implemented for
+all input variants of diacritics with dialytika. (\texttt{greek.ldf} has
+\emph{composite command} definitions to ensure this also works for accent
+characters "upcased" to the charcter No 159.)
+
+\foreignlanguage{greek}{\"i \"'i \"`i \"~i \'"i \`"i \~"i
+			\"u \"\'u \"\`u \"\~u
+			ϊ ΐ ῒ ῗ ΐ ῒ ῗ ϋ ΰ ῢ ῧ
+  $\mapsto$ \MakeUppercase{\"i \"'i \"`i \"~i \'"i \`"i \~"i
+    	    		   \"u \"\'u \"\`u \"\~u
+			   ϊ ΐ ῒ ῗ ΐ ῒ ῗ ϋ ΰ ῢ ῧ
+			   }
+}
+
+
+Tonos and dasia mark a \emph{hiatus} (break-up of a diphthong) if
+placed on the first vowel of a diphthong
+(\ensuregreek{\'ai, \'au, \'ei, \'>ai, \'>au, \'>ei}).
+A dialytika must be placed on the second vowel if they are dropped:
+(\ensuregreek{\MakeUppercase{\'ai, \'au, \'ei,  \'>ai, \'>au, \'>ei}}).
+
+\selectlanguage{greek}
+% from teubner: άυλος/ΑΫΛΟΣ
+\'aulos $\mapsto$ \MakeUppercase{\'aulos},
+\'>aulos $\mapsto$ \MakeUppercase{\'>aulos},
+% from http://diacritics.typo.cz/index.php?id=69  μάινα -> ΜΑΪΝΑ
+m\'aina $\mapsto$ \MakeUppercase{m\'aina},
+% from  http://de.wikipedia.org/wiki/Neugriechische_Orthographie#Das_Trema
+% κέικ, ἀυπνία/αϋπνία
+k\'eik, $\mapsto$ \MakeUppercase{k\'eik}
+\accpsili{a}upn\'ia $\mapsto$ \MakeUppercase{\accpsili{a}upn\'ia}
+\selectlanguage{english}
+
+There are several alternative styles for the capitalized sub-iota.
+
+In order to let the Up/Downcasing work also with the Latin transcription
+defined by the LGR font encoding, ``babel-greek'' also defines lc/uccodes
+for non-standard assignments:
+
+\selectlanguage{greek}
+', ", `, >, <, | $\mapsto$ \MakeUppercase{', ", `, >, <, |}
+\selectlanguage{english}
+
+The uppercase of the zero-width space at the place of ``v'' is kept to point
+to the glyph at the position of ``V'', the Dasia-Oxia accent
+(\ensuregreek{\MakeUppercase{v}}):
+
+\begin{quotation}
+  greek-1.3i 2000/10/02: uc code of `v' is switched to V
+  so that mixed text appears correctly in headers.
+\end{quotation}
+
+Use \verb+\textcompwordmark+:
+not \foreignlanguage{greek}{avu $\mapsto$ \MakeUppercase{avu}} but
+\foreignlanguage{greek}{a\textcompwordmark u
+$\mapsto$ \MakeUppercase{a\textcompwordmark u}}
+
+The following subsections test MakeUppercase and MakeLowercase with all
+characters defined in lgrenc.dfu:
+
+\subsection{Greek and Coptic}
+
+\newcommand{\GreekAndCoptic}{\ensuregreek{
+ʹ͵ͺ; ΄ ΅Ά·ΈΉΊΌΎΏΐΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩΪΫϘϚϜϠ}}
+\newcommand{\greekandcoptic}{\ensuregreek{
+άέήίΰαβγδεζηθικλμνξοπρςστυφχψωϊϋόύώϙϛϝϟϡ}}
+
+Characters of the Greek and Coptic Unicode Block:
+
+\begin{quote}
+  \GreekAndCoptic\\
+  \greekandcoptic
+\end{quote}
+
+MakeUppercase:
+
+\begin{quote}
+  \MakeUppercase{\GreekAndCoptic}\\
+  \MakeUppercase{\greekandcoptic}
+\end{quote}
+\end{document}
+
+Letters and sub-iota upcased, other diacritics except dialytika dropped.
+
+There is no capital Koppa in LGR, therefore \ensuregreek{ϟ} is left
+unchanged with MakeUppercase.
+
+
+MakeLowercase:
+
+\begin{quote}
+  \MakeLowercase{\GreekAndCoptic}\\
+  \MakeLowercase{\greekandcoptic}
+\end{quote}
+
+The lowercase of \ensuregreek{Σ} is the «auto-sigma» (\verb+\textautosigma+):
+\ensuregreek{ΣΣ $\mapsto$ \MakeLowercase{ΣΣ}}. Add a ZWNJ or use the
+\verb+\noboundary+ macro to prevent conversion to final sigma:
+\ensuregreek{\MakeLowercase{ΣΣ‌}}. The lowercase of GREEK LETTER STIGMA
+\ensuregreek{Ϛ} is \ensuregreek{\MakeLowercase{Ϛ}} not \verb|\textvarstigma|
+(\ensuregreek\textvarstigma).
+
+% \newpage
+
+\subsection{Greek extended}
+
+Characters of the Greek extended Unicode block:
+
+\selectlanguage{greek}
+ἀ ἁ ἂ ἃ ἄ ἅ ἆ ἇ Ἀ Ἁ Ἂ Ἃ Ἄ Ἅ Ἆ Ἇ \\
+ἐ ἑ ἒ ἓ ἔ ἕ     Ἐ Ἑ Ἒ Ἓ Ἔ Ἕ     \\
+ἠ ἡ ἢ ἣ ἤ ἥ ἦ ἧ Ἠ Ἡ Ἢ Ἣ Ἤ Ἥ Ἦ Ἧ \\
+ἰ ἱ ἲ ἳ ἴ ἵ ἶ ἷ Ἰ Ἱ Ἲ Ἳ Ἴ Ἵ Ἶ Ἷ \\
+ὀ ὁ ὂ ὃ ὄ ὅ     Ὀ Ὁ Ὂ Ὃ Ὄ Ὅ     \\
+ὐ ὑ ὒ ὓ ὔ ὕ ὖ ὗ   Ὑ   Ὓ   Ὕ   Ὗ \\
+ὠ ὡ ὢ ὣ ὤ ὥ ὦ ὧ Ὠ Ὡ Ὢ Ὣ Ὤ Ὥ Ὦ Ὧ \\
+ὰ ά ὲ έ ὴ ή ὶ ί ὸ ό ὺ ύ ὼ ώ     \\
+ᾀ ᾁ ᾂ ᾃ ᾄ ᾅ ᾆ ᾇ ᾈ ᾉ ᾊ ᾋ ᾌ ᾍ ᾎ ᾏ \\
+ᾐ ᾑ ᾒ ᾓ ᾔ ᾕ ᾖ ᾗ ᾘ ᾙ ᾚ ᾛ ᾜ ᾝ ᾞ ᾟ \\
+ᾠ ᾡ ᾢ ᾣ ᾤ ᾥ ᾦ ᾧ ᾨ ᾩ ᾪ ᾫ ᾬ ᾭ ᾮ ᾯ \\
+ᾰ ᾱ ᾲ ᾳ ᾴ   ᾶ ᾷ Ᾰ Ᾱ Ὰ Ά ᾼ ᾽ ι ᾿ \\
+῀ ῁ ῂ ῃ ῄ   ῆ ῇ Ὲ Έ Ὴ Ή ῌ ῍ ῎ ῏ \\
+ῐ ῑ ῒ ΐ     ῖ ῗ Ῐ Ῑ Ὶ Ί   ῝ ῞ ῟ \\
+ῠ ῡ ῢ ΰ ῤ ῥ ῦ ῧ Ῠ Ῡ Ὺ Ύ Ῥ ῭ ΅ ` \\
+    ῲ ῳ ῴ   ῶ ῷ Ὸ Ό Ὼ Ώ ῼ ´ ῾
+\selectlanguage{english}
+
+MakeUppercase:
+
+\selectlanguage{greek}
+
+\MakeUppercase{ ἀ ἁ ἂ ἃ ἄ ἅ ἆ ἇ Ἀ Ἁ Ἂ Ἃ Ἄ Ἅ Ἆ Ἇ }\\
+\MakeUppercase{ ἐ ἑ ἒ ἓ ἔ ἕ     Ἐ Ἑ Ἒ Ἓ Ἔ Ἕ     }\\
+\MakeUppercase{ ἠ ἡ ἢ ἣ ἤ ἥ ἦ ἧ Ἠ Ἡ Ἢ Ἣ Ἤ Ἥ Ἦ Ἧ }\\
+\MakeUppercase{ ἰ ἱ ἲ ἳ ἴ ἵ ἶ ἷ Ἰ Ἱ Ἲ Ἳ Ἴ Ἵ Ἶ Ἷ }\\
+\MakeUppercase{ ὀ ὁ ὂ ὃ ὄ ὅ     Ὀ Ὁ Ὂ Ὃ Ὄ Ὅ     }\\
+\MakeUppercase{ ὐ ὑ ὒ ὓ ὔ ὕ ὖ ὗ   Ὑ   Ὓ   Ὕ   Ὗ }\\
+\MakeUppercase{ ὠ ὡ ὢ ὣ ὤ ὥ ὦ ὧ Ὠ Ὡ Ὢ Ὣ Ὤ Ὥ Ὦ Ὧ }\\
+\MakeUppercase{ ὰ ά ὲ έ ὴ ή ὶ ί ὸ ό ὺ ύ ὼ ώ     }\\
+\MakeUppercase{ ᾀ ᾁ ᾂ ᾃ ᾄ ᾅ ᾆ ᾇ ᾈ ᾉ ᾊ ᾋ ᾌ ᾍ ᾎ ᾏ }\\
+\MakeUppercase{ ᾐ ᾑ ᾒ ᾓ ᾔ ᾕ ᾖ ᾗ ᾘ ᾙ ᾚ ᾛ ᾜ ᾝ ᾞ ᾟ }\\
+\MakeUppercase{ ᾠ ᾡ ᾢ ᾣ ᾤ ᾥ ᾦ ᾧ ᾨ ᾩ ᾪ ᾫ ᾬ ᾭ ᾮ ᾯ }\\
+\MakeUppercase{ ᾰ ᾱ ᾲ ᾳ ᾴ   ᾶ ᾷ Ᾰ Ᾱ Ὰ Ά ᾼ ᾽ ι ᾿ }\\
+\MakeUppercase{ ῀ ῁ ῂ ῃ ῄ   ῆ ῇ Ὲ Έ Ὴ Ή ῌ ῍ ῎ ῏ }\\
+\MakeUppercase{ ῐ ῑ ῒ ΐ     ῖ ῗ Ῐ Ῑ Ὶ Ί   ῝ ῞ ῟ }\\
+\MakeUppercase{ ῠ ῡ ῢ ΰ ῤ ῥ ῦ ῧ Ῠ Ῡ Ὺ Ύ Ῥ ῭ ΅ ` }\\
+\MakeUppercase{     ῲ ῳ ῴ   ῶ ῷ Ὸ Ό Ὼ Ώ ῼ ´ ῾   }
+\selectlanguage{english}
+
+MakeLowercase:
+
+\selectlanguage{greek}
+\MakeLowercase{ ἀ ἁ ἂ ἃ ἄ ἅ ἆ ἇ Ἀ Ἁ Ἂ Ἃ Ἄ Ἅ Ἆ Ἇ }\\
+\MakeLowercase{ ἐ ἑ ἒ ἓ ἔ ἕ     Ἐ Ἑ Ἒ Ἓ Ἔ Ἕ     }\\
+\MakeLowercase{ ἠ ἡ ἢ ἣ ἤ ἥ ἦ ἧ Ἠ Ἡ Ἢ Ἣ Ἤ Ἥ Ἦ Ἧ }\\
+\MakeLowercase{ ἰ ἱ ἲ ἳ ἴ ἵ ἶ ἷ Ἰ Ἱ Ἲ Ἳ Ἴ Ἵ Ἶ Ἷ }\\
+\MakeLowercase{ ὀ ὁ ὂ ὃ ὄ ὅ     Ὀ Ὁ Ὂ Ὃ Ὄ Ὅ     }\\
+\MakeLowercase{ ὐ ὑ ὒ ὓ ὔ ὕ ὖ ὗ   Ὑ   Ὓ   Ὕ   Ὗ }\\
+\MakeLowercase{ ὠ ὡ ὢ ὣ ὤ ὥ ὦ ὧ Ὠ Ὡ Ὢ Ὣ Ὤ Ὥ Ὦ Ὧ }\\
+\MakeLowercase{ ὰ ά ὲ έ ὴ ή ὶ ί ὸ ό ὺ ύ ὼ ώ     }\\
+\MakeLowercase{ ᾀ ᾁ ᾂ ᾃ ᾄ ᾅ ᾆ ᾇ ᾈ ᾉ ᾊ ᾋ ᾌ ᾍ ᾎ ᾏ }\\
+\MakeLowercase{ ᾐ ᾑ ᾒ ᾓ ᾔ ᾕ ᾖ ᾗ ᾘ ᾙ ᾚ ᾛ ᾜ ᾝ ᾞ ᾟ }\\
+\MakeLowercase{ ᾠ ᾡ ᾢ ᾣ ᾤ ᾥ ᾦ ᾧ ᾨ ᾩ ᾪ ᾫ ᾬ ᾭ ᾮ ᾯ }\\
+\MakeLowercase{ ᾰ ᾱ ᾲ ᾳ ᾴ   ᾶ ᾷ Ᾰ Ᾱ Ὰ Ά ᾼ ᾽ ι ᾿ }\\
+\MakeLowercase{ ῀ ῁ ῂ ῃ ῄ   ῆ ῇ Ὲ Έ Ὴ Ή ῌ ῍ ῎ ῏ }\\
+\MakeLowercase{ ῐ ῑ ῒ ΐ     ῖ ῗ Ῐ Ῑ Ὶ Ί   ῝ ῞ ῟ }\\
+\MakeLowercase{ ῠ ῡ ῢ ΰ ῤ ῥ ῦ ῧ Ῠ Ῡ Ὺ Ύ Ῥ ῭ ΅ ` }\\
+\MakeLowercase{     ῲ ῳ ῴ   ῶ ῷ Ὸ Ό Ὼ Ώ ῼ ´ ῾   }
+\selectlanguage{english}
+
+\section{Babel Strings}
+
+Babel defines macros for several autogenerated strings so that they may
+appear in the choosen language. babel-greek uses LICRs in order to let the
+string macros work independent of the font encoding, in both 8-bit and
+Unicode-aware TeX.
+
+\subsection{Captions}
+
+\selectlanguage{greek}
+\prefacename,
+\refname,
+\abstractname,
+\bibname,
+\chaptername,
+\appendixname,
+\contentsname,
+\listfigurename ,
+\listtablename,
+\indexname,
+\figurename,
+\tablename,
+\partname,
+\enclname,
+\ccname,
+\headtoname,
+\pagename,
+\seename,
+\alsoname,
+\proofname,
+\glossaryname,
+\selectlanguage{english}
+
+
+\subsection{Months}
+
+\selectlanguage{greek}
+\newcounter{foo}
+\stepcounter{foo} \month=\value{foo} \today \\
+\stepcounter{foo} \month=\value{foo} \today \\
+\stepcounter{foo} \month=\value{foo} \today \\
+\stepcounter{foo} \month=\value{foo} \today \\
+\stepcounter{foo} \month=\value{foo} \today \\
+\stepcounter{foo} \month=\value{foo} \today \\
+\stepcounter{foo} \month=\value{foo} \today \\
+\stepcounter{foo} \month=\value{foo} \today \\
+\stepcounter{foo} \month=\value{foo} \today \\
+\stepcounter{foo} \month=\value{foo} \today \\
+\stepcounter{foo} \month=\value{foo} \today \\
+\stepcounter{foo} \month=\value{foo} \today \\
+\selectlanguage{english}
+
+\section{Greek Numerals}
+
+See greek.pdf for the formation rules of Greek numerals.
+Some examples:
+
+\selectlanguage{greek}
+
+\greeknumeral{1},
+\greeknumeral{2},
+\greeknumeral{3},
+\greeknumeral{4},
+\greeknumeral{5},
+\greeknumeral{6},
+\greeknumeral{7},
+\greeknumeral{8},
+\greeknumeral{9},
+\greeknumeral{10},
+\greeknumeral{11},
+\greeknumeral{12},
+\greeknumeral{20},
+\greeknumeral{345},
+\greeknumeral{500},
+\greeknumeral{1997},
+\greeknumeral{2013},
+
+\Greeknumeral{1},
+\Greeknumeral{2},
+\Greeknumeral{3},
+\Greeknumeral{4},
+\Greeknumeral{5},
+\Greeknumeral{6},
+\Greeknumeral{7},
+\Greeknumeral{8},
+\Greeknumeral{9},
+\Greeknumeral{10},
+\Greeknumeral{11},
+\Greeknumeral{12},
+\Greeknumeral{20},
+\Greeknumeral{345},
+\Greeknumeral{500},
+\Greeknumeral{1997},
+\Greeknumeral{2013},
+
+\selectlanguage{english}
+
+Enumerated lists use Greek numerals in the second and fourth level:
+
+\selectlanguage{greek}
+\begin{enumerate}
+  \item \textlatin{Item} 1
+  \begin{enumerate}
+    \item \textlatin{Item} 1.1
+    \begin{enumerate}
+      \item \textlatin{Item} 1.1.1
+       \begin{enumerate}
+         \item \textlatin{Item} 1.1.1.1
+         \item \textlatin{Item} 1.1.1.2
+       \end{enumerate}
+      \item \textlatin{Item} 1.1.2
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+\selectlanguage{english}
+
+
+\end{document}

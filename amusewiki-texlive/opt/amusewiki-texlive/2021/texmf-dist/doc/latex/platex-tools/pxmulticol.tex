@@ -1,0 +1,62 @@
+%# -*- coding: utf-8 -*-
+\ifx\epTeXinputencoding\undefined\else % defined in e-pTeX (> TL2016)
+  \epTeXinputencoding utf8    % ensure utf-8 encoding for platex
+\fi
+
+\documentclass[a4paper]{jsarticle}
+\begingroup
+  \def\NeedsTeXFormat#1\ProvidesPackage#2[#3 #4 #5]{%
+    \gdef\fileversion{#4}\gdef\filedate{#3}\endinput}
+  \input{pxmulticol.sty}
+\endgroup
+\title{Package \textsf{pxmulticol} \fileversion}
+\author{Hironobu Yamashita}
+\date{\filedate}
+\begin{document}
+
+\maketitle
+
+Package \textsf{multicol}, included in \textsf{latex-tools} bundle,
+throws an error when \verb+\footnote+ appears in vertical writing on
+(u)p\LaTeX. The package \textsf{pxmulticol} provides a patch to
+solve this problem.
+
+This package is part of \textsf{platex-tools} bundle:
+\begin{verbatim}
+  https://github.com/aminophen/platex-tools
+\end{verbatim}
+
+The rest of this document is written in Japanese, and includes some
+examples of usage.
+
+\bigskip
+
+\textsf{latex-tools}バンドルに含まれる\textsf{multicol}パッケージは、
+縦組で脚注 (\verb+\footnote+) を使うとエラーを出してしまいます。
+この\textsf{pxmulticol}パッケージを読み込むことで、縦組クラスでも
+\textsf{multicols}環境内で脚注を使うことができるようになります。
+
+\section{使いかた}
+
+\textsf{multicol}パッケージの代わりに、あるいは追加で
+\textsf{pxmulticol}パッケージを読み込みます。
+
+\begin{verbatim}
+  \documentclass[a4paper]{tarticle}
+  \usepackage{pxmulticol}% multicol の代わり
+  \begin{document}
+  \begin{multicols}{2}
+  縦組で段組をする場合も、脚注\footnote{こんな感じです。}を使う
+  ことができます。
+  \end{multicols}
+  \end{document}
+\end{verbatim}
+
+\section*{References}
+
+\begin{itemize}
+\item 縦書き二段組における段移動\\
+  \texttt{https://oku.edu.mie-u.ac.jp/tex/mod/forum/discuss.php?d=2535}
+\end{itemize}
+
+\end{document}

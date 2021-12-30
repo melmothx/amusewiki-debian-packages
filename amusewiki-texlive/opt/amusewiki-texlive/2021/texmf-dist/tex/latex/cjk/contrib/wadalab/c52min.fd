@@ -1,0 +1,23 @@
+% This is the file c52min.fd of the CJK package
+%   for using Asian logographs (Chinese/Japanese/Korean) with LaTeX2e
+%
+% created by Werner Lemberg <wl@gnu.org>
+%
+% Version 4.8.5 (16-Oct-2021)
+
+\def\fileversion{4.8.5}
+\def\filedate{2021/10/16}
+\ProvidesFile{c52min.fd}[\filedate\space\fileversion]
+
+
+% Japanese characters in JIS2 encoding scheme using Wadalab fonts:
+%  wadalab-mincho-1-8
+
+\DeclareFontFamily{C52}{min}{\hyphenchar \font\m@ne}
+
+\DeclareFontShape{C52}{min}{m}{n}
+ { <-> CJK * mc2j}{\CJKnormal}
+\DeclareFontShape{C52}{min}{bx}{n}
+ { <-> CJKb * mc2j}{\CJKbold}
+
+\endinput

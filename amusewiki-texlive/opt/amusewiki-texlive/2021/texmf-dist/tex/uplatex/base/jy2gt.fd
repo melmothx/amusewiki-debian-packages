@@ -1,0 +1,26 @@
+%%
+%% This is file `jy2gt.fd',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% uplfonts.dtx  (with options: `JY2gt')
+%% 
+%% Copyright (c) 2010 ASCII MEDIA WORKS
+%% Copyright (c) 2016 Takuji Tanaka
+%% Copyright (c) 2016-2018 Japanese TeX Development Community
+%% 
+%% This file is part of the upLaTeX2e system (community edition).
+%% --------------------------------------------------------------
+%% 
+%% File: uplfonts.dtx
+\ProvidesFile{jy2gt.fd}
+       [2018/07/03 v1.6q-u02 KANJI font defines]
+\DeclareKanjiFamily{JY2}{gt}{}
+\DeclareRelationFont{JY2}{gt}{m}{}{T1}{cmr}{bx}{}
+\DeclareFontShape{JY2}{gt}{m}{n}{<->s*[0.962216]upjisg-h}{}
+\DeclareFontShape{JY2}{gt}{bx}{n}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JY2}{gt}{b}{n}{<->ssub*gt/bx/n}{}
+\endinput
+%%
+%% End of file `jy2gt.fd'.

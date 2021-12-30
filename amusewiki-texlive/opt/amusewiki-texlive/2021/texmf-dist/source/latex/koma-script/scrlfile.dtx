@@ -1,0 +1,272 @@
+% \iffalse^^A meta-comment
+% ======================================================================
+% scrlfile.dtx
+% Copyright (c) Markus Kohm, 2002-2021
+%
+% This file is part of the work `scrlfile' which is part of the LaTeX2e
+% KOMA-Script bundle.
+%
+% This work may be distributed and/or modified under the conditions of
+% the LaTeX Project Public License, version 1.3c of the license.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3c or later is part of all distributions of LaTeX 
+% version 2005/12/01 or later and of this work.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% The Current Maintainer and author of this work is Markus Kohm.
+%
+% This work consists of all files listed in manifest.txt.
+% ----------------------------------------------------------------------
+% scrlfile.dtx
+% Copyright (c) Markus Kohm, 2002-2021
+%
+% Diese Datei ist Teil des Werks `scrlfile', das wiederum Teil des
+% LaTeX2e KOMA-Script Pakets ist.
+%
+% Dieses Werk darf nach den Bedingungen der LaTeX Project Public Lizenz,
+% Version 1.3c, verteilt und/oder veraendert werden.
+% Die neuste Version dieser Lizenz ist
+%   http://www.latex-project.org/lppl.txt
+% und Version 1.3c ist Teil aller Verteilungen von LaTeX
+% Version 2005/12/01 oder spaeter und dieses Werks.
+%
+% Dieses Werk hat den LPPL-Verwaltungs-Status "author-maintained"
+% (allein durch den Autor verwaltet).
+%
+% Der Aktuelle Verwalter und Autor dieses Werkes ist Markus Kohm.
+% 
+% Dieses Werk besteht aus den in manifest.txt aufgefuehrten Dateien.
+% ======================================================================
+%
+%%% From File: $Id: scrlfile.dtx 3625 2021-10-31 12:45:26Z kohm $
+%<*dtx>
+\ifx\ProvidesFile\undefined\def\ProvidesFile#1[#2]{}\fi
+\begingroup
+  \def\filedate$#1: #2-#3-#4 #5${\gdef\filedate{#2/#3/#4}}
+  \filedate$Date: 2021-10-31 13:45:26 +0100 (Sun, 31 Oct 2021) $
+  \def\filerevision$#1: #2 ${\gdef\filerevision{r#2}}
+  \filerevision$Revision: 2631 $
+  \edef\reserved@a{%
+    \noexpand\endgroup
+    \noexpand\ProvidesFile{scrlfile.dtx}%
+                          [\filedate\space\filerevision\space
+                           KOMA-Script package source
+  }%
+\reserved@a
+%</dtx>
+%<package>\ProvidesPackage{scrlfile}[%
+%!KOMAScriptVersion
+%<package>  package 
+  (file load hooks)]
+%<*dtx>
+\ifx\documentclass\undefined
+  \input scrdocstrip.tex
+  \@@input scrkernel-version.dtx
+  \@@input scrstrip.inc
+  \KOMAdefVariable{COPYRIGHTFROM}{2002}
+  \generate{\usepreamble\defaultpreamble
+    \file{scrlfile.sty}{%
+      \from{scrlfile.dtx}{package}%
+    }%
+  }
+  \batchinput{scrlfile-hook.dtx}
+  \batchinput{scrlfile-patcholdlatex.dtx}
+  \@@input scrstrop.inc
+\else
+  \let\endbatchfile\relax
+\fi
+\endbatchfile
+\documentclass[parskip=half-]{scrdoc}
+\usepackage[english]{babel}
+\CodelineIndex
+\RecordChanges
+\GetFileInfo{scrlfile.dtx}
+\title{\KOMAScript{} \partname\ \texttt{\filename}%
+  \thanks{This file is revision \fileversion\ of file \texttt{\filename}.}}  
+\date{\filedate}
+\author{Markus Kohm\thanks{mailto:komascript@gmx.info}}
+
+\begin{document}
+  \maketitle
+  \begin{abstract}
+    This package is the compatibility layer over \texttt{scrlfile-hook} and
+    \texttt{scrlfile-patcholdlatex}. It provides package and class hook
+    handling independent from the used \LaTeX{} release.
+  \end{abstract}
+
+  \tableofcontents
+
+  \DocInput{\filename}
+\end{document}
+%</dtx>
+% \fi^^A meta-comment
+%
+% \changes{v2.95}{2002/06/11}{First version split from hugh scrclass.dtx}
+% \changes{v3.24}{2017/05/06}{standalone manual removed}
+% \changes{v3.32}{2020/09/11}{new implementation based on
+%   \texttt{scrlfile-hook} and \texttt{scrlfile-patcholdlatex}}
+%
+%
+% \section{User Manual}
+%
+% For user manual see the \KOMAScript{} manual. Here you can find interim
+% documentation only (before it is added to the \KOMAScript{} manual).
+%
+% \DescribeOption{withdeprecated}
+% Package option \texttt{withdeprecated} enables the definition of deprecated
+% commands \cs{AfterClass+}, \cs{AfterPackage+}, \cs{AfterClass!} and
+% \cs{AfterPackage!}. All of them will be emulated by \cs{AfterAtEndOClass*}
+% and \cs{AfterAtEndOfPackage*} so they are not completely compatible with the
+% original deprecated commands.
+%
+% Users of classes or package, that use such deprecated commands can load
+% \texttt{scrlfile} already before the class using:
+% \begin{verbatim}
+% \RequirePackage[withdeprecated]{scrlfile}
+% \end{verbatim}
+% or adding option \texttt{withdeprecated} to the global options of
+% \cs{documentclass}. Note, this is not a key-value option. It cannot be
+% changed after loading \texttt{scrlfile}.
+%
+%
+% \StopEventually{\PrintIndex\PrintChanges}
+%
+% \section{Implementation of \textsf{scrlfile}}
+%
+% We either need to load one of these packages.
+% \changes{v3.33}{2021/02/09}{do not test for existence of \cs{AddToHook} any
+%   longer, but \cs{IfFormatAtLeastTF} and the format version}%
+% We cannot do the decision by testing the existence of macro \cs{AddToHook},
+% because package \textsf{latexrelease} does not rollback to prior format
+% versions good enough. Instead of undefining the macro an so really reverting
+% to the definition of \LaTeX{} kernels prior to 2020/10/01 it only redefines
+% it to a do-nothing macro. Because of this and similar issues with
+% \textsf{latexrelease} cannot (or only with provision) be used to simulate a
+% real old \LaTeX{} kernel, i.e. for testing. So the only valid test for the
+% existence of the wanted \cs{AddToHook} would be to test the definite
+% definition of \cs{AddToHook} and the existence of the hooks we are
+% using. But, because this is to much effort, we simply test the format
+% version. Nevertheless, we know, this may fail!
+%    \begin{macrocode}
+\@ifundefined{IfFormatAtLeastTF}{%
+  \RequirePackage{scrlfile-patcholdlatex}%
+  \RequirePackage{xparse}%
+%    \end{macrocode}
+% \changes{v3.33}{2021/02/16}{workaround for \textsf{xparse} bug}
+% Explicitly switch of \textsf{expl} syntax because of a
+% \textsf{xparse-2020-10-01} bug in version 2020-02-02.
+% \changes{v3.35}{2021/10/31}{new variant because of \LaTeX{} kernel change}
+%    \begin{macrocode}
+  \ExplSyntaxOff
+}{%
+  \IfFormatAtLeastTF{2020/10/01}{%
+    \IfFormatAtLeastTF{2021/11/15}{%
+      \RequirePackage{scrlfile-hook}%
+    }{%
+      \RequirePackage{scrlfile-hook-3.34}%
+    }%
+  }{%
+    \RequirePackage{scrlfile-patcholdlatex}%
+    \RequirePackage{xparse}%
+%    \end{macrocode}
+% Explicitly switch of \textsf{expl} syntax because of a
+% \textsf{xparse-2020-10-01} bug in version 2020-02-02.
+%    \begin{macrocode}
+    \ExplSyntaxOff
+  }%
+}
+%    \end{macrocode}
+%
+% \begin{option}{withdeprecated}
+%   \changes{v3.32}{2020/09/11}{new option}
+%   Depending on this option we implement addition deprecated commands.
+%    \begin{macrocode}
+\DeclareOption{withdeprecated}{%
+%    \end{macrocode}
+%
+% \begin{macro}{\AfterClass+}
+% \begin{macro}{\AfterClass!}
+% \cs{scrlfile@AfterClass} is used to store the original \cs{AfterClass},
+% before redefining \cs{AfterClass} to handle the plus and the exclamation
+% mark variant.
+%    \begin{macrocode}
+  \RenewDocumentCommand\AfterClass{}{%
+    \kernel@ifnextchar +%
+      {\scrlfile@emulatedeprecated{Class}}%
+      {%
+        \kernel@ifnextchar !%
+          {\scrlfile@emulatedeprecated{Class}}%
+          \scrlfile@AfterClass
+      }%
+  }
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\AfterPackage+}
+% \begin{macro}{\AfterPackage!}
+% \cs{scrlfile@AfterPackage} is used to store the original \cs{AfterPackage},
+% before redefining \cs{AfterPackage} to handle the plus and the exclamation
+% mark variant.
+%    \begin{macrocode}
+  \RenewDocumentCommand\AfterPackage{}{%
+    \kernel@ifnextchar +%
+      {\scrlfile@emulatedeprecated{Package}}%
+      {%
+        \kernel@ifnextchar !%
+          {\scrlfile@emulatedeprecated{Package}}%
+          \scrlfile@AfterPackage
+      }%
+  }
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\scrlfile@emulatedeprecated}
+% \changes{v3.32}{2020/09/11}{new internal command}
+% This emulates \cs{AfterClass+}, \cs{AfterPackage+}, \cs{AfterClass!} and
+% \cs{AfterPackage!} using \cs{AfterAtEndOfClass} or
+% \cs{AfterAtEndOfPackage}. Note, that both, the plus and the exclamation mark
+% variants, are emulated by the star variant of \cs{AfterAtEndOfClass}
+% resp. \cs{AfterAtEndOfPackage}. So the emulation is not perfect.
+%    \begin{macrocode}
+  \newcommand*{\scrlfile@emulatedeprecated}[2]{%
+    \PackageWarning{scrlfile}{%
+      emulating deprecated \expandafter\string\csname After#1#2\endcsname
+      \space by\MessageBreak
+      \expandafter\string\csname AfterAtEndOf#1*\endcsname.\MessageBreak
+      Note, this may fail, so you should not use\MessageBreak
+      \expandafter\string\csname After#1#2\endcsname
+    }%
+    \csname AfterAtEndOf#1\endcsname*%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+%    \begin{macrocode}
+}
+%    \end{macrocode}
+% \end{option}
+%
+% Now, we just have to execute and process the options.
+%    \begin{macrocode}
+\ExecuteOptions{}
+\ProcessOptions\relax
+%    \end{macrocode}
+%
+% Last but not least this is a \KOMAScript{} package, so we also define the
+% \KOMAScript{} logo:
+%    \begin{macrocode}
+\RequirePackage{scrlogo}
+%    \end{macrocode}
+%
+% \Finale
+%
+% \endinput
+%
+% Local Variables:
+% mode: doctex
+% TeX-master: t
+% End:

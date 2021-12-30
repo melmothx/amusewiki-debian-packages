@@ -1,0 +1,39 @@
+%
+% plextcolortbl.sty
+% written by Hironobu Yamashita (@aminophen)
+%
+% This package is part of the platex-tools bundle.
+% https://github.com/aminophen/platex-tools
+%
+% This package is expected to be compatible with
+%   * colortbl.sty
+%     (2012/06/21 v1.0b -- 2020/01/04 v1.0e)
+%   * plext.sty in platex
+%     (2001/09/26 v1.2  -- 2020/10/07 v1.2m)
+%
+
+%% package declaration
+\NeedsTeXFormat{pLaTeX2e}
+\ProvidesPackage{plextcolortbl}
+  [2018/09/19 v0.1a Merge plext and colortbl]
+\RequirePackage{plextarray}% colortbl requires array
+\RequirePackageWithOptions{colortbl}
+
+%% patching internal code for colortbl.sty
+%
+\AtBeginDocument{%
+  % recover \@tabarray from plextarray.sty
+  \def\@tabarray{\@ifnextchar<\p@tabarray{\p@tabarray<Z>}}
+  % change \p@tabarray instead
+  \expandafter\def\expandafter\p@tabarray
+    \expandafter<\expandafter#\expandafter1\expandafter>\expandafter{%
+    \expandafter\CT@start\p@tabarray<#1>}%
+}
+%
+\def\endarray{\crcr \egroup \egroup
+  \@end@alignbox %% added from plext.sty
+  \@arrayright \gdef\@preamble{}\CT@end}%
+%
+%% done
+
+\endinput

@@ -1,0 +1,30 @@
+name zhnumber
+category Package
+revision 54960
+shortdesc Typeset Chinese representations of numbers
+longdesc The package provides commands to typeset Chinese
+longdesc representations of numbers. The main difference between this
+longdesc package and CJKnumb is that the commands provided are
+longdesc expandable in the 'proper' way.
+containersize 7872
+containerchecksum f9548c3e89e837f8967122de1b2ed45c083a741be3862824ef2bfb5b60bd0758e3f4360b2c1a1a886fb68da4947a77c6431c10339676db0b7518bc93db6c411f
+doccontainersize 267108
+doccontainerchecksum 36de5c397a5966d5da5b71ee1a05b0e3d597782122e86dd184e146699fd5ecf08b6c2ed014bcaa86db8c9b2146d3863d8aa46078b94b33fb3fcf4a7a5a14f271
+docfiles size=68
+ texmf-dist/doc/latex/zhnumber/README.md details="Readme"
+ texmf-dist/doc/latex/zhnumber/zhnumber.pdf details="Package documentation" language="zh"
+srccontainersize 13368
+srccontainerchecksum 043029751abb4630fd1486dabea05f01a97557682cd00c7640e2c1fdf053b0bc5a99ba52debbdc6a98232cb5d8aef49cb68f17c1376f802c900c49f18e07c1f4
+runfiles size=14
+ texmf-dist/tex/latex/zhnumber/zhnumber-big5.cfg
+ texmf-dist/tex/latex/zhnumber/zhnumber-gbk.cfg
+ texmf-dist/tex/latex/zhnumber/zhnumber-utf8.cfg
+ texmf-dist/tex/latex/zhnumber/zhnumber.sty
+catalogue-contact-bugs https://github.com/CTeX-org/ctex-kit/issues
+catalogue-contact-home http://www.ctex.org/HomePage
+catalogue-contact-repository https://github.com/CTeX-org/ctex-kit
+catalogue-contact-support https://github.com/CTeX-org/ctex-kit/issues
+catalogue-ctan /macros/latex/contrib/zhnumber
+catalogue-license lppl1.3c
+catalogue-topics chinese numbers
+catalogue-version 2.8

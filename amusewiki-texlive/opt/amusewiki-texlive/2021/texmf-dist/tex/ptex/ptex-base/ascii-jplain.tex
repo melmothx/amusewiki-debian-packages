@@ -1,0 +1,48 @@
+% This is the jplain TeX format (community edition)
+%   last update: texjporg 2017/03/12
+%
+%	(C)copyright ASCII corporation,1987,1995,1997
+%
+\input plain
+\catcode`@=11 % at signs act like letters
+\def\footnote#1{\let\@sf\empty % parameter #2 (the text) is read later
+  \ifhmode\edef\@sf{\spacefactor\the\spacefactor}\/\fi
+  \nobreak#1\@sf\vfootnote{#1}}
+\catcode`@=12 % at signs are no longer letters
+%
+\font\tenmin=min10 % mincho(KANJI)
+\font\preloaded=min9
+\font\preloaded=min8
+\font\sevenmin=min7
+\font\preloaded=min6
+\font\fivemin=min5
+%
+\font\tengt=goth10 % gothic(KANJI)
+\font\preloaded=goth9
+\font\preloaded=goth8
+\font\sevengt=goth7
+\font\preloaded=goth6
+\font\fivegt=goth5
+%
+\newfam\minfam % \min is family 8
+\newfam\gtfam  % \gt is family 9
+%
+\def\mc{\fam\minfam\tenmin}%
+\textfont\minfam=\tenmin\scriptfont\minfam=\sevenmin%
+\scriptscriptfont\minfam=\fivemin
+%
+\def\gt{\fam\gtfam\tengt}%
+\textfont\gtfam=\tengt\scriptfont\gtfam=\sevengt%
+\scriptscriptfont\gtfam=\fivegt
+%
+\input kinsoku
+\mc		  % select mincho font
+\kanjiskip=0pt plus .4pt minus .4pt
+%\xkanjiskip=2.5pt plus 1pt minus 1pt
+\xkanjiskip=.25zw plus 1pt minus 1pt
+\autospacing\autoxspacing
+\jcharwidowpenalty=500
+%
+% identifies the current format based on plain
+\def\fmtname{jplain}
+\edef\fmtversion{\fmtversion\space j1.0b}

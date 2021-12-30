@@ -1,0 +1,53 @@
+%%
+%% This is file `uplatex.ltx',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% uplatex.dtx  (with options: `plcore')
+%% 
+%% Copyright (c) 2010 ASCII MEDIA WORKS
+%% Copyright (c) 2016 Takuji Tanaka
+%% Copyright (c) 2016-2018 Japanese TeX Development Community
+%% 
+%% This file is part of the upLaTeX2e system (community edition).
+%% --------------------------------------------------------------
+%% 
+%% File: uplatex.dtx
+\let\orgdump\dump
+\let\dump\relax
+\input latex.ltx
+\ifx\typeout\undefined
+  \errhelp{Please reinstall LaTeX, or check e-TeX availability.}%
+  \errmessage{Failed to load `latex.ltx' properly}%
+  \expandafter\end
+\fi
+\typeout{**************************^^J%
+         *^^J%
+         * making upLaTeX format^^J%
+         *^^J%
+         **************************}
+\makeatletter
+\input plcore.ltx
+\input uplcore.ltx
+\InputIfFileExists{upldefs.cfg}
+           {\typeout{*************************************^^J%
+                     * Local config file upldefs.cfg used^^J%
+                     *************************************}}%
+           {\input{upldefs.ltx}}
+\ifx\code@after@pldefs\@undefined\else \code@after@pldefs \fi
+\everyjob\expandafter{%
+  \the\everyjob
+  \IfFileExists{uplatex.cfg}{%
+    \typeout{*************************^^J%
+             * Loading uplatex.cfg.^^J%
+             *************************}%
+    \input{uplatex.cfg}}{}%
+}
+\let\dump\orgdump
+\let\orgdump\@undefined
+\makeatother
+\dump
+\endinput
+%%
+%% End of file `uplatex.ltx'.

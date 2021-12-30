@@ -1,0 +1,49 @@
+name l3packages
+category Package
+revision 61040
+shortdesc High-level LaTeX3 concepts
+longdesc This collection contains implementations for aspects of the
+longdesc LaTeX3 kernel, dealing with higher-level ideas such as the
+longdesc Designer Interface. The packages here are considered broadly
+longdesc stable (The LaTeX3 Project does not expect the interfaces to
+longdesc alter radically). These packages are built on LaTeX2e
+longdesc conventions at the interface level, and so may not migrate in
+longdesc the current form to a stand-alone LaTeX3 format. Packages
+longdesc provided: xparse, which provides a high-level interface for
+longdesc declaring document commands xfp, an expandable IEEE 754 FPU for
+longdesc LaTeX l3keys2e, which makes the facilities of the kernel module
+longdesc l3keys available for use by LaTeX 2e packages xtemplate, which
+longdesc provides a means of defining generic functions using a
+longdesc key-value syntax xfrac, which provides flexible split-level
+longdesc fractions
+depend l3kernel
+containersize 21644
+containerchecksum 1ca8e7484f5d86fd85197e4bb0058444e68f73caf68c04f3ad67ce0a96f29c181d496227f069938604dd5a4dc095e15c0f2addf26f150da0ee7ccf6d48037536
+doccontainersize 1806792
+doccontainerchecksum 4c133f7ede9a37057371e838355daa1138b4cc9e1e8714d9f62925cb56b91645d1c9478b3bdf1050005c3a08b2282881fbc84f50c166173c958bf16604630814
+docfiles size=534
+ texmf-dist/doc/latex/l3packages/CHANGELOG.md
+ texmf-dist/doc/latex/l3packages/README.md details="Readme"
+ texmf-dist/doc/latex/l3packages/l3keys2e/l3keys2e-demo.tex
+ texmf-dist/doc/latex/l3packages/l3keys2e/l3keys2e.pdf details="l3keys2e documentation"
+ texmf-dist/doc/latex/l3packages/xfp/xfp.pdf details="xfp documentation"
+ texmf-dist/doc/latex/l3packages/xfrac/xfrac.pdf details="xfrac documentation"
+ texmf-dist/doc/latex/l3packages/xparse/xparse.pdf details="xparse documentation"
+ texmf-dist/doc/latex/l3packages/xtemplate/xtemplate.pdf details="xtemplate documentation"
+srccontainersize 45256
+srccontainerchecksum 93dcfe3b4d04c60a9880d34f8a6d924ae5e800d0cd9a2116726c2e651ae43665b34e7bc232640857c4b4f235eaf3ab25eff62d43f175721e9272b1b65f09b3cc
+runfiles size=65
+ texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+ texmf-dist/tex/latex/l3packages/xfp/xfp.sty
+ texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
+ texmf-dist/tex/latex/l3packages/xparse/xparse-2018-04-12.sty
+ texmf-dist/tex/latex/l3packages/xparse/xparse-2020-10-01.sty
+ texmf-dist/tex/latex/l3packages/xparse/xparse-generic.tex
+ texmf-dist/tex/latex/l3packages/xparse/xparse.ltx
+ texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+ texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+catalogue-also l3kernel l3experimental
+catalogue-contact-home http://www.latex-project.org/code.html
+catalogue-ctan /macros/latex/contrib/l3packages
+catalogue-license lppl1.3c
+catalogue-topics macro-supp latex3 pre-release

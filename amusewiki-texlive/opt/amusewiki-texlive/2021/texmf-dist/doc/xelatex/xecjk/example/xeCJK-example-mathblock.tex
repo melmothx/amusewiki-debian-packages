@@ -1,0 +1,47 @@
+%%
+%% This is file `xeCJK-example-mathblock.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% xeCJK.dtx  (with options: `ex-mathblock')
+%% 
+\documentclass{article}
+
+\usepackage{url}
+\usepackage[CJKmath]{xeCJK}
+
+\setCJKmainfont[BoldFont=SimHei]{SimSun}
+\setCJKmonofont{KaiTi}
+
+\ExplSyntaxOn
+\tl_const:Nn \c_test_text_tl { 天地玄黃宇宙洪荒日月盈昃辰宿列張寒來暑往秋收冬藏閏餘成歲律呂調陽 }
+\cs_new:Npn \test_color:n #1
+  { \exp_args:No \str_range:nnn { \mdfivesum {#1} } { 1 } { 6 } }
+\tl_map_inline:Nn \c_test_text_tl
+  {
+    \xeCJKDeclareSubCJKBlock {#1} { `#1 }
+    \setCJKmainfont
+      [ #1 , Color = \test_color:n {#1} , BoldFont = SimHei ] { SimSun }
+    \setCJKmonofont [ #1 ] { KaiTi }
+  }
+\cs_new_protected:Npn \TEST
+  {
+    \exp_args:No \path { \c_test_text_tl } \par
+    \c_test_text_tl \par
+    $ \c_test_text_tl $
+  }
+\ExplSyntaxOff
+
+\begin{document}
+
+\TEST
+
+\bigskip
+
+\bfseries\mathversion{bold}\TEST
+
+\end{document}
+%% 
+%%
+%% End of file `xeCJK-example-mathblock.tex'.

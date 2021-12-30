@@ -1,0 +1,274 @@
+%% $Id: pst-news.tex 4 2020-06-09 08:32:19Z herbert $
+\documentclass[11pt,english,BCOR10mm,DIV12,bibliography=totoc,parskip=false,smallheadings
+    headexclude,footexclude,oneside]{pst-doc}
+\listfiles
+\let\Lfile\LFile
+\usepackage[utf8]{inputenc}
+\usepackage{pstricks,pst-plot,xkvview}
+\let\pstplotFV\fileversion
+\let\pstplotFD\filedate
+\usepackage{pst-eucl,pst-func}
+\renewcommand\bgImage{\psscalebox{15}{\color{blue!20}2011}}
+\def\textat{\char064}
+\lstset{explpreset={pos=l,width=-99pt,overhang=0pt,hsep=\columnsep,vsep=\bigskipamount,rframe={}},
+    escapechar=?}
+\begin{document}
+
+%\psset{PstDebug=1}
+\title{\texttt{News}\\ \Large new macros and bugfixes for the
+basic package \nxLFile{pstricks}}
+\subtitle{Summary of the yearly posted news}
+\author{Herbert Voß}
+\date{\today}
+
+\maketitle
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\part{\texttt{pstricks} -- package}
+
+\section{General}
+There exists a new document class \LClass{pst-doc} for writing PSTricks documentations,
+like this news document. It depends on the KOMA-Script document class \LClass{scrartcl}.
+\LClass{pst-doc} defines a lot of special macros to create a good index. Take one of
+the already existing package documentation and look into the source file. Then it will be
+easy to understand, how all these macros have to be used.
+
+When running \Lprog{pdflatex} the title page is created with boxes and inserted 
+with the macro \Lcs{AddToShipoutPicture} from the package \LPack{eso-pic}. It
+inserts the background title page image \Lfile{pst-doc-pdf} to use directly
+\Lprog{pdflatex}.
+When running \Lprog{latex} the title page
+ is created with \PST\ macros.This allows to use the Perl script \Lprog{pst2pdf} or
+the package \LPack{pst-pdf} or \LPack{auto-pst-pdf} or any other program/package which
+supports \PS\ code in the document.
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.sty}}
+%--------------------------------------------------------------------------------------
+\subsection{New optional argument}
+
+\begin{description}
+\item[\texttt{noxcolor}] load package \LPack{color} instead of  \LPack{xcolor};
+\item[\texttt{plain}] do nothing else as a \Lcs{input}\Largb{\nxLPack{pstricks}}; 
+\item[\texttt{DIA}] a bug fix for the \verb+PSTricks+-export of the grafic program DIA.
+\end{description}
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.tex} (\pstricksFV -- \pstricksFD)}
+%--------------------------------------------------------------------------------------
+
+\subsection{New and modified option for {pspicture}}\label{sec:option}
+
+Table~\ref{tab:pspicture} shows the two new options for the  \verb+pspicture+ environment.
+
+\begin{table}[htb]
+\caption{Optionen der \texttt{pspicture}-Umgebung}\label{tab:pspicture}
+\centering
+\begin{tabular}{@{}lll@{}}
+\textrm{\emph{name}}  & \emph{meaning}   & \emph{default}\\\hline
+\Lkeyword{shift}  & vertical shift & 0 \\
+\Lkeyword{showgrid} & show grid & \verb+false+\\
+\end{tabular}
+\end{table}
+
+
+% ---------------------------------------------------------------------------------------
+\subsubsection{\nxLkeyword{shift}}\label{subsubsec:shift}
+% ---------------------------------------------------------------------------------------
+This option is the known one from older \texttt{PSTricks} versions, but now with the
+common syntax for options. The shift is relative to the height of the defined \Lenv{pspicture}
+environment, its lower left corner is by deafult on the base line. For older versions
+the shift depends with its value to the baseline, a negative value raised up the \Lenv{pspicture}
+box. Now the \verb+shift+ option works similiar to the known \Lcs{raisebox} makro, except that
+\Lkeyword{shift} is relative to the box height. A positive \Lkeyword{shift} value raises up the box
+and vice versa for a negative value.
+
+\begin{figure}[htb]
+\centering
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}[shift=0.5](-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){-0.5}
+\end{pspicture}%
+\textcolor{red}{\rule{5mm}{1pt}}
+\hspace{1cm}%
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}(-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){0}
+\end{pspicture}\textcolor{red}{\rule{5mm}{1pt}}
+\hspace{1cm}%
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}[shift=-0.5](-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){0.5}
+\end{pspicture}%
+\textcolor{red}{\rule{5mm}{1pt}}
+\caption{Meaning of the \texttt{shift} option}\label{fig:baseline}
+\end{figure}
+
+%\begin{lstlisting}[caption={Vertikale Verschiebung der Baseline}]
+\begin{lstlisting}
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}[shift=0.5](-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){-0.5}
+\end{pspicture}%
+\textcolor{red}{\rule{5mm}{1pt}}
+\hspace{1cm}%
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}(-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){0}
+\end{pspicture}\textcolor{red}{\rule{5mm}{1pt}}
+\hspace{1cm}%
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}[shift=-0.5](-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){0.5}
+\end{pspicture}%
+\textcolor{red}{\rule{5mm}{1pt}}
+\end{lstlisting}
+
+With \Lkeyword{shift}=\Lkeyval{*}, instead of a value or a length
+it is possible to center the \Lenv{pspicture} box vertically to the baseline
+of the current line.
+
+\begin{LTXexample}[width=4cm]
+\usepackage{pstricks}
+\rule{5mm}{0.5pt}%
+\psframebox{%
+\begin{pspicture}[showgrid=true,
+    shift=*](-0.3,-0.4)(3.2,3.3)
+  \psarc[showpoints=true](1,1){2}{-45}{120} 
+\end{pspicture}}\rule{5mm}{0.5pt}
+\end{LTXexample}
+
+
+% ---------------------------------------------------------------------------------------
+\subsubsection{\texttt{showgrid}}\label{subsubsec:showgrid}
+% ---------------------------------------------------------------------------------------
+This version of \texttt{PSTricks} defines internally a special grid style
+
+\begin{lstlisting}
+\newpsstyle{gridstyle}{subgriddiv=0,gridcolor=lightgray,griddots=10,gridlabels=8pt}
+\end{lstlisting}
+
+which can be overwritten by the user. This style is only used for the \Lkeyword{showgrid}
+option of the \Lenvpspicture} environment. The macro \Lcs{psgrid} doesn't use this predefined
+style and works in the usual way. However, the user can use it like all
+other self defined styles: \Lcs{psgrid}\Largs{\Lkeyset{style=gridstyle}}.
+
+
+\begin{LTXexample}[width=3.5cm]
+\begin{pspicture}[showgrid=true](-1,0)(2,1)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=3.5cm]
+\newpsstyle{gridstyle}{%
+  subgriddiv=2,subgridcolor=lightgray}
+\begin{pspicture}[showgrid=true](-1,0)(2,1)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=3.5cm]
+\newpsstyle{gridstyle}{}
+\begin{pspicture}[showgrid=true](-1,0)(2,1)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=3.5cm]
+\begin{pspicture}(-1,0)(2,1)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=3.5cm]
+\begin{pspicture}(-1,0)(2,1)
+  \psgrid
+\end{pspicture}
+\end{LTXexample}
+
+Depending to the internal structure of the \Lenv{pspicture} environment it is not possible
+to set the \Lkeyword{shift} option global by \Lcs{psset}, it must always be locally defined
+with optional part of the parameter, as seen in the above examples.
+
+\subsection{Option \nxLkeyword{gridfont}}
+By default the \Index{grid label}s were printed always in \Index{Helvetica}. With the new keyword \Lkeyword{gridfont}
+one can define another \Index{PostScript Font}. Available are at least
+
+\medskip
+{\ttfamily\noindent
+\Lkeyval{Helvetica} (default) -- \Lkeyval{Helvetica-Narrow} -- \Lkeyval{Times-Roman} -- \Lkeyval{Courier} -- \Lkeyval{AvantGard} --\Lkeyval{NewCenturySchlbk} -- 
+\Lkeyval{Palatino-Roman} -- \Lkeyval{Bookman-Demi} -- \linebreak \Lkeyval{ZapfDingbats} -- \Lkeyval{Symbol}}
+
+\begin{LTXexample}[width=4cm]
+\usepackage{pstricks}
+\begin{pspicture}[showgrid=true](3,2)
+\end{pspicture}\\[20pt]
+\begin{pspicture}(3,2)
+  \psgrid[style=gridstyle,gridfont=AvantGard-Demi]
+\end{pspicture}\\[20pt]
+\begin{pspicture}(3,2)
+  \psgrid[style=gridstyle,gridfont=ZapfDingbats]
+\end{pspicture}
+\end{LTXexample}
+
+
+
+
+\subsection{Macro \nxLcs{psLoop}}
+\PST\marginpar[2.17]{2.17} already knows \Lcs{psforeach} and \Lcs{psForeach} for loops. The new
+macro \Lcs{psLoop} allows a loop without defining a variable:
+
+\begin{BDef}
+\Lcs{psLoop}\Largb{n}\Largb{argument}
+\end{BDef}
+
+However, the internal \TeX\ counter \Lctr{psLoopIndex} can be used for own purposes.
+
+\begin{LTXexample}[width=7cm]
+  \psLoop{4}{PSTricks }
+\end{LTXexample}
+
+\begin{LTXexample}[width=7cm]
+\tabular{|c|c|c|c|}
+  \psLoop{3}{PSTricks &}\\\hline
+  A & B & C & D\\\hline
+\endtabular
+\end{LTXexample}
+
+\begin{LTXexample}[width=6cm]
+\begin{pspicture}[showgrid](3,3)
+\psLoop{4}{%
+  \psdots(\the\psLoopIndex,\the\psLoopIndex)}
+\end{pspicture}
+\end{LTXexample}
+
+
+%--------------------------------------------------------------------------------------
+\section{The PostScript header files}
+\subsection{\nxLFile{pstricks.pro}}
+%--------------------------------------------------------------------------------------
+
+
+%--------------------------------------------------------------------------------------
+\subsection{\nxLFile{pst-algparser.pro}}
+%--------------------------------------------------------------------------------------
+
+\section{\nxLcs{psforeach} and \nxLcs{psForeach}}
+%--------------------------------------------------------------------------------------
+
+\section{List of all optional arguments for \texttt{pstricks}}
+
+\xkvview{family=pstricks,columns={key,type,default}}
+
+
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{PSTricks}
+
+\printindex
+
+
+\end{document}

@@ -1,0 +1,62 @@
+%%
+%% This is file `upldefs.ltx',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% uplfonts.dtx  (with options: `pldefs,xpt')
+%% 
+%% Copyright (c) 2010 ASCII MEDIA WORKS
+%% Copyright (c) 2016 Takuji Tanaka
+%% Copyright (c) 2016-2018 Japanese TeX Development Community
+%% 
+%% This file is part of the upLaTeX2e system (community edition).
+%% --------------------------------------------------------------
+%% 
+%% File: uplfonts.dtx
+\ProvidesFile{upldefs.ltx}
+      [2020/02/01 v1.6v-u02 upLaTeX Kernel (Default settings)]
+\DeclareKanjiEncodingDefaults{}{}
+\DeclareErrorKanjiFont{JY2}{mc}{m}{n}{10}
+\kanjifamily{mc}
+\kanjiseries{m}
+\kanjishape{n}
+\fontsize{10}{10}
+\DeclareYokoKanjiEncoding{JY2}{}{}
+\DeclareKanjiSubstitution{JY2}{mc}{m}{n}
+\DeclareTateKanjiEncoding{JT2}{}{}
+\DeclareKanjiSubstitution{JT2}{mc}{m}{n}
+\KanjiEncodingPair{JY2}{JT2}
+\newcommand\mcdefault{mc}
+\newcommand\gtdefault{gt}
+\newcommand\kanjiencodingdefault{JY2}
+\newcommand\kanjifamilydefault{\mcdefault}
+\newcommand\kanjiseriesdefault{\mddefault}
+\newcommand\kanjishapedefault{n}% formerly \updefault
+\kanjiencoding{JY2}
+\input{jy2mc.fd}
+\input{jy2gt.fd}
+\input{jt2mc.fd}
+\input{jt2gt.fd}
+\fontencoding{JT2}\selectfont
+\fontencoding{JY2}\selectfont
+\DeclarePreloadSizes{JY2}{mc}{m}{n}{5,7,10,12}
+\DeclarePreloadSizes{JY2}{gt}{m}{n}{5,7,10,12}
+\DeclarePreloadSizes{JT2}{mc}{m}{n}{5,7,10,12}
+\DeclarePreloadSizes{JT2}{gt}{m}{n}{5,7,10,12}
+\InputIfFileExists{ukinsoku.tex}%
+  {\message{Loading kinsoku patterns for japanese.}}
+  {\errhelp{The configuration for kinsoku is incorrectly installed.^^J%
+            If you don't understand this error message you need
+            to seek^^Jexpert advice.}%
+   \errmessage{OOPS! I can't find any kinsoku patterns for japanese^^J%
+               \space Think of getting some or the
+               uplatex2e setup will never succeed}\@@end}
+\kanjiskip=0pt plus .4pt minus .5pt
+\autospacing
+\xkanjiskip=.25zw plus1pt minus1pt
+\autoxspacing
+\jcharwidowpenalty=500
+\endinput
+%%
+%% End of file `upldefs.ltx'.

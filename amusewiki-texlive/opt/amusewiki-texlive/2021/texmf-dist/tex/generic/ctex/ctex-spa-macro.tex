@@ -1,0 +1,91 @@
+%%
+%% This is file `ctex-spa-macro.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% ctex.dtx  (with options: `spa,macro')
+%% 
+%%     Copyright (C) 2003--2021
+%%     CTEX.ORG and any individual authors listed in the documentation.
+%% ---------------------------------------------------------------------
+%% 
+%%     This work may be distributed and/or modified under the
+%%     conditions of the LaTeX Project Public License, either
+%%     version 1.3c of this license or (at your option) any later
+%%     version. This version of this license is in
+%%        http://www.latex-project.org/lppl/lppl-1-3c.txt
+%%     and the latest version of this license is in
+%%        http://www.latex-project.org/lppl.txt
+%%     and version 1.3 or later is part of all distributions of
+%%     LaTeX version 2005/12/01 or later.
+%% 
+%%     This work has the LPPL maintenance status "maintained".
+%% 
+%% ---------------------------------------------------------------------
+%% 
+\input expl3-generic %
+\ExplSyntaxOn
+\sys_if_engine_xetex:F
+  {
+    \msg_new:nnn { ctex } { xetex }
+      { XeTeX~is~required~to~compile~this~document! }
+    \msg_fatal:nn { ctex } { xetex }
+  }
+\seq_const_from_clist:Nn \c__ctex_punct_seq
+  {
+    "2018 , "201C , "300C , "300E , "3014 , "FF08 , "FF3B , "FF5B ,
+    "3008 , "300A , "3016 , "3010 ,
+    "2014 , "2026 , "3001 , "3002 , "FF0C , "FF0E , "FF1A , "FF1B ,
+    "FF01 , "FF1F , "FF05 , "3015 , "FF09 , "FF3D , "FF5D , "3009 ,
+    "300B , "3017 , "3011 , "2019 , "201D , "300D , "300F
+  }
+\cs_new_protected:Npn \ctex_make_spa:nn #1#2
+  {
+    \iow_open:Nn \g__ctex_spa_iow {#1}
+    \clist_map_inline:nn {#2}
+      { \__ctex_write_family:nn ##1 }
+    \iow_close:N \g__ctex_spa_iow
+  }
+\iow_new:N \g__ctex_spa_iow
+\cs_new_eq:NN \MAKESPA \ctex_make_spa:nn
+\cs_new_protected:Npn \__ctex_write_family:nn #1#2
+  {
+    \group_begin:
+      \tex_font:D \l__ctex_punct_font = "#2" ~ at ~ 100 pt \scan_stop:
+      \l__ctex_punct_font
+      \clist_clear:N \l__ctex_punct_bounds_clist
+      \seq_map_inline:Nn \c__ctex_punct_seq
+        { \exp_args:No \__ctex_save_bounds:n { \int_use:N \tex_XeTeXcharglyph:D ##1 } }
+      \iow_now:Nx \g__ctex_spa_iow
+        {
+          \token_to_str:N \ctexspadef {#1}
+            { \l__ctex_punct_bounds_clist , , , }
+        }
+    \group_end:
+  }
+\cs_new_protected:Npn \__ctex_save_bounds:n #1
+  {
+    \clist_put_right:Nx \l__ctex_punct_bounds_clist
+      {
+        \__ctex_calc_bounds:nn { 1 } {#1} ,
+        \__ctex_calc_bounds:nn { 3 } {#1}
+      }
+  }
+\clist_new:N \l__ctex_punct_bounds_clist
+\cs_new:Npn \__ctex_calc_bounds:nn #1#2
+  {
+    \fp_eval:n
+      {
+        round
+          (
+            \dim_to_decimal_in_unit:nn
+              { 100 \tex_XeTeXglyphbounds:D #1 ~ #2 }
+              { 1 em }
+          )
+      }
+  }
+\ExplSyntaxOff
+%% 
+%%
+%% End of file `ctex-spa-macro.tex'.

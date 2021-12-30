@@ -1,0 +1,11 @@
+name texlive.infra.x86_64-linux
+category TLCore
+revision 57933
+shortdesc x86_64-linux files of texlive.infra
+containersize 145504
+containerchecksum 3611f63adc970c8737414cf9b024165520f03b40eb60dcaddba70b3706b1c6d2e57b718dc29f2466ccae258d04660d483504886e535ee9062ceeb0114ca17cf3
+binfiles arch=x86_64-linux size=85
+ bin/x86_64-linux/mktexlsr
+ bin/x86_64-linux/tlmgr
+ tlpkg/installer/lz4/lz4.x86_64-linux
+ tlpkg/installer/xz/xz.x86_64-linux

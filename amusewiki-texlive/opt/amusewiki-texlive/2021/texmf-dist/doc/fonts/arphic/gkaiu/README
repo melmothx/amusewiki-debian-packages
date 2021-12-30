@@ -1,0 +1,37 @@
+This is the README file of the gkai00mp-20071127.tar.gz package.
+
+The original font file is
+
+  ftp://ftp.gnu.org/non-gnu/chinese-fonts-truetype/gkai00mp.ttf.gz
+
+It has been first converted with the FontForge script `subfonts.pe' to
+create a set of Unicode encoded subfonts, then with the perl script
+`uni2sfd.pl' to create virtual fonts which provide GB 2312 encoded subfonts
+as used by the CJK package for LaTeX.
+
+  fontforge -script subfonts.pe gkai00mp.ttf gkaiu Unicode.sfd
+
+  perl uni2sfd.pl gkaiu UGB.sfd gkaimp cjkgb
+
+  rm *.enc
+
+These two scripts are part of the CJK package. You need FontForge 20071105
+or newer to run the scripts by yourself.
+
+This font package follows the TDS directory structure; the font family names
+for Unicode and GB font encodings are `gkaiu' and `gkaimp', respectively.
+For installation, simply copy the files to the corresponding locations in
+your TEXMF tree. LaTeX font definition files and example files for testing
+can be found in the CJK package.
+
+History:
+
+  2005-Jun-19  First version.
+
+  2007-Nov-27  Regenerate all PFB files which are now more compact due to
+               optimizations in FontForge.
+
+               Fix TFM files to avoid negative depth values (the widths stay
+               unchanged).
+
+---End of README---

@@ -1,0 +1,451 @@
+%
+% lltjp-listings.sty 2020-03-23
+%
+
+\NeedsTeXFormat{LaTeX2e}
+\RequirePackage{etoolbox,listings,luatexbase-cctb}
+
+%%%%%%%%%%%%%%%% Japanese support
+%% whether letter-space in a fixed mode box is doubled or not
+\newif\if@ltj@lst@double
+\lst@Key{doubleletterspace}f[t]{\lstKV@SetIf{#1}\if@ltj@lst@double}
+
+%% IVS support
+\newif\if@ltj@lst@vsraw
+\def\ltj@lst@vscmd{}
+\lst@Key{vsraw}f[t]{\lstKV@SetIf{#1}\if@ltj@lst@vsraw}
+\lst@Key{vscmd}\relax{\def\ltj@lst@vscmd{#1}}
+
+% 既定の IVS 出力コマンド
+\def\ltjlistingsvsstdcmd#1{\@tempdima=\f@size pt%
+  \smash{\raisebox{.35\@tempdima}{\tt%
+    \fboxsep=.1\@tempdima\fbox{\fontsize{.5\@tempdima}{\z@}\selectfont
+      \oalign{\hss VS\hss\crcr\hss#1\hss\crcr}}}}}
+\def\ltj@lst@vscmd{\ltjlistingsvsstdcmd}
+
+% override \lst@FillFixed@
+% \ltj@hst@hss is \ltj@lst@hss@ivs or \ltj@lst@hss@normal,
+% according to vsraw = true or not.
+\def\lst@FillFixed#1{{\null#1\null}\lst@FillFixed@}
+\def\lst@FillFixed@#1{%
+  \ifx\@empty#1\else\ltj@lst@hss{\null#1\null}\expandafter\lst@FillFixed@\fi}
+\let\lst@FillOutputBox\lst@FillFixed
+% [space/full]flexiblemode (not much useful...)
+\def\ltj@lst@FillFlex#1\@empty{\null#1\null}
+\patchcmd\lst@column@flexible
+  {\let\lst@FillOutputBox\@empty}{\let\lst@FillOutputBox\ltj@lst@FillFlex}{}{}
+\patchcmd\lst@column@fullflexible
+  {\let\lst@FillOutputBox\@empty}{\let\lst@FillOutputBox\ltj@lst@FillFlex}{}{}
+\patchcmd\lst@column@spaceflexible
+  {\let\lst@FillOutputBox\@empty}{\let\lst@FillOutputBox\ltj@lst@FillFlex}{}{}
+
+
+\directlua{
+  local cat_str = luatexbase.catcodetables['string']
+  local cat_lp  = luatexbase.catcodetables['latex-package']
+  local ubyte = utf.byte
+  local spccmd = string.char(0x5C) .. 'ltj@lst@hss@normal'
+  luatexja.listings = {}
+  function luatexja.listings.althss(t)
+    t = ubyte(t)
+    if not (t>=0xE0100 and t<0xE01F0) then
+      tex.sprint(cat_lp, spccmd)
+    end
+  end
+}
+\def\ltj@lst@hss@ivs#1{%
+  \directlua{luatexja.listings.althss('\luatexluaescapestring{#1}')}#1%
+}
+\def\ltj@lst@hss@double{\lst@hss\lst@hss}
+
+% lowest level
+\newif\if@ltj@lst@kanji
+\lst@AddToHook{InitVars}{\@ltj@lst@kanjifalse}
+
+\def\lst@AppendLetter{%
+    \ltj@lst@setletterflag\lst@Append}
+\def\lst@AppendOther{%
+    \lst@ifletter\lst@Output\lst@letterfalse\fi\@ltj@lst@kanjifalse
+    \futurelet\lst@lastother\lst@Append}
+
+\def\ltj@lst@setletterflag{%
+  \lst@ifletter
+    \if@ltj@lst@kanji\lst@Output\@ltj@lst@kanjifalse\fi
+  \else
+    \lst@lettertrue\if@ltj@lst@kanji\@ltj@lst@kanjifalse\else\lst@OutputOther\fi
+  \fi}
+
+\def\ltj@lst@setkanjiflag{%
+  \lst@ifletter
+    \lst@Output
+  \else
+    \if@ltj@lst@kanji\else\lst@OutputOther\fi\lst@lettertrue
+  \fi\@ltj@lst@kanjitrue}
+
+\def\ltj@lst@setopenflag{%
+  \lst@ifletter
+    \lst@letterfalse\lst@Output
+  \else
+    \if@ltj@lst@kanji\else\lst@OutputOther\fi
+  \fi\@ltj@lst@kanjitrue}
+
+\def\ltj@lst@setcloseflag{%
+  \lst@ifletter\else\lst@lettertrue\fi\@ltj@lst@kanjitrue}
+
+% Processing Japanese characters
+\def\ltj@lst@ProcessJALetter#1{%
+  \lst@whitespacefalse
+  \ifnum\ltjgetparameter{jacharrange}{\ltjgetparameter{chartorange}{`#1}}=0
+    \ifnum\ltjgetparameter{postbreakpenalty}{`#1}>0
+      \ltj@lst@setopenflag    % 開き括弧類
+    \else
+      \ifnum\ltjgetparameter{prebreakpenalty}{`#1}>0
+        \ltj@lst@setcloseflag % 閉じ括弧類，句読点
+      \else
+        \ltj@lst@setkanjiflag % 通常の和文文字
+    \fi\fi
+    \advance\lst@length\@ne   % 和文文字は通常の2倍の幅
+  \else
+    \ltj@lst@setletterflag
+  \fi
+  \lst@Append#1%
+}
+
+% 半角カナ処理命令
+\def\ltj@lst@ProcessJALetterHalf#1{%
+  \lst@whitespacefalse
+  \ifnum\ltjgetparameter{jacharrange}{\ltjgetparameter{chartorange}{`#1}}=0
+    \ifnum\ltjgetparameter{postbreakpenalty}{`#1}>0
+      \ltj@lst@setopenflag    % 開き括弧類
+    \else
+      \ifnum\ltjgetparameter{prebreakpenalty}{`#1}>0
+        \ltj@lst@setcloseflag % 閉じ括弧類
+      \else
+        \ltj@lst@setkanjiflag % 通常の和文文字
+    \fi\fi
+    % 半角カナは欧文文字と同じ幅
+  \else
+    \ltj@lst@setletterflag
+  \fi
+  \lst@Append#1}
+
+% 漢字用異体字セレクタ命令
+\def\ltj@lst@ProcessIVS#1{%
+  \lst@whitespacefalse
+  \if@ltj@lst@vsraw
+    \lst@Append#1\advance\lst@length\m@ne
+  \else
+    \lst@TrackNewLines\lst@OutputLostSpace \lst@PrintToken
+    \setbox\@tempboxa\hbox to 2\lst@width{\hss
+       \expandafter\expandafter\expandafter\ltj@lst@vscmd
+       \expandafter{\the\numexpr`#1-"E00EF\relax}%"
+    \hss}%
+    \lst@CalcLostSpaceAndOutput\lst@whitespacefalse
+  \fi
+}
+
+% Variation Selector
+\def\ltj@lst@ProcessVS#1{%
+  \lst@whitespacefalse
+  \if@ltj@lst@vsraw
+    \lst@Append#1\advance\lst@length\m@ne
+  \else
+    \lst@TrackNewLines\lst@OutputLostSpace \lst@PrintToken
+    \setbox\@tempboxa\hbox to 2\lst@width{\hss
+       \expandafter\expandafter\expandafter\ltj@lst@vscmd
+       \expandafter{\the\numexpr`#1-"FDFF\relax}%"
+    \hss}%
+    \lst@CalcLostSpaceAndOutput\lst@whitespacefalse
+  \fi
+}
+
+
+% 半角カナ，異体字セレクタはアクティブ化
+\def\ltj@@listing@jpsetN#1#2#3{% for (not large) range
+  \@tempcnta=\numexpr#1-1\relax\@tempcntb=\numexpr 1+#2\relax
+  \loop \global\advance\@tempcnta\@ne\ifnum\@tempcnta<\@tempcntb\relax
+    \ltj@@listing@jpsetN@{\@tempcnta}{#3}\repeat
+}
+
+\def\ltj@@listing@jpsetN@#1#2{{%
+    \@tempcnta=#1 \lccode`\~=\@tempcnta \lccode`\/=\@tempcnta
+    \lowercase{\gdef\@temp{\gdef~{#2/}}}}%
+  \@temptokena\expandafter\expandafter\expandafter\expandafter%
+  \expandafter\expandafter\expandafter{\expandafter\expandafter%
+  \expandafter\the\expandafter\@temptokena\@temp}%
+}
+\@temptokena{}
+\ltj@@listing@jpsetN{65377}{65439}{\ltj@lst@ProcessJALetterHalf}
+\ltj@@listing@jpsetN{65024}{65039}{\ltj@lst@ProcessVS}
+\ltj@@listing@jpsetN{917760}{917999}{\ltj@lst@ProcessIVS}
+\xdef\ltj@@listing@jpcmd{\the\@temptokena}\@temptokena{}
+
+% catcode 対策
+\newluatexcatcodetable\CatcodeTableLTJlistings
+\setluatexcatcodetable\CatcodeTableLTJlistings{%
+  \luatexcatcodetable\CatcodeTableLaTeXAtLetter
+  \catcode\ltjlineendcomment=13%"
+  \SetCatcodeRange{"FF61}{"FF9F}{13}%     半角カナ
+  \SetCatcodeRange{"E0100}{"E01EF}{13}%   漢字用異体字セレクタ
+  \SetCatcodeRange{"FE00}{"FE0F}{13}%     Variation Selector
+}
+
+% redefine \lstinline and its inner commands to support Japanese characters
+\renewcommand\lstinline[1][]{%
+    \leavevmode\bgroup % \hbox\bgroup --> \bgroup
+      \def\lst@boxpos{b}%
+      \lsthk@PreSet\lstset{flexiblecolumns,#1}%
+      \lsthk@TextStyle
+      \@ifnextchar\bgroup \ltj@lst@InlineG \ltj@lstinline@}
+\def\ltj@lstinline@#1{%
+  \edef\ltj@lst@temp{\the\catcode`#1}\lst@Init\relax\catcode`#1\ltj@lst@temp
+  \lst@InlineJ#1}
+\def\ltj@lst@InlineG{%
+  \lst@Init\relax\edef\ltj@lst@temp{\the\catcode`\}}\catcode`\}=2 \catcode`\ =12\relax
+  \let\lst@arg\@empty\afterassignment\ltj@lst@InlineG@@\@temptokena}
+\def\ltj@lst@InlineG@@{%
+  \catcode`\}=\ltj@lst@temp%
+  \expandafter\expandafter\expandafter\lst@InsideConvert%
+  \expandafter{\the\@temptokena}\lst@arg\lst@DeInit\egroup}
+
+%%%%%%%%%%%%%%%% \lstMakeShortInline
+\patchcmd\lstMakeShortInline@{\lst@shortinlinedef#1}{\lst@shortinlinedef~}{}{}
+
+% We redefine \lst@BeginDropInput, since now we have
+% two additional `process macros'.
+\def\lst@BeginDropInput#1{%
+    \lst@EnterMode{#1}%
+    {\lst@modetrue
+     \let\lst@OutputBox\@gobble
+     \let\lst@ifdropinput\iftrue
+     \let\lst@ProcessLetter\@gobble
+     \let\lst@ProcessDigit\@gobble
+     \let\lst@ProcessOther\@gobble
+     \let\lst@ProcessSpace\@empty
+     \let\lst@ProcessTabulator\@empty
+     \let\lst@ProcessFormFeed\@empty
+     \let\ltj@lst@ProcessJALetter\@gobble     % added
+     \let\ltj@lst@ProcessJALetterHalf\@gobble % added
+}}
+
+\directlua{
+  local utfchar, getcount = utf.char, tex.getcount
+  luatexja.listings.insert_cb = function()
+    if not luatexja.listings.patched then
+      luatexja.listings.patched = 1
+      luatexbase.add_to_callback('process_input_buffer',
+         function(buf)
+           local ret = ''
+           for i = 1, utf.len(buf) do
+              local c = utf.sub(buf, i, i)
+              local cu = utf.byte(c)
+              if cu >= 0x80 and tex.getcatcode(cu) \string~= 13 then
+                ret = ret .. utfchar(getcount('ltjlineendcomment'))
+              end
+              ret = ret .. c
+            end
+            return ret
+          end, 'ltj.listings_unicode', 1)
+    end
+  end
+  luatexja.listings.remove_cb = function()
+    if luatexja.listings.patched then
+      luatexja.listings.patched = nil
+      luatexbase.remove_from_callback('process_input_buffer', 
+        'ltj.listings_unicode')%
+    end
+  end}
+
+% hook!
+\lst@AddToHook{Init}{%
+  \luatexcatcodetable\CatcodeTableLTJlistings\ltj@@listing@jpcmd
+  \lccode`\~=\ltjlineendcomment\lowercase{\def~{\ltj@lst@ProcessJALetter}}%"
+  \directlua{luatexja.listings.insert_cb()}%
+  \if@ltj@lst@double
+    \let\ltj@lst@hss@normal=\ltj@lst@hss@double
+  \else
+    \let\ltj@lst@hss@normal=\lst@hss
+  \fi
+  \if@ltj@lst@vsraw
+    \let\ltj@lst@hss=\ltj@lst@hss@ivs
+  \else
+    \let\ltj@lst@hss=\ltj@lst@hss@normal
+  \fi
+}
+
+\def\ltj@lst@MakeActive#1{%
+    \let\lst@temp\@empty \ltj@lst@MakeActive@#1\relax}
+\begingroup
+\catcode`\^^A=12
+\catcode`\^^@=\active
+\lccode`\$=\ltjlineendcomment \catcode`\$=13 %"
+\lowercase{%
+\gdef\ltj@lst@MakeActive@#1{\let\lst@next\relax%
+    \ifx#1\relax
+    \else\let\lst@next\ltj@lst@MakeActive@
+    \ifnum`#1>127 
+      \lccode`\^^A=`#1 
+      \lowercase{\lst@lAddTo\lst@temp{$^^A}}%$
+    \else
+      \lccode`\^^@=`#1 
+      \lowercase{\lst@lAddTo\lst@temp{^^@}}%
+    \fi\fi\lst@next}}
+\endgroup
+
+
+\begingroup \lccode`\~=`\ \relax \lowercase{%
+\gdef\lst@InsideConvert@#1 #2{%
+    \ltj@lst@MakeActive{#1}%
+    \ifx\@empty#2%
+        \lst@lExtend\lst@arg{\lst@temp}%
+    \else
+        \lst@lExtend\lst@arg{\lst@temp~}%
+        \expandafter\lst@InsideConvert@
+    \fi#2}
+}\endgroup
+
+\lst@AddToHook{ExitVars}{%
+  \directlua{luatexja.listings.remove_cb()}%
+}
+
+% 白線対策
+\newif\ifltj@lst@frame@top
+\newdimen\ltj@lst@frame@lslimit
+\gdef\lst@frameInit{%
+    \ltj@lst@frame@toptrue
+    \ifx\lst@framelshape\@empty \let\lst@frameL\@empty \fi
+    \ifx\lst@framershape\@empty \let\lst@frameR\@empty \fi
+    \def\lst@framevrule{\vrule\@width\lst@framerulewidth\relax}%
+    \lst@ifframeround
+        \lst@frameCalcDimA\z@ \@getcirc\@tempdima
+        \@tempdimb\@tempdima \divide\@tempdimb\tw@
+        \advance\@tempdimb -\@wholewidth
+        \edef\lst@frametextsep{\the\@tempdimb}%
+        \edef\lst@framerulewidth{\the\@wholewidth}%
+        \lst@frameCalcDimA\@ne \@getcirc\@tempdima
+        \@tempdimb\@tempdima \divide\@tempdimb\tw@
+        \advance\@tempdimb -\tw@\@wholewidth
+        \advance\@tempdimb -\lst@frametextsep
+        \edef\lst@rulesep{\the\@tempdimb}%
+    \fi
+    \lst@frameMakeBoxV\lst@framebox{\ht\strutbox}{\dp\strutbox}%
+    %%%%  ここから
+    \@tempdima\z@
+    \ifdim\ht\strutbox<\cht\@tempdima=\dimexpr\cht-\ht\strutbox\relax\fi
+    \ifdim\dp\strutbox<\cdp\@tempdima=\dimexpr\cdp-\dp\strutbox\relax\fi
+    \ltj@lst@frame@lslimit=-\@tempdima
+    \def\lst@framelr{%
+      \ifltj@lst@frame@top\ltj@lst@frame@topfalse\else\lineskiplimit\ltj@lst@frame@lslimit\fi
+      \copy\lst@framebox}%
+    %%%% ここまで
+    \ifx\lst@frametshape\@empty\else
+        \lst@frameH T\lst@frametshape
+        \ifvoid\z@\else
+            \par\lst@parshape
+            \@tempdima-\baselineskip \advance\@tempdima\ht\z@
+            \ifdim\prevdepth<\@cclvi\p@\else
+                \advance\@tempdima\prevdepth
+            \fi
+            \ifdim\@tempdima<\z@
+                \vskip\@tempdima\vskip\lineskip
+            \fi
+            \noindent\box\z@\par
+            \lineskiplimit\maxdimen \lineskip\z@
+        \fi
+        \lst@frameSpreadV\lst@framextopmargin
+    \fi}
+
+
+
+%%%%%%%%%%%%%%%% escape to \LaTeX
+\lstloadaspects{escape}
+\gdef\lst@Escape#1#2#3#4{%
+    \lst@CArgX #1\relax\lst@CDefX
+        {}%
+        {\lst@ifdropinput\else
+         \lst@TrackNewLines\lst@OutputLostSpace \lst@XPrintToken
+         \lst@InterruptModes
+         \lst@EnterMode{\lst@TeXmode}{\lst@modetrue}%
+         \ifx\^^M#2%
+             \lst@CArg #2\relax\lst@ActiveCDefX
+                 {}%
+                 {\lst@escapeend #4\lst@LeaveAllModes\lst@ReenterModes}%
+                 {\lst@MProcessListing}%
+         \else
+             \lst@CArg #2\relax\lst@ActiveCDefX
+                 {}%
+                 {\lst@escapeend #4\lst@LeaveAllModes\lst@ReenterModes
+                  \lst@newlines\z@ \lst@whitespacefalse}%
+                 {}%
+         \fi%
+         \ltj@lst@escape@setup#2%
+         #3\catcode\ltjlineendcomment=9\lst@escapebegin\expandafter\lst@next%"
+         \fi}%
+        {}}
+\def\ltj@lst@emptygrp{{}}
+\def\ltj@lst@escape@setup#1{%
+  \begingroup\lccode`\~=`#1\lowercase{%
+  \gdef\lst@next##1~{%
+     \let\lst@arg\@empty\ltj@lst@remove@jacmd{##1}%
+     \expandafter\expandafter\expandafter\expandafter\expandafter\expandafter\expandafter
+	   \scantokens\expandafter\expandafter\expandafter{\expandafter\ltj@lst@emptygrp\lst@arg\empty}%
+     ~}%
+  }\endgroup
+}
+\begingroup
+  \lccode`\|=\ltjlineendcomment \lowercase{%"
+  \gdef\ltj@lst@remove@jacmd#1{%
+    \expandafter\ltj@lst@remove@jacmd@\detokenize{#1}|\@nil|}
+  \gdef\ltj@lst@remove@jacmd@#1|{%
+    \ifx#1\@nil\else
+       \lst@lAddTo\lst@arg{#1}%
+       \expandafter\ltj@lst@remove@jacmd@
+    \fi}}
+\endgroup
+
+%%%%%%%%%%%%%%%% texcl
+\lst@AddToHook{AfterBeginComment}
+   {\ifnum\lst@mode=\lst@TeXLmode
+      \catcode`\^^M=13\relax
+      \catcode\ltjlineendcomment=9\relax
+    \fi}
+
+%%%%%%%%%%%%%%%%
+\lstloadaspects{writefile}
+\begingroup \catcode`\^^I=11
+\gdef\lst@WFBegin#1#2{%
+    \begingroup
+    \let\lst@OutputBox#1%
+    \def\lst@Append##1{%
+        \advance\lst@length\@ne
+        \expandafter\lst@token\expandafter{\the\lst@token##1}%
+        \ifx ##1\lst@outputspace \else
+            \lst@WFAppend##1%
+        \fi}%
+    \lst@lAddTo\lst@PreGotoTabStop{\lst@WFAppend{^^I}}%
+    \lst@lAddTo\lst@ProcessSpace{\lst@WFAppend{ }}%
+    \def\ltj@lst@ProcessIVS##1{\lst@whitespacefalse\lst@Append##1}%
+    \def\ltj@lst@ProcessVS##1{\lst@whitespacefalse\lst@Append##1}%
+    \let\lst@DeInit\lst@WFDeInit
+    \let\lst@MProcessListing\lst@WFMProcessListing
+    \lst@WFifopen\else
+        \immediate\openout\lst@WF=#2\relax
+        \global\let\lst@WFifopen\iftrue
+        \@gobbletwo\fi\fi
+    \fi}
+\endgroup
+
+%    \begin{修正事項}{1.3} from jlisting.sty
+% ちょっとした修正
+\gdef\lst@breakProcessOther#1{\lst@ProcessOther#1}
+% ソースコード目次における文字と番号の空き
+\let \l@lstlisting = \l@figure
+
+%%%% 
+% キャプションとソースコード目次に対する日本語対応
+%\def\lstlistingname{ソースコード}
+%\def\lstlistlistingname{ソースコード目次}
+%    \end{修正事項}
+%%%%
+
+\endinput

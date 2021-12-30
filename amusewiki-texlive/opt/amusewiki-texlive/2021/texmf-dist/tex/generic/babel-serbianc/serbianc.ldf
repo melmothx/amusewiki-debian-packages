@@ -1,0 +1,351 @@
+%%
+%% This is file `serbianc.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% serbianc.dtx  (with options: `code')
+%% This is a generated file.
+%% 
+%% Copyright 2019--2021 Uroš Stefanović,
+%% 2002--2019 Filip Brčić
+%% All rights reserved.
+%% 
+%% This file is intended to be used with the Babel system.
+%% ------------------------------------------------------
+%% 
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Uroš Stefanović.
+%% 
+%% The list of derived (unpacked) files belonging to the distribution
+%% and covered by LPPL is defined by the unpacking scripts (with
+%% extension .ins) which are part of the distribution.
+\ProvidesLanguage{serbianc}
+        [2021/04/10 3.1 Serbian Cyrillic support for the Babel system]
+%% File `serbianc.dtx'
+\LdfInit{serbianc}{captionsserbianc}
+\ifdefined\if@srbc@uni@ode
+  \PackageError{babel}{if@srbc@uni@ode already defined.}
+  \relax
+\fi
+\newif\if@srbc@uni@ode
+\ifdefined\luatexversion \@srbc@uni@odetrue \else
+\ifdefined\XeTeXrevision \@srbc@uni@odetrue \fi\fi
+\ifx\l@serbianc\@undefined
+  \@nopatterns{Serbianc}
+  \adddialect\l@serbianc0
+\fi
+\def\@setcyrillicencoding{%
+  \def\sce@a##1##2{%
+    \edef\sce@b{##1}%
+    \edef\sce@c{##2}%
+    \ifx\sce@b\sce@c
+      \let\cyrillicencoding\sce@c
+    \fi}%
+  \def\cdp@elt##1##2##3##4{%
+    \sce@a{##1}{OT2}%
+    \sce@a{##1}{X2}%
+    \sce@a{##1}{T2A}%
+    \if@srbc@uni@ode
+      \sce@a{##1}{TU}%
+    \fi}%
+  \cdp@list
+}
+\ifx\cyrillicencoding\undefined
+  \@setcyrillicencoding
+\fi
+\@onlypreamble\@setcyrillicencoding
+\@onlypreamble\sce@a
+\@onlypreamble\sce@b
+\@onlypreamble\sce@c
+\ifx\cyrillicencoding\undefined
+  \if@srbc@uni@ode
+    \edef\cyrillicencoding{TU}
+  \else
+    \edef\cyrillicencoding{T2A}
+  \fi
+  \PackageWarning{babel}%
+    {No Cyrillic font encoding has been loaded so far.\MessageBreak
+     A font encoding should be declared before babel.\MessageBreak
+     Default `\cyrillicencoding' encoding will be loaded
+    }%
+  \lowercase\expandafter{\expandafter\input\cyrillicencoding enc.def\relax}%
+  \AtBeginDocument{\@setcyrillicencoding}
+\fi
+\DeclareRobustCommand{\Serbianc}{\selectlanguage{\serbianc}}
+\DeclareRobustCommand{\cyrillictext}{%
+  \fontencoding\cyrillicencoding\selectfont
+  \let\encodingdefault\cyrillicencoding
+  \expandafter\set@hyphenmins\serbianchyphenmins
+  \language\l@serbianc}%
+\let\cyr\cyrillictext
+\DeclareTextFontCommand{\textcyrillic}{\cyrillictext}
+\initiate@active@char{"}
+\begingroup \catcode`\"12
+\def\reserved@a{\endgroup
+  \def\@SS{\mathchar"7019 }
+  \def\dq{"}}
+\reserved@a
+\declare@shorthand{serbianc}{"`}{\quotedblbase}
+\declare@shorthand{serbianc}{"'}{\textquotedblleft}
+\declare@shorthand{serbianc}{"<}{\guillemotleft}
+\declare@shorthand{serbianc}{">}{\guillemotright}
+\declare@shorthand{serbianc}{""}{\hskip\z@skip}
+\declare@shorthand{serbianc}{"~}{\textormath{\leavevmode\hbox{-}}{-}}
+\declare@shorthand{serbianc}{"=}{\nobreak-\hskip\z@skip}
+\declare@shorthand{serbianc}{"|}{\textormath{\nobreak\discretionary{-}{}{\kern.03em}\allowhyphens}{}}
+\declare@shorthand{serbianc}{"-}{\nobreak\discretionary{-}{-}{-}\bbl@allowhyphens}
+\ProvideTextCommandDefault{\cyrdash}{\hbox to.8em{--\hss--}}
+\if@srbc@uni@ode
+  \addto\captionsserbianc{%
+    \def\prefacename{Предговор}%
+    \def\refname{Литература}%
+    \def\abstractname{Сажетак}%
+    \def\bibname{Библиографија}%
+    \def\chaptername{Глава}%
+    \def\appendixname{Додатак}%
+    \def\contentsname{Садржај}%
+    \def\listfigurename{Списак слика}%
+    \def\listtablename{Списак табела}%
+    \def\indexname{Индекс}%
+    \def\figurename{Слика}%
+    \def\tablename{Табела}%
+    \def\partname{Део}%
+    \def\enclname{Прилози}%
+    \def\ccname{Копије}%
+    \def\headtoname{Прима}%
+    \def\pagename{страна}%
+    \def\seename{види}%
+    \def\alsoname{види такође}%
+    \def\proofname{Доказ}%
+    \def\glossaryname{Речник}%
+  }%
+  \let\captionsserbianc@ijekav=\captionsserbianc
+  \addto\captionsserbianc@ijekav{%
+    \def\partname{Дио}%
+    \def\glossaryname{Рjечник}%
+  }
+\else
+  \addto\captionsserbianc{%
+    \def\prefacename{{\cyr\CYRP\cyrr\cyre\cyrd\cyrg\cyro\cyrv\cyro\cyrr}}%
+    \def\refname{{\cyr\CYRL\cyri\cyrt\cyre\cyrr\cyra\cyrt\cyru\cyrr\cyra}}%
+    \def\abstractname{{\cyr\CYRS\cyra\cyrzh\cyre\cyrt\cyra\cyrk}}%
+    \def\bibname{{\cyr\CYRB\cyri\cyrb\cyrl\cyri\cyro\cyrg\cyrr\cyra\cyrf\cyri\cyrje\cyra}}%
+    \def\chaptername{{\cyr\CYRG\cyrl\cyra\cyrv\cyra}}%
+    \def\appendixname{{\cyr\CYRD\cyro\cyrd\cyra\cyrt\cyra\cyrk}}%
+    \def\contentsname{{\cyr\CYRS\cyra\cyrd\cyrr\cyrzh\cyra\cyrje}}%
+    \def\listfigurename{{\cyr\CYRS\cyrp\cyri\cyrs\cyra\cyrk\ \cyrs\cyrl\cyri\cyrk\cyra}}%
+    \def\listtablename{{\cyr\CYRS\cyrp\cyri\cyrs\cyra\cyrk\ \cyrt\cyra\cyrb\cyre\cyrl\cyra}}%
+    \def\indexname{{\cyr\CYRI\cyrn\cyrd\cyre\cyrk\cyrs}}%
+    \def\figurename{{\cyr\CYRS\cyrl\cyri\cyrk\cyra}}%
+    \def\tablename{{\cyr\CYRT\cyra\cyrb\cyre\cyrl\cyra}}%
+    \def\partname{{\cyr\CYRD\cyre\cyro}}%
+    \def\enclname{{\cyr\CYRP\cyrr\cyri\cyrl\cyro\cyrz\cyri}}%
+    \def\ccname{{\cyr\CYRK\cyro\cyrp\cyri\cyrje\cyre}}%
+    \def\headtoname{{\cyr\CYRP\cyrr\cyri\cyrm\cyra}}%
+    \def\pagename{{\cyr\cyrs\cyrt\cyrr\cyra\cyrn\cyra}}%
+    \def\seename{{\cyr\cyrv\cyri\cyrd\cyri}}%
+    \def\alsoname{{\cyr\cyrv\cyri\cyrd\cyri\ \cyrt\cyra\cyrk\cyro\cyrdje\cyre}}%
+    \def\proofname{{\cyr\CYRD\cyro\cyrk\cyra\cyrz}}%
+    \def\glossaryname{{\cyr\CYRR\cyre\cyrch\cyrn\cyri\cyrk}}%
+  }%
+  \let\captionsserbianc@ijekav=\captionsserbianc
+  \addto\captionsserbianc@ijekav{%
+    \def\partname{{\cyr\CYRD\cyri\cyro}}%
+    \def\glossaryname{{\cyr\CYRR\cyrje\cyre\cyrch\cyrn\cyri\cyrk}}%
+  }
+\fi
+\if@srbc@uni@ode
+  \addto\dateserbianc{%
+   \def\month@serbianc{\ifcase\month\or
+    јануар\or
+    фебруар\or
+    март\or
+    април\or
+    мај\or
+    јун\or
+    јул\or
+    август\or
+    септембар\or
+    октобар\or
+    новембар\or
+    децембар\fi}%
+    \def\today{\number\day.~\month@serbianc\ \number\year\@ifstar{}{.}}%
+    \def\todayRoman{\number\day.~\@Roman\month~\number\year\@ifstar{}{.}}}
+  \let\dateserbianc@datei=\dateserbianc
+  \addto\dateserbianc@datei{%
+    \def\month@serbianc@datei{\ifnum\month=6 јуни%
+    \else\ifnum\month=7 јули\else\month@serbianc\fi\fi}%
+    \def\today{\number\day.~\month@serbianc@datei\ \number\year\@ifstar{}{.}}}
+\else
+  \def\dateserbianc{%
+   \def\month@serbianc{\ifcase\month\or
+    \cyrje\cyra\cyrn\cyru\cyra\cyrr\or
+    \cyrf\cyre\cyrb\cyrr\cyru\cyra\cyrr\or
+    \cyrm\cyra\cyrr\cyrt\or
+    \cyra\cyrp\cyrr\cyri\cyrl\or
+    \cyrm\cyra\cyrje\or
+    \cyrje\cyru\cyrn\or
+    \cyrje\cyru\cyrl\or
+    \cyra\cyrv\cyrg\cyru\cyrs\cyrt\or
+    \cyrs\cyre\cyrp\cyrt\cyre\cyrm\cyrb\cyra\cyrr\or
+    \cyro\cyrk\cyrt\cyro\cyrb\cyra\cyrr\or
+    \cyrn\cyro\cyrv\cyre\cyrm\cyrb\cyra\cyrr\or
+    \cyrd\cyre\cyrc\cyre\cyrm\cyrb\cyra\cyrr\fi}%
+    \def\today{\number\day.~\month@serbianc\ \number\year\@ifstar{}{.}}%
+    \def\todayRoman{\number\day.~\@Roman\month~\number\year\@ifstar{}{.}}}
+  \let\dateserbianc@datei=\dateserbianc
+  \addto\dateserbianc@datei{%
+    \def\month@serbianc@datei{\ifnum\month=6\cyrje\cyru\cyrn\cyri%
+    \else\ifnum\month=7\cyrje\cyru\cyrl\cyri\else\month@serbianc\fi\fi}%
+    \def\today{\number\day.~\month@serbianc@datei\ \number\year\@ifstar{}{.}}
+}
+\fi
+\providehyphenmins{\CurrentOption}{\tw@\tw@}
+\providehyphenmins{serbianc}{\tw@\tw@}
+\addto\extrasserbianc{\cyrillictext}
+\addto\noextrasserbianc{\latintext}
+\addto\extrasserbianc{\languageshorthands{serbianc}}
+\addto\extrasserbianc{\bbl@activate{"}}
+\addto\noextrasserbianc{\bbl@deactivate{"}}
+\addto\extrasserbianc{\bbl@frenchspacing}
+\addto\noextrasserbianc{\bbl@nonfrenchspacing}
+\let\@aifORI\@afterindentfalse
+\def\bbl@serbiancindent{\let\@afterindentfalse\@afterindenttrue\@afterindenttrue}
+\def\bbl@nonserbiancindent{\let\@afterindentfalse\@aifORI\@afterindentfalse}
+\addto\extrasserbianc{\bbl@serbiancindent}
+\addto\noextrasserbianc{\bbl@nonserbiancindent}
+\newcount\srbc@lettering \srbc@lettering=\z@
+\addto\extrasserbianc{\babel@save\@Alph \let\@Alph\srbc@Alph}
+\def\srbc@Alph#1{%
+\ifcase\srbc@lettering
+    \if@srbc@uni@ode
+        \ifcase#1\or А\or Б\or В\or Г\or Д\or Ђ\or Е\or Ж\or З\or
+        И\or Ј\or К\or Л\or Љ\or М\or Н\or Њ\or О\or П\or Р\or С\or
+        Т\or Ћ\or У\or Ф\or Х\or Ц\or Ч\or Џ\or Ш\else\@ctrerr\fi
+    \else
+        \ifcase#1\or\CYRA\or\CYRB\or\CYRV\or\CYRG\or\CYRD\or\CYRDJE\or
+        \CYRE\or\CYRZH\or\CYRZ\or\CYRI\or\CYRJE\or\CYRK\or\CYRL\or
+        \CYRLJE\or\CYRM\or\CYRN\or\CYRNJE\or\CYRO\or\CYRP\or\CYRR\or
+        \CYRS\or\CYRT\or\CYRTSHE\or\CYRU\or\CYRF\or\CYRH\or\CYRC\or
+        \CYRCH\or\CYRDZHE\or\CYRSH\else\@ctrerr\fi
+    \fi
+\or
+    \ifcase#1\or A\or B\or C\or D\or E\or F\or G\or H\or I\or
+    J\or K\or L\or M\or N\or O\or P\or R\or S\or T\or U\or V\or
+    Z\else\@ctrerr\fi
+\or
+    \ifcase#1\or A\or B\or C\or D\or E\or F\or G\or H\or I\or
+    J\or K\or L\or M\or N\or O\or P\or Q\or R\or S\or T\or U\or V\or
+    W\or X\or Y\or Z\else\@ctrerr\fi
+\fi}%
+\addto\extrasserbianc{\babel@save\@alph \let\@alph\srbc@alph}
+\def\srbc@alph#1{%
+\ifcase\srbc@lettering
+    \if@srbc@uni@ode
+        \ifcase#1\or а\or б\or в\or г\or д\or ђ\or е\or ж\or з\or
+        и\or ј\or к\or л\or љ\or м\or н\or њ\or о\or п\or р\or с\or
+        т\or ћ\or у\or ф\or х\or ц\or ч\or џ\or ш\else\@ctrerr\fi
+    \else
+        \ifcase#1\or\cyra\or\cyrb\or\cyrv\or\cyrg\or\cyrd\or\cyrdje\or
+        \cyre\or\cyrzh\or\cyrz\or\cyri\or\cyrje\or\cyrk\or\cyrl\or
+        \cyrlje\or\cyrm\or\cyrn\or\cyrnje\or\cyro\or\cyrp\or\cyrr\or
+        \cyrs\or\cyrt\or\cyrtshe\or\cyru\or\cyrf\or\cyrh\or\cyrc\or
+        \cyrch\or\cyrdzhe\or\cyrsh\else\@ctrerr\fi
+    \fi
+\or
+    \ifcase#1\or a\or b\or c\or d\or e\or f\or g\or h\or i\or
+    j\or k\or l\or m\or n\or o\or p\or r\or s\or t\or u\or v\or
+    z\else\@ctrerr\fi
+\or
+    \ifcase#1\or a\or b\or c\or d\or e\or f\or g\or h\or i\or
+    j\or k\or l\or m\or n\or o\or p\or q\or r\or s\or t\or u\or v\or
+    w\or x\or y\or z\else\@ctrerr\fi
+\fi}%
+\addto\extrasserbianc{%
+  \babel@save\enumEng \def\enumEng{\srbc@lettering=\tw@}
+  \babel@save\enumLat \def\enumLat{\srbc@lettering=\@ne}
+  \babel@save\enumCyr \def\enumCyr{\srbc@lettering=\z@}
+}%
+\bbl@declare@ttribute{serbianc}{ijekav}{%
+ \PackageInfo{babel}{Serbianc attribute set to ijekav}%
+ \let\captionsserbianc=\captionsserbianc@ijekav }
+\@onlypreamble\captionsserbianc@ijekav
+\bbl@declare@ttribute{serbianc}{quotes}{%
+ \PackageInfo{babel}{Serbianc attribute set to quotes}%
+ \declare@shorthand{serbianc}{"'}{\textquotedblright} }
+\bbl@declare@ttribute{serbianc}{datei}{%
+ \PackageInfo{babel}{Serbianc attribute set to datei}%
+ \let\dateserbianc=\dateserbianc@datei }
+\@onlypreamble\dateserbianc@datei
+\def\sh{\mathop{\operator@font sh}\nolimits}
+\def\ch{\mathop{\operator@font ch}\nolimits}
+\def\tg{\mathop{\operator@font tg}\nolimits}
+\def\ctg{\mathop{\operator@font ctg}\nolimits}
+\def\arctg{\mathop{\operator@font arctg}\nolimits}
+\def\arcctg{\mathop{\operator@font arcctg}\nolimits}
+\addto\extrasserbianc{%
+  \babel@save{\th}%
+  \let\ltx@th\th
+  \def\th{\textormath{\ltx@th}%
+                     {\mathop{\operator@font th}\nolimits}}%
+  }
+\def\cth{\mathop{\operator@font cth}\nolimits}
+\def\arsh{\mathop{\operator@font arsh}\nolimits}
+\def\arch{\mathop{\operator@font arch}\nolimits}
+\def\arth{\mathop{\operator@font arth}\nolimits}
+\def\arcth{\mathop{\operator@font arcth}\nolimits}
+\def\cosec{\mathop{\operator@font cosec}\nolimits}
+\def\arcsec{\mathop{\operator@font arcsec}\nolimits}
+\def\arccosec{\mathop{\operator@font arccosec}\nolimits}
+\def\sech{\mathop{\operator@font sech}\nolimits}
+\def\cosech{\mathop{\operator@font cosech}\nolimits}
+\def\arsech{\mathop{\operator@font arsech}\nolimits}
+\def\arcosech{\mathop{\operator@font arcosech}\nolimits}
+\def\Prob{\mathop{\kern\z@\mathsf{P}}\nolimits}
+\def\Expect{\mathop{\kern\z@\mathsf{E}}\nolimits}
+\def\Variance{\mathop{\kern\z@\mathsf{D}}\nolimits}
+\addto\extrasserbianc{%
+  \babel@save\nzs \babel@save\nzd
+  \babel@save\NZS \babel@save\NZD
+  \if@srbc@uni@ode
+    \def\nzs{\mathop{\mathrm{нзс}}\nolimits}
+    \def\nzd{\mathop{\mathrm{нзд}}\nolimits}
+    \def\NZS{\mathop{\mathrm{НЗС}}\nolimits}
+    \def\NZD{\mathop{\mathrm{НЗД}}\nolimits}
+  \else
+    \def\nzs{\mathop{\textnormal{\cyrn\cyrz\cyrs}}\nolimits}
+    \def\nzd{\mathop{\textnormal{\cyrn\cyrz\cyrd}}\nolimits}
+    \def\NZS{\mathop{\textnormal{\CYRN\CYRZ\CYRS}}\nolimits}
+    \def\NZD{\mathop{\textnormal{\CYRN\CYRZ\CYRD}}\nolimits}
+  \fi}
+\ldf@finish{serbianc}
+%%
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+\endinput
+%%
+%% End of file `serbianc.ldf'.

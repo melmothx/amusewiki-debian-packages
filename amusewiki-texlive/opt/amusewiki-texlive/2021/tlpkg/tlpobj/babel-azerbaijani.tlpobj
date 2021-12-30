@@ -1,0 +1,26 @@
+name babel-azerbaijani
+category Package
+revision 44197
+shortdesc Support for Azerbaijani within babel
+longdesc This is the babel style for Azerbaijani. This language poses
+longdesc special challenges because no "traditional" font encoding
+longdesc contains the full character set, and therefore a mixture must
+longdesc be used (e.g., T2A and T1). This package is compatible with
+longdesc Unicode engines (LuaTeX, XeTeX), which are very likely the most
+longdesc convenient way to write Azerbaijani documents.
+containersize 3076
+containerchecksum 3f20954607195d4804b4bd90d7fe5baa209d5ffac6dfbe5f758306bb7c8aedd1c4c92675f5dce7f634e7ceb2b65e9c3ead0ebfef730bfe2dbd8c0ba17d3079b0
+doccontainersize 232940
+doccontainerchecksum bfd4434720b9676e253f69144aac9a07d6bd19e3a4418ae74269df70085391444ac46556928f131a14e85b87211fd76521b67a457e7319eedd3781a215efd962
+docfiles size=58
+ texmf-dist/doc/generic/babel-azerbaijani/README details="Readme"
+ texmf-dist/doc/generic/babel-azerbaijani/azerbaijani.pdf details="Package documentation"
+srccontainersize 5156
+srccontainerchecksum b3eb9fdbc08643706a2dfa50daaf27a687c593900a972f89029aeebe08e2a1c4fbea08a848224b198ba447d3ad3a62459aeb9db2c00a0f3f039a16c863ebaf0d
+runfiles size=2
+ texmf-dist/tex/generic/babel-azerbaijani/azerbaijani.ldf
+catalogue-contact-bugs http://www.texnia.com/contact.html
+catalogue-ctan /macros/latex/contrib/babel-contrib/azerbaijani
+catalogue-license lppl1.3
+catalogue-topics azerbaijani multilingual-addon
+catalogue-version 1.0a

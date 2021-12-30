@@ -1,0 +1,21 @@
+name babel-bosnian
+category Package
+revision 38174
+shortdesc Babel contrib support for Bosnian
+longdesc The package provides a language definition file that enables
+longdesc support of Bosnian with babel.
+containersize 2080
+containerchecksum bef1defaacf5232bf9cce6c1a9956c9a42d35a2c2b6ddccbcca3938386f4f4a61a0cbcba74b930dfad18ed211374c3667120c6706ebf097c56ec3c5915ccdff2
+doccontainersize 103208
+doccontainerchecksum 84238e6b38021582de93e9fe934bf608e647c9b4cc0a066b4fbdd2ba98c8e6531b653907f9bcfb79e6afc9074b4a079b5e419db25625d40a76a8ca8e55e81ab1
+docfiles size=27
+ texmf-dist/doc/generic/babel-bosnian/README details="Readme"
+ texmf-dist/doc/generic/babel-bosnian/bosnian.pdf details="Package documentation"
+srccontainersize 4344
+srccontainerchecksum dfc18e55b30620e27cb8809259a6b4790b94cb98b334a69cd48f66c25696e2df8d38dc5a1d402ae8464ced727752d96d8b5abf18522c8bbde4ce1f6f8ad73c92
+runfiles size=1
+ texmf-dist/tex/generic/babel-bosnian/bosnian.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/bosnian
+catalogue-license lppl1.3
+catalogue-topics bosnian multilingual-addon
+catalogue-version 1.1

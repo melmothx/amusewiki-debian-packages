@@ -1,0 +1,29 @@
+%%
+%% This is file `jt1mc.fd',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% plfonts.dtx  (with options: `JT1mc')
+%% 
+%% Copyright (c) 2010 ASCII MEDIA WORKS
+%% Copyright (c) 2016-2020 Japanese TeX Development Community
+%% 
+%% This file is part of the pLaTeX2e system (community edition).
+%% -------------------------------------------------------------
+%% 
+%% File: plfonts.dtx
+\ProvidesFile{jt1mc.fd}
+       [2018/07/03 v1.6q KANJI font defines]
+\DeclareKanjiFamily{JT1}{mc}{}
+\DeclareRelationFont{JT1}{mc}{m}{}{OT1}{cmr}{m}{}
+\DeclareRelationFont{JT1}{mc}{bx}{}{OT1}{cmr}{bx}{}
+\DeclareFontShape{JT1}{mc}{m}{n}{<5> <6> <7> <8> <9> <10> sgen*tmin
+    <10.95><12><14.4><17.28><20.74><24.88> tmin10
+    <-> tmin10
+    }{}
+\DeclareFontShape{JT1}{mc}{bx}{n}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JT1}{mc}{b}{n}{<->ssub*mc/bx/n}{}
+\endinput
+%%
+%% End of file `jt1mc.fd'.

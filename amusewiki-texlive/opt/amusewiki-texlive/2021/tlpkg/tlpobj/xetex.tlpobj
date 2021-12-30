@@ -1,0 +1,72 @@
+name xetex
+category TLCore
+revision 61114
+shortdesc An extended variant of TeX for use with Unicode sources
+longdesc XeTeX is a TeX typesetting engine using Unicode and supporting
+longdesc modern font technologies such as OpenType, TrueType or Apple
+longdesc Advanced Typography (AAT), including OpenType mathematics
+longdesc fonts. XeTeX supports many extensions that reflect its origins
+longdesc in linguistic research; it also supports micro-typography (as
+longdesc available in pdfTeX). XeTeX was developed by the SIL (the first
+longdesc version was specifically developed for those studying
+longdesc linguistics, and using Macintosh computers). XeTeX's immediate
+longdesc output is an extended variant of DVI format, which is
+longdesc ordinarily processed by a tightly bound processor (called
+longdesc xdvipdfmx), that produces PDF. XeTeX is released as part of TeX
+longdesc Live; documentation has arisen separately. Source code is
+longdesc available from ctan:/systems/texlive/Source/.
+depend atbegshi
+depend atveryend
+depend babel
+depend cm
+depend dvipdfmx
+depend etex
+depend everyshi
+depend firstaid
+depend hyphen-base
+depend l3backend
+depend l3kernel
+depend l3packages
+depend latex
+depend latex-fonts
+depend lm
+depend plain
+depend tex-ini-files
+depend unicode-data
+depend xetex.ARCH
+depend xetexconfig
+execute AddFormat name=xelatex engine=xetex patterns=language.dat   options="-etex xelatex.ini"   fmttriggers=atbegshi,atveryend,babel,cm,everyshi,firstaid,hyphen-base,l3backend,l3kernel,l3packages,latex,latex-fonts,tex-ini-files,unicode-data,lm
+execute AddFormat name=xetex engine=xetex patterns=language.def   options="-etex xetex.ini"   fmttriggers=cm,hyphen-base,tex-ini-files,unicode-data,etex,plain
+postaction script file=tlpkg/tlpostcode/xetex.pl
+containersize 7780
+containerchecksum c5cd9bcd20cc1ea6765d8c2adcc9aad2d2c6d2cee54998f4d27bcf2d2ceb58766bf125ecff6957e0806204333390be9ff646bb0523e97754c7056f80ca0e9d99
+doccontainersize 633104
+doccontainerchecksum 470d453c9fd81cc88b7a7de3e115c2ce6c83f770b5f7be2af40cb712bb62004f2e093dab0d8a373383ffc85fdec6ca1ecd9a7ee7440e8235e57c29de3b330d4a
+docfiles size=182
+ texmf-dist/doc/man/man1/xelatex-unsafe.1
+ texmf-dist/doc/man/man1/xelatex-unsafe.man1.pdf
+ texmf-dist/doc/man/man1/xelatex.1
+ texmf-dist/doc/man/man1/xelatex.man1.pdf
+ texmf-dist/doc/man/man1/xetex-unsafe.1
+ texmf-dist/doc/man/man1/xetex-unsafe.man1.pdf
+ texmf-dist/doc/man/man1/xetex.1
+ texmf-dist/doc/man/man1/xetex.man1.pdf
+ texmf-dist/doc/xetex/base/NEWS
+ texmf-dist/doc/xetex/base/README
+ texmf-dist/doc/xetex/base/XeTeX-notes.pdf details="About XeTeX"
+ texmf-dist/doc/xetex/base/XeTeX-notes.tex
+runfiles size=8
+ texmf-dist/fonts/misc/xetex/fontmapping/base/qx-unicode.map
+ texmf-dist/fonts/misc/xetex/fontmapping/base/qx-unicode.tec
+ texmf-dist/fonts/misc/xetex/fontmapping/base/tex-text.map
+ texmf-dist/fonts/misc/xetex/fontmapping/base/tex-text.tec
+ texmf-dist/scripts/texlive-extra/xelatex-unsafe.sh
+ texmf-dist/scripts/texlive-extra/xetex-unsafe.sh
+ tlpkg/tlpostcode/xetex.pl
+catalogue-also luatex
+catalogue-contact-announce https://lists.tug.org/xetex-announce
+catalogue-contact-home https://tug.org/xetex
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/xetexdir
+catalogue-contact-support https://lists.tug.org/xetex
+catalogue-license other-free
+catalogue-topics engine

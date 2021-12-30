@@ -1,0 +1,15 @@
+% This is the file c00kair.fdx of the CJK package
+%   for using Asian logographs (Chinese/Japanese/Korean) with LaTeX2e
+%
+% created by Werner Lemberg <wl@gnu.org>
+%
+% Version 4.8.5 (16-Oct-2021)
+
+\def\fileversion{4.8.5}
+\def\filedate{2021/10/16}
+\ProvidesFile{c00kair.fdx}[\filedate\space\fileversion]
+
+
+\CJKvdef{norotate}{}
+
+\endinput

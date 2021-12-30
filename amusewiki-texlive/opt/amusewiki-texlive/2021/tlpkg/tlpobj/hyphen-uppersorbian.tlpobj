@@ -1,0 +1,17 @@
+name hyphen-uppersorbian
+category TLCore
+revision 58609
+shortdesc Upper Sorbian hyphenation patterns.
+longdesc Hyphenation patterns for Upper Sorbian in T1/EC and UTF-8
+longdesc encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=uppersorbian 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-hsb.tex 	file_patterns=hyph-hsb.pat.txt 	file_exceptions=hyph-hsb.hyp.txt
+containersize 5520
+containerchecksum b2cb1bcd953ffabbd3f5acd8c72e9c60415fd300004de56ee446fc77d381aac1db65d613a2f591d3d0e45f2a12ff5340457ae3061b4c77de502923932383bdcb
+runfiles size=12
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hsb.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-hsb.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-hsb.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-hsb.hyp.txt
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-hsb.pat.txt

@@ -1,0 +1,163 @@
+%%
+%% This is file `vietnamese.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% vietnamese.dtx  (with options: `code')
+%% This is a generated file.
+%% 
+%% Copyright 2015 Werner Lemberg and any individual authors
+%% listed elsewhere in this file.  All rights reserved.
+%% 
+%% This file is intended to be used with the Babel system.
+%% ------------------------------------------------------
+%% 
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Werner Lemberg.
+%% 
+%% The list of derived (unpacked) files belonging to the distribution
+%% and covered by LPPL is defined by the unpacking scripts (with
+%% extension .ins) which are part of the distribution.
+\ProvidesLanguage{vietnamese}
+%% File `vietnamese.dtx'
+\LdfInit{\CurrentOption}{captions\CurrentOption}
+\ifx\l@vietnamese\@undefined
+  \ifx\l@vietnam\@undefined
+    \@nopatterns{Vietnamese}
+    \adddialect\l@vietnamese 0
+    \adddialect\l@vietnam 0
+  \else
+    \chardef\l@vietnamese\l@vietnam
+  \fi
+\else
+  \ifx\l@vietnam\@undefined
+    \chardef\l@vietnam\l@vietnamese
+  \fi
+\fi
+\@ifpackageloaded{ucs}{%
+  \PreloadUnicodePage{0}%
+  \PreloadUnicodePage{1}%
+  \PreloadUnicodePage{30}%
+  \ifx\UnicodeCharFilter\@undefined
+    \UCSProtectionIeC
+  \else
+    \UnicodeCharFilter\IeC
+  \fi}{}
+\def\vn@@tempa{%
+  \@expandtwoargs\in@{,noencoding,}{,\BabelModifiers,}%
+  \ifin@\else
+    \InputIfFileExists{t5enc.def}%
+      {\message{Loading definitions for the Vietnamese font encoding}}%
+      {\errhelp{I can't find the file `t5enc.def' for Vietnamese fonts}%
+       \errmessage{%
+         Since I do not know what the T5 encoding means^^J
+         I can't typeset Vietnamese.^^J
+         I stop here, while you install the VnTeX package^^J
+         to get a suitable `t5enc.def' file}
+       \@@end}%
+    \@ifpackageloaded{inputenc}{}%
+      {\PackageWarning{babel}{No input encoding specified for
+      Vietnamese}}%
+  \fi
+  \DeclareRobustCommand{\viettext}{%
+    \fontencoding{T5}\selectfont
+    \def\encodingdefault{T5}}%
+  \let\viet\viettext
+  \DeclareTextFontCommand{\textviet}{\viet}}
+\StartBabelCommands*{vietnamese,vietnam}{captions}
+  [unicode, charset=utf8, fontenc=EU1 EU2]
+  \SetString{\prefacename}{Lời nói đầu}
+  \SetString{\refname}{Tài liệu}
+  \SetString{\abstractname}{Tóm tắt nội dung}
+  \SetString{\bibname}{Tài liệu tham khảo}
+  \SetString{\chaptername}{Chương}
+  \SetString{\appendixname}{Phụ lục}
+  \SetString{\contentsname}{Mục lục}
+  \SetString{\listfigurename}{Danh sách hình vẽ}
+  \SetString{\listtablename}{Danh sách bảng}
+  \SetString{\indexname}{Chỉ mục}
+  \SetString{\figurename}{Hình}
+  \SetString{\tablename}{Bảng}
+  \SetString{\partname}{Phần}
+  \SetString{\enclname}{Kèm theo}
+  \SetString{\ccname}{Cùng gửi}
+  \SetString{\headtoname}{Gửi}
+  \SetString{\pagename}{Trang}
+  \SetString{\seename}{Xem}
+  \SetString{\alsoname}{Xem thổm}
+  \SetString{\proofname}{Chứng minh}
+  \SetString{\glossaryname}{Từ điển chú giải}
+
+\StartBabelCommands*{vietnamese,vietnam}{date}
+  [unicode, charset=utf8, fontenc=EU1 EU2]
+  \SetString\today{Ngày \number\day\space
+    tháng \number\month\space
+    năm \number\year}
+
+\AfterBabelCommands{%
+  \def\vn@@tempa{%
+    \DeclareRobustCommand{\viettext}{}%
+    \let\viet\viettext
+    \DeclareTextFontCommand{\textviet}{\viet}%
+    \@expandtwoargs\in@{,licr,}{,\BabelModifiers,}%
+    \ifin@
+      \input{uvnenc}%
+    \fi}}
+\StartBabelCommands*{vietnamese,vietnam}{captions}
+  \SetString{\prefacename}{L\`\ohorn i n\'oi \dj\`\acircumflex u}%
+  \SetString{\refname}{T\`ai li\d\ecircumflex u}%
+  \SetString{\abstractname}{T\'om t\'\abreve t n\d\ocircumflex i dung}%
+  \SetString{\bibname}{T\`ai li\d\ecircumflex u tham kh\h{a}o}%
+  \SetString{\chaptername}{Ch\uhorn \ohorn ng}%
+  \SetString{\appendixname}{Ph\d{u} l\d{u}c}%
+  \SetString{\contentsname}{M\d{u}c l\d{u}c}%
+  \SetString{\listfigurename}{Danh s\'ach h\`inh v\~e}%
+  \SetString{\listtablename}{Danh s\'ach b\h{a}ng}%
+  \SetString{\indexname}{Ch\h{i} m\d{u}c}%
+  \SetString{\figurename}{H\`inh}%
+  \SetString{\tablename}{B\h{a}ng}%
+  \SetString{\partname}{Ph\`\acircumflex n}%
+  \SetString{\pagename}{Trang}%
+  \SetString{\headpagename}{Trang}%
+  \SetString{\seename}{Xem}%
+  \SetString{\alsoname}{Xem th\ecircumflex m}%
+  \SetString{\enclname}{K\`em theo}%
+  \SetString{\ccname}{C\`ung g\h\uhorn i}%
+  \SetString{\headtoname}{G\h\uhorn i}%
+  \SetString{\proofname}{Ch\'\uhorn ng minh}%
+  \SetString{\glossaryname}{T\`\uhorn{} \dj i\h\ecircumflex n ch\'u gi\h ai}
+
+\StartBabelCommands*{vietnamese,vietnam}{date}
+  \SetString\today{Ng\`ay \number\day\space
+    th\'ang \number\month\space
+    n\abreve m \number\year}
+
+\EndBabelCommands
+\vn@@tempa
+\initiate@active@char{"}
+\declare@shorthand{\CurrentOption}{"-}{\bbl@hy@soft}
+\declare@shorthand{\CurrentOption}{"=}{\bbl@hy@hard}
+\declare@shorthand{\CurrentOption}{"|}{\discretionary{-}{}{kern.03em}}
+\expandafter\addto\csname extras\CurrentOption\endcsname{%
+  \viettext
+  \bbl@frenchspacing
+  \languageshorthands{vietnamese}%
+  \bbl@activate{"}}
+\expandafter\addto\csname noextras\CurrentOption\endcsname{%
+  \latintext
+  \bbl@nonfrenchspacing
+  \bbl@deactivate{"}}
+\ldf@finish{\CurrentOption}
+\endinput
+%%
+%% End of file `vietnamese.ldf'.

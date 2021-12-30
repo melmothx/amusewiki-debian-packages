@@ -1,0 +1,395 @@
+\documentclass[twocolumn]{ujarticle}
+\textwidth 170mm
+\textheight 230mm
+\topmargin 0mm
+\leftmargin 0mm
+\rightmargin 0mm
+
+\usepackage{color}
+\usepackage{plext}
+%\usepackage[uplatex]{otf}
+
+% U+00AB, U+00BB, U+00B7 が全て全角幅でデザインされている「HGGothicE」を使う
+% for uptex-fonts
+%\AtBeginDvi{\special{pdf:mapline uprml-h UniJIS-UTF16-H :0:HGRGE.TTC}}
+%\AtBeginDvi{\special{pdf:mapline uprml-hq UniJIS-UCS2-H :0:HGRGE.TTC}}
+%\AtBeginDvi{\special{pdf:mapline uprml-v UniJIS-UTF16-V :0:HGRGE.TTC}}
+% for japanese-otf-uptex
+%\AtBeginDvi{\special{pdf:mapline uphminr-h UniJIS-UTF16-H :0:HGRGE.TTC}}
+%\AtBeginDvi{\special{pdf:mapline otf-cjmr-h Identity-H :0:HGRGE.TTC}}
+%\AtBeginDvi{\special{pdf:mapline uphminr-v UniJIS-UTF16-V :0:HGRGE.TTC}}
+
+\newcommand{\Bracket}[2]{%
+ \textcolor{green}{\fbox{\textcolor{black}{#1}}}雪%
+ \textcolor{green}{\fbox{\textcolor{black}{#2}}}%
+ \textcolor{green}{\fbox{\textcolor{black}{\inhibitglue #1}}}雪%
+ \textcolor{green}{\fbox{\textcolor{black}{#2\inhibitglue}}}%
+%%% vvv 色無し vvv %%%
+% \fbox{#1}雪\fbox{#2}%
+% \fbox{\inhibitglue #1}雪\fbox{#2\inhibitglue}%
+}
+\newcommand{\BracketUCS}[2]{%
+ \Bracket{\kchar"#1}{\kchar"#2} {\footnotesize U+#1, U+#2}%
+}
+\newcommand{\Punct}[1]{%
+ 雪\textcolor{green}{\fbox{\textcolor{black}{#1}}}雪%
+ \textcolor{green}{\fbox{\textcolor{black}{\inhibitglue #1\inhibitglue}}}雪%
+%%% vvv 色無し vvv %%%
+% 雪\fbox{#1}雪%
+% \fbox{\inhibitglue #1\inhibitglue}雪%
+}
+\newcommand{\PunctUCS}[1]{%
+ \Punct{\kchar"#1} {\footnotesize U+#1}%"
+}
+
+\DeclareFontFamily{JY2}{jpnrm}{}
+\DeclareFontFamily{JY2}{schrm}{}
+\DeclareFontFamily{JY2}{tchrm}{}
+\DeclareFontFamily{JY2}{korrm}{}
+\DeclareFontShape{JY2}{jpnrm}{m}{n}{<->s*[0.962216]upjpnrm-h}{}
+\DeclareFontShape{JY2}{schrm}{m}{n}{<->s*[0.962216]upschrm-h}{}
+\DeclareFontShape{JY2}{tchrm}{m}{n}{<->s*[0.962216]uptchrm-h}{}
+\DeclareFontShape{JY2}{korrm}{m}{n}{<->s*[0.962216]upkorrm-h}{}
+\DeclareFontShape{JY2}{jpnrm}{bx}{n}{<->ssub*jpnrm/m/n}{}
+\DeclareFontShape{JY2}{schrm}{bx}{n}{<->ssub*schrm/m/n}{}
+\DeclareFontShape{JY2}{tchrm}{bx}{n}{<->ssub*tchrm/m/n}{}
+\DeclareFontShape{JY2}{korrm}{bx}{n}{<->ssub*korrm/m/n}{}
+\DeclareFontFamily{JT2}{jpnrm}{}
+\DeclareFontFamily{JT2}{schrm}{}
+\DeclareFontFamily{JT2}{tchrm}{}
+\DeclareFontFamily{JT2}{korrm}{}
+\DeclareFontShape{JT2}{jpnrm}{m}{n}{<->s*[0.962216]upjpnrm-v}{}
+\DeclareFontShape{JT2}{schrm}{m}{n}{<->s*[0.962216]upschrm-v}{}
+\DeclareFontShape{JT2}{tchrm}{m}{n}{<->s*[0.962216]uptchrm-v}{}
+\DeclareFontShape{JT2}{korrm}{m}{n}{<->s*[0.962216]upkorrm-v}{}
+\DeclareFontShape{JT2}{jpnrm}{bx}{n}{<->ssub*jpnrm/m/n}{}
+\DeclareFontShape{JT2}{schrm}{bx}{n}{<->ssub*schrm/m/n}{}
+\DeclareFontShape{JT2}{tchrm}{bx}{n}{<->ssub*tchrm/m/n}{}
+\DeclareFontShape{JT2}{korrm}{bx}{n}{<->ssub*korrm/m/n}{}
+\DeclareRobustCommand\jpnrm{\kanjifamily{jpnrm}\selectfont}
+\DeclareRobustCommand\schrm{\kanjifamily{schrm}\selectfont}
+\DeclareRobustCommand\tchrm{\kanjifamily{tchrm}\selectfont}
+\DeclareRobustCommand\korrm{\kanjifamily{korrm}\selectfont}
+
+\begin{document}
+\parindent0pt
+\fboxsep0pt
+
+\section{括弧類}
+\subsection{日本語}
+{%\jpnrm
+
+%\Bracket{«}{»} \BracketUCS{00AB}{00BB}\\% Adobe-Japan1-7には和文用グリフがない
+\Bracket{‘}{’} \BracketUCS{2018}{2019}\\
+\Bracket{“}{”} \BracketUCS{201C}{201D}\\
+\Bracket{〈}{〉} \BracketUCS{2329}{232A}\\
+\Bracket{〈}{〉} \BracketUCS{3008}{3009}\\
+\Bracket{《}{》} \BracketUCS{300A}{300B}\\
+\Bracket{「}{」} \BracketUCS{300A}{300B}\\
+\Bracket{『}{』} \BracketUCS{300E}{300F}\\
+\Bracket{【}{】} \BracketUCS{3010}{3011}\\
+\Bracket{〔}{〕} \BracketUCS{3014}{3015}\\
+\Bracket{〖}{〗} \BracketUCS{3016}{3017}\\
+\Bracket{〘}{〙} \BracketUCS{3018}{3019}\\
+%\Bracket{〚}{〛} \BracketUCS{301A}{301B}\\% Adobe-Japan1-7には無い
+\Bracket{〝}{〞} \BracketUCS{301D}{301E}\\% 日本では標準的ではない
+\Bracket{〝}{〟} \BracketUCS{301D}{301F}\\
+\Bracket{（}{）} \BracketUCS{FF08}{FF09}\\
+\Bracket{［}{］} \BracketUCS{FF3B}{FF3D}\\
+\Bracket{｛}{｝} \BracketUCS{FF5B}{FF5D}\\
+\Bracket{｟}{｠} \BracketUCS{FF5F}{FF60}\\
+
+\parbox<t>{19zw}{
+
+%\Bracket{«}{»} \BracketUCS{00AB}{00BB}\\% Adobe-Japan1-7には和文用グリフがない
+%\Bracket{‘}{’} \BracketUCS{2018}{2019}\\% 標準的ではない
+%\Bracket{“}{”} \BracketUCS{201C}{201D}\\% 標準的ではない
+%\Bracket{〈}{〉} \BracketUCS{2329}{232A}\\% 標準的ではない
+\Bracket{〈}{〉} \BracketUCS{3008}{3009}\\
+\Bracket{《}{》} \BracketUCS{300A}{300B}\\
+\Bracket{「}{」} \BracketUCS{300A}{300B}\\
+\Bracket{『}{』} \BracketUCS{300E}{300F}\\
+\Bracket{【}{】} \BracketUCS{3010}{3011}\\
+\Bracket{〔}{〕} \BracketUCS{3014}{3015}\\
+\Bracket{〖}{〗} \BracketUCS{3016}{3017}\\
+\Bracket{〘}{〙} \BracketUCS{3018}{3019}\\
+%\Bracket{〚}{〛} \BracketUCS{301A}{301B}\\% Adobe-Japan1-7には無い
+\Bracket{〝}{〞} \BracketUCS{301D}{301E}\\% 日本では標準的ではない。UniJISup-UTF16-Vでは割り当てた。
+\Bracket{〝}{〟} \BracketUCS{301D}{301F}\\
+\Bracket{（}{）} \BracketUCS{FF08}{FF09}\\
+\Bracket{［}{］} \BracketUCS{FF3B}{FF3D}\\
+\Bracket{｛}{｝} \BracketUCS{FF5B}{FF5D}\\
+\Bracket{｟}{｠} \BracketUCS{FF5F}{FF60}\\
+
+}
+
+}
+
+\subsection{中国語・簡体字 {\schrm 简体中文}}
+{\schrm
+
+\Bracket{‘}{’} \BracketUCS{2018}{2019}\\
+\Bracket{“}{”} \BracketUCS{201C}{201D}\\
+\Bracket{〈}{〉} \BracketUCS{2329}{232A}\\
+\Bracket{〈}{〉} \BracketUCS{3008}{3009}\\
+\Bracket{《}{》} \BracketUCS{300A}{300B}\\
+\Bracket{「}{」} \BracketUCS{300A}{300B}\\
+\Bracket{『}{』} \BracketUCS{300E}{300F}\\
+\Bracket{【}{】} \BracketUCS{3010}{3011}\\
+\Bracket{〔}{〕} \BracketUCS{3014}{3015}\\
+\Bracket{〖}{〗} \BracketUCS{3016}{3017}\\
+\Bracket{〝}{〞} \BracketUCS{301D}{301E}\\
+\Bracket{（}{）} \BracketUCS{FF08}{FF09}\\
+\Bracket{［}{］} \BracketUCS{FF3B}{FF3D}\\
+\Bracket{｛}{｝} \BracketUCS{FF5B}{FF5D}\\
+
+\parbox<t>{19zw}{
+
+%\Bracket{‘}{’} \BracketUCS{2018}{2019}\\% 標準的ではない
+%\Bracket{“}{”} \BracketUCS{201C}{201D}\\% 標準的ではない
+%\Bracket{〈}{〉} \BracketUCS{2329}{232A}\\% 標準的ではない
+\Bracket{〈}{〉} \BracketUCS{3008}{3009}\\
+\Bracket{《}{》} \BracketUCS{300A}{300B}\\
+\Bracket{「}{」} \BracketUCS{300A}{300B}\\
+\Bracket{『}{』} \BracketUCS{300E}{300F}\\
+\Bracket{【}{】} \BracketUCS{3010}{3011}\\
+\Bracket{〔}{〕} \BracketUCS{3014}{3015}\\
+\Bracket{〖}{〗} \BracketUCS{3016}{3017}\\
+%\Bracket{〝}{〞} \BracketUCS{301D}{301E}\\% 標準的ではない
+\Bracket{（}{）} \BracketUCS{FF08}{FF09}\\
+\Bracket{［}{］} \BracketUCS{FF3B}{FF3D}\\
+\Bracket{｛}{｝} \BracketUCS{FF5B}{FF5D}\\
+
+}
+
+}
+
+\subsection{中国語・繁体字 {\tchrm 繁體中文}}
+{\tchrm
+
+\Bracket{‘}{’} \BracketUCS{2018}{2019}\\
+\Bracket{“}{”} \BracketUCS{201C}{201D}\\
+\Bracket{〈}{〉} \BracketUCS{2329}{232A}\\
+\Bracket{〈}{〉} \BracketUCS{3008}{3009}\\
+\Bracket{《}{》} \BracketUCS{300A}{300B}\\
+\Bracket{「}{」} \BracketUCS{300A}{300B}\\
+\Bracket{『}{』} \BracketUCS{300E}{300F}\\
+\Bracket{【}{】} \BracketUCS{3010}{3011}\\
+\Bracket{〔}{〕} \BracketUCS{3014}{3015}\\
+\Bracket{〝}{〞} \BracketUCS{301D}{301E}\\
+\Bracket{﹙}{﹚} \BracketUCS{FE59}{FE5A}\\
+\Bracket{﹛}{﹜} \BracketUCS{FE5B}{FE5C}\\
+\Bracket{﹝}{﹞} \BracketUCS{FE5D}{FE5E}\\
+\Bracket{（}{）} \BracketUCS{FF08}{FF09}\\
+\Bracket{［}{］} \BracketUCS{FF3B}{FF3D}\\
+\Bracket{｛}{｝} \BracketUCS{FF5B}{FF5D}\\
+
+\parbox<t>{19zw}{
+
+%\Bracket{‘}{’} \BracketUCS{2018}{2019}\\% 標準的ではない
+%\Bracket{“}{”} \BracketUCS{201C}{201D}\\% 標準的ではない
+%\Bracket{〈}{〉} \BracketUCS{2329}{232A}\\% 標準的ではない
+\Bracket{〈}{〉} \BracketUCS{3008}{3009}\\
+\Bracket{《}{》} \BracketUCS{300A}{300B}\\
+\Bracket{「}{」} \BracketUCS{300A}{300B}\\
+\Bracket{『}{』} \BracketUCS{300E}{300F}\\
+\Bracket{【}{】} \BracketUCS{3010}{3011}\\
+\Bracket{〔}{〕} \BracketUCS{3014}{3015}\\
+%\Bracket{〝}{〞} \BracketUCS{301D}{301E}\\% Adobe-CNS1-7には無い
+%\Bracket{﹙}{﹚} \BracketUCS{FE59}{FE5A}\\% Adobe-CNS1-7には無い
+%\Bracket{﹛}{﹜} \BracketUCS{FE5B}{FE5C}\\% Adobe-CNS1-7には無い
+%\Bracket{﹝}{﹞} \BracketUCS{FE5D}{FE5E}\\% Adobe-CNS1-7には無い
+\Bracket{（}{）} \BracketUCS{FF08}{FF09}\\
+%\Bracket{［}{］} \BracketUCS{FF3B}{FF3D}\\% Adobe-CNS1-7には無い
+\Bracket{｛}{｝} \BracketUCS{FF5B}{FF5D}\\
+
+}
+
+}
+
+\subsection{韓国語 {\korrm 한국어}}
+{\korrm
+
+\Bracket{«}{»} \BracketUCS{00AB}{00BB}\\% 全角になるはず
+\Bracket{‘}{’} \BracketUCS{2018}{2019}\\
+\Bracket{“}{”} \BracketUCS{201C}{201D}\\
+\Bracket{〈}{〉} \BracketUCS{3008}{3009}\\
+\Bracket{《}{》} \BracketUCS{300A}{300B}\\
+\Bracket{「}{」} \BracketUCS{300A}{300B}\\
+\Bracket{『}{』} \BracketUCS{300E}{300F}\\
+\Bracket{【}{】} \BracketUCS{3010}{3011}\\
+\Bracket{〔}{〕} \BracketUCS{3014}{3015}\\
+\Bracket{〖}{〗} \BracketUCS{3016}{3017}\\
+\Bracket{〘}{〙} \BracketUCS{3018}{3019}\\
+%\Bracket{〝}{〞} \BracketUCS{301D}{301E}\\% 全角になるはず。標準的ではない
+%\Bracket{〝}{〟} \BracketUCS{301D}{301F}\\% 全角になるはず。標準的ではない
+\Bracket{（}{）} \BracketUCS{FF08}{FF09}\\
+\Bracket{［}{］} \BracketUCS{FF3B}{FF3D}\\
+\Bracket{｛}{｝} \BracketUCS{FF5B}{FF5D}\\
+
+\parbox<t>{22zw}{
+
+\Bracket{«}{»} \BracketUCS{00AB}{00BB}\\% 全角になるはず
+%\Bracket{‘}{’} \BracketUCS{2018}{2019}\\% 標準的ではない
+%\Bracket{“}{”} \BracketUCS{201C}{201D}\\% 標準的ではない
+\Bracket{〈}{〉} \BracketUCS{3008}{3009}\\
+\Bracket{《}{》} \BracketUCS{300A}{300B}\\
+\Bracket{「}{」} \BracketUCS{300A}{300B}\\
+\Bracket{『}{』} \BracketUCS{300E}{300F}\\
+\Bracket{【}{】} \BracketUCS{3010}{3011}\\
+\Bracket{〔}{〕} \BracketUCS{3014}{3015}\\
+%\Bracket{〖}{〗} \BracketUCS{3016}{3017}\\% Adobe-Korea1-2には無い
+%\Bracket{〘}{〙} \BracketUCS{3018}{3019}\\% Adobe-Korea1-2には無い
+%\Bracket{〝}{〞} \BracketUCS{301D}{301E}\\% 全角になるはず。標準的ではない
+%\Bracket{〝}{〟} \BracketUCS{301D}{301F}\\% 全角になるはず。標準的ではない
+\Bracket{（}{）} \BracketUCS{FF08}{FF09}\\
+\Bracket{［}{］} \BracketUCS{FF3B}{FF3D}\\
+\Bracket{｛}{｝} \BracketUCS{FF5B}{FF5D}\\
+
+}
+
+}
+
+\section{句読点など}
+\subsection{日本語}
+{%\jpnrm
+
+%\Punct{·} \PunctUCS{00B7}\\% Adobe-Japan1-7には和文用グリフがない
+\Punct{・} \PunctUCS{30FB}\\
+\Punct{：} \PunctUCS{FF1A}\\
+\Punct{；} \PunctUCS{FF1B}\\
+\Punct{、} \PunctUCS{3001}\\
+\Punct{。} \PunctUCS{3002}\\
+\Punct{，} \PunctUCS{FF0C}\\
+\Punct{．} \PunctUCS{FF0E}\\
+\Punct{—} \PunctUCS{2014}\\
+\Punct{―} \PunctUCS{2015}\\
+\Punct{‥} \PunctUCS{2025}\\
+\Punct{…} \PunctUCS{2026}\\
+
+\parbox<t>{14zw}{
+
+%\Punct{·} \PunctUCS{00B7}\\% Adobe-Japan1-7には和文用グリフがない
+\Punct{・} \PunctUCS{30FB}\\
+\Punct{：} \PunctUCS{FF1A}\\
+%\Punct{；} \PunctUCS{FF1B}\\% Adobe-Japan1-7には縦組み用グリフがない
+\Punct{、} \PunctUCS{3001}\\
+\Punct{。} \PunctUCS{3002}\\
+\Punct{，} \PunctUCS{FF0C}\\
+\Punct{．} \PunctUCS{FF0E}\\
+\Punct{—} \PunctUCS{2014}\\
+\Punct{―} \PunctUCS{2015}\\
+\Punct{‥} \PunctUCS{2025}\\
+\Punct{…} \PunctUCS{2026}\\
+
+}
+
+}
+
+\subsection{中国語・簡体字 {\schrm 简体中文}}
+{\schrm
+
+\Punct{·} \PunctUCS{00B7}\\
+\Punct{・} \PunctUCS{30FB}\\
+\Punct{：} \PunctUCS{FF1A}\\
+\Punct{；} \PunctUCS{FF1B}\\
+\Punct{、} \PunctUCS{3001}\\
+\Punct{。} \PunctUCS{3002}\\
+\Punct{，} \PunctUCS{FF0C}\\
+\Punct{．} \PunctUCS{FF0E}\\
+\Punct{—} \PunctUCS{2014}\\
+\Punct{―} \PunctUCS{2015}\\
+\Punct{‥} \PunctUCS{2025}\\
+\Punct{…} \PunctUCS{2026}\\
+
+\parbox<t>{14zw}{
+
+\Punct{·} \PunctUCS{00B7}\\
+\Punct{・} \PunctUCS{30FB}\\
+\Punct{：} \PunctUCS{FF1A}\\
+\Punct{；} \PunctUCS{FF1B}\\
+\Punct{、} \PunctUCS{3001}\\
+\Punct{。} \PunctUCS{3002}\\
+\Punct{，} \PunctUCS{FF0C}\\
+\Punct{．} \PunctUCS{FF0E}\\
+\Punct{—} \PunctUCS{2014}\\
+\Punct{―} \PunctUCS{2015}\\
+\Punct{‥} \PunctUCS{2025}\\
+\Punct{…} \PunctUCS{2026}\\
+
+}
+
+}
+
+\subsection{中国語・繁体字 {\tchrm 繁體中文}}
+{\tchrm
+
+\Punct{·} \PunctUCS{00B7}\\
+%\Punct{・} \PunctUCS{30FB}\\% Adobe-CNS1-7には無い
+\Punct{：} \PunctUCS{FF1A}\\
+\Punct{；} \PunctUCS{FF1B}\\
+\Punct{、} \PunctUCS{3001}\\
+\Punct{。} \PunctUCS{3002}\\
+\Punct{，} \PunctUCS{FF0C}\\
+\Punct{．} \PunctUCS{FF0E}\\
+\Punct{—} \PunctUCS{2014}\\
+%\Punct{―} \PunctUCS{2015}\\% Adobe-CNS1-7には無い
+\Punct{…} \PunctUCS{2025}\\
+\Punct{‥} \PunctUCS{2026}\\
+
+\parbox<t>{14zw}{
+
+\Punct{·} \PunctUCS{00B7}\\
+%\Punct{・} \PunctUCS{30FB}\\% Adobe-CNS1-7には無い
+\Punct{：} \PunctUCS{FF1A}\\
+\Punct{；} \PunctUCS{FF1B}\\
+\Punct{、} \PunctUCS{3001}\\
+\Punct{。} \PunctUCS{3002}\\
+\Punct{，} \PunctUCS{FF0C}\\
+\Punct{．} \PunctUCS{FF0E}\\
+\Punct{—} \PunctUCS{2014}\\
+%\Punct{―} \PunctUCS{2015}\\% Adobe-CNS1-7には無い
+\Punct{‥} \PunctUCS{2025}\\
+\Punct{…} \PunctUCS{2026}\\
+
+}
+
+}
+
+\subsection{韓国語 {\korrm 한국어}}
+{\korrm
+
+\Punct{·} \PunctUCS{00B7}\\
+\Punct{・} \PunctUCS{30FB}\\
+\Punct{：} \PunctUCS{FF1A}\\
+\Punct{；} \PunctUCS{FF1B}\\
+\Punct{、} \PunctUCS{3001}\\
+\Punct{。} \PunctUCS{3002}\\
+\Punct{，} \PunctUCS{FF0C}\\
+\Punct{．} \PunctUCS{FF0E}\\
+\Punct{—} \PunctUCS{2014}\\
+%\Punct{―} \PunctUCS{2015}\\% Adobe-Korea1-2には無い
+\Punct{‥} \PunctUCS{2025}\\
+\Punct{…} \PunctUCS{2026}\\
+
+\parbox<t>{14zw}{
+
+\Punct{·} \PunctUCS{00B7}\\
+\Punct{・} \PunctUCS{30FB}\\
+\Punct{：} \PunctUCS{FF1A}\\
+\Punct{；} \PunctUCS{FF1B}\\
+\Punct{、} \PunctUCS{3001}\\
+\Punct{。} \PunctUCS{3002}\\
+\Punct{，} \PunctUCS{FF0C}\\
+\Punct{．} \PunctUCS{FF0E}\\
+\Punct{—} \PunctUCS{2014}\\
+%\Punct{―} \PunctUCS{2015}\\% Adobe-Korea1-2には無い
+\Punct{‥} \PunctUCS{2025}\\
+\Punct{…} \PunctUCS{2026}\\
+
+}
+
+}
+
+\end{document}
+

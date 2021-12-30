@@ -1,0 +1,25 @@
+name everyhook
+category Package
+revision 35675
+shortdesc Hooks for standard TeX token lists
+longdesc The package takes control of the six TeX token registers
+longdesc \everypar, \everymath, \everydisplay, \everyhbox, \everyvbox
+longdesc and \everycr. Real hooks for each of the registers may be
+longdesc installed using a stack like interface. For backwards
+longdesc compatibility, each of the \everyX token lists can be set
+longdesc without interfering with the hooks.
+containersize 2080
+containerchecksum 56547973d184de21ff5d6d3eaf1baf9b8cdbcf93307c31fbbcf658350ef0d441509ce359266ea6f962ef9b40b1680b47e4c14a822aa043ab8174ab0610df1665
+doccontainersize 116288
+doccontainerchecksum 331def0138dac385605b3ea1d88af6d5d1ae29bac696b76f41cdcfd070d50915eb3371a14a894b1e59bf35d55eb7dabecfe18e89f0bfbe6f028ce5fedfe1bbc2
+docfiles size=30
+ texmf-dist/doc/latex/everyhook/README details="Readme"
+ texmf-dist/doc/latex/everyhook/everyhook.pdf details="Package documentation"
+srccontainersize 7344
+srccontainerchecksum ba0d5e3f2661c4b5ba765b7509675f301dffa3fb3d9f158b3c3255d84b3a5620ec4d883a9c2f116319e6c70784eb5efa4a1cac270d1a299b23bd6fdcbaf60b2b
+runfiles size=2
+ texmf-dist/tex/latex/everyhook/everyhook.sty
+catalogue-ctan /macros/latex/contrib/everyhook
+catalogue-license lppl1.3
+catalogue-topics macro-supp
+catalogue-version 1.2

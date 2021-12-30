@@ -1,0 +1,35 @@
+name mfware
+category TLCore
+revision 57972
+shortdesc Supporting tools for use with Metafont
+longdesc A collection of programs (as web source) for processing the
+longdesc output of Metafont.
+depend mfware.ARCH
+containersize 3184
+containerchecksum 77b679b6b81515451da4b6068b5e7ee793faf8bb209b3a68356aa131e0fcf27ffed912ee72a3bb8f347e7db2893115de5843351dcdcb6a3ac49a7e88eacacd56
+doccontainersize 100704
+doccontainerchecksum 3655d6796318db16f26dfa3031a0339608cc9e6d7d18698628be0ff1cc9234c95d4914a2fd047d775b83bfb9fe3a2091e52e4a8b96dbca86ee901fce0e99fd5b
+docfiles size=42
+ texmf-dist/doc/man/man1/gftodvi.1
+ texmf-dist/doc/man/man1/gftodvi.man1.pdf
+ texmf-dist/doc/man/man1/gftopk.1
+ texmf-dist/doc/man/man1/gftopk.man1.pdf
+ texmf-dist/doc/man/man1/gftype.1
+ texmf-dist/doc/man/man1/gftype.man1.pdf
+ texmf-dist/doc/man/man1/mft.1
+ texmf-dist/doc/man/man1/mft.man1.pdf
+ texmf-dist/doc/man/man1/pktogf.1
+ texmf-dist/doc/man/man1/pktogf.man1.pdf
+ texmf-dist/doc/man/man1/pktype.1
+ texmf-dist/doc/man/man1/pktype.man1.pdf
+runfiles size=4
+ texmf-dist/mft/base/README
+ texmf-dist/mft/base/cmbase.mft
+ texmf-dist/mft/base/mplain.mft
+ texmf-dist/mft/base/plain.mft
+catalogue-contact-bugs https://lists.tug.org/tex-k
+catalogue-contact-repository http://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
+catalogue-contact-support https://lists.tug.org/tex-k
+catalogue-ctan /systems/knuth/dist/mfware
+catalogue-license pd
+catalogue-topics collection

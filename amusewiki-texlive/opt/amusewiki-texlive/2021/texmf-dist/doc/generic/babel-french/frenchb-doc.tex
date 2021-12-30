@@ -1,0 +1,2058 @@
+\RequirePackage{pdfmanagement-testphase}
+\DeclareDocumentMetadata{pdfstandard=A-2b, lang=fr-FR}
+\documentclass[a4paper,12pt,german,english,french]{article}
+
+% LuaTeX ONLY!
+\usepackage{iftex}[2019/10/24]
+\RequireLuaTeX
+
+\usepackage{xspace}
+\usepackage{array,longtable}
+\usepackage{varioref}
+\renewcommand{\reftextpagerange}[2]{\pageref{#1}--\pageref{#2}}
+\usepackage{url,alltt,shortvrb}
+\usepackage{graphics}
+\usepackage[dvipsnames]{xcolor}
+
+%%% Fontes OpenType avec moteur LuaTeX : Erewhon/Cabin/Inconsolata
+\usepackage[no-math]{fontspec}
+\usepackage{realscripts}
+\setmainfont{erewhon}
+%\setsansfont{Cabin}[Scale=MatchLowercase]
+\setmonofont{Inconsolatazi4}%      voir inconsolata-doc.pdf
+  [Scale=MatchLowercase, HyphenChar=None, StylisticSet={2,3},
+   ItalicFont = *-Regular,  ItalicFeatures={FakeSlant=0.225}, % 13°
+   SlantedFont=  *-Regular, SlantedFeatures={FakeSlant=0.225},
+   BoldItalicFont = *-Bold, BoldItalicFeatures={FakeSlant=0.225},
+   BoldSlantedFont= *-Bold, BoldSlantedFeatures={FakeSlant=0.225},
+  ]
+
+%%% *** APRÈS fontspec ***
+\usepackage{babel}
+\frenchbsetup{og=«, fg=», AutoSpacePunctuation=false}
+\frenchbsetup{ListItemsAsPar}
+
+\usepackage{microtype}
+
+% Mise en page
+\usepackage[textwidth=160mm,textheight=247mm,hmarginratio=1:1
+           ]{geometry}
+%
+%\setlength{\parindentFFN}{0em}
+\setlength{\parindent}{0mm}
+\setlength{\parskip}{.5\baselineskip plus .2\baselineskip
+                                     minus .1\baselineskip}
+\ifFBListItemsAsPar
+\else
+  \setlength{\listindentFB}{0mm} % sans effet si ListItemsAsPar=true
+\fi
+
+\MakeShortVerb{\|}
+
+% Couleurs
+% \emph
+\let\emphORI\emph
+\renewcommand{\emph}[1]{\textcolor{BrickRed}{\emphORI{#1}}}
+% verbatim : modifier  \verbatim@font
+\def\ColorVerb{\color{MidnightBlue}}
+\makeatletter
+\let\verbatim@fontORI\verbatim@font
+\def\verbatim@font{\ColorVerb\verbatim@fontORI}
+\makeatother
+% options de frenchb :
+\def\ColorArg{\color{Sepia}}
+%
+\newcommand*{\file}[1]{\texttt{\ColorVerb #1}}
+\newcommand*{\cls}[1]{\texttt{\ColorVerb #1}}
+\newcommand*{\ext}[1]{\texttt{\ColorVerb #1}}
+\let\pkg\ext
+\newcommand*{\exe}[1]{\texttt{\ColorVerb #1}}
+\newcommand*{\opt}[1]{\texttt{\ColorVerb #1}}
+\newcommand*{\bibsty}[1]{\texttt{\ColorVerb #1}}
+\newcommand*{\env}[1]{\texttt{\ColorVerb #1}}
+\newcommand*{\lang}[1]{\texttt{\ColorVerb #1}}
+\newcommand*{\code}[1]{\texttt{\ColorVerb #1}}
+\newcommand*{\argum}[1]{\textit{#1}}
+\newcommand*{\meta}[1]{\textit{< #1 >}}
+\newcommand*{\LEFTmargin}{\texttt{<=}}
+
+\providecommand\marg[1]{%                                  % from ltxdoc.cls
+  {\ttfamily\char`\{}\textit{\ColorArg #1}{\ttfamily\char`\}}}
+\providecommand\oarg[1]{%
+  {\ttfamily[}\textit{\ColorArg #1}{\ttfamily]}}
+
+\DeclareRobustCommand\cs[1]{\texttt{\ColorVerb \char`\\#1}}% from ltxdoc.cls
+\newcommand*\fbo[1]{\texttt{\ColorArg #1}}
+\newcommand*\fbsetup[1]{\cs{frenchsetup\{\fbo{#1}\}}}
+
+\renewcommand*\descriptionlabel[1]{\hspace\labelsep
+      \normalfont\ttfamily\bfseries {\MyColor #1}}
+\let\MyColor\relax
+
+\providecommand*{\BibTeX}{%
+   B\textsc{i}\kern-.025em \textsc{b}\kern-.08em \TeX}%
+\providecommand*{\biber}{Biber}
+\providecommand*{\biblatex}{Biblatex}
+
+% URL de mon site perso :
+\begingroup
+\catcode`~=12
+\xdef\urlperso{http://daniel.flipo.free.fr}
+\endgroup
+
+% Adaptation des \subsubsection{} (thèmes des options de \frenchsetup{})
+\makeatletter
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                                     {-1ex\@minus -.5ex}%
+                                     {1ex\@minus .5ex}%
+                                     {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\usepackage{hyperref}
+\hypersetup{pdftitle={Mode d’emploi de babel-french},
+            pdfauthor={Daniel FLIPO},
+            colorlinks,
+            urlcolor=PineGreen,
+            linkcolor=Blue,
+            }
+\newcommand*{\hlabel}[1]{\phantomsection\label{#1}}
+% notes bas de page consécutives avec le même numéro
+\newcommand*{\samefntmk}{%
+  \addtocounter{Hfootnote}{-1}\addtocounter{footnote}{-1}\footnotemark}
+
+\title{Mode d’emploi du module \ext{babel-french}}
+\author{\href{mailto:daniel.flipo@free.fr}{Daniel \textsc{Flipo}}}
+\newcommand*{\latestversion}{3.5m}
+\date{Version {\latestversion} -- \today}
+
+\begin{document}
+%\def\today{30 juillet 2020}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+  La première version de frenchb (\textbf{french} pour \textbf{b}abel) est
+  sortie en 1996.  La version~2, profondément remaniée, date de mai~2007.
+  La liste détaillée des changements intervenus depuis la version~2.6 se
+  trouve à la section~\ref{sec:changes-3.0} p.~\pageref{sec:changes-3.0}.
+
+  La version actuelle de frenchb (\latestversion), dont le nom officiel est
+  \ext{babel-french}, est prévue pour fonctionner aussi bien avec les anciens
+  formats TeX comme pdf(La)TeX qu’avec les nouveaux Lua(La)TeX et Xe(La)TeX.
+
+  Les mises à jour de \ext{babel-french} sont désormais affichées très
+  rapidement sur CTAN et immédiatement intégrées aux distributions TeXLive,
+  MikTeX, MacTeX, etc.
+  La présente documentation en français est également disponible sur CTAN,
+  il n’y a plus besoin de la récupérer sur mon site
+  personnel {\expandafter\expandafter\expandafter\url{\urlperso/babel-french}}.
+
+\end{abstract}
+
+\bgroup
+\renewcommand{\abstractname}%
+             {Historique des mises à jour de cette documentation}
+\newlength\mybox
+\settowidth{\mybox}{5 décembre 2012}
+\renewcommand{\descriptionlabel}[1]{\makebox[\mybox][l]{\textbf{#1 :}}}
+\vspace{\baselineskip}\noindent
+\begin{abstract}
+  \vspace{-\baselineskip}\noindent
+  \descindentFB=0pt
+  \begin{description}
+  \item[8 juillet 2014] Ajout des sections~\ref{ssec:captions}
+     p.~\pageref{ssec:captions} (\textit{caption names}) et \ref{ssec:biblatex}
+     p.~\pageref{ssec:biblatex} (\biblatex).
+  \item[28 juillet 2014] Présentation des listes,
+     configuration d’\ext{enumitem} (section~\ref{ssec:lists}).
+   \item[16 sept. 2014] Ajout de l’option \fbo{SmallCapsFigTabCaptions},
+     voir p.~\pageref{scfigtab}.
+  \item[9 avril 2015] Charger \ext{listings} après \ext{babel}
+     (section~\ref{sec:Incomp}).
+  \item[14 février 2016] Adaptation à la version 3.2a, voir
+    section~\ref{ssec:changes-3.2}.
+  \item[30 mars 2016] Charger \ext{subcaption} après \ext{babel}
+    (section~\ref{sec:Incomp}).
+  \item[14 mai 2016] Mise à jour pour TeXLive~2016,
+    voir section~\ref{ssec:changes-3.2}. L’historique des changements
+    antérieurs à la version~3.0 a été supprimé.
+  \item[3 juillet 2016] Ajout dans la version~3.2d, du paramètre
+    |\descindentFB| pour les listes \env{description}, voir
+    section~\ref{ssec:lists}.
+  \item[15 janvier 2017] La version~3.2f est compatible avec l’extension
+    \ext{icomma}.
+  \item[30 janvier 2017] Le comportement par défaut de la commande
+    |\frquote{}| sous LuaTeX est modifié, voir p.~\pageref{frquote}.
+  \item[30 avril 2017] Utiliser |\frenchsetup{}| de préférence à
+    |\frenchbsetup{}|, voir p.~\pageref{sec:Perso}.
+    Personnalisation de la commande |\part{}|, voir p.~\pageref{ssec:captions}.
+  \item[31 août 2017] Ajout de l’option \fbo{UnicodeNoBreakSpaces},
+    voir p.~\pageref{ucs-nbsp}.
+  \item[30 janvier 2018] Adaptation à la version 3.4a, voir
+    section~\ref{ssec:changes-3.4}.
+  \item[24 février 2018] Regroupement par thèmes des options de \fbsetup{}.
+  \item[6 juillet 2018] Nouvelle option \fbo{ListItemsAsPar},
+    voir p.~\pageref{ListAsPar}.
+  \item[24 janvier 2019] L’option \fbo{StandardListSpacing=true} est à utiliser
+    de préférence à \fbo{ReduceListSpacing=false},
+    voir p.~\pageref{listspacing}.
+  \item[14 mars 2019] Nouvelle commande |\NoEveryParQuote|,  voir
+    p.~\pageref{frquote}.
+\end{description}
+\end{abstract}
+\egroup
+
+\newpage
+\renewcommand{\contentsname}{Sommaire}
+\tableofcontents{}%
+\label{ch-doc8}
+
+\newpage
+\section{Appel de l’extension Babel}
+
+Babel est installé en standard dans toutes distributions LaTeX,
+pour disposer des langues française et anglaise%
+\footnote{En fait américaine (US-english), il existe une variante
+ \opt{british} pour l’anglais « britannique ».},
+il suffit d’ajouter
+|\usepackage[english,french]{babel}|%
+\footnote{Les options \opt{frenchb} et
+  \opt{francais} (équivalentes à \opt{french}
+  depuis 2004), sont conservées pour des raisons de compatibilité, mais elles
+  \emph{ne devraient plus  être utilisées}.}
+dans le préambule du document (entre |\documentclass|
+et |\begin{document}|).
+
+Il est recommandé de déclarer les options de langues comme arguments
+de |\documentclass|, elles peuvent alors être utilisées également par
+d’autres extensions :\\
+|\documentclass[12pt,english,french]{article}|\\
+|\usepackage{varioref}|\\
+|\usepackage{babel}|\\
+a le même effet que\\
+|\documentclass[12pt]{article}|\\
+|\usepackage[french]{varioref}|\\
+|\usepackage[english,french]{babel}|
+
+La \emph{dernière} langue chargée en option de Babel ou de |\documentclass|
+(le français dans les exemples ci-dessus) est la \emph{langue principale}
+du document, c’est elle qui est active au début du document et
+qui régit la présentation générale (listes, notes de bas de page,
+retrait des premiers paragraphes) quelle que soit la langue courante.
+
+\ext{babel-french} propose une variante \opt{acadian}, par défaut identique
+à \opt{french}, mais qui peut être personnalisée indépendemment en termes de
+césures, d’espacement de la ponctuation haute, etc. Les deux variantes peuvent
+être utilisées en parallèle dans le même document.
+
+Pour changer de langue  en cours de document on utilise la commande standard
+de \mbox{Babel} |\selectlanguage{|\argum{lang}|}|,
+par exemple |\selectlanguage{british}| et pour revenir en français
+|\selectlanguage{french}|\footnote{Là encore, le nom de la langue
+  française est \opt{french}, pas \opt{frenchb} ou \opt{français}.}.
+
+Pour passer \emph{localement} dans une autre langue on peut utiliser
+l’environnement \\
+|\begin{otherlanguage}{|\argum{langue}|}|\\
+\hspace*{1em}\argum{texte…}\\
+|\end{otherlanguage}|\\
+ou pour une courte citation dans un paragraphe\\
+|\foreignlanguage{|\argum{langue}%
+|}{|\argum{texte…}|}|.
+
+Depuis la version~3.10 de Babel, une syntaxe allégée est proposée pour les
+changements de langue : en ajoutant par exemple dans le préambule
+|\babeltags{fr = french}|%
+\footnote{Rien n’empêche de remplacer \texttt{\ColorVerb fr} par
+  \texttt{\ColorVerb french}, on retrouve ainsi la syntaxe de
+  \ext{polyglossia}.}, on peut remplacer
+|\foreignlanguage{french}{texte}| par |\textfr{texte}| et\\
+|\begin{otherlanguage*}{french}  \end{otherlanguage*}| par\hlabel{textfr}
+|\begin{fr} \end{fr}|.
+|\babeltags| peut s’appliquer à plusieurs langues :
+|\babeltags{fr=french, de=german}|.
+
+\emph{Remarque importante sur les fontes.}
+Le recours à \ext{babel-french} ne suffit pas pour obtenir des césures
+correctes des mots accentués, il faut en outre utiliser des fontes contenant
+tous les caractères spéciaux du français (â, é, ï, ù, ç, etc.) ; la façon de
+le faire dépend du format utilisé :
+\begin{itemize}
+\item avec pdfLaTeX il convient d’ajouter dans le préambule les deux
+  commandes\\
+  |\usepackage[T1]{fontenc}|\\
+  |\usepackage{lmodern}|\\
+  et de déclarer le codage d’entrée (celui qui est utilisé par l’éditeur choisi),
+  par exemple |utf8| (recommandé) ou |latin9| ou |latin1| ou |applemac|, etc.\\
+  |\usepackage[utf8]{inputenc}|
+\item avec LuaLaTeX ou XeLaTeX on peut ajouter |\usepackage{fontspec}| mais
+  ceci est devenu facultatif avec les formats LaTeX récents (2017).
+\end{itemize}
+Dans les deux cas, le document sera composé avec les fontes LM ou
+\textit{Latin Modern} qui sont la version moderne des fontes CM ou
+\textit{Computer Modern}, fontes historiques de TeX.
+Les fontes LM conviennent pour toutes les langues de l’Europe de l’ouest
+(latines, anglo-saxonnes et scandinaves).\\
+Rappelons qu’avec LuaLaTeX ou XeLaTeX aucun appel à
+|\usepackage[...]{inputenc}| n’est à faire puisque que le texte source
+\emph{doit être codé} en |utf8|.
+
+\goodbreak
+L’utilisation de fontes de la famille CM/LM n’est pas du tout indispensable,
+\begin{itemize}
+\item pour pdfLaTeX toute fonte PostScript en codage~T1 convient, ainsi on
+  pourra remplacer |lmodern|, au choix par |kpfonts|, |fourier| (Utopia),
+  |mathptmx| ou |txfonts| (Times), |mathpazo| ou |pxfonts| (Palatino), etc.
+\item pour LuaLaTeX ou XeLaTeX, il convient de faire appel aux fontes
+  OpenType, l’exemple suivant sélectionne une police pour chaque famille
+  (romain, sans-serif, chasse fixe) et uniformise la hauteur des minuscules :\\
+|\usepackage{fontspec}|\\
+|\setmainfont{Erewhon}|\\
+|\setsansfont[Scale=MatchLowercase]{Cabin}|\\
+|\setmonofont[Scale=MatchLowercase,HyphenChar=None]{Inconsolatazi4}|
+
+  Il est recommandé d’ajouter également |\usepackage{realscript}| afin de
+  profiter de vraies lettres supérieures lorsqu’elles sont disponibles.
+
+  Il est également possible d’utiliser des  fontes PostScript, pour plus de
+  détails consulter par exemple le chapitre~15 du livre
+  \textit{\LaTeX, l’essentiel} de \bsc{D.~Bitouzé} et \bsc{J.-C.~Charpentier}.
+\end{itemize}
+
+\section{Description de la francisation par babel-french}
+\label{sec:description}
+
+Dans un document multilingue, il y a des conventions typographiques qui
+changent avec la langue, comme la présence ou non d’espaces avant
+la ponctuation haute et d’autres, la présentation des listes, des notes
+de bas de page ou le retrait des premiers paragraphes des sections qui
+devraient s’appliquer globalement à tout le document.
+
+Depuis la version~2.2, \ext{babel-french} utilise la notion de \emph{langue
+  principale} qui est la \emph{dernière option} (éventuellement la seule) de
+la commande |\usepackage[...]{babel}| ; c’est elle qui impose la présentation
+globale du document (listes, notes de bas de page, retrait des premiers
+paragraphes), les autres conventions typographiques restent locales (elles
+varient selon la langue utilisée).  Lorsque le français n’est pas la langue
+principale, \ext{babel-french} ne modifie en rien la présentation globale du
+document : celle-ci est imposée uniquement par la classe et les autres
+extensions chargées.
+
+\goodbreak
+Lorsque le français est la langue principale, la présentation du
+document (ou maquette) est modifiée de la façon suivante%
+\footnote{Il est possible, pour chacun des points suivants, de revenir aux
+  réglages standard de LaTeX, voir section~\ref{sec:Perso}.} :
+
+\begin{itemize}
+
+\item Le premier paragraphe de chaque section est mis en retrait
+  comme les suivants.
+
+\pagebreak[3]
+\item Listes « \env{itemize} » :
+  \begin{itemize}
+  \item les marqueurs traditionnels du type «\textbullet» sont remplacés
+    par défaut par des tirets~longs «---», ou par un autre marqueur
+    choisi par l’utilisateur (voir section~\ref{sec:Perso}) ;
+
+  \item les espaces verticaux ajoutés par LaTeX entre les différents
+    éléments d’une liste (\textit{items}) sont supprimés.
+
+  \item la largeur des marges gauches dans les listes \env{itemize} est
+    ajustée en fonction du marqueur utilisé. Depuis la version~2.6a, le même
+    réglage s’applique aussi aux listes \env{enumerate} et trois paramètres
+    (|\listindentFB|, |\descindentFB| et |\labelwidthFB|) ont été
+    ajoutés pour permettre d’affiner la présentation des listes \env{itemize},
+    \env{enumerate} et \env{description} (voir section~\ref{ssec:lists}).
+  \end{itemize}
+
+\item Par défaut les espacements verticaux de \emph{toutes} les listes
+  (\env{enumerate}, \env{description} mais aussi
+   \env{abstract}, \env{quote}, \env{quotation}, \env{verse})
+  sont réduits.
+
+{\sloppy
+\item Les notes de bas de page sont présentées « à la française »
+  comme ceci\footnote{Une note de bas de page « à la française ».}
+ {\FBFrenchFootnotesfalse\makeatletter\let\@footnotemark\@footnotemarkORI
+  au lieu de ceci\footnote{Une note de bas de page standard (classe
+  \cls{article}), ça jure avec la précédente, non ?}\makeatother}.
+ Noter, outre la présentation différente du numéro dans la note elle-même,
+ l’ajout de l’espace fine avant l’appel de la première note.
+ Le retrait des notes par rapport à la marge gauche est par défaut fixé
+ au maximum de |\parindent| et de 1.5em, il peut être modifié en
+ donnant la valeur voulue à |\parindentFFN| dans le préambule :
+ |\setlength{\parindentFFN}{0mm}| par exemple.
+ De même, le point qui suit par défaut le numéro de note, ainsi que l’espace
+ insécable qui sépare ce point du texte de la note peuvent être redéfinis :
+ ajouter dans le préambule |\renewcommand{\dotFFN}{}|,
+ |\renewcommand{\kernFFN}{--}| (pas de point, un tiret double sans espace
+ après le numéro de note).\hlabel{FFN}
+\par}
+
+\item Les légendes des figures et des tables utilisent un tiret double
+  à la place du «\string:», ceci pour toutes les langues, on obtient
+  «Figure~1~--~Légende» au lieu de «Figure~1\string:~Légende».
+  Il est possible de choisir un autre séparateur :
+  pour remplacer le tiret double «--» par un tiret triple «---»,
+  ajouter dans le préambule\hlabel{captionseparator}\\
+  |\renewcommand*{\CaptionSeparator}{\space\textemdash\space}|.
+
+  Lorsque la langue principale n’est pas le français, le séparateur «\string:»
+  est utilisé pour toutes les langues mais une espace insécable est en principe
+  ajoutée en français ; lorsque l’ajout échoue, un message est affiché dans le
+  fichier \file{.log}.
+
+  Certaines classes ou extensions modifient la présentation des légendes;
+  parmi elles, les classes (\cls{memoir}, \cls{beamer}, koma-script et AMS
+  et les extensions(\ext{caption} et \ext{floatrow} sont compatibles avec
+  \ext{babel-french}.
+
+  Un avertissement est inséré dans le fichier \file{.log} lorsqu’il y a risque
+  de conflit avec une autre extension ou classe qui modifie la définition de
+  la commande |\@makecaption| ou lorsque le chargement d’une extension
+  intervient trop tôt ou trop tard.
+\end{itemize}
+
+En ce qui concerne les conventions typographiques locales (variables avec la
+langue) la commande |\selectlanguage{french}|
+produit les effets suivants :
+\enlargethispage*{\baselineskip}
+\begin{itemize}
+
+\item Les motifs de césures françaises sont activés.
+
+\item Des espaces insécables et de taille adéquate sont ajoutés
+  automatiquement devant la ponctuation haute (|; : ! ?|)%
+  \footnote{Voir section~\ref{sec:Perso} p.~\pageref{sec:Perso} comment
+  éviter les ajouts abusifs d’espace avant ces caractères
+  et section~\ref{sec:active-char} p.~\pageref{sec:active-char} en cas de
+  problème dû aux caractères actifs.}.
+  Ceci impose que ces caractères soient rendus actifs (en fait dans tout le
+  document), \emph{sauf} avec les versions récentes de Xe(La)TeX ou Lua(La)TeX
+  qui disposent d’un mécanisme permettant d’accéder aux mêmes fonctionnalités
+  sans recours aux caractères actifs.
+
+\item la définition de |\dots| est modifiée pour
+  supprimer l’espace qui suit (cet espace est gênant devant une
+  parenthèse par exemple\dots)%
+  \footnote{Certains auteurs préfèrent en français «...» (codé \code{...}
+    sans espace) à «\dots» (codé \cs{dots}). Le mieux est d’utiliser
+    directement le caractère … dans le texte source dès lors que celui-ci est
+    codé en utf-8.}.
+
+\item La commande |\today| retourne la date en français.
+
+\item Les titres («caption names» en anglais) sont traduits en
+  français, ainsi la commande |\chapter| imprimera
+  « Chapitre » au lieu de « Chapter ». Voir section~\ref{ssec:captions}
+  p.~\pageref{ssec:captions} comment modifier ces intitulés.
+
+\end{itemize}
+
+La commande |\selectlanguage{english}| ramène
+au comportement standard de LaTeX (typographie américaine).
+
+Des commandes ont été prévues pour faciliter la saisie :
+\begin{itemize}
+
+\item Les guillemets peuvent être saisis grâce aux commandes |\og| et |\fg|%
+  \footnote{Si les caractères « et » sont accessibles au clavier,
+      ils peuvent être utilisés pour saisir les guillemets, voir
+      la fin de la section~\ref{sec:Perso}, p.~\pageref{og-fg}.},
+  ce qui donne selon la langue de travail « guillemets français » ou
+  \begin{otherlanguage}{english}``english quotes’’\end{otherlanguage}.
+
+  Notez que les guillemets français ne devraient \emph{jamais} être saisis
+  avec |<<| et |>>| contrairement à ce qui se fait avec
+  {e-French} (voir section~\ref{sec:CompatFP}).
+
+  Depuis la version~3.1, une alternative, |\frquote{|\textit{texte}|}|, est
+  proposée pour la saisie des guillemets français avec l’espace adéquat,
+  le résultat est \frquote{\textit{texte}}.
+
+  L’usage de |\frquote{}| est recommandé pour les citations longues
+  (c.-à-d. s’étendant sur plus d’un paragraphe) et pour les citations
+  imbriquées.\hlabel{frquote}
+
+  Pour les premières, |\frquote{}| insère automatiquement un guillemet ouvrant
+  au début de chaque paragraphe, sauf si \fbo{EveryParGuill=close} (guillemet
+  fermant dans ce cas) ou si \fbo{EveryParGuill=none} (aucun ajout).
+
+  Une commande |\NoEveryParQuote| permet de supprimer localement des guillemets
+  de début de paragraphe ajoutés inconsidérément par la commande |\frquote{}|
+  notamment dans les listes (après les labels) ; elle doit être utilisée dans
+  un environnement ou un groupe pour en limiter la portée.
+
+  Pour les citations imbriquées, plusieurs présentations sont proposées selon
+  les options choisies :
+  \begin{itemize}
+  \item Les citations internes sont balisées par des guillemets anglais
+    ``comme ceci’’ (recommandation de Aurel Ramat) sauf si
+    \fbo{InnerGuillSingle=true}, dans ce cas les guillemets anglais sont
+    remplacés par guillemets français simples \guilsinglleft\FBguillspace
+    comme ceci \FBguillspace\guilsinglright{} (suggestion de Jean Méron).
+  \item Avec les formats basés sur LuaTeX, il est possible d’insérer en début
+    de chaque ligne de la citation interne un guillemet dit « de suite »,
+    ouvrant --~comme le recommande l’Imprimerie nationale~-- avec l’option
+    \fbo{EveryLineGuill=open}, ou fermant (préconisé par
+    Jean-Pierre Lacroux) avec l’option \fbo{EveryLineGuill=close}.
+    Dans les deux cas l’option \fbo{InnerGuillSingle} est sans effet, la
+    citation interne est toujours balisée par des guillemets chevrons « et ».
+  \end{itemize}
+
+  Lorsque les citations internes et externes se terminent en même temps, il
+  est d’usage de supprimer le guillemet fermant de la citation interne. Pour
+  ce faire, il suffit de coder la citation interne avec |\frquote*{}| au lieu
+  de |\frquote{}|.
+
+\pagebreak
+Exemple de citation imbriquée :
+
+\vspace{0.5\baselineskip}
+\begin{minipage}[t]{.47\textwidth}
+\hspace*{\fill}%
+\fbox{\begin{minipage}[t]{.95\textwidth}
+      \FBInnerGuillSingletrue
+      \parindent=1em
+      Xavier raconte ainsi sa mésaventure :
+      \frquote{Au moment d’enregistrer mes bagages, l’hôtesse
+               m’a dit tout bonnement :
+               \frquote*{Je suis désolée, il n’y a plus de place.
+                  Vous allez devoir attendre le prochain vol.\par
+                  C’est un effet de ce qu’on appelle la surréservation,
+                  ou \textit{surbooking} en anglais.}%
+              }%
+      \end{minipage}%
+}\\[.2\baselineskip]
+\hspace*{\fill}\fbo{InnerGuillSingle}\hspace*{\fill}
+\end{minipage}
+\hspace{\fill}
+\begin{minipage}[t]{.47\textwidth}
+\fbox{\begin{minipage}[t]{.95\textwidth}
+      \let\FBeverylineguill\FBguillopen
+      \parindent=1em
+      Xavier raconte ainsi sa mésaventure :
+      \frquote{Au moment d’enregistrer mes bagages, l’hôtesse
+        m’a dit tout bonnement :
+        \frquote*{Je suis désolée, il n’y a plus de place.
+                  Vous allez devoir attendre le prochain vol.\par
+                  C’est un effet de ce qu’on appelle la surréservation,
+                  ou \textit{surbooking} en anglais.}%
+      }%
+     \end{minipage}%
+}\\[.2\baselineskip]
+\hspace*{\fill}LuaLaTeX + \fbo{EveryLineGuill=open}\hspace*{\fill}%
+\end{minipage}
+
+\vspace{0.5\baselineskip}
+Le codage est le suivant :
+{\ttfamily\ColorVerb Xavier raconte… |\frquote{|Au moment… l’hôtesse m’a
+ dit tout bonnement : |\frquote*{|Je suis désolée, …  en anglais.|}}|}
+
+\item La commande |\up| facilite la saisie des exposants en mode texte :
+  |M\up{me}| imprime M\up{me},
+  |1\up{er}| donne 1\up{er} ; % 1\ier ;
+  on dispose aussi de
+  |\ier|  |\iere| |\iers| |\ieres| |\ieme| |\iemes|
+  pour 1\ier, 1\iere, 1\iers, 1\ieres, 2\ieme, 2\iemes.
+  La commande |\up| utilise les lettres supérieures de la police lorsqu’elles
+  sont disponibles et les simule sinon.
+  On obtient de vraies lettres supérieures
+  \begin{itemize}
+  \item avec les moteurs LuaTeX et XeTeX, à condition de charger les extensions
+    \ext{fontspec} et \ext{realscripts} et d’utiliser une police de type
+    OpenType qui connaisse la directive «\code{VerticalPosition=Superior}»
+    (polices Linux Libertine O, Iwona, par exemple) ;
+  \item sous (pdf)LaTeX avec certaines polices type~1 expertes
+    (Fourier-Utopia).
+  \end{itemize}
+De plus |\up| empêche le passage en capitales des lettres supérieures dans
+les hauts de page par exemple.\hlabel{lettres-sup}
+
+Une variante étoilée |\up*| est prévue pour les polices qui disposent d’un jeu
+incomplet de lettres supérieures : la police OpenType Jenson Pro ou la police
+type~1 Utopia-expert par exemple, n’ont pas de «g supérieur» ; en codant
+|M\up{gr}| on obtient Mg\up{r} (Jenson) ou M\up{r} (Utopia-expert) tandis que
+|M\up*{gr}| force l’utilisation de supérieures simulées ce qui pallie l’absence
+du «g supérieur», le résultat est M\up*{gr}.
+
+Pour les perfectionnistes, il est facile d’ajuster la taille et le placement
+vertical des lettres supérieures simulées par |\fup|
+(voir dans le code de \file{frenchb.dtx} les commandes |\FBsupS| et
+|\FBsupR|).
+
+\item L’usage français veut que les noms propres soient imprimés en
+  petites capitales et ne soient pas coupés en bout de ligne, la commande
+  |\bsc| (\textit{boxed small caps}) en facilite la saisie :
+  on saisira par exemple |Leslie~\bsc{Lamport}| pour
+  obtenir Leslie~\bsc{Lamport} sans risque de coupure \textsc{Lam-port}
+  en bout de ligne.
+
+\item les commandes |\primo|, |\secundo|,
+  |\tertio| et |\quarto| peuvent
+  être utilisées dans les énumérations ; elles donnent
+  \primo, \secundo, \tertio, \quarto.
+  Ensuite, |\FrenchEnumerate{6}| donne \FrenchEnumerate{6}.
+
+\item Les abréviations de «numéro», \No, \Nos, \no{} et \nos, sont obtenues
+  en tapant |\No|, |\Nos|, |\no| et |\nos| ;
+  l’espace qui suit est insécable : coder |\no1| ou |\no 1|.
+
+\item Le caractère \degre{} (à ne pas confondre avec le petit «o» de \No)
+  est saisi |\degre|, mais comme les espaces avant
+  et après ce caractère dépendent fortement de la police utilisée
+  (PostScript ou non), on emploiera |\degres| pour saisir
+  les températures « 20~\textdegree C » (codé |20~\degres C|
+  avec espace insécable) ou les titres alcooliques « 45\degres{} »
+  (codé |45\degres| sans espace).
+  Lorsque l’extension \ext{textcomp} est chargée (elle donne accès
+  aux « \TeX{} Companion fonts » qui contiennent un vrai symbole degré),
+  |\degres| utilise celui-ci (|\textdegree|).
+
+\item \hlabel{frenchdate} La commande
+  |\frenchdate|\marg{année}\marg{mois}\marg{jour}, qui prend trois arguments
+  numériques obligatoires, affiche les dates en français :
+  |\frenchdate{2001}{01}{01}| donne \frenchdate{2001}{01}{01}, le résultat
+  est inclus par défaut dans une boîte (|\hbox|) afin de ne jamais subir de
+  coupure de ligne (cf.~Gouriou, Ramat). En cas de difficulté
+  il est possible de redéfinir, localement par exemple, les commandes
+  |\FBdatebox| (|\hbox| par défaut) et |\FBdatespace| (|\space| par défaut) :
+  |\renewcommand*{\FBdatebox}{\relax}| supprime la |\hbox| tandis que
+  |\renewcommand*{\FBdatespace}{~}| rend les deux espaces insécables.
+  L’effet de ces deux commandes appliquées simultanément est d’interdire la
+  coupure sur les espaces mais d’autoriser éventuellement celle du mois
+  (jan-vier, dé-cembre, …) qui est interdite par défaut.
+
+\enlargethispage{\baselineskip}
+\item En mode mathématique, la virgule est toujours suivie d’une espace
+   car elle est traitée comme un signe de ponctuation et non comme
+   une virgule décimale. La commande |\DecimalMathComma| supprime cette
+   espace (mais uniquement en français), on revient  au comportement par
+   défaut avec |\StandardMathComma|. Remarquer qu’après une
+   commande |\DecimalMathComma|, il est nécessaire de saisir un espace
+   explicite dans les listes et les intervalles par exemple |$(x,\ y)$|
+   et |$[0,\ 1]$|.
+   Ces deux commandes sont utilisables n’importe où dans le document.
+   Une solution alternative consiste à utiliser l’extension \ext{icomma}.
+
+\item La commande |\nombre|, destinée à formater
+  automatiquement les nombres entiers ou décimaux par tranches de
+  trois chiffres séparées par des espaces en français et par des
+  virgules (usage anglo-saxon), fait désormais appel à la commande
+  |\numprint| de l’extension du même nom.
+  Lors du premier appel à la commande |\nombre|,
+  un message est affiché dans le fichier \file{.log} indiquant comment
+  charger \ext{numprint}. Le chargement de \ext{numprint} n’est pas fait
+  par \ext{babel-french} à cause du risque de conflit d’options.
+  Il doit se faire \emph{après} \ext{babel}.
+  Les utilisateurs devraient s’habituer progressivement à utiliser
+  |\numprint| (ou son raccourci |\np|) à la place de |\nombre|.
+
+\end{itemize}
+
+En ajoutant |\usepackage{xspace}| dans le préambule, les espaces suivant
+les commandes
+|\ier|,…, |\ieres|,
+|\ieme|, |\iemes|,
+|\fg| et |\dots| sont
+respectés sans avoir à les forcer par des |{}| ou
+des~\code{\boi\textvisiblespace}.
+
+\section{Personnalisation}
+\label{sec:Perso}
+
+La commande \fbsetup{}, appelée précédemment |\frenchbsetup{}|%
+\footnote{Ce dernier nom sera gardé comme alias par souci de compatibilité,
+  le nouveau devrait être préféré depuis l’abandon du nom \ext{frenchb}
+  au profit de \ext{babel-french} pour désigner l’option \opt{french}
+  de babel.},
+est à placer dans le préambule de chaque document après
+le chargement de Babel ; elle permet de personnaliser le comportement de
+\ext{babel-french} grâce au large choix parmi des options disponibles.
+La syntaxe est celle de l’extension \ext{keyval}, largement
+utilisée par d’autres extensions comme \ext{geometry} ou \ext{hyperref}.
+
+Le recours à un fichier de configuration \file{frenchb.cfg} a été supprimé en
+version~3.0.
+
+\subsection[\textbackslash frenchsetup{}]{\fbsetup{\meta{options}}}
+\label{ssec:frenchbsetup}
+
+La commande \fbsetup{ShowOptions} affiche dans le fichier \file{.log} la liste
+des options disponibles, nous allons parcourir cette liste et expliquer
+l’effet de chacune d’elles.
+Dans le cas d’une option booléenne, la mention \fbo{=true} peut être omise :
+\fbsetup{ShowOptions} est équivalent à \fbsetup{ShowOptions=true}.
+
+Dans la liste ci-dessous, l’option activée par défaut est indiquée entre
+parenthèses, éventuellement suivie d’un étoile. L’étoile indique que la valeur
+par défaut correspond au cas où le français \emph{est la langue principale}
+(voir section~\ref{sec:description}, page~\pageref{sec:description}), et que
+cette valeur est inversée sinon.
+
+La liste étant longue, les options sont regroupées par thèmes.
+\bgroup
+\let\MyColor\ColorArg
+
+\subsubsection*{Inventaire des options}
+
+\begin{description}
+  \setlength{\labelsep}{0.1666em}
+\item [ShowOptions=true (false)]
+  affiche dans le fichier \file{.log} toutes les options
+  disponibles, ce qui permet de retrouver leurs noms facilement.
+\end{description}
+
+\subsubsection*{Maquette générale}
+
+\begin{description}
+
+\item [StandardLayout=true (false*)] supprime toute action de
+  \ext{babel-french} sur la maquette dans le cas où le français est la
+  langue principale : retour aux listes standard, pas de
+  retrait des 1\iers{} paragraphes des sections, notes de bas de page
+  standard, séparateur «\string:» dans les légendes de figures et tableaux.
+  Lorsque le français n’est pas la langue principale, elle est sans effet.
+
+\item [GlobalLayoutFrench=false (true*)] ne devrait plus être utilisée sauf,
+  lorsque le français est la langue principale, pour retrouver le comportement
+  des versions de \ext{babel-french} antérieures à~v2.2 : dans les parties
+  rédigées dans des langues autres que le français, la présentation des listes
+  redevient standard et la mise en retrait des 1\iers{} paragraphes des
+  sections est supprimée. La présentation des notes de bas de page est
+  toujours indépendante de la langue de travail (à la française ou standard
+  pour tout le document selon la langue principale).
+
+\item [IndentFirst=false (true*)] ; par défaut, \ext{babel-french} applique un
+  retrait identique pour tous les paragraphes (de largeur |\parindent|),
+  y compris le premier de chaque section, ce qui est conforme à l’usage
+  français.  Avec \fbo{IndentFirst=false} le retrait du premier paragraphe de
+  chaque section est supprimé, comme c’est l’usage en anglais, soit dans tout
+  le document si le français est la langue principale, soit seulement en
+  français.
+
+\item [PartNameFull=false (true)] ; par défaut \ext{babel-french} numérote les
+  parties créées par la commande |\part| en « Première partie », « Deuxième
+  partie », etc. Ceci fonctionne bien pour la plupart des classes (classes
+  standard, classes koma-script, memoir) mais pas pour les classes AMS qui
+  redéfinissent la commande |\part|. L’option \fbo{PartNameFull=false} permet
+  de revenir à une numérotation des parties plus standard -- « Partie~I »,
+  « Partie~II », etc. --, ce qui supprime les risques de mauvais affichage du
+  genre « Première partie~1 » notamment dans la table des matières.
+
+\end{description}
+
+\subsubsection*{Présentation des listes}
+
+\begin{description}
+\item [ListItemsAsPar=true (false)] ; mettre cette option à \fbo{true}
+  est recommandé à ceux qui souhaitent une présentation des listes
+  conforme aux usages en vigueur à l’Imprimerie nationale, voir
+  p.~\pageref{ListAsPar} pour une comparaison avec la disposition par défaut.
+
+\item [StandardListSpacing=true (false*)] ; par défaut \ext{babel-french}
+  modifie (en général en les réduisant, sauf pour les classes SMF)
+  les espaces verticaux%
+  \footnote{Il s’agit de \cs{itemsep}, \cs{parsep}, \cs{topsep}
+            et \cs{partopsep}.} \label{listspacing}
+  dans \emph{toutes les listes} produites à partir de l’environnement
+  \env{list}, en particulier les listes \env{enumerate}, \env{itemize} et
+  \env{description} mais aussi \env{abstract}, \env{quote}, \env{quotation},
+  \env{verse}… \fbo{StandardListSpacing=true} permet de revenir
+  aux réglages standard (ceux de la classe utilisée), elle remplace l’ancienne
+  option \fbo{ReduceListSpacing} en l’inversant :
+  \fbo{StandardListSpacing=true} équivaut à \fbo{ReduceListSpacing=false} qui
+  pouvait être trompeuse dans le cas des classes SMF mais qui fonctionne
+  toujours pour ne pas compromettre la compilation d’anciens documents.
+
+\item [StandardItemizeEnv=true (false*)] ; par défaut l’environnement
+  \env{itemize} est redéfini pour qu’aucun espace vertical ne soit ajouté
+  à l’interligne standard entre les éléments d’une liste \env{itemize} et
+  pour adapter |\labelwidth| au marqueur utilisé.
+
+  L’option |StandardItemizeEnv=true| empêche cette redéfinition, ce qui est
+  nécessaire en cas de conflit avec une classe ou une extension qui redéfinit
+  aussi l’environnement \env{itemize} (\ext{enumitem} ou \ext{paralist}
+  par exemple%
+  \footnote{\ext{babel-french} met automatiquement le drapeau
+    \fbo{StandardItemizeEnv} à \fbo{true} lorsque l’une des extensions
+    \ext{enumitem} ou \ext{paralist} est chargée.}).
+  L’interligne entre les éléments des listes \env{itemize} est alors
+  légèrement augmenté si \fbo{StandardListSpacing=false} ou l’est
+  nettement plus (on revient au réglage de base de la classe utilisée) si
+  \fbo{StandardListSpacing=true}.
+
+  Les utilisateurs d’\ext{enumitem} qui souhaitent obtenir pour leurs listes
+  une présentation à la française, trouveront comment faire
+  page~\pageref{enumitem-cfg}.\hlabel{ch-enumitem}
+
+\item [StandardEnumerateEnv=true (false*)] ; depuis la version~2.6,
+  \ext{babel-french} redéfinit également les environnements \env{enumerate} et
+  \env{description} pour que leurs marges soient les mêmes que celles des
+  listes \env{itemize}.
+
+  \fbo{StandardEnumerateEnv=true} empêche cette redéfinition, ce qui est
+  nécessaire en cas de conflit avec une classe ou une extension qui redéfinit
+  aussi l’environnement \env{enumerate} (\ext{enumerate}, \ext{enumitem} ou
+  \ext{paralist} par exemple%
+  \footnote{\ext{babel-french} met automatiquement le drapeau
+    \fbo{StandardEnumerateEnv} à \fbo{true} lorsque l’une des extensions
+    \ext{enumerate}, \ext{enumitem} ou \ext{paralist} est chargée.}).
+
+\item [StandardItemLabels=true (false*)] restitue aux
+  marqueurs des listes \env{itemize} les valeurs standard attribuées par
+  la classe de document ou les extensions utilisées.
+
+{\sloppy
+\item [ItemLabels=\boi{}textbullet, \boi{}textendash,
+  \boi{}ding{43},... (\boi{}textemdash*)] ;
+  option qui permet de choisir le marqueur
+  utilisé dans les listes \env{itemize} en français (\emph{sauf} bien sûr
+  si \fbo{StandardItemLabels=true}).
+  Noter que |\ding{43}| suppose que l’extension \ext{pifont} soit
+  chargée. Cette option affecte tous les niveaux de la liste.
+  Les quatre options suivantes fonctionnent de même mais n’affectent elles
+  qu’un niveau chacune :
+\par}
+
+\item [ItemLabeli=\boi{}textbullet, \boi{}textendash,
+  \boi{}ding\{43\},... (\boi{}textemdash*)]
+
+\item [ItemLabelii=\boi{}textbullet, \boi{}textendash,
+  \boi{}ding\{43\},... (\boi{}textemdash*)]
+
+\item [ItemLabeliii=\boi{}textbullet, \boi{}textendash,
+  \boi{}ding\{43\},... (\boi{}textemdash*)]
+
+\item [ItemLabeliv=\boi{}textbullet, \boi{}textendash,
+  \boi{}ding\{43\},... (\boi{}textemdash*)]
+
+{\sloppy
+\item [StandardLists=true (false*)] ; supprime toute action de
+  \ext{babel-french} sur les listes, elle équivaut aux quatre options
+  \fbo{StandardItemLabels=true}, \fbo{StandardItemizeEnv=true},
+  \fbo{StandardEnumerateEnv=true} et \fbo{StandardListSpacing=true}.
+  Lors de l’utilisation d’une classe ou d’une extension qui modifie la
+  présentation des listes, il peut y avoir conflit avec \ext{babel-french} ;
+  dans ce cas l’option \fbo{StandardLists} (ou éventuellement l’une ou l’autre
+  des quatre sous-options plus ciblées qu’elle regroupe) devrait régler le
+  problème%
+  \footnote{L’option \fbo{StandardLists} est automatiquement activée avec la
+    classe \cls{beamer}.}.
+\par}
+
+\item [ListOldLayout=true (false*)] ne devrait être utilisée que pour
+  recomposer d’anciens documents à l’identique, c’est-à-dire pour retrouver
+  la présentation des listes qui prévalait avant la version~2.6a.
+
+\end{description}
+
+\subsubsection*{Présentation des notes de bas de page}
+
+\begin{description}
+
+\item [FrenchFootnotes=false (true*)] fait revenir à la
+  présentation standard des notes de page, telle que définie par la classe ou
+  les extensions utilisées. Cette option affecte la totalité du document.
+  La commande |\StandardFootnotes| peut encore être utilisée
+  \emph{localement}, par exemple dans les environnements \env{minipage} si la
+  présentation «à la française» ne convient pas (notes numérotées `a’, `b’,
+  etc.).
+
+\item [AutoSpaceFootnotes=false (true*)] supprime l’espace fine
+  insécable ajoutée par défaut avant l’appel de chaque note dans le texte
+  courant. Cette option affecte la totalité du document.
+
+\end{description}
+
+\subsubsection*{Ponctuation haute}
+
+\begin{description}
+
+\item [AutoSpacePunctuation=false (true)] ; par défaut, \ext{babel-french}
+  corrige la faute de saisie qui consiste à omettre l’espace devant la
+  ponctuation haute (\string: \string; \string? \string!) en ajoutant
+  automatiquement une espace insécable de taille adaptée.
+  Toutefois, l’ajout d’espace n’a pas lieu lorsque la police courante est
+  à espacement fixe%
+  \footnote{Ceci évite en particulier les problèmes en verbatim.} :
+  |\texttt{http://truc}| produit \texttt{http://truc}.
+
+  Le moteur LuaTeX permet un contrôle fin de l’ajout d’espace devant le
+  deux-points : si ce caractère n’est pas précédé d’un espace et que celui qui
+  le suit est de type \textit{glyphe} (lettre, chiffre, /, \textbackslash,
+  etc.)  aucune espace n’est ajoutée en sortie, ce qui évite les espaces
+  parasites dans les URLs (ftp://monsite), les chemins MSDOS
+  (C:\textbackslash), les horaires (10:55) et les ratios (1:1).
+  Avec XeTeX ou pdfTeX |http://truc| et |1:1| donnent http~://truc et 1~:1
+  (espace parasite avant le «:»).
+
+  Il y a une autre exception avec les moteurs LuaTeX et XeTeX :
+  si l’utilisateur code une espace insécable U+00A0 (\emph{pas}
+  \raisebox{-1ex}{\huge\code{\tild}}) ou une fine insécable
+  U+202F, ces caractères sont recopiés tels quels en sortie,
+  sans ajout d’espace par \ext{babel-french}.
+
+  Ceux qui sont sûrs de leur saisie peuvent mettre cette option à
+  \fbo{false} pour contrôler complètement l’ajout d’espace devant la
+  ponctuation haute : l’espace adéquate (toujours insécable) est ajoutée
+  si et seulement si un espace précède le signe de ponctuation dans le
+  fichier source. Ils éviteront ainsi, quel que soit le moteur utilisé,
+  de voir des espaces ajoutées à tort.
+
+  Autre solution pour les autres : laisser le mode par défaut et éviter,
+  le cas échéant, l’insertion d’espaces parasites en utilisant la commande
+  |\NoAutoSpacing| dans un groupe, par exemple |{\NoAutoSpacing 10:55}|
+  (XeTeX et pdfTeX, inutile avec LuaTeX).
+
+\item [ThinColonSpace=true (false)] ; par défaut l’espace placée
+  avant le `\string:’ est une espace-mot insécable, cette option la remplace
+  par une espace fine insécable. Certains auteurs font ce choix pour que les
+  espaces précédant les quatre signes de ponctuation haute soient identiques.
+  Le choix par défaut correspond à la maquette de l’Imprimerie nationale,
+  le Guide du typographe (ex-roman) préconise lui l’espace fine devant le
+  `\string:’.
+
+  Il est possible de redéfinir complètement la taille des espaces précédant
+  la ponctuation haute (ou les guillemets français) en utilisant dans le
+  préambule la commande |\FBsetspaces| qui admet un argument optionnel
+  (pour le dialecte \lang{french} ou \lang{acadian}, son absence équivaut
+  à \lang{french}) et quatre arguments obligatoires : le premier précise le
+  type d’espace à redéfinir, il doit être |colon| (pour le~`:’), |thin|
+  (pour~`;’ `!’ et `?’) ou |guill| pour les guillemets chevrons),
+  les trois suivants sont des nombres décimaux qui définissent la largeur
+  (\textit{width}), l’extensibilité (\textit{stretch}) et la compressibilité
+  (\textit{shrink}) de l’espace exprimées en \textit{fontdimen}.
+  \hlabel{FBsetspaces}
+  Le dialecte \lang{acadian} utilise les valeurs définies pour \lang{french}
+  sauf présence dans le préambule de commandes spécifiques
+  |\FBsetspaces[acadian]|.
+
+  Exemples : les valeurs |{1}{1}{1}| correspondent à l’espace-mot justifiante
+  (utilisée par défaut devant le deux-points), |{0.5}{0}{0}|
+  à l’espace fine (utilisée par défaut devant `;’ `!’ et `?’, noter son
+  absence d’élasticité) et |{0.8}{0.3}{0.8}| à l’espace utilisée par défaut
+  à l’intérieur des guillemets.
+
+  |\FBsetspaces{colon}{0.5}{0}{0}| est équivalent
+  à l’option~\fbo{ThinColonSpace} (vaut pour le français et le canadien).
+
+  |\FBsetspaces[acadian]{colon}{0.5}{0}{0}| redéfinit l’espace précédant
+  le~`:’ en espace fine seulement pour le canadien.
+
+  |\FBsetspaces{colon}{1}{0}{0}| met une espace-mot sans élasticité devant
+  les~`:’.
+
+\item [OriginalTypewriter=true (false)] ; par défaut, lorsqu’une police
+  à espacement fixe est utilisée (|\texttt{}|, mode verbatim, listings, etc.)
+  \ext{babel-french}, n’ajoute jamais d’espace avant la ponctuation haute ni
+  après `«’, ni avant `»’ même si ces caractères ont été activés par l’option
+  \fbo{og=«, fg=»}.  De plus, les espaces présents dans texte source ne sont
+  pas modifiés, par exemple |\texttt{X != Y}| produit \texttt{X != Y} (pas
+  d’espace fine avant le~`!’).
+  Mettre cette option à \fbo{true} supprime ce comportement, ce qui peut être
+  utile pour recompiler à l’identique des anciens textes.
+
+\item [UnicodeNoBreakSpaces=true (false)];\hlabel{ucs-nbsp} cette option
+  n’a d’effet qu’avec LuaLaTeX ; lorsqu’on la met à \fbo{true}
+  les espaces insécables ajoutées par \ext{babel-french} dans le fichier PDF
+  de sortie (ponctuation haute, guillemets, etc.) sont codées sous forme de
+  caractères Unicode (U+A0 ou U+202F fine) au lieu des pénalités et ressorts
+  de type \textit{glues}.  Ceci devrait préserver ces espaces lors de la
+  conversion en HTML des fichiers produits par LuaLaTeX, malheureusement la
+  version actuelle de \exe{pdftotext} ne les restitue pas correctement.
+
+  En revanche, \exe{lwarp} (v.~0.37 et suivantes) est totalement compatible
+  avec \ext{babel-french} pour la conversion en HTML des fichiers PDF produits
+  sous XeLaTeX et pdfLaTeX : les espaces insécables sont préservées.
+
+\end{description}
+
+\subsubsection*{Guillemets}
+
+\begin{description}
+
+\item [og=«, fg=»]%
+  \footnote{Les valeurs affectées à \fbo{og} et \fbo{fg} sont les vrais
+    guillemets \fbo{«} et \fbo{»}, pas \fbo{<{}<} et \fbo{>{}>}.
+    Les espaces avant et après ces guillemets dans la commande
+    \fbsetup{} sont optionnels.} ;
+  \hlabel{og-fg} lorsqu’on dispose de guillemets français au
+  clavier (grâce à une touche \textit{compose} par exemple), cette option permet
+  d’utiliser directement ces guillemets à la place des commandes |\og| et |\fg|%
+  \footnote{Toutefois, si des guillemets doivent être utilisés dans une
+    commande \cs{index}, ils \emph{doivent} être codés en \cs{og} et
+    \cs{fg}.}.
+  On peut ainsi saisir \code{«guillemets»} ou \code{« guillemets »} (avec ou
+  sans espaces à l’intérieur) pour obtenir «guillemets» avec espaces
+  insécables adéquates en français. En revanche, si on active cette option,
+  \emph{il ne faut pas coder explicitement les espaces insécables} :
+  \code{«}|~|\code{guillemets}|~|\code{»}
+  produirait «~guillemets~» où l’espace qui suit le guillemet ouvrant est
+  trop large.
+
+  Les espaces insécables ne sont ajoutées que lorsque la langue
+  courante est le français : en allemand, le codage \code{(»Auf Deutsch«)}
+  produit \foreignlanguage{german}{(»Auf Deutsch«)}. %»
+
+  Ceci fonctionne en (pdf)LaTeX pour les codages d’entrée 8-bits (latin1,
+  latin9, ansinew, applemac,…) et pour les codages sur plusieurs octets
+  comme utf8 ou  utf8x. Ceci fonctionne également avec LuaLaTeX et XeLaTeX ;
+  avec ces deux derniers toutefois, comme pour la ponctuation haute,
+  \ext{babel-french} respecte les espaces insécables U+00A0 et U+202F (fine).
+
+\item [INGuillSpace=true (false)] ; force \ext{babel-french} à mettre une
+  espace-mot justifiante insécable après les guillemets ouvrants et avant les
+  guillemets fermants comme le préconise l’Imprimerie nationale. Par défaut
+  les espaces insérées par \ext{babel-french} sont légèrement plus étroites et
+  moins extensibles qu’une espace-mot.\hlabel{INGuillspace}
+
+  Cette option est équivalente à |\FBsetspaces{guill}{1}{1}{1}|, voir
+  p.~\pageref{FBsetspaces}.
+
+\item [EveryParGuill=open, close, none (open)] ;
+  selon sa valeur, cette option
+  ajoute un guillemet ouvrant
+  \bgroup\NoAutoSpacing
+    («\FBguillspace), fermant (»\FBguillspace)%
+  \egroup{}
+  ou rien au début de chaque paragraphe inclus dans une citation de premier
+  rang codée avec |\frquote{}|.\hlabel{everyparguill}
+
+  Lorsque \fbo{InnerGuillSingle=true}, cette option est également prise en
+  compte pour les citations de second rang (internes) : selon sa valeur, un
+  guillemet simple ouvrant
+  \bgroup\NoAutoSpacing
+    (\guilsinglleft\FBguillspace), ou fermant (\guilsinglright\FBguillspace)%
+  \egroup,
+  ou rien, est ajouté à chaque début de paragraphe.
+
+  Lorsque \fbo{InnerGuillSingle=false}, rien n’est ajouté en début de
+  paragraphe dans les citations de second rang.
+
+\item [EveryLineGuill=open, close, none (none)] ;
+  selon sa valeur, cette option
+  ajoute un guillemet ouvrant, fermant, ou rien, au début de chaque ligne
+  d’une citation de second rang. Notez que les citations de premier et de
+  secong rang doivent être toutes deux codées avec |\frquote{}| et que l’ajout
+  automatique de guillemets au début de ligne \emph{ne fonctionne qu’avec
+  LuaTeX}.
+  Lorsque \fbo{EveryLineGuill=open} ou \fbo{close} la citation interne
+  est toujours balisée par des guillemets français « et », l’option suivante
+  est sans effet.
+
+\item [InnerGuillSingle=true (false)] ; si \fbo{InnerGuillSingle=true}
+  les citations internes sont balisées comme
+  \guilsinglleft\FBguillspace ceci\FBguillspace\guilsinglright,
+  sinon comme ``cela’’.
+
+\end{description}
+
+\subsubsection*{Présentation des nombres}
+
+\begin{description}
+
+  {\sloppy
+\item [ThinSpaceInFrenchNumbers=true (false)] remplace le
+  séparateur des milliers utilisé en français par la commande
+  |\numprint{}| (ou son alias |\nombre{}|) pour le formatage
+  des nombres, par une espace fine (par défaut c’est une espace mot
+  insécable et sans élasticité en français).
+  Cette option n’a d’effet que si l’extension \ext{numprint} est chargée
+  (\emph{après} \ext{babel}) avec l’option \opt{autolanguage} ;
+  sans elle, \ext{numprint} formate les nombres indépendamment de la langue
+  courante et le séparateur des milliers est par défaut l’espace fine.
+\par}
+
+\end{description}
+
+\subsubsection*{Légendes de figures et tables}
+
+\begin{description}
+
+\item [SmallCapsFigTabcaptions=false (true*)]; si cette option est mise
+  à \fbo{false}, le recours aux petites capitales dans les intitulés des
+  légendes de figures et tables est supprimé, on obtient « Figure » et
+  « Table » au lieu de « \textsc{Figure} » et « \textsc{Table} ».
+  Noter que le même résultat peut être obtenu en définissant |\FBfigtabshape|
+  comme |\relax| avant le chargement de \ext{babel}.\hlabel{scfigtab}
+
+\item [CustomiseFigTabcaptions=false (true*)] ; si cette option est mise
+  à \fbo{false}, le séparateur défini par |\CaptionSeparator| est remplacé par
+  le séparateur par défaut (deux-points) dans les légendes des figures et des
+  tables, ceci pour toutes les langues.  En français, \ext{babel-french} ajoute
+  si possible une espace insécable adéquate devant le deux-points ou affiche
+  un message dans le fichier \file{.log}.
+
+\item [OldFigTabcaptions=true (false)] peut être utilisée pour retrouver
+  la présentation antérieure (pré~3.0) des légendes de figures et tables,
+  c.-à-d. |\CaptionSeparator| en français et deux-points pour les autres
+  langues.  Cette option ne fonctionne que pour les classes standard
+  \cls{article}, \cls{report}, \cls{book} et rend inopérante l’option
+  \fbo{CustomiseFigTabcaptions}.
+
+\end{description}
+
+\subsubsection*{Divers : lettres supérieures et « warnings »}
+
+\begin{description}
+
+\item [FrenchSuperscripts=false (true)] ne devrait être utilisée que pour
+  recompiler des anciens fichiers à l’identique. Elle redéfinit |\up| comme
+  |\textsuperscript| alors que par défaut |\up| fait appel à la
+  commande |\fup| plus conforme aux usages francophones (voir
+  section~\ref{sec:description}, p.~\pageref{sec:description}.
+
+\item [LowercaseSuperscripts=false (true)] rend possible d’avoir des lettres
+  supérieures en capitales (est-ce bien utile ?).  Par défaut, la nouvelle
+  commande |\up| (sauf si elle est redéfinie en |\textsuperscript| par l’option
+  précédente) empêche le passage en capitales des lettres supérieures dans les
+  hauts de pages par exemple.
+
+\item [SuppressWarning=true (false)] peut être utilisée pour supprimer les
+  avertissements non essentiels émis par \ext{babel-french}.
+
+\end{description}
+\egroup
+
+\subsubsection*{Ordre des options}
+
+Il faut se souvenir que les options sont prises en compte dans l’ordre où
+elles sont écrites dans la commande \fbsetup{}.
+
+Exemple : un utilisateur souhaitant que \ext{babel-french} ne touche pas à la
+présentation des listes ni à celle des notes de bas de page
+mais ajoute un renfoncement au début des 1\iers{} paragraphes de section
+peut faire \fbsetup{StandardLayout,IndentFirst}.
+S’il choisissait l’ordre inverse
+l’option \fbo{IndentFirst} serait annulée par \fbo{StandardLayout}.
+
+Cet utilisateur obtiendrait également le résultat souhaité en codant\\
+\fbsetup{StandardLists,FrenchFootnotes=false,AutoSpaceFootnotes=false}\\
+là, l’ordre est indifférent car les options sont indépendantes.
+
+\subsection[Traduction des intitulés]
+    {Traduction des intitulés (« caption names » en anglais)}
+\label{ssec:captions}
+
+Voici la liste des traductions proposées par \ext{babel-french} :
+
+{\setcounter{LTchunksize}{30} % Pour réduire le nombre de compilations.
+\setlength{\LTleft}{0pt}      % Avec \extracolsep{\fill}, assure que le
+\setlength{\LTright}{0pt}     % tableau prend toute la largeur de page.
+\setlength{\LTpost}{\smallskipamount}
+\newcommand*\name[1]{%
+   \texttt{\ColorVerb\textbackslash#1name}%
+  &\texttt{\ColorVerb\textbackslash french#1name}}
+
+\begin{longtable}{|l!{\extracolsep{\fill}}l!{\extracolsep{\fill}}l|}
+\hline
+Commande Babel & Commande pour le français & Intitulé par défaut en français\\*
+\hline
+\name{abstract}   & Résumé\\*
+\name{bib}        & Bibliographie\\
+\name{ref}        & Références\\
+\name{preface}    & Préface\\
+\name{chapter}    & Chapitre\\
+\name{appendix}   & Annexe\\
+\name{contents}   & Table des matières\\
+\name{listfigure} & Table des figures\\
+\name{listtable}  & Liste des tableaux\\
+\name{index}      & Index\\
+\name{glossary}   & Glossaire\\
+\name{figure}     & {\scshape Figure}\\
+\name{table}      & {\scshape Table}\\
+\name{part}       & Première partie, Deuxième partie…\\
+\name{encl}       & P.~J.\\
+\name{cc}         & Copie à \\
+\name{headto}     & \meta{vide}\\
+\name{page}       & page\\
+\name{see}        & voir\\
+\name{also}       & voir aussi\\*
+\name{proof}      & Démonstration\\*
+\hline
+\end{longtable}
+}
+
+Il est facile de modifier ces traductions : pour remplacer « Démonstration »
+par « Preuve » (avec \ext{amsthm}) ajouter dans le préambule
+|\def\frenchproofname{Preuve}|%
+\footnote{Les puristes peuvent remplacer \cs{def} par \cs{renewcommand*}
+  s’ils le souhaitent.},
+noter que l’ancienne syntaxe |\addto\captionsfrench{\def\proofname{Preuve}}|
+fonctionne toujours.\hlabel{captionsfrench}
+
+{\sloppy
+\emph{Attention}, dans les deux cas, le nom de la langue est
+\emph{obligatoirement} \opt{french}, les variantes \opt{frenchb} ou
+\opt{francais} seraient sans effet ! Les commandes
+|\acadianabstractname|, …, |\acadianproofname| sont, elles, définies
+(comme leurs homologues françaises) et personnalisables pour le français du
+Canada (option \lang{acadian}).
+\par}
+
+La modification des noms de parties est plus complexe : si on préfère
+« Partie~I », « Partie~II » à « Première partie », « Deuxième partie »,
+il suffit de redéfinir |\frenchpartname| comme ceci
+|\def\frenchpartname{Partie}|\samefntmk{} ;
+utiliser l’option \fbo{FullPartName=false} dans \fbsetup{} aboutit au même
+résultat.
+Si en revanche on veut que |\part{}| produise par exemple « Première phase »,
+« Deuxième phase », il faut redéfinir |\frenchpartnameord| et non
+|\frenchpartname| : |\def\frenchpartnameord{phase}|\samefntmk.
+Le remplacement de « Deuxième » par « Seconde » est possible en codant
+|\def\frenchpartsecond{Seconde}|\samefntmk{} dans le préambule.
+De même il est possible de remplacer « Première » par « Premier » en codant
+|\def\frenchpartfirst{Premier}|\samefntmk.
+
+On remarquera que |\figurename| et |\tablename| sont en petites capitales en
+français. Il serait préférable, notamment dans un document multilingue, de
+s’en tenir à la traduction pure
+(|\def\frenchfigurename{Figure}|\samefntmk,
+|\def\frenchtablename{Table}|\samefntmk)
+et de choisir les attributs de la police
+(|\scshape| par exemple) au niveau de la classe ou d’une extension comme
+\ext{captions}. L’option \fbo{SmallCapsFigTabCaptions} (p.~\pageref{scfigtab})
+peut être mise à \fbo{false} pour supprimer le passage en petites capitales.
+
+\subsection{Présentation des listes}
+\label{ssec:lists}
+
+Voici la présentation par défaut%
+\footnote{L’option \fbo{ListItemsAsPar} permet une autre présentation, voir
+  ci-dessous p.~\pageref{ListAsPar}.}
+pour les listes \env{itemize} (tiret cadratin et alignement des tirets de
+premier niveau sur le retrait (|\parindent|) de début de paragraphe) :\par
+{\centering
+  \fbox{\begin{minipage}[t]{.40\textwidth}\raggedright
+          \FBListItemsAsParfalse \parindent=1.5em  \listindentFB=1.5em
+          \noindent\LEFTmargin{} Marge gauche\par
+          Paragraphe précédant la liste
+          \begin{itemize}
+            \item Premier élément sur plus d’une ligne…
+            \begin{itemize}
+              \item Un élément niveau 2,
+              \item Second élément niveau 2,
+            \end{itemize}
+            \item Second élément…
+          \end{itemize}
+        \end{minipage}}\par
+}
+
+Ceux qui préfèrent le tiret demi-cadratin (\textendash) comme marqueur peuvent
+ajouter l’option \fbsetup{ItemLabels=\boi{}textendash}, d’autres options
+existent voir section~\ref{ssec:frenchbsetup}.
+
+\ext{babel-french} applique aux listes \env{enumerate} et \env{description}
+les mêmes retraits horizontaux qu’aux listes \env{itemize}, tous sont donc
+basés sur la largeur du marqueur choisi, |\textemdash| par défaut,
+|\textendash|, ou autre.
+
+{\sloppy
+Trois paramètres dimensionnels permettent d’ajuster la présentation des
+listes \env{itemize}, \env{enumerate} et \env{description} :
+\begin{description}
+\item [\cs{listindentFB}] dont la valeur par défaut est
+  |\parindent| si |\parindent| est non nul et |1.5em| (valeur standard de
+  |\parindent|) sinon ; |\listindentFB| permet modifier la marge gauche du
+  premier niveau de liste (ce qui déplace aussi les listes incluses).
+
+  Exemple : en ajoutant |\setlength{\listindentFB}{0pt}| dans le préambule,
+  les étiquettes de toutes les listes de premier niveau colleront à la marge
+  gauche au lieu d’être décalées vers la droite.
+
+% Illustration de \parindent et \listindentFB
+\vspace{.5\baselineskip}
+\begin{minipage}[t]{.45\textwidth}
+\fbox{\begin{minipage}[t]{0.9\textwidth}\raggedright
+        \FBListItemsAsParfalse \parindent=0pt \listindentFB=1.5em
+        \noindent\LEFTmargin{} Marge gauche\par
+         Paragraphe précédant la liste
+         \begin{itemize}
+           \item Premier élément sur plus d’une ligne…
+           \begin{itemize}
+             \item Un élément niveau 2,
+             \item Second élément niveau 2,
+           \end{itemize}
+           \item Second élément…
+         \end{itemize}
+      \end{minipage}
+}\\
+\hspace*{\fill}|\parindent=0pt|\hspace*{\fill}%
+\end{minipage}
+\hspace{\fill}
+\begin{minipage}[t]{.5\textwidth}
+\hspace*{\fill}
+\fbox{\begin{minipage}[t]{.9\textwidth}\raggedright  % .72
+        \FBListItemsAsParfalse \parindent=0em  \listindentFB=0em
+        \noindent\LEFTmargin{} Marge gauche\par
+         Paragraphe précédant la liste
+         \begin{itemize}
+           \item Premier élément sur plus d’une ligne…
+           \begin{itemize}
+             \item Un élément niveau 2,
+             \item Second élément niveau 2,
+           \end{itemize}
+           \item Second élément…
+         \end{itemize}
+      \end{minipage}
+}\hspace*{\fill}\\
+\hspace*{\fill}|\parindent=0pt| \emph{et} |\listindentFB=0pt|\hspace*{\fill}%
+\end{minipage}
+
+\vspace{\baselineskip}
+\item [\cs{labelwidthFB}]  dont la valeur par défaut est la largeur de
+  |\FrenchLabelItem| (c.-à.d. |\textemdash| sauf changement décidé par
+  l’utilisateur) ; il est possible de fixer la valeur de |\labelwidthFB|
+  niveau par niveau, voir le second exemple ci-dessous.
+
+% Illustration de \labelwidthFB
+\bgroup
+\renewcommand*{\thempfootnote}{\arabic{mpfootnote}}
+\parindentFFN=4pt\relax
+\begin{minipage}[t]{.45\textwidth}
+\fbox{\begin{minipage}[t]{.9\textwidth}\raggedright
+        \FBListItemsAsParfalse \parindent=1.5em \listindentFB=1.5em
+        \noindent\LEFTmargin{} Marge gauche\par
+         Paragraphe précédant la liste
+         \begin{enumerate}
+           \item Premier élément sur plus d’une ligne…
+           \begin{enumerate}
+             \item Un élément niveau 2,
+             \item Second élément niveau 2,
+           \end{enumerate}
+           \item Second élément…
+         \end{enumerate}
+      \end{minipage}
+}\\
+\hspace*{\fill}Présentation par défaut%
+\footnote{Remarquer l’alignement vertical avec l’exemple ci-dessus.}
+\hspace*{\fill}
+\end{minipage}
+\hspace{\fill}
+\begin{minipage}[t]{.5\textwidth} % .45
+\stepcounter{mpfootnote}
+\hspace*{\fill}
+\fbox{\begin{minipage}[t]{0.9\textwidth}\raggedright
+        \FBListItemsAsParfalse \parindent=1.5em \listindentFB=1.5em
+        \noindent\LEFTmargin{} Marge gauche\par
+         Paragraphe précédant la liste
+         \begin{enumerate}
+           \item Premier élément sur plus d’une ligne…
+           \settowidth{\labelwidthFB}{(a)}%
+           \begin{enumerate}
+             \item Un élément niveau 2,
+             \item Second élément niveau 2,
+           \end{enumerate}
+           \item Second élément…
+         \end{enumerate}
+      \end{minipage}
+}\hspace*{\fill}\\
+\hspace*{\fill}|\settowidth{\labelwidthFB}{(a)}|%
+\footnote{Commande à placer juste avant le second environnement
+  \env{enumerate}.}%
+\hspace*{\fill}
+\end{minipage}
+\egroup
+
+\vspace{\baselineskip}
+\item [\cs{descindentFB}] dont la valeur par défaut est |\listindentFB| permet
+  de traiter les listes de type \env{description} différemment des autres :
+  pour que les étiquettes des seules listes \env{description} collent à la
+  marge gauche, il suffit d’ajouter dans le préambule
+  |\setlength{\descindentFB}{0pt}|.
+
+% Illustration de \parindent et \descindentFB
+\vspace{.5\baselineskip}
+\begin{minipage}[t]{.45\textwidth}
+\fbox{\begin{minipage}[t]{0.9\textwidth}\raggedright
+        \FBListItemsAsParfalse
+        \parindent=0pt \listindentFB=1.5em \descindentFB=1.5em
+        \noindent\LEFTmargin{} Marge gauche\par
+         Paragraphe précédant la liste
+         \begin{description}
+           \item [Premier] élément occupant plus d’une ligne…
+           \begin{itemize}
+             \item Un élément niveau 2,
+             \item Second élément niveau 2,
+           \end{itemize}
+           \item [Second] élément…
+         \end{description}
+      \end{minipage}
+}\\
+\hspace*{\fill}|\parindent=0pt|\hspace*{\fill}%
+\end{minipage}
+\hspace{\fill}
+\begin{minipage}[t]{.5\textwidth}
+\hspace*{\fill}
+\fbox{\begin{minipage}[t]{.9\textwidth}\raggedright  % .72
+        \FBListItemsAsParfalse
+        \parindent=0pt  \listindentFB=1.5em \descindentFB=0pt
+        \noindent\LEFTmargin{} Marge gauche\par
+         Paragraphe précédant la liste
+         \begin{description}
+           \item [Premier] élément occupant plus d’une ligne…
+           \begin{itemize}
+             \item Un élément niveau 2,
+             \item Second élément niveau 2,
+           \end{itemize}
+           \item [Second] élément…
+         \end{description}
+      \end{minipage}
+}\hspace*{\fill}\\
+\hspace*{\fill}|\parindent=0pt| \emph{et} |\descindentFB=0pt|\hspace*{\fill}%
+\end{minipage}
+\end{description}
+\par}
+
+\vspace{\baselineskip}
+L’option \fbo{ListItemsAsPar} propose une présentation plus conforme aux
+usages typographiques français, voir par exemple ce qui est fait dans le
+« Lexique des règles typographiques en usage à l’Imprimerie nationale ».
+\hlabel{ListAsPar}
+Les éléments des listes sont alors présentés comme des paragraphes, les
+marqueurs (tirets, etc.) étant placées en retrait de la marge gauche ;
+dans la présentation par défaut les étiquettes sont placées en saillie dans la
+marge gauche et celle-ci est augmentée comme le montre l’exemple ci-dessous.
+
+Noter que toute cette documentation a été compilée avec l’option
+\fbo{ListItemsAsPar} dont l’effet est bien visible dans les
+sections~\ref{sec:description} (listes \env{itemize}) et
+\ref{sec:Perso} (listes \env{description}).
+
+% Illustration de l’option \fbo{ListItemsAsPar}
+\vspace{.5\baselineskip}
+\begin{minipage}[t]{.45\textwidth}
+\fbox{\begin{minipage}[t]{0.9\textwidth}\raggedright
+        \FBListItemsAsParfalse \parindent=1.5em \listindentFB=1.5em
+        \noindent\LEFTmargin{} Marge gauche\par
+         Paragraphe précédant la liste et qui s’étend sur deux lignes.
+         \begin{itemize}
+           \item Premier élément  qui se prolonge sur plusieurs…
+           \begin{itemize}
+             \item Un élément niveau 2,
+             \item Second élément niveau 2 sur plus d’une ligne…
+           \end{itemize}
+           \item Second élément…
+         \end{itemize}
+      \end{minipage}
+}\\
+\hspace*{\fill}Présentation par défaut\hspace*{\fill}%
+\end{minipage}
+\hspace{\fill}
+\begin{minipage}[t]{.5\textwidth}
+\hspace*{\fill}
+\fbox{\begin{minipage}[t]{.9\textwidth}\raggedright  % .72
+        \FBListItemsAsPartrue \parindent=1.5em \listindentFB=1.5em
+        \noindent\LEFTmargin{} Marge gauche\par
+         Paragraphe précédant la liste et qui s’étend sur deux lignes.
+         \begin{itemize}
+           \item Premier élément qui se prolonge sur plusieurs lignes…
+           \begin{itemize}
+             \item Un élément niveau 2,
+             \item Second élément niveau 2 sur plus d’une ligne…
+           \end{itemize}
+           \item Second élément…
+         \end{itemize}
+      \end{minipage}
+}\hspace*{\fill}\\
+\hspace*{\fill}\fbo{ListItemsAsPar=true}\hspace*{\fill}%
+\end{minipage}
+
+\vspace{\baselineskip}
+Enfin, pour ceux qui voudraient bénéficier des facilités offertes par
+l’extension \ext{enumitem} et conserver une présentation des listes
+similaire à celle obtenue par défaut avec \ext{babel-french}, je propose
+les quelques lignes de code suivantes à copier-coller dans le
+préambule :\hlabel{enumitem-cfg}
+
+{%\small
+|\usepackage{enumitem}|\\
+|\newlength\mylabelwidth|\\
+|\newcommand*{\mylabel}{\textemdash}  % ou \textendash (tiret plus court)|\\
+|\settowidth{\mylabelwidth}{\mylabel}|\\
+|\setlist[itemize]{label=\mylabel, nosep}|\\ % nosep ou noitemsep
+|\setlist[1]{labelindent=\parindent}|\\
+|\setlist{labelwidth=\mylabelwidth, leftmargin=!,|\\
+|         itemsep=0.4ex plus 0.2ex minus 0.2ex,|\\ % enumitem ne redéfinit pas
+|         parsep=0.4ex plus 0.2ex minus 0.2ex,|\\  % \list, on peut s’en passer
+|         topsep=0.8ex plus 0.4ex minus 0.4ex,|\\  % sauf option StandardLists,
+|         partopsep=0.4ex plus 0.2ex minus 0.2ex}| % évidemment !
+}
+
+Pour une présentation correspondant à l’option \fbo{ListItemsAsPar=true} on
+aurait :
+
+{%\small
+|\usepackage{enumitem}|\\
+|\newlength\mylabelwidth|\\
+|\newlength\myitemindent|\\
+|\newcommand*{\mylabel}{\textemdash}  % ou \textendash (tiret plus court)|\\
+|\settowidth{\mylabelwidth}{\mylabel}|\\
+|\setlength{\myitemindent}{\parindent}|\\
+|\addtolength{\myitemindent}{\mylabelwidth}|\\
+|\addtolength{\myitemindent}{\labelsep}|\\
+|\setlist[itemize]{label=\mylabel, nosep}|\\
+|\setlist[1]{leftmargin=0pt}|\\
+|\setlist{leftmargin=\parindent, itemindent=\myitemindent,|\\
+|         itemsep=0.4ex plus 0.2ex minus 0.2ex,|\\ % enumitem ne redéfinit pas
+|         parsep=0.4ex plus 0.2ex minus 0.2ex,|\\  % \list, on peut s’en passer
+|         topsep=0.8ex plus 0.4ex minus 0.4ex,|\\  % sauf option StandardLists,
+|         partopsep=0.4ex plus 0.2ex minus 0.2ex}| % évidemment !
+}
+
+%\newpage
+\section{Changements entre les versions 3.5 et 2.6}
+\label{sec:changes-3.0}
+
+\subsection{Changements entre les versions \latestversion{} et 3.4d}
+\label{ssec:changes-3.5}
+
+La version 3.5a propose une nouvelle option \fbo{ListItemsAsPar} qui permet
+une présentation des listes plus conforme à la tradition typographique
+française, voir p.~\pageref{ListAsPar}. La présentation par défaut des listes
+est inchangée.
+
+Quelques bogues affectant la commande |\frquote{}| ont été corrigées dans les
+versions 3.5b à 3.5d. Cette dernière introduit une nouvelle option
+\fbo{StandardListSpacing} à utiliser à la place de \fbo{ReduceListSpacing},
+voir p.~\pageref{listspacing}. La présente documentation est maintenant
+incluse dans la distribution \ext{babel-french} sur CTAN.
+
+La commande |\NoEveryParQuote| a été ajoutée en version~3.5e, voir
+p.~\pageref{frquote}.
+
+La version 3.5g corrige une bogue ancienne affectant l’usage des polices
+type~1 avec Lua\-(La)TeX : tout crénage était supprimé pour ces polices depuis
+la version~3.1f (2015) ; les polices OpenType elles, n’ont jamais été affectées.
+
+La version 3.5j corrige aussi une bogue ancienne affectant les classes
+koma-script, \cls{memoir} et \cls{beamer} : les redéfinitions du séparateur
+des légendes de figures et tables (commandes |\captionformat|, |\captiondelim|,
+etc.) sont maintenant prises en compte correctement.
+
+À partir de la version 3.5k :
+\begin{itemize}
+  \item La traduction française de |\figurename| et |\tablename| ne
+    contient plus de commande de changement de fonte comme c’est la règle.
+    Le passage en petites capitales a été déplacé dans |\fnum@figure| et
+    |\fnum@table|, ce qui a pour effet de mettre le numéro également en
+    petites capitales. Noter que la classe \cls{beamer} ne reconnaît pas les
+    commandes |\fnum@...|, les légendes ne sont donc plus en petites
+    capitales.
+  \item Le chargement de \pkg{caption} peut se faire indiféremment avant ou
+    après celui de \pkg{babel}.
+  \item La commande |\pdfstringdefDisableCommands| n’est plus utilisée :
+    toutes les commandes nécessitant un traitement spécial dans les
+    signets \pkg{hyperref} sont maintenant définies à partir de
+    |\textorpdfstring{}{}| (suggestion de l’équipe LaTeX3).
+\end{itemize}
+
+\subsection{Changements entre les versions  3.4d et 3.3d}
+\label{ssec:changes-3.4}
+
+La version 3.4a introduit une nouvelle commande |\frenchdate| (voir
+p.~\pageref{frenchdate}) et corrige une bogue mineure : |\FBthousandsep| n’est
+plus une espace justifiante insécable mais une espace rigide (de même valeur).
+Le retour à l’ancien comportement est obtenu par l’ajout dans le préambule de
+|\renewcommand*{\FBthousandsep}{~}|.
+
+Les deux options \lang{french} et \lang{acadian} peuvent maintenant être
+utilisées simultanément dans un même document ; elles ne présentent par défaut
+aucune différence mais rien n’empêche de les personnaliser différemment
+en ce qui concerne les motifs de césures, les légendes ou la ponctuation.
+
+Une commande |\FBsetspaces| a été ajoutée pour faciliter le réglage des
+espaces précédant la ponctuation haute et les guillemets avec la possibilité
+de réglages différents selon l’option \lang{french} ou \lang{acadian}, voir
+p.~\pageref{FBsetspaces}.
+
+À partir de La version 3.4, eTeX et LuaTeX 1.0 sont requis.
+
+\subsection{Changements entre les versions 3.3d et 3.2h}
+\label{ssec:changes-3.3}
+
+Le contrôle de l’ajout d’espace devant le deux-points a été amélioré dans la
+version 3.3d mais uniquement avec le moteur LuaTeX : il n’y a plus d’ajout
+d’espace parasite dans les URL (http://monsite), les chemins MSDOS
+(C:\boi Mes Documents) ou les horaires (10:55).
+
+Lors de la conversion en HTML par \exe{lwarp} (versions 0.37 et suivantes)
+des fichiers compilés sous  XeLaTeX ou pdfLaTeX, les espaces insécables ajoutées
+par \ext{babel-french} pour la ponctuation haute et les guillemets sont
+respectées.
+Une nouvelle option (expérimentale) \fbo{UnicodeNoBreakSpaces} pour LuaLaTeX
+a été ajoutée dans la version~3.3c, voir~\pageref{ucs-nbsp}.
+
+{\sloppy
+La version 3.3b a subi un réaménagement interne : chaque langue ou dialecte de
+Babel devrait avoir son propre fichier \file{.ldf}.  Ainsi pour le français il
+y a dorénavant \file{french.ldf} qui contient le code principal et quatre
+fichiers satellites \file{frenchb.ldf}, \file{francais.ldf}, \file{acadian.ldf}
+et \file{canadien.ldf}. L’option à utiliser pour charger le français avec
+Babel est toujours \opt{french} (ou \opt{acadian} pour le français du Canada
+pour l’instant identique au français de base), les autres options (\opt{frenchb},
+\opt{francais} ou \opt{canadien}) sont déconseillées et affichent un message
+d’avertissement dans le fichier \file{.log}.\par
+}
+
+La version 3.3a disponible dans TeXLive 2017 est compatible avec LuaTeX 1.0.4
+(stable) mais aussi avec la version 0.95 (beta) de TL2016.
+L’espacement de la ponctuation haute et des guillemets français est maintenant
+contrôlé par les \emph{commandes} |\FBcolonspace|, |\FBthinspace| et
+|\FBguillspace| quel que soit le moteur utilisé (LuaTeX, XeTeX ou pdfTeX) ;
+auparavant LuaTeX avait recours à des \emph{glue} |\FBcolonskip|,
+|\FBthinskip| et |\FBguillskip|.
+
+L’option \opt{french} devant être préférée à \opt{frenchb}, il m’a semblé
+judicieux de renommer la commande de personnalisation |\frenchbsetup{}| en
+|\frenchsetup{}|, l’ancien nom étant conservé par souci de compatibilité.
+
+De nouvelles possibilités de personnalisation de la commande |\part{}| ont été
+introduites, voir page~\pageref{ssec:captions}.
+
+\subsection{Changements entre les versions 3.2h et 3.1m}
+\label{ssec:changes-3.2}
+
+La version 3.2g modifie le comportement par défaut de la commande |\frquote{}|
+sous LuaTeX qui est maintenant le même que sous XeTeX ou pdfTeX.
+Il suffit d’ajouter l’option \fbo{EveryLineGuill=open} pour retrouver le
+comportement des versions précédentes.
+
+Depuis la version 3.2f, \ext{babel-french} est compatible avec l’extension
+\ext{icomma} qui offre une solution alternative à la commande
+|\DecimalMathComma|.
+
+La construction des notes de bas de page a été revue pour les classes
+\cls{beamer}, \cls{memoir} et koma-script (\cls{scrartcl}, \cls{scrreprt}
+et \cls{scrbook}). Le rendu final est conservé mais les possibilités de
+personnalisation offertes par ces classes pour la présentation des notes de
+bas de page (changement de police, de couleur, etc.) sont désormais
+disponibles même lorsque l’option \fbo{FrenchFootnotes} est activée.
+
+Un vieux bug affectant le comportement de |\frquote{}| lorsque l’extension
+\ext{xspace} est chargée, a été corrigé.
+
+Les commandes |\NoAutoSpacing|, |\ttfamilyFB|, |\rmfamilyFB| et |\sffamilyFB|
+ont été complètement réécrites dans la version~3.2c afin de leur assurer un
+comportement identique quel que soit le moteur utilisé, pdfTeX, XeTeX ou
+LuaTeX.
+
+\textbf{{babel-french} v.3.2b et suivantes, mise en garde pour les
+  utilisateurs de Lua(La)TeX :}
+\nopagebreak
+La version~3.2b est la première compatible avec la version~0.95 de LuaTeX
+incluse dans TeXLive~2016. Les changements intervenus dans la structure des
+nœuds de type \textit{glue} rendent cette nouvelle version de LuaTeX
+incompatible avec les précédentes. Le code lua contenu dans les versions 3.2b
+et suivantes de \file{frenchb.lua} ne fonctionne pas avec les versions de
+LuaTeX antérieures à 0.95, aussi à partir de la version~3.2b \ext{babel-french}
+revient aux caractères actifs pour la gestion de la ponctuation haute avec les
+moteurs LuaTeX antérieurs à 0.95 !
+La bonne solution consiste à installer rapidement TeXLive~2016 ou une autre
+distribution contenant LuaTeX~0.95.
+En revanche il n’y a aucun problème de compatibilité ascendante avec les
+moteurs XeTeX et pdfTeX.
+
+\subsection{Changements entre les versions  3.1m et 3.0c}
+\label{ssec:changes-3.1}
+
+{\sloppy
+  Ajout de la commande |\frquote{}| et de sa variante |\frquote*{}|
+  recommandées pour saisir les citations, notamment les citations imbriquées
+  ou celles s’étendant sur plusieurs paragraphes, voir p.~\pageref{frquote}
+  et les nouvelles options \fbo{EveryParGuill}, \fbo{EveryLineGuill} et
+  \fbo{InnerGuillSingle}.
+\par}
+
+Nouvelle option \fbo{SmallCapsFigTabCaptions}, voir p.~\pageref{scfigtab}.
+
+\subsection{Changements entre les versions 3.0c et 2.6h}
+\label{ssec:changes-3.0}
+
+Plusieurs modifications de fond ont motivé le passage à la version~3.0.
+
+\begin{itemize}
+
+\item \ext{babel-french} ne fonctionne désormais qu’avec la version~3.9
+  de Babel ce qui donne accès à une syntaxe plus agréable pour modifier les
+  \textit{captions}, voir p.~\pageref{captionsfrench}.
+  Le séparateur utilisé dans les légendes de figures et de tableaux est
+  choisi de manière globale pour toutes les langues, voir
+  p.~\pageref{captionseparator}.
+
+\item La gestion des options par \fbsetup{} a été complètement remaniée ; deux
+  nouvelles options ont été ajoutées.
+
+\item La variante « canadien » du français fonctionne désormais comme un vrai
+  \textit{dialect} au sens de Babel ; parallèlement le français ne devrait
+  plus être désigné que sous le nom \opt{french}, à la fois en option de
+  |\usepackage[...]{babel}|%
+  \footnote{Le mieux est encore de mettre toutes les déclarations de langues
+    en option de \cs{documentclass}.}
+  et en argument de |\selectlanguage{}| et consorts.
+  Les variantes \opt{frenchb} et \opt{francais} sont encore tolérées mais
+  sans aucune garantie de pérennité.
+
+\item \ext{babel-french} ne charge plus le fichier \file{frenchb.cfg} ; la
+  personnalisation passe par l’utilisation exclusive de \fbsetup{}.
+
+\item Les étiquettes des listes \env{description} sont positionnées comme
+  celles des listes \env{itemize} et \env{enumerate} avec un retrait
+  paramétrable |\listindentFB| par rapport à la marge gauche.
+
+\item Enfin et c’est probablement le plus important, le recours aux
+  caractères actifs est supprimé pour la gestion de la ponctuation haute
+  lorsqu’un format basé sur LuaTeX%
+  \footnote{C’est déjà le cas pour XeTeX depuis la version~2.5 de
+    \ext{babel-french}.}
+  est utilisé (LuaLaTeX par exemple).
+  Le mécanisme des caractères actifs est remplacé par un appel aux
+  \textit{callbacks} |pre_linebreak_filter| et |hpack_filter|%
+  \footnote{Depuis la version 3.1g c’est le\textit{callbacks} \texttt{kerning}
+    qui est mis en œuvre à la place.}.
+
+  La base du code |lua| se trouve dans l’exposé de Paul Isambert
+  à la journée GUT’2010. Un grand merci à Paul pour cette source d’inspiration
+  et pour ses suggestions lors de la relecture finale de \file{frenchb.lua}.
+
+\end{itemize}
+
+À partir de la version 3.0c, \ext{babel-french} laisse le contrôle total des
+listes à la classe \cls{beamer} (option \fbo{StandardLists} automatiquement
+activée) ; nouvelle option \fbo{INGuillSpace} (voir p.~\pageref{INGuillspace}).
+
+\subsection{Comment recompiler un document écrit pour
+                {babel-french}~2.x ?}
+\label{ssec:compat-2.6}
+
+Penser d’abord à remplacer \opt{frenchb} et \opt{francais} par \opt{french}
+dans les options de Babel et dans |\selectlanguage{...}|,
+|\begin{otherlanguage}{...}|, |\foreignlanguage{...}|.
+Une exception toutefois : les classes SMF (\cls{smfart} et \cls{smfbook}) ne
+fonctionnent qu’avec l’option \opt{frenchb}… vieux reliquat d’un passé
+lointain où l’option \opt{french} de babel était ambiguë (ambiguïté levée depuis
+2004).
+
+Ajouter l’option \fbo{OldFigTabCaptions} à \fbsetup{} si on tient à avoir
+deux séparateurs différents pour les légendes de figures et de tableaux,
+|\CaptionSeparator| en français et deux-points pour les autres langues.
+
+Ajouter |\listindentFB=0pt| juste avant les environnements \env{description}
+si on souhaite que les étiquettes de ces environnements collent à la marge
+gauche au premier niveau.
+
+\section{Problèmes de césures}
+\label{sec:cesures}
+
+Pour vérifier que votre format LaTeX fonctionne correctement au niveau des
+césures, au moins en français et en anglais, téléchargez le fichier de test
+\expandafter\expandafter\expandafter\url{\urlperso/frenchb/frenchb-cesures.tex}
+et suivez les instructions figurant en début de fichier.
+
+Si les résultats du test ne sont pas corrects, vérifiez tout au début du
+fichier \file{.log} dans la ligne commençant par le mot « Babel », si
+« french » figure bien dans la liste des langues disponibles.
+
+Si ce n’est pas le cas, installez le paquet appelé « collection-langfrench »
+(TeXLive, MacTeX) ou « texlive-lang-french » (distributions Linux) ou
+similaire. Si vous travaillez avec « tlmgr », les formats sont refaits
+automatiquement, sinon il faut les faire à la main (la procédure dépend de
+votre installation).
+
+Recompilez le fichier \file{frenchb-cesures.tex}, les résultats devraient
+être corrects, contactez-moi par courriel si ce n’était pas le cas.
+
+\section{Problèmes avec les quatre caractères actifs
+           (\string; \string: \string! \string?)}
+\label{sec:active-char}
+
+Rappelons d’abord que ces quatre caractères \emph{ne sont pas rendus actifs}
+avec les moteurs LuaTeX  ou XeTeX, donc aucun problème n’est à craindre
+avec ces moteurs%
+\footnote{N’est-ce pas une bonne raison d’abandonner pdf(La)TeX ?},
+cette section ne concerne \emph{que les vieux moteurs} TeX’82 et pdfTeX.
+
+Normalement, le nécessaire est fait par Babel pour que les caractères rendus
+actifs ne perturbent pas les autres extensions… mais il y a hélas des
+exceptions (\ext{tikz}, \ext{xypic}, \ext{xcolor}, \ext{autonum}, \ext{arabtex},
+\ext{cleveref} par exemple).  Il faut savoir que les caractères
+rendus actifs par une langue \emph{le restent dans tout le document}, repasser
+en anglais par exemple ne désactive pas les \string; \string: \string!
+\string?  s’ils ont été rendus actifs par \ext{babel-french} !
+
+Les espaces insécables ajoutés entre les guillemets peuvent également être
+gênants.
+
+Depuis la version~2.5, la commande à utiliser en cas de problème est
+|\NoAutoSpacing|%
+\footnote{Elle fonctionne avec tous les formats pdf(La)TeX, Lua(La)TeX
+    et Xe(La)TeX mais ne règle pas tous les problèmes de caractères actifs,
+    notamment dans les \texttt{\boi{}label} et autres \texttt{\boi{}caption},
+    voir la section~\ref{sec:Incomp} à ce sujet.
+.}
+\emph{dans un groupe} comme ceci :
+
+|{\NoAutoSpacing|\\
+  \textit{Partie ne supportant pas les caractères actifs}\\
+|}|
+
+ou à l’intérieur d’un environnement, par exemple
+
+|\begin{tikzpicture}\NoAutoSpacing|\\
+| ... |\\
+|\end{tikzpicture}|
+
+Avec \ext{tikz} v3.0, une solution alternative consiste à ajouter
+|\usetikzlibrary{babel}| dans le préambule, voir la documentation de TikZ
+(\file{pgfmanual.pdf}). L’avantage de cette solution est de tenter de préserver
+les caractères actifs dans les nœuds même si ça ne fonctionne pas toujours,
+notamment pour le point d’exclamation.
+
+Avec pdf(La)TeX, il est également possible de désactiver un seul ou plusieurs
+caractères actifs de manière sélective grâce à la commande |\shorthandoff| de
+Babel. Le mieux est de le faire \emph{localement} dans un environnement ou
+dans un groupe comme ceci :
+
+|{\shorthandoff{:!}%|\\
+  \textit{Partie ne supportant pas les caractères actifs `:’ et `!’}\\
+|}|
+
+\section{Incompatibilités connues et remèdes}
+\label{sec:Incomp}
+
+La liste suivante ne prétend pas être exhaustive, n’hésitez pas à me signaler
+les incompatibilités que vous rencontrez afin qu’elles puissent figurer dans
+cette liste.
+
+\begin{itemize}
+
+\item Les caractères rendus actifs par \ext{babel-french}%
+  \footnote{Ceci ne concerne ni Xe(La)TeX ni Lua(La)TeX qui gèrent autrement
+    la ponctuation haute.}
+  (\string; \string: \string!  \string?) peuvent perturber certaines
+  extensions, c’est le cas de \ext{tikz}, \ext{xypic}, \ext{xcolor},
+  \ext{arabtex}, \ext{cleveref} par exemple, voir comment y remédier
+  section~\ref{sec:active-char}.
+
+  En règle générale, il vaudrait mieux éviter les caractères actifs dans les
+  |\label| et |\caption|, remplacer systématiquement les « \string: » par des
+  tirets « - » dans les |\label| est une saine précaution.  Pour éviter les
+  problèmes de caractères actifs avec \ext{natbib} ou \ext{listings}, il
+  convient de charger \ext{natbib} \emph{avant} \ext{babel} et \ext{listings}
+  \emph{après} \ext{babel}.\hlabel{ch-doc3}
+  Un message est affiché dans le fichier \file{.log} lorsque l’ordre de
+  chargement n’est pas correct.
+
+  \ext{hyperref} ne fonctionne pas avec la commande |\cite| standard lorsque
+  celle-ci contient un caractère actif, charger l’extension \ext{cite} règle
+  le problème.
+
+\item En LaTeX, les caractères \string; \string: \string! \string? ne sont
+  rendus actifs
+  qu’au |\begin{document}|, ainsi les espaces attendues ne sont pas
+  ajoutées automatiquement lorsque ces caractères sont utilisés dans des
+  commandes définies dans le préambule ou dans des fichiers~\file{.sty}.\\
+  Exemple : la commande |\title{Quelle crise?}| placée dans le
+  préambule imprimera « Quelle crise\string? » (sans espace)%
+  \footnote{Mais l’espace sera préservée si on compile en LuaLaTeX ou
+    en XeLaTeX puisque le mécanisme est différent.}
+  lors de l’appel de |\maketitle|. Il y a plusieurs parades :
+  \begin{itemize}
+  \item soit placer la commande |\title{Quelle crise?}| après le
+    |\begin{document}| (et avant |\maketitle|),
+  \item soit placer les commandes du type |\title| entre un
+    |\shorthandon{;:!?}| (avant) et un |\shorthandoff{;:!?}|
+    (après), si on tient à les laisser dans le préambule.
+  \end{itemize}
+
+\item Les extensions \ext{caption}, \ext{subcaption}, \ext{floatrow}
+  doivent impérativement être chargées \emph{après} \ext{babel}.
+  En revanche \ext{beameraticle} doit être chargée \emph{avant} \ext{babel}.
+
+  À chaque fois que le bon ordre de chargement
+  n’est pas respecté, un avertissement le signale dans le fichier \file{.log}.
+
+\item \ext{babel-french} modifie la présentation des listes ce qui peut
+  perturber les classes ou extensions qui veulent également le faire.
+  \ext{babel-french} s’efface automatiquement lorsqu’une des extensions
+  \ext{enumitem}, \ext{enumerate} ou \ext{paralist} est chargée. Pour les
+  autres, ou si on veut soi-même agir sur la présentation des listes, il
+  convient de débrayer l’action de \ext{babel-french} en utilisant la commande
+  \fbsetup{} avec les options adéquates (cf. section~\ref{ssec:frenchbsetup})
+  dans le préambule du document (après le chargement de Babel).
+
+{\sloppy
+\item Certaines classes (\cls{amsbook}, \cls{smfbook},
+  \cls{beamer}, etc.) redéfinissent |\part|, ce qui peut conduire à
+  des titres du genre « Première partie~I ». La parade consiste à ajouter
+  l’option \fbo{PartNameFull=false} dans \fbsetup{}.
+\par}
+
+\item L’option \opt{multiple} de l’extension \ext{footmisc} insère normalement
+  une virgule entre les appels de notes multiples.  Pour que ce mécanisme
+  fonctionne avec \ext{babel-french} il faut ajouter l’option
+  \fbsetup{AutoSpaceFootnotes=false}, sinon \ext{babel-french} remplace la
+  virgule par une espace fine.
+
+\item Dans une commande |\index{}|, les guillemets français doivent
+  obligatoirement être codés sous la forme |\og|, |\fg| :
+  \hlabel{ch-doc4}
+  |\index{\og toto\fg}| donne le résultat attendu, tandis que
+  |\index{«toto»}| provoque soit une erreur à la compilation (en LaTeX),
+  soit un mauvais classement de l’entrée |«toto»| dans l’index (en
+  XeLaTeX et LuaLaTeX).
+\end{itemize}
+
+\section{Bibliographie}
+\label{sec:biblio}
+
+Ce qui suit ne concerne \emph{pas} les bibliographies faites « à la main »
+dans l’environnement \env{thebibliography}, mais celles créées à partir d’un
+ou plusieurs fichiers~\file{.bib} avec \BibTeX{} ou mieux avec
+\biblatex/\biber{}.
+
+\vspace{-.5\baselineskip}
+\subsection{Bibliographie avec \texorpdfstring{\BibTeX}{BibTeX}}
+\label{ssec:bibtex}
+
+\BibTeX{} est obsolète, je conseille \emph{vraiment} de passer
+à \biblatex/\biber{} (voir section suivante).
+Néanmoins, voici quelques indications concernant la francisation des
+bibliographies créées avec \BibTeX{} :
+
+Certains champs (les dates notamment) et certains mots-clés figurant dans les
+fichiers~\file{.bib} (les «\emph{and}» des listes d’auteurs par exemple)
+devraient pouvoir être affichés différemment selon le contexte (les
+«\emph{and}» du fichier~\file{.bib} devraient pouvoir être transcrits en
+«\emph{et}» dans le fichier~\file{.bbl} pour les références en français).
+Babel n’opère pas au niveau \BibTeX, il faut donc agir
+directement au niveau des bases de données~\file{.bib} et des fichiers de
+style~\file{.bst}.
+
+\begin{description}
+
+\item [Fichiers~\file{.bib}] : s’assurer que chaque référence des bases de
+  données \file{.bib} utilisées comporte un champ « \code{language =
+    \{...\}} » définissant la langue d’origine de la référence.
+
+\item [Fichiers~\file{.bst}] : pour remplacer les styles standard
+  \bibsty{alpha}, \bibsty{plain}, \bibsty{unsrt}, faire appel à l’extension
+  \bibsty{babelbib} et aux styles \bibsty{babalpha}, \bibsty{babplain},
+  \bibsty{babunsrt} (voir la documentation \file{babelbib.pdf} et le fichier
+  d’exemples \file{babelbibtest.tex}). Selon les options, il est possible
+  d’afficher chaque référence dans sa langue ou bien de les afficher toutes
+  dans la langue principale du document%
+  \footnote{Les styles francisés \file{*-fr.bst} qu’on trouve sur CTAN dans
+    \url{tex-archive/biblio/bibtex/contrib/bib-fr} n’offrent que
+         la seconde possibilité (références toutes en français).}.
+
+  Ceux qui font appel à un style de bibliographie sur mesure créé à partir de
+  \file{custom-bib} devront choisir l’option \opt{babel} lors de la
+  création du fichier \file{.bst} et ensuite adapter le fichier
+  \file{babelbst.tex} aux langues utilisées.
+
+\end{description}
+
+\subsection{Bibliographie avec \biblatex/\biber}
+\label{ssec:biblatex}
+
+La solution \biblatex/\biber{} présente des nombreux avantages par rapport
+à \BibTeX{} :
+\begin{itemize}
+
+\item \biblatex{} prend en compte les options de Babel, les «\emph{and}» des
+  listes d’auteurs sont transcrits automatiquement en «\emph{et}» dans un
+  document en français ;
+
+\item \biblatex{}, associé à \biber{}, permet le traitement des fichiers
+  ~\file{.bib} codés en UTF-8 ce qui facilite grandement la coexistence
+  de références à des ouvrages en français, en russe et en grec par exemple ;
+
+\item \biblatex{} possède des options qui remplacent de nombreuses extensions
+  spécifiques telles que \ext{bibtopic}, \ext{bibunits}, \ext{chapterbib},
+  \ext{cite}, \ext{multibib}, \ext{natbib}, etc.
+
+\end{itemize}
+
+Pour la mise en œuvre pratique de \biblatex/\biber{}, consulter le manuel
+\textit{\LaTeX, l’essentiel} de \bsc{D.~Bitouzé} et \bsc{J.-C.~Charpentier} ou
+la documentation en anglais \file{biblatex.pdf}.
+
+\section[Compatibilité avec e-french]
+        {Compatibilité avec \ext{e-french}}
+\label{sec:CompatFP}
+
+Il est souhaitable qu’un texte saisi avec
+\ext{e-french} de Bernard~\bsc{Gaulle} puisse être compilé avec un
+minimum de modifications sur une machine utilisant \ext{babel-french}
+et réciproquement.
+
+En ce qui concerne les guillemets français, \ext{e-french} rend actifs les
+caractères |<| et |>| afin de saisir les guillemets sous la forme |<||<| et
+|>||>| tandis que \ext{babel-french} s’y refuse et utilise en interne des
+macros |\og| et |\fg|.
+
+Lorsqu’on travaille en codage~\texttt{T1} avec \ext{babel-french}, l’existence
+des ligatures~|<||<| et~|>||>| permet de saisir
+|<||<~|\code{guillemets français}|~>||>|,
+mais les espaces insécables sont \emph{indispensables}.
+Les commandes |\og| et |\fg| (ou leurs alias \fbo{«} et \fbo{»}, à condition
+que ceux-ci aient été activés dans \fbsetup{}) sont préférables : elles
+introduisent automatiquement des espaces insécables et plus fines pour un
+meilleur rendu typographique.
+
+Les points de suspensions sont saisis |...| avec
+\ext{e-french} et |\dots| avec \ext{babel-french}.
+
+Les commandes suivantes peuvent être ajoutées au préambule pour
+émuler certaines commandes de \ext{e-french} :
+\begin{verbatim}
+\let\numero=\no
+\let\Numero=\No
+\let\fsc=\bsc
+\let\lsc=\bsc
+\newcommand*{\french}{\leavevmode\selectlanguage{french}}
+\newcommand*{\english}{\leavevmode\selectlanguage{english}}
+\newcommand*{\AllTeX}{%
+    (L\kern-.36em\raise.3ex\hbox{\sc a}\kern-.15em)%
+     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}
+\end{verbatim}
+
+Pour ceux qui éditent leurs sources LaTeX avec emacs, une fonction Lisp
+\file{french2b} opère une adaptation \emph{partielle} d’un fichier conçu pour
+\ext{e-french} facilitant sa compilation avec \ext{babel-french}.  L’appel
+à \ext{e-french} est remplacé en un appel à \ext{babel-french}, les guillemets
+|<<| et |>>| sont convertis en |\og| et |\fg| et les |...| en |\dots|, enfin
+quelques commandes spécifiques à \ext{e-french} sont ajoutées dans le
+préambule.
+
+Cette fonction est disponible sur
+\expandafter\expandafter\expandafter\url{\urlperso/frenchb/french2b.el}.
+Il suffit de l’ajouter à un fichier \file{.emacs} et de l’exécuter par
+|Esc x french2b| sur le fichier à convertir.
+
+\nopagebreak
+\vspace{2\baselineskip}
+\nopagebreak
+\hspace*{\fill}%
+\begin{minipage}[b]{.5\linewidth}
+   \raggedleft
+   \href{mailto:daniel.flipo@free.fr}{Daniel \textsc{Flipo}}\\
+   \expandafter\expandafter\expandafter\url{\urlperso}
+\end{minipage}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: t
+%%% coding: utf-8
+%%% TeX-source-correlate-mode: t
+%%% mode: flyspell
+%%% ispell-local-dictionary: "francais"
+%%% End:

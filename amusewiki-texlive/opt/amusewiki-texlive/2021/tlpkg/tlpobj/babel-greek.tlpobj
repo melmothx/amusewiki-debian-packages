@@ -1,0 +1,39 @@
+name babel-greek
+category Package
+revision 56904
+shortdesc Babel support for documents written in Greek
+longdesc The file provides modes for monotonic (single-diacritic) and
+longdesc polytonic (multiple-diacritic) modes of writing. Provision is
+longdesc made for Greek function names in mathematics, and for
+longdesc classical-era symbols.
+containersize 5996
+containerchecksum 6b0ab839f2e8a9562c8292fe8f7661a73148754ed816088be25d06537a58ba95ac34d9440bc4f3f35c3b720188b261b432887f9867ff94b51261076f9d8e0160
+doccontainersize 1190328
+doccontainerchecksum 965dc1293a90ed4f7c777d32887186febf28f7a174a00af26c19720493605291d1b17a5790b5541547f9265d8a1a3d102d9a4fae79aba43780c384b7385e06b3
+docfiles size=325
+ texmf-dist/doc/generic/babel-greek/README details="Readme"
+ texmf-dist/doc/generic/babel-greek/README.html details="Readme (HTML)"
+ texmf-dist/doc/generic/babel-greek/athnum.pdf
+ texmf-dist/doc/generic/babel-greek/babel-greek.pdf details="Documentation"
+ texmf-dist/doc/generic/babel-greek/grmath.pdf details="Maths documentation"
+ texmf-dist/doc/generic/babel-greek/test-8bit-greek.pdf
+ texmf-dist/doc/generic/babel-greek/test-8bit-greek.tex
+ texmf-dist/doc/generic/babel-greek/test-greek-lgr.pdf
+ texmf-dist/doc/generic/babel-greek/test-greek-tu.pdf
+ texmf-dist/doc/generic/babel-greek/test-greek.tex
+ texmf-dist/doc/generic/babel-greek/test-greeknumeral.pdf
+ texmf-dist/doc/generic/babel-greek/test-greeknumeral.tex
+ texmf-dist/doc/generic/babel-greek/test-tu-lgr.pdf
+ texmf-dist/doc/generic/babel-greek/test-tu-lgr.tex
+ texmf-dist/doc/generic/babel-greek/usage.pdf details="Usage documentation"
+ texmf-dist/doc/generic/babel-greek/usage.tex
+srccontainersize 21012
+srccontainerchecksum 907493b19b16ed7a0c6377864a4b8266732065e2330c746d118dfec14a6a4976115eb48bd6b4286ce48cf6823e30fd3c9f06551aba2f52ef4a8ccfaf3f800810
+runfiles size=8
+ texmf-dist/tex/generic/babel-greek/athnum.sty
+ texmf-dist/tex/generic/babel-greek/greek.ldf
+ texmf-dist/tex/generic/babel-greek/grmath.sty
+catalogue-ctan /macros/latex/contrib/babel-contrib/greek
+catalogue-license lppl1.3
+catalogue-topics greek multilingual-addon
+catalogue-version 1.10

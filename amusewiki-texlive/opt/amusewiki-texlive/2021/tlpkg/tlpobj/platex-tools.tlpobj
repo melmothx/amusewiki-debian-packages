@@ -1,0 +1,53 @@
+name platex-tools
+category Package
+revision 61272
+shortdesc pLaTeX standard tools bundle
+longdesc This bundle is an extended version of the latex-tools bundle
+longdesc developed by the LaTeX team, mainly intended to support
+longdesc pLaTeX2e and upLaTeX2e. Currently patches for the latex-tools
+longdesc bundle and Martin Schroder's ms bundle are included.
+containersize 8252
+containerchecksum 95e04f312f5cd98a6cb06225a81f1538f14f1701a490b8a437a04016714d56e6d208eef2cdb768f539ae2b867f724d78853701831cb9f396d69b9281dc4140c9
+doccontainersize 575052
+doccontainerchecksum 77476461eebb930f3e9227eea9f277fdb50486e7b4d9e4a9d424714e2d902044607466e0d7e4c839abb245f7b17e020a1719ec5f085f1858f046033142cc8403
+docfiles size=163
+ texmf-dist/doc/latex/platex-tools/LICENSE
+ texmf-dist/doc/latex/platex-tools/README.md details="Readme"
+ texmf-dist/doc/latex/platex-tools/plarray.pdf details="Documentation of the plarray package" language="ja"
+ texmf-dist/doc/latex/platex-tools/plarray.tex
+ texmf-dist/doc/latex/platex-tools/pldocverb.pdf
+ texmf-dist/doc/latex/platex-tools/pldocverb.tex
+ texmf-dist/doc/latex/platex-tools/plextarray.pdf details="Documentation of the plextarray package" language="ja"
+ texmf-dist/doc/latex/platex-tools/plextarray.tex
+ texmf-dist/doc/latex/platex-tools/plextcolortbl.pdf
+ texmf-dist/doc/latex/platex-tools/plextcolortbl.tex
+ texmf-dist/doc/latex/platex-tools/plextdelarray.pdf details="Documentation of the plextdelarray package" language="ja"
+ texmf-dist/doc/latex/platex-tools/plextdelarray.tex
+ texmf-dist/doc/latex/platex-tools/pxatbegshi.pdf details="Documentation of the pxatbegshi package" language="ja"
+ texmf-dist/doc/latex/platex-tools/pxatbegshi.tex
+ texmf-dist/doc/latex/platex-tools/pxeverysel.pdf details="Documentation of the pxeverysel package" language="ja"
+ texmf-dist/doc/latex/platex-tools/pxeverysel.tex
+ texmf-dist/doc/latex/platex-tools/pxeveryshi.pdf details="Documentation of the pxeveryshi package" language="ja"
+ texmf-dist/doc/latex/platex-tools/pxeveryshi.tex
+ texmf-dist/doc/latex/platex-tools/pxftnright.pdf details="Documentation of the pxftnright package" language="ja"
+ texmf-dist/doc/latex/platex-tools/pxftnright.tex
+ texmf-dist/doc/latex/platex-tools/pxmulticol.pdf details="Documentation of the pxxspace package" language="ja"
+ texmf-dist/doc/latex/platex-tools/pxmulticol.tex
+ texmf-dist/doc/latex/platex-tools/pxxspace.pdf details="Documentation of the pxmulticol package" language="ja"
+ texmf-dist/doc/latex/platex-tools/pxxspace.tex
+runfiles size=13
+ texmf-dist/tex/latex/platex-tools/plarray.sty
+ texmf-dist/tex/latex/platex-tools/pldocverb.sty
+ texmf-dist/tex/latex/platex-tools/plextarray.sty
+ texmf-dist/tex/latex/platex-tools/plextcolortbl.sty
+ texmf-dist/tex/latex/platex-tools/plextdelarray.sty
+ texmf-dist/tex/latex/platex-tools/pxatbegshi.sty
+ texmf-dist/tex/latex/platex-tools/pxeverysel.sty
+ texmf-dist/tex/latex/platex-tools/pxeveryshi.sty
+ texmf-dist/tex/latex/platex-tools/pxftnright.sty
+ texmf-dist/tex/latex/platex-tools/pxmulticol.sty
+ texmf-dist/tex/latex/platex-tools/pxxspace.sty
+catalogue-contact-repository https://github.com/aminophen/platex-tools
+catalogue-ctan /language/japanese/platex-tools
+catalogue-license bsd3
+catalogue-topics japanese collection

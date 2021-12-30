@@ -1,0 +1,12 @@
+This is the README file of the cns40-3.tar.gz package. 
+
+It contains a CNS plane 3 encoded Chinese bitmap (song style) file together
+with its HBF header file, an hbf2gf configuration file and .tfm files to be
+used with the CJK package for LaTeX2e.
+
+The package follows the TDS directory structure.
+
+Please read the documentation (especially the INSTALL file) of CJK for
+further details.
+
+---End of README---

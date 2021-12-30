@@ -1,0 +1,108 @@
+\ProvidesFile{tis620.def}
+   [2011/03/16 v1.0 Thai TIS-620 input encoding file]
+% tis620 input encoding file by Theppitak Karoonboonyanan
+%
+% Copyright 2011 Theppitak Karoonboonyanan. All rights reserved.
+%
+% It may be distributed and/or modified under the conditions of the
+% LaTeX Project Public License, either version 1.3 of this license or
+% (at your option) any later version.
+%
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status "maintained".
+% 
+% The Current Maintainer of this work is Theppitak Karoonboonyanan.
+% 
+
+\DeclareInputText{161}{\thaiKoKai}
+\DeclareInputText{162}{\thaiKhoKhai}
+\DeclareInputText{163}{\thaiKhoKhuat}
+\DeclareInputText{164}{\thaiKhoKhwai}
+\DeclareInputText{165}{\thaiKhoKhon}
+\DeclareInputText{166}{\thaiKhoRakhang}
+\DeclareInputText{167}{\thaiNgoNgu}
+\DeclareInputText{168}{\thaiChoChan}
+\DeclareInputText{169}{\thaiChoChing}
+\DeclareInputText{170}{\thaiChoChang}
+\DeclareInputText{171}{\thaiSoSo}
+\DeclareInputText{172}{\thaiChoChoe}
+\DeclareInputText{173}{\thaiYoYing}
+\DeclareInputText{174}{\thaiDoChada}
+\DeclareInputText{175}{\thaiToPatak}
+\DeclareInputText{176}{\thaiThoThan}
+\DeclareInputText{177}{\thaiThoNangmontho}
+\DeclareInputText{178}{\thaiThoPhuthao}
+\DeclareInputText{179}{\thaiNoNen}
+\DeclareInputText{180}{\thaiDoDek}
+\DeclareInputText{181}{\thaiToTao}
+\DeclareInputText{182}{\thaiThoThung}
+\DeclareInputText{183}{\thaiThoThahan}
+\DeclareInputText{184}{\thaiThoThong}
+\DeclareInputText{185}{\thaiNoNu}
+\DeclareInputText{186}{\thaiBoBaimai}
+\DeclareInputText{187}{\thaiPoPla}
+\DeclareInputText{188}{\thaiPhoPhung}
+\DeclareInputText{189}{\thaiFoFa}
+\DeclareInputText{190}{\thaiPhoPhan}
+\DeclareInputText{191}{\thaiFoFan}
+\DeclareInputText{192}{\thaiPhoSamphao}
+\DeclareInputText{193}{\thaiMoMa}
+\DeclareInputText{194}{\thaiYoYak}
+\DeclareInputText{195}{\thaiRoRua}
+\DeclareInputText{196}{\thaiRu}
+\DeclareInputText{197}{\thaiLoLing}
+\DeclareInputText{198}{\thaiLu}
+\DeclareInputText{199}{\thaiWoWaen}
+\DeclareInputText{200}{\thaiSoSala}
+\DeclareInputText{201}{\thaiSoRusi}
+\DeclareInputText{202}{\thaiSoSua}
+\DeclareInputText{203}{\thaiHoHip}
+\DeclareInputText{204}{\thaiLoChula}
+\DeclareInputText{205}{\thaiOAng}
+\DeclareInputText{206}{\thaiHoNokhuk}
+\DeclareInputText{207}{\thaiPaiyannoi}
+\DeclareInputText{208}{\thaiSaraA}
+\DeclareInputText{209}{\thaiMaiHanakat}
+\DeclareInputText{210}{\thaiSaraAa}
+\DeclareInputText{211}{\thaiSaraAm}
+\DeclareInputText{212}{\thaiSaraI}
+\DeclareInputText{213}{\thaiSaraIi}
+\DeclareInputText{214}{\thaiSaraUe}
+\DeclareInputText{215}{\thaiSaraUee}
+\DeclareInputText{216}{\thaiSaraU}
+\DeclareInputText{217}{\thaiSaraUu}
+\DeclareInputText{218}{\thaiPhinthu}
+\DeclareInputText{223}{\textbaht}
+\DeclareInputText{224}{\thaiSaraE}
+\DeclareInputText{225}{\thaiSaraAe}
+\DeclareInputText{226}{\thaiSaraO}
+\DeclareInputText{227}{\thaiSaraAiMaimuan}
+\DeclareInputText{228}{\thaiSaraAiMaimalai}
+\DeclareInputText{229}{\thaiLakkhangyao}
+\DeclareInputText{230}{\thaiMaiyamok}
+\DeclareInputText{231}{\thaiMaitaikhu}
+\DeclareInputText{232}{\thaiMaiEk}
+\DeclareInputText{233}{\thaiMaiTho}
+\DeclareInputText{234}{\thaiMaiTri}
+\DeclareInputText{235}{\thaiMaiChattawa}
+\DeclareInputText{236}{\thaiThanthakhat}
+\DeclareInputText{237}{\thaiNikhahit}
+\DeclareInputText{238}{\thaiYamakkan}
+\DeclareInputText{239}{\thaiFongman}
+\DeclareInputText{240}{\thaizero}
+\DeclareInputText{241}{\thaione}
+\DeclareInputText{242}{\thaitwo}
+\DeclareInputText{243}{\thaithree}
+\DeclareInputText{244}{\thaifour}
+\DeclareInputText{245}{\thaifive}
+\DeclareInputText{246}{\thaisix}
+\DeclareInputText{247}{\thaiseven}
+\DeclareInputText{248}{\thaieight}
+\DeclareInputText{249}{\thainine}
+\DeclareInputText{250}{\thaiAngkhankhu}
+\DeclareInputText{251}{\thaiKhomut}
+

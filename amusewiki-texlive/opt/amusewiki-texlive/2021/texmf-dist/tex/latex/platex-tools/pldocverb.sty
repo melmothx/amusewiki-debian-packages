@@ -1,0 +1,41 @@
+%
+% pldocverb.sty
+% written by Hironobu Yamashita (@aminophen)
+%
+% This package is part of the platex-tools bundle.
+% https://github.com/aminophen/platex-tools
+%
+% This package is expected to be compatible with
+%   * doc.sty
+%     (2004/02/09 v2.1b -- 2021/05/28 v2.1n)
+%   * plcore.ltx in platex
+%     (2001/09/26 v1.2a -- 2021/12/08 v1.3l)
+%
+
+%% package declaration
+\NeedsTeXFormat{pLaTeX2e}
+\ProvidesPackage{pldocverb}
+  [2020/10/08 v0.2a doc package for pLaTeX/upLaTeX]
+\RequirePackage{doc}
+% doc.sty conditionally requires multicol.sty without passing options
+\IfFileExists{pxmulticol.sty}{\RequirePackage{pxmulticol}}{}
+
+%% enable \xkanjiskip insertion,
+%% while preserving beginning space characters (pLaTeX2e 2017/10/28)
+\@ifl@t@r{\pfmtversion}{2017/10/28}{\@firstoftwo}{\@secondoftwo}
+{% = for pLaTeX2e 2017/10/28 or newer
+\def\verb{\relax\ifmmode\hbox\else\leavevmode\vadjust{}\fi
+  \bgroup \let\do\do@noligs \verbatim@nolig@list
+    \ttfamily \verb@eol@error \let\do\@makeother \dospecials
+    \@ifstar{\@sverb}{\@vobeyspaces \frenchspacing \@sverb}}
+}% =
+{% = for pLaTeX2e 2017/09/26 or older
+\def\verb{\relax\ifmmode\hbox\else\leavevmode\fi
+  \bgroup \let\do\do@noligs \verbatim@nolig@list
+    \ttfamily \verb@eol@error \let\do\@makeother \dospecials
+    \@ifstar{\@sverb}{\@vobeyspaces \frenchspacing \@sverb}}
+}% =
+%
+%% done
+
+\endinput

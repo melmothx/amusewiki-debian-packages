@@ -1,0 +1,530 @@
+%%
+%% This is file `bulgarian.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% bulgarian.dtx  (with options: `code')
+%% This is a generated file.
+%% 
+%% Copyright 2013      Georgi N. Boshnakov
+%% Copyright 1989-2008 Johannes L. Braams and any individual authors
+%% listed elsewhere in this file.  All rights reserved.
+%% 
+%% This file was generated from file(s) of the Babel system.
+%% ---------------------------------------------------------
+%% 
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Georgi N. Boshnakov.
+%% 
+%% The list of derived (unpacked) files belonging to the distribution
+%% and covered by LPPL is defined by the unpacking scripts (with
+%% extension .ins) which are part of the distribution.
+\ProvidesLanguage{bulgarian}
+          [2013/10/14 v1.2g Bulgarian support from the babel system]
+%% File `bulgarian.dtx'
+%% Babel package for LaTeX version 2e
+%% Copyright (C) 1989-2008
+%%               by Johannes Braams,TeXniek
+%% Bulgarian Language Definition File
+%% Copyright (C) 1995-2008
+%%               by Georgi N. Boshnakov <georgi.boshnakov at umist.ac.uk>
+%%                  Johannes Braams, TeXniek
+%% Original version adapted from russianb.dtx (August-1998 version)
+%%               by Georgi N. Boshnakov <georgi.boshnakov at umist.ac.uk>
+%% Copyright (C) 2013
+%%               by Georgi N. Boshnakov
+%% Please report errors to: Georgi N. Boshnakov
+%%               georgi.boshnakov at manchester dot ac dot uk
+\LdfInit{bulgarian}{captionsbulgarian}
+\ifx\l@bulgarian\@undefined
+  \@nopatterns{Bulgarian}
+  \adddialect\l@bulgarian0
+\fi
+\newif\if@bul@unicode
+\ifdefined\luatexversion \@bul@unicodetrue \else
+\ifdefined\XeTeXrevision \@bul@unicodetrue \fi\fi
+\def\reserved@a#1#2{%
+  \edef\reserved@b{#1}%
+  \edef\reserved@c{#2}%
+  \ifx\reserved@b\reserved@c
+    \let\cyrillicencoding\reserved@c
+  \fi}
+\def\cdp@elt#1#2#3#4{%
+  \reserved@a{#1}{OT2}%
+  \reserved@a{#1}{LWN}%
+  \reserved@a{#1}{LCY}%
+  \reserved@a{#1}{X2}%
+  \reserved@a{#1}{T2C}%
+  \reserved@a{#1}{T2B}%
+  \reserved@a{#1}{T2A}}
+ \cdp@list
+\ifx\cyrillicencoding\undefined
+  \if@bul@unicode
+    \ifdefined\XeTeXrevision
+      \edef\cyrillicencoding{EU1}
+    \else\ifdefined\luatexversion
+      \edef\cyrillicencoding{EU2}
+    \fi\fi
+  \else
+    \edef\cyrillicencoding{T2A}
+  \fi
+  \PackageWarning{bulgarian.ldf}%
+    {No Cyrillic font encoding has been loaded so far.\MessageBreak
+     A font encoding should be declared before babel.\MessageBreak
+     Default `\cyrillicencoding' encoding will be loaded
+    }%
+  \lowercase\expandafter{\expandafter\input\cyrillicencoding enc.def\relax}%
+\fi
+\PackageInfo{babel}
+     {Using `\cyrillicencoding' as a default Cyrillic encoding}%
+\DeclareRobustCommand{\Bulgarian}{%
+  \fontencoding\cyrillicencoding\selectfont
+  \let\encodingdefault\cyrillicencoding
+  \expandafter\set@hyphenmins\bulgarianhyphenmins
+  \language\l@bulgarian}
+\DeclareRobustCommand{\English}{%
+  \fontencoding\latinencoding\selectfont
+  \let\encodingdefault\latinencoding
+  \expandafter\set@hyphenmins\englishhyphenmins
+  \language\l@english}
+\let\Bul\Bulgarian
+\let\Bg\Bulgarian
+\let\cyrillictext\Bulgarian
+\let\cyr\Bulgarian
+\let\Eng\English
+\def\selectenglanguage{\selectlanguage{english}}
+\def\selectbglanguage{\selectlanguage{bulgarian}}
+\expandafter\ifx\csname T@X2\endcsname\relax\else
+\def\@Alph@eng#1{{\fontencoding{\latinencoding}\selectfont \ifcase#1\or
+    A\or B\or C\or D\or E\or F\or G\or H\or I\or J\or K\or L\or M\or
+    N\or O\or P\or Q\or R\or S\or T\or U\or V\or W\or X\or Y\or Z\else
+    \@ctrerr\fi}}%
+\def\@alph@eng#1{{\fontencoding{\latinencoding}\selectfont \ifcase#1\or
+    a\or b\or c\or d\or e\or f\or g\or h\or i\or j\or k\or l\or m\or
+    n\or o\or p\or q\or r\or s\or t\or u\or v\or w\or x\or y\or z\else
+    \@ctrerr\fi}}%
+  \let\@Alph\@Alph@eng
+  \let\@alph\@alph@eng
+  \DeclareTextSymbolDefault{\AA}{OT1}
+  \DeclareTextSymbolDefault{\aa}{OT1}
+  \DeclareTextCommand{\AA}{OT1}{\r A}
+  \DeclareTextCommand{\aa}{OT1}{\r a}
+\fi
+\@ifpackageloaded{inputenc}{%
+  \if@bul@unicode
+   \PackageWarning{bulgarian.ldf}{inputenc should not be used with LuaTeX or XeTeX}
+ \fi
+}{%
+  %\def\reserved@a{LWN}%
+  %\ifx\reserved@a\cyrillicencoding\else
+    \def\reserved@a{OT2}%
+    \ifx\reserved@a\cyrillicencoding\else
+       \def\reserved@a{EU1}%
+       \ifx\reserved@a\cyrillicencoding\else
+          \def\reserved@a{EU2}%
+          \ifx\reserved@a\cyrillicencoding\else
+             \PackageWarning{bulgarian.ldf}%
+                {No input encoding specified for Bulgarian language}
+    \fi\fi\fi
+  %\fi
+}
+\let\lat\latintext
+\DeclareTextFontCommand{\textcyrillic}{\cyrillictext}
+\ifx\bbl@version\@undefined
+\PackageInfo{bulgarian.ldf}{Executing the pre 3.9 branch for captions}
+\addto\captionsbulgarian{%
+  \def\prefacename{%
+    {\cyr\CYRP\cyrr\cyre\cyrd\cyrg\cyro\cyrv\cyro\cyrr}}%
+  \def\refname{%
+    {\cyr\CYRL\cyri\cyrt\cyre\cyrr\cyra\cyrt\cyru\cyrr\cyra}}%
+  \def\abstractname{%
+    {\cyr\CYRA\cyrb\cyrs\cyrt\cyrr\cyra\cyrk\cyrt}}%
+  \def\bibname{%
+    {\cyr\CYRB\cyri\cyrb\cyrl\cyri\cyro\cyrg\cyrr\cyra\cyrf\cyri\cyrya}}%
+  \def\chaptername{%
+    {\cyr\CYRG\cyrl\cyra\cyrv\cyra}}%
+  \def\appendixname{%
+    {\cyr\CYRP\cyrr\cyri\cyrl\cyro\cyrzh\cyre\cyrn\cyri\cyre}}%
+  \def\contentsname{%
+    {\cyr\CYRS\cyrhrdsn\cyrd\cyrhrdsn\cyrr\cyrzh\cyra\cyrn\cyri\cyre}}%
+  \def\listfigurename{%
+    {\cyr\CYRS\cyrp\cyri\cyrs\cyrhrdsn\cyrk\ \cyrn\cyra\
+      \cyrf\cyri\cyrg\cyru\cyrr\cyri\cyrt\cyre}}%
+  \def\listtablename{%
+    {\cyr\CYRS\cyrp\cyri\cyrs\cyrhrdsn\cyrk\ \cyrn\cyra\
+      \cyrt\cyra\cyrb\cyrl\cyri\cyrc\cyri\cyrt\cyre}}%
+  \def\indexname{%
+    {\cyr\CYRA\cyrz\cyrb\cyru\cyrch\cyre\cyrn\
+      \cyru\cyrk\cyra\cyrz\cyra\cyrt\cyre\cyrl}}%
+  \def\authorname{%
+    {\cyr\CYRI\cyrm\cyre\cyrn\cyre\cyrn\
+      \cyru\cyrk\cyra\cyrz\cyra\cyrt\cyre\cyrl}}%
+  \def\figurename{%
+    {\cyr\CYRF\cyri\cyrg\cyru\cyrr\cyra}}%
+  \def\tablename{%
+    {\cyr\CYRT\cyra\cyrb\cyrl\cyri\cyrc\cyra}}%
+  \def\partname{%
+    {\cyr\CYRCH\cyra\cyrs\cyrt}}%
+  \def\enclname{%
+    {\cyr\CYRP\cyrr\cyri\cyrl\cyro\cyrzh\cyre\cyrn\cyri\cyrya}}%
+  \def\ccname{%
+    {\cyr\cyrk\cyro\cyrp\cyri\cyrya}}%
+  \def\headtoname{%
+    {\cyr\CYRZ\cyra}}%
+  \def\pagename{%
+    {\cyr\CYRS\cyrt\cyrr.}}%
+  \def\seename{%
+    {\cyr\cyrv\cyrzh.}}%
+  \def\alsoname{%
+    {\cyr\cyrv\cyrzh.\ \cyrs\cyrhrdsn\cyrshch\cyro\ \cyri}}%
+  \def\proofname{%
+    {\cyr\CYRD\cyro\cyrk\cyra\cyrz\cyra\cyrt\cyre\cyrl\cyrs\cyrt\cyrv\cyro}}%
+  \def\glossaryname{%
+    {\cyr\CYRP\cyrr\cyri\cyrt\cyru\cyrr\cyrk\cyra}}% Glossary: Притурка, Глосар?
+}%
+%%
+\else
+\PackageInfo{bulgarian.ldf}{Executing the post 3.9 branch for captions}
+\StartBabelCommands*{bulgarian}{captions}[unicode, fontenc=EU1 EU2, charset=utf8]
+  \SetString\prefacename{Предговор}
+  \SetString\refname{Литература}
+  \SetString\abstractname{Абстракт}
+  \SetString\bibname{Библиография}
+  \SetString\chaptername{Глава}
+  \SetString\appendixname{Приложение} % todo: Апендикс ?
+  \SetString\contentsname{Съдържание}
+  \SetString\listfigurename{Списък на фигурите}
+  \SetString\listtablename{Списък на таблиците}
+  \SetString\indexname{Азбучен указател}
+  \SetString\authorname{Именен указател}
+  \SetString\figurename{Фигура}
+  \SetString\tablename{Таблица}
+  \SetString\partname{Част}
+  \SetString\enclname{Приложения}
+  \SetString\ccname{копия}
+  \SetString\headtoname{За}
+  \SetString\pagename{Стр.}  % todo: shouldn't this be all lowercase?
+  \SetString\seename{вж.}
+  \SetString\alsoname{вж. също и}
+  \SetString\proofname{Доказателство}
+  \SetString\glossaryname{Притурка}
+
+\StartBabelCommands*{bulgarian}{captions}
+  \SetString\prefacename{%
+    {\cyr\CYRP\cyrr\cyre\cyrd\cyrg\cyro\cyrv\cyro\cyrr}}%
+  \SetString\refname{%
+    {\cyr\CYRL\cyri\cyrt\cyre\cyrr\cyra\cyrt\cyru\cyrr\cyra}}%
+  \SetString\abstractname{%
+    {\cyr\CYRA\cyrb\cyrs\cyrt\cyrr\cyra\cyrk\cyrt}}%
+  \SetString\bibname{%
+    {\cyr\CYRB\cyri\cyrb\cyrl\cyri\cyro\cyrg\cyrr\cyra\cyrf\cyri\cyrya}}%
+  \SetString\chaptername{%
+    {\cyr\CYRG\cyrl\cyra\cyrv\cyra}}%
+  \SetString\appendixname{%
+    {\cyr\CYRP\cyrr\cyri\cyrl\cyro\cyrzh\cyre\cyrn\cyri\cyre}}%
+  \SetString\contentsname{%
+    {\cyr\CYRS\cyrhrdsn\cyrd\cyrhrdsn\cyrr\cyrzh\cyra\cyrn\cyri\cyre}}%
+  \SetString\listfigurename{%
+    {\cyr\CYRS\cyrp\cyri\cyrs\cyrhrdsn\cyrk\ \cyrn\cyra\
+      \cyrf\cyri\cyrg\cyru\cyrr\cyri\cyrt\cyre}}%
+  \SetString\listtablename{%
+    {\cyr\CYRS\cyrp\cyri\cyrs\cyrhrdsn\cyrk\ \cyrn\cyra\
+      \cyrt\cyra\cyrb\cyrl\cyri\cyrc\cyri\cyrt\cyre}}%
+  \SetString\indexname{%
+    {\cyr\CYRA\cyrz\cyrb\cyru\cyrch\cyre\cyrn\
+      \cyru\cyrk\cyra\cyrz\cyra\cyrt\cyre\cyrl}}%
+  \SetString\authorname{%
+    {\cyr\CYRI\cyrm\cyre\cyrn\cyre\cyrn\
+      \cyru\cyrk\cyra\cyrz\cyra\cyrt\cyre\cyrl}}%
+  \SetString\figurename{%
+    {\cyr\CYRF\cyri\cyrg\cyru\cyrr\cyra}}%
+  \SetString\tablename{%
+    {\cyr\CYRT\cyra\cyrb\cyrl\cyri\cyrc\cyra}}%
+  \SetString\partname{%
+    {\cyr\CYRCH\cyra\cyrs\cyrt}}%
+  \SetString\enclname{%
+    {\cyr\CYRP\cyrr\cyri\cyrl\cyro\cyrzh\cyre\cyrn\cyri\cyrya}}%
+  \SetString\ccname{%
+    {\cyr\cyrk\cyro\cyrp\cyri\cyrya}}%
+  \SetString\headtoname{%
+    {\cyr\CYRZ\cyra}}%
+  \SetString\pagename{%
+    {\cyr\CYRS\cyrt\cyrr.}}%
+  \SetString\seename{%
+    {\cyr\cyrv\cyrzh.}}%
+  \SetString\alsoname{%
+    {\cyr\cyrv\cyrzh.\ \cyrs\cyrhrdsn\cyrshch\cyro\ \cyri}}%
+  \SetString\proofname{%
+    {\cyr\CYRD\cyro\cyrk\cyra\cyrz\cyra\cyrt\cyre\cyrl\cyrs\cyrt\cyrv\cyro}}%
+  \SetString\glossaryname{%
+    {\cyr\CYRP\cyrr\cyri\cyrt\cyru\cyrr\cyrk\cyra}}% Glossary: Притурка, Глосар?
+\EndBabelCommands
+\fi
+\def\month@Roman{\expandafter\@Roman\month}%
+\def\Romannumeral#1{\uppercase\expandafter{\romannumeral #1}}
+%%% 2013-10-02 comment this out (it is repeated below):
+%%% \def\todayRoman{\number\day.\Romannumeral{\month}.\number\year\,\cyrg.}
+\def\lastJulianDatebulgarian{19160331}
+\def\firstGregorianDatebulgarian{19160414}
+\def\weekdaynamebulgarian#1{\csname weekday\romannumeral#1 name\endcsname}
+\ifx\bbl@version\@undefined
+\PackageInfo{bulgarian.ldf}{Executing the pre 3.9 branch for dates}
+\def\datebulgarian{%
+  \def\month@bulgarian{\ifcase\month\or
+    \cyrya\cyrn\cyru\cyra\cyrr\cyri\or
+    \cyrf\cyre\cyrv\cyrr\cyru\cyra\cyrr\cyri\or
+    \cyrm\cyra\cyrr\cyrt\or
+    \cyra\cyrp\cyrr\cyri\cyrl\or
+    \cyrm\cyra\cyrishrt\or
+    \cyryu\cyrn\cyri\or
+    \cyryu\cyrl\cyri\or
+    \cyra\cyrv\cyrg\cyru\cyrs\cyrt\or
+    \cyrs\cyre\cyrp\cyrt\cyre\cyrm\cyrv\cyrr\cyri\or
+    \cyro\cyrk\cyrt\cyro\cyrm\cyrv\cyrr\cyri\or
+    \cyrn\cyro\cyre\cyrm\cyrv\cyrr\cyri\or
+    \cyrd\cyre\cyrk\cyre\cyrm\cyrv\cyrr\cyri\fi}%
+  \def\abbgyear{\cyrg.}
+
+  \def\today{\number\day~\month@bulgarian\ \number\year\,\abbgyear}%
+  \def\todayRoman{\number\day.\,\month@Roman.\,\number\year\,\abbgyear}%
+}%
+\else
+\PackageInfo{bulgarian.ldf}{Executing the post 3.9 branch for dates}
+\StartBabelCommands*{bulgarian}{date}[unicode, fontenc=EU1 EU2, charset=utf8]
+  \SetStringLoop{month#1name}{%
+    януари,февруари,март,април,май,юни,%
+    юли,август,септември,октомври,ноември,декември}
+
+  \SetStringLoop{weekday#1name}{%
+    понеделник,вторник,сряда,четвъртък,петък,събота,неделя}
+
+  \SetString\abbgyear{г.}
+\StartBabelCommands*{bulgarian}{date}
+%%% %(princ (to-cyrx-string bulmonths))
+\if@bul@unicode
+\else
+  \SetStringLoop{month#1name}{%
+    \cyrya\cyrn\cyru\cyra\cyrr\cyri,\cyrf\cyre\cyrv\cyrr\cyru\cyra\cyrr\cyri,%
+    \cyrm\cyra\cyrr\cyrt,\cyra\cyrp\cyrr\cyri\cyrl,\cyrm\cyra\cyrishrt,%
+    \cyryu\cyrn\cyri,\cyryu\cyrl\cyri,\cyra\cyrv\cyrg\cyru\cyrs\cyrt,%
+    \cyrs\cyre\cyrp\cyrt\cyre\cyrm\cyrv\cyrr\cyri,%
+    \cyro\cyrk\cyrt\cyro\cyrm\cyrv\cyrr\cyri,%
+    \cyrn\cyro\cyre\cyrm\cyrv\cyrr\cyri,\cyrd\cyre\cyrk\cyre\cyrm\cyrv\cyrr\cyri}%
+%%% %(princ (to-cyrx-string "понеделник,вторник,сряда,четвъртък,петък,събота,неделя"))
+  \SetStringLoop{weekday#1name}{%
+    \cyrp\cyro\cyrn\cyre\cyrd\cyre\cyrl\cyrn\cyri\cyrk,%
+    \cyrv\cyrt\cyro\cyrr\cyrn\cyri\cyrk,\cyrs\cyrr\cyrya\cyrd\cyra,%
+    \cyrch\cyre\cyrt\cyrv\cyrhrdsn\cyrr\cyrt\cyrhrdsn\cyrk,%
+    \cyrp\cyre\cyrt\cyrhrdsn\cyrk,\cyrs\cyrhrdsn\cyrb\cyro\cyrt\cyra,%
+    \cyrn\cyre\cyrd\cyre\cyrl\cyrya}%
+\fi
+
+   \SetString\abbgyear{\cyrg.}
+
+  \SetString\today{\number\day~%
+    \csname month\romannumeral\month name\endcsname\space
+    \number\year\,\abbgyear}
+
+  \SetString\todayRoman{\number\day.\,\month@Roman.\,\number\year\,\abbgyear}
+\EndBabelCommands
+\fi
+
+\addto\extrasbulgarian{\cyrillictext}
+\addto\noextrasbulgarian{\latintext}
+\initiate@active@char{"}
+\addto\extrasbulgarian{\languageshorthands{bulgarian}}
+\addto\extrasbulgarian{%
+  \bbl@activate{"}}
+\addto\noextrasbulgarian{%
+  \bbl@deactivate{"}}
+\begingroup \catcode`\"12
+\def\reserved@a{\endgroup
+  \def\@SS{\mathchar"7019}
+  \def\dq{"}}
+\reserved@a
+\declare@shorthand{bulgarian}{"`}{\glqq}
+\declare@shorthand{bulgarian}{"'}{\grqq}
+\declare@shorthand{bulgarian}{"<}{\flqq}
+\declare@shorthand{bulgarian}{">}{\frqq}
+\declare@shorthand{bulgarian}{""}{\hskip\z@skip}
+\declare@shorthand{bulgarian}{"~}{\textormath{\leavevmode\hbox{-}}{-}}
+\declare@shorthand{bulgarian}{"=}{\nobreak-\hskip\z@skip}
+\declare@shorthand{bulgarian}{"|}{% |
+\textormath{\nobreak\discretionary{-}{}{\kern.03em}%
+\allowhyphens}{}}
+\declare@shorthand{bulgarian}{"-}{%
+  \def\bulgarian@sh@tmp{%
+    \if\bulgarian@sh@next-\expandafter\bulgarian@sh@emdash
+    \else\expandafter\bulgarian@sh@hyphen\fi
+  }%
+  \futurelet\bulgarian@sh@next\bulgarian@sh@tmp}
+\def\bulgarian@sh@hyphen{\nobreak\-\bbl@allowhyphens}
+\def\bulgarian@sh@emdash#1#2{\cdash-#1#2}
+\ifx\cdash\undefined % should be defined earlier
+\def\cdash#1#2#3{\def\tempx@{#3}%
+\def\tempa@{-}\def\tempb@{~}\def\tempc@{*}%
+ \ifx\tempx@\tempa@\@Acdash\else
+  \ifx\tempx@\tempb@\@Bcdash\else
+   \ifx\tempx@\tempc@\@Ccdash\else
+    \errmessage{Wrong usage of cdash}\fi\fi\fi}
+\def\@Acdash{\ifdim\lastskip>\z@\unskip\nobreak\hskip.2em\fi
+\cyrdash\hskip.2em\ignorespaces}%
+\def\@Bcdash{\leavevmode\ifdim\lastskip>\z@\unskip\fi
+ \nobreak\cyrdash\penalty\exhyphenpenalty\hskip\z@skip\ignorespaces}%
+\def\@Ccdash{\leavevmode
+ \nobreak\cyrdash\nobreak\hskip.35em\ignorespaces}%
+\ifx\cyrdash\undefined
+\def\cyrdash{\hbox to.8em{--\hss--}}
+\fi
+\declare@shorthand{bulgarian}{",}{\nobreak\hskip.2em\ignorespaces}
+\providehyphenmins{\CurrentOption}{\tw@\tw@}
+\fi
+\addto\extrasbulgarian{\bbl@frenchspacing}
+\addto\noextrasbulgarian{\bbl@nonfrenchspacing}
+\if@bul@unicode
+  \def\@Alph@bul#1{\ifcase#1\or
+    А\or Б\or В\or Г\or Д\or Е\or Ж\or
+    З\or И\or К\or Л\or М\or Н\or О\or
+    П\or Р\or С\or Т\or У\or Ф\or Х\or
+    Ц\or Ч\or Ш\or Щ\or Ю\or Я\else
+    \@ctrerr\fi}
+\else
+  \def\@Alph@bul#1{\ifcase#1\or
+    \CYRA\or \CYRB\or \CYRV\or \CYRG\or \CYRD\or \CYRE\or \CYRZH\or
+    \CYRZ\or \CYRI\or \CYRK\or \CYRL\or \CYRM\or \CYRN\or \CYRO\or
+    \CYRP\or \CYRR\or \CYRS\or \CYRT\or \CYRU\or \CYRF\or \CYRH\or
+    \CYRC\or \CYRCH\or \CYRSH\or \CYRSHCH\or \CYRYU\or \CYRYA\else
+    \@ctrerr\fi}
+\fi
+\if@bul@unicode
+  \def\@alph@bul#1{\ifcase#1\or
+    а\or б\or в\or г\or д\or е\or ж\or
+    з\or и\or к\or л\or м\or н\or о\or
+    п\or р\or с\or т\or у\or ф\or х\or
+    ц\or ч\or ш\or щ\or э\or ю\or я\else\@ctrerr\fi}
+\else
+  \def\@alph@bul#1{\ifcase#1\or
+    \cyra\or \cyrb\or \cyrv\or \cyrg\or \cyrd\or \cyre\or \cyrzh\or
+    \cyrz\or \cyri\or \cyrk\or \cyrl\or \cyrm\or \cyrn\or \cyro\or
+    \cyrp\or \cyrr\or \cyrs\or \cyrt\or \cyru\or \cyrf\or \cyrh\or
+    \cyrc\or \cyrch\or \cyrsh\or \cyrshch\or \cyryu\or \cyrya\else
+    \@ctrerr\fi}
+\fi
+\let\@Alph@eng\@Alph
+\let\@alph@eng\@alph
+\let\@Alph@saved\@Alph
+\let\@alph@saved\@alph
+%%%
+%%%  The old code for defining |\@Alph@eng| and |\@alph@eng| is commented out.
+%%%    \begin{macrocode}
+%%\def\@Alph@eng#1{%
+%%  \ifcase#1\or
+%%  A\or B\or C\or D\or E\or F\or G\or H\or I\or J\or K\or L\or M\or
+%%  N\or O\or P\or Q\or R\or S\or T\or U\or V\or W\or X\or Y\or Z\else
+%%  \@ctrerr\fi
+%%  }
+%%\def\@alph@eng#1{%
+%%  \ifcase#1\or
+%%  a\or b\or c\or d\or e\or f\or g\or h\or i\or j\or k\or l\or m\or
+%%  n\or o\or p\or q\or r\or s\or t\or u\or v\or w\or x\or y\or z\else
+%%  \@ctrerr\fi
+%%  }
+%%%    \end{macrocode}
+%%%
+\def\enumBul{\let\@Alph\@Alph@bul \let\@alph\@alph@bul}
+\def\enumEng{\let\@Alph\@Alph@eng \let\@alph\@alph@eng}
+\def\enumLat{\let\@Alph\@Alph@eng \let\@alph\@alph@eng}
+\def\abvon{\let\@Alph@saved\@Alph \let\@alph@saved\@alph \enumBul}
+\def\abvoff{\let\@Alph\@Alph@saved \let\@alph\@alph@saved}
+\def\autoabvon{\abvon}
+\def\autoabvoff{\abvoff}
+\addto\extrasbulgarian{\autoabvon}
+\addto\noextrasbulgarian{\autoabvoff}
+\bbl@declare@ttribute{bulgarian}{abvoff}{%
+  \PackageInfo{babel}{Turned off automatic Cyrillic enumeration in
+    Bulgarian}%
+  \def\autoabvon{\relax}
+  \def\autoabvoff{\relax}
+  \def\abvon{\enumBul}
+}
+\@ifundefined{sym\cyrillicencoding letters}{}{%
+\SetSymbolFont{\cyrillicencoding letters}{bold}\cyrillicencoding
+  \rmdefault\bfdefault\updefault
+\DeclareSymbolFontAlphabet\cyrmathrm{\cyrillicencoding letters}
+\DeclareMathAlphabet\cyrmathbf\cyrillicencoding
+  \rmdefault\bfdefault\updefault
+\DeclareMathAlphabet\cyrmathsf\cyrillicencoding
+  \sfdefault\mddefault\updefault
+\DeclareMathAlphabet\cyrmathit\cyrillicencoding
+  \rmdefault\mddefault\itdefault
+\DeclareMathAlphabet\cyrmathtt\cyrillicencoding
+  \ttdefault\mddefault\updefault
+\SetMathAlphabet\cyrmathsf{bold}\cyrillicencoding
+  \sfdefault\bfdefault\updefault
+\SetMathAlphabet\cyrmathit{bold}\cyrillicencoding
+  \rmdefault\bfdefault\itdefault
+}
+\def\tg{\mathop{\operator@font tg}\nolimits}
+\def\ctg{\mathop{\operator@font ctg}\nolimits}
+\def\cosec{\mathop{\operator@font cosec}\nolimits}
+\def\arctg{\mathop{\operator@font arctg}\nolimits}
+\def\arcctg{\mathop{\operator@font arcctg}\nolimits}
+\def\sh{\mathop{\operator@font sh}\nolimits}
+\def\ch{\mathop{\operator@font ch}\nolimits}
+\def\cth{\mathop{\operator@font cth}\nolimits}
+\addto\extrasbulgarian{%
+  \babel@save{\th}%
+  \let\ltx@th\th
+  \def\th{\textormath{\ltx@th}%
+                     {\mathop{\operator@font th}\nolimits}}%
+  }
+\def\cyrxtounicode{%
+  \let\CYRA=А \let\CYRB=Б \let\CYRV=В \let\CYRG=Г \let\CYRD=Д
+  \let\CYRE=Е \let\CYRZH=Ж \let\CYRZ=З \let\CYRI=И \let\CYRISHRT=Й
+  \let\CYRK=К \let\CYRL=Л \let\CYRM=М \let\CYRN=Н \let\CYRO=О
+  \let\CYRP=П \let\CYRR=Р \let\CYRS=С \let\CYRT=Т \let\CYRU=У
+  \let\CYRF=Ф \let\CYRH=Х \let\CYRC=Ц \let\CYRCH=Ч \let\CYRSH=Ш
+  \let\CYRSHCH=Щ \let\CYRHRDSN=Ъ \let\CYRSFTSN=Ь \let\CYRYU=Ю
+  \let\CYRYA=Я
+  \let\cyra=а \let\cyrb=б \let\cyrv=в \let\cyrg=г \let\cyrd=д
+  \let\cyre=е \let\cyrzh=ж \let\cyrz=з \let\cyri=и \let\cyrishrt=й
+  \let\cyrk=к \let\cyrl=л \let\cyrm=м \let\cyrn=н \let\cyro=о
+  \let\cyrp=п \let\cyrr=р \let\cyrs=с \let\cyrt=т \let\cyru=у
+  \let\cyrf=ф \let\cyrh=х \let\cyrc=ц \let\cyrch=ч \let\cyrsh=ш
+  \let\cyrshch=щ \let\cyrhrdsn=ъ \let\cyrsftsn=ь \let\cyryu=ю
+  \let\cyrya=я
+}
+
+\DeclareRobustCommand{\No}{%
+    \ifmmode{\nfss@text{\textnumero}}\else\textnumero\fi}
+\ldf@finish{bulgarian}
+%%
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote \"    Hash (number) \#
+%%   Dollar        \$     Percent      \%    Ampersand     \&
+%%   Acute accent  \'     Left paren   \(    Right paren   \)
+%%   Asterisk      \*     Plus         \+    Comma         \,
+%%   Minus         \-     Point        \.    Solidus       \/
+%%   Colon         \:     Semicolon    \;    Less than     \<
+%%   Equals        \=     Greater than \>    Question mark \?
+%%   Commercial at \@     Left bracket \[    Backslash     \\
+%%   Right bracket \]     Circumflex   \^    Underscore    \_
+%%   Grave accent  \`     Left brace   \{    Vertical bar  \|
+%%   Right brace   \}     Tilde        \~}
+%%
+\endinput
+%%
+%% End of file `bulgarian.ldf'.

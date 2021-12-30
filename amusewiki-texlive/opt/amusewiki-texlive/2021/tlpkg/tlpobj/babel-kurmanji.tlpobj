@@ -1,0 +1,25 @@
+name babel-kurmanji
+category Package
+revision 30279
+shortdesc Babel support for Kurmanji
+longdesc The package provides the language definition file for support
+longdesc of Kurmanji in babel. Kurmanji belongs to the family of Kurdish
+longdesc languages. Some shortcuts are defined, as well as translations
+longdesc to Kurmanji of standard "LaTeX names". Note that the package is
+longdesc dealing with 'Northern' Kurdish, written using a Latin-based
+longdesc alphabet. The arabxetex package offers support for Kurdish
+longdesc written in Arabic script.
+containersize 2928
+containerchecksum bbdd05e7106494f23892f3455ad224d3deb1881f5a73720e2c73e7401514fed324484416def64e2e8fd7c2416b521fb2d4527585d2302a220330925c296afecb
+doccontainersize 124800
+doccontainerchecksum c31f7efd7415f3439635b293c9aad2cfc2632352534e579c0f8d3e74443fb7aa88a95e19735a7b65137d81899ad9d2ad8bbdb28c5da2ff05a2be9dbad552b0f8
+docfiles size=31
+ texmf-dist/doc/generic/babel-kurmanji/kurmanji.pdf details="Package documentation"
+srccontainersize 6140
+srccontainerchecksum 88f600cac9509695c36969ee2bb2041142dee729381a1ffa49489f32454e4c53b4d1795407436df9c31da040cc1d0c7e38077fc786e5cd6832ab9ccd14453d2c
+runfiles size=2
+ texmf-dist/tex/generic/babel-kurmanji/kurmanji.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/kurmanji
+catalogue-license lppl1.3
+catalogue-topics kurmanji kurdish multilingual-addon
+catalogue-version 1.1

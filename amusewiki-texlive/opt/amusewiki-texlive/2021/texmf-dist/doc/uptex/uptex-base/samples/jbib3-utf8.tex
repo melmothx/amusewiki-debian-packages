@@ -1,0 +1,60 @@
+\documentclass{ujarticle}
+%\usepackage{lmodern}% Latin Modern
+\usepackage[T2A,T1]{fontenc}
+\usepackage[russian,japanese]{babel}
+\kcatcode`П=15% U+041F:П (Cyrillic)
+
+%%%%%%%%
+% set3 関連の制御をコマンドラインから行う
+% ①,② のどれかを実行すればよい。
+%   ① without set3
+%   $ uplatex "\def\withsetthree{no}\input" jbib3-utf8.tex
+%   ② with set3
+%   $ uplatex jbib3-utf8.tex
+%%%%%%
+\def\withsetthreetmp{no}
+
+\oddsidemargin0mm
+\evensidemargin0mm
+\topmargin-15mm
+\textwidth162mm
+\textheight245mm
+
+\begin{document}
+\fontencoding{T1}\selectfont
+\section{upTeX用テストデータ}
+upbibtexのテスト\cite{森鷗外:百物語}。
+upbibtexのテスト\cite{里見弴:極楽とんぼ}。
+upbibtexのテスト\cite{国書:丿乀集}。
+upbibtexのテスト\cite{グラハム:Unicode™標準入門}。
+upbibtexのテスト\cite{test:misc0}。
+upbibtexのテスト\cite{test:misc1}。
+upbibtexのテスト\cite{test:misc2}。
+% set3対応フォント+dviwareなら、「𠮷」もUTF-8で直接書ける。
+\ifx\withsetthree\withsetthreetmp\else
+upbibtexのテスト\cite{髙島𠮷野}。
+\fi
+
+\section{欧文8bit多バイト}
+upbibtexのテスト\cite{\detokenize{Lautréamont}}。
+upbibtexのテスト\cite{\detokenize{BrüderGrimm}}。
+\fontencoding{T2A}\selectfont
+upbibtexのテスト\cite{\detokenize{Булгаков}}。
+\fontencoding{T1}\selectfont
+
+%\bibliographystyle{jplain}
+\bibliographystyle{jalpha}
+%\bibliographystyle{jabbrv}
+%\bibliographystyle{junsrt}
+%\bibliographystyle{jname}
+
+%\bibliographystyle{tipsj}%% 情報処理学会論文誌
+%\bibliographystyle{jipsj}%% 情報処理学会欧文論文誌
+%\bibliographystyle{tieice}%% 電子情報通信学会論文誌
+%\bibliographystyle{jorsj}%% 日本オペレーションズリサーチ学会論文誌
+
+%\fontencoding{T1}\selectfont
+\fontencoding{T2A}\selectfont
+\bibliography{jbtest}
+
+\end{document}

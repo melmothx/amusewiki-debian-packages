@@ -1,0 +1,192 @@
+%
+% pxeverysel.sty
+% originally written by Takayuki Yato (ZR)
+% and modified by Hironobu Yamashita
+%
+% This package is distributed as part of the platex-tools bundle
+% maintained by Hironobu Yamashita
+% by courtesy of the original author.
+% https://github.com/aminophen/platex-tools
+%
+% --------------------------------------------------------------------
+% [Note]
+% Update: since version 2021/02/13 v0.9a, this package does nothing,
+% as pLaTeX2e 2021-06-01 will support the situation natively.
+% --------------------------------------------------------------------
+%
+
+%% package declaration
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pxeverysel}
+    [2021/07/13 v0.9d Patch to everysel for (u)pLaTeX]
+
+%% Since LaTeX2e 2021-06-01, everysel.sty is merely
+%% an emulation by everysel-ltx.sty from firstaid.
+
+\chardef\pxys@status=\z@
+\@ifl@t@r\fmtversion{2021/06/01}{\chardef\pxys@status=\@ne}{}
+\ifnum\pxys@status=\@ne
+  % if LaTeX2e and pLaTeX2e are inconsistent, raise an error!
+  \ifx\delayed@k@adjustment\@undefined
+    \PackageError{pxeverysel}{Inconsistent LaTeX2e/pLaTeX2e combination}\@ehc
+  \else
+    \PackageInfo{pxeverysel}{This package is no longer needed}%
+  \fi
+  \RequirePackage{everysel}% input anyway
+  \expandafter\endinput
+\fi
+
+%% The rest of this package is meant for
+%% LaTeX2e 2020-10-01 PL4 or older.
+
+%% in case it's too late ...
+\@ifpackageloaded{everysel}{%
+  % everysel.sty removes \@EverySelectfont@Init once it is used
+  \ifx\@EverySelectfont@Init\undefined
+    \PackageError{pxeverysel}{%
+      Patch too late!\MessageBreak
+      Load pxeverysel earlier}\@ehc
+    \expandafter\endinput
+  \fi
+}{}
+
+%% load it, but ensure that \@EverySelectfont@Init is not executed
+%  [Note] everysel.sty contains
+%    \AtBeginDocument{\@EverySelectfont@Init}
+%  at the end. In most cases, the execution is actually delayed;
+%  however,
+%    \AtBeginDocument{\RequirePackage{everysel}}
+%  can execute it immediately (e.g. found in sidecap.sty).
+%  In this case, delay it until the end of pxeverysel.sty.
+\ifx\AtBeginDocument\@firstofone
+  \def\pxys@begindocumenthook{\let\AtBeginDocument\@firstofone}
+  \def\AtBeginDocument{\g@addto@macro\pxys@begindocumenthook}
+  \AtEndOfPackage{\pxys@begindocumenthook}
+\fi
+\RequirePackage{everysel}
+
+%% support for (u)pLaTeX font tracing
+\@ifpackageloaded{tracefnt}{%
+  \ifx\kanjiskip\@undefined\else
+  \ifnum\jis"2121="3000 \RequirePackage{uptrace}%
+  \else                 \RequirePackage{ptrace}\fi\fi}{}
+
+%--------------------------------------- helpers
+
+%% preparations
+\def\pxys@pkgname{pxeverysel}
+\def\pxys@warn{\PackageWarningNoLine\pxys@pkgname}
+
+%% unique tokens
+\def\pxys@mark{\pxys@mark@}
+\def\pxys@fin{\pxys@fin@}
+
+%% \pxys@patch@cmd\CMD{<pre>}{<post>}{<new>}
+\@onlypreamble\pxys@patch@cmd
+\def\pxys@patch@cmd#1#2#3#4{%
+  \def\pxys@next##1#2##2#3##3\pxys@mark##4\pxys@fin{%
+    \ifx\pxys@mark##4\pxys@mark
+      \let\pxys@fragment\relax
+    \else
+      \def\pxys@fragment{##2}%
+      \def#1{##1#4##3}%
+    \fi}%
+  \expandafter\pxys@next#1\pxys@mark#2#3\pxys@mark\pxys@fin}
+
+%% \pxys@append@to\CSa\CSb
+\@onlypreamble\pxys@append@to
+\def\pxys@append@to#1#2{%
+  \expandafter\g@addto@macro\expandafter#1\expandafter{#2}}
+
+%% \pxys@term
+\let\pxys@term\relax
+
+%---------------------------------------
+
+%% variables
+\let\pxys@self@hook\@empty
+\let\pxys@everysel@hook\@empty
+\@onlypreamble\pxys@selectfont
+\let\pxys@selectfont\relax
+\@onlypreamble\pxys@org@selectfont
+\let\pxys@org@selectfont\relax
+\@onlypreamble\pxys@new@selectfont
+\let\pxys@new@selectfont\relax
+
+%% \@EverySelectfont@Init redefined
+\@onlypreamble\pxys@EverySelectfont@Init
+\let\pxys@EverySelectfont@Init\@EverySelectfont@Init
+\def\@EverySelectfont@Init{%
+  \pxys@preproc
+  \pxys@EverySelectfont@Init
+  \pxys@postproc}
+
+%% \pxys@preproc
+\@onlypreamble\pxys@preproc
+\def\pxys@preproc{%
+  % prepare
+  \expandafter\let\expandafter\pxys@selectfont
+      \csname selectfont \endcsname
+  \let\pxys@org@selectfont\pxys@selectfont
+  % extract "pre-\size@update" insertion
+  \pxys@append@to\pxys@selectfont\pxys@term
+  \pxys@patch@cmd\pxys@selectfont
+    {\pickup@font\font@name}{\size@update\pxys@term}%      % plfonts/ptrace
+    {\pickup@font\font@name\pxys@self@hook\pxys@everysel@hook
+     \size@update}%
+  \ifx\pxys@fragment\relax
+    \let\pxys@selectfont\pxys@org@selectfont
+    % extract "pre-\enc@update" insertion
+    \pxys@patch@cmd\pxys@selectfont
+      {\pickup@font\font@name}{\size@update\enc@update}%   % ltfsstrc/tracefnt
+      {\pickup@font\font@name\pxys@self@hook\pxys@everysel@hook
+       \size@update\enc@update}%
+    \ifx\pxys@fragment\relax % failure
+      \let\pxys@selectfont\relax
+    \else
+      \pxys@append@to\pxys@self@hook\pxys@fragment
+    \fi
+  \else
+    \pxys@append@to\pxys@self@hook\pxys@fragment
+  \fi
+  \let\pxys@new@selectfont\pxys@selectfont
+  % prepare for everysel routine
+  \let\pxys@CheckCommand\CheckCommand
+  \let\CheckCommand\@gobble
+  % hack for disabling duplicate font info
+  \expandafter\let\expandafter\pxys@ver@tracefnt
+    \csname ver@tracefnt.sty\endcsname
+  \expandafter\let\csname ver@tracefnt.sty\endcsname\@undefined}
+
+%% \pxys@postproc
+\@onlypreamble\pxys@postproc
+\def\pxys@postproc{%
+  % revert the hack for disabling duplicate font info
+  \expandafter\let\csname ver@tracefnt.sty\endcsname\pxys@ver@tracefnt
+  \let\pxys@ver@tracefnt\@undefined
+  % post handling of everysel routine
+  \let\CheckCommand\pxys@CheckCommand
+  \let\pxys@CheckCommand\@undefined
+  \expandafter\let\expandafter\pxys@selectfont
+      \csname selectfont \endcsname
+  % extract the code insertion by everysel
+  \pxys@patch@cmd\pxys@selectfont
+    {\pickup@font\font@name}{\size@update\enc@update}{}%
+  \ifx\pxys@fragment\relax % failure
+    \let\pxys@new@selectfont\relax
+  \else % success
+    \pxys@append@to\pxys@everysel@hook\pxys@fragment
+  \fi
+  % commit the change
+  \ifx\pxys@new@selectfont\relax % failure
+    \let\pxys@selectfont\pxys@org@selectfont % revert
+    \pxys@warn{Failed in patching \string\selectfont}%
+  \else % success
+    \let\pxys@selectfont\pxys@new@selectfont
+  \fi
+  \expandafter\let\csname selectfont \endcsname\pxys@selectfont}
+
+%--------------------------------------- done
+
+\endinput
+%% EOF

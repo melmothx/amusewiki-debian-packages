@@ -1,0 +1,24 @@
+name babel-dutch
+category Package
+revision 60362
+shortdesc Babel contributed support for Dutch
+longdesc The package provides a language definition, file for use with
+longdesc babel, which establishes Dutch conventions in a document (or a
+longdesc subset of the conventions, if Dutch is not the main language of
+longdesc the document).
+containersize 2920
+containerchecksum bef13adf26cbbd16604af041fc7af866c82e88cd9d7d05318abd10f7d6f0ae718e1186f5527b4b38f1f099ba5da3d85b5e2f6d1ac0dfe8fe64ea52fcf6f06df1
+doccontainersize 157392
+doccontainerchecksum a78535f95bbbf6228014471a473a7e38b2cfa2da0160adb906b8f75c803b3e9396ca52322100102bebc179ec1e863a78c1b102ae932ea324ea58fd57bf9e9b06
+docfiles size=40
+ texmf-dist/doc/generic/babel-dutch/README.md details="Readme"
+ texmf-dist/doc/generic/babel-dutch/dutch.pdf details="Package documentation"
+srccontainersize 7968
+srccontainerchecksum 724746e2e05c5de5184125068b2637c14c58c83f86fc92d75521089298a26290ecebbb6f0c61f7452da659dbcbfa1c36789e428aba500fa2211e354747fb017c
+runfiles size=4
+ texmf-dist/tex/generic/babel-dutch/afrikaans.ldf
+ texmf-dist/tex/generic/babel-dutch/dutch.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/dutch
+catalogue-license lppl1.3
+catalogue-topics dutch multilingual-addon
+catalogue-version 3.8l

@@ -1,0 +1,17 @@
+name hyphen-indonesian
+category TLCore
+revision 58609
+shortdesc Indonesian hyphenation patterns.
+longdesc Hyphenation patterns for Indonesian (Bahasa Indonesia) in ASCII
+longdesc encoding. They are probably also usable for Malay (Bahasa
+longdesc Melayu).
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=indonesian 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-id.tex 	file_patterns=hyph-id.pat.txt 	file_exceptions=hyph-id.hyp.txt
+containersize 2416
+containerchecksum 3f04a63010c02d77cb229c90aec9f1079557493958573be9ce992ac5ae3c229f01f9abc0cac785d9340ff48aa169a01f8b327ecb2e255bef57f1fe85d04d1d2a
+runfiles size=4
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-id.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-id.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-id.hyp.txt
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-id.pat.txt

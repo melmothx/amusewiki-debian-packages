@@ -1,0 +1,3409 @@
+% \iffalse meta-comment
+% ======================================================================
+% scrkernel-typearea.dtx
+% Copyright (c) Markus Kohm, 2002-2020
+%
+% This file is part of the LaTeX2e KOMA-Script bundle.
+%
+% This work may be distributed and/or modified under the conditions of
+% the LaTeX Project Public License, version 1.3c of the license.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3c or later is part of all distributions of LaTeX 
+% version 2005/12/01 or later and of this work.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% The Current Maintainer and author of this work is Markus Kohm.
+%
+% This work consists of all files listed in manifest.txt.
+% ----------------------------------------------------------------------
+% scrkernel-typearea.dtx
+% Copyright (c) Markus Kohm, 2002-2020
+%
+% Dieses Werk darf nach den Bedingungen der LaTeX Project Public Lizenz,
+% Version 1.3c, verteilt und/oder veraendert werden.
+% Die neuste Version dieser Lizenz ist
+%   http://www.latex-project.org/lppl.txt
+% und Version 1.3c ist Teil aller Verteilungen von LaTeX
+% Version 2005/12/01 oder spaeter und dieses Werks.
+%
+% Dieses Werk hat den LPPL-Verwaltungs-Status "author-maintained"
+% (allein durch den Autor verwaltet).
+%
+% Der Aktuelle Verwalter und Autor dieses Werkes ist Markus Kohm.
+% 
+% Dieses Werk besteht aus den in manifest.txt aufgefuehrten Dateien.
+% ======================================================================
+% \fi^^A meta-comment
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \iffalse meta-comment
+%%% From File: $Id: scrkernel-typearea.dtx 3488 2020-04-27 13:04:43Z kohm $
+%<identify>%%%            (run: identify)
+%<init>%%%            (run: init)
+%<options>%%%            (run: options)
+%<body>%%%            (run: body)
+%<final>%%%            (run: final)
+%<package&identify>\NeedsTeXFormat{LaTeX2e}[1995/06/01]
+%<*dtx>
+\ifx\ProvidesFile\undefined\def\ProvidesFile#1[#2]{}\fi
+\begingroup
+  \def\filedate$#1: #2-#3-#4 #5${\gdef\filedate{#2/#3/#4}}
+  \filedate$Date: 2020-04-27 15:04:43 +0200 (Mon, 27 Apr 2020) $
+  \def\filerevision$#1: #2 ${\gdef\filerevision{r#2}}
+  \filerevision$Revision: 3488 $
+  \edef\reserved@a{%
+    \noexpand\endgroup
+    \noexpand\ProvidesFile{scrkernel-typearea.dtx}[%
+                            \filedate\space\filerevision\space
+                            KOMA-Script
+  }
+\reserved@a
+%</dtx>
+%<*dtx|(package&typearea&identify)>
+%<package>\ProvidesPackage{typearea}[%
+%!KOMAScriptVersion
+  package 
+%<*dtx>
+  source
+%</dtx>
+  (type area)]
+%</dtx|(package&typearea&identify)>
+%<*dtx>
+%^^A The ins file:
+\ifx\documentclass\undefined
+  \input scrdocstrip.tex
+  \@@input scrkernel-version.dtx
+  \@@input scrstrip.inc
+  \generate{\usepreamble\defaultpreamble
+    \file{typearea.sty}{%
+      \from{scrkernel-version.dtx}{package,typearea}%
+      \from{scrkernel-typearea.dtx}{package,typearea,identify}%
+      \from{scrkernel-basics.dtx}{load}%
+      \from{scrkernel-compatibility.dtx}{package,typearea,init}%
+      \from{scrkernel-typearea.dtx}{package,typearea,init}%
+      \from{scrkernel-compatibility.dtx}{package,typearea,option}%
+      \from{scrkernel-typearea.dtx}{package,typearea,options}%
+      \from{scrkernel-compatibility.dtx}{package,typearea,body}%
+      \from{scrkernel-typearea.dtx}{package,typearea,body}%
+      \from{scrkernel-typearea.dtx}{package,typearea,final}%
+      \from{scrlogo.dtx}{logo}%
+    }%
+  }
+  \@@input scrstrop.inc
+\else
+  \let\endbatchfile\relax
+\fi
+\endbatchfile
+%^^A The documentation driver (needed only for checksum calculation):
+\documentclass{scrdoc}
+\usepackage[main=english,ngerman]{babel}
+\CodelineIndex
+\RecordChanges
+\GetFileInfo{scrkernel-typearea.dtx}
+\title{\KOMAScript{} \partname\ \texttt{\filename}%
+  \footnote{This is \fileversion\ of file \texttt{\filename}.}}
+\date{\filedate}
+\author{Markus Kohm}
+
+\begin{document}
+  \maketitle
+  \tableofcontents
+  \DocInput{\filename}
+\end{document}
+%</dtx>
+% \fi^^A meta-comment
+%^^A The documentation part:
+%
+% \changes{v2.95}{2002/06/20}{first version after splitting
+%   \texttt{scrclass.dtx}}%^^A
+% \changes{v3.24}{2017/07/23}{reorganization of code into semantic
+%   portions}%^^A
+% \changes{v3.24}{2017/07/23}{start of English translation}%^^A
+%
+% \section{Typing Area Macros}
+%
+% This section contains macros for the typing area. These result not only in
+% the package \Package{typearea} but also provide features for the
+% \KOMAScript{} classes.
+%
+% \StopEventually{\PrintIndex\PrintChanges}
+%
+%^^A The source part:
+%
+% \subsection{Loading packages}
+%
+% Package \Package{typearea} needs package \Package{scrkbase}. But this will
+% be loaded by \File{scrkernel-basics.dtx} just after the identify run of this
+% file. It does not need other packages.
+%
+% The \KOMAScript{} classes need package \Package{typearea}. This will be
+% loaded here as an early body action. Nevertheless, at this state the typing
+% area option code for the classes has already been loaded. So before loading
+% the almost identical option code of the package, some macros have to be
+% reset:
+%    \begin{macrocode}
+%<*class&body>
+\let\@BCOR                =\relax
+\let\@@BCOR               =\relax
+\let\@DIV                 =\relax
+\let\@@DIV                =\relax
+\let\@headlines           =\relax
+\let\@@headlines          =\relax
+\let\x@paper              =\relax
+\let\x@@paper             =\relax
+\let\scr@pti@nerr@r       =\relax
+%    \end{macrocode}
+% Now we can load \Package{typearea}:
+% \changes{v2.95}{2002/06/22}{Use \cs{KOMAScriptVersion} while loading
+%   \Package{typearea}}%^^A
+% We use \cs{KOMAScriptVersion} to verify the identical versions of
+% \KOMAScript{} and the package. See \File{scrkernel-version.dtx} for more
+% information about this verification.
+%    \begin{macrocode}
+\RequirePackage{typearea}[\KOMAScriptVersion]
+%</class&body>
+%    \end{macrocode}
+%
+% \subsection{Selection of paper size}
+%
+% Before we can define page margins and a typing area, we have to define the
+% paper size. Beside \Package{typearea} also \Package{scrletter} uses some of
+% this code, because it needs the paper size, too.
+%
+% \begin{macro}{\PaperNameToSize}
+% \changes{v3.23}{2017/02/22}{new}%^^A
+% \changes{v3.28}{2019/11/18}{\cs{ifstr} umbenannt in \cs{Ifstr}}%^^A
+% This command sets \cs{paperheight} and \cs{paperwidth} depending on
+% the name of a paper size. It currently supports the ISO formats of the
+% series A, B, C and D and the American formats letter, legal and
+% executive. The command is defined using \Macro{providecommand} so a class
+% can define it different before loading \Package{typearea}. The first
+% optional argument is the error class. Error classes will be defined using
+% \Macro{ProvideUnknownPaperSizeError} later. The second argument is the name
+% of the paper size.
+%    \begin{macrocode}
+%<*package&options>
+\providecommand*{\PaperNameToSize}[2][warning]{%
+  \Ifstr{#2}{letter}{%
+    \setlength\paperheight{11in}%
+    \setlength\paperwidth {8.5in}%
+  }{%
+    \Ifstr{#2}{legal}{%
+      \setlength\paperheight{14in}%
+      \setlength\paperwidth {8.5in}%
+    }{%
+      \Ifstr{#2}{executive}{%
+        \setlength\paperheight{10.5in}%
+        \setlength\paperwidth {7.25in}%
+      }{%
+        \Ifstr{#2}{}{%
+          \ISO@PaperNameToSize[#1]{}{}\@nil
+        }{%
+          \edef\reserved@a{\noexpand\ISO@PaperNameToSize[#1]#2 \noexpand\@nil}%
+          \reserved@a
+        }%
+      }%
+    }%
+  }%
+}
+%    \end{macrocode}
+% \begin{macro}{\ISO@PaperNameToSize}
+% \changes{v3.23}{2017/02/22}{new (internal)}%^^A
+% \changes{v3.28}{2019/11/18}{\cs{ifnumber} umbenannt in \cs{Ifnumber}}%^^A
+% For ISO paper sizes a sub-macro is used. It has to split the series and the
+% root.
+%    \begin{macrocode}
+\scr@ifundefinedorrelax{ISO@PaperNameToSize}{%
+  \def\ISO@PaperNameToSize[#1]#2#3\@nil{%
+    \lowercase{\edef\reserved@a{#2}}%
+    \@tempswafalse
+    \if \reserved@a a%
+      \Ifnumber{#3}{%
+        \setlength{\paperwidth}{841sp}%
+        \setlength{\paperheight}{1189sp}%
+        \@tempswatrue
+      }{}%
+    \else
+      \if \reserved@a b%
+        \Ifnumber{#3}{%
+          \setlength{\paperwidth}{1000sp}%
+          \setlength{\paperheight}{1414sp}%
+          \@tempswatrue
+        }{}%
+      \else
+        \if \reserved@a c%
+          \Ifnumber{#3}{%
+            \setlength{\paperwidth}{917sp}%
+            \setlength{\paperheight}{1297sp}%
+            \@tempswatrue
+          }{}%
+        \else
+          \if \reserved@a d%
+            \Ifnumber{#3}{%
+              \setlength{\paperwidth}{771sp}%
+              \setlength{\paperheight}{1090sp}%
+              \@tempswatrue
+            }{}%
+          \fi
+        \fi
+      \fi
+    \fi
+    \if@tempswa
+      \@tempcnta=#3\relax
+      \@whilenum\@tempcnta>\z@
+      \do{\setlength{\@tempdima}{\paperwidth}%
+        \setlength{\paperwidth}{.5\paperheight}%
+        \setlength{\paperheight}{\@tempdima}%
+        \advance\@tempcnta by\m@ne
+      }%
+      \multiply\paperwidth by186468
+      \multiply\paperheight by186468
+    \else
+%    \end{macrocode}
+% The paper size is not a supported ISO format. If
+% \Macro{scr@UnknownPaperSize@}\meta{errorclass} is defined, use it to show
+% the error. If not, use \Macro{scr@UnknownPaperSize@error}. This means,
+% \meta{errorclass} \texttt{error} has to be defined.
+%    \begin{macrocode}
+      \scr@ifundefinedorrelax{scr@UnknownPaperSize@#1}{%
+        \scr@UnknownPaperSize@error{#2#3}%
+      }{%
+        \@nameuse{scr@UnknownPaperSize@#1}{#2#3}%
+      }%
+    \fi
+  }%
+}{}
+%    \end{macrocode}
+% \begin{macro}{\ProvideUnknownPaperSizeError}
+% \changes{v3.23}{2017/02/22}{new}%^^A
+% Define a new error class for unknown paper formats. The argument is the new
+% error class. Each error class is represented by a command
+% \Macro{scr@UnknownPaperSize@}\meta{errorclass}. That command also has
+% exactly one argument, the unknown paper size.
+%    \begin{macrocode}
+\providecommand*{\ProvideUnknownPaperSizeError}[1]{%
+  \expandafter\providecommand\expandafter*%
+  \csname scr@UnknownPaperSize@#1\endcsname[1]%
+}
+%    \end{macrocode}
+% \begin{macro}{\scr@UnkownPaperSize@error}
+% \changes{v3.23}{2017/02/22}{new (internal)}
+% \begin{macro}{\scr@UnkownPaperSize@warning}
+% \changes{v3.23}{2017/02/22}{new (internal)}
+% \begin{macro}{\scr@UnkownPaperSize@info}
+% \changes{v3.23}{2017/02/22}{new (internal)}
+% \begin{macro}{\scr@UnkownPaperSize@ignore}
+% \changes{v3.23}{2017/02/22}{new (internal)}
+% Error handling (error classes) for \Macro{PaperNameToSize}.
+%    \begin{macrocode}
+\ProvideUnknownPaperSizeError{error}{%
+  \PackageError{%
+%<typearea>    typearea%
+%<letter>    scrletter%
+  }{Unknown paper size #1}{%
+    \string\paperwidth\space and \string\paperheight\space stay unchanged,
+    because of unknown paper size.%
+  }%
+}
+%<*typearea>
+\ProvideUnknownPaperSizeError{warning}{%
+  \PackageWarning{%
+    typearea%
+  }{%
+    \string\paperwidth\space and \string\paperheight\space stay
+    unchanged, because\MessageBreak
+    of unknown paper size #1%
+  }%
+}
+\ProvideUnknownPaperSizeError{info}{%
+  \PackageInfo{%
+    typearea
+  }{%
+    \string\paperwidth\space and \string\paperheight\space stay
+    unchanged, because\MessageBreak
+    of unknown paper size #1%
+  }%
+}
+\ProvideUnknownPaperSizeError{ignore}{}
+%</typearea>
+%</package&options>
+%    \end{macrocode}
+% \end{macro}%^^A \scr@UnknownPaperSize@error
+% \end{macro}%^^A \scr@UnknownPaperSize@warning
+% \end{macro}%^^A \scr@UnknownPaperSize@info
+% \end{macro}%^^A \scr@UnknownPaperSize@ignore
+% \end{macro}%^^A \ProvideUnknownPaperSizeError
+% \end{macro}%^^A \ISO@PaperNameToSize
+% \end{macro}%^^A \PaperNameToSize
+%
+% \begin{option}{a4paper}
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A
+% \changes{v3.01a}{2008/11/21}{the option is standard but not deprecated}%^^A
+% \begin{option}{a5paper}
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A
+% \changes{v3.01a}{2008/11/21}{the option is standard but not deprecated}%^^A
+% \begin{option}{b5paper}
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A
+% \changes{v3.01a}{2008/11/21}{the option is standard but not deprecated}%^^A
+% \begin{option}{letterpaper}
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A
+% \changes{v3.01a}{2008/11/21}{the option is standard but not deprecated}%^^A
+% \begin{option}{legalpaper}
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A
+% \changes{v3.01a}{2008/11/21}{the option is standard but not deprecated}%^^A
+% \begin{option}{executivepaper}
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A
+% \changes{v3.01a}{2008/11/21}{the option is standard but not deprecated}%^^A
+% \begin{option}{landscape}
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A
+% \changes{v3.01a}{2008/11/21}{the option is standard but not deprecated}%^^A
+% \begin{option}{portrait}
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A
+% \changes{v3.01a}{2008/11/21}{the option is standard but not deprecated}%^^A
+% The paper sizes of the standard classes are a special case. For
+% compatibility they are declared explicitly. Note: There is still a pattern
+% matching implementation for other paper size options, but the usage of those
+% is hardly deprecated.
+%    \begin{macrocode}
+%<*package&typearea&options>
+\KOMA@DeclareStandardOption[typearea]{a4paper}{paper=a4}
+\KOMA@DeclareStandardOption[typearea]{a5paper}{paper=a5}
+\KOMA@DeclareStandardOption[typearea]{b5paper}{paper=b5}
+\KOMA@DeclareStandardOption[typearea]{letterpaper}{paper=letter}
+\KOMA@DeclareStandardOption[typearea]{legalpaper}{paper=legal}
+\KOMA@DeclareStandardOption[typearea]{executivepaper}{paper=executive}
+\KOMA@DeclareStandardOption[typearea]{landscape}{paper=landscape}
+\KOMA@DeclareStandardOption[typearea]{portrait}{paper=portrait}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{option}
+% \end{option}
+% \end{option}
+% \end{option}
+% \end{option}
+% \end{option}
+% \end{option}
+% \end{option}
+%
+% \begin{option}{paper}
+% \changes{v2.95}{2002/12/03}{new implementation}%^^A
+% \changes{v3.01b}{2008/12/09}{height and width swapped}%^^A
+% \changes{v3.02c}{2009/02/12}{new \Option{paper!=seascape}}%^^A
+% \changes{v3.12}{2013/03/05}{status signaling using \cs{FamilyKeyState}}%^^A
+% \changes{v3.22}{2016/07/29}{paper orientation depends on format name}%^^A
+% \changes{v3.28}{2019/11/18}{\cs{ifstr} umbenannt in \cs{Ifstr}}%^^A
+% Normally, the paper size should be set using this option. It provides the
+% ISO series A, B, C, D, value pairs
+% \Option{(\meta{width},\meta{height})} and the orientations
+% \Option{portrait}, \Option{landscape} and \Option{seascape}.
+%    \begin{macrocode}
+%<*package&typearea&options>
+\KOMA@key{paper}{%
+  \Ifstr{#1}{seascape}{%
+    \@seascapetrue
+    \expandafter\ifnum\scr@ta@v@is@ge{3.22}\relax
+      \@landscapetrue
+      \scr@setpaperorientation
+    \else
+      \if@landscape\else\scr@switchpapersizes\@landscapetrue\fi
+    \fi
+    \FamilyKeyStateProcessed
+    \KOMA@kav@remove{.typearea.\scr@pkgextension}{paper}{landscape}%
+    \KOMA@kav@remove{.typearea.\scr@pkgextension}{paper}{portrait}%
+    \KOMA@kav@remove{.typearea.\scr@pkgextension}{paper}{seascape}%
+    \KOMA@kav@add{.typearea.\scr@pkgextension}{paper}{seascape}%
+  }{%      
+    \Ifstr{#1}{landscape}{%
+      \@seascapefalse
+      \expandafter\ifnum\scr@ta@v@is@ge{3.22}\relax
+        \@landscapetrue
+        \scr@setpaperorientation
+      \else
+        \if@landscape\else\scr@switchpapersizes\@landscapetrue\fi
+      \fi
+      \FamilyKeyStateProcessed
+      \KOMA@kav@remove{.typearea.\scr@pkgextension}{paper}{landscape}%
+      \KOMA@kav@remove{.typearea.\scr@pkgextension}{paper}{portrait}%
+      \KOMA@kav@remove{.typearea.\scr@pkgextension}{paper}{seascape}%
+      \KOMA@kav@add{.typearea.\scr@pkgextension}{paper}{landscape}%
+    }{%
+      \Ifstr{#1}{portrait}{%
+        \expandafter\ifnum\scr@ta@v@is@ge{3.22}\relax
+          \@landscapefalse
+          \scr@setpaperorientation
+        \else
+          \if@landscape\scr@switchpapersizes\@landscapefalse\fi
+        \fi
+        \FamilyKeyStateProcessed
+        \KOMA@kav@remove{.typearea.\scr@pkgextension}{paper}{landscape}%
+        \KOMA@kav@remove{.typearea.\scr@pkgextension}{paper}{portrait}%
+        \KOMA@kav@remove{.typearea.\scr@pkgextension}{paper}{seascape}%
+        \KOMA@kav@add{.typearea.\scr@pkgextension}{paper}{portrait}%
+      }{%
+        \Ifstr{#1}{letter}{%
+          \if@landscape
+            \setlength\paperheight{8.5in}%
+            \setlength\paperwidth {11in}%
+          \else
+            \setlength\paperheight{11in}%
+            \setlength\paperwidth {8.5in}%
+          \fi
+          \FamilyKeyStateProcessed
+          \KOMA@kav@removekey{.typearea.\scr@pkgextension}{paper}%
+          \KOMA@kav@add{.typearea.\scr@pkgextension}{paper}{letter}%
+          \KOMA@kav@xadd{.typearea.\scr@pkgextension}{paper}{%
+            \if@seascape seascape\else
+            \if@landscape landscape\else portrait\fi\fi
+          }%
+        }{%
+          \Ifstr{#1}{legal}{%
+            \if@landscape
+              \setlength\paperheight{8.5in}%
+              \setlength\paperwidth {14in}%
+            \else
+              \setlength\paperheight{14in}%
+              \setlength\paperwidth {8.5in}%
+            \fi
+            \FamilyKeyStateProcessed
+            \KOMA@kav@removekey{.typearea.\scr@pkgextension}{paper}%
+            \KOMA@kav@add{.typearea.\scr@pkgextension}{paper}{legal}%
+            \KOMA@kav@xadd{.typearea.\scr@pkgextension}{paper}{%
+              \if@seascape seascape\else
+              \if@landscape landscape\else portrait\fi\fi
+            }%
+          }{%
+            \Ifstr{#1}{executive}{%
+              \if@landscape
+                \setlength\paperheight{7.25in}%
+                \setlength\paperwidth {10.5in}%
+              \else
+                \setlength\paperheight{10.5in}%
+                \setlength\paperwidth {7.25in}%
+              \fi
+              \FamilyKeyStateProcessed
+              \KOMA@kav@removekey{.typearea.\scr@pkgextension}{paper}%
+              \KOMA@kav@add{.typearea.\scr@pkgextension}{paper}{executive}%
+              \KOMA@kav@xadd{.typearea.\scr@pkgextension}{paper}{%
+                \if@seascape seascape\else
+                \if@landscape landscape\else portrait\fi\fi
+              }%
+            }{%
+              \iso@paper{#1}%
+              \if@tempswa
+                \FamilyKeyStateProcessed
+                \KOMA@kav@removekey{.typearea.\scr@pkgextension}{paper}%
+                \KOMA@kav@xadd{.typearea.\scr@pkgextension}{paper}{#1}%
+                \KOMA@kav@xadd{.typearea.\scr@pkgextension}{paper}{%
+                  \if@seascape seascape\else
+                  \if@landscape landscape\else portrait\fi\fi
+                }%
+              \else
+                \expandafter\maybe@pair#1::\@nil
+                \if@tempswa
+                  \FamilyKeyStateProcessed
+                  \KOMA@kav@removekey{.typearea.\scr@pkgextension}{paper}%
+                  \expandafter\ifnum \scr@ta@v@is@lt{3.01b}\relax
+                    \PackageWarningNoLine{typearea}{%
+                      You may have to exchange height and width!\MessageBreak
+                      Until KOMA-Script version 3.01b the semantic\MessageBreak
+                      of option `paper' was `paper=height:width'\MessageBreak
+                      instead of `paper=width:height'.\MessageBreak
+                      I've switched back to that old interpretation\MessageBreak
+                      because of the given compatiblity settings}%
+                    \setlength\paperwidth{\@tempb}%
+                    \setlength\paperheight{\@tempa}%
+                  \else
+                    \setlength\paperwidth{\@tempa}%
+                    \setlength\paperheight{\@tempb}%
+                  \fi
+                  \expandafter\ifnum \scr@ta@v@is@lt{3.22}\relax
+                    \if@landscape
+                      \KOMA@kav@xadd{.typearea.\scr@pkgextension}{paper}{\@tempa:\@tempb}%
+                    \else
+                      \KOMA@kav@xadd{.typearea.\scr@pkgextension}{paper}{\@tempb:\@tempa}%
+                    \fi
+                  \else
+                    \scr@setpaperorientation
+                    \KOMA@kav@xadd{.typearea.\scr@pkgextension}{paper}{%
+                      \the\paperwidth:\the\paperheight}%
+                  \fi
+                  \KOMA@kav@xadd{.typearea.\scr@pkgextension}{paper}{%
+                    \if@seascape seascape\else
+                    \if@landscape landscape\else portrait\fi\fi
+                  }%
+                \else
+                  \KOMA@unknown@keyval{paper}{#1}{%
+                    `letter', `legal', `executive', `a'<nr>, `b'<nr>,
+                    `c'<nr>, `d'<nr>,\MessageBreak
+                    <width>`:'<height>, `landscape' and `portrait'%
+                  }%
+                \fi
+              \fi
+            }%
+          }%
+        }%
+      }%
+    }%
+  }%
+}
+%    \end{macrocode}
+% \begin{macro}{\if@seascape}
+% \changes{v3.02c}{2009/02/12}{new}%^^A
+% \begin{macro}{\@seascapetrue}
+% \changes{v3.02c}{2009/02/12}{new}%^^A
+% \begin{macro}{\@seascapefalse}
+% \changes{v3.02c}{2009/02/12}{new}%^^A
+% This switch stores only whether or not the landscape orientation should be
+% up-side-down. Currently this makes sense only using \File{dvips}.
+%    \begin{macrocode}
+\newif\if@seascape
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\if@landscape}
+% \begin{macro}{\@landscapetrue}
+% \begin{macro}{\@landscapefalse}
+% This switch stores whether using portrait or landscape orientation.
+%    \begin{macrocode}
+\newif\if@landscape
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\maybe@pair}
+% \changes{v2.95}{2002/12/03}{new (internal)}%^^A
+% \changes{v2.97e}{2007/11/26}{works really}%^^A
+% Test whether the following parameter is of kind \texttt{\meta{first
+% argument}:\meta{second argument}}. If so \cs{@tempa} will become \meta{first
+% argument} and \cs{@tempb} will become \meta{second argument} and
+% \cs{if@tempswa} will become \cs{iftrue}. Otherwise \cs{if@tempswa} is
+% \cs{iffalse} and \cs{@tempa} and \cs{@tempb} are not specified.
+%    \begin{macrocode}
+\newcommand*{\maybe@pair}{}
+\def\maybe@pair#1:#2:#3\@nil{%
+  \edef\@tempa{#1}\edef\@tempb{#2}%
+  \ifx\@tempa\@empty\@tempswafalse\else
+    \ifx\@tempb\@empty\@tempswafalse\else\@tempswatrue\fi
+  \fi
+}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{macro}
+% \end{option}
+%
+% \subsection{Special handling of \Package{geometry}}
+%
+% \begin{option}{usegeometry}
+% \changes{v3.17}{2015/02/07}{new}%^^A
+% \Package{typearea} optionally can pass several settings to package
+% \Package{geometry}. The user decides whether or not to use this.
+%    \begin{macrocode}
+%<*package&typearea&options>
+\KOMA@ifkey{usegeometry}{@ta@usegeometry}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{option}
+% 
+%
+% \subsection{Setting the output paper size}
+%
+% The document paper format of option \Option{paper} is one thing. It is used
+% only for calculation of the dimensions used by \TeX{}. Originally
+% \textsc{dvi} does not know something like a paper size. It just contained
+% relative movements from the current position starting with the
+% origin. Setting up a page size depends on the output driver or back-end.
+%
+% \begin{option}{pagesize}
+% \changes{v2.7g}{2001/04/17}{new}%^^A
+% \changes{v2.95}{2002/08/27}{new implementation}%^^A
+% \changes{v3.02c}{2009/02/14}{new \Option{pagesize!=false}}%^^A
+% \changes{v3.05a}{2010/03/18}{new \Option{pagesize!=dvipdfmx}}%^^A
+% \changes{v3.12}{2013/03/05}{status signaling using \cs{FamilyKeyState}}%^^A
+% \changes{v3.17a}{2015/05/03}{logic redesigned}%^^A
+% \changes{v3.20}{2015/07/10}{\File{luatex} as a synonym of
+%     \File{pdftex}}%^^A
+% This option is the main element for telling pdf\TeX, \File{dvips} or V\TeX{}
+% which paper size to use. It is also used by some deprecated options. Here
+% are the values and their meanings:
+% \begin{labeling}[~--]{\Option{automedia}}
+% \item[\Option{auto}] combination of options \Option{pdftex} and
+%   \Option{dvips}.
+% \item[\Option{automedia}] like \Option{auto} with additional setting of
+%   \cs{mediawidth} and \cs{mediaheight} if available.
+% \item[\Option{dvips}] adds a \File{dvips} \cs{special} to set the paper
+%   size. This should be done only once in the document preamble. Usage inside
+%   the document body is not fully supported and will raise a  warning.
+% \item[\Option{dvipdfmx}] adds a \File{dvipdfmx} \cs{special} to set the
+%   paper size.
+% \item[\Option{false}] switch of the automatic driver page size setting,
+%   i.e., if there are changes inside the document.
+% \item[\Option{pdftex}] set \cs{pdfpagewidth} and \cs{pdfpageheight} if
+%   available.
+% \end{labeling}
+%    \begin{macrocode} 
+%<*package&typearea&options>
+\KOMA@key{pagesize}[auto]{%
+  \KOMA@set@ncmdkey{pagesize}{@pagesizelast}{%
+    {off}{-1},{no}{-1},{false}{-1},%
+    {auto}{0},{automedia}{1},{dvips}{2},{pdftex}{3},{luatex}{3},{dvipdfmx}{4}%
+  }{#1}%
+  \ifx\FamilyKeyState\FamilyKeyStateProcessed
+    \ifcase\number\@pagesizelast\relax
+      \edef\@pagesizelast{auto}%
+      \if@atdocument
+        \set@pdftexpagesize
+        \set@dvipspagesize
+      \fi
+    \or
+      \edef\@pagesizelast{automedia}%
+      \if@atdocument
+        \set@pdftexpagesize
+        \set@vtexpagesize
+        \set@dvipspagesize
+      \fi
+    \or
+      \edef\@pagesizelast{dvips}%
+      \if@atdocument
+        \set@dvipspagesize
+      \fi
+    \or
+      \edef\@pagesizelast{pdftex}%
+      \if@atdocument
+        \set@pdftexpagesize
+      \fi
+    \or
+      \edef\@pagesizelast{dvipdfmx}%
+      \if@atdocument
+        \set@dvipdfmxpagesize
+      \fi
+    \else
+      \edef\@pagesizelast{false}%
+    \fi
+    \KOMA@kav@xreplacevalue{.typearea.\scr@pkgextension}%
+                           {pagesize}{\@pagesizelast}%
+  \fi
+}
+%    \end{macrocode}
+% \begin{macro}{\@pagesizelast}
+% This internal macro stores the current value of option \Option{pagesize} and
+% is needed to use the correct signalling if option \Option{paper} is used
+% inside the document and the initial setup in |\begin{document}|.
+%    \begin{macrocode}
+\newcommand\@pagesizelast{auto}
+\AtBeginDocument{%
+  \KOMAExecuteOptions[.typearea.\scr@pkgextension]{pagesize=\@pagesizelast}%
+%    \end{macrocode}
+% \end{macro}%^^A \@pagesizelast
+%
+% \begin{macro}{\set@pdftexpagesize}
+% \changes{v2.95}{2002/08/27}{new (internal)}%^^A
+% \changes{v3.20}{2015/07/10}{if \cs{pdfpage\dots} does not exist
+%   \cs{page\dots} will be tried (needed for lua\TeX{}~0.80.1)}%^^A
+% \begin{macro}{\set@dvipspagesize}
+% \changes{v2.95}{2002/08/27}{new (internal)}%^^A
+% \changes{v3.02c}{2009/02/13}{respecting \Option{seascape}}%^^A
+% \changes{v3.02c}{2009/02/14}{can be used inside the document}%^^A
+% \changes{v3.12}{2012/02/06}{not expanded
+%   \cs{let}\cs{if@tempswa}\cs{if@dvips} does even work is the later is not
+%   yet defined}%^^A
+% \changes{v3.28}{2019/11/18}{\cs{ifnotundefined} renamed into
+%   \cs{Ifnotundefined}}%^^A
+% \begin{macro}{\setnot@dvipspagesize}
+% \changes{v2.95}{2002/08/27}{new (internal)}%^^A
+% \begin{macro}{\set@dvipdfmxpagesize}
+% \changes{v3.05a}{2010/03/18}{new (internal)}%^^A
+% \begin{macro}{\set@vtexpagesize}
+% \changes{v2.95}{2002/08/27}{new (internal)}%^^A
+% \changes{v3.28}{2019/11/18}{\cs{ifnotundefined} renamed into
+%   \cs{Ifnotundefined}}%^^A
+% \begin{macro}{\scr@updatedvipspagesize}
+% \changes{v3.02c}{2009/02/14}{new (internal)}%^^A
+% \changes{v3.12}{2013/05/10}{deactivated, if \cs{XeTeXversion} exists}%^^A
+% Option \Option{pagesize} needs some internal macros.
+% \begin{description}
+% \item{Attention:} The definition of these macros may change at usage of
+%   themselves or at |\begin{document}|.
+% \end{description}
+% First of all the definition from |\begin{document}|:
+%    \begin{macrocode}
+  \expandafter\ifnum\scr@ta@v@is@gt{3.02b}\relax
+    \renewcommand*{\set@dvipspagesize}{%
+%    \end{macrocode}
+% \changes{v3.12}{2012/11/23}{use paper size update only for DVI and PS}%^^A
+% \changes{v3.12}{2012/02/06}{not expanded
+%     \cs{let}\cs{if@tempswa}\cs{if@dvips} does even work is the later is not
+%     yet defined}%^^A
+% Test whether unspecified \textsc{DVI} output or specified \textsc{PS} output
+% is used. Only in that cases the \textsc{PS} code for paper size updates will
+% be used.
+%    \begin{macrocode}
+      \begingroup
+        \@tempswafalse
+        \scr@ifdvioutput{\@tempswatrue}{%
+          \Ifnotundefined{if@dvips}{%
+            \expandafter\let\csname if@tempswa\expandafter\endcsname
+            \csname if@dvips\endcsname
+          }{}%
+        }%
+        \if@tempswa
+          \endgroup
+          \scr@ifundefinedorrelax{AtNextShipout}{%
+            \scr@ifundefinedorrelax{AtBeginShipoutNext}{%
+              \begingroup
+                \protected@edef\reserved@a{\endgroup
+                  \scr@updatedvipspagesize}%
+              \reserved@a
+            }{%
+%    \end{macrocode}
+% If \cs{AtBeginShipoutNext} is available (mostly because of loading package
+% \Package{atbegshi}) use it so execute the code at least before other code
+% that has been added to \cs{shipout}. Unfortunately this is not reliable. If
+% \cs{AtBeginShipout} is used after \cs{set@dvipspagesize} (this means the
+% recalculation of the typing area and the margins) but before the current
+% page has been shipped out the code of such \cs{AtBeginShipout} will be lost!
+%    \begin{macrocode}
+              \begingroup
+                \protected@edef\reserved@a{\endgroup
+                  \protect\AtBeginShipoutNext{%
+                    \protect\bgroup
+                    \protect\global\protect\setbox\AtBeginShipoutBox
+                    \protect\vbox{%
+                      \scr@updatedvipspagesize
+                      \protect\box\AtBeginShipoutBox
+                    }%
+                    \protect\egroup
+                  }}%
+              \reserved@a
+            }%
+          }{%
+%    \end{macrocode}
+% If \cs{AtNextShipout} is available (mostly because of loading package
+% \Package{everyshi} use it to execute the code at least before other code
+% that has been added to \cs{shipout}.  Unfortunately this is not reliable. If
+% \cs{AtNextShipout} or \cs{EveryShipout} is used after \cs{set@dvipspagesize}
+% (this means the recalculation of the typing area and the margins) but before
+% the current page has been shipped out the code of such \cs{AtNextShipout} or
+% \cs{EveryShipout} will be lost!
+%    \begin{macrocode}
+            \begingroup
+              \protected@edef\reserved@a{\endgroup
+                \protect\AtNextShipout{%
+                  \protect\bgroup
+                  \protect\global\protect\setbox\protect\@cclv\protect\vbox{%
+                    \scr@updatedvipspagesize
+                    \protect\box\protect\@cclv
+                  }%
+                  \protect\egroup
+                }}%
+            \reserved@a
+          }%
+        \else
+%    \end{macrocode}
+% In this case (neither \textsc{DVI} nor \textsc{PS} output) we only have to
+% finish the group that has been used to keep changes of \cs{if@tempswa}
+% local.
+%    \begin{macrocode}
+          \endgroup
+        \fi
+    }%
+  \else
+    \let\set@dvipspagesize=\setnot@dvipspagesize
+  \fi
+  \renewcommand*{\set@dvipdfmxpagesize}{%
+    \scr@ifdvioutput{%
+      \special{papersize=\the\paperwidth,\the\paperheight}%
+    }{}%
+  }%
+}
+%    \end{macrocode}
+% And now the definition that is used before |\begin{document}| but executed
+% the first time inside |\begin{document}|.
+% \changes{3.21}{2016/05/27}{two missing backslashs added}
+%    \begin{macrocode}
+\newcommand*{\set@pdftexpagesize}{%
+  \scr@ifundefinedorrelax{pdfpagewidth}{%
+    \scr@ifundefinedorrelax{pagewidth}{}{\pagewidth=\paperwidth}%
+  }{\pdfpagewidth=\paperwidth}%
+  \scr@ifundefinedorrelax{pdfpageheight}{%
+    \scr@ifundefinedorrelax{pageheight}{}{\pageheight=\paperheight}%
+  }{\pdfpageheight=\paperheight}%
+}
+\newcommand*{\set@dvipspagesize}{%
+  \begingroup
+    \@tempswafalse
+    \scr@ifdvioutput{\@tempswatrue}{%
+      \Ifnotundefined{if@dvips}{%
+        \expandafter\let\csname if@tempswa\expandafter\endcsname
+        \csname if@dvips\endcsname
+      }{}%
+    }{}%
+%    \end{macrocode}
+% \changes{v3.22}{2016/08/04}{\textsf{preview} workaround}%^^A
+% If package \Package{preview} has been loaded with option \Option{tightpage},
+% which can be recognized by a defined macro \cs{pr@nextbb}, and if the
+% package is active, we do not add \textsc{DVI} specials, because it would
+% disturb Xe\LaTeX.
+%    \begin{macrocode}
+    \scr@ifundefinedorrelax{pr@nextbb}{}{%
+      \expandafter\ifx\csname ifPreview\expandafter\endcsname
+                      \csname iftrue\endcsname
+        \PackageInfo{typearea}{%
+          package `preview' with option `tightpage' detected.\MessageBreak
+          initial page size special deactivated%
+        }%
+        \@tempswafalse
+      \fi
+    }%
+    \if@tempswa
+      \endgroup
+      \AtBeginDvi{%
+        \special{papersize=\the\paperwidth,\the\paperheight}%
+        \if@seascape\special{! TeXDict begin /landplus90{true}store end }\fi
+      }%
+      \expandafter\ifnum\scr@ta@v@is@gt{3.02b}\relax
+        \let\set@dvipspagesize=\@empty
+      \else
+        \let\set@dvipspagesize=\setnot@dvipspagesize
+      \fi
+    \else
+    \endgroup
+  \fi
+}
+\newcommand*{\setnot@dvipspagesize}{%
+  \scr@ifdvioutput{%
+    \PackageWarning{%
+      typearea%
+    }{%
+      With dvi output option `pagesize=auto',\MessageBreak
+      `pagesize=automedia' or `pagesize=dvips'\MessageBreak
+      may be used only once at preamble.\MessageBreak
+      Option ignored%
+    }%
+  }{}%
+}
+\newcommand*{\set@dvipdfmxpagesize}{%
+  \scr@ifdvioutput{%
+    \AtBeginDvi{%
+      \special{papersize=\the\paperwidth,\the\paperheight}%
+    }%
+  }{}%
+}
+\newcommand*{\set@vtexpagesize}{%
+  \Ifnotundefined{mediawith}{\mediawidth=\paperwidth}{}%
+  \Ifnotundefined{mediaheight}{\mediaheight=\paperheight}{}%
+}
+\newcommand*{\scr@updatedvipspagesize}{%
+  \scr@ifundefinedorrelax{XeTeXversion}{%
+    \special{ps::\@percentchar\@percentchar 
+      PageBoundingBox: 0 0 \the\numexpr\paperwidth/\dimexpr 1bp\relax\relax
+      \space \the\numexpr\paperheight/\dimexpr 1bp\relax\relax^^J%
+      \@percentchar\@percentchar BeginPageSetup^^J%
+      << /PageSize [\the\numexpr\paperwidth/\dimexpr 1bp\relax\relax\space
+      \the\numexpr\paperheight/\dimexpr 1bp\relax\relax] 
+      >> setpagedevice^^J%<<
+      0 0 bop^^J%
+      \@percentchar\@percentchar EndPageSetup}%
+  }{}%
+}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{option}
+%
+% \begin{option}{dvips}
+% \changes{v2.7g}{2001/04/17}{new}%^^A
+% \changes{v2.95}{2002/08/27}{new implementation}%^^A
+% \changes{v2.98c}{2008/04/09}{replacement changed}%^^A
+% \changes{v2.98c}{2008/04/09}{info instead of warning}%^^A
+% \changes{v3.01a}{2008/11/21}{it's a standard option not deprecated}%^^A
+% This option is a kind of obsolete. It is now implemented using
+% \Option{pagesize}. But because this is a standard option using several other
+% packages we only show a standard option information instead of a deprecated
+% option warning. Note: Usage of \Option{pagesize=automedia} can still result
+% in a warning message!
+%    \begin{macrocode}
+%<*package&typearea&options>
+\KOMA@DeclareStandardOption[typearea]{dvips}{%
+  pagesize=automedia%
+}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{option}
+%
+% \begin{option}{pdftex}
+% \changes{v2.7g}{2001/04/17}{new}%^^A
+% \changes{v2.95}{2002/08/27}{new implementation}%^^A
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A
+% \changes{v3.01a}{2008/11/21}{it's a standard option not deprecated}%^^A
+% This option is a kind of obsolete. It is now implemented using
+% \Option{pagesize}. But because this is a standard option using several other
+% packages we only show a standard option information instead of a deprecated
+% option warning.
+%    \begin{macrocode}
+%<*package&typearea&options>
+\KOMA@DeclareStandardOption[typearea]{pdftex}{%
+  pagesize=pdftex%
+}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{option}
+%
+% \subsection{Influencing left and right margin proportions}
+%
+% Options like \Option{twoside} or \Option{twocolumn} influence the
+% proportions of the left and right margin and indirectly also the top and the
+% bottom margin. They are also very important for the document classes.
+%
+% \begin{option}{oneside}
+% \changes{v2.97e}{2007/11/23}{pass option from class to
+%     \Package{typearea}}%^^A
+% \changes{v3.01a}{2008/11/21}{it's a standard option not deprecated}%^^A
+% \begin{option}{twoside}
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A
+% \changes{v2.97e}{2007/11/23}{pass option from class to
+%     \Package{typearea}}%^^A
+% \changes{v3.00}{2008/07/09}{new option \Option{twoside!=semi}}%^^A
+% \changes{v3.12}{2013/03/05}{status signaling using \cs{FamilyKeyState}}%^^A
+% \changes{v3.13a}{2014/04/09}{the class also uses status signaling with
+%     \cs{FamilyKeyStateProcessed}}%^^A
+% \changes{v3.17}{2015/03/17}{automatic usage of \cs{flushbottom} and
+%     \cs{raggedbottom}}%^^A
+% \changes{v3.17}{2015/03/17}{early setting of default}%^^A
+% \changes{v3.17}{2015/03/18}{use \cs{cleardoubleoddpage} if available}%^^A
+% \changes{v3.28}{2019/11/18}{\cs{ifstr} umbenannt in \cs{Ifstr}}%^^A
+% \begin{macro}{\if@semitwoside}
+% \changes{v3.00}{2008/07/09}{new boolean switch (intern)}%^^A
+% \begin{macro}{\if@twoside}
+% \changes{v3.00}{2008/07/09}{switch also sets \cs{if@semitwoside}}%^^A
+% Do we have a single sided or double sided layout?
+%    \begin{macrocode}
+%<*package&typearea&options>
+\newif\if@semitwoside
+\g@addto@macro\@twosidetrue\@semitwosidefalse
+\g@addto@macro\@twosidefalse\@semitwosidefalse
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%    \begin{macrocode}
+%<*(class|(package&typearea))&options>
+\KOMA@key{twoside}[true]{%
+%<class>  \if@atdocument\else\PassOptionsToPackage{twoside=#1}{typearea}\fi%
+%<*package>
+  \if@atdocument\if@twoside
+      \scr@ifundefinedorrelax{cleardoubleoddpage}{%
+        \cleardoublepage
+      }{%
+        \cleardoubleoddpage
+      }%
+  \else\clearpage\fi\fi
+%</package>
+  \Ifstr{#1}{semi}{%
+    \@twosidetrue
+%<package>    \@semitwosidetrue
+    \FamilyKeyStateProcessed
+  }{%
+    \def\FamilyElseValue{, `semi'}%
+    \KOMA@set@ifkey{twoside}{%
+%    \end{macrocode}
+% \changes{v3.20}{2015/11/02}{not existing order dependency of
+%   \Option{twocolumn} and \Option{twoside} fixed}%^^A
+% \changes{v3.27}{2019/03/05}{no \emph{Extrawurst} for letters}%^^A
+% \changes{v3.27}{2019/03/05}{mising \cs{sloppy} in twocolumn mode added}%^^A
+% From v3.17 until 3.19a the classes used a local switch
+% \Macro{if@tempswa}. As a result of this option \Option{twocolumn} was not
+% able to recognize double sided layout. Because of this it was essential to
+% handle option \Option{twocolumn} before option \Option{twoside}. This has
+% been solved using \Macro{if@twoside} in the classes too. Another solution
+% could have been to move the implementation and execution of
+% \Option{twocolumn} before \Option{twoside}. But I don't know whether or not
+% this would have been reliable and the solution here is more simple.
+%    \begin{macrocode}
+      @twoside%
+    }{#1}%
+  }%
+  \ifx\FamilyKeyState\FamilyKeyStateProcessed
+%<*class>
+    \expandafter\ifnum\scr@v@is@ge{3.17}%
+      \if@twoside\flushbottom
+      \else
+        \if@twocolumn\sloppy\flushbottom\else\raggedbottom\fi
+      \fi
+    \fi
+%</class>
+    \KOMA@kav@xreplacevalue{.%
+%<class>      \KOMAClassFileName
+%<package>      typearea.\scr@pkgextension
+    }{twoside}{#1}%
+%<*package>
+    \if@twoside
+      \if@semitwoside
+        \@mparswitchfalse
+      \else
+        \@mparswitchtrue
+      \fi
+    \else
+      \@mparswitchfalse
+    \fi%
+    \csname recalctypearea\endcsname
+%</package>
+  \fi
+}
+%<*class>
+%<book>\KOMAExecuteOptions{twoside=true}
+%<!book>\KOMAExecuteOptions{twoside=false}
+%</class>
+%<*package>
+\KOMA@kav@xadd{.typearea.\scr@pkgextension}{twoside}{%
+  \if@twoside true\else false\fi
+}
+%</package>
+\KOMA@DeclareStandardOption%
+%<package>  [typearea]%
+  {oneside}{twoside=false}
+%</(class|(package&typearea))&options>
+%    \end{macrocode}
+% \end{option}%^^A twoside
+% \end{option}%^^A oneside
+%
+% \begin{option}{onecolumn}
+% \changes{v2.95}{2002/12/04}{option moved to package \Package{typearea}}%^^A
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A
+% \changes{v2.97e}{2007/11/23}{the classes pass the option to
+%     \Package{typearea}}%^^A
+% \changes{v3.01a}{2008/11/21}{standard option but not deprecated}%^^A
+% \begin{option}{twocolumn}
+% \changes{v2.95}{2002/12/04}{option moved to package \Package{typearea}}%^^A
+% \changes{v2.97e}{2007/11/23}{the classes pass the option to
+%     \Package{typearea}}%^^A
+% \changes{v2.98a}{2007/01/08}{passing the correct option}%^^A
+% \changes{v3.12}{2013/03/05}{status signaling using \cs{FamilyKeyState}}%^^A
+% \changes{v3.13a}{2014/04/09}{the class also uses status signaling with
+%     \cs{FamilyKeyStateProcessed}}%^^A
+% \changes{v3.20}{2016/02/16}{\cs{sloppy}, \cs{raggedbottom} and
+%     \cs{flushbottom} delayed}%^^A
+% \changes{v3.27}{2019/03/05}{no \emph{Extrawurst} for letters}%^^A
+% Do we have a single column or two columns layout?
+%    \begin{macrocode}
+%<*(class|(package&typearea))&options>
+\KOMA@key{twocolumn}[true]{%
+%<class>  \if@atdocument\else\PassOptionsToPackage{twocolumn=#1}{typearea}\fi%
+%<*package>
+  \if@atdocument\clearpage\fi
+%</package>
+  \KOMA@set@ifkey{twocolumn}{@twocolumn}{#1}%
+  \ifx\FamilyKeyState\FamilyKeyStateProcessed
+    \KOMA@kav@replacebool{.%
+%<class>      \KOMAClassFileName
+%<package>      typearea.\scr@pkgextension
+    }{twocolumn}{@twocolumn}%
+%<package>    \csname recalctypearea\endcsname
+%<*class>
+    \if@atdocument\expandafter\@firstofone
+    \else\@ifpackageloaded{typearea}{\expandafter\@firstofone}
+                                    {\expandafter\AtEndOfClass}\fi
+    {\expandafter\ifnum\scr@v@is@ge{3.17}%
+      \if@twocolumn\twocolumn\sloppy\flushbottom
+      \else
+        \onecolumn
+        \if@twoside\flushbottom\else
+          \raggedbottom
+        \fi
+      \fi
+    \fi}%
+%</class>
+  \fi
+}
+%<*class>
+\AtEndOfClass{%
+  \expandafter\ifnum\scr@v@is@lt{3.17}%
+%<*!letter>
+    \if@twocolumn\twocolumn\sloppy\flushbottom
+    \else\onecolumn\if@twoside\flushbottom\else\raggedbottom\fi\fi
+%</!letter>
+%<letter>    \raggedbottom
+  \fi
+}
+\KOMAExecuteOptions{twocolumn=false}
+%</class>
+%<*package>
+\KOMA@kav@xadd{.typearea.\scr@pkgextension}{twocolumn}{%
+  \if@twocolumn true\else false\fi
+}
+%</package>
+\KOMA@DeclareStandardOption%
+%<package>  [typearea]%
+  {onecolumn}{twocolumn=false}
+%</(class|(package&typearea))&options>
+%    \end{macrocode}
+% \end{option}%^^A twocolumn
+% \end{option}%^^A onecolumn
+%
+%
+% \subsection{Influencing size of head and foot and margins}
+%
+% We have several options to influence the head hight and the foot height and
+% whether or not these are part of the typing area or the margins. We have also
+% an option to decide whether or not the margin notes are part of the typing
+% area or not.
+%
+% \begin{option}{headlines}
+% \changes{v2.95}{2002/12/06}{new implementation using \textsf{keyval}}%^^A
+% \changes{v3.12}{2013/03/05}{status signaling using \cs{FamilyKeyState}}%^^A
+% \begin{option}{footlines}
+% \changes{v3.12}{2013/03/26}{new}%^^A
+% These are two of the recommended options to set the height of the page head
+% and footer. Here we set the height by the number of base lines. The number
+% is a factor to \cs{baselineskip} and therefore a real number.
+%    \begin{macrocode}
+%<*package&typearea&options>
+\KOMA@key{headlines}{%
+  \begingroup
+    \setlength{\@tempdima}{#1\baselineskip}%
+  \endgroup
+  \def\ta@hh{#1\baselineskip}%
+  \FamilyKeyStateProcessed
+  \KOMA@kav@replacevalue{.typearea.\scr@pkgextension}{headlines}{#1}%
+  \KOMA@kav@replacevalue{.typearea.\scr@pkgextension}{headheight}{#1\baselineskip}%
+}
+\KOMA@key{footlines}{%
+  \begingroup
+    \setlength{\@tempdima}{#1\baselineskip}%
+  \endgroup
+  \def\ta@fh{#1\baselineskip}%
+  \FamilyKeyStateProcessed
+  \KOMA@kav@replacevalue{.typearea.\scr@pkgextension}{footlines}{#1}%
+  \KOMA@kav@replacevalue{.typearea.\scr@pkgextension}{footheight}{#1\baselineskip}%
+}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{option}
+% \end{option}
+%
+% \begin{option}{headheight}
+% \changes{v2.98c}{2008/04/06}{new}%^^A
+% \changes{v3.12}{2013/03/05}{status signaling using \cs{FamilyKeyState}}%^^A
+% \begin{option}{footheight}
+% \changes{v3.12}{2013/03/26}{new}%^^A
+% Instead of setting the height of the page head or footer by the number of
+% base lines, we can set it also using a length or length value. Note, via
+% \Macro{documenclass} or \Macro{usepackage} only length values are supported
+% (due to an expansion problem by the \LaTeX{} kernel with both commands).
+%    \begin{macrocode}
+%<*package&typearea&options>
+\KOMA@key{headheight}{%
+  \begingroup
+    \setlength{\@tempdima}{#1}%
+  \endgroup
+  \def\ta@hh{#1}%
+  \FamilyKeyStateProcessed
+  \KOMA@kav@replacevalue{.typearea.\scr@pkgextension}{headheight}{#1}%
+  \KOMA@kav@removekey{.typearea.\scr@pkgextension}{headlines}%
+}
+\KOMA@key{footheight}{%
+  \begingroup
+    \setlength{\@tempdima}{#1}%
+  \endgroup
+  \def\ta@fh{#1}%
+  \FamilyKeyStateProcessed
+  \KOMA@kav@replacevalue{.typearea.\scr@pkgextension}{footheight}{#1}%
+  \KOMA@kav@removekey{.typearea.\scr@pkgextension}{footlines}%
+}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{option}
+% \end{option}
+%
+% \begin{option}{headinclude}
+% \changes{v2.95}{2002/07/08}{new implementation using \textsf{keyval}}%^^A
+% This options determines whether or not the head is part of the typing
+% area.
+% \begin{option}{headexclude}
+% \changes{v2.95}{2002/07/08}{new implementation using \textsf{keyval}}%^^A
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A
+% \changes{v3.01a}{2008/11/21}{deprecated}%^^A
+% \begin{macro}{\if@hincl}
+% \changes{v2.95}{2002/07/08}{new implementation using \textsf{keyval}}%^^A
+% \changes{v2.97c}{2007/04/19}{direct initialization via \cs{if@hsl},
+%     if already defined}%^^A
+% \begin{macro}{\@hincltrue}
+% \begin{macro}{\@hinclfalse}
+% We use a boolean switch to store the decision.
+%    \begin{macrocode}
+%<*package&typearea&options>
+\newif\if@hincl\@ifundefined{if@hsl}{}{\let\if@hincl\if@hsl}
+\KOMA@ifkey{headinclude}{@hincl}
+\KOMA@DeclareDeprecatedOption[typearea]{headexclude}{headinclude=false}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{option}
+% \end{option}
+%
+% \begin{option}{headsepline}
+% \changes{v3.20}{2015/12/12}{\Package{typearea} itself reacts on
+%     \Option{headsepline}}%^^A
+% Until \KOMAScript{} v3.20 \Package{typearea} was not able to handle
+% sequences of options \Option{headsepline} and \Option{headinclude} to get
+% always a correct result. Until v3.18a \Option{headinclude} was prioritized
+% against \Option{headsepline} if used as global options but not if used via
+% \Macro{KOMAoptions}. In v3.18a a bug has been fixed with the result that
+% \Option{headsepline} was prioritized against \Option{headinclude} if used
+% as global options. But intentionally
+% \Option{headinclude=false,}\Option{headsepline} or
+% \Option{headinclude=true,}\Option{headsepline=false} always should use the
+% setting of option \Option{headsepline} independent of setting this as
+% global options or using \Macro{KOMAoptions}. Similar with
+% \Option{headsepline,}\Option{headinclude=false} or
+% \Option{headsepline=false,},\Option{headinclude} the setting of
+% \Option{headinclude} should be used. To achieve this \Package{typearea}
+% itself has to interpret not only \Option{headinclude} but also
+% \Option{headsepline} (as an alias of \Option{headinclude}).
+%    \begin{macrocode}
+%<*package&typearea&options>
+\KOMA@key{headsepline}[true]{%
+  \KOMA@set@ifkey{headinclude}{@hincl}{#1}%
+  \ifx\FamilyKeyState\FamilyKeyStateProcessed
+    \KOMA@kav@replacebool{.typearea.\scr@pkgextension}{headinclude}{@hincl}%
+  \fi
+}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{option}%^^A headsepline
+%
+% \begin{option}{footinclude}
+% \changes{v2.95}{2002/07/08}{new implementation using \textsf{keyval}}%^^A
+% \begin{option}{footexclude}
+% \changes{v2.95}{2002/07/08}{new implementation using \textsf{keyval}}%^^A
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A
+% \changes{v3.01a}{2008/11/21}{deprecated}%^^A
+% This options determines whether or not the page footer is part of the typing
+% area.
+% \begin{macro}{\if@fincl}
+% \changes{v2.95}{2002/07/08}{new implementation using \textsf{keyval}}%^^A
+% \changes{v2.97c}{2007/04/19}{direct initialization via \cs{if@fsl},
+%     if already defined}%^^A
+% \begin{macro}{\@fincltrue}
+% \begin{macro}{\@finclfalse}
+% We use a boolean switch to store the decision.
+%    \begin{macrocode}
+%<*package&typearea&options>
+\newif\if@fincl\@ifundefined{if@fsl}{}{\let\if@fincl\if@fsl}
+\KOMA@ifkey{footinclude}{@fincl}
+\KOMA@DeclareDeprecatedOption[typearea]{footexclude}{footinclude=false}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{option}
+% \end{option}
+%
+% \begin{option}{footsepline}
+% \changes{v3.23}{2017/03/03}{has to set \cs{if@fincl} instead of
+%     \cs{if@hincl}}%^^A
+% \changes{v3.20}{2015/12/12}{\Package{typearea} itself reacts on
+%     \Option{footsepline}}%^^A
+% Until \KOMAScript{} v3.20 \Package{typearea} was not able to handle
+% sequences of options \Option{footsepline} and \Option{footinclude} to get
+% always a correct result. Until v3.18a \Option{footinclude} was prioritized
+% against \Option{footsepline} if used as global options but not if used via
+% \Macro{KOMAoptions}. In v3.18a a bug has been fixed with the result that
+% \Option{footsepline} was prioritized against \Option{footinclude} if used
+% as global options. But intentionally
+% \Option{footinclude=false,}\Option{footsepline} or
+% \Option{footinclude=true,}\Option{footsepline=false} always should use the
+% setting of option \Option{footsepline} independent of setting this as
+% global options or using \Macro{KOMAoptions}. Similar with
+% \Option{footsepline,}\Option{footinclude=false} or
+% \Option{footsepline=false,},\Option{footinclude} the setting of
+% \Option{footinclude} should be used. To achieve this \Package{typearea}
+% itself has to interpret not only \Option{footinclude} but also
+% \Option{footsepline} (as an alias of \Option{footinclude}).
+%    \begin{macrocode}
+%<*package&typearea&options>
+\KOMA@key{footsepline}[true]{%
+  \KOMA@set@ifkey{footinclude}{@fincl}{#1}%
+  \ifx\FamilyKeyState\FamilyKeyStateProcessed
+    \KOMA@kav@replacebool{.typearea.\scr@pkgextension}{footinclude}{@fincl}%
+  \fi
+}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{option}%^^A footsepline
+%
+% \begin{option}{mpinclude}
+% \changes{v2.8q}{2002/03/28}{new}%^^A
+% \changes{v2.95}{2002/07/08}{new implementation using \textsf{keyval}}%^^A
+% \begin{option}{mpexclude}
+% \changes{v2.8q}{2002/03/28}{new}%^^A
+% \changes{v2.95}{2002/07/08}{new implementation using \textsf{keyval}}%^^A
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A
+% \changes{v3.01a}{2008/11/21}{deprecated}%^^A
+% Some documents have a lot of large margin notes. Optical these margin notes
+% are more part of the typing area than the margin. This options determines
+% whether or not margin notes should be part of the typing area.
+% \begin{macro}{\if@mincl}
+% \changes{v2.95}{2002/07/08}{new implementation using \textsf{keyval}}%^^A
+% \begin{macro}{\@mincltrue}
+% \begin{macro}{\@minclfalse}
+% We use a boolean switch to store the decision. Note, if the margin notes are
+% part of the typing area, you should increase the divisor.
+%    \begin{macrocode}
+%<*package&typearea&options>
+\KOMA@ifkey{mpinclude}{@mincl}
+\KOMA@DeclareDeprecatedOption[typearea]{mpexclude}{mpinclude=false}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{option}
+% \end{option}
+% 
+%
+% \subsection{Typing area for the emulation of the standard classes}
+%
+% For the emulation of the standard classes we need a dedicated size of the
+% typing area, if and only if no explicit \Option{DIV} has been given by
+% option. The emulation of the standard classes is a class feature. We could
+% do it before \Package{typearea} and then deactivate initial setting of
+% margins and typing area. But it is more easy to use \cs{areaset} after
+% loading \Package{typearea}. The standard letter class cannot be emulated.
+%    \begin{macrocode}
+%<*class&body&!letter>
+\if@scr@emulatestandardclasses
+  \Ifstr{\@lastdiv}{areaset}{}{%
+    \ifnum\@lastdiv=\z@
+      \setlength{\textwidth}{\dimexpr \paperwidth-2in\relax}
+      \ifdim \f@size\p@<10.5\p@
+          \setlength{\@tempdimb}{345\p@}
+      \else\ifdim \f@size\p@<11.5\p@
+          \setlength{\@tempdimb}{360\p@}
+        \else
+          \setlength{\@tempdimb}{390\p@}
+        \fi
+      \fi
+      \if@twocolumn
+        \ifdim\@textwidth>2\@tempdimb\relax
+          \setlength{\textwidth}{2\@tempdimb}
+        \fi
+      \else
+        \ifdim\textwidth>\@tempdimb
+          \setlength{\textwidth}{\@tempdimb}
+        \fi
+      \fi
+      \@settopoint\textwidth
+      \setlength{\@tempdima}{\dimexpr \paperheight-3.5in\relax}
+      \divide\@tempdima\baselineskip
+      \@tempcnta=\@tempdima
+      \setlength{\textheight}{\@tempcnta\baselineskip}
+      \addtolength{\textheight}{\topskip}
+      \edef\reserved@a{%
+        \noexpand\@areasetadvancedtrue
+        \noexpand\areaset[current]{\noexpand\textwidth}{\noexpand\textheight}%
+        \if@areasetadvanced\else\noexpand\@areasetadvancedfalse\fi
+      }\reserved@a
+    \fi
+  }%  
+\fi
+%</class&body&!letter>
+%    \end{macrocode}
+%
+% \subsection{Using a predefined divisor depending on the font size}
+%
+% Some years ago \Package{typearea} provides the feature to use a hard coded
+% or user defined divisor depending on the document font size. The feature to
+% define such predefined divisors is deprecated, because it can be used only
+% for integer font sizes in pt. Nevertheless, for compatibility reasons it is
+% still implemented.
+%
+% \begin{macro}{\ta@divlist}
+% \changes{v2.0e}{1994/10/28}{new (internal)}%^^A
+% \changes{v2.6}{2000/01/04}{the list provides values from font size
+%   1\,pt}%^^A
+% \begin{macro}{\ta@divlistelse}
+% \changes{v2.6}{2000/01/04}{neu (internal)}%^^A
+% We need a default settings for 10\,pt, 11\,pt and 12\,pt. But we define it
+% only if they has not been defined before. So classes could define other
+% defaults before loading \Package{typearea}.
+%    \begin{macrocode}
+%<*package&typearea&init>
+\providecommand\ta@divlist{{}{}{}{}{}{}{}{}{}{8}{10}{12}}
+%    \end{macrocode}
+% \end{macro}
+% If a font size does not have a predefined divisor, the following default
+% will be used:
+%    \begin{macrocode}
+\providecommand\ta@divlistelse{1}
+%</package&typearea&init>
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ta@divfor}
+% We also need a macro to get one of the values stored at \cs{ta@divlist}
+% depending on the font size given by the real number argument. The real
+% number will be rounded to the nearest integer.
+% \changes{v2.4g}{1996/11/04}{usage of the default value list} 
+% \changes{v2.6}{2000/01/04}{usage of the extended list}%^^A
+% \changes{v2.8q}{2002/03/28}{respect option \Option{mpinclude}}%^^A
+% \changes{v2.96}{2006/08/11}{font size does not need to be an integer}%^^A
+% \changes{v3.25}{2018/03/05}{paper size test added}%^^A
+%    \begin{macrocode}
+%<*package&typearea&body>
+\newcommand*{\ta@divfor}[1]{%
+  \ta@div=\z@
+  \expandafter\ifnum\scr@ta@v@is@ge{3.25}\relax
+    \ifnum \z@=\ifdim \paperwidth<207mm \z@\else\ifdim \paperwidth>213mm \z@
+               \else\ifdim \paperheight<294mm \z@\else
+               \ifdim \paperheight>300mm \z@\else \@ne\fi\fi\fi\fi
+      \PackageInfoNoLine{typearea}{%
+        With paper sizes other than (almost) `A4' predefined\MessageBreak
+        DIV values do not exist. Using DIV calculation for good\MessageBreak
+        line width (unless using `version=3.24` or prior)%
+      }%
+      \ta@div=\tw@
+    \fi
+  \fi
+  \if@mincl
+    \PackageInfo{typearea}{%
+      With option `mpinclude' there are no predefined\MessageBreak
+      DIV values. Using DIV calculation for good line\MessageBreak
+      width%
+    }%
+    \ta@div=\tw@
+  \fi
+  \ifnum \ta@div=\z@
+    \xdef\@tempa{\ta@divlist{}}%
+    \@tempdima=#1pt
+    \addtolength{\@tempdima}{.5\p@}%
+    \divide\@tempdima by\p@
+    \setlength{\@tempdimb}{\@tempdima}%
+    \multiply\@tempdimb by\p@
+    \ifdim \@tempdimb=#1pt
+      \ta@div=#1\relax
+      \@whilenum \ta@div >-9 \do {%
+        \ifx\@tempa\empty
+        \else \xdef\@tempa{\expandafter\@cdr\@tempa\@nil}\fi
+        \advance\ta@div by-1
+      }%
+    \else
+      \let\@tempa\empty
+    \fi
+    \ifx\@tempa\empty
+%    \end{macrocode}
+% If there is not default in the list we use the general default.
+%    \begin{macrocode}
+      \setlength{\@tempdima}{#1\p@}%
+      \addtolength{\@tempdima}{10\p@}%
+      \PackageWarningNoLine{typearea}{%
+        DIV for \the\@tempdima\space and used papersize\MessageBreak
+        not defined!\MessageBreak
+        Using DIV=\ifnum\number\ta@divlistelse>\m@ne
+          \ifcase \ta@divlistelse default%
+          \or calc%
+          \or calc%
+          \or classic%
+          \else\ta@divlistelse\fi\else\ta@divlistelse\fi
+      }%
+      \ta@div=\ta@divlistelse\relax
+    \else
+%    \end{macrocode}
+% Otherwise we use the default of the list.
+%    \begin{macrocode}
+      \xdef\@tempa{\expandafter\@car\@tempa\@nil}%
+      \ifx\@tempa\empty
+        \ta@div=\ta@divlistelse\relax
+      \else
+        \ta@div=\@tempa\relax
+      \fi
+    \fi
+  \fi
+}
+%</package&typearea&body>
+%    \end{macrocode}
+% \end{macro}
+%
+% The documentation of the deprecated part of the feature is still in German.
+% \selectlanguage{ngerman}
+%
+% \begin{macro}{\SetDIVList}
+% \changes{v2.1a}{1994/10/28}{neu}%^^A
+% \changes{v2.6}{2000/01/04}{\cs{ta@divlist} enthält Werte für
+%      Schriftgrößen ab 1pt}%^^A
+% \changes{v3.24}{2017/07/23}{deprecated command}%^^A
+% Der Befehl \cs{SetDIVList} tut nichts weiter als die innere Variable
+% für die schriftgrößenabhängige \emph{DIV}-Liste \cs{ta@divlist} neu
+% zu definieren. Dabei können \emph{DIV}-Werte für Größen ab 10\,pt
+% gesetzt werden. 
+%    \begin{macrocode}
+%<*package&typearea&body>
+\newcommand*\SetDIVList[1]{%
+  \PackageWarning{typearea}{\string\SetDIVList\space is
+    deprecated!\MessageBreak
+    This command supports only integer font sizes\MessageBreak
+    in pt equal or greater than 10pt.\MessageBreak
+    Since version 2.6 the command is implemented\MessageBreak
+    for compatibility only. You should not use it\MessageBreak
+    any longer}%
+  \def\ta@divlist{{}{}{}{}{}{}{}{}{}#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\SetXDIVList}
+% \changes{v2.6}{2000/01/04}{neu}%^^A
+% \changes{v3.24}{2017/07/23}{deprecated command}%^^A
+% Da mit \cs{SetDIVList} aus Kompatibilitätsgründen nur Werte für
+% Größen ab 10\,pt gesetzt werden können, wird für Werte ab 1\,pt
+% ein neuer Befehl benötigt.
+%    \begin{macrocode}
+\newcommand*\SetXDIVList[1]{%
+  \PackageWarning{typearea}{\string\SetXDIVList\space is
+    deprecated!\MessageBreak
+    This command supports only integer font sizes\MessageBreak
+    in pt equal or greater than 10pt.\MessageBreak
+    Since version 3.0 the command is implemented\MessageBreak
+    for compatibility only. You should not use it\MessageBreak
+    any longer}%
+  \def\ta@divlist{#1}}
+%</package&typearea&body>
+%    \end{macrocode}
+% \end{macro}
+%
+% \selectlanguage{english}
+%
+% \subsection{Calculation of typing area and margins}
+%
+% The main purpose of the package is the calculation of the size of the
+% typeing area and the margins depending on a divisor. As an addition a
+% binding correction is included.
+%
+% The parameters and the calculation is needed before the options can be
+% processed.
+%
+% \begin{Length}{\ta@bcor}
+% \changes{v2.2a}{1995/01/25}{definition of the dimension before option
+%    \Option{BCOR}}%^^A
+% \changes{v2.7g}{2001/04/17}{definition using \cs{newlength} instead of
+%    \cs{newdimen}}%^^A
+% We need a length to store the binding correction. It is initializes to 0\,pt
+% implicitly by \Macro{newlength}.
+%    \begin{macrocode}
+%<*package&typearea&options>
+\newlength{\ta@bcor}
+%    \end{macrocode}
+% \end{Length}
+%
+% \begin{macro}{\ta@div}
+% \changes{v2.2a}{1995/01/25}{definition of the dimension before option
+%    \Option{BCOR}}%^^A
+% We need a counter for the divisor (aka \emph{DIV}). It is initializes to
+% 0\,pt implicitly by \Macro{newcount}.
+%    \begin{macrocode}
+\newcount\ta@div
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{Length}{\ta@hblk}
+% \begin{Length}{\ta@vblk}
+% Width of one horizontal resp. height of one vertical block.
+%    \begin{macrocode}
+%<*package&typearea&body>
+\newlength{\ta@hblk}
+\newlength{\ta@vblk}
+%</package&typearea&body>
+%    \end{macrocode}
+% \end{Length}  
+% \end{Length}
+% 
+% \begin{Length}{\ta@temp}
+% Used several times instead of \cs{@tempdima}, \cs{@tempdimb} or another
+% temporary dimension or glue of the LaTeX{} kernel. Nevertheless I should
+% think about not using this temporary length any longer.
+%    \begin{macrocode}
+%<*package&typearea&body>
+\newlength{\ta@temp}
+%</package&typearea&body>
+%    \end{macrocode}
+% \end{Length}
+%
+% \begin{option}{BCOR}
+% \changes{v2.2a}{1995/01/25}{new}%^^A
+% \changes{v2.95}{2002/12/04}{new implementation using \textsf{keyval}}%^^A
+% \changes{v3.12}{2013/03/05}{status signaling using \cs{FamilyKeyState}}%^^A
+% \changes{v3.28}{2019/11/18}{\cs{ifstr} umbenannt in \cs{Ifstr}}%^^A
+% The value is written into the length \cs{ta@bcor}. Several symbolic values
+% are supported that have to be converted into a length. Note, while loading
+% the package symbolic values are nonsense.
+%    \begin{macrocode}
+%<*package&typearea&options>
+\KOMA@key{BCOR}{%
+  \Ifstr{#1}{current}{}{%
+    \setlength{\ta@bcor}{#1}%
+  }%
+  \FamilyKeyStateProcessed
+  \KOMA@kav@xreplacevalue{.typearea.\scr@pkgextension}{BCOR}{#1}%
+}
+%    \end{macrocode}
+% After loading the package we have to do a little bit more, because we need
+% to recalculate the areas.
+% \changes{v3.13}{2014/06/30}{\cs{FamilyKeyStateProcessed} added}%^^A
+% \changes{v3.24}{2017/07/23}{\cs{KOMA@kav@xreplacevalue} added}%^^A
+%    \begin{macrocode}
+\AtEndOfPackage{%
+  \KOMA@key{BCOR}{%
+    \typearea[{#1}]{last}
+    \FamilyKeyStateProcessed
+    \KOMA@kav@xreplacevalue{.typearea.\scr@pkgextension}{BCOR}{#1}%
+  }%
+}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{option}
+%
+% \begin{option}{DIV}
+% \changes{v2.2a}{1995/01/25}{new option}%^^A
+% \changes{v2.95}{2002/12/04}{new implementation using \textsf{keyval}}%^^A
+% \changes{v3.12}{2013/03/05}{status signaling using \cs{FamilyKeyState}}%^^A
+% The value is written into the counter \cs{ta@div}. Several symbolic values
+% are supported and have to be converted into a counter. Note, while loading
+% the package symbolic values are nonsense.
+% \begin{macro}{\@lastdiv}
+% \changes{v3.30}{2020/03/24}{init the internal macro}%^^A
+% This internal macro stores the last value to option \texttt{DIV}. It is
+% initialized with \cs{relax}.
+%    \begin{macrocode}
+%<package&typearea&init>\newcommand*{\@lastdiv}{\z@}\let\@lastdiv\relax
+%    \end{macrocode}
+% \end{macro}%^^A \@lastdiv
+%    \begin{macrocode}
+%<*package&typearea&options>
+\def\movet@reserved@a@to@nnil#1\@nnil{\def\reserved@a{#1}}%
+\KOMA@key{DIV}[calc]{%
+  \edef\@tempa{#1}%
+  \def\@tempb{last}\ifx\@tempa\@tempb\let\@tempa=\@lastdiv
+    \ifx\@tempa\relax\def\@tempa{current}\fi
+  \fi  
+  \def\@tempb{current}\ifx\@tempa\@tempb\else
+    \def\@tempb{default}\ifx\@tempa\@tempb\ta@div=\z@ \else
+      \def\@tempb{calc}\ifx\@tempa\@tempb\ta@div=\tw@ \else
+        \def\@tempb{classic}\ifx\@tempa\@tempb\ta@div=\thr@@ \else
+          \expandafter\def\expandafter\@tempa\expandafter{\expandafter0\@tempa}%
+          \afterassignment\movet@reserved@a@to@nnil
+            \@tempcnta=\@tempa\relax\@nnil
+          \def\@tempb{\relax}\ifx\reserved@a\@tempb
+            \ta@div=\@tempcnta
+            \edef\@tempa{\the\ta@div}%
+          \else
+            \let\@tempa\relax  
+          \fi
+        \fi
+      \fi
+    \fi
+  \fi
+  \ifx\@tempa\relax
+    \FamilyKeyStateUnknownValue
+  \else
+    \FamilyKeyStateProcessed
+    \KOMA@kav@xreplacevalue{.typearea.\scr@pkgextension}{DIV}{\@tempa}%
+  \fi
+}
+%    \end{macrocode}
+% After loading the package we have to do a little bit more, because we need
+% to recalculate the areas.
+% \changes{v3.13}{2014/06/30}{\cs{FamilyKeyStateProcessed} added}%^^A
+% \changes{v3.24}{2017/07/23}{\cs{KOMA@kav@xreplacevalue} added}%^^A
+%    \begin{macrocode}
+\AtEndOfPackage{%
+  \KOMA@key{DIV}{%
+    \typearea[current]{#1}%
+    \FamilyKeyStateProcessed
+    \KOMA@kav@xreplacevalue{.typearea.\scr@pkgextension}{DIV}{#1}%
+  }%
+}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{option}
+%
+% \begin{macro}{\typearea}
+% This is the real reason for the package: calculation of typing area and
+% margins providing an optional binding correction and depending on a
+% divisor.
+% \begin{macro}{\@typearea}
+% \changes{v2.4n}{1997/05/28}{moved main calculation into \cs{@typearea}}%^^A
+% \changes{v2.95}{2002/08/20}{\cs{selectfont} added}%^^A
+% The calculation itself is done in \cs{@typearea}. This command does not need
+% any parameters because it uses \cs{ta@div} and \cs{ta@bcor}.
+%    \begin{macrocode}
+%<*package&typearea&body>
+\newcommand*\@typearea{%
+%    \end{macrocode}
+% First of all we have to take care to select the correct font. Because
+% otherwise we cannot depend on, e.g., \cs{baselineskip}.
+%    \begin{macrocode}
+  \selectfont
+%    \end{macrocode}
+% First calculation is about the horizontal block element size:
+%    \begin{macrocode}
+  \ta@hblk=\paperwidth
+  \advance \ta@hblk by-\ta@bcor
+  \divide\ta@hblk by\ta@div
+%    \end{macrocode}
+% The with of the margin note column depends in the horizontal block size,
+% whether or not is should be part of the typing area and whether of not we
+% have a double sided document.
+% \changes{v2.8q}{2002/03/28}{\cs{marginparwidth} depends on
+%      \Option{mpinclude}}%^^A
+%    \begin{macrocode}
+  \if@mincl
+    \marginparwidth=\ta@hblk
+    \advance\marginparwidth by-\marginparsep
+  \else
+    \if@twoside
+      \if@semitwoside
+        \marginparwidth=\ta@hblk
+      \else
+        \marginparwidth=1.5\ta@hblk
+      \fi
+    \else
+      \marginparwidth=\ta@hblk
+    \fi
+  \fi
+%    \end{macrocode}
+% The left and right margin resp. the left margin of odd and even pages
+% depends also on the horizontal block width. The relation depends on whether
+% or not the document is double sided.
+%    \begin{macrocode}
+  \oddsidemargin=-1in
+  \evensidemargin=-1in
+  \if@twoside
+    \if@semitwoside
+      \advance\oddsidemargin by1.5\ta@hblk
+      \advance\oddsidemargin by\ta@bcor
+%    \end{macrocode}
+% \changes{v3.12}{2013/10/15}{use alternating \texttt{BCOR} with
+%    \texttt{twoside!=semi}}
+% From v3.12 the binding correction is part of the inner margin also for
+% \Option{twoside=semi}. If compatibility to earlier release is selected the
+% binding correction with \Option{twoside=semi} is always added to the left
+% margin.
+%    \begin{macrocode}
+      \expandafter\ifnum\scr@ta@v@is@lt{3.12}\relax
+        \evensidemargin=\oddsidemargin
+      \else
+        \advance\evensidemargin by1.5\ta@hblk
+      \fi
+    \else
+      \advance\oddsidemargin by\ta@hblk
+      \advance\oddsidemargin by\ta@bcor
+      \advance\evensidemargin by2\ta@hblk
+      \if@mincl
+        \advance\evensidemargin by\marginparwidth
+        \advance\evensidemargin by\marginparsep
+      \fi
+    \fi
+  \else
+    \advance\oddsidemargin by1.5\ta@hblk
+    \advance\oddsidemargin by\ta@bcor
+    \evensidemargin=\oddsidemargin
+  \fi
+%    \end{macrocode}
+% The width of the typing area is the paper width without the three blocks
+% used for the margins and without the binding correction.
+%    \begin{macrocode}
+  \textwidth=\paperwidth
+  \advance\textwidth by-\ta@bcor
+  \advance\textwidth by-3\ta@hblk
+%    \end{macrocode}
+% But, if the margin note column should be part of the typing area, it's width
+% has to be subtracted from the width of the typing area. We assume to place
+% the margin notes at the outer margin. But if the typing area is to narrow
+% for the margin note column, the width of margin note column will be
+% reduced. This can be done easily be swapping the two lengths.
+% \changes{v3.30}{2020/02/25}{orphan line break at end of warning message
+%   removed}%^^A
+%    \begin{macrocode}
+  \if@mincl
+    \advance\textwidth by-\marginparwidth
+    \advance\textwidth by-\marginparsep
+    \ifdim\textwidth <\marginparwidth
+      \PackageWarningNoLine{typearea}{%
+        Width of text (\the\textwidth) less than width of\MessageBreak
+        marginpar (\the\marginparwidth) while using option\MessageBreak
+        `mpinclude'.\MessageBreak
+        Because of this, I'm exchanging the values.\MessageBreak
+        You should increase DIV to avoid such problems%
+      }%
+      \@tempskipa=\marginparwidth
+      \marginparwidth=\textwidth
+      \textwidth=\@tempskipa
+    \fi
+  \fi
+%    \end{macrocode}
+% Next the vertical size of a block.
+%    \begin{macrocode}
+  \ta@vblk=\paperheight
+  \divide\ta@vblk by\ta@div
+%    \end{macrocode}
+% The top margin depends on this vertical block size. But note, \TeX{} will
+% increase it by 1\,in.
+%    \begin{macrocode}
+  \topmargin=-1in
+  \advance\topmargin by\ta@vblk
+%    \end{macrocode}
+% And if head is not part of the typing area, the top margin has to be reduced
+% by the head size.
+%    \begin{macrocode}
+  \if@hincl \else
+    \advance\topmargin by-\headheight
+    \advance\topmargin by-\headsep
+  \fi
+%    \end{macrocode}
+% For the height of the typing area we use the paper size without the height
+% of head and footer. The head and footer may be part of the typing area or
+% not. If they are part of the typing area they reduce the height of it.
+%    \begin{macrocode}
+  \ta@temp=\paperheight
+  \advance\ta@temp by-3\ta@vblk
+  \if@hincl
+    \advance\ta@temp by-\headheight
+    \advance\ta@temp by-\headsep
+  \fi
+  \if@fincl
+    \advance\ta@temp by-\footskip
+  \fi
+%    \end{macrocode}
+% Last but not least we have take care that the typing area consists of an
+% integer number of text lines.
+% \changes{v2.96}{2006/09/12}{setting \cs{topskip}}
+% \changes{v2.97c}{2007/07/04}{setting \cs{maxdepth}}
+%    \begin{macrocode}
+  \scr@ifundefinedorrelax{@ptsize}{%
+    \topskip=\f@size\p@
+  }{%
+    \topskip=\@ptsize\p@
+    \advance\topskip by 10\p@
+  }%
+  \maxdepth=.5\topskip
+  \textheight=\topskip
+  \@whiledim\textheight <\ta@temp
+  \do{\advance\textheight by\baselineskip}%
+}
+%    \end{macrocode}
+% \end{macro}%^^A \@typearea
+%
+% \begin{macro}{\ta@modiv}
+% Needed by \cs{typearea}. The first parameter will be divided by the second
+% one. \cs{ta@div} is set to the rounded result. Internally \cs{@tempdima} and
+% \cs{@tempdimb} are used.
+%    \begin{macrocode}
+\newcommand*\ta@modiv[2]{
+  \setlength{\@tempdima}{#1}
+  \divide\@tempdima by#2
+  \ta@div\@tempdima
+  \ifnum \ta@div<4
+    \ta@div=4
+  \else
+    \setlength{\@tempdimb}{#1}%
+    \divide\@tempdimb by\ta@div
+    \addtolength{\@tempdima}{\@tempdima}%
+    \addtolength{\@tempdima}{-\@tempdimb}%
+    \advance\ta@div by\@ne
+    \setlength{\@tempdimb}{#1}%
+    \divide\@tempdimb by\ta@div
+%    \end{macrocode}
+% \changes{v2.5a}{1997/06/22}{\cs{ifdim} instead of \cs{ifnum}}
+%    \begin{macrocode}
+    \ifdim \@tempdima<\@tempdimb
+      \advance\ta@div by\m@ne
+    \fi
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ta@temp@goodwidth}
+% Sets \cs{ta@temp} to the heuristic optimal line width depending on the
+% current font. An optimal line width has 66 up to 72 characters. Here we use
+% a value of 69 characters. We assume that such a line consists of 66 lower
+% case letters (minors) and three upper case letters (majors). Normally the
+% weight of a letter depends on the language but we use same weight for each
+% letter.
+% \changes{v2.7i}{2001/05/17}{avoid overflows if a very large font is
+%     used}%^^A
+% \changes{v2.8q}{2002/03/06}{\cs{normalfont} \cs{normalsize} added}%^^A
+% \changes{v2.95a}{2006/07/20}{fix of large font calculation}%^^A
+%    \begin{macrocode}
+\newcommand*\ta@temp@goodwidth{%
+  \settowidth{\ta@temp}{\normalfont\normalsize 
+    abcdefghijklmnopqrstuvwxyz}%
+  \ifdim\ta@temp >200\p@
+    \setlength{\ta@temp}{2.53846\ta@temp}%
+    \settowidth{\@tempdima}{\normalfont\normalsize
+      ABCDEFGHIJKLMNOPQRSTUVWXYZ}%
+    \setlength{\@tempdima}{.11538\@tempdima}%
+    \addtolength{\ta@temp}{\@tempdima}%
+  \else
+    \multiply\ta@temp by66
+    \settowidth{\@tempdima}{\normalfont\normalsize
+      ABCDEFGHIJKLMNOPQRSTUVWXYZ}%
+    \multiply\@tempdima by3
+    \addtolength{\ta@temp}{\@tempdima}%
+    \divide\ta@temp by26
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\AfterCalculatingTypearea}
+% \changes{v2.96a}{2006/11/29}{new}%^^A
+% \changes{v3.20}{2016/04/12}{\cs{@ifstar} replaced by
+%     \cs{kernel@ifstar}}%^^A
+% Users can influence the behaviour of \cs{typearea} by a hook. The star
+% variation adds the code locally the non-star variation globally.
+%    \begin{macrocode}
+\newcommand*{\AfterCalculatingTypearea}{%
+  \kernel@ifstar \l@addto@macro \g@addto@macro \@typearea@end
+}
+%    \end{macrocode}
+% \begin{macro}{\@typearea@end}
+% \changes{v2.96a}{2006/11/29}{defined again but completely different}%^^A
+% Macro \cs{@typearea@end} is a hook that is executed at the end of
+% \cs{typearea} but before the activation of the new settings. So you can
+% change the result of \cs{typearea}.
+%    \begin{macrocode}
+\newcommand*{\@typearea@end}{}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\activateareas}
+% \changes{v2.96a}{2006/11/29}{new name for old macro}%^^A
+% \changes{v3.17}{2015/02/07}{respect option \texttt{usegeometry}}%^^A
+% This macro is used to activate the new typing area and margin settings
+% inside the document body. It is a hack, because is uses internal \LaTeX{}
+% kernel code.
+%    \begin{macrocode}
+\newcommand*{\activateareas}{%
+%    \end{macrocode}
+% First of all test, whether or not we are inside the document body. If not do
+% nothing.
+%    \begin{macrocode}
+  \if@atdocument
+%    \end{macrocode}
+% \changes{v3.23}{2017/04/03}{info instead of warning if used inside the
+%     document body}%^^A
+% But if, we show an info, because it is a hack. It depends in the \LaTeX{}
+% release. Nevertheless, it seems to be stable from the very first \LaTeXe{}
+% release. So we use an info only. Before v3.23 we have used a warning.
+%    \begin{macrocode}
+    \PackageInfo{typearea}{%
+      Using dirty hack to recalculate internal output\MessageBreak
+      dimensions of LaTeX%
+    }%
+%    \end{macrocode}
+% Now, set several internal and none internal \LaTeX{}lengths to the new
+% dimensions.
+%    \begin{macrocode}
+    \@colht=\textheight
+    \@colroom=\textheight 
+    \vsize=\textheight
+    \columnwidth=\textwidth
+    \if@twocolumn
+      \advance\columnwidth by-\columnsep
+      \divide\columnwidth by\tw@ 
+      \hsize=\columnwidth
+      \@firstcolumntrue
+    \fi
+    \hsize=\columnwidth 
+    \linewidth\hsize
+    \scr@ifundefinedorrelax{@pagesizelast}{}{%
+      \KOMAoptions{pagesize=\@pagesizelast}%
+    }%
+%    \end{macrocode}
+% \changes{v3.17}{2015/03/18}{adapt the \Option{parskip} settings}%^^A
+% From v3.17 changes of the typing area can immediately change some of the
+% \Option{parskip} settings. Before |\begin{document}| the change will be done
+% automatically at |\begin{document}| and therefore adding it here is correct.
+%    \begin{macrocode}
+    \expandafter\ifnum\scr@ta@v@is@ge{3.17}%
+      \csname par@updaterelative\endcsname
+    \fi
+  \fi
+%    \end{macrocode}
+% \changes{v3.17}{2015/02/07}{new code for option \Option{usegeometry}}
+% If option \Option{usegeometry} is active we need to setup several options of
+% package \Package{geometry}. We use \cs{scr@geometryargs} to store them. And
+% we either have to pass these options to \Package{geometry} or define a new
+% geometry. In the second case we also need some hacks to make the new paper
+% size available for \Package{geometry}.
+%    \begin{macrocode}
+  \edef\scr@geometryargs{%
+    bindingoffset=\the\ta@bcor,
+    lmargin=\the\dimexpr 1in+\oddsidemargin-\ta@bcor\relax,
+    textwidth=\the\textwidth,
+    \if@hincl
+      includehead,%
+      top=\the\dimexpr 1in+\topmargin\relax,
+    \else
+      includehead=false,%
+      top=\the\dimexpr 1in+\topmargin+\headheight+\headsep\relax,
+    \fi
+    headheight=\the\headheight,
+    headsep=\the\headsep,
+    textheight=\the\textheight,
+    \if@fincl
+      includefoot,
+    \else
+      includefoot=false,
+    \fi
+    footskip=\the\footskip,
+    \if@mincl
+      includemp,
+    \else
+      includemp=false,
+    \fi
+    marginparwidth=\the\marginparwidth,
+    marginparsep=\the\marginparsep
+  }%
+  \if@ta@usegeometry
+    \@ifundefined{Gm@save}{%
+      \if@atdocument\else
+        \edef\scr@geometryargs{%
+          paperwidth=\the\paperwidth,paperheight=\the\paperheight,%
+          \scr@geometryargs
+        }%
+        \PassOptionsToPackage{\scr@geometryargs}{geometry}%
+      \fi
+    }{%
+      \edef\Gm@restore@org{\Gm@restore}%
+      \if@atdocument
+        \expandafter\newgeometry\expandafter{\scr@geometryargs}%
+      \else
+        \edef\scr@geometryargs{%
+          paperwidth=\the\paperwidth,paperheight=\the\paperheight,%
+          \scr@geometryargs
+        }%
+        \expandafter\geometry\expandafter{\scr@geometryargs}%
+      \fi
+    }%
+  \fi
+}
+%    \end{macrocode}
+% \begin{macro}{\scr@geometryargs}
+% \changes{v3.16}{2015/02/07}{neu (intern)}%^^A
+% The initialization of the \Package{geometry} options is empty. It will be
+% filled automatically by \cs{activateareas}.
+%    \begin{macrocode}
+\newcommand*{\scr@geometryargs}{}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \changes{v2.4g}{1996/11/04}{waste comments removed}%^^A
+% \changes{v2.7g}{2001/04/17}{new symbolic values \texttt{current},
+%     \texttt{default}, \texttt{calc}, \texttt{classic}}%^^A
+% \changes{v2.8q}{2001/11/06}{new symbolic value \texttt{last}}%^^A
+% \changes{v2.96}{2006/08/21}{warn if \cs{typearea} is used inside a
+%     group}%^^A
+% \changes{v3.10}{2011/09/13}{using \cs{scr@grouplevel@test}}%^^A
+% \changes{v3.12}{2013/03/26}{page footer height configurable}%^^A
+% \changes{v3.30}{2020/03/24}{\texttt{current} after \cs{areaset} is
+%   \texttt{areaset}}%^^A
+%      
+% The symbolic values of the obligatory argument of \cs{typearea}:
+% \begin{center}\begin{tabular}{lll}
+%     Symbol           & Value & Meaning \\\hline\\[-2ex]
+%     \texttt{calc}    & 2 & calculate a good value \\
+%     \texttt{classic} & 3 & \emph{mittelalterlicher Buchseitenkanon} \\
+%     \texttt{current} & --- & use the current value \\
+%     \texttt{default} & 0 & use a value from the list \\
+%     \texttt{last}    & --- & use the value from the last usage of
+%     \cs{typearea} \\
+%     \texttt{areaset} & --- & replace the current typing area \\
+% \end{tabular}\end{center}
+%    
+% There is only one symbolic value that can be used as the optional argument:
+% \texttt{current}.
+%    \begin{macrocode}
+\newcommand*\typearea[2][\z@]{%
+  \scr@grouplevel@test\typearea
+  \edef\@tempa{#1}\edef\@tempb{current}\ifx\@tempa\@tempb\else
+    \setlength{\ta@bcor}{#1}%
+  \fi
+  \edef\@tempa{#2}%
+  \def\@tempb{last}\ifx\@tempa\@tempb\let\@tempa=\@lastdiv
+    \ifx\@tempa\relax \def\@tempa{current}\fi
+  \fi
+  \Ifstr{\@tempa}{current}{%
+    \Ifstr{\@lastdiv}{areaset}{\let\@tempa\@lastdiv}{}%
+  }{}%
+  \def\@tempb{areaset}\ifx\@tempa\@tempb
+    \areaset[current]{\textwidth}{\textheight}%
+  \else
+    \def\@tempb{current}\ifx\@tempa\@tempb
+    \else
+      \def\@tempb{default}\ifx\@tempa\@tempb\ta@div=\z@ \else
+        \def\@tempb{calc}\ifx\@tempa\@tempb\ta@div=\tw@ \else
+          \def\@tempb{classic}\ifx\@tempa\@tempb\ta@div=\thr@@ \else
+            \ta@div=\@tempa
+          \fi
+        \fi
+      \fi
+    \fi
+    \edef\@lastdiv{\the\ta@div}%
+%    \end{macrocode}
+% Before we do the calculation we need to start a new page if we are inside
+% the document's body. And we need to select the document font size.
+% \changes{v2.95a}{2006/07/20}{select document font size}%^^A
+%    \begin{macrocode}
+    \if@atdocument\newpage\fi
+    \normalsize
+%    \end{macrocode}
+% Is the height of the page head already given or do we need to calculate
+% it. If we need to calculate it we use 1.25 of the base lines distance. This
+% gives enough room for optional separation lines (which are set outside if
+% use \Package{scrlayer-scrpage}).
+% \changes{v2.4n}{1997/05/28}{page head height depends on base line
+%     distance}%^^A
+%    \begin{macrocode}
+    \@ifundefined{ta@hh}{%
+      \headheight=1.25\baselineskip
+    }{%
+      \headheight=\ta@hh
+    }%
+%    \end{macrocode}
+% The distance between the head and the text is always the same. Different
+% typographers recommend different values. A good value would result in a grid
+% that would be used for all lines of the page. But the distance should not to
+% large. Supposedly a good value would be the height of one text line. But
+% with head separation rule this wouldn't be a good value. So we use a
+% compromise.
+%    \begin{macrocode}
+    \headsep=1.5\baselineskip
+%    \end{macrocode}
+% The foot is a similar problem. But we have to setup also \cs{footskip} not
+% only \cs{footheight}.
+%    \begin{macrocode}
+    \@ifundefined{footheight}{%
+      \newlength\footheight
+    }{}%
+    \@ifundefined{ta@fh}{%
+      \footheight=1.25\baselineskip
+    }{%
+      \footheight=\ta@fh
+    }%
+    \footskip=\dimexpr\footheight+2.25\baselineskip
+%    \end{macrocode}
+% Some values also independent from the divisor and the binding correction.
+%    \begin{macrocode}
+    \marginparsep=1cc
+    \marginparpush=0.45\baselineskip
+%    \end{macrocode}
+% \changes{v2.4g}{1996/11/04}{\textit{DIV}=0 tries to use a value from the
+%     default list}
+% Before we do the calculation we test, whether the resulting divisor is
+% 0. Values from 0 up to 3 are not possible because we use three parts for the
+% margins. So we can use 0 to get a value from the default value list if
+% available.
+% \changes{v2.5h}{1999/12/29}{warning message changed}%^^A
+%    \begin{macrocode}
+    \ifnum\ta@div=\z@
+      \@ifundefined{@ptsize}{%
+        \@tempdima=\f@size\p@
+        \advance\@tempdima by.5pt
+        \ta@div=\@tempdima
+        \divide\ta@div by65536
+        \advance\ta@div by-10
+        \xdef\@ptsize{\the\ta@div}%
+        \PackageWarningNoLine{typearea}{%
+          \string\@ptsize\space not defined!\MessageBreak
+          Fontsize is \f@size pt.\MessageBreak
+          Defining \string\@ptsize\space to \@ptsize%
+        }%
+      }{}%
+      \ta@divfor{\@ptsize}%
+    \fi
+%    \end{macrocode}
+% \changes{v2.4n}{1997/05/28}{optional \emph{klassischer
+%     Buchseitenkanon}}%^^A
+% Another special case is if the divisor is 3. In this case we calculate a
+% divisor near to the \emph{klassischer Buchseitenkanon}. This means we try to
+% have the height of the typing area is as near as possible the width of the
+% paper. For classic paper size this should be a harmonious result.
+%    \begin{macrocode}
+    \ifnum\ta@div=3
+      \typeout{DIV calculation for classic typearea.}%
+      \setlength{\ta@temp}{\paperwidth}%
+      \addtolength{\ta@temp}{-\ta@bcor}%
+%    \end{macrocode}
+% Here we also need to take care for whether the head is part of the typing
+% area or the margin.
+%    \begin{macrocode}
+      \if@hincl\else
+        \addtolength{\ta@temp}{\headheight}%
+        \addtolength{\ta@temp}{\headsep}%
+      \fi
+      \if@fincl\else
+        \addtolength{\ta@temp}{\footskip}%
+      \fi
+%    \end{macrocode}
+% Sometimes we need more vertical space than available. In this case we use
+% another calculation. This will be defined later.
+% \changes{v2.5a}{1997/06/22}{\cs{ifdim} instead of \cs{ifnum}}
+%    \begin{macrocode}
+      \ifdim \ta@temp >\paperheight
+        \PackageWarningNoLine{typearea}{%
+          No classic typearea with this papersize!\MessageBreak
+          Using calculated DIV%
+        }%
+        \ta@div=\@ne
+%    \end{macrocode}
+% Otherwise we can calculate the height of all vertical margins by the height
+% of the paper width (without binding correction)
+%    \begin{macrocode}
+      \else
+        \setlength{\ta@temp}{\paperheight}%
+        \addtolength{\ta@temp}{-\paperwidth}%
+        \addtolength{\ta@temp}{\ta@bcor}%
+%    \end{macrocode}
+% and from this the height of one block
+%    \begin{macrocode}
+        \divide\ta@temp by3
+%    \end{macrocode}
+% and this will result in a divisor.
+%    \begin{macrocode}
+        \ta@modiv{\paperheight}{\ta@temp}%
+      \fi
+%    \end{macrocode}
+% Here we do not need to respect \Option{mpinclude} because we do not use the
+% width of the typing area but the height of the paper.
+%    \begin{macrocode}
+    \fi
+%    \end{macrocode}
+% If we did not found a good value until this point, we try to calculate the
+% optimal divisor.
+% \changes{v2.4n}{1997/05/28}{improved optimal divisor calculation}%^^A
+%    \begin{macrocode}
+    \ifnum\ta@div <4
+      \typeout{DIV calculation for typearea with good linewidth.}%
+%    \end{macrocode}
+% The width of the typing area could at most be the width of the paper without
+% the binding correction.
+%    \begin{macrocode}
+      \setlength{\textwidth}{\paperwidth}%
+      \addtolength{\textwidth}{-\ta@bcor}%
+%    \end{macrocode}
+% The optimal width would be the optimal line width.
+%    \begin{macrocode}
+      \ta@temp@goodwidth
+%    \end{macrocode}
+% In two column mode each text line has two such columns plus the column
+% separation width.
+% \changes{v2.8q}{2001/12/13}{\texttt{DIVcalc} uses wider columns in two
+%     column mode}%^^A
+%    \begin{macrocode}
+      \if@twocolumn
+        \addtolength{\ta@temp}{\ta@temp}%
+        \addtolength{\ta@temp}{\columnsep}%
+      \fi
+%    \end{macrocode}
+% Former releases used an iterative approach to get the best
+% divisor. Depending on the \TeX{} implementation and the paper size this
+% could be more or less slow. So we do a direct calculation starting with the
+% width of the left and right margin.
+%    \begin{macrocode}
+      \setlength{\ta@hblk}{\paperwidth}%
+      \addtolength{\ta@hblk}{-\ta@temp}%
+%    \end{macrocode}
+% This can be used to calculate the width of a block.
+%    \begin{macrocode}
+      \divide\ta@hblk by3
+%    \end{macrocode}
+% If this width is negative, we use a minimum width of 5\,mm.
+% \changes{v2.5a}{1997/06/22}{\cs{ifdim} instead of \cs{ifnum}.}
+%    \begin{macrocode}
+      \ifdim \ta@hblk <\z@
+        \setlength{\ta@hblk}{5mm}%
+      \fi
+%    \end{macrocode}
+% The width of block and the width of the paper can be used to calculate the
+% divisor.
+% \changes{v2.8q}{2002/03/28}{respect \Option{mpinclude} at the calculation
+%     of the best divisor}%^^A
+% If option \Option{mpinclude} is active, we have to multiply the divisor with
+% $\frac{3}{3+m}$. $m$ is the number of blocks used for the margin notes. If
+% $m=1$ we have an factor of $\frac{3}{4}=0.75$. More difficult would be not
+% to use a number of blocks for the margin note column but a dedicated value
+% for the width of the margin note column.
+%    \begin{macrocode}
+      \if@mincl
+        \setlength{\ta@temp}{.75\ta@hblk}%
+      \else
+        \setlength{\ta@temp}{\ta@hblk}%
+      \fi
+      \ta@modiv{\paperwidth}{\ta@temp}%
+%    \end{macrocode}
+% Another difficulty would be, if the divisor now is optimal for the width but
+% result in a to large height. To find this out, we first calculate the typing
+% area and margins with the found divisor.
+%    \begin{macrocode}
+      \@typearea
+%    \end{macrocode}
+% Now, we test the vertical sizes. Again a minimum block size is of 5\,mm will
+% be used. But we have to take care the 1\,in of \TeX!
+% \changes{v2.5a}{1997/06/22}{\cs{ifdim} instead of \cs{ifnum}}
+%    \begin{macrocode}
+      \setlength{\ta@temp}{-1in}%
+      \addtolength{\ta@temp}{5mm}%
+      \ifdim\topmargin <\ta@temp
+%    \end{macrocode}
+% This would be the minimum top margin. If the margin is less, we need another
+% divisor. In this case we also have to recognize whether the page head and
+% footer are part of the margins or the typing area.
+% \changes{v2.5b}{1997/06/29}{take care for \Option{headinclude} and
+%     \Option{footinclude} while calculating the divisor for minimum top
+%     margin}%^^A
+%    \begin{macrocode}
+        \setlength{\ta@temp}{15mm}%
+        \if@hincl\else
+          \addtolength{\ta@temp}{\headheight}%
+          \addtolength{\ta@temp}{\headsep}%
+        \fi
+        \if@fincl\else
+          \addtolength{\ta@temp}{\footskip}%
+        \fi
+        \divide\ta@temp by3
+        \ta@modiv{\paperheight}{\ta@temp}%
+      \fi
+%    \end{macrocode}
+% A solution for this difficulty has been found.
+%    \begin{macrocode}
+    \fi
+%    \end{macrocode}
+% So now we have the final divisor and can do the final calculation.
+%    \begin{macrocode}
+    \@typearea
+%    \end{macrocode}
+% \changes{v2.0e}{1994/10/28}{write layout values to the \File{log} file}%^^A
+% \changes{v2.4i}{1996/11/11}{write to the \File{log} file later}%^^A
+% \changes{v2.4i}{1996/11/11}{execute \cs{@typearea@end} at the end of
+%   \cs{typearea}}%^^A
+% \changes{v2.4j}{1996/12/04}{\File{log} output with only one
+%   \cs{textheight} but additional \cs{baselineskip}}%^^A
+% \changes{v2.5}{1997/06/17}{"`arithmetic overflow"' with \Option{landscape}
+%   fixed}%^^A
+% \changes{v2.95}{2004/01/30}{warning in two column mode fixed}%^^A
+% \changes{v3.00}{2008/10/08}{use \cs{ta@layoutinfo} to write the layout
+%   values into the \File{log} file}%^^A
+% \changes{v3.01b}{2008/12/09}{warning for sub-optimal settings changed}%^^A
+% \changes{v3.26}{2018/07/16}{warning about long lines changed}%^^A
+% \changes{v3.26}{2018/07/16}{warning about small lines changed and
+%   replaced by an info}%^^A
+% Last but not least we write some layout values into the \File{log} file. For
+% some of the information we need additional calculations, e.g., of a good
+% line width.
+%    \begin{macrocode}
+    \ta@temp@goodwidth
+    \if@twocolumn
+      \addtolength{\ta@temp}{\ta@temp}%
+      \addtolength{\ta@temp}{\columnsep}%
+    \fi
+    \setlength{\@tempdima}{\ta@temp}%
+    \addtolength{\ta@temp}{-\textwidth}%
+    \divide\@tempdima by100
+    \divide\ta@temp by\@tempdima
+    \@tempcnta=\ta@temp
+    \ifnum\@tempcnta <5
+      \ifnum\@tempcnta >-5
+        \@tempcnta=0
+      \else
+        \advance\@tempcnta by4
+      \fi
+    \else
+      \advance\@tempcnta by-4
+    \fi
+    \ifnum\@tempcnta <-15
+      \@tempcnta=-\@tempcnta
+      \PackageWarningNoLine{typearea}{%
+        Bad type area settings!\MessageBreak
+        The detected line width is about
+        \the\@tempcnta\@percentchar\MessageBreak
+        larger than the heuristically estimated maximum\MessageBreak
+        limit of typographical good line width.\MessageBreak
+        You should e.g.
+        \ifnum\ta@div >6 decrease DIV, \fi
+        \ifdim\f@size\p@<\@xiipt\p@ increase fontsize\else
+        (increase fontsize)\fi\MessageBreak
+        or change papersize%
+      }%
+      \@tempcnta=-\@tempcnta
+    \else
+      \ifnum\@tempcnta>15
+        \PackageInfoNoLine{typearea}{%
+          Maybe no optimal type area settings!\MessageBreak
+          The detected line width is about
+          \the\@tempcnta\@percentchar\MessageBreak
+          smaller than the heuristically estimated maximum\MessageBreak
+          limit of typographical good line width.\MessageBreak
+          You could e.g. increase DIV%
+          \ifdim\f@size\p@>\@xpt\p@, decrease fontsize\fi\MessageBreak
+          or change the papersize%
+        }%
+    \fi\fi
+    \ifnum\ta@div <6
+      \PackageWarningNoLine{typearea}{%
+        Very low DIV value!\MessageBreak
+        DIV values less than 6 result in textwidth/-height\MessageBreak
+        smaller than total marginwidth/-height.\MessageBreak
+        You should e.g. increase DIV, increase fontsize or\MessageBreak
+        change papersize%
+      }
+    \fi
+    \ta@layoutinfo{\number\ta@div}{\the\@tempcnta}%
+    \KOMA@kav@removekey{.typearea.\scr@pkgextension}{DIV}%
+    \KOMA@kav@xadd{.typearea.\scr@pkgextension}{DIV}{\@lastdiv}%
+    \KOMA@kav@removekey{.typearea.\scr@pkgextension}{BCOR}%
+    \KOMA@kav@xadd{.typearea.\scr@pkgextension}{BCOR}{\the\ta@bcor}%
+    \@typearea@end
+    \activateareas
+    \ifdim \dimexpr 1in+\topmargin
+                   +\headheight+\headsep
+                   +\textheight
+                   +\footskip+\dp\strutbox\relax
+           >\paperheight
+      \PackageWarningNoLine{typearea}{%
+        page content and margins higher than paper.\MessageBreak
+        This may result in page footer out of paper.\MessageBreak
+        You should decrease DIV, decrease foot height,\MessageBreak
+        or include footer into type area%
+      }%
+    \fi
+  \fi
+}
+%    \end{macrocode}
+%
+% \begin{macro}{\ta@layoutinfo}
+% \changes{v3.00}{2008/10/08}{new (internal)}%^^A
+% Write several layout information into the \File{log} file. The first
+% argument is the current divisor and the second the discrepancy from the
+% optimal divisor or empty or \cs{relax}.
+%    \begin{macrocode}
+\newcommand*{\ta@layoutinfo}[2]{%
+  \PackageInfo{typearea}{%
+    These are the values describing the layout:\MessageBreak
+    DIV\space\space=\space#1\MessageBreak
+    BCOR\space=\space\the\ta@bcor\MessageBreak
+    \string\paperwidth\space\space\space\space\space\space=%
+                         \space\the\paperwidth\MessageBreak
+    \space\string\textwidth\space\space\space\space\space\space=%
+                         \space\the\textwidth\MessageBreak
+    \ifx\relax#2\relax\else
+      \space DIV departure\space\space\space=%
+                           \space#2\@percentchar\MessageBreak
+    \fi
+    \space\string\evensidemargin\space=%
+                         \space\the\evensidemargin\MessageBreak
+    \space\string\oddsidemargin\space\space=%
+                           \space\the\oddsidemargin\MessageBreak
+    \string\paperheight\space\space\space\space\space=%
+                         \space\the\paperheight\MessageBreak
+    \space\string\textheight\space\space\space\space\space=%
+                         \space\the\textheight\MessageBreak
+    \space\string\topmargin\space\space\space\space\space\space=%
+                         \space\the\topmargin\MessageBreak
+    \space\string\headheight\space\space\space\space\space=%
+                         \space\the\headheight\MessageBreak
+    \space\string\headsep\space\space\space\space\space\space\space\space=%
+                         \space\the\headsep\MessageBreak
+    \space\string\topskip\space\space\space\space\space\space\space\space=%
+                         \space\the\topskip\MessageBreak
+    \space\string\footskip\space\space\space\space\space\space\space=%
+                         \space\the\footskip\MessageBreak
+    \space\string\baselineskip\space\space\space=%
+                         \space\the\baselineskip\MessageBreak
+  }%
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\recalctypearea}
+% \changes{v2.95}{2002/12/04}{new}%^^A
+% This command can be used to recalculate the typing area and the margins with
+% the divisor and the binding correction that has been used last. The command
+% is available only after loading the package. So it is an indicator if we
+% are in the load or the run-time phase of the package.
+%    \begin{macrocode}
+\AtEndOfPackage{\newcommand*{\recalctypearea}{\typearea[current]{last}}}
+%</package&typearea&body>
+%    \end{macrocode}
+% \end{macro}
+%
+% Initially \cs{ta@bcor} and \cs{ta@div} are zero if is has not been set using
+% one of the options. The 0 divisor stands for using a value from the default
+% list. So the final initialization of the typing area and margins is very
+% easy.
+% \changes{v2.8q}{2001/11/06}{initialization using symbolic values
+%   \texttt{current}}%^^A 
+%    \begin{macrocode}
+%<*package&typearea&final>
+\typearea[current]{current}
+%</package&typearea&final>
+%    \end{macrocode}
+%
+% \subsection{Storage and reactivation of typing area and margin settings}
+%
+% \begin{macro}{\storeareas}
+% \changes{v3.10}{2011/09/13}{new}%^^A
+% \changes{v3.18}{2015/05/20}{Hooks at the beginning and end of the defined
+%     macro}%^^A
+% You can store the current settings of the typing area and the margins in a
+% macro. If you use the macro later the stored settings will be restored.
+% \begin{macro}{\scr@grouplevel@test}
+% \changes{v3.10}{2011/09/13}{new (internal)}%^^A
+% Warn if restoring the settings is used inside a group.
+%    \begin{macrocode}
+%<*package&typearea&body>
+\newcommand*{\scr@grouplevel@test}[1]{%
+  \ifcase\currentgrouptype\else
+    \PackageWarning{typearea}{%
+      \string#1\space used at group level
+      \the\currentgrouplevel.\MessageBreak
+      Using \string#1\space inside any group, e.g.\MessageBreak
+      environments, math mode, boxes, etc. may result in\MessageBreak
+      many type setting problems.\MessageBreak
+      You should move the command \string#1\MessageBreak
+      outside all groups%
+    }%
+  \fi
+}
+\newcommand*{\storeareas}[1]{%
+  \edef\reserved@a{%
+    \noexpand\newcommand*{\unexpanded{#1}}{%
+      \noexpand\scr@grouplevel@test\unexpanded{#1}%
+      \noexpand\csname scr@storeareas@before@hook\noexpand\endcsname
+      \unexpanded\expandafter\expandafter\expandafter{%
+        \csname scr@storeareas@before@current@hook\endcsname}%
+      \noexpand\paperheight=\the\paperheight\space
+      \noexpand\paperwidth=\the\paperwidth\space
+      \noexpand\topmargin=\the\topmargin\space
+      \noexpand\headheight=\the\headheight\space
+      \noexpand\headsep=\the\headsep\space
+      \noexpand\textheight=\the\textheight\space
+      \noexpand\vsize=\the\vsize\space
+      \noexpand\footskip=\the\footskip\space
+      \noexpand\@colht=\the\@colht\space
+      \noexpand\@colroom=\the\@colroom\space
+      \noexpand\textwidth=\the\textwidth\space
+      \noexpand\columnwidth=\the\columnwidth\space
+      \noexpand\hsize=\the\hsize\space
+      \noexpand\oddsidemargin=\the\oddsidemargin\space
+      \noexpand\evensidemargin=\if@twoside
+        \the\evensidemargin
+      \else
+        \the\oddsidemargin
+      \fi\space
+      \noexpand\linewidth=\the\linewidth\space
+      \noexpand\maxdepth=\the\maxdepth\space
+      \scr@ifundefinedorrelax{@pagesizelast}{}{%
+        \noexpand\KOMAoptions{pagesize=\@pagesizelast}}%
+      \noexpand\ta@div=\the\ta@div\space
+      \noexpand\ta@bcor=\the\ta@bcor\space
+      \noexpand\def\noexpand\@lastdiv{\@lastdiv}%
+      \noexpand\marginparsep=\the\marginparsep\space
+      \noexpand\marginparwidth=\the\marginparwidth\space
+      \noexpand\def
+      \expandafter\noexpand\csname scr@kav@KOMA.typearea.\scr@pkgextension\endcsname{%
+        \unexpanded\expandafter\expandafter\expandafter{%
+          \csname scr@kav@KOMA.typearea.\scr@pkgextension\endcsname}%
+      }%
+      \unexpanded\expandafter\expandafter\expandafter{%
+        \csname scr@storeareas@after@current@hook\endcsname}%
+      \noexpand\csname scr@storeareas@after@hook\noexpand\endcsname
+    }%
+  }%
+  \reserved@a
+}
+%    \end{macrocode}
+% \begin{macro}{\BeforeRestoreareas}
+% \changes{v3.18}{2015/05/20}{new}%^^A
+% \changes{v3.20}{2016/04/12}{\cs{@ifstar} replaced by
+%     \cs{kernel@ifstar}}%^^A
+% \begin{macro}{\AfterRestoreareas}
+% \changes{v3.18}{2015/05/20}{new}%^^A
+% \changes{v3.20}{2016/04/12}{\cs{@ifstar} replaced by
+%     \cs{kernel@ifstar}}%^^A
+% \begin{macro}{\scr@storeareashook}
+% \changes{v3.18}{2015/05/20}{new (internal)}%^^A
+% \begin{macro}{\scr@storeareas@before@hook}
+% \changes{v3.18}{2015/05/20}{new (internal)}%^^A
+% \begin{macro}{\scr@storeareas@before@current@hook}
+% \changes{v3.18}{2015/05/20}{new (internal)}%^^A
+% \begin{macro}{\scr@storeareas@after@hook}
+% \changes{v3.18}{2015/05/20}{new (internal)}%^^A
+% \begin{macro}{\scr@storeareas@after@current@hook}
+% \changes{v3.18}{2015/05/20}{new (internal)}%^^A
+% Adds code to one of the hooks of the macros defined by \cs{storeareas}.
+% The star variants adds code only to not yet defined macros. The non-star
+% variant also changes already defined macros.
+%    \begin{macrocode}
+\newcommand*{\BeforeRestoreareas}{%
+  \kernel@ifstar{\scr@storeareashook{before@current}}%
+                {\scr@storeareashook{before}}%
+}
+\newcommand*{\AfterRestoreareas}{%
+  \kernel@ifstar{\scr@storeareashook{after@current}}%
+                {\scr@storeareashook{after}}%
+}
+\newcommand*{\scr@storeareashook}[2]{%
+  \expandafter\l@addto@macro\csname scr@storeareas@#1@hook\endcsname{#2}%
+}
+\newcommand*{\scr@storeareas@before@hook}{}
+\newcommand*{\scr@storeareas@before@current@hook}{}
+\newcommand*{\scr@storeareas@after@hook}{}
+\newcommand*{\scr@storeareas@after@current@hook}{}
+%</package&typearea&body>
+%    \end{macrocode}
+% \end{macro}%^^A \scr@storeareas@after@current@hook
+% \end{macro}%^^A \scr@storeareas@after@hook
+% \end{macro}%^^A \scr@storeareas@before@current@hook
+% \end{macro}%^^A \scr@storeareas@before@hook
+% \end{macro}%^^A \scr@storeareashook
+% \end{macro}%^^A \AfterRestoreareas
+% \end{macro}%^^A \BeforeRestoreareas
+% \end{macro}%^^A \scr@grouplevel@test
+% \end{macro}%^^A \storeareas
+%
+% \subsection{Calculation of margins for a given typing area}
+%
+% Beside the calculation of the typing area and the margins by a divisor
+% \Package{typearea} also provides the calculation of margins for a given
+% typing area.
+%
+% \begin{option}{areasetadvanced}
+% \changes{v3.11}{2012/04/17}{new}%^^A
+% Switch to advanced version of \cs{areaset}. This does calculate margins
+% more like \cs{typearea}. Nevertheless, there's still a difference at the top
+% margin, because \cs{typerea} doesn't balance differences in calculated
+% height of margins and resulting height of margins but reduces only the
+% bottom margin.
+%    \begin{macrocode}
+%<*package&typearea&options>
+\KOMA@ifkey{areasetadvanced}{@areasetadvanced}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{option}
+%
+% \begin{macro}{\areaset}
+% \changes{v2.1b}{1994/12/31}{\cs{headheight} depends on \cs{@ptsize}}%^^A
+% \changes{v2.6}{2000/01/04}{\cs{headheight} depends on \cs{f@size} instead
+%     of \cs{@ptsize}}%^^A
+% \changes{v2.7g}{2001/04/17}{symbolic value \texttt{current} for the
+%     optional argument}%^^A
+% \changes{v2.95}{2002/12/05}{execute \cs{@typearea@end} at the end of
+%     \cs{areaset}}%^^A
+% If we have given width and height of the typing area we still can calculate
+% the margins. Again we want to use this not only in the document preamble but
+% also in the document body.
+%    \begin{macrocode}
+%<*package&typearea&body>
+\newcommand*\areaset[3][\z@]{%
+  \edef\@tempa{#1}\edef\@tempb{current}\ifx\@tempa\@tempb\else
+    \setlength{\ta@bcor}{#1}%
+  \fi
+%    \end{macrocode}
+% We have to start a new page if we are inside the document body.
+%    \begin{macrocode}
+  \if@atdocument\newpage\fi
+%    \end{macrocode}
+% Then we do the calculation.
+% \changes{v2.96}{2006/09/12}{set \cs{topskip}}
+% \changes{v3.00}{2008/10/08}{use \cs{ta@layoutinfo} to write layout
+%     information into the \File{log} file}%^^A
+%    \begin{macrocode}
+  \setlength{\textwidth}{#2}%
+  \setlength{\textheight}{#3}%
+  \def\@lastdiv{areaset}%
+  \KOMA@kav@removekey{.typearea.\scr@pkgextension}{DIV}%
+  \KOMA@kav@add{.typearea.\scr@pkgextension}{DIV}{areaset}%
+  \KOMA@kav@removekey{.typearea.\scr@pkgextension}{BCOR}%
+  \KOMA@kav@add{.typearea.\scr@pkgextension}{BCOR}{\the\ta@bcor}%
+  \ta@hblk=\paperwidth
+  \advance\ta@hblk by-\ta@bcor
+  \advance\ta@hblk by-\textwidth
+%    \end{macrocode}
+% \changes{v3.11}{2012/04/17}{advanced version with different margin widths}%
+% With v3.11 we will have an advanced version of \cs{areaset}. This
+% version takes care to option \texttt{mpinclude}.
+%    \begin{macrocode}
+  \if@areasetadvanced
+    \if@mincl
+      \divide\ta@hblk by4
+    \else
+      \divide\ta@hblk by3
+    \fi
+  \else
+    \divide\ta@hblk by3
+  \fi
+  \oddsidemargin=-1in
+  \evensidemargin=-1in
+  \if@twoside
+    \if@semitwoside
+      \advance\oddsidemargin by1.5\ta@hblk
+      \advance\oddsidemargin by\ta@bcor
+%    \end{macrocode}
+% \changes{v3.12}{2013/10/15}{use alternating \texttt{BCOR} with
+%    \texttt{twoside!=semi}}
+% If \Option{twoside=semi} is used, form v3.12 we add the binding correction
+% to the inner margin. If compatibility to version less than 3.12 has been
+% selected the binding correction will be added to the left margin.
+%    \begin{macrocode}
+      \expandafter\ifnum\scr@ta@v@is@lt{3.12}\relax
+        \evensidemargin=\oddsidemargin
+      \else
+        \advance\evensidemargin by1.5\ta@hblk
+      \fi
+    \else
+      \advance\oddsidemargin by\ta@hblk
+      \advance\oddsidemargin by\ta@bcor
+      \advance\evensidemargin by2\ta@hblk
+    \fi
+  \else
+    \advance\oddsidemargin by1.5\ta@hblk
+    \advance\oddsidemargin by\ta@bcor
+    \evensidemargin\oddsidemargin
+  \fi
+  \scr@ifundefinedorrelax{@ptsize}{%
+    \topskip=\f@size\p@
+  }{%
+    \topskip=\@ptsize\p@
+    \advance\topskip by 10\p@
+  }%
+%    \end{macrocode}
+% \changes{v3.11}{2012/04/17}{advanced version with different margin widths}%
+% With v3.11 we will have an advanced version of \cs{areaset}. This
+% version uses the head height algorithm of \cs{typearea}.
+%    \begin{macrocode}
+  \if@areasetadvanced
+    \normalsize
+    \@ifundefined{ta@hh}{%
+      \headheight=1.25\baselineskip
+    }{%
+      \headheight=\ta@hh
+    }%
+  \else
+    \headheight=15\p@
+    \advance\headheight by\f@size\p@
+    \advance\headheight by-10\p@
+  \fi
+  \headsep=1.5\baselineskip
+%    \end{macrocode}
+% \changes{v3.12}{2013/03/26}{changes for height of foot}%^^A
+%    \begin{macrocode}
+  \@ifundefined{footheight}{\newlength\footheight}{}
+  \if@areasetadvanced
+    \@ifundefined{ta@fh}{%
+      \footheight=1.25\baselineskip
+      \footskip=3.5\baselineskip
+    }{%
+      \footheight=\ta@fh
+      \footskip=\dimexpr \footheight+2.25\baselineskip\relax
+    }%
+  \else
+    \footheight=1.25\baselineskip
+    \footskip=3.5\baselineskip
+  \fi
+  \ta@vblk=\paperheight
+  \advance\ta@vblk by-\textheight
+  \divide\ta@vblk by3
+  \if@hincl
+    \advance\textheight by-\headheight
+    \advance\textheight by-\headsep
+  \fi
+  \if@fincl
+    \advance\textheight by-\footskip
+  \fi
+  \topmargin=-1in
+  \advance\topmargin by\ta@vblk
+  \if@hincl \else
+    \advance\topmargin by-\headheight
+    \advance\topmargin by-\headsep
+  \fi
+  \if@twoside
+    \if@semitwoside
+      \marginparwidth=\ta@hblk
+    \else
+      \marginparwidth=1.5\ta@hblk
+    \fi
+  \else
+    \marginparwidth=\ta@hblk
+  \fi
+  \marginparsep=1cc
+%    \end{macrocode}
+% \changes{v3.11}{2012/04/17}{advanced version with different
+%     \cs{marginparwidth} and unchanged \cs{marginparsep}}%
+% With version 3.11 we will have an advanced version of \cs{areaset}. This
+% version supports \texttt{mpinclude} option like \cs{typearea}.
+%    \begin{macrocode}
+  \if@areasetadvanced
+    \if@mincl
+      \marginparwidth=\ta@hblk
+      \if@twoside\if@semitwoside\else
+          \advance\evensidemargin by\marginparwidth
+      \fi\fi
+      \advance\marginparwidth by-\marginparsep
+    \fi
+  \fi
+  \marginparpush=0.45\baselineskip
+  \ta@layoutinfo{areaset}{}%
+%    \end{macrocode}
+% \changes{v3.11}{2012/04/17}{using \cs{@areaset@end}}%^^A
+% \changes{v3.16a}{2015/02/11}{using \cs{footheight} for calculation of
+%     page usage}%^^A
+% Since v3.11 we also support \cs{AfterSettingArea} analogous to
+% \cs{AfterCalculatingTypearea}:
+%    \begin{macrocode}
+  \@areaset@end
+  \activateareas
+  \ifdim \dimexpr 1in+\topmargin
+                 +\headheight+\headsep
+                 +\textheight
+                 +\footskip+\footheight-\ht\strutbox\relax
+         >\paperheight
+    \PackageWarningNoLine{typearea}{%
+      page content and margins higher than paper.\MessageBreak
+      This may result in page footer out of paper.\MessageBreak
+      You should decrease DIV, decrease foot height,\MessageBreak
+      or decreate height of text area%
+    }%
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\AfterSettingArea}
+% \changes{v3.11}{2012/04/17}{new}%^^A
+% \changes{v3.20}{2016/04/12}{\cs{@ifstar} durch \cs{kernel@ifstar}
+%     ersetzt}%^^A
+% The user may influence the result of \cs{areaset}. The star version works
+% local while the non-star version is global.
+%    \begin{macrocode}
+\newcommand*{\AfterSettingArea}{%
+  \kernel@ifstar \l@addto@macro \g@addto@macro \@areaset@end
+}
+%    \end{macrocode}
+% \begin{macro}{\@areaset@end}
+% \changes{v3.11}{2012/04/17}{new}%^^A
+% Macro \cs{@areaset@end} is a hook to make it possible to add some
+% instructions to the end of the \cs{areaset} command. This will be executed
+% before the activation of the settings inside a document.
+%    \begin{macrocode}
+\newcommand*{\@areaset@end}{}
+%</package&typearea&body>
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \subsection{Deprecated options}
+%
+% Former versions of \KOMAScript{} had some options that are completely
+% deprecated since \KOMAScript{} 3.00. Most of them but not all are pattern
+% matching options.
+%
+% \begin{option}{DIVcalc}
+% \changes{v2.4g}{1996/11/04}{new}%^^A
+% \changes{v2.95}{2002/12/04}{implemented using option \Option{DIV}}%^^A
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A
+% \changes{v3.01a}{2008/11/21}{deprecated}%^^A
+% \begin{option}{DIVclassic}
+% \changes{v2.4n}{1997/05/28}{new}%^^A
+% \changes{v2.95}{2002/12/04}{implemented using option \Option{DIV}}%^^A
+% \changes{v2.97d}{2007/10/03}{\cs{PackageInfo} replaced by
+%     \cs{PackageInfoNoLine}}%^^A 
+% \changes{v3.01a}{2008/11/21}{deprecated}%^^A
+% The former form of \Option{DIV=}\Option{calc} and
+% \Option{DIV=}\Option{classic}.
+%    \begin{macrocode}
+%<*package&typearea&options>
+\KOMA@DeclareDeprecatedOption[typearea]{DIVcalc}{DIV=calc}
+\KOMA@DeclareDeprecatedOption[typearea]{DIVclassic}{DIV=classic}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{option}%^^A DIVclassic
+% \end{option}%^^A DIVcalc
+%
+% \begin{option}{a\meta{integer}paper}
+% \begin{option}{b\meta{integer}paper}
+% \begin{option}{c\meta{integer}paper}
+% \begin{option}{d\meta{integer}paper}
+% Formerly \Option{a}\meta{integer}\Option{paper},
+% \Option{b}\meta{integer}\Option{paper},
+% \Option{c}\meta{integer}\Option{paper},
+% \Option{d}\meta{integer}\Option{paper} has been documented. Since
+% \KOMAScript{} v3.00 most of them are deprecated and has been replaced by
+% option \Option{paper}. Nevertheless, for compatibility these options and the
+% commands needed to recognize and handle them are still implemented.
+%
+% The documentation of the deprecated part of the feature is still in German.
+% \selectlanguage{ngerman}
+%
+% \begin{macro}{\x@paper}
+% \begin{macro}{\x@@paper}
+% \changes{v2.5}{1997/06/17}{neue Mustererkennung für die
+%   Papiergröße}%^^A
+% \changes{v3.28}{2019/11/18}{\cs{ifstr} umbenannt in \cs{Ifstr}}%^^A
+% \changes{v3.28}{2019/11/18}{\cs{ifnumber} umbenannt in \cs{Ifnumber}}%^^A
+% Diese Makros werden ebenfalls später benötigt, wenn die Papiergröße
+% festgelegt wird.
+% \begin{macro}{\isopaper}
+% \changes{v2.5}{1997/06/17}{neu}%^^A
+% \changes{v2.95}{2002/12/03}{es sind auch Großbuchstaben erlaubt}%^^A
+% \changes{v3.23}{2017/02/22}{verwendet \cs{ISO@PaperNameToSize}}%^^A
+% Da das Makro \cs{isopaper} zur Berechnung unterschiedlicher
+% ISO/DIN-Papierformate in der Mustererkennung für die Papiergröße
+% benötigt wird, wurde dieses Makro ebenfalls vorgezogen.
+%    \begin{macrocode}
+%<*package&typearea&options>
+\newcommand\isopaper[2][a]{%
+%    \end{macrocode}
+% Das Makro kennt zwei Parameter, von denen der erste und optionale
+% die Grundgröße angibt. Die Angabe erfolgt über einen
+% Buchstaben. Möglich sind
+% \begin{description}
+% \item[a] -- ISO/DIN-A-Format
+% \item[b] -- ISO/DIN-B-Format
+% \item[c] -- ISO/DIN-C-Format
+% \item[d] -- ISO/DIN-D-Format
+% \end{description}
+% Der zweite Paremeter gibt dann die Skalierung an.
+%    \begin{macrocode}
+  \ISO@PaperNameToSize[typearea]#1#2\@nil
+%    \end{macrocode}
+% Jetzt noch die gewünschte Ausrichtung beachten.
+% \changes{v2.97e}{2007/10/23}{gewünschte Papierausrichtung wird
+%     beachtet}%^^A
+% \changes{v3.22}{2016/07/29}{Papierausrichtung entsprechend dem
+%     tatsächlichen Format}%^^A
+%    \begin{macrocode}
+  \expandafter\ifnum\scr@ta@v@is@ge{3.22}\relax
+    \scr@setpaperorientation
+  \else
+    \if@landscape\scr@switchpapersizes\fi
+  \fi
+}
+%    \end{macrocode}
+% \textsf{typearea} verwendet eine eigene Fehlerausgabe.
+% \begin{macro}{\scr@UnknownPaperSize@typearea}
+% \changes{v3.23}{2017/02/22}{neu (intern)}
+%    \begin{macrocode}
+\ProvideUnknownPaperSizeError{typearea}{%
+  \PackageError{typearea}{%
+    Unknown ISO/DIN-papersize-letter #1%
+  }{%
+    There are only four defined paper scalings:\MessageBreak
+    a = ISO/DIN-A, b = ISO/DIN-B, c = ISO/DIN-C, 
+    d = ISO/DIN-D\MessageBreak
+    Read KOMA-Script-documentation for further information.%
+  }%
+  \setlength{\paperwidth}{841sp}%
+  \setlength{\paperheight}{1189sp}%
+}
+%    \end{macrocode}
+% \end{macro}%^^A \scr@UnknownPaperSize@typearea
+% \end{macro}%^^A \isopaper
+% \begin{macro}{\scr@setpaperorientation}
+% \changes{v3.22}{2016/07/29}{neu (intern)}
+% Stellt die Papierausrichtung entsprechend \cs{if@landscape} ein.
+%    \begin{macrocode}
+\newcommand*\scr@setpaperorientation{%
+  \ifdim\paperheight>\paperwidth
+    \if@landscape\scr@switchpapersizes\fi
+  \else
+    \if@landscape\else\scr@switchpapersizes\fi
+  \fi
+}
+%    \end{macrocode}
+% \begin{macro}{\scr@switchpapersizes}
+% \changes{v3.22}{2016/07/29}{neu (intern)}
+% Vertauscht zwei Längen.
+%    \begin{macrocode}
+\newcommand*\scr@switchpapersizes{%
+  \@tempdima\paperwidth\paperwidth\paperheight\paperheight\@tempdima
+}
+%    \end{macrocode}
+% \end{macro}%^^A \scr@switchlength
+% \end{macro}%^^A \scr@setpaperorientation
+% \begin{macro}{\iso@paper}
+% \changes{v2.95}{2002/12/03}{neu (intern)}%^^A
+% Ein ganz ähnlicher interner Befehl erhält den gesamten Namen des
+% ISO-Papierformats als einziges Argument.
+% \begin{macro}{\iso@@paper}
+% \changes{v2.95}{2002/12/03}{neu (intern)}%^^A
+% \changes{v3.28}{2019/11/18}{\cs{ifnumber} umbenannt in \cs{Ifnumber}}%^^A
+% Dieses Argument wird dann über einen weiteren internen Befehl per
+% Mustererkennung in den Kennbuchstaben und eine Zahl zerlegt.
+%    \begin{macrocode}
+\newcommand*{\iso@paper}[1]{\expandafter\iso@@paper#1\@nil}
+\newcommand*{\iso@@paper}{}
+\def\iso@@paper#1#2\@nil{%
+  \@tempswafalse
+  \if #1a\@tempswatrue
+  \else\if #1A\@tempswatrue
+    \else\if #1b\@tempswatrue
+      \else\if #1B\@tempswatrue
+        \else\if #1c\@tempswatrue
+          \else\if #1C\@tempswatrue
+            \else\if #1d\@tempswatrue
+              \else\if #1D\@tempswatrue
+  \fi\fi\fi\fi\fi\fi\fi\fi
+  \if@tempswa
+    \Ifnumber{#2}{\isopaper[#1]{#2}}{\@tempswafalse}%
+  \fi
+}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{macro}%^^A \iso@@paper
+% \end{macro}%^^A \iso@paper
+% \selectlanguage{english}
+%
+% \begin{option}{DIV\meta{integer}}
+% \begin{option}{BCOR\meta{length}}
+% Formerly \Option{DIV}\meta{integer}, \Option{BCOR}\meta{length},
+% \Option{headlines}\meta{real} has been documented as options. Since
+% \KOMAScript{} 3.00 these have been replaced by \Option{DIV=}\meta{integer},
+% \Option{BCOR=}\meta{length} and
+% \Option{headlines=}\meta{real}. Nevertheless, for compatibility the
+% deprecated options are still handled by \Macro{DeclareOption*} and so we
+% need several helper macros to recognize them.
+%
+% The documentation of the deprecated part of the feature is still in German.
+% \selectlanguage{ngerman}
+%
+% \begin{macro}{\@BCOR}
+% \begin{macro}{\@@BCOR}
+% \changes{v2.5}{1997/06/17}{Einzelzeichenscanner durch
+%   Mustererkennung ersetzt}%^^A
+% \changes{v3.28}{2019/11/18}{\cs{ifstr} umbenannt in \cs{Ifstr}}%^^A
+% Das Makro \cs{@BCOR} wird später benötigt, um die Option
+% \texttt{BCOR\emph{BCOR}} zu erkennen. Die Option wird über ihr
+% Muster erkannt. 
+%    \begin{macrocode}
+%<*(class|(package&typearea))&options>
+\newcommand*{\@BCOR}{\expandafter\@@BCOR\CurrentOption BCORBCOR\@@BCOR}
+\newcommand*{\@@BCOR}{}
+\def\@@BCOR #1BCOR#2BCOR#3\@@BCOR{%
+%    \end{macrocode}
+% Handelt es sich um die Option \texttt{BCOR}, so ist der erste
+% Parameter leer.
+%    \begin{macrocode}
+  \Ifstr{#1}{}{%
+%    \end{macrocode}
+% Außerdem ist der dritte Parameter dann \texttt{BCOR}.
+%    \begin{macrocode}
+    \Ifstr{#3}{BCOR}{%
+%    \end{macrocode}
+% Der zweite Parameter sollte dann die Größe enthalten. Ist dies
+% nicht der Fall, wird ein Fehler gemeldet (Fehlerzeile ist dann
+% \cs{ProcessOptions}).
+% \changes{v3.22}{2016/07/29}{missing deprecated option warning added}%^^A
+% \changes{v3.28}{2019/11/18}{\cs{ifdimen} renamed to \cs{Ifdimen}}%^^A
+% \changes{v3.30}{2020/03/24}{avoid error message for unknown \texttt{BCOR}
+%   value to \cs{documentclass}}%^^A
+% \changes{v3.31}{2020/04/27}{improved valid value recognization}%^^A
+%    \begin{macrocode}
+%<*class>  
+      \Ifstrstart{#2}{=}{%
+        \edef\reserved@a{\noexpand\Ifdimen{\@gobble#2}}%
+        \reserved@a{\PassOptionsToPackage{BCOR#2}{typearea}}{\OptionNotUsed}%
+      }{%
+        \Ifdimen{#2}{\PassOptionsToPackage{BCOR#2}{typearea}}{\OptionNotUsed}%
+      }%
+%</class>
+%<*package>
+      \Ifdimen{#2}{%
+        \KOMA@UseDeprecatedOption{%
+          \PackageWarningNoLine{typearea}}{BCOR#2}{BCOR=#2}%
+      }{\scr@pti@nerr@r}%
+%</package>
+%    \end{macrocode}
+% In allen anderen Fällen ist es nicht diese Option, dann wird ein
+% Fehler ausgegeben. Stattdessen könnte hier auch auf weitere Optionen
+% getestet werden.
+%    \begin{macrocode}
+    }{\scr@pti@nerr@r}%
+  }{\scr@pti@nerr@r}%
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\@DIV}
+% \begin{macro}{\@@DIV}
+% \changes{v2.5}{1997/06/17}{Einzelzeichenscanner durch
+%      Mustererkennung ersetzt}%^^A
+% \changes{v3.22}{2016/07/29}{missing deprecated option warning added}%^^A
+% \changes{v3.28}{2019/11/18}{\cs{ifnumber} umbenannt in \cs{Ifnumber}}%^^A
+% \changes{v3.30}{2020/03/24}{avoid error message for unknown \texttt{DIV}
+%   value to \cs{documentclass}}%^^A
+% \changes{v3.31}{2020/04/27}{improved valid value recognization}%^^A
+% Die grundsätzliche Funktion ist die gleiche wie bei \cs{@BCOR},
+% \cs{@@BCOR}.
+%    \begin{macrocode}
+\newcommand*{\@DIV}{\expandafter\@@DIV\CurrentOption DIVDIV\@@DIV}
+\newcommand*{\@@DIV}{}
+\def\@@DIV #1DIV#2DIV#3\@@DIV{%
+  \edef\@tempa{#1}\ifx\@tempa\@empty
+    \edef\@tempa{#3}\def\@tempb{DIV}\ifx\@tempa\@tempb
+%<*class>  
+      \Ifstrstart{#2}{=}{%
+        \edef\reserved@a{\noexpand\Ifnumber{\@gobble#2}}%
+        \reserved@a{\PassOptionsToPackage{DIV#2}{typearea}}{\OptionNotUsed}%
+      }{%
+        \Ifnumber{#2}{\PassOptionsToPackage{DIV#2}{typearea}}{\OptionNotUsed}%
+      }%
+%</class>
+%<*package>
+      \Ifnumber{#2}{%
+        \KOMA@UseDeprecatedOption{%
+          \PackageWarningNoLine{typearea}}{DIV#2}{DIV=#2}%
+      }{\scr@pti@nerr@r}%
+%</package>
+    \else\scr@pti@nerr@r\fi
+%    \end{macrocode}
+% Der Unterschied liegt darin, dass bei einem Fehlschlag der
+% Mustererkennung kein Fehler vorliegt, sondern u.\,U. noch auf
+% \texttt{BCOR} getestet werden muss.
+%    \begin{macrocode}
+  \else\@BCOR\fi
+}
+%    \end{macrocode}
+% \end{macro}%^^A \@@DIV
+% \end{macro}%^^A \@DIV
+%
+% \begin{option}{headlines\meta{integer}}
+% \begin{macro}{\@headlines}
+% \begin{macro}{\@@headlines}
+% \changes{v2.7g}{2001/04/17}{neue Mustererkennung für die Anzahl
+%      der Kopfzeilen}%^^A
+% Das Macro \cs{@headlines} wird benötigt, um die Option
+% \texttt{headlines} zu erkennen.
+%    \begin{macrocode}
+\newcommand{\@headlines}{%
+  \expandafter\@@headlines\CurrentOption headlines\@@headlines%
+}
+\newcommand*{\@@headlines}{}
+\def\@@headlines #1headlines#2\@@headlines{
+  \edef\@tempa{#2}\edef\@tempb{headlines}\ifx\@tempa\@tempb
+%<class>    \PassOptionsToPackage{#1headlines}{typearea}
+%<package>    \setlength{\@tempdima}{#1\baselineskip}%
+%<package>    \def\ta@hh{#1\baselineskip}%
+  \else\@DIV\fi
+}
+%</(class|(package&typearea))&options>
+%    \end{macrocode}
+% \end{macro}%^^A \@headlines
+% \end{macro}%^^A \@@headlines
+%
+% \selectlanguage{english}
+% Starting point for all the deprecated pattern matching options is
+% \Macro{DeclareOption*} for command \Macro{x@paper} that uses pattern
+% matching with \Macro{x@@paper} to recognize the deprecated options. These
+% are needed not only for package \Package{typearea} but also for the classes.
+%
+% The documentation of the deprecated part of the feature is still in German.
+% \selectlanguage{ngerman}
+% Zurück zur Mustererkennung. Diese ist tatsächlich etwas einfacher
+% als die in den beiden Fällen zuvor.
+% \changes{v2.97e}{2007/10/23}{Optionen werden nach der neuen Syntax an
+%   typearea weitergeleitet}%^^A
+%    \begin{macrocode}
+%<*(class|(package&typearea))&options>
+\newcommand*{\x@paper}{%
+  \expandafter\x@@paper\CurrentOption paper\x@@paper%
+}
+\newcommand*{\x@@paper}{}
+\def\x@@paper #1#2paper#3\x@@paper{%
+  \Ifstr{#3}{paper}{%
+    \Ifnumber{#2}{%
+      \Ifstr{#1}{a}{%
+%<class>        \PassOptionsToPackage{#3=#1#2}{typearea}%
+%<package>        \isopaper[a]{#2}%
+      }{%
+        \Ifstr{#1}{b}{%
+%<class>          \PassOptionsToPackage{#3=#1#2}{typearea}%
+%<package>          \isopaper[b]{#2}%
+        }{%
+          \Ifstr{#1}{c}{%
+%<class>            \PassOptionsToPackage{#3=#1#2}{typearea}%
+%<package>            \isopaper[c]{#2}%
+          }{%
+            \Ifstr{#1}{d}{%
+%<class>              \PassOptionsToPackage{#3=#1#2}{typearea}%
+%<package>              \isopaper[d]{#2}%
+            }{\scr@pti@nerr@r}%
+          }%
+        }%
+      }%
+    }{\scr@pti@nerr@r}%
+  }{%
+%<class>    \@pt@scan
+%<package>    \@headlines
+  }%
+}
+%    \end{macrocode}
+%
+% \begin{macro}{\scr@pti@nerr@r}
+% \changes{v2.95}{2002/06/20}{\cs{OptionNotUsed} statt
+%      \cs{PackageError}} 
+% Falls die zuätzliche Option nicht \texttt{BCOR}, \texttt{DIV},
+% \texttt{headlines} oder eine bekannte Papiergröße ist, ist die
+% Option nicht verwendet.
+%    \begin{macrocode}
+\newcommand*{\scr@pti@nerr@r}{
+%<class>  \OptionNotUsed
+%<package>  \@unknownoptionerror
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \changes{v2.97c}{2007/09/12}{\cs{lco@test} bei den geparsten Optionen
+%   eingefügt}
+%    \begin{macrocode}
+\DeclareOption*{%
+%<letter>  \lco@test
+  \x@paper}
+%</(class|(package&typearea))&options>
+%    \end{macrocode}
+% \end{option}%^^A headline...
+% \end{option}%^^A DIV...
+% \end{option}%^^A BCOR...
+% \end{macro}%^^A \x@paper
+% \end{macro}%^^A \x@@paper
+% \end{option}%^^A d...paper
+% \end{option}%^^A c...paper
+% \end{option}%^^A b...paper
+% \end{option}%^^A a...paper
+%
+% \selectlanguage{english}
+%
+% ^^A This part should stay at the end of the source file!
+% \subsection{Configuration file}
+%
+% At the very ending of the option section just before executing and
+% processing the options you can add additional options the
+% \Package{typearea}. This is a very seldom used feature and I recommend to
+% not use it any longer. If you need additional options use
+% |\BeforeFamilyProcessOptions[.typearea.sty]{KOMA}{...}|.
+%
+% \changes{v2.0e}{1994/10/28}{configuration file \File{typearea.cfg}}%^^A
+%    \begin{macrocode}
+%<*package&typearea&options>
+\InputIfFileExists{typearea.cfg}{%
+  \typeout{%
+    ***************************************^^J%
+    * Local config file typearea.cfg used^^J%
+    ***************************************%
+  }
+}{}
+%</package&typearea&options>
+%    \end{macrocode}
+%
+% \subsection{Option execution}
+%
+% The paper size and telling the back-end driver information about the paper
+% size are default. The default for the default paper size will be \Option{A4}
+% if nothing else was defined by a class. Execution of option \Option{twoside}
+% depends already on the setting of \cs{if@twoside} and
+% \cs{if@semitwoside}. This may be surprising but nevertheless is correct.
+% \changes{v2.3h}{1995/01/19}{\cs{relax} after \cs{ProcessOptions} added}%^^A
+% \changes{v2.96}{2006/08/18}{processing options in order of usage instead of
+%   order of declaration}%^^A
+% \changes{v2.97c}{2007/04/19}{Usage of \cs{KOMAExecuteOptions} instead of
+%   \cs{KOMAoptions}}%^^A
+% \changes{v2.97c}{2007/04/19}{Usage of \cs{KOMAProcessOptions} instead of
+%   \cs{ProcessOptions}}%^^A
+% \changes{v2.97c}{2007/04/19}{set only options that are not an implicit
+%   default}%^^A
+% \changes{v2.97c}{2007/07/18}{explicit setting of a valid value to
+%   \texttt{twoside}}%^^A
+% \changes{v3.12}{2013/11/11}{the default paper size is given by
+%   \cs{defaultpagesize}}%^^A
+% \changes{v3.17}{2015/03/02}{\Option{pagesize} is default}%^^A
+% \begin{macro}{\defaultpapersize}
+% \changes{v3.12}{2013/11/11}{new}%^^A
+% The default paper size. Defined using \cs{providecommand} so it can be
+% changed by a class or wrapper package or \File{typearea.cfg} or somewhere
+% else before loading \Package{typearea}.
+%    \begin{macrocode}
+%<*package&typearea&options>
+\providecommand*{\defaultpapersize}{A4}
+%</package&typearea&options>
+%    \end{macrocode}
+% \end{macro}
+%    \begin{macrocode}
+%<*package&typearea&options>
+\KOMAExecuteOptions{paper=\defaultpapersize,pagesize}
+\if@twoside
+  \if@semitwoside
+    \KOMAExecuteOptions{twoside=semi}
+  \else
+    \KOMAExecuteOptions{twoside}
+  \fi
+\else
+  \KOMAExecuteOptions{twoside=false}
+\fi
+\KOMAProcessOptions\relax
+%</package&typearea&options>
+%    \end{macrocode}
+%
+% \Finale
+%
+\endinput
+%
+% end of file `scrkernel-typearea.dtx'
+%%% Local Variables:
+%%% mode: doctex
+%%% TeX-master: t
+%%% End:

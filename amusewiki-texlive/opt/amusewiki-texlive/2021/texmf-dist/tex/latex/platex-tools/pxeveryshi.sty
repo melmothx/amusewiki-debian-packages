@@ -1,0 +1,61 @@
+%
+% pxeveryshi.sty
+% originally written by Takayuki Yato (ZR)
+% and modified by Hironobu Yamashita
+%
+% This package is distributed as part of the platex-tools bundle
+% maintained by Hironobu Yamashita
+% by courtesy of the original author.
+% https://github.com/aminophen/platex-tools
+%
+% --------------------------------------------------------------------
+% [Note]
+% Update: version 2020/09/25 v0.2 does nothing, since
+% pLaTeX2e 2020-10-01 will support the situation natively.
+% --------------------------------------------------------------------
+%
+
+%% package declaration
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pxeveryshi}
+    [2021/05/31 v0.2d everyshi package for (u)pLaTeX]
+
+%% Since LaTeX2e 2020-10-01, everyshi.sty is merely
+%% an emulation by everyshi-ltx.sty from ltshipout.dtx.
+
+\chardef\pxevsh@status=\z@
+\@ifl@t@r\fmtversion{2020/10/01}{\chardef\pxevsh@status=\@ne}{}
+\ifnum\pxevsh@status=\@ne
+  % if LaTeX2e and pLaTeX2e are inconsistent, raise an error!
+  \@ifl@t@r\pfmtversion{2020/10/01}{%
+    \PackageInfo{pxeveryshi}{This package is no longer needed}%
+  }{%
+    \PackageError{pxeveryshi}{Inconsistent LaTeX2e/pLaTeX2e combination}\@ehc
+  }%
+  \RequirePackage{everyshi}% input anyway
+  \expandafter\endinput
+\fi
+
+%% The rest of this package is meant for
+%% LaTeX2e 2020-02-02 PL5 or older.
+
+\RequirePackage{everyshi}
+
+\ifx\@EveryShipout@Output\@undefined
+  \PackageError{pxeveryshi}{This should not happen}\@ehc
+  \expandafter\endinput
+\fi
+
+\def\@EveryShipout@Output{%
+  \setbox8\vbox{%
+    \yoko
+    \@EveryShipout@Hook
+    \@EveryShipout@AtNextHook
+    \global\setbox\@cclv=\box\@cclv
+  }%
+  \gdef\@EveryShipout@AtNextHook{}%
+  \@EveryShipout@Org@Shipout\box\@cclv
+}
+
+\endinput
+%% EOF

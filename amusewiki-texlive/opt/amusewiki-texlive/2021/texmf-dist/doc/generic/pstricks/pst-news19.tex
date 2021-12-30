@@ -1,0 +1,217 @@
+%% $Id: pst-news19.tex 4 2020-06-09 08:32:19Z herbert $
+\PassOptionsToPackage{useCalc}{pstricks}
+\documentclass[11pt,english,BCOR=10mm,DIV=12,bibliography=totoc,parskip=false,headings=small,
+    headinclude=false,footinclude=false,twoside]{pst-doc}
+\listfiles
+\let\Lfile\LFile
+\usepackage{pstricks}
+\let\pstnodeFV\fileversion
+\let\pstnodeFD\filedate
+\usepackage{pst-node}
+\usepackage{pst-plot}
+\usepackage{pst-solides3d}
+\usepackage{pst-node}
+\usepackage{pst-calculate}
+\usepackage{pstricks-add}
+\usepackage{xkvview}
+\renewcommand\bgImage{\psscalebox{15}{\color{blue!20}\the\year}}
+\def\textat{\char064}
+\usepackage{dtk-logos}
+\usepackage{biblatex}
+\addbibresource{PSTricks.bib}
+
+\lstset{explpreset={pos=l,width=-99pt,overhang=0pt,hsep=\columnsep,vsep=\bigskipamount,rframe={}},
+    escapechar=?}
+\begin{document}
+
+%\psset{PstDebug=1}
+\title{\texttt{News -- \the\year}\\ \Large new macros and bugfixes for the
+basic package \nxLFile{pstricks}}
+\author{Herbert Voß}
+\date{\today}
+
+\maketitle
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\part{\texttt{pstricks} -- package}
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.sty} -- \texttt{pstricks-pdf.sty}}
+%--------------------------------------------------------------------------------------
+
+There is now a new optional argument for the package: \Loption{ckeckengine}, which will
+be used in later versions. 
+ 
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks-tex.tex}}
+%--------------------------------------------------------------------------------------
+This package collects all additional latex macros which must be definied
+when running PSTricks with tex.  They all moved from the base \texttt{pstricks.tex} into
+this new file.
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.tex} (v. 2.98 -- 2019/05/16)}
+%--------------------------------------------------------------------------------------
+
+\subsection{Plotting multilines}
+
+There is a new macro called \Lcs{psLine} (uppercase L!) which can have
+only one or two pairs of coordinates. Remember that \Lcs{psline} can have more.
+With \Lcs{psLine} and an defined arrow you'll get nothing for something
+like \verb|\psLine{->}{1,1)(1,1)|, whereas \Lcs{psline} will output the arrowtip!
+This behaviour of \Lcs{psLine} maybe helpful for animations where a speedvector
+or a vector
+is  shown with its components and one do not really knows the coordinates.
+
+\begin{BDef}
+\Lcs{psLine}\OptArgs\OptArg{\Largr{$x_0,y_0$}}\Largr{$x_1,y_1$}\\
+\Lcs{psLineSegments}\OptArgs\Largr{$x_0,y_0$}\Largr{$x_1,y_1$}\ldots\Largr{$x_{n-1},y_{n-1}$}\Largr{$x_n,y_n$}
+\end{BDef}
+
+If $P_0$ is missing for \Lcs{psLine} then $(0,0)$ as first point is assumed. \Lcs{psLineSegments} expects always
+pairwise coordinates.
+
+
+\begin{LTXexample}[width=7cm]
+\psset{unit=2cm}
+\begin{pspicture}(-1,-1)(1,1)
+\degrees[12]
+ \pscircle{1}
+  \multido{\iA=0+1,\iB=3+1}{12}{%
+    \pnode(1;\iA){R}
+    \psLine[linecolor=gray,linestyle=dashed,
+       linewidth=0.4pt](R)
+    \psset{arrows=->,arrowscale=1.5,linewidth=1.5pt}
+    \rput(R){%
+      \psLine[linecolor=blue]({1;\iB}|0,0)
+      \psLine[linecolor=red](0,0|{1;\iB})
+      \psLine(1;\iB)}%
+}
+\end{pspicture}
+\end{LTXexample}
+
+
+\begin{LTXexample}[width=4cm]
+\psset{unit=0.5cm}
+\begin{pspicture}(6,6)
+\psLineSegments[linecolor=blue]{->}(0,0)(0,1)(0,2)(0,3)(0,4)(1,4)%
+     (3,4)(4,4)(4,3)(4,1)(4,0)(2,0)
+\end{pspicture}
+\end{LTXexample}
+
+
+\iffalse
+There is a new experimental feature, which allows algebraic notation for
+coordinates. It needs
+
+\begin{verbatim}
+\usepackage[useCalc]{pstricks}
+\end{verbatim}
+
+\begin{LTXexample}[width=5.5cm]
+\begin{pspicture}[showgrid](5,5)
+\psline[linecolor=blue]{->}%
+    (0,4/3*0.5)(0.6*sqrt{33}, sqrt{20+0.3})
+\end{pspicture}
+\end{LTXexample}
+
+\fi
+%$
+
+\subsection{Relative coordinates -- experimental}
+
+All objects which can have at least two pairs of coordinates
+can use the »+«-operator to mark relative coordinates:
+
+\begin{BDef}
+\Lcs{psline}\OptArgs\OptArg{\Largr{$x_0,y_0$}}\Largr{$x_1,y_1$}+\Largr{$x_2,y_2$}\ldots\\
+\end{BDef}
+
+\begin{LTXexample}[width=5.5cm]
+\begin{pspicture}[showgrid](5,5)
+\psline[linecolor=blue]{->}%
+    (1,1)+(3,4)+(-2,-3)
+\end{pspicture}
+\end{LTXexample}
+
+
+\begin{LTXexample}[width=5.5cm]
+\begin{pspicture}[showgrid](-1,-2)(4,3)
+\psaxes[labels=none]{->}(0,0)(-1,-2)(4,3)
+\psbezier%
+  (!0.8 -95 PtoC 1 sub)+(8.5;85)+(5;-100)(2,1)%
+ +(1;-70)+(0.5;-110)(3,2)%
+ +(1;-80)+(0.5;95)(3.4,-0.8)
+\end{pspicture}
+\end{LTXexample}
+
+
+
+
+\subsection{Error message}
+
+Using PSTricks with \Lprog{pdflatex} will work only when using package
+\LPack{auto-pst-pdf} and running the \TeX-file with
+
+\begin{verbatim}
+pdflatex -shell-escape <file>
+\end{verbatim}
+
+otherwise you'll get an error message which was misleading in the past:
+
+\begin{verbatim}
+[...]
+! Undefined control sequence.
+<recently read> \c@lor@to@ps 
+\end{verbatim}
+
+This changes now to 
+
+
+\begin{verbatim}
+[...]
+! Undefined control sequence.
+\c@lor@to@ps ->\PSTricks 
+                         _Not_Configured_For_This_Format
+\end{verbatim}
+
+
+\subsection{Optional argument \texttt{xetex}}
+The output driver \Lprog{xdvipdfmx} for using \XeTeX\  or  \XeLaTeX\ is not fully
+compatible to \Lprog{dvips}. Especially some node operations will not work. If the
+\LaTeX\  package detects a programm run with \XeLaTeX\ it automatically loads the file
+\Lfile{pstricks-xetex.def} which defines some macros with a new name to keep the existing
+ones. By now there is only
+\Lcs{NCput}, which is the same as \Lcs{ncput}, but works with \XeLaTeX.
+
+If someone wants to use these macros though he/she runs not \XeLaTeX\ then these macros are
+available too by using the optional argument \Loption{xetex}:
+
+\begin{verbatim}
+\usepackage[xetex]{pstricks}
+\end{verbatim}
+
+
+
+
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.pro}}
+%--------------------------------------------------------------------------------------
+
+
+
+\clearpage
+\nocite{*}
+\printbibliography
+
+\printindex
+
+
+\end{document}
+

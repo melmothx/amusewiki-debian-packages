@@ -1,0 +1,47 @@
+StartFontMetrics 2.0
+FontName mcjkeisen
+FullName mcjkeisen
+FamilyName mc
+Weight Regular
+ItalicAngle 0
+IsFixedPitch true
+FontBBox 0 -160 1000 840
+UnderlinePosition 0
+UnderlineThickness 0
+Version 001.004
+EncodingScheme DmEncoding
+StartCharMetrics 256
+C 1 ; WX 1000 ; N uni2500 ; B 0 -160 1000 840 ;
+C 2 ; WX 1000 ; N uni2502 ; B 0 -160 1000 840 ;
+C 3 ; WX 1000 ; N uni250C ; B 0 -160 1000 840 ;
+C 4 ; WX 1000 ; N uni2510 ; B 0 -160 1000 840 ;
+C 5 ; WX 1000 ; N uni2518 ; B 0 -160 1000 840 ;
+C 6 ; WX 1000 ; N uni2514 ; B 0 -160 1000 840 ;
+C 7 ; WX 1000 ; N uni251C ; B 0 -160 1000 840 ;
+C 8 ; WX 1000 ; N uni252C ; B 0 -160 1000 840 ;
+C 9 ; WX 1000 ; N uni2524 ; B 0 -160 1000 840 ;
+C 10 ; WX 1000 ; N uni2534 ; B 0 -160 1000 840 ;
+C 11 ; WX 1000 ; N uni253C ; B 0 -160 1000 840 ;
+C 12 ; WX 1000 ; N uni2501 ; B 0 -160 1000 840 ;
+C 13 ; WX 1000 ; N uni2503 ; B 0 -160 1000 840 ;
+C 14 ; WX 1000 ; N uni250F ; B 0 -160 1000 840 ;
+C 15 ; WX 1000 ; N uni2513 ; B 0 -160 1000 840 ;
+C 16 ; WX 1000 ; N uni251B ; B 0 -160 1000 840 ;
+C 17 ; WX 1000 ; N uni2517 ; B 0 -160 1000 840 ;
+C 18 ; WX 1000 ; N uni2523 ; B 0 -160 1000 840 ;
+C 19 ; WX 1000 ; N uni2533 ; B 0 -160 1000 840 ;
+C 20 ; WX 1000 ; N uni252B ; B 0 -160 1000 840 ;
+C 21 ; WX 1000 ; N uni253B ; B 0 -160 1000 840 ;
+C 22 ; WX 1000 ; N uni254B ; B 0 -160 1000 840 ;
+C 23 ; WX 1000 ; N uni2520 ; B 0 -160 1000 840 ;
+C 24 ; WX 1000 ; N uni252F ; B 0 -160 1000 840 ;
+C 25 ; WX 1000 ; N uni2528 ; B 0 -160 1000 840 ;
+C 26 ; WX 1000 ; N uni2537 ; B 0 -160 1000 840 ;
+C 27 ; WX 1000 ; N uni253F ; B 0 -160 1000 840 ;
+C 28 ; WX 1000 ; N uni251D ; B 0 -160 1000 840 ;
+C 29 ; WX 1000 ; N uni2530 ; B 0 -160 1000 840 ;
+C 30 ; WX 1000 ; N uni2525 ; B 0 -160 1000 840 ;
+C 31 ; WX 1000 ; N uni2538 ; B 0 -160 1000 840 ;
+C 32 ; WX 1000 ; N uni2542 ; B 0 -160 1000 840 ;
+EndCharMetrics
+EndFontMetrics

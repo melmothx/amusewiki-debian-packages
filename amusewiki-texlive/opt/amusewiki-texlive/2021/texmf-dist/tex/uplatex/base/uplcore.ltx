@@ -1,0 +1,53 @@
+%%
+%% This is file `uplcore.ltx',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% uplvers.dtx  (with options: `plcore')
+%% uplvers.dtx  (with options: `plfinal')
+%% 
+%% Copyright (c) 2010 ASCII MEDIA WORKS
+%% Copyright (c) 2016 Takuji Tanaka
+%% Copyright (c) 2016-2018 Japanese TeX Development Community
+%% 
+%% This file is part of the upLaTeX2e system (community edition).
+%% --------------------------------------------------------------
+%% 
+%% File: uplvers.dtx
+\ifx\pfmtversion\@undefined
+    \errhelp{Please update your TeX installation; if not available,
+             obtain it^^Jmanually from CTAN
+             (https://ctan.org/pkg/uplatex) or from^^JGitHub
+             (https://github.com/texjporg/uplatex).}%
+    \errmessage{This should not happen!^^JThere should be some
+                inconsistency in your installation;^^Jtry
+                removing old `uplatex.ltx' and install the
+                latest one}\@@end
+\else
+  \ifnum\expandafter\@parse@version\pfmtversion//00\@nil<20200202
+    \errhelp{Please update your TeX installation; if not available,
+             obtain it^^Jmanually from CTAN
+             (https://ctan.org/pkg/platex) or from^^JGitHub
+             (https://github.com/texjporg/platex).}%
+    \errmessage{This version of upLaTeX2e requires pLaTeX2e 2020/02/02
+                or newer!^^JObtain a newer version of `platex',
+                otherwise upLaTeX2e setup will^^Jnever succeed}\@@end
+  \fi
+\fi
+\def\uppatch@level{u04}
+\edef\pfmtversion{\pfmtversion\uppatch@level}
+%% File: uplvers.dtx
+\def\documentstyle{%
+  \@latex@error{upLaTeX does NOT support LaTeX 2.09 compatibility
+    mode.\MessageBreak Use \noexpand\documentclass instead}{%
+    \noexpand\documentstyle is an old convention of LaTeX 2.09,
+    which has been\MessageBreak obsolete since 1995. upLaTeX is
+    first released in 2007, so we do\MessageBreak not provide any
+    emulation of the LaTeX 2.09 author environment.\MessageBreak
+    New documents should use Standard LaTeX conventions, and
+    start\MessageBreak with the \noexpand\documentclass command.}%
+  \documentclass}
+\endinput
+%%
+%% End of file `uplcore.ltx'.

@@ -1,0 +1,17 @@
+name hyphen-turkmen
+category TLCore
+revision 58652
+shortdesc Turkmen hyphenation patterns.
+longdesc Hyphenation patterns for Turkmen in T1/EC and UTF-8 encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=turkmen 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-tk.tex 	file_patterns=hyph-tk.pat.txt 	file_exceptions=
+containersize 6256
+containerchecksum c984bb7f09c5816c36a7a790f16df1750ee90f36e2130994ecd1db63f26afb650245985699a80da9b4d7004ad67106771d8c7b79262438369aee3f52fd8374cf
+srccontainersize 1676
+srccontainerchecksum a496f681db0b4b85d82ec1dd60c057f63b6d1c1b52d391e7bee98d3d6e1fb596701c91f2ca400d0df13b96ec7a43d275646b7d2874fe1e4efc9d9b2b47f6cc5d
+runfiles size=14
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-tk.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-tk.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-tk.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-tk.pat.txt

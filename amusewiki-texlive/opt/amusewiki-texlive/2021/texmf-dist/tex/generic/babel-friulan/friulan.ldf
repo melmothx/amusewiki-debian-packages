@@ -1,0 +1,85 @@
+%%
+%% This is file `friulan.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% friulan.dtx  (with options: `code')
+%%   ------------------------------------------------------------------
+%%   The friulan module for babel
+%%   Copyright (C) 2012-2016 Claudio Beccari
+%%   All rights reserved
+%% 
+%%   Licence information appended
+%% 
+%%   Created by Claudio Beccari claudio dot beccari at gmail dot com
+%% 
+%% 
+\ProvidesLanguage{friulan}
+        [2016/02/23 v.1.3 friulan support for the babel system]
+\LdfInit{\CurrentOption}{captions\CurrentOption}
+\ifx\l@friulan\@undefined
+  \ifx\l@furlan\@undefined
+    \@nopatterns{friulan}
+    \unless\ifx\l@italian\@undefined
+      \adddialect\l@friulan \l@italian
+    \fi
+  \else
+    \let\l@friulan\l@furlan
+  \fi
+\fi
+\expandafter\ifx\csname l@\CurrentOption\endcsname\relax
+  \expandafter\let\csname l@\CurrentOption\endcsname\l@friulan
+\fi
+\adddialect\l@furlan\l@friulan
+\providehyphenmins{\CurrentOption}{\tw@\tw@}
+\@namedef{captions\CurrentOption}{%
+    \def\prefacename{Prefazion}%
+    \def\refname{Riferiments}%
+    \def\abstractname{Somari}%
+    \def\bibname{Bibliografie}%
+    \def\chaptername{Cjapitul}%
+    \def\appendixname{Zonte}%
+    \def\contentsname{Tabele gjener\^al}%
+    \def\listfigurename{Liste des figuris}%
+    \def\listtablename{Liste des tabelis}%
+    \def\indexname{Tabele analitiche}%
+    \def\figurename{Figure}%
+    \def\tablename{Tabele}%
+    \def\partname{Part}%
+    \def\enclname{Zonte(is)}%
+    \def\ccname{Cun copie a}%
+    \def\headtoname{Par}%
+    \def\pagename{Pagjine}%
+    \def\seename{cjale}%
+    \def\alsoname{cjale ancje}%
+    \def\proofname{Dimostrazion}%
+    \def\glossaryname{Glossari}%
+}
+\@namedef{date\CurrentOption}{%
+    \def\today{\number\day\space di\space\ifcase\month\or
+      Gen\^ar\or Fevr\^ar\or Mar\c{c}\or Avril\or Mai\or Jugn\or
+      Lui\or Avost\or Setembar\or Otobar\or Novembar\or Dicembar%
+      \fi\space dal\space\number\year}}
+\expandafter\addto\csname extras\CurrentOption\endcsname{%
+  \babel@savevariable\clubpenalty
+  \babel@savevariable\widowpenalty
+  \babel@savevariable\@clubpenalty
+  \clubpenalty3000\widowpenalty3000\@clubpenalty\clubpenalty}%
+\expandafter\addto\csname extras\CurrentOption\endcsname{%
+  \babel@savevariable\finalhyphendemerits
+  \finalhyphendemerits50000000}%
+\expandafter\addto\csname extras\CurrentOption\endcsname{%
+  \lccode`'=`'}%
+\expandafter\addto\csname noextras\CurrentOption\endcsname{%
+  \lccode`'=0}%
+\ldf@finish\CurrentOption
+%% Distributable under the LaTeX Project Public License,
+%% version 1.3c or higher (your choice). The latest version of
+%% this license is at: http://www.latex-project.org/lppl.txt
+%% 
+%% This work is "author-maintained"
+%% The maintainer is Claudio Beccari
+%% 
+%%
+%% End of file `friulan.ldf'.

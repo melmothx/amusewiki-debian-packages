@@ -1,0 +1,102 @@
+%%
+%% This is file `xeCJK-example-listings.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% xeCJK.dtx  (with options: `ex-listings')
+%% 
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{listings,xcolor}
+\usepackage{showexpl}
+
+\usepackage{xeCJK}
+\setCJKmainfont{HanaMinA}
+\setCJKmonofont{SimSun}
+\xeCJKDeclareSubCJKBlock{Kana}  { "3040 -> "309F, "30A0 -> "30FF, "31F0 -> "31FF }
+\setCJKmonofont[Kana]{Meiryo}
+\setmonofont{Latin Modern Mono Light}
+
+\makeatletter
+\lstset{%
+  basicstyle=\small\ttfamily,breakindent=4\lst@width,
+  numbers=left,numberstyle=\tiny\color{gray},
+  commentstyle=\color{green!50!black},keywordstyle=\color{blue}\bfseries,
+  identifierstyle=\color{violet},stringstyle=\color{brown},
+  escapebegin=\normalfont}
+\lstnewenvironment{cppcode}[1][]
+  {\lstset{language=C++,#1}}
+  {}
+\makeatother
+
+\begin{document}
+
+\section{\lstinline{\\lstinline} 测试}
+
+\section{\lstinline|甲*乙| 测试}
+
+\lstinline|abc汉字abc|
+
+\lstinline|甲*乙|
+
+\lstinline[mathescape]|数学公式$x^2+y^2$|
+
+\section{\lstinline{lstlisting} 环境测试}
+
+\begin{lstlisting}[basicstyle=\rmfamily]
+纯文字text测试
+    纯文字text测试
+文字+文字
+文字（符号）文字
+辻󠄂辻󠄃辻󠄄辻󠄅
+かがか゚
+\end{lstlisting}
+
+\begin{lstlisting}
+text纯文字测试
+\end{lstlisting}
+
+\begin{lstlisting}
+text 纯文字测试
+\end{lstlisting}
+
+\begin{lstlisting}
+text,纯文字测试
+\end{lstlisting}
+
+\section{自定义环境测试}
+
+\begin{LTXexample}[pos=t,varwidth,numbersep=5pt,columns=fixed]
+\begin{cppcode}[escapechar=`,morekeywords=返回]
+#define 返回 return
+#include <iostream>
+/*
+ * 块注释
+ * `逃逸字符，测试$f(x)$`
+ */
+int main()
+{
+    // 行注释
+    const char *欢迎 = "hello 世界（ワールド）";
+    std::cout << 欢迎 << std::endl;
+    返回 0;
+}
+\end{cppcode}
+\end{LTXexample}
+
+\section{\texttt{breaklines} 测试}
+
+\begin{lstlisting}[linewidth=10em,frame=single,rulecolor=\color{black},breaklines]
+断行文字text测试，断行文字text测试，断行文字text测试，断行文字text测试
+断行文字text测试，断行文字text测试，断行文字text测试，断行文字text测试
+\end{lstlisting}
+
+\section{\lstinline|\\lstinputlisting| 测试}
+
+\lstinputlisting[language={[AlLaTeX]TeX}]{\jobname}
+
+\end{document}
+%% 
+%%
+%% End of file `xeCJK-example-listings.tex'.

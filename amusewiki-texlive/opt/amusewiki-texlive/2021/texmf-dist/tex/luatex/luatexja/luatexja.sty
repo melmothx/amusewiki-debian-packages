@@ -1,0 +1,68 @@
+%
+% luatexja.sty
+%
+%! 外から読まれるので多少仰々しくなってます
+%% Avoid multiple loading.
+\csname\if11luatexjaLoaded\fi\endcsname
+\edef\x{%
+\catcode32=\the\catcode32%
+\catcode45=\the\catcode45%
+\catcode46=\the\catcode46%
+\catcode64=\the\catcode64%
+\catcode91=\the\catcode91%
+\catcode93=\the\catcode93%
+\endlinechar=\the\endlinechar
+\relax}
+\catcode32=10 %< >
+\catcode45=12 %<->
+\catcode46=12 %<.>
+\catcode64=11 %<@>
+\catcode91=12 %<[>
+\catcode93=12 %<]>
+\endlinechar=13 %
+%! あまり恩恵がないので \endlinechar=-1 はなし
+\edef\ltj@AtEnd{\x
+  \noexpand\let\noexpand\ltj@AtEnd\relax}
+\def\luatexjaLoaded{\endinput}
+\newif\ifltj@disablejfam
+
+%%%% VERSION
+\def\LuaTeXjaversion{20211024.0}
+
+%% Check if LaTeX is used.
+\begingroup\expandafter\expandafter\expandafter\endgroup
+\expandafter\ifx\csname RequirePackage\endcsname\relax %<*!LaTeX>
+  \expandafter\let\csname ifltj@in@latex\expandafter\endcsname
+    \csname iffalse\endcsname
+\else                           %<*LaTeX>
+  \expandafter\let\csname ifltj@in@latex\expandafter\endcsname
+    \csname iftrue\endcsname
+  \NeedsTeXFormat{LaTeX2e}
+  \makeatletter
+  \def\ltj@@temp#1#2#3#4#5#6#7#8#9\@nil{%
+    \edef\ltj@@do{\noexpand\ProvidesPackage
+      {luatexja}[#1#2#3#4-#5#6-#7#8 Japanese Typesetting with Lua(La)TeX]%
+    }\ltj@@do\let\ltj@@do\undefined\let\ltj@@temp\undefined
+  }
+  \expandafter\ltj@@temp\LuaTeXjaversion\@nil
+  \DeclareOption{disablejfam}{\ltj@disablejfamtrue}
+  \DeclareOption*{}
+  \ProcessOptions\relax
+\fi                             %</LaTeX>
+
+\directlua{require('ltj-unicode-ccfix.lua')}% catcode of ideographs
+
+%% Load all sub-packages.
+\ifltj@in@latex                 %<*LaTeX>
+  %% \RequirePackage{expl3} needed if the version of l3kernel is v6111
+  \RequirePackage{luatexja-core,luatexja-compat}
+\else                           %<*!LaTeX>
+  \input luatexja-core.sty %
+  \input luatexja-compat.sty %
+\fi                             %</LaTeX>
+
+\directlua{luatexja.base.start_time_measure('RUN')}
+%% all done
+\ltj@AtEnd
+\endinput
+%% EOF

@@ -1,0 +1,371 @@
+% \iffalse meta-comment
+%
+% This is file `exppl2e.sty', for experimental pLaTeX2e.
+%
+% Copyright (c) 2016-2020 Japanese TeX Development Community
+%
+% This file is part of the pLaTeX2e system (community edition).
+% -------------------------------------------------------------
+%
+% ====================================================================
+%   開発者の方へ (2016-06-29 aminophen)
+%
+% このファイルのコードを実際にカーネルに取り入れるとき、単純にカット・
+% ペーストで dtx ファイルへ挿入します。ペーストした dtx ファイルから
+% ltx / sty ファイル等を生成したあとには、必ず
+%   * フォーマット作成に使われる ltx ファイルが意図どおり変更されたか
+%   * platexrelease.sty に新たなブロックが一つだけ追加されたか
+%     （例外的に 0000/00/00 の日付が含まれる場合は、ブロックが二つか）
+% を確認します。
+% ====================================================================
+%
+%%%%%%%% ^^A driver-like trick using catcode difference
+%
+% This file `exppl2e.sty' is a normal LaTeX package, so
+%   \RequirePackage{exppl2e}
+% and
+%   \usepackage{exppl2e}
+% works. However, it can also be typeset alone:
+%   platex exppl2e.sty
+% for convenience.
+%
+%<*hack>
+\ifx\undefined\@undefined\relax
+% case 1: This file must be a normal package
+  \NeedsTeXFormat{pLaTeX2e}
+  \ProvidesPackage{exppl2e}
+                [2020/09/28 v1.1h Experimental pLaTeX2e features]
+  \PackageWarningNoLine{exppl2e}{%
+      This is the unstable, experimental part of pLaTeX2e.\MessageBreak
+      This package may contain:\MessageBreak
+       * future patches to pLaTeX\MessageBreak
+       * experimental new features\MessageBreak
+      Please note that these can be removed without any\MessageBreak
+      announcement at some point in the future, and may\MessageBreak
+      also have some critical bugs. We appreciate any\MessageBreak
+      reports and comments. Thank you for your cooperation}
+  \RequirePackage[latest]{platexrelease}
+\else
+% case 2: This file pretends to be a document
+  \documentclass{jltxdoc}
+  \title{Experimental p\LaTeXe}
+  \author{Japanese \TeX\ Development Community}
+  \begin{document}
+    \maketitle
+    \DocInput{exppl2e.sty}
+  \end{document}
+\fi %     ^^A   In case 2, this \fi comes after \end{document}
+%</hack>  ^^A   so it has no effect.
+% \fi     ^^A   This \fi corresponds to \iffalse, and another
+%         ^^A   \fi is required for \ifx, see below;)
+%
+%%%%%%%% ^^A trick end
+%
+% \fi
+%
+%
+% \emph{注意}：これはExperimentalなp\LaTeXe{}、すなわちunstableな
+% 実験的p\LaTeX{}コードを提供するパッケージです。
+%
+%
+% \section{このパッケージの目的}
+%
+% コードの不用意な改変は即エンバグにつながり、利用者の多いp\LaTeX{}や
+% up\LaTeX{}では特に影響が大きいと思われます。その一方で、unstableなもの
+% もなるべく手軽にテストして頂きたいとも考えます。
+%
+% このパッケージ\file{exppl2e.sty}は、カーネル(stable)に将来含める
+% ことを想定したunstableな実験的コードを配布することを目的に作成しました。
+% テストをよろしくお願いします。
+%
+%
+% \section{実験的コードの読みこみかた}
+%
+% デフォルトの配布では、実験的なコードは無効化されています。
+% 実験的なp\LaTeXe{}を試したい場合は、以下のいずれかの方法を使います：
+%
+% \subsection{少しだけ試してみたい場合}
+%
+% パッケージ\file{exppl2e.sty}を読み込みます。ただし、|\usepackage|命令
+% を使うのではなく、文書クラスより\emph{前}に読み込んでおくのが無難です。
+%\begin{verbatim}
+%   \RequirePackage{exppl2e}
+%   \documentclass{article}
+%\end{verbatim}
+%
+% \subsection{常に実験的コードを使用したい場合}
+%
+% このパッケージと一緒にインストールされる新しいp\LaTeX{}は、お使いの
+% \texttt{platex}などのプログラムが見つけることのできる場所（簡単なの
+% はカレントディレクトリ、あるいは|$TEXMFLOCAL/tex|以下の適切な場所）
+% に\file{platex.cfg}というファイルがあれば、起動時にそれを読み込み
+% ます。この機能を利用すると、以下の内容の\file{platex.cfg}を用意し
+% ておくだけで、自動的に毎回\file{exppl2e.sty}が読み込まれます。
+%\begin{verbatim}
+% \RequirePackage{exppl2e}
+%\end{verbatim}
+%
+%
+% \section{このドキュメントについて}
+%
+% コミュニティ版p\LaTeX{}が配布するほかのstyファイルとは異なり、
+% 実質的には\file{exppl2e.sty}はdtxファイルと同等です。すなわち、
+% コードと一緒にdtx互換ドキュメントが含まれています。このドキュメント
+% を組版するには
+%\begin{verbatim}
+%   # platex exppl2e.sty
+%\end{verbatim}
+% を実行します。
+%
+%
+% \section{コード}
+%
+% ここからp\LaTeXe{}のexperimentalコード本体です。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{改行}
+%
+% 強制改行|\\|と|\par|が連続した場合の挙動については以下のとおり保留中。
+% 参考：GitHub:texjporg/platex\#27
+%
+% \begin{macro}{\@gnewline}
+% \changes{v1.1c}{1995/08/25}{行頭禁則文字の直前での改行での不具合の修正}
+% 日本語\TeX{}の行頭禁則処理は、禁則対象文字の直前に、
+% |\prebreakpenalty|で指定されたペナルティの値を挿入することで
+% 行なっています。
+% ところが、改行コマンドは負のペナルティの値を挿入することで改行を行ないます。
+% そのために、禁則ペナルティの値が$10000$の文字の直後では、ペナルティの値が
+% 相殺され、改行することができません。
+%
+%\begin{verbatim}
+% あいうえお\\
+% ！かきくけこ
+%\end{verbatim}
+%
+% したがって、|\newline|マクロに|\mbox{}|を入れることによって、
+% |\newline|マクロのペナルティ$-10000$と行頭文字のペナルティ$10000$が
+% 加算されないようにします。|\\|は|\newline|マクロを呼び出しています。
+%
+% なお、|\newline|マクロは\file{ltspaces.dtx}で定義されています。
+%
+% \changes{v1.1j}{1999/04/05}{オプションを付けた場合に、余計な空白
+%    が入ってしまうのを修正。ありがとう、鈴木隆志＠京都大学さん。}
+% \changes{v1.1h}{1997/06/25}{\LaTeX\ の改行マクロの変更に対応。
+%    ありがとう、奥村さん。}
+% \LaTeX\ \texttt{<1996/12/01>}で改行マクロが変更され、|\\|が
+% |\newline|を呼び出さなくなったため、変更された改行マクロに対応しまし
+% た。|\null|の挿入位置は同じです。
+% \file{ltspace.dtx}の定義を上記に合わせて、定義しなおしました。
+%
+% \emph{日本語\TeX{}開発コミュニティによる補足}：
+% アスキーによるp\LaTeX{}では、行頭禁則文字の直前で|\\|による強制改行を
+% 行えるようにするという目的で
+% |\null|を|\@gnewline|マクロ内に挿入していました。
+% しかし、これでは|\\\par|と書いた場合にUnderfull警告が出なくなって
+% います（|tests/newline_par.tex|を\texttt{latex}と\texttt{platex}で
+% 処理してみてください）。
+%
+% もし|\null|の代わりに|\hskip\z@|を挿入すれば、\LaTeX{}と同様に
+% Underfull警告を出すことができます。
+% ただし、|\null|を挿入した場合と異なり、強制改行後の行頭に
+% JFMグル―が入らなくなります。これはむしろ、奥村さんのjsclassesで
+% 行頭を天ツキに直しているのと同じですが、p\LaTeX{}としては挙動が
+% 変化してしまいますので、現時点では|\null|→|\hskip\z@|への変更を
+% 見送っています。
+% \changes{v1.2n}{2017/04/23}{ドキュメントの追加}
+%
+% もし変更するならば、以下のコードを有効にします。
+%    \begin{macrocode}
+%<platexrelease>\plIncludeInRelease{????/??/??}{\@gnewline}
+%<platexrelease>                   {Restore Underfull warning for |\\\par|}%
+%<*plcore|platexrelease>
+%\def\@gnewline #1{%
+%  \ifvmode
+%    \@nolnerr
+%  \else
+%    \unskip \reserved@e {\reserved@f#1}\nobreak \hfil \break \hskip \z@
+%    \ignorespaces
+%  \fi}
+%</plcore|platexrelease>
+%<platexrelease>\plEndIncludeInRelease
+%<platexrelease>\plIncludeInRelease{0000/00/00}{\@gnewline}
+%<platexrelease>                   {Restore Underfull warning for |\\\par|}%
+%<platexrelease>\def\@gnewline #1{%
+%<platexrelease>  \ifvmode
+%<platexrelease>    \@nolnerr
+%<platexrelease>  \else
+%<platexrelease>    \unskip \reserved@e {\reserved@f#1}\nobreak \hfil \break \null
+%<platexrelease>    \ignorespaces
+%<platexrelease>  \fi}
+%<platexrelease>\plEndIncludeInRelease
+%    \end{macrocode}
+% \end{macro}
+%
+% |\linebreak|の挙動の修正は、バグが相次いだため取りやめています。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{相互参照}
+%
+% p\LaTeXe{}カーネル(2017/10/28)の修正に加え、以下の修正を検討中ですが、
+% 現時点では保留しています。
+% 参考：GitHub:texjporg/platex\#57
+%
+% \begin{macro}{\@setref@}
+% さらに、参照した結果が「空」の場合
+%\begin{verbatim}
+% \documentclass{article}
+% \pagenumbering{gobble}
+% \begin{document}
+% \pageref{a}\label{a}
+% \end{document}
+%\end{verbatim}
+% に相互参照が収束しなくなる\footnote{奇数回コンパイルすると
+% Output written on test.dvi (1 page, 212 bytes).
+% となり、偶数回コンパイルすると
+% No pages of output.
+% となります。}のを防ぐため、水平モード以外では
+% やはり|\null|を発行してみます。
+%    \begin{macrocode}
+%\def\@setref@{\ifhmode\spacefactor\@m\else\null\fi}
+%    \end{macrocode}
+% \end{macro}
+% このコードは、emathの|\marusuuref|のような
+% 「|\ref|を使って参照先の番号だけを取得する」
+% というマクロの動作に（垂直モードで使う場合など）影響するため、
+% ひとまずコメントアウトしておきます。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{支柱}
+%
+% \begin{macro}{\strut}
+% \cs{strut}を縦数式ディレクションで使った場合への修正。
+%    \begin{macrocode}
+%% \strut の改良版
+\DeclareRobustCommand\strut{\relax
+  \iftdir
+    \ifmdir
+      %% [縦数式ディレクション]
+      %% テキストモードの場合は \zstrutbox でなければならない気がする。
+      %% （下線 \underline で使う場合に横組の 90 度回転にならない）
+      %% 数式モードの場合は \zstrutbox に変えるとかえってバランスが崩れるが，
+      %% これは \copy したボックスにベースライン補正が効かないためであり，
+      %% その分 \lower で下げる。
+      \ifmmode \lower \tbaselineshift \copy \zstrutbox \else \unhcopy \zstrutbox \fi
+    \else
+      %% [縦ディレクション]
+      %% テキストモードの場合は \tstrutbox で良い。
+      %% 数式モードに入ると自動的に [縦数式ディレクション] に入るので分岐不要。
+      \unhcopy \tstrutbox
+    \fi
+  \else
+    %% [横ディレクション]
+    %% テキストモードの場合は \(y)strutbox で良い。
+    %% 数式モードではベースライン補正分だけ \lower で下げる。
+    \ifmmode \lower \ybaselineshift \copy \ystrutbox \else \unhcopy \ystrutbox \fi
+  \fi}
+%% \strutbox は \zstrutbox を使うとまずそうなので 2017-04-08 のままとする。
+%% 以下のコードは使わない。
+%\def\strutbox{%
+%  \iftdir \ifmdir \zstrutbox \else \tstrutbox \fi
+%  \else \ystrutbox \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+% \cs{strutbox}の変更は2017/04/08に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{\cs{verb}先頭の合字抑制と\cs{xkanjiskip}}
+%
+% 2020/04/12に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{NFSSのsize functionの日本語化}
+%
+% 2020/04/12に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{脚注の合印直後での改行を許可}
+%
+% 2016/09/03に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{e-p\TeX{}でのFAM256パッチの利用}
+%
+% 2016/11/29に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{脚注とボトムフロートの順序および垂直位置}
+%
+% 2017/04/08に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{空のフロートだけのページ}
+%
+% 2020/10/01に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{\cs{textunderscore}のベースライン補正}
+%
+% 2017/04/08に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{verbatimとハイフネーション}
+%
+% 2017/04/08に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{\cs{verb}の冒頭のスペース}
+%
+% 2017/10/28に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{tabbing環境の行冒頭のJFMグル―}
+%
+% 2017/10/28に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{\cs{inhibitglue}の簡略形}
+%
+% 2017/10/28に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{イタリック補正と\cs{xkanjiskip}}
+%
+% 2017/10/28に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \subsection{直前のJFM由来スペースの削除【コミュニティ版独自】}
+%
+% 2018/03/09に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{tabular環境のセル内のJFMグル―}
+%
+% 2018/03/09に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \section{PDFのブックマークとアクセント文字}
+%
+% 2018/07/28に導入済み。
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\endinput

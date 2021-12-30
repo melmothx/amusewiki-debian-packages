@@ -1,0 +1,316 @@
+%%
+%% This is file `italian.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% italian.dtx  (with options: `code')
+%% ------------------------------------------
+%% The Italian support for babel: italian.ldf.
+%% Copyright (C) 1990-2020 Claudio Beccari
+%% All rights reserved
+%% 
+%% License information appended.
+\ProvidesLanguage{italian}
+        [2020/05/21 v.1.4.04 Italian support for the babel system]
+%%
+%% Please report errors to: claudio dot beccari at gmail dot com
+%%
+\LdfInit{italian}{captionsitalian}%
+\ifx\l@italian\@undefined
+    \@nopatterns{Italian}%
+    \adddialect\l@italian0\fi
+\addto\captionsitalian{%
+  \def\prefacename{Prefazione}%
+  \def\refname{Riferimenti bibliografici}%
+  \def\abstractname{Sommario}%
+  \def\bibname{Bibliografia}%
+  \def\chaptername{Capitolo}%
+  \def\appendixname{Appendice}%
+  \def\contentsname{Indice}%
+  \def\listfigurename{Elenco delle figure}%
+  \def\listtablename{Elenco delle tabelle}%
+  \def\indexname{Indice analitico}%
+  \def\figurename{Figura}%
+  \def\tablename{Tabella}%
+  \def\partname{Parte}%
+  \def\enclname{Allegati}%
+  \def\ccname{e~p.~c.}%
+  \def\headtoname{Per}%
+  \def\pagename{Pag.}%
+  \def\seename{vedi}%
+  \def\alsoname{vedi anche}%
+  \def\proofname{Dimostrazione}%
+  \def\glossaryname{Glossario}%
+  }%
+\newif\ifOrdinalDayNumber \OrdinalDayNumberfalse
+\def\OrdinalDayNumberOn{\OrdinalDayNumbertrue}
+\def\OrdinalDayNumberOff{\OrdinalDayNumberfalse}
+\def\dateitalian{%
+  \def\today{\ifnum\number\day=\@ne
+      \ifOrdinalDayNumber1\ap{o}\else1\fi
+    \else
+      \number\day
+    \fi~\ifcase\month\or
+    gennaio\or febbraio\or marzo\or aprile\or maggio\or giugno\or
+    luglio\or agosto\or settembre\or ottobre\or novembre\or
+    dicembre\fi\space \number\year}}%
+\providehyphenmins{\CurrentOption}{\tw@\tw@}
+\addto\extrasitalian{%
+  \babel@savevariable\clubpenalty
+  \babel@savevariable\widowpenalty
+  \babel@savevariable\@clubpenalty
+  \clubpenalty3000\widowpenalty3000\@clubpenalty\clubpenalty}%
+\addto\extrasitalian{%
+  \babel@savevariable\finalhyphendemerits
+  \finalhyphendemerits50000000}%
+
+\addto\extrasitalian{%
+\lccode\string`'=`' \ifcsname Umathcode\endcsname
+\lccode\string"2019=\string"2019\fi}
+\addto\noextrasitalian{%
+\lccode\string`'=0 \ifcsname Umathcode\endcsname
+\lccode\string"2019=0\fi}
+
+\newcount\it@lettering \it@lettering=\@ne
+\newcommand*\XXIletters{\it@lettering=\z@}
+\newcommand*\XXVIletters{\it@lettering=\@ne}
+\let\bbl@alph\@alph \let\bbl@Alph\@Alph
+\addto\extrasitalian{\babel@savevariable\it@lettering
+  \let\@alph\it@alph \let\@Alph\it@Alph}
+\addto\noextrasitalian{\let\@alph\bbl@alph\let\@Alph\bbl@Alph}
+\def\it@alph#1{%
+\ifcase\it@lettering
+   \ifcase#1\or a\or b\or c\or d\or e\or f\or g\or h\or i\or
+   l\or m\or n\or o\or p\or q\or r\or s\or t\or u\or v\or
+   z\else\@ctrerr\fi
+\or
+   \ifcase#1\or a\or b\or c\or d\or e\or f\or g\or h\or i\or
+   j\or k\or l\or m\or n\or o\or p\or q\or r\or s\or t\or u\or v\or
+   w\or x\or y\or z\else\@ctrerr\fi
+\fi}%
+\def\it@Alph#1{%
+\ifcase\it@lettering
+   \ifcase#1\or A\or B\or C\or D\or E\or F\or G\or H\or I\or
+   L\or M\or N\or O\or P\or Q\or R\or S\or T\or U\or V\or
+   Z\else\@ctrerr\fi
+\or
+   \ifcase#1\or A\or B\or C\or D\or E\or F\or G\or H\or I\or
+   J\or K\or L\or M\or N\or O\or P\or Q\or R\or S\or T\or U\or V\or
+   W\or X\or Y\or Z\else\@ctrerr\fi
+\fi}%
+\newcount\it@doublequoteactive \it@doublequoteactive=\z@
+\def\setactivedoublequote{\it@doublequoteactive=\@ne}
+{\catcode`"=12 \global\let\it@doublequote"}
+{\catcode`"=13 \global\let\it@@dqactive"}
+\AtBeginDocument{%
+  \unless\ifnum\it@doublequoteactive=\z@
+  \initiate@active@char{"}%
+  \addto\extrasitalian{\bbl@activate{"}\languageshorthands{italian}}%
+  \declare@shorthand{italian}{"}{%
+    \ifmmode
+      \def\it@next{''}%
+    \else
+      \def\it@next{\futurelet\it@temp\it@cwm}%
+    \fi
+    \it@next
+  }%
+\fi
+\ifdefstring{\languagename}{italian}{\selectlanguage{italian}}{\relax}
+}%
+\def\it@@cwm{\bbl@allowhyphens\discretionary{-}{}{}\bbl@allowhyphens}%
+\def\it@@slash{\bbl@allowhyphens\discretionary{/}{}{/}\bbl@allowhyphens}%
+\def\it@@trattino{\bbl@allowhyphens\discretionary{-}{}{-}\bbl@allowhyphens}%
+\def\it@@ocap#1{\it@ocap}\def\it@@ccap#1{\it@ccap}%
+\DeclareRobustCommand*{\it@cwm}{\let\it@@next\it@doublequote
+\ifcat\noexpand\it@temp a%
+    \def\it@@next{\it@@cwm}%
+\else
+    \if\noexpand\it@temp \string|%
+        \def\it@@next{\it@@cwm\@gobble}%
+    \else
+        \if\noexpand\it@temp \string<%
+            \def\it@@next{\it@@ocap}%
+        \else
+            \if\noexpand\it@temp \string>%
+                \def\it@@next{\it@@ccap}%
+            \else
+                \if\noexpand\it@temp\string/%
+                    \def\it@@next{\it@@slash\@gobble}%
+                \else
+                    \ifcat\noexpand\it@temp\noexpand\it@@dqactive
+                        \def\it@@next{``\@gobble}%
+                    \else
+                        \if\noexpand\it@temp\string-%
+                            \def\it@@next{\it@@trattino\@gobble}%
+                        \fi
+                    \fi
+                \fi
+            \fi
+        \fi
+    \fi
+\fi
+\it@@next}%
+\newcount\it@ISOcompliance \it@ISOcompliance=\z@
+\def\setISOcompliance{\it@ISOcompliance=\@ne}
+\AtBeginDocument{\unless\ifnum\it@ISOcompliance=\z@%
+\def\activate@it@unit{\DeclareRobustCommand*{\bbl@it@unit}[1]{%
+    \textormath{\,\textup{##1}}{\,\mathrm{##1}}}}
+\@ifpackageloaded{units}{}{\@ifpackageloaded{siunitx}{}{%
+  \@ifpackageloaded{SIunits}{}{%
+  \activate@it@unit\addto\extrasitalian{%
+    \babel@save\unit\let\unit\bbl@it@unit}%
+  }}}\ifcsstring{bbl@main@language}{italian}{\selectlanguage{italian}}{}%
+\fi}
+\DeclareRobustCommand*{\bbl@it@ap}[1]{%
+  \textormath{\textsuperscript{#1}}{^{\mathrm{#1}}}}%
+\DeclareRobustCommand*{\bbl@it@ped}[1]{%
+  \textormath{$_{\mbox{\fontsize\sf@size\z@
+        \selectfont#1}}$}{_\mathrm{#1}}}%
+\addto\extrasitalian{%
+  \babel@save\ap\let\ap\bbl@it@ap
+  \babel@save\ped\let\ped\bbl@it@ped
+  }%
+\AtEndOfPackage{\RequirePackage{etoolbox}}
+\AtEndOfPackage{\AtEndPreamble{%
+\newcommand*\IntelligentComma{\mathcode`\,=\string"8000}% Active comma
+\newcommand*\NoIntelligentComma{\mathcode`\,=\string"613B}% Punctuation comma
+\@ifpackageloaded{icomma}{\let\IntelligentComma\relax
+  \let\NoIntelligentComma\relax}{%
+  \@ifpackageloaded{ncccomma}{\let\IntelligentComma\relax
+  \let\NoIntelligentComma\relax}{%
+    \@ifpackageloaded{dcolumn}{\let\IntelligentComma\relax
+      \let\NoIntelligentComma\relax}{%
+      \@ifpackageloaded{polyglossia}{%
+        \ifcsstring{xpg@main@language}{english}{\relax}{%
+          \mathcode`\,=\string"613B}
+      }{%
+        \ifcsstring{languagename}{english}{\relax}{%
+          \mathcode`\,=\string"613B}
+      }%
+  }}}%
+}}
+ \DeclareMathSymbol{\virgola}{\mathpunct}{letters}{"3B}
+ \DeclareMathSymbol{\virgoladecimale}{\mathord}{letters}{"3B}
+\DeclareRobustCommand*\it@comma@def{\futurelet\let@token\@@math@comma}%
+{\catcode `,=\active \gdef,{\it@comma@def}}%
+\DeclareRobustCommand*\@math@comma{%
+ \ifcat\noexpand\let@token*%
+    \expandafter\@firstoftwo
+ \else
+    \expandafter\@secondoftwo
+ \fi{%  \let@token is of  category 12
+      \@math@@comma
+    }{% test if \let@token is a macro
+       \ifcat\noexpand\let@token\noexpand\relax
+          \expandafter\@firstoftwo
+       \else
+          \expandafter\@secondoftwo
+       \fi{% it is a macro
+             \@@math@@comma
+          }{% it is something else.
+             \virgola
+          }
+    }
+}
+\DeclareRobustCommand*\@math@@comma[1]{% argument is certainly of category 12
+    \ifcsundef{\expandafter\@gobble\string #1}{% test if it is a real digit
+        \ifnumless{`#1}{`0}{\virgola}%
+          {\ifnumgreater{`#1}{`9}{\virgola}%
+             {\virgoladecimale}}%
+    }{% it's an implicit character of category 12
+      \let\@tempVirgola\virgola
+      \@tfor\@tempCifra:=0123456789\do{%
+        \expandafter\if\@tempCifra#1\let\@tempVirgola\virgoladecimale
+        \@break@tfor\fi}\@tempVirgola
+    }#1}
+
+\DeclareRobustCommand*\@@math@@comma[1]{% argument is a macro
+   \let\@tempVirgola\virgola
+   \@tfor\@tempCifra:=0123456789\do{%
+   \if\@tempCifra#1\let\@tempVirgola\virgoladecimale
+   \@break@tfor\fi}\@tempVirgola#1
+}
+\AtEndOfPackage{\AtEndPreamble{\let\@@math@comma\@math@comma}}
+\def\LtxSymbCaporali{%
+     \DeclareRobustCommand*{\it@ocap}{\mbox{%
+        \fontencoding{U}\fontfamily{lasy}\selectfont(\kern-0.20em(}%
+        \ignorespaces}%
+     \DeclareRobustCommand*{\it@ccap}{\ifdim\lastskip>\z@\unskip\fi
+     \mbox{%
+        \fontencoding{U}\fontfamily{lasy}\selectfont)\kern-0.20em)}}%
+}%
+\def\T@unoCaporali{\DeclareRobustCommand*{\it@ocap}{<<\ignorespaces}%
+     \DeclareRobustCommand*{\it@ccap}{\ifdim\lastskip>\z@\unskip\fi>>}}%
+\T@unoCaporali
+\def\CaporaliFrom#1#2#3#4{%
+  \DeclareFontEncoding{#1}{}{}%
+  \DeclareTextCommand{\it@ocap}{T1}{%
+    {\fontencoding{#1}\fontfamily{#2}\selectfont\char#3\ignorespaces}}%
+  \DeclareTextCommand{\it@ccap}{T1}{\ifdim\lastskip>\z@\unskip\fi%
+    {\fontencoding{#1}\fontfamily{#2}\selectfont\char#4}}%
+  \DeclareTextCommand{\it@ocap}{OT1}{%
+    {\fontencoding{#1}\fontfamily{#2}\selectfont\char#3\ignorespaces}}%
+  \DeclareTextCommand{\it@ccap}{OT1}{\ifdim\lastskip>\z@\unskip\fi%
+    {\fontencoding{#1}\fontfamily{#2}\selectfont\char#4}}}
+
+\def\get@ae#1#2#3!{\def\bbl@ae{#1#2}}%
+\def\@ifT@one@noCap{\expandafter\get@ae\f@family!%
+\def\bbl@temp{ae}\ifx\bbl@ae\bbl@temp\expandafter\@firstoftwo\else
+    \expandafter\@secondoftwo\fi}%
+\AtBeginDocument{\normalfont\def\bbl@temp{OT1}%
+  \ifx\cf@encoding\bbl@temp
+    \LtxSymbCaporali
+    \GenericWarning{italian.ldf\space}{%
+    File italian.ldf warning: \MessageBreak\space\space\space
+    With OT1 encoding guillemets are poorly faked\MessageBreak
+    \space\space\space
+    Use T1 encoding\MessageBreak\space\space\space
+    or specify a font with command \string\CaporaliFrom\MessageBreak
+    \space\space\space
+    See the documentation concerning the babel-italian typesetting
+    \MessageBreak\space\space}%
+  \else
+    \ifx\cf@encoding\bbl@t@one
+      \@ifT@one@noCap{%
+        \LtxSymbCaporali
+        \GenericWarning{italian.ldf\space}{%
+        File italian.ldf warning: \MessageBreak\space\space\space
+        The AE font collection does not contain the guillemets
+        \MessageBreak\space\space\space
+        Use the Latin Modern font collection instead
+        \MessageBreak\space}
+      }%
+    {\T@unoCaporali}\fi
+  \fi
+}
+\ldf@finish{italian}%
+%%
+%%
+%% \endinput
+%% 
+%% Copyright (C) 1990-2019 Claudio Beccari
+%% 
+%%  It may be distributed and/or modified under the
+%%  conditions of the LaTeX Project Public License, either version 1.3c
+%%  of this license or (at your option) any later version.
+%%  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%%  and version 1.3c or later is part of all distributions of LaTeX
+%%  version 2003/12/01 or later.
+%% 
+%%  This work has the LPPL maintenance status "maintained".
+%% 
+%%  The Current Maintainer of the babel system is Javier Bezos
+%%  The current maintainer of Italian language support is Claudio Beccari
+%% 
+%% This work consists of this file italian.dtx  and the derived
+%% file italian.ldf
+%% 
+%%  The list of all files belonging to the LaTeX base distribution is
+%%  given in the file `manifest.bbl. See also `legal.bbl' for additional
+%%  information.
+%% 
+%% This file is a self unpacking one.
+%%
+%% End of file `italian.ldf'.

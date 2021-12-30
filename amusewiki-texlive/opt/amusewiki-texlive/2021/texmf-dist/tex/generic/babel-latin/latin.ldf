@@ -1,0 +1,785 @@
+%%
+%% This is file `latin.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% latin.dtx  (with options: `latin')
+%% 
+%% Copyright (C) 1989-2008 by Johannes L. Braams
+%% Copyright (C) 2009-2020 by Claudio Beccari
+%% Copyright (C) 2021      by Keno Wehr
+%% All rights reserved.
+%% 
+%% This file is part of the babel-latin package.
+%% ----------------------------------------------
+%% 
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Keno Wehr.
+%% 
+%% Please report errors to: https://github.com/wehro/babel-latin/issues
+%% 
+\ProvidesLanguage{latin}[2021-06-27 v4.0 Latin support from the babel system]
+\LdfInit\CurrentOption{captions\CurrentOption}
+\def\babellatin@classic{classiclatin}
+\def\babellatin@medieval{medievallatin}
+\def\babellatin@ecclesiastic{ecclesiasticlatin}
+\providehyphenmins{\CurrentOption}{\tw@\tw@}
+\def\babellatin@test@modern@patterns{%
+  \ifx\l@latin\undefined
+    \@nopatterns{latin}%
+    \adddialect\l@latin0
+  \fi}%
+\def\babellatin@test@classic@patterns{%
+  \ifx\l@classiclatin\undefined
+    \PackageWarningNoLine{babel-latin}{%
+      No hyphenation patterns were found for the\MessageBreak
+      classiclatin language. Now I will use the\MessageBreak
+      patterns for modern Latin instead}%
+    \babellatin@test@modern@patterns
+    \adddialect\l@classiclatin\l@latin
+  \fi}%
+\ifx\CurrentOption\babellatin@classic
+  \babellatin@test@classic@patterns
+\else
+  \ifx\CurrentOption\babellatin@ecclesiastic
+    \babellatin@test@modern@patterns
+    \adddialect\l@ecclesiasticlatin\l@latin
+  \else
+    \ifx\CurrentOption\babellatin@medieval
+      \babellatin@test@modern@patterns
+      \adddialect\l@medievallatin\l@latin
+    \else
+      \babellatin@test@modern@patterns
+    \fi
+  \fi
+\fi
+\newif\ifbabellatin@useligatures
+\addto\extrasmedievallatin{\babellatin@useligaturestrue}%
+\addto\noextrasmedievallatin{\babellatin@useligaturesfalse}%
+\addto\extrasecclesiasticlatin{\babellatin@useligaturestrue}%
+\addto\noextrasecclesiasticlatin{\babellatin@useligaturesfalse}%
+\StartBabelCommands*{\CurrentOption}{captions}
+  \SetString\prefacename{\ifbabellatin@useligatures Pr\ae fatio\else Praefatio\fi}
+  \SetString\refname{Conspectus librorum}
+  \SetString\abstractname{Summarium}
+  \SetString\bibname{Conspectus librorum}
+  \SetString\chaptername{Caput}
+  \SetString\appendixname{Additamentum}
+  \SetString\contentsname{Index}
+  \SetString\listfigurename{Conspectus descriptionum}
+  \SetString\listtablename{Conspectus tabularum}
+  \SetString\indexname{Index rerum notabilium}
+  \SetString\figurename{Descriptio}
+  \SetString\tablename{Tabula}
+  \SetString\partname{Pars}
+  \SetString\enclname{Adduntur}%   Or "Additur"? Or simply Add.?
+  \SetString\ccname{Exemplar}%     Use the recipient's dative
+  \SetString\headtoname{\ignorespaces}% Use the recipient's dative
+  \SetString\pagename{Charta}
+  \SetString\seename{cfr.}
+  \SetString\alsoname{cfr.}% Tabacco never saw "cfr" + "atque" or similar forms
+  \SetString\proofname{Demonstratio}
+  \SetString\glossaryname{Glossarium}
+\StartBabelCommands*{classiclatin,medievallatin}{}
+  \SetCase{\uccode`u=`V}{\lccode`V=`u}
+  \SetHyphenMap{\BabelLower{`V}{`u}}
+\StartBabelCommands{classiclatin,medievallatin}{}[unicode,fontenc=TU,charset=utf8]
+  \SetCase{\uccode`u=`V \uccode`ú=`V \uccode`ū=`V \uccode`ŭ=`V}{\lccode`V=`u}
+\EndBabelCommands
+\newif\ifbabellatin@usev
+\newif\ifbabellatin@usej
+\newif\ifbabellatin@lowercasemonth
+\babellatin@usevtrue
+\addto\extrasclassiclatin{\babellatin@usevfalse}%
+\addto\noextrasclassiclatin{\babellatin@usevtrue}%
+\addto\extrasmedievallatin{\babellatin@usevfalse}%
+\addto\noextrasmedievallatin{\babellatin@usevtrue}%
+\def\babellatin@monthname{%
+  \ifcase\month\or\ifbabellatin@usej Januarii\else Ianuarii\fi
+    \or Februarii%
+    \or Martii%
+    \or Aprilis%
+    \or\ifbabellatin@usej Maji\else Maii\fi
+    \or\ifbabellatin@usej Junii\else Iunii\fi
+    \or\ifbabellatin@usej Julii\else Iulii\fi
+    \or Augusti%
+    \or Septembris%
+    \or Octobris%
+    \or\ifbabellatin@usev Novembris\else Nouembris\fi
+    \or Decembris%
+  \fi}%
+\expandafter\def\csname date\CurrentOption\endcsname{%
+  \def\today{%
+    \uppercase\expandafter{\romannumeral\day}~%
+    \ifbabellatin@lowercasemonth
+      \lowercase\expandafter{\babellatin@monthname}%
+    \else
+      \babellatin@monthname
+    \fi
+    \space
+    \uppercase\expandafter{\romannumeral\year}%
+  }%
+}%
+\def\babellatin@latex{LaTeX2e}%
+\ifx\fmtname\babellatin@latex
+  \initiate@active@char{"}%
+  \@ifpackagewith{babel}{activeacute}{\initiate@active@char{'}}{}%
+  \providecommand\texorpdfstring[2]{#1}%
+  \ExplSyntaxOn
+  \declare@shorthand {latin} {"}
+    {
+      \mode_if_math:TF { \token_to_str:N " }
+        {
+          \texorpdfstring { \babellatin_apply_quotemark:N } { }
+        }
+    }
+  \cs_set_protected:Npn \babellatin@declare@apostrophe@shorthands
+    {
+      \declare@shorthand {latin} {'}
+        {
+          \mode_if_math:TF { \active@math@prime }
+            {
+              \texorpdfstring { \babellatin_put_acute:N } { \' }
+            }
+        }
+    }
+  \cs_set_protected:Npn \babellatin@declare@prosodic@shorthands
+    {
+      \declare@shorthand {latin} {=}
+        {
+          \mode_if_math:TF { \token_to_str:N = }
+            {
+              \texorpdfstring { \babellatin_put_macron:N } { \= }
+            }
+        }
+      \declare@shorthand {latin} {^}
+        {
+          \mode_if_math:TF { \token_to_str:N ^ } { \babellatin_put_breve:N }
+        }
+    }
+  \cs_set_protected:Npn \babellatin_apply_quotemark:N #1
+    {
+      \str_case:nnF {#1}
+        {
+          {A} { \babellatin_ligature_shorthand:Nnn E { \AE }
+                  {
+                    \babellatin_ligature_shorthand:Nnn e { \AE }
+                      {
+                        \babellatin_allowhyphens: A
+                      }
+                  }
+              }
+          {a} { \babellatin_ligature_shorthand:Nnn e { \ae }
+                  {
+                    \babellatin_allowhyphens: a
+                  }
+              }
+          {O} { \babellatin_ligature_shorthand:Nnn E { \OE }
+                  {
+                    \babellatin_ligature_shorthand:Nnn e { \OE }
+                      {
+                        \babellatin_allowhyphens: O
+                      }
+                  }
+              }
+          {o} { \babellatin_ligature_shorthand:Nnn e { \oe }
+                  {
+                    \babellatin_allowhyphens: o
+                  }
+              }
+          {|} { \babellatin_allowhyphens: }
+          {<} { \babellatin@guillemetleft }
+          {>} { \babellatin@guillemetright }
+        }
+        {
+          \tl_if_single_token:nTF {#1}
+            {
+              \token_if_letter:NTF #1 { \babellatin_allowhyphens: }
+                {
+                  \babellatin_if_ligature_command:NTF #1 { \babellatin_allowhyphens: }
+                    {
+                      \token_to_str:N "
+                    }
+                }
+            }
+            {
+              \token_to_str:N "
+            }
+            #1
+        }
+    }
+  \cs_set_protected:Npn \babellatin_put_acute:N #1
+    {
+      \str_case:nnF {#1}
+        {
+          {A} { \babellatin_ligature_shorthand:Nnn E { \'\AE }
+                  {
+                    \babellatin_ligature_shorthand:Nnn e { \'\AE } { Á }
+                  }
+              }
+          {a} { \babellatin_ligature_shorthand:Nnn e { \'\ae } { á } }
+          {E} { É }
+          {e} { é }
+          {I} { Í }
+          {i} { í }
+          {O} { \babellatin_ligature_shorthand:Nnn E { \'\OE }
+                  {
+                    \babellatin_ligature_shorthand:Nnn e { \'\OE } { Ó }
+                  }
+              }
+          {o} { \babellatin_ligature_shorthand:Nnn e { \'\oe } { ó } }
+          {U} { Ú }
+          {u} { ú }
+          {V} { \'V }
+          {Y} { \'Y }
+          {y} { \'y }
+          {Æ} { \'\AE }
+          {æ} { \'\ae }
+          {Œ} { \'\OE }
+          {œ} { \'\oe }
+        }
+        {
+          \tl_if_single_token:nTF {#1}
+            {
+              \babellatin_if_ligature_command:NTF #1 { \' }
+                {
+                  \token_to_str:N '
+                }
+            }
+            {
+              \token_to_str:N '
+            }
+          #1
+        }
+    }
+  \cs_set_protected:Npn \babellatin_put_macron:N #1
+    {
+      \str_case:nnF {#1}
+        {
+          {A} { \babellatin_ligature_macron:NNnn AE { \=\AE }
+                  {
+                    \babellatin_ligature_macron:NNnn Ae { \=\AE }
+                      {
+                        \babellatin_diphthong_macron:NNn AU
+                          {
+                            \babellatin_diphthong_macron:NNn Au { \=A }
+                          }
+                      }
+                  }
+              }
+          {a} { \babellatin_ligature_macron:NNnn ae { \=\ae }
+                  {
+                    \babellatin_diphthong_macron:NNn au { \=a }
+                  }
+              }
+          {E} { \babellatin_diphthong_macron:NNn EU
+                  {
+                    \babellatin_diphthong_macron:NNn Eu { \=E }
+                  }
+              }
+          {e} { \babellatin_diphthong_macron:NNn eu { \=e } }
+          {I} { \=I }
+          {i} { \=\i }
+          {O} { \babellatin_ligature_macron:NNnn OE { \=\OE }
+                  {
+                    \babellatin_ligature_macron:NNnn Oe { \=\OE } { \=O }
+                  }
+              }
+          {o} { \babellatin_ligature_macron:NNnn oe { \=\oe } { \=o } }
+          {U} { \=U }
+          {u} { \=u }
+          {V} { \=V }
+          {Y} { \=Y }
+          {y} { \=y }
+        }
+        {
+          \tl_if_single_token:nTF {#1}
+            {
+              \babellatin_if_ligature_command:NTF #1 { \= }
+                {
+                  \token_to_str:N =
+                }
+            }
+            {
+              \token_to_str:N =
+            }
+          #1
+        }
+    }
+  \cs_set:Npn \babellatin_put_breve:N #1
+    {
+      \str_case:nnF {#1}
+        {
+          {A} { \u{A} }
+          {a} { \u{a} }
+          {E} { \u{E} }
+          {e} { \u{e} }
+          {I} { \u{I} }
+          {i} { \u{\i} }
+          {O} { \u{O} }
+          {o} { \u{o} }
+          {U} { \u{U} }
+          {u} { \u{u} }
+          {V} { \u{V} }
+          {Y} { \u{Y} }
+          {y} { \u{y} }
+        }
+        {
+          \token_to_str:N ^
+          #1
+        }
+    }
+  \cs_set:Npn \babellatin_allowhyphens:
+    {
+      \bbl@allowhyphens
+      \discretionary {-} {} {}
+      \bbl@allowhyphens
+    }
+  \ExplSyntaxOff
+  \def\babellatin@test@for@ligatures{%
+    \ifbabellatin@useligatures
+      \chardef\babellatin@useligatures@bool=1
+    \else
+      \chardef\babellatin@useligatures@bool=0
+    \fi
+  }%
+  \ExplSyntaxOn
+  \cs_set_protected:Npn \babellatin_ligature_shorthand:Nnn #1#2#3
+    {
+      \babellatin@test@for@ligatures
+      \bool_if:NTF \babellatin@useligatures@bool
+        {
+          \peek_meaning_remove:NTF #1 {#2} {#3}
+        }
+        {
+          #3
+        }
+    }
+  \cs_set_protected:Npn \babellatin_diphthong_macron:NNn #1#2#3
+    {
+      \peek_meaning:NTF #2
+        {
+          #1
+          \bool_lazy_or:nnTF { \sys_if_engine_xetex_p: } { \sys_if_engine_luatex_p: }
+            {
+              \iffontchar \font "35E \relax
+                \char "35E \relax
+              \else
+                \msg_warning:nn {babel-latin} {no-double-macron-font}
+              \fi
+            }
+            {
+              \msg_warning:nn {babel-latin} {no-double-macron-engine}
+            }
+        }
+        {
+          #3
+        }
+    }
+  \msg_set:nnn {babel-latin} {no-double-macron-font}
+    {
+      The~combining~double~macron~(U+035E)~is~not~available~in~the~current~
+      font.~The~diphthong~is~typeset~without~macron~ \msg_line_context: .
+    }
+  \msg_set:nnn {babel-latin} {no-double-macron-engine}
+    {
+      The~combining~double~macron~(U+035E)~is~not~available~with~
+      \c_sys_engine_str . ~ The~diphthong~is~typeset~without~macron~
+      \msg_line_context: .
+    }
+  \cs_set_protected:Npn \babellatin_ligature_macron:NNnn #1#2#3#4
+    {
+      \babellatin_ligature_shorthand:Nnn #2 {#3}
+        {
+          \babellatin_diphthong_macron:NNn #1 #2 {#4}
+        }
+    }
+  \prg_set_conditional:Npnn \babellatin_if_ligature_command:N #1 {TF}
+    {
+      \token_if_eq_meaning:NNTF #1 \AE { \prg_return_true: }
+        {
+          \token_if_eq_meaning:NNTF #1 \ae { \prg_return_true: }
+            {
+              \token_if_eq_meaning:NNTF #1 \OE { \prg_return_true: }
+                {
+                  \token_if_eq_meaning:NNTF #1 \oe { \prg_return_true: }
+                    {
+                      \prg_return_false:
+                    }
+                }
+            }
+        }
+    }
+  \ExplSyntaxOff
+  \let\babellatin@guillemetleft\guillemetleft
+  \let\babellatin@guillemetright\guillemetright
+  \expandafter\addto\csname extras\CurrentOption\endcsname{%
+    \bbl@activate{"}%
+    \languageshorthands{latin}%
+  }%
+  \expandafter\addto\csname noextras\CurrentOption\endcsname{%
+    \bbl@deactivate{"}%
+  }%
+  \@ifpackagewith{babel}{activeacute}{%
+    \babellatin@declare@apostrophe@shorthands
+    \expandafter\addto\csname extras\CurrentOption\endcsname{%
+      \bbl@activate{'}%
+    }%
+    \expandafter\addto\csname noextras\CurrentOption\endcsname{%
+      \bbl@deactivate{'}%
+    }%
+  }{}%
+\fi
+\newif\ifbabellatin@luatex
+\newif\ifbabellatin@xetex
+\ifnum\bbl@engine=1
+  \babellatin@luatextrue
+\else
+  \ifnum\bbl@engine=2
+    \babellatin@xetextrue
+  \fi
+\fi
+\def\babellatin@prepare@punctuation@spacing{%
+  \ifbabellatin@luatex
+    \directlua{require('ecclesiasticlatin')}%
+  \else
+    \def\babellatin@insert@punctuation@space{%
+      \kern0.08333\fontdimen6\font
+    }%
+    \def\babellatin@replace@preceding@space{%
+      \ifdim\lastskip>\z@\unskip\fi
+      \babellatin@insert@punctuation@space
+    }%
+    \def\babellatin@replace@following@space{%
+      \babellatin@insert@punctuation@space
+      \ignorespaces
+    }%
+    \ifbabellatin@xetex
+      \newXeTeXintercharclass\babellatin@qmark@class
+      \newXeTeXintercharclass\babellatin@colon@class
+      \newXeTeXintercharclass\babellatin@oguill@class
+      \newXeTeXintercharclass\babellatin@cguill@class
+      \newXeTeXintercharclass\babellatin@obracket@class
+      \let\babellatin@boundary@class\e@alloc@intercharclass@top
+      \XeTeXinterchartoks\babellatin@qmark@class\babellatin@cguill@class={%
+        \babellatin@insert@punctuation@space}%
+      \XeTeXinterchartoks\babellatin@qmark@class\babellatin@colon@class={%
+        \babellatin@insert@punctuation@space}%
+      \XeTeXinterchartoks\babellatin@colon@class\babellatin@cguill@class={%
+        \babellatin@insert@punctuation@space}%
+      \XeTeXinterchartoks\babellatin@oguill@class\babellatin@boundary@class={%
+        \babellatin@replace@following@space}%
+      \XeTeXinterchartoks\babellatin@oguill@class\babellatin@oguill@class={%
+        \babellatin@insert@punctuation@space}%
+      \XeTeXinterchartoks\babellatin@oguill@class\z@={%
+        \babellatin@insert@punctuation@space}%
+      \XeTeXinterchartoks\babellatin@cguill@class\babellatin@cguill@class={%
+        \babellatin@insert@punctuation@space}%
+      \XeTeXinterchartoks\babellatin@cguill@class\babellatin@qmark@class={%
+        \babellatin@insert@punctuation@space}%
+      \XeTeXinterchartoks\babellatin@cguill@class\babellatin@colon@class={%
+        \babellatin@insert@punctuation@space}%
+      \XeTeXinterchartoks\babellatin@boundary@class\babellatin@qmark@class={%
+        \babellatin@replace@preceding@space}%
+      \XeTeXinterchartoks\babellatin@boundary@class\babellatin@colon@class={%
+        \babellatin@replace@preceding@space}%
+      \XeTeXinterchartoks\babellatin@boundary@class\babellatin@cguill@class={%
+        \babellatin@replace@preceding@space}%
+      \XeTeXinterchartoks\z@\babellatin@qmark@class={%
+        \babellatin@insert@punctuation@space}%
+      \XeTeXinterchartoks\z@\babellatin@colon@class={%
+        \babellatin@insert@punctuation@space}%
+      \XeTeXinterchartoks\z@\babellatin@cguill@class={%
+        \babellatin@insert@punctuation@space}%
+    \else
+      \initiate@active@char{;}%
+      \initiate@active@char{:}%
+      \initiate@active@char{!}%
+      \initiate@active@char{?}%
+      \declare@shorthand{latin}{;}{%
+        \ifhmode
+          \babellatin@replace@preceding@space
+          \string;%
+        \else
+          \string;%
+        \fi
+      }%
+      \declare@shorthand{latin}{:}{%
+        \ifhmode
+          \babellatin@replace@preceding@space
+          \string:%
+        \else
+          \string:%
+        \fi
+      }%
+      \declare@shorthand{latin}{!}{%
+        \ifhmode
+          \babellatin@replace@preceding@space
+          \string!%
+        \else
+          \string!%
+        \fi
+      }%
+      \declare@shorthand{latin}{?}{%
+        \ifhmode
+          \babellatin@replace@preceding@space
+          \string?%
+        \else
+          \string?%
+        \fi
+      }%
+    \fi
+  \fi
+}%
+\ifx\CurrentOption\babellatin@ecclesiastic
+  \babellatin@prepare@punctuation@spacing
+\fi
+\def\babellatin@punctuation@spacing{%
+  \ifbabellatin@luatex
+    \directlua{ecclesiasticlatin.activate_spacing()}%
+  \else
+    \ifbabellatin@xetex
+      \XeTeXinterchartokenstate = 1
+      \XeTeXcharclass `\! \babellatin@qmark@class
+      \XeTeXcharclass `\? \babellatin@qmark@class
+      \XeTeXcharclass `\‼ \babellatin@qmark@class
+      \XeTeXcharclass `\⁇ \babellatin@qmark@class
+      \XeTeXcharclass `\⁈ \babellatin@qmark@class
+      \XeTeXcharclass `\⁉ \babellatin@qmark@class
+      \XeTeXcharclass `\‽ \babellatin@qmark@class
+      \XeTeXcharclass `\; \babellatin@colon@class
+      \XeTeXcharclass `\: \babellatin@colon@class
+      \XeTeXcharclass `\« \babellatin@oguill@class
+      \XeTeXcharclass `\» \babellatin@cguill@class
+      \XeTeXcharclass `\‹ \babellatin@oguill@class
+      \XeTeXcharclass `\› \babellatin@cguill@class
+      \XeTeXcharclass `\( \babellatin@obracket@class
+      \XeTeXcharclass `\[ \babellatin@obracket@class
+      \XeTeXcharclass `\{ \babellatin@obracket@class
+      \XeTeXcharclass `\⟨ \babellatin@obracket@class
+    \else
+      \bbl@activate{;}%
+      \bbl@activate{:}%
+      \bbl@activate{!}%
+      \bbl@activate{?}%
+      \def\babellatin@guillemetleft{%
+        \guillemetleft
+        \babellatin@replace@following@space
+      }%
+      \def\babellatin@guillemetright{%
+        \babellatin@replace@preceding@space
+        \guillemetright
+      }%
+    \fi
+  \fi
+}%
+\def\babellatin@no@punctuation@spacing{%
+  \ifbabellatin@luatex
+    \directlua{ecclesiasticlatin.deactivate_spacing()}%
+  \else
+    \ifbabellatin@xetex
+      \XeTeXcharclass `\! \z@
+      \XeTeXcharclass `\? \z@
+      \XeTeXcharclass `\‼ \z@
+      \XeTeXcharclass `\⁇ \z@
+      \XeTeXcharclass `\⁈ \z@
+      \XeTeXcharclass `\⁉ \z@
+      \XeTeXcharclass `\‽ \z@
+      \XeTeXcharclass `\; \z@
+      \XeTeXcharclass `\: \z@
+      \XeTeXcharclass `\« \z@
+      \XeTeXcharclass `\» \z@
+      \XeTeXcharclass `\‹ \z@
+      \XeTeXcharclass `\› \z@
+      \XeTeXcharclass `\( \z@
+      \XeTeXcharclass `\[ \z@
+      \XeTeXcharclass `\{ \z@
+      \XeTeXcharclass `\⟨ \z@
+      \XeTeXinterchartokenstate = 0
+    \else
+      \bbl@deactivate{;}%
+      \bbl@deactivate{:}%
+      \bbl@deactivate{!}%
+      \bbl@deactivate{?}%
+      \let\babellatin@guillemetleft\guillemetleft
+      \let\babellatin@guillemetright\guillemetright
+    \fi
+  \fi
+}%
+\addto\extrasecclesiasticlatin{\babellatin@punctuation@spacing}%
+\addto\noextrasecclesiasticlatin{\babellatin@no@punctuation@spacing}%
+\bbl@declare@ttribute\CurrentOption{usej}{%
+  \expandafter\addto\csname extras\CurrentOption\endcsname{%
+    \babellatin@usejtrue}%
+  \expandafter\addto\csname noextras\CurrentOption\endcsname{%
+    \babellatin@usejfalse}%
+}%
+\bbl@declare@ttribute\CurrentOption{lowercasemonth}{%
+  \expandafter\addto\csname extras\CurrentOption\endcsname{%
+    \babellatin@lowercasemonthtrue}%
+  \expandafter\addto\csname noextras\CurrentOption\endcsname{%
+    \babellatin@lowercasemonthfalse}%
+}%
+\ifx\fmtname\babellatin@latex
+  \bbl@declare@ttribute\CurrentOption{withprosodicmarks}{%
+    \initiate@active@char{=}%
+    \initiate@active@char{^}%
+    \AtBeginDocument{%
+      \bbl@shorthandoff\z@{=}%
+      \bbl@shorthandoff\tw@{^}%
+    }%
+    \babellatin@declare@prosodic@shorthands
+    \expandafter\addto\csname extras\CurrentOption\endcsname{%
+      \bbl@activate{=}%
+      \bbl@activate{^}%
+      \def\ProsodicMarksOn{%
+        \shorthandon{=}%
+        \shorthandon{^}%
+      }%
+      \def\ProsodicMarksOff{%
+        \shorthandoff{=}%
+        \shorthandoff*{^}%
+      }%
+    }%
+    \expandafter\addto\csname noextras\CurrentOption\endcsname{%
+      \bbl@deactivate{=}%
+      \bbl@deactivate{^}%
+    }%
+  }%
+  \expandafter\addto\csname extras\CurrentOption\endcsname{%
+    \def\ProsodicMarksOn{%
+      \PackageWarning{babel-latin}{%
+        The \protect\ProsodicMarksOn\space command is only\MessageBreak
+        available using the withprosodicmarks\MessageBreak
+        modifier}%
+    }%
+    \def\ProsodicMarksOff{%
+      \PackageWarning{babel-latin}{%
+        The \protect\ProsodicMarksOff\space command is only\MessageBreak
+        available using the withprosodicmarks\MessageBreak
+        modifier}%
+    }%
+  }%
+\fi
+\bbl@declare@ttribute\CurrentOption{ecclesiasticfootnotes}{%
+  \let\babellatin@footnote@lang\CurrentOption
+  \AtEndOfPackage{%
+    \ifx\bbl@main@language\babellatin@footnote@lang
+      \let\@makefntext\babellatin@variant@footnote
+    \else
+      \PackageWarningNoLine{babel-latin}{%
+        \babellatin@footnote@lang\space is not the main language.\MessageBreak
+        The `ecclesiasticfootnotes' modifier\MessageBreak
+        is ineffective}%
+    \fi
+  }%
+}%
+\def\babellatin@variant@footnote#1{%
+  \parindent 1em%
+  \noindent
+  \hbox{\normalfont\@thefnmark.}%
+  \enspace #1%
+}%
+\def\babellatin@outdated@modifier#1{%
+  \PackageWarningNoLine{babel-latin}{%
+    The `#1' modifier is outdated. Please\MessageBreak
+    consult the babel-latin manual and consider\MessageBreak
+    to load the language `#1latin' instead\MessageBreak
+    of `latin.#1'}%
+}%
+\bbl@declare@ttribute{latin}{classic}{%
+  \babellatin@outdated@modifier{classic}%
+  \addto\extraslatin{\babellatin@usevfalse}%
+  \addto\noextraslatin{\babellatin@usevtrue}%
+  \babellatin@test@classic@patterns
+  \let\l@latin\l@classiclatin
+  \StartBabelCommands*{latin}{}%
+  \SetCase{\uccode `u=`V}{\lccode `V=`u}%
+  \EndBabelCommands
+}%
+\bbl@declare@ttribute{latin}{medieval}{%
+  \babellatin@outdated@modifier{medieval}%
+  \addto\extraslatin{%
+    \babellatin@usevfalse
+    \def\prefacename{Pr\ae fatio}%
+  }%
+  \addto\noextraslatin{%
+    \babellatin@usevtrue
+  }%
+  \StartBabelCommands*{latin}{}%
+  \SetCase{\uccode `u=`V}{\lccode `V=`u}%
+  \EndBabelCommands%
+}%
+\bbl@declare@ttribute{latin}{ecclesiastic}{%
+  \babellatin@outdated@modifier{ecclesiastic}%
+  \babellatin@prepare@punctuation@spacing
+  \babellatin@ecclesiastic@outdated@commands
+  \initiate@active@char{'}%
+  \babellatin@declare@apostrophe@shorthands
+  \addto\extraslatin{%
+    \bbl@activate{'}%
+    \babellatin@punctuation@spacing
+    \babellatin@useligaturestrue
+  }%
+  \addto\noextraslatin{%
+    \bbl@deactivate{'}%
+    \babellatin@no@punctuation@spacing
+    \babellatin@useligaturesfalse
+  }%
+  \addto\extraslatin{%
+    \babel@save\@makefntext
+    \let\@makefntext\babellatin@variant@footnote
+  }%
+}%
+\providecommand\SetLatinLigatures{%
+  \PackageWarning{babel-latin}{%
+    The \protect\SetLatinLigatures\space command is obsolete.\MessageBreak
+    Please remove it}}%
+\providecommand\ProsodicMarks{%
+  \PackageWarning{babel-latin}{%
+    The \protect\ProsodicMarks\space command is obsolete.\MessageBreak
+    Please remove it}}%
+\def\babellatin@ecclesiastic@outdated@commands{%
+  \providecommand*\FrenchGuillemetsFrom[4]{%
+    \PackageWarning{babel-latin}{%
+      The \protect\FrenchGuillemetsFrom\space command is obsolete.\MessageBreak
+      Please remove it and use \protect\usepackage[T1]{fontenc}\MessageBreak
+      if compiling with pdfLaTeX}}%
+  \let\FrenchGuillemotsFrom\FrenchGuillemetsFrom
+  \providecommand\ToneGuillemets{%
+    \PackageWarning{babel-latin}{%
+      The \protect\ToneGuillemets\space command is obsolete.\MessageBreak
+      Please remove it and use \protect\usepackage[T1]{fontenc}\MessageBreak
+      if compiling with pdfLaTeX}}%
+  \expandafter\addto\csname extras\CurrentOption\endcsname{%
+    \babel@save\og
+    \babel@save\fg
+    \DeclareRobustCommand\og{%
+      \babellatin@guillemetleft
+      \PackageWarning{babel-latin}{%
+        The \protect\og\space command is obsolete.\MessageBreak
+        Please replace it by "<}}%
+    \DeclareRobustCommand\fg{%
+      \babellatin@guillemetright
+      \PackageWarning{babel-latin}{%
+        The \protect\fg\space command is obsolete.\MessageBreak
+        Please replace it by ">}}%
+  }%
+}%
+\ifx\CurrentOption\babellatin@ecclesiastic
+  \babellatin@ecclesiastic@outdated@commands
+\fi
+\ldf@finish\CurrentOption
+\endinput
+%%
+%% End of file `latin.ldf'.

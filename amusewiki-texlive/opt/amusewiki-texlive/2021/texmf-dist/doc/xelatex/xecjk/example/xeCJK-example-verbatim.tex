@@ -1,0 +1,62 @@
+%%
+%% This is file `xeCJK-example-verbatim.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% xeCJK.dtx  (with options: `ex-verb')
+%% 
+\documentclass[a4paper]{article}
+\usepackage{xeCJK}
+\usepackage{fullpage}
+\xeCJKDeclareSubCJKBlock{Hangul}
+  { "1100 -> "11FF, "3130 -> "318F, "A960 -> "A97F, "AC00 -> "D7AF }
+\setCJKmainfont{Adobe Song Std}
+\setCJKmainfont[Hangul]{Adobe Myungjo Std}
+%%\setmonofont{Inconsolata}
+%%\setmonofont{Source Code Pro}
+%%\setCJKmonofont{Adobe Kaiti Std}
+\setmonofont{TeX Gyre Cursor}
+\setCJKmonofont{Adobe Fangsong Std}
+\begin{document}
+
+\begin{verbatim}
+*************************************************************
+*                                                           *
+*      精致甲版红楼梦 - 精致工作室特别奉献（2010年9月）     *
+*                                                           *
+*        GBK简体、GBK繁体、Big5繁体、PDF简体、PDF繁体       *
+*                                                           *
+*  为 GBK、Big5 特别度身订制，并经反复修订，方便纯文本阅读  *
+*                                                           *
+*  精致甲、乙版红楼梦下载专页                               *
+*  http://www.speedy7.com/cn/stguru/gb2312/redmansions.htm  *
+*  http://www.speedy7.com/cn/stguru/big5/redmansions.htm    *
+*                                                           *
+*  此电子文件可随意传播、发布、下载。                       *
+*  传播时建议保留此版本说明供查阅与识别。                   *
+*  未经修订者同意，不得将此版本用于商业用途。               *
+*  如您对红楼梦不具深入了解，请勿随便修改其中的内容。       *
+*                                                           *
+*************************************************************
+\end{verbatim}
+
+\verb|a 汉 字 b|
+
+\verb*|a 汉 字 b|
+
+\begin{verbatim}
+lang_set = {
+  ["English"]   = lang.en,
+  ["Français"]  = lang.fr,
+  ["Español"]   = lang.es,
+  ["中文"]      = lang.zh,
+  ["日本語"]    = lang.ja,
+  ["한국어"]    = lang.ko,
+}
+\end{verbatim}
+
+\end{document}
+%% 
+%%
+%% End of file `xeCJK-example-verbatim.tex'.

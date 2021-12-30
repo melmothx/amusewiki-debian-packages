@@ -1,0 +1,143 @@
+% Copyright 2007 by Till Tantau
+% Copyright 2015 by Vedran Mileti\'c, Joseph Wright
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+\newif\ifbeamer@sb@subsection
+
+\DeclareOptionBeamer{subsection}[true]{\csname beamer@sb@subsection#1\endcsname}
+\ExecuteOptionsBeamer{subsection=true}
+\ProcessOptionsBeamer
+
+
+
+\mode<presentation>
+
+\setbeamercolor{frametitle}{parent=palette primary}
+\setbeamercolor{subsection in head/foot}{parent=palette secondary}
+\setbeamercolor{section in head/foot}{parent=palette quaternary}
+
+
+\beamer@compresstrue
+
+\AtBeginDocument{
+  {
+    \usebeamerfont*{headline}
+    \colorlet{global.bg}{bg}
+    \usebeamercolor{subsection in head/foot}
+    \usebeamercolor{section in head/foot}
+    \usebeamercolor{frametitle}
+
+    \ifbeamer@sb@subsection
+      \pgfdeclareverticalshading{beamer@barshade}{\the\paperwidth}{%
+         color(0ex)=(subsection in head/foot.bg);%
+         color(2.25ex)=(subsection in head/foot.bg);%
+         color(3.25ex)=(section in head/foot.bg);%
+         color(8.75ex)=(section in head/foot.bg)%
+       }
+       \pgfdeclareverticalshading{beamer@aboveframetitle}{\the\paperwidth}{%
+         color(0ex)=(frametitle.bg);%
+         color(1ex)=(subsection in head/foot.bg)
+       }
+    \else
+      \pgfdeclareverticalshading{beamer@barshade}{\the\paperwidth}{%
+         color(0ex)=(section in head/foot.bg);%
+         color(6ex)=(section in head/foot.bg)%
+       }
+     \pgfdeclareverticalshading{beamer@aboveframetitle}{\the\paperwidth}{%
+         color(0ex)=(frametitle.bg);%
+         color(1ex)=(frametitle.bg);%
+         color(2ex)=(section in head/foot.bg)
+       }
+    \fi  
+    
+    \begingroup
+      \selectcolormodel{gray}
+      \pgfdeclareverticalshading{beamer@belowframetitle}{\the\paperwidth}{%
+        color(0ex)=(pgftransparent!100);%
+        color(1ex)=(pgftransparent!0)
+      }
+      \pgfdeclarefading{beamer@belowframetitlemask}{\pgfuseshading{beamer@belowframetitle}}
+    \endgroup
+  }
+}
+
+                                % Head
+\defbeamertemplate*{headline}{smoothbars theme}
+{%
+  \pgfuseshading{beamer@barshade}%
+  \vskip-0.05ex%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1ex,dp=0ex]{empty}
+  \begin{pgfpicture}
+    \begin{pgfscope}%
+      \ifbeamer@sb@subsection%
+        \pgfsetfillcolor{subsection in head/foot.bg}%
+      \else%
+        \pgfsetfillcolor{section in head/foot.bg}%
+      \fi%
+      \pgfpathrectangle{\pgfpoint{-.5\paperwidth}{-0.5ex}}{\pgfpoint{\paperwidth}{1ex}}%
+      \pgfsetfading{beamer@belowframetitlemask}{}%
+      \pgfusepath{fill}%
+    \end{pgfscope}%
+  \end{pgfpicture}%
+  \end{beamercolorbox}%
+  \ifbeamer@sb@subsection%
+    \vskip-9.75ex%
+  \else%
+    \vskip-6.85ex%
+  \fi%
+  \begin{beamercolorbox}[ignorebg,ht=2.25ex,dp=3.75ex]{section in head/foot}
+    \insertnavigation{\paperwidth}
+  \end{beamercolorbox}%
+  \ifbeamer@sb@subsection%
+    \begin{beamercolorbox}[ignorebg,ht=2.125ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+      \usebeamerfont{subsection in head/foot}\insertsubsectionhead
+    \end{beamercolorbox}%
+  \fi%
+}%
+
+
+\defbeamertemplate*{frametitle}{smoothbars theme}
+{%
+  \nointerlineskip%
+  \vskip-0.19ex%
+  \usebeamerfont{headline}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1ex,dp=1ex,vmode]{empty}
+    \pgfuseshading{beamer@aboveframetitle}%
+  \end{beamercolorbox}%
+  \vskip-1ex%
+  \nointerlineskip%
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=.3cm,rightskip=.3cm plus1fil,vmode]{frametitle}
+    \vskip0.5ex%
+    \usebeamerfont*{frametitle}\strut\insertframetitle%
+      \ifx\insertframesubtitle\@empty%
+        \strut\par%
+      \else
+        \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle}\strut\par}%
+      \fi%%
+    \usebeamerfont{headline}%
+    \vskip0.05ex%
+  \end{beamercolorbox}%
+  \nointerlineskip%
+  \vskip-0.05ex%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1ex,dp=0ex]{empty}
+  \begin{pgfpicture}
+    \begin{pgfscope}%
+      \pgfsetfillcolor{frametitle.bg}%
+      \pgfpathrectangle{\pgfpoint{-.5\paperwidth}{-.5ex}}{\pgfpoint{\paperwidth}{1ex}}%
+      \pgfsetfading{beamer@belowframetitlemask}{}%
+      \pgfusepath{fill}%
+    \end{pgfscope}%
+  \end{pgfpicture}%
+  \end{beamercolorbox}%
+}
+  
+  
+\mode
+<all>

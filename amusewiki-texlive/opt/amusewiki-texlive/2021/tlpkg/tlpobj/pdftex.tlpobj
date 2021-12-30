@@ -1,0 +1,122 @@
+name pdftex
+category TLCore
+revision 57973
+shortdesc A TeX extension for direct creation of PDF
+longdesc An extension of TeX which can directly generate PDF documents
+longdesc as well as DVI output. All current free TeX distributions
+longdesc including TeX Live, MacTeX and MiKTeX include pdfTeX (Plain
+longdesc TeX) and pdfLaTeX (LaTeX), among many other formats based on
+longdesc the pdfTeX engine.
+depend cm
+depend dehyph
+depend etex
+depend hyph-utf8
+depend hyphen-base
+depend knuth-lib
+depend kpathsea
+depend pdftex.ARCH
+depend plain
+depend tex-ini-files
+execute AddFormat name=etex engine=pdftex patterns=language.def           options="-translate-file=cp227.tcx *etex.ini"           fmttriggers=cm,dehyph,etex,hyph-utf8,hyphen-base,knuth-lib,plain
+execute AddFormat name=pdfetex engine=pdftex patterns=language.def           options="-translate-file=cp227.tcx *pdfetex.ini"           fmttriggers=cm,dehyph,etex,hyph-utf8,hyphen-base,knuth-lib,plain,tex-ini-files
+execute AddFormat name=pdftex engine=pdftex patterns=language.def           options="-translate-file=cp227.tcx *pdfetex.ini"           fmttriggers=cm,dehyph,etex,hyph-utf8,hyphen-base,knuth-lib,plain,tex-ini-files
+execute addMap dummy-space.map
+containersize 36956
+containerchecksum 17c2b07af5e14f9f581d1094f4a3657ec1fe2b19fa96d952d1e4859265dc26e42743dc1fd7e8d6a7de56867be1b50a7071524d0580a8a680c605146893e7ff1b
+doccontainersize 1629784
+doccontainerchecksum 8422210dceae381676a4c03784ab2c9b0e9233913eca6d25a9a7d5c5675f9ecb32f0a93dd624dbcc715f20d7e386a7844ea00e6e85473c1af14f8e384cd3f61e
+docfiles size=754
+ texmf-dist/doc/man/man1/pdfetex.1
+ texmf-dist/doc/man/man1/pdfetex.man1.pdf
+ texmf-dist/doc/man/man1/pdftex.1
+ texmf-dist/doc/man/man1/pdftex.man1.pdf
+ texmf-dist/doc/pdftex/NEWS
+ texmf-dist/doc/pdftex/README
+ texmf-dist/doc/pdftex/manual/ChangeLog
+ texmf-dist/doc/pdftex/manual/Makefile
+ texmf-dist/doc/pdftex/manual/README
+ texmf-dist/doc/pdftex/manual/makefiles.cmd
+ texmf-dist/doc/pdftex/manual/pdftex-a.pdf details="User manual"
+ texmf-dist/doc/pdftex/manual/pdftex-i.tex
+ texmf-dist/doc/pdftex/manual/pdftex-syntax.txt
+ texmf-dist/doc/pdftex/manual/pdftex-t.tex
+ texmf-dist/doc/pdftex/manual/pdftex-w.tex
+ texmf-dist/doc/pdftex/manual/syntaxform.awk
+ texmf-dist/doc/pdftex/manual/syntaxform.pl
+ texmf-dist/doc/pdftex/samplepdftex/cmr10.103
+ texmf-dist/doc/pdftex/samplepdftex/obj.dat
+ texmf-dist/doc/pdftex/samplepdftex/pdfcolor.tex
+ texmf-dist/doc/pdftex/samplepdftex/pic.eps
+ texmf-dist/doc/pdftex/samplepdftex/pic.jpg
+ texmf-dist/doc/pdftex/samplepdftex/pic.mps
+ texmf-dist/doc/pdftex/samplepdftex/pic.pdf
+ texmf-dist/doc/pdftex/samplepdftex/pic.png
+ texmf-dist/doc/pdftex/samplepdftex/pic16.png
+ texmf-dist/doc/pdftex/samplepdftex/rgb.icc
+ texmf-dist/doc/pdftex/samplepdftex/samplepdf.0
+ texmf-dist/doc/pdftex/samplepdftex/samplepdf.1
+ texmf-dist/doc/pdftex/samplepdftex/samplepdf.tex details="Primitive usage examples"
+ texmf-dist/doc/pdftex/samplepdftex/supp-mis.tex
+ texmf-dist/doc/pdftex/samplepdftex/supp-pdf.tex
+ texmf-dist/doc/pdftex/samplepdftex/tmp.pdf
+ texmf-dist/doc/pdftex/tests/01-fake-interword-space/Makefile
+ texmf-dist/doc/pdftex/tests/01-fake-interword-space/dummy-space.pfb
+ texmf-dist/doc/pdftex/tests/01-fake-interword-space/dummy-space.tfm
+ texmf-dist/doc/pdftex/tests/01-fake-interword-space/fake-interword-space.tex
+ texmf-dist/doc/pdftex/tests/02-pdfmatch/Makefile
+ texmf-dist/doc/pdftex/tests/02-pdfmatch/test-pdfmatch.tex
+ texmf-dist/doc/pdftex/tests/03-deterministic-output/Makefile
+ texmf-dist/doc/pdftex/tests/03-deterministic-output/test-SOURCE_DATE_EPOCH.tex
+ texmf-dist/doc/pdftex/tests/03-deterministic-output/test-fixed-date-id.tex
+ texmf-dist/doc/pdftex/tests/03-deterministic-output/test-no-date-id.tex
+ texmf-dist/doc/pdftex/tests/03-deterministic-output/test-prim.tex
+ texmf-dist/doc/pdftex/tests/04-pdfsuppressptexinfo/Makefile
+ texmf-dist/doc/pdftex/tests/04-pdfsuppressptexinfo/abc.tex
+ texmf-dist/doc/pdftex/tests/04-pdfsuppressptexinfo/test-pdfinfoomitdate.tex
+ texmf-dist/doc/pdftex/tests/04-pdfsuppressptexinfo/test-pdfsuppressptexinfo.tex
+ texmf-dist/doc/pdftex/tests/04-pdfsuppressptexinfo/test-pdftrailer.tex
+ texmf-dist/doc/pdftex/tests/05-mediabox/Makefile
+ texmf-dist/doc/pdftex/tests/05-mediabox/test-normal.tex
+ texmf-dist/doc/pdftex/tests/05-mediabox/test-omit-mediabox.tex
+ texmf-dist/doc/pdftex/tests/06-pkmap/Makefile
+ texmf-dist/doc/pdftex/tests/06-pkmap/cmb10.72pk
+ texmf-dist/doc/pdftex/tests/06-pkmap/cmr10.360pk
+ texmf-dist/doc/pdftex/tests/06-pkmap/cmr10.72pk
+ texmf-dist/doc/pdftex/tests/06-pkmap/prepatch.pdf
+ texmf-dist/doc/pdftex/tests/06-pkmap/test-pkmap.tex
+ texmf-dist/doc/pdftex/tests/07-mapwarn/Makefile
+ texmf-dist/doc/pdftex/tests/07-mapwarn/test-mapwarn.tex
+ texmf-dist/doc/pdftex/tests/08-pdfprimitive/Makefile
+ texmf-dist/doc/pdftex/tests/08-pdfprimitive/test-pdfprimitive-non.tex
+ texmf-dist/doc/pdftex/tests/08-pdfprimitive/test-pdfprimitive-ok.tex
+ texmf-dist/doc/pdftex/tests/08-pdfprimitive/test-pdfprimitive-post.tex
+ texmf-dist/doc/pdftex/tests/09-fontobjnum/Makefile
+ texmf-dist/doc/pdftex/tests/09-fontobjnum/test-fontobjnum.tex
+ texmf-dist/doc/pdftex/tests/10-moddate/Makefile
+ texmf-dist/doc/pdftex/tests/10-moddate/test-moddate-abs.tex
+ texmf-dist/doc/pdftex/tests/10-moddate/test-moddate.tex
+ texmf-dist/doc/pdftex/tests/11-omitcharset/Makefile
+ texmf-dist/doc/pdftex/tests/11-omitcharset/test-omitcharset.tex
+ texmf-dist/doc/pdftex/tests/12-pdf2/Makefile
+ texmf-dist/doc/pdftex/tests/12-pdf2/incl1.tex
+ texmf-dist/doc/pdftex/tests/12-pdf2/incl2.tex
+ texmf-dist/doc/pdftex/tests/12-pdf2/test-compress2.tex
+ texmf-dist/doc/pdftex/tests/12-pdf2/test-doc1incl2.tex
+ texmf-dist/doc/pdftex/tests/12-pdf2/test-doc2incl1.tex
+ texmf-dist/doc/pdftex/tests/12-pdf2/test-doc2incl2.tex
+ texmf-dist/doc/pdftex/tests/12-pdf2/test-pdfmajor.tex
+ texmf-dist/doc/pdftex/tests/Common.mak
+runfiles size=65
+ texmf-dist/fonts/map/dvips/dummy-space/dummy-space.map
+ texmf-dist/fonts/tfm/public/pdftex/dummy-space.tfm
+ texmf-dist/fonts/type1/public/pdftex/dummy-space.pfb
+ texmf-dist/scripts/simpdftex/simpdftex
+ texmf-dist/tex/generic/config/pdftex-dvi.tex
+ texmf-dist/tex/generic/pdftex/glyphtounicode.tex
+ texmf-dist/tex/generic/pdftex/pdfcolor.tex
+catalogue-contact-bugs https://mailman.ntg.nl/mailman/listinfo/ntg-pdftex
+catalogue-contact-home http://www.pdftex.org
+catalogue-contact-repository https://tug.org/svn/pdftex/branches/stable
+catalogue-contact-support https://lists.tug.org/pdftex
+catalogue-license gpl
+catalogue-topics engine

@@ -1,0 +1,21 @@
+name babel-irish
+category Package
+revision 30277
+shortdesc Babel support for Irish
+longdesc The package provides the language definition file for support
+longdesc of Irish Gaelic in babel. The principal content is translations
+longdesc to Irish of standard "LaTeX names". (No shortcuts are defined.)
+containersize 2276
+containerchecksum d9b1486da57f9685e136e14adc61773ec0b3a58ade370da8383476862ad798f26609329d445ee6dd0c6419c98342b720a6880939324d19f67e1528fe99ea3692
+doccontainersize 110184
+doccontainerchecksum f5dd55c6a527cf19eebe492271d1404be3c995cac004d41160522c6c71e4a4636c32547fd64b93beae41b60d8a48184ff9b498f82ca0453bc72b601de3d66cee
+docfiles size=27
+ texmf-dist/doc/generic/babel-irish/irish.pdf details="Package documentation"
+srccontainersize 4252
+srccontainerchecksum df023dd1a4b04e022f46f7202b616e6329b4673084876c1afaadd41faf4414e908411deda1ab909246ea7e1922c46b0a70b5e3e3fbc6c4855e060d47e45ca21e
+runfiles size=1
+ texmf-dist/tex/generic/babel-irish/irish.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/irish
+catalogue-license lppl1.3
+catalogue-topics irish-gaelic
+catalogue-version 1.0h

@@ -1,0 +1,258 @@
+%%
+%% This is file `serbian.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% serbian.dtx  (with options: `code')
+%% This is a generated file.
+%% 
+%% Copyright 2019--2021 Uroš Stefanović and any individual authors
+%% listed elsewhere in this file.  All rights reserved.
+%% 
+%% This file is intended to be used with the Babel system.
+%% ------------------------------------------------------
+%% 
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Uroš Stefanović.
+%% 
+%% The list of derived (unpacked) files belonging to the distribution
+%% and covered by LPPL is defined by the unpacking scripts (with
+%% extension .ins) which are part of the distribution.
+\ProvidesLanguage{serbian}
+        [2021/04/10 2.1 Serbian Latin support for the Babel system]
+%% File `serbian.dtx'
+\LdfInit{serbian}{captionsserbian}
+\ifdefined\if@srb@uni@ode
+  \PackageError{babel}{if@srb@uni@ode already defined.}
+  \relax
+\fi
+\newif\if@srb@uni@ode
+\ifdefined\luatexversion \@srb@uni@odetrue \else
+\ifdefined\XeTeXrevision \@srb@uni@odetrue \fi\fi
+\ifx\l@serbian\@undefined
+  \@nopatterns{Serbian}
+  \adddialect\l@serbian0
+\fi
+\initiate@active@char{"}
+\begingroup \catcode`\"12
+\def\reserved@a{\endgroup
+  \def\@SS{\mathchar"7019 }
+  \def\dq{"}}
+\reserved@a
+\declare@shorthand{serbian}{"c}{\textormath{\v c}{\check c}}
+\declare@shorthand{serbian}{"d}{\textormath{\dj}{\textnormal{\dj}}}
+\declare@shorthand{serbian}{"s}{\textormath{\v s}{\check s}}
+\declare@shorthand{serbian}{"z}{\textormath{\v z}{\check z}}
+\declare@shorthand{serbian}{"C}{\textormath{\v C}{\check C}}
+\declare@shorthand{serbian}{"D}{\textormath{\DJ}{\textnormal{\DJ}}}
+\declare@shorthand{serbian}{"S}{\textormath{\v S}{\check S}}
+\declare@shorthand{serbian}{"Z}{\textormath{\v Z}{\check Z}}
+\declare@shorthand{serbian}{"`}{\quotedblbase}
+\declare@shorthand{serbian}{"'}{\textquotedblleft}
+\declare@shorthand{serbian}{"<}{\guillemotleft}
+\declare@shorthand{serbian}{">}{\guillemotright}
+\declare@shorthand{serbian}{""}{\hskip\z@skip}
+\declare@shorthand{serbian}{"~}{\textormath{\leavevmode\hbox{-}}{-}}
+\declare@shorthand{serbian}{"=}{\nobreak-\hskip\z@skip}
+\declare@shorthand{serbian}{"|}{\textormath{\nobreak\discretionary{-}{}{\kern.03em}\allowhyphens}{}}
+\declare@shorthand{serbian}{"-}{\nobreak\discretionary{-}{-}{-}\bbl@allowhyphens}
+\addto\captionsserbian{%
+  \def\prefacename{Predgovor}%
+  \def\refname{Literatura}%
+  \def\abstractname{Sa\v zetak}%
+  \def\bibname{Bibliografija}%
+  \def\chaptername{Glava}%
+  \def\appendixname{Dodatak}%
+  \def\contentsname{Sadr\v zaj}%
+  \def\listfigurename{Spisak slika}%
+  \def\listtablename{Spisak tabela}%
+  \def\indexname{Indeks}%
+  \def\figurename{Slika}%
+  \def\tablename{Tabela}%
+  \def\partname{Deo}%
+  \def\enclname{Prilozi}%
+  \def\ccname{Kopije}%
+  \def\headtoname{Prima}%
+  \def\pagename{strana}%
+  \def\seename{vidi}%
+  \def\alsoname{vidi tako\dj e}%
+  \def\proofname{Dokaz}%
+  \def\glossaryname{Re\v cnik}%
+}%
+\if@srb@uni@ode
+  \addto\captionsserbian{%
+    \def\abstractname{Sažetak}%
+    \def\contentsname{Sadržaj}%
+    \def\alsoname{vidi takođe}%
+    \def\glossaryname{Rečnik}%
+  }%
+\fi
+\let\captionsserbian@ijekav=\captionsserbian
+\addto\captionsserbian@ijekav{%
+  \def\partname{Dio}%
+  \def\glossaryname{Rje\v cnik}%
+}
+\if@srb@uni@ode
+  \addto\captionsserbian@ijekav{%
+    \def\glossaryname{Rječnik}%
+  }
+\fi
+  \def\dateserbian{%
+   \def\month@serbian{\ifcase\month\or
+    januar\or
+    februar\or
+    mart\or
+    april\or
+    maj\or
+    jun\or
+    jul\or
+    avgust\or
+    septembar\or
+    oktobar\or
+    novembar\or
+    decembar\fi}%
+    \def\today{\number\day.~\month@serbian\ \number\year\@ifstar{}{.}}%
+    \def\todayRoman{\number\day.~\@Roman\month~\number\year\@ifstar{}{.}}}
+  \let\dateserbian@datei=\dateserbian
+  \addto\dateserbian@datei{
+    \def\month@serbian@datei{\ifnum\month=6 juni%
+    \else\ifnum\month=7 juli\else\month@serbian\fi\fi}%
+    \def\today{\number\day.~\month@serbian@datei\ \number\year\@ifstar{}{.}}
+}
+\providehyphenmins{\CurrentOption}{\tw@\tw@}
+\providehyphenmins{serbian}{\tw@\tw@}
+\addto\extrasserbian{\languageshorthands{serbian}}
+\addto\extrasserbian{\bbl@activate{"}}
+\addto\noextrasserbian{\bbl@deactivate{"}}
+\addto\extrasserbian{\bbl@frenchspacing}
+\addto\noextrasserbian{\bbl@nonfrenchspacing}
+\let\@aifORI\@afterindentfalse
+\def\bbl@serbianindent{\let\@afterindentfalse\@afterindenttrue\@afterindenttrue}
+\def\bbl@nonserbianindent{\let\@afterindentfalse\@aifORI\@afterindentfalse}
+\addto\extrasserbian{\bbl@serbianindent}
+\addto\noextrasserbian{\bbl@nonserbianindent}
+\newcount\srbl@lettering \srbl@lettering=\z@
+\addto\extrasserbian{\babel@save\@Alph \let\@Alph\srbl@Alph}
+\def\srbl@Alph#1{%
+\ifcase\srbl@lettering
+    \ifcase#1\or A\or B\or C\or D\or E\or F\or G\or H\or I\or
+    J\or K\or L\or M\or N\or O\or P\or R\or S\or T\or U\or V\or
+    Z\else\@ctrerr\fi
+\or
+    \if@srb@uni@ode
+        \ifcase#1\or A\or B\or V\or G\or D\or Đ\or E\or Ž\or Z\or
+        I\or J\or K\or L\or Lj\or M\or N\or Nj\or O\or
+        P\or R\or S\or T\or Ć\or U\or F\or H\or C\or
+        Č\or Dž\or Š\else\@ctrerr\fi
+    \else
+        \ifcase#1\or A\or B\or V\or G\or D\or\DJ\or E\or\v Z\or Z\or
+        I\or J\or K\or L\or Lj\or M\or N\or Nj\or O\or
+        P\or R\or S\or T\or\'C\or U\or F\or H\or C\or
+        \v C\or D\v z\or\v S\else\@ctrerr\fi
+    \fi
+\or
+    \ifcase#1\or A\or B\or C\or D\or E\or F\or G\or H\or I\or
+    J\or K\or L\or M\or N\or O\or P\or Q\or R\or S\or T\or U\or V\or
+    W\or X\or Y\or Z\else\@ctrerr\fi
+\fi}%
+\addto\extrasserbian{\babel@save\@alph \let\@alph\srbl@alph}
+\def\srbl@alph#1{%
+\ifcase\srbl@lettering
+    \ifcase#1\or a\or b\or c\or d\or e\or f\or g\or h\or i\or
+    j\or k\or l\or m\or n\or o\or p\or r\or s\or t\or u\or v\or
+    z\else\@ctrerr\fi
+\or
+    \if@srb@uni@ode
+        \ifcase#1\or a\or b\or v\or g\or d\or đ\or e\or ž\or z\or
+        i\or j\or k\or l\or lj\or m\or n\or nj\or o\or
+        p\or r\or s\or t\or ć\or u\or f\or h\or c\or
+        č\or dž\or š\else\@ctrerr\fi
+    \else
+        \ifcase#1\or a\or b\or v\or g\or d\or\dj\or e\or\v z\or z\or
+        i\or j\or k\or l\or lj\or m\or n\or nj\or o\or
+        p\or r\or s\or t\or\'c\or u\or f\or h\or c\or
+        \v c\or d\v z\or\v s\else\@ctrerr\fi
+    \fi
+\or
+    \ifcase#1\or a\or b\or c\or d\or e\or f\or g\or h\or i\or
+    j\or k\or l\or m\or n\or o\or p\or q\or r\or s\or t\or u\or v\or
+    w\or x\or y\or z\else\@ctrerr\fi
+\fi}%
+\addto\extrasserbian{%
+  \babel@save\enumEng \def\enumEng{\srbl@lettering=\tw@}
+  \babel@save\enumLat \def\enumLat{\srbl@lettering=\z@}
+  \babel@save\enumCyr \def\enumCyr{\srbl@lettering=\@ne}
+}%
+\bbl@declare@ttribute{serbian}{ijekav}{%
+ \PackageInfo{babel}{Serbian attribute set to ijekav}%
+ \let\captionsserbian=\captionsserbian@ijekav }
+\@onlypreamble\captionsserbian@ijekav
+\bbl@declare@ttribute{serbian}{quotes}{%
+ \PackageInfo{babel}{Serbian attribute set to quotes}%
+ \declare@shorthand{serbian}{"'}{\textquotedblright} }
+\bbl@declare@ttribute{serbian}{datei}{%
+ \PackageInfo{babel}{Serbian attribute set to datei}%
+ \let\dateserbian=\dateserbian@datei }
+\@onlypreamble\dateserbian@datei
+\def\sh{\mathop{\operator@font sh}\nolimits}
+\def\ch{\mathop{\operator@font ch}\nolimits}
+\def\tg{\mathop{\operator@font tg}\nolimits}
+\def\ctg{\mathop{\operator@font ctg}\nolimits}
+\def\arctg{\mathop{\operator@font arctg}\nolimits}
+\def\arcctg{\mathop{\operator@font arcctg}\nolimits}
+\addto\extrasserbian{%
+  \babel@save{\th}%
+  \let\ltx@th\th
+  \def\th{\textormath{\ltx@th}%
+                     {\mathop{\operator@font th}\nolimits}}%
+  }
+\def\cth{\mathop{\operator@font cth}\nolimits}
+\def\arsh{\mathop{\operator@font arsh}\nolimits}
+\def\arch{\mathop{\operator@font arch}\nolimits}
+\def\arth{\mathop{\operator@font arth}\nolimits}
+\def\arcth{\mathop{\operator@font arcth}\nolimits}
+\def\cosec{\mathop{\operator@font cosec}\nolimits}
+\def\arcsec{\mathop{\operator@font arcsec}\nolimits}
+\def\arccosec{\mathop{\operator@font arccosec}\nolimits}
+\def\sech{\mathop{\operator@font sech}\nolimits}
+\def\cosech{\mathop{\operator@font cosech}\nolimits}
+\def\arsech{\mathop{\operator@font arsech}\nolimits}
+\def\arcosech{\mathop{\operator@font arcosech}\nolimits}
+\def\Prob{\mathop{\kern\z@\mathsf{P}}\nolimits}
+\def\Expect{\mathop{\kern\z@\mathsf{E}}\nolimits}
+\def\Variance{\mathop{\kern\z@\mathsf{D}}\nolimits}
+\def\nzs{\mathop{\operator@font nzs}\nolimits}
+\def\nzd{\mathop{\operator@font nzd}\nolimits}
+\def\NZS{\mathop{\operator@font NZS}\nolimits}
+\def\NZD{\mathop{\operator@font NZD}\nolimits}
+\ldf@finish{serbian}
+%%
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+\endinput
+%%
+%% End of file `serbian.ldf'.

@@ -1,0 +1,73 @@
+%# -*- coding: utf-8 -*-
+\ifx\epTeXinputencoding\undefined\else % defined in e-pTeX (> TL2016)
+  \epTeXinputencoding utf8    % ensure utf-8 encoding for platex
+\fi
+
+\documentclass[a4paper]{jsarticle}
+\usepackage{doc}
+\usepackage{pxeverysel}
+\GetFileInfo{pxeverysel.sty}
+\title{Package \textsf{pxeverysel} \fileversion}
+\author{Takayuki Yato \& Hironobu Yamashita}
+\date{\filedate}
+\begin{document}
+
+\maketitle
+
+Package \textsf{everysel}, written by Martin Schr\"oder,
+is incompatible with the definition of \verb+\selectfont+ redefined
+by p\LaTeX\ kernel. For this reason, when using \textsf{everysel},
+font selection scheme for Japanese characters goes wrong.
+The package \textsf{pxeverysel} provides a patch for \textsf{everysel}
+to work with p\LaTeX\ font selection.
+
+This package is part of \textsf{platex-tools} bundle:
+\begin{verbatim}
+  https://github.com/aminophen/platex-tools
+\end{verbatim}
+
+\bigskip
+
+Martin Schr\"oder氏による\textsf{everysel}パッケージをp\LaTeX で
+使用すると、日本語の文字サイズが変わらなくなったり、
+\textsf{otf}パッケージで文字化けが起こったりします。
+これは、\pLaTeX カーネルが日本語用に再定義している\verb+\selectfont+が、
+\textsf{everysel}によって書き換えられてしまうためです。
+この\textsf{pxeverysel}パッケージを読み込むことで、p\LaTeX でも
+\textsf{everysel}パッケージを使えるようになります。
+
+\LaTeXe~2021-06-01以降では、\textsf{everysel}と同等の機能がカーネルに
+実装されていて、その対処は\pLaTeXe{}カーネルでなされます。
+この場合、\textsf{pxeverysel}パッケージは何もしません。
+
+\newpage
+\section{使いかた}
+
+使いかたは、\textsf{everysel}パッケージの代わりに、あるいは
+\textsf{everysel}パッケージに追加して、\textsf{pxeverysel}パッケージを
+読み込むだけです\footnote{稀に\\\texttt{%
+!~Package pxeverysel Error:~Patch too late!\\
+(pxeverysel)~~~~~~~~~~~~~~~~Load pxeverysel earlier.%
+}\\というエラーが出ることがあります。この場合は、
+\textsf{pxeverysel}パッケージを少し早めに読み込んでみてください。}。
+\textsf{everysel}を内部で読み込んでいる\textsf{ragged2e}を例に示します：
+\begin{verbatim}
+  \documentclass[a4paper]{jsarticle}
+  \usepackage{ragged2e}% 読み込むだけでアウト
+  \usepackage{pxeverysel}
+  \begin{document}
+  % 和文のフォントサイズが変わらない!
+  {\TeX}はアレ{\Large{\TeX}はアレ}
+  \end{document}
+\end{verbatim}
+
+\section*{References}
+
+\begin{itemize}
+\item vwcol.styとutf.styを併用したい\\
+  \texttt{http://oku.edu.mie-u.ac.jp/tex/mod/forum/discuss.php?d=1763}
+\item pLaTeXでeveryselしたい話\\
+  \texttt{http://d.hatena.ne.jp/zrbabbler/20151212/1449898508}
+\end{itemize}
+
+\end{document}

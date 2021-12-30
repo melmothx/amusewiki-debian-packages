@@ -1,0 +1,133 @@
+%
+% pxxspace.sty
+% written by Takayuki Yato (ZR)
+%
+% This package is distributed as part of the platex-tools bundle
+% maintained by Hironobu Yamashita
+% by courtesy of the original author.
+% https://github.com/aminophen/platex-tools
+%
+% Original copyright notice:
+% --------------------------------------------------
+% Copyright (c) 2019 Takayuki YATO (aka. "ZR")
+%   GitHub:   https://github.com/zr-tex8r
+%   Twitter:  @zr_tex8r
+%
+% This package is distributed under the MIT License.
+% --------------------------------------------------
+%
+% This package is expected to be compatible with
+%   * xspace.sty in latex-tools
+%     (2009/10/20 v1.13 -- 2014/10/28 v1.13)
+%
+
+%% package declaration
+\NeedsTeXFormat{pLaTeX2e}
+\ProvidesPackage{pxxspace}
+    [2019/09/23 v0.2a Patch for xspace for pLaTeX/upLaTeX]
+\def\pxxs@pkgname{pxxspace}
+
+%--------------------------------------- preparations
+
+%% e-TeX is required
+\RequirePackage{etoolbox}[2011/01/03]% v2.1
+\ifx\numdef\@undefined \expandafter\endinput \fi
+
+%% packages
+\RequirePackage{xspace}[2009/10/20]% v1.13
+
+%% check if patchable
+\chardef\pxxs@tmpa=\@ne
+\ifpatchable\@xspace{%
+  \@xspace@lettoken@if@letter@TF
+}{}{\chardef\pxxs@tmpa=\z@}
+\ifpatchable\@xspace@eTeX@setup{%
+  \begingroup
+}{}{\chardef\pxxs@tmpa=\z@}
+\ifnum\pxxs@tmpa=\z@
+  \PackageError\pxxs@pkgname
+   {Failure in patching}%
+   {Package loading is aborted.\MessageBreak\@ehc}%
+\expandafter\endinput\fi\relax
+
+%--------------------------------------- helpers
+
+%% packages
+\RequirePackage{pdftexcmds}
+
+%% engine check
+\newif\ifpxxs@uptex
+\pdf@isprimitive\forcecjktoken\forcecjktoken{\pxxs@uptextrue}{}
+
+%% \pxxs@forcecjktoken
+\ifpxxs@uptex
+  \let\pxxs@forcecjktoken\forcecjktoken
+\else
+  \let\pxxs@forcecjktoken\relax
+\fi
+
+%--------------------------------------- adjustments to xspace
+
+%% \pxxs@jt@XXX : probe tokens
+\begingroup
+  \def\do#1#2#3{%
+    \kcatcode#2=#3\relax \kansujichar1=#2\relax
+    \edef\next{%
+      \global\let\noexpand#1=\scantokens\expandafter{\kansuji1}%
+    }\next}
+  \pxxs@forcecjktoken
+  \everyeof{\noexpand}% disable EOF marker
+  \do\pxxs@jt@kanji{\jis"3441}{16}%
+  \do\pxxs@jt@kana{\jis"2422}{17}%
+  \do\pxxs@jt@other{\jis"2123}{18}%
+  \ifpxxs@uptex
+    \do\pxxs@jt@hangul{\ucs"D55C}{19}%
+  \fi
+\endgroup
+
+%% \pxxs@lettoken@if@jachar{<true>}{<false>}
+% Checks if \@let@token is a ja-character token.
+% NB: Here \@let@token might be an \outer-token.
+\let\@let@token\relax
+\def\pxxs@tmpa#1#2{\unexpanded{%
+  \ifcat\noexpand\@let@token#1\expandafter\@firstoftwo
+  \else \expandafter#2\fi}}
+\edef\pxxs@lettoken@if@jachar{%
+  \pxxs@tmpa\pxxs@jt@kana\pxxs@lettoken@if@jachar@a}
+\edef\pxxs@lettoken@if@jachar@a{%
+  \pxxs@tmpa\pxxs@jt@kanji\pxxs@lettoken@if@jachar@b}
+\edef\pxxs@lettoken@if@jachar@b{%
+  \pxxs@tmpa\pxxs@jt@other\pxxs@lettoken@if@jachar@c}
+\edef\pxxs@lettoken@if@jachar@c{%
+  \pxxs@tmpa\pxxs@jt@hangul\@secondoftwo}
+\unless\ifpxxs@uptex
+  \let\pxxs@lettoken@if@jachar@c\@secondoftwo
+\fi
+
+%% \pxxs@precheck
+% Placed just before \@xspace@lettoken@if@letter@TF to modify the
+% behavior of \@xspace so that spaces are omitted if the following
+% token is a ja-character.
+\def\pxxs@precheck#1{%
+  \pxxs@lettoken@if@jachar{\@gobbletwo}{#1}%
+}
+
+%% patch \@xspace
+\patchcmd\@xspace{%from
+  \@xspace@lettoken@if@letter@TF
+}{%to
+  \pxxs@precheck
+  \@xspace@lettoken@if@letter@TF
+}{}{}
+
+%% patch \@xspace@eTeX@setup
+\patchcmd\@xspace@eTeX@setup{%from
+  \begingroup
+}{%to
+  \begingroup
+  \pxxs@forcecjktoken
+}{}{}
+
+%--------------------------------------- done
+\endinput
+%% EOF

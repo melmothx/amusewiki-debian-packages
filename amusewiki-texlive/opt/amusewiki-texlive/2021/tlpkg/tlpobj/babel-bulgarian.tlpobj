@@ -1,0 +1,21 @@
+name babel-bulgarian
+category Package
+revision 31902
+shortdesc Babel contributed support for Bulgarian
+longdesc The package provides support for documents in Bulgarian (or
+longdesc simply containing some Bulgarian text).
+containersize 5808
+containerchecksum 0c838e5c5cd010fddaec385376f9eb5fb10730e918dd28f58987f855a444d91ed2e66c0de46c74637d134d72f7e348e538836df33f6255a14ed51d0e8d5e8a3e
+doccontainersize 176396
+doccontainerchecksum 4dcd92a2088e737972f0663fe5161883cae901dc82aafd1bd33f2d80a852fb51d6229c95cc655826bd17599a7152b8a7bf0031eb046530a135e8bc5c9c74b2dd
+docfiles size=48
+ texmf-dist/doc/generic/babel-bulgarian/README details="Readme"
+ texmf-dist/doc/generic/babel-bulgarian/bulgarian.pdf details="Package documentation"
+srccontainersize 20716
+srccontainerchecksum 047f69cbdedea9070a002782e8d1b893aae71adaa2e637df560ab8a176308faf8d1b8b52afda8f38f264783077a227176eacace9484ccc0af2a4a7615460c7a2
+runfiles size=6
+ texmf-dist/tex/generic/babel-bulgarian/bulgarian.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/bulgarian
+catalogue-license lppl1.3
+catalogue-topics bulgarian multilingual-addon
+catalogue-version 1.2g

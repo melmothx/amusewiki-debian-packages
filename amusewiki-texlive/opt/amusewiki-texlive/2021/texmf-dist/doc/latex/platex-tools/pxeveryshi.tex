@@ -1,0 +1,77 @@
+%# -*- coding: utf-8 -*-
+\ifx\epTeXinputencoding\undefined\else % defined in e-pTeX (> TL2016)
+  \epTeXinputencoding utf8    % ensure utf-8 encoding for platex
+\fi
+
+\documentclass[a4paper]{jsarticle}
+\usepackage{doc}
+\usepackage{pxeveryshi}
+\GetFileInfo{pxeveryshi.sty}
+\title{Package \textsf{pxeveryshi} \fileversion}
+\author{Takayuki Yato \& Hironobu Yamashita}
+\date{\filedate}
+\begin{document}
+
+\maketitle
+
+Package \textsf{everyshi}, written by Martin Schr\"oder,
+cannot be used with Japanese classes for vertical writing
+(tarticle.cls, etc). This behavior is not comfortable, since
+\textsf{everyshi} is required by some other packages
+(e.g. \textsf{tikz}) and causes an error:
+\begin{verbatim}
+  ! Incompatible direction list can't be unboxed.
+\end{verbatim}
+The package \textsf{pxeveryshi} provides a patch for \textsf{everyshi}
+to work with both horizontal and vertical writing.
+
+With \pLaTeXe~2020-10-01 or later, this package does
+nothing because the \pLaTeXe\ itself handles the situation.
+Therefore, you will not need this package at all.
+
+This package is part of \textsf{platex-tools} bundle:
+\begin{verbatim}
+  https://github.com/aminophen/platex-tools
+\end{verbatim}
+
+\bigskip
+
+Martin Schr\"oder氏による\textsf{everyshi}パッケージは、
+p\LaTeX の縦組クラス（tarticle.clsなど）で使うとエラーが出てしまいます。
+この挙動は、たとえば\textsf{tikz}のような内部で\textsf{everyshi}パッケージ
+を必要とするパッケージを縦組で使用する際に問題になります。
+この\textsf{pxeveryshi}パッケージを読み込むことで、縦組クラスでも
+\textsf{everyshi}パッケージ（およびこれに依存するパッケージ）が
+使えるようになります。
+
+\LaTeXe~2020-10-01以降では、\textsf{everyshi}と同等の機能がカーネルに
+実装されていて、その対処は\pLaTeXe{}カーネルでなされます。
+この場合、\textsf{pxeveryshi}パッケージは何もしません。
+
+\section{使いかた}
+
+使いかたは、\textsf{everyshi}パッケージの代わりに、あるいは
+\textsf{everyshi}パッケージに追加して、\textsf{pxeveryshi}パッケージを
+読みこむだけです。使用例：
+\begin{verbatim}
+  \documentclass{tarticle}
+  \usepackage[dvipdfmx]{graphicx}
+  \usepackage{tikz}
+  \usepackage{pxeveryshi}
+  \begin{document}
+  \begin{tikzpicture}
+    \draw (0,0) -- (1,2);
+  \end{tikzpicture}
+  \end{document}
+\end{verbatim}
+
+\section*{References}
+
+\begin{itemize}
+\item tikz を縦書きで\\
+  \texttt{https://oku.edu.mie-u.ac.jp/~okumura/texfaq/qa/56760.html}
+\item Re: tikz を縦書きで\\
+  \texttt{https://oku.edu.mie-u.ac.jp/~okumura/texfaq/qa/56761.html}
+\end{itemize}
+
+\end{document}

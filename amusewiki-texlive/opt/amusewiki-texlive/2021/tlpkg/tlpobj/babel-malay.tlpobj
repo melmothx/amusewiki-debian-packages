@@ -1,0 +1,23 @@
+name babel-malay
+category Package
+revision 43234
+shortdesc Support for Malay within babel
+longdesc This is the babel style for Malay.
+containersize 2516
+containerchecksum 6e2f95eb95a7ffe0b21789a65e74936139d92381867e507ce56bd8eb39b4061b177c10fed0a0226e9091b963370d3c001115473625910f03b699d5517350f2da
+doccontainersize 114256
+doccontainerchecksum b06395639e743571870dee10e029e4622c55683d7a9d728fff381bcabe4bf694511230795c79da4080299938acf66d03cc55fd45cb8426b484e19e0fb0f73b10
+docfiles size=29
+ texmf-dist/doc/generic/babel-malay/README
+ texmf-dist/doc/generic/babel-malay/malay.pdf details="Documentation for Bahasa Malaysia version"
+srccontainersize 5056
+srccontainerchecksum 4e7e47a29802a7369f7bdcf29ac0fec13afd69f42c9b01060ffadb2cd8d1f1656f7f6ae8fe5ced67d9ce6438c26a07743a18bd38c561fbe8357e8ea3c685a5dc
+runfiles size=5
+ texmf-dist/tex/generic/babel-malay/bahasam.ldf
+ texmf-dist/tex/generic/babel-malay/malay.ldf
+ texmf-dist/tex/generic/babel-malay/melayu.ldf
+ texmf-dist/tex/generic/babel-malay/meyalu.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/malay
+catalogue-license lppl1.3
+catalogue-topics bahasa-indonesia+malaysia multilingual
+catalogue-version 1.0m

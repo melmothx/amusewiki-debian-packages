@@ -1,0 +1,191 @@
+%%
+%% This is file `japanese.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% babel-japanese.dtx  (with options: `code')
+%% 
+%% This file is part of the `japanese' package,
+%% providing Japanese language support for Babel.
+%% 
+%% Copyright (C) 1999--2007 by ING (Toru INAGAKI)
+%%               2016--2020 by Japanese TeX Development Community
+%% 
+%% This package is free software that can be redistributed and/or
+%% modified under the terms of the LaTeX Project Public License.
+%% 
+%% Previous version of this work was written by ING, based on ideas
+%% from bookworm, Tony and Ohishi.
+%% Current maintainer is Japanese TeX Development Community.
+%% 
+%% Please report errors to
+%%   Japanese TeX Development Community Issue List <issue@texjp.org>
+%% or, GitHub repository is also available:
+%%   https://github.com/texjporg/babel-japanese
+%% 
+\ifx\epTeXinputencoding\undefined\else
+  \epTeXinputencoding utf8
+\fi
+\ProvidesLanguage{japanese}
+        [2021/02/13 v3.1 Japanese support for babel (texjporg)]
+\LdfInit\CurrentOption{captions\CurrentOption}
+\ifx\l@japanese\@undefined
+  \PackageInfo{babel}{%
+    No hyphenation patterns are available for Japanese,\MessageBreak
+    so I will use the patterns preloaded for \bbl@nulllanguage\MessageBreak
+    instead}
+  \adddialect\l@japanese0\fi
+\def\bbl@jpn@prefacename{前書き}%
+\def\bbl@jpn@refname{参考文献}%
+\def\bbl@jpn@abstractname{概要}%
+\def\bbl@jpn@bibname{参考文献}%
+\def\bbl@jpn@prechaptername{第}%    -- added
+\def\bbl@jpn@postchaptername{章}%   -- added
+\def\bbl@jpn@presectionname{}%  第  -- added
+\def\bbl@jpn@postsectionname{}% 節  -- added
+\def\bbl@jpn@appendixname{付録}%
+\def\bbl@jpn@contentsname{目次}%
+\def\bbl@jpn@listfigurename{図目次}%
+\def\bbl@jpn@listtablename{表目次}%
+\def\bbl@jpn@indexname{索引}%
+\def\bbl@jpn@figurename{図}%
+\def\bbl@jpn@tablename{表}%
+\def\bbl@jpn@prepartname{第}%       -- added
+\def\bbl@jpn@postpartname{部}%      -- added
+\def\bbl@jpn@proofname{証明}%
+\def\bbl@jpn@glossaryname{用語集}%
+\@namedef{captions\CurrentOption}{%
+  \let\prefacename\bbl@jpn@prefacename
+  \let\refname\bbl@jpn@refname
+  \let\abstractname\bbl@jpn@abstractname
+  \let\bibname\bbl@jpn@bibname
+  %\def\chaptername{Chapter}%
+  \let\prechaptername\bbl@jpn@prechaptername   % -- added
+  \let\postchaptername\bbl@jpn@postchaptername % -- added
+  \let\presectionname\bbl@jpn@presectionname   % -- added
+  \let\postsectionname\bbl@jpn@postsectionname % -- added
+  \let\appendixname\bbl@jpn@appendixname
+  \let\contentsname\bbl@jpn@contentsname
+  \let\listfigurename\bbl@jpn@listfigurename
+  \let\listtablename\bbl@jpn@listtablename
+  \let\indexname\bbl@jpn@indexname
+  \let\figurename\bbl@jpn@figurename
+  \let\tablename\bbl@jpn@tablename
+  %\def\partname{Part}%
+  \let\prepartname\bbl@jpn@prepartname   % -- added
+  \let\postpartname\bbl@jpn@postpartname % -- added
+  %\def\enclname{encl}%     同封物
+  %\def\ccname{cc}%         Cc
+  %\def\headtoname{To}%     To（宛先）
+  %\def\pagename{Page}%     ページ
+  %\def\seename{see}%       参照
+  %\def\alsoname{see also}% も参照
+  \let\proofname\bbl@jpn@proofname
+  \let\glossaryname\bbl@jpn@glossaryname
+  }
+\newif\ifbbl@jpn@Seireki \bbl@jpn@Seirekitrue
+\def\西暦{\bbl@jpn@Seirekitrue}%
+\def\和暦{\bbl@jpn@Seirekifalse}%
+\def\bbl@jpn@kanjishowa{昭和}
+\def\bbl@jpn@kanjiheisei{平成}
+\def\bbl@jpn@kanjireiwa{令和}
+\def\bbl@jpn@kanjigan{元}%
+\def\bbl@jpn@TateSeirekiToday{%
+    \bbl@jpn@maybekansuji\year 年%
+    \bbl@jpn@maybekansuji\month 月%
+    \bbl@jpn@maybekansuji\day 日}
+\def\bbl@jpn@TateWarekiToday{%
+    \bbl@jpn@gengo\bbl@jpn@maybekansuji\bbl@jpn@gengoyear 年%
+    \bbl@jpn@maybekansuji\month 月%
+    \bbl@jpn@maybekansuji\day 日}
+\def\bbl@jpn@SeirekiToday{%
+    \number\year 年%
+    \number\month 月%
+    \number\day 日}
+\def\bbl@jpn@WarekiToday{%
+    \bbl@jpn@gengo\number\bbl@jpn@gengoyear 年%
+    \number\month 月%
+    \number\day 日}
+\def\bbl@jpn@gengo#1\bbl@jpn@gengoyear{%
+  \@tempcnta\year\relax
+  \multiply\@tempcnta100
+  \advance\@tempcnta\month
+  \multiply\@tempcnta100
+  \advance\@tempcnta\day
+  \@tempcntb\year\relax
+  \ifnum\@tempcnta<19890108
+    \bbl@jpn@kanjishowa
+    \advance\@tempcntb-1925
+  \else\ifnum\@tempcnta<20190501
+    \bbl@jpn@kanjiheisei
+    \advance\@tempcntb-1988
+  \else
+    \bbl@jpn@kanjireiwa
+    \advance\@tempcntb-2018
+  \fi\fi
+  \ifnum\@tempcntb=1
+    \bbl@jpn@kanjigan   % 元年は \number も \kansuji も関係ない
+  \else
+    #1\@tempcntb % この #1 は \number または \bbl@jpn@maybekansuji
+  \fi
+}
+\chardef\bbl@jpn@l@catcode=\catcode`\L\relax
+\chardef\bbl@jpn@p@catcode=\catcode`\P\relax
+\chardef\bbl@jpn@x@catcode=\catcode`\X\relax
+\ifx\directlua\@undefined
+  \ifx\kanjiskip\@undefined       % pdftex/xetex
+    \catcode`\L=14\relax
+    \catcode`\P=14\relax
+    \catcode`\X=14\relax
+  \else                           % ptex/uptex
+    \catcode`\L=14\relax
+    \catcode`\P=9\relax
+    \catcode`\X=9\relax
+  \fi
+\else
+  \ifx\luatexjaLoaded\@undefined  % luatex
+    \catcode`\L=14\relax
+    \catcode`\P=14\relax
+    \catcode`\X=14\relax
+  \else                           % luatex + luatexja
+    \catcode`\L=9\relax
+    \catcode`\P=14\relax
+    \catcode`\X=9\relax
+  \fi
+\fi
+\@namedef{date\CurrentOption}{%
+  \def\today{{%
+P   \ifnum1=\iftdir\ifmdir0\else1\fi\else0\fi % tate
+L   \ifnum\ltjgetparameter{direction}=3 % tate
+X     \ifbbl@jpn@Seireki
+X       \bbl@jpn@TateSeirekiToday
+X     \else
+X       \bbl@jpn@TateWarekiToday
+X     \fi
+X   \else
+      \ifbbl@jpn@Seireki
+        \bbl@jpn@SeirekiToday
+      \else
+        \bbl@jpn@WarekiToday
+      \fi
+X   \fi
+  }}%
+}
+\let\bbl@jpn@maybekansuji\number
+\bbl@declare@ttribute{japanese}{kansujitoday}{\let\bbl@jpn@maybekansuji\kansuji}
+\catcode`\L=\bbl@jpn@l@catcode\relax
+\catcode`\P=\bbl@jpn@p@catcode\relax
+\catcode`\X=\bbl@jpn@x@catcode\relax
+\ifx\setlocalecaption\@undefined \else
+\setlocalecaption{\CurrentOption}{part.template}%
+  {[[prepart]][part][[postpart]]}
+\setlocalecaption{\CurrentOption}{chapter.template}%
+  {[[prechapter]][chapter][[postchapter]]}
+\fi
+\@namedef{extras\CurrentOption}{}
+\@namedef{noextras\CurrentOption}{}
+\ldf@finish\CurrentOption
+\endinput
+%%
+%% End of file `japanese.ldf'.

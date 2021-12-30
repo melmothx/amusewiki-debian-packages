@@ -1,0 +1,15 @@
+name hyphen-thai
+category TLCore
+revision 58652
+shortdesc Thai hyphenation patterns.
+longdesc Hyphenation patterns for Thai in LTH and UTF-8 encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=thai 	lefthyphenmin=2 	righthyphenmin=3 	file=loadhyph-th.tex 	file_patterns=hyph-th.pat.txt 	file_exceptions=
+containersize 33700
+containerchecksum 8336eee03250859ab4328ad3c1fe437d2af688ef56b43be49c45838965ffe033befa84cdf600e9f48cdf60cbbfbff44450c830bd4c34556f680c5096ed3aecc4
+runfiles size=55
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-th.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-th.lth.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-th.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-th.pat.txt

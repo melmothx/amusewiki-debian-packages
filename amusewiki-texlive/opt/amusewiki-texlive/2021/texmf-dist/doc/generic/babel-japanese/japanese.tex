@@ -1,0 +1,892 @@
+%#!lualatex
+\documentclass[lualatex,a4paper,11pt]{jlreq}
+\usepackage{luatexja-fontspec}
+\newjfontfamily{\HaraMC}[
+    FontFace = {l}{n}{*-Light},
+    FontFace = {m}{n}{*-Regular},
+    FontFace = {b}{n}{*-Bold},
+    BoldFont = {*-Bold},
+  ]{HaranoAjiMincho}
+\newjfontfamily{\HaraGT}[
+    FontFace = {m}{n}{*-Regular},
+    FontFace = {b}{n}{*-Bold},
+    FontFace = {eb}{n}{*-Heavy},
+    BoldFont = {*-Bold},
+  ]{HaranoAjiGothic}
+\newjfontfamily{\HaraMG}[
+    FontFace = {m}{n}{*-Medium},
+  ]{HaranoAjiGothic}
+
+%\usepackage{luatexja-ruby}% for kenten
+% [TODO] https://ja.osdn.net/projects/luatex-ja/ticket/41023
+% => based on okumacro.sty
+\makeatletter
+\def\kenten#1{%
+  \setbox1=\hbox to\z@{\hbox to 1\zw{\hss ・\hss}\hss}%
+  \ht1=.63\zw
+  \@kenten#1\end\relax}
+\def\@kenten#1#2{%
+  \ifx#1\end \let\next=\relax \else
+    \raise.75\zw\copy1\nobreak #1\ifx#2\end\else
+    \hskip\ltjgetparameter{kanjiskip}\relax\fi
+    \let\next=\@kenten
+  \fi\next#2}
+\makeatother
+
+%%%%%%%%%%%%%%%%
+% additional packages
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage[defaultsups]{newpxtext}
+\usepackage[zerostyle=c,straightquotes]{newtxtt}
+\usepackage{newpxmath}
+\usepackage[svgnames]{xcolor}
+\usepackage[hyperfootnotes=false]{hyperref}
+\usepackage{hologo}
+\usepackage{xspace}
+
+\def\Pkg#1{\textsf{#1}}
+\def\Opt#1{\texttt{#1}}
+\def\ClsY#1{\Pkg{\textcolor{Black}{#1}}}
+\def\ClsT#1{\Pkg{\textcolor{Green}{#1}}}
+\def\ClsYT#1{\Pkg{\textcolor{Blue}{#1}}}
+\def\file#1{\textsf{#1}}
+\def\code#1{\texttt{#1}}
+\def\cs#1{\texttt{\textbackslash#1}}
+
+\usepackage[japanese,english]{babel}% References in English
+\AtBeginDocument{\def\figurename{Figure~}}% add a space
+
+\usepackage{listings}
+\lstset{%
+  language=[LaTeX]{TeX},
+  basicstyle={\small\ttfamily},
+  texcsstyle={*\color{blue}},
+  commentstyle={\color{Green}},
+  columns=[l]{fullflexible},
+  numbers=left,
+  xrightmargin=0\zw,
+  xleftmargin=3\zw,
+  aboveskip=3pt,
+  belowskip=3pt,
+  moretexcs={setlength,setmainfont,maketitle,RequirePackage}
+}
+
+\usepackage{shortvrb}
+\MakeShortVerb*{|}
+%%%%%%%%%%%%%%%%
+
+% foreign text -> italic
+\def\Foreign#1{\textit{#1}}
+
+% logos
+\def\eTeX{$\varepsilon$-\TeX}
+\def\pTeX{p\kern-.10em\TeX}
+\def\upTeX{u\pTeX}
+\def\epTeX{$\varepsilon$-\pTeX}
+\def\eupTeX{$\varepsilon$-\upTeX}
+\def\pLaTeX{p\LaTeX}\def\pLaTeXe{p\LaTeXe}
+\def\upLaTeX{u\pLaTeX}\def\upLaTeXe{u\pLaTeXe}
+\def\pdfTeX{\hologo{pdfTeX}}
+\def\pdfLaTeX{\hologo{pdfLaTeX}}
+\def\XeTeX{\hologo{XeTeX}}
+\def\XeLaTeX{\hologo{XeLaTeX}}
+\def\LuaTeX{\hologo{LuaTeX}}
+\def\LuaLaTeX{\hologo{LuaLaTeX}}
+
+\def\TL{\TeX\ Live\xspace}
+\def\JTDC{Japanese \TeX\ Development Community}
+
+\def\_{\leavevmode\vrule width .45em height -.2ex depth .3ex\relax}
+
+\frenchspacing
+\begin{document}
+
+\title{\textsf{\textbf{Guide to Japanese typesetting with \LaTeX}}}
+\author{\JTDC\null
+\thanks{\url{https://texjp.org},\ e-mail: \texttt{issue(at)texjp.org}}}
+\maketitle
+
+% 日本語組版は西欧言語とは全然違う
+Typesetting requirements of Japanese are completely different from
+those of Western languages, so setting parameter values and additional
+hyphenation patterns are not enough.
+
+\begin{itemize}
+ % babel-japanese (japanese.ldf) は訳語を登録するだけ
+ % 日本語組版に必要な設定は行わない
+ \item The \Opt{japanese} option of Babel package only defines
+   translated replacement texts for
+   keywords and dates (e.g. ``\contentsname'' $\rightarrow$
+   ``{\selectlanguage{japanese}\contentsname}'',
+   \verb+\today+ $\rightarrow$ ``{\selectlanguage{japanese}\和暦\today}'');
+   it does not care about any Japanese typesetting requirements.
+ % CJK パッケージも不十分
+ \item It may seem sufficient to use a package such as \Pkg{CJK} or
+   \Pkg{xeCJK}, or switch to Japanese fonts with a Unicode-enabled engine;
+   however, that's not the case.
+\end{itemize}
+
+% この文書の目的：ちゃんと日本語する簡単な方法の紹介
+%-- 日本語を「ちゃんと」組むことが西欧言語とは全く異なることを伝える。
+%-- ほんの数文字・数行の行組版だけでも組版規則が全く異なる。
+%-- ページレイアウトに関わる設定値（段落字下げ，行長，行送りなど）が
+%-- 異なるのは，想像の範囲内と思われる。
+This document describes how to get an ``acceptable'' Japanese
+typesetting result and the eminent differences between Western
+and Japanese typesetting requirements.
+
+
+% とりあえず LuaLaTeX + \usepackage{luatexja} オススメ
+%-- 対象読者が「日本語組版を全く知らない海外の人」なので
+%-- 資産（＝解説書，周囲の経験，歴史等）の面が日本と真逆である！
+%-- つまり LuaTeX 最強＋資産も最強
+\section{Short introduction: using \LuaLaTeX}
+
+To obtain a properly formatted Japanese document, the easiest way
+is to use \LuaLaTeX\ with Lua\TeX-ja package.
+
+\begin{itemize}
+  \item Using the \Pkg{jlreq} class (it loads \Pkg{luatexja} internally):
+\begin{lstlisting}
+  \documentclass[book]{jlreq}% loads luatexja.sty internally
+  \begin{document}
+  \chapter{日本語の文書}% Japanese document
+  こんにちは，日本。% Hello, Japan.
+  \end{document}
+\end{lstlisting}
+    Save the above as \file{jp1.tex} and run the following command.
+\begin{verbatim}
+    $ lualatex jp1
+\end{verbatim}
+    You will get \file{jp1.pdf} which is properly formatted and
+    a Japanese font family ``HaranoAji Mincho/Gothic'' is embedded.
+ \item If you prefer classes not for Japanese,
+    you can load \Pkg{luatexja} directly:
+\begin{lstlisting}
+  \documentclass{book}
+  \usepackage{luatexja}
+  \begin{document}
+  ...
+\end{lstlisting}
+    * Note that using non-Japanese classes will lead to unnatural
+    page layouts for Japanese books, especially regarding line gaps
+    and line lengths.
+\end{itemize}
+
+
+% 他の選択肢：upLaTeX が先
+\section{Relatively stable alternative: \upLaTeX}
+
+\LuaLaTeX\ is relatively new,
+and Lua\TeX-ja is under active development.
+As a more stable alternative, you can use \upLaTeX.
+It is a somewhat legacy implementation, which requires TFM files
+for typesetting Japanese characters (called JFM).
+
+The \Pkg{jlreq} class also supports \upLaTeX, but here
+we provide an example using an relatively old class \Pkg{jsclasses},
+which has been widely used for over a decade:
+\begin{lstlisting}
+  \documentclass[uplatex]{jsbook}% or, \documentclass{ujbook}
+  \begin{document}
+  ...
+\end{lstlisting}
+Save the above as \file{jp2.tex} and run the following command.
+\begin{verbatim}
+    $ uplatex jp2
+\end{verbatim}
+You will get \file{jp2.dvi}.
+
+\upLaTeX\ and \pLaTeX\ (explained later) are often referred to
+as (u)\pLaTeX. They always output DVI files.
+To convert DVI containing Japanese characters into PDF,
+the easiest way is to use dvipdfmx.
+If you have \file{jp2.dvi}, running the following command
+\begin{verbatim}
+    $ dvipdfmx jp2
+\end{verbatim}
+will generate \file{jp2.pdf}.
+
+If you want to simplify the procedure, you can use the command
+\begin{verbatim}
+    $ ptex2pdf -l -u jp2
+\end{verbatim}
+which runs \code{uplatex} and \code{dvipdfmx} in sequence.
+\bigskip
+
+Since the default DVI driver in \TL is set to
+\Opt{dvips},\footnote{Though dvips supports DVI with Japanese fonts,
+additional settings for Ghostscript are required to convert
+the resulting PostScript file into PDF.}
+it is recommended to add a global driver option
+to be passed to all driver-dependent packages
+(e.g. \Pkg{graphicx}, \Pkg{color}, \Pkg{hyperref}):
+\begin{lstlisting}
+  \documentclass[uplatex,dvipdfmx]{jsbook}
+  \usepackage{graphicx}
+  \begin{document}
+  ...
+\end{lstlisting}
+
+
+% レガシーな pLaTeX は最後
+\section{Using legacy \pLaTeX}
+
+Some old Japanese journal classes may require \pLaTeX.
+It is a legacy implementation which was born in 1980s,
+before the release of Unicode 1.0,
+and it only supports a limited character set, JIS~X~0208
+(6879 characters).
+\begin{lstlisting}
+  \documentclass{jsbook}% or, \documentclass{jbook}
+  \begin{document}
+  ...
+\end{lstlisting}
+Save the above as \file{jp3.tex} and run the following command.
+\begin{verbatim}
+    $ platex jp3
+\end{verbatim}
+You will get \file{jp3.dvi}.
+Again, the DVI file can be converted into PDF using dvipdfmx.
+
+If you want to simplify the procedure, you can use the command
+\begin{verbatim}
+    $ ptex2pdf -l jp3
+\end{verbatim}
+which runs \code{platex} and \code{dvipdfmx} in sequence.
+
+
+% CJK package はサポート外
+\newenvironment{NOTE}{\StartNOTE\small}{\EndNOTE}
+\newcommand*{\NOTEline}[1]{%
+  \par\noindent\makebox[0pt][l]{\rule[.5ex]{\linewidth}{.4pt}}%
+  \makebox{\hspace{.05\linewidth}\rule[#1ex]{.9\linewidth}{.2pt}}\par}
+\newcommand*{\StartNOTE}{\NOTEline{.1}\nobreak}
+\newcommand*{\EndNOTE}{\nobreak\NOTEline{.9}}
+
+\begin{NOTE}
+Note for users who know the \Pkg{CJK} package:
+(u)\pLaTeX\ does \emph{not} support the \Pkg{CJK} package!
+The reasons are the followings:
+\begin{itemize}
+  \item The input handling of (u)\pTeX\ engine is different
+    from that of Western \TeX\ engines. Since Japanese tokens
+    are no longer treated as active characters,
+    the subsequent processing becomes inconsistent.
+  \item Both the (u)\pLaTeX\ kernel and \file{CJK.sty} redefine
+    the command \verb+\selectfont+, and those definitions are
+    incompatible.
+\end{itemize}
+Anyway, if you use (u)\pLaTeX, which provides better Japanese support,
+you will not need the \Pkg{CJK} package at all.
+\end{NOTE}
+
+
+% 本書のメイン：西欧組版と日本語組版の違い；ちゃんと日本語を組むには？
+\section{Differences between Western and Japanese typesetting}
+
+The sections above described some practical ways to achieve
+``acceptable'' Japanese typesetting results.
+In the Appendix, you will find more examples.
+So, what are the minimum requirements for ``acceptable'' results
+for native Japanese readers?
+
+The W3C Working Group Note ``Requirements for Japanese Text Layout''
+\cite{w3c-jlreq} is one of the comprehensive documentation which
+describes issues of text composition in the Japanese writing system.
+However, they are too complicated to explain here thoroughly,\footnote{They
+include specification of basic page layout (\Foreign{kihon-hanmen}; 基本版面),
+vertical alignment of Japanese text (\Foreign{tate-gumi}; 縦組),
+small-sized supplementary text (\Foreign{ruby}; ルビ), inline cutting note
+(\Foreign{warichu}; 割注) etc.} so we focus on the main issues regarding
+simple and short horizontal writing within a few lines.
+
+%% 行分割と空白挿入
+%-- 禁則文字を除く任意箇所での行分割が可能
+%-- 和文文字直後の改行文字は空白にならない
+%-- 約物どうしの字間調整
+%-- 和欧文間空白の挿入
+\subsection{Line breaks and spacing}
+
+\newbox\JEXBOX % stores example output
+\newbox\JJgridbox
+\def\JJsq{%
+  \hbox to 1\zw{\hss\fboxsep=-.5\fboxrule\fbox{%
+  　\hskip\dimexpr-.5\zw-.2pt\vrule width.4pt height.08\zw depth.12\zw%
+  \hskip\dimexpr.5\zw-.2pt\relax}\hss}}
+\def\JJsb{\hbox to 1\zw{\hss\fboxsep=-.5\fboxrule\fbox{%
+  ■\hskip\dimexpr-.5\zw-.2pt\vrule width.4pt height.08\zw depth.12\zw%
+  \hskip\dimexpr.5\zw-.2pt\relax}\hss}}
+\setbox\JJgridbox=\hbox to 12\zw{%
+  \JJsq\JJsq\JJsq\JJsq\JJsb\JJsq\JJsq\JJsq\JJsq\JJsb\JJsq\JJsq}
+\def\JJoutbox#1{{%
+  \ltjsetparameter{kanjiskip=0pt plus .2\zw minus .2\zw}%
+  \hbox{\textcolor{cyan}{\copy\JJgridbox}\hskip-12\zw%
+  \vbox{\hsize=12\zw\noindent\leftskip0pt\rightskip0pt\parfillskip0pt#1\hss}\vrule}%
+}}
+
+This is the most notable aspect of Japanese typesetting, and a concept
+that would not be found in Western typesetting.
+Consider the input list, Listing \ref{list:src1}. Using \LuaLaTeX,
+it is allowed to include any Unicode character out-of-the-box,
+and they are actually displayed correctly in the output when a suitable
+Japanese font is declared.
+
+\begingroup
+\begin{figure}[tbp]
+\ltjsetparameter{kanjiskip=0pt,xkanjiskip=0pt}
+\begin{lstlisting}[caption={Example input using \LuaLaTeX},label={list:src1}]
+  %#!lualatex
+  \documentclass{article}
+  \usepackage{fontspec}
+  \setmainfont{HaranoAjiMincho-Regular}
+  \setlength{\textwidth}{250pt}
+  \setlength{\overfullrule}{5pt}
+  \begin{document}
+  \noindent
+  % first line = exactly 250pt (= 10pt x 25)
+  ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\\
+  改行後
+  空白が入る。日本語が連続すると改行できず、はみ出す。\\
+  句読点と、（括弧）の間隔が広い。%
+  日本語とLatinの間が空かない。
+  \end{document}
+\end{lstlisting}
+\end{figure}
+\endgroup
+
+However, the result (Figure \ref{fig:src1}) is not acceptable,
+especially for the following reasons:
+
+\begin{itemize}
+  \item Japanese text has no interword spaces, but
+    line break is allowed between any Japanese characters
+    except before some punctuation marks (\Foreign{kinsoku}; 禁則).
+    The overfull rules that appeared in Figure \ref{fig:src1} come
+    from not knowing such line breaking rules.
+  \item Similarly, it is common to insert a new line character after
+    arbitrary Japanese characters in the input source.
+    Such a new line character should not be treated as a blank space.\\
+    Wrong: \JJoutbox{改行後 空白が入る。…\hfill}\quad
+    Correct: \JJoutbox{改行後空白が入る。…\hfill}
+  \item Ordinary Japanese characters are designed to have virtual
+    full-width (\Foreign{zenkaku}) bounding box. However, spacing
+    between adjacent punctuation marks must be truncated.\\
+    Wrong: \JJoutbox{句読点と、\null （括弧）の間…\hfill}\quad
+    Correct: \JJoutbox{句読点と、（括弧）の間…\hfill}
+  \item It is preferred to insert a quarter em space (\Foreign{shibu aki})
+    between Japanese and Latin characters.\footnote{Such a space
+    is often called ``xkanjiskip'' glue in Japanese \TeX\ world.}\\
+    Wrong: \JJoutbox{日本語と\null Latin\null の間…\hfill}\quad
+    Correct: \JJoutbox{日本語とLatinの間…\hfill}
+\end{itemize}
+Figure \ref{fig:src1-mod} shows an acceptable output of the same text.
+You will see that choosing a Japanese font on Unicode-enabled engine
+is not enough for obtaining properly formatted result.
+
+All of the methods explained in the previous sections, namely
+\begin{enumerate}
+  \item \LuaLaTeX\ with Lua\TeX-ja package,
+  \item \upLaTeX,
+  \item \pLaTeX,
+\end{enumerate}
+are developed to support (most of) the requirements mentioned above,
+and their output is most likely to be acceptable.
+Therefore, we recommend to use one of those platforms.
+
+%% レイアウト
+%-- 前節の「ベタ組で任意箇所での行分割」「xkanjiskip」などは
+%-- 西欧組版には相当概念が存在しないと思われる。
+%-- 一方，レイアウトパラメータ（行送り・字下げ・行長）は
+%-- 西欧の TeX でも変更可能なパラメータ化されているので，次元が低い。
+\subsection{Page layout (brief description)}
+
+% 正方形が和文書体の基本的デザイン指向であり，欧文書体と顕著に異なる
+% 書体のデザインの違いが，後述の字下げや行長の慣習に寄与している
+Also, if the main language of the document is Japanese, it is common
+to choose a properly designed Japanese class.
+Unlike Latin typefaces, most of Japanese typefaces are designed in squares
+with a width of \Foreign{zenkaku}.
+This difference greatly contributes to the overall page layout in
+Japanese typesetting.
+
+For example, the typesetting procedure can be simplified by setting
+\cs{textwidth} to a multiple of \Foreign{zenkaku},
+and \cs{parindent} to 1~\Foreign{zenkaku}.
+Many recent Japanese classes determine margins accordingly, and
+adjust other layout parameters to improve readability.
+
+\begingroup
+\ltjsetparameter{jacharrange={-1,-2,-3,-4,-5,-6,-7,-8,-9}}
+\setmainfont{HaranoAjiMincho-Regular}
+\global\setbox\JEXBOX=\vbox{\hsize=250pt\fontsize{10pt}{12pt}\selectfont
+\setlength{\overfullrule}{5pt}\noindent
+  ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\\
+  改行後
+  空白が入る。日本語が連続すると改行できず、はみ出す。\\
+  句読点と、（括弧）の間隔が広い。%
+  日本語とLatinの間が空かない。}
+\endgroup
+
+\begin{figure}[tbp]
+\centering\leavevmode\fbox{\box\JEXBOX}
+\caption{Output from Listing \ref{list:src1} (not acceptable)}
+\label{fig:src1}
+\end{figure}
+
+\begingroup
+\setmainfont{HaranoAjiMincho-Regular}
+\global\setbox\JEXBOX=\vbox{\hsize=250pt\fontsize{10pt}{12pt}\selectfont
+\setlength{\overfullrule}{5pt}\noindent
+  ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\\
+  改行後
+  空白が入る。日本語が連続すると改行できず、はみ出す。\\
+  句読点と、（括弧）の間隔が広い。%
+  日本語とLatinの間が空かない。}
+\endgroup
+
+\begin{figure}[tbp]
+\centering\leavevmode\fbox{\box\JEXBOX}
+\caption{Acceptable output of the above text}
+\label{fig:src1-mod}
+\end{figure}
+
+%% 日本語組版における多書体化の必要性
+%-- 欧文組版で「セリフ体からのイタリック化」に相当するのは
+%-- 和文組版では「明朝体（セリフ）からのゴシック（サンセリフ）化」
+\subsection{Using multi-weight typefaces for Japanese typesetting}
+
+Latin font families used in Western typesetting consist of
+many typefaces:
+\begin{itemize}
+  \def\FACES{Upright, \textit{Italic},
+    \textbf{Bold}, \textbf{\textit{BoldItalic}}}
+  \item {\rmfamily Serif: \FACES}
+  \item {\sffamily Sans Serif: \FACES}
+  \item {\ttfamily Typewriter: \FACES}
+\end{itemize}
+
+In contrast, Japanese font families provide limited typefaces.
+Most Japanese font families do not provide italic or slanted shapes.
+Rather, these shapes look strange and have rarely been used in
+traditional typesetting.
+Also, there is no typewriter font; ordinary Japanese typefaces are
+inherently designed to have a fixed width.
+\begin{itemize}
+  \item {\mcfamily 明朝 (\Foreign{Mincho}; Japanese Serif)}
+  \item {\gtfamily ゴシック (\Foreign{Gothic}; Japanese Sans Serif)}
+\end{itemize}
+
+Therefore, the typeface used to emphasize in Japanese text is
+different from those often used in Western text:
+\begin{itemize}
+  \item Normal text (in upright shape) and
+    \emph{Emphasized text (in italic shape)}
+  \item 通常の文(in \Foreign{Mincho})と，
+    \emph{強調された文}(in \Foreign{Gothic})か
+    \kenten{強調された文}(with \Foreign{Kenten}; 圏点)
+\end{itemize}
+
+Most of common Japanese classes, including those used in the
+previous sections, use \Foreign{Mincho} and \Foreign{Gothic} with
+a single weight each.
+Nowadays, some multi-weight Japanese fonts are available for free,
+so using them is a good way to overcome the situation.
+The \Opt{[deluxe]} option of packages
+\Pkg{luatexja-preset} (on \LuaLaTeX) or \Pkg{otf} (on (u)\pLaTeX)
+supports maximum of 7 typefaces:
+\begin{itemize}
+  \item {\HaraMC \fontseries{l}\selectfont 細明朝，
+                 \fontseries{m}\selectfont 明朝，
+                 \fontseries{b}\selectfont 太明朝}
+                 (\Foreign{Mincho} Light, Medium and Bold)
+  \item {\HaraGT \fontseries{m}\selectfont ゴシック，
+                 \fontseries{b}\selectfont 太ゴシック，
+                 \fontseries{eb}\selectfont 極太ゴシック}
+                 (\Foreign{Gothic} Medium, Bold and Extra Bold)
+  \item {\HaraMG \fontseries{m}\selectfont 丸ゴシック}
+                 (\Foreign{Maru Gothic} Medium)\footnote{The
+    HaranoAji family used in this documentation does not provide
+    \Foreign{Maru Gothic} (rounded \Foreign{Gothic}) typefaces.}
+\end{itemize}
+With the help of these packages, you can emphasize Japanese text
+by changing to bold, instead of changing Serif to Sans Serif.
+\begin{itemize}
+  \item {\HaraMC 通常の文(in \Foreign{Mincho})と，
+    \textbf{強調された文}(in \Foreign{Mincho} Bold)}
+  \item {\HaraGT 通常の文(in \Foreign{Gothic})と，
+    \textbf{強調された文}(in \Foreign{Gothic} Bold)}
+\end{itemize}
+
+
+%% 各種文書への導線をはる
+\section{Further readings}
+
+\begin{itemize}
+  \item ``The Lua\TeX-ja package'' (\file{luatexja-en.pdf}, in English)
+    \begin{itemize}
+      \item For beginners, refer to Part I ``User's manual.''
+      \item For more interested users, refer to Part II ``Reference.''
+      \item For developers, refer to Part III ``Implementations.''
+      \item Japanese edition: \file{luatexja-ja.pdf}
+    \end{itemize}
+  \item ``Guide to \pTeX\ for developers unfamiliar with Japanese''
+        (\file{ptex-guide-en.pdf}, in English)
+    \begin{itemize}
+      \item For developers who aim to support
+        \pTeX/\pLaTeX\ and its variants \upTeX/\upLaTeX.
+    \end{itemize}
+  \item ``About \upLaTeXe''
+        (\file{uplatex-en.pdf}, in English)
+    \begin{itemize}
+      \item For users of \upLaTeX, but a somewhat legacy document.
+      \item Japanese edition: \file{uplatex-en.pdf}
+    \end{itemize}
+  \item ``About \pLaTeXe''
+        (\file{platex-en.pdf}, in English)
+    \begin{itemize}
+      \item For users of \pLaTeX, but a somewhat legacy document.
+      \item Japanese edition: \file{platex-en.pdf}
+    \end{itemize}
+  \item ``Babel-Option \Opt{japanese}''
+        (\file{babel-japanese.pdf}, in both English and Japanese)
+    \begin{itemize}
+      \item Basic introduction of \Opt{japanese} option of \Pkg{babel}.
+      \item Provides translated replacement texts for keywords and date.
+      \item Note: the translations provided by this package may not
+        become effective on most of Western classes, due to lack of
+        appropriate placeholders inside captions.
+    \end{itemize}
+\end{itemize}
+
+
+%% 日本の成果物
+\section{Japanese deliverables in \TL}
+
+There are many packages developed specially for Japanese typesetting
+in \TL; most of these are installed as part of
+\Pkg{collection-langjapanese}.
+Only a subset of these useful packages are shown below.
+For more details, please refer to individual documentation.
+
+\subsection{Document classes}
+
+Japanese text can be aligned in two directions.
+One is horizontal direction, called \Foreign{yoko-gumi} (横組),
+the other is vertical direction, called \Foreign{tate-gumi} (縦組).
+The list below shows \ClsT{\Foreign{tate} classes in green}
+and \ClsYT{\Foreign{yoko}/\Foreign{tate} classes in blue} (default is
+\Foreign{yoko}, and the class option \Opt{[tate]} switches to
+\Foreign{tate} mode).
+
+All the major frameworks for Japanese typesetting provide
+``standard classes'':
+\begin{itemize}
+  \item Lua\TeX-ja (\Pkg{luatexja} by Lua\TeX-ja project team)
+    \begin{itemize}
+      \item Bundle: \Pkg{ltjsclasses}
+         (\ClsY{ltjsarticle}, \ClsY{ltjsbook}, \ClsY{ltjsreport})
+      \item Bundle: \Pkg{ltjclasses}
+         (\ClsY{ltjarticle}, \ClsY{ltjbook}, \ClsY{ltjreport},
+          \ClsT{ltjtarticle}, \ClsT{ltjtbook}, \ClsT{ltjtreport})
+    \end{itemize}
+  \item \upLaTeX\ (\Pkg{uplatex} by \JTDC)
+    \begin{itemize}
+      \item Bundle: \Pkg{ujclasses}
+         (\ClsY{ujarticle}, \ClsY{ujbook}, \ClsY{ujreport},
+          \ClsT{utarticle}, \ClsT{utbook}, \ClsT{utreport})*
+    \end{itemize}
+  \item \pLaTeX\ (\Pkg{platex} by \JTDC)
+    \begin{itemize}
+      \item Bundle: \Pkg{jclasses}
+         (\ClsY{jarticle}, \ClsY{jbook}, \ClsY{jreport},
+          \ClsT{tarticle}, \ClsT{tbook}, \ClsT{treport})*
+    \end{itemize}
+    * Due to historical reasons, \Pkg{ujclasses} and \Pkg{jclasses}
+    are left with some inconvenient behaviors. You may need to adjust
+    some layout parameters by hand, or use other classes mentioned below.
+\end{itemize}
+
+Other major classes designed for Japanese:
+\begin{itemize}
+  \item Class: \ClsYT{jlreq} (by Noriyuki Abe)
+    \begin{itemize}
+      \item Supports \LuaLaTeX, \upLaTeX\ and \pLaTeX.
+      \item This class aims to implement
+        ``Requirements for Japanese Text Layout''
+        (JLReq, 日本語組版処理の要件, \cite{w3c-jlreq}).
+        The class file and necessary JFM (Japanese font metric) files
+        are included.
+    \end{itemize}
+  \item Bundle: \Pkg{jsclasses} (by Haruhiko Okumura \& \JTDC)
+    \begin{itemize}
+      \item Class: \ClsY{jsarticle}, \ClsY{jsbook}, \ClsY{jsreport}
+      \begin{itemize}
+        \item Supports only \upLaTeX\ (with option \Opt{[uplatex]}) and \pLaTeX.
+        \item In addition to layout adjustments, these classes use
+          newly developed JFM set (jis metrics) to avoid strange
+          behaviors of standard \pTeX\ JFM set (min10 etc).
+          For more details, please refer to \cite{ajt2008okumura}.
+        \item Note: when font size other than 10pt is specified,
+          the engine primitive \verb+\mag+ is employed.
+          Conflicts with other packages can lead to inconsistent
+          results in graphics and/or page size.
+          To avoid this, specify \Opt{nomag} or \Opt{nomag*} option.
+      \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Packages}
+
+\begin{itemize}
+  \item Package: \Pkg{plautopatch} (by Hironobu Yamashita)
+    \begin{itemize}
+      \item Supports \upLaTeX\ and \pLaTeX, but
+        does no harm on other \LaTeX\ (silently ignored).
+      \item (u)\pLaTeX\ users are recommended to load this package
+        \emph{always}, to resolve errors and incompatibilities with
+        Western \LaTeX\ packages which are not aware of (u)\pLaTeX.
+    \end{itemize}
+  \item Package: \Pkg{pxchfon} (by Takayuki Yato)
+    \begin{itemize}
+      \item Supports \upLaTeX\ and \pLaTeX.
+      \item Helps users to declate physical fonts embedded in
+        dvipdfmx's PDF output. It utilizes
+        \verb+\special{pdf:mapline}+ or
+        \verb+\special{pdf:mapfile}+ syntaxes.
+    \end{itemize}
+  \item Package: \Pkg{otf}
+    (\Pkg{japanese-otf}, \Pkg{japanese-otf-uptex} by Shuzaburo Saito \& TTK)
+    \begin{itemize}
+      \item Supports only \upLaTeX\ (with option \Opt{[uplatex]}) and \pLaTeX.
+      \item Main feature 1: allows switching between seven different
+        typefaces, compared to the standard of two typefaces.
+        This function is realized by shipping seven ``logical fonts''
+        (= set of a JFM and a virtual font).
+      \item Main feature 2: provides commands for outputting
+        many characters by specifying Unicode (\verb+\UTF{....}+)
+        or Adobe CID (\verb+\CID{....}+), even with \pLaTeX.
+        This function is realized by mapping a huge real font from
+        lots of smaller subset virtual fonts.
+        A series of shorthand commands (\verb+\aj...+) are
+        also available.
+      \item Lua\TeX-ja provides \Pkg{luatexja-otf} to partially emulate
+        feature 2 of this package.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Other support files}
+
+\begin{itemize}
+  \item \Pkg{ptex-fontmaps}
+    \begin{itemize}
+      \item Provides map files to be used with dvipdfmx and dvips.
+      \item To customize Japanese fonts to be used in the output,
+        please use the command \code{kanji-config-updmap}.
+    \end{itemize}
+  \item \Pkg{cjk-gs-integrate}
+    \begin{itemize}
+      \item Supports easy configuration of Ghostscript for
+        CJK (Chinese, Japanese and Korean) fonts, which is
+        necessary for processing of PostScript file output from dvips.
+    \end{itemize}
+\end{itemize}
+
+
+%% 参考文献
+\begin{thebibliography}{99}
+  \bibitem{w3c-jlreq}
+    W3C Working Group,
+    \newblock ``{\em Requirements for Japanese Text Layout}''.\\
+    \url{https://www.w3.org/TR/jlreq/?lang=en}
+  \bibitem{ajt2008okumura}
+    Haruhiko Okumura,
+    \newblock ``{\em \pTeX\ and Japanese Typesetting}''.
+    \newblock The Asian Journal of \TeX, Volume~2, No.~1, 2008.\\
+    \url{http://ajt.ktug.org/2008/0201okumura.pdf}
+\end{thebibliography}
+
+
+\clearpage
+\appendix
+
+\section{Code Gallery --- acceptable Japanese typesetting results}
+
+\subsection{A simple Japanese document}
+
+Using \LuaLaTeX:
+\begin{lstlisting}
+  \documentclass[book]{jlreq}% loads luatexja.sty internally
+  \begin{document}
+  \chapter{日本語がメインのシンプルな文書}
+  こんにちは，日本語に少しEnglishを含めてみます。
+  \end{document}
+\end{lstlisting}
+
+Using \upLaTeX\ (or \pLaTeX) + dvipdfmx:
+\begin{lstlisting}
+  \RequirePackage{plautopatch}% recommended
+  \documentclass[book,dvipdfmx]{jlreq}% driver option
+  \begin{document}
+  \chapter{日本語がメインのシンプルな文書}
+  こんにちは，日本語に少しEnglishを含めてみます。
+  \end{document}
+\end{lstlisting}
+
+Using \pdfLaTeX\ or \XeLaTeX:
+though they have only limited Japanese typesetting capabilities,
+\ClsY{bxjsbook} (from \Pkg{bxjscls} bundle by Takayuki Yato)
+aims to emulate \Pkg{jsclasses} as much as possible.
+Due to technical constraints, manual adjustments are often
+required in the input.\footnote{\pdfTeX\ and \XeTeX\ cannot
+insert a quarter em space (\Foreign{shibu aki}) automatically, so
+the active character \code{\~} is redefined to a macro to
+insert it manually.}
+\begin{lstlisting}
+  \documentclass[pdflatex,ja=standard]{bxjsbook}
+  %\documentclass[xelatex,ja=standard]{bxjsbook}
+  \begin{document}
+  \chapter{日本語がメインのシンプルな文書}
+  こんにちは，日本語に少し~English~を含めてみます。
+  \end{document}
+\end{lstlisting}
+
+\subsection{Changing Japanese fonts}
+
+The default Japanese font family is ``HaranoAji Mincho/Gothic''
+which is derived from Source Han (or Noto) fonts.
+Suppose you want to switch to ``IPAex Mincho/Gothic'' ...
+
+Using \LuaLaTeX:
+\begin{lstlisting}
+  \documentclass[book]{jlreq}
+  \usepackage[ipaex]{luatexja-preset}% pre-defined
+  ...
+\end{lstlisting}
+
+Using \upLaTeX\ (or \pLaTeX) + dvipdfmx:
+\begin{lstlisting}
+  \RequirePackage{plautopatch}% recommended
+  \documentclass[book,dvipdfmx]{jlreq}% driver option
+  \usepackage[ipaex]{pxchfon}% pre-defined
+  ...
+\end{lstlisting}
+
+\subsection{More typefaces}
+
+Using \LuaLaTeX:
+\begin{lstlisting}
+  \documentclass[article]{jlreq}
+  \usepackage[deluxe]{luatexja-preset}% multi weight
+  \begin{document}
+  \section{簡単な文章}
+  通常のテキストにはSerifと明朝体を使います。
+  \textbf{太字も使うことができます。}
+  \textsf{Sans Serifにはゴシック体が似合います。
+  \textbf{太字にも対応します。}}
+  \end{document}
+\end{lstlisting}
+
+Using \upLaTeX\ (or \pLaTeX) + dvipdfmx with the \Pkg{jlreq} class:
+the package \Pkg{jlreq-deluxe} is recommended.
+\begin{lstlisting}
+  \RequirePackage{plautopatch}% recommended
+  \documentclass[article,dvipdfmx]{jlreq}% driver option
+  \usepackage{jlreq-deluxe}% multi weight
+  \begin{document}
+  ...
+\end{lstlisting}
+
+Traditionally, the \Pkg{otf} package (distributed as \Pkg{japanese-otf}
+on CTAN/\TL) has been widely used for over a decade on (u)\pLaTeX.
+
+Using \upLaTeX\ + dvipdfmx:
+\begin{lstlisting}
+  \RequirePackage{plautopatch}% recommended
+  \documentclass[uplatex,dvipdfmx]{jsarticle}
+  \usepackage[deluxe]{otf}% multi weight
+  \begin{document}
+  ...
+\end{lstlisting}
+
+Using \pLaTeX\ + dvipdfmx:
+\begin{lstlisting}
+  \RequirePackage{plautopatch}% recommended
+  \documentclass[dvipdfmx]{jsarticle}
+  \usepackage[deluxe]{otf}% multi weight
+  \begin{document}
+  ...
+\end{lstlisting}
+
+\subsection{Vertical writing}
+
+As a Japanese version of \Pkg{lipsum}, here we use
+\Pkg{bxjalipsum}. It provides several sample texts.
+
+Using \LuaLaTeX:
+\begin{lstlisting}
+  \documentclass[article,tate]{jlreq}
+  \usepackage{bxjalipsum}
+  \begin{document}
+  \title{吾輩は猫である}% I Am A Cat
+  \author{夏目漱石}% Natsume Soseki
+  \maketitle
+  \jalipsum{wagahai}% 吾輩は猫である。名前… (33 paragraphs)
+  \end{document}
+\end{lstlisting}
+
+Using \upLaTeX\ (or \pLaTeX) + dvipdfmx:
+\begin{lstlisting}
+  \RequirePackage{plautopatch}% recommended
+  \documentclass[article,tate,dvipdfmx]{jlreq}% driver option
+  \usepackage{bxjalipsum}
+  \begin{document}
+  % The preamble of the Constitution of Japan
+  \jalipsum{preamble}% 日本国民は、正当に選… (4 paragraphs)
+  \end{document}
+\end{lstlisting}
+
+\subsection{Beamer with Japanese}
+
+Note that the class \Pkg{beamer} is not designed for Japanese.
+% https://qiita.com/zr_tex8r/items/69e8cc32038ff29f5ac3
+% update: \usepackage{pxjahyper} -> supported by plautopatch
+
+Using \LuaLaTeX:\footnote{Since \Pkg{hyperref} 2020-08-14 v7.00f,
+the option \Opt{unicode} is enabled by default, so the explicit
+option is already redundant.}
+\begin{lstlisting}
+  \documentclass[unicode,12pt]{beamer}% ensure unicode for hyperref
+  \usepackage{luatexja}% for Japanese
+  \renewcommand{\kanjifamilydefault}{\gtdefault}% sans-serif also for Japanese
+  \usetheme{Copenhagen}% as you like!
+  \begin{document}
+  \section{日本語のサンプル}
+  \begin{frame}{日本語でBeamerを使う}
+  こんにちは，日本語に少しEnglishを含めてみます。
+  \end{frame}
+  \end{document}
+\end{lstlisting}
+
+Using \upLaTeX\ + dvipdfmx:
+% based on pLaTeX settings
+\begin{lstlisting}
+  \RequirePackage{plautopatch}% loads (at least) the pxjahyper package
+  \documentclass[dvipdfmx,12pt]{beamer}% driver option
+  \usepackage{bxdpx-beamer}% additional settings for dvipdfmx
+  \renewcommand{\kanjifamilydefault}{\gtdefault}% sans-serif also for Japanese
+  ...
+\end{lstlisting}
+
+Using \pLaTeX\ + dvipdfmx:
+\begin{lstlisting}
+  \RequirePackage{plautopatch}% loads (at least) the pxjahyper package
+  \documentclass[dvipdfmx,12pt]{beamer}% driver option
+  \usepackage{bxdpx-beamer}% additional settings for dvipdfmx
+  \usepackage{minijs}% avoid pTeX's standard JFM (min10 etc.)
+  \renewcommand{\kanjifamilydefault}{\gtdefault}% sans-serif also for Japanese
+  ...
+\end{lstlisting}
+
+\end{document}

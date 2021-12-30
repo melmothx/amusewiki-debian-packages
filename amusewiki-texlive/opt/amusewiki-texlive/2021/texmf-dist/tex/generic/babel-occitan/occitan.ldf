@@ -1,0 +1,179 @@
+%%
+%% This is file `occitan.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% occitan.dtx  (with options: `code')
+%%   ------------------------------------------------------------------
+%%   The occitan module for babel
+%%   Copyright (C) 2015 Cédric Valmary
+%%   All rights reserved
+%% 
+%%   Licence information appended
+%% 
+%%   Created by Cédric Valmary: cvalmary at yahoo dot fr
+%%   of Tot en òc <http://www.totenoc.eu/>
+%% 
+%% 
+\ProvidesLanguage{occitan}
+        [2016/02/04 0.2 Occitan support from the babel system]
+\LdfInit{occitan}{captionsoccitan}%
+\ifx\l@occitan\@undefined
+    \@nopatterns{occitan}%
+    \adddialect\l@occitan \z@\fi
+\addto\captionsoccitan{%
+   \def\refname{Refer\'encias}%
+   \def\abstractname{Resumit}%
+   \def\bibname{Bibliografia}%
+   \def\prefacename{Prefaci}%
+   \def\chaptername{Cap\'itol}%
+   \def\appendixname{Ann\`ex}%
+   \def\contentsname{Ensenhador}%
+   \def\listfigurename{Taula de las figuras}%
+   \def\listtablename{Taula dels tabl\`eus}%
+   \def\indexname{Ind\`ex}%
+   \def\figurename{Figura}%
+   \def\tablename{Tabl\`eu}%
+   \def\partname{Partida}%
+   \def\pagename{Pagina}%
+   \def\seename{vejatz}%
+   \def\alsoname{vejatz tanben}%
+   \def\enclname{P\`e\c{c}a junta}%
+   \def\ccname{c\`opia a}%
+   \def\headtoname{A}%
+   \def\proofname{Demostracion}%
+   \def\glossaryname{Glossari}%
+  }%
+\def\dateoccitan{%
+  \def\today{%
+  \ifcase \day\or
+    1èr\else
+    \number\day
+  \fi~%
+  \ifcase\month\or
+    de~geni\`er\or
+    de~febri\`er\or
+    de~mar\c{c}\or
+    d'abril\or
+    de~mai\or
+    de~jiunh\or
+    de~julhet\or
+    d'agost\or
+    de~setembre\or
+    d'octobre\or
+    de~novembre\or
+    de~decembre%
+  \fi\space
+  de~\number\year}}%
+\providehyphenmins{\CurrentOption}{\tw@\tw@}
+\addto\extrasoccitan{%
+  \babel@savevariable\clubpenalty
+  \babel@savevariable\widowpenalty
+  \babel@savevariable\@clubpenalty
+  \clubpenalty3000\widowpenalty3000\@clubpenalty\clubpenalty}%
+
+\addto\extrasoccitan{%
+  \babel@savevariable\finalhyphendemerits
+  \finalhyphendemerits50000000}%
+\addto\extrasoccitan{%
+  \lccode`'=`'}%
+\addto\noextrasoccitan{%
+  \lccode`'=0}%
+\newcount\oc@doublequoteactive \oc@doublequoteactive=\z@
+\def\setactivedoublequote{\oc@doublequoteactive=\@ne}
+\AtBeginDocument{%
+  \unless\ifnum\oc@doublequoteactive=\z@
+  \initiate@active@char{"}%
+  \addto\extrasoccitan{\bbl@activate{"}\languageshorthands{occitan}}%
+  \declare@shorthand{occitan}{"}{%
+    \ifmmode
+      \def\oc@next{''}%
+    \else
+      \def\oc@next{\futurelet\oc@temp\oc@cwm}%
+    \fi
+    \oc@next
+  }%
+\fi
+\ifdefstring{\languagename}{occitan}{\selectlanguage{occitan}}{\relax}
+}%
+\def\oc@@cwm{\bbl@allowhyphens\discretionary{-}{}{}\bbl@allowhyphens}%
+\def\oc@@slash{\bbl@allowhyphens\discretionary{/}{}{/}\bbl@allowhyphens}%
+\def\oc@ponchinterior{\nobreak
+            \discretionary{-}{}{\mbox{$\cdot$}}\nobreak\hskip\z@skip}%
+\def\oc@@oguil#1{\oc@oguil}\def\oc@@cguil#1{\oc@cguil}%
+
+\DeclareRobustCommand*{\oc@cwm}{\let\oc@@next\oc@doublequote
+\ifcat\noexpand\oc@temp a%
+    \def\oc@@next{\oc@@cwm}%
+\else
+    \if\noexpand\oc@temp \string|%
+        \def\oc@@next##1{\oc@@cwm}%
+    \else
+        \if\noexpand\oc@temp \string<%
+            \def\oc@@next{\oc@@oguil}%
+        \else
+            \if\noexpand\oc@temp \string>%
+                \def\oc@@next{\oc@@cguil}%
+            \else
+                \if\noexpand\oc@temp\string/%
+                    \def\oc@@next##1{\oc@@slash}%
+                \else
+                    \if\noexpand\oc@temp\string.%
+                        \def\oc@@next##1{\oc@ponchinterior}%
+                    \fi
+                \fi
+            \fi
+        \fi
+    \fi
+\fi
+\oc@@next}%
+\AtEndOfPackage{\RequirePackage{etoolbox}}
+\def\GuillemetsFrom#1#2#3#4{%
+  \DeclareFontEncoding{#1}{}{}%
+  \DeclareTextCommand{\oc@oguil}{T1}{%
+    {\fontencoding{#1}\fontfamily{#2}\selectfont\char#3\ignorespaces}}%
+  \DeclareTextCommand{\oc@cguil}{T1}{\ifdim\lastskip>\z@\unskip\fi%
+    {\fontencoding{#1}\fontfamily{#2}\selectfont\char#4}}%
+  \DeclareTextCommand{\oc@oguil}{OT1}{%
+    {\fontencoding{#1}\fontfamily{#2}\selectfont\char#3\ignorespaces}}%
+  \DeclareTextCommand{\oc@cguil}{OT1}{\ifdim\lastskip>\z@\unskip\fi%
+    {\fontencoding{#1}\fontfamily{#2}\selectfont\char#4}}}
+\def\T@unoGuillemets{\DeclareRobustCommand*{\oc@oguil}{<<\ignorespaces}%
+    \DeclareRobustCommand*{\oc@cguil}{\ifdim\lastskip>\z@\unskip\fi>>}}%
+\def\get@ae#1#2#3!{\def\oc@ae{#1#2}}%
+\def\@ifT@one@noGuil{\expandafter\get@ae\f@family!%
+\ifdefstring{\oc@ae}{ae}}%
+\AtBeginDocument{\normalfont
+  \ifdefstring{\cf@encoding}{OT1}{%
+    \GuillemetsFrom{T1}{lmr}{19}{20}%
+    \GenericWarning{occitan.ldf\space}{%
+    File occitan.ldf warning: \MessageBreak\space\space\space
+    With OT1 encoding guillemets are taken form the
+    \MessageBreak\space\space\space
+    T1 encoded Latin Modern fonts\MessageBreak\space\space\space
+    \MessageBreak\space\space}%
+  }{%
+    \ifdefstring{\cf@encoding}{T1}{%
+      \@ifT@one@noGuil{%
+        \GuillemetsFrom{T1}{lmr}{19}{20}%
+        \GenericWarning{occitan.ldf\space}{%
+        File occitan.ldf warning: \MessageBreak\space\space\space
+        The AE font collection does not contain the guillemets
+        \MessageBreak\space\space\space
+        Using Latin Modern guillemets instead
+        \MessageBreak\space}
+      }{%
+    \T@unoGuillemets}}{\T@unoGuillemets}
+  }%
+}
+\ldf@finish{occitan}%
+%% Distributable under the LaTeX Project Public License,
+%% version 1.3c or higher (your choice). The latest version of
+%% this license is at: http://www.latex-project.org/lppl.txt
+%% 
+%% This work is "author-maintained"
+%% The maintainer is Cédric Valmary
+%% 
+%%
+%% End of file `occitan.ldf'.

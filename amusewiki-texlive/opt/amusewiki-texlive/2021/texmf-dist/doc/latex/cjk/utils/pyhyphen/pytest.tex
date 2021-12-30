@@ -1,0 +1,51 @@
+% This is the file pytest.tex of the CJK package
+%   for testing Chinese pinyin hyphenation.
+%
+% created by Werner Lemberg <wl@gnu.org>
+%
+% Version 4.8.5 (16-Oct-2021)
+%
+%%
+%% Attention!  This will work only if you have created a new format file
+%% with `hyph-zh-latn-pinyin.tex' as additional hyphenation patterns for the
+%% language `pinyin'.  Otherwise no hyphenation will be used.
+%%
+%  Note that the Babel package searches for `pinyin.ldf', not `pinyin.sty'
+%  -- the latter is for typesetting accented pinyin syllables.
+
+\documentclass[12pt,b5paper]{article}
+
+\usepackage[10pt]{type1ec}    % use only 10pt fonts
+\usepackage[T1]{fontenc}
+\usepackage[pinyin]{babel}
+
+
+\begin{document}
+
+% Taken from the TeXbook (p. 451) to force frequent insertion of hyphens.
+\hyphenpenalty -1000
+\pretolerance -1
+\tolerance 1000
+\doublehyphendemerits -100000
+\finalhyphendemerits -100000
+
+\selectlanguage{pinyin}
+
+Women hen xihuan l"uxing.  Zai Beijing women hen xiang kan Tian"'anmen.
+Mingtian women xiang yao dao Xi"'an qu.  Xiage libai zai hui jia.
+Women hen xihuan l"uxing.  Zai Beijing women hen xiang kan Tian"'anmen.
+Mingtian women xiang yao dao Xi"'an qu.  Xiage libai zai hui jia.
+Women hen xihuan l"uxing.  Zai Beijing women hen xiang kan Tian"'anmen.
+Mingtian women xiang yao dao Xi"'an qu.  Xiage libai zai hui jia.
+Women hen xihuan l"uxing.  Zai Beijing women hen xiang kan Tian"'anmen.
+Mingtian women xiang yao dao Xi"'an qu.  Xiage libai zai hui jia.
+Women hen xihuan l"uxing.  Zai Beijing women hen xiang kan Tian"'anmen.
+Mingtian women xiang yao dao Xi"'an qu.  Xiage libai zai hui jia.
+Women hen xihuan l"uxing.  Zai Beijing women hen xiang kan Tian"'anmen.
+Mingtian women xiang yao dao Xi"'an qu.  Xiage libai zai hui jia.
+Women hen xihuan l"uxing.  Zai Beijing women hen xiang kan Tian"'anmen.
+Mingtian women xiang yao dao Xi"'an qu.  Xiage libai zai hui jia.
+Women hen xihuan l"uxing.  Zai Beijing women hen xiang kan Tian"'anmen.
+Mingtian women xiang yao dao Xi"'an qu.  Xiage libai zai hui jia.
+
+\end{document}

@@ -1,0 +1,17 @@
+name hyphen-kurmanji
+category TLCore
+revision 58652
+shortdesc Kurmanji hyphenation patterns.
+longdesc Hyphenation patterns for Kurmanji (Northern Kurdish) as spoken
+longdesc in Turkey and by the Kurdish diaspora in Europe, in T1/EC and
+longdesc UTF-8 encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=kurmanji 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-kmr.tex 	file_patterns=hyph-kmr.pat.txt 	file_exceptions=
+containersize 2708
+containerchecksum e5114da178fc841b1079130c01f8729ac94f0e3592dbd479f44a978ea009fd75b410d6130d9badd6227d115d8f6dad3ed4b553dbfbf4f80be5d1c2adf108e2fa
+runfiles size=4
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-kmr.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-kmr.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-kmr.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-kmr.pat.txt

@@ -1,0 +1,77 @@
+StartFontMetrics 2.0
+FontName mcjroma
+FullName mcjroma
+FamilyName mc
+Weight Regular
+ItalicAngle 0
+IsFixedPitch true
+FontBBox 0 -160 1000 840
+UnderlinePosition 0
+UnderlineThickness 0
+Version 001.004
+EncodingScheme DmEncoding
+StartCharMetrics 256
+C 48 ; WX 1000 ; N uniFF10 ; B 0 -160 1000 840 ;
+C 49 ; WX 1000 ; N uniFF11 ; B 0 -160 1000 840 ;
+C 50 ; WX 1000 ; N uniFF12 ; B 0 -160 1000 840 ;
+C 51 ; WX 1000 ; N uniFF13 ; B 0 -160 1000 840 ;
+C 52 ; WX 1000 ; N uniFF14 ; B 0 -160 1000 840 ;
+C 53 ; WX 1000 ; N uniFF15 ; B 0 -160 1000 840 ;
+C 54 ; WX 1000 ; N uniFF16 ; B 0 -160 1000 840 ;
+C 55 ; WX 1000 ; N uniFF17 ; B 0 -160 1000 840 ;
+C 56 ; WX 1000 ; N uniFF18 ; B 0 -160 1000 840 ;
+C 57 ; WX 1000 ; N uniFF19 ; B 0 -160 1000 840 ;
+C 65 ; WX 1000 ; N uniFF21 ; B 0 -160 1000 840 ;
+C 66 ; WX 1000 ; N uniFF22 ; B 0 -160 1000 840 ;
+C 67 ; WX 1000 ; N uniFF23 ; B 0 -160 1000 840 ;
+C 68 ; WX 1000 ; N uniFF24 ; B 0 -160 1000 840 ;
+C 69 ; WX 1000 ; N uniFF25 ; B 0 -160 1000 840 ;
+C 70 ; WX 1000 ; N uniFF26 ; B 0 -160 1000 840 ;
+C 71 ; WX 1000 ; N uniFF27 ; B 0 -160 1000 840 ;
+C 72 ; WX 1000 ; N uniFF28 ; B 0 -160 1000 840 ;
+C 73 ; WX 1000 ; N uniFF29 ; B 0 -160 1000 840 ;
+C 74 ; WX 1000 ; N uniFF2A ; B 0 -160 1000 840 ;
+C 75 ; WX 1000 ; N uniFF2B ; B 0 -160 1000 840 ;
+C 76 ; WX 1000 ; N uniFF2C ; B 0 -160 1000 840 ;
+C 77 ; WX 1000 ; N uniFF2D ; B 0 -160 1000 840 ;
+C 78 ; WX 1000 ; N uniFF2E ; B 0 -160 1000 840 ;
+C 79 ; WX 1000 ; N uniFF2F ; B 0 -160 1000 840 ;
+C 80 ; WX 1000 ; N uniFF30 ; B 0 -160 1000 840 ;
+C 81 ; WX 1000 ; N uniFF31 ; B 0 -160 1000 840 ;
+C 82 ; WX 1000 ; N uniFF32 ; B 0 -160 1000 840 ;
+C 83 ; WX 1000 ; N uniFF33 ; B 0 -160 1000 840 ;
+C 84 ; WX 1000 ; N uniFF34 ; B 0 -160 1000 840 ;
+C 85 ; WX 1000 ; N uniFF35 ; B 0 -160 1000 840 ;
+C 86 ; WX 1000 ; N uniFF36 ; B 0 -160 1000 840 ;
+C 87 ; WX 1000 ; N uniFF37 ; B 0 -160 1000 840 ;
+C 88 ; WX 1000 ; N uniFF38 ; B 0 -160 1000 840 ;
+C 89 ; WX 1000 ; N uniFF39 ; B 0 -160 1000 840 ;
+C 90 ; WX 1000 ; N uniFF3A ; B 0 -160 1000 840 ;
+C 97 ; WX 1000 ; N uniFF41 ; B 0 -160 1000 840 ;
+C 98 ; WX 1000 ; N uniFF42 ; B 0 -160 1000 840 ;
+C 99 ; WX 1000 ; N uniFF43 ; B 0 -160 1000 840 ;
+C 100 ; WX 1000 ; N uniFF44 ; B 0 -160 1000 840 ;
+C 101 ; WX 1000 ; N uniFF45 ; B 0 -160 1000 840 ;
+C 102 ; WX 1000 ; N uniFF46 ; B 0 -160 1000 840 ;
+C 103 ; WX 1000 ; N uniFF47 ; B 0 -160 1000 840 ;
+C 104 ; WX 1000 ; N uniFF48 ; B 0 -160 1000 840 ;
+C 105 ; WX 1000 ; N uniFF49 ; B 0 -160 1000 840 ;
+C 106 ; WX 1000 ; N uniFF4A ; B 0 -160 1000 840 ;
+C 107 ; WX 1000 ; N uniFF4B ; B 0 -160 1000 840 ;
+C 108 ; WX 1000 ; N uniFF4C ; B 0 -160 1000 840 ;
+C 109 ; WX 1000 ; N uniFF4D ; B 0 -160 1000 840 ;
+C 110 ; WX 1000 ; N uniFF4E ; B 0 -160 1000 840 ;
+C 111 ; WX 1000 ; N uniFF4F ; B 0 -160 1000 840 ;
+C 112 ; WX 1000 ; N uniFF50 ; B 0 -160 1000 840 ;
+C 113 ; WX 1000 ; N uniFF51 ; B 0 -160 1000 840 ;
+C 114 ; WX 1000 ; N uniFF52 ; B 0 -160 1000 840 ;
+C 115 ; WX 1000 ; N uniFF53 ; B 0 -160 1000 840 ;
+C 116 ; WX 1000 ; N uniFF54 ; B 0 -160 1000 840 ;
+C 117 ; WX 1000 ; N uniFF55 ; B 0 -160 1000 840 ;
+C 118 ; WX 1000 ; N uniFF56 ; B 0 -160 1000 840 ;
+C 119 ; WX 1000 ; N uniFF57 ; B 0 -160 1000 840 ;
+C 120 ; WX 1000 ; N uniFF58 ; B 0 -160 1000 840 ;
+C 121 ; WX 1000 ; N uniFF59 ; B 0 -160 1000 840 ;
+C 122 ; WX 1000 ; N uniFF5A ; B 0 -160 1000 840 ;
+EndCharMetrics
+EndFontMetrics

@@ -1,0 +1,39 @@
+This is the README file of the mincho-1-8-20080306.tar.gz package.
+
+The original font file is
+
+  ftp://ftp.ipl.t.u-tokyo.ac.jp/Font/wadalab-mincho-1-8.tar.Z
+
+which can be also found at CTAN as
+
+  support/ghostscript/3rdparty/fonts/kanji/Font/wadalab-mincho-1-8.tar.gz
+
+It has been first converted with a patched version of the program `wftodm',
+then with the scripts `makefont' (version 1.0) and `fixwada2.pl' to produce
+a set of PFB, AFM, and TFM subfont files in DNP font encoding which can be
+used with the CJK package for LaTeX.
+
+This font package follows the TDS directory structure; the font family name
+for DNP font encoding is `mc2j'. You can find virtual fonts in Unicode font
+encoding which use mincho-1-8 in the mincho-0-8-20080306.tar.gz and
+mincho-0-12-20080306.tar.gz packages.
+
+Please read the documentation file `contrib/wadalab/DNP.doc' of the CJK
+package for further details on installation and usage; there you can also
+find a proper font mapping file and font definition files for use with
+LaTeX.
+
+
+History
+-------
+
+    2005-07-12
+      First release.
+
+    2005-07-30
+      Fix mc2jkb where glyph names were off by 1.
+
+    2008-03-06
+      Add a font map file.
+
+---End of README---

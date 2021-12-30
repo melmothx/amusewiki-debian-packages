@@ -1,0 +1,157 @@
+%% This file is part of the thailatex package
+%% Created by Surapant Meknavin: surapan@nectec.or.th
+%% 2011/12/26 Theppitak Karoonboonyanan <thep@linux.thai.net>
+%%            - add ASCII symbols \textdollar \textasciicircum \textasciitilde
+%%              \textbackslash \textbar \textbraceleft \textbraceright
+%%              \textgreater \textless \textquotedbl
+%%            - add Latin symbols \textdagger \textdaggerdbl \textsection
+%%              \textparagraph \copyright \textregistered \texttrademark
+%%              \ss \ae \AE \oe \OE \i \j
+%%            - drop text commands for copyright, registered, trademark, SS,
+%%              in favor of native font glyphs
+%%            - drop Latin wrapper to \TeX and \LaTeX commands
+%% 2004/06/14 Theppitak Karoonboonyanan <thep@linux.thai.net>
+%%            - guard against recursive assignments of \ltxTeX and \ltxLaTeX
+%%              (Reported by donzakh)
+%% 2002/04/21 Theppitak Karoonboonyanan <thep@linux.thai.net>
+%%            - add special shape declarations e.g. \textquoteleft
+%% 2000/05/10 Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+%%            - encoding changed from TIS to LTH, according to TeX convention
+
+\ProvidesFile{LTHenc.def}
+        [2011/12/26 v1.2
+  Thai Encoding]
+\DeclareFontEncoding{LTH}{}{}
+\DeclareFontSubstitution{LTH}{norasi}{m}{n}
+\DeclareErrorFont{LTH}{norasi}{m}{n}{10}
+% ASCII/Latin
+\DeclareTextSymbol{\textdollar}{LTH}{`\$}
+\DeclareTextSymbol{\textasciicircum}{LTH}{`\^}
+\DeclareTextSymbol{\textasciitilde}{LTH}{`\~}
+\DeclareTextSymbol{\textbackslash}{LTH}{`\\}
+\DeclareTextSymbol{\textbar}{LTH}{`\|}
+\DeclareTextSymbol{\textbraceleft}{LTH}{`\{}
+\DeclareTextSymbol{\textbraceright}{LTH}{`\}}
+\DeclareTextSymbol{\textgreater}{LTH}{`\>}
+\DeclareTextSymbol{\textless}{LTH}{`\<}
+\DeclareTextSymbol{\textquotedbl}{LTH}{`\"}
+\DeclareTextSymbol{\textquoteleft}{LTH}{145}
+\DeclareTextSymbol{\textquoteright}{LTH}{146}
+\DeclareTextSymbol{\textquotedblleft}{LTH}{147}
+\DeclareTextSymbol{\textquotedblright}{LTH}{148}
+\DeclareTextSymbol{\textbullet}{LTH}{149}
+\DeclareTextSymbol{\textendash}{LTH}{150}
+\DeclareTextSymbol{\textemdash}{LTH}{151}
+\DeclareTextSymbol{\textdagger}{LTH}{4}
+\DeclareTextSymbol{\textdaggerdbl}{LTH}{5}
+\DeclareTextSymbol{\textsection}{LTH}{6}
+\DeclareTextSymbol{\textparagraph}{LTH}{7}
+\DeclareTextSymbol{\copyright}{LTH}{8}
+\DeclareTextSymbol{\textregistered}{LTH}{9}
+\DeclareTextSymbol{\texttrademark}{LTH}{10}
+\DeclareTextSymbol{\ss}{LTH}{11}
+\DeclareTextSymbol{\ae}{LTH}{12}
+\DeclareTextSymbol{\AE}{LTH}{13}
+\DeclareTextSymbol{\oe}{LTH}{14}
+\DeclareTextSymbol{\OE}{LTH}{15}
+\DeclareTextSymbol{\i}{LTH}{25}
+\DeclareTextSymbol{\j}{LTH}{26}
+% Thai special characters
+\DeclareTextSymbol{\textyamakkan}{LTH}{238}
+\DeclareTextSymbol{\textfongmun}{LTH}{239}
+\DeclareTextSymbol{\textangkhankhu}{LTH}{250}
+\DeclareTextSymbol{\textkhomut}{LTH}{251}
+% Pali-Sanskrit
+\DeclareTextSymbol{\textYoYingPali}{LTH}{144}
+\DeclareTextSymbol{\textThoThanPali}{LTH}{128}
+% UCS support
+\DeclareTextSymbol{\thaiKoKai}{LTH}{161}
+\DeclareTextSymbol{\thaiKhoKhai}{LTH}{162}
+\DeclareTextSymbol{\thaiKhoKhuat}{LTH}{163}
+\DeclareTextSymbol{\thaiKhoKhwai}{LTH}{164}
+\DeclareTextSymbol{\thaiKhoKhon}{LTH}{165}
+\DeclareTextSymbol{\thaiKhoRakhang}{LTH}{166}
+\DeclareTextSymbol{\thaiNgoNgu}{LTH}{167}
+\DeclareTextSymbol{\thaiChoChan}{LTH}{168}
+\DeclareTextSymbol{\thaiChoChing}{LTH}{169}
+\DeclareTextSymbol{\thaiChoChang}{LTH}{170}
+\DeclareTextSymbol{\thaiSoSo}{LTH}{171}
+\DeclareTextSymbol{\thaiChoChoe}{LTH}{172}
+\DeclareTextSymbol{\thaiYoYing}{LTH}{173}
+\DeclareTextSymbol{\thaiDoChada}{LTH}{174}
+\DeclareTextSymbol{\thaiToPatak}{LTH}{175}
+\DeclareTextSymbol{\thaiThoThan}{LTH}{176}
+\DeclareTextSymbol{\thaiThoNangmontho}{LTH}{177}
+\DeclareTextSymbol{\thaiThoPhuthao}{LTH}{178}
+\DeclareTextSymbol{\thaiNoNen}{LTH}{179}
+\DeclareTextSymbol{\thaiDoDek}{LTH}{180}
+\DeclareTextSymbol{\thaiToTao}{LTH}{181}
+\DeclareTextSymbol{\thaiThoThung}{LTH}{182}
+\DeclareTextSymbol{\thaiThoThahan}{LTH}{183}
+\DeclareTextSymbol{\thaiThoThong}{LTH}{184}
+\DeclareTextSymbol{\thaiNoNu}{LTH}{185}
+\DeclareTextSymbol{\thaiBoBaimai}{LTH}{186}
+\DeclareTextSymbol{\thaiPoPla}{LTH}{187}
+\DeclareTextSymbol{\thaiPhoPhung}{LTH}{188}
+\DeclareTextSymbol{\thaiFoFa}{LTH}{189}
+\DeclareTextSymbol{\thaiPhoPhan}{LTH}{190}
+\DeclareTextSymbol{\thaiFoFan}{LTH}{191}
+\DeclareTextSymbol{\thaiPhoSamphao}{LTH}{192}
+\DeclareTextSymbol{\thaiMoMa}{LTH}{193}
+\DeclareTextSymbol{\thaiYoYak}{LTH}{194}
+\DeclareTextSymbol{\thaiRoRua}{LTH}{195}
+\DeclareTextSymbol{\thaiRu}{LTH}{196}
+\DeclareTextSymbol{\thaiLoLing}{LTH}{197}
+\DeclareTextSymbol{\thaiLu}{LTH}{198}
+\DeclareTextSymbol{\thaiWoWaen}{LTH}{199}
+\DeclareTextSymbol{\thaiSoSala}{LTH}{200}
+\DeclareTextSymbol{\thaiSoRusi}{LTH}{201}
+\DeclareTextSymbol{\thaiSoSua}{LTH}{202}
+\DeclareTextSymbol{\thaiHoHip}{LTH}{203}
+\DeclareTextSymbol{\thaiLoChula}{LTH}{204}
+\DeclareTextSymbol{\thaiOAng}{LTH}{205}
+\DeclareTextSymbol{\thaiHoNokhuk}{LTH}{206}
+\DeclareTextSymbol{\thaiPaiyannoi}{LTH}{207}
+\DeclareTextSymbol{\thaiSaraA}{LTH}{208}
+\DeclareTextSymbol{\thaiMaiHanakat}{LTH}{209}
+\DeclareTextSymbol{\thaiSaraAa}{LTH}{210}
+\DeclareTextSymbol{\thaiSaraAm}{LTH}{211}
+\DeclareTextSymbol{\thaiSaraI}{LTH}{212}
+\DeclareTextSymbol{\thaiSaraIi}{LTH}{213}
+\DeclareTextSymbol{\thaiSaraUe}{LTH}{214}
+\DeclareTextSymbol{\thaiSaraUee}{LTH}{215}
+\DeclareTextSymbol{\thaiSaraU}{LTH}{216}
+\DeclareTextSymbol{\thaiSaraUu}{LTH}{217}
+\DeclareTextSymbol{\thaiPhinthu}{LTH}{218}
+\DeclareTextSymbol{\textbaht}{LTH}{223}
+\DeclareTextSymbol{\thaiSaraE}{LTH}{224}
+\DeclareTextSymbol{\thaiSaraAe}{LTH}{225}
+\DeclareTextSymbol{\thaiSaraO}{LTH}{226}
+\DeclareTextSymbol{\thaiSaraAiMaimuan}{LTH}{227}
+\DeclareTextSymbol{\thaiSaraAiMaimalai}{LTH}{228}
+\DeclareTextSymbol{\thaiLakkhangyao}{LTH}{229}
+\DeclareTextSymbol{\thaiMaiyamok}{LTH}{230}
+\DeclareTextSymbol{\thaiMaitaikhu}{LTH}{231}
+\DeclareTextSymbol{\thaiMaiEk}{LTH}{232}
+\DeclareTextSymbol{\thaiMaiTho}{LTH}{233}
+\DeclareTextSymbol{\thaiMaiTri}{LTH}{234}
+\DeclareTextSymbol{\thaiMaiChattawa}{LTH}{235}
+\DeclareTextSymbol{\thaiThanthakhat}{LTH}{236}
+\DeclareTextSymbol{\thaiNikhahit}{LTH}{237}
+\DeclareTextSymbol{\thaiYamakkan}{LTH}{238}
+\DeclareTextSymbol{\thaiFongman}{LTH}{239}
+\DeclareTextSymbol{\thaizero}{LTH}{240}
+\DeclareTextSymbol{\thaione}{LTH}{241}
+\DeclareTextSymbol{\thaitwo}{LTH}{242}
+\DeclareTextSymbol{\thaithree}{LTH}{243}
+\DeclareTextSymbol{\thaifour}{LTH}{244}
+\DeclareTextSymbol{\thaifive}{LTH}{245}
+\DeclareTextSymbol{\thaisix}{LTH}{246}
+\DeclareTextSymbol{\thaiseven}{LTH}{247}
+\DeclareTextSymbol{\thaieight}{LTH}{248}
+\DeclareTextSymbol{\thainine}{LTH}{249}
+\DeclareTextSymbol{\thaiAngkhankhu}{LTH}{250}
+\DeclareTextSymbol{\thaiKhomut}{LTH}{251}
+\endinput
+%%
+%% End of file `LTHenc.def'.

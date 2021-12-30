@@ -1,0 +1,38 @@
+%%
+%% This is file `xeCJK-example-checksingle.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% xeCJK.dtx  (with options: `ex-single')
+%% 
+\documentclass{minimal}
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun}
+\long\def\showtext{一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十。
+\[x^2+y^2\]
+一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十。
+$$x^2+y^2$$
+一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十。
+\begin{equation}
+x^2+y^2
+\end{equation}
+一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十。}
+\begin{document}
+\hsize=30em
+\parindent=0pt
+\showtext
+
+\hrulefill\bigskip
+
+\xeCJKsetup{CheckSingle}
+\showtext
+
+\hrulefill\bigskip
+
+\xeCJKsetup{PlainEquation}
+\showtext
+\end{document}
+%% 
+%%
+%% End of file `xeCJK-example-checksingle.tex'.

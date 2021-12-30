@@ -1,0 +1,20 @@
+name babel-macedonian
+category Package
+revision 39587
+shortdesc Babel module to support Macedonian Cyrillic
+longdesc The package provides support for Macedonian documents written
+longdesc in Cyrillic, in babel.
+containersize 4832
+containerchecksum c061ca1ec358e4d8df05e0adadd5d87695cf3b9f86cab52eaa0e08b1f5b1fedb66febe32107e74c1926fa4d697b056d7d3f119db525b90ff7e7bde30fd015508
+doccontainersize 207284
+doccontainerchecksum 7284141fbecedad06cfef78f50b4c13ebb3af76ced474c456a364c97943b51b9a233ecf6797e561ab0936ef7d082adc80daea0de4e961baab60e494bd72f7061
+docfiles size=52
+ texmf-dist/doc/generic/babel-macedonian/README.md details="Readme"
+ texmf-dist/doc/generic/babel-macedonian/macedonian.pdf details="Package documentation"
+srccontainersize 11544
+srccontainerchecksum c5866f925540742391981848fb5a76908863fba8a7c77da97b6e6bc634a8425c2d39459f789749cd1ccc4e7888e6d0f5b40d3d9a0a76611f4b1ff2db80866c72
+runfiles size=4
+ texmf-dist/tex/generic/babel-macedonian/macedonian.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/macedonian
+catalogue-license lppl1.3
+catalogue-topics macedonian multilingual-addon

@@ -1,0 +1,26 @@
+name babel-portuges
+category Package
+revision 59883
+shortdesc Babel support for Portuges
+longdesc The package provides the language definition file for support
+longdesc of Portuguese and Brazilian Portuguese in babel. Some shortcuts
+longdesc are defined, as well as translations to Portuguese of standard
+longdesc "LaTeX names".
+containersize 2828
+containerchecksum 8b63140bf59669873f55ed65925eff65cab3bd6bb404b7dec962b7072243c2b2be8d2918e379ba02b557f7e07d1d490b3cd0bcf3756bbfc3f4e63ff540e73c28
+doccontainersize 146580
+doccontainerchecksum 1fd6cdd08c2c00340b04ddaf078d1e9f0b1c51dee22f805f00bb46e63c46c4461fe4d9df174c2844a6ed01f7b52333a6290cd0c8aff3820a1659839668308b91
+docfiles size=37
+ texmf-dist/doc/generic/babel-portuges/README.md details="Readme"
+ texmf-dist/doc/generic/babel-portuges/portuges.pdf details="Package documentation"
+srccontainersize 6692
+srccontainerchecksum 863f5c222f11288cb4f041a04cf543494409bc69df67a65b71ccd79411e4a292653a6bc48644d3b7700c0a01d1a456fa56c0ce867d6177983a8b7c98b5e66aab
+runfiles size=8
+ texmf-dist/tex/generic/babel-portuges/brazil.ldf
+ texmf-dist/tex/generic/babel-portuges/brazilian.ldf
+ texmf-dist/tex/generic/babel-portuges/portuges.ldf
+ texmf-dist/tex/generic/babel-portuges/portuguese.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/portuges
+catalogue-license lppl1.3
+catalogue-topics multilingual-addon portuguese portuguese-br
+catalogue-version 1.2t

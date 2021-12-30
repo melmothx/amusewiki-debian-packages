@@ -1,0 +1,118 @@
+% Copyright 2007 by Till Tantau
+% Copyright 2015 by Vedran Mileti\'c, Joseph Wright
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+\mode<presentation>
+
+\setbeamercolor{frametitle}{parent=palette primary}
+
+\AtBeginDocument{
+  {
+    \usebeamerfont*{headline}
+
+    \usebeamercolor{normal text}
+    \usebeamercolor{title in head/foot}
+    \usebeamercolor{subsection in head/foot}
+    \usebeamercolor{section in head/foot}
+    \usebeamercolor{frametitle}
+
+    \pgfdeclareverticalshading{beamer@treeshade}{\the\paperwidth}{%
+      color(0ex)=(subsection in head/foot.bg);%
+      color(2.25ex)=(subsection in head/foot.bg);%
+      color(3.25ex)=(section in head/foot.bg);%
+      color(5.5ex)=(section in head/foot.bg);%
+      color(6.5ex)=(title in head/foot.bg);%
+      color(9.25ex)=(title in head/foot.bg)%
+    }
+    
+    \pgfdeclareverticalshading{beamer@aboveframetitle}{\the\paperwidth}{%
+      color(0ex)=(frametitle.bg);%
+      color(1ex)=(subsection in head/foot.bg)
+    }
+    
+    \begingroup
+      \selectcolormodel{gray} 
+      \pgfdeclareverticalshading{beamer@belowframetitle}{\the\paperwidth}{%
+        color(0ex)=(pgftransparent!100);%
+        color(1ex)=(pgftransparent!0)
+      }
+      \pgfdeclarefading{beamer@belowframetitlemask}{\pgfuseshading{beamer@belowframetitle}}
+    \endgroup
+    
+  }
+}
+
+\defbeamertemplate*{headline}{smoothtree theme}
+{%
+  \pgfuseshading{beamer@treeshade}%
+  \vskip-0.05ex%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1ex,dp=0ex]{empty}
+  \begin{pgfpicture}
+    \begin{pgfscope}%
+      \pgfsetfillcolor{subsection in head/foot.bg}%
+      \pgfpathrectangle{\pgfpoint{-.5\paperwidth}{-0.5ex}}{\pgfpoint{\paperwidth}{1ex}}%
+      \pgfsetfading{beamer@belowframetitlemask}{}%
+      \pgfusepath{fill}%
+    \end{pgfscope}%
+  \end{pgfpicture}%
+  \end{beamercolorbox}%  
+  \vskip-9.15ex%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1.125ex,dp=1.125ex,ignorebg,%
+    leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.125ex,dp=1.125ex,ignorebg,%
+    leftskip=.3cm,rightskip=.3cm plus1fil]{section in head/foot}
+    \usebeamerfont{section in head/foot}%
+    \hskip6pt\insertsectionhead
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.125ex,dp=1.125ex,ignorebg,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+    \usebeamerfont{subsection in head/foot}%
+    \hskip12pt\insertsubsectionhead
+  \end{beamercolorbox}
+  \vskip-0.4ex%
+}
+
+\defbeamertemplate*{frametitle}{smoothtree theme}
+{%
+  \nointerlineskip%
+  \vskip-0.05ex%
+  \usebeamerfont{headline}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.85ex,dp=0ex]{empty}
+    \pgfuseshading{beamer@aboveframetitle}%
+  \end{beamercolorbox}
+  \nointerlineskip%
+  \begin{beamercolorbox}[wd=\paperwidth,leftskip=.935cm,rightskip=.3cm plus1fil]{frametitle}
+    \vskip-1.2ex%
+    \usebeamerfont*{frametitle}\strut\insertframetitle%
+      \ifx\insertframesubtitle\@empty%
+        \strut\par%
+      \else
+        \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle}\strut\par}%
+      \fi%%
+    \usebeamerfont{headline}%
+  \end{beamercolorbox}%
+  \nointerlineskip
+  \vskip-0.2ex%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=1ex,dp=0ex]{empty}
+  \begin{pgfpicture}
+    \begin{pgfscope}%
+      \pgfsetfillcolor{frametitle.bg}%
+      \pgfpathrectangle{\pgfpoint{-.5\paperwidth}{-0.5ex}}{\pgfpoint{\paperwidth}{1ex}}%
+      \pgfsetfading{beamer@belowframetitlemask}{}%
+      \pgfusepath{fill}%
+    \end{pgfscope}%
+  \end{pgfpicture}%
+  \end{beamercolorbox}%  
+}
+  
+  
+\mode
+<all>

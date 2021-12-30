@@ -1,0 +1,41 @@
+%%
+%% This is file `plexpl3.ltx',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% plexpl3.dtx  (with options: `code')
+%% 
+%% Copyright (c) 2010 ASCII MEDIA WORKS
+%% Copyright (c) 2016-2020 Japanese TeX Development Community
+%% 
+%% This file is part of the pLaTeX2e system (community edition).
+%% -------------------------------------------------------------
+%% 
+%% File: plexpl3.dtx
+\cs_if_exist:NT \__platex_expl_loaded:
+  {
+    \GenericInfo{}
+      {Skipping:~ plexpl3~ code~ already~ part~ of~ the~ format}%
+    \endinput
+  }
+\cs_new:Npn \__platex_expl_loaded: {  }
+%% additions to l3box.dtx: writing directions (pTeX/upTeX-specific)
+\cs_set_eq:NN \platex_direction_yoko: \tex_yoko:D
+\cs_set_eq:NN \platex_direction_tate: \tex_tate:D
+\cs_set_eq:NN \platex_direction_dtou: \tex_dtou:D
+\prg_new_conditional:Npnn \platex_if_direction_yoko: { p, T, F, TF }
+  { \tex_ifydir:D \prg_return_true: \else: \prg_return_false: \fi: }
+\prg_new_conditional:Npnn \platex_if_direction_tate: { p, T, F, TF }
+  { \tex_iftdir:D \prg_return_true: \else: \prg_return_false: \fi: }
+\prg_new_conditional:Npnn \platex_if_direction_dtou: { p, T, F, TF }
+  { \tex_ifddir:D \prg_return_true: \else: \prg_return_false: \fi: }
+\prg_new_conditional:Npnn \platex_if_box_yoko:N #1 { p, T, F, TF }
+  { \tex_ifybox:D #1 \prg_return_true: \else: \prg_return_false: \fi: }
+\prg_new_conditional:Npnn \platex_if_box_tate:N #1 { p, T, F, TF }
+  { \tex_iftbox:D #1 \prg_return_true: \else: \prg_return_false: \fi: }
+\prg_new_conditional:Npnn \platex_if_box_dtou:N #1 { p, T, F, TF }
+  { \tex_ifdbox:D #1 \prg_return_true: \else: \prg_return_false: \fi: }
+\endinput
+%%
+%% End of file `plexpl3.ltx'.

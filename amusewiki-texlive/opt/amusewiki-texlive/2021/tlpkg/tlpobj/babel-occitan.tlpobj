@@ -1,0 +1,20 @@
+name babel-occitan
+category Package
+revision 39608
+shortdesc Babel support for Occitan
+longdesc Occitan language description file with usage instructions.
+containersize 2384
+containerchecksum f1f2f26b5466d10e995d76f7003c202650e3976b82b431d2bae768a582bc0c5662fc120739c49fcfd1226da3595c8a6b2e8c952a491718c45e69770c09d542a9
+doccontainersize 411824
+doccontainerchecksum 86433fa646eb6b2f7ee0ba54f1dafa73b81bd98012859c59408883cc76ec876720ef526cb2f526bd4a8385c0371f9bb01ae6d604661deabb4ec920172986adf0
+docfiles size=102
+ texmf-dist/doc/generic/babel-occitan/README details="Readme"
+ texmf-dist/doc/generic/babel-occitan/occitan.pdf details="Package documentation"
+srccontainersize 10520
+srccontainerchecksum 95bd15481ed6d20f1b9b71fad9661e5a12e4f29cda61dc8910a1601fb0f97cb4797d5ecf8137c9465a623288dc05e58c84740ee5b663b1f30f1c984d4dde9b03
+runfiles size=2
+ texmf-dist/tex/generic/babel-occitan/occitan.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/occitan
+catalogue-license lppl1.3
+catalogue-topics multilingual-addon occitan
+catalogue-version 0.2

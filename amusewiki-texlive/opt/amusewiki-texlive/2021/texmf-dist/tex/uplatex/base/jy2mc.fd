@@ -1,0 +1,27 @@
+%%
+%% This is file `jy2mc.fd',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% uplfonts.dtx  (with options: `JY2mc')
+%% 
+%% Copyright (c) 2010 ASCII MEDIA WORKS
+%% Copyright (c) 2016 Takuji Tanaka
+%% Copyright (c) 2016-2018 Japanese TeX Development Community
+%% 
+%% This file is part of the upLaTeX2e system (community edition).
+%% --------------------------------------------------------------
+%% 
+%% File: uplfonts.dtx
+\ProvidesFile{jy2mc.fd}
+       [2018/07/03 v1.6q-u02 KANJI font defines]
+\DeclareKanjiFamily{JY2}{mc}{}
+\DeclareRelationFont{JY2}{mc}{m}{}{T1}{cmr}{m}{}
+\DeclareRelationFont{JY2}{mc}{bx}{}{T1}{cmr}{bx}{}
+\DeclareFontShape{JY2}{mc}{m}{n}{<->s*[0.962216]upjisr-h}{}
+\DeclareFontShape{JY2}{mc}{bx}{n}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JY2}{mc}{b}{n}{<->ssub*mc/bx/n}{}
+\endinput
+%%
+%% End of file `jy2mc.fd'.

@@ -1,0 +1,129 @@
+%% $Id: pst-news20.tex 25 2020-09-18 06:59:21Z herbert $
+\documentclass[11pt,english,BCOR=10mm,DIV=12,bibliography=totoc,parskip=false,headings=small,
+    headinclude=false,footinclude=false,twoside]{scrartcl}
+
+\listfiles
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small}
+\usepackage{libertinus}
+\usepackage[scaled=0.88]{beramono}
+\usepackage{babel}
+\usepackage[svgnames,dvipsnames,x11names,pspdf=-dALLOWPSTRANSPARENCY]{pstricks-pdf}
+\usepackage{pstricks-add}
+
+\usepackage{biblatex}
+\addbibresource{PSTricks.bib}
+\def\Lcs#1{\texttt{\textbackslash#1}}
+\begin{document}
+
+\title{\texttt{News -- \the\year}\\ \Large new macros and bugfixes for the basic package.}
+\author{Herbert Voß}
+\date{\today}
+
+\maketitle
+
+\tableofcontents
+
+\part{\texttt{pstricks} -- package}
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.sty} -- \texttt{pstricks-pdf.sty}}
+%--------------------------------------------------------------------------------------
+
+With the package \texttt{pstricks-pdf} you can now use 
+
+\begin{verbatim}
+pdflatex --shell-escape <file>
+\end{verbatim}
+
+This document was created this way. Remember that you have to use the environment \texttt{postscript}
+if you do not use the environment \texttt{pspicture} or a lot of PS-code outside this environment:
+
+\begin{lstlisting}
+\begin{postscript}
+\pstVerb{/LL 1 def /RR 140 def /CCmy 6 def /RsqC RR dup mul 1000 div CCmy mul 1000 div def 
+/omegam LL RR div 1000 mul RR div CCmy div 1000 mul 1 sub sqrt RR mul 3 sqrt div LL div def 
+/phiomegafunc {/omega exch def LL RsqC sub omega CCmy mul 1000 div omega mul 1000 div 
+    LL mul LL mul sub omega mul dup 0 ge {RR atan}{RR atan 360 sub} ifelse} def 
+/phimax omegam phiomegafunc def}
+\begin{center}
+\begin{psgraph}[axesstyle=frame,yAxisLabel=$\varphi$,xAxisLabel=$\omega$/Hz,
+	yticksize=0 16cm,xticksize=-90 
+	90,subticksize=1,Dy=20,Dx=100,xsubticks=2](0,0)(0,-90)(800,90){16cm}{8cm}
+\psplot[linecolor=Blue1,plotpoints=200,linewidth=2pt]{0}{800}{x phiomegafunc}
+\uput{0pt}[0](10,75){$R=$\psPrintValue{RR}\hspace{2em}$\Omega$}
+\uput{0pt}[0](10,65){$C=$\psPrintValue{CCmy}\hspace{0.75em}$\mu$F}
+\uput{0pt}[0](10,55){$L=\psPrintValue{LL}\hspace{0.75em}\text{H}$}
+\pscircle*[linecolor=Red1](!omegam phimax){2pt}
+\end{psgraph}
+\end{center}
+\end{postscript}
+\end{lstlisting}
+
+\resizebox{\linewidth}{!}{%
+\begin{postscript}
+\pstVerb{/LL 1 def /RR 140 def /CCmy 6 def /RsqC RR dup mul 1000 div CCmy mul 1000 div def /omegam 
+LL RR div 1000 mul RR div CCmy div 1000 mul 1 sub sqrt RR mul 3 sqrt div LL div def /phiomegafunc 
+{/omega exch def LL RsqC sub omega CCmy mul 1000 div omega mul 1000 div LL mul LL mul sub omega mul 
+dup 0 ge {RR atan}{RR atan 360 sub} ifelse} def /phimax omegam phiomegafunc def}
+\begin{psgraph}[axesstyle=frame,yAxisLabel=$\varphi$,xAxisLabel=$\omega$/Hz,
+	yticksize=0 16cm,xticksize=-90 
+	90,subticksize=1,Dy=20,Dx=100,xsubticks=2](0,0)(0,-90)(800,90){16cm}{8cm}
+\psplot[linecolor=Blue1,plotpoints=200,linewidth=2pt]{0}{800}{x phiomegafunc}
+\uput*{0pt}[0](10,75){$R=$\psPrintValue{RR}\hspace{2em}$\Omega$}
+\uput*{0pt}[0](10,65){$C=$\psPrintValue{CCmy}\hspace{0.75em}$\mu$F}
+\uput*{0pt}[0](10,55){$L=\psPrintValue{LL}\hspace{0.75em}\text{H}$}
+\psdot[linecolor=Red1](!omegam phimax)
+\end{psgraph}
+\end{postscript}%
+}
+
+(Example by Poul Riis)
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.tex} (v. 2.99 -- 2020/06/09)}
+%--------------------------------------------------------------------------------------
+
+New optional arguments \texttt{griddx} and \texttt{griddy}, which are only valid
+for \Lcs{psgrid}:
+
+\begin{lstlisting}[basicstyle=\small\ttfamily]
+\psset{unit=5mm}
+\newpsstyle{gridstyle}{gridlabels=8pt, gridfont=Helvetica, gridcolor=red, 
+  subgridcolor=gray, subgriddiv=5, gridwidth=.8pt, subgridwidth=.4pt, 
+  griddots=10, subgriddots=5,
+  griddx=5, griddy=2 }
+\begin{pspicture}[showgrid](25,25)
+\end{pspicture}
+\end{lstlisting}
+
+
+\bigskip
+\begin{postscript}
+\psset{unit=5mm}
+\newpsstyle{gridstyle}{gridlabels=8pt, gridfont=Helvetica, gridcolor=red, 
+  subgridcolor=gray, subgriddiv=5, gridwidth=.8pt, subgridwidth=.4pt, 
+  griddots=10, subgriddots=5,
+  griddx=5, griddy=2 }
+\begin{pspicture}[showgrid](25,25)
+\end{pspicture}
+\end{postscript}
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.pro}}
+%--------------------------------------------------------------------------------------
+
+The function \texttt{Grid} supports GridDX and GridDY.
+
+The current version 1.32 should handle transparency for all Ghostscript versions.
+For versions > 9.52 you need for \verb|ps2pdf| the optional argument \verb|-dALLOWPSTRANSPARENCY|
+instead of \verb|-dNOSAFER|, which is still needed if you want to write Postscript files from within
+the \TeX-run.
+
+
+\nocite{*}
+\printbibliography
+
+
+\end{document}
+

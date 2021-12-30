@@ -1,0 +1,92 @@
+%%
+%% This is file `xeCJK-example-CJKfntef.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% xeCJK.dtx  (with options: `ex-fntef')
+%% 
+\documentclass{ctexart}
+\usepackage{xcolor}
+\usepackage{xeCJKfntef}
+\xeCJKDeclareSubCJKBlock{test}{ `殆 , `已 }
+\setCJKmainfont[test=SimHei]{SimSun}
+
+\def\showtext{%
+  庄子曰：“吾生也有涯，而知也无涯。以有涯随无涯，殆已！已而为知者，殆而已矣！%
+  为善无近名，为恶无近刑，缘督以为经，可以保身，可以全生，可以养亲，可以尽年。”}
+\newcommand\CJKfntef[1]{%
+  \csname#1\endcsname{\showtext}\par
+  \csname#1\endcsname*{\showtext}\par
+  \CJKunderdot{\showtext\csname#1\endcsname{\showtext}}\par
+  \CJKunderdot{\showtext\csname#1\endcsname*{\showtext}}\par
+  \csname#1\endcsname{\showtext\CJKunderdot{\showtext}}\par
+  \csname#1\endcsname*{\showtext\CJKunderdot{\showtext}}\par\bigskip}
+
+\begin{document}
+
+\section{\textsf{xeCJKfntef} 的\CJKunderdot{简单测试文件}}
+
+\CJKunderline{汉 字}\CJKunderline{加下划线}
+\varCJKunderline{汉字}\varCJKunderline{加下划线}
+\CJKunderanyline{0.5em}{\sixly \kern-.021em\char58 \kern-.021em}{自定义下划线}
+\CJKunderanyline{0.2em}{\kern-.03em\vtop{\kern.2ex\hrule width.2em\kern 0.11em
+  \hrule height 0.1em}\kern-.03em}{自定义下划线}
+
+\CJKunderanyline{0.5em}{-}{\showtext}
+
+\CJKunderanysymbol{0.2em}{-}{\showtext}
+
+\CJKunderdot{\showtext}
+
+\hrule depth \dp\strutbox width 0 pt \relax
+
+\begin{CJKfilltwosides}{40mm}
+两端分散对齐\\
+分散对齐\\
+\CJKunderdot{汉字可加点}\\
+\CJKunderline{汉字可加下划线}
+\end{CJKfilltwosides}
+
+\hrule depth \dp\strutbox width 0 pt \relax
+
+\CJKfntef{CJKunderline}
+\CJKfntef{CJKunderwave}
+\CJKfntef{CJKunderdblline}
+\CJKfntef{CJKsout}
+\CJKfntef{CJKxout}
+
+\def\Book{\CJKunderwave-}
+\def\Noun{\CJKunderline-}
+
+如上所述，\Book{中國文學史}原是\Noun{復旦大學出版社}出版的，\Book{中國文學史新著}則由\Noun{上海文藝出版社}出版。現承\Noun{復旦大學出版社}\Noun{賀聖遂}先生的盛情和\Noun{上海文藝出版總社}\Noun{楊益萍}、\Noun{何承偉}先生以及有關負責人\Noun{陳鳴華}先生的高誼，此書增訂本改由兩社聯合出版。\Noun{賀聖遂}先生並與\Noun{杜榮根}副社長、\Noun{韓結根}編審共同擔任此書的責任編輯。對上述諸位先生謹在這裡表示衷心的感謝。對\Book{中國文學史新著}原版的責任編輯\Noun{戴俊}先生（現為\Noun{上海三聯書店}副總經理）也在此一併致謝。
+
+\Noun{與文學史的}\Noun{應有任務}\Noun{對文學發展過程}\Noun{的內在聯繫的描述}\Noun{還有很大的距離}\Noun{至於距離的所在}\Noun{本書原已有說明}\Book{此不贅述}\Book{為了對學術負責}\Book{我們決定重寫一部並迅即出版}
+
+\Noun{南朝}\Noun{梁}\Noun{劉勰}\Book{文心雕龍}\Book{養氣}
+
+\Noun{鎌池和馬}\Book{魔法禁書目錄}\Book{某科學的超電磁砲}
+
+\Noun{西尾維新}\Book{化物語}\Book{偽物語}\Book{貓物語}%
+\Book{傾物语}\Book{囤物語}\Book{鬼物語}\Book{戀物語}\Book{花物語}
+
+\Noun{岡田麿里}\Book{我們仍未知道那天所看見的花的名字。}\Book{絕園的暴風雨}
+
+\Noun{虚淵玄}\Book{Fate/Zero}\Book{PSYCHO-PASS}\Book{ALDNOAH.ZERO}
+
+\Noun{劉海洋}\Book{\LaTeX 入門}
+
+\def\NAME{%
+  \x{御坂美琴}\x{白井黑子}\x{戰場原緋多木}\x{阿良良木歷}%
+  \x{宿海仁太}\x{本間芽衣子}\x{瀧川吉野}\x{鎖部葉風}%
+  \x{衛宮切嗣}\x{言峰綺禮}\x{常守朱}\x{狡嚙慎也}%
+  \x{界塚伊奈帆}\x*{艾瑟依拉姆·沃斯·艾莉歐斯亞}}
+
+\let\x\Noun\NAME
+
+\let\x\Book\NAME
+
+\end{document}
+%% 
+%%
+%% End of file `xeCJK-example-CJKfntef.tex'.

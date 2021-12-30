@@ -1,0 +1,21 @@
+name babel-albanian
+category Package
+revision 57005
+shortdesc Support for Albanian within babel
+longdesc The package provides support for typesetting Albanian (as part
+longdesc of the babel system).
+containersize 2264
+containerchecksum 8a98ba1dc08bc2bdbba0793bda2a07a6c248543fdee56cbb047229d1cfe77cdf616c0ef023b0a74f877d9863768065f0e256ba35a1071e0dd3f2bbf2b47b7ebe
+doccontainersize 133444
+doccontainerchecksum d26b9d933bbf0225f79bd8180f9dcc2961ea481fef7b535267034296062f8879b53ca47ed6b512fc724b261276be6d92ce045ba0c8bbdba0149cca6f117be8ea
+docfiles size=34
+ texmf-dist/doc/generic/babel-albanian/README.md details="Readme"
+ texmf-dist/doc/generic/babel-albanian/albanian.pdf details="Package documentation"
+srccontainersize 4748
+srccontainerchecksum 74212f36288599d730fafd00dc50839cf0f12283ed8653303471d2cb64a57217b4792f1000cb44411c7d5031e4597db67368964ad318e896987103af8e21f838
+runfiles size=2
+ texmf-dist/tex/generic/babel-albanian/albanian.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/albanian
+catalogue-license lppl1.3
+catalogue-topics albanian
+catalogue-version 1.0d

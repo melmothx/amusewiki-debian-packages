@@ -1,0 +1,9 @@
+%
+% lltjp-preview.sty
+%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lltjp-preview}[2020-10-01 Patch to preview for LuaTeX-ja]
+\RequirePackage{preview}
+\let\pr@shipout=\ltj@shipout
+\endinput

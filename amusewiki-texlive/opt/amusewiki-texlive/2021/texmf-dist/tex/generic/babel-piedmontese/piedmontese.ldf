@@ -1,0 +1,115 @@
+%%
+%% This is file `piedmontese.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% piedmontese.dtx  (with options: `code')
+%%   ______________________________________________________
+%%   The piedmontese file for babel
+%%   Copyright (C) 2013 Claudio Beccari
+%%   All rights reserved
+%% 
+%%   License information appended
+%% 
+\ProvidesLanguage{piedmontese}
+\ProvidesFile{piedmontese}
+     [2013/02/12 v.1.0 Piedmontese support for the babel system]
+\LdfInit{\CurrentOption}{captions\CurrentOption}
+\LdfInit\CurrentOption{captions\CurrentOption}
+\ifx\l@piedmontese\@undefined
+    \@nopatterns{piedmontese}
+    \ifx\l@italian\@undefined
+        \@nopatterns{italian}
+        \adddialect\l@piedmontese\l@english
+    \else
+        \adddialect\l@piedmontese\l@italian
+    \fi
+\fi
+\@namedef{captions\CurrentOption}{%
+    \def\prefacename{Prefassion}%
+    \def\refname{Riferiment}%
+    \def\abstractname{Somari}%
+    \def\bibname{Bibliograf\`ia}%
+    \def\chaptername{Cap\`itol}%
+    \def\appendixname{Gionta}%
+    \def\contentsname{T\`aula}%
+    \def\listfigurename{Lista dle figure}%
+    \def\listtablename{Lista dle tabele}%
+    \def\indexname{T\`aula anal\`itica}%
+    \def\figurename{Figura}%
+    \def\tablename{Tabela}%
+    \def\partname{Part}%
+    \def\enclname{Gionta/e}%
+    \def\ccname{Con c\`opia a}%
+    \def\headtoname{P\"er}%
+    \def\pagename{P\`agina}%
+    \def\seename{v\"ed}%
+    \def\alsoname{v\"ed anche}%
+    \def\proofname{Dimostrassion}%
+    \def\glossaryname{Glossari}%
+}
+\@namedef{date\CurrentOption}{%
+    \def\today{\number\day\space \space\ifcase\month\or
+      \"ed gen\'e\or \"ed fevr\'e\or \"ed mars\or d'avril\or
+      \"ed maj\or \"ed giugn\or \"ed luj\or d'agost\or
+      d\"e st\`ember\or d'ot\'ober\or \"ed nov\`ember\or
+      d\"e dz\`ember\fi\space dal\space\number\year}}
+\providehyphenmins{\CurrentOption}{\tw@\tw@}
+\expandafter\addto\csname extras\CurrentOption\endcsname{%
+  \babel@savevariable\clubpenalty
+  \babel@savevariable\widowpenalty
+  \babel@savevariable\@clubpenalty
+  \clubpenalty3000\widowpenalty3000\@clubpenalty\clubpenalty}%
+\expandafter\addto\csname extras\CurrentOption\endcsname{%
+  \babel@savevariable\finalhyphendemerits
+  \finalhyphendemerits50000000}%
+\expandafter\addto\csname extras\CurrentOption\endcsname{%
+  \lccode`'=`'}%
+\expandafter\addto\csname noextras\CurrentOption\endcsname{%
+  \lccode`'=0}%
+\initiate@active@char{"}%
+\expandafter\addto\csname extras\CurrentOption\endcsname{%
+\bbl@activate{"}\languageshorthands{piedmontese}}%
+\declare@shorthand{piedmontese}{"}{%
+\ifmmode
+    \def\pms@next{''}%
+\else
+    \def\pms@next{\futurelet\pms@temp\pms@cwm}%
+\fi
+\pms@next
+}%
+\DeclareRobustCommand*{\pms@cwm}{\let\pms@@next\relax
+\ifcat\noexpand\pms@temp a%
+    \def\pms@@next{\pms@@cwm}%
+\else
+    \ifx\pms@temp/%
+        \def\pms@@next{\bbl@allowhyphens/\bbl@allowhyphens\@gobble}%
+    \else
+        \ifx\pms@temp-%
+           \def\pms@@next{\bbl@allowhyphens-\bbl@allowhyphens\@gobble}%
+        \else
+            \ifx\pms@temp"%
+                \def\pms@@next{``\expandafter\@gobble\string}%
+            \fi
+        \fi
+    \fi
+\fi
+\pms@@next}%
+\expandafter\addto\csname noextras\CurrentOption\endcsname{%
+\bbl@deactivate{"}}
+\ldf@finish\CurrentOption
+
+%% Copyright 2013 Claudio Beccari
+%% 
+%% Distributable under the LaTeX Project Public License,
+%% version 1.3c or higher (your choice). The latest version of
+%% this license is at: http://www.latex-project.org/lppl.txt
+%% 
+%% This work is "author-maintained"
+%% 
+%% This work consists of this file piedmontese.dtx,
+%% and the derived files piedmontese.ldf and piedmontese.pdf.
+%% 
+%%
+%% End of file `piedmontese.ldf'.

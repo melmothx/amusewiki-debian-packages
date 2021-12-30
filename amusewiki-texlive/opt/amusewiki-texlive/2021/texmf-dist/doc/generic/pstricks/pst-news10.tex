@@ -1,0 +1,926 @@
+%% $Id: pst-news10.tex 4 2020-06-09 08:32:19Z herbert $
+\documentclass[11pt,english,BCOR=10mm,DIV12,bibliography=totoc,parskip=false,headings=small,,
+    headinclude=false,footinclude=false,oneside]{pst-doc}
+\listfiles
+\let\Lfile\LFile
+\usepackage[utf8]{inputenc}
+\usepackage{pstricks}
+\let\pstricksFV\fileversion
+\let\pstricksFD\filedate
+\usepackage{pst-plot}
+\let\pstplotFV\fileversion
+\let\pstplotFD\filedate
+%\usepackage{xkvview}
+\usepackage{pst-eucl,pst-func}
+\renewcommand\bgImage{\psscalebox{15}{\color{blue!20}2010}}
+\def\textat{\char064}
+\lstset{explpreset={pos=l,width=-99pt,overhang=0pt,hsep=\columnsep,vsep=\bigskipamount,rframe={}},
+    escapechar=?}
+
+\addbibresource{PSTricks.bib}
+\begin{document}
+
+%\psset{PstDebug=1}
+\title{\texttt{News -- 2010}\\ \Large new macros and bugfixes for the
+basic package \nxLFile{pstricks}}
+\author{Herbert Voß}
+\date{\today}
+
+\maketitle
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\part{\texttt{pstricks} -- package}
+
+\section{General}
+There exists a new document class \LClass{pst-doc} for writing PSTricks documentations,
+like this news document. It depends on the KOMA-Script document class \LClass{scrartcl}.
+\LClass{pst-doc} defines a lot of special macros to create a good index. Take one of
+the already existing package documentation and look into the source file. Then it will be
+easy to understand, how all these macros have to be used.
+
+When running \Lprog{pdflatex} the title page is created with boxes and inserted 
+with the macro \Lcs{AddToShipoutPicture} from the package \LPack{eso-pic}. It
+inserts the background title page image \Lfile{pst-doc-pdf} to use directly
+\Lprog{pdflatex}.
+When running \Lprog{latex} the title page
+ is created with \PST\ macros.This allows to use the Perl script \Lprog{pst2pdf} or
+the package \LPack{pst-pdf} or \LPack{auto-pst-pdf} or any other program/package which
+supports \PS\ code in the document.
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.sty}}
+%--------------------------------------------------------------------------------------
+\subsection{New optional argument}
+
+With the setting of the optional argument \Loption{pdf} the package \LPack{auto-pst-pdf} will be loaded
+by PSTricks. This requires that you run \Lprog{pdflatex} as 
+
+\begin{BDef}
+\Lprog{pdflatex} \texttt{-{}-}\Loption{shell-escape} \texttt{<file>} & \% \TeX\,Live users\\
+\Lprog{pdflatex} \texttt{-{}-}\Loption{enable-write18} \texttt{<file>} & \% MiK\TeX\ users
+\end{BDef}
+
+The package exports the \Lenv{pspicture} environments into single images which are collected in
+a created file \texttt{<file>-pics.pdf} and inserted automatically in the last \Lprog{pdflatex}
+run.
+
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.tex} (\pstricksFV -- \pstricksFD)}
+%--------------------------------------------------------------------------------------
+
+\subsection{Coordinates}
+With the setting \Lcs{SpecialCoor} the package allows different kinds of coordinates.
+The macro \Lcs{uput} can now be used in a different way. 
+The default behaviour for nodes with a relative point puts its argument \emph{without} rotation
+on the line $\overline{AB}$. When using the prefix > before the node or the $x$-value for
+cartesian coordinates, the behaviour is different. Now the angle between the line $\overline{OB}$
+and the horizontal line
+is taken into account and the placement of the argument of \Lcs{uput} is different to
+the default behaviour. 
+
+\begin{LTXexample}[width=7cm]
+\begin{pspicture}[showgrid](-0.25,-0.25)(6,5)
+\pnodes(0,3){A}(3,1){B}
+\psline[showpoints](A)(B)
+\uput[-90](A){A}\uput[-90](B){B}
+\psline[linestyle=dashed](A)(3,4)
+\psline[linestyle=dashed](A)(3,5)
+\psline[linestyle=dashed](A)(3,3)
+\psline[linestyle=dashed](6,2)
+\psline[linestyle=dashed](B)(6,1)
+\psarc{->}(0,3){2.5}{0}{(3,1)}
+\psarc{->}(3,1){2.5}{0}{(3,1)}
+\uput*{1cm}[(B)](A){foo} \uput*{1cm}[(B)](>A){bar}
+\end{pspicture}
+\end{LTXexample}
+
+
+\subsection{New optional arguments}
+The new arguments are only valid for the macros \Lcs{psellipse}, \Lcs{pscircle}, \Lcs{psarc}.
+\Lcs{psellipticarc}, \Lcs{pscurve}, \Lcs{psplot}, and \Lcs{psparametricplot}.
+
+\medskip
+\begin{tabular}{@{} l >{\em}l l l @{}}\toprule
+\emph{name} & type & \emph{default} & \emph{description}\\\midrule
+\Lkeyword{dashcolor} & color & \nxLcs{relax} & for colored dashed lines \\
+\Lkeyword{startLW} & length & \Lcs{pslinewidth} & starting linewidth \\
+\Lkeyword{endLW}   & length & \Lcs{pslinewidth} & ending linewidth \\
+\Lkeyword{startWL} & integer& 380               & starting wave length\\
+\Lkeyword{endWL}   & integer& 780               & ending wave length \\
+\Lkeyword{variableLW} & boolean & \false       & use variable linewidth\\
+\Lkeyword{variableColor} & boolean & \false       & use variable color\\\bottomrule
+\end{tabular}
+
+\bigskip
+\begingroup
+\psset{linewidth=2mm,linestyle=dashed}
+\begin{pspicture}(4,-4)
+\psline[linecolor=blue,dashcolor=red,linearc=0.5](0,0)(4,0)(4,-4)
+\psline[linecolor=blue,dashcolor=cyan,linearc=0.5](0,0)(0,-4)(4,-4)
+\end{pspicture}\quad
+\begin{pspicture}(4,4)
+\psframe[linecolor=blue,dashcolor=green,framearc=0.5](0,0)(4,4)
+\end{pspicture}
+\quad \psset{linecap=2,dash=5mm 5mm }
+\begin{pspicture}(4,-4)
+\psline[linecolor=black,dashcolor=black!40,linecap=0](0,0)(4,-4)
+\psline[linecolor=blue,dashcolor=red,linearc=0.5](0,0)(4,0)(4,-4)
+\psline[linecolor=blue,dashcolor=cyan,linearc=0.5](0,0)(0,-4)(4,-4)
+\end{pspicture}
+\endgroup
+
+\begin{lstlisting}
+\psset{linewidth=2mm,linestyle=dashed}
+\begin{pspicture}(4,-4)
+\psline[linecolor=blue,dashcolor=red,linearc=0.5](0,0)(4,0)(4,-4)
+\psline[linecolor=blue,dashcolor=cyan,linearc=0.5](0,0)(0,-4)(4,-4)
+\end{pspicture}\quad
+\begin{pspicture}(4,4)
+\psframe[linecolor=blue,dashcolor=green,framearc=0.5](0,0)(4,4)
+\end{pspicture}
+\quad \psset{linecap=2,dash=5mm 5mm }
+\begin{pspicture}(4,-4)
+\psline[linecolor=black,dashcolor=black!40,linecap=0](0,0)(4,-4)
+\psline[linecolor=blue,dashcolor=red,linearc=0.5](0,0)(4,0)(4,-4)
+\psline[linecolor=blue,dashcolor=cyan,linearc=0.5](0,0)(0,-4)(4,-4)
+\end{pspicture}
+\end{lstlisting}
+
+
+\begin{LTXexample}[width=7cm,wide=true]
+\psset{endLW=15pt}
+\begin{pspicture}(-3.5,-2.5)(3.5,2.5)
+\psellipse[linejoin=2,variableLW,startLW=1pt,
+  linecolor=green!40](0,0)(3,1)
+\end{pspicture}
+\end{LTXexample}
+
+
+\begin{LTXexample}[width=7cm,wide=true]
+\psset{endLW=15pt}
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+\pscircle[variableLW,startLW=1pt,
+  linecolor=blue!40]{2}
+\end{pspicture}
+\end{LTXexample}
+
+%
+\begin{LTXexample}[width=7cm,wide=true]
+\psset{endLW=15pt}
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+\psarc[variableLW,startLW=1pt,
+  linecolor=red!40](0,0){2}{10}{300}
+\end{pspicture}
+\end{LTXexample}
+
+% 
+\begin{LTXexample}[width=7cm,wide=true]
+\psset{endLW=15pt}
+\begin{pspicture}(-3.5,-2.5)(3.5,2.5)
+\psellipticarc[variableLW,startLW=1pt,
+  linecolor=black!40](0,0)(3,1){90}{30}
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=7cm,wide=true]
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+\pscurve[variableLW,startLW=1pt,endLW=20pt,
+  variableColor](-1,0.5)(-2,1)(2,2)(-1,-2)(2,-2)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=7cm,wide=true]
+\begin{pspicture}(-2.5,-2.5)(2.5,2.5)
+\pscurve[variableLW,startLW=1pt,endLW=20pt]%
+  (-1,0.5)(-2,1)(2,2)(-1,-2)(2,-2)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}(-5,-3)(5,3)
+\psplot[variableLW,startLW=1pt,endLW=20pt,
+  linecolor=magenta!60,variableColor,
+  algebraic,plotpoints=3000,startWL=500,
+  endWL=700]{-5}{5}{2*sin(2*x)+cos(x)}
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t]
+\psset{endLW=24pt}
+\begin{pspicture}(-5,-5)(5,5)
+\psparametricplot[variableLW,startLW=1pt,
+  endLW=60pt,linecolor=red,variableColor,
+  algebraic,plotpoints=3000,plotstyle=curve,
+  opacity=0.4,strokeopacity=0.4,
+  endWL=600]{-5}{5}{t*sin(t) | t*cos(t)}
+\end{pspicture}
+\end{LTXexample}
+
+
+\clearpage
+
+
+\subsection{Macro \nxLcs{psellipse}}
+
+To rotate an ellipse the already existing keyword \Lkeyword{rot} can be
+used. This is easier than using the \Lcs{rput} command and its optional
+argument for rotating.
+\xLkeyword{rot}\xLkeyword{vlines}\xLkeyword{linecolor}
+\begin{LTXexample}[width=6cm,wide=true]
+\psset{unit=0.25}
+\begin{pspicture}(-1,5)(20,18)
+\psclip{\psellipse[linecolor=red,
+  rot=-12.606](5.821,10.04)(6.633,5.103)}
+  \psellipse[linecolor=blue,fillstyle=vlines,
+    rot=39.29](13.141,11.721)(6.8,5.4)
+\endpsclip
+\psellipse[linecolor=blue,rot=39.29](13.1,11.7)(6.8,5.4)
+\end{pspicture}
+
+\begin{pspicture}(-1,5)(20,18)
+\psellipse[linecolor=blue,rot=-39.29,
+  fillstyle=vlines](13.1,11.7)(6.8,5.4)
+\psclip{\psellipse[linecolor=red,rot=12.6,
+  fillstyle=vlines](5.8,10)(6.6,5.1)}
+  \psellipse*[linecolor=white,rot=-39.29](13.1,11.7)(6.8,5.4)
+\endpsclip
+\psellipse[linecolor=blue,rot=-39.29](13.1,11.7)(6.8,5.4)
+\psellipse[linecolor=red,rot=12.6](5.8,10)(6.6,5.1)
+\end{pspicture}
+\end{LTXexample}
+
+\subsection{Macro \nxLcs{psellipticarc}}\xLcs{psellipticarc}
+In a circle the angle is proportional to the bow: $b=r\alpha$. In an
+elliptic arc this is no more the case, which is the reason why angles are
+internally corrected by PSTricks, to get the same arc lengthts for
+different radii:
+
+\xLcs{psellipticarc}
+\begin{LTXexample}[width=6cm]
+\psset{unit=0.5cm}
+\begin{pspicture}(-5.5,-5.5)(5.5,5.5)%
+\psset{linewidth=0.4pt,linejoin=1}
+\psline(5,0)(0,0)(5,-5)
+\psellipticarc(0,0)(3,3){0}{315}
+\end{pspicture}%
+\end{LTXexample}
+
+\begin{LTXexample}[width=6cm]
+\psset{unit=0.5cm}
+\begin{pspicture}(-5.5,-5.5)(5.5,5.5)%
+\psset{linewidth=0.4pt,linejoin=1}
+\psline(5,0)(0,0)(5,-5)
+\psellipticarc(0,0)(1,3){0}{315}%
+\psset{linecolor=red}
+\psellipticarc(0,0)(3,1){22}{222}%
+\psline(3;22)\psline(3;222)
+\end{pspicture}%
+\end{LTXexample}
+
+\begin{LTXexample}[width=6cm]
+\psset{unit=0.5cm}
+\begin{pspicture}(-5.5,-5.5)(5.5,5.5)%
+\psset{linewidth=0.4pt,linejoin=1}
+\psline(5,0)(0,0)(5,-5)
+\psellipticarc*(0,0)(1,3){0}{315}%
+\psset{linecolor=red}
+\psellipticarc*(0,0)(3,1){22}{222}%
+\psline(3;22)\psline(3;222)
+\end{pspicture}%
+\end{LTXexample}
+
+\psset{unit=1cm}
+
+
+If you do not want the angle correction, then use the keyword setting \Lkeyword{correctAngle}=\false:
+
+\begin{LTXexample}[width=6cm]
+\psset{unit=0.5cm}
+\begin{pspicture}(-5.5,-5.5)(5.5,5.5)%
+\psset{linewidth=0.4pt,linejoin=1,
+  correctAngle=false}
+\psline(5,0)(0,0)(5,-5)
+\psellipticarc(0,0)(1,3){0}{315}%
+\psset{linecolor=red}
+\psellipticarc(0,0)(3,1){22}{222}%
+\psline(3;22)\psline(3;222)
+\end{pspicture}%
+\end{LTXexample}
+
+\begin{LTXexample}[width=6cm]
+\psset{unit=0.5cm}
+\begin{pspicture}(-5.5,-5.5)(5.5,5.5)%
+\psset{linewidth=0.4pt,linejoin=1,
+  correctAngle=false}
+\psline(5,0)(0,0)(5,-5)
+\psellipticarc*(0,0)(1,3){0}{315}%
+\psset{linecolor=red}
+\psellipticarc*(0,0)(3,1){22}{222}%
+\psline(3;22)\psline(3;222)
+\end{pspicture}%
+\end{LTXexample}
+
+
+
+
+\subsection{Option \texttt{algebraic}}
+The option \Lkeyword{algebraic} moved from the other packages into
+the main package \LPack{pstricks} to get rid of the dependencies.
+
+By default the function in \Lcs{psplot} has to be described in
+Reversed Polish Notation. The option \Lkeyword{algebraic} allows you
+to do this in the common algebraic notation. E.g.:
+
+\begin{tabular}{l|l}
+RPN & algebraic\\\hline
+\verb+x ln+ & \verb+ln(x)+\\
+\verb+x cos 2.71 x neg 10 div exp mul+ & \verb+cos(x)*2.71^(-x/10)+\\
+\verb+1 x div cos 4 mul+ & \verb+4*cos(1/x)+\\
+\verb+t cos t sin+ & \verb+cos(t)|sin(t)+
+\end{tabular}
+
+Setting the option \Lkeyword{algebraic}, allow the user
+to describe all expression to be written in the classical
+algebraic notation (infix notation). The four arithmetic
+operations are obviously defined \verb$+-*/$, and also the
+exponential operator \verb$^$. The natural priorities are used :
+$3+4\times 5^5=3+(4\times (5^5))$, and by default the computation
+is done from left to right. The following functions are defined :
+
+\medskip
+\begin{tabular}{ll}
+\verb$sin$, \verb$cos$, \verb$tan$, \verb$acos$, \verb$asin$ & in radians\\
+\verb$log$, \verb$ln$\\
+\verb$ceiling$, \verb$floor$, \verb$truncate$, \verb$round$\\
+\verb$sqrt$ & square root\\
+\verb$abs$ & absolute value\\
+\verb$fact$ & for the factorial\\
+\verb$Sum$ & for building sums\\
+\verb$IfTE$ & for an easy case structure
+\end{tabular}
+
+\medskip
+These options can be used with \textbf{all} plot macros.
+
+{\bfseries Using the option \Lkeyword{algebraic} implies that all
+angles have to be in radians! }
+
+For the \Lcs{parametricplot} the two parts must be divided by the \Lnotation{|} character:
+
+\begin{LTXexample}[width=2cm]
+\begin{pspicture}(-0.5,-0.5)(0.5,0.5)
+\parametricplot[algebraic,linecolor=red]{-3.14}{3.14}{cos(t)|sin(t)}
+\end{pspicture}
+\end{LTXexample}
+
+\bigskip
+\begingroup
+\psset{lly=-0.5cm}
+\psgraph[trigLabels,dx=\psPi,dy=0.5,Dy=0.5]{->}(0,0)(-10,-1)(10,1){\linewidth}{6cm}
+  \psset{algebraic,plotpoints=1000}
+  \psplot[linecolor=yellow,linewidth=2pt]{-10}{10}{0.75*sin(x)*cos(x/2)}
+  \psplot[linecolor=red,showpoints=true,plotpoints=101]{-10}{10}{0.75*sin(x)*cos(x/2)}
+\endpsgraph
+\endgroup
+
+\bigskip
+\begin{lstlisting}
+\psset{lly=-0.5cm}
+\psgraph[trigLabels,dx=\psPi,dy=0.5,Dy=0.5]{->}(0,0)(-10,-1)(10,1){\linewidth}{6cm}
+  \psset{algebraic,plotpoints=1000}
+  \psplot[linecolor=yellow,linewidth=2pt]{-10}{10}{0.75*sin(x)*cos(x/2)}
+  \psplot[linecolor=red,showpoints=true,plotpoints=101]{-10}{10}{0.75*sin(x)*cos(x/2)}
+\endpsgraph
+\end{lstlisting}
+
+
+\bigskip
+%\begin{LTXexample}[pos=t]
+\bgroup
+\psset{lly=-0.5cm,unit=1cm}
+\psgraph(0,-5)(18,3){0.9\linewidth}{5cm}
+  \psset{algebraic,plotpoints=501}
+  \psplot[linecolor=yellow, linewidth=4\pslinewidth]{0.01}{18}{ln(x)}
+  \psplot[linecolor=red]{0.01}{18}{ln(x)}
+  \psplot[linecolor=green,linewidth=4\pslinewidth]{0}{18}{3*cos(x)*2.71^(-x/10)}
+  \psplot[linecolor=blue,showpoints=true,plotpoints=51]{0}{18}{3*cos(x)*2.71^(-x/10)}
+\endpsgraph
+\egroup
+%\end{LTXexample}
+
+
+\bigskip
+\begin{lstlisting}
+\psset{lly=-0.5cm}
+\psgraph(0,-5)(18,3){0.9\linewidth}{5cm}
+  \psset{algebraic,plotpoints=501}
+  \psplot[linecolor=yellow, linewidth=4\pslinewidth]{0.01}{18}{ln(x)}
+  \psplot[linecolor=red]{0.01}{18}{ln(x)}
+  \psplot[linecolor=yellow,linewidth=4\pslinewidth]{0}{18}{3*cos(x)*2.71^(-x/10)}
+  \psplot[linecolor=blue,showpoints=true,plotpoints=51]{0}{18}{3*cos(x)*2.71^(-x/10)}
+\endpsgraph
+\end{lstlisting}
+
+\section{New linestyle \nxLkeyval{symbol}}
+
+Instead of drawing a continous line or curve for a series of coordinates, one
+can now out a symbol in a given size, direction, and step. This works only
+for the line style \Lkeyval{symbol}. It takes the symbol defined by the optional
+argument \Lkeyword{symbol}, which can have a single character or a octal number
+of three digits. The font is specified by the key \Lkeyword{symbolFont}, which can take
+as argument one of the valid \PS fonts or the internal \Lkeyval{PSTricksDotFont}.
+If the symbol is given by a single character then the equivilant character in
+the given font is used. The difference between two symbols is set by \Lkeyword{symbolStep}
+and the symbol rotation by \Lkeyword{rotateSymbol}. For the first symbol there
+is an additional keyword \Lkeyword{startAngle}. 
+The default values for these new
+optional keywords are:
+
+\begin{Xverbatim}{}
+\psset[pst-base]{symbolStep=20pt}
+\psset[pst-base]{symbolWidth=10pt}
+\psset[pst-base]{symbolFont=Dingbats}
+\psset[pst-base]{rotateSymbol=false}
+\psset[pst-base]{startAngle=0}
+\end{Xverbatim}
+
+\begin{LTXexample}[pos=t,preset=\centering]
+\pspicture(-1,-1)(8,6)
+\psline[linestyle=symbol](0,0)(5,0)(8,4)
+\psline[linestyle=symbol,symbol=T](0,1)(5,1)(8,4)
+\psline[linestyle=symbol,symbol=u,symbolFont=PSTricksDotFont](0,2)(5,2)(8,4)
+\psline[linestyle=symbol,symbol=u,symbolStep=25pt,linecolor=red](0,3)(5,3)(8,2)
+\psline[linestyle=symbol,symbol=A,symbolStep=25pt,
+  symbolWidth=20pt,linecolor=blue](0,4)(5,4)(8,1)
+\psline[linestyle=symbol,symbol=342,rotateSymbol=true,symbolStep=12pt](0,5)(5,5)(8,0)
+\endpspicture
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t,preset=\centering]
+\pspicture(-1,-1)(8,6)
+\pscurve[linestyle=symbol](0,0)(5,0)(8,4)
+\pscurve[linestyle=symbol](0,1)(5,1)(8,4)
+\pscurve[linestyle=symbol,symbol=u,symbolFont=PSTricksDotFont](0,2)(5,2)(8,4)
+\pscurve[linestyle=symbol,symbol=u,symbolStep=25pt,linecolor=red](0,3)(5,3)(8,2)
+\pscurve[linestyle=symbol,symbol=A,symbolStep=25pt,
+  symbolWidth=20pt,linecolor=blue](0,4)(5,4)(8,1)
+\pscurve[linestyle=symbol,symbol=342,rotateSymbol=true,
+  startAngle=190,symbolStep=12pt](0,5)(5,5)(8,0)
+\endpspicture
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t,preset=\centering]
+\pspicture(-1,-1)(8,6)
+\psccurve[linestyle=symbol](0,0)(5,0)(8,4)
+\psccurve[linestyle=symbol](0,1)(5,1)(8,4)
+\psccurve[linestyle=symbol,symbol=u,symbolFont=PSTricksDotFont](0,2)(5,2)(8,4)
+\psccurve[linestyle=symbol,symbol=u,symbolStep=25pt,linecolor=red](0,3)(5,3)(8,2)
+\psccurve[linestyle=symbol,symbol=A,symbolStep=25pt,
+  symbolWidth=20pt,linecolor=blue](0,4)(5,4)(8,1)
+\psccurve[linestyle=symbol,symbol=342,rotateSymbol=true,
+  startAngle=190,symbolStep=12pt](0,5)(5,5)(8,0)
+\endpspicture
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t,preset=\centering]
+\pspicture(-1,-1)(5,4)
+\pscurve[rotateSymbol=true,linestyle=symbol,
+  rot=180,startAngle=100,symbol=",
+    symbolWidth=20pt](0,0)(1,4)(3,0)(5,2)
+\endpspicture
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t,preset=\centering]
+\pspicture(-1,-1)(6,4)
+\psbezier[rotateSymbol=true,linestyle=symbol,symbol=u,
+ symbolFont=PSTricksDotFont,rot=-90,startAngle=0](0,0)(0,4)(6,4)(6,0)
+\endpspicture
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t,preset=\centering]
+\psset{unit=0.5cm}
+\pspicture(-1,-4)(6,4)
+\pscbezier[rotateSymbol=true,linestyle=symbol,symbol=u,
+ symbolFont=PSTricksDotFont](0,4)(4,4)(4,-4)(0,-4)
+\pscbezier[linestyle=dashed](0,4)(4,4)(4,-4)(0,-4)
+\endpspicture
+\end{LTXexample}
+
+\psset{unit=1cm}
+\begin{LTXexample}[pos=t,preset=\centering]
+\pspicture(-1,-1)(6,4)
+\psbezier[rotateSymbol=true,linestyle=symbol,symbol=u,
+ symbolFont=PSTricksDotFont](0,0)(0,4)(6,4)(6,0)
+\endpspicture
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t,preset=\centering]
+\pspicture(-1,-1)(6,4)
+\pspolygon[rotateSymbol=true,linestyle=symbol,symbol=u,
+ symbolFont=PSTricksDotFont](0,0)(0,4)(6,4)(6,0)(1,3)
+\endpspicture
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t,preset=\centering]
+\pspicture(-3,-1)(6,6)
+\psccurve[linestyle=symbol,symbol=u, rot=-90,rotateSymbol,
+   symbolFont=PSTricksDotFont, symbolWidth=5pt, symbolStep=10pt
+](-3,-1)(0,0)(0,4)(6,4)(6,0)(0,4)(-1,5)
+\endpspicture
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t,preset=\centering]
+\pspicture(-1,-1)(6,6)
+\pscurve[linestyle=dashed,linecolor=black!30](0,0)(0,4)(6,4)(6,0)(0,4)
+\pscurve[rotateSymbol=true,linestyle=symbol,symbol=k,
+   symbolFont=PSTricksDotFont, symbolWidth=5pt, symbolStep=10pt,linecolor=blue
+](0,0)(0,4)(6,4)(6,0)(0,4)
+\endpspicture
+\end{LTXexample}
+
+
+%--------------------------------------------------------------------------------------
+\section{Numeric functions}
+%--------------------------------------------------------------------------------------
+
+All macros have a \textat{} in their name, because they are
+only for internal use, but it is no problem to use them like other
+macros. One can define another name without a \textat{}:
+\begin{lstlisting}[style=syntax]
+\makeatletter
+\let\pstdivide\pst@divide
+\makeatother
+\end{lstlisting}
+
+or put the macro inside the \Lcs{makeatletter} -- \Lcs{makeatother} sequence.
+
+
+%--------------------------------------------------------------------------------------
+\section{Numeric functions}
+%--------------------------------------------------------------------------------------
+
+By default \PST\ loads the file \Lfile{pst-fp} which is derived from the
+\LPack{fp} package. It supports the following macros:
+
+%--------------------------------------------------------------------------------------
+\subsection{\nxLcs{pstFPadd}, \nxLcs{pstFPsub}, \nxLcs{pstFPmul}, and \nxLcs{pstFPdiv}}
+%--------------------------------------------------------------------------------------
+Multiplication and division:
+
+\begin{BDef}
+\Lcs{pstFPadd}\Largb{result}\Largb{number}\Largb{number}\\
+\Lcs{pstFPsub}\Largb{result}\Largb{number}\Largb{number}\\
+\Lcs{pstFPmul}\Largb{result}\Largb{number}\Largb{number}\\
+\Lcs{pstFPdiv}\Largb{result}\Largb{number}\Largb{number}
+\end{BDef}
+
+\begin{LTXexample}[width=5cm]
+\pstFPmul\Result{-3.405}{0.02345} \Result\quad
+\pstFPdiv\Result{-3.405}{0.02345} \Result\\
+\pstFPmul\Result{0.02345}{-3.405} \Result\quad
+\pstFPdiv\Result{0.02345}{-3.405} \Result\\
+\pstFPmul\Result{234.123}{33} \Result\quad
+\pstFPdiv\Result{234.123}{33} \Result\\
+\pstFPadd\Result{234.123}{33} \Result\quad
+\pstFPadd\Result{234.123}{-33} \Result\\
+\pstFPsub\Result{234.123}{33} \Result\quad
+\pstFPsub\Result{-234.123}{33} \Result
+\end{LTXexample}
+
+The zeros can be stripped with the macro \Lcs{pstFPstripZeros}. Expect 
+always rounding errors, \TeX\ was not made for calculations \ldots
+The value is converted into a length and then reconverted to a 
+number by stripping the unit. Which also strips the zeros.
+
+\begin{LTXexample}[width=5cm]
+\pstFPmul\Result{-3.405}{0.02345} 
+\pstFPstripZeros{\Result}{\Result}\Result\quad
+\pstFPdiv\Result{-3.405}{0.02345} 
+\pstFPstripZeros{\Result}{\Result}\Result\\
+\pstFPmul\Result{0.02345}{-3.405} 
+\pstFPstripZeros{\Result}{\Result}\Result\quad
+\pstFPdiv\Result{0.02345}{-3.405} 
+\pstFPstripZeros{\Result}{\Result}\Result
+\end{LTXexample}
+
+%--------------------------------------------------------------------------------------
+\subsection{\nxLcs{pstFPMul} and \nxLcs{pstFPDiv}}
+%--------------------------------------------------------------------------------------
+Integer multiplication and division:
+
+\begin{BDef}
+\Lcs{pstFPMul}\Largb{result as a truncated integer}\Largb{number}\Largb{number}\\
+\Lcs{pstFPDiv}\Largb{result as a truncated integer}\Largb{number}\Largb{number}
+\end{BDef}
+
+\begin{LTXexample}[width=5cm]
+\makeatletter
+\pstFPMul\Result{-34.05}{0.02345} \Result\quad
+\pstFPDiv\Result{-3.405}{0.02345} \Result\\
+\pstFPMul\Result{23.45}{-3.405} \Result\quad
+\pstFPDiv\Result{0.2345}{-0.03405} \Result\\
+\pstFPMul\Result{234.123}{33} \Result\quad
+\pstFPDiv\Result{234.123}{33} \Result
+\makeatother
+\end{LTXexample}
+
+%--------------------------------------------------------------------------------------
+\section{The PostScript header files}
+\subsection{\nxLFile{pstricks.pro}}
+%--------------------------------------------------------------------------------------
+It contains now most of the stuff from \LPack{pstricks-add} and the new routines
+for plotting lines/curves with symbols.
+
+%--------------------------------------------------------------------------------------
+\subsection{\nxLFile{pst-algparser.pro}}
+\subsubsection{Using the \texttt{Sum} function}
+%--------------------------------------------------------------------------------------
+
+\begin{BDef}
+\Lcs{Sum}\Largr{<index name>,<start>,<step>,<end>,<function>}
+\end{BDef}
+
+Let's plot the first development of cosine with polynomials:
+$\displaystyle\sum_{n=0}^{+\infty}\frac{(-1)^nx^{2n}}{n!}$.
+
+\begin{center}
+\bgroup
+\psset{algebraic=true, plotpoints=501, yunit=3}
+\def\getColor#1{\ifcase#1 black\or red\or magenta\or yellow\or green\or Orange\or blue\or
+  DarkOrchid\or BrickRed\or Rhodamine\or OliveGreen\fi}
+\begin{pspicture}(-7,-1.5)(7,1.5)
+  \psclip{\psframe(-7,-1.5)(7,1.5)}
+    \psplot{-7}{7}{cos(x)}
+    \multido{\n=1+1}{10}{%
+      \psplot[linewidth=1pt,linecolor=\getColor{\n}]{-7}{7}{%
+         Sum(ijk,0,1,\n,(-1)^ijk*x^(2*ijk)/fact(2*ijk))}}
+   \endpsclip
+  \psaxes(0,0)(-7,-1.5)(7,1.5)
+\end{pspicture}
+\egroup
+\end{center}
+\begin{lstlisting}
+\psset{algebraic=true, plotpoints=501, yunit=3}
+\def\getColor#1{\ifcase#1 black\or red\or magenta\or yellow\or green\or Orange\or blue\or
+  DarkOrchid\or BrickRed\or Rhodamine\or OliveGreen\fi}
+\begin{pspicture}(-7,-1.5)(7,1.5)
+  \psclip{\psframe(-7,-1.5)(7,1.5)}
+    \psplot{-7}{7}{cos(x)}
+    \multido{\n=1+1}{10}{%
+      \psplot[linewidth=1pt,linecolor=\getColor{\n}]{-7}{7}{%
+         Sum(ijk,0,1,\n,(-1)^ijk*x^(2*ijk)/fact(2*ijk))}}
+   \endpsclip
+  \psaxes(0,0)(-7,-1.5)(7,1.5)
+\end{pspicture}
+\end{lstlisting}
+
+\clearpage
+%--------------------------------------------------------------------------------------
+\subsection[\nxLps{IfTE}]{The variable step algorithm together with the PostScript function \nxLps{IfTE}}
+%--------------------------------------------------------------------------------------
+\xLps{IfTE}\xLkeyword{VarStep}\xLkeyword{VarStepEpsilon}
+
+\begin{BDef}
+\Lps{IfTE}\Largr{<condition>,<true part>,<false part>}
+\end{BDef}
+
+Nesting of several \Lps{IfTE} is possible and seen in the
+following examples. A classic example is a piece-wise linear
+function.
+
+\begin{center}
+\psset{unit=0.7cm}
+\begin{pspicture}(-7.5,-2.5)(7.5,6)
+  \psaxes{->}(0,0)(-7,-2)(7.5,6)[x,-90][y,0]
+  \psset{algebraic=true, plotpoints=21,linewidth=2pt}
+  \psplot[linecolor=blue]{-7.5}{7.5}{IfTE(x<-6,8+x,IfTE(x<0,-x/3,IfTE(x<3,2*x,9-x)))}
+  \psplot[linecolor=red, plotpoints=101]{-7.5}{7.5}{%
+      IfTE(2*x<-2^2*sqrt(9),7+x,IfTE(x<0,x^2/18-1,IfTE(x<3,2*x^2/3-1,8-x)))}%
+\end{pspicture}
+\end{center}
+\psset{unit=1cm}
+
+\begin{lstlisting}
+\psset{unit=1.5, algebraic, ?\ON?VarStep?\OFF?, showpoints, ?\ON?VarStepEpsilon?\OFF?=.001}
+\begin{pspicture}[showgrid=true](-7,-2)(2,4)
+  \psplot{-7}{2}{?\ON?IfTE?\OFF?(x<-5,-(x+5)^3/2,?\ON?IfTE?\OFF?(x<0,0,x^2))}
+  \psplot{-7}{2}{5*x/9+26/9}
+  \psplot[linecolor=blue]{-7}{2}{(x+7)^30/9^30*4.5-1/2}
+  \psplot[linecolor=red]{-6.9}{2}
+      {?\ON?IfTE?\OFF?(x<-6,ln(x+7),?\ON?IfTE?\OFF?(x<-3,x+6,?\ON?IfTE?\OFF?(x<0.1415926,sin(x+3)+3,3.1415926-x)))}
+\end{pspicture}
+\end{lstlisting}
+
+When you program a piece-wise defined function you must take care
+that a plotting point must be put at each point where the
+description changes. Use \Lkeyword{showpoints}=true to see what's
+going on when there is a problem. You are on the safe side when
+you choose a big number for \Lkeyword{plotpoints}.
+
+
+\begin{center}
+\psset{unit=0.75}
+\begin{pspicture}(-8,-8)(8,8)
+  \psaxes{->}(0,0)(-8,-8)(8,8)[x,-90][y,0]
+  \psset{plotpoints=1000,linewidth=1pt}
+  \psplot[algebraic=true]{-8}{8}{ceiling(x)}
+  \psplot[algebraic=true, linecolor=yellow]{-8}{8}{rand/(2^31-1)+x}
+  \psplot[algebraic=true, linecolor=red]{-8}{8}{floor(x)}
+  \psplot[algebraic=true, linecolor=blue]{-8}{8}{round(x)}
+  \psplot[algebraic=true, linecolor=green]{-8}{8}{truncate(x)}
+  \psplot[algebraic=true, linecolor=cyan]{-8}{8}{div(mul(4,x),7)}
+  \psplot[algebraic=true, linecolor=gray]{-8}{8}{abs(x)+abs(x-3)-abs(5-5*x/7)}
+  \psplot[algebraic=true, linecolor=gray]{-8}{8}{abs(3*cos(x)+1)}
+  \psplot[algebraic=true, linecolor=magenta]{-8}{8}{floor(8*cos(x))}
+\end{pspicture}
+\end{center}
+
+\begin{lstlisting}
+\psset{unit=0.75}
+\begin{pspicture}(-8,-8)(8,8)
+  \psaxes{->}(0,0)(-8,-8)(8,8)[x,-90][y,0]
+  \psset{plotpoints=1000,linewidth=1pt}
+  \psplot[algebraic=true, linecolor=yellow]{-8}{8}{rand/(2^31-1)+x}
+  \psplot[algebraic=true]{-8}{8}{ceiling(x)}
+  \psplot[algebraic=true, linecolor=red]{-8}{8}{floor(x)}
+  \psplot[algebraic=true, linecolor=blue]{-8}{8}{round(x)}
+  \psplot[algebraic=true, linecolor=green]{-8}{8}{truncate(x)}
+  \psplot[algebraic=true, linecolor=cyan]{-8}{8}{div(mul(4,x),7)}
+  \psplot[algebraic=true, linecolor=gray]{-8}{8}{abs(x)+abs(x-3)-abs(5-5*x/7)}
+  \psplot[algebraic=true, linecolor=gray]{-8}{8}{abs(3*cos(x)+1)}
+  \psplot[algebraic=true, linecolor=magenta]{-8}{8}{floor(8*cos(x))}
+\end{pspicture}
+\end{lstlisting}
+
+
+\subsection[\nxLps{Derive} function]{Successive derivatives of a polynomial with the PostScript function \nxLps{Derive}}
+
+\begin{center}
+\bgroup
+\psset{unit=2, algebraic=true, VarStep=true, showpoints=true, VarStepEpsilon=.001}
+\def\getColor#1{\ifcase#1 Tan\or RedOrange\or magenta\or yellow\or green\or Orange\or blue\or
+  DarkOrchid\or BrickRed\or Rhodamine\or OliveGreen\or Goldenrod\or Mahogany\or
+  OrangeRed\or CarnationPink\or RoyalPurple\or Lavender\fi}
+\begin{pspicture}[showgrid=true](0,-1.2)(7,1.5)
+  \psclip{\psframe[linestyle=none](0,-1.1)(7,1.1)}
+  \multido{\in=0+1}{16}{%
+    \psplot[algebraic=true, linecolor=\getColor{\in}]{0.1}{7}
+    {Derive(\in,Sum(i,0,1,7,(-1)^i*x^(2*i)/Fact(2*i)))}}
+  \endpsclip
+\end{pspicture}
+\egroup
+\end{center}
+
+\begin{lstlisting}
+\psset{unit=2, algebraic=true, VarStep=true, showpoints=true, VarStepEpsilon=.001}
+\def\getColor#1{\ifcase#1 Tan\or RedOrange\or magenta\or yellow\or green\or Orange\or blue\or
+  DarkOrchid\or BrickRed\or Rhodamine\or OliveGreen\or Goldenrod\or Mahogany\or
+  OrangeRed\or CarnationPink\or RoyalPurple\or Lavender\fi}
+\begin{pspicture}[showgrid=true](0,-1.2)(7,1.5)
+  \psclip{\psframe[linestyle=none](0,-1.1)(7,1.1)}
+  \multido{\in=0+1}{16}{%
+    \psplot[algebraic=true, linecolor=\getColor{\in}]{0.1}{7}
+    {Derive(\in,Sum(i,0,1,7,(-1)^i*x^(2*i)/Fact(2*i)))}}
+  \endpsclip
+\end{pspicture}
+\end{lstlisting}
+
+
+\subsection{Special arrow option \texttt{arrowLW}}
+
+Only for the arrowtype \Lnotation{o}, \Lnotation{oo}, \Lnotation{*}, and \Lnotation{**} it is possible to
+set the arrowlinewidth with the optional keyword \Lkeyword{arrowLW}.
+When scaling an arrow by the keyword \Lkeyword{arrowscale} the width
+of the borderline is also scaled. With the optional argument
+\Lkeyword{arrowLW} the line width can be set separately and is not
+taken into account by the scaling value.
+
+\begin{LTXexample}[width=4cm]
+\begin{pspicture}(4,6)
+\psline[arrowscale=3,arrows=*-o](0,5)(4,5)
+\psline[arrowscale=3,arrows=*-o,
+  arrowLW=0.5pt](0,3)(4,3)
+\psline[arrowscale=3,arrows=*-o,
+  arrowLW=0.3333\pslinewidth](0,1)(4,1)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=4cm]
+\begin{pspicture}(4,6)
+\psline[arrowscale=3,arrows=**-oo](0,5)(4,5)
+\psline[arrowscale=3,arrows=**-oo,
+  arrowLW=0.5pt](0,3)(4,3)
+\psline[arrowscale=3,arrows=**-oo,
+  arrowLW=0.3333\pslinewidth](0,1)(4,1)
+\end{pspicture}
+\end{LTXexample}
+
+
+
+%--------------------------------------------------------------------------------------
+\clearpage
+\section{\nxLcs{psforeach} and \nxLcs{psForeach}}
+%--------------------------------------------------------------------------------------
+
+The macro \Lcs{psforeach} allows a loop with an individual increment.
+
+\begin{BDef}
+\Lcs{psforeach}\Largb{variable}\Largb{value list}\Largb{action}\\
+\Lcs{psForeach}\Largb{variable}\Largb{value list}\Largb{action}
+\end{BDef}
+
+With \Lcs{psforeach} the \Larg{action} is done inside a group and for \Lcs{psForeach} not.
+This maybe useful when using the macro to create tabular cells, which are
+alread grouped itself.
+
+\begin{LTXexample}[width=6cm]
+\begin{pspicture}[showgrid=true](5,5)
+  \psforeach{\nA}{0, 1, 1.5, 3, 5}{%
+    \psdot[dotscale=3](\nA,\nA)}
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t]
+%\usepackage{pst-func}
+\makeatletter
+\newcommand*\InitToks{\toks@={}}
+\newcommand\AddToks[1]{\toks@=\expandafter{\the\toks@ #1}}
+\newcommand*\PrintToks{\the\toks@}
+\newcommand*{\makeTable}[4][5mm]{%
+  \begingroup
+    \InitToks%
+    \AddToks{\begin{tabular}{|*{#2}{>{\RaggedLeft}p{#1}|}@{}l@{}}\cline{1-#2}}
+    \psForeach{\iA}{#3}{\expandafter\AddToks\expandafter{\iA & }}
+    \AddToks{\\\cline{1-#2}}%
+    \psForeach{\iA}{#3}{\expandafter\AddToks\expandafter{\expandafter%
+      \psPrintValue\expandafter{\iA\space /x ED #4} & }}
+    \AddToks{\\\cline{1-#2}\end{tabular}}%
+    \PrintToks
+  \endgroup
+}
+\makeatother
+
+\sffamily
+\psset{decimals=2,valuewidth=7,xShift=-20}
+$y=2^x$\\
+\makeTable[1cm]{6}{2,4,6,8,10,12}{2 x exp}
+\end{LTXexample}
+
+The value List can also be given by the first two and the last value, e.\,g. \verb=1,4,..,31=,
+then \PST calculates all values with the distance given by the first two values.
+
+\begin{LTXexample}[pos=t]
+\psset{xunit=0.55cm,yunit=2cm}
+\begin{pspicture}[showgrid](0,-5mm)(25,1)
+  \psforeach{\nA}{0, 3.14,..,25}{\psline(\nA,0)(\nA,1)}
+\end{pspicture}
+\end{LTXexample}
+
+The internal counter for the steps is named \LCtr{psLoopIndex} and can be used for own purposes.
+
+\begin{LTXexample}[pos=l,width=6cm]
+\begin{pspicture}[showgrid=true](5,5)
+\psforeach{\nA}{0, 1, 1.5, 2.25, 5}{%
+  \psdot[dotscale=3](\the\psLoopIndex,\nA)}
+\end{pspicture}
+\end{LTXexample}
+
+
+
+
+\part{\nxLPack{pst-node} -- package}
+
+\section{\nxLFile{pst-node.tex}}
+
+The package \LPack{pst-node} now uses the advanced key handling from \LPack{xkeyval}. The reason
+why it moved from the base into the contrib sections, where all packages uses \LPack{xkeyval}.
+
+\part{\nxLPack{pst-plot} -- package}
+
+\section{\nxLFile{pst-plot.tex}}
+
+The package \LPack{pst-plot} now uses the advanced key handling from \LPack{xkeyval}. The reason
+why it moved from the base into the contrib sections, where all packages uses \LPack{xkeyval}.
+
+
+\clearpage
+\section{List of all optional arguments for \texttt{pstricks}}
+
+\xkvview{family=pst-base,columns={key,type,default}}
+%\xkvview{family=pst-tools,columns={key,type,default}}
+
+
+
+\nocite{*}
+\printbibliography
+
+\printindex
+
+
+\end{document}

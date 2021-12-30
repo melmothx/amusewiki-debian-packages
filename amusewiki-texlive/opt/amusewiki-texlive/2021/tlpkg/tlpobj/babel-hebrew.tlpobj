@@ -1,0 +1,59 @@
+name babel-hebrew
+category Package
+revision 30273
+shortdesc Babel support for Hebrew
+longdesc The package provides the language definition file for support
+longdesc of Hebrew in babel. Macros to control the use of text direction
+longdesc control of TeX--XeT and e-TeX are provided (and may be used
+longdesc elsewhere). Some shortcuts are defined, as well as translations
+longdesc to Hebrew of standard "LaTeX names".
+containersize 17516
+containerchecksum 4690fc4288ba1d2142fcda24153e741a539ddc4a52d3e502c1c349feb19609c7cef1427751af24b93df191f12d2b7cf2d11423052193df01d848987e66744dab
+doccontainersize 718868
+doccontainerchecksum cd4b52bb2d207cb2bcd327e2351bf30d18921c7c4f8a8fa79ce0bf8864d6f6a34e2272fd416828c772abb2df5612b4a78f73f54157b6d69b011c008495b93cd5
+docfiles size=197
+ texmf-dist/doc/generic/babel-hebrew/00readme.heb
+ texmf-dist/doc/generic/babel-hebrew/heb209.pdf details="Package documentation (LaTeX 2.09 compatibility style files)"
+ texmf-dist/doc/generic/babel-hebrew/hebinp.pdf details="Package documentation (Hebrew input encodings for use with LaTeX 2)"
+ texmf-dist/doc/generic/babel-hebrew/hebrew.pdf details="Package documentation"
+srccontainersize 42724
+srccontainerchecksum 6d380ba803ecb1f6f268ebd2f80da0eca87c7f25d3374ba0a0432f9de6d39632613fb49e108ac9b7d97438b589dc71c37b47927b7387bad8809175355aeabbc6
+runfiles size=53
+ texmf-dist/tex/generic/babel-hebrew/8859-8.def
+ texmf-dist/tex/generic/babel-hebrew/cp1255.def
+ texmf-dist/tex/generic/babel-hebrew/cp862.def
+ texmf-dist/tex/generic/babel-hebrew/he8OmegaHebrew.fd
+ texmf-dist/tex/generic/babel-hebrew/he8aharoni.fd
+ texmf-dist/tex/generic/babel-hebrew/he8cmr.fd
+ texmf-dist/tex/generic/babel-hebrew/he8cmss.fd
+ texmf-dist/tex/generic/babel-hebrew/he8cmtt.fd
+ texmf-dist/tex/generic/babel-hebrew/he8david.fd
+ texmf-dist/tex/generic/babel-hebrew/he8drugulin.fd
+ texmf-dist/tex/generic/babel-hebrew/he8enc.def
+ texmf-dist/tex/generic/babel-hebrew/he8frankruehl.fd
+ texmf-dist/tex/generic/babel-hebrew/he8miriam.fd
+ texmf-dist/tex/generic/babel-hebrew/he8nachlieli.fd
+ texmf-dist/tex/generic/babel-hebrew/he8yad.fd
+ texmf-dist/tex/generic/babel-hebrew/hebcal.sty
+ texmf-dist/tex/generic/babel-hebrew/hebfont.sty
+ texmf-dist/tex/generic/babel-hebrew/hebrew.ldf
+ texmf-dist/tex/generic/babel-hebrew/hebrew_newcode.sty
+ texmf-dist/tex/generic/babel-hebrew/hebrew_oldcode.sty
+ texmf-dist/tex/generic/babel-hebrew/hebrew_p.sty
+ texmf-dist/tex/generic/babel-hebrew/lheclas.fd
+ texmf-dist/tex/generic/babel-hebrew/lhecmr.fd
+ texmf-dist/tex/generic/babel-hebrew/lhecmss.fd
+ texmf-dist/tex/generic/babel-hebrew/lhecmtt.fd
+ texmf-dist/tex/generic/babel-hebrew/lhecrml.fd
+ texmf-dist/tex/generic/babel-hebrew/lheenc.def
+ texmf-dist/tex/generic/babel-hebrew/lhefr.fd
+ texmf-dist/tex/generic/babel-hebrew/lheredis.fd
+ texmf-dist/tex/generic/babel-hebrew/lheshold.fd
+ texmf-dist/tex/generic/babel-hebrew/lheshscr.fd
+ texmf-dist/tex/generic/babel-hebrew/lheshstk.fd
+ texmf-dist/tex/generic/babel-hebrew/rlbabel.def
+ texmf-dist/tex/generic/babel-hebrew/si960.def
+catalogue-ctan /macros/latex/contrib/babel-contrib/hebrew
+catalogue-license lppl1.3
+catalogue-topics hebrew
+catalogue-version 2.3h

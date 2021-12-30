@@ -1,0 +1,465 @@
+%%
+%% This is file `ukraineb.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% ukraineb.dtx  (with options: `code')
+%% ----------------------------------------------------------------
+%% Ukrainian Language Support for the Babel package
+%% E-mail: sergiy.ponomarenko@gmailcom
+%% Released under the LaTeX Project Public License v1.3c or later
+%% See http://www.latex-project.org/lppl.txt
+%% ----------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesFile{ukraineb.ldf}[2020/10/14 1.4e Ukrainian support for the Babel system]
+\LdfInit{ukrainian}{captionsukrainian}
+\ifdefined\if@ukr@uni@ode
+    \PackageError{babel}{if@ukr@uni@ode already defined.\MessageBreak
+        Please contact author of ukraineb.ldf}
+    \relax
+\fi
+\newif\if@ukr@uni@ode
+\ifdefined\luatexversion
+    \@ukr@uni@odetrue
+\else
+    \ifdefined\XeTeXrevision
+        \@ukr@uni@odetrue
+    \fi
+\fi
+\ifx\l@ukrainian\@undefined
+    \@nopatterns{Ukrainian}
+  \adddialect\l@ukrainian0
+\fi
+\def\@setcyrillicencoding{%
+    \def\sce@a##1##2{%
+        \edef\sce@b{##1}%
+        \edef\sce@c{##2}%
+        \ifx\sce@b\sce@c
+            \let\cyrillicencoding\sce@c
+        \fi}%
+    \def\cdp@elt##1##2##3##4{%
+        \sce@a{##1}{OT2}%
+        \sce@a{##1}{LCY}%
+        \sce@a{##1}{X2}%
+        \sce@a{##1}{T2C}%
+        \sce@a{##1}{T2B}%
+        \sce@a{##1}{T2A}%
+        \if@ukr@uni@ode
+            %\sce@a{##1}{EU1}%
+            %\sce@a{##1}{EU2}%
+            \sce@a{##1}{TU}%
+        \fi}%
+     \cdp@list
+}
+\ifx\cyrillicencoding\undefined
+  \@setcyrillicencoding
+\fi
+\@onlypreamble\@setcyrillicencoding
+\@onlypreamble\sce@a
+\@onlypreamble\sce@b
+\@onlypreamble\sce@c
+\ifdefined\cyrillicencoding
+\else
+    \if@ukr@uni@ode
+        \ifdefined\XeTeXrevision
+            \edef\cyrillicencoding{EU1}
+        \else
+            \ifdefined\luatexversion
+                \edef\cyrillicencoding{EU2}
+            \fi
+        \fi
+    \else
+        \edef\cyrillicencoding{T2A}
+    \fi
+    \PackageWarning{babel}%
+        {No Cyrillic font encoding has been loaded so far.\MessageBreak
+         A font encoding should be declared before babel.\MessageBreak
+         Default `\cyrillicencoding' encoding will be loaded
+    }%
+    \lowercase\expandafter{\expandafter\input\cyrillicencoding enc.def\relax}%
+    \AtBeginDocument{\@setcyrillicencoding}
+\fi
+\DeclareRobustCommand{\Ukrainian}{\selectlanguage{\ukrainian}}
+\DeclareRobustCommand{\cyrillictext}{%
+    \fontencoding\cyrillicencoding\selectfont
+    \let\encodingdefault\cyrillicencoding
+    \expandafter\set@hyphenmins\ukrainianhyphenmins
+    \language\l@ukrainian}%
+\let\cyr\cyrillictext
+\expandafter\ifx\csname T@X2\endcsname\relax\else
+    \DeclareTextSymbolDefault{\AA}{OT1}
+    \DeclareTextSymbolDefault{\aa}{OT1}
+    \DeclareTextCommand{\aa}{OT1}{\r a}
+    \DeclareTextCommand{\AA}{OT1}{\r A}
+\fi
+\DeclareTextFontCommand{\textcyrillic}{\cyrillictext}
+\initiate@active@char{"}
+\begingroup \catcode`\"12
+\def\reserved@a{\endgroup
+    \def\@SS{\mathchar"7019 }
+    \def\dq{"}}
+\reserved@a
+\declare@shorthand{ukrainian}{"`}{\quotedblbase}
+\declare@shorthand{ukrainian}{"'}{\textquotedblleft}
+\declare@shorthand{ukrainian}{"<}{\guillemotleft}
+\declare@shorthand{ukrainian}{">}{\guillemotright}
+\providecommand\texorpdfstring[2]{#1}
+\declare@shorthand{ukrainian}{""}{\hskip\z@skip}
+\declare@shorthand{ukrainian}{"~}{%
+      \texorpdfstring{\textormath{\leavevmode\hbox{-}}{-}}{-}}
+\declare@shorthand{ukrainian}{"=}{\nobreak-\hskip\z@skip}
+\declare@shorthand{ukrainian}{"|}{%
+    \texorpdfstring{\textormath{\nobreak\discretionary{-}{}{\kern.03em}\allowhyphens}{}}{}}
+\declare@shorthand{ukrainian}{"-}{%
+    \def\ukrainian@sh@tmp{%
+        \if\ukrainian@sh@next-\expandafter\ukrainian@sh@emdash
+        \else%
+            \expandafter\ukrainian@sh@hyphen%
+        \fi}%
+   \futurelet\ukrainian@sh@next\ukrainian@sh@tmp}
+\def\ukrainian@sh@hyphen{\nobreak\-\bbl@allowhyphens}
+\def\ukrainian@sh@emdash#1#2{\cdash-#1#2}
+\def\cdash#1#2#3{\def\tempx@{#3}%
+    \def\tempa@{-}\def\tempb@{~}\def\tempc@{*}%
+    \ifx\tempx@\tempa@\@Acdash%
+    \else%
+        \ifx\tempx@\tempb@\@Bcdash%
+        \else%
+            \ifx\tempx@\tempc@\@Ccdash%
+            \else%
+                \errmessage{Wrong usage of cdash}
+            \fi
+        \fi
+    \fi
+}
+\def\@Acdash{\ifdim\lastskip>\z@\unskip\nobreak\hskip.2em\fi
+    \cyrdash\hskip.2em\ignorespaces}%
+\def\@Bcdash{\leavevmode\ifdim\lastskip>\z@\unskip\fi
+    \nobreak\cyrdash\penalty\exhyphenpenalty\hskip\z@skip\ignorespaces}%
+\def\@Ccdash{\leavevmode
+    \nobreak\cyrdash\nobreak\hskip.35em\ignorespaces}%
+\PackageInfo{babel}{Default for \string\cyrdash\space is provided}
+%%\ProvideTextCommandDefault{\cyrdash}{\iflanguage{ukrainian}%
+%%  {\hbox to.8em{--\hss--}}{\textemdash}}
+\ProvideTextCommandDefault{\cyrdash}{\hbox to.8em{--\hss--}}
+\declare@shorthand{ukrainian}{",}{\nobreak\hskip.2em\ignorespaces}
+\if@ukr@uni@ode
+    \PackageInfo{ukrainian.ldf}{Executing the 3.9 or latter}
+    \StartBabelCommands*{ukrainian}{captions}[unicode, fontenc=EU1 EU2, charset=utf8]
+        \SetString\prefacename{Вступ}%                [babel]
+        \SetString\refname{Література}%               [only article]
+        \SetString\abstractname{Анотація}%            [only article, report]
+        \SetString\bibname{Бібліоґрафія}%             [only book, report]
+        \SetString\chaptername{Розділ}%               [only book, report]
+        \SetString\appendixname{Додаток}%
+        \SetString\contentsname{Зміст}%
+        \SetString\tocname{\contentsname}%
+        \SetString\listfigurename{Перелік ілюстрацій}%
+        \SetString\listtablename{Перелік таблиць}%
+        \SetString\indexname{Предметний покажчик}%
+        \SetString\authorname{Іменний покажчик}%
+        \SetString\figurename{Рис.}%
+        \SetString\tablename{Таблиця}%
+        \SetString\partname{Частина}%
+        \SetString\enclname{вкл.}%
+        \SetString\ccname{вих.}%
+        \SetString\headtoname{вх.}%
+        \SetString\pagename{с.}%                      [letter]
+        \SetString\seename{див.}%
+        \SetString\alsoname{див.\ також}%
+        \SetString\proofname{Доведення}%              [amsthm]
+        \SetString\glossaryname{Словник термінів}%
+        \SetString\acronymname{Абревіатури}%          [glossaries] {Acronyms}
+        \SetString\lstlistingname{Лістинг}%           [listings]  (the environment) {Listing}
+        \SetString\lstlistlistingname{Лістинги}%      [listings]  (the "List of") {Listings}
+        \SetString\nomname{Позначення}%
+        \SetString\notesname{Нотатки}%                [endnotes] {Notes}
+    \ifdefined\nomname%
+        \addto\captionsukrainian{%
+            \def\eqdeclaration#1{, див.\nobreakspace(#1)}%
+            \def\pagedeclaration#1{, стор.\nobreakspace#1}%
+        }%
+    \fi
+    \EndBabelCommands
+\else
+    \StartBabelCommands*{ukrainian}{captions}
+        \SetString\prefacename{{\cyr\CYRV\cyrs\cyrt\cyru\cyrp}}%
+        \SetString\refname{%
+          {\cyr\CYRL\cyrii\cyrt\cyre\cyrr\cyra\cyrt\cyru\cyrr\cyra}}%
+        \SetString\abstractname{%
+          {\cyr\CYRA\cyrn\cyro\cyrt\cyra\cyrc\cyrii\cyrya}}%
+        \SetString\bibname{%
+          {\cyr\CYRB\cyrii\cyrb\cyrl\cyrii\cyro\cyrgup\cyrr\cyra\cyrf\cyrii\cyrya}}%
+        \SetString\chaptername{{\cyr\CYRR\cyro\cyrz\cyrd\cyrii\cyrl}}%
+        \SetString\appendixname{{\cyr\CYRD\cyro\cyrd\cyra\cyrt\cyro\cyrk}}%
+        \SetString\contentsname{{\cyr\CYRZ\cyrm\cyrii\cyrs\cyrt}}%
+        \SetString\tocname{\contentsname}%
+        \SetString\listfigurename{{\cyr\CYRP\cyre\cyrr\cyre\cyrl\cyrii\cyrk
+             \ \cyrii\cyrl\cyryu\cyrs\cyrt\cyrr\cyra\cyrc\cyrii\cyrishrt}}%
+        \SetString\listtablename{{\cyr\CYRP\cyre\cyrr\cyre\cyrl\cyrii\cyrk
+             \ \cyrt\cyra\cyrb\cyrl\cyri\cyrc\cyrsftsn}}%
+        \SetString\indexname{{\cyr\CYRP\cyrr\cyre\cyrd\cyrm\cyre\cyrt\cyrn\cyri\cyrishrt
+                \ \cyrp\cyro\cyrk\cyra\cyrzh\cyrch\cyri\cyrk}}%
+        \SetString\authorname{{\cyr\CYRII\cyrm\cyre\cyrn\cyrn\cyri\cyrishrt
+             \ \cyrp\cyro\cyrk\cyra\cyrzh\cyrch\cyri\cyrk}}%
+        \SetString\figurename{{\cyr\CYRR\cyri\cyrs.}}%
+        \SetString\tablename{{\cyr\CYRT\cyra\cyrb\cyrl.}}%
+        \SetString\partname{{\cyr\CYRCH\cyra\cyrs\cyrt\cyri\cyrn\cyra}}%
+        \SetString\enclname{{\cyr\cyrv\cyrk\cyrl\cyra\cyrd\cyrk\cyra}}%
+        \SetString\ccname{{\cyr\cyrk\cyro\cyrp\cyrii\cyrya}}%
+        \SetString\headtoname{{\cyr\cyrv\cyrh.}}%
+        \SetString\pagename{{\cyr\cyrs.}}%
+        \SetString\seename{{\cyr\cyrd\cyri\cyrv.}}%
+        \SetString\alsoname{{\cyr\cyrd\cyri\cyrv.\ \cyrt\cyra\cyrk\cyro\cyrzh}}%
+        \SetString\proofname{{\cyr\CYRD\cyro\cyrv\cyre\cyrd\cyre\cyrn\cyrn\cyrya}}%
+        \SetString\glossaryname{{\cyr\CYRS\cyrl\cyro\cyrv\cyrn\cyri\cyrk
+             \ \cyrt\cyre\cyrr\cyrm\cyrii\cyrn\cyrii\cyrv}}%
+        \SetString\acronymname{\cyr\CYRA\cyrb\cyrr\cyre\cyrv\cyrii\cyra\cyrt\cyru\cyri\cyri}%
+        \SetString\lstlistingname{\cyr\CYRL\cyrii\cyrs\cyrt\cyri\cyrn\cyrg}%
+        \SetString\lstlistlistingname{\cyr\CYRL\cyrii\cyrs\cyrt\cyri\cyrn\cyrg\cyri}%
+        \SetString\nomname{\CYRP\cyro\cyrz\cyrn\cyra\cyrch\cyre\cyrn\cyrn\cyrya}%
+        \SetString\notesname{\CYRN\cyro\cyrt\cyra\cyrt\cyrk\cyri}%
+    \EndBabelCommands
+\fi
+\if@ukr@uni@ode
+    \PackageInfo{ukrainian.ldf}{Executing the post 3.9 branch for dates}
+    \StartBabelCommands*{ukrainian}{date}[unicode, fontenc=EU1 EU2, charset=utf8]
+        \SetStringLoop{month#1name}{%
+            січня,%
+            лютого,%
+            березня,%
+            квітня,%
+            травня,%
+            червня,%
+            липня,%
+            серпня,%
+            вересня,%
+            жовтня,%
+            листопада,%
+            грудня%
+            }
+        \SetString\abbgyear{р.}%
+\else
+    \StartBabelCommands*{ukrainian}{date}
+        \SetStringLoop{month#1name}{%
+           \cyrs\cyrii\cyrch\cyrn\cyrya,%
+           \cyrl\cyryu\cyrt\cyro\cyrg\cyro,%
+           \cyrb\cyre\cyrr\cyre\cyrz\cyrn\cyrya,%
+           \cyrk\cyrv\cyrii\cyrt\cyrn\cyrya,%
+           \cyrt\cyrr\cyra\cyrv\cyrn\cyrya,%
+           \cyrch\cyre\cyrr\cyrv\cyrn\cyrya,%
+           \cyrl\cyri\cyrp\cyrn\cyrya,%
+           \cyrs\cyre\cyrr\cyrp\cyrn\cyrya,%
+           \cyrv\cyre\cyrr\cyre\cyrs\cyrn\cyrya,%
+           \cyrzh\cyro\cyrv\cyrt\cyrn\cyrya,%
+           \cyrl\cyri\cyrs\cyrt\cyro\cyrp\cyra\cyrd\cyra,%
+           \cyrg\cyrr\cyru\cyrd\cyrn\cyrya%
+           }%
+        \SetString\abbgyear{\cyrr.}%
+\fi
+\SetString\today{\number\day~\csname month\romannumeral\month name\endcsname\space
+    \number\year~\abbgyear}%
+\EndBabelCommands
+\providehyphenmins{\CurrentOption}{\tw@\tw@}
+\providehyphenmins{ukrainian}{\tw@\tw@}
+\addto\extrasukrainian{\cyrillictext}
+\addto\noextrasukrainian{\latintext}
+\addto\extrasukrainian{\languageshorthands{ukrainian}}
+\addto\extrasukrainian{\bbl@activate{"}}
+\addto\noextrasukrainian{\bbl@deactivate{"}}
+\addto\extrasukrainian{\bbl@frenchspacing}
+\addto\noextrasukrainian{\bbl@nonfrenchspacing}
+
+\addto\extrasukrainian{%
+    \babel@save{\@Alph}%
+     \if@ukr@uni@ode%
+         \def\@Alph#1{%
+             \ifcase#1\or%
+                 А\or Б\or В\or Г\or Д\or Е\or Ж\or%
+                 И\or К\or Л\or М\or Н\or П\or Р\or%
+                 С\or Т\or У\or Ф\or Х\or Ц\or Ш\or%
+                 Щ\or Ю\or Я%
+             \else%
+                 \@ctrerr%
+             \fi}%
+     \else
+         \def\@Alph#1{%
+              \ifcase#1\or%
+                 \CYRA\or\CYRB\or\CYRV\or\CYRG\or\CYRD\or\CYRE\or\CYRZH\or%
+                 \CYRI\or\CYRK\or\CYRL\or\CYRM\or\CYRN\or\CYRP\or\CYRR\or%
+                 \CYRS\or\CYRT\or\CYRU\or\CYRF\or\CYRH\or\CYRC\or\CYRSH\or%
+                 \CYRSHCH\or\CYRYU\or\CYRYA%
+              \else%
+                  \@ctrerr%
+              \fi}%
+     \fi
+}
+\addto\extrasukrainian{%
+    \babel@save{\@alph}%
+    \if@ukr@uni@ode%
+        \def\@alph#1{%
+            \ifcase#1\or%
+                 а\or б\or в\or г\or д\or е\or ж\or%
+                 и\or к\or л\or м\or н\or п\or р\or%
+                 с\or т\or у\or ф\or х\or ц\or ш\or%
+                 щ\or ю\or я%
+            \else%
+                \@ctrerr%
+            \fi}%
+    \else
+        \def\@alph#1{%
+             \ifcase#1\or%
+                 \cyra\or\cyrb\or\cyrv\or\cyrg\or\cyrd\or\cyre\or\cyrzh\or%
+                 \cyri\or\cyrk\or\cyrl\or\cyrm\or\cyrn\or\cyrp\or\cyrr\or%
+                 \cyrs\or\cyrt\or\cyru\or\cyrf\or\cyrh\or\cyrc\or\cyrsh\or%
+                 \cyrshch\or\cyryu\or\cyrya%
+            \else%
+                \@ctrerr%
+            \fi}%
+    \fi
+}
+\AtBeginDocument{%
+  \@ifpackagewith{babel}{russian}{\relax}{%
+      \@ifpackageloaded{amsopn}
+      {%
+        \DeclareMathOperator{\sh}{sh}%
+        \DeclareMathOperator{\ch}{ch}%
+        \DeclareMathOperator{\tg}{tg}%
+        \DeclareMathOperator{\ctg}{ctg}%
+        \DeclareMathOperator{\arctg}{arctg}%
+        \DeclareMathOperator{\arcctg}{arcctg}%
+        \DeclareMathOperator{\cth}{cth}%\
+        \DeclareMathOperator{\cosec}{cosec}%
+        \DeclareMathOperator{\math@th}{th}%
+      }{%
+        \DeclareRobustCommand\sh{\mathop{\operator@font sh}\nolimits}%
+        \DeclareRobustCommand\ch{\mathop{\operator@font ch}\nolimits}%
+        \DeclareRobustCommand\tg{\mathop{\operator@font tg}\nolimits}%
+        \DeclareRobustCommand\ctg{\mathop{\operator@font ctg}\nolimits}%
+        \DeclareRobustCommand{\arctg}{\mathop{\operator@font arctg}\nolimits}%
+        \DeclareRobustCommand\arcctg{\mathop{\operator@font arcctg}\nolimits}%
+        \DeclareRobustCommand\cth{\mathop{\operator@font cth}\nolimits}%\MakeRobust\cth%
+        \DeclareRobustCommand\cosec{\mathop{\operator@font cosec}\nolimits}%
+        \DeclareRobustCommand{\math@th}{\mathop{\operator@font arctg}\nolimits}%
+      }%
+      \let\text@th\th%
+      \DeclareRobustCommand{\th}{\TextOrMath{\text@th}{\math@th}}%
+    }%
+}
+\DeclareRobustCommand{\No}{%
+    \ifmmode{\nfss@text{\textnumero}}\else\textnumero\fi}
+\ldf@finish{ukrainian}
+%%
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote \"    Hash (number) \#
+%%   Dollar        \$     Percent      \%    Ampersand     \&
+%%   Acute accent  \'     Left paren   \(    Right paren   \)
+%%   Asterisk      \*     Plus         \+    Comma         \,
+%%   Minus         \-     Point        \.    Solidus       \/
+%%   Colon         \:     Semicolon    \;    Less than     \<
+%%   Equals        \=     Greater than \>    Question mark \?
+%%   Commercial at \@     Left bracket \[    Backslash     \\
+%%   Right bracket \]     Circumflex   \^    Underscore    \_
+%%   Grave accent  \`     Left brace   \{    Vertical bar  \|
+%%   Right brace   \}     Tilde        \~}
+%%
+
+%% Nonunicode Cyrillic Letters
+%% \CYRA=А
+%% \CYRB=Б
+%% \CYRV=В
+%% \CYRG=Г
+%% \CYRGUP=Ґ
+%% \CYRD=Д
+%% \CYRE=Е
+%% \CYRIE=Є
+%% \CYRZH=Ж
+%% \CYRZ=З
+%% \CYRI=И
+%% \CYRII=I
+%% \CYRYI=Ї
+%% \CYRISHRT=Й
+%% \CYRK=К
+%% \CYRL=Л
+%% \CYRM=М
+%% \CYRN=Н
+%% \CYRO=О
+%% \CYRP=П
+%% \CYRR=Р
+%% \CYRS=С
+%% \CYRT=Т
+%% \CYRU=У
+%% \CYRF=Ф
+%% \CYRH=Х
+%% \CYRC=Ц
+%% \CYRCH=Ч
+%% \CYRSH=Ш
+%% \CYRSHCH=Щ
+%% \CYRYU=Ю
+%% \CYRYA=Я
+%% \CYRSFTSN=Ь
+%%
+%% \cyra=а
+%% \cyrb=б
+%% \cyrv=в
+%% \cyrg=г
+%% \cyrgup=ґ
+%% \cyrd=д
+%% \cyre=е
+%% \cyrie=є
+%% \cyrzh=ж
+%% \cyrz=з
+%% \cyri=и
+%% \cyrii=i
+%% \cyryi=ї
+%% \cyrishrt=й
+%% \cyrk=к
+%% \cyrl=л
+%% \cyrm=м
+%% \cyrn=н
+%% \cyro=о
+%% \cyrp=п
+%% \cyrr=р
+%% \cyrs=с
+%% \cyrt=т
+%% \cyru=у
+%% \cyrf=ф
+%% \cyrh=х
+%% \cyrc=ц
+%% \cyrch=ч
+%% \cyrsh=ш
+%% \cyrshch=щ
+%% \cyryu=ю
+%% \cyrya=я
+%% \cyrsftsn=ь
+%% ----------------------------------------------------------------
+%% Copyright 2017 Sergiy М. Ponomarenko
+%% Copyright 2011-2017 Igor A. Kotelnikov.
+%% Copyright 2000 Aleksey Novodvorsky
+%% Copyright 1995-2008 Olga Lapko.
+%% Copyright 1989-2012 Johannes L. Braams.
+%% 
+%% This file is a part of the Ukrainian-Babel package.
+%% 
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License (LPPL), either
+%% version 1.3c of this license or (at your option) any later
+%% version.  The latest version of this license is in the file:
+%% 
+%%    http://www.latex-project.org/lppl.txt
+%% 
+%% The package is "maintained" (as per LPPL maintenance status) by
+%% Sergiy М. Ponomarenko.
+%% 
+%% The package consists of the file  ukraineb.dtx
+%% and the derived files             ukraineb.ins,
+%%                                   ukraineb.ldf,
+%%                                   ukraineb.pdf,
+%%                                   README.
+%% ----------------------------------------------------------------
+%%
+%% End of file `ukraineb.ldf'.

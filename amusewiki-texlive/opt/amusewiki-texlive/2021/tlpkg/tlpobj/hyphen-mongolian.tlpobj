@@ -1,0 +1,21 @@
+name hyphen-mongolian
+category TLCore
+revision 58652
+shortdesc Mongolian hyphenation patterns in Cyrillic script.
+longdesc Hyphenation patterns for Mongolian in T2A, LMC and UTF-8
+longdesc encodings. LMC encoding is used in MonTeX. The package includes
+longdesc two sets of patterns that will hopefully be merged in future.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=mongolian 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-mn-cyrl.tex 	file_patterns=hyph-mn-cyrl.pat.txt 	file_exceptions=
+execute AddHyphen 	name=mongolianlmc 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-mn-cyrl-x-lmc.tex 	luaspecial="disabled:only for 8bit montex with lmc encoding"
+containersize 10440
+containerchecksum 159562a8feb25918bc422e7dc78a46423c7fff2f3c61016a0162761411999a5555be3c6e36cf967d5034f65c12f4b0834ae0c0423c2f3ab17a65034b1803dc72
+runfiles size=20
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mn-cyrl-x-lmc.tex
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mn-cyrl.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-mn-cyrl-x-lmc.lmc.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-mn-cyrl.t2a.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-mn-cyrl-x-lmc.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-mn-cyrl.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-mn-cyrl.pat.txt

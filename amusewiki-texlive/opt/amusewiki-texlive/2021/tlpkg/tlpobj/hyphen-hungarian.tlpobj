@@ -1,0 +1,28 @@
+name hyphen-hungarian
+category TLCore
+revision 58652
+catalogue hungarian
+shortdesc Hungarian hyphenation patterns.
+longdesc Hyphenation patterns for Hungarian in T1/EC and UTF-8
+longdesc encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=hungarian 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-hu.tex 	file_patterns=hyph-hu.pat.txt 	file_exceptions=
+containersize 285188
+containerchecksum 868a4c3f4d0eda078054026bd1ec35e05c2f4013e093bf58147bfa2d861814242b55a900ce60384767558c9552ff9d41cf447e2a157bae83bd2877251012d96b
+doccontainersize 179896
+doccontainerchecksum 164180f0485e16a49ba83dcb4721902e8a29f399032d4f5a59d55e424b8178a25dedd9fb99919d9d772142342fb78fe0dbf7a5303382a0b7feae4a381b76f8bb
+docfiles size=76
+ texmf-dist/doc/generic/huhyphen/huhyphn.pdf
+ texmf-dist/doc/generic/huhyphen/hyph_hu.dic
+ texmf-dist/doc/generic/huhyphen/searchforerrors.rb
+ texmf-dist/doc/generic/huhyphen/testhyphenation.rb
+ texmf-dist/doc/generic/hyph-utf8/languages/hu/huhyphn.pdf
+runfiles size=415
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hu.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-hu.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-hu.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-hu.pat.txt
+catalogue-ctan /language/hungarian/hyphenation
+catalogue-license gpl
+catalogue-topics hyphenation hungarian

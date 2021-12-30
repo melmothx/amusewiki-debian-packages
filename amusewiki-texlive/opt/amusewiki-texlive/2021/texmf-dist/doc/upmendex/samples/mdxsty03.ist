@@ -1,0 +1,33 @@
+% -*- coding: utf-8 -*-
+
+delim_0 "\\leaders\\hbox{$\\cdot$}\\hfill "
+delim_1 "\\leaders\\hbox{$\\cdot$}\\hfill "
+delim_2 "\\leaders\\hbox{$\\cdot$}\\hfill "
+
+headings_flag 1
+heading_prefix "\n\\centerline{\\bfseries --- "
+heading_suffix  " ---}\\par\\nobreak"
+
+character_order  "SahHJKDTLCGN"
+symbol_flag 2
+
+script_preamble   	latin   	"\n% begin latin"
+script_postamble  	latin   	"\n% end   latin"
+script_preamble   	cyrillic	"\n% begin cyrillic"
+script_postamble  	cyrillic	"\n% end   cyrillic"
+script_preamble   	greek   	"\n% begin greek"
+script_postamble  	greek   	"\n% end   greek"
+script_preamble   	kana    	"\n% begin kana"
+script_postamble  	kana    	"\n% end   kana"
+script_preamble   	hangul  	"\n% begin hangul"
+script_postamble  	hangul  	"\n% end   hangul"
+script_preamble   	hanzi   	"\n% begin hanzi"
+script_postamble  	hanzi   	"\n% end   hanzi"
+script_preamble   	devanagari	"\n% begin devanagari"
+script_postamble  	devanagari	"\n% end   devanagari"
+script_preamble	thai	  "\n% begin thai"
+script_postamble	thai	  "\n% end   thai"
+script_preamble   arabic  "\n% begin arabic"
+script_postamble  arabic  "\n% end   arabic"
+script_preamble   hebrew	"\n% begin hebrew"
+script_postamble  hebrew	"\n% end   hebrew"

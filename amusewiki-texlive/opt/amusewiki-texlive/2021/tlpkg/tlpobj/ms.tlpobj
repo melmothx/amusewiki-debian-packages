@@ -1,0 +1,28 @@
+name ms
+category Package
+revision 57473
+shortdesc Various LaTeX packages by Martin Schroder
+longdesc The remains of a bundle of LaTeX packages by Martin Schroder;
+longdesc the collection still comprises: count1to, make use of TeX
+longdesc counters; and multitoc, typeset the table of contents in
+longdesc multiple columns. ragged2e, prelim2e, everyshi (obsolete), and
+longdesc everysel (obsolete), which used to be part of this bundle, have
+longdesc become independent packages.
+containersize 3064
+containerchecksum 73d46ed7ba85773f4ba7c261ff0ea8f2e751e53659fc19686bddd9523b160dba5e367c8fcb30a20678e4a3df26c0812a6b771736eef8616e112cbac3a25e7b48
+doccontainersize 573400
+doccontainerchecksum d112ff182da85ee8d84d8e7cfc50e5c13ad2e555ffe4dd2867a3439d69193ec7bc24fa87d2527936a57dbdc8e98df8d2862a740f91d497a8eba7108973a637aa
+docfiles size=164
+ texmf-dist/doc/latex/ms/README.md
+ texmf-dist/doc/latex/ms/count1to.pdf
+ texmf-dist/doc/latex/ms/multitoc.asc
+ texmf-dist/doc/latex/ms/multitoc.bug
+ texmf-dist/doc/latex/ms/multitoc.pdf
+srccontainersize 10948
+srccontainerchecksum b03f9ac6bc7ab56bacac4053d278d0c826925f4f81df80e73ee2a48209e1e51c48b0706dbd0d69ec9a068e4a59a12df104b8e7dfd60cd0cd5c6210f43d528ce7
+runfiles size=4
+ texmf-dist/tex/latex/ms/count1to.sty
+ texmf-dist/tex/latex/ms/multitoc.sty
+catalogue-ctan /macros/latex/contrib/ms
+catalogue-license lppl
+catalogue-topics collection

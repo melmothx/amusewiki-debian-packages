@@ -1,0 +1,80 @@
+%# -*- coding: utf-8 -*-
+\ifx\epTeXinputencoding\undefined\else % defined in e-pTeX (> TL2016)
+  \epTeXinputencoding utf8    % ensure utf-8 encoding for platex
+\fi
+
+\documentclass[a4paper]{jsarticle}% supports \verb in \footnote
+\usepackage{doc}
+\usepackage{plarray}
+\GetFileInfo{plarray.sty}
+\title{Package \textsf{plarray} \fileversion}
+\author{Hironobu Yamashita}
+\date{\filedate}
+\begin{document}
+
+\maketitle
+
+This package \textsf{plarray} provides small patches to \textsf{array}
+package (\textsf{latex-tools} bundle) for use with Japanese
+p\LaTeX/up\LaTeX.
+By loading \textsf{plarray} in addition to/instead of \textsf{array},
+you can avoid conflicts between (u)p\LaTeX\ kernel and \textsf{array}%
+\footnote{Below is recent changes introduced to
+p\LaTeX/up\LaTeX\ kernels by Japanese \TeX\ Development Community,
+which cannot cope with \textsf{array} package:
+\begin{itemize}
+\item Remove extra \verb+\xkanjiskip+ around tabular environment
+\item Inhibit JFM (Japanese \TeX\ font metric) glue
+      around tabular cell components
+\end{itemize}
+The package \textsf{plarray} re-adds these changes to \textsf{array}.}.
+
+If you are going to use both \textsf{plext} and \textsf{array} packages
+on p\LaTeX/up\LaTeX, the easiest way is to use \textsf{plextarray};
+please refer to its document.
+
+This package is part of \textsf{platex-tools} bundle:
+\begin{verbatim}
+  https://github.com/aminophen/platex-tools
+\end{verbatim}
+
+\bigskip
+
+この\textsf{plarray}パッケージは、\textsf{latex-tools}バンドルの
+\textsf{array}パッケージをp\LaTeX/up\LaTeX で使うときのwrapperとして
+機能します。さらに、\textsf{array}パッケージによって上書きされて
+無効化されてしまうp\LaTeX/up\LaTeX カーネルの修正点を再有効化する
+働きもします（具体的には、「tabular環境前後に\verb+\xkanjiskip+由来の
+余分なアキが入る現象」と、「表のセル内の要素が始め括弧類で始まる場合や
+終わり括弧類で終わる場合にJFMグルーが不自然に入る現象」に対処します）。
+
+\bigskip
+\begin{minipage}{0.45\linewidth}
+\begin{verbatim}
+  \documentclass{jarticle} % if you are using pLaTeX,
+  \usepackage{plarray}     % load this!
+  \begin{document}
+  これは表の例です
+  \begin{tabular}{|>{$}c<{$}|c|}\hline
+    \exp(x) & 指数関数 \\ \hline
+    \log(x) & 対数関数 \\ \hline
+  \end{tabular}%
+  終わり
+  \end{document}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+  これは表の例です
+  \begin{tabular}{|>{$}c<{$}|c|}\hline
+    \exp(x) & 指数関数 \\ \hline
+    \log(x) & 対数関数 \\ \hline
+  \end{tabular}%
+  終わり
+\end{minipage}
+\bigskip
+
+p\LaTeX/up\LaTeX で、\textsf{array}パッケージに加えてさらに
+\textsf{plext}パッケージも使いたい場合は、
+\textsf{plextarray}パッケージを読み込むのが簡単です。
+
+\end{document}

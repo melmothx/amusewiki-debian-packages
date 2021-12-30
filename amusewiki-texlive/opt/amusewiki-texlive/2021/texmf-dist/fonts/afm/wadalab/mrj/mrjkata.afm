@@ -1,0 +1,101 @@
+StartFontMetrics 2.0
+FontName mrjkata
+FullName mrjkata
+FamilyName mr
+Weight Regular
+ItalicAngle 0
+IsFixedPitch true
+FontBBox 0 -160 1000 840
+UnderlinePosition 0
+UnderlineThickness 0
+Version 001.004
+EncodingScheme DmEncoding
+StartCharMetrics 256
+C 1 ; WX 1000 ; N uni30A1 ; B 0 -160 1000 840 ;
+C 2 ; WX 1000 ; N uni30A2 ; B 0 -160 1000 840 ;
+C 3 ; WX 1000 ; N uni30A3 ; B 0 -160 1000 840 ;
+C 4 ; WX 1000 ; N uni30A4 ; B 0 -160 1000 840 ;
+C 5 ; WX 1000 ; N uni30A5 ; B 0 -160 1000 840 ;
+C 6 ; WX 1000 ; N uni30A6 ; B 0 -160 1000 840 ;
+C 7 ; WX 1000 ; N uni30A7 ; B 0 -160 1000 840 ;
+C 8 ; WX 1000 ; N uni30A8 ; B 0 -160 1000 840 ;
+C 9 ; WX 1000 ; N uni30A9 ; B 0 -160 1000 840 ;
+C 10 ; WX 1000 ; N uni30AA ; B 0 -160 1000 840 ;
+C 11 ; WX 1000 ; N uni30AB ; B 0 -160 1000 840 ;
+C 12 ; WX 1000 ; N uni30AC ; B 0 -160 1000 840 ;
+C 13 ; WX 1000 ; N uni30AD ; B 0 -160 1000 840 ;
+C 14 ; WX 1000 ; N uni30AE ; B 0 -160 1000 840 ;
+C 15 ; WX 1000 ; N uni30AF ; B 0 -160 1000 840 ;
+C 16 ; WX 1000 ; N uni30B0 ; B 0 -160 1000 840 ;
+C 17 ; WX 1000 ; N uni30B1 ; B 0 -160 1000 840 ;
+C 18 ; WX 1000 ; N uni30B2 ; B 0 -160 1000 840 ;
+C 19 ; WX 1000 ; N uni30B3 ; B 0 -160 1000 840 ;
+C 20 ; WX 1000 ; N uni30B4 ; B 0 -160 1000 840 ;
+C 21 ; WX 1000 ; N uni30B5 ; B 0 -160 1000 840 ;
+C 22 ; WX 1000 ; N uni30B6 ; B 0 -160 1000 840 ;
+C 23 ; WX 1000 ; N uni30B7 ; B 0 -160 1000 840 ;
+C 24 ; WX 1000 ; N uni30B8 ; B 0 -160 1000 840 ;
+C 25 ; WX 1000 ; N uni30B9 ; B 0 -160 1000 840 ;
+C 26 ; WX 1000 ; N uni30BA ; B 0 -160 1000 840 ;
+C 27 ; WX 1000 ; N uni30BB ; B 0 -160 1000 840 ;
+C 28 ; WX 1000 ; N uni30BC ; B 0 -160 1000 840 ;
+C 29 ; WX 1000 ; N uni30BD ; B 0 -160 1000 840 ;
+C 30 ; WX 1000 ; N uni30BE ; B 0 -160 1000 840 ;
+C 31 ; WX 1000 ; N uni30BF ; B 0 -160 1000 840 ;
+C 32 ; WX 1000 ; N uni30C0 ; B 0 -160 1000 840 ;
+C 33 ; WX 1000 ; N uni30C1 ; B 0 -160 1000 840 ;
+C 34 ; WX 1000 ; N uni30C2 ; B 0 -160 1000 840 ;
+C 35 ; WX 1000 ; N uni30C3 ; B 0 -160 1000 840 ;
+C 36 ; WX 1000 ; N uni30C4 ; B 0 -160 1000 840 ;
+C 37 ; WX 1000 ; N uni30C5 ; B 0 -160 1000 840 ;
+C 38 ; WX 1000 ; N uni30C6 ; B 0 -160 1000 840 ;
+C 39 ; WX 1000 ; N uni30C7 ; B 0 -160 1000 840 ;
+C 40 ; WX 1000 ; N uni30C8 ; B 0 -160 1000 840 ;
+C 41 ; WX 1000 ; N uni30C9 ; B 0 -160 1000 840 ;
+C 42 ; WX 1000 ; N uni30CA ; B 0 -160 1000 840 ;
+C 43 ; WX 1000 ; N uni30CB ; B 0 -160 1000 840 ;
+C 44 ; WX 1000 ; N uni30CC ; B 0 -160 1000 840 ;
+C 45 ; WX 1000 ; N uni30CD ; B 0 -160 1000 840 ;
+C 46 ; WX 1000 ; N uni30CE ; B 0 -160 1000 840 ;
+C 47 ; WX 1000 ; N uni30CF ; B 0 -160 1000 840 ;
+C 48 ; WX 1000 ; N uni30D0 ; B 0 -160 1000 840 ;
+C 49 ; WX 1000 ; N uni30D1 ; B 0 -160 1000 840 ;
+C 50 ; WX 1000 ; N uni30D2 ; B 0 -160 1000 840 ;
+C 51 ; WX 1000 ; N uni30D3 ; B 0 -160 1000 840 ;
+C 52 ; WX 1000 ; N uni30D4 ; B 0 -160 1000 840 ;
+C 53 ; WX 1000 ; N uni30D5 ; B 0 -160 1000 840 ;
+C 54 ; WX 1000 ; N uni30D6 ; B 0 -160 1000 840 ;
+C 55 ; WX 1000 ; N uni30D7 ; B 0 -160 1000 840 ;
+C 56 ; WX 1000 ; N uni30D8 ; B 0 -160 1000 840 ;
+C 57 ; WX 1000 ; N uni30D9 ; B 0 -160 1000 840 ;
+C 58 ; WX 1000 ; N uni30DA ; B 0 -160 1000 840 ;
+C 59 ; WX 1000 ; N uni30DB ; B 0 -160 1000 840 ;
+C 60 ; WX 1000 ; N uni30DC ; B 0 -160 1000 840 ;
+C 61 ; WX 1000 ; N uni30DD ; B 0 -160 1000 840 ;
+C 62 ; WX 1000 ; N uni30DE ; B 0 -160 1000 840 ;
+C 63 ; WX 1000 ; N uni30DF ; B 0 -160 1000 840 ;
+C 64 ; WX 1000 ; N uni30E0 ; B 0 -160 1000 840 ;
+C 65 ; WX 1000 ; N uni30E1 ; B 0 -160 1000 840 ;
+C 66 ; WX 1000 ; N uni30E2 ; B 0 -160 1000 840 ;
+C 67 ; WX 1000 ; N uni30E3 ; B 0 -160 1000 840 ;
+C 68 ; WX 1000 ; N uni30E4 ; B 0 -160 1000 840 ;
+C 69 ; WX 1000 ; N uni30E5 ; B 0 -160 1000 840 ;
+C 70 ; WX 1000 ; N uni30E6 ; B 0 -160 1000 840 ;
+C 71 ; WX 1000 ; N uni30E7 ; B 0 -160 1000 840 ;
+C 72 ; WX 1000 ; N uni30E8 ; B 0 -160 1000 840 ;
+C 73 ; WX 1000 ; N uni30E9 ; B 0 -160 1000 840 ;
+C 74 ; WX 1000 ; N uni30EA ; B 0 -160 1000 840 ;
+C 75 ; WX 1000 ; N uni30EB ; B 0 -160 1000 840 ;
+C 76 ; WX 1000 ; N uni30EC ; B 0 -160 1000 840 ;
+C 77 ; WX 1000 ; N uni30ED ; B 0 -160 1000 840 ;
+C 78 ; WX 1000 ; N uni30EE ; B 0 -160 1000 840 ;
+C 79 ; WX 1000 ; N uni30EF ; B 0 -160 1000 840 ;
+C 80 ; WX 1000 ; N uni30F0 ; B 0 -160 1000 840 ;
+C 81 ; WX 1000 ; N uni30F1 ; B 0 -160 1000 840 ;
+C 82 ; WX 1000 ; N uni30F2 ; B 0 -160 1000 840 ;
+C 83 ; WX 1000 ; N uni30F3 ; B 0 -160 1000 840 ;
+C 84 ; WX 1000 ; N uni30F4 ; B 0 -160 1000 840 ;
+C 85 ; WX 1000 ; N uni30F5 ; B 0 -160 1000 840 ;
+C 86 ; WX 1000 ; N uni30F6 ; B 0 -160 1000 840 ;
+EndCharMetrics
+EndFontMetrics

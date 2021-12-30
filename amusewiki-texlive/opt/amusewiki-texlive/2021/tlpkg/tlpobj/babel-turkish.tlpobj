@@ -1,0 +1,21 @@
+name babel-turkish
+category Package
+revision 51560
+shortdesc Babel support for Turkish documents
+longdesc The package provides support, within babel, of the Turkish
+longdesc language.
+containersize 2932
+containerchecksum 02916936992e00e7aa884b46b6f786dd0fe5a0aaa6e2c6c4e28fe72de7fe5260fca7cdd37efc4a775a8d172e3993c98df7cec3d1ad08f01487f7cb0c8f2d179a
+doccontainersize 298588
+doccontainerchecksum 06931a6b9987a7affd4632ea5cc79028a2a88c584523c03ce79c2a15268947fb1103137da158886c7957e0a7c938ca69c1c5c7d88104c892cae611c914f6fb93
+docfiles size=74
+ texmf-dist/doc/generic/babel-turkish/README.md details="Readme"
+ texmf-dist/doc/generic/babel-turkish/turkish.pdf details="Package documentation"
+srccontainersize 6272
+srccontainerchecksum 54f3c4bf5063c571be3ae2ecd7c86882cfac940ab942e66fbb18346a4ab1e266b716d276294dc6c622b3ffb0b86cdecd70411314b334be491d0ff56604d0ead0
+runfiles size=2
+ texmf-dist/tex/generic/babel-turkish/turkish.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/turkish
+catalogue-license lppl1.3
+catalogue-topics turkish multilingual-addon
+catalogue-version 1.4

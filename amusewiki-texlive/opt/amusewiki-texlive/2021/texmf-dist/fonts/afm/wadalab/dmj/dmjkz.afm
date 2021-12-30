@@ -1,0 +1,77 @@
+StartFontMetrics 2.0
+FontName dmjkz
+FullName dmjkz
+FamilyName dm
+Weight Regular
+ItalicAngle 0
+IsFixedPitch true
+FontBBox 0 -160 1000 840
+UnderlinePosition 0
+UnderlineThickness 0
+Version 001.004
+EncodingScheme DmEncoding
+StartCharMetrics 256
+C 0 ; WX 1000 ; N uni9E88 ; B 0 -160 1000 840 ;
+C 1 ; WX 1000 ; N uni9E8B ; B 0 -160 1000 840 ;
+C 2 ; WX 1000 ; N uni9E8C ; B 0 -160 1000 840 ;
+C 3 ; WX 1000 ; N uni9E92 ; B 0 -160 1000 840 ;
+C 4 ; WX 1000 ; N uni9E95 ; B 0 -160 1000 840 ;
+C 5 ; WX 1000 ; N uni9E91 ; B 0 -160 1000 840 ;
+C 6 ; WX 1000 ; N uni9E9D ; B 0 -160 1000 840 ;
+C 7 ; WX 1000 ; N uni9EA5 ; B 0 -160 1000 840 ;
+C 8 ; WX 1000 ; N uni9EA9 ; B 0 -160 1000 840 ;
+C 9 ; WX 1000 ; N uni9EB8 ; B 0 -160 1000 840 ;
+C 10 ; WX 1000 ; N uni9EAA ; B 0 -160 1000 840 ;
+C 11 ; WX 1000 ; N uni9EAD ; B 0 -160 1000 840 ;
+C 12 ; WX 1000 ; N uni9761 ; B 0 -160 1000 840 ;
+C 13 ; WX 1000 ; N uni9ECC ; B 0 -160 1000 840 ;
+C 14 ; WX 1000 ; N uni9ECE ; B 0 -160 1000 840 ;
+C 15 ; WX 1000 ; N uni9ECF ; B 0 -160 1000 840 ;
+C 16 ; WX 1000 ; N uni9ED0 ; B 0 -160 1000 840 ;
+C 17 ; WX 1000 ; N uni9ED4 ; B 0 -160 1000 840 ;
+C 18 ; WX 1000 ; N uni9EDC ; B 0 -160 1000 840 ;
+C 19 ; WX 1000 ; N uni9EDE ; B 0 -160 1000 840 ;
+C 20 ; WX 1000 ; N uni9EDD ; B 0 -160 1000 840 ;
+C 21 ; WX 1000 ; N uni9EE0 ; B 0 -160 1000 840 ;
+C 22 ; WX 1000 ; N uni9EE5 ; B 0 -160 1000 840 ;
+C 23 ; WX 1000 ; N uni9EE8 ; B 0 -160 1000 840 ;
+C 24 ; WX 1000 ; N uni9EEF ; B 0 -160 1000 840 ;
+C 25 ; WX 1000 ; N uni9EF4 ; B 0 -160 1000 840 ;
+C 26 ; WX 1000 ; N uni9EF6 ; B 0 -160 1000 840 ;
+C 27 ; WX 1000 ; N uni9EF7 ; B 0 -160 1000 840 ;
+C 28 ; WX 1000 ; N uni9EF9 ; B 0 -160 1000 840 ;
+C 29 ; WX 1000 ; N uni9EFB ; B 0 -160 1000 840 ;
+C 30 ; WX 1000 ; N uni9EFC ; B 0 -160 1000 840 ;
+C 31 ; WX 1000 ; N uni9EFD ; B 0 -160 1000 840 ;
+C 32 ; WX 1000 ; N uni9F07 ; B 0 -160 1000 840 ;
+C 33 ; WX 1000 ; N uni9F08 ; B 0 -160 1000 840 ;
+C 34 ; WX 1000 ; N uni76B7 ; B 0 -160 1000 840 ;
+C 35 ; WX 1000 ; N uni9F15 ; B 0 -160 1000 840 ;
+C 36 ; WX 1000 ; N uni9F21 ; B 0 -160 1000 840 ;
+C 37 ; WX 1000 ; N uni9F2C ; B 0 -160 1000 840 ;
+C 38 ; WX 1000 ; N uni9F3E ; B 0 -160 1000 840 ;
+C 39 ; WX 1000 ; N uni9F4A ; B 0 -160 1000 840 ;
+C 40 ; WX 1000 ; N uni9F52 ; B 0 -160 1000 840 ;
+C 41 ; WX 1000 ; N uni9F54 ; B 0 -160 1000 840 ;
+C 42 ; WX 1000 ; N uni9F63 ; B 0 -160 1000 840 ;
+C 43 ; WX 1000 ; N uni9F5F ; B 0 -160 1000 840 ;
+C 44 ; WX 1000 ; N uni9F60 ; B 0 -160 1000 840 ;
+C 45 ; WX 1000 ; N uni9F61 ; B 0 -160 1000 840 ;
+C 46 ; WX 1000 ; N uni9F66 ; B 0 -160 1000 840 ;
+C 47 ; WX 1000 ; N uni9F67 ; B 0 -160 1000 840 ;
+C 48 ; WX 1000 ; N uni9F6C ; B 0 -160 1000 840 ;
+C 49 ; WX 1000 ; N uni9F6A ; B 0 -160 1000 840 ;
+C 50 ; WX 1000 ; N uni9F77 ; B 0 -160 1000 840 ;
+C 51 ; WX 1000 ; N uni9F72 ; B 0 -160 1000 840 ;
+C 52 ; WX 1000 ; N uni9F76 ; B 0 -160 1000 840 ;
+C 53 ; WX 1000 ; N uni9F95 ; B 0 -160 1000 840 ;
+C 54 ; WX 1000 ; N uni9F9C ; B 0 -160 1000 840 ;
+C 55 ; WX 1000 ; N uni9FA0 ; B 0 -160 1000 840 ;
+C 56 ; WX 1000 ; N uni582F ; B 0 -160 1000 840 ;
+C 57 ; WX 1000 ; N uni69C7 ; B 0 -160 1000 840 ;
+C 58 ; WX 1000 ; N uni9059 ; B 0 -160 1000 840 ;
+C 59 ; WX 1000 ; N uni7464 ; B 0 -160 1000 840 ;
+C 60 ; WX 1000 ; N uni51DC ; B 0 -160 1000 840 ;
+C 61 ; WX 1000 ; N uni7199 ; B 0 -160 1000 840 ;
+EndCharMetrics
+EndFontMetrics

@@ -1,0 +1,17 @@
+name norasi-c90
+category Package
+revision 60831
+shortdesc TeX support (from CJK) for the norasi font
+depend fonts-tlwg
+execute addMap norasi-c90.map
+containersize 8716
+containerchecksum 5f65927546348815b07c93003a2b0922403d274bfa3d1665d4649c9dbc737df924958c2fd61c1d06cd5e7c1862aff392c8d1e9d827f4ae79e70d9b76467f651d
+srccontainersize 1440
+srccontainerchecksum 8fb30cc3a1e762ec15c813fff0191b08b64a0d259dbdd21a9edcf70c6eb1b327cff5ef3f48b9dba0b7d99d1ec31b3accef65deca7285e27790261ca659bd525d
+runfiles size=10
+ texmf-dist/dvips/norasi-c90/config.norasi-c90
+ texmf-dist/fonts/map/dvips/norasi-c90/norasi-c90.map
+ texmf-dist/fonts/tfm/public/norasi-c90/ftnb8z.tfm
+ texmf-dist/fonts/tfm/public/norasi-c90/ftnbi8z.tfm
+ texmf-dist/fonts/tfm/public/norasi-c90/ftni8z.tfm
+ texmf-dist/fonts/tfm/public/norasi-c90/ftnr8z.tfm

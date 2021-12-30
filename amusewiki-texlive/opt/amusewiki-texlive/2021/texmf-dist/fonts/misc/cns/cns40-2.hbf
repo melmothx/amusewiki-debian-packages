@@ -1,0 +1,58 @@
+HBF_START_FONT 1.1
+HBF_CODE_SCHEME CNS11643-92p2
+COMMENT
+COMMENT   Plane 2 of CNS11643-1992
+COMMENT
+COMMENT	  Bitmaps provided by Central Bureau of Standards
+COMMENT	  Ministry of Economy, Taiwan, ROC, March 9, 1994
+COMMENT
+FONT cns40st-2
+COMMENT
+COMMENT An equivalent full XLFD 1.5 conforming font name is
+COMMENT -CBS-Song-medium-r-normal-fantizi-40-400-75-75-c-400-CNS11643.92p2-0
+COMMENT which is formed from the first 15 properties listed in
+COMMENT the STARTPROPERTIES section below.
+COMMENT Any of these properties is optional, as in the simple HBF file.
+COMMENT created by rap@doc.ic.ac.uk
+COMMENT Last Modified by cyl@ifcss.org 1994.09.19
+COMMENT
+SIZE 40 150 150
+HBF_BITMAP_BOUNDING_BOX 40 40 0 -6
+FONTBOUNDINGBOX 40 40 0 -6
+STARTPROPERTIES 23
+FONTNAME_REGISTRY ""
+FOUNDRY "CBS"
+FAMILY_NAME "Song"
+WEIGHT_NAME "medium"
+SLANT "r"
+SETWIDTH_NAME "normal"
+ADD_STYLE_NAME "fantizi"
+PIXEL_SIZE 40
+POINT_SIZE 400
+RESOLUTION_X 75
+RESOLUTION_Y 75
+SPACING "c"
+AVERAGE_WIDTH 400
+CHARSET_REGISTRY "CNS11643.92p2"
+CHARSET_ENCODING "0"
+COPYRIGHT "1994, Central Bureau of Standards, Ministry of Economy, ROC"
+WEIGHT 19329
+RESOLUTION 110
+X_HEIGHT 34
+QUAD_WIDTH 40
+FONT_ASCENT 34
+FONT_DESCENT 6
+DEFAULT_CHAR 0x2121
+ENDPROPERTIES
+COMMENT "This HBF header file is in the public domain."
+HBF_START_BYTE_2_RANGES 1
+HBF_BYTE_2_RANGE 0x21-0x7E
+HBF_END_BYTE_2_RANGES
+HBF_START_CODE_RANGES 1
+HBF_CODE_RANGE 0x2121-0x7244 4040w2.bin 0
+HBF_END_CODE_RANGES
+COMMENT  7650 less-frequently used characters defined in 2121--7244.
+COMMENT  (BIG-5 characters C940--F9D5, except C94A and DDFC, eliminated
+COMMENT  as duplicates of A461 and DCD1 respectively)
+HBF_END_FONT
+

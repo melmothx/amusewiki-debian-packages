@@ -1,0 +1,22 @@
+name babel-galician
+category Package
+revision 30270
+shortdesc Babel/Polyglossia support for Galician
+longdesc The package provides a language description file that enables
+longdesc support of Galician either with babel or with polyglossia.
+containersize 7192
+containerchecksum 1c8aef52e0eaba8a55e6c0bdaca4ef47012012a85d38ed268207227063d042f2f0b2cbafa3d1e4d71432e3ea6effd2a781ab0aefc536276de36a95d0dc834b68
+doccontainersize 444432
+doccontainerchecksum a60ed8ffc43cb56aeafab8d09e8235eea9482ff8cdabc00da68938d980b20a7067da3286fa8ce19eddf9276b51e78dd944545cb8bb891bc13c31cffbab39544e
+docfiles size=112
+ texmf-dist/doc/generic/babel-galician/galician.pdf details="Package documentation"
+ texmf-dist/doc/generic/babel-galician/glbst.tex
+ texmf-dist/doc/generic/babel-galician/glromidx.tex
+srccontainersize 26212
+srccontainerchecksum aef01bd2587b5a452874e67c52bb4adbd89c5203bbe9a338e85449831434cbcd58415afd3d31d6e315eb91dff955750753bdc9cd38e87e3aded5350a350df547
+runfiles size=7
+ texmf-dist/tex/generic/babel-galician/galician.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/galician
+catalogue-license lppl1.3
+catalogue-topics multilingual-addon
+catalogue-version 4.3c

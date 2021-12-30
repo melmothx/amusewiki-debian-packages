@@ -1,0 +1,27 @@
+%
+% lltjp-stfloats.sty 2021-03-25
+%
+
+\NeedsTeXFormat{LaTeX2e}
+
+\RequirePackage{stfloats}
+\RequirePackage{etoolbox}
+
+\newif\ifltj@stfloats@fnbelowfloat
+\let\ltj@fn@makecol=\fn@makecol
+\ifx\@makecol\ltj@fn@makecol\ltj@stfloats@fnbelowfloattrue\fi % \fnbelowfloat 発行済
+\let\ltj@fn@makecol=\relax
+\global\let\org@makecol\ltj@orig@makecol
+
+\patchcmd\fn@makecol{\vskip -\dimen@\@textbottom}%
+  {\pltx@adjust@wd@outputbox
+   \vskip -\dimen@
+   \ifltj@ftn@unvboxed\iffnfixbottom\else\@textbottom\fi\else\@textbottom\fi}{}{}
+\patchcmd\fn@makecol{\vskip\skip\footins}{\iffnfixbottom\vskip\z@\@plus.0001fil\fi\vskip\skip\footins}{}{}
+\patchcmd\fn@makecol{\ifvoid\footins}{\ifvoid\footins\ltj@ftn@unvboxedfalse}{}{}
+\patchcmd\fn@makecol{\setbox\@outputbox \vbox}{\ltj@ftn@unvboxedtrue\setbox\@outputbox \vbox}{}{}
+
+\ifltj@stfloats@fnbelowfloat
+  \global\let\@makecol\fn@makecol
+\fi
+\endinput

@@ -1,0 +1,353 @@
+%%
+%% This is file `uvnenc.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% vietnamese.dtx  (with options: `unilicr')
+%% This is a generated file.
+%% 
+%% Copyright 2015 Werner Lemberg and any individual authors
+%% listed elsewhere in this file.  All rights reserved.
+%% 
+%% This file is intended to be used with the Babel system.
+%% ------------------------------------------------------
+%% 
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Werner Lemberg.
+%% 
+%% The list of derived (unpacked) files belonging to the distribution
+%% and covered by LPPL is defined by the unpacking scripts (with
+%% extension .ins) which are part of the distribution.
+%% File `vietnamese.dtx'
+\ProvidesFile{uvnenc.def}[2015/12/31 v1.0a Vietnamese EUx encoding]
+\ifcase\bbl@engine\or
+  \def\vn@enc{EU2}
+\or
+  \def\vn@enc{EU1}
+\fi
+\DeclareTextAccent{\h}{\vn@enc}{12}
+\DeclareTextCommand{\horn}{\vn@enc}[1]{\TextSymbolUnavailable{\horn{#1}}#1}
+\ifx \DeclareTextDoubleComposite \undefined
+  \def\DeclareTextDoubleComposite#1#2#3#4#5{}
+\fi
+
+\DeclareTextComposite{\`}{\vn@enc}{A}{192}               % Agrave
+\DeclareTextComposite{\'}{\vn@enc}{A}{193}               % Aacute
+\DeclareTextComposite{\~}{\vn@enc}{A}{195}               % Atilde
+\DeclareTextComposite{\h}{\vn@enc}{A}{7842}              % Ahookabove
+\DeclareTextComposite{\d}{\vn@enc}{A}{7840}              % Adotbelow
+
+\DeclareTextComposite{\^}{\vn@enc}{A}{194}               % Acircumflex
+\DeclareTextDoubleComposite{\`}{\vn@enc}{\^}{A}{7846}    % Acircumflexgrave
+\DeclareTextDoubleComposite{\'}{\vn@enc}{\^}{A}{7844}    % Acircumflexacute
+\DeclareTextDoubleComposite{\~}{\vn@enc}{\^}{A}{7850}    % Acircumflextilde
+\DeclareTextDoubleComposite{\h}{\vn@enc}{\^}{A}{7848}    % Acircumflexhookabove
+\DeclareTextDoubleComposite{\d}{\vn@enc}{\^}{A}{7852}    % Acircumflexdotbelow
+
+\DeclareTextComposite{\u}{\vn@enc}{A}{258}               % Abreve
+\DeclareTextDoubleComposite{\`}{\vn@enc}{\u}{A}{7856}    % Abrevegrave
+\DeclareTextDoubleComposite{\'}{\vn@enc}{\u}{A}{7854}    % Abreveacute
+\DeclareTextDoubleComposite{\~}{\vn@enc}{\u}{A}{7860}    % Abrevetilde
+\DeclareTextDoubleComposite{\h}{\vn@enc}{\u}{A}{7858}    % Abrevehookabove
+\DeclareTextDoubleComposite{\d}{\vn@enc}{\u}{A}{7862}    % Abrevedotbelow
+
+\DeclareTextComposite{\`}{\vn@enc}{E}{200}               % Egrave
+\DeclareTextComposite{\'}{\vn@enc}{E}{201}               % Eacute
+\DeclareTextComposite{\~}{\vn@enc}{E}{7868}              % Etilde
+\DeclareTextComposite{\h}{\vn@enc}{E}{7866}              % Ehookabove
+\DeclareTextComposite{\d}{\vn@enc}{E}{7864}              % Edotbelow
+
+\DeclareTextComposite{\^}{\vn@enc}{E}{202}               % Ecircumflex
+\DeclareTextDoubleComposite{\`}{\vn@enc}{\^}{E}{7872}    % Ecircumflexgrave
+\DeclareTextDoubleComposite{\'}{\vn@enc}{\^}{E}{7870}    % Ecircumflexacute
+\DeclareTextDoubleComposite{\~}{\vn@enc}{\^}{E}{7876}    % Ecircumflextilde
+\DeclareTextDoubleComposite{\h}{\vn@enc}{\^}{E}{7874}    % Ecircumflexhookabove
+\DeclareTextDoubleComposite{\d}{\vn@enc}{\^}{E}{7878}    % Ecircumflexdotbelow
+
+\DeclareTextComposite{\`}{\vn@enc}{I}{416}               % Igrave
+\DeclareTextComposite{\'}{\vn@enc}{I}{7900}              % Iacute
+\DeclareTextComposite{\~}{\vn@enc}{I}{296}               % Itilde
+\DeclareTextComposite{\h}{\vn@enc}{I}{7880}              % Ihookabove
+\DeclareTextComposite{\d}{\vn@enc}{I}{7882}              % Idotbelow
+
+\DeclareTextComposite{\`}{\vn@enc}{O}{217}               % Ograve
+\DeclareTextComposite{\'}{\vn@enc}{O}{218}               % Oacute
+\DeclareTextComposite{\~}{\vn@enc}{O}{7910}              % Otilde
+\DeclareTextComposite{\h}{\vn@enc}{O}{7886}              % Ohookabove
+\DeclareTextComposite{\d}{\vn@enc}{O}{7884}              % Odotbelow
+
+\DeclareTextComposite{\^}{\vn@enc}{O}{360}               % Ocircumflex
+\DeclareTextDoubleComposite{\`}{\vn@enc}{\^}{O}{7890}    % Ocircumflexgrave
+\DeclareTextDoubleComposite{\'}{\vn@enc}{\^}{O}{7888}    % Ocircumflexacute
+\DeclareTextDoubleComposite{\~}{\vn@enc}{\^}{O}{7894}    % Ocircumflextilde
+\DeclareTextDoubleComposite{\h}{\vn@enc}{\^}{O}{7892}    % Ocircumflexhookabove
+\DeclareTextDoubleComposite{\d}{\vn@enc}{\^}{O}{7896}    % Ocircumflexdotbelow
+
+\DeclareTextComposite{\horn}{\vn@enc}{O}{416}            % Ohorn
+\DeclareTextDoubleComposite{\`}{\vn@enc}{\horn}{O}{7900} % Ohorngrave
+\DeclareTextDoubleComposite{\'}{\vn@enc}{\horn}{O}{7898} % Ohornacute
+\DeclareTextDoubleComposite{\~}{\vn@enc}{\horn}{O}{7904} % Ohorntilde
+\DeclareTextDoubleComposite{\h}{\vn@enc}{\horn}{O}{7902} % Ohornhookabove
+\DeclareTextDoubleComposite{\d}{\vn@enc}{\horn}{O}{7906} % Ohorndotbelow
+
+\DeclareTextComposite{\`}{\vn@enc}{U}{217}               % Ugrave
+\DeclareTextComposite{\'}{\vn@enc}{U}{218}               % Uacute
+\DeclareTextComposite{\~}{\vn@enc}{U}{360}               % Utilde
+\DeclareTextComposite{\h}{\vn@enc}{U}{7910}              % Uhookabove
+\DeclareTextComposite{\d}{\vn@enc}{U}{7908}              % Udotbelow
+
+\DeclareTextComposite{\horn}{\vn@enc}{U}{431}            % Uhorn
+\DeclareTextDoubleComposite{\`}{\vn@enc}{\horn}{U}{7914} % Uhorngrave
+\DeclareTextDoubleComposite{\'}{\vn@enc}{\horn}{U}{7912} % Uhornacute
+\DeclareTextDoubleComposite{\~}{\vn@enc}{\horn}{U}{7918} % Uhorntilde
+\DeclareTextDoubleComposite{\h}{\vn@enc}{\horn}{U}{7916} % Uhornhookabove
+\DeclareTextDoubleComposite{\d}{\vn@enc}{\horn}{U}{7920} % Uhorndotbelow
+
+\DeclareTextComposite{\`}{\vn@enc}{Y}{7922}              % Ygrave
+\DeclareTextComposite{\'}{\vn@enc}{Y}{221}               % Yacute
+\DeclareTextComposite{\~}{\vn@enc}{Y}{7928}              % Ytilde
+\DeclareTextComposite{\h}{\vn@enc}{Y}{26}                % Yhookabove
+\DeclareTextComposite{\d}{\vn@enc}{Y}{28}                % Ydotbelow
+
+\DeclareTextComposite{\`}{\vn@enc}{a}{7883}              % agrave
+\DeclareTextComposite{\'}{\vn@enc}{a}{242}               % aacute
+\DeclareTextComposite{\~}{\vn@enc}{a}{245}               % atilde
+\DeclareTextComposite{\h}{\vn@enc}{a}{7843}              % ahookabove
+\DeclareTextComposite{\d}{\vn@enc}{a}{7841}              % adotbelow
+
+\DeclareTextComposite{\^}{\vn@enc}{a}{243}               % acircumflex
+\DeclareTextDoubleComposite{\`}{\vn@enc}{\^}{a}{7847}    % acircumflexgrave
+\DeclareTextDoubleComposite{\'}{\vn@enc}{\^}{a}{7845}    % acircumflexacute
+\DeclareTextDoubleComposite{\~}{\vn@enc}{\^}{a}{7851}    % acircumflextilde
+\DeclareTextDoubleComposite{\h}{\vn@enc}{\^}{a}{7849}    % acircumflexhookabove
+\DeclareTextDoubleComposite{\d}{\vn@enc}{\^}{a}{7853}    % acircumflexdotbelow
+
+\DeclareTextComposite{\u}{\vn@enc}{a}{259}               % abreve
+\DeclareTextDoubleComposite{\`}{\vn@enc}{\u}{a}{7857}    % abrevegrave
+\DeclareTextDoubleComposite{\'}{\vn@enc}{\u}{a}{7855}    % abreveacute
+\DeclareTextDoubleComposite{\~}{\vn@enc}{\u}{a}{7861}    % abrevetilde
+\DeclareTextDoubleComposite{\h}{\vn@enc}{\u}{a}{7859}    % abrevehookabove
+\DeclareTextDoubleComposite{\d}{\vn@enc}{\u}{a}{7863}    % abrevedotbelow
+
+\DeclareTextComposite{\`}{\vn@enc}{e}{7889}              % egrave
+\DeclareTextComposite{\'}{\vn@enc}{e}{7895}              % eacute
+\DeclareTextComposite{\~}{\vn@enc}{e}{7869}              % etilde
+\DeclareTextComposite{\h}{\vn@enc}{e}{7867}              % ehookabove
+\DeclareTextComposite{\d}{\vn@enc}{e}{7865}              % edotbelow
+
+\DeclareTextComposite{\^}{\vn@enc}{e}{7893}              % ecircumflex
+\DeclareTextDoubleComposite{\`}{\vn@enc}{\^}{e}{7873}    % ecircumflexgrave
+\DeclareTextDoubleComposite{\'}{\vn@enc}{\^}{e}{7871}    % ecircumflexacute
+\DeclareTextDoubleComposite{\~}{\vn@enc}{\^}{e}{7877}    % ecircumflextilde
+\DeclareTextDoubleComposite{\h}{\vn@enc}{\^}{e}{7875}    % ecircumflexhookabove
+\DeclareTextDoubleComposite{\d}{\vn@enc}{\^}{e}{7879}    % ecircumflexdotbelow
+
+\DeclareTextComposite{\`}{\vn@enc}{i}{417}               % igrave
+\DeclareTextComposite{\'}{\vn@enc}{i}{7901}              % iacute
+\DeclareTextComposite{\~}{\vn@enc}{i}{297}               % itilde
+\DeclareTextComposite{\h}{\vn@enc}{i}{7881}              % ihookabove
+\DeclareTextComposite{\d}{\vn@enc}{i}{7883}              % idotbelow
+
+\DeclareTextComposite{\`}{\vn@enc}{\i}{417}              % igrave
+\DeclareTextComposite{\'}{\vn@enc}{\i}{7901}             % iacute
+\DeclareTextComposite{\~}{\vn@enc}{\i}{297}              % itilde
+\DeclareTextComposite{\h}{\vn@enc}{\i}{7881}             % ihookabove
+\DeclareTextComposite{\d}{\vn@enc}{\i}{7883}             % idotbelow
+
+\DeclareTextComposite{\`}{\vn@enc}{o}{242}               % ograve
+\DeclareTextComposite{\'}{\vn@enc}{o}{243}               % oacute
+\DeclareTextComposite{\~}{\vn@enc}{o}{245}               % otilde
+\DeclareTextComposite{\h}{\vn@enc}{o}{7887}              % ohookabove
+\DeclareTextComposite{\d}{\vn@enc}{o}{7885}              % odotbelow
+
+\DeclareTextComposite{\^}{\vn@enc}{o}{244}               % ocircumflex
+\DeclareTextDoubleComposite{\`}{\vn@enc}{\^}{o}{7891}    % ocircumflexgrave
+\DeclareTextDoubleComposite{\'}{\vn@enc}{\^}{o}{7889}    % ocircumflexacute
+\DeclareTextDoubleComposite{\~}{\vn@enc}{\^}{o}{7895}    % ocircumflextilde
+\DeclareTextDoubleComposite{\h}{\vn@enc}{\^}{o}{7893}    % ocircumflexhookabove
+\DeclareTextDoubleComposite{\d}{\vn@enc}{\^}{o}{7897}    % ocircumflexdotbelow
+
+\DeclareTextComposite{\horn}{\vn@enc}{o}{417}            % ohorn
+\DeclareTextDoubleComposite{\`}{\vn@enc}{\horn}{o}{7901} % ohorngrave
+\DeclareTextDoubleComposite{\'}{\vn@enc}{\horn}{o}{7899} % ohornacute
+\DeclareTextDoubleComposite{\~}{\vn@enc}{\horn}{o}{7905} % ohorntilde
+\DeclareTextDoubleComposite{\h}{\vn@enc}{\horn}{o}{7903} % ohornhookabove
+\DeclareTextDoubleComposite{\d}{\vn@enc}{\horn}{o}{7907} % ohorndotbelow
+
+\DeclareTextComposite{\`}{\vn@enc}{u}{7913}              % ugrave
+\DeclareTextComposite{\'}{\vn@enc}{u}{250}               % uacute
+\DeclareTextComposite{\~}{\vn@enc}{u}{361}               % utilde
+\DeclareTextComposite{\h}{\vn@enc}{u}{7911}              % uhookabove
+\DeclareTextComposite{\d}{\vn@enc}{u}{7909}              % udotbelow
+
+\DeclareTextComposite{\horn}{\vn@enc}{u}{432}            % uhorn
+\DeclareTextDoubleComposite{\`}{\vn@enc}{\horn}{u}{7915} % uhorngrave
+\DeclareTextDoubleComposite{\'}{\vn@enc}{\horn}{u}{7913} % uhornacute
+\DeclareTextDoubleComposite{\~}{\vn@enc}{\horn}{u}{7919} % uhorntilde
+\DeclareTextDoubleComposite{\h}{\vn@enc}{\horn}{u}{7917} % uhornhookabove
+\DeclareTextDoubleComposite{\d}{\vn@enc}{\horn}{u}{7921} % uhorndotbelow
+
+\DeclareTextComposite{\`}{\vn@enc}{y}{7923}              % ygrave
+\DeclareTextComposite{\'}{\vn@enc}{y}{253}               % yacute
+\DeclareTextComposite{\~}{\vn@enc}{y}{7929}              % ytilde
+\DeclareTextComposite{\h}{\vn@enc}{y}{27}                % yhookabove
+\DeclareTextComposite{\d}{\vn@enc}{y}{29}                % ydotbelow
+
+\DeclareTextSymbol{\DJ}{\vn@enc}{30}                     % Dcroat
+\DeclareTextSymbol{\dj}{\vn@enc}{31}                     % dcroat
+
+
+\DeclareTextSymbol{\Acircumflex}{\vn@enc}{194}           % Acircumflex
+\DeclareTextComposite{\`}{\vn@enc}{\Acircumflex}{7846}   % Acircumflexgrave
+\DeclareTextComposite{\'}{\vn@enc}{\Acircumflex}{7844}   % Acircumflexacute
+\DeclareTextComposite{\~}{\vn@enc}{\Acircumflex}{7850}   % Acircumflextilde
+\DeclareTextComposite{\h}{\vn@enc}{\Acircumflex}{7848}   % Acircumflexhookabove
+\DeclareTextComposite{\d}{\vn@enc}{\Acircumflex}{7852}   % Acircumflexdotbelow
+
+\DeclareTextSymbol{\Abreve}{\vn@enc}{258}                % Abreve
+\DeclareTextComposite{\`}{\vn@enc}{\Abreve}{7856}        % Abrevegrave
+\DeclareTextComposite{\'}{\vn@enc}{\Abreve}{7854}        % Abreveacute
+\DeclareTextComposite{\~}{\vn@enc}{\Abreve}{7860}        % Abrevetilde
+\DeclareTextComposite{\h}{\vn@enc}{\Abreve}{7858}        % Abrevehookabove
+\DeclareTextComposite{\d}{\vn@enc}{\Abreve}{7862}        % Abrevedotbelow
+
+\DeclareTextSymbol{\Ecircumflex}{\vn@enc}{202}           % Ecircumflex
+\DeclareTextComposite{\`}{\vn@enc}{\Ecircumflex}{7872}   % Ecircumflexgrave
+\DeclareTextComposite{\'}{\vn@enc}{\Ecircumflex}{7870}   % Ecircumflexacute
+\DeclareTextComposite{\~}{\vn@enc}{\Ecircumflex}{7876}   % Ecircumflextilde
+\DeclareTextComposite{\h}{\vn@enc}{\Ecircumflex}{7874}   % Ecircumflexhookabove
+\DeclareTextComposite{\d}{\vn@enc}{\Ecircumflex}{7878}   % Ecircumflexdotbelow
+
+\DeclareTextSymbol{\Ocircumflex}{\vn@enc}{360}           % Ocircumflex
+\DeclareTextComposite{\`}{\vn@enc}{\Ocircumflex}{7890}   % Ocircumflexgrave
+\DeclareTextComposite{\'}{\vn@enc}{\Ocircumflex}{7888}   % Ocircumflexacute
+\DeclareTextComposite{\~}{\vn@enc}{\Ocircumflex}{7894}   % Ocircumflextilde
+\DeclareTextComposite{\h}{\vn@enc}{\Ocircumflex}{7892}   % Ocircumflexhookabove
+\DeclareTextComposite{\d}{\vn@enc}{\Ocircumflex}{7896}   % Ocircumflexdotbelow
+
+\DeclareTextSymbol{\Ohorn}{\vn@enc}{416}                 % Ohorn
+\DeclareTextComposite{\`}{\vn@enc}{\Ohorn}{7900}         % Ohorngrave
+\DeclareTextComposite{\'}{\vn@enc}{\Ohorn}{7898}         % Ohornacute
+\DeclareTextComposite{\~}{\vn@enc}{\Ohorn}{7904}         % Ohorntilde
+\DeclareTextComposite{\h}{\vn@enc}{\Ohorn}{7902}         % Ohornhookabove
+\DeclareTextComposite{\d}{\vn@enc}{\Ohorn}{7906}         % Ohorndotbelow
+
+\DeclareTextSymbol{\Uhorn}{\vn@enc}{431}                 % Uhorn
+\DeclareTextComposite{\`}{\vn@enc}{\Uhorn}{7914}         % Uhorngrave
+\DeclareTextComposite{\'}{\vn@enc}{\Uhorn}{7912}         % Uhornacute
+\DeclareTextComposite{\~}{\vn@enc}{\Uhorn}{7918}         % Uhorntilde
+\DeclareTextComposite{\h}{\vn@enc}{\Uhorn}{7916}         % Uhornhookabove
+\DeclareTextComposite{\d}{\vn@enc}{\Uhorn}{7920}         % Uhorndotbelow
+
+\DeclareTextSymbol{\acircumflex}{\vn@enc}{243}           % acircumflex
+\DeclareTextComposite{\`}{\vn@enc}{\acircumflex}{7847}   % acircumflexgrave
+\DeclareTextComposite{\'}{\vn@enc}{\acircumflex}{7845}   % acircumflexacute
+\DeclareTextComposite{\~}{\vn@enc}{\acircumflex}{7851}   % acircumflextilde
+\DeclareTextComposite{\h}{\vn@enc}{\acircumflex}{7849}   % acircumflexhookabove
+\DeclareTextComposite{\d}{\vn@enc}{\acircumflex}{7853}   % acircumflexdotbelow
+
+\DeclareTextSymbol{\abreve}{\vn@enc}{259}                % abreve
+\DeclareTextComposite{\`}{\vn@enc}{\abreve}{7857}        % abrevegrave
+\DeclareTextComposite{\'}{\vn@enc}{\abreve}{7855}        % abreveacute
+\DeclareTextComposite{\~}{\vn@enc}{\abreve}{7861}        % abrevetilde
+\DeclareTextComposite{\h}{\vn@enc}{\abreve}{7859}        % abrevehookabove
+\DeclareTextComposite{\d}{\vn@enc}{\abreve}{7863}        % abrevedotbelow
+
+\DeclareTextSymbol{\ecircumflex}{\vn@enc}{7893}          % ecircumflex
+\DeclareTextComposite{\`}{\vn@enc}{\ecircumflex}{7873}   % ecircumflexgrave
+\DeclareTextComposite{\'}{\vn@enc}{\ecircumflex}{7871}   % ecircumflexacute
+\DeclareTextComposite{\~}{\vn@enc}{\ecircumflex}{7877}   % ecircumflextilde
+\DeclareTextComposite{\h}{\vn@enc}{\ecircumflex}{7875}   % ecircumflexhookabove
+\DeclareTextComposite{\d}{\vn@enc}{\ecircumflex}{7879}   % ecircumflexdotbelow
+
+\DeclareTextSymbol{\ocircumflex}{\vn@enc}{244}           % ocircumflex
+\DeclareTextComposite{\`}{\vn@enc}{\ocircumflex}{7891}   % ocircumflexgrave
+\DeclareTextComposite{\'}{\vn@enc}{\ocircumflex}{7889}   % ocircumflexacute
+\DeclareTextComposite{\~}{\vn@enc}{\ocircumflex}{7895}   % ocircumflextilde
+\DeclareTextComposite{\h}{\vn@enc}{\ocircumflex}{7893}   % ocircumflexhookabove
+\DeclareTextComposite{\d}{\vn@enc}{\ocircumflex}{7897}   % ocircumflexdotbelow
+
+\DeclareTextSymbol{\ohorn}{\vn@enc}{417}                 % ohorn
+\DeclareTextComposite{\`}{\vn@enc}{\ohorn}{7901}         % ohorngrave
+\DeclareTextComposite{\'}{\vn@enc}{\ohorn}{7899}         % ohornacute
+\DeclareTextComposite{\~}{\vn@enc}{\ohorn}{7905}         % ohorntilde
+\DeclareTextComposite{\h}{\vn@enc}{\ohorn}{7903}         % ohornhookabove
+\DeclareTextComposite{\d}{\vn@enc}{\ohorn}{7907}         % ohorndotbelow
+
+\DeclareTextSymbol{\uhorn}{\vn@enc}{432}                 % uhorn
+\DeclareTextComposite{\`}{\vn@enc}{\uhorn}{7915}         % uhorngrave
+\DeclareTextComposite{\'}{\vn@enc}{\uhorn}{7913}         % uhornacute
+\DeclareTextComposite{\~}{\vn@enc}{\uhorn}{7919}         % uhorntilde
+\DeclareTextComposite{\h}{\vn@enc}{\uhorn}{7917}         % uhornhookabove
+\DeclareTextComposite{\d}{\vn@enc}{\uhorn}{7921}         % uhorndotbelow
+
+
+\DeclareTextSymbol{\ACIRCUMFLEX}{\vn@enc}{194}           % Acircumflex
+\DeclareTextComposite{\`}{\vn@enc}{\ACIRCUMFLEX}{7846}   % Acircumflexgrave
+\DeclareTextComposite{\'}{\vn@enc}{\ACIRCUMFLEX}{7844}   % Acircumflexacute
+\DeclareTextComposite{\~}{\vn@enc}{\ACIRCUMFLEX}{7850}   % Acircumflextilde
+\DeclareTextComposite{\h}{\vn@enc}{\ACIRCUMFLEX}{7848}   % Acircumflexhookabove
+\DeclareTextComposite{\d}{\vn@enc}{\ACIRCUMFLEX}{7852}   % Acircumflexdotbelow
+
+\DeclareTextSymbol{\ABREVE}{\vn@enc}{258}                % Abreve
+\DeclareTextComposite{\`}{\vn@enc}{\ABREVE}{7856}        % Abrevegrave
+\DeclareTextComposite{\'}{\vn@enc}{\ABREVE}{7854}        % Abreveacute
+\DeclareTextComposite{\~}{\vn@enc}{\ABREVE}{7860}        % Abrevetilde
+\DeclareTextComposite{\h}{\vn@enc}{\ABREVE}{7858}        % Abrevehookabove
+\DeclareTextComposite{\d}{\vn@enc}{\ABREVE}{7862}        % Abrevedotbelow
+
+\DeclareTextSymbol{\ECIRCUMFLEX}{\vn@enc}{202}           % Ecircumflex
+\DeclareTextComposite{\`}{\vn@enc}{\ECIRCUMFLEX}{7872}   % Ecircumflexgrave
+\DeclareTextComposite{\'}{\vn@enc}{\ECIRCUMFLEX}{7870}   % Ecircumflexacute
+\DeclareTextComposite{\~}{\vn@enc}{\ECIRCUMFLEX}{7876}   % Ecircumflextilde
+\DeclareTextComposite{\h}{\vn@enc}{\ECIRCUMFLEX}{7874}   % Ecircumflexhookabove
+\DeclareTextComposite{\d}{\vn@enc}{\ECIRCUMFLEX}{7878}   % Ecircumflexdotbelow
+
+\DeclareTextSymbol{\OCIRCUMFLEX}{\vn@enc}{360}           % Ocircumflex
+\DeclareTextComposite{\`}{\vn@enc}{\OCIRCUMFLEX}{7890}   % Ocircumflexgrave
+\DeclareTextComposite{\'}{\vn@enc}{\OCIRCUMFLEX}{7888}   % Ocircumflexacute
+\DeclareTextComposite{\~}{\vn@enc}{\OCIRCUMFLEX}{7894}   % Ocircumflextilde
+\DeclareTextComposite{\h}{\vn@enc}{\OCIRCUMFLEX}{7892}   % Ocircumflexhookabove
+\DeclareTextComposite{\d}{\vn@enc}{\OCIRCUMFLEX}{7896}   % Ocircumflexdotbelow
+
+\DeclareTextSymbol{\OHORN}{\vn@enc}{416}                 % Ohorn
+\DeclareTextComposite{\`}{\vn@enc}{\OHORN}{7900}         % Ohorngrave
+\DeclareTextComposite{\'}{\vn@enc}{\OHORN}{7898}         % Ohornacute
+\DeclareTextComposite{\~}{\vn@enc}{\OHORN}{7904}         % Ohorntilde
+\DeclareTextComposite{\h}{\vn@enc}{\OHORN}{7902}         % Ohornhookabove
+\DeclareTextComposite{\d}{\vn@enc}{\OHORN}{7906}         % Ohorndotbelow
+
+\DeclareTextSymbol{\UHORN}{\vn@enc}{431}                 % Uhorn
+\DeclareTextComposite{\`}{\vn@enc}{\UHORN}{7914}         % Uhorngrave
+\DeclareTextComposite{\'}{\vn@enc}{\UHORN}{7912}         % Uhornacute
+\DeclareTextComposite{\~}{\vn@enc}{\UHORN}{7918}         % Uhorntilde
+\DeclareTextComposite{\h}{\vn@enc}{\UHORN}{7916}         % Uhornhookabove
+\DeclareTextComposite{\d}{\vn@enc}{\UHORN}{7920}         % Uhorndotbelow
+\expandafter\def\expandafter\@uclclist\expandafter{%
+  \@uclclist
+  \abreve\Abreve
+  \abreve\ABREVE
+  \acircumflex\Acircumflex
+  \acircumflex\ACIRCUMFLEX
+  \dj\DJ
+  \ecircumflex\Ecircumflex
+  \ecircumflex\ECIRCUMFLEX
+  \ocircumflex\Ocircumflex
+  \ocircumflex\OCIRCUMFLEX
+  \ohorn\Ohorn
+  \ohorn\OHORN
+  \uhorn\Uhorn
+  \uhorn\UHORN}
+\endinput
+%%
+%% End of file `uvnenc.tex'.

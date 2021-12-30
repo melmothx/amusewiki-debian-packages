@@ -1,0 +1,15 @@
+name hyphen-macedonian
+category TLCore
+revision 58652
+shortdesc Macedonian hyphenation patterns.
+longdesc Hyphenation patterns for Macedonian
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=macedonian 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-mk.tex 	file_patterns=hyph-mk.pat.txt 	file_exceptions=
+containersize 5508
+containerchecksum f88208291212874df493151581205d1b270b2d4278176c42e11edac9b344b73c2ee859f93b6947e4a6003a00abc4d3753024add9caf84f114c8a0cec72aa8c8d
+runfiles size=9
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mk.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex-8bit/hyph-mk.macedonian.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-mk.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-mk.pat.txt

@@ -1,0 +1,525 @@
+%%
+%% This is file `greek.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% babel-greek.dtx  (with options: `code')
+%% This is a generated file.
+%% 
+%% Copyright 1989-2008 Apostolos Syropoulos, Johannes L. Braams,  Guenter Milde,
+%% and the authors listed elsewhere in this file. All rights reserved.
+%% 
+%% This file was generated from file(s) of the babel-greek package.
+%% ----------------------------------------------------------------
+%% 
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Günter Milde <milde@users.sf.net>.
+%% 
+%% Babel-greek is a contributed package providing support for the Greek
+%% language and script via the Babel system (http://www.ctan.org/pkg/babel).
+%% 
+%% The list of derived (unpacked) files belonging to this work
+%% and covered by LPPL is defined by the unpacking script (babel-greek.ins)
+%% which is part of the package.
+\ProvidesLanguage{greek}
+        [2020/11/10 v1.10 Greek support for the babel system]
+%% File `babel-greek.dtx'
+%% Greek language Definition File
+%% Copyright © 1997, 2005 Apostolos Syropoulos, Johannes Braams
+%% Copyright © 2013, 2019 Günter Milde
+%% Please report errors to: Günter Milde <milde@users.sf.net>
+\LdfInit\CurrentOption{captions\CurrentOption}
+\gdef\CurrentOption{greek}
+\ifx\l@greek\@undefined
+  \@nopatterns{greek}
+  \adddialect\l@greek 0\fi
+\ifx\l@monogreek\@undefined
+  \adddialect\l@monogreek 0\fi
+\ifx\l@ancientgreek\@undefined
+  \adddialect\l@ancientgreek 0\fi
+\newcount\bbl@monogreek \bbl@monogreek=\l@monogreek
+\newcount\bbl@polygreek \bbl@polygreek=\l@greek
+\newcount\bbl@ancientgreek  \bbl@ancientgreek=\l@ancientgreek
+\addto\extrasgreek{\let\l@greek\bbl@monogreek\relax}
+\addto\extraspolutonikogreek{\l@greek=\bbl@polygreek}
+\addto\extrasancientgreek{\l@greek=\bbl@ancientgreek}
+\bbl@declare@ttribute{greek}{polutoniko}{%
+  \expandafter\addto\expandafter\extrasgreek
+    \expandafter{\extraspolutonikogreek}%
+  \let\captionsgreek\captionspolutonikogreek
+  \let\gr@month\gr@c@month
+  \let\l@polutonikogreek\l@greek
+  \let\datepolutonikogreek\dategreek
+  \let\extraspolutonikogreek\extrasgreek
+  \let\noextraspolutonikogreek\noextrasgreek
+  }
+\bbl@declare@ttribute{greek}{ancient}{%
+  \expandafter\addto\expandafter\extrasgreek
+    \expandafter{\extraspolutonikogreek}% multi-accented letters
+  \expandafter\addto\expandafter\extrasgreek
+    \expandafter{\extrasancientgreek}%
+  \let\captionsgreek\captionsancientgreek
+  \let\gr@month\gr@c@month % (modern) polytonic month names
+  }
+\ifdefined \UnicodeEncodingName % set by LaTeX for Unicode-aware engines
+  \providecommand*{\greekfontencoding}{\UnicodeEncodingName}
+  \providecommand*{\bbl@greek@fontencdef}{tuenc-greek}
+\else
+  \providecommand*{\greekfontencoding}{LGR}
+  \providecommand*{\bbl@greek@fontencdef}{lgrenc}
+\fi
+\@ifl@aded{def}{\bbl@greek@fontencdef}{}
+{% else
+  \InputIfFileExists{\bbl@greek@fontencdef .def}{}{% else
+    \bbl@error{Font support for the Greek script missing.\\
+               babel-greek can't typeset Greek.\\
+               Install the "greek-fontenc" package\\
+               or use XeTeX/LuaTeX with polyglossia.}
+              {I can't find the \bbl@greek@fontencdef .def file
+               for the Greek fonts (encoding \greekfontencoding)}
+    \@@end
+  }
+}
+\ProvideTextCommandDefault{\greekscript}{%
+  \fontencoding{\greekfontencoding}\selectfont
+      \def\encodingdefault{\greekfontencoding}}
+\ProvideTextCommandDefault{\ensuregreek}[1]{%
+  \leavevmode{\greekscript #1}}
+\AtBeginDocument{
+  \@ifl@aded{def}{puenc}{
+    \makeatletter % required inside \AtBeginDocument
+    \InputIfFileExists{puenc-greek.def}{}{% else
+      \bbl@warning{I can't find the file puenc-greek.def from "greek-fontenc".}
+    }
+    \makeatother
+  }{}
+}
+\@ifl@aded{def}{lgrenc}{%
+  \ProvideTextCommand{\textcopyright}{LGR}{\ensureascii{\textcopyright}}
+  \ProvideTextCommand{\textregistered}{LGR}{\ensureascii{\textregistered}}
+  \ProvideTextCommand{\texttrademark}{LGR}{\ensureascii{\texttrademark}}
+  \let\ltx@amp\&
+  \ProvideTextCommandDefault{\textampersand}{\ltx@amp}
+  \ProvideTextCommand{\textampersand}{LGR}{\ensureascii{\ltx@amp}}
+  \DeclareRobustCommand{\&}{\ifmmode\ltx@amp\else\textampersand\fi}
+  \ProvideTextCommand{\SS}{LGR}{\ensureascii{\SS}}
+  \def\@roman#1{\expandafter\ensureascii\expandafter{\romannumeral#1}}
+  \def\@Roman#1{\expandafter\ensureascii\expandafter{%
+                \expandafter\@slowromancap\romannumeral#1@}}
+  \DeclareRobustCommand{\greektext}{%
+    \fontencoding{LGR}\selectfont
+    \def\encodingdefault{LGR}}
+  \DeclareRobustCommand{\textgreek}[1]{\leavevmode{\greektext #1}}
+  \def\outlfamily{\usefont{LGR}{cmro}{m}{n}}
+  \DeclareTextFontCommand{\textol}{\outlfamily}
+}{} % End of LGR fixes.
+\providehyphenmins{\CurrentOption}{\@ne\@ne}
+\addto\captionsgreek{%
+  \def\prefacename{\textPi\textrho\acctonos\textomicron\textlambda
+    \textomicron\textgamma\textomicron\textfinalsigma}%
+  \def\refname{\textAlpha\textnu\textalpha
+    \textphi\textomicron\textrho\acctonos\textepsilon\textfinalsigma}%
+  \def\abstractname{\textPi\textepsilon\textrho\acctonos\textiota
+    \textlambda\texteta\textpsi\texteta}%
+  \def\bibname{\textBeta\textiota\textbeta\textlambda\textiota\textomicron
+    \textgamma\textrho\textalpha\textphi\acctonos\textiota\textalpha}%
+  \def\chaptername{\textKappa\textepsilon\textphi\acctonos\textalpha
+    \textlambda\textalpha\textiota\textomicron}%
+  \def\appendixname{\textPi\textalpha\textrho\acctonos\textalpha\textrho
+    \texttau\texteta\textmu\textalpha}%
+  \def\contentsname{\textPi\textepsilon\textrho\textiota
+    \textepsilon\textchi\acctonos\textomicron\textmu\textepsilon
+    \textnu\textalpha}%
+  \def\listfigurename{\textKappa\textalpha\texttau\acctonos\textalpha
+    \textlambda\textomicron\textgamma\textomicron\textfinalsigma{}
+    \textSigma\textchi\texteta\textmu\acctonos\textalpha\texttau
+    \textomega\textnu}%
+  \def\listtablename{\textKappa\textalpha\texttau\acctonos\textalpha
+    \textlambda\textomicron\textgamma\textomicron\textfinalsigma{}
+    \textPi\textiota\textnu\acctonos\textalpha\textkappa\textomega\textnu}%
+  \def\indexname{\textEpsilon\textupsilon\textrho\textepsilon
+    \texttau\acctonos\texteta\textrho\textiota\textomicron}%
+  \def\figurename{\textSigma\textchi\acctonos\texteta\textmu\textalpha}%
+  \def\tablename{\textPi\acctonos\textiota\textnu\textalpha
+    \textkappa\textalpha\textfinalsigma}%
+  \def\partname{\textMu\acctonos\textepsilon\textrho\textomicron
+    \textfinalsigma}%
+  \def\enclname{\textSigma\textupsilon\textnu\texteta\textmu
+    \textmu\acctonos\textepsilon\textnu\textalpha}%
+  \def\ccname{\textKappa\textomicron\textiota\textnu\textomicron
+    \textpi\textomicron\acctonos\textiota\texteta\textsigma\texteta}%
+  \def\headtoname{\textPi\textrho\textomicron\textfinalsigma}%
+  \def\pagename{\textSigma\textepsilon\textlambda\acctonos\textiota
+    \textdelta\textalpha}%
+  \def\seename{\textbeta\textlambda\acctonos\textepsilon\textpi\textepsilon}%
+  \def\alsoname{\textbeta\textlambda\acctonos\textepsilon\textpi\textepsilon{}
+    \textepsilon\textpi\acctonos\textiota\textsigma\texteta\textfinalsigma}%
+  \def\proofname{\textAlpha\textpi\acctonos\textomicron
+    \textdelta\textepsilon\textiota\textxi\texteta}%
+  \def\glossaryname{\textGamma\textlambda\textomega\textsigma
+    \textsigma\acctonos\textalpha\textrho\textiota}%
+  }
+\let\captionspolutonikogreek\captionsgreek
+\addto\captionspolutonikogreek{%
+  \def\refname{\accpsili\textAlpha\textnu\textalpha
+    \textphi\textomicron\textrho\accvaria\textepsilon\textfinalsigma}%
+  \def\indexname{\textEpsilon\accdasia\textupsilon\textrho\textepsilon
+    \texttau\acctonos\texteta\textrho\textiota\textomicron}%
+  \def\figurename{\textSigma\textchi\accperispomeni\texteta\textmu\textalpha}%
+  \def\headtoname{\textPi\textrho\accvaria\textomicron\textfinalsigma}%
+  \def\alsoname{\textbeta\textlambda\acctonos\textepsilon\textpi\textepsilon{}
+    \accpsili\textepsilon\textpi\acctonos\textiota\textsigma\texteta\textfinalsigma}%
+  \def\proofname{\accpsili\textAlpha\textpi\acctonos\textomicron
+    \textdelta\textepsilon\textiota\textxi\texteta}%
+}
+\let\captionsancientgreek\captionsgreek
+\addto\captionsancientgreek{%
+  \def\prefacename{\textPi\textrho\textomicron\textomicron\acctonos\textiota\textmu
+    \textiota\textomicron\textnu}%
+  \def\refname{\accpsili\textAlpha\textnu\textalpha\textphi\textomicron\textrho
+    \textalpha\accvaria\textiota}%
+  \def\abstractname{\textPi\textepsilon\textrho\acctonos\textiota\textlambda\texteta
+    \textpsi\textiota\textvarsigma}%
+  \def\bibname{\textBeta\textiota\textbeta\textlambda\textiota\textomicron
+    \textgamma\textrho\textalpha\textphi\acctonos\textiota\textalpha}%
+  \def\chaptername{\textKappa\textepsilon\textphi\acctonos\textalpha\textlambda
+    \textalpha\textiota\textomicron\textnu}%
+  \def\appendixname{\textPi\textalpha\textrho\acctonos\textalpha\textrho\texttau
+    \texteta\textmu\textalpha}%
+  \def\contentsname{\textPi\textepsilon\textrho\textiota\textepsilon\textchi
+    \acctonos\textomicron\textmu\textepsilon\textnu\textalpha}%
+  \def\listfigurename{\textKappa\textalpha\texttau\acctonos\textalpha\textlambda
+    \textomicron\textgamma\textomicron\textvarsigma{}
+    \textsigma\textchi\texteta\textmu\acctonos\textalpha\texttau\textomega\textnu}%
+  \def\listtablename{\textKappa\textalpha\texttau\acctonos\textalpha\textlambda
+    \textomicron\textgamma\textomicron\textvarsigma{}
+    \textpi\textiota\textnu\acctonos\textalpha\textkappa\textomega\textnu}%
+  \def\indexname{\textEpsilon\accdasia\textupsilon\textrho\textepsilon\texttau
+    \acctonos\texteta\textrho\textiota\textomicron\textnu}%
+  \def\figurename{\textSigma\textchi\accperispomeni\texteta\textmu\textalpha}%
+  \def\tablename{\textPi\acctonos\textiota\textnu\textalpha\textxi}%
+  \def\partname{\textMu\acctonos\textepsilon\textrho\textomicron\textvarsigma}%
+  \def\enclname{\textSigma\textupsilon\textnu\texteta\textmu\textmu
+    \acctonos\textepsilon\textnu\textomega\textvarsigma}%
+  \def\ccname{\textKappa\textomicron\textiota\textnu\textomicron\textpi
+    \textomicron\acctonos\textiota\texteta\textsigma\textiota\textvarsigma}%
+  \def\headtoname{\textPi\textrho\accvaria\textomicron\textvarsigma}%
+  \def\pagename{\textSigma\textepsilon\textlambda\accvaria\textiota\textvarsigma}%
+  \def\seename{\accdasiaoxia\textomicron\textrho\textalpha}%
+  \def\alsoname{\accdasiaoxia\textomicron\textrho\textalpha{} \accdasia\textomega\textsigma
+    \textalpha\acctonos\textupsilon\texttau\textomega\textvarsigma}%
+  \def\proofname{\accpsili\textAlpha\textpi\acctonos\textomicron\textdelta\textepsilon
+    \textiota\textxi\textiota\textvarsigma}%
+  \def\glossaryname{\textGamma\textlambda\textomega\textsigma\textsigma
+    \acctonos\textalpha\textrho\textiota\textomicron\textnu}%
+ }
+\def\gr@month{%
+  \ifcase\month\or
+    \textIota\textalpha\textnu\textomicron\textupsilon\textalpha
+      \textrho\acctonos\textiota\textomicron\textupsilon \or
+    \textPhi\textepsilon\textbeta\textrho\textomicron\textupsilon
+      \textalpha\textrho\acctonos\textiota\textomicron\textupsilon \or
+    \textMu\textalpha\textrho\texttau\acctonos\textiota\textomicron\textupsilon
+    \or \textAlpha\textpi\textrho\textiota\textlambda\acctonos\textiota
+      \textomicron\textupsilon \or
+    \textMu\textalpha\'"\textiota\textomicron\textupsilon \or
+    \textIota\textomicron\textupsilon\textnu\acctonos\textiota
+      \textomicron\textupsilon \or
+    \textIota\textomicron\textupsilon\textlambda\acctonos\textiota
+      \textomicron\textupsilon \or
+    \textAlpha\textupsilon\textgamma\textomicron\acctonos\textupsilon
+      \textsigma\texttau\textomicron\textupsilon \or
+    \textSigma\textepsilon\textpi\texttau\textepsilon\textmu
+      \textbeta\textrho\acctonos\textiota\textomicron\textupsilon \or
+    \textOmicron\textkappa\texttau\textomega\textbeta
+      \textrho\acctonos\textiota\textomicron\textupsilon \or
+    \textNu\textomicron\textepsilon\textmu\textbeta
+      \textrho\acctonos\textiota\textomicron\textupsilon \or
+    \textDelta\textepsilon\textkappa\textepsilon\textmu\textbeta
+      \textrho\acctonos\textiota\textomicron\textupsilon
+  \fi
+}
+\def\dategreek{%
+  \def\today{\number\day \space \gr@month\space \number\year}}
+\def\gr@c@month{%
+  \ifcase\month\or
+    \accpsili\textIota\textalpha\textnu\textomicron\textupsilon\textalpha
+      \textrho\acctonos\textiota\textomicron\textupsilon \or
+    \textPhi\textepsilon\textbeta\textrho\textomicron\textupsilon
+      \textalpha\textrho\acctonos\textiota\textomicron\textupsilon \or
+    \textMu\textalpha\textrho\texttau\acctonos\textiota\textomicron
+      \textupsilon \or
+    \accpsili\textAlpha\textpi\textrho\textiota\textlambda
+      \acctonos\textiota\textomicron\textupsilon \or
+    \textMu\textalpha\"'\textiota\textomicron\textupsilon \or
+    \accpsili\textIota\textomicron\textupsilon\textnu
+      \acctonos\textiota\textomicron\textupsilon \or
+    \accpsili\textIota\textomicron\textupsilon\textlambda
+      \acctonos\textiota\textomicron\textupsilon \or
+    \textAlpha\accpsili\textupsilon\textgamma\textomicron\acctonos
+      \textupsilon\textsigma\texttau\textomicron\textupsilon \or
+    \textSigma\textepsilon\textpi\texttau\textepsilon\textmu\textbeta
+      \textrho\acctonos\textiota\textomicron\textupsilon \or
+    \accpsili\textOmicron\textkappa\texttau\textomega\textbeta
+      \textrho\acctonos\textiota\textomicron\textupsilon \or
+    \textNu\textomicron\textepsilon\textmu\textbeta
+      \textrho\acctonos\textiota\textomicron\textupsilon \or
+    \textDelta\textepsilon\textkappa\textepsilon\textmu
+      \textbeta\textrho\acctonos\textiota\textomicron\textupsilon
+  \fi
+}
+\def\Grtoday{%
+  \expandafter\Greeknumeral\expandafter{\the\day}\space
+  \gr@c@month \space
+  \expandafter\Greeknumeral\expandafter{\the\year}}
+\addto\extrasgreek{\greekscript}
+\addto\noextrasgreek{\latintext}
+\def\greeknumeral#1{%
+  {\greekscript
+  \bbl@greek@GreekNum\@firstoftwo{#1}}%
+}
+\def\Greeknumeral#1{%
+  {\greekscript
+  \bbl@greek@GreekNum\@secondoftwo{#1}}%
+}
+\def\bbl@greek@ill@value#1{%
+  \PackageWarningNoLine{babel}{Illegal value (#1) for greeknumeral}%
+  \@arabic{#1}%
+}
+\def\bbl@greek@GreekNum#1#2{%
+    \ifnum#2<\@ne
+      \bbl@greek@ill@value{#2}%
+    \else
+      \ifnum#2<1000000 %
+        \bbl@greek@@GreekNum#1{#2}%
+      \else
+        \bbl@greek@ill@value{#2}%
+      \fi
+    \fi
+}
+\def\bbl@greek@@GreekNum#1#2{%
+  \ifnum#2<\@m
+    \ifnum#2<10 %
+      \expandafter\bbl@greek@GreekNumI
+          \expandafter\@gobble\expandafter#1\number#2%
+    \else
+      \ifnum#2<100 %
+        \expandafter\bbl@greek@GreekNumII
+            \expandafter\@gobble\expandafter#1\number#2%
+      \else
+        \expandafter\bbl@greek@GreekNumIII
+            \expandafter\@gobble\expandafter#1\number#2%
+      \fi
+    \fi
+    \ifnum#2>\z@
+      \textnumeralsigngreek
+    \fi
+  \else
+    \ifnum#2<\@M
+      \expandafter\bbl@greek@GreekNumIV\expandafter#1\number#2%
+    \else
+      \ifnum#2<100000 %
+        \expandafter\bbl@greek@GreekNumV\expandafter#1\number#2%
+      \else
+        \expandafter\bbl@greek@GreekNumVI\expandafter#1\number#2%
+      \fi
+    \fi
+  \fi
+}
+\def\bbl@greek@GreekNumI#1#2#3{%
+  #1{%
+    \ifnum#3>\z@
+      \textnumeralsignlowergreek
+    \fi
+  }%
+  \expandafter#2%
+  \ifcase#3 %
+    {}{}%
+  \or\textalpha\textAlpha
+  \or\textbeta\textBeta
+  \or\textgamma\textGamma
+  \or\textdelta\textDelta
+  \or\textepsilon\textEpsilon
+  \or\textstigmagreek\textStigmagreek
+  \or\textzeta\textZeta
+  \or\texteta\textEta
+  \or\texttheta\textTheta
+  \else
+    {}{}%
+  \fi
+}
+\def\bbl@greek@GreekNumII#1#2#3#4{%
+  #1{%
+    \ifnum#3>\z@
+      \textnumeralsignlowergreek
+    \fi
+  }%
+  \expandafter#2%
+  \ifcase#3 %
+    {}{}%
+  \or\textiota\textIota
+  \or\textkappa\textKappa
+  \or\textlambda\textLambda
+  \or\textmugreek\textMu
+  \or\textnu\textNu
+  \or\textxi\textXi
+  \or\textomicron\textOmicron
+  \or\textpi\textPi
+  \or\textkoppa\textKoppa
+  \else
+    {}{}%
+  \fi
+  \bbl@greek@GreekNumI#1#2#4%
+}
+\def\bbl@greek@GreekNumIII#1#2#3#4#5{%
+  #1{%
+    \ifnum#3>\z@
+      \textnumeralsignlowergreek
+    \fi
+  }%
+  \expandafter#2%
+  \ifcase#3 %
+    {}{}%
+  \or\textrho\textRho
+  \or\textsigma\textSigma
+  \or\texttau\textTau
+  \or\textupsilon\textUpsilon
+  \or\textphi\textPhi
+  \or\textchi\textChi
+  \or\textpsi\textPsi
+  \or\textomega\textOmega
+  \or\textsampigreek\textSampigreek
+  \else
+    {}{}%
+  \fi
+  \bbl@greek@GreekNumII#1#2#4#5%
+}
+\def\bbl@greek@GreekNumIV#1#2#3#4#5{%
+  \bbl@greek@GreekNumI\@firstofone#1#2%
+  \bbl@greek@@GreekNum#1{#3#4#5}%
+}
+\def\bbl@greek@GreekNumV#1#2#3#4#5#6{%
+  \bbl@greek@GreekNumII\@firstofone#1#2#3%
+  \bbl@greek@@GreekNum#1{#4#5#6}%
+}
+\def\bbl@greek@GreekNumVI#1#2#3#4#5#6#7{%
+  \bbl@greek@GreekNumIII\@firstofone#1#2#3#4%
+  \bbl@greek@@GreekNum#1{#5#6#7}%
+}
+\let\latin@alph\@alph
+\let\latin@Alph\@Alph
+\def\greek@alph#1{\expandafter\greeknumeral\expandafter{\the#1}}
+\def\greek@Alph#1{\expandafter\Greeknumeral\expandafter{\the#1}}
+\addto\extrasgreek{%
+  \let\@alph\greek@alph
+  \let\@Alph\greek@Alph}
+\addto\noextrasgreek{%
+  \let\@alph\latin@alph
+  \let\@Alph\latin@Alph}
+\@ifl@aded{def}{lgrenc}{%
+  \begingroup
+    \@ifundefined{active@char\string!}{}{\catcode`!=12\relax}
+    \catcode`\~=12%
+    \lccode`\!=`\~%
+    \lowercase{\def\x{\endgroup
+        \def\greek@tilde{!}}\x}
+  \addto\extrasgreek{%
+    \babel@savevariable{\lccode`v}\lccode`v=`v%
+    \babel@savevariable{\lccode`\'}\lccode`\'=`\'%
+    \babel@savevariable{\lccode`\"}\lccode`\"=`\"%
+    % ``high bit characters'': set in a loop and correct exceptions
+    \@tempcnta=128%
+    \@whilenum\@tempcnta<253\do{%
+      \expandafter\babel@savevariable\expandafter{%
+                         \expandafter\lccode\the\@tempcnta}%
+      \lccode\@tempcnta=\@tempcnta
+      \advance\@tempcnta\@ne
+    }%
+    % Fix non-word characters:
+    \lccode151=0%
+    \lccode155=0%
+    \lccode159=0%
+    \lccode199=0%
+    % Fix capital letters:
+    \lccode195=147% GREEK LETTER DIGAMMA
+    \lccode219=240% GREEK CAPITAL LETTER IOTA WITH DIALYTIKA
+    \lccode223=244% GREEK CAPITAL LETTER UPSILON WITH DIALYTIKA
+  }
+
+  \addto\extraspolutonikogreek{%
+    % \l@greek=\bbl@polygreek
+    \babel@savevariable{\lccode`\<}\lccode`\<=`\<%
+    \babel@savevariable{\lccode`\>}\lccode`\>=`\>%
+    \babel@savevariable{\lccode`\~}\lccode`\~=`\~%
+    \babel@savevariable{\lccode`\|}\lccode`\|=`\|%
+    \babel@savevariable{\lccode`\`}\lccode`\`=`\`%
+    }
+  \addto\extrasgreek{%
+    \babel@savevariable{\uccode`\"}\uccode`\"=`\"%
+    \babel@savevariable{\uccode`\'}\uccode`\'=159% 159 == ^^9f
+    }
+  \addto\extraspolutonikogreek{%
+    \babel@savevariable{\uccode`\~}\uccode`\~=159%
+    \babel@savevariable{\uccode`\>}\uccode`\>=159%
+    \babel@savevariable{\uccode`\<}\uccode`\<=159%
+    \babel@savevariable{\uccode`\|}\uccode`\|=`\|%
+    \babel@savevariable{\uccode`\`}\uccode`\`=159%
+    }
+  \@tempcnta=\lccode`\~
+  \lccode`\~=159
+  \lowercase{%
+    \initiate@active@char{~}%
+    \declare@shorthand{greek}{~}{}}
+  \lccode`\~=\@tempcnta
+  \DeclareTextCompositeCommand{\"}{LGR}{^^9f}{\accdialytika}
+  \DeclareTextCompositeCommand{\'}{LGR}{^^9f}{\LGR@hiatus}
+  \DeclareTextCompositeCommand{\`}{LGR}{^^9f}{\LGR@hiatus}
+  \addto\extraspolutonikogreek{\languageshorthands{greek}}%
+  \declare@shorthand{greek}{~}{\greek@tilde}
+}{} % End of LGR-specific code.
+\providecommand*{\anwtonos}{\textdexiakeraia}
+\providecommand*{\katwtonos}{\textaristerikeraia}
+\providecommand*{\qoppa}{\textkoppa}
+\providecommand*{\varqoppa}{\textqoppa}
+\providecommand*{\stigma}{\textstigma}
+\providecommand*{\sampi}{\textsampi}
+\providecommand*{\Digamma}{\textDigamma}
+\providecommand*{\ddigamma}{\textdigamma}
+\providecommand*{\vardigamma}{\textvardigamma}
+\providecommand*{\euro}{\texteuro}
+\providecommand*{\permill}{\textperthousand}
+\@ifl@aded{def}{lgrenc}{%
+  \ProvideTextCommand{\textKoppa}{LGR}{\textkoppa}
+  \ProvideTextCommand{\textmugreek}{LGR}{\textmu}
+}{}
+\ProvideTextCommand{\textmugreek}{\greekfontencoding}{\textmu}
+\ldf@finish{\CurrentOption}
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+\endinput
+%%
+%% End of file `greek.ldf'.

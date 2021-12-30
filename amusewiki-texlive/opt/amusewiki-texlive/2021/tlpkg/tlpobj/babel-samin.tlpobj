@@ -1,0 +1,25 @@
+name babel-samin
+category Package
+revision 30288
+shortdesc Babel support for Samin
+longdesc The package provides the language definition file for support
+longdesc of North Sami in babel. (Several Sami dialects/languages are
+longdesc spoken in Finland, Norway, Sweden and on the Kola Peninsula of
+longdesc Russia). Not all use the same alphabet, and no attempt is made
+longdesc to support any other than North Sami here. Some shortcuts are
+longdesc defined, as well as translations to Norsk of standard "LaTeX
+longdesc names".
+containersize 2324
+containerchecksum 8a9e832e988da76ca26d87ab54438048d3d76cf02027ac9120d1277096d2495ece671607d32182cc5f9a61032b1ec33695f6592796680aaba0b65c142aa8a43a
+doccontainersize 125092
+doccontainerchecksum a8d43e73b4ab86378c5e3d2b402298580dfaf19afcce509ffa8ac747d68627c21b58020dd823528073240e1a28a2178157f9752d587286a0168fc3047cacd0cd
+docfiles size=31
+ texmf-dist/doc/generic/babel-samin/samin.pdf details="Package documentation"
+srccontainersize 4384
+srccontainerchecksum 2e0fe9724a55daefdc3196fc2934d3551b4e738be4d6940a25a091c173f220f2853b077e5534ac20f868954e360e547fbc7d622507d227b8cb0bf7e074e57f48
+runfiles size=1
+ texmf-dist/tex/generic/babel-samin/samin.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/samin
+catalogue-license lppl1.3
+catalogue-topics samin
+catalogue-version 1.0c

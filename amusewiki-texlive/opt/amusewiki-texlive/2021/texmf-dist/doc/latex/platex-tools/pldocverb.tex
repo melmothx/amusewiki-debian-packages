@@ -1,0 +1,54 @@
+%# -*- coding: utf-8 -*-
+\ifx\epTeXinputencoding\undefined\else % defined in e-pTeX (> TL2016)
+  \epTeXinputencoding utf8    % ensure utf-8 encoding for platex
+\fi
+
+\documentclass[a4paper]{jsarticle}% supports \verb in \footnote
+\usepackage{doc}
+\usepackage{pldocverb}
+\GetFileInfo{pldocverb.sty}
+\title{Package \textsf{pldocverb} \fileversion}
+\author{Hironobu Yamashita}
+\date{\filedate}
+\begin{document}
+
+\maketitle
+
+This package \textsf{pldocverb} provides small patches to
+\textsf{doc} package of \textsf{latex(-base)} for use with
+Japanese p\LaTeX/up\LaTeX.
+Current package supports re-definition of \verb+\verb+ command.
+
+This package is part of \textsf{platex-tools} bundle:
+\begin{verbatim}
+  https://github.com/aminophen/platex-tools
+\end{verbatim}
+
+\bigskip
+
+この\textsf{pldocverb}パッケージは、
+\textsf{latex(-base)}バンドルの\textsf{doc}パッケージによって
+上書きされて無効化されてしまうp\LaTeX/up\LaTeX カーネルの修正点を
+再有効化します。具体的には、\verb+\verb+コマンドの直前に
+\verb+\xkanjiskip+挿入を許可するための修正に対応します。
+
+\bigskip
+\begin{minipage}{0.6\linewidth}
+\noautoxspacing %% on purpose
+\begin{verbatim}
+  \documentclass{jarticle} % if you are using pLaTeX,
+  \usepackage{pldocverb}   % load this!
+  \usepackage{minijs}
+  \begin{document}
+  \setlength{\xkanjiskip}{10pt}
+  これが\verb+test+で\verb+テスト+です。
+  \end{document}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{0.35\linewidth}
+  \setlength{\xkanjiskip}{10pt}
+  これが\verb+test+で\verb+テスト+です。
+\end{minipage}
+\bigskip
+
+\end{document}

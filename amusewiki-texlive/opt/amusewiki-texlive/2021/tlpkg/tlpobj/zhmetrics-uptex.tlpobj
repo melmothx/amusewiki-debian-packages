@@ -1,0 +1,61 @@
+name zhmetrics-uptex
+category Package
+revision 40728
+shortdesc Chinese font metrics for upTeX
+longdesc The package contains some Chinese font metrics (JFM, VF, etc)
+longdesc for upTeX engine, together with a simple DVIPDFMx font mapping
+longdesc of Fandol fonts for DVIPDFMx.
+containersize 31628
+containerchecksum 1e068a0b402a5c69b44a86d797cb24266b2883c698decd8b8464c99b131d292cc5ac44249ba8e89dc0a414d6f12d73d4c069ffc3081cfa4b9926ca412bfc3dd6
+doccontainersize 89156
+doccontainerchecksum f9ac2953877cd830e1cf3402f3f2bac1f8159d05a4a74e89047c494ae04dc8930f1c09701f83871b4361976572ae7d1c5fbdaf3af3d9e6db12347a207f1b82cb
+docfiles size=29
+ texmf-dist/doc/fonts/zhmetrics-uptex/README.md details="Readme"
+ texmf-dist/doc/fonts/zhmetrics-uptex/doc/README.md details="Readme"
+ texmf-dist/doc/fonts/zhmetrics-uptex/makemetrics.lua
+ texmf-dist/doc/fonts/zhmetrics-uptex/upzhfandolfonts-test.pdf
+ texmf-dist/doc/fonts/zhmetrics-uptex/upzhfandolfonts-test.tex
+ texmf-dist/doc/fonts/zhmetrics-uptex/upzhfandolfonts.tex
+ texmf-dist/doc/fonts/zhmetrics-uptex/upzhm-h.pl
+ texmf-dist/doc/fonts/zhmetrics-uptex/upzhm-v.pl
+runfiles size=1920
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upmono-h.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upmono-v.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upsans-h.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upsans-v.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upsansb-h.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upsansb-v.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upserif-h.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upserif-v.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upserifb-h.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upserifb-v.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upserifit-h.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upserifit-v.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upzhmono-h.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upzhmono-v.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upzhsans-h.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upzhsans-v.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upzhsansb-h.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upzhsansb-v.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upzhserif-h.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upzhserif-v.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upzhserifb-h.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upzhserifb-v.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upzhserifit-h.tfm
+ texmf-dist/fonts/tfm/public/zhmetrics-uptex/upzhserifit-v.tfm
+ texmf-dist/fonts/vf/public/zhmetrics-uptex/upzhmono-h.vf
+ texmf-dist/fonts/vf/public/zhmetrics-uptex/upzhmono-v.vf
+ texmf-dist/fonts/vf/public/zhmetrics-uptex/upzhsans-h.vf
+ texmf-dist/fonts/vf/public/zhmetrics-uptex/upzhsans-v.vf
+ texmf-dist/fonts/vf/public/zhmetrics-uptex/upzhsansb-h.vf
+ texmf-dist/fonts/vf/public/zhmetrics-uptex/upzhsansb-v.vf
+ texmf-dist/fonts/vf/public/zhmetrics-uptex/upzhserif-h.vf
+ texmf-dist/fonts/vf/public/zhmetrics-uptex/upzhserif-v.vf
+ texmf-dist/fonts/vf/public/zhmetrics-uptex/upzhserifb-h.vf
+ texmf-dist/fonts/vf/public/zhmetrics-uptex/upzhserifb-v.vf
+ texmf-dist/fonts/vf/public/zhmetrics-uptex/upzhserifit-h.vf
+ texmf-dist/fonts/vf/public/zhmetrics-uptex/upzhserifit-v.vf
+catalogue-ctan /fonts/zhmetrics-uptex
+catalogue-license lppl1.3
+catalogue-topics font-supp-misc font-cjk chinese
+catalogue-version 1.0

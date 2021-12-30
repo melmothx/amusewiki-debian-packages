@@ -1,0 +1,27 @@
+name hyphen-finnish
+category TLCore
+revision 58652
+catalogue fihyph
+shortdesc Finnish hyphenation patterns.
+longdesc Hyphenation patterns for Finnish in T1 and UTF-8 encodings. The
+longdesc older set, labelled just “fi”, tries to implement
+longdesc etymological rules, while the newer ones (fi-x-school)
+longdesc implements the simpler rules taught at Finnish school.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=finnish 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-fi.tex 	file_patterns=hyph-fi.pat.txt 	file_exceptions=
+execute AddHyphen 	name=schoolfinnish 	lefthyphenmin=1 	righthyphenmin=1 	file=loadhyph-fi-x-school.tex 	file_patterns=hyph-fi-x-school.pat.txt 	file_exceptions=
+containersize 4664
+containerchecksum 6aa171d77952165cdcb1b667885f16dd382124ed70ed1db80a9a89553d972720d8ff5f0da1b36669e02c3030d9ff362ab77ba1fa2ba45cddfb460018f0c0191d
+runfiles size=9
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fi-x-school.tex
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fi.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-fi-x-school.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-fi.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-fi-x-school.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-fi.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-fi-x-school.pat.txt
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-fi.pat.txt
+catalogue-ctan /language/hyphenation/fihyph
+catalogue-license pd
+catalogue-topics hyphenation finnish

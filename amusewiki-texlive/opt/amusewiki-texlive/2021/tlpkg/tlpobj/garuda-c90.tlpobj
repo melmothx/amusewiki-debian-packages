@@ -1,0 +1,17 @@
+name garuda-c90
+category Package
+revision 60832
+shortdesc TeX support (from CJK) for the garuda font
+depend fonts-tlwg
+execute addMap garuda-c90.map
+containersize 3416
+containerchecksum a806538598cae0365968ab20936631a052dc65f9f6056c39197f7b1c7a5aad717a7a8b72ed2a1af347f8ce91f27d7dcd74b758db8f01fc7810a8d658990bcc28
+srccontainersize 1368
+srccontainerchecksum 58f62ec8020489b69743c0591129967730f9ad0729f7cca343ab6e6fa6675122a1e37bf73f090cae050cb695a14dbfb3c52346e3c528e660484d2cb576aaca65
+runfiles size=6
+ texmf-dist/dvips/garuda-c90/config.garuda-c90
+ texmf-dist/fonts/map/dvips/garuda-c90/garuda-c90.map
+ texmf-dist/fonts/tfm/public/garuda-c90/fgdb8z.tfm
+ texmf-dist/fonts/tfm/public/garuda-c90/fgdbo8z.tfm
+ texmf-dist/fonts/tfm/public/garuda-c90/fgdo8z.tfm
+ texmf-dist/fonts/tfm/public/garuda-c90/fgdr8z.tfm

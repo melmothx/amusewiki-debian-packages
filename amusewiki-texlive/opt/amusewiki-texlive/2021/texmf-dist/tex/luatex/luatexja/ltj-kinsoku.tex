@@ -1,0 +1,471 @@
+\ltj@tempcnta="0%"
+\loop\ifnum\ltj@tempcnta<"100%"
+  \ltjsetparameter{alxspmode={\ltj@tempcnta,0}}%
+  \advance\ltj@tempcnta by1
+\repeat
+
+\ltj@tempcnta=`0%"
+\loop\ifnum\ltj@tempcnta<`:%"
+  \ltjsetparameter{alxspmode={\ltj@tempcnta,3}}%
+  \advance\ltj@tempcnta by1
+\repeat
+
+\ltj@tempcnta=`A%"
+\loop\ifnum\ltj@tempcnta<`[%"
+  \ltjsetparameter{alxspmode={\ltj@tempcnta,3}}%
+  \advance\ltj@tempcnta by1
+\repeat
+
+\ltj@tempcnta=`a%"
+\loop\ifnum\ltj@tempcnta<`\{%"
+  \ltjsetparameter{alxspmode={\ltj@tempcnta,3}}%
+  \advance\ltj@tempcnta by1
+\repeat
+
+\ltj@tempcnta="2000%" General Punctuation
+\loop\ifnum\ltj@tempcnta<"2070%"
+  \ltjsetparameter{kcatcode={\ltj@tempcnta,1}}%
+  \advance\ltj@tempcnta by1
+\repeat
+
+\ltj@tempcnta="2500%" 罫線
+\loop\ifnum\ltj@tempcnta<"2580%"
+  \ltjsetparameter{alxspmode={\ltj@tempcnta,0}}%
+  \advance\ltj@tempcnta by1
+\repeat
+
+\ltj@tempcnta="3000%" CJK Symbols and Punctuation
+\loop\ifnum\ltj@tempcnta<"3040%"
+  \ltjsetparameter{kcatcode={\ltj@tempcnta,1}}%
+  \advance\ltj@tempcnta by1
+\repeat
+
+\ltj@tempcnta="FF00%" 	半角・全角形
+\loop\ifnum\ltj@tempcnta<"FFF0%"
+  \ltjsetparameter{kcatcode={\ltj@tempcnta,1}}%
+  \advance\ltj@tempcnta by1
+\repeat
+
+%
+%	行頭、行末禁則パラメータ
+%
+% 1byte characters
+\ltjsetparameter{prebreakpenalty={`!,10000}}
+\ltjsetparameter{prebreakpenalty={`",10000}}
+\ltjsetparameter{postbreakpenalty={`\#,500}}
+\ltjsetparameter{postbreakpenalty={`\$,500}}
+\ltjsetparameter{prebreakpenalty={`\%,500}}
+\ltjsetparameter{prebreakpenalty={`\&,500}}
+\ltjsetparameter{postbreakpenalty={`\`,10000}}
+\ltjsetparameter{prebreakpenalty={`',10000}}
+\ltjsetparameter{prebreakpenalty={`),10000}}
+\ltjsetparameter{postbreakpenalty={`(,10000}}
+\ltjsetparameter{prebreakpenalty={`*,500}}
+\ltjsetparameter{prebreakpenalty={`+,500}}
+\ltjsetparameter{prebreakpenalty={`-,10000}}
+\ltjsetparameter{prebreakpenalty={`.,10000}}
+\ltjsetparameter{prebreakpenalty={44,10000}}
+\ltjsetparameter{prebreakpenalty={`/,500}}
+\ltjsetparameter{prebreakpenalty={`;,10000}}
+\ltjsetparameter{prebreakpenalty={`?,10000}}
+\ltjsetparameter{prebreakpenalty={`:,10000}}
+\ltjsetparameter{prebreakpenalty={`],10000}}
+\ltjsetparameter{postbreakpenalty={`[,10000}}
+%全角文字
+\ltjsetparameter{prebreakpenalty={`、,10000}}
+\ltjsetparameter{prebreakpenalty={`。,10000}}
+\ltjsetparameter{prebreakpenalty={`，,10000}}
+\ltjsetparameter{prebreakpenalty={`．,10000}}
+\ltjsetparameter{prebreakpenalty={`・,10000}}
+\ltjsetparameter{prebreakpenalty={`：,10000}}
+\ltjsetparameter{prebreakpenalty={`；,10000}}
+\ltjsetparameter{prebreakpenalty={`？,10000}}
+\ltjsetparameter{prebreakpenalty={`！,10000}}
+\ltjsetparameter{prebreakpenalty={`゛,10000}}%\jis"212B
+\ltjsetparameter{prebreakpenalty={`゜,10000}}%\jis"212C
+\ltjsetparameter{prebreakpenalty={`´,10000}}%\jis"212D
+\ltjsetparameter{postbreakpenalty={`｀,10000}}%\jis"212E
+\ltjsetparameter{prebreakpenalty={`々,10000}}%\jis"2139
+\ltjsetparameter{prebreakpenalty={`…,250}}%\jis"2144
+\ltjsetparameter{prebreakpenalty={`‥,250}}%\jis"2145
+\ltjsetparameter{postbreakpenalty={`‘,10000}}%\jis"2146
+\ltjsetparameter{prebreakpenalty={`’,10000}}%\jis"2147
+\ltjsetparameter{postbreakpenalty={`“,10000}}%\jis"2148
+\ltjsetparameter{prebreakpenalty={`”,10000}}%\jis"2149
+\ltjsetparameter{prebreakpenalty={`）,10000}}
+\ltjsetparameter{postbreakpenalty={`（,10000}}
+\ltjsetparameter{prebreakpenalty={`｝,10000}}
+\ltjsetparameter{postbreakpenalty={`｛,10000}}
+\ltjsetparameter{prebreakpenalty={`］,10000}}
+\ltjsetparameter{postbreakpenalty={`［,10000}}
+%\ltjsetparameter{postbreakpenalty={`‘,10000}}
+%\ltjsetparameter{prebreakpenalty={`’,10000}}
+\ltjsetparameter{postbreakpenalty={`〔,10000}}%\jis"214C
+\ltjsetparameter{prebreakpenalty={`〕,10000}}%\jis"214D
+\ltjsetparameter{postbreakpenalty={`〈,10000}}%\jis"2152
+\ltjsetparameter{prebreakpenalty={`〉,10000}}%\jis"2153
+\ltjsetparameter{postbreakpenalty={`《,10000}}%\jis"2154
+\ltjsetparameter{prebreakpenalty={`》,10000}}%\jis"2155
+\ltjsetparameter{postbreakpenalty={`「,10000}}%\jis"2156
+\ltjsetparameter{prebreakpenalty={`」,10000}}%\jis"2157
+\ltjsetparameter{postbreakpenalty={`『,10000}}%\jis"2158
+\ltjsetparameter{prebreakpenalty={`』,10000}}%\jis"2159
+\ltjsetparameter{postbreakpenalty={`【,10000}}%\jis"215A
+\ltjsetparameter{prebreakpenalty={`】,10000}}%\jis"215B
+\ltjsetparameter{prebreakpenalty={`ー,10000}}
+\ltjsetparameter{prebreakpenalty={`＋,200}}
+\ltjsetparameter{prebreakpenalty={`−,200}}% U+2212 MINUS SIGN
+\ltjsetparameter{prebreakpenalty={`－,200}}% U+FF0D FULLWIDTH HYPHEN-MINUS 
+\ltjsetparameter{prebreakpenalty={`＝,200}}
+\ltjsetparameter{postbreakpenalty={`＃,200}}
+\ltjsetparameter{postbreakpenalty={`＄,200}}
+\ltjsetparameter{prebreakpenalty={`％,200}}
+\ltjsetparameter{prebreakpenalty={`＆,200}}
+\ltjsetparameter{prebreakpenalty={`ぁ,150}}
+\ltjsetparameter{prebreakpenalty={`ぃ,150}}
+\ltjsetparameter{prebreakpenalty={`ぅ,150}}
+\ltjsetparameter{prebreakpenalty={`ぇ,150}}
+\ltjsetparameter{prebreakpenalty={`ぉ,150}}
+\ltjsetparameter{prebreakpenalty={`っ,150}}
+\ltjsetparameter{prebreakpenalty={`ゃ,150}}
+\ltjsetparameter{prebreakpenalty={`ゅ,150}}
+\ltjsetparameter{prebreakpenalty={`ょ,150}}
+\ltjsetparameter{prebreakpenalty={`ゎ,150}}%\jis"246E
+\ltjsetparameter{prebreakpenalty={`ァ,150}}
+\ltjsetparameter{prebreakpenalty={`ィ,150}}
+\ltjsetparameter{prebreakpenalty={`ゥ,150}}
+\ltjsetparameter{prebreakpenalty={`ェ,150}}
+\ltjsetparameter{prebreakpenalty={`ォ,150}}
+\ltjsetparameter{prebreakpenalty={`ッ,150}}
+\ltjsetparameter{prebreakpenalty={`ャ,150}}
+\ltjsetparameter{prebreakpenalty={`ュ,150}}
+\ltjsetparameter{prebreakpenalty={`ョ,150}}
+\ltjsetparameter{prebreakpenalty={`ヮ,150}}%\jis"256E
+\ltjsetparameter{prebreakpenalty={`ヵ,150}}%\jis"2575
+\ltjsetparameter{prebreakpenalty={`ヶ,150}}%\jis"2576
+% kinsoku  JIS X 0208 additional
+\ltjsetparameter{prebreakpenalty={`ヽ,10000}}
+\ltjsetparameter{prebreakpenalty={`ヾ,10000}}
+\ltjsetparameter{prebreakpenalty={`ゝ,10000}}
+\ltjsetparameter{prebreakpenalty={`ゞ,10000}}
+
+%
+% kinsoku  JIS X 0213
+%
+\ltjsetparameter{prebreakpenalty={`〳,10000}}
+\ltjsetparameter{prebreakpenalty={`〴,10000}}
+\ltjsetparameter{prebreakpenalty={`〵,10000}}
+\ltjsetparameter{prebreakpenalty={`〻,10000}}
+\ltjsetparameter{postbreakpenalty={`⦅,10000}}
+\ltjsetparameter{prebreakpenalty={`⦆,10000}}
+\ltjsetparameter{postbreakpenalty={`｟,10000}}
+\ltjsetparameter{prebreakpenalty={`｠,10000}}
+\ltjsetparameter{postbreakpenalty={`〘,10000}}
+\ltjsetparameter{prebreakpenalty={`〙,10000}}
+\ltjsetparameter{postbreakpenalty={`〖,10000}}
+\ltjsetparameter{prebreakpenalty={`〗,10000}}
+\ltjsetparameter{postbreakpenalty={`«,10000}}
+\ltjsetparameter{prebreakpenalty={`»,10000}}
+\ltjsetparameter{postbreakpenalty={`〝,10000}}
+\ltjsetparameter{prebreakpenalty={`〟,10000}}
+\ltjsetparameter{prebreakpenalty={`‼,10000}}
+\ltjsetparameter{prebreakpenalty={`⁇,10000}}
+\ltjsetparameter{prebreakpenalty={`⁈,10000}}
+\ltjsetparameter{prebreakpenalty={`⁉,10000}}
+\ltjsetparameter{postbreakpenalty={`¡,10000}}
+\ltjsetparameter{postbreakpenalty={`¿,10000}}
+\ltjsetparameter{prebreakpenalty={`ː,10000}}
+\ltjsetparameter{prebreakpenalty={`·,10000}}
+\ltjsetparameter{prebreakpenalty={`ª,10000}}
+\ltjsetparameter{prebreakpenalty={`º,10000}}
+\ltjsetparameter{prebreakpenalty={`¹,10000}}
+\ltjsetparameter{prebreakpenalty={`²,10000}}
+\ltjsetparameter{prebreakpenalty={`³,10000}}
+\ltjsetparameter{postbreakpenalty={`€,10000}}
+\ltjsetparameter{prebreakpenalty={`ゕ,150}}
+\ltjsetparameter{prebreakpenalty={`ゖ,150}}
+\ltjsetparameter{prebreakpenalty={`ㇰ,150}}
+\ltjsetparameter{prebreakpenalty={`ㇱ,150}}
+\ltjsetparameter{prebreakpenalty={`ㇲ,150}}
+\ltjsetparameter{prebreakpenalty={`ㇳ,150}}
+\ltjsetparameter{prebreakpenalty={`ㇴ,150}}
+\ltjsetparameter{prebreakpenalty={`ㇵ,150}}
+\ltjsetparameter{prebreakpenalty={`ㇶ,150}}
+\ltjsetparameter{prebreakpenalty={`ㇷ,150}}
+\ltjsetparameter{prebreakpenalty={`ㇸ,150}}
+\ltjsetparameter{prebreakpenalty={`ㇹ,150}}
+%\ltjsetparameter{prebreakpenalty={`ㇷ゚,150}}
+\ltjsetparameter{prebreakpenalty={`ㇺ,150}}
+\ltjsetparameter{prebreakpenalty={`ㇻ,150}}
+\ltjsetparameter{prebreakpenalty={`ㇼ,150}}
+\ltjsetparameter{prebreakpenalty={`ㇽ,150}}
+\ltjsetparameter{prebreakpenalty={`ㇾ,150}}
+\ltjsetparameter{prebreakpenalty={`ㇿ,150}}
+%
+% kinsoku  JIS X 0212
+%
+%\ltjsetparameter{postbreakpenalty={`¡,10000}}
+%\ltjsetparameter{postbreakpenalty={`¿,10000}}
+%\ltjsetparameter{prebreakpenalty={`º,10000}}
+%\ltjsetparameter{prebreakpenalty={`ª,10000}}
+\ltjsetparameter{prebreakpenalty={`™,10000}}
+%
+% kinsoku  半角片仮名
+%
+\ltjsetparameter{prebreakpenalty={`｡,10000}}
+\ltjsetparameter{prebreakpenalty={`､,10000}}
+\ltjsetparameter{prebreakpenalty={`ﾞ,10000}}
+\ltjsetparameter{prebreakpenalty={`ﾟ,10000}}
+\ltjsetparameter{prebreakpenalty={`｣,10000}}
+\ltjsetparameter{postbreakpenalty={`｢,10000}}
+%
+% xspcode
+\ltjsetparameter{alxspmode={`(,preonly}}
+\ltjsetparameter{alxspmode={`),postonly}}
+\ltjsetparameter{alxspmode={`[,preonly}}
+\ltjsetparameter{alxspmode={`],postonly}}
+\ltjsetparameter{alxspmode={``,preonly}}
+\ltjsetparameter{alxspmode={`',postonly}}
+\ltjsetparameter{alxspmode={`:,postonly}}
+\ltjsetparameter{alxspmode={`;,postonly}}
+\ltjsetparameter{alxspmode={44,postonly}}
+\ltjsetparameter{alxspmode={`.,postonly}}
+%  for 8bit Latin
+\ltjsetparameter{alxspmode={"80,allow}}
+\ltjsetparameter{alxspmode={"81,allow}}
+\ltjsetparameter{alxspmode={"82,allow}}
+\ltjsetparameter{alxspmode={"83,allow}}
+\ltjsetparameter{alxspmode={"84,allow}}
+\ltjsetparameter{alxspmode={"85,allow}}
+\ltjsetparameter{alxspmode={"86,allow}}
+\ltjsetparameter{alxspmode={"87,allow}}
+\ltjsetparameter{alxspmode={"88,allow}}
+\ltjsetparameter{alxspmode={"89,allow}}
+\ltjsetparameter{alxspmode={"8A,allow}}
+\ltjsetparameter{alxspmode={"8B,allow}}
+\ltjsetparameter{alxspmode={"8C,allow}}
+\ltjsetparameter{alxspmode={"8D,allow}}
+\ltjsetparameter{alxspmode={"8E,allow}}
+\ltjsetparameter{alxspmode={"8F,allow}}
+\ltjsetparameter{alxspmode={"90,allow}}
+\ltjsetparameter{alxspmode={"91,allow}}
+\ltjsetparameter{alxspmode={"92,allow}}
+\ltjsetparameter{alxspmode={"93,allow}}
+\ltjsetparameter{alxspmode={"94,allow}}
+\ltjsetparameter{alxspmode={"95,allow}}
+\ltjsetparameter{alxspmode={"96,allow}}
+\ltjsetparameter{alxspmode={"97,allow}}
+\ltjsetparameter{alxspmode={"98,allow}}
+\ltjsetparameter{alxspmode={"99,allow}}
+\ltjsetparameter{alxspmode={"9A,allow}}
+\ltjsetparameter{alxspmode={"9B,allow}}
+\ltjsetparameter{alxspmode={"9C,allow}}
+\ltjsetparameter{alxspmode={"9D,allow}}
+\ltjsetparameter{alxspmode={"9E,allow}}
+\ltjsetparameter{alxspmode={"9F,allow}}
+\ltjsetparameter{alxspmode={"A0,allow}}
+\ltjsetparameter{alxspmode={"A1,allow}}
+\ltjsetparameter{alxspmode={"A2,allow}}
+\ltjsetparameter{alxspmode={"A3,allow}}
+\ltjsetparameter{alxspmode={"A4,allow}}
+\ltjsetparameter{alxspmode={"A5,allow}}
+\ltjsetparameter{alxspmode={"A6,allow}}
+\ltjsetparameter{alxspmode={"A7,allow}}
+\ltjsetparameter{alxspmode={"A8,allow}}
+\ltjsetparameter{alxspmode={"A9,allow}}
+\ltjsetparameter{alxspmode={"AA,allow}}
+\ltjsetparameter{alxspmode={"AB,allow}}
+\ltjsetparameter{alxspmode={"AC,allow}}
+\ltjsetparameter{alxspmode={"AD,allow}}
+\ltjsetparameter{alxspmode={"AE,allow}}
+\ltjsetparameter{alxspmode={"AF,allow}}
+\ltjsetparameter{alxspmode={"B0,allow}}
+\ltjsetparameter{alxspmode={"B1,allow}}
+\ltjsetparameter{alxspmode={"B2,allow}}
+\ltjsetparameter{alxspmode={"B3,allow}}
+\ltjsetparameter{alxspmode={"B4,allow}}
+\ltjsetparameter{alxspmode={"B5,allow}}
+\ltjsetparameter{alxspmode={"B6,allow}}
+\ltjsetparameter{alxspmode={"B7,allow}}
+\ltjsetparameter{alxspmode={"B8,allow}}
+\ltjsetparameter{alxspmode={"B9,allow}}
+\ltjsetparameter{alxspmode={"BA,allow}}
+\ltjsetparameter{alxspmode={"BB,allow}}
+\ltjsetparameter{alxspmode={"BC,allow}}
+\ltjsetparameter{alxspmode={"BD,allow}}
+\ltjsetparameter{alxspmode={"BE,allow}}
+\ltjsetparameter{alxspmode={"BF,allow}}
+\ltjsetparameter{alxspmode={"C0,allow}}
+\ltjsetparameter{alxspmode={"C1,allow}}
+\ltjsetparameter{alxspmode={"C2,allow}}
+\ltjsetparameter{alxspmode={"C3,allow}}
+\ltjsetparameter{alxspmode={"C4,allow}}
+\ltjsetparameter{alxspmode={"C5,allow}}
+\ltjsetparameter{alxspmode={"C6,allow}}
+\ltjsetparameter{alxspmode={"C7,allow}}
+\ltjsetparameter{alxspmode={"C8,allow}}
+\ltjsetparameter{alxspmode={"C9,allow}}
+\ltjsetparameter{alxspmode={"CA,allow}}
+\ltjsetparameter{alxspmode={"CB,allow}}
+\ltjsetparameter{alxspmode={"CC,allow}}
+\ltjsetparameter{alxspmode={"CD,allow}}
+\ltjsetparameter{alxspmode={"CE,allow}}
+\ltjsetparameter{alxspmode={"CF,allow}}
+\ltjsetparameter{alxspmode={"D0,allow}}
+\ltjsetparameter{alxspmode={"D1,allow}}
+\ltjsetparameter{alxspmode={"D2,allow}}
+\ltjsetparameter{alxspmode={"D3,allow}}
+\ltjsetparameter{alxspmode={"D4,allow}}
+\ltjsetparameter{alxspmode={"D5,allow}}
+\ltjsetparameter{alxspmode={"D6,allow}}
+\ltjsetparameter{alxspmode={"D7,allow}}
+\ltjsetparameter{alxspmode={"D8,allow}}
+\ltjsetparameter{alxspmode={"D9,allow}}
+\ltjsetparameter{alxspmode={"DA,allow}}
+\ltjsetparameter{alxspmode={"DB,allow}}
+\ltjsetparameter{alxspmode={"DC,allow}}
+\ltjsetparameter{alxspmode={"DD,allow}}
+\ltjsetparameter{alxspmode={"DE,allow}}
+\ltjsetparameter{alxspmode={"DF,allow}}
+\ltjsetparameter{alxspmode={"E0,allow}}
+\ltjsetparameter{alxspmode={"E1,allow}}
+\ltjsetparameter{alxspmode={"E2,allow}}
+\ltjsetparameter{alxspmode={"E3,allow}}
+\ltjsetparameter{alxspmode={"E4,allow}}
+\ltjsetparameter{alxspmode={"E5,allow}}
+\ltjsetparameter{alxspmode={"E6,allow}}
+\ltjsetparameter{alxspmode={"E7,allow}}
+\ltjsetparameter{alxspmode={"E8,allow}}
+\ltjsetparameter{alxspmode={"E9,allow}}
+\ltjsetparameter{alxspmode={"EA,allow}}
+\ltjsetparameter{alxspmode={"EB,allow}}
+\ltjsetparameter{alxspmode={"EC,allow}}
+\ltjsetparameter{alxspmode={"ED,allow}}
+\ltjsetparameter{alxspmode={"EE,allow}}
+\ltjsetparameter{alxspmode={"EF,allow}}
+\ltjsetparameter{alxspmode={"F0,allow}}
+\ltjsetparameter{alxspmode={"F1,allow}}
+\ltjsetparameter{alxspmode={"F2,allow}}
+\ltjsetparameter{alxspmode={"F3,allow}}
+\ltjsetparameter{alxspmode={"F4,allow}}
+\ltjsetparameter{alxspmode={"F5,allow}}
+\ltjsetparameter{alxspmode={"F6,allow}}
+\ltjsetparameter{alxspmode={"F7,allow}}
+\ltjsetparameter{alxspmode={"F8,allow}}
+\ltjsetparameter{alxspmode={"F9,allow}}
+\ltjsetparameter{alxspmode={"FA,allow}}
+\ltjsetparameter{alxspmode={"FB,allow}}
+\ltjsetparameter{alxspmode={"FC,allow}}
+\ltjsetparameter{alxspmode={"FD,allow}}
+\ltjsetparameter{alxspmode={"FE,allow}}
+\ltjsetparameter{alxspmode={"FF,allow}}
+%
+% inhibitxspcode
+\ltjsetparameter{jaxspmode={`、,postonly}}
+\ltjsetparameter{jaxspmode={`。,postonly}}
+\ltjsetparameter{jaxspmode={`，,postonly}}
+\ltjsetparameter{jaxspmode={`．,postonly}}
+\ltjsetparameter{jaxspmode={`：,postonly}}
+\ltjsetparameter{jaxspmode={`；,postonly}}
+\ltjsetparameter{jaxspmode={`？,postonly}}
+\ltjsetparameter{jaxspmode={`！,postonly}}
+\ltjsetparameter{jaxspmode={`）,postonly}}
+\ltjsetparameter{jaxspmode={`（,preonly}}
+\ltjsetparameter{jaxspmode={`］,postonly}}
+\ltjsetparameter{jaxspmode={`［,preonly}}
+\ltjsetparameter{jaxspmode={`｝,postonly}}
+\ltjsetparameter{jaxspmode={`｛,preonly}}
+\ltjsetparameter{jaxspmode={`‘,preonly}}
+\ltjsetparameter{jaxspmode={`’,postonly}}
+\ltjsetparameter{jaxspmode={`“,preonly}}
+\ltjsetparameter{jaxspmode={`”,postonly}}
+\ltjsetparameter{jaxspmode={`〔,preonly}}
+\ltjsetparameter{jaxspmode={`〕,postonly}}
+\ltjsetparameter{jaxspmode={`〈,preonly}}
+\ltjsetparameter{jaxspmode={`〉,postonly}}
+\ltjsetparameter{jaxspmode={`《,preonly}}
+\ltjsetparameter{jaxspmode={`》,postonly}}
+\ltjsetparameter{jaxspmode={`「,preonly}}
+\ltjsetparameter{jaxspmode={`」,postonly}}
+\ltjsetparameter{jaxspmode={`『,preonly}}
+\ltjsetparameter{jaxspmode={`』,postonly}}
+\ltjsetparameter{jaxspmode={`【,preonly}}
+\ltjsetparameter{jaxspmode={`】,postonly}}
+\ltjsetparameter{jaxspmode={`—,inhibit}}% U+2014 EM DASH
+\ltjsetparameter{jaxspmode={`―,inhibit}}% U+2015 HORIZONTAL BAR
+\ltjsetparameter{jaxspmode={`〜,inhibit}}% U+301C WAVE DASH
+\ltjsetparameter{jaxspmode={`～,inhibit}}% U+FF5E FULLWIDTH TILDE
+\ltjsetparameter{jaxspmode={`…,inhibit}}
+\ltjsetparameter{jaxspmode={`¥,inhibit}}% U+00A5 YEN SIGN
+\ltjsetparameter{jaxspmode={`￥,inhibit}}% U+FFE5 FULLWIDTH YEN SIGN
+\ltjsetparameter{jaxspmode={`°,postonly}}
+\ltjsetparameter{jaxspmode={`′,postonly}}
+\ltjsetparameter{jaxspmode={`″,postonly}}
+%
+% inhibitxspcode  JIS X 0213
+%
+\ltjsetparameter{jaxspmode={`⦅,preonly}}
+\ltjsetparameter{jaxspmode={`⦆,postonly}}
+\ltjsetparameter{jaxspmode={`｟,preonly}}
+\ltjsetparameter{jaxspmode={`｠,postonly}}
+\ltjsetparameter{jaxspmode={`〘,preonly}}
+\ltjsetparameter{jaxspmode={`〙,postonly}}
+\ltjsetparameter{jaxspmode={`〖,preonly}}
+\ltjsetparameter{jaxspmode={`〗,postonly}}
+\ltjsetparameter{jaxspmode={`«,preonly}}
+\ltjsetparameter{jaxspmode={`»,postonly}}
+\ltjsetparameter{jaxspmode={`〝,preonly}}
+\ltjsetparameter{jaxspmode={`〟,postonly}}
+\ltjsetparameter{jaxspmode={`‼,postonly}}
+\ltjsetparameter{jaxspmode={`⁇,postonly}}
+\ltjsetparameter{jaxspmode={`⁈,postonly}}
+\ltjsetparameter{jaxspmode={`⁉,postonly}}
+\ltjsetparameter{jaxspmode={`¡,preonly}}
+\ltjsetparameter{jaxspmode={`¿,preonly}}
+\ltjsetparameter{jaxspmode={`ª,postonly}}
+\ltjsetparameter{jaxspmode={`º,postonly}}
+\ltjsetparameter{jaxspmode={`¹,postonly}}
+\ltjsetparameter{jaxspmode={`²,postonly}}
+\ltjsetparameter{jaxspmode={`³,postonly}}
+\ltjsetparameter{jaxspmode={`€,preonly}}
+%
+% inhibitxspcode  JIS X 0212
+%
+%\ltjsetparameter{jaxspmode={`¡,preonly}}
+%\ltjsetparameter{jaxspmode={`¿,preonly}}
+%\ltjsetparameter{jaxspmode={`º,postonly}}
+%\ltjsetparameter{jaxspmode={`ª,postonly}}
+\ltjsetparameter{jaxspmode={`™,postonly}}
+%
+% inhibitxspcode  半角片仮名
+%
+\ltjsetparameter{jaxspmode={`｡,postonly}}
+\ltjsetparameter{jaxspmode={`､,postonly}}
+\ltjsetparameter{jaxspmode={`｢,preonly}}
+\ltjsetparameter{jaxspmode={`｣,postonly}}
+
+\ltjsetparameter{%
+  kanjiskip=\z@ plus .4pt minus .5pt,
+  xkanjiskip=2.40554pt plus 1pt minus 1pt,
+  yalbaselineshift=\z@, yjabaselineshift=\z@,
+  jcharwidowpenalty=500
+}
+
+% default setting of kansujichar (luatexja-compat)
+\define@key[ltj]{japaram}{kansujichar}{\ltj@@set@stack{KSJ}{0}{0x7FFFFFFF}#1 }
+
+\ltjsetparameter{kansujichar={0,`〇}}
+\ltjsetparameter{kansujichar={1,`一}}
+\ltjsetparameter{kansujichar={2,`二}}
+\ltjsetparameter{kansujichar={3,`三}}
+\ltjsetparameter{kansujichar={4,`四}}
+\ltjsetparameter{kansujichar={5,`五}}
+\ltjsetparameter{kansujichar={6,`六}}
+\ltjsetparameter{kansujichar={7,`七}}
+\ltjsetparameter{kansujichar={8,`八}}
+\ltjsetparameter{kansujichar={9,`九}}
+
+\directlua{%
+ local s = table.copy(luatexja.stack.charprop_stack_table[0])
+ luatexja.base.save_cache('ltj-kinsoku_default', {s, version=3})
+}

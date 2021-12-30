@@ -1,0 +1,54 @@
+.TH XETEX-UNSAFE 1 "20 November 2021"
+.SH NAME
+xetex-unsafe, xelatex-unsafe \- run xe(la)latex unsafely
+.SH SYNOPSIS
+.B xetex-unsafe
+.RI [ xetex-options ]
+.B xelatex-unsafe
+.RI [ xetex-options ]
+.SH DESCRIPTION
+\fBxetex-unsafe\fP (\fBxelatex-unsafe\fP) runs XeTeX (XeLaTeX) unsafely;
+specifically, using the \fBdvipdfmx-unsafe.cfg\fP configuration file.
+.PP
+As of TeX Live 2022, doing this is necessary only when running XeTeX on
+documents using PSTricks features which require transparency. We strongly
+recommend using Lua(La)TeX with PSTricks instead of XeTeX in this case.
+.PP
+At all costs, avoid using this, or any, unsafe invocation with documents
+off the net or that are otherwise untrusted in any way.
+.SH WHY?
+You might well ask why using transparency features is unsafe in XeTeX.
+The answer lies in the implementation history of Ghostscript, starting
+as a PostScript interpreter before PDF was invented, when it was
+acceptable to abort on an error, whereas with PDF, it must keep going.
+The transparency operators, if abused in relation to this error
+recovery, can cause internal inconsistencies in Ghostscript's state.
+.PP
+Thus, to be safe, we must disallow transparency with Ghostscript by
+default. The \fBxdvipdfmx\fP backend for XeTeX calls Ghostscript under
+certain circumstances, notably when using PSTricks.
+\fB(x)dvipdfmx\fP itself is not a PostScript interpreter, which is
+exactly what PSTricks requires.
+.PP
+Thus, to enable transparency, \fBxe(la)tex-unsafe\fP run XeTeX with
+arguments to the \fBxdvipdfmx\fP backend (-output-driver="xdvipdfmx -i
+dvipdfmx-unsafe.cfg -q -E") to use \fBdvipdfmx-unsafe.cfg\fP, which in
+turn tells Ghostscript to enable the transparency operators
+(-dALLOWPSTRANSPARENCY). They're disabled by default.
+.PP
+There have been further complications related to reading from the
+filesystem, but as of TL22, these have been solved. The transparency
+issue cannot be solved without a different Ghostscript implementation,
+and the Ghostscript developers say they have no timeline for this.
+.PP
+To repeat the above: when using PSTricks and transparency, we strongly
+recommend playing it safe and using Lua(La)TeX instead of Xe(La)TeX.
+.SH OPTIONS
+All command-line arguments except \fB--help\fP and \fB--version\fP are
+passed to Xe(La)TeX.
+.SH BUGS
+For more about XeTeX: https://tug.org/xetex
+.PP
+For more about PSTricks: https://tug.org/PSTricks
+.PP
+Email for xe(la)tex-unsafe specifically: https://lists.tug.org/dvipdfmx

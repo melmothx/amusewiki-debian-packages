@@ -1,0 +1,37 @@
+This is the README file of the gbsn00lp-20071107.tar.gz package.
+
+The original font file is
+
+  ftp://ftp.gnu.org/non-gnu/chinese-fonts-truetype/gbsn00lp.ttf.gz
+
+It has been first converted with the FontForge script `subfonts.pe' to
+create a set of Unicode encoded subfonts, then with the perl script
+`uni2sfd.pl' to create virtual fonts which provide GB 2312 encoded subfonts
+as used by the CJK package for LaTeX.
+
+  fontforge -script subfonts.pe gbsn00lp.ttf gbsnu Unicode.sfd
+
+  perl uni2sfd.pl gbsnu UGB.sfd gbsnlp cjkgb
+
+  rm *.enc
+
+These two scripts are part of the CJK package. You need FontForge 20071105
+or newer to run the scripts by yourself.
+
+This font package follows the TDS directory structure; the font family names
+for Unicode and GB font encodings are `gbsnu' and `gbsnlp', respectively.
+For installation, simply copy the files to the corresponding locations in
+your TEXMF tree. LaTeX font definition files and example files for testing
+can be found in the CJK package.
+
+History:
+
+  2005-Jun-19  First version.
+
+  2007-Nov-07  Regenerate all PFB files which are now more compact due to
+               optimizations in FontForge.
+
+               Fix TFM files to avoid negative depth values (the widths stay
+               unchanged).
+
+---End of README---

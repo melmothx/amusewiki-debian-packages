@@ -1,0 +1,23 @@
+name babel-belarusian
+category Package
+revision 49022
+shortdesc Babel support for Belarusian
+longdesc The package provides support for use of Babel in documents
+longdesc written in Belarusian.
+containersize 5112
+containerchecksum 5856582f8bf6a98a4fbd560bfca82ccb226267e249f0caf8afc775875d50ec204ea613320534a63062dffd0e050905adb24763a95fec2ef4e8faed70a400d976
+doccontainersize 152780
+doccontainerchecksum 247d5a3b99cd5a377534a94fedf47f6710d32d875d3208b1516fdc9acafee70a14ef1dc37600f9da53f806323d0519ebb2c4e288e471363756b7b819751373c8
+docfiles size=39
+ texmf-dist/doc/generic/babel-belarusian/README.md details="Readme"
+ texmf-dist/doc/generic/babel-belarusian/belarusian.pdf details="Package documentation"
+srccontainersize 21492
+srccontainerchecksum 82262f7775c22a908161a7a2d65caa8662c62ad759db792a6718dba043804b7aac523a8f3eab2dbdc3882a88c55bb641b862f3f19e9c4d3ba1a0f4298db9833e
+runfiles size=6
+ texmf-dist/tex/generic/babel-belarusian/belarusian.ldf
+catalogue-contact-bugs https://github.com/andrewshadura/babel-belarusian/issues
+catalogue-contact-repository https://github.com/andrewshadura/babel-belarusian
+catalogue-ctan /macros/latex/contrib/babel-contrib/belarusian
+catalogue-license lppl1.3c
+catalogue-topics multilingual-addon belarusian
+catalogue-version 1.5

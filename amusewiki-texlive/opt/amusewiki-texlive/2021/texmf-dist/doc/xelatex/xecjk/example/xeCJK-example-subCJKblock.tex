@@ -1,0 +1,66 @@
+%%
+%% This is file `xeCJK-example-subCJKblock.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% xeCJK.dtx  (with options: `ex-block')
+%% 
+\documentclass{article}
+\usepackage{xeCJK}
+\usepackage{array}
+\xeCJKDeclareSubCJKBlock{Ext-A} { "3400 -> "4DBF }
+\xeCJKDeclareSubCJKBlock{Ext-B} { "20000 -> "2A6DF }
+\xeCJKDeclareSubCJKBlock{Kana}  { "3040 -> "309F, "30A0 -> "30FF, "31F0 -> "31FF, }
+\xeCJKDeclareSubCJKBlock{Hangul}{ "1100 -> "11FF, "3130 -> "318F, "A960 -> "A97F, "AC00 -> "D7AF }
+\setCJKmainfont[Ext-A=SimHei,Ext-B=SimSun-ExtB]{SimSun}
+\setCJKmainfont[Kana]{Meiryo}
+\setCJKmainfont[Hangul]{Malgun Gothic}
+\parindent=2em
+\begin{document}
+\long\def\showtext{%
+中日韩越统一表意文字（英语：CJKV Unified Ideographs），旧称中日韩统一表意文字（英语：CJK Unified Ideographs），也称统一汉字（英语：Unihan），目的是要把分别来自中文、日文、韩文、越文、壮文中，对于相同起源、本义相同、形状一样或稍异的表意文字（主要为汉字，但也有仿汉字如：方块壮字、日文汉字（かんじ / kanji）、韩文汉字（한자 / hanja）、越南的喃字（Chữ Nôm）与越文汉字（Chữ Nho，在越南也称作儒字），应赋予其在ISO 10646及统一码标准中有相同编码。此计划原本只包含中文、日文及韩文中所使用的汉字，是以旧称中日韩统一表意文字（CJK）。后来，此计划加入了越文的喃字，所以合称中日韩越统一表意文字（CJKV）。
+
+CJK統合漢字（シージェーケーとうごうかんじ、CJK Unified Ideographs）は、ISO/IEC 10646 (Universal Multiple-Octet Coded Character Set, 略称 UCS) および Unicodeにて採用されている符号化用漢字集合およびその符号表である。CJK統合漢字の名称は、中国語(Chinese)、日本語(Japanese)、韓国語(Korean)で使われている漢字をひとまとめにしたことからきている。CJK統合漢字の初版である Unified Repertoire and Ordering (URO) 第二版は1992年に制定されたが、1994年にベトナムで使われていた漢字も含めることにしたため、CJKVと呼ばれる事もある。CJKVは、中国語・日本語・韓国語・ベトナム語 (英語: Chinese-Japanese-Korean-Vietnamese) の略。特に、その4言語で共通して使われる、または使われていた文字体系である漢字（チュノムを含む）のこと。ソフトウェアの国際化、中でも文字コードに関する分野で用いられる。
+
+\CJKspace
+한중일월 통합 한자(또는 한중일 통합 한자)는 유니코드에 담겨 있는 한자들의 집합으로, 한국, 중국, 일본에서 쓰이는 한자를 묶은 것이기 때문에 머리 글자를 따서 한중일(CJK) 통합 한자라고 불렀는데, 최근에는 베트남에서 쓰이는 한자도 추가되었기에 한중일월(CJKV) 통합 한자로 부르게 되었다.
+
+처음에 유니코드에는 65,536($=2^{16}$)자만 들어갈 수 있었기 때문에, 가장 많은 문자가 배당되는 한자를 위해서 한국, 중국, 일본에서 사용하는 한자 중에 모양이 유사하며 그 뜻이 같은 글자를 같은 코드로 통합했다. 따라서 문자 코드만으로 그 한자가 사용되는 언어를 알아 낼 수 없는데, 다만 중국의 간체자나 번체자, 일본의 구자체나 신자체 등 분명하게 모양이 다른 글자는 별도의 부호를 할당하고 있다. 이런 문자 할당 정책에 반발하여 TRON과 같은 인코딩이 만들어지기도 했으나, 실제로 통합된 한자의 차이가 별로 크지 않기 때문에 문제가 되지 않는다는 의견도 있다.
+\CJKnospace}
+\showtext
+
+\bigskip
+\xeCJKCancelSubCJKBlock{Kana,Hangul}
+\showtext
+
+\bigskip
+\xeCJKRestoreSubCJKBlock{Hangul}
+\showtext
+
+\begin{table}[ht]
+\caption{生僻字测试}
+\medskip\centering
+\begin{tabular}{*4{|c>{\ttfamily U+}l}|}
+㐀 & 3400  & 㐁 & 3401  & 㐂 & 3402  & 㐃 & 3403  \\
+㐄 & 3404  & 㐅 & 3405  & 㐆 & 3406  & 㐇 & 3407  \\
+㐈 & 3408  & 㐉 & 3409  & 㐊 & 340A  & 㐋 & 340B  \\
+㐌 & 340C  & 㐍 & 340D  & 㐎 & 340E  & 㐏 & 341F  \\
+㐐 & 3410  & 㐑 & 3411  & 㐒 & 3412  & 㐓 & 3413  \\
+㐔 & 3414  & 㐕 & 3415  & 㐖 & 3416  & 㐗 & 3417  \\
+㐘 & 3418  & 㐙 & 3419  & 㐚 & 341A  & 㐛 & 341B  \\
+㐜 & 341C  & 㐝 & 341D  & 㐞 & 341E  & 㐟 & 341F  \\[1ex]
+𠀀 & 20000 & 𠀁 & 20001 & 𠀂 & 20002 & 𠀃 & 20003 \\
+𠀄 & 20004 & 𠀅 & 20005 & 𠀆 & 20006 & 𠀇 & 20007 \\
+𠀈 & 20008 & 𠀉 & 20009 & 𠀊 & 2000A & 𠀋 & 2000B \\
+𠀌 & 2000C & 𠀍 & 2000D & 𠀎 & 2000E & 𠀏 & 2000F \\
+𠀐 & 20010 & 𠀑 & 20011 & 𠀒 & 20012 & 𠀓 & 20013 \\
+𠀔 & 20014 & 𠀕 & 20015 & 𠀖 & 20016 & 𠀗 & 20017 \\
+𠀘 & 20018 & 𠀙 & 20019 & 𠀚 & 2001A & 𠀛 & 2001B \\
+𠀜 & 2001C & 𠀝 & 2001D & 𠀞 & 2001E & 𠀟 & 2001F \\
+\end{tabular}
+\end{table}
+\end{document}
+%% 
+%%
+%% End of file `xeCJK-example-subCJKblock.tex'.

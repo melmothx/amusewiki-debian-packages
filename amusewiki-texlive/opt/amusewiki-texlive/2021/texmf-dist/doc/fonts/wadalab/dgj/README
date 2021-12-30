@@ -1,0 +1,57 @@
+This is the README file of the gothic-0-13-20080306.tar.gz package.
+
+written by Werner Lemberg <wl@gnu.org>
+
+
+The original font file is
+
+  ftp://ftp.ipl.t.u-tokyo.ac.jp/Font/wadalab-gothic-0-13.5.tar.Z
+
+which can be also found at CTAN as
+
+  support/ghostscript/3rdparty/fonts/kanji/Font/wadalab-gothic-0-13.5.tar.gz
+
+It has been first converted with a patched version of the program `wftodm',
+then with the scripts `makefont' (version 1.0) and `fixwada2.pl' to produce
+a set of PFB, AFM, and TFM subfont files in DNP font encoding which can be
+used with the CJK package for LaTeX.
+
+The script `makeuniwada.pl' has been used to create virtual fonts which
+provide Unicode font encoding; all those scripts are part of the CJK
+package.
+
+The half-width katakana glyphs have been derived from the full-width forms
+of Wadalab Gothic (in file `dgjkata.pfb'); FontForge was used to edit the
+glyphs and create the PFB, AFM, and TFM files. To make the virtual font for
+UTF-8 encoding, `clonevf.pl' from the CJK package was used to make a mapped
+copy (to itself) of `dgjhw.tfm'.  The VF file was converted to VPL, and the
+entries modified to reflect a mapping from UTF-8 to SJIS.  Then they were
+added, along with a reference to the mapped font, to the VPL version of the
+existing Wadalab `udgjff.vf'.  Then new VF and TFM files were created from
+`udgjff.vpl'.
+
+This font package follows the TDS directory structure; the font family names
+for DNP and Unicode font encodings are `dgj' and `udgj', respectively.
+
+Please read the documentation file `contrib/wadalab/DNP.doc' of the CJK
+package for further details on installation and usage; there you can also
+find a proper font mapping file and font definition files for use with
+LaTeX.
+
+
+History
+-------
+
+    2005-07-12
+      First release.
+
+    2005-07-30
+      Fix dgjkb where glyph names were off by 1.
+
+    2008-03-06
+      Integrate Gernot Hassenpflug's dgjhw font for half-width katakana
+      (taken from the `hwkatakana' package on CTAN).
+
+      Add a font map file.
+
+---End of README---

@@ -1,0 +1,2 @@
+Georgian language support for babel.
+works with classic TeX/LaTex as well as for XELatex/LuaLatex (8bit and unicode modes)

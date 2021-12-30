@@ -1,0 +1,17 @@
+name hyphen-galician
+category TLCore
+revision 58652
+shortdesc Galician hyphenation patterns.
+longdesc Hyphenation patterns for Galician in T1/EC and UTF-8 encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=galician 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-gl.tex 	file_patterns=hyph-gl.pat.txt 	file_exceptions=
+containersize 10384
+containerchecksum 2d707542f80dc94ad20c0daa776df23b773a5e6ccb261e11db675e1e89f5f303a4f5cd50d97f491cc7ea8b0f3c0d3f6391707812a95d4e72cca3afa7815e566f
+srccontainersize 6776
+srccontainerchecksum b9925168b1f9ae5139ffc3bd34810cc05a27475cfae31e98fd0d7618575fc994ca95d7479506024abec2c33bb20121811244d69c490df18a29d6c93fe02174c6
+runfiles size=19
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-gl.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-gl.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-gl.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-gl.pat.txt

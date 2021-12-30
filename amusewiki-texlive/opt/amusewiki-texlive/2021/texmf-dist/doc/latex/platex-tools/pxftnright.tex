@@ -1,0 +1,66 @@
+%# -*- coding: utf-8 -*-
+\ifx\epTeXinputencoding\undefined\else % defined in e-pTeX (> TL2016)
+  \epTeXinputencoding utf8    % ensure utf-8 encoding for platex
+\fi
+
+\documentclass[a4paper]{jsarticle}
+\begingroup
+  \def\NeedsTeXFormat#1\ProvidesPackage#2[#3 #4 #5]{%
+    \gdef\fileversion{#4}\gdef\filedate{#3}\endinput}
+  \input{pxftnright.sty}
+\endgroup
+\title{Package \textsf{pxftnright} \fileversion}
+\author{Hironobu Yamashita}
+\date{\filedate}
+\begin{document}
+
+\maketitle
+
+Package \textsf{ftnright}, included in \textsf{latex-tools} bundle,
+cannot be used with Japanese classes for vertical writing
+(tarticle.cls, etc). The package \textsf{pxftnright} provides some
+patches to \textsf{ftnright} to work fine with vertical writing.
+
+This package is part of \textsf{platex-tools} bundle:
+\begin{verbatim}
+  https://github.com/aminophen/platex-tools
+\end{verbatim}
+
+The rest of this document is written in Japanese, and includes some
+examples of usage.
+
+\bigskip
+
+\textsf{latex-tools}バンドルに含まれる\textsf{ftnright}パッケージは、
+p\LaTeX の縦組クラス（tarticle.clsなど）で使うとエラーが出てしまいます。
+この\textsf{pxftnright}パッケージを読み込むことで、縦組クラスでも
+\textsf{ftnright}パッケージと同等の機能（二段組において、横組なら
+脚注が右カラムに、縦組なら傍注\footnote{\verb+\footnote+という命令を
+使用して得られるのは、縦組では正式には「傍注」と呼びます。}が下カラムに
+まとまる）を得ることができます。
+
+\section{使いかた}
+
+\textsf{ftnright}パッケージの代わりに、あるいは
+\textsf{ftnright}パッケージより\emph{前}に、
+\textsf{pxftnright}パッケージを読みこみます（後に読みこんだ場合は
+対策が手遅れになるため、エラーを出します）。
+
+\begin{verbatim}
+  \documentclass[twocolumn]{tarticle}
+  \usepackage{pxftnright}% ftnright の代わり
+  \begin{document}
+  縦組では\verb+\footnote+命令を使用すると、
+  傍注が出てきます\footnote{紛らわしいですね。}。
+  また、…
+  \end{document}
+\end{verbatim}
+
+\section*{References}
+
+\begin{itemize}
+\item 縦書き２段組の脚注について\\
+  \texttt{http://oku.edu.mie-u.ac.jp/tex/mod/forum/discuss.php?d=1896}
+\end{itemize}
+
+\end{document}

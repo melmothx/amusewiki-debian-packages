@@ -1,0 +1,2009 @@
+% \iffalse meta-comment
+% ======================================================================
+% scrkernel-floats.dtx
+% Copyright (c) Markus Kohm, 2002-2021
+%
+% This file is part of the LaTeX2e KOMA-Script bundle.
+%
+% This work may be distributed and/or modified under the conditions of
+% the LaTeX Project Public License, version 1.3c of the license.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3c or later is part of all distributions of LaTeX 
+% version 2005/12/01 or later and of this work.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% The Current Maintainer and author of this work is Markus Kohm.
+%
+% This work consists of all files listed in manifest.txt.
+% ----------------------------------------------------------------------
+% scrkernel-floats.dtx
+% Copyright (c) Markus Kohm, 2002-2021
+%
+% Dieses Werk darf nach den Bedingungen der LaTeX Project Public Lizenz,
+% Version 1.3c, verteilt und/oder veraendert werden.
+% Die neuste Version dieser Lizenz ist
+%   http://www.latex-project.org/lppl.txt
+% und Version 1.3c ist Teil aller Verteilungen von LaTeX
+% Version 2005/12/01 oder spaeter und dieses Werks.
+%
+% Dieses Werk hat den LPPL-Verwaltungs-Status "author-maintained"
+% (allein durch den Autor verwaltet).
+%
+% Der Aktuelle Verwalter und Autor dieses Werkes ist Markus Kohm.
+% 
+% Dieses Werk besteht aus den in manifest.txt aufgefuehrten Dateien.
+% ======================================================================
+% \fi
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \iffalse
+%%% From File: $Id: scrkernel-floats.dtx 3620 2021-10-12 10:27:43Z kohm $
+%<option>%%%            (run: option)
+%<body>%%%            (run: body)
+%<*dtx>
+% \fi
+\ifx\ProvidesFile\undefined\def\ProvidesFile#1[#2]{}\fi
+\begingroup
+  \def\filedate$#1: #2-#3-#4 #5${\gdef\filedate{#2/#3/#4}}
+  \filedate$Date: 2021-10-12 12:27:43 +0200 (Tue, 12 Oct 2021) $
+  \def\filerevision$#1: #2 ${\gdef\filerevision{r#2}}
+  \filerevision$Revision: 3620 $
+  \edef\reserved@a{%
+    \noexpand\endgroup
+    \noexpand\ProvidesFile{scrkernel-floats.dtx}%
+                          [\filedate\space\filerevision\space
+                           KOMA-Script source
+                           (floats)]
+  }%
+\reserved@a
+% \iffalse
+\documentclass[parskip=half-]{scrdoc}
+\usepackage[english,ngerman]{babel}
+\CodelineIndex
+\RecordChanges
+\GetFileInfo{scrkernel-floats.dtx}
+\title{\KOMAScript{} \partname\ \texttt{\filename}%
+  \footnote{Dies ist Version \fileversion\ von Datei \texttt{\filename}.}}
+\date{\filedate}
+\author{Markus Kohm}
+
+\begin{document}
+  \maketitle
+  \tableofcontents
+  \DocInput{\filename}
+\end{document}
+%</dtx>
+% \fi
+%
+% \selectlanguage{ngerman}
+%
+% \changes{v2.95}{2002/06/25}{%
+%   erste Version aus der Aufteilung von \texttt{scrclass.dtx}}
+%
+% \section{Gleitumgebungen}
+%
+% \KOMAScript{} verfügt bezüglich der Gleitumgebungen über einige
+% Features, die über das, was die Standardklassen bieten, hinaus
+% geht. \marginline{Geplant!} Allerdings ist das hier verwendete Interface
+% gnadenlos veraltet und wird deshalb irgendwann ersetzt. Dabei wird
+% höchstwahrscheinlich grundsätzlich auf das \textsf{caption}-Paket aufgebaut
+% werden. Man betrachte dieses Modul daher als grundsätzlich zur Disposition
+% stehend.
+%
+% Die einzige Gleitumgebung, über die Briefe derzeit verfügen sind
+% Randnotizen.
+%
+% \StopEventually{\PrintIndex\PrintChanges}
+%
+% \iffalse
+%<*option>
+% \fi
+%
+% \iffalse
+%<*class>
+%<*!letter>
+% \fi
+%
+% \subsection{Einige Anweisungen und Einstellungen für die Optionen}
+%
+% Einige Anweisungen und Einstellungen werden bereits benötigt, bevor die
+% Optionen abgearbeitet werden.
+%
+% \begin{macro}{\if@captionabove}
+% \changes{v2.8h}{2001/07/19}{neu}%^^A
+% \changes{v3.09}{2011/03/23}{Initialisierung vor den Optionen}%^^A
+% Ob es sich bei \cs{caption} um eine Unter- oder Überschrift handelt und also
+% \cs{abovecaptionskip} davor und \cs{belowcaptionskip} danach steht
+% oder umgekehrt, wird über diesen Schalter gesteuert. Voreingestellt
+% sind Unterschriften.
+%    \begin{macrocode}
+\newif\if@captionabove\@captionabovefalse
+%    \end{macrocode}  
+% \end{macro}
+%
+% \begin{macro}{\if@tablecaptionabove}
+% \changes{v2.8h}{2001/07/19}{neu Option}%^^A
+% \changes{v2.8k}{2001/08/15}{aus \texttt{typearea} in die Klassen
+%     verschoben} 
+% \changes{v2.98c}{2008/02/18}{Definition erfolgt etwas früher}%^^A
+% \begin{macro}{\@tablecaptionabovetrue}
+% \begin{macro}{\@tablecaptionabovefalse}
+% Die Einstellung, ob es Tabellenüber- oder -unterschriften sind, wird in
+% einem Schalter gespeichert.
+%    \begin{macrocode}
+\newif\if@tablecaptionabove\@tablecaptionabovefalse
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\if@figurecaptionabove}
+% \changes{v3.09}{2011/03/23}{neu Option}%^^A
+% \begin{macro}{\@figurecaptionabovetrue}
+% \changes{v3.09}{2011/03/23}{neu (intern)}%^^A
+% \begin{macro}{\@figurecaptionabovefalse}
+% \changes{v3.09}{2011/03/23}{neu (intern)}%^^A
+% Die Einstellung, ob es Abbildungsüber- oder -unterschriften sind, wird in
+% einem Schalter gespeichert.
+%    \begin{macrocode}
+\newif\if@figurecaptionabove\@figurecaptionabovefalse
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \selectlanguage{english}
+% \begin{macro}{\ifonelinecaptions}
+% \changes{v2.8q}{2001/11/17}{new boolean}
+% \changes{v2.98c}{2008/03/03}{earlier definition}
+% \begin{macro}{\onelinecaptionstrue}
+% \begin{macro}{\onelinecaptionsfalse}
+% The boolean is used to distinguish whether or not use a special handling of
+% captions with one text line only. The name of the boolean is traditionally
+% but nevertheless should seen as internal.
+%    \begin{macrocode}
+\newif\ifonelinecaptions\onelinecaptionstrue
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \selectlanguage{ngerman}
+%
+% \begin{macro}{\scap@pos}
+% \changes{v2.8q}{2001/11/22}{neu (intern)}%^^A
+% \changes{v2.98c}{2008/03/03}{Definition erfolgt etwas früher}%^^A
+% Hier wird gespeichert, ob die Beschreibung bei |captionbeside| links oder
+% rechts vom Rest stehen soll. Voreingestellt ist rechts davon
+% (\emph{\textbf{r}ight}). Andere Möglichkeiten sind \emph{\textbf{l}eft},
+% \emph{\textbf{o}uter}, \emph{\textbf{i}nner}.
+%    \begin{macrocode}
+\newcommand*{\scap@pos}{r}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\scap@valign}
+% \changes{v2.8q}{2001/11/22}{neu (intern)}%^^A
+% \changes{v2.98c}{2008/03/03}{Definition erfolgt etwas früher}%^^A
+% Hier wird gespeichert, ob bei |captionbeside| die beiden Boxen (siehe
+% Definition der Umgebung) \emph{\textbf{t}op}, \emph{\textbf{b}ottem} oder
+% \emph{\textbf{c}enter} ausgerichtet werden sollen. Andere Buchstaben
+% sind nicht erlaubt. Voreingestellt ist \emph{\textbf{b}ottem}.
+%    \begin{macrocode}
+\newcommand*{\scap@valign}{b}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Optionen für Titel von Gleitumgebungen}
+%
+% \begin{option}{captions}
+% \changes{v2.98c}{2008/02/18}{Neuer Zentralschalter für caption}%^^A
+% \changes{v3.09}{2011/04/02}{Neue Werte (\texttt{heading},
+%     \texttt{signature}, \texttt{figureheading},
+%     \texttt{figuresignature})}%^^A
+% \changes{v3.17}{2015/03/11}{Beachtung der Signalisierung mit
+%     \cs{FamilyKeyState}}%^^A
+% \changes{v3.17}{2015/03/11}{Verwendung der internen Werteliste}%^^A
+% Dies ist nun die zentrale Option für Einstellungen zu \cs{caption}. Als
+% besondere Schwierigkeit ergibt sich dabei jedoch, dass das Paket
+% \textsf{caption} einige Sonderbehandlungen für \KOMAScript{} enthält, die
+% darauf angewiesen sind, dass die alte Optionenschnittstelle verwendet
+% wird. Erfreulicherweise funktioniert das aber ab Version~3.1g über eine
+% Erweiterung der Schalter-Umschaltbefehle (|\@tablecaptionabovetrue|,
+% |\@tablecaptionabovefalse|, |\onelinecaptionstrue|,
+% |\onelinecaptionsfalse|), so dass lediglich dafür georgt werden muss,
+% dass diese weiterhin verwendet werden.
+%    \begin{macrocode}
+\KOMA@key{captions}{%
+  \KOMA@set@ncmdkey{captions}{@tempa}{%
+    {heading}{0},{above}{0},{top}{0},%
+    {signature}{1},{below}{1},{bot}{1},{bottom}{1},%
+    {tableheading}{2},%
+    {tableabove}{2},{abovetable}{2},{abovetabular}{2},{topattable}{2},%
+    {tablesignature}{3},%
+    {tablebelow}{3},{belowtable}{3},{belowtabular}{3},{bottomattable}{3},%
+    {figureheading}{4},{figureabove}{4},{abovefigure}{4},{topatfigure}{4},%
+    {figuresignature}{5},{figurebelow}{5},{belowfigure}{5},{bottomatfigure}{5},%
+    {oneline}{6},%
+    {nooneline}{7},%
+    {rightbeside}{8},{besideright}{8},%
+    {leftbeside}{9},{besideleft}{9},%
+    {innerbeside}{10},{besideinner}{10},%
+    {outerbeside}{11},{besideouter}{11},%
+    {topbeside}{12},{besidetop}{12},%
+    {centeredbeside}{13},{besidecentered}{13},%
+    {middlebeside}{13},{besidemiddle}{13},%
+    {bottombeside}{14},{besidebottom}{14}%
+  }{#1}%
+  \ifx\FamilyKeyState\FamilyKeyStateProcessed
+    \ifcase \@tempa\relax % heading
+      \@tablecaptionabovetrue
+      \@figurecaptionabovetrue
+      \@captionabovetrue
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{heading}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{signature}%
+      \KOMA@kav@add{.\KOMAClassFileName}{captions}{heading}%
+   \or % signature
+      \@tablecaptionabovefalse
+      \@figurecaptionabovefalse
+      \@captionabovefalse
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{heading}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{signature}%
+      \KOMA@kav@add{.\KOMAClassFileName}{captions}{signature}%
+    \or % tableheading
+      \@tablecaptionabovetrue
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{tableheading}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{tablesignature}%
+      \KOMA@kav@add{.\KOMAClassFileName}{captions}{tableheading}%
+    \or % tablesignature
+      \@tablecaptionabovefalse
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{tableheading}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{tablesignature}%
+      \KOMA@kav@add{.\KOMAClassFileName}{captions}{tablesignature}%
+    \or % figureheading
+      \@figurecaptionabovetrue
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{figureheading}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{figuresignature}%
+      \KOMA@kav@add{.\KOMAClassFileName}{captions}{figureheading}%
+    \or % figuresignature
+      \@figurecaptionabovefalse
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{figureheading}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{figuresignature}%
+      \KOMA@kav@add{.\KOMAClassFileName}{captions}{figuresignature}%
+    \or % oneline
+      \onelinecaptionstrue
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{oneline}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{nooneline}%
+      \KOMA@kav@add{.\KOMAClassFileName}{captions}{oneline}%
+    \or % nooneline
+      \onelinecaptionsfalse
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{oneline}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{nooneline}%
+      \KOMA@kav@add{.\KOMAClassFileName}{captions}{nooneline}%
+    \or % rightbeside
+      \renewcommand*{\scap@pos}{r}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{rightbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{leftbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{innerbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{outerbeside}%
+      \KOMA@kav@add{.\KOMAClassFileName}{captions}{rightbeside}%
+    \or % leftbeside
+      \renewcommand*{\scap@pos}{l}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{rightbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{leftbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{innerbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{outerbeside}%
+      \KOMA@kav@add{.\KOMAClassFileName}{captions}{leftbeside}%
+    \or % innerbeside
+      \renewcommand*{\scap@pos}{i}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{rightbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{leftbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{innerbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{outerbeside}%
+      \KOMA@kav@add{.\KOMAClassFileName}{captions}{innerbeside}%
+    \or % outerbeside
+      \renewcommand*{\scap@pos}{o}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{rightbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{leftbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{innerbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{outerbeside}%
+      \KOMA@kav@add{.\KOMAClassFileName}{captions}{outerbeside}%
+    \or % topbeside
+      \renewcommand*{\scap@valign}{t}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{topbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{centeredbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{bottombeside}%
+      \KOMA@kav@add{.\KOMAClassFileName}{captions}{topbeside}%
+    \or % centeredbeside
+      \renewcommand*{\scap@valign}{c}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{topbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{centeredbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{bottombeside}%
+      \KOMA@kav@add{.\KOMAClassFileName}{captions}{centeredbeside}%
+    \or % bottombeside
+      \renewcommand*{\scap@valign}{b}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{topbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{centeredbeside}%
+      \KOMA@kav@remove{.\KOMAClassFileName}{captions}{bottombeside}%
+      \KOMA@kav@add{.\KOMAClassFileName}{captions}{bottombeside}%
+    \fi
+  \fi
+}
+\KOMA@kav@add{.\KOMAClassFileName}{captions}{signature}
+\KOMA@kav@add{.\KOMAClassFileName}{captions}{tablesignature}
+\KOMA@kav@add{.\KOMAClassFileName}{captions}{figuresignature}
+\KOMA@kav@add{.\KOMAClassFileName}{captions}{oneline}
+\KOMA@kav@add{.\KOMAClassFileName}{captions}{rightbeside}
+\KOMA@kav@add{.\KOMAClassFileName}{captions}{bottombeside}
+%    \end{macrocode}
+% \end{option}
+%
+% \begin{option}{tablecaptionabove}
+% \changes{v2.8h}{2001/07/19}{neue Option}%^^A
+% \changes{v2.8k}{2001/08/15}{aus \texttt{typearea} in die Klassen
+%     verschoben} 
+% \changes{v2.98c}{2008/02/18}{obsolete} 
+% \changes{v3.01a}{2008/11/20}{deprecated}%^^A
+% \begin{option}{tablecaptionbelow}
+% \changes{v2.8h}{2001/07/19}{neue Option}%^^A
+% \changes{v2.8k}{2001/08/15}{aus \texttt{typearea} in die Klassen
+%     verschoben} 
+% \changes{v2.98c}{2008/02/18}{obsolete} 
+% \changes{v3.01a}{2008/11/20}{deprecated}%^^A
+% Es besteht nun die Wahl, ob \cs{caption} bei Tabellen für Unter-
+% oder Überschriften voreingestellt ist. Die Defaulteinstellung ist
+% aus Kompatibilitätsgründen die Tabellenunterschrift.
+%    \begin{macrocode}
+\KOMA@DeclareDeprecatedOption{tablecaptionabove}{captions=tableheading}
+\KOMA@DeclareDeprecatedOption{tablecaptionbelow}{captions=tablesignature}
+%    \end{macrocode}
+% \end{option}
+% \end{option}
+%
+% \selectlanguage{english}
+% \begin{option}{origlongtable}
+% \changes{v2.8l}{2001/08/16}{new option}
+% If package \textsf{longtable} is loaded, the classes redefine table titles
+% of that package. However, if the option has been set, this is prevented.
+% \begin{macro}{\if@komalongtable}
+% \changes{v2.8l}{2001/08/16}{new boolean}
+% \begin{macro}{\@komalongtabletrue}
+% \begin{macro}{\@komalongtablefalse}
+% The wanted behaviour is stored in a boolean.
+%    \begin{macrocode}
+\newif\if@komalongtable\@komalongtabletrue
+\DeclareOption{origlongtable}{\@komalongtablefalse}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{option}
+%
+% \begin{option}{onelinecaption}
+% \changes{v2.8q}{2001/11/17}{new option}
+% \changes{v2.98c}{2008/03/03}{obsolete} 
+% \changes{v2.98c}{2008/03/03}{extra code for \textsf{caption2} removed}
+% \changes{v3.01a}{2008/11/20}{deprecated}
+% \begin{option}{noonelinecaption}
+% \changes{v2.8q}{2001/11/17}{new option}
+% \changes{v2.98c}{2008/03/03}{obsolete} 
+% \changes{v2.98c}{2008/03/03}{extra code for \textsf{caption2} removed}
+% \changes{v3.01a}{2008/11/20}{deprecated}%^^A
+%    \begin{macrocode}
+\KOMA@DeclareDeprecatedOption{onelinecaption}{captions=oneline}
+\KOMA@DeclareDeprecatedOption{noonelinecaption}{captions=nooneline}
+%    \end{macrocode}
+% \end{option}
+% \end{option}
+% \selectlanguage{ngerman}
+%
+%
+% \iffalse
+%</!letter>
+%</class>
+%</option>
+%<*body>
+% \fi
+%
+% \subsection{Randnotizen}
+%
+% Randnotizen sind ebenfalls eine Art von Gleitumgebung.
+%
+% \begin{macro}{\marginline}
+% \KOMAScript{} stellt zusätzlich ein Randzeilenmakro zur Verfügung,
+% das je nach gerader oder ungerader Seite in doppelseitigen Layout
+% rechts- oder linksbündig gesetzt werden muss.
+% \changes{v2.4l}{1997/02/06}{Definition mit Hilfe des optionalen
+%      Parameters von \cs{marginpar} deutlich vereinfacht}
+% \changes{v2.8q}{2001/11/27}{fehlende Klammern ergänzt}%^^A
+%    \begin{macrocode}
+\newcommand\marginline[1]{%
+  \marginpar[\raggedleft{#1}]{\raggedright #1}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \iffalse
+%<*class>
+%<*!letter>
+% \fi
+%
+% \subsection{Definitionen für Titel von Gleitumgebungen}
+%
+% \begin{macro}{\caption}
+% \changes{v2.2c}{1995/05/25}{Fließtitel auf CJK umgestellt}%^^A
+% Es ist möglich, die Fließumgebungen mit einem Titel und einer
+% Beschreibung zu versehen. Diese wird vom ggf. etwas abgesetzt.
+% \begin{Length}{abovecaptionskip}
+% \begin{Length}{belowcaptionskip}
+% Um wieviel ist in zwei Längenregistern gespeichert:
+%    \begin{macrocode}
+\newlength{\abovecaptionskip}
+\newlength{\belowcaptionskip}
+\setlength{\abovecaptionskip}{10\p@}
+\setlength{\belowcaptionskip}{0\p@}
+%    \end{macrocode}
+% \end{Length}
+% \end{Length}
+% \begin{macro}{\captionformat}
+% \changes{v2.3c}{1995/08/06}{neu}%^^A
+% Trennung von Label und Text:
+%    \begin{macrocode}
+\newcommand*{\captionformat}{:\ }
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\scr@caption}
+% \changes{v2.8h}{2001/07/19}{neu (intern)}%^^A
+% \begin{macro}{\captionabove}
+% \changes{v2.8h}{2001/07/19}{neu}%^^A
+% \begin{macro}{\captionbelow}
+% \changes{v2.8h}{2001/07/19}{neu}%^^A
+% Damit überhaupt zwischen Unter- und Überschriften unterschieden
+% werden kann, muss zunächst das Originalmakro gesichert werden. Dies
+% geschieht erst zu Beginn des Dokuments, damit Pakete ggf. noch ihre
+% eigenen Definitionen von \cs{caption} vornehmen können. Das
+% \textsf{hyperref}-Paket ist so ein Kandidat.
+%    \begin{macrocode}
+\newcommand{\scr@caption}{}
+\AtBeginDocument{\let\scr@caption\caption}
+%    \end{macrocode}
+% \end{macro}
+% Jetzt ist es möglich durch einfaches Umlegen des Schalters für die
+% korrekte Darstellung zu sorgen:
+%    \begin{macrocode}
+\newcommand{\captionabove}{\@captionabovetrue\scr@caption}
+\newcommand{\captionbelow}{\@captionabovefalse\scr@caption}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{environment}{captionbeside}
+% \changes{v2.8q}{2001/11/22}{neu}%^^A
+% Um einiges komplizierter als die Beschreibung unter oder über die
+% Tabelle oder Abbildung zu setzen, ist der Versuch, sie daneben zu
+% setzen. Dies funktioniert frundsätzlich auch nicht mit
+% \texttt{longtable}-Tabellen.
+%
+% \begin{macro}{\scap@caption}
+% \changes{v2.8q}{2001/11/22}{neu (intern)}%^^A
+% Die Beschreibung, die der Umgebung als Parameter übergeben wird,
+% muss zwischengespeichert werden. Hier wird lediglich das Makro
+% dafür reserviert.
+%    \begin{macrocode}
+\newcommand*{\scap@caption}{}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\scap@width}
+% \changes{v2.8q}{2001/11/22}{neu (intern)}%^^A
+% Die Breite, die Tabelle bzw. Abbildung einschließlich Beschreibung
+% und insgesamt haben dürften. Voreingestellt ist die gesamte
+% verfügbare Breite.
+%    \begin{macrocode}
+\newcommand*{\scap@width}{\linewidth}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\scap@move}
+% \changes{v2.8q}{2001/11/22}{neu (intern)}%^^A
+% Der Wert, um den die Tabelle bzw. Abbildung einschließlich
+% Beschreibung nach rechts bzw. außen verschoben werden. 
+% Voreingestellt ist keine Verschiebung.
+%    \begin{macrocode}
+\newcommand*{\scap@move}{\z@}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\scap@currentlabel}
+% \changes{v2.8q}{2001/11/24}{neu (intern)}%^^A
+% Da \cs{caption} innerhalb einer Umgebung (\cs{parbox} und
+% \texttt{captionbeside}) aufgerufen wird, würde ein \cs{label}, das
+% zwar innerhalb der Gleitumgebung aber nach der
+% \texttt{captionbeside}-Umgebung eingefügt wird, nicht die
+% Gleitumgebung, sondern die umgebende Referenzebene
+% referenzieren. Damit das nicht geschieht, wird in der
+% \texttt{captionbeside}-Umgebung in der \cs{parbox} die aktuelle
+% Referenz \cs{@currentlabel} in dem globalen Makro
+% \cs{scap@currentlabel} zwischengespeichert und am Ende der
+% \texttt{captionbeside}-Umgebung mit Hilfe von \cs{aftergroup} nach
+% dem Ende der Umgebung wiederhergestellt. Da die
+% \texttt{captionbeside}-Umgebung ohnehin nicht geschachtelt werden
+% kann, funktioniert das problemlos. Für diese Aktion wird hier ein
+% globales Makro reserviert.
+%    \begin{macrocode}
+\newcommand*{\scap@currentlabel}{}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ifscap@alt}
+% \changes{v2.8q}{2001/11/22}{neuer Schalter}%^^A
+% \begin{macro}{\scap@alttrue}
+% \begin{macro}{\scap@altfalse}
+% Der Schalter, der angibt, ob die Verschiebung \cs{scap@move} im
+% doppelseitigen Modus aus linken Seiten vom rechten Rand aus nach
+% links erfolgen soll.
+%    \begin{macrocode}
+\newif\ifscap@alt
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\@captionbeside}
+% \changes{v2.8q}{2001/11/22}{neu (intern)}%^^A
+% \changes{v3.20}{2016/04/12}{\cs{@ifnextchar} replaced by
+%     \cs{kernel@ifnextchar}}%^^A
+% \begin{macro}{\@@captionbeside}
+% \changes{v2.8q}{2001/11/22}{neu (intern)}%^^A
+% \changes{v3.20}{2016/04/12}{\cs{@ifnextchar} replaced by
+%     \cs{kernel@ifnextchar}}%^^A
+% \begin{macro}{\@@@captionbeside}
+% \changes{v2.8q}{2001/11/22}{neu (intern)}%^^A
+% \changes{v3.20}{2016/04/12}{\cs{@ifnextchar} replaced by
+%     \cs{kernel@ifnextchar}}%^^A
+% \begin{macro}{\@@@@captionbeside}
+% \changes{v2.8q}{2001/11/22}{neu (intern)}%^^A
+% \changes{v3.20}{2016/04/12}{\cs{@ifstar} durch \cs{kernel@ifstar}
+%     ersetzt}%^^A
+% Die Umgebung soll einmal folgende Parameter besitzen:
+% \begin{description}
+%  \item[(optional)] Verzeichniseintrag
+%  \item[(obligatorisch)] Beschreibung
+%  \item[(optional)] lokaler Wert für \cs{scap@pos}
+%  \item[(optional)] lokaler Wert für \cs{scap@width}
+%  \item[(optional)] lokaler Wert für \cs{scap@move}
+%  \item[(*)] lokaler Wert für \cs{ifscap@alt} (Stern gesetzt
+%  entspricht \cs{scap@alttrue}
+% \end{description}
+% Wie man sieht, sollte man bei Angabe aller optionalen Parameter auch
+% bewusst den Stern setzen oder darauf verzichten.
+%
+% Damit alle Parameter ausgewertet werden können, werden einige
+% Hilfsmakros benötigt.
+%    \begin{macrocode}
+\newcommand*{\@captionbeside}{}
+\long\def\@captionbeside[#1]#2{%
+  \kernel@ifnextchar [%]
+    {\@@captionbeside[{#1}]{#2}}
+    {\c@pti@nb@sid@[{#1}]{#2}}%
+}
+\newcommand*{\@@captionbeside}{}
+\long\def\@@captionbeside[#1]#2[#3]{%
+  \def\scap@pos{#3}%
+  \kernel@ifnextchar [%]
+    {\@@@captionbeside[{#1}]{#2}}
+    {\c@pti@nb@sid@[{#1}]{#2}}%
+}
+\newcommand*{\@@@captionbeside}{}
+\long\def\@@@captionbeside[#1]#2[#3]{%
+  \def\scap@width{#3}%
+  \kernel@ifnextchar [%]
+    {\@@@@captionbeside[{#1}]{#2}}
+    {\setlength{\@tempdima}{#3}%
+      \addtolength{\@tempdima}{-\linewidth}%
+      \setlength{\@tempdima}{-.5\@tempdima}%
+      \edef\scap@move{\the\@tempdima}%
+      \c@pti@nb@sid@[{#1}]{#2}}%
+}
+\newcommand*{\@@@@captionbeside}{}
+\long\def\@@@@captionbeside[#1]#2[#3]{%
+  \def\scap@move{#3}%
+  \kernel@ifstar
+    {\scap@alttrue\c@pti@nb@sid@[{#1}]{#2}}
+    {\scap@altfalse\c@pti@nb@sid@[{#1}]{#2}}%
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\c@pti@nb@sid@b@x}
+% \changes{v2.8q}{2001/11/22}{neu (intern)}%^^A
+% Es wird noch eines der kostbaren Boxregister benötigt.
+%    \begin{macrocode}
+\newbox\c@pti@nb@sid@b@x
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\c@pti@nb@sid@}
+% \changes{v2.8q}{2001/11/22}{neu (intern)}%^^A
+% \changes{v2.98c}{2008/03/11}{vertikale Ausrichtung korrigiert}%^^A
+% \changes{v3.07a}{2010/11/04}{vertikale Ausrichtung im t- und b-Fall erneut
+%     korrigiert}%^^A
+% Hier wird nun die Umgebung eigentlich geöffnet, während zuvor nur
+% die Parameter ausgewertet wurden.
+%    \begin{macrocode}
+\newcommand{\c@pti@nb@sid@}{}
+\long\def\c@pti@nb@sid@[#1]#2{%
+  \def\scap@caption{%
+    \if c\scap@valign
+      \setlength{\abovecaptionskip}{\z@}%
+    \else \if t\scap@valign
+        \setlength{\abovecaptionskip}{-\ht\strutbox}%
+      \else \if b\scap@valign
+          \setlength{\abovecaptionskip}{\z@}%
+        \fi
+      \fi
+    \fi
+    \setlength{\belowcaptionskip}{-\dp\strutbox}%
+    \captionbelow[{#1}]{#2}%
+  }%
+  \begin{lrbox}{\c@pti@nb@sid@b@x}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% Jetzt endlich können wir uns auf die Umgebung stürzen. Die
+% Umgebung zu starten ist einfach. Es wird ein Doppelargumentmakro
+% ausgeführt.
+%    \begin{macrocode}
+\newenvironment*{captionbeside}{%
+  \@dblarg\@captionbeside%
+}{%
+%    \end{macrocode}
+% Komplizierter ist die Beendigung der Umgebung. Hier fällt der
+% gesamte Satzaufwand an.
+% \changes{v2.9a}{2002/06/27}{\cs{ifthispageodd} statt
+%      \cs{if@thispageodd}}
+% \changes{v3.28}{2019/11/19}{\cs{ifthispageodd} durch \cs{Ifthispageodd}
+%   ersetzt}%^^A
+%    \begin{macrocode}
+  \end{lrbox}%
+  \settowidth{\@tempdima}{\usebox\c@pti@nb@sid@b@x}%
+  \setlength{\@tempdimb}{\scap@width}%
+  \addtolength{\@tempdimb}{-\@tempdima}%
+  \addtolength{\@tempdimb}{-\columnsep}%
+  \ifdim \@tempdimb<2em
+    \ClassWarning{\KOMAClassName}{%
+      caption beside will be very, very small.\MessageBreak
+      In most cases this will result in overfull and\MessageBreak
+      underfull \string\hbox\space messages%
+    }%
+  \fi
+  \onelinecaptionsfalse
+  \setcapwidth[r]{\@tempdimb}%
+  \let\@tempa\scap@pos
+  \setlength{\@tempdimc}{\scap@move}%
+  \if i\scap@pos\def\@tempa{l}\fi
+  \if o\scap@pos\def\@tempa{r}\fi
+  \if@twoside
+    \Ifthispageodd{}{%
+      \if o\scap@pos\def\@tempa{l}\fi
+      \if i\scap@pos\def\@tempa{r}\fi
+      \ifscap@alt
+        \addtolength{\@tempdimc}{\scap@width}%
+        \addtolength{\@tempdimc}{-\linewidth}%
+        \setlength{\@tempdimc}{-\@tempdimc}%
+      \fi
+    }%
+  \fi
+  \hspace*{\@tempdimc}%
+%    \end{macrocode}
+% \changes{v2.9p}{2003/12/10}{\cs{@temdima} replaced by
+%      \cs{wd}\cs{c@pti@nb@sid@b@x}, because \cs{@temdima} would be changed}
+%    \begin{macrocode}   
+  \if l\@tempa
+    \rlap{%
+      \parbox[\scap@valign]{\@tempdimb}{\scap@caption
+        \global\let\scap@currentlabel\@currentlabel}%
+      \nobreak\hskip\columnsep
+      \parbox[\scap@valign]{\wd\c@pti@nb@sid@b@x}{\usebox\c@pti@nb@sid@b@x}%
+    }%
+  \else
+    \rlap{%
+      \parbox[\scap@valign]{\wd\c@pti@nb@sid@b@x}{\usebox\c@pti@nb@sid@b@x}%
+      \nobreak\hskip\columnsep
+      \parbox[\scap@valign]{\@tempdimb}{\scap@caption
+        \global\let\scap@currentlabel\@currentlabel}%
+    }%
+  \fi
+  \par
+  \aftergroup\let\aftergroup\@currentlabel
+  \aftergroup\scap@currentlabel
+}
+%    \end{macrocode}
+% \end{environment}
+%
+%
+% \begin{macro}{\capfont}
+% \changes{v2.8c}{2001/06/29}{\cs{normalcolor} eingefügt}
+% Die Schriftart der Titel kann eingestellt werden. Dazu dient dieses
+% Makro, das als internes Makro zu verstehen ist,
+% \begin{macro}{\caplabelfont}
+% \changes{v2.8c}{2001/06/29}{\cs{normalcolor} eingefügt}
+% Davon unabhängig kann auch die Schriftart der Titel-Titel
+% ("`Abbildung X:"') eingestellt werden. Auch dieses Makro ist als
+% internes Makro zu verstehen.
+%    \begin{macrocode}
+\newcommand*\capfont{\normalfont\normalcolor}
+\newcommand*\caplabelfont{\normalfont\normalcolor}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\scr@fnt@caption}
+% \changes{v2.8o}{2001/09/14}{neues Element \texttt{caption}}
+% \begin{macro}{\scr@fnt@captionlabel}
+% \changes{v2.8o}{2001/09/14}{neues Element \texttt{captionlabel}}
+% Die eigentliche Änderung der Schriftart erfolgt über das Element
+% \texttt{caption} bzw. \texttt{captionlabel}.
+%    \begin{macrocode}
+\newcommand*{\scr@fnt@caption}{\capfont}
+\newcommand*{\scr@fnt@captionlabel}{\caplabelfont}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\@makecaption}
+% \changes{v2.3a}{1995/07/08}{\cs{setbox}\cs{tempboxa}\cs{hbox}
+%      durch \cs{sbox}\cs{@tempboxa} ersetzt}
+% \changes{v2.3a}{1995/07/08}{Minipage-Flag zurückgesetzt (ist das
+%      ok?)} 
+% \changes{v2.3f}{1995/12/09}{Fontumschaltung einheitlich für lange
+%      und  kurze Unter-/Überschriften}%^^A
+% \changes{v2.5g}{1999/10/09}{neben den komplett hängenden
+%      Titeln sind nun auch nicht hängende oder teilweise hängende
+%      möglich}%^^A
+% Bis Version 2.5f sah die Definition wie folgt aus.
+% \begin{verbatim}
+% \long\def\@makecaption#1#2{%
+%   \vskip\abovecaptionskip
+%   \sbox\@tempboxa{{\caplabelfont #1\captionformat}{\capfont #2}}%
+%   \ifdim \wd\@tempboxa >\hsize
+%     \@hangfrom{{\caplabelfont #1\captionformat}}{\capfont #2\par}
+%   \else
+%     \global \@minipagefalse
+%     \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+%   \fi
+%   \vskip\belowcaptionskip}
+% \end{verbatim}
+% \begin{macro}{\ifdofullc@p}
+% Nun jedoch wird das ganze etwas komplizierter. Als erstes wird ein
+% Schalter benötigt, der angibt, ob auf die volle Länge des "`Labels"'
+% eingezogen werden soll, oder nicht:
+%    \begin{macrocode}
+\newif\ifdofullc@p
+%    \end{macrocode}
+% wobei die Standardeinstellung der volle Einzug ist, um zum bisherigen
+% Verhalten kompatibel zu bleiben.
+%    \begin{macrocode}
+\dofullc@ptrue
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\if@capbreak}
+% \changes{v2.8j}{2001/07/30}{neu}%^^A
+% Außerdem gibt es einen Schalter, der angibt, ob nach dem Label ein
+% Umbruch erfolgen soll. Dies ist normalerweise nicht der Fall.
+%    \begin{macrocode}
+\newif\if@capbreak\@capbreakfalse
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\setcapindent}
+% \changes{v2.8j}{2001/07/30}{\cs{if@capbreak} wird verwendet}
+% \changes{v2.8l}{2001/08/17}{\cs{edef}\cs{cap@indent} statt
+%   \cs{def}\cs{cap@indent}}
+% \changes{v2.8q}{2001/11/17}{wird nach dem Laden von
+%   \textsf{caption2} umdefiniert}
+% \changes{v3.20}{2016/04/12}{\cs{@ifstar} durch \cs{kernel@ifstar} ersetzt}
+% \changes{v3.34}{2021/03/22}{Sonderbehandlung für \textsf{caption2} entfernt}
+% Dann wird weiter ein Befehl benötigt, mit dem der Benutzer die
+% Weite des Einzugs selbst einstellen kann. Da intern für die Weite
+% ein Makro verwendet werden soll, findet hier sicherheitshalber eine
+% Zuweisung an eine Dimension statt. So sollten Fehlermeldungen hier
+% und nicht erst bei Verwendung auftauchen. Natürlich muss hier auch
+% der automatische Einzug abgeschaltet werden. In der Sternform wird
+% außerdem dafür gesorgt, dass zwischen "`Label"' und Beschreibung
+% ein Umbruch erfolgt. In der normalen Version wird stattdessen für
+% Kompatibilität zu früheren Versionen gesorgt.
+% \begin{macro}{\@setcapindent}
+% \begin{macro}{\@@setcaptindent}
+% Für die Implementierung der Sternform werden zwei interne Makros
+% benötigt.
+%    \begin{macrocode}
+\newcommand*{\setcapindent}{\kernel@ifstar{\@@setcapindent}{\@setcapindent}}
+\newcommand*{\@setcapindent}[1]{%
+  \setlength{\@tempdima}{#1}%
+  \ifdim\@tempdima>\hsize
+    \addtolength{\@tempdima}{-\hsize}\@capbreaktrue
+  \else
+    \@capbreakfalse
+  \fi
+  \edef\cap@indent{\the\@tempdima}%
+  \dofullc@pfalse
+}
+\newcommand*{\@@setcapindent}[1]{%
+  \setlength{\@tempdima}{#1}%
+  \edef\cap@indent{\the\@tempdima}%
+  \dofullc@pfalse\@capbreaktrue
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\setcaphanging}
+% \changes{v2.8q}{2001/11/17}{wird nach dem Laden von
+%   \textsf{caption2} umdefiniert}
+% \changes{v3.34}{2021/03/22}{Sonderbehandlung für \textsf{caption2} entfernt}
+% Andererseits soll es auch möglich sein, nachträglich wieder den
+% automatischen Einzug einzuschalten. Dafür gibt es ein weiteres
+% Makro.
+%    \begin{macrocode}
+\newcommand*{\setcaphanging}{\dofullc@ptrue\@capbreakfalse}
+%    \end{macrocode}
+% \end{macro}
+%
+% Nun aber zur neuen Definition der Titel. Zunächst geht alles wie
+% gehabt.
+% \changes{v2.5g}{1999/10/09}{\cs{@makecaption} per \cs{newcommand}
+%   definiert statt mit \cs{long}\cs{def}}
+% \changes{v2.8h}{2001/07/19}{Unterscheidung zwischen Über- und
+%   Unterschriften}%^^A
+% \changes{v2.8j}{2001/07/30}{\cs{@makecaption} verwendet
+%   \cs{@@makecaption}}
+% \changes{v2.8q}{2001/11/17}{die Sonderbehandlung für einzeilige
+%   \emph{caption}s ist abschaltbar}
+% \changes{v2.8q}{2001/11/17}{Titel können in ihrer Breite
+%   beschränkt werden}%^^A
+%    \begin{macrocode}
+\newcommand{\@makecaption}[2]{%
+  \if@captionabove
+    \vskip\belowcaptionskip
+  \else
+    \vskip\abovecaptionskip
+  \fi
+  \@@makecaption\@firstofone{#1}{#2}%
+  \if@captionabove
+    \vskip\abovecaptionskip
+  \else
+    \vskip\belowcaptionskip
+  \fi
+}
+%    \end{macrocode}
+% \begin{macro}{\@@makecaption}
+% Tatsächlich gesetzt wird der Titel mit diesem Makro. Dabei muss der
+% erste Parameter entweder \cs{@gobble} oder \cs{@firstofone} sein.
+%
+% \begin{macro}{\cap@width}
+% \changes{v2.8q}{2001/11/17}{neu (intern)}%^^A
+% \begin{macro}{\cap@left}
+% \changes{v2.8q}{2001/11/17}{neu (intern)}%^^A
+% \begin{macro}{\cap@right}
+% \changes{v2.8q}{2001/11/17}{neu (intern)}%^^A
+% Die Breite der mehrzeiligen bzw. die maximale Breite der einzeiligen
+% \emph{caption}s sowie das Makro das links und rechts von der Box mit
+% der mehrzeiligen \emph{caption} aufgerufen wird. In der
+% Voreinstellung wird für Zentrierung gesorgt.
+%    \begin{macrocode}
+\newcommand*{\cap@width}{\hsize}
+\newcommand*{\cap@left}{\hfill}
+\newcommand*{\cap@right}{\hfill}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \begin{macro}{\setcapwidth}
+% \changes{v2.8q}{2001/11/17}{neu}
+% \changes{v2.9a}{2002/06/27}{\cs{ifthispageodd} statt \cs{if@thispageodd}}
+% \changes{v2.97}{2007/02/27}{Mindestbreite für captions ist 0\,pt}
+% \changes{v3.28}{2019/11/19}{\cs{ifthispageodd} durch \cs{Ifthispageodd}
+%   ersetzt}
+% \changes{v3.34}{2021/03/22}{Sonderbehandlung für \textsf{caption2} entfernt}
+% Hier wird \cs{cap@width} gesetzt. Dabei werden optional auch
+% \cs{cap@left} und \cs{cap@right} angepasst.
+%    \begin{macrocode}
+\newcommand*{\setcapwidth}[2][]{%
+  \begingroup%
+    \setlength{\@tempdima}{#2}%
+    \ifdim\@tempdima <\z@
+      \@tempdima\z@
+      \ClassWarning{\KOMAClassName}{%
+        caption width less than 0pt not allowed.\MessageBreak
+        Setting caption width to 0pt%
+      }%
+    \fi
+    \edef\@tempa{\endgroup\def\noexpand\cap@width{\the\@tempdima}}%
+  \@tempa
+  \begingroup
+    \edef\@tempa{#1}%
+    \def\@tempb{c}\ifx\@tempa\@tempb
+      \endgroup
+      \def\cap@margin{\let\cap@left=\hfill\let\cap@right=\hfill}%
+    \else
+      \def\@tempb{l}\ifx\@tempa\@tempb
+        \endgroup
+        \def\cap@margin{\let\cap@left=\relax\let\cap@right\hfill}%
+      \else
+        \def\@tempb{r}\ifx\@tempa\@tempb
+          \endgroup
+          \def\cap@margin{\let\cap@left=\hfill\let\cap@right=\relax}%
+        \else
+          \def\@tempb{i}\ifx\@tempa\@tempb
+            \endgroup
+            \def\cap@margin{%
+              \let\cap@left=\relax
+              \let\cap@right=\hfill
+              \if@twoside
+                \Ifthispageodd{}{%
+                  \let\cap@left=\hfill
+                  \let\cap@right=\relax
+                }%
+              \fi
+            }%
+          \else
+            \def\@tempb{o}\ifx\@tempa\@tempb
+              \endgroup
+              \def\cap@margin{%
+                \let\cap@left=\hfill
+                \let\cap@right=\relax
+                \if@twoside
+                  \Ifthispageodd{}{%
+                    \let\cap@left=\relax
+                    \let\cap@right=\hfill
+                  }%
+                \fi
+              }%
+            \else
+              \ifx \@tempa\@empty\else
+                \ClassError{\KOMAClassName}{%
+                  unknown optional position argument%
+                }{%
+                  You've used `#1' as position argument at
+                  \string\setcaptionwidth,\MessageBreak
+                  but only ONE of `c', `l', `r', `i`, `o` ist
+                  allowed.\MessageBreak
+                  Argument will be ignored, if you'll continue.%
+                }%
+              \fi
+              \endgroup
+  \fi\fi\fi\fi\fi
+}
+%    \end{macrocode}
+% \end{macro}%^^A \setcapwidth
+% \begin{macro}{\setcapdynwidth}
+% \changes{v3.20}{2016/03/31}{neu}
+% Ulrike findet es blöd, dass \cs{setcapwidth} wie \cs{setlength} arbeitet und
+% ist der Meinung, dass das Argument erst zur Laufzeit ausgewertet werden
+% sollte. Also ein neuer Befehl genau dafür. Es sei allerdings darauf
+% hingewiesen, dass Fehler im Argument dann ggf. erst bei jeder
+% \cs{caption}-Anweisung und nicht bereits hier ausgegeben werden!
+%    \begin{macrocode}
+\newcommand*{\setcapdynwidth}[2][]{%
+  \def\cap@width{#2}%
+  \begingroup
+    \edef\@tempa{#1}%
+    \def\@tempb{c}\ifx\@tempa\@tempb
+      \endgroup
+      \def\cap@margin{%
+        \ifdim \cap@width<\z@
+          \ClassWarning{\KOMAClassName}{%
+            caption width less than 0pt not allowed.\MessageBreak
+            Setting caption width to 0pt%
+          }%
+          \let\cap@width\z@
+        \fi
+        \let\cap@left=\hfill\let\cap@right=\hfill}%
+    \else
+      \def\@tempb{l}\ifx\@tempa\@tempb
+        \endgroup
+        \def\cap@margin{%
+          \ifdim \cap@width<\z@
+            \ClassWarning{\KOMAClassName}{%
+              caption width less than 0pt not allowed.\MessageBreak
+              Setting caption width to 0pt%
+            }%
+            \let\cap@width\z@
+          \fi
+          \let\cap@left=\relax\let\cap@right\hfill}%
+      \else
+        \def\@tempb{r}\ifx\@tempa\@tempb
+          \endgroup
+          \def\cap@margin{%
+            \ifdim \cap@width<\z@
+              \ClassWarning{\KOMAClassName}{%
+                caption width less than 0pt not allowed.\MessageBreak
+                Setting caption width to 0pt%
+              }%
+              \let\cap@width\z@
+            \fi
+            \let\cap@left=\hfill\let\cap@right=\relax}%
+        \else
+          \def\@tempb{i}\ifx\@tempa\@tempb
+            \endgroup
+            \def\cap@margin{%
+              \ifdim \cap@width<\z@
+                \ClassWarning{\KOMAClassName}{%
+                  caption width less than 0pt not allowed.\MessageBreak
+                  Setting caption width to 0pt%
+                }%
+                \let\cap@width\z@
+              \fi
+              \let\cap@left=\relax
+              \let\cap@right=\hfill
+              \if@twoside
+                \Ifthispageodd{}{%
+                  \let\cap@left=\hfill
+                  \let\cap@right=\relax
+                }%
+              \fi
+            }%
+          \else
+            \def\@tempb{o}\ifx\@tempa\@tempb
+              \endgroup
+              \def\cap@margin{%
+                \ifdim \cap@width<\z@
+                  \ClassWarning{\KOMAClassName}{%
+                    caption width less than 0pt not allowed.\MessageBreak
+                    Setting caption width to 0pt%
+                  }%
+                  \let\cap@width\z@
+                \fi
+                \let\cap@left=\hfill
+                \let\cap@right=\relax
+                \if@twoside
+                  \Ifthispageodd{}{%
+                    \let\cap@left=\relax
+                    \let\cap@right=\hfill
+                  }%
+                \fi
+              }%
+            \else
+              \ifx \@tempa\@empty\else
+                \ClassError{\KOMAClassName}{%
+                  unknown optional position argument%
+                }{%
+                  You've used `#1' as position argument at
+                  \string\setcaptionwidth,\MessageBreak
+                  but only ONE of `c', `l', `r', `i`, `o` ist
+                  allowed.\MessageBreak
+                  Argument will be ignored, if you'll continue.%
+                }%
+              \fi
+              \endgroup
+  \fi\fi\fi\fi\fi
+}
+%    \end{macrocode}
+% \end{macro}%^^A \setcapdynwidth
+% \begin{macro}{\cap@margin}
+% \changes{v2.8q}{2001/11/17}{neu (intern)}%^^A
+% Dieses Makro beinhaltet nicht den Wert der Ränder, sondern das
+% Makro, mit dem innerhalb von \cs{@@makecaption} die Makros
+% \cs{cap@left} und \cs{cap@right} neu definiert werden. Dies
+% geschieht nur, wenn die Ränder mit \cs{setcapmargin} gesetzt
+% werden. Vordefiniert ist also keinerlei Aktion.
+%    \begin{macrocode}
+\newcommand*{\cap@margin}{}
+\let\cap@margin=\relax%
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\setcapmargin}
+% \changes{v2.8q}{2001/11/17}{neu}
+% \changes{v3.20}{2016/04/12}{\cs{@ifstar} durch \cs{kernel@ifstar} ersetzt}
+% \begin{macro}{\@setcapmargin}
+% \changes{v2.8q}{2001/11/17}{neu (intern)}
+% \changes{v2.9a}{2002/06/27}{\cs{ifthispageodd} statt
+%   \cs{if@thispageodd}}
+% \changes{v3.28}{2019/11/19}{\cs{ifthispageodd} durch \cs{Ifthispageodd}
+%   ersetzt}
+% \changes{v3.34}{2021/03/22}{Sonderbehandlung für \textsf{caption2} entfernt}
+% \begin{macro}{\@@setcapmargin}
+% \changes{v2.8q}{2001/11/17}{neu (intern)}%^^A
+% Statt die Breite der \emph{caption} zu setzen, können auch die
+% Ränder gesetzt werden. In der Sternvariante werden im zweiseitigen
+% Modus die Ränder auf linken Seiten vertauscht.
+%    \begin{macrocode}
+\newcommand*{\setcapmargin}{\kernel@ifstar{\@setcapmargin}{\@@setcapmargin}}
+\newcommand*{\@setcapmargin}[2][\@tempdimb]{%
+  \def\cap@margin{%
+    \onelinecaptionsfalse
+    \begingroup
+      \setlength{\@tempdima}{\hsize}%
+      \setlength{\@tempdimb}{#2}%
+      \addtolength{\@tempdima}{-\@tempdimb}%
+      \setlength{\@tempdimc}{#1}%
+      \addtolength{\@tempdima}{-\@tempdimc}%
+      \edef\@tempa{\endgroup
+        \def\noexpand\cap@width{\the\@tempdima}%
+        \noexpand\if@twoside
+          \noexpand\Ifthispageodd{%
+            \def\noexpand\cap@left{\noexpand\hspace*{\the\@tempdimc}}%
+            \def\noexpand\cap@right{\noexpand\hspace*{\the\@tempdimb}}%
+          }{%
+            \def\noexpand\cap@right{\noexpand\hspace*{\the\@tempdimc}}%
+            \def\noexpand\cap@left{\noexpand\hspace*{\the\@tempdimb}}%
+          }%
+        \noexpand\else
+          \def\noexpand\cap@left{\noexpand\hspace*{\the\@tempdimc}}%
+          \def\noexpand\cap@right{\noexpand\hspace*{\the\@tempdimb}}%
+        \noexpand\fi
+      }%
+    \@tempa
+  }%
+}
+\newcommand*{\@@setcapmargin}[2][\@tempdimb]{%
+  \def\cap@margin{%
+    \onelinecaptionsfalse
+    \begingroup
+      \setlength{\@tempdima}{\hsize}%
+      \setlength{\@tempdimb}{#2}%
+      \addtolength{\@tempdima}{-\@tempdimb}%
+      \setlength{\@tempdimc}{#1}%
+      \addtolength{\@tempdima}{-\@tempdimc}%
+      \edef\@tempa{\endgroup
+        \def\noexpand\cap@width{\the\@tempdima}%
+        \def\noexpand\cap@left{\noexpand\hspace*{\the\@tempdimc}}%
+        \def\noexpand\cap@right{\noexpand\hspace*{\the\@tempdimb}}%
+      }%
+    \@tempa
+  }%
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% Jetzt aber zum Eigentlichen. Die Breite der \emph{caption} muss nur
+% bestimmte werden, wenn Option \texttt{onelinecaption} verwendet
+% wird. Das bedeutet auch, dass bei \texttt{noonelinecaption} das
+% Problem mit dem Hochzählen der Fußnoten nicht auftritt.
+% \changes{v2.8q}{2002/05/17}{Problem mit doppelten Fußnoten behoben}%
+% \changes{v2.95}{2004/01/30}{Korrekturen für vertikalen Abstand und
+%   \textsl{float}-Paket}%
+% \changes{v2.95a}{2006/07/13}{diverse Korrekturen für den vertikalen
+%   Abstand u.\,a. bei Verwendung des \textsl{color}-Pakets}%
+% \changes{v2.97c}{2007/06/06}{\cs{unskip}\cs{strut} eingefügt, um die
+%   vertikale Ausrichtung im \emph{above}-Fall in eingen Fällen zu
+%   verbessern}%
+% \changes{v3.02a}{2009/01/24}{diverse Gruppen- bzw. Argumentklammern ergänzt}%
+% \changes{v3.11c}{2013/06/12}{\cs{capfont} durch
+%   \cs{usekomafont{caption}}ersetzt}%
+% \changes{v3.11c}{2013/06/12}{\cs{caplabelfont} durch
+%   \cs{usekomafont{captionlabel}}ersetzt}%
+% \changes{v3.12}{2013/06/12}{ein \cs{usekomafont} durch
+%   \cs{usesizeofkomafont} ersetzt}
+% \changes{v3.21}{2016/05/31}{Neuimplementierung}
+%    \begin{macrocode}
+\newcommand{\@@makecaption}[3]{%
+%    \end{macrocode}
+% Als erstes werden die Makros für den linken und rechten Rand generiert.
+%    \begin{macrocode}
+  \cap@margin
+%    \end{macrocode}
+% Danach wird der Test vorgenommen, ob der Text einzeilig oder
+% mehrzeilig zu setzen ist und entsprechend gehandelt:
+% \changes{v3.22}{2016/09/01}{Umdefinierung von \cs{stepcounter} und
+%   \cs{refstepcounter} auf lokale Erhöhung des Zählers geändert, um Probleme
+%   mit \textsf{isodate} zu umgehen}%^^A
+%    \begin{macrocode}
+  \begingroup
+    \ifonelinecaptions
+      \def\stepcounter##1{\advance\value{##1}\@ne}%
+      \let\refstepcounter\stepcounter
+      \let\label\@gobble
+      \let\@footnotetext=\@gobble
+      \let\hypertarget\@gobbletwo
+%    \end{macrocode}
+% \changes{v3.22}{2016/09/01}{Sonderbehandlung für \string\\ u.\,ä. im Text}
+% Falls im Text ein \texttt{\string\\} oder \cs{newline} enthalten ist,
+% wird ein Infotext ausgegeben und dafür gesorgt, dass mehrzeilig gearbeitet
+% wird.
+%    \begin{macrocode}
+      \edef\@xnewline{%
+        \unexpanded{\ClassInfo{\KOMAClassName}{%
+            Workaround for not recommended usage of \string\\ or\MessageBreak
+            \string\newline in caption text
+          }%
+          \hspace*{\linewidth}\hspace{1sp}%
+        }%
+        \unexpanded\expandafter{\@xnewline}%
+      }%
+      \edef\@xcentercr{%
+        \unexpanded{\ClassInfo{\KOMAClassName}{%
+            Workaround for not recommended usage of \string\\ or\MessageBreak
+            \string\newline in caption text
+          }%
+          \hspace*{\linewidth}\hspace{1sp}%
+        }%
+        \unexpanded\expandafter{\@xcentercr}%
+      }%
+      \settowidth{\@tempdima}{\scr@@makesinglelinecaption{#1}{#2}{#3}}%
+%    \end{macrocode}
+% \selectlanguage{english}
+% \changes{v3.34}{2021/03/22}{fix of maximum line width of single line
+%   captions}
+% Until \KOMAScript~3.34 the test here was wrong, because it used
+% \cs{linewidth}, which is still the whole line width not the maximum caption
+% width. From \KOMAScript~3.34 \cs{cap@width} is used.
+% \selectlanguage{ngerman}
+%    \begin{macrocode}
+      \ifdim\@tempdima>\cap@width
+        \aftergroup\scr@makemultilinecaption
+      \else
+        \aftergroup\scr@makesinglelinecaption
+      \fi
+    \else
+      \aftergroup\scr@makemultilinecaption
+    \fi
+  \endgroup
+  {#1}{#2}{#3}%
+}
+%    \end{macrocode}
+% \begin{macro}{\scr@makesinglelinecaption}
+% \changes{v3.21}{2016/05/31}{neu (intern)}
+% \begin{macro}{\scr@@makesinglelinecaption}
+% \changes{v3.21}{2016/05/31}{neu (intern)}
+% Diesen Anweisungen übernehmen die komplette Ausgabe von einzeiligen Texten.
+% Das erste Argumen hat \cs{@gobble} oder \cs{@firstofone} zu sein und
+% bestimmt darüber ob das Label ausgegeben wird oder nicht. Der Text wird
+% dagegen immer ausgegeben! Das vierte Argument im internen Makro ist entweder
+% \cs{par} oder leer.
+%    \begin{macrocode}
+\newcommand{\scr@makesinglelinecaption}[3]{%
+  {%
+    \usefontofkomafont{caption}{%
+      \hb@xt@\hsize{%
+        \cap@left
+        \scr@@makesinglelinecaption{#1}{#2}{#3}%
+        \cap@right
+      }\par\kern\dp\strutbox%
+    }%
+  }\kern-\dp\strutbox
+}
+\newcommand{\scr@@makesinglelinecaption}[3]{%
+    \usekomafont{caption}{\strut\ignorespaces
+      #1{{\usekomafont{captionlabel}{#2\captionformat}}}%
+      \ignorespaces #3\unskip}%
+}
+%    \end{macrocode}
+% \end{macro}%^^A \scr@@makesinglelinecaption
+% \end{macro}%^^A \scr@makesinglelinecaption
+% \begin{macro}{\scr@makemultilinecaption}
+% \changes{v3.21}{2016/05/31}{neu (intern)}%^^A
+%    \begin{macrocode}
+\newcommand{\scr@makemultilinecaption}[3]{%
+  {%
+    \usefontofkomafont{caption}{%
+      \hb@xt@\hsize{%
+        \cap@left
+        \vbox{\hsize\cap@width\linewidth\hsize
+%    \end{macrocode}
+% \changes{v3.25}{2017/11/15}{caption Ausrichtung hinzugefügt}%^^A
+% Bevor wir irgend etwas anderes machen, führen wir an der Stelle die
+% Ausrichtung für die gesamte \emph{caption} einschließlich Label aus. Dabei
+% hat eine vorhandene spezielle Ausrichtung für den Gleitungebungstyp Vorrang
+% vor der allgemeinen Ausrichtung für alle Gleitumgebungen:
+%    \begin{macrocode}
+          \scr@ifundefinedorrelax{@captype}{%
+            \ClassWarning{\KOMAClassName}{%
+              `\string\caption' outside float.\MessageBreak
+              Seems you are using `\string\caption' outside a
+              float.\MessageBreak
+              Maybe you are using a package that uses
+              `\string\@makecaption'\MessageBreak
+              without setting `\string\@captype' before.\MessageBreak
+              Because I cannot detect the caption type, I'm using\MessageBreak
+              the empty one.%
+            }%
+            \let\@captype\@empty
+          }{}%
+          \scr@ifundefinedorrelax{ragged\@captype caption}{\raggedcaption}{%
+            \@nameuse{ragged\@captype caption}%
+          }%
+%    \end{macrocode}
+% Wenn der Schalter \cs{ifdofullc@p} gesetzt ist, wird der Text bezüglich des
+% Labels vollständig hängend gesetzt:
+% \changes{v3.25}{2017/11/15}{Verwendung von \cs{scr@endstrut} statt
+%   \cs{unskip}\cs{strut}}%^^A
+%    \begin{macrocode}
+          \ifdofullc@p
+            \@hangfrom{%
+              \strut
+              \scr@smashdp{%
+                #1{%
+                  \usekomafont{caption}{%
+                    \usekomafont{captionlabel}{#2\captionformat}%
+                  }%
+                }%
+              }%
+            }%
+            {\usekomafont{caption}{#3\scr@endstrut\par}}%
+%    \end{macrocode}
+% Anderenfalls soll entweder nach dem Label direkt ein Umbruch erfolgen und
+% ein Einzug nur der ersten Zeile zu setzen:
+%    \begin{macrocode}
+          \else
+            \ifdim\cap@indent<\z@
+              \strut
+              #1{%
+                \usekomafont{caption}{%
+                  \usekomafont{captionlabel}{#2\captionformat\par}%
+                }%
+              }%
+              \noindent{\usekomafont{caption}{%
+                  \hspace*{-\cap@indent}#3\scr@endstrut\par
+              }}%
+%    \end{macrocode}
+% Oder es soll nach dem Label ein Umbruch erfolgen und danach alle Zeilen mit
+% dem entsprechenden Einzug gesetzt werden:
+%    \begin{macrocode}
+            \else
+              \if@capbreak
+                \strut
+                #1{%
+                  \usekomafont{caption}{%
+                    \usekomafont{captionlabel}{#2\captionformat\par}%
+                  }%
+                }%
+                \noindent\@hangfrom{\hspace*{\cap@indent}}%
+                {\usekomafont{caption}{#3\scr@endstrut\par}}%
+%    \end{macrocode}
+% \changes{v3.27a}{2019/10/21}{fehlende Verwendung von Element
+%   \texttt{caption} ergänzt}%^^A
+% Oder es soll gar kein Umbruch erfolgen aber trotzdem alles mit einem
+% gewissen Einzug gesetzt werden:
+%    \begin{macrocode}
+              \else
+                \@hangfrom{\scr@smashdp\strut\hspace*{\cap@indent}}%
+                {%
+                  \hspace{-\cap@indent}%
+                  \scr@smashdp{%
+                    #1{\usekomafont{caption}{%
+                        \usekomafont{captionlabel}{#2\captionformat}%
+                      }%
+                    }%
+                  }%
+                  {\usekomafont{caption}{#3\scr@endstrut}\par}%
+                }%
+              \fi
+            \fi
+          \fi
+%    \end{macrocode}
+% Eigentlich fehlt hier nur die einfachste, gar nicht hängende Form:
+%    \begin{macrocode}
+%<*neverusethis>
+%          #1{{\usekomafont{caption}{%
+%              \usekomafont{captionlabel}{#2\captionformat}}}}%
+%          {\usekomafont{capion}{\ignorespaces #3\scr@endstrut\par}%
+%</neverusethis>
+%    \end{macrocode}
+% Die allerdings durch die Form mit Einzug 0 abgedeckt wird.
+%    \begin{macrocode}
+        }%
+        \cap@right
+      }\par\kern\dp\strutbox
+    }%
+  }\kern-\dp\strutbox
+}
+%    \end{macrocode}
+% \begin{macro}{\setcaptionalignment}
+% \changes{v3.25}{2017/11/15}{neu}%^^A
+% \changes{v3.28}{2019/11/18}{\cs{ifstr} umbenannt in \cs{Ifstr}}%^^A
+% Da es etwas lästig und fehleranfällig ist, die ganzen \cs{raggedcaption}
+% und \cs{ragged\dots caption} von Hand zu definieren, gibt es dafür einen
+% Befehl. Das erste, optionale Argument ist dabei die Gleitungebung für die
+% die Definition erfolgen soll. Ist das Argument nicht leer, wird bei
+% definiertem \cs{@captype} dieses als Gleitumgebung angenommen. Ist das
+% Argument leer wird stattdessen die allgemeine Ausrichtung festgelegt. Das
+% zweite Argument ist ein einzelner Buchstaben, der für die Ausrichtung steht.
+%    \begin{macrocode}
+\newcommand*\setcaptionalignment{%
+  \kernel@ifnextchar [%]
+    {\@setcaptionalignment}
+    {%
+      \scr@ifundefinedorrelax{@captype}{\@setcaptionalignment}{%
+        \edef\reserved@a{\noexpand\@setcaptionalignment[{\@captype}]}\reserved@a
+      }%
+    }%
+}%
+\newcommand*\@setcaptionalignment[2][]{%
+%    \end{macrocode}
+% Wenn das optionale Argument nicht leer ist, sollte es eine bereits
+% definierte Gleitumgebung sein. Anderenfalls wird vorsichtshalber zumindest
+% eine Warnung ausgegeben. Die Ausrichtung wird aber trotzde, definiert.
+%    \begin{macrocode}
+  \IfArgIsEmpty{#1}{}{%
+    \expandafter\ifnum 
+    \scr@ifundefinedorrelax{#1}{0}{\scr@ifundefinedorrelax{end#1}{0}{1}}=0
+      \ClassWarning{\KOMAClassName}{%
+        float type `#1' defined not yet,\MessageBreak
+        but setting ragged mode for captions of\MessageBreak
+        float type `#1'%
+      }%
+    \fi
+  }%
+%    \end{macrocode}
+% Danach gehen wir die Buchstaben durch. Erlaubt sind:
+% \begin{description}
+% \item[\texttt{j}] -- Blocksatz (\cs{ragged\dots caption} wird \cs{relax}.
+% \item[\texttt{l}] -- Blocksatz (\cs{ragged\dots caption} wird
+%                      \cs{raggedright}.
+% \item[\texttt{r}] -- Blocksatz (\cs{ragged\dots caption} wird
+%                      \cs{raggedleft}.
+% \item[\texttt{c}] -- Blocksatz (\cs{ragged\dots caption} wird
+%                      \cs{centering}.
+% \end{description}
+% Ist das Paket \textsf{ragged2e} geladen, werden stattdessen die Befehle
+% \cs{LaTeXraggedright}, \cs{LaTeXraggedleft} und \cs{LaTeXcentering}
+% verwendet. Außerdem führen dann die entsprechenden Großbuchstaben zu
+% \cs{justifying}, \cs{RaggedRight}, \cs{RaggedLeft} und
+% \cs{Centering}. Anderenfalls werden die Großbuchstaben wie die
+% Kleinbuchstaben behandelt und geben zusätzlich eine Warnung aus.
+%    \begin{macrocode}
+  \def\reserved@a{#2}%
+  \Ifstr{\reserved@a}{j}{%
+    \expandafter\let\csname ragged#1caption\endcsname\@empty
+  }{%
+    \Ifstr{\reserved@a}{l}{%
+      \scr@ifundefinedorrelax{LaTeXraggedright}{%
+        \expandafter\let\csname ragged#1caption\endcsname\raggedright
+      }{%
+        \expandafter\let\csname ragged#1caption\endcsname\LaTeXraggedright
+      }%
+    }{%
+      \Ifstr{\reserved@a}{r}{%
+        \scr@ifundefinedorrelax{LaTeXraggedleft}{%
+          \expandafter\let\csname ragged#1caption\endcsname\raggedleft
+        }{%
+          \expandafter\let\csname ragged#1caption\endcsname\LaTeXraggedleft
+        }%
+      }{%
+        \Ifstr{\reserved@a}{c}{%
+          \scr@ifundefinedorrelax{LaTeXcentering}{%
+            \expandafter\let\csname ragged#1caption\endcsname\centering
+          }{%
+            \expandafter\let\csname ragged#1caption\endcsname\LaTeXcentering
+          }%
+        }{%
+          \Ifstr{\reserved@a}{J}{%
+            \scr@ifundefinedorrelax{justifying}{%
+              \scr@caption@raggede@warning{J}{\justifying}%
+              \expandafter\let\csname ragged#1caption\endcsname\@empty
+            }{%
+              \expandafter\let\csname ragged#1caption\endcsname\justifying
+            }%
+          }{%
+            \Ifstr{\reserved@a}{L}{%
+              \scr@ifundefinedorrelax{RaggedRight}{%
+                \scr@caption@raggede@warning{L}{\RaggedRight}%
+                \expandafter\let\csname ragged#1caption\endcsname\raggedright
+              }{%
+                \expandafter\let\csname ragged#1caption\endcsname\RaggedRight
+              }%
+            }{%
+              \Ifstr{\reserved@a}{R}{%
+                \scr@ifundefinedorrelax{RaggedLeft}{%
+                  \scr@caption@raggede@warning{R}{\RaggedLeft}%
+                  \expandafter\let\csname ragged#1caption\endcsname\raggedleft
+                }{%
+                  \expandafter\let\csname ragged#1caption\endcsname\RaggedLeft
+                }%
+              }{%
+                \Ifstr{\reserved@a}{C}{%
+                  \scr@ifundefinedorrelax{Centering}{%
+                    \scr@caption@raggede@warning{C}{\Centering}%
+                    \expandafter\let\csname ragged#1caption\endcsname\centering
+                  }{%
+                    \expandafter\let\csname ragged#1caption\endcsname\Centering
+                  }%
+                }{%
+                  \Ifstr{\reserved@a}{}{%
+                    \expandafter\let\csname ragged#1caption\endcsname\relax
+                  }{%
+                    \ClassError{\KOMAClassName}{unknown alignment char `#2'}{%
+                      \string\setcaptionalignment\space supports
+                      only:\MessageBreak 
+                      \space\space c - centered captions,\MessageBreak
+                      \space\space j - justified captions,\MessageBreak
+                      \space\space l - left align captions,\MessageBreak
+                      \space\space r - right aligned captions,\MessageBreak
+                      \space\space C - centered captions with
+                      `ragged2e',\MessageBreak 
+                      \space\space J - justified captions with
+                      `ragged2e',\MessageBreak 
+                      \space\space L - left align captions with
+                      `ragged2e',\MessageBreak 
+                      \space\space R - right aligned captions with
+                      `ragged2e',\MessageBreak 
+                      or an empty argument to remove special
+                      alignment.\MessageBreak 
+                      If you'd continue, I'd not change the alignment.%
+                    }%
+                  }%
+                }%
+              }%
+            }%
+          }%
+        }%
+      }%
+    }%
+  }%
+}
+%    \end{macrocode}
+% \begin{macro}{\scr@caption@raggede@warning}
+% \changes{v3.25}{2017/11/15}{neu (intern)}%^^A
+% Das ist die oben erwähnte Warnung.
+%    \begin{macrocode}
+\newcommand*{\scr@caption@raggede@warning}[2]{%
+  \begingroup
+    \lowercase{\def\reserved@a{#1}}%
+    \ClassWarning{\KOMAClassName}{%
+      `\string#2' undefined!\MessageBreak
+      To avoid replacing caption alignment `#1' by `\reserved@a'\MessageBreak
+      you should load package `ragged2e' before using\MessageBreak
+      `\string\setcaptionalignment'%
+    }%
+  \endgroup
+}
+%    \end{macrocode}
+% \begin{macro}{\raggedcaption}
+% \changes{v3.25}{2017/11/15}{neu}%^^A
+% Und natürlich wird eine Standardausrichtung benötigt. Ich bevorzuge hier die
+% leere Ausrichtung, weil \LaTeX{} \cs{relax} nicht als definiert erkennt.
+%    \begin{macrocode}
+\newcommand*\raggedcaption{}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}%^^A \scr@caption@raggede@warning
+% \end{macro}%^^A \setcaptionalignment
+% \end{macro}%^^A \scr@makemultilinecaption
+% \end{macro}%^^A \@@makecaption
+% \end{macro}%^^A \@makecaption
+% \end{macro}%^^A \caption
+%
+% \begin{macro}{\LT@makecaption}
+% \changes{v2.8j}{2001/07/30}{neu (intern)}
+% \changes{v2.8k}{2001/08/15}{keine Umdefinierung, wenn das
+%   \textsf{caption2}-Paket erkannt oder die Option
+%   \texttt{origlongtable} gesetzt wurde}
+% \changes{v2.8q}{2001/11/18}{Breite und Anordnung wird über
+%   \KOMAScript-Makros bestimmt}
+% \changes{v2.8q}{2001/11/18}{Verwendung von \cs{AfterPackage}}
+% \changes{v2.9s}{2004/08/24}{vertikale Abstände durch verschieben von
+%   \cs{vskip} korrigiert}
+% \begin{macro}{\LT@array}
+% \changes{v2.8q}{2001/11/18}{neu (intern)}
+% \begin{macro}{\LT@caption}
+% \changes{v2.8q}{2001/11/18}{neu (intern)}
+% \begin{macro}{\scr@caption@before@longtable@warning}
+% \changes{v2.98c}{2008/03/03}{neu (intern)}
+% \changes{v3.34}{2021/03/22}{Sonderbehandlung für \textsf{caption2} entfernt}
+% Ab Version 2.8j wird auf vielfachen Wunsch das
+% \textsf{longtable}-Paket berücksichtigt. Da Pakete aber nach
+% Klassen geladen werden, kann dies erst nach dem Laden des Pakets
+% aktiviert werden. Die Definition entspricht der obigen.
+%    \begin{macrocode}
+\newcommand*{\scr@caption@before@longtable@warning}[1]{%
+  \ClassWarning{\KOMAClassName}{%
+    you've loaded package `#1' before package\MessageBreak
+    `longtable'!\MessageBreak
+    Because of this package `#1' isn't able to\MessageBreak
+    control `\string\caption' at longtables. \space After loading
+    \MessageBreak 
+    package `#1' KOMA-Script also doesn't control\MessageBreak
+    `\string\caption'.\MessageBreak
+    I think, you should load package `caption' after\MessageBreak
+    package `longtable'%
+  }%
+}
+\AfterPackage{longtable}{%
+  \if@komalongtable
+    \renewcommand{\LT@makecaption}[3]{%
+      \noalign{%
+        \if@captionabove
+          \vskip\belowcaptionskip
+        \else
+          \vskip\abovecaptionskip
+        \fi
+      }%
+      \LT@mcol\LT@cols c{%
+        \hbox to\z@{\hss\parbox[t]\linewidth{%
+%    \end{macrocode}
+% \changes{v3.25}{2017/11/15}{\cs{@captype} auf \texttt{table} gesetzt}%^^A
+% Damit \cs{raggedtablecaption} ggf. verwendet wird, wird hier \cs{@captype}
+% explizit auf \texttt{table} gesetzt.
+%    \begin{macrocode}
+            \def\@captype{table}%
+            \@@makecaption{#1}{#2}{#3}%
+            \endgraf
+            \if@captionabove
+              \vskip\abovecaptionskip
+            \else
+              \vskip\belowcaptionskip
+            \fi
+          }%
+          \hss
+        }%
+      }%
+    }%
+    \newcommand*{\scr@LT@array}{}%
+    \let\scr@LT@array=\LT@array
+    \renewcommand*{\LT@array}{%
+      \let\scr@caption=\LT@caption
+      \def\captionabove{\noalign{\global\@captionabovetrue}%
+        \scr@caption}%
+      \def\captionbelow{\noalign{\global\@captionabovefalse}%
+        \scr@caption}%
+      \if@tablecaptionabove
+        \let\LT@caption=\captionabove
+      \else
+        \let\LT@caption=\captionbelow
+      \fi
+      \scr@LT@array
+    }%
+    \ClassInfo{\KOMAClassName}{%
+      longtable captions redefined%
+    }%
+  \fi
+}
+%    \end{macrocode}  
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\fs@komaabove}
+% \changes{v2.8j}{2001/07/30}{neu (intern)}%^^A
+% \begin{macro}{\fs@komabelow}
+% \changes{v2.8j}{2001/07/30}{neu (intern)}%^^A
+% \begin{macro}{\floatc@komascript}
+% \changes{v2.8j}{2001/07/30}{neu (intern)}%^^A
+% Ab Version 2.8j werden für das \textsf{float}-Paket zwei float-Stile
+% Namens \texttt{komaabove} und \texttt{komabelow} definiert. Da
+% möglicherweise auch andere Pakete darauf zurückgreifen, wird das
+% unabhängig von der Existenz von \textsf{float} getan. Verwendet wird
+% dies innerhalb von \KOMAScript{} jedoch nicht. Es werden außerdem
+% interne Makros von \textsf{float} verwendet!
+%    \begin{macrocode}
+\newcommand*{\fs@komaabove}{%
+  \let\@fs@capt\floatc@komascript
+  \let\@fs@pre\@empty
+  \def\@fs@mid{\vskip\abovecaptionskip}%
+  \let\@fs@post\@empty
+  \let\@fs@iftopcapt\iftrue}
+\newcommand*{\fs@komabelow}{%
+  \let\@fs@capt\floatc@komascript
+  \let\@fs@pre\@empty
+  \def\@fs@mid{\vskip\abovecaptionskip}%
+  \let\@fs@post\@empty
+  \let\@fs@iftopcapt\iffalse}
+\newcommand{\floatc@komascript}{\@@makecaption\@firstofone}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \subsection{Verteilung der Gleitumgebungen}
+%
+% \begin{Counter}{topnumber}
+% \begin{macro}{\topfraction}
+% \begin{Counter}{bottomnumber}
+% \begin{macro}{\bottomfraction}
+% \begin{Counter}{totalnumber}
+% \begin{macro}{\textfraction}
+% \begin{macro}{\floatpagefraction}
+% \begin{Counter}{dbltopnumber}
+% \begin{macro}{\dbltopfraction}
+% \begin{macro}{\dblfloatpagefraction}
+% Für die Fließumgebungen müssen verschiedene Konstanten definiert
+% werden, die Aufteilung zwischen Text und Fließumgebung und Ähnliches
+% regeln.
+%    \begin{macrocode}
+\setcounter{topnumber}{2}
+\renewcommand*\topfraction{.7}
+\setcounter{bottomnumber}{1}
+\renewcommand*\bottomfraction{.3}
+\setcounter{totalnumber}{3}
+\renewcommand*\textfraction{.2}
+\renewcommand*\floatpagefraction{.5}
+\setcounter{dbltopnumber}{2}
+\renewcommand*\dbltopfraction{.7}
+\renewcommand*\dblfloatpagefraction{.5}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{Counter}
+% \end{macro}
+% \end{macro}
+% \end{Counter}
+% \end{macro}
+% \end{Counter}
+% \end{macro}
+% \end{Counter}
+%
+%
+% \subsection{Titel ohne Gleitumgebung}
+%
+% \begin{macro}{\captionof}
+% \changes{v3.05}{2009/07/08}{Neue Anweisung}%^^A
+% \changes{v3.09}{2011/03/21}{Verwendung des internen \cs{scr@caption}}
+% \changes{v3.09a}{2011/04/13}{Berücksichtigung von
+%     \texttt{captions=tableheading} und \texttt{captions=figureheading}}
+% \begin{macro}{\captionaboveof}
+% \changes{v3.09}{2011/03/21}{Neue Anweisung}%^^A
+% \begin{macro}{\captionbelowof}
+% \changes{v3.09}{2011/03/21}{Neue Anweisung}%^^A
+% Obwohl es inzwischen mehrere Pakete gibt, die diese Anweisung bereit
+% stellen, kommt es doch immer wieder zu Fehlern, weil einige Anwender diese
+% Pakete nicht nutzen. Also habe ich beschlossen, das selbst zu
+% implementieren. Um die Kompatibilität mit \textsf{capt-of} nicht zu stören,
+% wird die Definition vor dme Laden jenes Pakets zurück genommen. Mit dem
+% Paket \textsf{caption} gibt es solche Probleme nicht, da dieses
+% \cs{captionof} ohnehin per \cs{def} definiert. Allerdings berücksichtigt das
+% \cs{captionof} von \textsf{caption} und \textsf{capt-of} eventuell die
+% Einstellungen für darüber oder darunter nicht in gleicher Weise.
+%    \begin{macrocode}
+\newcommand*{\captionof}[1]{\def\@captype{#1}%
+  \begingroup\expandafter\expandafter\expandafter\endgroup
+  \expandafter\ifx\csname if@#1captionabove\endcsname\iftrue
+    \@captionabovetrue
+  \fi
+  \scr@caption}
+\newcommand*{\captionaboveof}{\@captionabovetrue\captionof}
+\newcommand*{\captionbelowof}{\@captionabovefalse\captionof}
+\BeforePackage{capt-of}{\let\captionof\relax}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{environment}{captionofbeside}
+% \changes{v3.10}{2011/09/02}{Neue Umgebung}%^^A
+%   Analog zu \texttt{captionbeside} hier eine Umgebung mit Angabe des
+%   Gleitumgebungstyps als erstes Argument.
+%    \begin{macrocode}
+\newenvironment{captionofbeside}[1]{%
+  \def\@captype{#1}%
+  \captionbeside
+}{%
+  \endcaptionbeside
+}
+%    \end{macrocode}
+% \end{environment}
+%
+%
+% \subsection{Standardbezeichner}
+%
+% \begin{macro}{\figurename}
+% \begin{macro}{\tablename}
+% So heißen die Dinger:
+%    \begin{macrocode}
+\newcommand*\figurename{Figure}
+\newcommand*\tablename{Table}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \subsection{Abbildungsumgebung}
+%
+% \begin{environment}{figure}
+% \changes{v2.2c}{1995/05/25}{Abbildungsausgabe auf CJK umgestellt}%^^A
+% \changes{v2.8h}{2001/07/19}{\cs{caption} wird explizit zu
+%     \cs{captionbelow}}%^^A
+% \changes{v3.25}{2017/10/10}{Reimplementierung mit \textsf{tocbasic}}%^^A
+% Zunächst werden \texttt{figure}s, also Abbildungen behandelt.
+% \begin{Counter}{figure}
+% \changes{v3.25}{2017/10/10}{Der Zähler wird implizit von
+%     \cs{DeclareNewTOC} definiert.}%^^A
+% \end{Counter}
+% Der ganze Rest kann mit \cs{DeclareNewTOC} erledigt werden.
+%    \begin{macrocode}
+\DeclareNewTOC[%
+  type=figure,
+  float,
+%<book|report>  counterwithin=chapter,
+%    \end{macrocode}
+% \begin{macro}{\fps@figure}
+% Die Standardplatzierung für Abbildungen ist \emph{t}op,
+% \emph{b}ottom, \emph{p}age.
+%    \begin{macrocode}
+  floatpos=tbp,
+% \end{macro}
+% \begin{macro}{\ftype@figure}
+% Um die verschiedenen \emph{float}-Typen unterscheiden zu können,
+% benötigen sie eine Nummer. Abbildungen bekommen hier willkürlich
+% die Nummer 1.
+%    \begin{macrocode}
+  floattype=1,
+%    \end{macrocode}
+% \end{macro}
+% \changes{v3.11c}{2013/03/01}{fix: one \cs{caption} change removed}%^^A
+% \changes{v3.20}{2016/04/07}{Interne Umdefinierung von \cs{caption}}%^^A
+%    \begin{macrocode}
+  tocentryindent=1.5em,
+  tocentrynumwidth=2.3em,
+  atbegin=\def\caption{%
+    \if@figurecaptionabove\expandafter\captionabove
+    \else\expandafter\captionbelow\fi
+  }
+%    \end{macrocode}
+% \begin{macro}{\ext@figure}
+% Die Extension der Datei für das Abbildungsverzeichnis.
+%    \begin{macrocode}
+]{lof}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\thefigure}
+% \changes{v2.97e}{2007/11/23}{Kapitelnummer nur im Hauptteil}
+% \changes{v3.27}{2019/06/26}{\cs{relax} replaced by percent}
+% \changes{v3.35}{2021/10/12}{use chapter number only of greater than zero}
+% \changes{v3.35}{2021/10/12}{redefine \cs{thefigure} only if compatibility is
+%   less or equal 2.97d resp. less than 3.35}
+%    \begin{macrocode}
+%<*book|report>
+\expandafter\ifnum\scr@v@is@le{2.97d}%
+  \renewcommand*\thefigure{\thechapter.\@arabic\c@figure}
+\fi
+%</book|report>
+%<*article>
+\expandafter\ifnum\scr@v@is@lt{3.35}%
+  \renewcommand*\thefigure{\@arabic\c@figure}
+\fi
+%</article>
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\fnum@figure}
+% \begin{macro}{\figureformat}
+% \changes{v2.3c}{1995/08/06}{neu}%^^A
+% Die Ausgabe der Abbildungsnummer wird implizit von \cs{DeclareNewTOC} als
+% \iffalse
+%<*ignore>
+% \fi
+%    \begin{macrocode}
+\newcommand*{\fnum@figure}{\figureformat}
+\newcommand*{\figureformat}{%
+  \figurename~\thefigure
+  \csname autodot\endcsname
+}
+%    \end{macrocode}
+% \iffalse
+%</ignore>
+% \fi
+% definiert.
+% \end{macro}
+% \end{macro}
+% \end{environment}
+%
+%
+% \subsection{Tabellengleitumgebung}
+%
+% \begin{environment}{table}
+% \changes{v2.2c}{1995/05/25}{Tabellenausgabe auf CJK umgestellt}%^^A
+% \changes{v2.8h}{2001/07/19}{bei Tabellen kann der Default für
+%      \cs{caption} von Unter- auf Überschriften geändert werden} 
+% \changes{v3.25}{2017/10/10}{Reimplementierung mit \textsf{tocbasic}}%^^A
+% Auch verschiebbare Tabellen sind möglich. Das Prinzip ist das
+% gleiche wie bei den Abbildungen.
+% \begin{Counter}{table}
+% \changes{v3.25}{2017/10/10}{Der Zähler wird implizit von
+%     \cs{DeclareNewTOC} definiert.}%^^A
+% \end{Counter}
+% Der ganze Rest kann mit \cs{DeclareNewTOC} erledigt werden.
+%    \begin{macrocode}
+\DeclareNewTOC[%
+  type=table,
+  float,
+%<book|report>  counterwithin=chapter,
+%    \end{macrocode}
+% \begin{macro}{\fps@table}
+% Die Standardplatzierung für Tabellen ist \emph{t}op,
+% \emph{b}ottom, \emph{p}age.
+%    \begin{macrocode}
+  floatpos=tbp,
+% \end{macro}
+% \begin{macro}{\ftype@table}
+% Um die verschiedenen \emph{float}-Typen unterscheiden zu können,
+% benötigen sie eine Nummer. Tabellen bekommen hier willkürlich
+% die Nummer 2.
+%    \begin{macrocode}
+  floattype=2,
+%    \end{macrocode}
+% \end{macro}
+% \changes{v3.20}{2016/04/07}{Interne Umdefinierung von \cs{caption}}%^^A
+%    \begin{macrocode}
+  tocentryindent=1.5em,
+  tocentrynumwidth=2.3em,
+  atbegin=\def\caption{%
+    \if@tablecaptionabove\expandafter\captionabove
+    \else\expandafter\captionbelow\fi
+  }
+%    \end{macrocode}
+% \begin{macro}{\ext@table}
+% Die Extension der Datei für das Abbildungsverzeichnis.
+%    \begin{macrocode}
+]{lot}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\thetable}
+% \changes{v2.97e}{2007/11/23}{Kapitelnummer nur im Hauptteil}%^^A
+% \changes{v3.27}{2019/06/26}{\cs{relax} replaced by percent}%^^A
+% \changes{v3.35}{2021/10/12}{use chapter number only of greater than zero}
+% \changes{v3.35}{2021/10/12}{redefine \cs{thefigure} only if compatibility is
+%   less or equal 2.97d resp. less than 3.35}
+%    \begin{macrocode}
+%<*book|report>
+\expandafter\ifnum\scr@v@is@le{2.97d}%
+  \renewcommand*\thetable{\thechapter.\@arabic\c@table}
+\fi
+%</book|report>
+%<*article>
+\expandafter\ifnum\scr@v@is@lt{3.35}%
+  \renewcommand*\thetable{\@arabic\c@table}
+\fi
+%</article>
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\fnum@table}
+% \begin{macro}{\tableformat}
+% \changes{v2.3c}{1995/08/06}{neu}%^^A
+% Die Ausgabe der Abbildungsnummer wird implizit von \cs{DeclareNewTOC} als
+% \iffalse
+%<*ignore>
+% \fi
+%    \begin{macrocode}
+\newcommand*{\fnum@table}{\tableformat}
+\newcommand*{\tableformat}{%
+  \tablename~\thetable
+  \csname autodot\endcsname
+}
+%    \end{macrocode}
+% \iffalse
+%</ignore>
+% \fi
+% definiert.
+% \end{macro}
+% \end{macro}
+% \end{environment}
+%
+% \iffalse
+%</!letter>
+%</class>
+%</body>
+% \fi
+%
+% \Finale
+%
+\endinput
+%
+% end of file `scrkernel-floats.dtx'
+%%% Local Variables:
+%%% mode: doctex
+%%% TeX-master: t
+%%% End:

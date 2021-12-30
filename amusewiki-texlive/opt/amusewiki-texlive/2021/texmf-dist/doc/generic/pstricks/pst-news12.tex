@@ -1,0 +1,243 @@
+%% $Id: pst-news12.tex 4 2020-06-09 08:32:19Z herbert $
+\documentclass[11pt,english,BCOR10mm,DIV12,bibliography=totoc,parskip=false,smallheadings
+    headexclude,footexclude,oneside]{pst-doc}
+\listfiles
+\let\Lfile\LFile
+\usepackage[utf8]{inputenc}
+\usepackage{pst-node,pst-plot}
+\usepackage{xkvview}
+\let\pstnodeFV\fileversion
+\let\pstnodeFD\filedate
+\renewcommand\bgImage{\psscalebox{15}{\color{blue!20}2012}}
+\def\textat{\char064}
+\lstset{explpreset={pos=l,width=-99pt,overhang=0pt,hsep=\columnsep,vsep=\bigskipamount,rframe={}},
+    escapechar=?}
+\begin{document}
+
+%\psset{PstDebug=1}
+\title{\texttt{News -- 2012}\\ \Large new macros and bugfixes for the
+basic package \nxLFile{pstricks}}
+\author{Herbert Voß}
+\date{\today}
+
+\maketitle
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\part{\texttt{pstricks} -- package}
+
+\section{General}
+There exists a new document class \LClass{pst-doc} for writing PSTricks documentations,
+like this news document. It depends on the KOMA-Script document class \LClass{scrartcl}.
+\LClass{pst-doc} defines a lot of special macros to create a good index. Take one of
+the already existing package documentation and look into the source file. Then it will be
+easy to understand, how all these macros have to be used.
+
+When running \Lprog{pdflatex} the title page is created with boxes and inserted 
+with the macro \Lcs{AddToShipoutPicture} from the package \LPack{eso-pic}. It
+inserts the background title page image \Lfile{pst-doc-pdf} to use directly
+\Lprog{pdflatex}.
+When running \Lprog{latex} the title page
+ is created with \PST\ macros.This allows to use the Perl script \Lprog{pst2pdf} or
+the package \LPack{pst-pdf} or \LPack{auto-pst-pdf} or any other program/package which
+supports \PS\ code in the document.
+
+
+%--------------------------------------------------------------------------------------
+%\section{\texttt{pstricks.sty}}
+%--------------------------------------------------------------------------------------
+%\subsection{New optional argument}
+
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.tex} (\pstricksFV -- \pstricksFD)}
+%--------------------------------------------------------------------------------------
+
+
+\subsection{\nxLcs{psellipticarc}}
+There was a bug with the star version of \Lcs{psellipticarc}, which filled the path in
+the same way as \Lcs{psellipticwedge*} does. It is now fixed:
+
+\begin{LTXexample}[pos=r]
+\begin{pspicture}[showgrid](4,4)
+\psellipticarc*(2,0)(2,4){0}{130}
+\psdot(2,0)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=r]
+\begin{pspicture}[showgrid](4,4)
+\psellipticarc*[correctAngle=false,showpoints](2,0)(2,4){0}{130}
+\psdot(2,0)
+\end{pspicture}
+\end{LTXexample}
+
+\subsection{Grid}
+
+The optional argument \Lkeyval{showgrid} can have the values \Lkeyval{bottom}, 
+\Lkeyval{true}, 
+\Lkeyval{false}, and
+\Lkeyval{top}, where \Lkeyval{false is the default} and \Lkeyval{true} the same as
+\Lkeyval{bottom}. With the latter it is set first and with \Lkeyval{top} it is set
+at the end of the \Lenv{pspitcure} environment.
+
+
+\subsection{Symbol line}
+The optional argument \Lkeyword{symbol} for a linestyle can now be
+set with a negative \Lkeyword{symbolstep} for a computed width of the steps:
+\begin{LTXexample}[pos=t]
+\psset{unit=0.75cm}
+\begin{pspicture}(8,8)
+\psaxes[labels=none,ticks=none]{->}(0,0)(8,8)[$x$,0][$y$,0]
+\pscurve(1,1)(3,4)(6,6)(8,4)
+\pscurve[linestyle=symbol,symbolStep=-20,symbol=l](1,1)(3,4)(6,6)(8,4)
+\end{pspicture}
+\end{LTXexample}
+
+
+Instead of setting a symbol it is possible to set ticks on the curve with \Lkeyword{curveticks}.  They can be set by a fixed width or a computed
+width if the \Lkeyword{symbolStep} is set by a negative number without a unit.
+
+\begin{LTXexample}[pos=t]
+\psset{unit=0.75cm}
+\begin{pspicture}(8,8)
+\psaxes[labels=none,ticks=none]{->}(0,0)(8,8)[$x$,0][$y$,0]
+\pscurve(1,1)(3,4)(6,6)(8,4)
+\pscurve[linestyle=symbol,symbolStep=12.25pt,
+  curveticks,startAngle=60](1,1)(3,4)(6,6)(8,4)
+\end{pspicture}
+\end{LTXexample}
+
+
+\begin{LTXexample}[pos=t]
+\psset{unit=0.75cm}
+\begin{pspicture}(8,8)
+\psaxes[labels=none,ticks=none]{->}(0,0)(8,8)[$x$,0][$y$,0]
+\pscurve(1,1)(3,4)(6,6)(8,4)
+\pscurve[linestyle=symbol,symbolStep=-12,
+  curveticks,startAngle=60](1,1)(3,4)(6,6)(8,4)
+\end{pspicture}
+\end{LTXexample}
+
+
+\subsection{Fill style \texttt{eohlines} and \texttt{eovlines}}
+These fill styles uses the PS function \Lps{eoclip} instead of \Lps{clip}.
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}[showgrid](6,6)
+  \pscustom[fillstyle=eovlines,fillcolor=green]{
+    \pscircle(3,3){3}
+    \psline[liftpen=2](1,2)(5,2)(3,5)(1,2)
+  }
+\end{pspicture}\quad
+\begin{pspicture}[showgrid](6,6)
+  \pscustom[fillstyle=eovlines*,fillcolor=blue!50]{
+    \pscircle(3,3){3}
+    \psline[liftpen=2](1,2)(5,2)(3,5)(1,2)}
+\end{pspicture}
+\end{LTXexample}
+
+
+
+\subsection{Fill style \texttt{penroseA}}
+
+The valid optional arguments are \texttt{penroseA},
+\texttt{hatchcolor}, \texttt{dartcolor}, and \texttt{kitecolor}
+
+\begin{LTXexample}[pos=t,wide]
+\begin{pspicture}(3,3) 
+\psframe[fillstyle=penroseA](3,3)
+\end{pspicture} \qquad
+\begin{pspicture}(3,3) 
+\psframe[fillstyle=penroseA,psscale=0.5,hatchcolor=white](3,3)
+\end{pspicture} \qquad
+\begin{pspicture}(3,3) 
+\psccurve[fillstyle=penroseA,kitecolor=yellow,dartcolor=blue!30](0,1.5)(1.5,3)(3,1.5)(1.5,0)
+\end{pspicture} 
+\end{LTXexample}
+
+
+
+\section{The PostScript header files}
+\subsection{\nxLFile{pstricks.pro}}
+%--------------------------------------------------------------------------------------
+
+The file \Lfile{pst-tools.pro} contains additional helper functions:
+
+\begin{lstlisting}
+/factorial { % n on stack, returns n! 
+/MoverN { % m n on stack, returns the binomial coefficient m over n
+/cxadd {		% [a1 b1] [a2 b2] = [a1+a2 b1+b2]
+/cxneg {		% [a b]
+/cxsub { cxneg cxadd } def  % same as negative addition
+/cxmul {		% [a1 b1] [a2 b2]
+/cxsqr {		% [a b]   square root
+/cxsqrt {		% [a b]
+/cxarg { 		% [a b] 
+/cxlog {		% [a b]
+/cxnorm2 {		% [a b]
+/cxnorm {		% [a b]
+/cxconj {		% conjugent complex
+/cxre { 0 get } def	% real value
+/cxim { 1 get } def	% imag value
+/cxrecip {		% [a b]
+/cxmake1 { 0 2 array astore } def % make a complex number, real given
+/cxmake2 { 2 array astore } def	  % dito, both given
+/cxdiv { cxrecip cxmul } def
+/cxrmul {		% [a b] r
+/cxrdiv {		% [a b] r
+/cxconv {		% theta
+/bubblesort { % on stack must be an array [ ... ]
+/concatstringarray{  %  [(a) (b) ... (z)] --> (ab...z)  20100422
+/dot2comma {% on stack a string (...) 
+\end{lstlisting}
+
+
+%--------------------------------------------------------------------------------------
+%\subsection{\nxLFile{pst-algparser.pro}}
+%--------------------------------------------------------------------------------------
+
+%\section{\nxLcs{psforeach} and \nxLcs{psForeach}}
+%--------------------------------------------------------------------------------------
+
+\section{List of all optional arguments for \texttt{pstricks}}
+
+\makeatletter
+\xkvview{family=pstricks,columns={key,type,default}}
+\makeatother
+
+
+\clearpage
+\part{Other packages}
+\section{\texttt{pst-node} -- version \pstnodeFV\ | \pstnodeFD}
+The command \Lcs{pnode} now knows an optional argument for an offset, which
+expects two values (x,y) separated by a comma:
+
+\begin{BDef}
+\Lcs{pnode}\OptArg*{\Largs{\Larga{offset}}}\Largr{\CAny}\Largb{\Larga{node name}}
+\end{BDef}
+
+
+\begin{LTXexample}[width=6cm]
+\begin{pspicture}[showgrid](0,-2)(6,2)
+\pnode{A}\psdot(A)\uput[90](A){A} 
+\pnode[0,-2]{B}\psdot(B)\uput[90](B){B} 
+\pnode(2,0){C}\psdot(C)\uput[90](C){C} 
+\pnode[1,-2](2,0){D}\psdot(D)\uput[90](D){D} 
+\pnode[2,2](3.5,0){E}\psdot(E)\uput[90](E){E} 
+\end{pspicture}
+\end{LTXexample}
+
+
+\clearpage
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{PSTricks}
+
+\printindex
+
+
+\end{document}

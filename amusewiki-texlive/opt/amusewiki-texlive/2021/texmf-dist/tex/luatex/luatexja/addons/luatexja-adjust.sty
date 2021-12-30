@@ -1,0 +1,144 @@
+%
+% luatexja-adjust.sty
+%
+
+%% Avoid multiple loading.
+\csname\if11luatexjaadjustLoaded\fi\endcsname
+\edef\x{%
+\catcode32=\the\catcode32%
+\catcode33=\the\catcode33%
+\catcode35=\the\catcode35%
+\catcode40=\the\catcode40%
+\catcode41=\the\catcode41%
+\catcode42=\the\catcode42%
+\catcode43=\the\catcode43%
+\catcode44=\the\catcode44%
+\catcode45=\the\catcode45%
+\catcode46=\the\catcode46%
+\catcode58=\the\catcode58%
+\catcode59=\the\catcode59%
+\catcode60=\the\catcode60%
+\catcode61=\the\catcode61%
+\catcode62=\the\catcode62%
+\catcode64=\the\catcode64%
+\catcode91=\the\catcode91%
+\catcode93=\the\catcode93%
+\catcode94=\the\catcode94%
+\catcode95=\the\catcode95%
+\catcode126=\the\catcode126%
+\endlinechar=\the\endlinechar
+\relax}
+\catcode32=10 %< >
+\catcode33=12 %<">
+\catcode35=6  %<#>
+\catcode40=12 %<(>
+\catcode41=12 %<)>
+\catcode42=12 %<*>
+\catcode43=12 %<+>
+\catcode44=12 %<,>
+\catcode45=12 %<->
+\catcode46=12 %<.>
+\catcode58=12 %<:>
+\catcode59=12 %<;>
+\catcode60=12 %<<>
+\catcode61=12 %<=>
+\catcode62=12 %<>>
+\catcode64=11 %<@>
+\catcode91=12 %<[>
+\catcode93=12 %<]>
+\catcode94=7  %<^>
+\catcode95=8  %<_>
+\catcode126=13 %<~>
+\endlinechar=-1 %
+
+\edef\ltj@adjust@AtEnd{\x
+  \noexpand\let\noexpand\ltj@adjust@AtEnd\relax}
+\def\luatexjaadjustLoaded{\endinput}
+
+%% Check if LaTeX is used.
+\begingroup\expandafter\expandafter\expandafter\endgroup
+\expandafter\ifx\csname RequirePackage\endcsname\relax %<*!LaTeX>
+  \expandafter\let\csname ifltj@in@latex\expandafter\endcsname
+    \csname iffalse\endcsname
+\else                           %<*LaTeX>
+  \expandafter\let\csname ifltj@in@latex\expandafter\endcsname
+    \csname iftrue\endcsname
+  \NeedsTeXFormat{LaTeX2e}
+  \ProvidesPackage{luatexja-adjust}[2019-01-06]
+\fi                             %</LaTeX>
+
+% Load core module if not yet.
+% xkeyval.sty is already required in luatexja.sty.
+\ifx\luatexjacoreLoaded\@undefined
+  \ifltj@in@latex                 %<*LaTeX>
+    \RequirePackage{luatexja}
+  \else                           %<*!LaTeX>
+    \input luatexja.sty %
+  \fi                             %</LaTeX>
+\fi
+
+%% When environment check fails, exit now.
+\ifx\LuaTeXjaAvailable\@undefined
+  \ltj@otf@AtEnd
+\expandafter\endinput\fi\relax
+
+%%------------------
+
+%! Main part of luatexja-adjust
+\RequireLuaTeXjaSubmodule{adjust}
+
+\newcount\ltjadj@status@le
+\newcount\ltjadj@status@lp
+\newcount\ltjadj@status@pr
+\newcount\ltjadj@status@ls
+\let\ltj@adjust@temp=\relax
+\define@choicekey[ltj]{adjust}{lineend}[\@@temp\ltj@adjust@temp]%
+{false,true,extended}[true]{%
+  \ifnum\ltj@adjust@temp=-1 \else\ltjadj@status@le=\ltj@adjust@temp\fi\relax}
+\define@boolkey[ltj]{adjust}{priority}[true]{%
+  \ltjadj@status@pr=\ifltj@adjust@priority1\else0\fi\relax}
+\define@boolkey[ltj]{adjust}{profile}[true]{%
+  \ltjadj@status@lp=\ifltj@adjust@profile1\else0\fi\relax}
+\define@boolkey[ltj]{adjust}{linestep}[true]{%
+  \ltjadj@status@ls=\ifltj@adjust@linestep1\else0\fi\relax}
+
+\protected\def\@@ltjenableadjust[#1]{%
+   \setkeys[ltj]{adjust}{#1}%
+   \directlua{luatexja.adjust.enable_cb(
+    \the\ltjadj@status@le, \the\ltjadj@status@pr,
+    \the\ltjadj@status@lp, \the\ltjadj@status@ls)}\ignorespaces
+}
+\protected\def\ltjdisableadjust{%
+  \ltjenableadjust[lineend=false,priority=false,profile=false,linestep=false]}
+\protected\def\ltjenableadjust{%
+   \ltx@ifnextchar[{\@@ltjenableadjust}{\@@ltjenableadjust[lineend,priority]}}%]
+
+\ltjenableadjust
+
+%%% 優先順位の設定
+\define@key[ltj]{adjpri}{kanjiskip}{%
+  \directlua{luatexja.adjust.priority_table[\the\count@][1] = token.scan_int()}#1\relax}
+\define@key[ltj]{adjpri}{xkanjiskip}{%
+  \directlua{luatexja.adjust.priority_table[\the\count@][2] = token.scan_int()}#1\relax}
+\define@key[ltj]{adjpri}{others}{%
+  \directlua{luatexja.adjust.priority_table[\the\count@][3] = token.scan_int()}#1\relax}
+\define@key[ltj]{japaram}{stretch_priority}{%
+  \begingroup\count@=1 \setkeys[ltj]{adjpri}{#1}\relax
+  \directlua{luatexja.adjust.make_priority_table(1)}\endgroup}
+\define@key[ltj]{japaram}{shrink_priority}{%
+  \begingroup\count@=2 \setkeys[ltj]{adjpri}{#1}\relax
+  \directlua{luatexja.adjust.make_priority_table(2)}\endgroup}
+\ltjsetparameter{%
+  stretch_priority={kanjiskip=-35, xkanjiskip=-25, others=50},
+   shrink_priority={kanjiskip=-35, xkanjiskip=-25, others=50},
+}
+\define@key[ltj]{japaram}{linestep_factor}{%
+  \directlua{local d = #1; luatexja.adjust.step_factor=math.abs(d)}\relax}
+\define@key[ltj]{japaram}{profile_hgap_factor}{%
+  \directlua{luatexja.adjust.profile_hgap_factor = math.abs(#1)}\relax}
+
+
+%%------------------ all done
+\ltj@adjust@AtEnd
+\endinput
+%% EOF

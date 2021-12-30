@@ -1,0 +1,68 @@
+%
+% lltjp-microtype.sty
+%
+% (Work in Progress)
+% 
+\NeedsTeXFormat{LaTeX2e}
+\RequirePackage{etoolbox}
+\makeatletter
+
+\PackageWarningNoLine{luatexja}%
+  {LuaTeX-ja's patch against the microtype package \MessageBreak
+   (lltjp-microtype.sty, 2019-11-08) may not work}
+\patchcmd\MT@register@font
+  {\xdef\MT@font@list{\MT@font@list\MT@font,}}%
+  {\ltj@@is@kenc{\f@encoding}\unless\ifin@
+     \xdef\MT@font@list{\MT@font@list\MT@font,}%
+   \fi
+   }{}{}
+\patchcmd\MT@register@subst@font
+  {\xdef\MT@font@list{\MT@font@list\font@name,}}%
+  {\ltj@@is@kenc{\f@encoding}\unless\ifin@
+     \xdef\MT@font@list{\MT@font@list\font@name,}%
+   \fi}{}{}
+\let\ltj@MT@tracking@\MT@tracking@
+\patchcmd\MT@tracking@
+  {\xdef\MT@tr@font@list{\MT@tr@font@list\MT@font,}}%
+  {\ltj@@is@kenc{\f@encoding}\unless\ifin@
+     \xdef\MT@tr@font@list{\MT@tr@font@list\MT@font,}%
+   \fi}{}{}
+\ifx\MT@tracking\ltj@MT@tracking@\let\MT@tracking\MT@tracking@\fi
+
+%\endinput
+\begingroup
+  \catcode`\/=\z@
+  /MT@map@tlist@n{/\LτJCHAREX}/@makeother /lccode`/τ=`/t
+  /lowercase{%
+    /def/x{/endgroup
+      /def/MT@charstring{\CHAR"}%
+      /def/MT@is@char##1\CHAR"##2##3##4/relax{%
+		%/message{MIC <##1><##2><##3><##4>}%
+        /ifx/relax##4/relax
+            /expandafter/MT@is@char@ltja/MT@strip@prefix##1>/relax\LτJALCHAR\LτJALCHAR/relax
+        /else
+          /ifx/relax##1/relax
+            /if##3\/relax
+              /edef/MT@char@{/number"##2}%
+              /MT@ifstreq/MT@charstring{##3##4}/relax/MT@norestfalse
+            /else
+              /edef/MT@char@{/number"##2##3}%
+              /MT@ifstreq/MT@charstring{##4}/relax
+                {/MT@is@xchar##2##3|##4\CHAR"/relax}%
+            /fi
+          /fi
+        /fi
+      }%
+      /def/MT@ltjs@drop@##1>##2/relax{##1}%
+      /def/MT@is@char@ltja##1\LτJALCHAR##2\LτJALCHAR##3/relax{%
+        %/typeout{MICLTJA <##1><##2><##3>}%
+        /ifx/relax##1/relax
+          /ifx/relax##2/relax/else
+            /edef/MT@char@{/expandafter/number/MT@ltjs@drop@##2>/relax}%
+          /fi
+        /fi
+      }%
+    }%
+  }
+/x
+\endinput

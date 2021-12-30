@@ -1,0 +1,24 @@
+Package: babel-bosnian
+Version: 1.1
+Dated: 20/08/2015
+
+The package provides language definition files for use with babel, which
+establishes Bosnian conventions in a document (or a subset of the
+conventions, if Bosnian is not the main language of the document).
+
+To install run the bosnian.ins file trough the TeX compiler. Then move
+the created bosnian.ldf file into a directory searched by TeX.
+
+To produce the documentation run the file bosnian.dtx through LaTeX.
+
+This material is subject to the LaTeX Project Public License v1.3.
+See http://ctan.org/license/lppl1.3 for the details of that license.
+
+Happy TeXing.
+
+--------------------------------------
+
+Halilcevic Samir
+<samir.halilcevic@fet.ba>
+August 20, 2015
+Version 1.1

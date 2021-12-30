@@ -1,0 +1,134 @@
+%
+% lltjp-atbegshi.sty
+%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lltjp-atbegshi}[2021-04-29 Patching \string\shipout\space hooks for LuaTeX-ja]
+
+% concept: execute all hooks inside yoko direction \vbox
+
+\ifltj@ltfilehook@avail
+%<*ltshipout>-----------------------------------
+%
+\RequirePackage{expl3}
+\ExplSyntaxOn\makeatletter
+\box_new:N \l__platex_shipout_dummy_box
+\if_cs_exist:N \__shipout_execute_main_cont:Nnnn %% 2021-06-01
+\cs_new_eq:NN \__platex_original_shipout_execute_main_cont:Nnnn
+              \__shipout_execute_main_cont:Nnnn
+\cs_set:Npn \__shipout_execute_main_cont:Nnnn #1#2#3#4 {
+  % if the box #1 is not a \yoko-box (= horizontal writing),
+  % then make it a \yoko-box behorehand.
+  \platex_if_box_yoko:NF #1 {
+    \vbox_set:Nn #1 { \platex_direction_yoko: \box_use:N #1 }
+  }
+  % if the current direction is not \yoko,
+  % then enclose \__shipout_execute_main_cont:Nnnn with
+  % a dummy \yoko-box named \l__platex_shipout_dummy_box.
+  \platex_if_direction_yoko:TF {
+    \__platex_original_shipout_execute_main_cont:Nnnn { #1 } { #2 } { #3 } { #4 }
+  }{
+    \vbox_set:Nn \l__platex_shipout_dummy_box {
+      \platex_direction_yoko:
+      \__platex_original_shipout_execute_main_cont:Nnnn { #1 } { #2 } { #3 } { #4 }
+    }
+    % [Limitation] the code above may discard some contents,
+    % so we'd like to put it back by \box\l__platex_shipout_dummy_box.
+    % however, an infinite loop occurs if we uncomment the line below
+    % so we can't.
+    %\box_use:N \l__platex_shipout_dummy_box
+  }
+}
+
+\else: %% 2020-10-01
+\cs_new_eq:NN \__platex_original_shipout_execute_cont: \__shipout_execute_cont:
+\cs_set:Npn \__shipout_execute_cont:
+{
+  \platex_if_box_yoko:NF \l_shipout_box {
+    \vbox_set:Nn \l_shipout_box { \platex_direction_yoko: \box_use:N \l_shipout_box }
+  }
+  \platex_if_direction_yoko:TF {
+    \__platex_original_shipout_execute_cont:
+  }{
+    \vbox_set:Nn \l__platex_shipout_dummy_box {
+      \platex_direction_yoko: \__platex_original_shipout_execute_cont:
+    }
+  }
+}
+\fi:
+%</ltshipout>-----------------------------------
+\ExplSyntaxOff
+\expandafter\endinput
+\fi
+\RequirePackage{atbegshi}
+%<*atbegshi>-------------------------------------
+% patching atbegshi.sty
+%%%  following codes are almost copied from
+%%%  pxatbegshi.sty 2019/09/07 v0.5 (in platex-tools bundle, by H. Yamashita).
+
+\ifdefined\AtBeginShipoutOriginalShipout
+  \let\AtBeginShipoutOriginalShipout\ltj@shipout
+\fi
+\AtBeginShipoutInit
+\DeclareRobustCommand \AtBeginDvi [1]{%
+  \global \setbox \@begindvibox
+    \vbox{\yoko\unvbox \@begindvibox #1}%
+}
+%% internal macros are locally effective
+\begingroup
+
+% helpers
+%% unique tokens
+\def\pxabgs@mark{\pxabgs@mark@}
+\def\pxabgs@fin{\pxabgs@fin@}
+
+%% \pxabgs@patch@cmd\CMD{<orig>}{<new>}
+\def\pxabgs@patch@cmd#1#2#3{%
+  \ifx#1\relax\else
+  \def\pxabgs@next##1#2##2\pxabgs@mark##3\pxabgs@fin{%
+    \ifx\pxabgs@mark##3\pxabgs@mark\let#1\relax
+    \else
+      \def\pxabgs@fragment{##2}\def#1{##1#3##2}%
+    \fi}%
+  \expandafter\pxabgs@next#1\pxabgs@mark#2\pxabgs@mark\pxabgs@fin
+  \fi
+}
+
+% prepare
+\ifdefined\AtBegShi@Output
+  \let\pxabgs@AtBegShi@Output\AtBegShi@Output
+\else\let\pxabgs@AtBegShi@Output\relax\fi
+% try first patch
+\pxabgs@patch@cmd\pxabgs@AtBegShi@Output
+  {\let\AtBegShi@OrgProtect\protect}%
+  {\setbox8\vbox\bgroup\yoko\let\AtBegShi@OrgProtect\protect}
+\pxabgs@patch@cmd\pxabgs@AtBegShi@Output
+  {\AtBeginShipoutOriginalShipout\box\AtBeginShipoutBox}%
+  {\AtBeginShipoutOriginalShipout\box\AtBeginShipoutBox\egroup}
+\pxabgs@patch@cmd\pxabgs@AtBegShi@Output
+  {%
+    \begingroup
+      \setbox\AtBeginShipoutBox\box\AtBeginShipoutBox
+    \endgroup
+    \let\protect\AtBegShi@OrgProtect
+  }{%
+    \begingroup
+      \setbox\AtBeginShipoutBox\box\AtBeginShipoutBox
+    \endgroup
+    \let\protect\AtBegShi@OrgProtect
+    \egroup
+  }
+% commit the change only when successful
+\ifx\pxabgs@AtBegShi@Output\relax
+  \@PackageWarningNoLine{lltjp-atbegshi}{%
+    Failed in patching \string\AtBegShi@Output.\MessageBreak
+    This may cause error in tate direction%
+  }
+\else
+  \global\let\AtBegShi@Output\pxabgs@AtBegShi@Output
+\fi
+
+\endgroup
+%% internal macros are no longer effective
+%</atbegshi>-------------------------------------
+\endinput

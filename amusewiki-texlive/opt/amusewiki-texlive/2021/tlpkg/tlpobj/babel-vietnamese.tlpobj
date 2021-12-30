@@ -1,0 +1,22 @@
+name babel-vietnamese
+category Package
+revision 39246
+shortdesc Babel support for typesetting Vietnamese
+longdesc The package provides the language definition file for support
+longdesc of Vietnamese in babel.
+containersize 2480
+containerchecksum ddb75c37017c1b0b6af2cfbdf574526cdfdce2099d599a23cc8ac819f6ebe5ea7a2eda4bd743af93d78835ca5dccb3d7fa55db22b3154862aa4affe83c28185f
+doccontainersize 49604
+doccontainerchecksum b078464ce848b24d692d4dded7c9827f37fdb4141b719c71e28b5ef0a827f9ea5c2137745f9689fcb89a486d4a88a94a043a62348e86b5736a68ea48c7f33e16
+docfiles size=18
+ texmf-dist/doc/generic/babel-vietnamese/README details="Readme"
+ texmf-dist/doc/generic/babel-vietnamese/uvnenc.tex
+ texmf-dist/doc/generic/babel-vietnamese/vietnamese.pdf details="Package documentation"
+srccontainersize 6908
+srccontainerchecksum ffdf9a552fd79b1b51c0064ffef8f9dca1e618b41b0abebd2a22152e8f2bde04a9e35964250e8bd42912929d3e6d8dab6fa430ce302a1f28f27676015667d489
+runfiles size=2
+ texmf-dist/tex/generic/babel-vietnamese/vietnamese.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/vietnamese
+catalogue-license lppl1.3
+catalogue-topics vietnamese multilingual-addon
+catalogue-version 1.4

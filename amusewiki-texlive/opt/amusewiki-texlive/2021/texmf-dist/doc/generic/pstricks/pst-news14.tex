@@ -1,0 +1,202 @@
+%% $Id: pst-news14.tex 4 2020-06-09 08:32:19Z herbert $
+\documentclass[11pt,english,BCOR10mm,DIV12,bibliography=totoc,parskip=false,smallheadings
+    headexclude,footexclude,oneside]{pst-doc}
+\listfiles
+\let\Lfile\LFile
+\usepackage[utf8]{inputenc}
+\usepackage{pst-node}
+\let\pstnodeFV\fileversion
+\let\pstnodeFD\filedate
+\usepackage{pst-plot}
+\usepackage{xkvview}
+\renewcommand\bgImage{\psscalebox{15}{\color{blue!20}2014}}
+\def\textat{\char064}
+\lstset{explpreset={pos=l,width=-99pt,overhang=0pt,hsep=\columnsep,vsep=\bigskipamount,rframe={}},
+    escapechar=?}
+\begin{document}
+
+%\psset{PstDebug=1}
+\title{\texttt{News -- 2014}\\ \Large new macros and bugfixes for the
+basic package \nxLFile{pstricks}}
+\author{Herbert Voß}
+\date{\today}
+
+\maketitle
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\part{\texttt{pstricks} -- package}
+
+%--------------------------------------------------------------------------------------
+%\section{\texttt{pstricks.sty}}
+%--------------------------------------------------------------------------------------
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.tex} (\pstricksFV -- \pstricksFD)}
+%--------------------------------------------------------------------------------------
+\subsection{Opacity}
+The keyword \Lkeyword{strokeopacity} is now also valid for \Lcs{psdot}, \Lcs{psdots},
+and the \Lkeyword{linestyle}/\Lkeyword{plotstyle}=\Lkeyval{dots}.
+
+
+\subsection{PostScript notation for numbers}
+Optional arguments which expects a real number can now have a preceeding ! character for
+a PostScript notation which is directly passed to PostScript. The user has take care that
+such a number isn't use before in another \TeX\ macro. In such a case it gives an error.
+
+\begin{LTXexample}[width=5cm]
+\pstVerb{ 1234321 srand }
+\begin{pspicture}[showgrid](-2,-2)(2,2)
+\psframe*[linecolor=blue,opacity=!Rand](2,2)
+\psframe*[linecolor=red,opacity=!Rand](-1,-1)(1,1)
+\psframe*[linecolor=green,opacity=!Rand](-2,-2)(0,0)
+\end{pspicture}
+\end{LTXexample}
+
+
+\subsection{Fillstyle \texttt{eofill}}
+
+It is an experimental fillstyle. PostScript knows only the \Lkeyval{eofill} and the other way round
+needs some tricky internal commands and may not work in all cases.
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}[linewidth=2pt](12,4)    
+\pscustom[linestyle=none,fillstyle=eofill,fillcolor=blue!40]{%
+   \psellipse(4,2)(2,2)\psellipse(2,2)(2,2)}
+\psellipse[linecolor=red](4,2)(2,2)\psellipse[linecolor=green](2,2)(2,2)
+%
+\pscustom[linestyle=none,fillstyle=oefill,fillcolor=blue!40]{%
+   \psellipse(10,2)(2,2)\psellipse(8,2)(2,2)}
+\psellipse[linecolor=red](10,2)(2,2)\psellipse[linecolor=green](8,2)(2,2)
+\end{pspicture}
+\end{LTXexample}
+
+
+\subsection{Option \texttt{correctAngle}}
+It now works also for \Lcs{psellipiticwedge}. The setting of \Lkeyword{origin} is needed
+if the center of the ellipse is not the origin of the underlying coordinate system.
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}[dimen=m,showgrid=top](6,4)
+\pnodes{P}(3,1)(5,1)(4,2)
+\pcline[nodesep=-1](P0)(P1)
+\pcline[nodesep=-1](P0)(P2)
+\psellipticarc[origin={P0},correctAngle](P0)(2,1){(P2)}{(P1)}
+\psellipticwedge[origin={P0},linecolor=red,correctAngle,
+                 fillstyle=vlines](P0)(2,1){(P2)}{(P1)}
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}[dimen=m,showgrid=top](-3,-1)(3,3)
+\pnodes{P}(0,0)(2,0)(1,1)
+\pcline[nodesep=-1](P0)(P1)
+\pcline[nodesep=-1](P0)(P2)
+\psellipticarc[correctAngle](P0)(2,1){(P2)}{(P1)}
+\psellipticwedge[linecolor=red,correctAngle,
+                 fillstyle=vlines](P0)(2,1){(P2)}{(P1)}
+\end{pspicture}
+\end{LTXexample}
+
+\clearpage
+\subsection{New macro \nxLcs{psellipseAB}}
+
+\begin{BDef}
+\LcsStar{psellipseAB}\OptArgs\Largr{\CAny}\Largb{half radius}
+\end{BDef}
+
+
+\begin{LTXexample}[width=7cm]
+\begin{pspicture}[showgrid=true](7,7)%% showgrid=true
+\pnodes{a}(0.5,0)(2.5,1.8)(5.5,2.5)(6.25,3)(7,5) 
+\pnodes{b}(0,1)(2,3)(5,4)(5.5,5)(6,7)
+\pscurve[arrowscale=2,linewidth=1.2pt]{->}(a0)(a1)(a2)(a3)(a4)
+\pscurve[arrowscale=2,linewidth=1.2pt]{->}(b0)(b1)(b2)(b3)(b4)
+\psellipseAB(a0)(b0){0.1}
+\psellipseAB[fillcolor=red!40,fillstyle=solid](a1)(b1){0.15} 
+\psellipseAB(a2)(b2){0.2}
+\psellipseAB[fillcolor=blue!40,fillstyle=solid](a3)(b3){0.25}
+\uput[135](b1){$dS_1$}\uput[135](b2){$dS_2$}
+\end{pspicture}
+\end{LTXexample}
+
+
+
+
+\subsection{New macro \nxLcs{psRing}}
+
+\begin{BDef}
+\LcsStar{psRing}\OptArgs\Largr{\CAny}\OptArg{start,end}\Largb{Inner Radius}\Largb{Outer Radius}
+\end{BDef}
+
+
+\begin{LTXexample}[width=5cm]
+\begin{pspicture}[showgrid](4,4)
+  \psRing(2,2){0.3}{0.8}
+  \psRing*[opacity=0.5](2,2){1}{2}
+\psdot(2,2)
+\end{pspicture}
+\end{LTXexample}
+
+
+\begin{LTXexample}[width=5cm]
+\begin{pspicture}[showgrid](4,4)
+  \psRing[linecolor=red](2,2)[30,60]{1}{2}
+  \psRing[opacity=0.5,fillstyle=solid,
+    fillcolor=red](2,2)[60,30]{1}{2}
+\psdot(2,2)
+\end{pspicture}
+\end{LTXexample}
+
+
+
+\subsection{New macro \nxLcs{pscspline} (by Christoph Bersch)}
+
+\begin{BDef}
+\LcsStar{pscspline}\OptArgs\Largr{$x_0,y_0$}\Largr{$x_1,y_1$}\ldots\Largr{\CAny}
+\end{BDef}
+
+
+\begin{LTXexample}[width=5cm]
+\begin{pspicture}[showgrid](5,5)
+  \pscspline[arrows=|->, showpoints](0,0)(1,2)
+  \pscspline[arrows=->, showpoints](0,4)(2,3)(3,4)(5,0)
+  \pscspline(4,4)
+\end{pspicture}\par
+\begin{pspicture}[showgrid](5,5)
+  \pscspline[linestyle=symbol, symbol=U, 
+    symbolStep=12pt](0,0)(1,2)
+  \pscspline[linestyle=symbol, symbol=a, 
+    symbolStep=12pt](0,4)(2,3)(3,4)(5,0)
+\end{pspicture}
+\end{LTXexample}
+
+\bigskip
+\begin{LTXexample}[width=5cm]
+\begin{pspicture}[showgrid](5,5)
+  \pscustom[fillcolor=red!20, fillstyle=solid]{%
+    \pscspline(0,3)(4,2)(5,0)
+    \lineto(0,0)
+    \closepath}
+\end{pspicture}
+\end{LTXexample}
+
+\subsection{\nxLcs{Special Coor}}
+
+The Macro \Lcs{SpecialCoor} for scanning special coodinate expressions is now enabled by
+default. You can disable it with \Lcs{NormalCoor}.
+
+\clearpage
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{PSTricks}
+
+\printindex
+
+
+\end{document}
+
+

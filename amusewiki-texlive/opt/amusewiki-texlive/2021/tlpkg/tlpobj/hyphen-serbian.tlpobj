@@ -1,0 +1,36 @@
+name hyphen-serbian
+category TLCore
+revision 58609
+catalogue srhyphc
+shortdesc Serbian hyphenation patterns.
+longdesc Hyphenation patterns for Serbian in T1/EC, T2A and UTF-8
+longdesc encodings. For 8-bit engines the patterns are available
+longdesc separately as 'serbian' in T1/EC encoding for Latin script and
+longdesc 'serbianc' in T2A encoding for Cyrillic script. Unicode engines
+longdesc should only use 'serbian' which has patterns in both scripts
+longdesc combined.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=serbian 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-sr-latn.tex 	file_patterns=hyph-sh-latn.pat.txt,hyph-sh-cyrl.pat.txt 	file_exceptions=hyph-sh-latn.hyp.txt,hyph-sh-cyrl.hyp.txt
+execute AddHyphen 	name=serbianc 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-sr-cyrl.tex 	file_patterns=hyph-sh-latn.pat.txt,hyph-sh-cyrl.pat.txt 	file_exceptions=hyph-sh-latn.hyp.txt,hyph-sh-cyrl.hyp.txt
+containersize 25340
+containerchecksum 390aa9c116b6db7b362fc57aa0758a4c489c5fe33c718fb37675b17a9772a463ce532a2ace3e1ef90275b4afef5ea8d6cff71a7abe625d84e3f461c115306452
+runfiles size=70
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sr-cyrl.tex
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sr-latn.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-sh-cyrl.t2a.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-sh-latn.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-sh-cyrl.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-sh-latn.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-sr-cyrl.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-sh-cyrl.hyp.txt
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-sh-cyrl.pat.txt
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-sh-latn.hyp.txt
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-sh-latn.pat.txt
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-sr-cyrl.hyp.txt
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-sr-cyrl.pat.txt
+catalogue-also shhyphl
+catalogue-ctan /language/hyphenation/srhyphc.tex
+catalogue-license gpl
+catalogue-topics hyphenation serbian
+catalogue-version 1.0a

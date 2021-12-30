@@ -1,0 +1,101 @@
+%%
+%% This is file `babel-japanese-sample.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% babel-japanese.dtx  (with options: `sample')
+%% 
+\ifx\epTeXinputencoding\undefined\else
+  \epTeXinputencoding utf8
+\fi
+\ifx\directlua\undefined
+ \ifx\kanjiskip\undefined
+  \ifx\XeTeXversion\undefined
+    % pdfLaTeX: not beautiful
+    \documentclass{book}
+    \usepackage[whole]{bxcjkjatype}
+  \else
+    % XeLaTeX: not beautiful
+    \documentclass{book}
+    \usepackage{zxjatype}
+    \setCJKmainfont{ipaexm.ttf}
+  \fi
+ \else
+  \ifx\ucs\undefined
+    % pLaTeX: OK
+    \documentclass{jbook}
+    \usepackage{minijs}
+  \else
+    % upLaTeX: OK
+    \documentclass{ujbook}
+  \fi
+ \fi
+\else
+    % LuaLaTeX: OK
+    \documentclass{ltjbook}
+\fi
+\usepackage[german,english,japanese]{babel}
+\makeatletter
+\def\tbcaption{\def\@captype{table}\caption{キャプションの例}}
+\def\fgcaption{\def\@captype{figure}\caption{キャプションの例}}
+\makeatother
+\def\yes{--- はい。}
+\def\no{--- いいえ。}
+\def\TEXT{Textverarbeitung mit einem Rechner kann in vielf\"altiger Weise
+erfolgen. Eigenschaften und Leistungsf\"ahigkeit sind hierbei weniger
+vom jeweiligen Rechnertype, sondern vielmehr vom verwendeten
+\textit{Textverarbeitungsprogramm} bestimmt.}
+\def\se{\selectlanguage{english}}
+\def\sj{\selectlanguage{japanese}}
+\def\sg{\selectlanguage{german}}
+\setlength{\hoffset}{-13mm}
+\setlength{\textwidth}{16cm}
+\begin{document}
+
+\chapter{babel}
+\section{japaneseパッケージ}
+japaneseパッケージは日本語による見出し語と日付を出力するためのマクロを
+定義しています。
+
+\fgcaption
+
+\begin{itemize}
+\se
+\item ここで英語（\texttt{english}）に変更します。
+（languageの値は\the\language）
+
+\TEXT
+
+ここは英語？ \iflanguage{english}{\yes}{\no}\par
+ここはドイツ語？ \iflanguage{german}{\yes}{\no}\par
+ここは日本語？ \iflanguage{japanese}{\yes}{\no}
+
+※ \verb:\adddialect\l@japanese0: と設定しているため，
+日本語？も「はい」となります。
+
+\sg
+\item ここでドイツ語（\texttt{german}）に変更します。
+（languageの値は\the\language）
+
+\TEXT
+
+ここは英語？ \iflanguage{english}{\yes}{\no}\par
+ここはドイツ語？ \iflanguage{german}{\yes}{\no}\par
+ここは日本語？ \iflanguage{japanese}{\yes}{\no}
+
+※ ハイフネーションがドイツ語―旧正書法―に切り替わっている点に注目。
+なお，新正書法（\texttt{ngerman}）では
+\texttt{Leis-tungs-f\"a-hig-keit}のように分綴します。
+
+\sj
+\item ここで日本語（\texttt{japanese}）に変更します。
+（languageの値は\the\language）
+\tbcaption
+\item \verb:\和暦: は日付の表示をデフォルトの西暦「\today 」から
+和暦「\和暦\today 」に変更します。
+\end{itemize}
+\end{document}
+\endinput
+%%
+%% End of file `babel-japanese-sample.tex'.

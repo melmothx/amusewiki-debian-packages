@@ -1,0 +1,18 @@
+name hyphen-coptic
+category TLCore
+revision 58652
+shortdesc Coptic hyphenation patterns.
+longdesc Hyphenation patterns for Coptic in UTF-8 encoding as well as in
+longdesc ASCII-based encoding for 8-bit engines. The latter can only be
+longdesc used with special Coptic fonts (like CBcoptic). The patterns
+longdesc are considered experimental.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=coptic 	lefthyphenmin=1 	righthyphenmin=1 	file=loadhyph-cop.tex 	file_patterns=hyph-cop.pat.txt 	file_exceptions=
+containersize 6148
+containerchecksum fe36adfe900e23f2b0c3e9c3a3d96b608c49bf597222537d355d6a68e2f87f587db78a1921ab1c9a80ea175529e353524c35e99b83ef7f5515ab7c0aacd2f680
+runfiles size=8
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-cop.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex-8bit/copthyph.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-cop.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-cop.pat.txt

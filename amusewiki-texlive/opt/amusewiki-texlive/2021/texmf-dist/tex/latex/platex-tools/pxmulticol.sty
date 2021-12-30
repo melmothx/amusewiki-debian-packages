@@ -1,0 +1,25 @@
+%
+% pxmulticol.sty
+% written by Hironobu Yamashita (@aminophen)
+%
+% This package is part of the platex-tools bundle.
+% https://github.com/aminophen/platex-tools
+%
+% This package is expected to be compatible with
+%   * multicol.sty in latex-tools
+%     (1995/10/19 v1.5l -- 2021/11/30 v1.9d)
+%
+
+\NeedsTeXFormat{pLaTeX2e}
+\ProvidesPackage{pxmulticol}
+  [2018/11/25 v0.2 multicol package for pLaTeX]
+\RequirePackageWithOptions{multicol}
+
+%% patching internal code for multicol.sty
+%
+\def\reinsert@footnotes{\ifvoid\footins\else
+      \insert\footins{\iftbox\footins\tate\else\yoko\fi}\fi}
+%
+%% done
+
+\endinput

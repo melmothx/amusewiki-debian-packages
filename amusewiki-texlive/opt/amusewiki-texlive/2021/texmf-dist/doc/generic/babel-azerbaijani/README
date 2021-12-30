@@ -1,0 +1,16 @@
+Azerbaijani 1.0a
+------------
+
+This is the babel style for Azerbaijani.
+
+This language poses special challenges because no "traditional" font
+encoding contains the full character set, and therefore a mixture must
+be used (eg, T2A and T1).
+
+It's compatible with Unicode engines (luatex, xetex), which are
+very likely the most convenient way to write Azerbaijani documents.
+
+The manual explains how to handle the fi ligature, too.
+
+----------
+2017-05-03

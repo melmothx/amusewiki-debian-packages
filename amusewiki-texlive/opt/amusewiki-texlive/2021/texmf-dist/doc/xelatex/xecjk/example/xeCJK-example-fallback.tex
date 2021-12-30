@@ -1,0 +1,50 @@
+%%
+%% This is file `xeCJK-example-fallback.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% xeCJK.dtx  (with options: `ex-fallback')
+%% 
+\documentclass{article}
+\usepackage[AutoFallBack]{xeCJK}
+\usepackage{xeCJKfntef}
+\usepackage{array}
+\setCJKmainfont[AutoFakeBold,AutoFakeSlant]{KaiTi_GB2312}
+\setCJKfallbackfamilyfont{\CJKrmdefault}[BoldFont=SimHei]
+  { [SlantedFont=FangSong]{SimSun} ,
+    [BoldFont=*]          {SimSun-ExtB} }
+\begin{document}
+漢字源𣴑考
+
+\textbf{漢字源𣴑考}
+
+\textsl{漢字源𣴑考}
+
+\CJKunderwave{漢字源𣴑考}
+\begin{table}[ht]
+\caption{生僻字测试}
+\medskip\centering
+\begin{tabular}{*4{|c>{\ttfamily U+}l}|}
+㐀 & 3400  & 㐁 & 3401  & 㐂 & 3402  & 㐃 & 3403  \\
+㐄 & 3404  & 㐅 & 3405  & 㐆 & 3406  & 㐇 & 3407  \\
+㐈 & 3408  & 㐉 & 3409  & 㐊 & 340A  & 㐋 & 340B  \\
+㐌 & 340C  & 㐍 & 340D  & 㐎 & 340E  & 㐏 & 341F  \\
+㐐 & 3410  & 㐑 & 3411  & 㐒 & 3412  & 㐓 & 3413  \\
+㐔 & 3414  & 㐕 & 3415  & 㐖 & 3416  & 㐗 & 3417  \\
+㐘 & 3418  & 㐙 & 3419  & 㐚 & 341A  & 㐛 & 341B  \\
+㐜 & 341C  & 㐝 & 341D  & 㐞 & 341E  & 㐟 & 341F  \\[1ex]
+𠀀 & 20000 & 𠀁 & 20001 & 𠀂 & 20002 & 𠀃 & 20003 \\
+𠀄 & 20004 & 𠀅 & 20005 & 𠀆 & 20006 & 𠀇 & 20007 \\
+𠀈 & 20008 & 𠀉 & 20009 & 𠀊 & 2000A & 𠀋 & 2000B \\
+𠀌 & 2000C & 𠀍 & 2000D & 𠀎 & 2000E & 𠀏 & 2000F \\
+𠀐 & 20010 & 𠀑 & 20011 & 𠀒 & 20012 & 𠀓 & 20013 \\
+𠀔 & 20014 & 𠀕 & 20015 & 𠀖 & 20016 & 𠀗 & 20017 \\
+𠀘 & 20018 & 𠀙 & 20019 & 𠀚 & 2001A & 𠀛 & 2001B \\
+𠀜 & 2001C & 𠀝 & 2001D & 𠀞 & 2001E & 𠀟 & 2001F \\
+\end{tabular}
+\end{table}
+\end{document}
+%% 
+%%
+%% End of file `xeCJK-example-fallback.tex'.

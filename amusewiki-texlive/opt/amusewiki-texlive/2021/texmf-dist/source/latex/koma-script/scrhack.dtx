@@ -1,0 +1,2064 @@
+% \iffalse meta-comment
+% ======================================================================
+% scrhack.dtx
+% Copyright (c) Markus Kohm, 2008-2021
+%
+% This file is part of the LaTeX2e KOMA-Script bundle.
+%
+% This work may be distributed and/or modified under the conditions of
+% the LaTeX Project Public License, version 1.3c of the license.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.<3c or later is part of all distributions of LaTeX
+% version 2005/12/01 or later and of this work.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% The Current Maintainer and author of this work is Markus Kohm.
+%
+% This work consists of all files listed in manifest.txt.
+%
+% To create `scrhack.sty' run `tex scrhack.dtx'.  Using LaTeX instead
+% of TeX would generate the implementation documentation.
+% ----------------------------------------------------------------------
+% scrhack.dtx
+% Copyright (c) Markus Kohm, 2008-2021
+%
+% Dieses Werk darf nach den Bedingungen der LaTeX Project Public Lizenz,
+% Version 1.3c, verteilt und/oder veraendert werden.
+% Die neuste Version dieser Lizenz ist
+%   http://www.latex-project.org/lppl.txt
+% und Version 1.3c ist Teil aller Verteilungen von LaTeX
+% Version 2005/12/01 oder spaeter und dieses Werks.
+%
+% Dieses Werk hat den LPPL-Verwaltungs-Status "author-maintained"
+% (allein durch den Autor verwaltet).
+%
+% Der Aktuelle Verwalter und Autor dieses Werkes ist Markus Kohm.
+%
+% Dieses Werk besteht aus den in manifest.txt aufgefuehrten Dateien.
+%
+% `scrhack.sty' kann durch den Aufruf `tex scrhack.dtx' erzeugt 
+% werden. Bei Verwendung von LaTeX statt TeX wird hingegen die
+% Implementierungsdokumentation erzeugt.
+% ======================================================================
+% \fi
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \iffalse
+%%% From File: $Id: scrhack.dtx 3602 2021-06-03 17:24:02Z kohm $
+%<package&identify>%%% using: package,identify
+%<package&option>%%% using: package,option
+%<package&body>%%% using: package,body
+%<package&identity>\NeedsTeXFormat{LaTeX2e}[1995/06/01]
+%<*dtx>
+\ifx\ProvidesFile\undefined\def\ProvidesFile#1[#2]{}\fi
+\begingroup
+  \def\filedate$#1: #2-#3-#4 #5${\gdef\filedate{#2/#3/#4}}
+  \filedate$Date: 2021-06-03 19:24:02 +0200 (Thu, 03 Jun 2021) $
+  \def\filerevision$#1: #2 ${\gdef\filerevision{r#2}}
+  \filerevision$Revision: 1962 $
+\endgroup
+\ProvidesFile{scrhack.dtx}[\filedate\space\filerevision\space
+%</dtx>
+%<package&identify>\ProvidesPackage{scrhack}[%
+%<hyperref&identify>\ProvidesFile{hyperref.hak}[%
+%<float&identify>\ProvidesFile{float.hak}[%
+%<floatrow&identify>\ProvidesFile{floatrow.hak}[%
+%<listings&identify>\ProvidesFile{listings.hak}[%
+%<setspace&identify>\ProvidesFile{setspace.hak}[%
+%<lscape&identify>\ProvidesFile{lscape.hak}[%
+%<nomencl&identify>\ProvidesFile{nomencl.hak}[%
+%<standardsections&identify>\ProvidesFile{standardsections.hak}[%
+%<*dtx|identify>
+%!KOMAScriptVersion
+%<*dtx>
+  source of
+%</dtx>
+%<*dtx|package>
+  package (hacking other packages)%
+%</dtx|package>
+%<*hack>
+%<hack>  scrhack part
+%<!standardsections>  (hacking package
+%<hyperref&identify>    hyperref)%
+%<float&identify>    float)%
+%<floatrow&identify>    floatrow)%
+%<listings&identify>    listings)%
+%<setspace&identify>    setspace)%
+%<lscape&identify>    lscape)%
+%<nomencl&identify>    nomencl)%
+%<standardsections&identify>  (defining standard LaTeX class section headings)%
+%</hack>
+]
+%</dtx|identify>
+%<*dtx>
+\ifx\documentclass\undefined
+  \input scrdocstrip.tex
+  \@@input scrkernel-version.dtx
+  \@@input scrstrip.inc
+  \KOMAdefVariable{COPYRIGHTFROM}{2008}
+  \generate{\usepreamble\defaultpreamble
+    \file{scrhack.sty}{%
+      \from{scrkernel-version.dtx}{package,scrhack}%
+      \from{scrhack.dtx}{package,identify}%
+      \from{scrkernel-basics.dtx}{load}%
+      \from{scrhack.dtx}{package,option}%
+      \from{scrhack.dtx}{package,body}%
+      \from{scrlogo.dtx}{logo}%
+    }%
+    \file{hyperref.hak}{%
+      \from{scrkernel-version.dtx}{file,hyperref.hak}%
+      \from{scrhack.dtx}{hack,hyperref,identify}%
+      \from{scrhack.dtx}{hack,hyperref,body}%
+    }%
+    \file{float.hak}{%
+      \from{scrkernel-version.dtx}{file,float.hak}%
+      \from{scrhack.dtx}{hack,float,identify}%
+      \from{scrhack.dtx}{hack,float,body}%
+    }%
+    \file{floatrow.hak}{%
+      \from{scrkernel-version.dtx}{file,floatrow.hak}%
+      \from{scrhack.dtx}{hack,floatrow,identify}%
+      \from{scrhack.dtx}{hack,floatrow,body}%
+    }%
+    \file{listings.hak}{%
+      \from{scrkernel-version.dtx}{file,listings.hak}%
+      \from{scrhack.dtx}{hack,listings,identify}%
+      \from{scrhack.dtx}{hack,listings,body}%
+    }%
+    \file{setspace.hak}{%
+      \from{scrkernel-version.dtx}{file,setspace.hak}%
+      \from{scrhack.dtx}{hack,setspace,identify}%
+      \from{scrhack.dtx}{hack,setspace,body}%
+    }%
+    \file{lscape.hak}{%
+      \from{scrkernel-version.dtx}{file,lscape.hak}%
+      \from{scrhack.dtx}{hack,lscape,identify}%
+      \from{scrhack.dtx}{hack,lscape,body}%
+    }%
+    \file{nomencl.hak}{%
+      \from{scrkernel-version.dtx}{file,nomencl.hak}%
+      \from{scrhack.dtx}{hack,nomencl,identify}%
+      \from{scrhack.dtx}{hack,nomencl,body}%
+    }%
+    \file{standardsections.hak}{%
+      \from{scrkernel-version.dtx}{file,standardsections.hak}%
+      \from{scrhack.dtx}{hack,standardsections,identify}%
+      \from{scrhack.dtx}{hack,standardsections,body}%
+    }%
+  }
+  \@@input scrstrop.inc
+\else
+  \let\endbatchfile\relax
+\fi
+\endbatchfile
+\documentclass[parskip=half-]{scrdoc}
+\usepackage[english,ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\newcommand*{\Environment}[1]{\texttt{\mbox{#1}}}
+\CodelineIndex
+\RecordChanges
+\begin{document}
+\GetFileInfo{scrhack.dtx}
+\DocInput{scrhack.dtx}
+\end{document}
+%</dtx>
+%\fi
+%
+% \selectlanguage{english}
+%
+% \let\PName\meta
+% \let\Parameter\marg
+% \providecommand*{\PParameter}[1]{\texttt{\{#1\}}}
+% \providecommand*{\Counter}[1]{\texttt{\mbox{#1}}}
+% \providecommand*{\Option}[1]{\texttt{#1}}
+% \providecommand*{\OptionValue}[2]{\texttt{\mbox{#1=}\linebreak[3]\mbox{#2}}}
+% \let\PValue\texttt
+%
+% \title{\KOMAScript{} \partname\ \texttt{\filename}%
+%   \thanks{This file is version \fileversion\ of \texttt{\filename}.}}
+% \date{\filedate}
+% \author{Markus Kohm\thanks{mailto:komascript(at)gmx.info}}
+% \maketitle
+% \begin{abstract}
+%   Some packages from other authors may have problems with \KOMAScript{}.  In
+%   my opinion some packages could be improved. With some packages this makes
+%   only sense, if \KOMAScript{} was used. With some other packages the
+%   package author has another opinion. Sometimes proposals was never
+%   answered. Package \Package{scrhack} contains all those improvement
+%   proposals for other packages. This means, \Package{scrhack} redefines
+%   macros of packages from other authors! The redefinitions are only
+%   activated, if those packages were loaded. Users may prevent
+%   \Package{scrhack} from redefining macros of individual packages.
+% \end{abstract}
+% \tableofcontents
+%
+% \selectlanguage{ngerman}
+% \StopEventually{\PrintIndex\PrintChanges}
+% \changes{v3.03}{2009/03/12}{erste Version des Pakets}%^^A
+%
+% \section{Implementation of \Package{scrhack}}
+%
+% \changes{v3.04b}{2009/08/05}{Die Reihenfolge von Anweisungen und Optionen
+%   grundlegend geändert, um das Paket \textsf{scrhack} unabhängiger von der
+%   Reihenfolge beim Laden von Paketen zu machen.}%^^A
+%
+% \subsection{Optionen}
+%
+% \iffalse
+%<*package&option>
+% \fi
+%
+% Das Paket bedient sich \cs{KOMAoptions} etc. aus \textsf{scrkbase} (dieses
+% wird übrigens direkt per \texttt{scrkbase.dtx} geladen).
+%
+% Per Option kann gewählt werden, welche Manipulationen geladen werden
+% sollen. Alle diese Optionen können jedoch nur bis zum Laden des
+% entsprechenden Pakets oder dem Laden von \textsf{scrhack} gesetzt
+% werden (es zählt, was später kommt). Anschließend sind sie wirkungslos.
+%
+% \subsection{Verwendete Anweisungen}
+%
+% \iffalse
+%</package&option>
+%<*package&body>
+% \fi
+%
+% \begin{macro}{\scr@ifexpected}
+% Wenn die im ersten Argument angegebene Anweisung nach Ausführung der im
+% zweiten Argument angegebenen Anweisungen unverändert ist, dann soll das
+% dritte Argument ausgeführt werden, sonst das vierte.
+%    \begin{macrocode}
+\newcommand{\scr@ifexpected}[2]{%
+  \begingroup
+    \let\@tempa#1
+    #2
+    \ifx\@tempa#1
+      \aftergroup\@firstoftwo
+    \else
+      \aftergroup\@secondoftwo
+    \fi
+  \endgroup
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\scr@hack@load}
+% Wenn die Datei mit dem Namen des zweiten Arguments und der Endung des ersten
+% Arguments so geladen wurde, dass \LaTeX{} eine Versionsinfo dazu gespeichert
+% hat, dann soll zusätzlich der entsprechende Hack geladen werden.
+%    \begin{macrocode}
+\newcommand*{\scr@hack@load}[2]{%
+  \expandafter\ifx\csname ver@#2.#1\endcsname\relax
+    \expandafter\@secondoftwo
+  \else
+%    \end{macrocode}
+% Allerdings wird jeder Hack nur genau einmal geladen:
+%    \begin{macrocode}
+    \expandafter\ifx\csname ver@#2.hak\endcsname\relax
+      \expandafter\expandafter\expandafter\@firstoftwo
+    \else
+      \expandafter\expandafter\expandafter\@secondoftwo
+    \fi
+  \fi
+  {%
+    \PackageInfo{scrhack}{loading #2 hack}%
+    \edef\reserved@a{%
+      \noexpand\makeatletter\noexpand\input{#2.hak}%
+      \noexpand\catcode`\noexpand\@\the\catcode`\@\relax
+    }\reserved@a
+  }{%
+    \PackageInfo{scrhack}{ignorring #2 hack}%
+  }%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \iffalse
+%</package&body>
+% \fi
+%
+% \subsection{Der \textsf{hyperref}-Hack}
+%
+% \textsf{hyperref} setzt den Anker zu der Stern-Variante einer Überschrift
+% hinter die Überschrift, während es bei der nicht Stern-Variante den Anker
+% auch dann vor die Überschrift setzt, wenn die Überschrift aufgrund von
+% \texttt{secnumdepth} nicht nummeriert wird. Der Hack setzt den Anker
+% einheitlich vor die Überschrift.
+%
+% \begin{option}{hyperref}
+% \changes{v3.12}{2013/03/05}{Signalisierung mit
+%     \cs{FamilyKeyStateProcessed}}%^^A
+% \changes{v3.17}{2015/03/09}{Defaulteinstellung mit
+%     \cs{KOMAExecuteOptions}}%^^A
+%    \begin{macrocode}
+%<*package&option>
+\KOMA@ifkey{hyperref}{@scrhack@hyperref}%
+\KOMAExecuteOptions{hyperref=true}%
+%</package&option>
+%<*package&body>
+%    \end{macrocode}
+% \changes{v3.04b}{2009/11/09}{\textsf{hyperref}-Hack wird früher geladen}%^^A
+% \changes{v3.17}{2015/03/09}{Neuere \textsf{hyperref}-Version deaktiviert
+%   ggf. Option \texttt{hyperref}}%^^A
+% \changes{v3.18}{2015/05/22}{Neuere \KOMAScript-Versionen deaktivieren
+%   ggf. Option \texttt{hyperref}}%^^A
+% Hier muss ein wenig trickreicher gearbeitet werden, weil \textsf{hyperref}
+% die Treiberdatei per \cs{AtEndOfPackage} lädt und der Hack erst danach
+% installiert werden darf. Mit \cs{AfterPackage*} alleine, würde der Hack aber
+% vor dem Laden der Treiberdatei installiert. Dafür können wir aber sicher
+% sein, dass ein innerhalb von \cs{AfterPackage*} aufgerufenes
+% \cs{AtEndOfPackage} garantiert nach dem Laden der Treiberdatei ausgeführt
+% wird. Das funktioniert auch noch, wenn \textsf{hyperref} bereits geladen
+% wurde. In dem Fall wird der Code einfach nach dem Ende von \textsf{scrhack}
+% statt nach dem Ende von \textsf{hyperref} ausgeführt.
+%    \begin{macrocode}
+\BeforePackage{hyperref}{%
+  \scr@ifundefinedorrelax{hy@insteadofrefstepcounter}{}{%
+    \PackageInfo{scrhack}{hyperref hack deactivated because of\MessageBreak
+      detection of KOMA-Script class, that doesn't\MessageBreak
+      need that hack,}%
+    \KOMAExecuteOptions[.scrhack.sty]{hyperref=false}%
+  }%
+}
+\AfterPackage*{hyperref}{%
+  \if@scrhack@hyperref
+    \@ifpackagelater{hyperref}{2009/11/24}{%
+      \PackageInfo{scrhack}{hyperref hack deactivated because of\MessageBreak
+        detection of hyperref version, that doesn't\MessageBreak
+        need that hack,}%
+      \KOMAExecuteOptions[.scrhack.sty]{hyperref=false}%
+    }{%
+      \AtEndOfPackage{%
+        \KOMA@key[.scrhack.sty]{hyperref}{%
+          \PackageWarning{scrhack}{option `hyperref=#1' ignored}%
+          \FamilyKeyStateProcessed
+        }%
+        \if@scrhack@hyperref\scr@hack@load\@pkgextension{hyperref}\fi
+      }%
+    }%
+  \fi
+}
+%</package&body>
+%    \end{macrocode}
+% \end{option}
+%
+%
+% \begin{macro}{\@schapter}
+% \begin{macro}{\@spart}
+% \begin{macro}{\@ssect}
+% Eigentlich wird hier gar nicht \texttt{hyperref.sty} verändert, sondern
+% diverse Treiberdateien. Sobald das Paket \textsf{hyperref} geladen ist, ist
+% auch die passende Treiberdatei geladen und außerdem sind alle
+% Treiberdateien, die entsprechende Definitionen vornehmen, gleichermaßen
+% betroffen. Also kann der entsprechende Patch einfach erfolgen, wenn hyperref
+% geladen ist (was bereits von \cs{scr@hack@load} getestet wurde). Es muss
+% also nur noch sichergestellt werden, dass die umzudefinierenden Macros
+% derzeit den erwarteten Inhalt haben.
+%    \begin{macrocode}
+%<*hyperref&body>
+\scr@ifexpected\@schapter{%
+  \def\@schapter#1{%
+    \H@old@schapter{#1}%
+    \begingroup
+      \let\@mkboth\@gobbletwo
+      \Hy@GlobalStepCount\Hy@linkcounter
+      \xdef\@currentHref{\Hy@chapapp*.\the\Hy@linkcounter}%
+      \Hy@raisedlink{%
+        \hyper@anchorstart{\@currentHref}\hyper@anchorend
+      }%
+    \endgroup
+  }%
+}{%
+  \PackageInfo{scrhack}{redefining \string\@schapter}%
+  \def\@schapter#1{%
+    \begingroup
+      \let\@mkboth\@gobbletwo
+      \Hy@GlobalStepCount\Hy@linkcounter
+      \xdef\@currentHref{\Hy@chapapp*.\the\Hy@linkcounter}%
+      \Hy@raisedlink{%
+        \hyper@anchorstart{\@currentHref}\hyper@anchorend
+      }%
+    \endgroup
+    \H@old@schapter{#1}%
+  }%
+}{%
+  \scr@ifexpected\@schapter{%
+    \def\@schapter#1{%
+      \begingroup
+        \let\@mkboth\@gobbletwo
+        \Hy@GlobalStepCount\Hy@linkcounter
+        \xdef\@currentHref{\Hy@chapapp*.\the\Hy@linkcounter}%
+        \Hy@raisedlink{%
+          \hyper@anchorstart{\@currentHref}\hyper@anchorend
+        }%
+      \endgroup
+      \H@old@schapter{#1}%
+    }%
+  }{}{%
+    \PackageWarningNoLine{scrhack}{unknown \string\@schapter\space
+      definition found!\MessageBreak
+      Maybe you are using a unsupported hyperref version}%
+  }%
+}
+\scr@ifexpected\@spart{%
+  \def\@spart#1{%
+    \H@old@spart{#1}%
+    \Hy@GlobalStepCount\Hy@linkcounter
+    \xdef\@currentHref{part*.\the\Hy@linkcounter}%
+    \Hy@raisedlink{%
+      \hyper@anchorstart{\@currentHref}\hyper@anchorend
+    }%
+  }%
+}{%
+  \PackageInfo{scrhack}{redefining \string\@spart}%
+  \def\@spart#1{%
+    \Hy@GlobalStepCount\Hy@linkcounter
+    \xdef\@currentHref{part*.\the\Hy@linkcounter}%
+    \Hy@raisedlink{%
+      \hyper@anchorstart{\@currentHref}\hyper@anchorend
+    }%
+    \H@old@spart{#1}%
+  }%
+}{%
+  \scr@ifexpected\@spart{%
+    \def\@spart#1{%
+      \Hy@GlobalStepCount\Hy@linkcounter
+      \xdef\@currentHref{part*.\the\Hy@linkcounter}%
+      \Hy@raisedlink{%
+        \hyper@anchorstart{\@currentHref}\hyper@anchorend
+      }%
+      \H@old@spart{#1}%
+    }%
+  }{}{%
+    \PackageWarningNoLine{scrhack}{unknown \string\@spart\space
+      definition found!\MessageBreak
+      Maybe you are using a unsupported hyperref version}%
+  }%
+}
+\scr@ifexpected\@ssect{%
+  \def\@ssect#1#2#3#4#5{%
+    \H@old@ssect{#1}{#2}{#3}{#4}{#5}%
+    \phantomsection
+  }%
+}{%
+  \PackageInfo{scrhack}{redefining \string\@ssect}%
+  \def\@ssect#1#2#3#4#5{%
+    \H@old@ssect{#1}{#2}{#3}{#4}{\phantomsection\ignorespaces#5}%
+  }%
+}{%
+  \scr@ifexpected\@ssect{%
+    \def\@ssect#1#2#3#4#5{%
+      \H@old@ssect{#1}{#2}{#3}{#4}{\phantomsection\ignorespaces#5}%
+    }%
+  }{}{%
+    \PackageWarningNoLine{scrhack}{unknown \string\@ssect\space
+      definition found!\MessageBreak
+      Maybe you are using a unsupported hyperref version}%
+  }%
+}
+%</hyperref&body>
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \subsection{Der \textsf{floatrow}-Hack}
+%
+% Das \textsf{floatrow}-Paket verwendet das Makro \cs{float@listhead} zum
+% Setzen der Überschriften. Dies wird seit \KOMAScript~3 nicht mehr empfohlen
+% und fliegt demnächst komplett aus der Unterstützung. Stattdessen wird
+% empfohlen, dass Pakete \textsf{tocbasic} unterstützen. Der Aufwand dafür ist
+% sehr gering und wird mit vielen neuen Möglichkeiten belohnt.
+%
+% Dieser Hack rüstet die \textsf{tocbasic}-Unterstützung für \textsf{floatrow}
+% nach.
+%
+% \begin{option}{floatrow}
+% \changes{v3.12}{2013/03/05}{Signalisierung mit \cs{FamilyKeyStateProcessed}}
+% \changes{v3.17}{2015/03/09}{Defaulteinstellung mit
+%   \cs{KOMAExecuteOptions}}
+% \changes{v3.34}{2021/06/03}{Deaktivierung des \textsf{float}-Hacks}
+%    \begin{macrocode}
+%<*package&option>
+\KOMA@ifkey{floatrow}{@scrhack@floatrow}
+\KOMAExecuteOptions{floatrow=true}
+%</package&option>
+%<*package&body>
+\AfterPackage*{floatrow}{%
+  \KOMAoptions{float=false}%
+  \PackageInfo{scrhack}{option `float' deactivated}%
+  \KOMA@key[.scrhack.sty]{floatrow}{%
+    \PackageWarning{scrhack}{option `floatrow' ignored}%
+    \FamilyKeyStateProcessed
+  }%
+  \if@scrhack@floatrow\scr@hack@load\@pkgextension{floatrow}\fi
+}
+%</package&body>
+%    \end{macrocode}
+% \end{option}
+%
+%
+% \begin{macro}{\DeclareNewFloatType}
+% Über die Anweisung \cs{DeclareNewFloatType} wird eine neue Gleitumgebung
+% definiert. Hier muss die neue Erweiterung aus dem dritten Argument
+% \textsf{tocbasic} bekannt gemacht werden.
+% \begin{macro}{\listof}
+% Über die Anweisung \cs{listof} wird ein Verzeichnis für Gleitumgebungen
+% ausgegeben. Hier muss schlicht die entsprechende Anweisung von
+% \textsf{tocbasic} verwendet werden.
+% \begin{macro}{\float@addtolists}
+% Diese Anweisung wird nicht länger benötigt und daher auf die ursprüngliche
+% Definition zurückgesetzt.
+%    \begin{macrocode}
+%<*floatrow&body>
+\scr@ifexpected{\DeclareNewFloatType}{%
+  \long\def\DeclareNewFloatType#1#2{\def\FB@captype{#1}%
+    \expandafter\edef\csname ftype@#1\endcsname{\the\c@float@type}%
+    \addtocounter{float@type}{\value{float@type}}%
+    \@namedef{#1name}{#1}\newcounter{#1}%
+    \expandafter\edef\csname fnum@#1\endcsname
+    {\expandafter\noexpand\csname #1name\endcsname\nobreakspace
+      \expandafter\noexpand\csname the#1\endcsname}%
+    \@namedef{the#1}{\arabic{#1}}\flnew@ext{lo#1}\@namedef{fps@#1}{tbp}%
+    \@namedef{l@#1}{\@dottedtocline{1}{1.5em}{2.3em}}%
+    \caption@setkeys[floatrow]{newfloat}{#2}\let\FR@tmp=\relax
+    \xdef\@tempa{\noexpand\flrow@types{\the\flrow@types \FR@tmp{#1}}}%
+    \@tempa}%
+}{%
+  \scr@ifexpected{\listof}{%
+    \def\listof#1#2{%  
+      \@ifundefined{ext@#1}{\flrow@error{Unknown float style `#1'}}{%
+        \expandafter\providecommand\csname l@#1\endcsname
+        {\@dottedtocline{1}{1.5em}{2.3em}}%
+        \float@listhead{#2}%
+        \begingroup\setlength{\parskip}{\z@}%
+        \@starttoc{\@nameuse{ext@#1}}%
+        \endgroup}}%
+  }{%
+    \RequirePackage{tocbasic}%
+    \PackageInfo{scrhack}{redefining \string\DeclareNewFloatType}%
+%    \end{macrocode}
+% Eigentlich wäre es besser, wie im \textsf{float}-Hack einen Test
+% vorzuschalten, ob die Dateiendung bereits in Gebrauch ist. Aber das würde
+% voraussetzen, dass die Reihenfolge der Anweisungen geändert wird. Dazu
+% stecke ich aber im Code von \textsf{floatrow} zu wenig
+% drin. (\emph{\foreignlanguage{english}{Note: It would be better to first
+%     test, if the new extension is already in use like done at the
+%     \textsf{float} hack. But I don't know the \textsf{floatrow} code good
+%     enough to make such a change!}})
+%    \begin{macrocode}
+    \renewcommand\DeclareNewFloatType[2]{\def\FB@captype{#1}%
+      \expandafter\edef\csname ftype@#1\endcsname{\the\c@float@type}%
+      \addtocounter{float@type}{\value{float@type}}%
+      \@namedef{#1name}{#1}\newcounter{#1}%
+      \expandafter\edef\csname fnum@#1\endcsname
+      {\expandafter\noexpand\csname #1name\endcsname\nobreakspace
+        \expandafter\noexpand\csname the#1\endcsname}%
+      \@namedef{the#1}{\arabic{#1}}\flnew@ext{lo#1}\@namedef{fps@#1}{tbp}%
+%    \end{macrocode}
+% \changes{v3.25}{2018/03/16}{Verwendung von \cs{DeclareTOCStyleEntry}}%^^A
+% Bis Version 3.24 wurde hier nun wie üblich |\l@#1| unter Verwendung von
+% \cs{@dottedtocline} definiert:
+% \begin{verbatim}
+%   \@namedef{l@#1}{\@dottedtocline{1}{1.5em}{2.3em}}%
+% \end{verbatim}
+% Da aber \Package{tocbasic} inzwischen diese schöne Schnittstelle für die
+% Verzeichniseinträge bietet, verwenden wir die hier nun auch:
+%    \begin{macrocode}
+      \DeclareTOCStyleEntry[level=1,numwidth=2.3em,indent=1.5em]{default}{#1}%
+      \caption@setkeys[floatrow]{newfloat}{#2}\let\FR@tmp=\relax
+      \xdef\@tempa{\noexpand\flrow@types{\the\flrow@types \FR@tmp{#1}}}%
+      \@tempa
+      \xdef\@tempa{\noexpand\addtotoclist[float]{\@nameuse{ext@\FB@captype}}%
+        \noexpand\setuptoc{\@nameuse{ext@\FB@captype}}{chapteratlist}%
+      }%
+      \@tempa
+    }%
+    \PackageInfo{scrhack}{redefining \string\listof}%
+    \renewcommand*\listof[2]{%
+      \@ifundefined{ext@#1}{\flrow@error{Unknown float style `#1'}}{%
+        \@ifundefined{l@#1}{\expandafter\let\csname l@#1\endcsname\l@figure
+          \@ifundefined{l@#1}{%
+%    \end{macrocode}
+% Siehe die Anmerkung zur Verwendung von \cs{DeclareTOCStyleEntry} oben.
+%    \begin{macrocode}
+            \DeclareTOCStyleEntry[level=1,numwidth=2.3em,indent=1.5em]
+            {default}{#1}%
+          }{}%
+        }{}%
+        \listoftoc[{#2}]{\csname ext@#1\endcsname}%
+      }%
+    }%
+    \scr@ifexpected{\float@addtolists}{%
+      \long\def\float@addtolists#1{%
+        \def\float@do##1{\addtocontents{##1}{#1}} \the\float@exts}%
+    }{%
+      \PackageInfo{scrhack}{undefining \string\float@addtolists}%
+      \let\float@addtolists\relax
+    }{%
+      \PackageWarningNoLine{scrhack}{unkown \string\float@addtolists\space
+        definition found!\MessageBreak
+        Maybe you are using a unsupported floatrow version}%
+    }%
+  }{%
+    \PackageWarningNoLine{scrhack}{unknown \string\listof\space
+      definition found!\MessageBreak
+      Maybe you are using a unsupported floatrow version}%
+  }%
+}{%
+  \PackageWarningNoLine{scrhack}{unknown \string\DeclareNewFloatType\space
+    definition found!\MessageBreak
+    Maybe you are using a unsupported floatrow version}%
+}
+%</floatrow&body>
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% 
+%
+% \subsection{Der \textsf{float}-Hack}
+%
+% Das \textsf{float}-Paket verwendet das Makro \cs{float@listhead} zum
+% Setzen der Überschriften. Dies wird seit \KOMAScript~3 nicht mehr empfohlen
+% und fliegt demnächst komplett aus der Unterstützung. Stattdessen wird
+% empfohlen, dass Pakete \textsf{tocbasic} unterstützen. Der Aufwand dafür ist
+% sehr gering und wird mit vielen neuen Möglichkeiten belohnt.
+%
+% Dieser Hack rüstet die \textsf{tocbasic}-Unterstützung für \textsf{float}
+% nach.
+%
+% \begin{option}{float}
+% \changes{v3.12}{2013/03/05}{Signalisierung mit
+%     \cs{FamilyKeyStateProcessed}}%^^A
+% \changes{v3.17}{2015/03/09}{Defaulteinstellung mit
+%     \cs{KOMAExecuteOptions}}%^^A
+%    \begin{macrocode}
+%<*package&option>
+\KOMA@ifkey{float}{@scrhack@float}%
+\KOMAExecuteOptions{float=true}%
+%</package&option>
+%<*package&body>
+\AfterPackage*{float}{%
+  \KOMA@key[.scrhack.sty]{float}{%
+    \PackageWarning{scrhack}{option `float' ignored}%
+    \FamilyKeyStateProcessed
+  }%
+  \if@scrhack@float\scr@hack@load\@pkgextension{float}\fi
+}
+%</package&body>
+%    \end{macrocode}
+% \end{option}
+%
+%
+% \begin{macro}{\newfloat}
+% \changes{v3.28}{2019/11/19}{\cs{ifattoclist} replaced by
+%   \cs{Ifattoclist}}%^^A
+% Über die Anweisung \cs{newfloat} wird eine neue Gleitumgebung
+% definiert. Hier muss die neue Erweiterung aus dem dritten Argument
+% \textsf{tocbasic} bekannt gemacht werden.
+% \begin{macro}{\listof}
+% Über die Anweisung \cs{listof} wird ein Verzeichnis für Gleitumgebungen
+% ausgegeben. Hier muss schlicht die entsprechende Anweisung von
+% \textsf{tocbasic} verwendet werden.
+% \begin{macro}{\float@addtolists}
+% Diese Anweisung wird nicht länger benötigt und daher auf die ursprüngliche
+% Definition zurückgesetzt.
+%    \begin{macrocode}
+%<*float&body>
+\scr@ifexpected{\newfloat}{%
+  \long\def\newfloat#1#2#3{\@namedef{ext@#1}{#3}
+    \let\float@do=\relax
+    \xdef\@tempa{\noexpand\float@exts{\the\float@exts \float@do{#3}}}%
+    \@tempa
+    \floatplacement{#1}{#2}%
+    \@ifundefined{fname@#1}{\floatname{#1}{#1}}{}
+    \expandafter\edef\csname ftype@#1\endcsname{\value{float@type}}%
+    \addtocounter{float@type}{\value{float@type}}
+    \restylefloat{#1}%
+    \expandafter\edef\csname fnum@#1\endcsname%
+    {\expandafter\noexpand\csname fname@#1\endcsname{}
+      \expandafter\noexpand\csname the#1\endcsname}
+    \@ifnextchar[%]
+    {\float@newx{#1}}%
+    {\@ifundefined{c@#1}{\newcounter{#1}\@namedef{the#1}{\arabic{#1}}}%
+      {}}}%
+}{%
+  \scr@ifexpected{\listof}{%
+    \def\listof#1#2{%  
+      \@ifundefined{ext@#1}{\float@error{#1}}{%
+        \@namedef{l@#1}{\@dottedtocline{1}{1.5em}{2.3em}}%
+        \float@listhead{#2}%
+        \begingroup\setlength{\parskip}{\z@}%
+        \@starttoc{\@nameuse{ext@#1}}%
+        \endgroup}}%
+  }{%
+    \RequirePackage{tocbasic}%
+    \PackageInfo{scrhack}{redefining \string\newfloat}%
+    \renewcommand\newfloat[3]{%
+      \Ifattoclist{#3}{%
+        \PackageError{scrhack}{extension `#3' already in use}{%
+          Each extension may be used only once.\MessageBreak
+          You, the class, or another package already uses extension
+          `#3'.\MessageBreak
+          \string\newfloat\space command will be ignored!}%
+      }{%
+        \addtotoclist[float]{#3}%
+        \setuptoc{#3}{chapteratlist}%
+        \@namedef{ext@#1}{#3}%
+        \let\float@do=\relax
+        \xdef\@tempa{\noexpand\float@exts{\the\float@exts \float@do{#3}}}%
+        \@tempa
+        \floatplacement{#1}{#2}%
+        \@ifundefined{fname@#1}{\floatname{#1}{#1}}{}%
+        \expandafter\edef\csname ftype@#1\endcsname{\value{float@type}}%
+        \addtocounter{float@type}{\value{float@type}}
+        \restylefloat{#1}%
+        \expandafter\edef\csname fnum@#1\endcsname%
+        {\expandafter\noexpand\csname fname@#1\endcsname{}
+          \expandafter\noexpand\csname the#1\endcsname}%
+        \@ifnextchar[%]
+        {\float@newx{#1}}%
+        {\@ifundefined{c@#1}{\newcounter{#1}\@namedef{the#1}{\arabic{#1}}}%
+          {}}}%
+    }%
+    \PackageInfo{scrhack}{redefining \string\listof}%
+    \renewcommand*\listof[2]{%
+      \@ifundefined{ext@#1}{\float@error{#1}}{%
+        \@ifundefined{l@#1}{\expandafter\let\csname l@#1\endcsname\l@figure
+          \@ifundefined{l@#1}{%
+%    \end{macrocode}
+% \changes{v3.25}{2018/03/16}{Verwendung von \cs{DeclareTOCStyleEntry}}%^^A
+% Bis Version 3.24 wurde hier nun wie üblich |\l@#1| unter Verwendung von
+% \cs{@dottedtocline} definiert:
+% \begin{verbatim}
+%   \@namedef{l@#1}{\@dottedtocline{1}{1.5em}{2.3em}}%
+% \end{verbatim}
+% Da aber \Package{tocbasic} inzwischen diese schöne Schnittstelle für die
+% Verzeichniseinträge bietet, verwenden wir die hier nun auch:
+%    \begin{macrocode}
+            \DeclareTOCStyleEntry[level=1,numwidth=2.3em,indent=1.5em]
+            {default}{#1}%
+          }{}%
+        }{}%
+        \listoftoc[{#2}]{\csname ext@#1\endcsname}%
+      }%
+    }%
+    \scr@ifexpected{\float@addtolists}{%
+      \long\def\float@addtolists#1{%
+        \def\float@do##1{\addtocontents{##1}{#1}} \the\float@exts}%
+    }{%
+      \PackageInfo{scrhack}{undefining \string\float@addtolists}%
+      \let\float@addtolists\relax
+    }{%
+      \PackageWarningNoLine{scrhack}{unkown \string\float@addtolists\space
+        definition found!\MessageBreak
+        Maybe you are using a unsupported float version}%
+    }%
+  }{%
+    \PackageWarningNoLine{scrhack}{unknown \string\listof\space
+      definition found!\MessageBreak
+      Maybe you are using a unsupported float version}%
+  }%
+}{%
+  \PackageWarningNoLine{scrhack}{unknown \string\newfloat\space
+    definition found!\MessageBreak
+    Maybe you are using a unsupported float version}%
+}
+%</float&body>
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% 
+%
+% \subsection{Der \textsf{listings}-Hack}
+%
+% Das \textsf{listings}-Paket verwendet das Makro \cs{float@listhead} zum
+% Setzen der Überschriften. Dies wird seit \KOMAScript~3 nicht mehr empfohlen
+% und fliegt demnächst komplett aus der Unterstützung. Stattdessen wird
+% empfohlen, dass Pakete \textsf{tocbasic} unterstützen. Der Aufwand dafür ist
+% sehr gering und wird mit vielen neuen Möglichkeiten belohnt.
+%
+% Dieser Hack rüstet die \textsf{tocbasic}-Unterstützung für \textsf{listings}
+% nach.
+%
+% \begin{option}{listings}
+% \changes{v3.12}{2013/03/05}{Signalisierung mit
+%     \cs{FamilyKeyStateProcessed}}%^^A
+% \changes{v3.17}{2015/03/09}{Defaulteinstellung mit
+%     \cs{KOMAExecuteOptions}}%^^A
+%    \begin{macrocode}
+%<*package&option>
+\KOMA@ifkey{listings}{@scrhack@listings}
+\KOMAExecuteOptions{listings=true}
+%</package&option>
+%<*package&body>
+\AfterPackage*{listings}{%
+  \KOMA@key[.scrhack.sty]{listings}{%
+    \PackageWarning{scrhack}{option `listings' ignored}%
+    \FamilyKeyStateProcessed
+  }%
+  \if@scrhack@listings\scr@hack@load\@pkgextension{listings}\fi
+}
+%</package&body>
+%    \end{macrocode}
+% \end{option}
+%
+%
+% \begin{macro}{\scr@do@hack@listings}
+% \begin{macro}{\lstlistoflistings}
+% Über dieses Macro wird das Verzeichnis der Listings gesetzt. Die gesamte
+% Funktionalität dafür kann \Package{tocbasic} überlassen werden.
+% \begin{macro}{\float@addtolists}
+% Diese Anweisung wird nicht länger benötigt und daher auf die ursprüngliche
+% Definition zurückgesetzt. Da \Package{listings} ihre Definition mit
+% \Macro{AtBeginDocument} verzögert, muss dies hier ebenfalls geschehen.
+%    \begin{macrocode}
+%<*listings&body>
+\newcommand*{\scr@do@hack@listings}{%
+  \RequirePackage{tocbasic}%
+  \addtotoclist[float]{lol}%
+  \setuptoc{lol}{chapteratlist}%
+  \PackageInfo{scrhack}{redefining \string\lstlistoflistings}%
+  \renewcommand*{\lstlistoflistings}{\listoftoc[{\lstlistlistingname}]{lol}}%
+  \AtBeginDocument{%
+    \scr@ifexpected{\float@addtolists}{%
+      \def\float@addtolists##1{\addtocontents{lol}{##1}}%
+    }{%
+      \PackageInfo{scrhack}{undefining \string\float@addtolists}%
+      \let\float@addtolists\relax
+    }{%
+      \scr@ifexpected{\float@addtolists}{%
+        \def\float@addtolists##1{\addtocontents{lol}{##1}%
+          \orig@float@addtolists{##1}}%
+      }{%
+        \PackageInfo{scrhack}{setting \string\float@addtolists\MessageBreak
+          to \string\orig@float@addtolists}%
+        \let\float@addtolists\orig@float@addtolists
+      }{%
+        \PackageWarningNoLine{scrhack}{unkown \string\float@addtolists\space
+          definition found!\MessageBreak
+          Maybe you are using a unsupported listings version}%
+      }%
+    }%
+  }%
+%    \end{macrocode}
+% \changes{v3.30}{2020/04/01}{setzen von \cs{@captype} ergänzt}%^^A
+% Ab Version~3.30 wird zusätzlich \cs{lst@makecaption} um das Setzen von
+% \cs{@captype} auf \texttt{lstlisting} ergänzt. Dadurch wird auch die
+% Verwendung von \cs{raggedlstlistingcaption} ermöglicht, falls dieses
+% definiert wird. Die Umdefinierung erfolgt in Form einer Erweiterung der
+% Definition aus \textsf{listings}. Das sollte so lange funktionieren, solange
+% die Anweisung in \textsf{listings} keine Argumente hat.
+%    \begin{macrocode}
+  \expandafter\def\expandafter\lst@makecaption\expandafter{%
+    \expandafter\def\expandafter\@captype\expandafter{%
+      \expandafter l\expandafter s\expandafter t\expandafter l%
+      \expandafter i\expandafter s\expandafter t\expandafter i%
+      \expandafter n\expandafter g\expandafter}\lst@makecaption
+  }%
+  \let\scr@do@hack@listings\relax
+}
+\scr@ifexpected{\lstlistoflistings}{%
+  \def\lstlistoflistings{\bgroup
+    \let\contentsname\lstlistlistingname
+    \let\lst@temp\@starttoc \def\@starttoc##1{\lst@temp{lol}}%
+    \tableofcontents \egroup}%
+}{%
+  \scr@do@hack@listings
+}{%
+  \scr@ifexpected{\lstlistoflistings}{%
+    \def\lstlistoflistings{%
+      \begingroup
+        \@ifundefined{@restonecoltrue}{}{%
+          \if@twocolumn
+            \@restonecoltrue\onecolumn
+          \else
+            \@restonecolfalse
+          \fi
+        }%
+        \float@listhead{\lstlistlistingname}%
+        \parskip\z@\parindent\z@\parfillskip \z@ \@plus 1fil%
+        \@starttoc{lol}%
+        \@ifundefined{@restonecoltrue}{}{%
+          \if@restonecol\twocolumn\fi
+        }%
+      \endgroup
+    }%
+  }{%
+    \scr@do@hack@listings
+  }{%
+    \PackageWarningNoLine{scrhack}{unknown \string\lstlistoflistings\space
+      definition found!\MessageBreak
+      Maybe you are using a unsupported listings version}%
+  }%
+}
+%</listings&body>
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+%
+% \subsection{Der \textsf{nomencl}-Hack}
+%
+% Das \textsf{nomencl}-Paket harmoniert eigentlich nur in einer Kleinigkeit
+% bezüglich des Eintrags in das Inhaltsverzeichnis nicht sehr gut mit
+% \KOMAScript-Klassen bzw. Paket \textsf{tocbasic}. Allerdings kann es von den
+% Vorteilen von \textsf{tocbasic} auch in weiterer Hinsicht profitieren.
+%
+% Dieser Hack rüstet weitgehende \textsf{tocbasic}-Unterstützung für
+% \textsf{nomencl} nach. Dafür wird Paket \textsf{xpatch} verwendet.
+%
+% \begin{option}{nomencl}
+% \changes{v3.23}{2017/03/31}{neue Option für neuen Hack}%^^A
+%    \begin{macrocode}
+%<*package&option>
+\RequirePackage{xpatch}%
+\KOMA@ifkey{nomencl}{@scrhack@nomencl}
+\KOMAExecuteOptions{nomencl=true}
+%</package&option>
+%<*package&body>
+\AfterPackage*{nomencl}{%
+  \KOMA@key[.scrhack.sty]{nomencl}{%
+    \PackageWarning{scrhack}{option `nomencl' ignored}%
+    \FamilyKeyStateProcessed
+  }%
+  \if@scrhack@nomencl\scr@hack@load\@pkgextension{nomencl}\fi
+}
+%</package&body>
+%    \end{macrocode}
+% \end{option}%^^A nomencl
+%
+% \begin{macro}{\thenomenclature}
+% \changes{v3.23}{2017/03/31}{Umgebung \texttt{thenomenclature} wird
+%     gepatcht}%^^A
+% Statt die Fallunterscheidung aus der Originaldefinition direkt hier
+% nachzubilden, patchen wir diese komplett heraus und ersetzen sie durch eine
+% neue Anweisung.
+%    \begin{macrocode}
+%<*nomencl&body>
+\RequirePackage{tocbasic}
+%    \end{macrocode}
+% With \Package{nomencl} > 5.0 this should be all.
+%    \begin{macrocode}
+\@ifpackagelater{nomencl}{2019/01/01}{%
+  \PackageInfo{scrhack}{only `tocbasic' loaded for `nomencl'}%
+  \expandafter\endinput
+}{}
+%    \end{macrocode}
+% Otherwise we have to patch it.
+%    \begin{macrocode}
+\addtotoclist[nomencl]{nlo}
+\addtotoclist[nomencl]{nls}
+\xpatchcmd{\thenomenclature}{%
+  \@ifundefined{chapter}%
+  {
+    \section*{\nomname}
+    \if@intoc\addcontentsline{toc}{section}{\nomname}\fi%
+  }%
+  {
+    \chapter*{\nomname}
+    \if@intoc\addcontentsline{toc}{chapter}{\nomname}\fi%
+  }%
+}{%
+  \scr@hack@nomencl@head
+}{%
+  \PackageInfo{scrhack}{\string\thenomenclature\space successfully patched}%
+}{%
+%    \end{macrocode}
+% \changes{v3.26b}{2019/01/23}{new \textsf{nomencl} 5.0}%^^A
+% From \textsf{nomencl} 5.0 another code is used if the nomenclature is a
+% chapter. So we need another patch:
+%    \begin{macrocode}
+  \xpatchcmd{\thenomenclature}{%
+    \@ifundefined{chapter}%
+    {
+      \section*{\nomname}
+      \if@intoc\addcontentsline{toc}{section}{\nomname}\fi%
+    }%
+    {
+      \chapter*{\nomname}
+      \markboth{\nomname}{\nomname}%
+      \if@intoc\addcontentsline{toc}{chapter}{\nomname}\fi%
+    }%
+  }{%
+    \scr@hack@nomencl@head
+  }{%
+    \PackageInfo{scrhack}{\string\thenomenclature\space successfully patched}%
+  }{%
+%    \end{macrocode}
+% \changes{v3.26b}{2019/01/23}{prepared for hoply comming \textsf{nomencl}}%^^A
+% But this code is also wrong, because it breaks manual running heads, e.g.,
+% of page style \texttt{myheadings}. So I hope, there will be another code,
+% that needs a somehow different patch:
+%    \begin{macrocode}
+    \xpatchcmd{\thenomenclature}{%
+      \@ifundefined{chapter}%
+      {
+        \section*{\nomname}
+        \if@intoc\addcontentsline{toc}{section}{\nomname}\fi%
+      }%
+      {
+        \chapter*{\nomname}
+        \@mkboth{\nomname}{\nomname}%
+        \if@intoc\addcontentsline{toc}{chapter}{\nomname}\fi%
+      }%
+    }{%
+      \scr@hack@nomencl@head
+    }{%
+      \PackageInfo{scrhack}{\string\thenomenclature\space successfully patched}%
+    }{%
+%    \end{macrocode}
+% \changes{v3.25}{2019/01/23}{emergency patch added}%^^A
+% \changes{v3.30}{2020/02/25}{spurious space in warning message removed}%^^A
+% If this also does not work, we try an emergency patch, that could break
+% things.
+%    \begin{macrocode}
+      \xpatchcmd{\thenomenclature}{%
+        \@ifundefined{chapter}%
+      }{%
+        \scr@hack@nomencl@head
+        \@gobbletwo
+      }{%
+        \PackageWarning{scrhack}{%
+          using emergency patch of \string\thenomenclature.\MessageBreak
+          This could happen if you are using an unknown\MessageBreak
+          release of package `nomencl'.\MessageBreak
+          Mostly this patch does work too, but it also could\MessageBreak
+          break `nomencl`. If this happens, please deactivate\MessageBreak
+          the `nomencl` hack of `scrhack`%
+        }%
+      }{%
+        \PackageWarning{scrhack}{%
+          cannot patch \string\thenomenclature.\MessageBreak 
+          This could happen if you are using an unknown\MessageBreak
+          release of package `nomencl'%
+        }%
+      }%
+    }%
+  }%
+}
+%</nomencl&body>
+%    \end{macrocode}
+% \end{macro}%^^A \thenomenclature
+%
+% \begin{macro}{\scr@hack@nomencl@head}
+% \changes{v3.23}{2017/03/31}{Überschrift für \texttt{thenomenclature} unter
+%   Verwendung von \textsf{tocbasic}}%^^A
+% \changes{v3.31}{2020/07/08}{internal \cs{list@fname} eliminated}%^^A
+% Im Gegensatz zu Gleitumgebungen benötigen wir hier keine Gruppe, weil
+% \texttt{thenomenclature} bereits die Gruppe bereitstellt.
+%    \begin{macrocode}
+%<*nomencl&body>
+\newcommand*{\scr@hack@nomencl@head}{%
+  \providecommand*{\listofnlsname}{\nomname}%
+  \def\@currext{nls}%
+  \tocbasic@listhead{\nomname}%
+}
+%</nomencl&body>
+%    \end{macrocode}
+% Es ist ggf. noch zu beachten, dass von den ganzen Haken, die
+% \textsf{tocbasic} bereitstellt, für dieses Verzeichnis natürlich nur die
+% Überschriftenhaken zum Einsatz kommen. Verzeichnishaken können zwar
+% definiert werden, kommen aber nie zur Anwendung.
+% \end{macro}%^^A \scr@hack@nomencl@head
+%
+% \begin{macro}{\if@intoc}
+% \changes{3.23}{2017/03/31}{Reaktion auf \cs{if@intoc}}
+%   Natürlich muss jetzt noch auf \textsf{nomencl}'s Option \texttt{intoc}
+%   reagiert werden, also entsprechend der Option das \textsf{tocbasic}
+%   Feature \texttt{totoc} passend gesetzt werden. Etwaige Änderungen des
+%   Features sind also erst nach dem Laden von \textsf{nomencl} und
+%   \textsf{scrhack} möglich. Spätere Änderungen von \cs{if@intoc} werden
+%   außerdem nicht berücksichtigt.
+%    \begin{macrocode}
+%<*nomencl&body>
+\if@intoc
+  \setuptoc{nls}{totoc}
+\fi
+%</nomencl&body>
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsection{Der \textsf{setspace}-Hack}
+%
+% Das \textsf{setspace}-Paket verwendet \cs{@ptsize} auf ungünstige Art, indem
+% es davon ausgeht, dass es immer eine ganze Zahl enthält. Das ist aber bei
+% \KOMAScript{} keineswegs zwingend. Außerdem ist der Wert für \texttt{11pt}
+% falsch, weil \LaTeX{} in diesem Fall tatsächlich eine 10,95\,pt-Schrift mit
+% einem Zeilenabstand von 13,6\,pt einstellt. Damit wäre der korrekte Wert für
+% \cs{onehalfspacing} beispielsweise:
+% \[ 10{,}95\,\mathrm{pt} \dot 1{,5} / 13{,}6\,\mathrm{pt} \equiv 1{,}208 \]
+% Tatsächlich stellt \textsf{setspace} aber einen Wert von 1,213 ein, was
+% einer effektiven Schriftgröße von 11\,pt entsprechen würde. Ebenso stellt es
+% den aktuellen Abstand bei \cs{onehalfspacing} nicht relativ zur aktuellen
+% Schriftgröße ein, sondern zur Grundschriftgröße. Damit erhält man bei
+% \begin{verbatim}
+% \documentclass[10pt]{article}
+% \usepackage{setspace}
+% \begin{document}
+% \large\onehalfspacing\raggedright
+% Fontsize: \csname f@size\endcsname pt\\
+% Normal baselineskip: \csname f@baselineskip\endcsname\\
+% baselineskip: \the\baselineskip
+% \end{document}
+% \end{verbatim}
+% einen anderen Abstand als bei
+% \begin{verbatim}
+% \documentclass[11pt]{article}
+% \usepackage{setspace}
+% \begin{document}
+% \large\onehalfspacing\raggedright
+% Fontsize: \csname f@size\endcsname pt\\
+% Normal baselineskip: \csname f@baselineskip\endcsname\\
+% baselineskip: \the\baselineskip
+% \end{document}
+% \end{verbatim}
+% obwohl beide Male dieselbe Schriftgröße verwendet wird. Streng genommen
+% müsste also bei jeder Änderung der Schriftgröße der Wert Abstand angepasst
+% werden. So weit geht dieser Hack nicht. Stattdessen wird der Wert abhängig
+% von der tatsächlichen Schriftgröße und dem tatsächlichen Basisabstand beim
+% Aufruf der Anweisungen eingestellt. Das ergibt immerhin in den obigen
+% Beispielen gleiche Ergebnisse.
+%
+% \begin{option}{setspace}
+% \changes{v3.17}{2015/04/16}{Neu}%^^A
+%    \begin{macrocode}
+%<*package&option>
+\KOMA@ifkey{setspace}{@scrhack@setspace}
+\KOMAExecuteOptions{setspace=true}
+%</package&option>
+%<*package&body>
+\AfterPackage*{setspace}{%
+  \KOMA@key[.scrhack.sty]{setspace}{%
+    \PackageWarning{scrhack}{option `setspace' ignored}%
+    \FamilyKeyStateProcessed
+  }%
+  \if@scrhack@setspace\scr@hack@load\@pkgextension{setspace}\fi
+}
+%</package&body>
+%    \end{macrocode}
+% \end{option}
+%
+%
+% \begin{macro}{\onehalfspacing}
+% \changes{v3.17}{2015/04/16}{Neu}%^^A
+% Über diese Anweisung wird der eineinhalbzeilige Satz eingestellt. Ein auf
+% drei Nachkommastellen genauer Wert erscheint mir ausreichend genau.
+%    \begin{macrocode}
+%<*setspace&body>
+\scr@ifexpected{\onehalfspacing}{%
+  \long\def\onehalfspacing{%
+    \setstretch{1.25}%  default
+    \ifcase \@ptsize \relax % 10pt
+      \setstretch {1.25}%
+    \or % 11pt
+      \setstretch {1.213}%
+    \or % 12pt
+      \setstretch {1.241}%
+    \fi
+  }%
+}{%
+  \renewcommand*{\onehalfspacing}{%
+    \@tempdima=\dimexpr (\f@size pt)*1500/
+                        (\dimexpr \f@baselineskip\relax)*\p@/1000\relax
+    \expandafter\setstretch\expandafter{\strip@pt\@tempdima}%
+  }%
+}{%
+  \PackageWarning{scrhack}{unknown \string\onehalfspacing\space
+    definition found!\MessageBreak
+    Maybe you are using a unsupported setpace version}%
+}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\doublespacing}
+% \changes{v3.17}{2015/04/16}{Neu}%^^A
+% Über diese Anweisung wird der zweizeilige Satz eingestellt. Ein auf
+% drei Nachkommastellen genauer Wert erscheint mir ausreichend genau.
+%    \begin{macrocode}
+\scr@ifexpected{\doublespacing}{%
+  \long\def\doublespacing{%
+    \setstretch{1.667}%  default
+    \ifcase \@ptsize \relax % 10pt
+      \setstretch {1.667}%
+    \or % 11pt
+      \setstretch {1.618}%
+    \or % 12pt
+      \setstretch {1.655}%
+    \fi
+  }%
+}{%
+  \renewcommand*{\doublespacing}{%
+    \@tempdima=\dimexpr (\f@size pt)*2000/
+                        (\dimexpr \f@baselineskip\relax)*\p@/1000\relax
+    \expandafter\setstretch\expandafter{\strip@pt\@tempdima}%
+  }%
+}{%
+  \PackageWarning{scrhack}{unknown \string\doublespacing\space
+    definition found!\MessageBreak
+    Maybe you are using a unsupported setpace version}%
+}
+%</setspace&body>
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsection{Der \textsf{lscape}-Hack}
+% \changes{v3.18a}{2015/07/07}{Neuer \textsf{lscape}-Hack}%^^A
+%
+% Das \textsf{lscape}-Paket setzt innerhalb der
+% \texttt{landscape}-Umgebung die Länge \cs{textheight} auf den Wert
+% von \cs{textwidth} obwohl es auf der anderen Seite \cs{textwidth}
+% nicht auf den Wert von \cs{textheight} setzt. Das ist inkonsequent. Da
+% David~Carlisle außerdem angibt, dass \cs{textwidth} nicht verändert wird,
+% weil das zu Problemen führen konnte, ist es unverständlich, dass
+% \cs{textheight} verändert wird, obwohl das ebenfalls zu Problemen führen
+% kann, beispielsweise für \textsf{showframe} oder \textsf{scrpage}. Daher
+% verändere ich die Definition so, dass auch \cs{textheight} unverändert
+% bleibt. Dabei muss allerdings auch \textsf{pdflscape} berücksichtigt
+% werden. Das ist am einfachsten mit \textsf{xpatch}.
+%
+% \begin{option}{lscape}
+% \changes{v3.18a}{2015/07/07}{Neue Option für neuen Hack}%^^A
+% \changes{v3.20}{2016/05/07}{\textsf{xpatch} wird bereits im Optionenteil
+%     geladen}%^^A
+%    \begin{macrocode}
+%<*package&option>
+\RequirePackage{xpatch}%
+\KOMA@ifkey{lscape}{@scrhack@lscape}%
+\KOMAExecuteOptions{lscape=true}%
+%</package&option>
+%<*package&body>
+\AfterPackage*{lscape}{%
+  \if@scrhack@lscape\scr@hack@load\@pkgextension{lscape}\else
+    \KOMA@key[.scrhack.sty]{lscape}{%
+      \PackageWarning{scrhack}{option `lscape' ignored}%
+      \FamilyKeyStateProcessed
+    }%
+  \fi
+}
+%</package&body>
+%    \end{macrocode}
+% \end{option}
+%
+% \begin{macro}{\landscape}
+% \changes{v3.18a}{2015/07/07}{Neu}%^^A
+% \changes{v3.20}{2016/05/07}{\textsf{xpatch} wird bereits im Optionenteil
+%     geladen}%^^A
+% Über diese Anweisung wird die \texttt{landscape}-Umgebung von
+% \textsf{lscape} gestartet. Genau diese muss gepatcht werden. Dafür wird das
+% Paket \textsf{xpatch} benötigt. Da der Patch nur geladen wird, wenn die
+% Option dafür gesetzt ist, kann die Option daher nur ein- und ausgeschaltet
+% werden, wenn sie bis zum Laden des Pakets aktiviert wurde.
+%    \begin{macrocode}
+%<*lscape&body>
+\xpatchcmd{\landscape}{\textheight=\vsize}{%
+  \if@scrhack@lscape
+%    \end{macrocode}
+% \changes{v3.18a}{2015/08/11}{Patchen von \cs{@outputpage}}%^^A
+% Es gibt allerdings in der Tat eine Stelle, an der ein verändertet Wert von
+% \cs{textheight} benötigt wird. Das ist wenn innerhalb von \cs{@outputpage}
+% der Wert von \cs{@colht} reinitialisiert wird. Also wird das entsprechend
+% auch noch hinein gepatcht.
+%    \begin{macrocode}
+    \scrh@LT@textheight=\vsize
+    \let\scrh@LT@outputpage\@outputpage
+    \def\@outputpage{\scrh@LT@outputpage\global\@colht\scrh@LT@textheight}% 
+  \else
+    \textheight=\vsize
+  \fi
+}{%
+  \PackageInfo{scrhack}{\string\landscape\space patched to make
+    \string\textheight\space change optional}%
+}{%
+  \PackageWarning{scrhack}{Cannot patch \string\landscape!\MessageBreak
+    Maybe you are using a unsupported lscape version}%
+  \@scrhack@lscapefalse
+}
+%    \end{macrocode}
+% \begin{Length}{\scrh@LT@textheight}
+% \changes{v3.18a}{2015/08/11}{neue Länge (intern)}%^^A
+%    \begin{macrocode}
+\newlength{\scrh@LT@textheight}
+%</lscape&body>
+%    \end{macrocode}
+% \end{Length}%^^A \scrh@LT@textheight
+% \end{macro}%^^A \landscape
+%
+%
+% \selectlanguage{english}
+% \subsection{The standard classes sections hack}
+% \label{sec:standardsections}
+% The \emph{standard classes sections hack} differs from each other
+% hack. First of all it does not patch a specific package but the class
+% definitions of section commands from \cs{part} till
+% \cs{subparagraph}. Additionally it resets several internal \LaTeX{} macros
+% which are changed by \KOMAScript{} classes to their original
+% definition. Last but not least it is not activated by default, but the user
+% has to activate it, if he needs it. The hack has more potential to break
+% things than to make things better. Because of this, there is not any support
+% for using this hack and the hack shows several warning messages.
+%
+% \begin{option}{standardsections}
+%    \begin{macrocode}
+%<*package&option>
+\KOMA@ifkey{standardsections}{@scrhack@standardsections}
+\KOMAExecuteOptions{standardsections=false}
+%</package&option>
+%<*package&body>
+\AtEndOfPackage{%
+  \if@scrhack@standardsections
+    \PackageInfo{scrhack}{loading standard classes sections hack}%
+    \input{standardsections.hak}%
+  \fi
+}
+%</package&body>
+%    \end{macrocode}
+% \end{option}%^^A standardsections
+%
+% \begin{macro}{\part}
+% \begin{macro}{\chapter}
+% \begin{macro}{\section}
+% \begin{macro}{\subsection}
+% \begin{macro}{\subsubsection}
+% \begin{macro}{\paragraph}
+% \begin{macro}{\subparagraph}
+% The hack redefines all these commands to a definition copied from the
+% standard \LaTeX{} classes version v1.4i. Copyright of this code is by the
+% \LaTeX3{} Project. The complete, unmodified code can be found on
+% \url{https://ctan.org/tex-archive/macros/latex/base/classes.dtx}.
+%    \begin{macrocode}
+%<*standardsections&body>
+\PackageWarningNoLine{scrhack}{%
+  You are loosing every kind of support because of\MessageBreak
+  using the dangerous standard classes sections hack!\MessageBreak
+  This hack can break several classes and packages.\MessageBreak
+  However, sometimes it is needed to make a\MessageBreak
+  package work%
+}%
+\PackageInfo{scrhack}{%
+  Using code from the standard LaTeX classes.\MessageBreak
+  For more information about this code and the\MessageBreak
+  license of this code, please see:\MessageBreak
+  https://ctan.org/tex-archive/macros/latex/base/classes.dtx
+}%
+\@ifpackageloaded{hyperref}{%
+  \PackageWarning{scrhack}{this hack should not be loaded after `hyperref'}%
+}{}
+\@ifpackageloaded{titlesec}{%
+  \PackageWarning{scrhack}{this hack should not be loaded after `titlesec'}%
+}{}
+\@ifpackageloaded{sectsty}{%
+  \PackageWarning{scrhack}{this hack should not be loaded after `sectsty'}%
+}{}
+\@ifpackageloaded{sectsty}{%
+  \PackageWarning{scrhack}{this hack should not be loaded after `sectsty'}%
+}{}
+\scr@ifundefinedorrelax{chapter}{%
+%    \end{macrocode}
+% It seems to be an article class, so we use the code from \textsf{article}.
+%    \begin{macrocode}
+  \scr@ifundefinedorrelax{c@part}{\newcounter{part}}{}%
+  \scr@ifundefinedorrelax{c@section}{\newcounter{section}}{}%
+  \scr@ifundefinedorrelax{c@subsection}{\newcounter{subsection}[section]}{}%
+  \scr@ifundefinedorrelax{c@subsubsection}{%
+    \newcounter{subsubsection}[subsection]}{}%
+  \scr@ifundefinedorrelax{c@paragraph}{%
+    \newcounter{paragraph}[subsubsection]}{}%
+  \scr@ifundefinedorrelax{c@subparagraph}{%
+    \newcounter{subparagraph}[paragraph]}{}%
+  \renewcommand\thepart {\@Roman\c@part}%
+  \renewcommand\thesection {\@arabic\c@section}%
+  \renewcommand\thesubsection   {\thesection.\@arabic\c@subsection}%
+  \renewcommand\thesubsubsection{\thesubsection.\@arabic\c@subsubsection}%
+  \renewcommand\theparagraph    {\thesubsubsection.\@arabic\c@paragraph}%
+  \renewcommand\thesubparagraph {\theparagraph.\@arabic\c@subparagraph}%
+  \def\part{%
+     \if@noskipsec \leavevmode \fi
+     \par
+     \addvspace{4ex}%
+     \@afterindentfalse
+     \secdef\@part\@spart}%
+  \def\@part[#1]#2{%
+      \ifnum \c@secnumdepth >\m@ne
+        \refstepcounter{part}%
+        \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+      \else
+        \addcontentsline{toc}{part}{#1}%
+      \fi
+      {\parindent \z@ \raggedright
+       \interlinepenalty \@M
+       \normalfont
+       \ifnum \c@secnumdepth >\m@ne
+         \Large\bfseries \partname\nobreakspace\thepart
+         \par\nobreak
+       \fi
+       \huge \bfseries #2%
+       \markboth{}{}\par}%
+      \nobreak
+      \vskip 3ex
+      \@afterheading}%
+  \def\@spart#1{%
+      {\parindent \z@ \raggedright
+       \interlinepenalty \@M
+       \normalfont
+       \huge \bfseries #1\par}%
+       \nobreak
+       \vskip 3ex
+       \@afterheading}%
+  \def\section{\@startsection {section}{1}{\z@}%
+                                     {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                     {2.3ex \@plus.2ex}%
+                                     {\normalfont\Large\bfseries}}%
+  \def\subsection{\@startsection{subsection}{2}{\z@}%
+                                       {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                       {1.5ex \@plus .2ex}%
+                                       {\normalfont\large\bfseries}}%
+  \def\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                                       {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                       {1.5ex \@plus .2ex}%
+                                       {\normalfont\normalsize\bfseries}}%
+  \def\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                      {3.25ex \@plus1ex \@minus.2ex}%
+                                      {-1em}%
+                                      {\normalfont\normalsize\bfseries}}%
+  \def\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+                                         {3.25ex \@plus1ex \@minus .2ex}%
+                                         {-1em}%
+                                        {\normalfont\normalsize\bfseries}}%
+}{%
+%    \end{macrocode}
+% It seems to be either a book or report class.
+%    \begin{macrocode}
+  \scr@ifundefinedorrelax{c@part}{\newcounter{part}}{}%
+  \scr@ifundefinedorrelax{c@chapter}{\newcounter{chapter}}{}%
+  \scr@ifundefinedorrelax{c@section}{\newcounter{section}[chapter]}{}%
+  \scr@ifundefinedorrelax{c@subsection}{\newcounter{subsection}[section]}{}%
+  \scr@ifundefinedorrelax{c@subsubsection}{%
+    \newcounter{subsubsection}[subsection]}{}%
+  \scr@ifundefinedorrelax{c@paragraph}{%
+    \newcounter{paragraph}[subsubsection]}{}%
+  \scr@ifundefinedorrelax{c@subparagraph}{%
+    \newcounter{subparagraph}[paragraph]}{}%
+  \def\@chapapp{\chaptername}%
+  \scr@ifundefinedorrelax{frontmatter}{%
+%    \end{macrocode}
+% It seems not to be a book class.
+%    \begin{macrocode}
+    \def\part{%
+      \if@openright
+        \cleardoublepage
+      \else
+        \clearpage
+      \fi
+      \thispagestyle{plain}%
+      \if@twocolumn
+        \onecolumn
+        \@tempswatrue
+      \else
+        \@tempswafalse
+      \fi
+      \null\vfil
+      \secdef\@part\@spart}
+
+    \def\@part[#1]#2{%
+        \ifnum \c@secnumdepth >-2\relax
+          \refstepcounter{part}%
+          \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+        \else
+          \addcontentsline{toc}{part}{#1}%
+        \fi
+        \markboth{}{}%
+        {\centering
+         \interlinepenalty \@M
+         \normalfont
+         \ifnum \c@secnumdepth >-2\relax
+           \huge\bfseries \partname\nobreakspace\thepart
+           \par
+           \vskip 20\p@
+         \fi
+         \Huge \bfseries #2\par}%
+        \@endpart}
+    \def\@spart#1{%
+        {\centering
+         \interlinepenalty \@M
+         \normalfont
+         \Huge \bfseries #1\par}%
+        \@endpart}
+    \def\@endpart{\vfil\newpage
+                  \if@twoside
+                   \if@openright
+                    \null
+                    \thispagestyle{empty}%
+                    \newpage
+                   \fi
+                  \fi
+                  \if@tempswa
+                    \twocolumn
+                  \fi}
+    \def\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+                        \thispagestyle{plain}%
+                        \global\@topnum\z@
+                        \@afterindentfalse
+                        \secdef\@chapter\@schapter}
+    \def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+                             \refstepcounter{chapter}%
+                             \typeout{\@chapapp\space\thechapter.}%
+                             \addcontentsline{toc}{chapter}%
+                                       {\protect\numberline{\thechapter}#1}%
+                        \else
+                          \addcontentsline{toc}{chapter}{#1}%
+                        \fi
+                        \chaptermark{#1}%
+                        \addtocontents{lof}{\protect\addvspace{10\p@}}%
+                        \addtocontents{lot}{\protect\addvspace{10\p@}}%
+                        \if@twocolumn
+                          \@topnewpage[\@makechapterhead{#2}]%
+                        \else
+                          \@makechapterhead{#2}%
+                          \@afterheading
+                        \fi}
+    \def\@makechapterhead#1{%
+      \vspace*{50\p@}%
+      {\parindent \z@ \raggedright \normalfont
+        \ifnum \c@secnumdepth >\m@ne
+            \huge\bfseries \@chapapp\space \thechapter
+            \par\nobreak
+            \vskip 20\p@
+        \fi
+        \interlinepenalty\@M
+        \Huge \bfseries #1\par\nobreak
+        \vskip 40\p@
+      }}
+    \def\@schapter#1{\if@twocolumn
+                       \@topnewpage[\@makeschapterhead{#1}]%
+                     \else
+                       \@makeschapterhead{#1}%
+                       \@afterheading
+                     \fi}
+    \def\@makeschapterhead#1{%
+      \vspace*{50\p@}%
+      {\parindent \z@ \raggedright
+        \normalfont
+        \interlinepenalty\@M
+        \Huge \bfseries  #1\par\nobreak
+        \vskip 40\p@
+      }}
+    \def\section{\@startsection {section}{1}{\z@}%
+                                       {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                       {2.3ex \@plus.2ex}%
+                                       {\normalfont\Large\bfseries}}%
+    \def\subsection{\@startsection{subsection}{2}{\z@}%
+                                         {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                         {1.5ex \@plus .2ex}%
+                                         {\normalfont\large\bfseries}}%
+    \def\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                                         {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                         {1.5ex \@plus .2ex}%
+                                         {\normalfont\normalsize\bfseries}}%
+    \def\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                        {3.25ex \@plus1ex \@minus.2ex}%
+                                        {-1em}%
+                                        {\normalfont\normalsize\bfseries}}%
+    \def\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+                                           {3.25ex \@plus1ex \@minus .2ex}%
+                                           {-1em}%
+                                          {\normalfont\normalsize\bfseries}}%
+  }{%
+%    \end{macrocode}
+% It seems to be a book class.
+%    \begin{macrocode}
+    \scr@ifundefinedorrelax{if@mainmatter}{%
+      \expandafter\newif\csname if@mainmatter\endcsname
+    }{}%
+    \def\frontmatter{%
+        \cleardoublepage
+      \@mainmatterfalse
+      \pagenumbering{roman}}%
+    \def\mainmatter{%
+        \cleardoublepage
+      \@mainmattertrue
+      \pagenumbering{arabic}}%
+    \def\backmatter{%
+      \if@openright
+        \cleardoublepage
+      \else
+        \clearpage
+      \fi
+      \@mainmatterfalse}%
+    \def\part{%
+      \if@openright
+        \cleardoublepage
+      \else
+        \clearpage
+      \fi
+      \thispagestyle{plain}%
+      \if@twocolumn
+        \onecolumn
+        \@tempswatrue
+      \else
+        \@tempswafalse
+      \fi
+      \null\vfil
+      \secdef\@part\@spart}%
+
+    \def\@part[#1]#2{%
+        \ifnum \c@secnumdepth >-2\relax
+          \refstepcounter{part}%
+          \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+        \else
+          \addcontentsline{toc}{part}{#1}%
+        \fi
+        \markboth{}{}%
+        {\centering
+         \interlinepenalty \@M
+         \normalfont
+         \ifnum \c@secnumdepth >-2\relax
+           \huge\bfseries \partname\nobreakspace\thepart
+           \par
+           \vskip 20\p@
+         \fi
+         \Huge \bfseries #2\par}%
+        \@endpart}%
+    \def\@spart#1{%
+        {\centering
+         \interlinepenalty \@M
+         \normalfont
+         \Huge \bfseries #1\par}%
+        \@endpart}%
+    \def\@endpart{\vfil\newpage
+                  \if@twoside
+                   \if@openright
+                    \null
+                    \thispagestyle{empty}%
+                    \newpage
+                   \fi
+                  \fi
+                  \if@tempswa
+                    \twocolumn
+                  \fi}%
+    \def\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+                        \thispagestyle{plain}%
+                        \global\@topnum\z@
+                        \@afterindentfalse
+                        \secdef\@chapter\@schapter}%
+    \def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+                           \if@mainmatter
+                             \refstepcounter{chapter}%
+                             \typeout{\@chapapp\space\thechapter.}%
+                             \addcontentsline{toc}{chapter}%
+                                       {\protect\numberline{\thechapter}#1}%
+                           \else
+                             \addcontentsline{toc}{chapter}{#1}%
+                           \fi
+                        \else
+                          \addcontentsline{toc}{chapter}{#1}%
+                        \fi
+                        \chaptermark{#1}%
+                        \addtocontents{lof}{\protect\addvspace{10\p@}}%
+                        \addtocontents{lot}{\protect\addvspace{10\p@}}%
+                        \if@twocolumn
+                          \@topnewpage[\@makechapterhead{#2}]%
+                        \else
+                          \@makechapterhead{#2}%
+                          \@afterheading
+                        \fi}%
+    \def\@makechapterhead#1{%
+      \vspace*{50\p@}%
+      {\parindent \z@ \raggedright \normalfont
+        \ifnum \c@secnumdepth >\m@ne
+          \if@mainmatter
+            \huge\bfseries \@chapapp\space \thechapter
+            \par\nobreak
+            \vskip 20\p@
+          \fi
+        \fi
+        \interlinepenalty\@M
+        \Huge \bfseries #1\par\nobreak
+        \vskip 40\p@
+      }}%
+    \def\@schapter#1{\if@twocolumn
+                       \@topnewpage[\@makeschapterhead{#1}]%
+                     \else
+                       \@makeschapterhead{#1}%
+                       \@afterheading
+                     \fi}%
+    \def\@makeschapterhead#1{%
+      \vspace*{50\p@}%
+      {\parindent \z@ \raggedright
+        \normalfont
+        \interlinepenalty\@M
+        \Huge \bfseries  #1\par\nobreak
+        \vskip 40\p@
+      }}%
+    \def\section{\@startsection {section}{1}{\z@}%
+                                       {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                       {2.3ex \@plus.2ex}%
+                                       {\normalfont\Large\bfseries}}%
+    \def\subsection{\@startsection{subsection}{2}{\z@}%
+                                         {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                         {1.5ex \@plus .2ex}%
+                                         {\normalfont\large\bfseries}}%
+    \def\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                                         {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                         {1.5ex \@plus .2ex}%
+                                         {\normalfont\normalsize\bfseries}}%
+    \def\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                        {3.25ex \@plus1ex \@minus.2ex}%
+                                        {-1em}%
+                                        {\normalfont\normalsize\bfseries}}%
+    \def\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+                                           {3.25ex \@plus1ex \@minus .2ex}%
+                                           {-1em}%
+                                          {\normalfont\normalsize\bfseries}}%
+  }%
+}% End of the derived code.
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\@startsection}
+% \KOMAScript{} classes redefine this internal \LaTeX{} kernel macro. In this
+% case \cs{scr@saved@startsection} is defined, differs from
+% \cs{@startsection} and has the definition found before redefining the
+% original macro. We do nothing else but resetting \cs{@startsection} to this
+% saved definition.
+%    \begin{macrocode}
+\scr@ifundefinedorrelax{scr@saved@startsection}{}{%
+  \ifx\@startsection\scr@saved@startsection\else
+    \PackageWarningNoLine{scrhack}{%
+      Resetting \string\@startsection,\MessageBreak
+      because of loading standard classes sections hack%
+    }%
+    \let\@startsection\scr@saved@startsection
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}%^^A \@startsection
+%
+% \begin{macro}{\@sect}
+% \begin{macro}{\@ssect}
+% \begin{macro}{\@xsect}
+% All these should be resetted to their original definitions stored in
+% \cs{scr@latex@\dots}.
+%    \begin{macrocode}
+\scr@ifundefinedorrelax{scr@latex@sect}{}{%
+  \ifx\@sect\scr@latex@sect\else
+    \PackageWarningNoLine{scrhack}{%
+      Resetting \string\@sect,\MessageBreak
+      because of loading standard classes sections hack%
+    }%
+    \let\@sect\scr@latex@sect
+  \fi
+}
+\scr@ifundefinedorrelax{scr@latex@ssect}{}{%
+  \ifx\@ssect\scr@latex@ssect\else
+    \PackageWarningNoLine{scrhack}{%
+      Resetting \string\@ssect,\MessageBreak
+      because of loading standard classes sections hack%
+    }%
+    \let\@sect\scr@latex@ssect
+  \fi
+}
+\scr@ifundefinedorrelax{scr@latex@xsect}{}{%
+  \ifx\@xsect\scr@latex@xsect\else
+    \PackageWarningNoLine{scrhack}{%
+      Resetting \string\@xsect,\MessageBreak
+      because of loading standard classes sections hack%
+    }%
+    \let\@sect\scr@latex@sect
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}%^^A \@xsect
+% \end{macro}%^^A \@ssect
+% \end{macro}%^^A \@sect
+%
+% \begin{macro}{\DeclareSectionCommand}
+% \begin{macro}{\RedeclareSectionCommand}
+% \begin{macro}{\DeclareNewSectionCommand}
+% \begin{macro}{\ProvideSectionCommand}
+% \begin{macro}{\DeclareSectionCommands}
+% \begin{macro}{\RedeclareSectionCommands}
+% \begin{macro}{\DeclareNewSectionCommands}
+% \begin{macro}{\ProvideSectionCommands}
+% These \KOMAScript{} commands do not make sense any longer after forced
+% redefinition of \cs{part} \dots{} \cs{subparagraph}. They even would not
+% work correctly after resetting, e.g., \cs{@startsection}. So best reaction
+% is to \emph{undefine} them.
+%    \begin{macrocode}
+\scr@ifundefinedorrelax{DeclareSectionCommand}{}{%
+  \PackageWarningNoLine{scrhack}{%
+    \string\DeclareSectionCommand\space
+    and all derivates deactivated,\MessageBreak
+    because of loading standard classes sections hack%
+  }%
+  \let\DeclareSectionCommand\undefined
+  \let\DeclareSectionCommands\undefined
+  \let\RedeclareSectionCommand\undefined
+  \let\RedeclareSectionCommands\undefined
+  \let\DeclareNewSectionCommand\undefined
+  \let\DeclareNewSectionCommands\undefined
+  \let\ProvideSectionCommand\undefined
+  \let\ProvideSectionCommands\undefined
+}
+%    \end{macrocode}
+% \begin{macro}{\scr@chapter@before@hyperref@patch}
+% \begin{macro}{\scr@chapter@after@hyperref@patch}
+% Now, definitions without respecting \textsf{hyperref} are used, so
+% \textsf{hyperref} should again be able to patch them. So the hack should
+% deactivate the patch deactivation of the \KOMAScript{} classes.
+%    \begin{macrocode}
+\let\scr@chapter@before@hyperref@patch\relax
+\let\scr@chapter@after@hyperref@patch\relax
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}%^^A \DeclareSectionCommand
+%
+% \begin{macro}{\scr@osectarg}
+% The \KOMAScript{} classes use this macro to store how to use the optional
+% argument of section commands. But with the standard class definition the
+% only possibility is to use it as running head and write it into the table of
+% contents without any extended handling. So the only value, that makes sense
+% is 0.
+%    \begin{macrocode}
+\scr@ifundefinedorrelax{scr@osectarg}{}{%
+  \def\reserved@a{0}%
+  \ifx\scr@osectarg\reserved@a\else
+    \let\scr@osectarg\reserved@a
+    \PackageWarningNoLine{scrhack}{%
+      Extended option handling for section commands deactivated,\MessageBreak
+      because of loading standard classes sections hack%
+    }%
+  \fi
+}%
+%    \end{macrocode}
+% \begin{macro}{\scr@activate@xsection}
+% Further changing of the value has to be deactivated.
+%    \begin{macrocode}
+\scr@ifundefinedorrelax{scr@activate@xsection}{}{%
+  \renewcommand*{\scr@activate@xsection}[1]{%
+    \edef\scr@osectarg{#1}\def\reserved@a{0}%
+    \ifx\scr@osectarg\reserved@a
+    \else
+      \let\scr@osectarg\reserved@a
+      \PackageWarning{scrhack}{%
+        Because of loading the standard classes\MessageBreak
+        sections hack, the extended option handling\MessageBreak
+        of section commands failed%
+      }%
+    \fi
+  }%
+}
+%    \end{macrocode}
+% \end{macro}%^^A \scr@activate@xsection
+% \end{macro}%^^A \scr@osectarg
+%
+% \begin{macro}{\partformat}
+% \begin{macro}{\chapterformat}
+% Most \cs{\dots format} macros of \KOMAScript{} are still used, because of
+% the redefinition of \cs{@seccntformat}. But \cs{part} and \cs{chapter} are
+% defined without using them.
+%    \begin{macrocode}
+\scr@ifundefinedorrelax{partformat}{}{%
+  \PackageWarningNoLine{scrhack}{%
+    Usage of \string\partformat\space
+    deactivated,\MessageBreak
+    because of loading the standard classes sections hack%
+  }%
+}
+\scr@ifundefinedorrelax{chapterformat}{}{%
+  \PackageWarningNoLine{scrhack}{%
+    Usage of \string\chapterformat\space
+    deactivated,\MessageBreak
+    because of loading the standard classes sections hack%
+  }%
+}
+%    \end{macrocode}
+% \end{macro}%^^A \chapterformat
+% \end{macro}%^^A \partformat
+%
+% \begin{macro}{\sectionformat}
+% \begin{macro}{\subsectionformat}
+% \begin{macro}{\subsubsectionformat}
+% \begin{macro}{\paragraphformat}
+% \begin{macro}{\subparagraphformat}
+% All these commands have to be resetted to not use the automatic dot and to
+% add a \cs{quad} instead of an \cs{enskip}.
+%    \begin{macrocode}
+\scr@ifundefinedorrelax{sectionformat}{}{%
+  \PackageWarningNoLine{scrhack}{%
+    \string\sectionformat\space set to
+    `\string\thesection\string\quad',\MessageBreak
+    because of loading the standard classes sections hack%
+  }%
+  \renewcommand*{\sectionformat}{\thesection\quad}%
+}
+\scr@ifundefinedorrelax{subsectionformat}{}{%
+  \PackageWarningNoLine{scrhack}{%
+    \string\subsectionformat\space set to
+    `\string\thesubsection\string\quad'\MessageBreak
+    because of loading the standard classes sections hack%
+  }%
+  \renewcommand*{\subsectionformat}{\thesubsection\quad}%
+}
+\scr@ifundefinedorrelax{subsubsectionformat}{}{%
+  \PackageWarningNoLine{scrhack}{%
+    \string\subsubsectionformat\space set to
+    `\string\thesubsubsection\string\quad'\MessageBreak
+    because of loading the standard classes sections hack%
+  }%
+  \renewcommand*{\subsubsectionformat}{\thesubsubsection\quad}%
+}
+\scr@ifundefinedorrelax{paragraphformat}{}{%
+  \PackageWarningNoLine{scrhack}{%
+    \string\paragraphformat\space set to
+    `\string\theparagraph\string\quad'\MessageBreak
+    because of loading the standard classes sections hack%
+  }%
+  \renewcommand*{\paragraphformat}{\theparagraph\quad}%
+}
+\scr@ifundefinedorrelax{subparagraphformat}{}{%
+  \PackageWarningNoLine{scrhack}{%
+    \string\subparagraphformat\space set to
+    `\string\thesubparagraph\string\quad'\MessageBreak
+    because of loading the standard classes sections hack%
+  }%
+  \renewcommand*{\subparagraphformat}{\thesubparagraph\quad}%
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\partlineswithprefixformat}
+% \begin{macro}{\chapterlineswithprefixformat}
+% \begin{macro}{\chapterlinesformat}
+% \begin{macro}{\sectionlinesformat}
+% \begin{macro}{\sectioncatchphraseformat}
+% These \KOMAScript{} commands are not used any longer.
+%    \begin{macrocode}
+\scr@ifundefinedorrelax{partlineswithprefixformat}{}{%
+  \PackageWarningNoLine{scrhack}{%
+    Usage of \string\partlineswithprefixformat\space deactivated,\MessageBreak
+    because of loading the standard classes sections hack%
+  }%
+}
+\scr@ifundefinedorrelax{chapterlineswithprefixformat}{}{%
+  \PackageWarningNoLine{scrhack}{%
+    Usage of \string\chapterlineswithprefixformat\space and\MessageBreak
+    \string\chapterlinesformat\space deactivated,\MessageBreak
+    because of using standard classes sections hack%
+  }%
+}
+\scr@ifundefinedorrelax{sectionlinesformat}{}{%
+  \PackageWarningNoLine{scrhack}{%
+    Usage of \string\sectionlinesformat\space and\MessageBreak
+    \string\sectioncatchphraseformat\space deactivated,\MessageBreak
+    because of using standard classes sections hack%
+  }%
+}
+%    \end{macrocode}
+% \end{macro}%^^A \sectioncatchphraseformat
+% \end{macro}%^^A \sectionlinesformat
+% \end{macro}%^^A \chapterlinesformat
+% \end{macro}%^^A \chapterlineswithprefixformat
+% \end{macro}%^^A \partlineswithprefixformat
+%
+% \begin{option}{headings}
+% The \KOMAScript{} option does not make sense any longer. So it is
+% deactivated and usage will throw an error.
+% \begin{macrocode}
+\scr@ifundefinedorrelax{KOMAClassName}{}{%
+  \PackageWarningNoLine{scrhack}{%
+    KOMA-Script option `headings' removed,\MessageBreak
+    because of loading standard classes sections hack%
+  }%
+  \RelaxFamilyKey[.\KOMAClassFileName]{KOMA}{headings}%
+  \KOMA@kav@removekey{.\KOMAClassFileName}{headings}%
+}
+%    \end{macrocode}
+% \end{option}%^^A headings
+%
+% \begin{macro}{\scr@class@titlesec@warning}
+% The warning about loading \textsf{titlesec} has to be changes, because we do
+% not expect errors any longer.
+%    \begin{macrocode}
+\def\scr@class@titlesec@warning{%
+  \PackageWarning{scrhack}{%
+    Usage of `titlesec' should work, because of\MessageBreak
+    loading the standard classes sections hack.\MessageBreak
+    However, you should know, there is not any\MessageBreak
+    support for this combination by the\MessageBreak
+    KOMA-Script author%
+  }%
+}
+%</standardsections&body>
+%    \end{macrocode}
+% \end{macro}%^^A \scr@class@titlesec@warning
+% \selectlanguage{ngerman}%^^A
+%
+% \subsection{Optionen ausführen}
+%
+% Zum Schluss noch die Optionen ausführen. Im Paket wird diese Anweisung
+% allerdings vor den Anweisungen der Hacks und den Anweisungen aus dem
+% Abschnitt »Verwendete Anweisungen« stehen.
+%    \begin{macrocode}
+%<*package&option>
+\KOMAProcessOptions\relax
+%</package&option>
+%    \end{macrocode}
+%
+%
+% \Finale
+%
+\endinput
+%
+% end of file `scrhack.dtx'
+%%% Local Variables:
+%%% mode: doctex
+%%% mode: flyspell
+%%% coding: utf-8
+%%% ispell-local-dictionary: "en_GB"
+%%% TeX-master: t
+%%% End:
+
+%  LocalWords:  eineinhalbzeilige

@@ -1,0 +1,28 @@
+%%
+%% This is file `jt1gt.fd',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% plfonts.dtx  (with options: `JT1gt')
+%% 
+%% Copyright (c) 2010 ASCII MEDIA WORKS
+%% Copyright (c) 2016-2020 Japanese TeX Development Community
+%% 
+%% This file is part of the pLaTeX2e system (community edition).
+%% -------------------------------------------------------------
+%% 
+%% File: plfonts.dtx
+\ProvidesFile{jt1gt.fd}
+       [2018/07/03 v1.6q KANJI font defines]
+\DeclareKanjiFamily{JT1}{gt}{}
+\DeclareRelationFont{JT1}{gt}{m}{}{OT1}{cmr}{bx}{}
+\DeclareFontShape{JT1}{gt}{m}{n}{<5> <6> <7> <8> <9> <10> sgen*tgoth
+    <10.95><12><14.4><17.28><20.74><24.88> tgoth10
+    <-> tgoth10
+    }{}
+\DeclareFontShape{JT1}{gt}{bx}{n}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JT1}{gt}{b}{n}{<->ssub*gt/bx/n}{}
+\endinput
+%%
+%% End of file `jt1gt.fd'.

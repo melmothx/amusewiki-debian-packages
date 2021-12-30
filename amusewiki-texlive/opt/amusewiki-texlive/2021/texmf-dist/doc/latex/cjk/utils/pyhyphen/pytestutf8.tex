@@ -1,0 +1,68 @@
+% This is the file pytestutf8.tex of the CJK package
+%   for testing Chinese pinyin hyphenation.
+%
+% created by Werner Lemberg <wl@gnu.org>
+%
+% Version 4.8.5 (16-Oct-2021)
+%
+%%
+%% Attention!  This will work only if you have created a new format file
+%% with `hyph-zh-latn-tonepinyin.tex' as additional hyphenation patterns for
+%% the language `pinyin'.  Otherwise no hyphenation will be used.
+%%
+%  Note that the Babel package searches for `pinyin.ldf', not `pinyin.sty'
+%  -- the latter is for typesetting accented pinyin syllables.
+
+\documentclass[12pt,a5paper]{article}
+
+\usepackage{ifxetex}
+\usepackage{ifluatex}
+\usepackage{ifuptex}
+
+\ifxetex
+  \relax
+\else
+  \ifluatex
+    \relax
+  \else
+    \ifuptex
+      \relax
+    \else
+      \errmessage{You need a UTF-8 engine to process this file.}
+    \fi
+  \fi
+\fi
+
+\usepackage{libertine}
+\usepackage[pinyin]{babel}
+
+
+\begin{document}
+
+% Taken from the TeXbook (p. 451) to force frequent insertion of hyphens.
+\hyphenpenalty -1000
+\pretolerance -1
+\tolerance 1000
+\doublehyphendemerits -100000
+\finalhyphendemerits -100000
+
+\selectlanguage{pinyin}
+
+Wǒmen hěn xǐhuān lǚxíng.  Zài Běijīng wǒmen hěn xiǎng kàn Tiān"'ānmén.
+Míngtiān wǒmen xiǎng yào dào Xī"'ān qù.  Xiàge lǐbài zài huí jiā.
+Wǒmen hěn xǐhuān lǚxíng.  Zài Běijīng wǒmen hěn xiǎng kàn Tiān"'ānmén.
+Míngtiān wǒmen xiǎng yào dào Xī"'ān qù.  Xiàge lǐbài zài huí jiā.
+Wǒmen hěn xǐhuān lǚxíng.  Zài Běijīng wǒmen hěn xiǎng kàn Tiān"'ānmén.
+Míngtiān wǒmen xiǎng yào dào Xī"'ān qù.  Xiàge lǐbài zài huí jiā.
+Wǒmen hěn xǐhuān lǚxíng.  Zài Běijīng wǒmen hěn xiǎng kàn Tiān"'ānmén.
+Míngtiān wǒmen xiǎng yào dào Xī"'ān qù.  Xiàge lǐbài zài huí jiā.
+Wǒmen hěn xǐhuān lǚxíng.  Zài Běijīng wǒmen hěn xiǎng kàn Tiān"'ānmén.
+Míngtiān wǒmen xiǎng yào dào Xī"'ān qù.  Xiàge lǐbài zài huí jiā.
+Wǒmen hěn xǐhuān lǚxíng.  Zài Běijīng wǒmen hěn xiǎng kàn Tiān"'ānmén.
+Míngtiān wǒmen xiǎng yào dào Xī"'ān qù.  Xiàge lǐbài zài huí jiā.
+Wǒmen hěn xǐhuān lǚxíng.  Zài Běijīng wǒmen hěn xiǎng kàn Tiān"'ānmén.
+Míngtiān wǒmen xiǎng yào dào Xī"'ān qù.  Xiàge lǐbài zài huí jiā.
+Wǒmen hěn xǐhuān lǚxíng.  Zài Běijīng wǒmen hěn xiǎng kàn Tiān"'ānmén.
+Míngtiān wǒmen xiǎng yào dào Xī"'ān qù.  Xiàge lǐbài zài huí jiā.
+
+\end{document}

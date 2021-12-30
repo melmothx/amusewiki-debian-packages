@@ -1,0 +1,51 @@
+%%
+%% This is file `platex.ltx',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% platex.dtx  (with options: `plcore')
+%% 
+%% Copyright (c) 2010 ASCII MEDIA WORKS
+%% Copyright (c) 2016-2020 Japanese TeX Development Community
+%% 
+%% This file is part of the pLaTeX2e system (community edition).
+%% -------------------------------------------------------------
+%% 
+%% File: platex.dtx
+\let\orgdump\dump
+\let\dump\relax
+\input latex.ltx
+\ifx\typeout\undefined
+  \errhelp{Please reinstall LaTeX, or check e-TeX availability.}%
+  \errmessage{Failed to load `latex.ltx' properly}%
+  \expandafter\end
+\fi
+\typeout{**************************^^J%
+         *^^J%
+         * making pLaTeX format^^J%
+         *^^J%
+         **************************}
+\makeatletter
+\input plcore.ltx
+\InputIfFileExists{pldefs.cfg}
+           {\typeout{*************************************^^J%
+                     * Local config file pldefs.cfg used^^J%
+                     *************************************}}%
+           {\input{pldefs.ltx}}
+\ifx\code@after@pldefs\@undefined\else \code@after@pldefs \fi
+\everyjob\expandafter{%
+  \the\everyjob
+  \IfFileExists{platex.cfg}{%
+    \typeout{*************************^^J%
+             * Loading platex.cfg.^^J%
+             *************************}%
+    \input{platex.cfg}}{}%
+}
+\let\dump\orgdump
+\let\orgdump\@undefined
+\makeatother
+\dump
+\endinput
+%%
+%% End of file `platex.ltx'.

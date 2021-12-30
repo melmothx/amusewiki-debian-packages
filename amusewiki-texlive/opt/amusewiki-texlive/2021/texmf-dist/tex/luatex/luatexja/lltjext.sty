@@ -1,0 +1,766 @@
+%
+% lltjext.sty: derived from plext.sty in pLaTeX.
+%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lltjext}[2021-04-20 v1.2k-ltj-13 Macros for vertical writing]
+\RequirePackage{luatexja}
+\newcount\ltj@ext@dir
+\let\ltj@lltjext@orig@tabular=\tabular
+\let\ltj@lltjext@orig@array=\array
+
+%%% array and tabular
+\def\array{\let\@acol\@arrayacol \let\@classz\@arrayclassz
+ \let\@classiv\@arrayclassiv
+ \let\\\@arraycr\let\@halignto\@empty
+ \ltj@ext@dir=\ltjgetparameter{direction}\relax\X@tabarray}
+\def\tabular{\let\@halignto\@empty\X@tabular}
+\@namedef{tabular*}{\@ifnextchar<%>
+   {\p@stabular}{\p@stabular<Z>}}
+{\catcode`\*=11
+\global\let\ltj@lltjext@orig@tabularS=\tabular*
+}%
+\def\X@tabarray{\@ifnextchar<%>
+   {\p@tabarray}{\p@tabarray<Z>}}
+\def\X@tabular{\@ifnextchar<%>
+   {\p@tabular}{\p@tabular<Z>}}
+\def\p@stabular<#1>#2{%
+   \setlength\dimen@{#2}%
+   \edef\@halignto{to\the\dimen@}\p@tabular<#1>}
+\def\p@tabular<#1>{\leavevmode \hbox \bgroup 
+   \ltj@ext@dir=\ltjgetparameter{direction}\relax
+   $\let\@acol\@tabacol
+   \let\@classz\@tabclassz
+   \let\@classiv\@tabclassiv \let\\\@tabularcr\p@tabarray<#1>}
+\def\p@tabarray<#1>{\m@th\@ifnextchar[%]
+   {\p@array<#1>}{\p@array<#1>[c]}}
+
+\def\p@array<#1>[#2]#3{%
+  \ifnum\ltj@ext@dir=0 \ltj@ext@dir=\ltjgetparameter{direction}\relax\fi
+  \let\box@dir\relax
+  \if #1z\relax
+    \ifnum\ltj@ext@dir=3\relax
+      \let\box@dir\utod\@tempcnta=\zstrutbox
+    \fi
+  \else
+    \if #1y\relax
+       \let\box@dir\yoko\@tempcnta=\ystrutbox
+    \else\if #1t\relax
+       \let\box@dir\tate\@tempcnta=\tstrutbox
+    \else\if #1d\relax
+       \let\box@dir\dtou\@tempcnta=\dstrutbox
+    \else\if #1u\relax
+       \let\box@dir\utod\@tempcnta=\zstrutbox
+    \fi\fi\fi\fi
+  \fi
+  \ifx\box@dir\relax
+    \ifcase\ltj@ext@dir
+       \or   \let\box@dir\dtou\@tempcnta=\dstrutbox% dtou
+       \or\or\let\box@dir\tate\@tempcnta=\tstrutbox% tate
+       \or   \let\box@dir\yoko\@tempcnta=\ystrutbox% yoko
+       \else \let\box@dir\utod\@tempcnta=\zstrutbox% utod
+    \fi
+  \fi
+  \fork@array@option<#1>[#2]\@begin@alignbox
+  \bgroup\box@dir\adjustbaseline
+  \setbox\@arstrutbox\hbox{%
+    \box@dir
+    \vrule\@height\arraystretch\ltjgetht\@tempcnta
+          \@depth\arraystretch\ltjgetdp\@tempcnta \@width\z@}%
+  \@mkpream{#3}\edef\@preamble{\ialign \noexpand\@halignto
+  \bgroup\@arstrut \@preamble \tabskip\z@skip \cr}%
+  \let\@startpbox\@@startpbox \let\@endpbox\@@endpbox
+  \let\tabularnewline\\%
+    \let\par\@empty
+    \let\@sharp##%
+	\set@typeset@protect
+    \lineskip\z@skip\baselineskip\z@skip
+    \ifhmode \@preamerr\z@ \@@par\fi
+	\@preamble}
+\def\endarray{\crcr\egroup\egroup\@end@alignbox}
+\def\endtabular{\endarray$\egroup}
+\expandafter \let \csname endtabular*\endcsname = \endtabular
+% ↓中身＼周囲→　yoko  tate  utod  dtou
+% yoko          A*    B*    B     B
+% tate          B*    A*    D     C
+% utod          B     D*    A     C
+% dtou          B     C     C     A
+% A: 周囲と中身の組方向が一致．そのまま \vtop/\vcenter/\vbox
+% B: 周囲と中身が90度ずれ．上端/下端がベースラインに揃うように
+% C: 周囲と中身が180度ずれ．\vtop, \vbox 入れ替え
+% D: 欧文ベースライン同士を揃えるようにする
+
+\def\fork@array@option@@A#1{%
+  \let\@end@alignbox\relax
+  \if #1t\relax     \let\@begin@alignbox\vtop
+  \else\if #1b\relax\let\@begin@alignbox\vbox
+  \else             \let\@begin@alignbox\vcenter
+  \fi\fi}
+\def\fork@array@option@@B#1{%
+  \if #1t\relax
+    \def\@begin@alignbox{\vtop\bgroup\kern\z@\vbox}%
+    \let\@end@alignbox\egroup
+  \else\if #1b\relax
+    \def\@begin@alignbox{\vbox\bgroup\vbox}%
+    \def\@end@alignbox{\kern\z@\egroup}%
+  \else
+    \let\@begin@alignbox\vcenter
+    \let\@end@alignbox\relax
+  \fi\fi}
+\def\fork@array@option@@C#1{%
+  \let\@end@alignbox\relax
+  \if #1t\relax     \let\@begin@alignbox\vbox
+  \else\if #1b\relax\let\@begin@alignbox\vtop
+  \else             \let\@begin@alignbox\vcenter
+  \fi\fi}
+\def\fork@array@option<#1>[#2]{%
+\ifnum\ltj@ext@dir=4 % yoko
+  \ifx\box@dir\yoko      \fork@array@option@@A{#2}%
+  \else                  \fork@array@option@@B{#2}%
+  \fi
+\else\ifnum\ltj@ext@dir=1 % dtou
+  \ifx\box@dir\yoko      \fork@array@option@@B{#2}%
+  \else\ifx\box@dir\dtou \fork@array@option@@A{#2}%
+  \else                  \fork@array@option@@C{#2}%
+  \fi\fi
+\else\ifnum\ltj@ext@dir=3 % tate
+  \ifx\box@dir\yoko      \fork@array@option@@B{#2}%
+  \else\ifx\box@dir\tate \fork@array@option@@A{#2}%
+  \else\ifx\box@dir\dtou \fork@array@option@@C{#2}%
+  \else
+    \if #2t\relax
+      \def\@begin@alignbox{\lower\dimexpr
+         \ltjgetparameter{talbaselineshift}-\ltjgetparameter{yalbaselineshift}\vtop}
+      \let\@end@alignbox\relax
+    \else\if #2b\relax
+      \def\@begin@alignbox{\lower\dimexpr
+         \ltjgetparameter{talbaselineshift}-\ltjgetparameter{yalbaselineshift}\vbox}
+      \let\@end@alignbox\relax
+    \else
+      \let\@begin@alignbox\vcenter
+      \let\@end@alignbox\relax
+    \fi\fi
+  \fi\fi\fi
+\else % utod
+  \ifx\box@dir\yoko      \fork@array@option@@B{#2}%
+  \else\ifx\box@dir\utod \fork@array@option@@A{#2}%
+  \else\ifx\box@dir\dtou \fork@array@option@@C{#2}%
+  \else
+    \if #2t\relax
+      \def\@begin@alignbox{\lower\dimexpr
+         \ltjgetparameter{yalbaselineshift}-\ltjgetparameter{talbaselineshift}\vtop}
+      \let\@end@alignbox\relax
+    \else\if #2b\relax
+      \def\@begin@alignbox{\lower\dimexpr
+         \ltjgetparameter{yalbaselineshift}-\ltjgetparameter{talbaselineshift}\vbox}
+      \let\@end@alignbox\relax
+    \else
+      \let\@begin@alignbox\vcenter
+      \let\@end@alignbox\relax
+    \fi\fi
+  \fi\fi\fi
+\fi\fi\fi}
+
+%%% caption
+\newbox\@floatbox
+\newdimen\floatwidth
+\newdimen\floatheight
+\newdimen\floatruletick \floatruletick=0.4pt
+\newdimen\captionfloatsep \captionfloatsep=10pt
+\def\caption@dir{Z}
+\let\captiondir\relax
+\newdimen\captionwidth \captionwidth\z@
+\def\caption@posa{Z}
+\def\caption@posb{Z}
+\newbox\@captionbox
+\def\captionfontsetup{\normalfont\normalsize}
+\def\layoutfloat{\@ifnextchar(%)
+   {\X@layoutfloat}{\X@layoutfloat(-5\p@,-5\p@)}}
+\def\X@layoutfloat(#1,#2){\@ifnextchar[%]
+   {\@layoutfloat(#1,#2)}{\@layoutfloat(#1,#2)[c]}}
+\long\def\@layoutfloat(#1,#2)[#3]#4{%
+  \setbox\z@\hbox{#4}%
+  \floatwidth=#1 \floatheight=#2 \edef\float@pos{#3}%
+  \ifdim\floatwidth<\z@
+     \floatwidth\ltjgetwd\z@\floatruletick\z@
+  \fi
+  \ifdim\floatheight<\z@
+     \floatheight\ltjgetht\z@\advance\floatheight\ltjgetdp\z@\relax
+     \floatruletick\z@
+  \fi
+  \setbox\@floatbox\vbox to\floatheight{\offinterlineskip
+    \hrule width\floatwidth height\floatruletick depth\z@
+    \vss\hbox to\floatwidth{%
+      \vrule width\floatruletick height\floatheight depth\z@
+      \hss\vbox to\floatheight{\hsize\floatwidth\vss#4\vss}\hss
+      \vrule width\floatruletick height\floatheight depth\z@
+    }\hrule width\floatwidth height\floatruletick depth\z@}}
+\def\DeclareLayoutCaption#1<#2>(#3)[#4#5]{%
+  \expandafter
+  \ifx\csname #1@layoutc@ption\endcsname\relax \else
+    \@latex@info{Redeclaring capiton layout setting of '#1'}%
+  \fi
+  \expandafter
+  \gdef\csname #1@layoutc@ption\endcsname{%
+     \if Z\caption@dir\def\caption@dir{#2}\fi
+     \ifdim\captionwidth=\z@ \captionwidth=#3\relax\fi
+     \if Z\caption@posa\def\caption@posa{#4}\fi
+     \if Z\caption@posb\def\caption@posb{#5}\fi}}
+\@onlypreamble\DeclareLayoutCaption
+\DeclareLayoutCaption{figure}<n>(.8\linewidth)[cd]
+\DeclareLayoutCaption{table}<n>(.8\linewidth)[cu]
+\def\layoutcaption{\def\caption@dir{Z}\captionwidth\z@
+  \def\caption@posa{Z}\def\caption@posb{Z}%
+  \@ifnextchar<\X@layoutcaption{%
+    \@ifnextchar(\@ilayoutcaption{%
+      \@ifnextchar[\@iilayoutcaption\relax}}}
+\def\X@layoutcaption<#1>{\def\caption@dir{#1}%
+  \@ifnextchar(\@ilayoutcaption{%
+    \@ifnextchar[\@iilayoutcaption\relax}}
+\def\@ilayoutcaption(#1){\setlength\captionwidth{#1}%
+  \@ifnextchar[{\@iilayoutcaption}{\relax}}
+\def\@iilayoutcaption[#1#2]{%
+  \def\caption@posa{#1}\def\caption@posb{#2}}
+\def\pcaption{%
+  \ifx\@captype\@undefined
+    \@latex@error{\noexpand\pcaption outside float}\@ehd
+    \expandafter\@gobble
+  \else
+    \refstepcounter\@captype
+    \expandafter\@firstofone
+  \fi
+  {\@dblarg{\@pcaption\@captype}}%
+}
+\long\def\@pcaption#1[#2]#3{%
+  \addcontentsline{\csname ext@#1\endcsname}{#1}{%
+    \protect\numberline{\csname the#1\endcsname}{\ignorespaces#2}}%
+  \ifvoid\@floatbox
+     \@latex@error{Use \noexpand\pcaption with `\protect\layoutfloat'}\@eha
+  \fi
+  \make@pcaptionbox{#3}%
+  \@pboxswfalse
+  \setbox\@tempboxa\vbox{\hbox to\hsize{\if l\float@pos\else\hss\fi
+    \if l\caption@posb\box\@captionbox\kern\captionfloatsep\fi
+    \if t\caption@posa\vtop
+    \else\if b\caption@posa\vbox
+    \else\@pboxswtrue $\vcenter \fi\fi
+    {\if u\caption@posb\box\@captionbox\kern\captionfloatsep\fi
+     \unvbox\@floatbox
+     \if d\caption@posb\kern\captionfloatsep\box\@captionbox\fi}%
+    \if@pboxsw \m@th$\fi
+    \if r\caption@posb\kern\captionfloatsep\box\@captionbox\fi
+    \if r\float@pos\else\hss\fi}}%
+  \par\vskip.25\baselineskip
+  \box\@tempboxa}
+\def\make@pcaptionbox#1{%
+  \expandafter
+  \ifx\csname\@captype @layoutc@ption\endcsname\relax
+     \@latex@warning{Default caption layout of `\@captype' unknown.}%
+       \def\caption@dir{Z}\captionwidth\z@
+       \def\caption@posa{Z}\def\caption@posb{Z}%
+  \else
+     \csname \@captype @layoutc@ption\endcsname
+  \fi
+  \@tempswafalse
+  % \@tempswa: 基本組の組方向とキャプションの組方向が直交するか？
+  \if y\caption@dir \let\captiondir\yoko
+    \ifodd\ltjgetparameter{direction}\relax\@tempswatrue\fi
+  \else\if z\caption@dir \let\captiondir\relax
+    \ifnum\ltjgetparameter{direction}=3\relax\let\captiondir\utod\fi
+  \else\if d\caption@dir \let\captiondir\dtou
+    \ifodd\ltjgetparameter{direction}\else\@tempswatrue\fi
+  \else\if u\caption@dir \let\captiondir\utod
+    \ifodd\ltjgetparameter{direction}\else\@tempswatrue\fi
+  \else\if t\caption@dir \let\captiondir\tate
+    \ifodd\ltjgetparameter{direction}\else\@tempswatrue\fi
+  \fi\fi\fi\fi\fi
+  \setbox0\hbox{\hbox{\captiondir
+     \captionfontsetup\parindent\z@\inhibitglue
+     \csname fnum@\@captype\endcsname 　#1}}%"
+  \if@tempswa\@tempdima\ltjgetht0 \advance\@tempdima\ltjgetdp0
+  \else\@tempdima\ltjgetwd0 \fi
+  \ifdim\@tempdima>\captionwidth \@tempdima\captionwidth \fi
+  \@pboxswfalse
+  \setbox0\hbox{%
+    \if u\caption@posb\vbox
+    \else\if d\caption@posb\vbox
+    \else\if t\caption@posa\vtop
+    \else\if b\caption@posa\vbox
+    \else\ifmmode\vcenter\else\@pboxswtrue $\vcenter\fi
+    \fi\fi\fi\fi
+    {\hsize\@tempdima\kern\z@
+    \vbox{\captiondir\hsize\@tempdima
+      \captionfontsetup\parindent\z@\inhibitglue
+      \csname fnum@\@captype\endcsname 　#1}\kern\z@
+    }\if@pboxsw \m@th$\fi}%
+  \let\to@captionboxwidth\relax
+  \if l\caption@posb \else\if r\caption@posb\else
+  \def\to@captionboxwidth{to\floatwidth}\fi\fi
+  \setbox\@captionbox\hbox\to@captionboxwidth{%
+     \if t\caption@posa\else\hss\fi
+     \unhbox0\relax
+     \if b\caption@posa\else\hss\fi}}
+
+%%% minipage and parbox
+\def\minipage{\@ifnextchar<%>
+   {\X@minipage}{\X@minipage<Z>}}
+\def\X@minipage<#1>{\@ifnextchar[%]
+   {\@iminipage<#1>}{\@iiiminipage<#1>{c}\relax[s]}}
+\def\@iminipage<#1>[#2]{\@ifnextchar[%]
+   {\@iiminipage<#1>{#2}}{\@iiiminipage<#1>{#2}\relax[s]}}
+\def\@iiminipage<#1>#2[#3]{\@ifnextchar[%]
+   {\@iiiminipage<#1>{#2}{#3}}{\@iiiminipage<#1>{#2}{#3}[#2]}}
+\def\@iiiminipage<#1>#2#3[#4]#5{%
+  \leavevmode\bgroup
+  \setlength\@tempdima{#5}%
+  \def\@mpargs{<#1>{#2}{#3}[#4]{#5}}%
+  \let\box@dir\relax
+  \if #1z\relax
+    \ifnum\ltjgetparameter{direction}=3\relax
+      \let\box@dir\utod
+    \fi
+  \else
+    \if #1y\relax     \let\box@dir\yoko
+    \else\if #1t\relax\let\box@dir\tate
+    \else\if #1d\relax\let\box@dir\dtou
+    \else\if #1u\relax\let\box@dir\utod
+    \fi\fi\fi\fi
+  \fi
+  \ifx\box@dir\relax
+    \ifcase\ltjgetparameter{direction}\relax
+       \or   \let\box@dir\dtou
+       \or\or\let\box@dir\tate
+       \or   \let\box@dir\yoko
+       \else \let\box@dir\utod
+    \fi
+  \fi
+  \setbox\@tempboxa\vbox\bgroup\box@dir
+    \adjustbaseline
+    \color@begingroup
+      \hsize\@tempdima
+      \textwidth\hsize \columnwidth\hsize
+      \@parboxrestore
+      \def\@mpfn{mpfootnote}\def\thempfn{\thempfootnote}%
+      \c@mpfootnote\z@
+      \let\@footnotetext\@mpfootnotetext
+      \let\@listdepth\@mplistdepth \@mplistdepth\z@
+      \@minipagerestore
+      \@setminipage}
+\def\endminipage{%
+    \par
+    \unskip
+    \ifvoid\@mpfootins\else
+      \vskip\skip\@mpfootins
+      \normalcolor
+      \footnoterule
+      \unvbox\@mpfootins
+    \fi
+    \@minipagefalse   %% added 24 May 89
+  \color@endgroup
+  \egroup
+  \expandafter\@iiiparbox\@mpargs{\unvbox\@tempboxa}\egroup}
+\DeclareRobustCommand\parbox{\@ifnextchar<%>
+   {\X@parbox}{\X@parbox<Z>}}
+\def\X@parbox<#1>{\@ifnextchar[%]
+   {\@iparbox<#1>}{\@iiiparbox<#1>{c}\relax[s]}}
+\def\@iparbox<#1>[#2]{\@ifnextchar[%]
+   {\@iiparbox<#1>{#2}}{\@iiiparbox<#1>{#2}\relax[s]}}
+\def\@iiparbox<#1>#2[#3]{\@ifnextchar[%]%
+   {\@iiiparbox<#1>{#2}{#3}}{\@iiiparbox<#1>{#2}{#3}[#2]}}
+\long\def\@iiiparbox<#1>#2#3[#4]#5#6{%
+  \leavevmode
+  \setlength\@tempdima{#5}%
+  \fork@parbox@option<#1>[#2]%
+  \@begin@tempboxa\vbox{\box@dir
+    \hsize\@tempdima\@parboxrestore\adjustbaseline#6\@@par}%
+    \ifx\relax#3\else
+      \setlength\@tempdimb{#3}%
+      \edef\@parboxto{to\the\@tempdimb}%
+    \fi
+    \@begin@parbox\@parboxto{\box@dir\adjustbaseline
+       \let\hss\vss\let\unhbox\unvbox
+       \csname bm@#4\endcsname}\@end@parbox
+  \@end@tempboxa}
+
+
+% ↓中身＼周囲→　yoko  tate  utod  dtou
+% yoko          A*    B*    B     B
+% tate          B*    A*    D     C
+% utod          B     D*    A     C
+% dtou          B     C     C     A
+% A: 周囲と中身の組方向が一致．そのまま \vtop/\vcenter/\vbox
+% B: 周囲と中身が90度ずれ．上端が和文の高さ or 下端が和文の深さに揃うように
+% C: 周囲と中身が180度ずれ．（コードは B のものを流用）
+% D: 上端が和文の高さ or 下端が和文の深さに揃うように（コードは B のものを流用）
+
+\def\fork@parbox@option@@A#1{%
+  \let\@end@parbox\relax
+  \if #1t\relax     \let\@begin@parbox\vtop
+  \else\if #1b\relax\let\@begin@parbox\vbox
+  \else
+    \ifmmode
+      \let\@begin@parbox\vcenter\let\@end@parbox\relax
+    \else
+      \def\@begin@parbox{\null$\vcenter}%
+      \def\@end@parbox{\m@th$\null}%
+    \fi
+  \fi\fi}
+\def\lltjext@getjablshift{%
+  \ifnum\ltj@ext@dir=3 \ltjgetparameter{tjabaselineshift}\else
+  \ltjgetparameter{yjabaselineshift}\fi}
+\def\fork@parbox@option@@B#1{%
+  \if #1t\relax
+    \def\@begin@parbox{\raise\dimexpr\cht-\lltjext@getjablshift\vtop\bgroup\kern\z@\vbox}%
+    \let\@end@parbox\egroup
+  \else\if #1b\relax
+    \def\@begin@parbox{\lower\dimexpr\cdp+\lltjext@getjablshift\vbox\bgroup\vbox}%
+    \def\@end@parbox{\kern\z@\egroup}%
+  \else
+    \ifmmode
+      \let\@begin@parbox\vcenter\let\@end@parbox\relax
+    \else
+      \def\@begin@parbox{\null$\vcenter}%
+      \def\@end@parbox{\m@th$\null}%
+    \fi
+  \fi\fi}
+\let\fork@parbox@option@@C=\fork@parbox@option@@B
+\def\fork@parbox@option<#1>[#2]{%
+  \let\box@dir\relax \ltj@ext@dir=\ltjgetparameter{direction}\relax
+  \if #1z\relax
+    \ifnum\ltj@ext@dir=3\relax
+      \let\box@dir\utod
+    \fi
+  \else
+    \if #1y\relax     \let\box@dir\yoko
+    \else\if #1t\relax\let\box@dir\tate
+    \else\if #1d\relax\let\box@dir\dtou
+    \else\if #1u\relax\let\box@dir\utod
+    \fi\fi\fi\fi
+  \fi
+  \ifx\box@dir\relax
+    \ifcase\ltj@ext@dir
+       \or   \let\box@dir\dtou
+       \or\or\let\box@dir\tate
+       \or   \let\box@dir\yoko
+       \else \let\box@dir\utod
+    \fi
+  \fi
+\ifnum\ltj@ext@dir=4 % yoko
+  \ifx\box@dir\yoko      \fork@parbox@option@@A{#2}%
+  \else                  \fork@parbox@option@@B{#2}%
+  \fi
+\else\ifnum\ltj@ext@dir=1 % dtou
+  \ifx\box@dir\yoko      \fork@parbox@option@@B{#2}%
+  \else\ifx\box@dir\dtou \fork@parbox@option@@A{#2}%
+  \else                  \fork@parbox@option@@C{#2}%
+  \fi\fi
+\else\ifnum\ltj@ext@dir=3 % tate
+  \ifx\box@dir\yoko      \fork@parbox@option@@B{#2}%
+  \else\ifx\box@dir\tate \fork@parbox@option@@A{#2}%
+  \else\ifx\box@dir\dtou \fork@parbox@option@@C{#2}%
+  \else                  \fork@parbox@option@@B{#2}% D
+  \fi\fi\fi
+\else % utod
+  \ifx\box@dir\yoko      \fork@parbox@option@@B{#2}%
+  \else\ifx\box@dir\utod \fork@parbox@option@@A{#2}%
+  \else\ifx\box@dir\dtou \fork@parbox@option@@C{#2}%
+  \else                  \fork@parbox@option@@B{#2}% D
+  \fi\fi\fi
+\fi\fi\fi}
+
+%%% pbox
+\DeclareRobustCommand\pbox{\leavevmode\@ifnextchar<{\X@makePbox}{\X@makePbox<Z>}}
+\def\X@makePbox<#1>{%
+  \@ifnextchar[{\@imakePbox<#1>}{\@imakePbox<#1>[-5\p@]}}
+\def\@imakePbox<#1>[#2]{\@ifnextchar[%]
+  {\@iimakePbox<#1>{#2}}{\@iimakePbox<#1>{#2}[c]}}
+\def\@iimakePbox<#1>#2[#3]#4{%
+  \bgroup\let\box@dir\relax
+  \if #1z\relax
+    \ifnum\ltjgetparameter{direction}=3 \relax
+      \let\box@dir\utod
+    \fi
+  \else
+    \if #1y\relax     \let\box@dir\yoko
+    \else\if #1t\relax\let\box@dir\tate
+    \else\if #1d\relax\let\box@dir\dtou
+    \else\if #1u\relax\let\box@dir\utod
+    \fi\fi\fi\fi
+  \fi
+  \ifx\box@dir\relax
+    \ifcase\ltjgetparameter{direction}
+       \or   \let\box@dir\dtou
+       \or\or\let\box@dir\tate
+       \or   \let\box@dir\yoko
+       \else \let\box@dir\utod
+    \fi
+  \fi
+    \setlength{\@tempdima}{#2}%
+    \ifdim\@tempdima<\z@ \hbox{\box@dir#4}\else
+    \hb@xt@\@tempdima{\box@dir
+               \if #3l\relax\else\hss\fi
+               #4\relax
+               \if #3r\relax\else\hss\fi}\fi\egroup}
+
+%%% picture
+\def\picture{\@ifnextchar<%>
+   {\X@picture}{\X@picture<Z>}}
+\def\X@picture<#1>(#2,#3){\@ifnextchar(%)
+   {\@@picture<#1>(#2,#3)}{\@@picture<#1>(#2,#3)(0,0)}}
+\newdimen\@picwd
+\def\ltj@@pic@reset@blshift{%
+  \ltj@yablshift\z@\ltj@ykblshift\z@
+  \ltj@tablshift\z@\ltj@tkblshift\z@
+}%
+\def\@@picture<#1>(#2,#3)(#4,#5){%
+  \edef\ltj@@pic@save@blshift{%
+    \noexpand\ltj@yablshift\the\ltj@yablshift\noexpand\relax
+    \noexpand\ltj@ykblshift\the\ltj@ykblshift\noexpand\relax
+    \noexpand\ltj@tablshift\the\ltj@tablshift\noexpand\relax
+    \noexpand\ltj@tkblshift\the\ltj@tkblshift\noexpand\relax
+  }%
+  \bgroup\let\box@dir\relax
+  \if #1z\relax
+    \ifnum\ltjgetparameter{direction}=3 \relax
+      \let\box@dir\utod
+    \fi
+  \else
+    \if #1y\relax     \let\box@dir\yoko
+    \else\if #1t\relax\let\box@dir\tate
+    \else\if #1d\relax\let\box@dir\dtou
+    \else\if #1u\relax\let\box@dir\utod
+    \fi\fi\fi\fi
+  \fi
+  \ifx\box@dir\relax
+    \ifcase\ltjgetparameter{direction}
+       \or   \let\box@dir\dtou
+       \or\or\let\box@dir\tate
+       \or   \let\box@dir\yoko
+       \else \let\box@dir\utod
+    \fi
+  \fi
+\ifltj@ltfilehook@avail % LaTeX2e >= 2020-10-01
+  \@defaultunitsset\@picht{#3}\unitlength
+  \@defaultunitsset\@picwd{#2}\unitlength
+  \setbox\@picbox\hbox to\@picwd\bgroup\box@dir
+    \@defaultunitsset\@tempdimc{#4}\unitlength\hskip-\@tempdimc
+    \@defaultunitsset\@tempdimc{#5}\unitlength\lower\@tempdimc\hbox\bgroup
+\else % <= 2020-02-02
+  \@picwd=#2\unitlength \@picht=#3\unitlength
+  \setbox\@picbox\hbox to\@picwd\bgroup\box@dir
+  \hskip-#4\unitlength\lower#5\unitlength\hbox\bgroup
+\fi
+  \ltj@@pic@reset@blshift
+  \ignorespaces}
+\def\endpicture{%
+  \egroup\hss\egroup
+  \setbox0=\hbox{\box@dir%
+    \ltjsetht\@picbox\@picht \ltjsetdp\@picbox\z@
+  }%
+  \@tempswafalse
+  \ifnum\ltjgetparameter{direction}=3  \@tempswatrue\fi
+  \ifnum\ltjgetparameter{direction}=11  \@tempswatrue\fi
+  \if@tempswa
+    \ifx\box@dir\yoko % この場合だけ垂直位置補正が必要
+     \ltjsetht\@picbox\dimexpr\ltjgetht\@picbox+\ltjgetdp\@picbox\relax
+      \ltjsetdp\@picbox\z@
+    \fi
+  \fi
+  \mbox{\box\@picbox}%
+  \egroup\ltj@@pic@save@blshift}
+\let\org@put\put
+\def\put{\ltj@@pic@reset@blshift\org@put}
+\let\org@line\line
+\def\line{\ltj@@pic@reset@blshift\org@line}
+\let\org@vector\vector
+\def\vector{\ltj@@pic@reset@blshift\org@vector}
+\let\org@dashbox\dashbox
+\def\dashbox{\ltj@@pic@reset@blshift\org@dashbox}
+\let\org@oval\oval
+\def\oval{\ltj@@pic@reset@blshift\org@oval}
+\let\org@circle\circle
+\def\circle{\ltj@@pic@reset@blshift\org@circle}
+
+%%% rensuji
+\newif\ifnot@advanceline
+\newskip\rensujiskip
+\rensujiskip=0.25\chs plus.25\zw minus.25\zw
+\DeclareRobustCommand\rensuji{%
+  \@ifstar{\not@advancelinetrue\@rensuji}{\@rensuji}}
+\def\@rensuji{\@ifnextchar[{\@@rensuji}{\@@rensuji[c]}}
+\def\@@rensuji[#1]#2{%
+  \ifvmode\leavevmode\fi
+  \ifnum\ltjgetparameter{direction}=4\relax\hbox{#2}\else
+  \hskip\rensujiskip
+  \setbox\tw@\hbox{漢}% 「あ」では仮名書体使用時がまずそう
+  \@tempdimb\ltjgetht\tw@ \advance\@tempdimb\ltjgetdp\tw@
+  \ifnot@advanceline\not@advancelinefalse\else
+    \setbox\z@\hbox{\yoko#2}%
+    \@tempdima\ltjgetht\z@ \advance\@tempdima\ltjgetdp\z@
+    \ifnum\ltjgetparameter{direction}=1\relax
+      % 周囲が dtou の場合には，高さ \ltjgetht\tw@, 深さ \ltjgetdp\tw@ のボックスを基準としている．
+      \if #1c\relax\vrule \@width \z@ \@height\dimexpr.5\@tempdima+.5\ltjgetht\tw@-.5\ltjgetdp\tw@
+                          \@depth\dimexpr.5\@tempdima-.5\ltjgetht\tw@+.5\ltjgetdp\tw@
+      \else\if #1l\relax\vrule\@width \z@\@height\ltjgetht\tw@ \@depth\dimexpr\@tempdima-\ltjgetht\tw@
+      \else\vrule\@width \z@ \@height\dimexpr\@tempdima-\ltjgetdp\tw@ \@depth\ltjgetdp\tw@
+      \fi\fi
+    \else
+      % 周囲が tate, utod の場合も同じ
+      \if #1c\relax\vrule \@width \z@ \@height\dimexpr.5\@tempdima+.5\ltjgetht\tw@-.5\ltjgetdp\tw@
+                          \@depth\dimexpr.5\@tempdima-.5\ltjgetht\tw@+.5\ltjgetdp\tw@
+      \else\if #1r\relax\vrule\@width \z@\@height\ltjgetht\tw@ \@depth\dimexpr\@tempdima-\ltjgetht\tw@
+      \else\vrule\@width \z@ \@height\dimexpr\@tempdima-\ltjgetdp\tw@ \@depth\ltjgetdp\tw@
+      \fi\fi
+    \fi
+  \fi
+  \ifnum\ltjgetparameter{direction}=1\relax
+    \if #1c\relax\hbox to\@tempdimb{\yoko\hss#2\hss\kern-\ltjgetdp\tw@}%
+    \else\if #1r\relax\vbox{\hbox to\@tempdimb{\yoko\hss#2\kern-\ltjgetdp\tw@}}%
+    \else\lower\ltjgetdp\tw@\vtop{\hbox to\@tempdimb{\yoko#2\hss}}%
+    \fi\fi
+  \else
+    \if #1c\relax\raise\dimexpr.5\@tempdimb-\ltjgetdp\tw@
+        \hbox to\@tempdimb{\yoko \hss#2\hss}%
+    \else\if #1r\relax\raise\dimexpr.5\@tempdimb-\ltjgetdp\tw@
+        \vbox{\hbox to\@tempdimb{\yoko\hss#2}}%
+    \else\raise\dimexpr.5\@tempdimb-\ltjgetdp\tw@
+         \vtop{\hbox to\@tempdimb{\yoko #2\hss}}%
+    \fi\fi
+  \fi
+  \hskip\rensujiskip
+\fi}
+\let\Rensuji\rensuji
+\let\prensuji\rensuji
+
+%%% kanji
+\def\Kanji#1{\expandafter\@Kanji\csname c@#1\endcsname}
+\def\@Kanji#1{\kansuji #1}
+\def\kanji{\ifnum\ltjgetparameter{direction}=3 \expandafter\kansuji\fi}
+
+%%% bou
+%%%
+\def\boutenchar{\char\euc"A1A2}%"
+\DeclareRobustCommand\bou[1]{\ifvmode\leavevmode\fi\@bou#1\end}
+\def\@bou#1{%
+  \ifx#1\end \let\ltj@@next=\relax
+  \else
+    \ifnum\ltjgetparameter{direction}=3\relax
+      \hbox to\z@{\vbox to\z@{\boxmaxdepth\maxdimen
+        \vss\moveleft0.2\zw\hbox{\yoko\boutenchar}\nointerlineskip
+        \hbox{\char\euc"A1A1}}\hss}\nobreak#1\relax
+    \else
+      \hbox to\z@{\vbox to\z@{\boxmaxdepth\maxdimen
+        \vss\moveleft-0.2\zw\hbox{\boutenchar}\nointerlineskip
+        \hbox{\char\euc"A1A1}}\hss}\nobreak#1\relax
+    \fi
+    \let\ltj@@next=\@bou
+  \fi\ltj@@next}
+
+%%% kasen
+\DeclareRobustCommand\kasen[1]{%
+  \ifnum\ltjgetparameter{direction}=3\relax
+    \setbox\z@\hbox{#1}\leavevmode\raise.7\zw
+    \hbox to\z@{\vrule\@width\wd\z@ \@depth\z@ \@height.4\p@\hss}%
+    \box\z@
+  \else\underline{#1}\fi}
+
+%%% references
+\def\@eqnnum{{\reset@font\rmfamily \normalcolor
+  \ifnum\ltjgetparameter{direction}=11\raise.25\zh\hbox{\yoko(\theequation)}%
+  \else (\theequation)\fi}}
+\def\@thecounter#1{\noexpand\rensuji{\noexpand\arabic{#1}}}
+\def\@thmcounter#1{\noexpand\rensuji{\noexpand\arabic{#1}}}
+
+%% Compatibility with array package
+
+\def\ltj@lltjext@patch@array{%
+  \patchcmd{\@tabular}{\hbox\bgroup}{%
+	\hbox\bgroup\ltj@ext@dir=\ltjgetparameter{direction}\relax}{}{}
+  \pretocmd{\array}%
+	{\ltj@ext@dir=\ltjgetparameter{direction}\relax}{}{}
+  \expandafter\let\csname tabular*\endcsname=\ltj@lltjext@orig@tabularS
+  \patchcmd{\p@stabular}{\p@tabular}{\@tabular}{}{}
+  \@ifpackagelater{array}{2018/09/13}
+    {\expandafter\@firstoftwo}
+    {\expandafter\@secondoftwo}
+  {% = for 2018/09/13 v2.4i or newer
+  \def\@startpbox##1{\bgroup
+    \color@begingroup
+    \box@dir\adjustbaseline%%% これを追加
+    \setlength\hsize{##1}\@arrayparboxrestore
+      \everypar{%
+         \vrule \@height \ltjgetht\@arstrutbox \@width \z@
+         \everypar{}}%
+      }%
+  }{ % = for 2018/04/30 v2.4h or older
+  \def\@startpbox##1{\bgroup
+    \box@dir\adjustbaseline%%% これを追加
+    \setlength\hsize{##1}\@arrayparboxrestore
+      \everypar{%
+         \vrule \@height \ltjgetht\@arstrutbox \@width \z@
+         \everypar{}}%
+      }%
+  }%
+  \def\@tabarray{\@ifnextchar<\p@tabarray{\p@tabarray<Z>}}
+  \def\p@array<##1>[##2]##3{%
+    \ifnum\ltj@ext@dir=0 \ltj@ext@dir=\ltjgetparameter{direction}\relax\fi
+    \let\box@dir\relax
+    \if ##1z\relax
+      \ifnum\ltj@ext@dir=3\relax
+        \let\box@dir\utod\@tempcnta=\zstrutbox
+      \fi
+    \else
+      \if ##1y\relax
+        \let\box@dir\yoko\@tempcnta=\ystrutbox
+      \else\if ##1t\relax
+        \let\box@dir\tate\@tempcnta=\tstrutbox
+      \else\if ##1d\relax
+         \let\box@dir\dtou\@tempcnta=\dstrutbox
+      \else\if ##1u\relax
+         \let\box@dir\utod\@tempcnta=\zstrutbox
+      \fi\fi\fi\fi
+    \fi
+    \ifx\box@dir\relax
+      \ifcase\ltj@ext@dir
+         \or   \let\box@dir\dtou\@tempcnta=\dstrutbox% dtou
+         \or\or\let\box@dir\tate\@tempcnta=\tstrutbox% tate
+         \or   \let\box@dir\yoko\@tempcnta=\ystrutbox% yoko
+         \else \let\box@dir\utod\@tempcnta=\zstrutbox% utod
+      \fi
+    \fi
+    \setbox \@arstrutbox \hbox{\box@dir\vrule
+               \@height \arraystretch
+                 \dimexpr \ltjgetht\@tempcnta+\extrarowheight\relax
+               \@depth \arraystretch \ltjgetdp \@tempcnta
+               \@width \z@}%
+    \fork@array@option<##1>[##2]%
+    \begingroup
+    \@mkpream{##3}%
+    \xdef\@preamble{\noexpand\ialign \noexpand \@halignto
+                    \bgroup \tabskip \z@skip \@arstrut \@preamble
+                            \tabskip \z@ \cr}%
+    \endgroup
+    \@arrayleft
+    \@begin@alignbox\bgroup\box@dir\adjustbaseline
+      \let\par\@empty
+      \let\@sharp####\let\protect\relax
+      \let\\\@arraycr\let\tabularnewline\\\let\par\@empty
+     \lineskip\z@skip\baselineskip\z@skip\@preamble}
+  \def\endarray{\crcr\egroup\egroup\@end@alignbox\@arrayright}
+}
+\@ifpackageloaded{array}{%
+  \let\tabular=\ltj@lltjext@orig@tabular
+  \let\array=\ltj@lltjext@orig@array
+  \ltj@lltjext@patch@array
+}{%
+  \let\ltj@lltjext@orig@tabular\relax
+  \let\ltj@lltjext@orig@array\relax
+  \ltj@ExecuteAfterPackage{array}{\ltj@lltjext@patch@array}
+}
+
+%%%%%%%%%%%%%%%% LuaTeX-ja original
+
+%%\define@key[ltj]{japaram}{autouprightnum}{%      %COUNT
+%%  \ltj@@set@stack{AURN}{0}{10000}\z@#1 }
+
+\endinput

@@ -1,0 +1,20 @@
+Bulgarian language definition file version 1.2g for Babel.
+----------
+
+To install, run latex on bulgarian.ins. This creates the file
+bulgarian.ldf.  Use this newly created file to replace the
+existing file with the same name in your TeX installation (for MikTeX on
+Windows this may be something like 
+c:\Program Files\Miktex 2.9\tex\generic\babel\bulgarian.ldf).
+
+Report bugs to Georgi Boshnakov.
+
+See  bulgarian.pdf for usage details. 
+
+Changes are described in bulgarian.pdf (section Change history).
+
+   
+------------
+Georgi Boshnakov  (georgi.boshnakov at manchester dot ac dot uk)
+2013-10-14
+

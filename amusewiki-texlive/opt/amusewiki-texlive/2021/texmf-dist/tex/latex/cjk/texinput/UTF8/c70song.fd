@@ -1,0 +1,21 @@
+% This is the file c70song.fd of the CJK package
+%   for using Asian logographs (Chinese/Japanese/Korean) with LaTeX2e
+%
+% created by Werner Lemberg <wl@gnu.org>
+%
+% Version 4.8.5 (16-Oct-2021)
+
+\def\fileversion{4.8.5}
+\def\filedate{2021/10/16}
+\ProvidesFile{c70song.fd}[\filedate\space\fileversion]
+
+
+% character set: Unicode U+0080 - U+FFFD
+% font encoding: Unicode
+
+\DeclareFontFamily{C70}{song}{\hyphenchar \font\m@ne}
+
+\DeclareFontShape{C70}{song}{m}{n}{<-> CJK * cyberb}{\CJKnormal}
+\DeclareFontShape{C70}{song}{bx}{n}{<-> CJKb * cyberb}{\CJKbold}
+
+\endinput

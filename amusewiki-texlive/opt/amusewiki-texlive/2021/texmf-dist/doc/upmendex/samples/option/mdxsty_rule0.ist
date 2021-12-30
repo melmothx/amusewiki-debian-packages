@@ -1,0 +1,12 @@
+% -*- coding: utf-8 -*-
+
+delim_0 "\\leaders\\hbox{$\\cdot$}\\hfill "
+delim_1 "\\leaders\\hbox{$\\cdot$}\\hfill "
+delim_2 "\\leaders\\hbox{$\\cdot$}\\hfill "
+
+lethead_flag 1
+lethead_prefix "\n\\centerline{\\bfseries --- "
+lethead_suffix  " ---}\\par\\nobreak"
+
+priority 0
+icu_rules "&a<<<A<\u00EB<<<\xCB<Ä<<<\x{00E4}<b<<B &ア<<<あ"

@@ -1,0 +1,39 @@
+name hyphen-latin
+category TLCore
+revision 58652
+catalogue lahyph
+shortdesc Latin hyphenation patterns.
+longdesc Hyphenation patterns for Latin in T1/EC and UTF-8 encodings,
+longdesc mainly in modern spelling (u when u is needed and v when v is
+longdesc needed), medieval spelling with the ligatures \ae and \oe and
+longdesc the (uncial) lowercase 'v' written as a 'u' is also supported.
+longdesc Apparently there is no conflict between the patterns of modern
+longdesc Latin and those of medieval Latin. Hyphenation patterns for the
+longdesc Classical Latin in T1/EC and UTF-8 encodings. Classical Latin
+longdesc hyphenation patterns are different from those of 'plain' Latin,
+longdesc the latter being more adapted to modern Latin. Hyphenation
+longdesc patterns for the Liturgical Latin in T1/EC and UTF-8 encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=classiclatin 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-la-x-classic.tex 	file_patterns=hyph-la-x-classic.pat.txt 	file_exceptions=
+execute AddHyphen 	name=latin 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-la.tex 	file_patterns=hyph-la.pat.txt 	file_exceptions=
+execute AddHyphen 	name=liturgicallatin 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-la-x-liturgic.tex 	file_patterns=hyph-la-x-liturgic.pat.txt 	file_exceptions=
+containersize 101960
+containerchecksum 9d0db7fcad4ca764379957fa22f9daede79898bcacfbdb62abe54318a52dd82a66f8e39542c18008e3f6b6d0db284b1e9b891531d3c8f3c9cf22c764e83d57b3
+runfiles size=156
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-la-x-classic.tex
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-la-x-liturgic.tex
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-la.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-la-x-liturgic.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-la.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex-8bit/hyph-la-x-classic.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-la-x-classic.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-la-x-liturgic.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-la.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-la-x-classic.pat.txt
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-la-x-liturgic.pat.txt
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-la.pat.txt
+catalogue-ctan /language/hyphenation/lahyph.tex
+catalogue-license lppl
+catalogue-topics hyphenation latin
+catalogue-version 3.1

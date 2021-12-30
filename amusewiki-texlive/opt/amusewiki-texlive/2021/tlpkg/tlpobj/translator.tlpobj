@@ -1,0 +1,145 @@
+name translator
+category Package
+revision 59412
+shortdesc Easy translation of strings in LaTeX
+longdesc This LaTeX package provides a flexible mechanism for
+longdesc translating individual words into different languages. For
+longdesc example, it can be used to translate a word like "figure" into,
+longdesc say, the German word "Abbildung". Such a translation mechanism
+longdesc is useful when the author of some package would like to
+longdesc localize the package such that texts are correctly translated
+longdesc into the language preferred by the user. This package is not
+longdesc intended to be used to automatically translate more than a few
+longdesc words.
+containersize 28304
+containerchecksum 5700b0b8a95b244c93f17c5e1bfc74d4defec842892eec358b308dc55f45ffd5bef050a1ed938c9100cad771ce5ccd53bfcc917083a9ba23a60a3b339d241f2f
+doccontainersize 216032
+doccontainerchecksum abbe08cb16a39395b53d01f85172a11e339cd18f2c7f9dde8ab1d0cf353649c181f442fcb94c9add913b2b807ae9f6ba1ac54e9a6fed147cba1af335b6b73d8d
+docfiles size=59
+ texmf-dist/doc/latex/translator/README.md details="Readme"
+ texmf-dist/doc/latex/translator/translator.pdf details="Package documentation"
+ texmf-dist/doc/latex/translator/translator.tex
+runfiles size=123
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Bulgarian.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Catalan.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Croatian.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Czech.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Danish.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Dutch.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-French.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-German.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Greek.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Italian.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Norsk.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Nynorsk.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Polish.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Portuguese.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Russian.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Serbian.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Spanish.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Swedish.dict
+ texmf-dist/tex/latex/translator/translator-basic-dictionary-Turkish.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Bulgarian.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Catalan.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Croatian.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Czech.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Danish.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Dutch.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-English.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-French.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-German.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Greek.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Italian.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Polish.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Portuguese.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Russian.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Serbian.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Spanish.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Swedish.dict
+ texmf-dist/tex/latex/translator/translator-bibliography-dictionary-Turkish.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Bulgarian.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Catalan.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Croatian.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Czech.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Danish.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Dutch.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-English.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-French.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-German.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Greek.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Italian.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Polish.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Portuguese.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Russian.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Serbian.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Spanish.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Swedish.dict
+ texmf-dist/tex/latex/translator/translator-environment-dictionary-Turkish.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Bulgarian.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Catalan.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Croatian.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Czech.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Danish.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Dutch.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-English.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-French.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-German.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Greek.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Italian.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Norsk.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Nynorsk.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Polish.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Portuguese.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Russian.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Serbian.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Spanish.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Swedish.dict
+ texmf-dist/tex/latex/translator/translator-months-dictionary-Turkish.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Bulgarian.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Catalan.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Croatian.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Czech.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Danish.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Dutch.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-English.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-French.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-German.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Greek.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Italian.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Norsk.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Nynorsk.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Polish.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Portuguese.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Russian.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Serbian.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Spanish.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Swedish.dict
+ texmf-dist/tex/latex/translator/translator-numbers-dictionary-Turkish.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Bulgarian.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Catalan.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Croatian.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Czech.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Danish.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Dutch.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-English.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-French.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-German.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Greek.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Italian.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Norsk.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Polish.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Portuguese.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Russian.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Serbian.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Spanish.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Swedish.dict
+ texmf-dist/tex/latex/translator/translator-theorem-dictionary-Turkish.dict
+ texmf-dist/tex/latex/translator/translator.sty
+catalogue-also translations
+catalogue-contact-bugs https://github.com/josephwright/translator/issues
+catalogue-contact-repository https://github.com/josephwright/translator
+catalogue-ctan /macros/latex/contrib/translator
+catalogue-license lppl gpl
+catalogue-topics multilingual package-supp
+catalogue-version 1.12d

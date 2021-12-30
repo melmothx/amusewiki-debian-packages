@@ -1,0 +1,329 @@
+%%
+%% This is file `latvian.ldf',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% latvian.dtx  (with options: `code')
+%% This is a generated file.
+%% 
+%% Copyright 2014 Javier Bezos and any individual authors
+%% listed elsewhere in this file.  All rights reserved.
+%% 
+%% This file was generated from file(s) of the Babel system.
+%% ---------------------------------------------------------
+%% 
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Javier Bezos.
+%% 
+%% This file may only be distributed together with a copy of the Babel
+%% system. You may however distribute the Babel system without
+%% such generated files.
+%% 
+%% The list of all files belonging to the Babel distribution is
+%% given in the file `manifest.bbl'. See also `legal.bbl for additional
+%% information.
+%% 
+%% The list of derived (unpacked) files belonging to the distribution
+%% and covered by LPPL is defined by the unpacking scripts (with
+%% extension .ins) which are part of the distribution.
+\ProvidesLanguage{latvian}
+        [2018/02/19 v2.0b Latvian support from the babel system]
+\LdfInit{latvian}\captionslatvian
+\ifx\l@latvian\@undefined
+  \@nopatterns{Latvian}
+  \adddialect\l@latvian0
+\fi
+\StartBabelCommands*{latvian}{captions}
+  [unicode, charset=utf8, fontenc=EU1 EU2]
+
+\SetString\prefacename{Priekšvārds}
+\SetString\refname{Literatūra}
+\SetString\abstractname{Anotācija}
+\SetString\bibname{Bibliogrāfija}
+\SetString\chaptername{nodaļa}
+\SetString\listfigurename{Attēlu rādītājs}
+\SetString\listtablename{Tabulu rādītājs}
+\SetString\indexname{Priekšmetu rādītājs}
+\SetString\figurename{zīm.\@}
+\SetString\partname{daļa}
+\SetString\enclname{Pielikumā}
+\SetString\alsoname{skat.\@ arī}
+
+\StartBabelCommands*{latvian}{date}
+  [unicode, charset=utf8, fontenc=EU1 EU2]
+
+\SetStringLoop{month#1name}{janvārī,februārī,martā,aprīlī,maijā,%
+  jūnijā,jūlijā,augustā,septembrī,oktobrī,novembrī,decembrī}
+\SetStringLoop{nommonth#1name}{janvāris,februāris,marts,aprīlis,maijs,%
+  jūnijs,jūlijs,augusts,septembris,oktobris,novembris,decembris}
+
+\StartBabelCommands*{latvian}{captions}
+
+\SetString\prefacename{Priek\v sv\=ards}%
+\SetString\refname{Literat\=ura}
+\SetString\abstractname{Anot\=acija}
+\SetString\bibname{Bibliogr\=afija}
+\SetString\chaptername{noda\c la}
+\SetString\appendixname{Pielikums}
+\SetString\contentsname{Saturs}
+\SetString\listfigurename{Att\=elu r\=ad\={\i}t\=ajs}
+\SetString\listtablename{Tabulu r\=ad\={\i}t\=ajs}
+\SetString\indexname{Priek\v smetu r\=ad\={\i}t\=ajs}
+\SetString\figurename{z\={\i}m.\@}
+\SetString\tablename{tabula}
+\SetString\partname{da\c la}
+\SetString\enclname{Pielikum\=a}
+\SetString\ccname{Kopija(s)}
+\SetString\headtoname{}
+\SetString\pagename{lpp.\@}
+\SetString\seename{skat.\@}
+\SetString\alsoname{skat.\@ ar\={\i}}
+
+\StartBabelCommands*{latvian}{date}
+
+\SetStringLoop{month#1name}{janv\=ar\={\i},febru\=ar\={\i},mart\=a,%
+  apr\={\i}l\={\i},maij\=a,j\=unij\=a,j\=ulij\=a,august\=a,%
+  septembr\={\i},oktobr\={\i},novembr\={\i},decembr\={\i}}
+\SetStringLoop{nommonth#1name}{janv\=aris,febru\=aris,marts,%
+  apr\={\i}lis,maijs,j\=unijs,j\=ulijs,augusts,septembris,%
+  oktobris,novembris,decembris}
+
+\SetString\datumaa{\number\year.~\latviangada\ \number\day.~%
+  \csname month\romannumeral\month name\endcsname}
+\SetString\datums{\number\year.~\latviangada\ \number\day.~%
+  \csname nommonth\romannumeral\month name\endcsname}
+
+\SetString\today{\datumaa}
+
+\AfterBabelCommands{\newcommand\latviangada{g.}}
+
+\EndBabelCommands
+\gdef\the@chapter{%
+  \ifx\chapter\undefined\relax\else
+  \ifnum\c@chapter>\z@\thechapter\fi\fi}
+\def\thechapter{%
+  \ifx\chapter\undefined\relax\else
+  \arabic{chapter}.\fi}
+\def\thesection{\the@chapter\arabic{section}.}
+\def\thesubsection{\thesection\arabic{subsection}.}
+\def\thesubsubsection{\thesubsection\arabic{subsubsection}.}
+\def\theparagraph{\thesubsubsection\arabic{paragraph}.}
+\def\thesubparagraph{\theparagraph\arabic{subparagraph}.}
+\def\depth@{\ifx\chapter\undefined\m@ne\else-2\relax\fi}
+\def\@part[#1]#2{%
+  \relax
+  \ifnum\c@secnumdepth>\depth@
+    \refstepcounter{part}
+    \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+  \else
+    \addcontentsline{toc}{part}{#1}\fi
+    \ifx\chapter\undefined
+      \bgroup\parindent\z@\raggedright
+    \else
+      \markboth{}{}\bgroup\centering
+    \fi
+    \interlinepenalty\@M
+    \ifnum\c@secnumdepth>\depth@
+      \normalfont\bfseries\thepart~\partname  %  adapted to Latvian order
+      \par
+      \ifx\chapter\undefined\nobreak\else\vskip 20\p@\fi
+    \fi
+    \ifx\chapter\undefined\huge\else\Huge\fi\normalfont\bfseries#2%
+    \ifx\chapter\undefined\markboth{}{}\fi
+    \par\egroup
+    \ifx\chapter\undefined\nobreak
+    \vskip3ex \@afterheading\else\@endpart
+  \fi}
+\def\@makechapterhead#1{%
+  \vspace*{50pt}%
+  {\parindent 0pt \raggedright
+   \ifnum\c@secnumdepth>\m@ne
+     \huge\normalfont\bfseries\thechapter\space\@chapapp{}%
+     \par
+     \vskip20pt
+   \fi
+   \Huge\normalfont\bfseries#1\par\nobreak\vskip40pt }}
+\let\@aifORI\@afterindentfalse
+\def\bbl@latvianindent{%
+  \let\@afterindentfalse\@afterindenttrue
+  \@afterindenttrue}
+\def\bbl@nonlatvianindent{%
+  \let\@afterindentfalse\@aifORI
+  \@afterindentfalse}
+\addto\extraslatvian{\bbl@latvianindent}
+\addto\noextraslatvian{\bbl@nonlatvianindent}
+\def\thefigure{\the@chapter\@arabic\c@figure.}
+\def\thetable{\the@chapter\@arabic\c@table.}
+\def\fnum@figure{\thefigure~\figurename}
+\def\fnum@table{\thetable~\tablename}
+\long\def\@makecaption#1#2{%
+  \vskip10\p@
+  \sbox\@tempboxa{#1\if\empty#2\else: #2\fi}%
+  \ifdim\wd\@tempboxa>\hsize
+    #1: #2\par
+  \else
+    \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi}
+\def\@thmcountersep{}
+\gdef\@makethmnumber#1#2{%
+  \ifx\thmno@left0{#1\ #2}\else {#2. #1}\fi}
+\def\@begintheorem#1#2{%
+  \normalfont\itshape\trivlist
+  \item[\hskip\labelsep
+    \hskip\parindent\normalfont\bfseries
+    {\@makethmnumber{#1}{#2}}.]}
+\def\@opargbegintheorem#1#2#3{%
+  \normalfont\itshape\trivlist
+  \item[\hskip\labelsep \hskip\parindent\normalfont\bfseries
+    {\@makethmnumber{#1}{#2} (#3).}]}
+\gdef\thmnoleft{\let\thmno@left=1}
+\gdef\thmnoright{\let\thmno@left=0}
+\thmnoleft
+\def\theequation{\the@chapter\arabic{equation}}
+\ifx\@chapapp\undefined
+  \if@twoside
+  \def\sectionmark#1{%
+    \markboth
+    {\uppercase{\ifnum\c@secnumdepth>\z@ne\thesection\hskip1em\relax\fi#1}}%
+    {}}
+  \def\subsectionmark#1{%
+    \markright
+    {\uppercase{\ifnum\c@secnumdepth>\@ne\thesubsection\ \fi#1}}}
+ \else
+  \def\sectionmark#1{%
+    \markright
+    {\uppercase{\ifnum\c@secnumdepth>\z@\thesection\hskip1em\relax\fi#1}}}
+ \fi%
+\else
+ \def\chaptermark#1{%
+   \markboth
+   {\uppercase{\ifnum\c@secnumdepth>\m@ne\thechapter~\@chapapp: \fi#1}}%
+   {}}
+ \def\sectionmark#1{%
+   \markright{\uppercase{\ifnum\c@secnumdepth>\z@\thesection\ \fi#1}}}
+\fi
+\addto\extraslatvian{%
+  \babel@save\@alph
+  \def\@alph#1{%
+    \ifcase#1\or a\or b\or c\or d\or e\or f\or g\or h\or i\or j\or k\or
+    l\or m\or n\or o\or p\or r\or s\or t\or u\or v\or
+    z\else\@ctrerr\fi}%
+  \babel@save\@Alph
+  \def\@Alph#1{%
+    \ifcase#1\or A\or B\or C\or D\or E\or F\or G\or H\or I\or J\or K\or
+    L\or M\or N\or O\or P\or R\or S\or T\or U\or V\or Z\else\@ctrerr\fi}}
+\def\latvianhyphenmins{\tw@\tw@}
+\initiate@active@char{"}
+\addto\extraslatvian{\languageshorthands{latvian}}
+\addto\extraslatvian{\bbl@activate{"}}
+
+\DeclareTextCompositeCommand{\=}{OT1}{i}{\@tabacckludge={\i}}
+\DeclareTextCompositeCommand{\=}{T1}{i}{\@tabacckludge={\i}}
+
+\@expandtwoargs\in@{,t1composite,}{,\BabelModifiers,}
+\ifin@
+
+  \DeclareTextCommand{\lv@cb}{T1}[1]%  same as \c
+   {\leavevmode
+    \setbox\z@\hbox{#1}%
+    \ifdim\ht\z@=1ex\accent11 #1%
+    \else{\ooalign{\unhbox\z@\crcr\hidewidth\char11\hidewidth}}%
+    \fi}
+  \let\lv@cbg\lv@cb
+
+  \DeclareTextCompositeCommand{\c}{T1}{g}{\lv@cbg{g}}
+  \DeclareTextCompositeCommand{\c}{T1}{G}{\lv@cb{G}}
+  \DeclareTextCompositeCommand{\c}{T1}{r}{\lv@cb{r}}
+  \DeclareTextCompositeCommand{\c}{T1}{R}{\lv@cb{R}}
+  \DeclareTextCompositeCommand{\c}{T1}{k}{\lv@cb{k}}
+  \DeclareTextCompositeCommand{\c}{T1}{K}{\lv@cb{K}}
+  \DeclareTextCompositeCommand{\c}{T1}{l}{\lv@cb{l}}
+  \DeclareTextCompositeCommand{\c}{T1}{L}{\lv@cb{L}}
+  \DeclareTextCompositeCommand{\c}{T1}{n}{\lv@cb{n}}
+  \DeclareTextCompositeCommand{\c}{T1}{N}{\lv@cb{N}}
+
+  \def\lv@ifcombelow{\@ifpackageloaded{combelow}}
+  \AtBeginDocument{%  because \@ifpackageloaded is 'only preamble'
+    \@ifpackageloaded{combelow}%
+      {\let\lv@ifcombelow\@firstoftwo}%
+      {\let\lv@ifcombelow\@secondoftwo}}
+
+  \addto\extraslatvian{%
+    \babel@save\lv@cbg
+    \lv@ifcombelow
+      {\babel@save\lv@cb
+       \let\lv@cb\cb
+       \let\lv@cbg\cb}%
+      {\let\lv@cbg\v}}
+
+\fi
+
+\declare@shorthand{latvian}{"a}{\textormath{\={a}}{\=a}}
+\declare@shorthand{latvian}{"e}{\textormath{\={e}}{\=e}}
+\declare@shorthand{latvian}{"u}{\textormath{\={u}}{\=u}}
+\declare@shorthand{latvian}{"i}{\textormath{\={\i}}{\=\i}}
+\declare@shorthand{latvian}{"o}{\textormath{\={o}}{\=o}}
+
+\declare@shorthand{latvian}{"A}{\textormath{\={A}}{\=A}}
+\declare@shorthand{latvian}{"E}{\textormath{\={E}}{\=E}}
+\declare@shorthand{latvian}{"U}{\textormath{\={U}}{\=U}}
+\declare@shorthand{latvian}{"I}{\textormath{\={I}}{\=I}}
+\declare@shorthand{latvian}{"O}{\textormath{\={O}}{\=O}}
+
+\declare@shorthand{latvian}{"r}{\textormath{\c{r}}{\c r}}
+\declare@shorthand{latvian}{"s}{\textormath{\v{s}}{\v s}}
+\declare@shorthand{latvian}{"g}{\textormath{\c{g}}{\c g}}
+\declare@shorthand{latvian}{"k}{\textormath{\c{k}}{\c k}}
+\declare@shorthand{latvian}{"l}{\textormath{\c{l}}{\c l}}
+\declare@shorthand{latvian}{"z}{\textormath{\v{z}}{\v z}}
+\declare@shorthand{latvian}{"c}{\textormath{\v{c}}{\v c}}
+\declare@shorthand{latvian}{"n}{\textormath{\c{n}}{\c n}}
+
+\declare@shorthand{latvian}{"R}{\textormath{\c{R}}{\c R}}
+\declare@shorthand{latvian}{"S}{\textormath{\v{S}}{\v S}}
+\declare@shorthand{latvian}{"G}{\textormath{\c{G}}{\c G}}
+\declare@shorthand{latvian}{"K}{\textormath{\c{K}}{\c K}}
+\declare@shorthand{latvian}{"L}{\textormath{\c{L}}{\c L}}
+\declare@shorthand{latvian}{"Z}{\textormath{\v{Z}}{\v Z}}
+\declare@shorthand{latvian}{"C}{\textormath{\v{C}}{\v C}}
+\declare@shorthand{latvian}{"N}{\textormath{\c{N}}{\c N}}
+
+\declare@shorthand{latvian}{"-}{\nobreak\-\bbl@allowhyphens}
+\declare@shorthand{latvian}{"|}{%
+  \textormath{\penalty\@M\discretionary{-}{}{\kern.03em}%
+              \allowhyphens}{}}
+\declare@shorthand{latvian}{""}{\hskip\z@skip}
+\declare@shorthand{latvian}{"~}{\textormath{\leavevmode\hbox{-}}{-}}
+\declare@shorthand{latvian}{"=}{\penalty\@M-\hskip\z@skip}
+
+\ldf@finish{latvian}
+%%
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+\endinput
+%%
+%% End of file `latvian.ldf'.

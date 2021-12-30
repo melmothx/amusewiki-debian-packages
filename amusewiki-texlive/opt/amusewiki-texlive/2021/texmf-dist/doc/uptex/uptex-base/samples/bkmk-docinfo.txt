@@ -1,0 +1,12 @@
+%
+% a sample of docinfo
+% this is overwritten by convbkmk.rb -o
+%
+\catcode`\@=0
+@catcode`@\=12
+@def@PDFTITLE{いろいろ確かめてみる}
+@def@PDFSUBJECT{hyperref編}
+@def@PDFAUTHOR{名無 権兵衛}
+@def@PDFKEYWORDS{TeX; dvips; dvipdfmx; bookmark; hyperref; しおり; pdf; \202100\240}
+@catcode`@\=0
+\catcode`\@=12

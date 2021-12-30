@@ -1,0 +1,48 @@
+name unicode-data
+category Package
+revision 60516
+shortdesc Unicode data and loaders for TeX
+longdesc This bundle provides generic access to Unicode Consortium data
+longdesc for TeX use. It contains a set of text files provided by the
+longdesc Unicode Consortium which are currently all from Unicode 8.0.0,
+longdesc with the exception of MathClass.txt which is not currently part
+longdesc of the Unicode Character Database. Accompanying these source
+longdesc data are generic TeX loader files allowing this data to be used
+longdesc as part of TeX runs, in particular in building format files.
+longdesc Currently there are two loader files: one for general character
+longdesc set up and one for initialising XeTeX character classes as has
+longdesc been carried out to date by unicode-letters.tex. The source
+longdesc data are distributed in accordance with the license stipulated
+longdesc by the Unicode Consortium. The bundle as a whole is
+longdesc co-ordinated by the LaTeX3 Project as a general resource for
+longdesc TeX users.
+containersize 305540
+containerchecksum 6b1ca4dc7d716c1013f809a7c22863a02b82e51db2e126cad97b08a15b44a38bda11358b7877bb2438ab1d087254858a19a10e810a96796fe80b71cf3a661e81
+doccontainersize 3832
+doccontainerchecksum 42bd2a27eb76e2be45cc7384cd84de26513e2ee577bda14bc20bfa7a83e1c53a121310d75bd3e237cfcc9bb7e9da39190373db0bbde44d66894e7d7df7924fc6
+docfiles size=3
+ texmf-dist/doc/generic/unicode-data/README.md details="Readme"
+runfiles size=781
+ texmf-dist/tex/generic/unicode-data/BidiBrackets.txt
+ texmf-dist/tex/generic/unicode-data/BidiMirroring-5-1-0.txt
+ texmf-dist/tex/generic/unicode-data/BidiMirroring.txt
+ texmf-dist/tex/generic/unicode-data/CaseFolding.txt
+ texmf-dist/tex/generic/unicode-data/EastAsianWidth.txt
+ texmf-dist/tex/generic/unicode-data/GraphemeBreakProperty.txt
+ texmf-dist/tex/generic/unicode-data/LineBreak.txt
+ texmf-dist/tex/generic/unicode-data/MathClass-15.txt
+ texmf-dist/tex/generic/unicode-data/PropList.txt
+ texmf-dist/tex/generic/unicode-data/ScriptExtensions.txt
+ texmf-dist/tex/generic/unicode-data/Scripts.txt
+ texmf-dist/tex/generic/unicode-data/SpecialCasing.txt
+ texmf-dist/tex/generic/unicode-data/UnicodeData.txt
+ texmf-dist/tex/generic/unicode-data/WordBreakProperty.txt
+ texmf-dist/tex/generic/unicode-data/emoji-data.txt
+ texmf-dist/tex/generic/unicode-data/load-unicode-data.tex
+ texmf-dist/tex/generic/unicode-data/load-unicode-math-classes.tex
+ texmf-dist/tex/generic/unicode-data/load-unicode-xetex-classes.tex
+catalogue-contact-repository https://github.com/latex3/unicode-data
+catalogue-ctan /macros/generic/unicode-data
+catalogue-license lppl1.3c
+catalogue-topics latex3 unicode
+catalogue-version 1.15

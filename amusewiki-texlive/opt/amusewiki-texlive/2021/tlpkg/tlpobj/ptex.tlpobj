@@ -1,0 +1,40 @@
+name ptex
+category Package
+revision 59502
+shortdesc A TeX system for publishing in Japanese
+longdesc pTeX adds features related to vertical writing, and deals with
+longdesc other problems in typesetting Japanese. A manual (in both
+longdesc Japanese and English) is distributed as package pTeX-manual.
+depend cm
+depend etex
+depend hyphen-base
+depend knuth-lib
+depend plain
+depend ptex-base
+depend ptex-fonts
+depend ptex.ARCH
+execute AddFormat name=eptex engine=eptex options="*eptex.ini"           patterns=language.def           fmttriggers=cm,hyphen-base,knuth-lib,plain,ptex-base,ptex-fonts,etex
+execute AddFormat name=ptex engine=ptex options="ptex.ini"           fmttriggers=cm,hyphen-base,knuth-lib,plain,ptex-base,ptex-fonts
+execute addKanjiMap ptex-@jaEmbed@@jaVariant@.map
+containersize 692
+containerchecksum 4183d235d990089401faa180297940df927621d5c0846d7e4e1e04a8c82257d75f0dd868590e724568fec92fba09ba1c9a0550673dd24c5484de562e8079d8b6
+doccontainersize 121228
+doccontainerchecksum d05bd8a2379392db485e6d544584513983d4fd598e49848df2daef8b76f3ecfde23445184ba902cdb311fa3bde648c66629a9bcea2b65f10d85e5985052e9bbd
+docfiles size=54
+ texmf-dist/doc/man/man1/eptex.1
+ texmf-dist/doc/man/man1/eptex.man1.pdf
+ texmf-dist/doc/man/man1/makejvf.1
+ texmf-dist/doc/man/man1/makejvf.man1.pdf
+ texmf-dist/doc/man/man1/mendex.1
+ texmf-dist/doc/man/man1/mendex.man1.pdf
+ texmf-dist/doc/man/man1/ppltotf.1
+ texmf-dist/doc/man/man1/ppltotf.man1.pdf
+ texmf-dist/doc/man/man1/ptex.1
+ texmf-dist/doc/man/man1/ptex.man1.pdf
+ texmf-dist/doc/man/man1/ptftopl.1
+ texmf-dist/doc/man/man1/ptftopl.man1.pdf
+catalogue-alias eptex
+catalogue-contact-bugs https://github.com/texjporg/tex-jp-build/
+catalogue-contact-support https://ml.texjp.org/mailman/listinfo/issue
+catalogue-license bsd3
+catalogue-topics engine japanese

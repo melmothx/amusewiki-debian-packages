@@ -1,0 +1,60 @@
+%
+% plarray.sty
+% written by Hironobu Yamashita (@aminophen)
+%
+% This package is part of the platex-tools bundle.
+% https://github.com/aminophen/platex-tools
+%
+% This package is expected to be compatible with
+%   * array.sty in latex-tools
+%     (2016/10/06 v2.4d -- 2021/10/04 v2.5f)
+%   * plcore.ltx in platex
+%     (2001/09/26 v1.2a -- 2021/12/08 v1.3l)
+%
+
+\NeedsTeXFormat{pLaTeX2e}
+\ProvidesPackage{plarray}
+  [2021/12/11 v0.1i Tabular extension package for pLaTeX/upLaTeX]
+\RequirePackage{array}
+
+%% patching internal code for array.sty
+%
+%% remove extra \xkanjiskip (pLaTeX2e 2016/04/17)
+\@ifl@t@r{\pfmtversion}{2016/04/17}{\@firstofone}{\@gobble}
+{% = for pLaTeX2e 2016/04/17 or newer
+\def\@tabular{%
+  \leavevmode \null
+  \hbox \bgroup $\col@sep\tabcolsep \let\d@llarbegin\begingroup
+                                    \let\d@llarend\endgroup
+  \@tabarray}
+\def\endtabular{\endarray\m@th $\egroup\null}
+\expandafter \let \csname endtabular*\endcsname = \endtabular
+}% =
+%
+%% inhibit JFM glue around tabular cell components (pLaTeX2e 2018/03/09)
+\@ifl@t@r{\pfmtversion}{2017/07/29}{\@firstofone}{\@gobble}
+{% = for pLaTeX2e 2017/07/29 or newer
+% first, provide old definition; there are some known incompatibility
+% compared to LaTeX, pLaTeX or array
+\def\insert@column{%
+   \the@toks \the \@tempcnta
+   \mbox{}\inhibitglue \ignorespaces \@sharp \unskip \unskip
+   \the@toks \the \count@ \relax}
+% if both macros are available, override with new definition
+% (= pLaTeX2e 2018/03/09 or later, built on e-(u)pTeX 180226)
+\ifx\pltx@next@inhibitglue\@undefined\else
+  \ifx\removejfmglue\@undefined\else
+    \def\insert@column{%
+       \the@toks \the \@tempcnta
+       \relax \pltx@next@inhibitglue
+       \ignorespaces \@sharp \unskip \removejfmglue
+       \the@toks \the \count@ \relax}
+  \fi
+\fi
+}% =
+%
+%% done
+
+%% all done
+
+\endinput

@@ -1,0 +1,12 @@
+% -*- coding: utf-8 -*-
+
+delim_0 "\\leaders\\hbox{$\\cdot$}\\hfill "
+delim_1 "\\leaders\\hbox{$\\cdot$}\\hfill "
+delim_2 "\\leaders\\hbox{$\\cdot$}\\hfill "
+
+lethead_flag 1
+lethead_prefix "\n\\centerline{\\bfseries --- "
+lethead_suffix  " ---}\\par\\nobreak"
+
+icu_locale  "zh@collation=stroke"
+hanzi_head  "1画;2画;3画;4画;5画;6画;7画;8画;9画;10画;11画;12画;13画;14画;15画;16画;17画;18画;19画;20画;21画;22画;23画;24画;25画;26画;27画;28画;29画;30画;31画;32画;33画;35画;36画;39画;48画"

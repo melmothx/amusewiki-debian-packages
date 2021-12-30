@@ -1,0 +1,21 @@
+% This is the file c70bkai.fd of the CJK package
+%   for using Asian logographs (Chinese/Japanese/Korean) with LaTeX2e
+%
+% created by Werner Lemberg <wl@gnu.org>
+%
+% Version 4.8.5 (16-Oct-2021)
+
+\def\fileversion{4.8.5}
+\def\filedate{2021/10/16}
+\ProvidesFile{c70bkai.fd}[\filedate\space\fileversion]
+
+
+% character set: Big5
+% font encoding: Unicode
+
+\DeclareFontFamily{C70}{bkai}{\hyphenchar \font\m@ne}
+
+\DeclareFontShape{C70}{bkai}{m}{n}{<-> CJK * bkaiu}{\CJKnormal}
+\DeclareFontShape{C70}{bkai}{bx}{n}{<-> CJKb * bkaiu}{\CJKbold}
+
+\endinput
