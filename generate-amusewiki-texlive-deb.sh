@@ -20,7 +20,7 @@ if [ "$1" = "bootstrap" ]; then
     mkdir -p amusewiki-texlive/opt
     mv amusewiki/local/texlive amusewiki-texlive/opt/amusewiki-texlive
     # cleanup the installation directory
-    rm -rf amusewiki/local/install-texlive
+    # rm -rf amusewiki/local/install-texlive
 fi
 
 # create symbolic links
@@ -28,6 +28,14 @@ rm -f      amusewiki-texlive/opt/amusewiki-texlive/current
 ln -s $year amusewiki-texlive/opt/amusewiki-texlive/current
 rm -f              amusewiki-texlive/opt/amusewiki-texlive/current/bin/arch
 ln -s x86_64-linux amusewiki-texlive/opt/amusewiki-texlive/current/bin/arch
+echo "Replacing stock texmf.cnf"
+cat amusewiki-texlive/opt/amusewiki-texlive/current/texmf.cnf
+cat <<EOF> amusewiki-texlive/opt/amusewiki-texlive/current/texmf.cnf
+TEXMFHOME = ~/texmf
+TEXMFCONFIG = ~/.amusewiki-texlive-$year/texmf-config
+TEXMFVAR = ~/.amusewiki-texlive-$year/year/texmf-var
+ASYMPTOTE_HOME = \$TEXMFCONFIG/asymptote
+EOF
 cd $basedir/amusewiki-texlive
 mkdir -p DEBIAN
 find opt  -type f  -printf '%p ' | xargs md5sum > DEBIAN/md5sums
