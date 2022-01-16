@@ -2,22 +2,28 @@
 
 set -e
 
-if [ `pwd` != "$HOME" ]; then
-    if [ -f "$1" ]; then
-        mv "$1" $HOME
+for p in "$@"; do
+    if [ `pwd` != "$HOME" ]; then
+        if [ -f "$p" ]; then
+            mv -v "$p" $HOME
+        fi
     fi
-fi
+done
 
 cd ~
 
-if [ -f "$1" ]; then
-    # reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb jessie $1
-    reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb stretch $1
-    reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb buster $1
-    reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb bullseye $1
-    mkdir -p uploaded
-    mv $1 uploaded
-fi
+for p in "$@"; do
+    if [ -f "$p" ]; then
+        # reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb jessie $p
+        reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb stretch $p
+        reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb buster $p
+        reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb bullseye $p
+        mkdir -p uploaded
+        mv $p uploaded
+    else
+        echo "$p does not exist!"
+    fi
+done
 
 rm -rf amusewiki-packages
 mkdir amusewiki-packages
