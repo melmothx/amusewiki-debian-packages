@@ -1,0 +1,15 @@
+Source: fonts-source-han-sans-ko
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: https://github.com/adobe-fonts/source-han-sans
+
+Package: fonts-source-han-sans-ko
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Source Han Sans is a set of OpenType Pan-CJK fonts.
+ This package contains the Language Specific OTFs Korean (한국어)

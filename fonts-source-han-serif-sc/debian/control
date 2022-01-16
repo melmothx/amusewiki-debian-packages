@@ -1,0 +1,16 @@
+Source: fonts-source-han-serif-sc
+Section: fonts
+Priority: optional
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Uploaders: Marco Pessotto <melmothx@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: https://github.com/adobe-fonts/source-han-serif
+
+Package: fonts-source-han-serif-sc
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Source Han Serif is a set of OpenType Pan-CJK fonts.
+ This package contains the Language Specific OTFs Simplified Chinese
+ (简体中文) release
