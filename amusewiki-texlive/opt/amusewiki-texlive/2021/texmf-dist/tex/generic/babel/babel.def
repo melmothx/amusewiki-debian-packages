@@ -7,7 +7,7 @@
 %% babel.dtx  (with options: `core')
 %% 
 %%
-%% Copyright (C) 2012-2021 Javier Bezos and Johannes L. Braams.
+%% Copyright (C) 2012-2022 Javier Bezos and Johannes L. Braams.
 %% Copyright (C) 1989-2012 Johannes L. Braams and
 %%           any individual authors listed elsewhere in this file.
 %% All rights reserved.
@@ -40,7 +40,7 @@
     \wlog{File: #1 #4 #3 <#2>}%
     \let\ProvidesFile\@undefined}
 \fi
-\ProvidesFile{babel.def}[2021/12/28 3.68 Babel common definitions]
+\ProvidesFile{babel.def}[2022/01/26 3.70 Babel common definitions]
 \ifx\AtBeginDocument\@undefined  % TODO. change test.
   \def\@empty{}
 \def\loadlocalcfg#1{%
@@ -406,8 +406,8 @@
 \expandafter\newif\csname ifbbl@single\endcsname
 \chardef\bbl@bidimode\z@
 \fi
-\def\bbl@version{3.68}
-\def\bbl@date{2021/12/28}
+\def\bbl@version{3.70}
+\def\bbl@date{2022/01/26}
 \ifx\language\@undefined
   \csname newcount\endcsname\language
 \fi

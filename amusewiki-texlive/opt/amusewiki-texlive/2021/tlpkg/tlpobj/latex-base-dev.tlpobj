@@ -1,6 +1,6 @@
 name latex-base-dev
 category Package
-revision 61076
+revision 61598
 shortdesc Development pre-release of the LaTeX kernel
 longdesc This package provides a testing release for upcoming LaTeX2e
 longdesc kernel changes. Testing by the LaTeX team itself suggests that
@@ -9,11 +9,11 @@ longdesc users is required by adding these changes to the release LaTeX
 longdesc kernel. Typically, the code here will be used by a TeX system
 longdesc to create dedicated formats, for example pdflatex-dev, which
 longdesc can then be used explicitly for testing.
-containersize 220552
-containerchecksum 6261ede2b83ed8c13d66345206d412117b3287115701191e2bc6cc68ba6a4629b0305ca3c8d33b9f0f9ac9a6ef6adc1c45467b9e2969ac841053e8b3d34e629f
-doccontainersize 28306760
-doccontainerchecksum 5ce8066cc8098b7946f6756b41476033c42b649f2effcee36feb4b88215e1351ca981d888894124468206a711e8189cdd26e79862478b329d0b4f943f8ea9ae5
-docfiles size=8899
+containersize 222916
+containerchecksum 41f61ac442779210ae8e776cd5b1d6964bf266a5bac4024238ebb6daaad1f98f4fea7532e4185d4e40af29d848c54a955585d66333daf65301452aa198fa8a7e
+doccontainersize 29352936
+doccontainerchecksum 1bb149bd5e7598d15bbec6e2d848080629ada8086be4e406d77d86084f0e8a3d3a40c17b5fd09f0276e1c3c3066ea6e36b43fcb21b17a60f8d297155c84ac67e
+docfiles size=9227
  texmf-dist/doc/latex-dev/base/README.md details="Readme"
  texmf-dist/doc/latex-dev/base/alltt.pdf
  texmf-dist/doc/latex-dev/base/bugs.txt
@@ -27,6 +27,8 @@ docfiles size=8899
  texmf-dist/doc/latex-dev/base/cmfonts.pdf
  texmf-dist/doc/latex-dev/base/cyrguide.pdf details="Cyrillic languages guide"
  texmf-dist/doc/latex-dev/base/cyrguide.tex
+ texmf-dist/doc/latex-dev/base/doc-code.pdf
+ texmf-dist/doc/latex-dev/base/doc-code.tex
  texmf-dist/doc/latex-dev/base/doc.pdf
  texmf-dist/doc/latex-dev/base/docstrip.pdf
  texmf-dist/doc/latex-dev/base/encguide.pdf details="Font encoding guide"
@@ -40,8 +42,6 @@ docfiles size=8899
  texmf-dist/doc/latex-dev/base/inputenc.pdf
  texmf-dist/doc/latex-dev/base/lamport-manual.err
  texmf-dist/doc/latex-dev/base/lamport-manual.pdf
- texmf-dist/doc/latex-dev/base/latexchanges.pdf details="Details of changes to LaTeX2e"
- texmf-dist/doc/latex-dev/base/latexchanges.tex
  texmf-dist/doc/latex-dev/base/latexrelease.pdf
  texmf-dist/doc/latex-dev/base/latexsym.pdf
  texmf-dist/doc/latex-dev/base/lb2.err
@@ -138,6 +138,8 @@ docfiles size=8899
  texmf-dist/doc/latex-dev/base/ltnews33.tex
  texmf-dist/doc/latex-dev/base/ltnews34.pdf
  texmf-dist/doc/latex-dev/base/ltnews34.tex
+ texmf-dist/doc/latex-dev/base/ltnews35.pdf
+ texmf-dist/doc/latex-dev/base/ltnews35.tex
  texmf-dist/doc/latex-dev/base/ltpara-code.pdf
  texmf-dist/doc/latex-dev/base/ltpara-code.tex
  texmf-dist/doc/latex-dev/base/ltpara-doc.pdf
@@ -160,8 +162,6 @@ docfiles size=8899
  texmf-dist/doc/latex-dev/base/source2e.pdf
  texmf-dist/doc/latex-dev/base/source2e.tex
  texmf-dist/doc/latex-dev/base/syntonly.pdf
- texmf-dist/doc/latex-dev/base/tex2.txt
- texmf-dist/doc/latex-dev/base/texpert.txt
  texmf-dist/doc/latex-dev/base/tlc2.err
  texmf-dist/doc/latex-dev/base/tlc2.pdf
  texmf-dist/doc/latex-dev/base/tulm.pdf
@@ -172,9 +172,9 @@ docfiles size=8899
  texmf-dist/doc/latex-dev/base/utf8ienc.pdf
  texmf-dist/doc/latex-dev/base/webcomp.err
  texmf-dist/doc/latex-dev/base/webcomp.pdf
-srccontainersize 681992
-srccontainerchecksum 6f8674c52cb1bea1ac6352453c7dc0e5da92e96cddc12f97fe3a6ab5b38a60d64914c7d8ed4dd1049e41ec49adc724fa573cd0b8034197d88eb0ff5a0158074e
-runfiles size=614
+srccontainersize 695636
+srccontainerchecksum 9cc498767a623681c09bf9ea28d8f79eac8c3bc147a0e0f754ce63c2d55d2cf823ad05528b2fb69bd96b911442443d685095662d62f72951018342976c40dd2f
+runfiles size=628
  texmf-dist/tex/latex-dev/base/alltt.sty
  texmf-dist/tex/latex-dev/base/ansinew.def
  texmf-dist/tex/latex-dev/base/applemac.def
@@ -199,7 +199,8 @@ runfiles size=614
  texmf-dist/tex/latex-dev/base/cp858.def
  texmf-dist/tex/latex-dev/base/cp865.def
  texmf-dist/tex/latex-dev/base/decmulti.def
- texmf-dist/tex/latex-dev/base/doc-v3beta.sty
+ texmf-dist/tex/latex-dev/base/doc-2016-02-15.sty
+ texmf-dist/tex/latex-dev/base/doc-2021-06-01.sty
  texmf-dist/tex/latex-dev/base/doc.sty
  texmf-dist/tex/latex-dev/base/docstrip.tex
  texmf-dist/tex/latex-dev/base/exscale.sty
@@ -241,6 +242,7 @@ runfiles size=614
  texmf-dist/tex/latex-dev/base/ltluatex.tex
  texmf-dist/tex/latex-dev/base/ltnews.cls
  texmf-dist/tex/latex-dev/base/ltxcheck.tex
+ texmf-dist/tex/latex-dev/base/ltxdoc.cfg
  texmf-dist/tex/latex-dev/base/ltxdoc.cls
  texmf-dist/tex/latex-dev/base/ltxguide.cls
  texmf-dist/tex/latex-dev/base/ly1enc.dfu
@@ -341,5 +343,5 @@ runfiles size=614
 catalogue-also latex-base
 catalogue-ctan /macros/latex-dev/base
 catalogue-license lppl1.3c
-catalogue-topics format class
-catalogue-version 2022-06-01 pre-release 0
+catalogue-topics format class latex-devel
+catalogue-version 2022-06-01 pre-release 1

@@ -2723,7 +2723,7 @@ catalogue-version 1.6
 
 name babel
 category Package
-revision 61433
+revision 61748
 shortdesc Multilingual support for LaTeX, LuaLaTeX, XeLaTeX, and Plain TeX
 longdesc This package manages culturally-determined typographical (and
 longdesc other) rules for a wide range of languages. A document may
@@ -2735,16 +2735,16 @@ longdesc has to be done for each language. Included is also a set of ini
 longdesc files for about 250 languages. Many language styles work with
 longdesc pdfLaTeX, as well as with XeLaTeX and LuaLaTeX, out of the box.
 longdesc A few even work with plain formats.
-containersize 182564
-containerchecksum 9213ebe3d80056732b066b1a4a02a94b7d7c847b6d07a2cdbd89e3f3772c9a291585f367b92adf58806dcecb2eba774558219d35ca709647604d2e67e541946e
-doccontainersize 846780
-doccontainerchecksum 280ccba4f76001bb1c466188046e57735fb8c5307280ea123030cf137e1406dce549d2b43345ad48795963c95aec3cbbdb3d8935159e1a3147ade73a6eb1688f
-docfiles size=212
+containersize 183100
+containerchecksum a497f9e37b9d233923e7b085c5a95360c96d826fedb82ea42ac2e11cfdbe4c9af12c918b0f322573911c43ec8b00a5ff94190b5df11c7256a7391c93ab883004
+doccontainersize 841020
+doccontainerchecksum d7edf99b5182a3cafe1991f2fd4c76a9e0903be31ff27325f21276d45766804000d464eda2c9b054a5ba4060b212cc59a93cf6d91afc6bb1caf50d84516bb0ba
+docfiles size=210
  texmf-dist/doc/latex/babel/README.md details="Readme"
  texmf-dist/doc/latex/babel/babel.pdf details="Package documentation"
-srccontainersize 697164
-srccontainerchecksum 9fdf0e5fa4966912628807ab33e7d7507250862700cc8749519a14f7b68d6fc6cbf31f6dbdfe39ba49868747a2e703e604ba92173f23f9aa8632d603c3ea5b77
-runfiles size=976
+srccontainersize 697412
+srccontainerchecksum 968c284cb4f8631ea388d4d18c7018cc451cd7150e5dd99dae7773b565b705afc0a34f14edc166808c5f86034c64ffd2feb34f7478650e44d6ac227415987791
+runfiles size=977
  texmf-dist/makeindex/babel/bbglo.ist
  texmf-dist/makeindex/babel/bbind.ist
  texmf-dist/tex/generic/babel/UKenglish.sty
@@ -3451,7 +3451,7 @@ catalogue-contact-repository https://github.com/latex3/babel
 catalogue-ctan /macros/latex/required/babel/base
 catalogue-license lppl1.3
 catalogue-topics multilingual
-catalogue-version 3.68
+catalogue-version 3.70
 
 name babel-albanian
 category Package
@@ -4855,7 +4855,7 @@ catalogue-version 1.1a
 
 name beamer
 category Package
-revision 60801
+revision 61684
 shortdesc A LaTeX class for producing presentations and slides
 longdesc The beamer LaTeX class can be used for producing slides. The
 longdesc class works in both PostScript and direct PDF output modes,
@@ -4884,11 +4884,11 @@ depend iftex
 depend pgf
 depend translator
 depend xcolor
-containersize 166372
-containerchecksum 9880737a29ef84dcb4f7e987e6e0672330aba2aa01bf82bdfb7051e9603576fde1c6c559a8c897e2edd8447309df2dd8bc9ef52f2debe8a7b967448efdb6e80e
-doccontainersize 2949912
-doccontainerchecksum ceb5458b1fe57a9ed366db89cfda611cf6187ee77a7cd8afed7a4dfb30a4c9d9f23781dcaecee616183bd6771c14c29abf880333bb45250f7bfead17fd4722ec
-docfiles size=1133
+containersize 166796
+containerchecksum 87dd4a82110bfe94ef751e0705f5107142b187e345b91d521510048d9376e576c2346eb3e8ae2a57d0e7dae76fb8760623a354b2260ccb4a23b3d40ff735d871
+doccontainersize 2954012
+doccontainerchecksum a201e2399c877dd63c5c2b0802d8343f6863c5390f1423cfd82721934b9bdfe98f85adf8a44876a024bdf568af5f5b638c531f6b8d0e9cb16680740b1040b464
+docfiles size=1134
  texmf-dist/doc/latex/beamer/AUTHORS.md
  texmf-dist/doc/latex/beamer/CHANGELOG.md
  texmf-dist/doc/latex/beamer/LICENSE.md
@@ -4961,7 +4961,7 @@ docfiles size=1133
  texmf-dist/doc/latex/beamer/solutions/short-talks/speaker_introduction-ornate-2min.de.tex
  texmf-dist/doc/latex/beamer/solutions/short-talks/speaker_introduction-ornate-2min.en.tex
  texmf-dist/doc/latex/beamer/solutions/short-talks/speaker_introduction-ornate-2min.fr.tex
-runfiles size=255
+runfiles size=256
  texmf-dist/tex/latex/beamer/beamer.cls
  texmf-dist/tex/latex/beamer/beamerarticle.sty
  texmf-dist/tex/latex/beamer/beamerbasearticle.sty
@@ -5095,11 +5095,11 @@ catalogue-contact-repository https://github.com/josephwright/beamer
 catalogue-ctan /macros/latex/contrib/beamer
 catalogue-license lppl1.3c gpl2+ fdl
 catalogue-topics presentation class
-catalogue-version 3.64
+catalogue-version 3.65
 
 name bibtex
 category Package
-revision 57972
+revision 61719
 shortdesc Process bibliographies for LaTeX, etc
 longdesc BibTeX allows the user to store his citation data in generic
 longdesc form, while printing citations in a document in the form
@@ -5115,10 +5115,10 @@ longdesc urged to consider using biber with BibLaTeX to typeset its
 longdesc output.
 depend bibtex.ARCH
 depend kpathsea
-containersize 14908
-containerchecksum 9d695d2335d5cb1abf2810016f227e368bcd726d9cb05cf197df93b68a18415a5a7be17ec81d888ca5fb837960173951eef2d04d8abcd3dd6bccf33673dc4ac4
+containersize 14904
+containerchecksum f842f854c13c94cb54167ad4725767c3c6adb40e317fa763e21b5c445503eaf9ba17f9d0f843b4adbb40c884785fac96ced8fa7a7aaa5b8878cfa60d2ca9c9b1
 doccontainersize 398220
-doccontainerchecksum f3c241a15108671934a8c05014d68dadfde6c87a00375b45c92b4924a48c5a342c202b71be05035313ee764c0bdc63ab84cc5d80b4d5eff2411562bba6f798a3
+doccontainerchecksum b417df9af3fbd6a42a67cd6c85f7133336a6e46a191da92e70947efd35c2672bd1f625890e9e922e220dfe1c27d15648ab5fbf77505a640817da8d5dba30d671
 docfiles size=133
  texmf-dist/doc/bibtex/base/README
  texmf-dist/doc/bibtex/base/btxbst.doc
@@ -5142,8 +5142,8 @@ runfiles size=51
  texmf-dist/tex/generic/bibtex/apalike.sty
  texmf-dist/tex/generic/bibtex/apalike.tex
 catalogue-contact-bugs https://lists.tug.org/tex-k
-catalogue-contact-home http://tug.org/bibtex
-catalogue-contact-repository http://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
+catalogue-contact-home https://tug.org/bibtex
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
 catalogue-contact-support https://lists.tug.org/tex-k
 catalogue-ctan /biblio/bibtex/base
 catalogue-license knuth
@@ -5456,6 +5456,42 @@ catalogue-ctan /macros/latex/contrib/bookmark
 catalogue-license lppl1.3c
 catalogue-topics hyper
 catalogue-version 1.29
+
+name carlisle
+category Package
+revision 59577
+shortdesc David Carlisle's small packages
+longdesc Many of David Carlisle's more substantial packages stand on
+longdesc their own, or as part of the LaTeX latex-tools set; this set
+longdesc contains: Making dotless 'j' characters for fonts that don't
+longdesc have them; A method for combining the capabilities of longtable
+longdesc and tabularx; An environment for including Plain TeX in LaTeX
+longdesc documents; A jiffy to remove counters from other counters'
+longdesc reset lists (now obsolete as it has been incorporated into the
+longdesc LaTeX format); A jiffy to create 'slashed' characters for
+longdesc physicists.
+containersize 8688
+containerchecksum 345c61b7eb6637e73a66b5f9183ec39188d4e2ffdd418f12d8ae70394f447eaf8a5d8c62e1adfa515ab7879e1afac4163957ae0b6facafd9ae6ad6f300acbe03
+doccontainersize 74704
+doccontainerchecksum 54c785d458a5a2848c2ae5c730215df4a66a7dc523605d3a9a8985cbd65677627a2a5f5800f055da65ecfaf096fda609f4a7f3a5ce22339f0ee6bec635250ec7
+docfiles size=21
+ texmf-dist/doc/latex/carlisle/README.txt details="Bundle README"
+ texmf-dist/doc/latex/carlisle/ltx1.tex
+ texmf-dist/doc/latex/carlisle/ltxtable.pdf details="Documentation of ltxtable"
+srccontainersize 2968
+srccontainerchecksum 9acfe2c47c7a6a9ee358bc79482f2b21f6ab735fe25696e04a996cfad798a0461dcc0bccf6ee7fff9a6b9e22307f5312e26f9c4fba46a03f0289b8031a6bb97d
+runfiles size=8
+ texmf-dist/tex/latex/carlisle/dotlessj.sty
+ texmf-dist/tex/latex/carlisle/ltxtable.sty
+ texmf-dist/tex/latex/carlisle/plain.sty
+ texmf-dist/tex/latex/carlisle/remreset.sty
+ texmf-dist/tex/latex/carlisle/scalefnt.sty
+ texmf-dist/tex/latex/carlisle/slashed.sty
+catalogue-contact-bugs https://github.com/davidcarlisle/dpctex/issues
+catalogue-contact-repository https://github.com/davidcarlisle/dpctex
+catalogue-ctan /macros/latex/contrib/carlisle
+catalogue-license lppl
+catalogue-topics collection
 
 name chngcntr
 category Package
@@ -6749,7 +6785,7 @@ binfiles arch=x86_64-linux size=257
 
 name dvips
 category TLCore
-revision 57972
+revision 61719
 shortdesc A DVI to PostScript driver
 longdesc This package has been withdrawn from CTAN, and bundled into the
 longdesc distributions' package sets. Development now takes place within
@@ -6757,10 +6793,10 @@ longdesc the TeX Live framework, and it is no longer available as a
 longdesc separate package. For download, support, and other information,
 longdesc please see TeX Live.
 depend dvips.ARCH
-containersize 58080
-containerchecksum 31069dd768bfad8c3430abb001e5d73d1b5481c6a0216801c3e04c5571e9e841a77ef6176b6d42ca3ffd5b8860790f37ac6dded1a453120aea96ac7a2c207563
-doccontainersize 522148
-doccontainerchecksum a66136f6f457a6e4953f25e7489c98668d950da10c37668d8332ccf5b20eeec5f493b84ca014c944dd8b241cfe3b0621f6096ce4b3a6f732e3816026a7835245
+containersize 58076
+containerchecksum ec872f68ac7aaf3e5540d396f264c4cf0305b09e26fa98c7139be2e99b841d918b9fd7327bdb7febbc172fa119ecf4d189effaeffe9067c9cc5fa7b4c302ee7b
+doccontainersize 522144
+doccontainerchecksum 0c49c4f4799b10cfd3f1072cd24213d59bf94f3e7c05b2259eb012ffa12d2014e8f832cf97b57e2641e7abad313a4933b48bd54e6617176b12bc6257aac25d75
 docfiles size=289
  texmf-dist/doc/dvips/NEWS
  texmf-dist/doc/dvips/README details="Readme"
@@ -6850,8 +6886,8 @@ runfiles size=138
  texmf-dist/tex/generic/dvips/rotate.sty
  texmf-dist/tex/generic/dvips/rotate.tex
 catalogue-contact-bugs https://lists.tug.org/tex-k
-catalogue-contact-home http://tug.org/dvips
-catalogue-contact-repository http://tug.org/svn/texlive/trunk/Build/source/texk/dvipsk/
+catalogue-contact-home https://tug.org/dvips
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/dvipsk/
 catalogue-contact-support https://lists.tug.org/tex-k
 catalogue-license other-free
 catalogue-topics dvi-print
@@ -8241,7 +8277,7 @@ catalogue-version 3.9
 
 name epstopdf
 category Package
-revision 48684
+revision 61719
 shortdesc Convert EPS to PDF using Ghostscript
 longdesc Epstopdf is a Perl script that converts an EPS file to an
 longdesc 'encapsulated' PDF file (a single page file whose media box is
@@ -8256,10 +8292,10 @@ longdesc epstopdf package, which will run the epstopdf script "on the
 longdesc fly", thus giving the illusion that pdfLaTeX is accepting EPS
 longdesc graphic files.
 depend epstopdf.ARCH
-containersize 12460
-containerchecksum 6412bb97554b271cf5412dbccd316f3d69d7bcf2f524a5d6d1a75f69cfa11a981fc4ab063b6ea8302c2a0236ff93c59f1ee2f8f2b7f33dc466324080fc5016f4
-doccontainersize 30444
-doccontainerchecksum 7fef59ad3bc72b2e3fc10021216b88b8d5465f42503d9938031c3d40d93fbaf637094fdfc87b19ccc1da4d9a28c9890beccee7c30b915a513a909edbac6e0a25
+containersize 12444
+containerchecksum 270c4135be9ae2071f3a84bde85097056cd67bdd2efc36e53a9bab22c55d5a533c561ca7b1a2a25f0b131111f045f5a8bc5711ccf4ff5e4c551373a52cbba0cc
+doccontainersize 30448
+doccontainerchecksum 7ac71de0494b5624d009d324a47a6a08b1b61695405fcdb8e76540ef7a12f08096982f67a09e28f9f6113959bbcda4f2d58e384df36ad58bc906eedfc0c93971
 docfiles size=20
  texmf-dist/doc/man/man1/epstopdf.1
  texmf-dist/doc/man/man1/epstopdf.man1.pdf details="Manual page"
@@ -8269,7 +8305,7 @@ docfiles size=20
 runfiles size=9
  texmf-dist/scripts/epstopdf/epstopdf.pl
 catalogue-also epstopdf-pkg
-catalogue-contact-home http://tug.org/epstopdf/
+catalogue-contact-home https://tug.org/epstopdf/
 catalogue-ctan /support/epstopdf
 catalogue-license other-free
 catalogue-topics graphics-epspdf
@@ -9053,7 +9089,7 @@ catalogue-version 0.7.3
 
 name fontspec
 category Package
-revision 56594
+revision 61617
 shortdesc Advanced font selection in XeLaTeX and LuaLaTeX
 longdesc Fontspec is a package for XeLaTeX and LuaLaTeX. It provides an
 longdesc automatic and unified interface to feature-rich AAT and
@@ -9066,20 +9102,20 @@ depend l3kernel
 depend l3packages
 depend lm
 depend xunicode
-containersize 26788
-containerchecksum 5c2013702cb65edbbd8d6e2c94eb8e181c7400f55593771d48e790cd32d8651e2ccb8fb41d89dffe7fb7ddd3219745102ec1934ad0dc5a24701f2c6a29107078
-doccontainersize 1189088
-doccontainerchecksum bef134b11346e3d06e33fd9ff0c80fa6d904c8cd481d2c55702766cac2d9553298f05dee9e0b4b57238d1c9e140176fa26d29dcdaee990712fd4a3f0148b26fe
-docfiles size=314
+containersize 26664
+containerchecksum 910b6dbf1ec00882086b1abf93e4a736b4a9b07b89d920fa84094aaf8fde11c6d25fa8cbc4448987bf249c71925ded5e82056ca44e4bf8f10030ab6bcbc3fc46
+doccontainersize 1221668
+doccontainerchecksum 03f1d92fab61b594d51e0befff26b95d39fb08eb3a250649b042fd02493f07b402fa71c2a3aab9fa3da48730be060c46ee77a41026f513c5a61894d8cec192f4
+docfiles size=323
  texmf-dist/doc/latex/fontspec/CHANGES.md
  texmf-dist/doc/latex/fontspec/LICENSE
  texmf-dist/doc/latex/fontspec/README.md details="Package README"
  texmf-dist/doc/latex/fontspec/fontspec-code.pdf
  texmf-dist/doc/latex/fontspec/fontspec-example.tex
  texmf-dist/doc/latex/fontspec/fontspec.pdf details="Package documentation"
-srccontainersize 83048
-srccontainerchecksum b64ffed6c06042ffab0faeba22b0df184b2fd0d27f8b312c65b33967021b860915d0c73f1ac9e3a9ac3125c5c7238038790b5d73127d02cb2ed51c64fdfaffab
-runfiles size=81
+srccontainersize 82844
+srccontainerchecksum 3852251a397d4122026aab6ebf6f99e04f6f6f7b46da0fd38e858676cf8b090bab4c970008b32701130f3a2e5bc13b5ae5c1dee0a5da8941b037165bf6ce6aba
+runfiles size=80
  texmf-dist/tex/latex/fontspec/fontspec-luatex.sty
  texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
  texmf-dist/tex/latex/fontspec/fontspec.cfg
@@ -9090,7 +9126,7 @@ catalogue-contact-repository https://github.com/wspr/fontspec/
 catalogue-ctan /macros/unicodetex/latex/fontspec
 catalogue-license lppl1.3c
 catalogue-topics font-sel luatex xetex
-catalogue-version 2.7i
+catalogue-version 2.8a
 
 name footmisc
 category Package
@@ -9184,7 +9220,7 @@ runfiles size=6
 
 name geometry
 category Package
-revision 54080
+revision 61719
 shortdesc Flexible and complete interface to document dimensions
 longdesc The package provides an easy and flexible user interface to
 longdesc customize page layout, implementing auto-centering and
@@ -9200,10 +9236,10 @@ longdesc it's set up to the output (whether via DVI \specials or via
 longdesc direct interaction with pdf(La)TeX).
 depend graphics
 depend iftex
-containersize 8700
-containerchecksum ca5393e23639894401094084c3c2e30acf12491dcbd3968a4af79037b6dfb6b86f07acfec6886d89a261991cbdebdc846d9804f125aecd4cd77c3e71968bcfe4
+containersize 8712
+containerchecksum ed64996404299bd8379197b293baed752ff064e04eec87ffafdfd55cf21c2c48174560eb1c3bcdb0b06190badb9d9cc699aaa7a2ac8a5c537b0c818a423770fc
 doccontainersize 864536
-doccontainerchecksum 4bd5ec66f725516ef4d5d3e83e3b75a9b4408fe947161e3d885b929b34c4b60437c3fcd32472486aec12c9665b5c0d71a22896055a613c641bda4c4aa987f76f
+doccontainerchecksum a58ab22ae6df349d81b5ddf18a4e9b7dbb5804a497bbaff42acde18ca59fe8a19bfee34293debc23e44c690456e6a1b1d87614fbb85dc6cb3b3b7d330fc866d7
 docfiles size=230
  texmf-dist/doc/latex/geometry/README.md details="Package Readme"
  texmf-dist/doc/latex/geometry/changes.txt
@@ -9213,12 +9249,12 @@ docfiles size=230
  texmf-dist/doc/latex/geometry/geometry.cfg
  texmf-dist/doc/latex/geometry/geometry.pdf details="Package documentation (English)" language="en"
 srccontainersize 47940
-srccontainerchecksum 03c27863d6bded295176550743bbe7cbe6aea2b8f1365f7d0cadabd6d29b699efab98b98d2ea5f8baeaf19963a681b9852b2bd01769b326942c781fd0644644e
+srccontainerchecksum f4e1e8c0f5b8f443c8f5e6ad948cb1736ed944384daec20e9402c871872e86248b3167c72e07fc94fe32ef6ab36c17d2f177135ccf99f68d1c892af0a695bcbf
 runfiles size=11
  texmf-dist/tex/latex/geometry/geometry.sty
 catalogue-also vmargin typearea geometry-de
-catalogue-contact-bugs https://github.com/davidcarlisle/geometry/issues
-catalogue-contact-repository https://github.com/davidcarlisle/geometry
+catalogue-contact-bugs https://github.com/LaTeX-Package-Repositories/geometry/issues
+catalogue-contact-repository https://github.com/LaTeX-Package-Repositories/geometry
 catalogue-ctan /macros/latex/contrib/geometry
 catalogue-license lppl1.3c
 catalogue-topics geometry
@@ -9499,7 +9535,7 @@ catalogue-version 7.00m
 
 name hyph-utf8
 category Package
-revision 58619
+revision 61719
 shortdesc Hyphenation patterns expressed in UTF-8
 longdesc Modern native UTF-8 engines such as XeTeX and LuaTeX need
 longdesc hyphenation patterns in UTF-8 format, whereas older systems
@@ -9513,9 +9549,9 @@ longdesc TeX systems are only read at iniTeX time, it is hoped that the
 longdesc UTF-8 patterns, with their converters, will completely supplant
 longdesc the older patterns.
 containersize 15996
-containerchecksum dc14e4a6aa57764113b9945c76f3f485f370e6c399196916bea2e0451f8238c577100c0db89e742d1233a16b7f51f56674ef1f458dd04f49e207f62744e8ea47
+containerchecksum 64055aa046fdbc721fda474b7848b37d094b1a8f5f01e507df80003ba591dd959871c880f04d5bc6e0bf169e99bf89f5a1a7dad1195c8839773fc613f3719d9f
 doccontainersize 267700
-doccontainerchecksum 09e4a5ae3b0541b5e6b721f164592c364ca00b0c96986085632461b9201a81fa3f0fe375156a91fdbcdd1f4d5f207d8e7c16d35b6fbe2cd196b4c7025a933d6f
+doccontainerchecksum c4aac42267b75a16559705e7de3716eafbec96a285d523d5e7b2f77f345d8e344e174571e247b9c5de8fac75942bc1b0f924e81efd8356b52c9ed91a149d8f09
 docfiles size=84
  texmf-dist/doc/generic/hyph-utf8/CHANGES
  texmf-dist/doc/generic/hyph-utf8/HISTORY
@@ -9527,8 +9563,8 @@ docfiles size=84
  texmf-dist/doc/generic/hyph-utf8/img/texlive-collection.png
  texmf-dist/doc/luatex/hyph-utf8/README
  texmf-dist/doc/luatex/hyph-utf8/luatex-hyphen.pdf
-srccontainersize 34840
-srccontainerchecksum 3dcf4d89d34db765459694329be8cd3182f0021ebbead0ffaab9ae3810c8392b69bab6d0baf433c209becd7eb5ec55b8fdc4c3f145d7792b0c7456129c997430
+srccontainersize 34844
+srccontainerchecksum 2ed5177a81f46bb538517447d89129d82bab87f937c98e4afc6c74863d5f4cc3342470f66d2f5d05247fb3ac26b23ed4b6ce4fd093fcb61fbabac6dd330889f2
 runfiles size=25
  texmf-dist/tex/generic/hyph-utf8/conversions/conv-utf8-ec.tex
  texmf-dist/tex/generic/hyph-utf8/conversions/conv-utf8-il2.tex
@@ -9545,7 +9581,7 @@ catalogue-also dehyph-exptl
 catalogue-contact-bugs https://github.com/hyphenation/tex-hyphen/issues
 catalogue-contact-home http://www.hyphenation.org
 catalogue-contact-repository https://github.com/hyphenation/tex-hyphen
-catalogue-contact-support http://tug.org/mailman/listinfo/tex-hyphen
+catalogue-contact-support https://tug.org/mailman/listinfo/tex-hyphen
 catalogue-ctan /language/hyph-utf8
 catalogue-license mit
 catalogue-topics hyphenation
@@ -11420,7 +11456,7 @@ catalogue-version 3.35
 
 name kpathsea
 category TLCore
-revision 59203
+revision 61719
 shortdesc Path searching library for TeX-related files
 longdesc Kpathsea is a library and utility programs which provide path
 longdesc searching facilities for TeX file types, including the
@@ -11430,9 +11466,9 @@ longdesc distributed separately, but rather is released and maintained
 longdesc as part of the TeX live sources.
 depend kpathsea.ARCH
 containersize 32488
-containerchecksum dcfe9d0b853bac7917e87b5783748568cb84a9b6e060dacb720826840aa93dab192e9aaf7799aec9e3c99f2aa54e02470918a72047e67568339aed2e2e3a61ae
+containerchecksum eaa7dc3f7314250f9a267aea7dc94aebe0bd1d05603d6c096a97da910851ab5c547296ab3a0645b3da96bca8763448ac8f6e5823a3fe0468133e98d9f2b56151
 doccontainersize 1073000
-doccontainerchecksum 155db7d61fa4011640a3c7e90efeeb8336b970bbb64f8fac5bf69a7f51bbd9132024256d6f57cf649cb83ea590cf9aa106230628196045d3f98bfcafa803ed54
+doccontainerchecksum 8f10a6fb3d17ec837c30286b2c0f6fcb5a43369692b54c348bd965d4dd7ab8aae3233f506fd3eee539a76f109f72aa47fd40e78d1a1be33f9a374781d2606b73
 docfiles size=556
  texmf-dist/doc/info/dir
  texmf-dist/doc/info/kpathsea.info
@@ -11482,8 +11518,8 @@ runfiles size=52
  texmf-dist/web2c/texmf.cnf
  texmf-dist/web2c/viscii-t5.tcx
 catalogue-contact-bugs https://lists.tug.org/tex-k
-catalogue-contact-home http://tug.org/kpathsea
-catalogue-contact-repository http://tug.org/svn/texlive/trunk/Build/source/texk/kpathsea/
+catalogue-contact-home https://tug.org/kpathsea
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/kpathsea/
 catalogue-contact-support https://lists.tug.org/tex-k
 catalogue-license lgpl2.1
 catalogue-topics sys-supp
@@ -11580,7 +11616,7 @@ catalogue-version 1.18
 
 name l3backend
 category Package
-revision 61303
+revision 61588
 shortdesc LaTeX3 backend drivers
 longdesc This package forms parts of expl3, and contains the code used
 longdesc to interface with backends (drivers) across the expl3 codebase.
@@ -11588,17 +11624,17 @@ longdesc The functions here are defined differently depending on the
 longdesc engine in use. As such, these are distributed separately from
 longdesc l3kernel to allow this code to be updated on an independent
 longdesc schedule.
-containersize 14984
-containerchecksum a860287ae480b1c14804e07a5985fb8b45d862cd9ef8250824bdbba5dff2adb010a9a3c61af2945da87a01153df6ba8264248e02ad2c87d45b6161c0acf7d67d
-doccontainersize 855616
-doccontainerchecksum 1422a6feb08107935ffe7646276893f8a2d328a24137368b9bb743723a22881a4fd061ddab34b26cf31d40768d8935b12cb3cf6b39c6b0c5bbbd6d5c968d8929
-docfiles size=224
+containersize 14980
+containerchecksum 8b87c7d29a673746bd3bad56e500aee3f1b9f78ee8666de759776f453082fb0f14212540257d0680f10c476ed0de1a6ef8c0731f75f290f9e0dc612382ec5922
+doccontainersize 855144
+doccontainerchecksum 59e20ffd7cb30514c2aa83fa7dac923e20e83b572b52005239e44e784a6726faeab9ea912df4a9a7906312fe76be8976e623db9a1d6ca547c4536ed3b2c632eb
+docfiles size=223
  texmf-dist/doc/latex/l3backend/CHANGELOG.md
  texmf-dist/doc/latex/l3backend/README.md details="Readme"
  texmf-dist/doc/latex/l3backend/l3backend-code.pdf details="Package documentation"
  texmf-dist/doc/latex/l3backend/l3backend-code.tex
-srccontainersize 32188
-srccontainerchecksum 40e033667381b9824f2e6d4a603007241ef085fe76432fae16203c581db09e2ef0514dbf1cc037fe6d0bad2b09ef91fdfac086f20af7fcb16c6d83adf1fccf0f
+srccontainersize 32184
+srccontainerchecksum 7c055d9174f176cab239bd1e5cdccdbcac7ae3a00c930f4e8f70393573c6b5b14a0f3c2471dd39938f798a320e064e8aab01a51900a287dd58a93dd01c0d50f3
 runfiles size=52
  texmf-dist/dvips/l3backend/l3backend-dvips.pro
  texmf-dist/tex/latex/l3backend/l3backend-dvipdfmx.def
@@ -11616,7 +11652,7 @@ catalogue-topics latex3 expl3 macro-supp pre-release
 
 name l3kernel
 category Package
-revision 61121
+revision 61685
 shortdesc LaTeX3 programming conventions
 longdesc The l3kernel bundle provides an implementation of the LaTeX3
 longdesc programmers' interface, as a set of packages that run under
@@ -11625,11 +11661,11 @@ longdesc LaTeX3 kernel and other future code are built: it is an API for
 longdesc TeX programmers. The packages are set up so that the LaTeX3
 longdesc conventions can be used with regular LaTeX2e packages.
 depend l3backend
-containersize 169640
-containerchecksum a82e2199e56b039b4ffc50c7c8cb02076d182f4a3df1481b1e1a89510b5bbfb1b0aa35504c9df0d781699837c06f1a72d08efe0898b4456b352f45ad19f5972d
-doccontainersize 11059148
-doccontainerchecksum b97c8810586549231879494f8f162f0d5af47fbee459bb1d173f5e0962205c0e107c4b58fad1b4dc73c98f49a1689961eced9d2ac6954b4f9511f07e14d405b9
-docfiles size=3175
+containersize 170192
+containerchecksum 4f73240ee3bfc2b4b1725761913a80d8af9e3279487734087a73b86ab95bfbffb8bd72c7db9e1857a205551d65fe23f6bea34950e1777e0e8aed87d44caca837
+doccontainersize 11059732
+doccontainerchecksum 17b4ba1b92923c7af40bc7fd017eedc6613a070f8217cdce47e61b97338c059ebbb8defc9ef8e48213d91a397d34583e55870540148ca2a63a9d0ff8aff1bd83
+docfiles size=3183
  texmf-dist/doc/latex/l3kernel/CHANGELOG.md
  texmf-dist/doc/latex/l3kernel/README.md details="Readme"
  texmf-dist/doc/latex/l3kernel/expl3.pdf details="The LaTeX3 Programming Language"
@@ -11675,16 +11711,15 @@ docfiles size=3175
  texmf-dist/doc/latex/l3kernel/source3.pdf
  texmf-dist/doc/latex/l3kernel/source3.tex
  texmf-dist/doc/latex/l3kernel/source3body.tex
-srccontainersize 584296
-srccontainerchecksum aa3c5069c5670eaf2a4a8f674c4f67e00ff220ca5cd40d0213fd99ca76937dd8bb7f43ed357ca339769c74cb5a5ad82be4a46f689778d9097ff202c098747a31
-runfiles size=344
+srccontainersize 586096
+srccontainerchecksum 211c1c702d6de1dc74fcb68e807745783c72e835144dde7df4cdc75b811ac3a47ff922107ac4eb9b7c9edda67a5de13367dd4c00f9c0d7de869eb8410329eece
+runfiles size=346
  texmf-dist/tex/latex/l3kernel/expl3-code.tex
  texmf-dist/tex/latex/l3kernel/expl3-generic.tex
  texmf-dist/tex/latex/l3kernel/expl3.ltx
  texmf-dist/tex/latex/l3kernel/expl3.lua
  texmf-dist/tex/latex/l3kernel/expl3.sty
  texmf-dist/tex/latex/l3kernel/l3debug.def
- texmf-dist/tex/latex/l3kernel/l3deprecation.def
  texmf-dist/tex/latex/l3kernel/l3doc.cls
  texmf-dist/tex/latex/l3kernel/l3docstrip.tex
  texmf-dist/tex/latex/l3kernel/l3str-enc-iso88591.def
@@ -11712,7 +11747,7 @@ catalogue-topics format latex3 pre-release
 
 name l3packages
 category Package
-revision 61040
+revision 61588
 shortdesc High-level LaTeX3 concepts
 longdesc This collection contains implementations for aspects of the
 longdesc LaTeX3 kernel, dealing with higher-level ideas such as the
@@ -11729,10 +11764,10 @@ longdesc provides a means of defining generic functions using a
 longdesc key-value syntax xfrac, which provides flexible split-level
 longdesc fractions
 depend l3kernel
-containersize 21644
-containerchecksum 1ca8e7484f5d86fd85197e4bb0058444e68f73caf68c04f3ad67ce0a96f29c181d496227f069938604dd5a4dc095e15c0f2addf26f150da0ee7ccf6d48037536
-doccontainersize 1806792
-doccontainerchecksum 4c133f7ede9a37057371e838355daa1138b4cc9e1e8714d9f62925cb56b91645d1c9478b3bdf1050005c3a08b2282881fbc84f50c166173c958bf16604630814
+containersize 21640
+containerchecksum 4a6ec384f2b8ad262eb05f0d30a9b622f99a2c641b2382dfc8601b0c8bc7f4c105865b28e1275c917519d32095fc5b7e66a8c0c4253f7da32af01072092e85bf
+doccontainersize 1808188
+doccontainerchecksum a62939dad7274a3394e642167ba0ec4adb3fd76fe4e468f09b4bfa2d6e212607b121c26bba7ee9bc15d1e37c84d5b1e8876a0d3e50efcce8de192781809feda2
 docfiles size=534
  texmf-dist/doc/latex/l3packages/CHANGELOG.md
  texmf-dist/doc/latex/l3packages/README.md details="Readme"
@@ -11742,8 +11777,8 @@ docfiles size=534
  texmf-dist/doc/latex/l3packages/xfrac/xfrac.pdf details="xfrac documentation"
  texmf-dist/doc/latex/l3packages/xparse/xparse.pdf details="xparse documentation"
  texmf-dist/doc/latex/l3packages/xtemplate/xtemplate.pdf details="xtemplate documentation"
-srccontainersize 45256
-srccontainerchecksum 93dcfe3b4d04c60a9880d34f8a6d924ae5e800d0cd9a2116726c2e651ae43665b34e7bc232640857c4b4f235eaf3ab25eff62d43f175721e9272b1b65f09b3cc
+srccontainersize 45340
+srccontainerchecksum da245467908e1ed7245b6d57420dedf1ddc1b9f37b00c76725d6dbe45ed2b2ce172c1c003c4ca2e2b88fc6b220182799a73a15b3eb43240f344c842afef39b36
 runfiles size=65
  texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
  texmf-dist/tex/latex/l3packages/xfp/xfp.sty
@@ -12121,7 +12156,7 @@ catalogue-version 2021-11-15 PL1
 
 name latex-base-dev
 category Package
-revision 61076
+revision 61598
 shortdesc Development pre-release of the LaTeX kernel
 longdesc This package provides a testing release for upcoming LaTeX2e
 longdesc kernel changes. Testing by the LaTeX team itself suggests that
@@ -12130,11 +12165,11 @@ longdesc users is required by adding these changes to the release LaTeX
 longdesc kernel. Typically, the code here will be used by a TeX system
 longdesc to create dedicated formats, for example pdflatex-dev, which
 longdesc can then be used explicitly for testing.
-containersize 220552
-containerchecksum 6261ede2b83ed8c13d66345206d412117b3287115701191e2bc6cc68ba6a4629b0305ca3c8d33b9f0f9ac9a6ef6adc1c45467b9e2969ac841053e8b3d34e629f
-doccontainersize 28306760
-doccontainerchecksum 5ce8066cc8098b7946f6756b41476033c42b649f2effcee36feb4b88215e1351ca981d888894124468206a711e8189cdd26e79862478b329d0b4f943f8ea9ae5
-docfiles size=8899
+containersize 222916
+containerchecksum 41f61ac442779210ae8e776cd5b1d6964bf266a5bac4024238ebb6daaad1f98f4fea7532e4185d4e40af29d848c54a955585d66333daf65301452aa198fa8a7e
+doccontainersize 29352936
+doccontainerchecksum 1bb149bd5e7598d15bbec6e2d848080629ada8086be4e406d77d86084f0e8a3d3a40c17b5fd09f0276e1c3c3066ea6e36b43fcb21b17a60f8d297155c84ac67e
+docfiles size=9227
  texmf-dist/doc/latex-dev/base/README.md details="Readme"
  texmf-dist/doc/latex-dev/base/alltt.pdf
  texmf-dist/doc/latex-dev/base/bugs.txt
@@ -12148,6 +12183,8 @@ docfiles size=8899
  texmf-dist/doc/latex-dev/base/cmfonts.pdf
  texmf-dist/doc/latex-dev/base/cyrguide.pdf details="Cyrillic languages guide"
  texmf-dist/doc/latex-dev/base/cyrguide.tex
+ texmf-dist/doc/latex-dev/base/doc-code.pdf
+ texmf-dist/doc/latex-dev/base/doc-code.tex
  texmf-dist/doc/latex-dev/base/doc.pdf
  texmf-dist/doc/latex-dev/base/docstrip.pdf
  texmf-dist/doc/latex-dev/base/encguide.pdf details="Font encoding guide"
@@ -12161,8 +12198,6 @@ docfiles size=8899
  texmf-dist/doc/latex-dev/base/inputenc.pdf
  texmf-dist/doc/latex-dev/base/lamport-manual.err
  texmf-dist/doc/latex-dev/base/lamport-manual.pdf
- texmf-dist/doc/latex-dev/base/latexchanges.pdf details="Details of changes to LaTeX2e"
- texmf-dist/doc/latex-dev/base/latexchanges.tex
  texmf-dist/doc/latex-dev/base/latexrelease.pdf
  texmf-dist/doc/latex-dev/base/latexsym.pdf
  texmf-dist/doc/latex-dev/base/lb2.err
@@ -12259,6 +12294,8 @@ docfiles size=8899
  texmf-dist/doc/latex-dev/base/ltnews33.tex
  texmf-dist/doc/latex-dev/base/ltnews34.pdf
  texmf-dist/doc/latex-dev/base/ltnews34.tex
+ texmf-dist/doc/latex-dev/base/ltnews35.pdf
+ texmf-dist/doc/latex-dev/base/ltnews35.tex
  texmf-dist/doc/latex-dev/base/ltpara-code.pdf
  texmf-dist/doc/latex-dev/base/ltpara-code.tex
  texmf-dist/doc/latex-dev/base/ltpara-doc.pdf
@@ -12281,8 +12318,6 @@ docfiles size=8899
  texmf-dist/doc/latex-dev/base/source2e.pdf
  texmf-dist/doc/latex-dev/base/source2e.tex
  texmf-dist/doc/latex-dev/base/syntonly.pdf
- texmf-dist/doc/latex-dev/base/tex2.txt
- texmf-dist/doc/latex-dev/base/texpert.txt
  texmf-dist/doc/latex-dev/base/tlc2.err
  texmf-dist/doc/latex-dev/base/tlc2.pdf
  texmf-dist/doc/latex-dev/base/tulm.pdf
@@ -12293,9 +12328,9 @@ docfiles size=8899
  texmf-dist/doc/latex-dev/base/utf8ienc.pdf
  texmf-dist/doc/latex-dev/base/webcomp.err
  texmf-dist/doc/latex-dev/base/webcomp.pdf
-srccontainersize 681992
-srccontainerchecksum 6f8674c52cb1bea1ac6352453c7dc0e5da92e96cddc12f97fe3a6ab5b38a60d64914c7d8ed4dd1049e41ec49adc724fa573cd0b8034197d88eb0ff5a0158074e
-runfiles size=614
+srccontainersize 695636
+srccontainerchecksum 9cc498767a623681c09bf9ea28d8f79eac8c3bc147a0e0f754ce63c2d55d2cf823ad05528b2fb69bd96b911442443d685095662d62f72951018342976c40dd2f
+runfiles size=628
  texmf-dist/tex/latex-dev/base/alltt.sty
  texmf-dist/tex/latex-dev/base/ansinew.def
  texmf-dist/tex/latex-dev/base/applemac.def
@@ -12320,7 +12355,8 @@ runfiles size=614
  texmf-dist/tex/latex-dev/base/cp858.def
  texmf-dist/tex/latex-dev/base/cp865.def
  texmf-dist/tex/latex-dev/base/decmulti.def
- texmf-dist/tex/latex-dev/base/doc-v3beta.sty
+ texmf-dist/tex/latex-dev/base/doc-2016-02-15.sty
+ texmf-dist/tex/latex-dev/base/doc-2021-06-01.sty
  texmf-dist/tex/latex-dev/base/doc.sty
  texmf-dist/tex/latex-dev/base/docstrip.tex
  texmf-dist/tex/latex-dev/base/exscale.sty
@@ -12362,6 +12398,7 @@ runfiles size=614
  texmf-dist/tex/latex-dev/base/ltluatex.tex
  texmf-dist/tex/latex-dev/base/ltnews.cls
  texmf-dist/tex/latex-dev/base/ltxcheck.tex
+ texmf-dist/tex/latex-dev/base/ltxdoc.cfg
  texmf-dist/tex/latex-dev/base/ltxdoc.cls
  texmf-dist/tex/latex-dev/base/ltxguide.cls
  texmf-dist/tex/latex-dev/base/ly1enc.dfu
@@ -12462,8 +12499,8 @@ runfiles size=614
 catalogue-also latex-base
 catalogue-ctan /macros/latex-dev/base
 catalogue-license lppl1.3c
-catalogue-topics format class
-catalogue-version 2022-06-01 pre-release 0
+catalogue-topics format class latex-devel
+catalogue-version 2022-06-01 pre-release 1
 
 name latex-bin
 category TLCore
@@ -12525,29 +12562,29 @@ binfiles arch=x86_64-linux size=4
 
 name latex-firstaid-dev
 category Package
-revision 61076
+revision 61719
 shortdesc Development pre-release of the LaTeX firstaid package
 longdesc This is a pre-release version of the standard LaTeX firstaid
 longdesc package. It accompanies the pre-testing kernel code
 longdesc (latex-base-dev), and is intended for testing by knowledgeable
 longdesc users.
-containersize 3276
-containerchecksum 1d0d0194e3808dac38992780df3ec3f0c7d6085c0fc7751741b22c486222c2bf2df7e14517e20145209e055b2af674b7d9b8876fca1e4f24a4c711f7b2c892ce
-doccontainersize 232572
-doccontainerchecksum c549e8321a0bd994bd2feed0d4124df593ca6ef4e5394a83f3cecf6f6ecd1af5f7a31d3bc1742c7cc23fb651095a7d2a32673e351d2b84d4654ebdbf523ada8e
+containersize 3280
+containerchecksum ba71d7fd54088dfc6b6888307dcea8e0ef4415fd8be810a97e320cab7c3bbcbe5d9af6569fafe569236c9db91d87345424054d149ceca0aa08c8bb2f205b6c50
+doccontainersize 232576
+doccontainerchecksum e924eae30aa45a43e7b0dbb639e35511b5d9f13e1407d0a1becdfdfd8933d0c3e5f28936871a409474743a821ff1d390ad3ee15f6ddd4707bd1c9b10185a0a96
 docfiles size=61
  texmf-dist/doc/latex-dev/firstaid/README.md details="Readme"
  texmf-dist/doc/latex-dev/firstaid/changes.txt
  texmf-dist/doc/latex-dev/firstaid/latex2e-first-aid-for-external-files.pdf details="Package documentation"
-srccontainersize 7560
-srccontainerchecksum da8753ff5ad1df2c267e06e1d353502bc1c08e2f8c8100a2da510f417b30f88e5b8454e3d27032f10195cd226a2d800046f0df9b20ad66d06fcc0961aaa7d45a
+srccontainersize 7564
+srccontainerchecksum 8241e522bbb4a958d19129ff8c0862e6eb7d4eb28cbf60a4e4c375c6d356a3d505a3c9fe36a90be286d7cb4ccb9b8816c5566751039cf76b79e69601492bc4f7
 runfiles size=4
  texmf-dist/tex/latex-dev/firstaid/everysel-ltx.sty
  texmf-dist/tex/latex-dev/firstaid/filehook-ltx.sty
  texmf-dist/tex/latex-dev/firstaid/latex2e-first-aid-for-external-files.ltx
 catalogue-ctan /macros/latex-dev/required/firstaid
 catalogue-license lppl1.3c
-catalogue-topics format bugfix
+catalogue-topics format bugfix latex-devel
 catalogue-version 1.0q
 
 name latex-fonts
@@ -12672,7 +12709,7 @@ catalogue-version 1.6
 
 name lm
 category Package
-revision 58637
+revision 61719
 shortdesc Latin modern fonts in outline formats
 longdesc The Latin Modern family of fonts consists of 72 text fonts and
 longdesc 20 mathematics fonts, and is based on the Computer Modern fonts
@@ -12686,10 +12723,10 @@ longdesc (qx-*.tfm); TeX'n'ANSI aka LY1 encoding (texnansi-*.tfm); T5
 longdesc (Vietnamese) encoding (t5-*.tfm); and Text Companion for EC
 longdesc fonts aka TS1 (ts1-*.tfm).
 execute addMap lm.map
-containersize 11944788
-containerchecksum d758e51742787410416bfa4ea4e32951484435b977c9ea3bc7ce51d919ec4d28b2ade387d3b1129f034aeb41db481bf72729fca5d24177e65d2719200798febb
+containersize 11944808
+containerchecksum 07448def04c2dc6805d7077b7a65b4e353c99d22d802c56ef7e147ce6a209e9b2303752b5d56763ccd44b9cccf700207e48c246b141e63deb4d1895347d6d307
 doccontainersize 1630432
-doccontainerchecksum c8d6d05ee42d060505ecbdc3e4a5e1d0e6e3c5e919fb4be04162b45723abf697f629d412f359b6d205013d5716f575bfc4d6a7dc115fad05ab47d12ac0dafe5b
+doccontainerchecksum d628f4ad7288eb378df86b4593738c0f755ec6a08a762b38d7fda95b2cee163acd81fdebec7bba693380bcf3d2b2510281f349fa17ac3da1fbe9ec40106a728e
 docfiles size=657
  texmf-dist/doc/fonts/lm/GUST-FONT-LICENSE.TXT
  texmf-dist/doc/fonts/lm/MANIFEST-Latin-Modern.TXT
@@ -13785,6 +13822,7 @@ runfiles size=10645
  texmf-dist/tex/latex/lm/ts1lmssq.fd
  texmf-dist/tex/latex/lm/ts1lmtt.fd
  texmf-dist/tex/latex/lm/ts1lmvtt.fd
+catalogue-alias lmodern
 catalogue-contact-home http://www.gust.org.pl/projects/e-foundry/latin-modern
 catalogue-ctan /fonts/lm
 catalogue-license gfl
@@ -14089,18 +14127,15 @@ binfiles arch=x86_64-linux size=1
 
 name luatex
 category TLCore
-revision 58822
+revision 61454
 shortdesc The LuaTeX engine
-longdesc LuaTeX is an extended version of pdfTeX using Lua as an
+longdesc LuaTeX is a greatly extended version of pdfTeX using Lua as an
 longdesc embedded scripting language. The LuaTeX project's main
 longdesc objective is to provide an open and configurable variant of TeX
-longdesc while at the same time offering downward compatibility. LuaTeX
-longdesc uses Unicode (as UTF-8) as its default input encoding, and is
-longdesc able to use modern (OpenType) fonts (for both text and
-longdesc mathematics). It should be noted that LuaTeX is still under
-longdesc development; its specification has been declared stable, but
-longdesc absolute stability may not in practice be assumed. Source code
-longdesc is available from ctan:/systems/texlive/Source/.
+longdesc while at the same time offering substantive backward
+longdesc compatibility. LuaTeX uses Unicode (as UTF-8) as its default
+longdesc input encoding, and is able to use modern (OpenType and
+longdesc TrueType) fonts (for both text and mathematics).
 depend cm
 depend etex
 depend hyph-utf8
@@ -14112,11 +14147,11 @@ depend tex-ini-files
 depend unicode-data
 execute AddFormat name=dviluatex engine=luatex options="dviluatex.ini"   patterns=language.def,language.dat.lua   fmttriggers=cm,etex,hyphen-base,knuth-lib,plain,tex-ini-files,unicode-data,hyph-utf8
 execute AddFormat name=luatex engine=luatex options="luatex.ini"   patterns=language.def,language.dat.lua   fmttriggers=cm,etex,hyphen-base,knuth-lib,plain,tex-ini-files,unicode-data,hyph-utf8
-containersize 12912
-containerchecksum d24bb6b9ac86d31c6b43a553f8153482f962d42dde813b41f41467ec2e7b5606f065108fda172217cee9b48e8b75237365eb6eda354d16def2bc2919cc0815a1
-doccontainersize 1880488
-doccontainerchecksum 9096aa4d630bbad43fb4eecbdcb8ceaca94709fd734fe7e9a3f09a9bc5d57209c922d1359f71e8a2d1cdbcbe127d3c09c2311b96c2d2574d5356ae9f9f6bef7e
-docfiles size=698
+containersize 12832
+containerchecksum 14adcaedfed2d344c5ccf908134c5d791d1e6fa29e4242f519cc46b6cccbc5db55713819741b5c048602b68959632d7661dc1ff18a9420e8d3e9d3c687696ae6
+doccontainersize 1900020
+doccontainerchecksum 0a4b91c672f052ea669044a3d056bab5a905459f9e4b46cb6205f4b8cccc0c2c3ec89483954130e070ed9006b6643c5994575ebad1b6f119c0a09ad6c355b48a
+docfiles size=703
  texmf-dist/doc/luatex/base/graphics/luaharfbuzz.pdf
  texmf-dist/doc/luatex/base/luatex-backend.tex
  texmf-dist/doc/luatex/base/luatex-callbacks.tex
@@ -14155,11 +14190,11 @@ runfiles size=37
  texmf-dist/tex/generic/config/luatex-unicode-letters.tex
  texmf-dist/tex/generic/config/luatexiniconfig.tex
  texmf-dist/web2c/texmfcnf.lua
-catalogue-contact-bugs https://lists.tug.org/tex-k
+catalogue-contact-bugs https://mailman.ntg.nl/mailman/listinfo/dev-luatex
 catalogue-contact-home http://luatex.org
 catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/luatexdir
 catalogue-contact-support https://lists.tug.org/luatex
-catalogue-license gpl2
+catalogue-license gpl2+
 catalogue-topics engine
 
 name luatex.x86_64-linux
@@ -14213,17 +14248,17 @@ catalogue-version 1.3
 
 name luatexja
 category Package
-revision 60862
+revision 61485
 shortdesc Typeset Japanese with Lua(La)TeX
 longdesc The package offers support for typesetting Japanese documents
 longdesc with LuaTeX. Either of the Plain and LaTeX2e formats may be
 longdesc used with the package.
 depend luatexbase
-containersize 190716
-containerchecksum c86d8475e8ed95f31e8068646061e08845faee7749d5bac40cd9f55c20b5d7a5410f2af7ab66c91a0b470e1f7048d95bbbcc5182b24541cc470b1c235e00ae85
-doccontainersize 3200840
-doccontainerchecksum dfac6f66fa5248e94e9c0dacd6aca177473563411ad5cb749faafa83ab8fe058184005557495aac2b137c87f2988e85760bac454e8fb3277e4b631ab83f0372c
-docfiles size=961
+containersize 191008
+containerchecksum 7ce61f59c6ace10daa78d10f7516c8058fe02b9f1cec4ef1a761cd0ab085ccf4d0d090c1405cb38afafba68bc537120c9f3b00904198224c407e39596c2db706
+doccontainersize 3232668
+doccontainerchecksum 9024ef0b8873f0d19e2d4558b2e22e7919f094e56693ccc687e42961fe866fe76dcd5c81440166e2edaf2028fd2882d28c351156a14283f590b7bdf439b44809
+docfiles size=972
  texmf-dist/doc/luatex/luatexja/COPYING
  texmf-dist/doc/luatex/luatexja/README details="Readme"
  texmf-dist/doc/luatex/luatexja/jfm-test.lua
@@ -14240,8 +14275,8 @@ docfiles size=961
  texmf-dist/doc/luatex/luatexja/luatexja-ruby.tex
  texmf-dist/doc/luatex/luatexja/luatexja.dtx
  texmf-dist/doc/luatex/luatexja/luatexja.ins
-srccontainersize 83320
-srccontainerchecksum 3571d85fcfb142ec58d68f2a104c375a89088e201ba0f80ddcce0ad381851e60529665e5e1ae3f7fba1d0e4aef7bc7422abdcc80e04adef9ca88747be3329a39
+srccontainersize 83316
+srccontainerchecksum af1a85083fa203aea813d702f5e1da76ec4bb73b8d090b977c53523d70e0f539d29407172516a7913f1c951df05705487fe6037af1184fefb72ebd9751d24c94
 runfiles size=410
  texmf-dist/tex/luatex/luatexja/addons/luatexja-adjust.sty
  texmf-dist/tex/luatex/luatexja/addons/luatexja-ajmacros.sty
@@ -14342,7 +14377,7 @@ catalogue-contact-repository https://osdn.net/projects/luatex-ja/scm/git/luatexj
 catalogue-ctan /macros/luatex/generic/luatexja
 catalogue-license bsd
 catalogue-topics japanese luatex class
-catalogue-version 20211024.0
+catalogue-version 20220103.0
 
 name makecmds
 category Package
@@ -14412,26 +14447,29 @@ binfiles arch=x86_64-linux size=37
 
 name metafont
 category Package
-revision 57972
+revision 61719
 shortdesc A system for specifying fonts
-longdesc The program takes a semi-algorithmic specification of a font,
-longdesc and produces a bitmap font (whose properties are defined by a
-longdesc set of parameters of the target device), and a set metrics for
-longdesc use by TeX. The bitmap output may be converted into a format
-longdesc directly usable by a device driver, etc., by the tools provided
-longdesc in the parallel mfware distribution. (Third parties have
-longdesc developed tools to convert the bitmap output to outline fonts.)
-longdesc The distribution includes the source of Knuth's Metafont book;
-longdesc this source is there to read, as an example of writing TeX --
-longdesc it should not be processed without Knuth's direct permission.
+longdesc The program takes a programmatic specification of a font, and
+longdesc produces a bitmap font (whose properties are defined by a set
+longdesc of parameters of the target device), and metrics for use by
+longdesc TeX. The bitmap output may be converted into a format directly
+longdesc usable by a device driver, etc., by the tools provided in the
+longdesc parallel mfware distribution. Third parties have developed
+longdesc tools to convert the bitmap output to outline fonts. The
+longdesc distribution includes the source of Knuth's Metafont book; this
+longdesc source is there to read, as an example of writing TeX -- it
+longdesc should not be processed without Knuth's direct permission. The
+longdesc mailing list tex-fonts@math.utah.edu is the best for general
+longdesc discussion of Metafont usage; the tex-k@tug.org list is best
+longdesc for bug reports about building the software, etc.
 depend kpathsea
 depend metafont.ARCH
 depend modes
 execute AddFormat name=mf engine=mf-nowin           options="-translate-file=cp227.tcx mf.ini"           fmttriggers=modes
-containersize 8756
-containerchecksum 7ea3271c2a9682ae5ee29a05a95e794f4a6dc5a6244a6c243e856aaa857310127d5593b0643d4ca53eae7feb9c205574f5ea216b7c3c0b731e7f98be99bf1588
+containersize 8820
+containerchecksum 1e767aecca37b0859f44a92da1dbfdafb807587d8bf30de513ab7fd230ce00ddf627431afe8d476cc51239dc21badee254a434cd3759c0e4640ce435c4a77baa
 doccontainersize 53068
-doccontainerchecksum 95e7221ac9e3438d4cae336296e7db855df9a7e49ebaaec5dfea294565824938f3d6544459cee9ecbf17312daad4e44c92a7a9a65269feebd2b819f226f305bc
+doccontainerchecksum 425188cfbc28a9664514f680fe0f58950b78a34635ebf4890e53404d4f3236703a67dc569fdd069b3bcea54fedf65e26af3ad4af580a4f49f0f000b394ff9012
 docfiles size=36
  texmf-dist/doc/man/man1/inimf.1
  texmf-dist/doc/man/man1/inimf.man1.pdf
@@ -14451,7 +14489,7 @@ runfiles size=13
 catalogue-alias mf
 catalogue-also metapost
 catalogue-contact-bugs https://lists.tug.org/tex-k
-catalogue-contact-repository http://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
 catalogue-contact-support https://lists.tug.org/tex-k
 catalogue-ctan /systems/knuth/dist/mf
 catalogue-license knuth
@@ -14499,15 +14537,15 @@ catalogue-version 2.0
 
 name mfware
 category TLCore
-revision 57972
+revision 61719
 shortdesc Supporting tools for use with Metafont
 longdesc A collection of programs (as web source) for processing the
 longdesc output of Metafont.
 depend mfware.ARCH
-containersize 3184
-containerchecksum 77b679b6b81515451da4b6068b5e7ee793faf8bb209b3a68356aa131e0fcf27ffed912ee72a3bb8f347e7db2893115de5843351dcdcb6a3ac49a7e88eacacd56
+containersize 3180
+containerchecksum 867f3ae8517503fd08f965c1c62d3d0e4afc84ece022ba7731c7fca4766780f03bc55896db337d68ba84dfefdeef31cbec37a2111484a002c2c782ebe685577e
 doccontainersize 100704
-doccontainerchecksum 3655d6796318db16f26dfa3031a0339608cc9e6d7d18698628be0ff1cc9234c95d4914a2fd047d775b83bfb9fe3a2091e52e4a8b96dbca86ee901fce0e99fd5b
+doccontainerchecksum f90eb4376b40b52c8851d089f039a35be1f963813d640b55cc2961f41a6106f71a51b2e3afd95c5f8285d476997ebfc9c0cb49b86c88b652ac89fcbbe5f10414
 docfiles size=42
  texmf-dist/doc/man/man1/gftodvi.1
  texmf-dist/doc/man/man1/gftodvi.man1.pdf
@@ -14527,7 +14565,7 @@ runfiles size=4
  texmf-dist/mft/base/mplain.mft
  texmf-dist/mft/base/plain.mft
 catalogue-contact-bugs https://lists.tug.org/tex-k
-catalogue-contact-repository http://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
 catalogue-contact-support https://lists.tug.org/tex-k
 catalogue-ctan /systems/knuth/dist/mfware
 catalogue-license pd
@@ -14622,7 +14660,7 @@ catalogue-version 3.0b
 
 name modes
 category Package
-revision 56303
+revision 61719
 shortdesc A collection of Metafont mode_def's
 longdesc The modes file collects all known Metafont modes for printing
 longdesc or display devices, of whatever printing technology. Special
@@ -14633,9 +14671,9 @@ longdesc definitions that make \specials identifying the mode in
 longdesc Metafont's GF output, and put coding information and other
 longdesc Xerox-world information in the TFM file.
 containersize 27320
-containerchecksum 09318fcdb58e5175882fd7a2750ae71322d0be227a2131e05c8b9d20879260c9ac906a735582c1fc8229f3ad4e7df7b71d6a2a6ba9b82c653463947d59f9116f
-doccontainersize 275948
-doccontainerchecksum dd7d78b8b355d7d056d288c0026d83115878abf91ceb183b48a3505620f0be4c8ef04ed0259a8f5a079c6191f33fc1331e9a3b1660b9312d165914b9176524e8
+containerchecksum 86931543910145093d3141fd40512ef6c1a99901a757d178d8ba592761c25638383f9511f4937af657c414642341c05ad6278d871e5d397117e03cf86706a9ac
+doccontainersize 275952
+doccontainerchecksum 4ba301dce255d22c23cd732e6c1b1e887a96918d594a06f8386563b0ca46fce015c0cdf17aecb2fb13211360a7db24843ec99664b048a53ed0ac76a1a4188c76
 docfiles size=78
  texmf-dist/doc/fonts/modes/ChangeLog
  texmf-dist/doc/fonts/modes/GNUmakefile
@@ -14646,7 +14684,7 @@ docfiles size=78
  texmf-dist/doc/fonts/modes/modes.pdf details="Package documentation"
 runfiles size=24
  texmf-dist/fonts/source/public/modes/modes.mf
-catalogue-contact-support https://mail.math.utah.edu/mailman/listinfo/tex-fonts
+catalogue-contact-support https://lists.tug.org/tex-k
 catalogue-ctan /fonts/modes
 catalogue-license pd
 catalogue-topics font-devel
@@ -14654,7 +14692,7 @@ catalogue-version 4.2
 
 name mptopdf
 category Package
-revision 57347
+revision 61520
 shortdesc mpost to PDF, native MetaPost graphics inclusion
 longdesc The mptopdf script does standalone conversion from mpost to
 longdesc PDF, using the supp-* and syst-* files. They also allow native
@@ -14667,11 +14705,11 @@ longdesc in macros/pdftex/graphics.
 depend mptopdf.ARCH
 depend plain
 execute AddFormat name=mptopdf engine=pdftex           options="-translate-file=cp227.tcx mptopdf.tex"           fmttriggers=plain
-containersize 38596
-containerchecksum 69181f1facef413b4e2317180f8dba551fe40bb06e6af8d9378319d8cd3fdec985241e632f19888f32b70f16a40d11c66581f7e3c409bc38b7cfad3733cba2fd
-doccontainersize 13628
-doccontainerchecksum f0cbd95500324a6b5ca835d62065c83028241e0ce5fa35a313458dc30e6726a21a6d1c267669627061d23f2dd7d7397f471581021e03c817c281cb6efa1d2769
-docfiles size=6
+containersize 38592
+containerchecksum 3e5bb2983ea7329e4d3a48a29a5902d0245b0bd07f6cc3d272358701bd7df8bef808cd23810a70ab60209dea2d8788624e98497c6c04c917a59874a84ed94a30
+doccontainersize 14304
+doccontainerchecksum 7bb6c2bc9dd0bceddb4b5aaa8d7143c40fb41baac2065cfbaf14642acb33bb7f05703d7b8469da0e92453ec10f0b8252d00b05588d7846835d622be097a83f8d
+docfiles size=7
  texmf-dist/doc/context/scripts/mkii/mptopdf.man
  texmf-dist/doc/man/man1/mptopdf.1
  texmf-dist/doc/man/man1/mptopdf.man1.pdf
@@ -16435,7 +16473,7 @@ catalogue-version 1.02
 
 name pstricks
 category Package
-revision 61084
+revision 61548
 catalogue pstricks-base
 shortdesc PostScript macros for TeX
 longdesc PSTricks offers an extensive collection of macros for
@@ -16454,11 +16492,11 @@ longdesc pdftricks package, to generate a PDF inclusion from a PSTricks
 longdesc diagram. PSTricks macros can also generate PDF output when the
 longdesc document is processed XeTeX, without the need for other
 longdesc supporting packages.
-containersize 86928
-containerchecksum 6aa799e9c28a11324c5a979059af293ba45c559e62d422d9f6928feb402fb85f927d2052bec1037e1a44502e5283cbd8b1f325da82a2a8246441297fbb6e8a87
-doccontainersize 7526604
-doccontainerchecksum 89de2d39bb24b21accd0d4092bb830646b91b66ee053469b10dd18a69759b6e2f8c1812c04044d8717626c55b20a878dd108d27d8000f694d9de0935e116be43
-docfiles size=2292
+containersize 87836
+containerchecksum 3e68cc5bf7905d496a7fa857ae355267de54ac23ec62d1ecbb95b82e7ebab20dc5b691f8aa07ffb05ab6a23d9ed64056b67accd1242bc31419a5158d158c8604
+doccontainersize 12463000
+doccontainerchecksum 4817db2ebfb842535abfefdeb54b47b3da5c7ae0c6fe4bd02fcbcff56ac78221007c84e1decd8348241031a58f828e199c63581264bda6138c3064d401c003ee
+docfiles size=3601
  texmf-dist/doc/generic/pstricks/PSTricks.bib
  texmf-dist/doc/generic/pstricks/README details="Readme"
  texmf-dist/doc/generic/pstricks/ctandir.sty
@@ -16502,13 +16540,15 @@ docfiles size=2292
  texmf-dist/doc/generic/pstricks/pst-news20.tex
  texmf-dist/doc/generic/pstricks/pst-news21.pdf details="Latest news bulletin"
  texmf-dist/doc/generic/pstricks/pst-news21.tex
+ texmf-dist/doc/generic/pstricks/pst-news22.pdf
+ texmf-dist/doc/generic/pstricks/pst-news22.tex
  texmf-dist/doc/generic/pstricks/pst-user.pdf details="Package documentation"
  texmf-dist/doc/generic/pstricks/pst-user.tgz
  texmf-dist/doc/generic/pstricks/pstricks-bug.tex
  texmf-dist/doc/generic/pstricks/pstricks-doc.pdf
  texmf-dist/doc/generic/pstricks/test-pst.pdf
  texmf-dist/doc/generic/pstricks/test-pst.tex
-runfiles size=129
+runfiles size=130
  texmf-dist/dvips/pstricks/pst-algparser.pro
  texmf-dist/dvips/pstricks/pst-dots.pro
  texmf-dist/dvips/pstricks/pst-dots97.pro
@@ -16546,7 +16586,7 @@ catalogue-contact-support https://tug.org/mailman/listinfo/pstricks
 catalogue-ctan /graphics/pstricks/base
 catalogue-license lppl1.3
 catalogue-topics graphics-in-tex colour pstricks dvips-special xetex
-catalogue-version 3.11a
+catalogue-version 3.13
 
 name ptex
 category Package
@@ -17008,7 +17048,7 @@ catalogue-version 3.1862
 
 name tex
 category TLCore
-revision 57972
+revision 61719
 shortdesc A sophisticated typesetting engine
 longdesc TeX is a typesetting system that incorporates a macro
 longdesc processor. A TeX source document specifies or incorporates a
@@ -17029,17 +17069,17 @@ depend kpathsea
 depend plain
 depend tex.ARCH
 execute AddFormat name=tex engine=tex options="tex.ini"   fmttriggers=cm,hyphen-base,knuth-lib,plain
-containersize 896
-containerchecksum e38f62fcc5ccee22a909eae5ea196e055eae59eedc652ce9788a3b4520995e97f64c683f1ba940853a06030a7ea6f1d749ed4dda1cb30433f87f5f9cdce5a9a7
-doccontainersize 43540
-doccontainerchecksum 3056263569276ca7a62ccb03542eac99b648d36c398ded17204a2624f06920c506985aedd1a639a48bc60af6394d091cdfd9ec44000730bd8e8c83c2234bb569
+containersize 892
+containerchecksum a1043df4c4cefa34ac198b9ee0adb74b99321fda3989bd090622308007b1baba4f1d4338ee675208bb8baea66e8e1e4abbb72e30d5eabf68e67b61dd5cfad218
+doccontainersize 43544
+doccontainerchecksum ad4b956f6749868fc1ac550932443e44e05d20d40e543e91bccf183cf81d2134ae86997aeff1b781659025492bcfd139bda37a89f01c1a9cd22a4a35b92c28a9
 docfiles size=27
  texmf-dist/doc/man/man1/initex.1
  texmf-dist/doc/man/man1/initex.man1.pdf
  texmf-dist/doc/man/man1/tex.1
  texmf-dist/doc/man/man1/tex.man1.pdf
 catalogue-contact-bugs https://lists.tug.org/tex-k
-catalogue-contact-repository http://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
 catalogue-contact-support https://lists.tug.org/tex-k
 catalogue-ctan /systems/knuth/dist/tex
 catalogue-license knuth
@@ -17170,15 +17210,16 @@ docfiles size=188
 
 name texlive-en
 category TLCore
-revision 60536
+revision 61754
 shortdesc TeX Live manual (English)
-containersize 276
-containerchecksum eac0677660ac137244e06125215f8f04a58e361e990fe219a50381a1d4e3bebccb58b0c1ee4530b90672aa3c7f364511364887026bd2a355ea70c1b9c9091a7b
-doccontainersize 1939872
-doccontainerchecksum fb985ef820a525e7b2ae7a8b67c49fa798c8ea333513f458be4e0369765f56ef4d68de00aab6fe0f93caf7d68fcfe18fffb6c06b6fc161a0f0be4674ff68611a
-docfiles size=1459
+containersize 272
+containerchecksum b15a02a548161baced900fe27491345f64091857fc8dca051495ba85fbe7cdd4e27d24181ecfae29950ab3cc4d433ffbcc743c73e8c1ea24eca8970b0f34cf25
+doccontainersize 1953012
+doccontainerchecksum 5a9df21d50e50522166a1fff366faab48a94019f55fb5e67be1fb14e7a4cb72ca3988a965fe5b303122e981745fca94993e9e24c2a97c2e57bc283c3af1d4901
+docfiles size=1515
  texmf-dist/doc/info/tlbuild.info
  texmf-dist/doc/texlive/texlive-en/.dict.pws
+ texmf-dist/doc/texlive/texlive-en/ChangeLog
  texmf-dist/doc/texlive/texlive-en/Makefile
  texmf-dist/doc/texlive/texlive-en/README
  texmf-dist/doc/texlive/texlive-en/archive/bv-live.tex
@@ -17202,8 +17243,10 @@ docfiles size=1459
  texmf-dist/doc/texlive/texlive-en/archive/live-2018.tex
  texmf-dist/doc/texlive/texlive-en/archive/live-2019.tex
  texmf-dist/doc/texlive/texlive-en/archive/live-2020.tex
+ texmf-dist/doc/texlive/texlive-en/archive/live-2021.tex
  texmf-dist/doc/texlive/texlive-en/archive/live-tl7.tex
  texmf-dist/doc/texlive/texlive-en/archive/live4ht.cfg-2004
+ texmf-dist/doc/texlive/texlive-en/archive/live4ht.cfg-2021
  texmf-dist/doc/texlive/texlive-en/archive/mod.pl
  texmf-dist/doc/texlive/texlive-en/archive/nocites.tex
  texmf-dist/doc/texlive/texlive-en/archive/picture.tex
@@ -17225,6 +17268,7 @@ docfiles size=1459
  texmf-dist/doc/texlive/texlive-en/archive/tex-live.sty-2018
  texmf-dist/doc/texlive/texlive-en/archive/tex-live.sty-2019
  texmf-dist/doc/texlive/texlive-en/archive/tex-live.sty-2020
+ texmf-dist/doc/texlive/texlive-en/archive/tex-live.sty-2021
  texmf-dist/doc/texlive/texlive-en/archive/texlive.pl
  texmf-dist/doc/texlive/texlive-en/live4ht.cfg
  texmf-dist/doc/texlive/texlive-en/tex-live.css
@@ -17271,7 +17315,7 @@ runfiles size=366
 
 name texlive-scripts
 category TLCore
-revision 61437
+revision 61757
 shortdesc TeX Live infrastructure programs
 longdesc Includes install-tl, tl-portable, rungs, etc.; not needed for
 longdesc tlmgr to run but still ours. Not included in tlcritical.
@@ -17279,11 +17323,11 @@ depend texlive-scripts.ARCH
 depend texlive.infra
 execute addMap mathpple.map
 postaction shortcut type=menu name="TeX Live command-line"   cmd=TEXDIR/tlpkg/installer/tl-cmd.bat
-containersize 108272
-containerchecksum f75c30db0ad78c99fff248606a2c6eb94e44ce456a81399325a24d27c6800bbe42eab0f4e31dfb8dec0e79a19a7d5828a3e30adf52516aeb932241cca40b0cb6
-doccontainersize 402372
-doccontainerchecksum c41a697ed17c318e3c8a1b4d98aefc87bbdd4a2b9255916695854093719d2a6710701a8e7627869e8d72c60a18ccfcd96260b629b606674784da9ced2d4c1b41
-docfiles size=500
+containersize 108396
+containerchecksum f8f3972788066b9db5ab2d564036c29f95feae5a82af7a0410c9813e173683be5b864e538bd930318318afb0bc54a650c28a6bf8130ca38917a1712df3c08024
+doccontainersize 403116
+doccontainerchecksum ece87d7daddc2cbf7d9c95a9fa400374823ba8805f005cee916ec46cb48289e6485ac38cfb8bd30a0219c809b03be5a88bfb2ce7e81b2304f82d753fc5d2492f
+docfiles size=501
  doc.html
  texmf-dist/doc/man/man1/fmtutil-sys.1
  texmf-dist/doc/man/man1/fmtutil-sys.man1.pdf
@@ -23245,23 +23289,23 @@ catalogue-topics font font-type1 font-cjk
 
 name wrapfig
 category Package
-revision 22048
+revision 61719
 shortdesc Produces figures which text can flow around
 longdesc Allows figures or tables to have text wrapped around them. Does
 longdesc not work in combination with list environments, but can be used
 longdesc in a parbox or minipage, and in twocolumn format. Supports the
 longdesc float package.
-containersize 9360
-containerchecksum ea9d0693a43f985b9ab13a51e0af82b866adc8500dfb9f42e8b20ce8facd07d0534749bda61d13bc86b921300336c9f7e6099f252c4c65370a2e2cb4423589ae
-doccontainersize 337900
-doccontainerchecksum 9ba4292d2641a31f3719ca66e3d80ca70638f9c943bfad9e9e08543f57a53eccc1292930e95d6a3677d0696e0deb1d1ca698b83eb7285baae275b70ac808be33
+containersize 9336
+containerchecksum afa6eed496f63dda436a9a57c9f056ae88fb7985328d58d81fddde743a737b1ec69a5409941a76a28840d938397928925500628b2e11859713871977545278e2
+doccontainersize 337904
+doccontainerchecksum 27aa1cfb0641876516eefd483f5f37e25e06c24bc255fe81afadd985d9a5ea73d311184ad46120d57d8dfc584da02f99c90128c6e0cead71064d00c1bae09f7b
 docfiles size=87
  texmf-dist/doc/latex/wrapfig/multiple-span.txt details="How to use wrapfig to span multiple columns"
  texmf-dist/doc/latex/wrapfig/wrapfig-doc.pdf details="Package documentation"
  texmf-dist/doc/latex/wrapfig/wrapfig-doc.tex
 runfiles size=7
  texmf-dist/tex/latex/wrapfig/wrapfig.sty
-catalogue-also floatflt
+catalogue-also wrapfig2
 catalogue-ctan /macros/latex/contrib/wrapfig
 catalogue-license lppl
 catalogue-topics text-flow
@@ -23729,16 +23773,17 @@ binfiles arch=x86_64-linux size=320
 
 name xecjk
 category Package
-revision 61287
+revision 61529
 shortdesc Support for CJK documents in XeLaTeX
 longdesc A LaTeX package for typesetting CJK documents in the way users
 longdesc have become used to, in the CJK package. The package requires a
 longdesc current version of xtemplate (and hence of the current LaTeX3
 longdesc development environment).
-containersize 220160
-containerchecksum 7b2a43e2523c207a19ba688912bc832ea38431acec4dcf29218f863e7cf68d2057eca1e30e0fa1851cbd44fbedde06889390cab72c7ff9329a0778d02d059625
+depend ctex
+containersize 220168
+containerchecksum 66213771726f5752495b9936a17b07a80e654cca988ecbb00e1695a4f136ef22a7cc9f2cae763757f35fa11545c825f70ea71940903e076af66ef28aedb9040e
 doccontainersize 1540612
-doccontainerchecksum a2c80e3907af4723925a52c20c6ba2b7b6cf2f855824cb403f65c53f771c97523e30f97f559ba4a7a42f39c06079b82bd4454697104cb5ed3b044b3f271e916e
+doccontainerchecksum 92bca289bd907817c95924340256df9130f0dc7c0a57b9586d8f0e9b8e74d87d67f01c51b48c40c723b6a33299d30839c44fe56ad687a548fa9e6ce3057e6e2a
 docfiles size=407
  texmf-dist/doc/xelatex/xecjk/README.md details="Readme"
  texmf-dist/doc/xelatex/xecjk/example/xeCJK-example-CJKecglue.tex
@@ -23756,7 +23801,7 @@ docfiles size=407
  texmf-dist/doc/xelatex/xecjk/xunicode-symbols.pdf
  texmf-dist/doc/xelatex/xecjk/xunicode-symbols.tex
 srccontainersize 89320
-srccontainerchecksum 2944d3905021933eae4dc940cdcefc6cc6d49494ba005ca34d54f8d2ee3fa88ae575a9cbfdca5541de65c5f172ecd2444c0dcc7c837e439016b072f9995241ef
+srccontainerchecksum 899d9ffa00d7606d91515a14eafffc3210860ee1055ea0518db37af564155df9bfe973df349263205dc7275ff5d8829b590fd4642235c66ecc986bad4c7294ed
 runfiles size=179
  texmf-dist/fonts/misc/xetex/fontmapping/xecjk/full-stop.map
  texmf-dist/fonts/misc/xetex/fontmapping/xecjk/full-stop.tec
@@ -23783,7 +23828,7 @@ catalogue-version 3.8.8
 
 name xetex
 category TLCore
-revision 61114
+revision 61719
 shortdesc An extended variant of TeX for use with Unicode sources
 longdesc XeTeX is a TeX typesetting engine using Unicode and supporting
 longdesc modern font technologies such as OpenType, TrueType or Apple
@@ -23822,9 +23867,9 @@ execute AddFormat name=xelatex engine=xetex patterns=language.dat   options="-et
 execute AddFormat name=xetex engine=xetex patterns=language.def   options="-etex xetex.ini"   fmttriggers=cm,hyphen-base,tex-ini-files,unicode-data,etex,plain
 postaction script file=tlpkg/tlpostcode/xetex.pl
 containersize 7780
-containerchecksum c5cd9bcd20cc1ea6765d8c2adcc9aad2d2c6d2cee54998f4d27bcf2d2ceb58766bf125ecff6957e0806204333390be9ff646bb0523e97754c7056f80ca0e9d99
+containerchecksum e63a8f3e80ec3c0babe3ff606c717bf6fd9f59515b13bbb6f7542bb986fcaff9706c1cd75f9d06e260e990dc9f024e9381dab13aa0beb6bba8d455ea16bc83fb
 doccontainersize 633104
-doccontainerchecksum 470d453c9fd81cc88b7a7de3e115c2ce6c83f770b5f7be2af40cb712bb62004f2e093dab0d8a373383ffc85fdec6ca1ecd9a7ee7440e8235e57c29de3b330d4a
+doccontainerchecksum 04657f8955d8a3d78df8556985f5c06c58bcfbfb2e92242cec73305bf8d07dd178e3426fadbc8e4dac0e9698e5b6c89b80ad8742aacc9feb5ec431c25ee278ea
 docfiles size=182
  texmf-dist/doc/man/man1/xelatex-unsafe.1
  texmf-dist/doc/man/man1/xelatex-unsafe.man1.pdf
@@ -23851,7 +23896,7 @@ catalogue-contact-announce https://lists.tug.org/xetex-announce
 catalogue-contact-home https://tug.org/xetex
 catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/xetexdir
 catalogue-contact-support https://lists.tug.org/xetex
-catalogue-license other-free
+catalogue-license lgpl
 catalogue-topics engine
 
 name xetex-pstricks
@@ -24521,9 +24566,9 @@ catalogue-version 0.981
 
 name zapfding
 category Package
-revision 31835
+revision 61719
 catalogue urw-base35
-shortdesc URW "Base 35" font pack for LaTeX
+shortdesc URW 'Base 35' font pack for LaTeX
 longdesc A set of fonts for use as "drop-in" replacements for Adobe's
 longdesc basic set, comprising: Century Schoolbook (substituting for
 longdesc Adobe's New Century Schoolbook); Dingbats (substituting for
@@ -24535,8 +24580,8 @@ longdesc Chancery L Medium Italic (substituting for Adobe's Zapf
 longdesc Chancery); URW Gothic L Book (substituting for Adobe's Avant
 longdesc Garde); and URW Palladio L (substituting for Adobe's Palatino).
 execute addMap uzd.map
-containersize 46964
-containerchecksum e3e6e69b82858d8bd653bcb112ed81b8b5aacc0b915b5e4ed4288f5aef896211e75b85b1b647989e0ffa431ec204a9d8ad27b2e60bc2b28eea83eb3518945bf1
+containersize 46944
+containerchecksum 3e0503c2d4e30c8d727caa1d9438d4c6b12c3a15729eae65d5c4a8dd9ab0d0c8eee2f63138e9d267f4ae98ef7607388888f7acd78e189a5c322bda22827166fe
 runfiles size=24
  texmf-dist/dvips/zapfding/config.uzd
  texmf-dist/fonts/afm/adobe/zapfding/pzdr.afm

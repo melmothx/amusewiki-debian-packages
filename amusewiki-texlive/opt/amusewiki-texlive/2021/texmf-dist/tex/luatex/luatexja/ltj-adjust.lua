@@ -434,7 +434,7 @@ do
       luatexja.lineskip.setting(
          status_lp>0 and 'profile' or 'dummy',
          status_ls>0 and 'step' or 'dummy'
-      )      
+      )
    end
    local function disable_cb() -- only for compatibility
        enable_cs(0,0,0,0)

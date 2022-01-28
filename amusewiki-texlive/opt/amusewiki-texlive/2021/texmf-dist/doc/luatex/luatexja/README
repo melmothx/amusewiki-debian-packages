@@ -1,4 +1,4 @@
-The LuaTeX-ja Package 20211024.0
+The LuaTeX-ja Package 20220103.0
 --------------------------------
 Copyright (c) 2011--2021 The LuaTeX-ja project
 License: modified BSD (see COPYING)
@@ -42,9 +42,9 @@ Installation
 2. If you must/want to install manually:
 
    a. Download the source archive from CTAN,
-      or tagged as 20211024.0 in the Git repository by
+      or tagged as 20220103.0 in the Git repository by
       <http://git.osdn.jp/view?p=luatex-ja/luatexja.git
-                              ;a=snapshot;h=refs/tags/20211024.0;sf=tgz>
+                              ;a=snapshot;h=refs/tags/20220103.0;sf=tgz>
 
    b. Extract the archive and process following three files by LuaLaTeX
       to generate classes for Japanese typesetting:
@@ -93,4 +93,4 @@ Notes
   This file and ltj-kinsoku.lua are not used anymore.
   (Do not remove ltj-kinsoku.tex.)
 
-Last commit date: Sun Oct 24 13:28:03 2021 +0900
+Last commit date: Mon Jan 3 12:19:51 2022 +0900

@@ -272,3 +272,56 @@
 [Thu Dec 30 10:37:20 2021] command: fmtutil-sys --byhyphen "/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-var/tex/generic/config/language.def" --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/oOJnk_u1xs/1heHkSodSm
 [Thu Dec 30 10:37:28 2021]   OK: eptex.fmt/eptex luahbtex.fmt/luahbtex xetex.fmt/xetex euptex.fmt/euptex luatex.fmt/luatex pdftex.fmt/pdftex pdfetex.fmt/pdftex dviluatex.fmt/luatex etex.fmt/pdftex
 [Thu Dec 30 10:37:28 2021] command: fmtutil-sys --byhyphen "/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-var/tex/generic/config/language.dat.lua" --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/oOJnk_u1xs/1heHkSodSm
+[Fri Jan 28 16:51:59 2022] update: babel (61433 -> 61748)
+[Fri Jan 28 16:52:00 2022] update: beamer (60801 -> 61684)
+[Fri Jan 28 16:52:00 2022] update: bibtex (57972 -> 61719)
+[Fri Jan 28 16:52:00 2022] update: dvips (57972 -> 61719)
+[Fri Jan 28 16:52:01 2022] update: epstopdf (48684 -> 61719)
+[Fri Jan 28 16:52:01 2022] update: fontspec (56594 -> 61617)
+[Fri Jan 28 16:52:02 2022] update: geometry (54080 -> 61719)
+[Fri Jan 28 16:52:02 2022] update: hyph-utf8 (58619 -> 61719)
+[Fri Jan 28 16:52:03 2022] update: kpathsea (59203 -> 61719)
+[Fri Jan 28 16:52:03 2022] update: l3backend (61303 -> 61588)
+[Fri Jan 28 16:52:04 2022] update: l3kernel (61121 -> 61685)
+[Fri Jan 28 16:52:05 2022] update: l3packages (61040 -> 61588)
+[Fri Jan 28 16:52:09 2022] update: latex-base-dev (61076 -> 61598)
+[Fri Jan 28 16:52:09 2022] update: latex-firstaid-dev (61076 -> 61719)
+[Fri Jan 28 16:52:12 2022] update: lm (58637 -> 61719)
+[Fri Jan 28 16:52:12 2022] update: luatex (58822 -> 61454)
+[Fri Jan 28 16:52:13 2022] update: luatexja (60862 -> 61485)
+[Fri Jan 28 16:52:13 2022] update: metafont (57972 -> 61719)
+[Fri Jan 28 16:52:14 2022] update: mfware (57972 -> 61719)
+[Fri Jan 28 16:52:14 2022] update: modes (56303 -> 61719)
+[Fri Jan 28 16:52:14 2022] update: mptopdf (57347 -> 61520)
+[Fri Jan 28 16:52:16 2022] update: pstricks (61084 -> 61548)
+[Fri Jan 28 16:52:16 2022] update: tex (57972 -> 61719)
+[Fri Jan 28 16:52:16 2022] update: texlive-en (60536 -> 61754)
+[Fri Jan 28 16:52:17 2022] update: texlive-scripts (61437 -> 61757)
+[Fri Jan 28 16:52:17 2022] update: wrapfig (22048 -> 61719)
+[Fri Jan 28 16:52:18 2022] update: xecjk (61287 -> 61529)
+[Fri Jan 28 16:52:18 2022] update: xetex (61114 -> 61719)
+[Fri Jan 28 16:52:18 2022] update: zapfding (31835 -> 61719)
+[Fri Jan 28 16:52:18 2022] command: mktexlsr
+[Fri Jan 28 16:52:19 2022] command: updmap-sys
+[Fri Jan 28 16:52:19 2022] command: fmtutil-sys --byengine luahbtex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/At3koCvUnD/kTcDcfeZJR
+[Fri Jan 28 16:52:22 2022]   OK: luahbtex.fmt/luahbtex lualatex.fmt/luahbtex
+[Fri Jan 28 16:52:22 2022] command: fmtutil-sys --byengine xetex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/At3koCvUnD/kTcDcfeZJR
+[Fri Jan 28 16:52:27 2022]   OK: xetex.fmt/xetex xelatex.fmt/xetex
+[Fri Jan 28 16:52:27 2022] command: fmtutil-sys --byengine luatex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/At3koCvUnD/kTcDcfeZJR
+[Fri Jan 28 16:52:30 2022]   OK: luatex.fmt/luatex dvilualatex.fmt/luatex dviluatex.fmt/luatex
+[Fri Jan 28 16:52:30 2022] command: fmtutil-sys --byengine tex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/At3koCvUnD/kTcDcfeZJR
+[Fri Jan 28 16:52:31 2022]   OK: tex.fmt/tex
+[Fri Jan 28 16:52:31 2022] command: fmtutil-sys --byengine pdftex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/At3koCvUnD/kTcDcfeZJR
+[Fri Jan 28 16:52:37 2022]   OK: pdftex.fmt/pdftex latex.fmt/pdftex mptopdf.fmt/pdftex pdflatex.fmt/pdftex etex.fmt/pdftex pdfetex.fmt/pdftex
+[Fri Jan 28 16:52:37 2022] command: fmtutil-sys --byfmt uplatex --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/At3koCvUnD/kTcDcfeZJR
+[Fri Jan 28 16:52:38 2022]   OK: uplatex.fmt/euptex
+[Fri Jan 28 16:52:38 2022] command: fmtutil-sys --byfmt uplatex-dev --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/At3koCvUnD/kTcDcfeZJR
+[Fri Jan 28 16:52:39 2022]   OK: uplatex-dev.fmt/euptex
+[Fri Jan 28 16:52:39 2022] command: fmtutil-sys --byfmt platex --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/At3koCvUnD/kTcDcfeZJR
+[Fri Jan 28 16:52:40 2022]   OK: platex.fmt/eptex
+[Fri Jan 28 16:52:40 2022] command: fmtutil-sys --byfmt mf --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/At3koCvUnD/kTcDcfeZJR
+[Fri Jan 28 16:52:41 2022]   OK: mf.fmt/mf-nowin
+[Fri Jan 28 16:52:41 2022] command: fmtutil-sys --byfmt platex-dev --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/At3koCvUnD/kTcDcfeZJR
+[Fri Jan 28 16:52:42 2022]   OK: platex-dev.fmt/eptex
+[Fri Jan 28 16:55:17 2022] install: carlisle
+[Fri Jan 28 16:55:17 2022] command: mktexlsr

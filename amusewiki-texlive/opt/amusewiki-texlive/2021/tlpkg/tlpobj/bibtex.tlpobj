@@ -1,6 +1,6 @@
 name bibtex
 category Package
-revision 57972
+revision 61719
 shortdesc Process bibliographies for LaTeX, etc
 longdesc BibTeX allows the user to store his citation data in generic
 longdesc form, while printing citations in a document in the form
@@ -16,10 +16,10 @@ longdesc urged to consider using biber with BibLaTeX to typeset its
 longdesc output.
 depend bibtex.ARCH
 depend kpathsea
-containersize 14908
-containerchecksum 9d695d2335d5cb1abf2810016f227e368bcd726d9cb05cf197df93b68a18415a5a7be17ec81d888ca5fb837960173951eef2d04d8abcd3dd6bccf33673dc4ac4
+containersize 14904
+containerchecksum f842f854c13c94cb54167ad4725767c3c6adb40e317fa763e21b5c445503eaf9ba17f9d0f843b4adbb40c884785fac96ced8fa7a7aaa5b8878cfa60d2ca9c9b1
 doccontainersize 398220
-doccontainerchecksum f3c241a15108671934a8c05014d68dadfde6c87a00375b45c92b4924a48c5a342c202b71be05035313ee764c0bdc63ab84cc5d80b4d5eff2411562bba6f798a3
+doccontainerchecksum b417df9af3fbd6a42a67cd6c85f7133336a6e46a191da92e70947efd35c2672bd1f625890e9e922e220dfe1c27d15648ab5fbf77505a640817da8d5dba30d671
 docfiles size=133
  texmf-dist/doc/bibtex/base/README
  texmf-dist/doc/bibtex/base/btxbst.doc
@@ -43,8 +43,8 @@ runfiles size=51
  texmf-dist/tex/generic/bibtex/apalike.sty
  texmf-dist/tex/generic/bibtex/apalike.tex
 catalogue-contact-bugs https://lists.tug.org/tex-k
-catalogue-contact-home http://tug.org/bibtex
-catalogue-contact-repository http://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
+catalogue-contact-home https://tug.org/bibtex
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
 catalogue-contact-support https://lists.tug.org/tex-k
 catalogue-ctan /biblio/bibtex/base
 catalogue-license knuth

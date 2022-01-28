@@ -1,17 +1,17 @@
-This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (INITEX)  30 DEC 2021 10:37
+This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (INITEX)  28 JAN 2022 16:52
  restricted system commands enabled.
 **lualatex.ini
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/tex-ini-files/lualatex.ini
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/tex-ini-files/luatexconfig.tex
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/tex-ini-files/pdftexconfig.tex))
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/latex.ltx
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/texsys.cfg)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/tex-ini-files/lualatex.ini
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/tex-ini-files/luatexconfig.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/tex-ini-files/pdftexconfig.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/latex.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/texsys.cfg)
 \openout15 = texsys.aux
 
 ./texsys.aux found
@@ -49,11 +49,11 @@ LaTeX2e <2021-11-15> patch level 1
 \catcodetable@latex=\catcodetable3
 \catcodetable@atletter=\catcodetable4
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/l3kernel/expl3.ltx
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/l3kernel/expl3-code.tex
-Package: expl3 2021-11-22 L3 programming layer (code)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/l3kernel/expl3-code.tex
+Package: expl3 2022-01-21 L3 programming layer (code)
 \@expl@luadata@bytecode=\luabytecode1
 Inserting `ltx.luadata' at position 1 in `pre_dump'.
 Lua function tex_strcmp:D = 1
@@ -167,28 +167,30 @@ Lua function __intarray_gset_range:w = 21
 \l__regex_left_state_int=\count89
 \l__regex_right_state_int=\count90
 \l__regex_capturing_group_int=\count91
-\l__regex_min_pos_int=\count92
-\l__regex_max_pos_int=\count93
-\l__regex_curr_pos_int=\count94
-\l__regex_start_pos_int=\count95
-\l__regex_success_pos_int=\count96
-\l__regex_curr_char_int=\count97
-\l__regex_curr_catcode_int=\count98
-\l__regex_last_char_int=\count99
-\l__regex_last_char_success_int=\count100
-\l__regex_case_changed_char_int=\count101
-\l__regex_curr_state_int=\count102
-\l__regex_step_int=\count103
-\l__regex_min_thread_int=\count104
-\l__regex_max_thread_int=\count105
-\l__regex_replacement_csnames_int=\count106
-\l__regex_match_count_int=\count107
-\l__regex_min_submatch_int=\count108
-\l__regex_submatch_int=\count109
-\l__regex_zeroth_submatch_int=\count110
-\l__regex_added_begin_int=\count111
-\l__regex_added_end_int=\count112
-\g__regex_trace_regex_int=\count113
+\g__regex_case_int=\count92
+\l__regex_case_max_group_int=\count93
+\l__regex_min_pos_int=\count94
+\l__regex_max_pos_int=\count95
+\l__regex_curr_pos_int=\count96
+\l__regex_start_pos_int=\count97
+\l__regex_success_pos_int=\count98
+\l__regex_curr_char_int=\count99
+\l__regex_curr_catcode_int=\count100
+\l__regex_last_char_int=\count101
+\l__regex_last_char_success_int=\count102
+\l__regex_case_changed_char_int=\count103
+\l__regex_curr_state_int=\count104
+\l__regex_step_int=\count105
+\l__regex_min_thread_int=\count106
+\l__regex_max_thread_int=\count107
+\l__regex_replacement_csnames_int=\count108
+\l__regex_match_count_int=\count109
+\l__regex_min_submatch_int=\count110
+\l__regex_submatch_int=\count111
+\l__regex_zeroth_submatch_int=\count112
+\l__regex_added_begin_int=\count113
+\l__regex_added_end_int=\count114
+\g__regex_trace_regex_int=\count115
 \c_empty_box=\box12
 \l_tmpa_box=\box13
 \l_tmpb_box=\box14
@@ -203,8 +205,8 @@ Lua function __intarray_gset_range:w = 21
 \l__box_left_new_dim=\dimen26
 \l__box_right_new_dim=\dimen27
 \l__box_internal_box=\box17
-\l__color_internal_int=\count114
-\g__color_model_int=\count115
+\l__color_internal_int=\count116
+\g__color_model_int=\count117
 \l__coffin_internal_box=\box18
 \l__coffin_internal_dim=\dimen28
 \l__coffin_offset_x_dim=\dimen29
@@ -235,19 +237,16 @@ Lua function __intarray_gset_range:w = 21
 \l__coffin_display_x_dim=\dimen43
 \l__coffin_display_y_dim=\dimen44
 \g__char_data_ior=\read1
-
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/l3kernel/l3deprecation.def
-File: l3deprecation.def 2019-04-06 v L3 Deprecated functions
-))) hacks, document commands,
-\l__cmd_current_arg_int=\count116
-\g__cmd_grabber_int=\count117
-\l__cmd_m_args_int=\count118
-\l__cmd_v_nesting_int=\count119
-\l__hook_labels_int=\count120
-\l__hook_patch_num_args_int=\count121
-\@tempcnta=\count122
-\@tempcntb=\count123
+)) hacks,
+document commands,
+\l__cmd_current_arg_int=\count118
+\g__cmd_grabber_int=\count119
+\l__cmd_m_args_int=\count120
+\l__cmd_v_nesting_int=\count121
+\l__hook_labels_int=\count122
+\l__hook_patch_num_args_int=\count123
+\@tempcnta=\count124
+\@tempcntb=\count125
 \@tempdima=\dimen45
 \@tempdimb=\dimen46
 \@tempdimc=\dimen47
@@ -256,13 +255,12 @@ File: l3deprecation.def 2019-04-06 v L3 Deprecated functions
 \@tempskipb=\skip21
 \@temptokena=\toks10
 \@flushglue=\skip22
-
-control, par,
+ control, par,
 \everypar=\toks11
 \g_para_indent_box=\box31
  spacing,
 \@savsk=\dimen48
-\@savsf=\count124
+\@savsf=\count126
 \smallskipamount=\skip23
 \medskipamount=\skip24
 \bigskipamount=\skip25
@@ -270,7 +268,7 @@ control, par,
  files,
 \@mainaux=\write1
 \@partaux=\write2
-\@clubpenalty=\count125
+\@clubpenalty=\count127
 LaTeX Info: Redefining \IfFileExists on input line 6867.
  font encodings, lengths,
 \everymath=\toks12
@@ -279,9 +277,9 @@ LaTeX Info: Redefining \IfFileExists on input line 6867.
 \every@math@size=\toks15
 \lower@bound=\dimen49
 \upper@bound=\dimen50
-\c@localmathalphabets=\count126
-\c@mv@normal=\count127
-\c@mv@bold=\count128
+\c@localmathalphabets=\count128
+\c@mv@normal=\count129
+\c@mv@bold=\count130
 
 ====================================
 
@@ -289,88 +287,88 @@ Local config file fonttext.cfg used
 
 ====================================
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/fonttext.cfg
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/fonttext.cfg
 File: fonttext.cfg 2021/01/15 v3.0i LaTeX Kernel (Uncustomized text font setup)
 
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/fonttext.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/fonttext.ltx
 File: fonttext.ltx 2021/01/15 v3.0i LaTeX Kernel (Text font setup)
 
 === Don't modify this file, use a .cfg file instead ===
 
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/omlenc.def
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/omlenc.def
 File: omlenc.def 2021/04/29 v2.0v Standard LaTeX file
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/omsenc.def
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/omsenc.def
 File: omsenc.def 2021/04/29 v2.0v Standard LaTeX file
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/ot1enc.def
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/ot1enc.def
 File: ot1enc.def 2021/04/29 v2.0v Standard LaTeX file
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/t1enc.def
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2021/04/29 v2.0v Standard LaTeX file
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/ts1enc.def
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/ts1enc.def
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/tuenc.def
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/tuenc.def
 File: tuenc.def 2021/04/29 v2.0v Standard LaTeX file
 \@remove@tlig@@@@=\luafunction22
 )
 LaTeX Font Info:    Trying to load font information for TU+lmr on input line 61
 .
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/tulmr.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/tulmr.fd
 File: tulmr.fd 2021/07/23 v1.8a Standard LaTeX font definitions for Latin Moder
 n
 )
 LaTeX Font Info:    Trying to load font information for TU+lmss on input line 6
 2.
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/tulmss.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/tulmss.fd
 File: tulmss.fd 2021/07/23 v1.8a Standard LaTeX font definitions for Latin Mode
 rn
 )
 LaTeX Font Info:    Trying to load font information for TU+lmtt on input line 6
 3.
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/tulmtt.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/tulmtt.fd
 File: tulmtt.fd 2021/07/23 v1.8a Standard LaTeX font definitions for Latin Mode
 rn
 )
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 6
 7.
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/lm/ts1lmr.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/t1cmr.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/t1cmr.fd
 File: t1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/ot1cmr.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/ot1cmr.fd
 File: ot1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/ot1cmss.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/ot1cmss.fd
 File: ot1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/ot1cmtt.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/ot1cmtt.fd
 File: ot1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )))
 ====================================
@@ -379,13 +377,13 @@ Local config file fontmath.cfg used
 
 ====================================
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/fontmath.cfg
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/fontmath.cfg
 File: fontmath.cfg 2021/01/15 v3.0i LaTeX Kernel (Uncustomized math font setup)
 
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/fontmath.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/fontmath.ltx
 File: fontmath.ltx 2021/01/15 v3.0i LaTeX Kernel (Math font setup)
 
 === Don't modify this file, use a .cfg file instead ===
@@ -393,20 +391,20 @@ File: fontmath.ltx 2021/01/15 v3.0i LaTeX Kernel (Math font setup)
 LaTeX Font Info:    Redeclaring font encoding OML on input line 44.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 45.
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/omlcmm.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/omlcmm.fd
 File: omlcmm.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/omscmsy.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/omscmsy.fd
 File: omscmsy.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/omxcmex.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/omxcmex.fd
 File: omxcmex.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/ucmr.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/ucmr.fd
 File: ucmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 \symoperators=\mathgroup0
@@ -430,13 +428,13 @@ Local config file preload.cfg used
 
 =====================================
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/preload.cfg
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/preload.cfg
 File: preload.cfg 2021/01/15 v3.0i LaTeX Kernel (Uncustomized preload font setu
 p)
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/preload.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/preload.ltx
 File: preload.ltx 2021/10/04 v2.1g LaTeX Kernel (Font Preloading)
 ))
 LaTeX Font Info:    Setting ? sub-encoding to TS1/9 on input line 10627.
@@ -936,19 +934,19 @@ LaTeX Font Info:    Setting Cochineal-TOsF sub-encoding to TS1/8 on input line
 10804.
 LaTeX Font Info:    Setting AlgolRevived-TLF sub-encoding to TS1/9 on input lin
 e 10805.
- page nos., x-ref, environments, center,
+ page nos., x-ref,
+environments, center,
 \@rightskip=\skip27
-
-verbatim,
+ verbatim,
 \@verbvisiblespacebox=\box32
  math definitions,
 \jot=\dimen51
-\interdisplaylinepenalty=\count129
+\interdisplaylinepenalty=\count131
 \rootbox=\box33
 LaTeX Info: Redefining \: on input line 11297.
-\c@equation=\count130
-\@eqcnt=\count131
-\@eqpen=\count132
+\c@equation=\count132
+\@eqcnt=\count133
+\@eqpen=\count134
 \@centering=\skip28
 \topsep=\skip29
 \partopsep=\skip30
@@ -971,22 +969,22 @@ LaTeX Info: Redefining \: on input line 11297.
 \leftmarginiv=\dimen63
 \leftmarginv=\dimen64
 \leftmarginvi=\dimen65
-\@listdepth=\count133
-\@itempenalty=\count134
-\@beginparpenalty=\count135
-\@endparpenalty=\count136
+\@listdepth=\count135
+\@itempenalty=\count136
+\@beginparpenalty=\count137
+\@endparpenalty=\count138
 \@labels=\box34
-\par@deathcycles=\count137
-\@enumdepth=\count138
-\c@enumi=\count139
-\c@enumii=\count140
-\c@enumiii=\count141
-\c@enumiv=\count142
-\@itemdepth=\count143
+\par@deathcycles=\count139
+\@enumdepth=\count140
+\c@enumi=\count141
+\c@enumii=\count142
+\c@enumiii=\count143
+\c@enumiv=\count144
+\@itemdepth=\count145
  boxes,
 \fboxrule=\dimen66
 \fboxsep=\dimen67
-\@mplistdepth=\count144
+\@mplistdepth=\count146
 \@mpfootins=\insert254
 LaTeX Info: Redefining \underline on input line 11934.
 \@gtempa=\dimen68
@@ -1003,18 +1001,18 @@ LaTeX Info: Redefining \underline on input line 11934.
 \@gtempa=\dimen79
 \@gtempa=\dimen80
 \@gtempa=\dimen81
-\@nxttabmar=\count145
-\@curtabmar=\count146
-\@curtab=\count147
-\@hightab=\count148
-\@tabpush=\count149
+\@nxttabmar=\count147
+\@curtabmar=\count148
+\@curtab=\count149
+\@hightab=\count150
+\@tabpush=\count151
 \@curline=\box35
 \@curfield=\box36
 \@tabfbox=\box37
 \tabbingsep=\dimen82
-\@chclass=\count150
-\@lastchclass=\count151
-\@chnum=\count152
+\@chclass=\count152
+\@lastchclass=\count153
+\@chnum=\count154
 \arraycolsep=\dimen83
 \tabcolsep=\dimen84
 \arrayrulewidth=\dimen85
@@ -1031,10 +1029,10 @@ LaTeX Info: Redefining \underline on input line 11934.
 \@ovdy=\dimen94
 \@ovro=\dimen95
 \@ovri=\dimen96
-\@xarg=\count153
-\@yarg=\count154
-\@yyarg=\count155
-\@multicnt=\count156
+\@xarg=\count155
+\@yarg=\count156
+\@yyarg=\count157
+\@multicnt=\count158
 \@xdim=\dimen97
 \@ydim=\dimen98
 \@linechar=\box40
@@ -1043,23 +1041,23 @@ LaTeX Info: Redefining \underline on input line 11934.
 \@clnht=\dimen101
 \@dashdim=\dimen102
 \@dashbox=\box41
-\@dashcnt=\count157
+\@dashcnt=\count159
 LaTeX Info: Command `\linethickness' is already robust on input line 12723.
 LaTeX Info: Command `\thinlines' is already robust on input line 12729.
  title, sectioning,
-\@secpenalty=\count158
-\c@secnumdepth=\count159
-\c@tocdepth=\count160
- contents, floats,
-\@floatpenalty=\count161
+\@secpenalty=\count160
+\c@secnumdepth=\count161
+\c@tocdepth=\count162
 
-footnotes,
+contents, floats,
+\@floatpenalty=\count163
+ footnotes,
 \footins=\insert253
-\c@footnote=\count162
-\c@mpfootnote=\count163
+\c@footnote=\count164
+\c@mpfootnote=\count165
 \footnotesep=\dimen103
  index, bibliography,
-\pkgcls@targetdate=\count164
+\pkgcls@targetdate=\count166
 \l_shipout_box=\box42
 \l__shipout_raw_box=\box43
 \__shipout_finalize_box:=\luafunction23
@@ -1069,8 +1067,8 @@ footnotes,
 \l_shipout_box_wd_dim=\dimen106
 \l_shipout_box_ht_plus_dp_dim=\dimen107
 \l__shipout_tmp_box=\box45
-\g_shipout_readonly_int=\count165
-\g_shipout_totalpages_int=\count166
+\g_shipout_readonly_int=\count167
+\g_shipout_totalpages_int=\count168
  output,
 \bx@A=\insert252
 \bx@B=\insert251
@@ -1142,14 +1140,14 @@ footnotes,
 \@maxdepth=\dimen122
 \paperheight=\dimen123
 \paperwidth=\dimen124
-\col@number=\count167
-\@topnum=\count168
+\col@number=\count169
+\@topnum=\count170
 \@toproom=\dimen125
-\@dbltopnum=\count169
+\@dbltopnum=\count171
 \@dbltoproom=\dimen126
-\@botnum=\count170
+\@botnum=\count172
 \@botroom=\dimen127
-\@colnum=\count171
+\@colnum=\count173
 \@textmin=\dimen128
 \@fpmin=\dimen129
 \@colht=\dimen130
@@ -1157,18 +1155,18 @@ footnotes,
 \@pageht=\dimen132
 \@pagedp=\dimen133
 \@mparbottom=\dimen134
-\@currtype=\count172
+\@currtype=\count174
 \@outputbox=\box47
 \@leftcolumn=\box48
 \@holdpg=\box49
 \@kludgeins=\insert200
-\@fpstype=\count173
+\@fpstype=\count175
 \@reqcolroom=\dimen135
 \@textfloatsheight=\dimen136
-\c@topnumber=\count174
-\c@bottomnumber=\count175
-\c@totalnumber=\count176
-\c@dbltopnumber=\count177
+\c@topnumber=\count176
+\c@bottomnumber=\count177
+\c@totalnumber=\count178
+\c@dbltopnumber=\count179
 \floatsep=\skip36
 \textfloatsep=\skip37
 \intextsep=\skip38
@@ -1180,12 +1178,13 @@ footnotes,
 \@dblfptop=\skip44
 \@dblfpsep=\skip45
 \@dblfpbot=\skip46
-\@lowpenalty=\count178
-\@medpenalty=\count179
-\@highpenalty=\count180
-  Unicode character data,
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/unicode-data/load-unicode-data.tex 
+\@lowpenalty=\count180
+\@medpenalty=\count181
+\@highpenalty=\count182
+
+ Unicode character data,
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/unicode-data/load-unicode-data.tex 
 load-unicode-data.tex v1.15 (2021-09-15)
 Reading Unicode data
 # UnicodeData-14.0.0.txt
@@ -1198,34 +1197,35 @@ Reading Unicode data
 Local configuration file hyphen.cfg used
 ===========================================
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/babel/hyphen.cfg
-File: hyphen.cfg 2021/12/28 3.68 Babel hyphens
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/babel/hyphen.cfg
+File: hyphen.cfg 2022/01/26 3.70 Babel hyphens
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/babel/luababel.def)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/babel/luababel.def)
 \l@english=\language0
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyphen/hyphen.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyphen/hyphen.tex)
 \l@usenglish=\language0
 \l@USenglish=\language0
 \l@american=\language0
 )
 \l@nohyphenation=\language1
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/firstaid/latex2e-first-aid-for-external-files.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/firstaid/latex2e-first-aid-for-external-file
+s.ltx
 File: latex2e-first-aid-for-external-files.ltx 2021/11/11 v1.0q LaTeX kernel fi
 xes to external files and packages
 \g__para_end_empty_par_id_int=\luafunction24
 )
 ))
 Beginning to dump on file lualatex.fmt
- (format=lualatex 2021.12.30)
-22125 strings using 362817 bytes
-699787 memory locations dumped; current usage is 204&323955
-20752 multiletter control sequences
+ (format=lualatex 2022.1.28)
+22189 strings using 364307 bytes
+685739 memory locations dumped; current usage is 204&316929
+20821 multiletter control sequences
 \font\nullfont=nullfont
 \font\OMX/cmex/m/n/10=cmex10
 \font\tenln=line10

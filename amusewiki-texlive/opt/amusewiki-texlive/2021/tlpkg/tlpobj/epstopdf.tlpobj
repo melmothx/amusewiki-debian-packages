@@ -1,6 +1,6 @@
 name epstopdf
 category Package
-revision 48684
+revision 61719
 shortdesc Convert EPS to PDF using Ghostscript
 longdesc Epstopdf is a Perl script that converts an EPS file to an
 longdesc 'encapsulated' PDF file (a single page file whose media box is
@@ -15,10 +15,10 @@ longdesc epstopdf package, which will run the epstopdf script "on the
 longdesc fly", thus giving the illusion that pdfLaTeX is accepting EPS
 longdesc graphic files.
 depend epstopdf.ARCH
-containersize 12460
-containerchecksum 6412bb97554b271cf5412dbccd316f3d69d7bcf2f524a5d6d1a75f69cfa11a981fc4ab063b6ea8302c2a0236ff93c59f1ee2f8f2b7f33dc466324080fc5016f4
-doccontainersize 30444
-doccontainerchecksum 7fef59ad3bc72b2e3fc10021216b88b8d5465f42503d9938031c3d40d93fbaf637094fdfc87b19ccc1da4d9a28c9890beccee7c30b915a513a909edbac6e0a25
+containersize 12444
+containerchecksum 270c4135be9ae2071f3a84bde85097056cd67bdd2efc36e53a9bab22c55d5a533c561ca7b1a2a25f0b131111f045f5a8bc5711ccf4ff5e4c551373a52cbba0cc
+doccontainersize 30448
+doccontainerchecksum 7ac71de0494b5624d009d324a47a6a08b1b61695405fcdb8e76540ef7a12f08096982f67a09e28f9f6113959bbcda4f2d58e384df36ad58bc906eedfc0c93971
 docfiles size=20
  texmf-dist/doc/man/man1/epstopdf.1
  texmf-dist/doc/man/man1/epstopdf.man1.pdf details="Manual page"
@@ -28,7 +28,7 @@ docfiles size=20
 runfiles size=9
  texmf-dist/scripts/epstopdf/epstopdf.pl
 catalogue-also epstopdf-pkg
-catalogue-contact-home http://tug.org/epstopdf/
+catalogue-contact-home https://tug.org/epstopdf/
 catalogue-ctan /support/epstopdf
 catalogue-license other-free
 catalogue-topics graphics-epspdf

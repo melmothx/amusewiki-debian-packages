@@ -1,6 +1,6 @@
 name pstricks
 category Package
-revision 61084
+revision 61548
 catalogue pstricks-base
 shortdesc PostScript macros for TeX
 longdesc PSTricks offers an extensive collection of macros for
@@ -19,11 +19,11 @@ longdesc pdftricks package, to generate a PDF inclusion from a PSTricks
 longdesc diagram. PSTricks macros can also generate PDF output when the
 longdesc document is processed XeTeX, without the need for other
 longdesc supporting packages.
-containersize 86928
-containerchecksum 6aa799e9c28a11324c5a979059af293ba45c559e62d422d9f6928feb402fb85f927d2052bec1037e1a44502e5283cbd8b1f325da82a2a8246441297fbb6e8a87
-doccontainersize 7526604
-doccontainerchecksum 89de2d39bb24b21accd0d4092bb830646b91b66ee053469b10dd18a69759b6e2f8c1812c04044d8717626c55b20a878dd108d27d8000f694d9de0935e116be43
-docfiles size=2292
+containersize 87836
+containerchecksum 3e68cc5bf7905d496a7fa857ae355267de54ac23ec62d1ecbb95b82e7ebab20dc5b691f8aa07ffb05ab6a23d9ed64056b67accd1242bc31419a5158d158c8604
+doccontainersize 12463000
+doccontainerchecksum 4817db2ebfb842535abfefdeb54b47b3da5c7ae0c6fe4bd02fcbcff56ac78221007c84e1decd8348241031a58f828e199c63581264bda6138c3064d401c003ee
+docfiles size=3601
  texmf-dist/doc/generic/pstricks/PSTricks.bib
  texmf-dist/doc/generic/pstricks/README details="Readme"
  texmf-dist/doc/generic/pstricks/ctandir.sty
@@ -67,13 +67,15 @@ docfiles size=2292
  texmf-dist/doc/generic/pstricks/pst-news20.tex
  texmf-dist/doc/generic/pstricks/pst-news21.pdf details="Latest news bulletin"
  texmf-dist/doc/generic/pstricks/pst-news21.tex
+ texmf-dist/doc/generic/pstricks/pst-news22.pdf
+ texmf-dist/doc/generic/pstricks/pst-news22.tex
  texmf-dist/doc/generic/pstricks/pst-user.pdf details="Package documentation"
  texmf-dist/doc/generic/pstricks/pst-user.tgz
  texmf-dist/doc/generic/pstricks/pstricks-bug.tex
  texmf-dist/doc/generic/pstricks/pstricks-doc.pdf
  texmf-dist/doc/generic/pstricks/test-pst.pdf
  texmf-dist/doc/generic/pstricks/test-pst.tex
-runfiles size=129
+runfiles size=130
  texmf-dist/dvips/pstricks/pst-algparser.pro
  texmf-dist/dvips/pstricks/pst-dots.pro
  texmf-dist/dvips/pstricks/pst-dots97.pro
@@ -111,4 +113,4 @@ catalogue-contact-support https://tug.org/mailman/listinfo/pstricks
 catalogue-ctan /graphics/pstricks/base
 catalogue-license lppl1.3
 catalogue-topics graphics-in-tex colour pstricks dvips-special xetex
-catalogue-version 3.11a
+catalogue-version 3.13

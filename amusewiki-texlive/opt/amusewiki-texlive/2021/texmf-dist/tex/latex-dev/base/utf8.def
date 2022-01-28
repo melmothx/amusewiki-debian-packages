@@ -13,7 +13,7 @@
 %% (but please observe conditions on bug reports sent to that address!)
 %% 
 %% 
-%% Copyright (C) 1993-2021
+%% Copyright (C) 1993-2022
 %% The LaTeX Project and any individual authors listed elsewhere
 %% in this file.
 %% 
@@ -42,7 +42,7 @@
 %% and covered by LPPL is defined by the unpacking scripts (with
 %% extension .ins) which are part of the distribution.
 \ProvidesFile{utf8.def}
-   [2021/06/21 v1.2n UTF-8 support]
+   [2021/12/13 v1.2o UTF-8 support]
 \ifx\ifincsname\@undefined  % old e-pTeX or e-upTeX engines
   \input utf8-2018.def
   \expandafter\@firstofone
@@ -215,11 +215,11 @@
    \endgroup
 }
 \gdef\parse@XML@charref{%
-  \ifnum\count@<"A0\relax
+  \ifnum\count@<"80\relax
     \ifnum\catcode\count@=13
       \uccode`\~=\count@\uppercase{\def\UTFviii@tmp{\@empty\@empty~}}%
     \else
-      \@latex@error{Cannot define non-active Unicode char value < 00A0}%
+      \@latex@error{Cannot define non-active Unicode char value < 0080}%
                    \@eha
       \def\UTFviii@tmp{\UTFviii@tmp}%
     \fi

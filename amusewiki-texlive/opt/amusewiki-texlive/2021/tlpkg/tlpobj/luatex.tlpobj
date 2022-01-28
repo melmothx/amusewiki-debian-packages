@@ -1,17 +1,14 @@
 name luatex
 category TLCore
-revision 58822
+revision 61454
 shortdesc The LuaTeX engine
-longdesc LuaTeX is an extended version of pdfTeX using Lua as an
+longdesc LuaTeX is a greatly extended version of pdfTeX using Lua as an
 longdesc embedded scripting language. The LuaTeX project's main
 longdesc objective is to provide an open and configurable variant of TeX
-longdesc while at the same time offering downward compatibility. LuaTeX
-longdesc uses Unicode (as UTF-8) as its default input encoding, and is
-longdesc able to use modern (OpenType) fonts (for both text and
-longdesc mathematics). It should be noted that LuaTeX is still under
-longdesc development; its specification has been declared stable, but
-longdesc absolute stability may not in practice be assumed. Source code
-longdesc is available from ctan:/systems/texlive/Source/.
+longdesc while at the same time offering substantive backward
+longdesc compatibility. LuaTeX uses Unicode (as UTF-8) as its default
+longdesc input encoding, and is able to use modern (OpenType and
+longdesc TrueType) fonts (for both text and mathematics).
 depend cm
 depend etex
 depend hyph-utf8
@@ -23,11 +20,11 @@ depend tex-ini-files
 depend unicode-data
 execute AddFormat name=dviluatex engine=luatex options="dviluatex.ini"   patterns=language.def,language.dat.lua   fmttriggers=cm,etex,hyphen-base,knuth-lib,plain,tex-ini-files,unicode-data,hyph-utf8
 execute AddFormat name=luatex engine=luatex options="luatex.ini"   patterns=language.def,language.dat.lua   fmttriggers=cm,etex,hyphen-base,knuth-lib,plain,tex-ini-files,unicode-data,hyph-utf8
-containersize 12912
-containerchecksum d24bb6b9ac86d31c6b43a553f8153482f962d42dde813b41f41467ec2e7b5606f065108fda172217cee9b48e8b75237365eb6eda354d16def2bc2919cc0815a1
-doccontainersize 1880488
-doccontainerchecksum 9096aa4d630bbad43fb4eecbdcb8ceaca94709fd734fe7e9a3f09a9bc5d57209c922d1359f71e8a2d1cdbcbe127d3c09c2311b96c2d2574d5356ae9f9f6bef7e
-docfiles size=698
+containersize 12832
+containerchecksum 14adcaedfed2d344c5ccf908134c5d791d1e6fa29e4242f519cc46b6cccbc5db55713819741b5c048602b68959632d7661dc1ff18a9420e8d3e9d3c687696ae6
+doccontainersize 1900020
+doccontainerchecksum 0a4b91c672f052ea669044a3d056bab5a905459f9e4b46cb6205f4b8cccc0c2c3ec89483954130e070ed9006b6643c5994575ebad1b6f119c0a09ad6c355b48a
+docfiles size=703
  texmf-dist/doc/luatex/base/graphics/luaharfbuzz.pdf
  texmf-dist/doc/luatex/base/luatex-backend.tex
  texmf-dist/doc/luatex/base/luatex-callbacks.tex
@@ -66,9 +63,9 @@ runfiles size=37
  texmf-dist/tex/generic/config/luatex-unicode-letters.tex
  texmf-dist/tex/generic/config/luatexiniconfig.tex
  texmf-dist/web2c/texmfcnf.lua
-catalogue-contact-bugs https://lists.tug.org/tex-k
+catalogue-contact-bugs https://mailman.ntg.nl/mailman/listinfo/dev-luatex
 catalogue-contact-home http://luatex.org
 catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/luatexdir
 catalogue-contact-support https://lists.tug.org/luatex
-catalogue-license gpl2
+catalogue-license gpl2+
 catalogue-topics engine

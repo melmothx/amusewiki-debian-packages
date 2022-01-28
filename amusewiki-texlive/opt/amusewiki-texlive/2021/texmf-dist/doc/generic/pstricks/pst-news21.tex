@@ -1,14 +1,14 @@
-%% $Id: pst-news21.tex 263 2021-09-24 17:58:30Z herbert $
+%% $Id: pst-news21.tex 382 2021-12-29 19:19:18Z herbert $
 \RequirePackage{pdfmanagement-testphase}
 \DeclareDocumentMetadata{}
 \documentclass[11pt,english,BCOR=10mm,DIV=12,bibliography=totoc,parskip=false,headings=small,
-    headinclude=false,footinclude=false,twoside,usegeometry]{pst-doc}
+    headinclude=false,footinclude=false,twoside,usegeometry,dvipsnames]{pst-doc}
     
 \usepackage{libertinus}
 \usepackage{hvlogos}
 \listfiles
 %\usepackage[svgnames,dvipsnames,x11names,pspdf=-dALLOWPSTRANSPARENCY]{pstricks-pdf}
-\usepackage{showexpl,pst-arrow}
+\usepackage{showexpl,pst-arrow,pst-plot,pst-geometrictools}
 \lstset{explpreset={pos=l,width=-99pt,overhang=0pt,hsep=\columnsep,vsep=\bigskipamount,rframe={},extendedchars},
     escapechar=?}
 
@@ -36,6 +36,10 @@ lualatex it uses the OpenType version.
 
 The dot part is now in an own file \texttt{pstricks-dots.tex}.
 
+
+
+
+
 %--------------------------------------------------------------------------------------
 \section{\texttt{pstricks.sty}}
 %--------------------------------------------------------------------------------------
@@ -45,8 +49,98 @@ Otherwise the one from URW or the system is used, which is the default.
 
 
 %--------------------------------------------------------------------------------------
-\section{\texttt{pstricks.tex} (v. 3.08 -- 2021/09/10)}
+\section{\texttt{pstricks.tex} (v. 3.12 -- 2021/12/29)}
 %--------------------------------------------------------------------------------------
+
+
+\subsection{Coordinates}
+By default the coordinates \verb|(10,10)| are used if the environment \Lenv{pspicture}
+is called without any given coordinates. This behaviour can be changed if you are running
+the document with \Lprog{lualatex}. Then you can use the optional argument \Lkeyword{calcframe}
+to allow the internal calculation of the box width and height. it needs two \Lprog{lualatex}
+runs to get the coordinates. The values are written into a file \verb|\jobname-<No>.psaux| and read
+in the next run.
+
+With the optional argument \Lkeyword{margin} it is possible to add white space to the calculated coordinates.
+The keyword must be set with the command \Lcs{psset} \emph{before} the environment \Lenv{pspicture}, otherwise it is too late.
+
+\begin{itemize}
+\item \verb|margin=5mm| will add 5mm on all sides of the box.
+\item \verb|margin={5mm,1cm}| will add 5mm on the left side and 1cm on the lower side of the box.
+\item \verb|margin={2mm,3,4,5pt}| will add 2mm on the left, 3\Lcs{psunit} at the bottom, 4\Lcs{psunit} on
+the right and 5pt on the top of the box. With the optional argument \Lkeyword{showframe} the calculated
+box coordinates can be visible. Additional white space is marked by a box with dashed lines.
+\end{itemize}
+
+Without a given unit all values are used with the current defined PSTricks unit. But remember
+that this will only work with \Lprog{lualatex}.
+
+The following example shows the same curve, but with different coordinates.
+
+\begin{LTXexample}[pos=t,width=\linewidth]
+\def\dataV{6.8 -1 5.9 -2 5.4 -3 5.7 -4 6.2 -5} % original
+\def\dataW{6.8 4 5.9 3 5.4 2 5.7 1 6.2 0}      % x>= 0
+\def\dataU{1.4 4 0.5 3 0 2 0.3 1 0.8 0}        % x>=0 und y>=0
+\psset{calcframe,showframe}% must be set before pspicture
+X\begin{pspicture}[showgrid]
+   \listplot[plotstyle=curve, showpoints]{\dataU} \rput(1,-0.5){default dataU}
+\end{pspicture}X \hfill X%
+\begin{pspicture}[showgrid]
+   \listplot[plotstyle=curve, showpoints]{\dataW} \rput(6,-0.5){default dataW}
+\end{pspicture}X \hfill X%
+\begin{pspicture}[showgrid]
+   \listplot[plotstyle=curve, showpoints]{\dataV} \rput(6,-5.5){default dataV}
+\end{pspicture}X
+
+\vspace{1cm}
+X\begin{pspicture}[showgrid,margin=0.5]
+   \listplot[plotstyle=curve, showpoints]{\dataU} \rput(1,5){margin=0.5}
+\end{pspicture}X \hfill X%
+\begin{pspicture}[showgrid,margin={0.5,1}]
+   \listplot[plotstyle=curve, showpoints]{\dataW} \rput(6,4.5){margin={0.5 1}}
+\end{pspicture}X \hfill X%
+\begin{pspicture}[showgrid,margin={5mm,1,15mm,2}]
+   \listplot[plotstyle=curve, showpoints]{\dataV} \rput(6,-0.5){margin={5mm,1,15mm,2}}
+\end{pspicture}X
+\end{LTXexample}
+
+Only PSTricks objects are taken into account for calculating the bounding box. All stuff
+which is placed on \TeX-level like any text with for example \Lcs{rput} cannot not be
+used for calculating the correct coordinates. With setting additional whitespace with
+the optional argument \Lkeyword{margin} the boxsize can be modified.
+
+\newpsstyle{Parallelen}{country=G,ProLineCol=cyan,ProFillCol=gray!50,
+  OwnerTxt=Pythagoras,MadeTxt={Geodreieck},RulerFillCol=cyan!40}
+\psscalebox{0.5}{%
+  \psset{calcframe,margin=5mm}%
+  \begin{pspicture}[showgrid]%  no coordinates are given
+  \pnode(5,5){A}\uput[90](A){A}
+  \pnode(-8,1){B}\uput[90](B){B}
+  \pnode(3,3){C}\uput[250](C){C} 
+  \pcline[linecolor=BrickRed,nodesepA=-2,nodesepB=-2](A)(B) 
+  \psParallels[style=Parallelen,RulerScale=0.75,ProScale=0.75](A)(B)(C) 
+  \pcline[linecolor=BrickRed](GeodrB)(GeodrA)% 
+  \midAB(GeodrB)(GeodrA){M}% 
+  \psPencil[PenLength=5,pencilColA=red,PenScale=0.5]{60}(M) 
+\end{pspicture}}
+
+
+\begin{lstlisting}
+\psscalebox{0.5}{%
+  \psset{calcframe}%
+  \begin{pspicture}[showgrid]%  no coordinates are given
+  \pnode(5,5){A}\uput[90](A){A}
+  \pnode(-8,1){B}\uput[90](B){B}
+  \pnode(3,3){C}\uput[250](C){C} 
+  \pcline[linecolor=BrickRed,nodesepA=-2,nodesepB=-2](A)(B) 
+  \psParallels[style=Parallelen,RulerScale=0.75,ProScale=0.75](A)(B)(C) 
+  \pcline[linecolor=BrickRed](GeodrB)(GeodrA)% 
+  \midAB(GeodrB)(GeodrA){M}% 
+  \psPencil[PenLength=5,pencilColA=red,PenScale=0.5]{60}(M) 
+\end{pspicture}}
+\end{lstlisting}
+
+
 
 \subsection{Colors}
 

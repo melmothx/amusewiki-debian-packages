@@ -1,39 +1,39 @@
 updmap version r59152 (2021-05-09 23:49:52 +0200)
-Thu Dec 30 10:36:51 2021
+Fri Jan 28 16:52:19 2022
 
 Using the following config files:
-  /home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/web2c/updmap.cfg
+  /home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/web2c/updmap.cfg
 
 updmap is creating new map files
 using the following configuration:
-  LW35 font names                  : URWkb (/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/web2c/updmap.cfg)
-  prefer outlines                  : true (/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/web2c/updmap.cfg)
+  LW35 font names                  : URWkb (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/web2c/updmap.cfg)
+  prefer outlines                  : true (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/web2c/updmap.cfg)
   texhash enabled                  : true
-  download standard fonts (dvips)  : true (/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/web2c/updmap.cfg)
-  download standard fonts (pdftex) : true (/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/web2c/updmap.cfg)
-  jaEmbed replacement string       : haranoaji (/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/web2c/updmap.cfg)
-  jaVariant replacement string     : -04 (/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/web2c/updmap.cfg)
-  scEmbed replacement string       : arphic (/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/web2c/updmap.cfg)
-  tcEmbed replacement string       : arphic (/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/web2c/updmap.cfg)
-  koEmbed replacement string       : baekmuk (/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/web2c/updmap.cfg)
+  download standard fonts (dvips)  : true (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/web2c/updmap.cfg)
+  download standard fonts (pdftex) : true (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/web2c/updmap.cfg)
+  jaEmbed replacement string       : haranoaji (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/web2c/updmap.cfg)
+  jaVariant replacement string     : -04 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/web2c/updmap.cfg)
+  scEmbed replacement string       : arphic (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/web2c/updmap.cfg)
+  tcEmbed replacement string       : arphic (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/web2c/updmap.cfg)
+  koEmbed replacement string       : baekmuk (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/web2c/updmap.cfg)
   create a mapfile for pxdvi       : false (default)
 
 Scanning for LW35 support files
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/tetex/dvips35.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/tetex/pdftex35.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/tetex/ps2pk35.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/tetex/dvips35.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/tetex/pdftex35.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/tetex/ps2pk35.map
 
   [  3 files]
 
 Scanning for MixedMap entries
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/cm.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/cmextra.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/cm/cmtext-bsr-interpolated.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/cyrillic.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/latxfont.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/symbols.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/tipa/tipa.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/cm.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/cmextra.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/cm/cmtext-bsr-interpolated.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/cyrillic.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/latxfont.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/symbols.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/tipa/tipa.map
 
     [  7 files]
 
@@ -42,34 +42,34 @@ Scanning for KanjiMap entries
     [  0 files]
 
 Scanning for Map entries
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/arphic/bkaiu.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/arphic/bsmiu.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/wadalab/dgj.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/wadalab/dmj.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/dummy-space/dummy-space.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/euler.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/garuda-c90/garuda-c90.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/arphic/gbsnu.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/arphic/gkaiu.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/lm/lm.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/tetex/mathpple.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mc2j.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mcj.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mr2j.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mrj.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/nectec.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/nf.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/norasi-c90/norasi-c90.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/sipa.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/tlwg.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/uhc/umj.map
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/zapfding/uzd.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/arphic/bkaiu.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/arphic/bsmiu.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/wadalab/dgj.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/wadalab/dmj.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/dummy-space/dummy-space.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/euler.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/garuda-c90/garuda-c90.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/arphic/gbsnu.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/arphic/gkaiu.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/lm/lm.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/tetex/mathpple.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mc2j.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mcj.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mr2j.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mrj.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/nectec.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/nf.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/norasi-c90/norasi-c90.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/sipa.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/tlwg.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/uhc/umj.map
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/zapfding/uzd.map
 
          [ 22 files]
 
 
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/tetex/ps2pk35.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/tetex/ps2pk35.map:
 cob
 cobo
 com
@@ -322,7 +322,7 @@ tmui108r
 zd
 zpzdr-reversed
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/tetex/dvips35.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/tetex/dvips35.map:
 cob
 cobo
 com
@@ -574,7 +574,7 @@ tmui108r
 zd
 zpzdr-reversed
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/tetex/pdftex35.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/tetex/pdftex35.map:
 cob
 cobo
 com
@@ -827,7 +827,7 @@ tmui108r
 zd
 zpzdr-reversed
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/cm.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/cm.map:
 cmb10
 cmbsy10
 cmbx10
@@ -905,7 +905,7 @@ cmtt9
 cmu10
 cmvtt10
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/cmextra.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/cmextra.map:
 cmbsy5
 cmbsy6
 cmbsy7
@@ -921,7 +921,7 @@ cmmib7
 cmmib8
 cmmib9
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/cm/cmtext-bsr-interpolated.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/cm/cmtext-bsr-interpolated.map:
 cmbxti12
 cmbxti7
 cmitt12
@@ -929,7 +929,7 @@ cmitt9
 cmsl6
 cmsltt9
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/cyrillic.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/cyrillic.map:
 wncyb10
 wncyb5
 wncyb6
@@ -953,7 +953,7 @@ wncyss10
 wncyss8
 wncyss9
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/latxfont.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/latxfont.map:
 lasy10
 lasy5
 lasy6
@@ -969,7 +969,7 @@ lcmssi8
 line10
 linew10
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/symbols.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/symbols.map:
 msam10
 msam5
 msam6
@@ -983,7 +983,7 @@ msbm7
 msbm8
 msbm9
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/tipa/tipa.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/tipa/tipa.map:
 tipa10
 tipa12
 tipa17
@@ -1053,7 +1053,7 @@ xipxsi10
 xipxsl10
 xipxss10
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/arphic/bkaiu.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/arphic/bkaiu.map:
 bkaiu00
 bkaiu02
 bkaiu03
@@ -1157,7 +1157,7 @@ bkaiufe
 bkaiuff
 bkaiuv
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/arphic/bsmiu.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/arphic/bsmiu.map:
 bsmiu00
 bsmiu02
 bsmiu03
@@ -1261,7 +1261,7 @@ bsmiufe
 bsmiuff
 bsmiuv
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/wadalab/dgj.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/wadalab/dgj.map:
 dgjgreek
 dgjhira
 dgjhw
@@ -1297,7 +1297,7 @@ dgjroma
 dgjrussian
 dgjsy
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/wadalab/dmj.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/wadalab/dmj.map:
 dmjgreek
 dmjhira
 dmjhw
@@ -1333,10 +1333,10 @@ dmjroma
 dmjrussian
 dmjsy
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/dummy-space/dummy-space.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/dummy-space/dummy-space.map:
 dummy-space
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/euler.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/amsfonts/euler.map:
 euex10
 euex7
 euex8
@@ -1378,13 +1378,13 @@ eusm7
 eusm8
 eusm9
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/garuda-c90/garuda-c90.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/garuda-c90/garuda-c90.map:
 fgdb8z
 fgdbo8z
 fgdo8z
 fgdr8z
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/arphic/gbsnu.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/arphic/gbsnu.map:
 gbsnu00
 gbsnu01
 gbsnu02
@@ -1484,7 +1484,7 @@ gbsnu9f
 gbsnufe
 gbsnuff
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/arphic/gkaiu.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/arphic/gkaiu.map:
 gkaiu00
 gkaiu01
 gkaiu02
@@ -1584,7 +1584,7 @@ gkaiu9f
 gkaiufe
 gkaiuff
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/lm/lm.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/lm/lm.map:
 cs-lmb10
 cs-lmbo10
 cs-lmbx10
@@ -2182,11 +2182,11 @@ ts1-lmvtlo10
 ts1-lmvtt10
 ts1-lmvtto10
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/tetex/mathpple.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/tetex/mathpple.map:
 eurbo10
 eurmo10
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mc2j.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mc2j.map:
 mc2jka
 mc2jkb
 mc2jkc
@@ -2211,7 +2211,7 @@ mc2jku
 mc2jkv
 mc2jkw
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mcj.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mcj.map:
 mcjgreek
 mcjhira
 mcjhw
@@ -2247,7 +2247,7 @@ mcjroma
 mcjrussian
 mcjsy
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mr2j.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mr2j.map:
 mr2jka
 mr2jkb
 mr2jkc
@@ -2272,7 +2272,7 @@ mr2jku
 mr2jkv
 mr2jkw
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mrj.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/wadalab/mrj.map:
 mrjgreek
 mrjhira
 mrjhw
@@ -2308,13 +2308,13 @@ mrjroma
 mrjrussian
 mrjsy
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/nectec.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/nectec.map:
 rloma
 rloma_b
 rloma_bo
 rloma_o
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/nf.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/nf.map:
 rgaruda
 rgaruda_b
 rgaruda_bo
@@ -2350,19 +2350,19 @@ rnorasi_o-osf
 rnorasi_o-osf-sc
 rnorasi_o-sc
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/norasi-c90/norasi-c90.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/norasi-c90/norasi-c90.map:
 ftnb8z
 ftnbi8z
 ftni8z
 ftnr8z
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/sipa.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/sipa.map:
 rlaksaman
 rlaksaman_b
 rlaksaman_bi
 rlaksaman_i
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/tlwg.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/fonts-tlwg/tlwg.map:
 rpurisa
 rpurisa_b
 rpurisa_bo
@@ -2390,7 +2390,7 @@ rwaree_b
 rwaree_bo
 rwaree_o
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/uhc/umj.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/uhc/umj.map:
 umj00
 umj01
 umj02
@@ -2656,20 +2656,20 @@ umjxo36
 umjxo37
 umjxo38
 
-/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-dist/fonts/map/dvips/zapfding/uzd.map:
+/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/fonts/map/dvips/zapfding/uzd.map:
 uzdr
 
 Files generated:
-  /home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-var/fonts/map/dvips/updmap:
-       15900 2021-12-30 10:36:51 builtin35.map
-       21373 2021-12-30 10:36:51 download35.map
-      105756 2021-12-30 10:36:51 psfonts_pk.map
-      111922 2021-12-30 10:36:51 psfonts_t1.map
-      111917 2021-12-30 10:36:51 ps2pk.map
-          14 2021-12-30 10:36:51 psfonts.map -> psfonts_t1.map
-  /home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap:
-      111924 2021-12-30 10:36:51 pdftex_dl14.map
-      110259 2021-12-30 10:36:51 pdftex_ndl14.map
-          15 2021-12-30 10:36:51 pdftex.map -> pdftex_dl14.map
-  /home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/texmf-var/fonts/map/dvipdfmx/updmap:
-         423 2021-12-30 10:36:51 kanjix.map
+  /home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-var/fonts/map/dvips/updmap:
+       15932 2022-01-28 16:52:19 builtin35.map
+       21405 2022-01-28 16:52:19 download35.map
+      105788 2022-01-28 16:52:19 psfonts_pk.map
+      111954 2022-01-28 16:52:19 psfonts_t1.map
+      111949 2022-01-28 16:52:19 ps2pk.map
+          14 2022-01-28 16:52:19 psfonts.map -> psfonts_t1.map
+  /home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-var/fonts/map/pdftex/updmap:
+      111956 2022-01-28 16:52:19 pdftex_dl14.map
+      110291 2022-01-28 16:52:19 pdftex_ndl14.map
+          15 2022-01-28 16:52:19 pdftex.map -> pdftex_dl14.map
+  /home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-var/fonts/map/dvipdfmx/updmap:
+         455 2022-01-28 16:52:19 kanjix.map

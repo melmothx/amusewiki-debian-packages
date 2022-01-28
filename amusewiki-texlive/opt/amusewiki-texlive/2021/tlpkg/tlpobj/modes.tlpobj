@@ -1,6 +1,6 @@
 name modes
 category Package
-revision 56303
+revision 61719
 shortdesc A collection of Metafont mode_def's
 longdesc The modes file collects all known Metafont modes for printing
 longdesc or display devices, of whatever printing technology. Special
@@ -11,9 +11,9 @@ longdesc definitions that make \specials identifying the mode in
 longdesc Metafont's GF output, and put coding information and other
 longdesc Xerox-world information in the TFM file.
 containersize 27320
-containerchecksum 09318fcdb58e5175882fd7a2750ae71322d0be227a2131e05c8b9d20879260c9ac906a735582c1fc8229f3ad4e7df7b71d6a2a6ba9b82c653463947d59f9116f
-doccontainersize 275948
-doccontainerchecksum dd7d78b8b355d7d056d288c0026d83115878abf91ceb183b48a3505620f0be4c8ef04ed0259a8f5a079c6191f33fc1331e9a3b1660b9312d165914b9176524e8
+containerchecksum 86931543910145093d3141fd40512ef6c1a99901a757d178d8ba592761c25638383f9511f4937af657c414642341c05ad6278d871e5d397117e03cf86706a9ac
+doccontainersize 275952
+doccontainerchecksum 4ba301dce255d22c23cd732e6c1b1e887a96918d594a06f8386563b0ca46fce015c0cdf17aecb2fb13211360a7db24843ec99664b048a53ed0ac76a1a4188c76
 docfiles size=78
  texmf-dist/doc/fonts/modes/ChangeLog
  texmf-dist/doc/fonts/modes/GNUmakefile
@@ -24,7 +24,7 @@ docfiles size=78
  texmf-dist/doc/fonts/modes/modes.pdf details="Package documentation"
 runfiles size=24
  texmf-dist/fonts/source/public/modes/modes.mf
-catalogue-contact-support https://mail.math.utah.edu/mailman/listinfo/tex-fonts
+catalogue-contact-support https://lists.tug.org/tex-k
 catalogue-ctan /fonts/modes
 catalogue-license pd
 catalogue-topics font-devel

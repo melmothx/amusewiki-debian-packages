@@ -1,14 +1,15 @@
 name texlive-en
 category TLCore
-revision 60536
+revision 61754
 shortdesc TeX Live manual (English)
-containersize 276
-containerchecksum eac0677660ac137244e06125215f8f04a58e361e990fe219a50381a1d4e3bebccb58b0c1ee4530b90672aa3c7f364511364887026bd2a355ea70c1b9c9091a7b
-doccontainersize 1939872
-doccontainerchecksum fb985ef820a525e7b2ae7a8b67c49fa798c8ea333513f458be4e0369765f56ef4d68de00aab6fe0f93caf7d68fcfe18fffb6c06b6fc161a0f0be4674ff68611a
-docfiles size=1459
+containersize 272
+containerchecksum b15a02a548161baced900fe27491345f64091857fc8dca051495ba85fbe7cdd4e27d24181ecfae29950ab3cc4d433ffbcc743c73e8c1ea24eca8970b0f34cf25
+doccontainersize 1953012
+doccontainerchecksum 5a9df21d50e50522166a1fff366faab48a94019f55fb5e67be1fb14e7a4cb72ca3988a965fe5b303122e981745fca94993e9e24c2a97c2e57bc283c3af1d4901
+docfiles size=1515
  texmf-dist/doc/info/tlbuild.info
  texmf-dist/doc/texlive/texlive-en/.dict.pws
+ texmf-dist/doc/texlive/texlive-en/ChangeLog
  texmf-dist/doc/texlive/texlive-en/Makefile
  texmf-dist/doc/texlive/texlive-en/README
  texmf-dist/doc/texlive/texlive-en/archive/bv-live.tex
@@ -32,8 +33,10 @@ docfiles size=1459
  texmf-dist/doc/texlive/texlive-en/archive/live-2018.tex
  texmf-dist/doc/texlive/texlive-en/archive/live-2019.tex
  texmf-dist/doc/texlive/texlive-en/archive/live-2020.tex
+ texmf-dist/doc/texlive/texlive-en/archive/live-2021.tex
  texmf-dist/doc/texlive/texlive-en/archive/live-tl7.tex
  texmf-dist/doc/texlive/texlive-en/archive/live4ht.cfg-2004
+ texmf-dist/doc/texlive/texlive-en/archive/live4ht.cfg-2021
  texmf-dist/doc/texlive/texlive-en/archive/mod.pl
  texmf-dist/doc/texlive/texlive-en/archive/nocites.tex
  texmf-dist/doc/texlive/texlive-en/archive/picture.tex
@@ -55,6 +58,7 @@ docfiles size=1459
  texmf-dist/doc/texlive/texlive-en/archive/tex-live.sty-2018
  texmf-dist/doc/texlive/texlive-en/archive/tex-live.sty-2019
  texmf-dist/doc/texlive/texlive-en/archive/tex-live.sty-2020
+ texmf-dist/doc/texlive/texlive-en/archive/tex-live.sty-2021
  texmf-dist/doc/texlive/texlive-en/archive/texlive.pl
  texmf-dist/doc/texlive/texlive-en/live4ht.cfg
  texmf-dist/doc/texlive/texlive-en/tex-live.css

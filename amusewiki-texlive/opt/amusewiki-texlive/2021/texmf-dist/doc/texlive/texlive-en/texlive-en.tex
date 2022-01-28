@@ -1,4 +1,4 @@
-% $Id: texlive-en.tex 60536 2021-09-18 14:30:27Z karl $
+% $Id: texlive-en.tex 61734 2022-01-25 17:27:53Z karl $
 % TeX Live documentation.  Originally written by Sebastian Rahtz and
 % Michel Goossens, now maintained by Karl Berry and others.
 % Public domain.
@@ -17,7 +17,7 @@
         \url{https://tug.org/texlive/}
        }
 
-\date{September 2021}
+\date{January 2022}
 
 \begin{document}
 \maketitle
@@ -491,8 +491,9 @@ Internet, please see section~\ref{sec:dvd-install-net-updates}.
 \end{description}
 
 \begin{figure}[tb]
-\tlpng{nsis_installer}{.6\linewidth}
-\caption{First stage of Windows \code{.exe} installer}\label{fig:nsis}
+\def\figdesc{First stage of Windows \code{.exe} installer}
+\tlpng{nsis_installer}{.6\linewidth}{\figdesc}
+\caption{\figdesc}\label{fig:nsis}
 \end{figure}
 
 The same installer program is run, whatever the source.  The most
@@ -635,13 +636,13 @@ Actions:
 \end{figure}
 
 \begin{figure}[tb]
-\tlpng{basic-w32}{.6\linewidth}
+\tlpng{basic-w32}{.6\linewidth}{Basic installer screen (Windows)}
 \caption{Basic installer screen (Windows); the Advanced button will
   result in something like figure~\ref{fig:advanced-lnx}}\label{fig:basic-w32}
 \end{figure}
 
 \begin{figure}[tb]
-\tlpng{advanced-lnx}{\linewidth}
+\tlpng{advanced-lnx}{\linewidth}{Advanced installer screen (\GNU/Linux)}
 \caption{Advanced \GUI{} installer screen
   (\GNU/Linux)}\label{fig:advanced-lnx}
 \end{figure}
@@ -765,8 +766,9 @@ just plain and \LaTeX, \optname{small} for a few more programs
 specialized and country-specific schemes.
 
 \begin{figure}[tb]
-\centering \tlpng{stdcoll}{.7\linewidth}
-\caption{Collections menu}\label{fig:collections-gui}
+\def\figdesc{Collections menu}
+\centering \tlpng{stdcoll}{.7\linewidth}{\figdesc}
+\caption{\figdesc}\label{fig:collections-gui}
 \end{figure}
 
 You can refine your scheme selection with the `collections' menu
@@ -1422,10 +1424,12 @@ Links for some other tools you may consider installing:
       user's taste. Here is a selection in alphabetical order (a few
       here are for Windows only).
   \begin{itemize*}
-  \item \cmdname{GNU Emacs} is also available natively under Windows, see
-        \url{https://www.gnu.org/software/emacs/emacs.html}.
-  \item \cmdname{Emacs with Auc\TeX} for Windows is available from \CTAN.
-        The AuC\TeX\ home page is \url{https://www.gnu.org/software/auctex}.
+  \item \cmdname{GNU Emacs} is available for all major platforms; see
+        \url{https://www.gnu.org/software/emacs}.
+  \item \cmdname{AUC\TeX} runs under Emacs; it's available through
+        Emacs' package manager \cmdname{ELPA}. Sources are also
+        available from CTAN. The AUC\TeX\ home page is
+        \url{https://www.gnu.org/software/auctex}.
   \item \cmdname{SciTE} is available from
         \url{https://www.scintilla.org/SciTE.html}.
   \item \cmdname{Texmaker} is free software, available from
@@ -1513,7 +1517,7 @@ of the installation and create a temporary `tray menu' offering a
 choice of a few common tasks, as shown in this screenshot:
 
 \medskip
-\tlpng{tray-menu}{4cm}
+\tlpng{tray-menu}{4cm}{Windows tray menu}
 \smallskip
 
 \noindent The `More\ldots' entry explains how you can customize this menu.
@@ -1580,20 +1584,23 @@ choice of a few common tasks, as shown in this screenshot:
 \label{sec:tlmgr}
 
 \begin{figure}[tb]
-\tlpng{tlshell-macos}{\linewidth}
-\caption{\prog{tlshell} \GUI, showing the Actions menu (\MacOSX)}
+\def\figdesc{\prog{tlshell} \GUI, showing the Actions menu (\MacOSX)}
+\tlpng{tlshell-macos}{\linewidth}{\figdesc}
+\caption{\figdesc}
 \label{fig:tlshell}
 \end{figure}
 
 \begin{figure}[tb]
-\tlpng{tlcockpit-packages}{.8\linewidth}
-\caption{\prog{tlcockpit} \GUI{} for \prog{tlmgr}}
+\def\figdesc{\prog{tlcockpit} \GUI{} for \prog{tlmgr}}
+\tlpng{tlcockpit-packages}{.8\linewidth}{\figdesc}
+\caption{\figdesc}
 \label{fig:tlcockpit}
 \end{figure}
 
 \begin{figure}[tb]
-\tlpng{tlmgr-gui}{\linewidth}
-\caption{Legacy \prog{tlmgr} \GUI\ mode: main window, after `Load'}
+\def\figdesc{Legacy \prog{tlmgr} \GUI\ mode: main window, after `Load'}
+\tlpng{tlmgr-gui}{\linewidth}{\figdesc}
+\caption{\figdesc}
 \label{fig:tlmgr-gui}
 \end{figure}
 

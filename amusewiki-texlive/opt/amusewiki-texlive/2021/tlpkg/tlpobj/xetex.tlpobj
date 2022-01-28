@@ -1,6 +1,6 @@
 name xetex
 category TLCore
-revision 61114
+revision 61719
 shortdesc An extended variant of TeX for use with Unicode sources
 longdesc XeTeX is a TeX typesetting engine using Unicode and supporting
 longdesc modern font technologies such as OpenType, TrueType or Apple
@@ -39,9 +39,9 @@ execute AddFormat name=xelatex engine=xetex patterns=language.dat   options="-et
 execute AddFormat name=xetex engine=xetex patterns=language.def   options="-etex xetex.ini"   fmttriggers=cm,hyphen-base,tex-ini-files,unicode-data,etex,plain
 postaction script file=tlpkg/tlpostcode/xetex.pl
 containersize 7780
-containerchecksum c5cd9bcd20cc1ea6765d8c2adcc9aad2d2c6d2cee54998f4d27bcf2d2ceb58766bf125ecff6957e0806204333390be9ff646bb0523e97754c7056f80ca0e9d99
+containerchecksum e63a8f3e80ec3c0babe3ff606c717bf6fd9f59515b13bbb6f7542bb986fcaff9706c1cd75f9d06e260e990dc9f024e9381dab13aa0beb6bba8d455ea16bc83fb
 doccontainersize 633104
-doccontainerchecksum 470d453c9fd81cc88b7a7de3e115c2ce6c83f770b5f7be2af40cb712bb62004f2e093dab0d8a373383ffc85fdec6ca1ecd9a7ee7440e8235e57c29de3b330d4a
+doccontainerchecksum 04657f8955d8a3d78df8556985f5c06c58bcfbfb2e92242cec73305bf8d07dd178e3426fadbc8e4dac0e9698e5b6c89b80ad8742aacc9feb5ec431c25ee278ea
 docfiles size=182
  texmf-dist/doc/man/man1/xelatex-unsafe.1
  texmf-dist/doc/man/man1/xelatex-unsafe.man1.pdf
@@ -68,5 +68,5 @@ catalogue-contact-announce https://lists.tug.org/xetex-announce
 catalogue-contact-home https://tug.org/xetex
 catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/xetexdir
 catalogue-contact-support https://lists.tug.org/xetex
-catalogue-license other-free
+catalogue-license lgpl
 catalogue-topics engine

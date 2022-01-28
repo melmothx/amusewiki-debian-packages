@@ -1,4 +1,4 @@
-## Babel 3.68
+## Babel 3.70
 
 This package manages culturally-determined typographical (and other)
 rules, and hyphenation patterns for a wide range of languages. Many
@@ -8,9 +8,9 @@ is a set of ini files for about 250 languages.
 
 The latest stable version is available on <https://ctan.org/pkg/babel>.
 
-Changes in version 3.68 are described in:
+Changes in version 3.70 are described in:
 
-https://latex3.github.io/babel/news/whats-new-in-babel-3.68.html
+https://latex3.github.io/babel/news/whats-new-in-babel-3.70.html
 
 Apart from the manual, you can find information on some aspects of babel at:
 
@@ -46,14 +46,11 @@ respective authors.
 
 ### Summary of Latest changes
 ```
-3.68   2021-12-28
-       * Fixes:
-         - Assamese, Bengali, Gujarati set incorrectly prehyphenchar.
-         - The syntax provide=* didn’t work with Hebrew and a few other
-           languages.
-         - Wrong equation direction in first column in array and tabular
-           environment (#158).
-         - Tentative fixes for labels in displayed math (#159).
+3.70   2022-01-26
+       * Finnish: transform 'prehyphen.nobreak'.
+       * Better fixes for amsmath, as well as for the default
+         'equation' and 'eqnarray' (but still not perfect).
+       * Fix an error with bidi=basic and some fonts for graphics.
 ```
 
 ### Previous changes

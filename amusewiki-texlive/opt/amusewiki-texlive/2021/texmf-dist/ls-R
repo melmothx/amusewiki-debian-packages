@@ -1258,6 +1258,8 @@ pst-news20.pdf
 pst-news20.tex
 pst-news21.pdf
 pst-news21.tex
+pst-news22.pdf
+pst-news22.tex
 pst-news.sty
 pst-news.tex
 PSTricks.bib
@@ -1323,6 +1325,7 @@ bigfoot
 bigintcalc
 bitset
 bookmark
+carlisle
 chngcntr
 cjk
 cjkpunct
@@ -1721,6 +1724,11 @@ README.md
 bookmark-example.tex
 bookmark.pdf
 README.md
+
+./doc/latex/carlisle:
+ltx1.tex
+ltxtable.pdf
+README.txt
 
 ./doc/latex/chngcntr:
 chngcntr.pdf
@@ -2413,6 +2421,8 @@ clsguide.tex
 cmfonts.pdf
 cyrguide.pdf
 cyrguide.tex
+doc-code.pdf
+doc-code.tex
 doc.pdf
 docstrip.pdf
 encguide.pdf
@@ -2426,8 +2436,6 @@ ifthen.pdf
 inputenc.pdf
 lamport-manual.err
 lamport-manual.pdf
-latexchanges.pdf
-latexchanges.tex
 latexrelease.pdf
 latexsym.pdf
 lb2.err
@@ -2522,6 +2530,8 @@ ltnews33.pdf
 ltnews33.tex
 ltnews34.pdf
 ltnews34.tex
+ltnews35.pdf
+ltnews35.tex
 ltnews.pdf
 ltnews.tex
 ltpara-code.pdf
@@ -2547,8 +2557,6 @@ slifonts.pdf
 source2e.pdf
 source2e.tex
 syntonly.pdf
-tex2.txt
-texpert.txt
 tlc2.err
 tlc2.pdf
 tulm.pdf
@@ -3048,6 +3056,7 @@ ex6.tex
 
 ./doc/texlive/texlive-en:
 archive
+ChangeLog
 .dict.pws
 live4ht.cfg
 Makefile
@@ -3080,7 +3089,9 @@ live-2017.tex
 live-2018.tex
 live-2019.tex
 live-2020.tex
+live-2021.tex
 live4ht.cfg-2004
+live4ht.cfg-2021
 live-tl7.tex
 l.pl
 mod.pl
@@ -3105,6 +3116,7 @@ tex-live.sty-2017
 tex-live.sty-2018
 tex-live.sty-2019
 tex-live.sty-2020
+tex-live.sty-2021
 
 ./doc/texlive/tlbuild:
 tlbuild.html
@@ -23234,6 +23246,7 @@ base
 beamer
 bigfoot
 bookmark
+carlisle
 chngcntr
 cjk
 cjkpunct
@@ -23646,6 +23659,14 @@ bkm-pdftex.def
 bkm-vtex-2019-12-03.def
 bkm-vtex.def
 bookmark.sty
+
+./tex/latex/carlisle:
+dotlessj.sty
+ltxtable.sty
+plain.sty
+remreset.sty
+scalefnt.sty
+slashed.sty
 
 ./tex/latex/chngcntr:
 chngcntr.sty
@@ -24249,7 +24270,6 @@ expl3.ltx
 expl3.lua
 expl3.sty
 l3debug.def
-l3deprecation.def
 l3doc.cls
 l3docstrip.tex
 l3str-enc-iso885910.def
@@ -25454,9 +25474,10 @@ cp852.def
 cp858.def
 cp865.def
 decmulti.def
+doc-2016-02-15.sty
+doc-2021-06-01.sty
 docstrip.tex
 doc.sty
-doc-v3beta.sty
 exscale.sty
 fix-cm.sty
 fixltx2e.sty
@@ -25496,6 +25517,7 @@ ltluatex.lua
 ltluatex.tex
 ltnews.cls
 ltxcheck.tex
+ltxdoc.cfg
 ltxdoc.cls
 ltxguide.cls
 ly1enc.dfu

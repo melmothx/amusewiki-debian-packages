@@ -1,6 +1,6 @@
 name hyph-utf8
 category Package
-revision 58619
+revision 61719
 shortdesc Hyphenation patterns expressed in UTF-8
 longdesc Modern native UTF-8 engines such as XeTeX and LuaTeX need
 longdesc hyphenation patterns in UTF-8 format, whereas older systems
@@ -14,9 +14,9 @@ longdesc TeX systems are only read at iniTeX time, it is hoped that the
 longdesc UTF-8 patterns, with their converters, will completely supplant
 longdesc the older patterns.
 containersize 15996
-containerchecksum dc14e4a6aa57764113b9945c76f3f485f370e6c399196916bea2e0451f8238c577100c0db89e742d1233a16b7f51f56674ef1f458dd04f49e207f62744e8ea47
+containerchecksum 64055aa046fdbc721fda474b7848b37d094b1a8f5f01e507df80003ba591dd959871c880f04d5bc6e0bf169e99bf89f5a1a7dad1195c8839773fc613f3719d9f
 doccontainersize 267700
-doccontainerchecksum 09e4a5ae3b0541b5e6b721f164592c364ca00b0c96986085632461b9201a81fa3f0fe375156a91fdbcdd1f4d5f207d8e7c16d35b6fbe2cd196b4c7025a933d6f
+doccontainerchecksum c4aac42267b75a16559705e7de3716eafbec96a285d523d5e7b2f77f345d8e344e174571e247b9c5de8fac75942bc1b0f924e81efd8356b52c9ed91a149d8f09
 docfiles size=84
  texmf-dist/doc/generic/hyph-utf8/CHANGES
  texmf-dist/doc/generic/hyph-utf8/HISTORY
@@ -28,8 +28,8 @@ docfiles size=84
  texmf-dist/doc/generic/hyph-utf8/img/texlive-collection.png
  texmf-dist/doc/luatex/hyph-utf8/README
  texmf-dist/doc/luatex/hyph-utf8/luatex-hyphen.pdf
-srccontainersize 34840
-srccontainerchecksum 3dcf4d89d34db765459694329be8cd3182f0021ebbead0ffaab9ae3810c8392b69bab6d0baf433c209becd7eb5ec55b8fdc4c3f145d7792b0c7456129c997430
+srccontainersize 34844
+srccontainerchecksum 2ed5177a81f46bb538517447d89129d82bab87f937c98e4afc6c74863d5f4cc3342470f66d2f5d05247fb3ac26b23ed4b6ce4fd093fcb61fbabac6dd330889f2
 runfiles size=25
  texmf-dist/tex/generic/hyph-utf8/conversions/conv-utf8-ec.tex
  texmf-dist/tex/generic/hyph-utf8/conversions/conv-utf8-il2.tex
@@ -46,7 +46,7 @@ catalogue-also dehyph-exptl
 catalogue-contact-bugs https://github.com/hyphenation/tex-hyphen/issues
 catalogue-contact-home http://www.hyphenation.org
 catalogue-contact-repository https://github.com/hyphenation/tex-hyphen
-catalogue-contact-support http://tug.org/mailman/listinfo/tex-hyphen
+catalogue-contact-support https://tug.org/mailman/listinfo/tex-hyphen
 catalogue-ctan /language/hyph-utf8
 catalogue-license mit
 catalogue-topics hyphenation

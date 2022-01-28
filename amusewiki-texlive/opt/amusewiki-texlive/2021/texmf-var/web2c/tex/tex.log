@@ -1,11 +1,11 @@
-This is TeX, Version 3.141592653 (TeX Live 2021) (INITEX)  30 DEC 2021 10:35
+This is TeX, Version 3.141592653 (TeX Live 2021) (INITEX)  28 JAN 2022 16:52
 **tex.ini
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/plain/config/tex.ini
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/plain/base/plain.tex Preloading the plain format: codes,
-registers,
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/plain/config/tex.ini
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/plain/base/plain.tex
+Preloading the plain format: codes, registers,
 \maxdimen=\dimen10
 \hideskip=\skip10
 \centering=\skip11
@@ -28,7 +28,8 @@ registers,
 \slfam=\fam5
 \bffam=\fam6
 \ttfam=\fam7
- macros,
+
+macros,
 \strutbox=\box11
 \mscount=\count25
 \tabs=\box12
@@ -37,18 +38,17 @@ registers,
  math definitions,
 \rootbox=\box15
 \p@renwd=\dimen15
-
-output routines,
+ output routines,
 \headline=\toks10
 \footline=\toks11
 \footins=\insert254
 \topins=\insert253
  hyphenation
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyphen/hyphen.tex)) )
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyphen/hyphen.tex)) )
 Beginning to dump on file tex.fmt
- (preloaded format=tex 2021.12.30)
-2028 strings of total length 29849
+ (preloaded format=tex 2022.1.28)
+2028 strings of total length 29992
 4991 memory locations dumped; current usage is 110&4878
 926 multiletter control sequences
 \font\nullfont=nullfont

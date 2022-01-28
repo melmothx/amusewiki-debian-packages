@@ -1,8 +1,8 @@
 name zapfding
 category Package
-revision 31835
+revision 61719
 catalogue urw-base35
-shortdesc URW "Base 35" font pack for LaTeX
+shortdesc URW 'Base 35' font pack for LaTeX
 longdesc A set of fonts for use as "drop-in" replacements for Adobe's
 longdesc basic set, comprising: Century Schoolbook (substituting for
 longdesc Adobe's New Century Schoolbook); Dingbats (substituting for
@@ -14,8 +14,8 @@ longdesc Chancery L Medium Italic (substituting for Adobe's Zapf
 longdesc Chancery); URW Gothic L Book (substituting for Adobe's Avant
 longdesc Garde); and URW Palladio L (substituting for Adobe's Palatino).
 execute addMap uzd.map
-containersize 46964
-containerchecksum e3e6e69b82858d8bd653bcb112ed81b8b5aacc0b915b5e4ed4288f5aef896211e75b85b1b647989e0ffa431ec204a9d8ad27b2e60bc2b28eea83eb3518945bf1
+containersize 46944
+containerchecksum 3e0503c2d4e30c8d727caa1d9438d4c6b12c3a15729eae65d5c4a8dd9ab0d0c8eee2f63138e9d267f4ae98ef7607388888f7acd78e189a5c322bda22827166fe
 runfiles size=24
  texmf-dist/dvips/zapfding/config.uzd
  texmf-dist/fonts/afm/adobe/zapfding/pzdr.afm

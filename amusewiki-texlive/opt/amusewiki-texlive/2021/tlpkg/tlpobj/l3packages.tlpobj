@@ -1,6 +1,6 @@
 name l3packages
 category Package
-revision 61040
+revision 61588
 shortdesc High-level LaTeX3 concepts
 longdesc This collection contains implementations for aspects of the
 longdesc LaTeX3 kernel, dealing with higher-level ideas such as the
@@ -17,10 +17,10 @@ longdesc provides a means of defining generic functions using a
 longdesc key-value syntax xfrac, which provides flexible split-level
 longdesc fractions
 depend l3kernel
-containersize 21644
-containerchecksum 1ca8e7484f5d86fd85197e4bb0058444e68f73caf68c04f3ad67ce0a96f29c181d496227f069938604dd5a4dc095e15c0f2addf26f150da0ee7ccf6d48037536
-doccontainersize 1806792
-doccontainerchecksum 4c133f7ede9a37057371e838355daa1138b4cc9e1e8714d9f62925cb56b91645d1c9478b3bdf1050005c3a08b2282881fbc84f50c166173c958bf16604630814
+containersize 21640
+containerchecksum 4a6ec384f2b8ad262eb05f0d30a9b622f99a2c641b2382dfc8601b0c8bc7f4c105865b28e1275c917519d32095fc5b7e66a8c0c4253f7da32af01072092e85bf
+doccontainersize 1808188
+doccontainerchecksum a62939dad7274a3394e642167ba0ec4adb3fd76fe4e468f09b4bfa2d6e212607b121c26bba7ee9bc15d1e37c84d5b1e8876a0d3e50efcce8de192781809feda2
 docfiles size=534
  texmf-dist/doc/latex/l3packages/CHANGELOG.md
  texmf-dist/doc/latex/l3packages/README.md details="Readme"
@@ -30,8 +30,8 @@ docfiles size=534
  texmf-dist/doc/latex/l3packages/xfrac/xfrac.pdf details="xfrac documentation"
  texmf-dist/doc/latex/l3packages/xparse/xparse.pdf details="xparse documentation"
  texmf-dist/doc/latex/l3packages/xtemplate/xtemplate.pdf details="xtemplate documentation"
-srccontainersize 45256
-srccontainerchecksum 93dcfe3b4d04c60a9880d34f8a6d924ae5e800d0cd9a2116726c2e651ae43665b34e7bc232640857c4b4f235eaf3ab25eff62d43f175721e9272b1b65f09b3cc
+srccontainersize 45340
+srccontainerchecksum da245467908e1ed7245b6d57420dedf1ddc1b9f37b00c76725d6dbe45ed2b2ce172c1c003c4ca2e2b88fc6b220182799a73a15b3eb43240f344c842afef39b36
 runfiles size=65
  texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
  texmf-dist/tex/latex/l3packages/xfp/xfp.sty

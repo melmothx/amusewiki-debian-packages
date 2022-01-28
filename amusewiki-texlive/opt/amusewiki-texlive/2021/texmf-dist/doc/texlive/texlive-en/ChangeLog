@@ -1,0 +1,20 @@
+2022-01-26  Karl Berry  <karl@freefriends.org>
+
+	* tex-live.sty: # is not TeX comment character.
+	Publish new pdf/html, since changes so far aren't 2022-specific,
+	and getting alt text out now seems like it wouldn't hurt.
+
+2022-01-25  Karl Berry  <karl@freefriends.org>
+
+	* tex-live.sty (\tlpng): require new third argument for alt text.
+	* texlive-en.tex: change all \tlpng calls.
+	* live4ht.cfg (graphics*): remove \Configure, redundant with
+	\tlpng macro now.
+
+	* Makefile (env): texlive-en before texlive-common,
+	for sake of example.
+	(run_htlatex, htopts1, htopts2): new variables to separate out the
+	htlatex invocation.
+	(html1 h): new targets to just run htlatex once.
+
+(Public domain.)

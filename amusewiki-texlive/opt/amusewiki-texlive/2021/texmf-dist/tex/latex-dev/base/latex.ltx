@@ -18,6 +18,7 @@
 %% lterror.dtx  (with options: `2ekernel')
 %% ltpar.dtx  (with options: `2ekernel')
 %% ltpara.dtx  (with options: `2ekernel')
+%% ltmeta.dtx  (with options: `2ekernel')
 %% ltspace.dtx  (with options: `2ekernel')
 %% ltlogos.dtx  (with options: `2ekernel')
 %% ltfiles.dtx  (with options: `2ekernel')
@@ -46,6 +47,7 @@
 %% ltbibl.dtx  (with options: `2ekernel')
 %% ltpage.dtx  (with options: `2ekernel')
 %% ltclass.dtx  (with options: `2ekernel,tracerollback')
+%% ltkeys.dtx  (with options: `2ekernel')
 %% ltfilehook.dtx  (with options: `2ekernel')
 %% ltshipout.dtx  (with options: `2ekernel')
 %% ltoutput.dtx  (with options: `2ekernel')
@@ -58,7 +60,7 @@
 %% (but please observe conditions on bug reports sent to that address!)
 %% 
 %% 
-%% Copyright (C) 1993-2021
+%% Copyright (C) 1993-2022
 %% The LaTeX Project and any individual authors listed elsewhere
 %% in this file.
 %% 
@@ -87,6 +89,7 @@
 %% and covered by LPPL is defined by the unpacking scripts (with
 %% extension .ins) which are part of the distribution.
 %%% From File: ltdirchk.dtx
+%% ---- START temporary definitions for bootstrapping; later overwritten ----
 \ifnum\catcode`\{=1
   \errmessage
   {LaTeX must be made using an initex with no format preloaded}
@@ -294,6 +297,7 @@
      \ifx\reserved@a\@empty\else\gdef\@TeXversion{3}\fi}
   \fi
 \fi
+%% ---- END temporary definitions for bootstrapping ----
 %%% From File: ltplain.dtx
 \catcode`\{=1 % left brace is begin-group character
 \catcode`\}=2 % right brace is end-group character
@@ -692,7 +696,7 @@
 \def\fmtname{LaTeX2e}
 \edef\fmtversion
    {2022-06-01}
-\def\patch@level{0}
+\def\patch@level{-1}
 \edef\development@branch@name{develop \the\year-\the\month-\the\day}
 \iffalse
 \def\reserved@a#1/#2/#3\@nil{%
@@ -982,6 +986,14 @@
   \e@alloc\luafunction\e@alloc@chardef
     \e@alloc@luafunction@count\m@ne\e@alloc@top
 }
+\def\newluacmd{%
+  \e@alloc\luafunction\luadef
+    \e@alloc@luafunction@count\m@ne\e@alloc@top
+}
+\def\newprotectedluacmd{%
+  \e@alloc\luafunction{\protected\luadef}
+    \e@alloc@luafunction@count\m@ne\e@alloc@top
+}
 \ifx\e@alloc@whatsit@count\@undefined
   \countdef\e@alloc@whatsit@count=261
   \e@alloc@whatsit@count=\z@
@@ -1124,6 +1136,24 @@
 \cs_gset_eq:NN \@expl@str@map@function@@NN \str_map_function:NN
 \cs_gset_eq:NN \@expl@char@generate@@nn \char_generate:nn
 \ExplSyntaxOff
+\ExplSyntaxOn
+\cs_new_eq:NN \fpeval \fp_eval:n
+\cs_new_eq:NN \inteval \int_eval:n
+\cs_new_eq:NN \dimeval  \dim_eval:n
+\cs_new_eq:NN \skipeval \skip_eval:n
+\ExplSyntaxOff
+
+\ExplSyntaxOn
+\cs_new_eq:NN \UseName \use:c
+\cs_new:Npn \ExpandArgs #1
+  {
+    \cs_if_exist_use:cF { exp_args:N #1 }
+      { \msg_expandable_error:nnn { kernel } { unknown-arg-expansion } {#1} }
+  }
+\msg_new:nnn { kernel } { unknown-arg-expansion }
+  { Unknown~arg~expansion~"#1" }
+\ExplSyntaxOff
+
 %%% From File: ltdefns.dtx
 \def\two@digits#1{\ifnum#1<10 0\fi\number#1}
 \protected\long\def\typeout#1{\begingroup
@@ -1681,8 +1711,8 @@
     \xdef#1{\the\toks@}%
   \endgroup}
 %%% From File: ltcmd.dtx
-\def\ltcmdversion{v1.0h}
-\def\ltcmddate{2021-08-30}
+\def\ltcmdversion{v1.0j}
+\def\ltcmddate{2021-12-31}
 \message{document commands,}
 \ExplSyntaxOn
 \tl_new:N \l__cmd_arg_spec_tl
@@ -1917,8 +1947,6 @@
     \tl_set:Nn \l__cmd_defaults_tl {#5}
     \tl_set:Nn \l__cmd_process_all_tl {#6}
     #4
-    \bool_if:NT \l__cmd_environment_bool
-      { \exp_args:No \__cmd_set_environment_end:n \l__cmd_environment_str }
     \__cmd_run_code:
   }
 \cs_generate_variant:Nn \__cmd_start_aux:NNnnnn { cc }
@@ -1926,6 +1954,8 @@
   {
     \tl_if_empty:NF \l__cmd_defaults_tl { \__cmd_defaults: }
     \tl_if_empty:NF \l__cmd_process_all_tl { \__cmd_args_process: }
+    \bool_if:NT \l__cmd_environment_bool
+      { \exp_args:No \__cmd_set_environment_end:n \l__cmd_environment_str }
     \group_align_safe_end:
     \conditionally@traceon
     \exp_after:wN \l__cmd_fn_code_tl \l__cmd_args_tl
@@ -2857,21 +2887,21 @@
 \cs_new_protected:Npn \__cmd_show_command_aux:nNNn #1 #2 #3 #4
   {
     \__cmd_split_signature:n {#4}
-    \iow_term:x
+    \tl_show:x
       {
-        > ~ \token_to_str:N #2 = #1: \iow_newline:
+        \token_to_str:N #2 = #1: \iow_newline:
         \tl_use:N \l__cmd_tmpa_tl
-        -> \cs_replacement_spec:N #3 .
+        -> \cs_replacement_spec:N #3
       }
   }
 \cs_new_protected:Npn \__cmd_show_environment:N #1
   {
     \exp_after:wN \__cmd_show_environment:Nnnw #1 \q__cmd
-    \iow_term:x
+    \tl_show:x
       {
-        > ~ \token_to_str:N \end { \cs_to_str:N #1 } : \iow_newline:
+        \token_to_str:N \end { \cs_to_str:N #1 } : \iow_newline:
         -> \exp_args:Nc \cs_replacement_spec:N
-          { environment~ \cs_to_str:N #1 ~end~aux~ } .
+          { environment~ \cs_to_str:N #1 ~end~aux~ }
       }
   }
 \cs_new_protected:Npn \__cmd_show_environment:Nnnw #1 #2 #3 #4 \q__cmd
@@ -4306,7 +4336,7 @@
 
 %%% From File: lthooks.dtx
 \def\lthooksversion{v1.0s}
-\def\lthooksdate{2021/09/28}
+\def\lthooksdate{2022/01/06}
 \ExplSyntaxOn
 \bool_new:N \g__hook_debug_bool
 \cs_new_eq:NN \__hook_debug:n \use_none:n
@@ -5972,6 +6002,7 @@
       }
   }
 \ExplSyntaxOff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% From File: ltalloc.dtx
 \chardef\@xxxii=32
 \mathchardef\@Mi=10001
@@ -6415,6 +6446,24 @@ Type  H <return>  for immediate help.}%
   }
 
 \ExplSyntaxOff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% File: ltmeta.dtx (C) Copyright 2021
+%%% From File: ltmeta.dtx
+\def\ltmetaversion{v1.0a}
+\def\ltmetadate{2021/12/07}
+\protected\def\DocumentMetadata{%
+  \InputIfFileExists{documentmetadata-support.ltx}%
+     {}%
+     {%
+       \@latex@error{No support files for
+                    \noexpand\DocumentMetadata found}
+         {Is the 'LaTeX-lab' bundle installed?%
+         \MessageBreak
+         Without it, the declaration is ignored.}%
+      \let\DocumentMetadata\@gobble
+     }%
+  \DocumentMetadata
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% From File: ltspace.dtx
 \message{spacing,}
@@ -7244,6 +7293,7 @@ Type  H <return>  for immediate help.}%
   }%
   \egroup
 }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% From File: ltcounts.dtx
 
 \def\setcounter#1#2{%
@@ -7886,6 +7936,7 @@ Type  H <return>  for immediate help.}%
  \def\@xviipt{17.28}
  \def\@xxpt{20.74}
  \def\@xxvpt{24.88}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% From File: ltfssaxes.dtx
 %% Copyright (C) 1999-2020 Frank Mittelbach
 \def\DeclareFontSeriesChangeRule#1#2#3#4{%
@@ -13768,22 +13819,16 @@ Type  H <return>  for immediate help.}%
   \xdef\@currpath{\ifx\reserved@b\@empty\else\reserved@b/\fi}%
   \global\let\@currext#4%
   \@ifl@aded\@currext\@currname
-    {\@if@ptions\@currext{\@currname}{#2}{}%
-      {\@latex@error
-        {Option clash for \@cls@pkg\space \@currname}%
-        {The package \@currname\space has already been loaded
-         with options:\MessageBreak
-         \space\space[\@ptionlist{\@currname.\@currext}]\MessageBreak
-         There has now been an attempt to load it
-          with options\MessageBreak
-         \space\space[#2]\MessageBreak
-         Adding the global options:\MessageBreak
-         \space\space
-              \@ptionlist{\@currname.\@currext},#2\MessageBreak
-         to your \noexpand\documentclass declaration may fix this.%
-         \MessageBreak
-         Try typing \space <return> \space to proceed.}}%
-     \@firstofone}%
+    {%
+      \@ifundefined{opt@fam@\@currname.\@currext}
+        {\@onefilewithoptions@clashchk{#2}}
+        {%
+          \@namedef{opt@\@currname.\@currext}{#2}%
+          \expandafter\expandafter\expandafter\ProcessKeyPackageOptions
+            \expandafter\expandafter\expandafter
+              [\csname opt@fam@\@currname.\@currext\endcsname]%
+        }%
+    }%
     {\makeatletter
      \@reset@ptions
      \IfFileExists{\@currpath\@currname.\@currext}{}%
@@ -13823,6 +13868,23 @@ Type  H <return>  for immediate help.}%
      \ifx\@currext\@clsextension\let\LoadClass\@twoloadclasserror\fi}%
     \@popfilename
     \@reset@ptions}
+\def\@onefilewithoptions@clashchk#1{%
+  \@if@ptions\@currext{\@currname}{#1}{}%
+      {\@latex@error
+        {Option clash for \@cls@pkg\space \@currname}%
+        {The package \@currname\space has already been loaded
+         with options:\MessageBreak
+         \space\space[\@ptionlist{\@currname.\@currext}]\MessageBreak
+         There has now been an attempt to load it
+          with options\MessageBreak
+         \space\space[#1]\MessageBreak
+         Adding the global options:\MessageBreak
+         \space\space
+              \@ptionlist{\@currname.\@currext},#1\MessageBreak
+         to your \noexpand\documentclass declaration may fix this.%
+         \MessageBreak
+         Try typing \space <return> \space to proceed.}}%
+     \@firstofone}
 \let\@currpkg@reqd\@empty
 \@onlypreamble\@onefilewithoptions
 \let\@unprocessedoptions\@undefined
@@ -14280,6 +14342,182 @@ Type  H <return>  for immediate help.}%
     \expandafter\@secondoftwo
   \fi
 }
+%%% From File: ltkeys.dtx
+\ExplSyntaxOn
+\cs_generate_variant:Nn \clist_put_right:Nn { Nv }
+\clist_new:N \l__keys_options_clist
+\bool_new:N \l__keys_options_loading_bool
+\cs_new_protected:Npn \__keys_options:Nn #1#2
+  {
+    \cs_gset_nopar:cpn { opt@fam@\@currname.\@currext } {#2}
+    \cs_set_protected:Npn \__keys_option_end: { }
+    \clist_clear:N \l__keys_options_clist
+    \__keys_options_global:Nn #1 {#2}
+    \__keys_options_local:
+    \keys_if_exist:nnF {#2} { unknown }
+      {
+        \keys_define:nn {#2}
+          {
+            unknown .code:n =
+              {
+                \msg_error:nnxx { keys } { option-unknown }
+                  { \l_keys_key_str } { \@currname }
+              }
+          }
+        \cs_set_protected:Npn \__keys_option_end:
+          { \keys_define:nn {#2} { unknown .undefine: } }
+      }
+    \bool_set_true:N \l__keys_options_loading_bool
+    \keys_set:nV {#2} \l__keys_options_clist
+    \bool_set_false:N \l__keys_options_loading_bool
+    \cs_set_eq:NN \@unprocessedoptions \scan_stop:
+    \__keys_option_end:
+    \__keys_options_loaded:n {#2}
+  }
+\cs_generate_variant:Nn \__keys_options:Nn { NV }
+\msg_new:nnnn { keys } { option-unknown }
+  { Unknown~option~'#1'~for~package~#2. }
+  {
+    LaTeX~has~been~asked~to~set~an~option~called~'#1'~
+    but~the~#2~package~has~not~created~an~option~with~this~name.
+  }
+\cs_new_protected:Npn \__keys_options_global:Nn #1#2
+  {
+    \cs_if_eq:NNF \@classoptionslist \scan_stop:
+      {
+        \cs_if_eq:NNTF \@currext \@clsextension
+          { \__keys_options_class:n {#2} }
+          {
+            \bool_if:NT #1
+             { \__keys_options_package:n {#2} }
+          }
+      }
+  }
+\cs_new_protected:Npn \__keys_options_class:n #1
+  {
+    \cs_if_free:cF { opt@ \@currname . \@currext }
+      {
+        \keys_if_exist:nnTF {#1} { unknown }
+          {
+            \clist_put_right:Nv \l__keys_options_clist
+              { opt@ \@currname . \@currext }
+          }
+          {
+            \clist_map_inline:cn { opt@ \@currname . \@currext }
+              {
+                \keys_if_exist:neTF
+                  {#1} { \__keys_remove_equals:n {##1} }
+                  { \clist_put_right:Nn \l__keys_options_clist {##1} }
+                  { \clist_put_right:Nn \@unusedoptionlist {##1} }
+              }
+          }
+      }
+  }
+\cs_new_protected:Npn \__keys_options_package:n #1
+  {
+    \clist_map_inline:Nn \@classoptionslist
+      {
+        \keys_if_exist:neT {#1} { \__keys_remove_equals:n {##1} }
+          {
+            \clist_put_right:Nn \l__keys_options_clist {##1}
+            \clist_remove_all:Nn \@unusedoptionlist {##1}
+          }
+      }
+  }
+\cs_new_protected:Npn \__keys_options_local:
+  {
+    \cs_if_eq:NNF \@currext \@clsextension
+      {
+        \cs_if_exist:cT { opt@ \@currname . \@currext }
+          {
+            \clist_put_right:Nv \l__keys_options_clist
+              { opt@ \@currname . \@currext }
+          }
+      }
+  }
+\cs_new:Npn \__keys_remove_equals:n #1
+  { \__keys_remove_equals:w #1 = \s__keys_stop }
+\cs_new:Npn \__keys_remove_equals:w #1 = #2 \s__keys_stop { \exp_not:n {#1} }
+\NewDocumentCommand \DeclareKeys { o +m }
+  {
+    \IfNoValueTF {#1}
+      { \exp_args:NV \keys_define:nn \@currname }
+      { \keys_define:nn {#1} }
+        {#2}
+  }
+\NewDocumentCommand \ProcessKeyOptions { o }
+  {
+    \IfNoValueTF {#1}
+      { \__keys_options:NV \c_true_bool \@currname }
+      { \__keys_options:Nn \c_true_bool {#1} }
+  }
+\NewDocumentCommand \ProcessKeyPackageOptions { o }
+  {
+    \IfNoValueTF {#1}
+      { \__keys_options:NV \c_false_bool \@currname }
+      { \__keys_options:Nn \c_false_bool {#1} }
+  }
+\@onlypreamble \ProcessKeyOptions
+\@onlypreamble \ProcessKeyPackageOptions
+\cs_new_protected:Npn \__keys_options_loaded:n #1
+  {
+    \prop_get:NnNT \l_keys_usage_load_prop {#1} \l__keys_tmpa_tl
+      {
+        \clist_map_inline:Nn \l__keys_tmpa_tl
+          {
+            \keys_define:nn {#1}
+              {
+                ##1 .code:n =
+                  \__keys_options_loaded:nn {#1} {##1}
+              }
+          }
+      }
+  }
+\cs_new_protected:Npn \__keys_options_loaded:nn #1#2
+  {
+    \bool_if:NTF \l__keys_options_loading_bool
+      {
+        \msg_warning:nnxx { keys } { load-option-ignored }
+          { \use:c { opt@fam@\@currname.\@currext } } {#2}
+      }
+      { \msg_error:nnnn { keys } { load-only } {#1} {#2} }
+  }
+\msg_new:nnn { keys } { load-option-ignored }
+  { Package~"#1"~has~already~been~loaded:~ignoring~load-time~option~"#2". }
+\msg_new:nnnn { keys } { load-only }
+  { Key~"#2"~may~only~be~used~in~the~during~loading~of~package~"#1". }
+  {
+    LaTeX~was~asked~to~set~a~key~called~"#2",~but~this~is~only~allowed~
+    in~the~optional~argument~when~loading~package~"#1".
+  }
+\tl_gput_left:Nn \@kernel@after@begindocument
+  {
+    \prop_map_inline:Nn \l_keys_usage_preamble_prop
+      {
+        \clist_map_inline:nn {#2}
+          {
+            \keys_define:nn {#1}
+              {
+                ##1 .code:n =
+                  \msg_error:nnn { keys } { preamble-only } {##1}
+              }
+          }
+      }
+  }
+\msg_new:nnnn { keys } { preamble-only }
+  { Key~"#1"~may~only~be~used~in~the~preamble. }
+  {
+    LaTeX~was~asked~to~set~a~key~called~"#1",~but~this~is~only~allowed~
+    before~\begin{document}.~You~will~need~to~set~the~key~earlier.
+  }
+\NewDocumentCommand \SetKeys { o +m }
+  {
+    \IfNoValueTF {#1}
+      { \keys_set:Vn \@currname }
+      { \keys_set:nn {#1} }
+        {#2}
+  }
+\ExplSyntaxOff
 %%% From File: ltfilehook.dtx
 \providecommand\ltfilehookversion{v1.0l}
 \providecommand\ltfilehookdate{2021/08/27}
@@ -14557,12 +14795,13 @@ Type  H <return>  for immediate help.}%
 \declare@file@substitution{atveryend.sty}{atveryend-ltx.sty}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
-%% Copyright (C) 2020-2021
+%% Copyright (C) 2020-2022
 %%               Frank Mittelbach, LaTeX Team
 %%
 %%% From File: ltshipout.dtx
-\providecommand\ltshipoutversion{v1.0j}
-\providecommand\ltshipoutdate{2021/06/09}
+\providecommand\ltshipoutversion{v1.0l}
+\providecommand\ltshipoutdate{2022/01/06}
+ %    \cs{AtBeginDvi} is the existing \LaTeXe{} interface to fill the
 \ExplSyntaxOn
 \bool_new:N \g__shipout_debug_bool
 \cs_new_eq:NN \__shipout_debug:n  \use_none:n
@@ -14586,21 +14825,21 @@ Type  H <return>  for immediate help.}%
 \box_new:N  \l__shipout_raw_box
 \sys_if_engine_luatex:TF
   {
-    \newluafunction \__shipout_finalize_box:
+    \newprotectedluacmd \__shipout_finalize_box:
     \exp_args:Nx \everyjob {
       \exp_not:V \everyjob
       \exp_not:N \lua_now:n {
         luatexbase.create_callback('pre_shipout_filter', 'list')
         local~call, getbox, setbox = luatexbase.call_callback, tex.getbox, tex.setbox~
-        lua.get_functions_table()[\the \__shipout_finalize_box:] = function()
-          local~result = call('pre_shipout_filter', getbox(\the \l_shipout_box))
-          if~not (result == true) then~
+        lua.get_functions_table()[\the \allocationnumber] = function()
+          local~head = getbox(\the \l_shipout_box)
+          local~result = call('pre_shipout_filter', head)
+          if~not (result == head) then~
             setbox(\the \l_shipout_box, result~or~nil)
           end~
         end
       }
     }
-    \protected \luadef \__shipout_finalize_box: \the \__shipout_finalize_box:
   } {
     \cs_set_eq:NN \__shipout_finalize_box: \scan_stop:
   }
@@ -14973,7 +15212,7 @@ Type  H <return>  for immediate help.}%
               \__shipout_add_foreground_picture:n
 \ExplSyntaxOff
 \ExplSyntaxOn
-\cs_new_protected:Npn \AtEndDvi {\AddToHook{shipout/lastpage}}
+\cs_new_protected:Npn \AtEndDvi #1 {\AddToHook{shipout/lastpage}{#1}}
 \ExplSyntaxOff
 \disable@package@load{atenddvi}
    {\PackageWarning{atenddvi}

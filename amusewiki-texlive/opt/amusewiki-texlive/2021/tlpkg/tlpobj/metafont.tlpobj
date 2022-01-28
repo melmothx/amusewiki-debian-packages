@@ -1,25 +1,28 @@
 name metafont
 category Package
-revision 57972
+revision 61719
 shortdesc A system for specifying fonts
-longdesc The program takes a semi-algorithmic specification of a font,
-longdesc and produces a bitmap font (whose properties are defined by a
-longdesc set of parameters of the target device), and a set metrics for
-longdesc use by TeX. The bitmap output may be converted into a format
-longdesc directly usable by a device driver, etc., by the tools provided
-longdesc in the parallel mfware distribution. (Third parties have
-longdesc developed tools to convert the bitmap output to outline fonts.)
-longdesc The distribution includes the source of Knuth's Metafont book;
-longdesc this source is there to read, as an example of writing TeX --
-longdesc it should not be processed without Knuth's direct permission.
+longdesc The program takes a programmatic specification of a font, and
+longdesc produces a bitmap font (whose properties are defined by a set
+longdesc of parameters of the target device), and metrics for use by
+longdesc TeX. The bitmap output may be converted into a format directly
+longdesc usable by a device driver, etc., by the tools provided in the
+longdesc parallel mfware distribution. Third parties have developed
+longdesc tools to convert the bitmap output to outline fonts. The
+longdesc distribution includes the source of Knuth's Metafont book; this
+longdesc source is there to read, as an example of writing TeX -- it
+longdesc should not be processed without Knuth's direct permission. The
+longdesc mailing list tex-fonts@math.utah.edu is the best for general
+longdesc discussion of Metafont usage; the tex-k@tug.org list is best
+longdesc for bug reports about building the software, etc.
 depend kpathsea
 depend metafont.ARCH
 depend modes
 execute AddFormat name=mf engine=mf-nowin           options="-translate-file=cp227.tcx mf.ini"           fmttriggers=modes
-containersize 8756
-containerchecksum 7ea3271c2a9682ae5ee29a05a95e794f4a6dc5a6244a6c243e856aaa857310127d5593b0643d4ca53eae7feb9c205574f5ea216b7c3c0b731e7f98be99bf1588
+containersize 8820
+containerchecksum 1e767aecca37b0859f44a92da1dbfdafb807587d8bf30de513ab7fd230ce00ddf627431afe8d476cc51239dc21badee254a434cd3759c0e4640ce435c4a77baa
 doccontainersize 53068
-doccontainerchecksum 95e7221ac9e3438d4cae336296e7db855df9a7e49ebaaec5dfea294565824938f3d6544459cee9ecbf17312daad4e44c92a7a9a65269feebd2b819f226f305bc
+doccontainerchecksum 425188cfbc28a9664514f680fe0f58950b78a34635ebf4890e53404d4f3236703a67dc569fdd069b3bcea54fedf65e26af3ad4af580a4f49f0f000b394ff9012
 docfiles size=36
  texmf-dist/doc/man/man1/inimf.1
  texmf-dist/doc/man/man1/inimf.man1.pdf
@@ -39,7 +42,7 @@ runfiles size=13
 catalogue-alias mf
 catalogue-also metapost
 catalogue-contact-bugs https://lists.tug.org/tex-k
-catalogue-contact-repository http://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
 catalogue-contact-support https://lists.tug.org/tex-k
 catalogue-ctan /systems/knuth/dist/mf
 catalogue-license knuth

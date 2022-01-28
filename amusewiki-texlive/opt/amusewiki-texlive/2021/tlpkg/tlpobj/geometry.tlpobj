@@ -1,6 +1,6 @@
 name geometry
 category Package
-revision 54080
+revision 61719
 shortdesc Flexible and complete interface to document dimensions
 longdesc The package provides an easy and flexible user interface to
 longdesc customize page layout, implementing auto-centering and
@@ -16,10 +16,10 @@ longdesc it's set up to the output (whether via DVI \specials or via
 longdesc direct interaction with pdf(La)TeX).
 depend graphics
 depend iftex
-containersize 8700
-containerchecksum ca5393e23639894401094084c3c2e30acf12491dcbd3968a4af79037b6dfb6b86f07acfec6886d89a261991cbdebdc846d9804f125aecd4cd77c3e71968bcfe4
+containersize 8712
+containerchecksum ed64996404299bd8379197b293baed752ff064e04eec87ffafdfd55cf21c2c48174560eb1c3bcdb0b06190badb9d9cc699aaa7a2ac8a5c537b0c818a423770fc
 doccontainersize 864536
-doccontainerchecksum 4bd5ec66f725516ef4d5d3e83e3b75a9b4408fe947161e3d885b929b34c4b60437c3fcd32472486aec12c9665b5c0d71a22896055a613c641bda4c4aa987f76f
+doccontainerchecksum a58ab22ae6df349d81b5ddf18a4e9b7dbb5804a497bbaff42acde18ca59fe8a19bfee34293debc23e44c690456e6a1b1d87614fbb85dc6cb3b3b7d330fc866d7
 docfiles size=230
  texmf-dist/doc/latex/geometry/README.md details="Package Readme"
  texmf-dist/doc/latex/geometry/changes.txt
@@ -29,12 +29,12 @@ docfiles size=230
  texmf-dist/doc/latex/geometry/geometry.cfg
  texmf-dist/doc/latex/geometry/geometry.pdf details="Package documentation (English)" language="en"
 srccontainersize 47940
-srccontainerchecksum 03c27863d6bded295176550743bbe7cbe6aea2b8f1365f7d0cadabd6d29b699efab98b98d2ea5f8baeaf19963a681b9852b2bd01769b326942c781fd0644644e
+srccontainerchecksum f4e1e8c0f5b8f443c8f5e6ad948cb1736ed944384daec20e9402c871872e86248b3167c72e07fc94fe32ef6ab36c17d2f177135ccf99f68d1c892af0a695bcbf
 runfiles size=11
  texmf-dist/tex/latex/geometry/geometry.sty
 catalogue-also vmargin typearea geometry-de
-catalogue-contact-bugs https://github.com/davidcarlisle/geometry/issues
-catalogue-contact-repository https://github.com/davidcarlisle/geometry
+catalogue-contact-bugs https://github.com/LaTeX-Package-Repositories/geometry/issues
+catalogue-contact-repository https://github.com/LaTeX-Package-Repositories/geometry
 catalogue-ctan /macros/latex/contrib/geometry
 catalogue-license lppl1.3c
 catalogue-topics geometry

@@ -7,6 +7,40 @@ this project uses date-based 'snapshot' version identifiers.
 
 ## [Unreleased]
 
+## [2022-01-21]
+
+### Changed
+- Auto-generate legacy switch if required in .legacy_set_if:n
+  key property
+
+### Fixed
+- Correct creation of `.if` property
+- Handling of colors created in a group once they go out-of-scope
+
+## [2022-01-12]
+
+### Added
+- Support for validity scope for keys
+- `\peek_remove_filler:n`
+- `\prop_to_keyval:N`
+- `\regex_match_case:nn(TF)`, `\regex_replace_case_once:nN(TF)`,
+  `\regex_replace_case_all:nN(TF)`
+
+### Changed
+- Policy change: functions will no longer be removed after deprecation,
+  thus the Lua functions noted below are the *last* 'stable' code to be
+  removed from `l3kernel` after deprecation
+- Allow indirect conversions between colorspaces through fallback models
+- Move some color functions from `l3backend`
+
+### Deprecated
+- `\peek_..._ignore_spaces:N(TF)` functions
+- `\sys_load_deprecation:`
+- Option `undo-recent-deprecations`
+
+### Removed
+- Lua functions in `l3kernel` table
+
 ## [2021-11-22]
 
 ### Added
@@ -14,7 +48,8 @@ this project uses date-based 'snapshot' version identifiers.
 
 ### Changed
 - Documentation improvements
-- Implementation of `intarray` data tyep with LuaTeX
+- Implementation of `intarray` data type with LuaTeX
+- Better support for LuaMetaTeX
 
 ## [2021-11-12]
 
@@ -93,6 +128,10 @@ this project uses date-based 'snapshot' version identifiers.
   `\ior_show:N`, `\ior_log:N`, `\iow_show:N`, `\iow_log:N`,
   `\tl_log_analysis:N`, `\tl_log_analysis:n`
 - `\legacy_if_set_true:n`, `\legacy_if_set_false:n`, `\legacy_if_set:nn`
+- Matching multiple regex at the same time (issue #433):
+  `\regex_case_match:nn(TF)`,
+  `\regex_case_replace_once:nN(TF)`,
+  `\regex_case_replace_all:nN(TF)`
 
 ### Fixed
 - Checking brace balance in all regex functions (issue #377)
@@ -993,7 +1032,9 @@ this project uses date-based 'snapshot' version identifiers.
 - Step functions have been added for dim variables,
   e.g. `\dim_step_inline:nnnn`
 
-[Unreleased]: https://github.com/latex3/latex3/compare/2021-11-22...HEAD
+[Unreleased]: https://github.com/latex3/latex3/compare/2022-01-21...HEAD
+[2022-01-21]: https://github.com/latex3/latex3/compare/2022-01-12...2022-01-21
+[2022-01-12]: https://github.com/latex3/latex3/compare/2021-11-22...2022-01-12
 [2021-11-22]: https://github.com/latex3/latex3/compare/2021-11-12...2021-11-22
 [2021-11-12]: https://github.com/latex3/latex3/compare/2021-10-18...2021-11-12
 [2021-10-18]: https://github.com/latex3/latex3/compare/2021-10-17...2021-10-18

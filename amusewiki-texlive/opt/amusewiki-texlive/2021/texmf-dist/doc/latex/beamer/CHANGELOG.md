@@ -8,6 +8,27 @@ a major and minor version only.
 
 ## [Unreleased]
 
+## [v3.65]
+
+### Added
+
+- adding new `onlytextwidth` class option to use this key for all `columns` environments by default (see #731)
+- adding new stretchable frame option `s` (see #696)
+- adding user-accessible commands for `\beamersidebarwidth` and `\beamerheadheight` (see #537)
+- allow custom values for `aspectratio` option (see #549)
+
+### Fixed
+
+- using `gray` colormodel for the delcarartion of fadings (workaround for #718)
+- fixed bullet colour of alerted items for custom item colour (see #735)
+- workaround to make miniframes clickable in xelatex (see #332)
+- added missing encoding value to multimedia sound macro (see #607)
+- imporoved problem with shadow of blocks without title (see #647)
+- reduced artefacts in poppler based viewers for shadow blocks (see #647)
+- workaround to make `\framezoom` clickable in xelatex (see #619)
+- exclude invisible frames from being counted (see #592)
+- fixed cut off miniframes for 8pt and 9pt (see #752)
+
 ## [v3.64]
 
 ### Added
@@ -165,7 +186,8 @@ a major and minor version only.
 - Support for `noxcolor` with `beamerarticle` (see #483)
 - Treatment of mixed overlay/alert specifications
 
-[Unreleased]: https://github.com/josephwright/beamer/compare/v3.64...HEAD
+[Unreleased]: https://github.com/josephwright/beamer/compare/v3.65...HEAD
+[v3.65]: https://github.com/josephwright/beamer/compare/v3.64...v3.65
 [v3.64]: https://github.com/josephwright/beamer/compare/v3.63...v3.64
 [v3.63]: https://github.com/josephwright/beamer/compare/v3.62...v3.63
 [v3.62]: https://github.com/josephwright/beamer/compare/v3.61...v3.62

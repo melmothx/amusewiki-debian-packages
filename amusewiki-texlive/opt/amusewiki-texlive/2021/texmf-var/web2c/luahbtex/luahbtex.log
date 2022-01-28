@@ -1,27 +1,27 @@
-This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (INITEX)  30 DEC 2021 10:37
+This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (INITEX)  28 JAN 2022 16:52
  restricted system commands enabled.
 **luatex.ini
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/tex-ini-files/luatex.ini
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/tex-ini-files/luatexconfig.tex
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/tex-ini-files/pdftexconfig.tex))
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/config/luatexiniconfig.tex)
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/unicode-data/load-unicode-data.tex 
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/tex-ini-files/luatex.ini
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/tex-ini-files/luatexconfig.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/tex-ini-files/pdftexconfig.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/config/luatexiniconfig.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/unicode-data/load-unicode-data.tex 
 load-unicode-data.tex v1.15 (2021-09-15)
 Reading Unicode data
 # UnicodeData-14.0.0.txt
 # Modified 2021-09-15 11:00:00 GMT [JAW]
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/luatex/hyph-utf8/etex.src
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/plain/base/plain.tex Preloading the plain format: codes,
-registers,
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/luatex/hyph-utf8/etex.src
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/plain/base/plain.tex
+Preloading the plain format: codes, registers,
 \maxdimen=\dimen10
 \hideskip=\skip10
 \centering=\skip11
@@ -44,7 +44,8 @@ registers,
 \slfam=\fam5
 \bffam=\fam6
 \ttfam=\fam7
- macros,
+
+macros,
 \strutbox=\box11
 \mscount=\count25
 \tabs=\box12
@@ -53,30 +54,30 @@ registers,
  math definitions,
 \rootbox=\box15
 \p@renwd=\dimen15
-
-output routines,
+ output routines,
 \headline=\toks10
 \footline=\toks11
 \footins=\insert254
 \topins=\insert253
  hyphenation
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyphen/hyphen.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyphen/hyphen.tex
 [skipping from \patterns to end-of-file...]))
 \et@xinput=\read0
 \et@xtoks=\toks12
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/plain/etex/etexdefs.lib Skipping module "grouptypes";
-Loading module "interactionmodes"; Skipping module "nodetypes";
-Skipping module "iftypes";)
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-var/tex/generic/config/language.def
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/plain/etex/etexdefs.lib
+Skipping module "grouptypes"; Loading module "interactionmodes";
+Skipping module "nodetypes"; Skipping module "iftypes";)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-var/tex/generic/config/language.def
 \lang@USenglish=\language0
 luatex-hyphen: using data file: /home/melmothx/build/amusewiki-debian-packages/a
-musewiki/local/texlive/2021/texmf-var/tex/generic/config/language.dat.lua
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyphen/hyphen.tex)
+musewiki-texlive/opt/amusewiki-texlive/2021/texmf-var/tex/generic/config/languag
+e.dat.lua
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyphen/hyphen.tex)
 \lang@afrikaans=\language1
 \lang@ancientgreek=\language2
 \lang@ibycus=\language3
@@ -172,8 +173,9 @@ xmf-dist/tex/generic/hyphen/hyphen.tex)
 \lang@ukrainian=\language93
 \lang@uppersorbian=\language94
 \lang@welsh=\language95
-) Augmenting the Plain TeX definitions:
-\tracingall; Adding new e-TeX definitions: \eTeX, \loggingall, \tracingnone,
+)
+Augmenting the Plain TeX definitions: \tracingall;
+Adding new e-TeX definitions: \eTeX, \loggingall, \tracingnone,
 register allocation;
 \et@xins=\count26
  extended register allocation; 
@@ -186,8 +188,8 @@ Retaining: \et@xerr, \et@xinput, \et@xlibhdr, \et@xmsg, \et@xtoks, \et@xwarn,
 \et@xl@@d, \et@xl@ad, \et@xload, \et@xlang, \et@xhash, \eTeX, \etexhdrchk,
 \etexstatus, \module, \uselanguage, \r@tain, \r@cycle,))
 Beginning to dump on file luahbtex.fmt
- (format=luahbtex 2021.12.30)
-3644 strings using 13656 bytes
+ (format=luahbtex 2022.1.28)
+3644 strings using 13639 bytes
 68809 memory locations dumped; current usage is 149&8461
 2156 multiletter control sequences
 \font\nullfont=nullfont

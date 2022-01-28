@@ -1,11 +1,11 @@
-# $Id: Makefile 58236 2021-03-08 23:29:25Z karl $
+# $Id: Makefile 61734 2022-01-25 17:27:53Z karl $
 # Makefile for TeX Live documentation.  Public domain.
 doc = texlive-en
 
 all: pdf html
 
 tlpre = # possible prefix to run from the pretest
-env = TEXINPUTS=.:../texlive-common:../texlive-en:; export TEXINPUTS; $(tlpre)
+env = TEXINPUTS=.:../texlive-en:../texlive-common:; export TEXINPUTS; $(tlpre)
 
 pdflatex_opts =  --file-line-error
 pdflatex = pdflatex $(pdflatex_opts) '\nonstopmode\def\Status{1}\input $(doc)'
@@ -30,8 +30,9 @@ pdf:
 	$(env) $(texfot_pdf) $(pdflatex)
 	$(env) $(texfot_pdf) $(pdflatex)
 
-# It is better to use htlatex than the individual runs since then we can
-# easily specify these options; \Preamble in live4ht.cfg is not equivalent.
+# It is best to use the htlatex wrapper since then we can easily specify
+# these options; using \Preamble in live4ht.cfg is not equivalent.
+# 
 # The options here:
 # live4ht - reads our live4ht.cfg.
 # info - extra debugging info.
@@ -40,13 +41,16 @@ pdf:
 # charset - UTF-8 is more likely to work well than Latin 1.
 # fn-in - keep footnotes in the main output file.
 # 
-# The other option, -cunihtf -utf8, goes along with the charset and
-# tells tex4ht to look for Unicode font encodings. See https://tug.org/tex4ht.
-html h:
+# The other argument, where we pass, -cunihtf -utf8, goes along with the
+# charset and tells tex4ht to look for Unicode font encodings. See
+# https://tug.org/tex4ht.
+# 
+htopts1 = "live4ht,info,xhtml,html5,charset=utf-8,fn-in"
+htopts2 = " -cunihtf -utf8"
+run_htlatex = $(env) $(texfot_html) htlatex $(doc) $(htopts1) $(htopts2) </dev/null
+html:
 	rm -f *.aux *.toc *.lof *.lot *.xref* *.tmp *.out
-	$(env) $(texfot_html) htlatex $(doc) \
-          "live4ht,info,xhtml,html5,charset=utf-8,fn-in" \
-	  " -cunihtf -utf8" </dev/null
+	$(run_htlatex)
 	ls -l texlive-??.html texlive-??.css
 
 # This is the old way, no longer used.
@@ -64,6 +68,10 @@ html-separate:
 # just run tex once without cleaning temp files.
 pdf1 p:
 	$(env) $(texfot_pdf) $(pdflatex)
+
+# ditto for html.
+html1 h:
+	$(run_htlatex)
 
 clean:
 	rm -f *.aux *.log *.blg *.toc *.out *.lot tex4ht.ps *.4*

@@ -1,20 +1,20 @@
-This is e-upTeX, Version 3.141592653-p3.9.0-u1.27-210218-2.6 (utf8.uptex) (TeX Live 2021) (INITEX)  30 DEC 2021 10:37
+This is e-upTeX, Version 3.141592653-p3.9.0-u1.27-210218-2.6 (utf8.uptex) (TeX Live 2021) (INITEX)  28 JAN 2022 16:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 ***uplatex.ini
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/uplatex/config/uplatex.ini
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/uplatex/config/uplatex.ini
 <<< making "uplatex with Babel" format >>>
 
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/uplatex/base/uplatex.ltx
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/latex.ltx
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/texsys.cfg)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/uplatex/base/uplatex.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/latex.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/texsys.cfg)
 \openout15 = `texsys.aux'.
 
 
@@ -48,11 +48,11 @@ catcodes, registers,
 
 LaTeX2e <2021-11-15> patch level 1
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/l3kernel/expl3.ltx
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/l3kernel/expl3-code.tex
-Package: expl3 2021-11-22 L3 programming layer (code)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/l3kernel/expl3-code.tex
+Package: expl3 2022-01-21 L3 programming layer (code)
 \c_max_int=\count24
 \l_tmpa_int=\count25
 \l_tmpb_int=\count26
@@ -138,28 +138,30 @@ Package: expl3 2021-11-22 L3 programming layer (code)
 \l__regex_left_state_int=\count87
 \l__regex_right_state_int=\count88
 \l__regex_capturing_group_int=\count89
-\l__regex_min_pos_int=\count90
-\l__regex_max_pos_int=\count91
-\l__regex_curr_pos_int=\count92
-\l__regex_start_pos_int=\count93
-\l__regex_success_pos_int=\count94
-\l__regex_curr_char_int=\count95
-\l__regex_curr_catcode_int=\count96
-\l__regex_last_char_int=\count97
-\l__regex_last_char_success_int=\count98
-\l__regex_case_changed_char_int=\count99
-\l__regex_curr_state_int=\count100
-\l__regex_step_int=\count101
-\l__regex_min_thread_int=\count102
-\l__regex_max_thread_int=\count103
-\l__regex_replacement_csnames_int=\count104
-\l__regex_match_count_int=\count105
-\l__regex_min_submatch_int=\count106
-\l__regex_submatch_int=\count107
-\l__regex_zeroth_submatch_int=\count108
-\l__regex_added_begin_int=\count109
-\l__regex_added_end_int=\count110
-\g__regex_trace_regex_int=\count111
+\g__regex_case_int=\count90
+\l__regex_case_max_group_int=\count91
+\l__regex_min_pos_int=\count92
+\l__regex_max_pos_int=\count93
+\l__regex_curr_pos_int=\count94
+\l__regex_start_pos_int=\count95
+\l__regex_success_pos_int=\count96
+\l__regex_curr_char_int=\count97
+\l__regex_curr_catcode_int=\count98
+\l__regex_last_char_int=\count99
+\l__regex_last_char_success_int=\count100
+\l__regex_case_changed_char_int=\count101
+\l__regex_curr_state_int=\count102
+\l__regex_step_int=\count103
+\l__regex_min_thread_int=\count104
+\l__regex_max_thread_int=\count105
+\l__regex_replacement_csnames_int=\count106
+\l__regex_match_count_int=\count107
+\l__regex_min_submatch_int=\count108
+\l__regex_submatch_int=\count109
+\l__regex_zeroth_submatch_int=\count110
+\l__regex_added_begin_int=\count111
+\l__regex_added_end_int=\count112
+\g__regex_trace_regex_int=\count113
 \c_empty_box=\box12
 \l_tmpa_box=\box13
 \l_tmpb_box=\box14
@@ -174,8 +176,8 @@ Package: expl3 2021-11-22 L3 programming layer (code)
 \l__box_left_new_dim=\dimen27
 \l__box_right_new_dim=\dimen28
 \l__box_internal_box=\box17
-\l__color_internal_int=\count112
-\g__color_model_int=\count113
+\l__color_internal_int=\count114
+\g__color_model_int=\count115
 \l__coffin_internal_box=\box18
 \l__coffin_internal_dim=\dimen29
 \l__coffin_offset_x_dim=\dimen30
@@ -206,19 +208,16 @@ Package: expl3 2021-11-22 L3 programming layer (code)
 \l__coffin_display_x_dim=\dimen44
 \l__coffin_display_y_dim=\dimen45
 \g__char_data_ior=\read1
-
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/l3kernel/l3deprecation.def
-File: l3deprecation.def 2019-04-06 v L3 Deprecated functions
-))) hacks, document commands,
-\l__cmd_current_arg_int=\count114
-\g__cmd_grabber_int=\count115
-\l__cmd_m_args_int=\count116
-\l__cmd_v_nesting_int=\count117
-\l__hook_labels_int=\count118
-\l__hook_patch_num_args_int=\count119
-\@tempcnta=\count120
-\@tempcntb=\count121
+)) hacks,
+document commands,
+\l__cmd_current_arg_int=\count116
+\g__cmd_grabber_int=\count117
+\l__cmd_m_args_int=\count118
+\l__cmd_v_nesting_int=\count119
+\l__hook_labels_int=\count120
+\l__hook_patch_num_args_int=\count121
+\@tempcnta=\count122
+\@tempcntb=\count123
 \@tempdima=\dimen46
 \@tempdimb=\dimen47
 \@tempdimc=\dimen48
@@ -227,13 +226,12 @@ File: l3deprecation.def 2019-04-06 v L3 Deprecated functions
 \@tempskipb=\skip21
 \@temptokena=\toks10
 \@flushglue=\skip22
-
-control, par,
+ control, par,
 \everypar=\toks11
 \g_para_indent_box=\box31
  spacing,
 \@savsk=\dimen49
-\@savsf=\count122
+\@savsf=\count124
 \smallskipamount=\skip23
 \medskipamount=\skip24
 \bigskipamount=\skip25
@@ -241,7 +239,7 @@ control, par,
  files,
 \@mainaux=\write1
 \@partaux=\write2
-\@clubpenalty=\count123
+\@clubpenalty=\count125
 LaTeX Info: Redefining \IfFileExists on input line 6867.
  font encodings, lengths,
 \everymath=\toks12
@@ -250,9 +248,9 @@ LaTeX Info: Redefining \IfFileExists on input line 6867.
 \every@math@size=\toks15
 \lower@bound=\dimen50
 \upper@bound=\dimen51
-\c@localmathalphabets=\count124
-\c@mv@normal=\count125
-\c@mv@bold=\count126
+\c@localmathalphabets=\count126
+\c@mv@normal=\count127
+\c@mv@bold=\count128
 
 ====================================
 
@@ -260,59 +258,59 @@ Local config file fonttext.cfg used
 
 ====================================
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/fonttext.cfg
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/fonttext.cfg
 File: fonttext.cfg 2021/01/15 v3.0i LaTeX Kernel (Uncustomized text font setup)
 
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/fonttext.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/fonttext.ltx
 File: fonttext.ltx 2021/01/15 v3.0i LaTeX Kernel (Text font setup)
 
 === Don't modify this file, use a .cfg file instead ===
 
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/omlenc.def
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/omlenc.def
 File: omlenc.def 2021/04/29 v2.0v Standard LaTeX file
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/omsenc.def
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/omsenc.def
 File: omsenc.def 2021/04/29 v2.0v Standard LaTeX file
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/ot1enc.def
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/ot1enc.def
 File: ot1enc.def 2021/04/29 v2.0v Standard LaTeX file
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/t1enc.def
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2021/04/29 v2.0v Standard LaTeX file
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/ts1enc.def
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/ts1enc.def
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 )
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 5
 5.
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/ts1cmr.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/t1cmr.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/t1cmr.fd
 File: t1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/ot1cmr.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/ot1cmr.fd
 File: ot1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/ot1cmss.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/ot1cmss.fd
 File: ot1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/ot1cmtt.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/ot1cmtt.fd
 File: ot1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )))
 ====================================
@@ -321,13 +319,13 @@ Local config file fontmath.cfg used
 
 ====================================
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/fontmath.cfg
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/fontmath.cfg
 File: fontmath.cfg 2021/01/15 v3.0i LaTeX Kernel (Uncustomized math font setup)
 
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/fontmath.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/fontmath.ltx
 File: fontmath.ltx 2021/01/15 v3.0i LaTeX Kernel (Math font setup)
 
 === Don't modify this file, use a .cfg file instead ===
@@ -335,20 +333,20 @@ File: fontmath.ltx 2021/01/15 v3.0i LaTeX Kernel (Math font setup)
 LaTeX Font Info:    Redeclaring font encoding OML on input line 44.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 45.
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/omlcmm.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/omlcmm.fd
 File: omlcmm.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/omscmsy.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/omscmsy.fd
 File: omscmsy.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/omxcmex.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/omxcmex.fd
 File: omxcmex.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/ucmr.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/ucmr.fd
 File: ucmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 \symoperators=\mathgroup0
@@ -372,13 +370,13 @@ Local config file preload.cfg used
 
 =====================================
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/preload.cfg
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/preload.cfg
 File: preload.cfg 2021/01/15 v3.0i LaTeX Kernel (Uncustomized preload font setu
 p)
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/preload.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/preload.ltx
 File: preload.ltx 2021/10/04 v2.1g LaTeX Kernel (Font Preloading)
 ))
 LaTeX Font Info:    Setting ? sub-encoding to TS1/9 on input line 10627.
@@ -878,19 +876,19 @@ LaTeX Font Info:    Setting Cochineal-TOsF sub-encoding to TS1/8 on input line
 10804.
 LaTeX Font Info:    Setting AlgolRevived-TLF sub-encoding to TS1/9 on input lin
 e 10805.
- page nos., x-ref, environments, center,
+ page nos., x-ref,
+environments, center,
 \@rightskip=\skip27
-
-verbatim,
+ verbatim,
 \@verbvisiblespacebox=\box32
  math definitions,
 \jot=\dimen52
-\interdisplaylinepenalty=\count127
+\interdisplaylinepenalty=\count129
 \rootbox=\box33
 LaTeX Info: Redefining \: on input line 11297.
-\c@equation=\count128
-\@eqcnt=\count129
-\@eqpen=\count130
+\c@equation=\count130
+\@eqcnt=\count131
+\@eqpen=\count132
 \@centering=\skip28
 \topsep=\skip29
 \partopsep=\skip30
@@ -913,22 +911,22 @@ LaTeX Info: Redefining \: on input line 11297.
 \leftmarginiv=\dimen64
 \leftmarginv=\dimen65
 \leftmarginvi=\dimen66
-\@listdepth=\count131
-\@itempenalty=\count132
-\@beginparpenalty=\count133
-\@endparpenalty=\count134
+\@listdepth=\count133
+\@itempenalty=\count134
+\@beginparpenalty=\count135
+\@endparpenalty=\count136
 \@labels=\box34
-\par@deathcycles=\count135
-\@enumdepth=\count136
-\c@enumi=\count137
-\c@enumii=\count138
-\c@enumiii=\count139
-\c@enumiv=\count140
-\@itemdepth=\count141
+\par@deathcycles=\count137
+\@enumdepth=\count138
+\c@enumi=\count139
+\c@enumii=\count140
+\c@enumiii=\count141
+\c@enumiv=\count142
+\@itemdepth=\count143
  boxes,
 \fboxrule=\dimen67
 \fboxsep=\dimen68
-\@mplistdepth=\count142
+\@mplistdepth=\count144
 \@mpfootins=\insert254
 LaTeX Info: Redefining \underline on input line 11934.
 \@gtempa=\dimen69
@@ -945,18 +943,18 @@ LaTeX Info: Redefining \underline on input line 11934.
 \@gtempa=\dimen80
 \@gtempa=\dimen81
 \@gtempa=\dimen82
-\@nxttabmar=\count143
-\@curtabmar=\count144
-\@curtab=\count145
-\@hightab=\count146
-\@tabpush=\count147
+\@nxttabmar=\count145
+\@curtabmar=\count146
+\@curtab=\count147
+\@hightab=\count148
+\@tabpush=\count149
 \@curline=\box35
 \@curfield=\box36
 \@tabfbox=\box37
 \tabbingsep=\dimen83
-\@chclass=\count148
-\@lastchclass=\count149
-\@chnum=\count150
+\@chclass=\count150
+\@lastchclass=\count151
+\@chnum=\count152
 \arraycolsep=\dimen84
 \tabcolsep=\dimen85
 \arrayrulewidth=\dimen86
@@ -973,10 +971,10 @@ LaTeX Info: Redefining \underline on input line 11934.
 \@ovdy=\dimen95
 \@ovro=\dimen96
 \@ovri=\dimen97
-\@xarg=\count151
-\@yarg=\count152
-\@yyarg=\count153
-\@multicnt=\count154
+\@xarg=\count153
+\@yarg=\count154
+\@yyarg=\count155
+\@multicnt=\count156
 \@xdim=\dimen98
 \@ydim=\dimen99
 \@linechar=\box40
@@ -985,23 +983,23 @@ LaTeX Info: Redefining \underline on input line 11934.
 \@clnht=\dimen102
 \@dashdim=\dimen103
 \@dashbox=\box41
-\@dashcnt=\count155
+\@dashcnt=\count157
 LaTeX Info: Command `\linethickness' is already robust on input line 12723.
 LaTeX Info: Command `\thinlines' is already robust on input line 12729.
  title, sectioning,
-\@secpenalty=\count156
-\c@secnumdepth=\count157
-\c@tocdepth=\count158
- contents, floats,
-\@floatpenalty=\count159
+\@secpenalty=\count158
+\c@secnumdepth=\count159
+\c@tocdepth=\count160
 
-footnotes,
+contents, floats,
+\@floatpenalty=\count161
+ footnotes,
 \footins=\insert253
-\c@footnote=\count160
-\c@mpfootnote=\count161
+\c@footnote=\count162
+\c@mpfootnote=\count163
 \footnotesep=\dimen104
  index, bibliography,
-\pkgcls@targetdate=\count162
+\pkgcls@targetdate=\count164
 \l_shipout_box=\box42
 \l__shipout_raw_box=\box43
 \l__shipout_firstpage_box=\box44
@@ -1010,8 +1008,8 @@ footnotes,
 \l_shipout_box_wd_dim=\dimen107
 \l_shipout_box_ht_plus_dp_dim=\dimen108
 \l__shipout_tmp_box=\box45
-\g_shipout_readonly_int=\count163
-\g_shipout_totalpages_int=\count164
+\g_shipout_readonly_int=\count165
+\g_shipout_totalpages_int=\count166
  output,
 \bx@A=\insert252
 \bx@B=\insert251
@@ -1083,14 +1081,14 @@ footnotes,
 \@maxdepth=\dimen123
 \paperheight=\dimen124
 \paperwidth=\dimen125
-\col@number=\count165
-\@topnum=\count166
+\col@number=\count167
+\@topnum=\count168
 \@toproom=\dimen126
-\@dbltopnum=\count167
+\@dbltopnum=\count169
 \@dbltoproom=\dimen127
-\@botnum=\count168
+\@botnum=\count170
 \@botroom=\dimen128
-\@colnum=\count169
+\@colnum=\count171
 \@textmin=\dimen129
 \@fpmin=\dimen130
 \@colht=\dimen131
@@ -1098,18 +1096,18 @@ footnotes,
 \@pageht=\dimen133
 \@pagedp=\dimen134
 \@mparbottom=\dimen135
-\@currtype=\count170
+\@currtype=\count172
 \@outputbox=\box47
 \@leftcolumn=\box48
 \@holdpg=\box49
 \@kludgeins=\insert200
-\@fpstype=\count171
+\@fpstype=\count173
 \@reqcolroom=\dimen136
 \@textfloatsheight=\dimen137
-\c@topnumber=\count172
-\c@bottomnumber=\count173
-\c@totalnumber=\count174
-\c@dbltopnumber=\count175
+\c@topnumber=\count174
+\c@bottomnumber=\count175
+\c@totalnumber=\count176
+\c@dbltopnumber=\count177
 \floatsep=\skip36
 \textfloatsep=\skip37
 \intextsep=\skip38
@@ -1121,592 +1119,604 @@ footnotes,
 \@dblfptop=\skip44
 \@dblfpsep=\skip45
 \@dblfpbot=\skip46
-\@lowpenalty=\count176
-\@medpenalty=\count177
-\@highpenalty=\count178
+\@lowpenalty=\count178
+\@medpenalty=\count179
+\@highpenalty=\count180
 
 ===========================================
 Local configuration file hyphen.cfg used
 ===========================================
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/babel/hyphen.cfg
-File: hyphen.cfg 2021/12/28 3.68 Babel hyphens
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/babel/hyphen.cfg
+File: hyphen.cfg 2022/01/26 3.70 Babel hyphens
 \l@english=\language0
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyphen/hyphen.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyphen/hyphen.tex)
 \l@usenglish=\language0
 \l@USenglish=\language0
 \l@american=\language0
 \l@dumylang=\language1
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyphen/dumyhyph.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyphen/dumyhyph.tex)
 \l@nohyphenation=\language2
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyphen/zerohyph.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyphen/zerohyph.tex)
 \l@afrikaans=\language3
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-af.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-af.tex
 EC Afrikaans hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-af.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-af.ec.tex))
 \l@ancientgreek=\language4
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-grc.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-grc.tex
 Hyphenation patterns for Ancient Greek
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyphen/grahyph5.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyphen/grahyph5.tex
 Hyphenation patterns for Ancient Greek))
 \l@ibycus=\language5
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyphen/ibyhyph.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyphen/ibyhyph.tex
 Greek hyphenation patterns for Ibycus encoding, v3.0)
 \l@arabic=\language6
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyphen/zerohyph.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyphen/zerohyph.tex)
 \l@armenian=\language7
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hy.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hy.tex
 No Armenian hyphenation patterns - only for Unicode engines)
 \l@basque=\language8
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-eu.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-eu.tex
 EC Basque hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-eu.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-eu.ec.tex))
 \l@belarusian=\language9
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-be.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-be.tex
 T2A Belarusian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-be.t2a.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-be.t2a.tex))
 \l@bulgarian=\language10
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-bg.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-bg.tex
 T2A Bulgarian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-bg.t2a.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-bg.t2a.tex))
 \l@catalan=\language11
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ca.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ca.tex
 EC Catalan hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-ca.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-ca.ec.tex))
 \l@pinyin=\language12
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-zh-latn-pinyin.tex
-EC Pinyin Hyphenation Patterns (with tone markers) 2018-11-25 (WL)
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-zh-latn-pinyin.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-zh-latn-pinyin
+.tex EC Pinyin Hyphenation Patterns (with tone markers) 2018-11-25 (WL)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-zh-latn-pinyi
+n.ec.tex))
 \l@churchslavonic=\language13
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-cu.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-cu.tex
 No Church Slavonic hyphenation patterns - only for Unicode engines)
 \l@coptic=\language14
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-cop.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-cop.tex
 Coptic hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/tex-8bit/copthyph.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/tex-8bit/copthyph.tex))
 \l@croatian=\language15
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hr.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hr.tex
 EC Croatian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-hr.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-hr.ec.tex))
 \l@czech=\language16
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-cs.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-cs.tex
 EC Czech hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-cs.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-cs.ec.tex))
 \l@danish=\language17
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-da.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-da.tex
 EC Danish hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-da.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-da.ec.tex))
 \l@dutch=\language18
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-nl.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-nl.tex
 EC Dutch hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-nl.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-nl.ec.tex))
 \l@ukenglish=\language19
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-en-gb.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-en-gb.tex
 ASCII Hyphenation patterns for British English
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-en-gb.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-en-gb.tex))
 \l@british=\language19
 \l@UKenglish=\language19
 \l@usenglishmax=\language20
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-en-us.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-en-us.tex
 ASCII Hyphenation patterns for American English
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-en-us.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-en-us.tex))
 \l@esperanto=\language21
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-eo.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-eo.tex
 IL3 Esperanto hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-eo.il3.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-eo.il3.tex))
 \l@estonian=\language22
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-et.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-et.tex
 EC Estonian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-et.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-et.ec.tex))
 \l@ethiopic=\language23
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mul-ethi.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mul-ethi.tex
 No Pan-Ethiopic hyphenation patterns - only for Unicode engines)
 \l@amharic=\language23
 \l@geez=\language23
 \l@farsi=\language24
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyphen/zerohyph.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyphen/zerohyph.tex)
 \l@persian=\language24
 \l@finnish=\language25
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fi.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fi.tex
 EC Finnish hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-fi.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-fi.ec.tex))
 \l@schoolfinnish=\language26
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fi-x-school.tex
-EC Finnish hyphenation patterns for school
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-fi-x-school.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fi-x-school.te
+x EC Finnish hyphenation patterns for school
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-fi-x-school.e
+c.tex))
 \l@french=\language27
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fr.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fr.tex
 EC French hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-fr.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-fr.ec.tex))
 \l@patois=\language27
 \l@francais=\language27
 \l@friulan=\language28
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fur.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fur.tex
 EC Friulan hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-fur.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-fur.ec.tex))
 \l@galician=\language29
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-gl.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-gl.tex
 EC Galician hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-gl.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-gl.ec.tex))
 \l@georgian=\language30
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ka.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ka.tex
 T8M Georgian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-ka.t8m.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-ka.t8m.tex))
 \l@german=\language31
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-de-1901.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-de-1901.tex
 EC German hyphenation patterns (traditional orthography)
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-de-1901.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-de-1901.ec.te
+x))
 \l@ngerman=\language32
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-de-1996.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-de-1996.tex
 EC German hyphenation patterns (reformed orthography)
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-de-1996.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-de-1996.ec.te
+x))
 \l@swissgerman=\language33
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-de-ch-1901.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-de-ch-1901.tex
 EC Swiss-German hyphenation patterns (traditional orthography)
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-de-ch-1901.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-de-ch-1901.ec
+.tex))
 \l@greek=\language34
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-el-polyton.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-el-polyton.tex
 Hyphenation patterns for multi-accent (polytonic) Modern Greek
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyphen/grphyph5.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyphen/grphyph5.tex
 Hyphenation patterns for multi-accent (polytonic) Modern Greek))
 \l@polygreek=\language34
 \l@monogreek=\language35
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-el-monoton.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-el-monoton.tex
 Hyphenation patterns for uni-accent (monotonic) Modern Greek
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyphen/grmhyph5.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyphen/grmhyph5.tex
 Hyphenation patterns for uni-accent (monotonic) Modern Greek))
 \l@hungarian=\language36
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hu.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hu.tex
 EC Hungarian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-hu.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-hu.ec.tex))
 \l@icelandic=\language37
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-is.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-is.tex
 EC Icelandic hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-is.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-is.ec.tex))
 \l@assamese=\language38
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-as.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-as.tex
 No Assamese hyphenation patterns - only for Unicode engines)
 \l@bengali=\language39
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-bn.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-bn.tex
 No Bengali hyphenation patterns - only for Unicode engines)
 \l@gujarati=\language40
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-gu.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-gu.tex
 No Gujarati hyphenation patterns - only for Unicode engines)
 \l@hindi=\language41
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hi.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hi.tex
 No Hindi hyphenation patterns - only for Unicode engines)
 \l@kannada=\language42
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-kn.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-kn.tex
 No Kannada hyphenation patterns - only for Unicode engines)
 \l@malayalam=\language43
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ml.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ml.tex
 No Malayalam hyphenation patterns - only for Unicode engines)
 \l@marathi=\language44
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mr.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mr.tex
 No Marathi hyphenation patterns - only for Unicode engines)
 \l@oriya=\language45
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-or.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-or.tex
 No Oriya hyphenation patterns - only for Unicode engines)
 \l@pali=\language46
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pi.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pi.tex
 No Pali hyphenation patterns - only for Unicode engines)
 \l@panjabi=\language47
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pa.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pa.tex
 No Panjabi hyphenation patterns - only for Unicode engines)
 \l@tamil=\language48
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ta.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ta.tex
 No Tamil hyphenation patterns - only for Unicode engines)
 \l@telugu=\language49
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-te.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-te.tex
 No Telugu hyphenation patterns - only for Unicode engines)
 \l@indonesian=\language50
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-id.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-id.tex
 ASCII Indonesian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-id.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-id.tex))
 \l@interlingua=\language51
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ia.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ia.tex
 ASCII Hyphenation patterns for Interlingua
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-ia.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-ia.tex))
 \l@irish=\language52
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ga.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ga.tex
 EC Irish hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-ga.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-ga.ec.tex))
 \l@italian=\language53
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-it.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-it.tex
 ASCII Italian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-it.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-it.tex))
 \l@kurmanji=\language54
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-kmr.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-kmr.tex
 EC Kurmanji hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-kmr.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-kmr.ec.tex))
 \l@classiclatin=\language55
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-la-x-classic.tex
-EC Classical Latin hyphenation patterns, v.2.0 2019-07-03
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/tex-8bit/hyph-la-x-classic.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-la-x-classic.t
+ex EC Classical Latin hyphenation patterns, v.2.0 2019-07-03
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/tex-8bit/hyph-la-x-clas
+sic.ec.tex))
 \l@latin=\language56
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-la.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-la.tex
 EC Latin hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-la.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-la.ec.tex))
 \l@liturgicallatin=\language57
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-la-x-liturgic.tex
-EC Liturgical Latin hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-la-x-liturgic.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-la-x-liturgic.
+tex EC Liturgical Latin hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-la-x-liturgic
+.ec.tex))
 \l@latvian=\language58
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-lv.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-lv.tex
 L7X Latvian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-lv.l7x.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-lv.l7x.tex))
 \l@lithuanian=\language59
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-lt.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-lt.tex
 L7X Lithuanian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-lt.l7x.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-lt.l7x.tex))
 \l@macedonian=\language60
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mk.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mk.tex
 MACEDONIAN Macedonian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/tex-8bit/hyph-mk.macedonian.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/tex-8bit/hyph-mk.macedo
+nian.tex))
 \l@mongolian=\language61
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mn-cyrl.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mn-cyrl.tex
 T2A (New) Mongolian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-mn-cyrl.t2a.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-mn-cyrl.t2a.t
+ex))
 \l@mongolianlmc=\language62
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mn-cyrl-x-lmc.tex
-LMC Mongolian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-mn-cyrl-x-lmc.lmc.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mn-cyrl-x-lmc.
+tex LMC Mongolian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-mn-cyrl-x-lmc
+.lmc.tex))
 \l@bokmal=\language63
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-nb.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-nb.tex
 EC Norwegian Bokmal hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-nb.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-nb.ec.tex))
 \l@norwegian=\language63
 \l@norsk=\language63
 \l@nynorsk=\language64
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-nn.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-nn.tex
 EC Norwegian Nynorsk hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-nn.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-nn.ec.tex))
 \l@occitan=\language65
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-oc.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-oc.tex
 EC Occitan hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-oc.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-oc.ec.tex))
 \l@piedmontese=\language66
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pms.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pms.tex
 ASCII Piedmontese hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-pms.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-pms.tex))
 \l@polish=\language67
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pl.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pl.tex
 QX Polish hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-pl.qx.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-pl.qx.tex))
 \l@portuguese=\language68
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pt.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pt.tex
 EC Portuguese hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-pt.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-pt.ec.tex))
 \l@portuges=\language68
 \l@romanian=\language69
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ro.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ro.tex
 EC Romanian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-ro.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-ro.ec.tex))
 \l@romansh=\language70
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-rm.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-rm.tex
 ASCII Romansh hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-rm.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-rm.tex))
 \l@russian=\language71
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ru.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ru.tex
 T2A Russian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-ru.t2a.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-ru.t2a.tex))
 \l@sanskrit=\language72
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sa.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sa.tex
 No Sanskrit hyphenation patterns - only for Unicode engines)
 \l@serbian=\language73
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sr-latn.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sr-latn.tex
 EC Serbian hyphenation patterns in Latin script
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-sh-latn.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-sh-latn.ec.te
+x))
 \l@serbianc=\language74
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sr-cyrl.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sr-cyrl.tex
 T2A Serbian hyphenation patterns in Cyrillic script
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-sh-cyrl.t2a.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-sh-cyrl.t2a.t
+ex))
 \l@slovak=\language75
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sk.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sk.tex
 EC Slovak hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-sk.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-sk.ec.tex))
 \l@slovenian=\language76
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sl.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sl.tex
 EC Slovenian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-sl.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-sl.ec.tex))
 \l@slovene=\language76
 \l@spanish=\language77
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-es.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-es.tex
 EC Spanish hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-es.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-es.ec.tex))
 \l@espanol=\language77
 \l@swedish=\language78
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sv.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sv.tex
 EC Swedish hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-sv.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-sv.ec.tex))
 \l@thai=\language79
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-th.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-th.tex
 LTH Thai hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-th.lth.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-th.lth.tex))
 \l@turkish=\language80
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-tr.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-tr.tex
 EC Turkish hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-tr.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-tr.ec.tex))
 \l@turkmen=\language81
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-tk.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-tk.tex
 EC Turkmen hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-tk.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-tk.ec.tex))
 \l@ukrainian=\language82
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-uk.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-uk.tex
 T2A Ukrainian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-uk.t2a.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-uk.t2a.tex))
 \l@uppersorbian=\language83
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hsb.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hsb.tex
 EC Upper Sorbian hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-hsb.ec.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-hsb.ec.tex))
 \l@welsh=\language84
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-cy.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-cy.tex
 EC Welsh hyphenation patterns
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-cy.ec.tex)))
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/utf8.def
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-cy.ec.tex)))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2021/06/21 v1.2n UTF-8 support
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/omsenc.dfu
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/omsenc.dfu
 File: omsenc.dfu 2021/06/21 v1.2n UTF-8 support
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
@@ -1718,8 +1728,8 @@ File: omsenc.dfu 2021/06/21 v1.2n UTF-8 support
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/ot1enc.dfu
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/ot1enc.dfu
 File: ot1enc.dfu 2021/06/21 v1.2n UTF-8 support
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
@@ -1768,8 +1778,8 @@ File: ot1enc.dfu 2021/06/21 v1.2n UTF-8 support
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/t1enc.dfu
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/t1enc.dfu
 File: t1enc.dfu 2021/06/21 v1.2n UTF-8 support
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
@@ -2040,8 +2050,8 @@ File: t1enc.dfu 2021/06/21 v1.2n UTF-8 support
 Now handling font encoding TS1 ...
 ... processing UTF-8 mapping file for font encoding TS1
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/base/ts1enc.dfu
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/base/ts1enc.dfu
 File: ts1enc.dfu 2021/06/21 v1.2n UTF-8 support
    defining Unicode char U+00A2 (decimal 162)
    defining Unicode char U+00A3 (decimal 163)
@@ -2132,8 +2142,9 @@ Now handling font encoding U ...
    defining Unicode char U+2423 (decimal 9251)
    defining Unicode char U+FEFF (decimal 65279)
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/latex/firstaid/latex2e-first-aid-for-external-files.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/latex/firstaid/latex2e-first-aid-for-external-file
+s.ltx
 File: latex2e-first-aid-for-external-files.ltx 2021/11/11 v1.0q LaTeX kernel fi
 xes to external files and packages
 )
@@ -2144,10 +2155,10 @@ xes to external files and packages
 *
 **************************
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/platex/base/plcore.ltx
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/platex/base/plexpl3.ltx)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/platex/base/plcore.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/platex/base/plexpl3.ltx)
 \Cht=\dimen138
 \cht=\dimen139
 \Cdp=\dimen140
@@ -2192,31 +2203,31 @@ LaTeX Info: Redefining \em on input line 1636.
 \@@paperwidth=\dimen152
 \@@topmargin=\dimen153
 \l__platex_shipout_dummy_box=\box66
-\pltx@foot@penalty=\count179
-\hour=\count180
-\minute=\count181
+\pltx@foot@penalty=\count181
+\hour=\count182
+\minute=\count183
 LaTeX Info: Redefining \underline on input line 2329.
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/uplatex/base/uplcore.ltx)
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/uplatex/base/upldefs.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/uplatex/base/uplcore.ltx)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/uplatex/base/upldefs.ltx
 File: upldefs.ltx 2020/02/01 v1.6v-u02 upLaTeX Kernel (Default settings)
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/uplatex/base/jy2mc.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/uplatex/base/jy2mc.fd
 File: jy2mc.fd 2018/07/03 v1.6q-u02 KANJI font defines
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/uplatex/base/jy2gt.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/uplatex/base/jy2gt.fd
 File: jy2gt.fd 2018/07/03 v1.6q-u02 KANJI font defines
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/uplatex/base/jt2mc.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/uplatex/base/jt2mc.fd
 File: jt2mc.fd 2018/07/03 v1.6q-u02 KANJI font defines
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/uplatex/base/jt2gt.fd
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/uplatex/base/jt2gt.fd
 File: jt2gt.fd 2018/07/03 v1.6q-u02 KANJI font defines
 )
 LaTeX Font Info:    Font shape `JT2/mc/m/n' will be
@@ -2251,14 +2262,15 @@ LaTeX Font Info:    Font shape `JT2/gt/m/n' will be
 (Font)              scaled to size 9.6222pt on input line 46.
 LaTeX Font Info:    Font shape `JT2/gt/m/n' will be
 (Font)              scaled to size 11.54663pt on input line 46.
- Loading kinsoku patterns for japanese.
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/uplatex/base/ukinsoku.tex)) ) )
+
+Loading kinsoku patterns for japanese.
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/uplatex/base/ukinsoku.tex)) ) )
 Beginning to dump on file uplatex.fmt
- (preloaded format=uplatex 2021.12.30)
-21170 strings of total length 409185
-301712 memory locations dumped; current usage is 246&300637
-18449 multiletter control sequences
+ (preloaded format=uplatex 2022.1.28)
+21236 strings of total length 416688
+294728 memory locations dumped; current usage is 246&293653
+18518 multiletter control sequences
 \font\nullfont=nullfont
 \font\c__fp_exp_intarray=cmr10 at 0.00002pt
 \font\c__fp_trig_intarray=cmr10 at 0.00003pt
@@ -2270,7 +2282,8 @@ Beginning to dump on file uplatex.fmt
 \font\g__regex_submatch_prev_intarray=cmr10 at 0.00012pt
 \font\g__regex_submatch_begin_intarray=cmr10 at 0.00014pt
 \font\g__regex_submatch_end_intarray=cmr10 at 0.00015pt
-\font\g__regex_balance_intarray=cmr10 at 0.00017pt
+\font\g__regex_submatch_case_intarray=cmr10 at 0.00017pt
+\font\g__regex_balance_intarray=cmr10 at 0.00018pt
 \font\OMX/cmex/m/n/10=cmex10
 \font\tenln=line10
 \font\tenlnw=linew10
@@ -2285,8 +2298,8 @@ Beginning to dump on file uplatex.fmt
 \font\OMS/cmsy/m/n/5=cmsy5
 \font\OMS/cmsy/m/n/7=cmsy7
 \font\OMS/cmsy/m/n/10=cmsy10
-\font\c_code_cctab=cmr10 at 0.00018pt
-\font\c_document_cctab=cmr10 at 0.0002pt
+\font\c_code_cctab=cmr10 at 0.0002pt
+\font\c_document_cctab=cmr10 at 0.00021pt
 \font\tenmin=upjisr-h at 9.62216pt
 \font\@bannerfont=cmtt9
 \font\JT2/mc/m/n/10=upjisr-v at 9.6222pt
@@ -2305,7 +2318,7 @@ Beginning to dump on file uplatex.fmt
 \font\JT2/gt/m/n/7=upjisg-v at 6.73553pt
 \font\JT2/gt/m/n/10=upjisg-v at 9.6222pt
 \font\JT2/gt/m/n/12=upjisg-v at 11.54663pt
-406064 words of font info for 45 preloaded fonts
+471893 words of font info for 46 preloaded fonts
 929 hyphenation exceptions
 Hyphenation trie of length 382652 has 8615 ops out of 35111
   143 for language 84

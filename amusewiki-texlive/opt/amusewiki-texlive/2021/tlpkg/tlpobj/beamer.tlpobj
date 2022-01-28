@@ -1,6 +1,6 @@
 name beamer
 category Package
-revision 60801
+revision 61684
 shortdesc A LaTeX class for producing presentations and slides
 longdesc The beamer LaTeX class can be used for producing slides. The
 longdesc class works in both PostScript and direct PDF output modes,
@@ -29,11 +29,11 @@ depend iftex
 depend pgf
 depend translator
 depend xcolor
-containersize 166372
-containerchecksum 9880737a29ef84dcb4f7e987e6e0672330aba2aa01bf82bdfb7051e9603576fde1c6c559a8c897e2edd8447309df2dd8bc9ef52f2debe8a7b967448efdb6e80e
-doccontainersize 2949912
-doccontainerchecksum ceb5458b1fe57a9ed366db89cfda611cf6187ee77a7cd8afed7a4dfb30a4c9d9f23781dcaecee616183bd6771c14c29abf880333bb45250f7bfead17fd4722ec
-docfiles size=1133
+containersize 166796
+containerchecksum 87dd4a82110bfe94ef751e0705f5107142b187e345b91d521510048d9376e576c2346eb3e8ae2a57d0e7dae76fb8760623a354b2260ccb4a23b3d40ff735d871
+doccontainersize 2954012
+doccontainerchecksum a201e2399c877dd63c5c2b0802d8343f6863c5390f1423cfd82721934b9bdfe98f85adf8a44876a024bdf568af5f5b638c531f6b8d0e9cb16680740b1040b464
+docfiles size=1134
  texmf-dist/doc/latex/beamer/AUTHORS.md
  texmf-dist/doc/latex/beamer/CHANGELOG.md
  texmf-dist/doc/latex/beamer/LICENSE.md
@@ -106,7 +106,7 @@ docfiles size=1133
  texmf-dist/doc/latex/beamer/solutions/short-talks/speaker_introduction-ornate-2min.de.tex
  texmf-dist/doc/latex/beamer/solutions/short-talks/speaker_introduction-ornate-2min.en.tex
  texmf-dist/doc/latex/beamer/solutions/short-talks/speaker_introduction-ornate-2min.fr.tex
-runfiles size=255
+runfiles size=256
  texmf-dist/tex/latex/beamer/beamer.cls
  texmf-dist/tex/latex/beamer/beamerarticle.sty
  texmf-dist/tex/latex/beamer/beamerbasearticle.sty
@@ -240,4 +240,4 @@ catalogue-contact-repository https://github.com/josephwright/beamer
 catalogue-ctan /macros/latex/contrib/beamer
 catalogue-license lppl1.3c gpl2+ fdl
 catalogue-topics presentation class
-catalogue-version 3.64
+catalogue-version 3.65

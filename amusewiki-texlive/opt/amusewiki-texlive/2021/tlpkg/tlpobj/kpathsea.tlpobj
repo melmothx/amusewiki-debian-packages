@@ -1,6 +1,6 @@
 name kpathsea
 category TLCore
-revision 59203
+revision 61719
 shortdesc Path searching library for TeX-related files
 longdesc Kpathsea is a library and utility programs which provide path
 longdesc searching facilities for TeX file types, including the
@@ -10,9 +10,9 @@ longdesc distributed separately, but rather is released and maintained
 longdesc as part of the TeX live sources.
 depend kpathsea.ARCH
 containersize 32488
-containerchecksum dcfe9d0b853bac7917e87b5783748568cb84a9b6e060dacb720826840aa93dab192e9aaf7799aec9e3c99f2aa54e02470918a72047e67568339aed2e2e3a61ae
+containerchecksum eaa7dc3f7314250f9a267aea7dc94aebe0bd1d05603d6c096a97da910851ab5c547296ab3a0645b3da96bca8763448ac8f6e5823a3fe0468133e98d9f2b56151
 doccontainersize 1073000
-doccontainerchecksum 155db7d61fa4011640a3c7e90efeeb8336b970bbb64f8fac5bf69a7f51bbd9132024256d6f57cf649cb83ea590cf9aa106230628196045d3f98bfcafa803ed54
+doccontainerchecksum 8f10a6fb3d17ec837c30286b2c0f6fcb5a43369692b54c348bd965d4dd7ab8aae3233f506fd3eee539a76f109f72aa47fd40e78d1a1be33f9a374781d2606b73
 docfiles size=556
  texmf-dist/doc/info/dir
  texmf-dist/doc/info/kpathsea.info
@@ -62,8 +62,8 @@ runfiles size=52
  texmf-dist/web2c/texmf.cnf
  texmf-dist/web2c/viscii-t5.tcx
 catalogue-contact-bugs https://lists.tug.org/tex-k
-catalogue-contact-home http://tug.org/kpathsea
-catalogue-contact-repository http://tug.org/svn/texlive/trunk/Build/source/texk/kpathsea/
+catalogue-contact-home https://tug.org/kpathsea
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/kpathsea/
 catalogue-contact-support https://lists.tug.org/tex-k
 catalogue-license lgpl2.1
 catalogue-topics sys-supp

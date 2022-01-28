@@ -1,6 +1,6 @@
 name fontspec
 category Package
-revision 56594
+revision 61617
 shortdesc Advanced font selection in XeLaTeX and LuaLaTeX
 longdesc Fontspec is a package for XeLaTeX and LuaLaTeX. It provides an
 longdesc automatic and unified interface to feature-rich AAT and
@@ -13,20 +13,20 @@ depend l3kernel
 depend l3packages
 depend lm
 depend xunicode
-containersize 26788
-containerchecksum 5c2013702cb65edbbd8d6e2c94eb8e181c7400f55593771d48e790cd32d8651e2ccb8fb41d89dffe7fb7ddd3219745102ec1934ad0dc5a24701f2c6a29107078
-doccontainersize 1189088
-doccontainerchecksum bef134b11346e3d06e33fd9ff0c80fa6d904c8cd481d2c55702766cac2d9553298f05dee9e0b4b57238d1c9e140176fa26d29dcdaee990712fd4a3f0148b26fe
-docfiles size=314
+containersize 26664
+containerchecksum 910b6dbf1ec00882086b1abf93e4a736b4a9b07b89d920fa84094aaf8fde11c6d25fa8cbc4448987bf249c71925ded5e82056ca44e4bf8f10030ab6bcbc3fc46
+doccontainersize 1221668
+doccontainerchecksum 03f1d92fab61b594d51e0befff26b95d39fb08eb3a250649b042fd02493f07b402fa71c2a3aab9fa3da48730be060c46ee77a41026f513c5a61894d8cec192f4
+docfiles size=323
  texmf-dist/doc/latex/fontspec/CHANGES.md
  texmf-dist/doc/latex/fontspec/LICENSE
  texmf-dist/doc/latex/fontspec/README.md details="Package README"
  texmf-dist/doc/latex/fontspec/fontspec-code.pdf
  texmf-dist/doc/latex/fontspec/fontspec-example.tex
  texmf-dist/doc/latex/fontspec/fontspec.pdf details="Package documentation"
-srccontainersize 83048
-srccontainerchecksum b64ffed6c06042ffab0faeba22b0df184b2fd0d27f8b312c65b33967021b860915d0c73f1ac9e3a9ac3125c5c7238038790b5d73127d02cb2ed51c64fdfaffab
-runfiles size=81
+srccontainersize 82844
+srccontainerchecksum 3852251a397d4122026aab6ebf6f99e04f6f6f7b46da0fd38e858676cf8b090bab4c970008b32701130f3a2e5bc13b5ae5c1dee0a5da8941b037165bf6ce6aba
+runfiles size=80
  texmf-dist/tex/latex/fontspec/fontspec-luatex.sty
  texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
  texmf-dist/tex/latex/fontspec/fontspec.cfg
@@ -37,4 +37,4 @@ catalogue-contact-repository https://github.com/wspr/fontspec/
 catalogue-ctan /macros/unicodetex/latex/fontspec
 catalogue-license lppl1.3c
 catalogue-topics font-sel luatex xetex
-catalogue-version 2.7i
+catalogue-version 2.8a

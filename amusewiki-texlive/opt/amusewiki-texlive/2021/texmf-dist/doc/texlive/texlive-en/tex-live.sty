@@ -1,4 +1,4 @@
-% $Id: tex-live.sty 57999 2021-02-28 16:55:30Z karl $
+% $Id: tex-live.sty 61754 2022-01-26 23:11:05Z karl $
 % TeX Live documentation style.  Written by many people over many years.
 % Public domain.
 %
@@ -217,12 +217,13 @@
 \providecommand*{\web}{\texttt{WEB}\xspace}
 
 % Include a png image.
-% #1 - name of image file in ../texlive-common/, always .png
+% #1 - basename of image file in ../texlive-common/, always .png
 % #2 - width for TeX
-%
-\def\tlpng#1#2{%
-  \ifnum \Status=2 % html, want relative path in output
-    \includegraphics{../texlive-common/#1.png}%
+% #3 - alt text for image; used only in html
+\def\tlpng#1#2#3{%
+  \ifnum \Status=2 % html, have to have explicit relative path in output
+    \includegraphics[alt={#3}]{../texlive-common/#1.png}%
+    %
     % We intentionally are not specifying the size, so that the natural
     % size of the graphic is used in the HTML output. Thus we do not
     % get a graphics.sty warning about "cannot determine size of graphic

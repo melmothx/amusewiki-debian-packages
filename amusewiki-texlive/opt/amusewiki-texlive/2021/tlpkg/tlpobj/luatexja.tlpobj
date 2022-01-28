@@ -1,16 +1,16 @@
 name luatexja
 category Package
-revision 60862
+revision 61485
 shortdesc Typeset Japanese with Lua(La)TeX
 longdesc The package offers support for typesetting Japanese documents
 longdesc with LuaTeX. Either of the Plain and LaTeX2e formats may be
 longdesc used with the package.
 depend luatexbase
-containersize 190716
-containerchecksum c86d8475e8ed95f31e8068646061e08845faee7749d5bac40cd9f55c20b5d7a5410f2af7ab66c91a0b470e1f7048d95bbbcc5182b24541cc470b1c235e00ae85
-doccontainersize 3200840
-doccontainerchecksum dfac6f66fa5248e94e9c0dacd6aca177473563411ad5cb749faafa83ab8fe058184005557495aac2b137c87f2988e85760bac454e8fb3277e4b631ab83f0372c
-docfiles size=961
+containersize 191008
+containerchecksum 7ce61f59c6ace10daa78d10f7516c8058fe02b9f1cec4ef1a761cd0ab085ccf4d0d090c1405cb38afafba68bc537120c9f3b00904198224c407e39596c2db706
+doccontainersize 3232668
+doccontainerchecksum 9024ef0b8873f0d19e2d4558b2e22e7919f094e56693ccc687e42961fe866fe76dcd5c81440166e2edaf2028fd2882d28c351156a14283f590b7bdf439b44809
+docfiles size=972
  texmf-dist/doc/luatex/luatexja/COPYING
  texmf-dist/doc/luatex/luatexja/README details="Readme"
  texmf-dist/doc/luatex/luatexja/jfm-test.lua
@@ -27,8 +27,8 @@ docfiles size=961
  texmf-dist/doc/luatex/luatexja/luatexja-ruby.tex
  texmf-dist/doc/luatex/luatexja/luatexja.dtx
  texmf-dist/doc/luatex/luatexja/luatexja.ins
-srccontainersize 83320
-srccontainerchecksum 3571d85fcfb142ec58d68f2a104c375a89088e201ba0f80ddcce0ad381851e60529665e5e1ae3f7fba1d0e4aef7bc7422abdcc80e04adef9ca88747be3329a39
+srccontainersize 83316
+srccontainerchecksum af1a85083fa203aea813d702f5e1da76ec4bb73b8d090b977c53523d70e0f539d29407172516a7913f1c951df05705487fe6037af1184fefb72ebd9751d24c94
 runfiles size=410
  texmf-dist/tex/luatex/luatexja/addons/luatexja-adjust.sty
  texmf-dist/tex/luatex/luatexja/addons/luatexja-ajmacros.sty
@@ -129,4 +129,4 @@ catalogue-contact-repository https://osdn.net/projects/luatex-ja/scm/git/luatexj
 catalogue-ctan /macros/luatex/generic/luatexja
 catalogue-license bsd
 catalogue-topics japanese luatex class
-catalogue-version 20211024.0
+catalogue-version 20220103.0

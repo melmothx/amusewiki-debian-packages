@@ -1,15 +1,16 @@
 name xecjk
 category Package
-revision 61287
+revision 61529
 shortdesc Support for CJK documents in XeLaTeX
 longdesc A LaTeX package for typesetting CJK documents in the way users
 longdesc have become used to, in the CJK package. The package requires a
 longdesc current version of xtemplate (and hence of the current LaTeX3
 longdesc development environment).
-containersize 220160
-containerchecksum 7b2a43e2523c207a19ba688912bc832ea38431acec4dcf29218f863e7cf68d2057eca1e30e0fa1851cbd44fbedde06889390cab72c7ff9329a0778d02d059625
+depend ctex
+containersize 220168
+containerchecksum 66213771726f5752495b9936a17b07a80e654cca988ecbb00e1695a4f136ef22a7cc9f2cae763757f35fa11545c825f70ea71940903e076af66ef28aedb9040e
 doccontainersize 1540612
-doccontainerchecksum a2c80e3907af4723925a52c20c6ba2b7b6cf2f855824cb403f65c53f771c97523e30f97f559ba4a7a42f39c06079b82bd4454697104cb5ed3b044b3f271e916e
+doccontainerchecksum 92bca289bd907817c95924340256df9130f0dc7c0a57b9586d8f0e9b8e74d87d67f01c51b48c40c723b6a33299d30839c44fe56ad687a548fa9e6ce3057e6e2a
 docfiles size=407
  texmf-dist/doc/xelatex/xecjk/README.md details="Readme"
  texmf-dist/doc/xelatex/xecjk/example/xeCJK-example-CJKecglue.tex
@@ -27,7 +28,7 @@ docfiles size=407
  texmf-dist/doc/xelatex/xecjk/xunicode-symbols.pdf
  texmf-dist/doc/xelatex/xecjk/xunicode-symbols.tex
 srccontainersize 89320
-srccontainerchecksum 2944d3905021933eae4dc940cdcefc6cc6d49494ba005ca34d54f8d2ee3fa88ae575a9cbfdca5541de65c5f172ecd2444c0dcc7c837e439016b072f9995241ef
+srccontainerchecksum 899d9ffa00d7606d91515a14eafffc3210860ee1055ea0518db37af564155df9bfe973df349263205dc7275ff5d8829b590fd4642235c66ecc986bad4c7294ed
 runfiles size=179
  texmf-dist/fonts/misc/xetex/fontmapping/xecjk/full-stop.map
  texmf-dist/fonts/misc/xetex/fontmapping/xecjk/full-stop.tec

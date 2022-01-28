@@ -1,6 +1,6 @@
 name babel
 category Package
-revision 61433
+revision 61748
 shortdesc Multilingual support for LaTeX, LuaLaTeX, XeLaTeX, and Plain TeX
 longdesc This package manages culturally-determined typographical (and
 longdesc other) rules for a wide range of languages. A document may
@@ -12,16 +12,16 @@ longdesc has to be done for each language. Included is also a set of ini
 longdesc files for about 250 languages. Many language styles work with
 longdesc pdfLaTeX, as well as with XeLaTeX and LuaLaTeX, out of the box.
 longdesc A few even work with plain formats.
-containersize 182564
-containerchecksum 9213ebe3d80056732b066b1a4a02a94b7d7c847b6d07a2cdbd89e3f3772c9a291585f367b92adf58806dcecb2eba774558219d35ca709647604d2e67e541946e
-doccontainersize 846780
-doccontainerchecksum 280ccba4f76001bb1c466188046e57735fb8c5307280ea123030cf137e1406dce549d2b43345ad48795963c95aec3cbbdb3d8935159e1a3147ade73a6eb1688f
-docfiles size=212
+containersize 183100
+containerchecksum a497f9e37b9d233923e7b085c5a95360c96d826fedb82ea42ac2e11cfdbe4c9af12c918b0f322573911c43ec8b00a5ff94190b5df11c7256a7391c93ab883004
+doccontainersize 841020
+doccontainerchecksum d7edf99b5182a3cafe1991f2fd4c76a9e0903be31ff27325f21276d45766804000d464eda2c9b054a5ba4060b212cc59a93cf6d91afc6bb1caf50d84516bb0ba
+docfiles size=210
  texmf-dist/doc/latex/babel/README.md details="Readme"
  texmf-dist/doc/latex/babel/babel.pdf details="Package documentation"
-srccontainersize 697164
-srccontainerchecksum 9fdf0e5fa4966912628807ab33e7d7507250862700cc8749519a14f7b68d6fc6cbf31f6dbdfe39ba49868747a2e703e604ba92173f23f9aa8632d603c3ea5b77
-runfiles size=976
+srccontainersize 697412
+srccontainerchecksum 968c284cb4f8631ea388d4d18c7018cc451cd7150e5dd99dae7773b565b705afc0a34f14edc166808c5f86034c64ffd2feb34f7478650e44d6ac227415987791
+runfiles size=977
  texmf-dist/makeindex/babel/bbglo.ist
  texmf-dist/makeindex/babel/bbind.ist
  texmf-dist/tex/generic/babel/UKenglish.sty
@@ -728,4 +728,4 @@ catalogue-contact-repository https://github.com/latex3/babel
 catalogue-ctan /macros/latex/required/babel/base
 catalogue-license lppl1.3
 catalogue-topics multilingual
-catalogue-version 3.68
+catalogue-version 3.70

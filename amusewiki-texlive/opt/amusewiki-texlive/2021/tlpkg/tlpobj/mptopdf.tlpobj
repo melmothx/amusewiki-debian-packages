@@ -1,6 +1,6 @@
 name mptopdf
 category Package
-revision 57347
+revision 61520
 shortdesc mpost to PDF, native MetaPost graphics inclusion
 longdesc The mptopdf script does standalone conversion from mpost to
 longdesc PDF, using the supp-* and syst-* files. They also allow native
@@ -13,11 +13,11 @@ longdesc in macros/pdftex/graphics.
 depend mptopdf.ARCH
 depend plain
 execute AddFormat name=mptopdf engine=pdftex           options="-translate-file=cp227.tcx mptopdf.tex"           fmttriggers=plain
-containersize 38596
-containerchecksum 69181f1facef413b4e2317180f8dba551fe40bb06e6af8d9378319d8cd3fdec985241e632f19888f32b70f16a40d11c66581f7e3c409bc38b7cfad3733cba2fd
-doccontainersize 13628
-doccontainerchecksum f0cbd95500324a6b5ca835d62065c83028241e0ce5fa35a313458dc30e6726a21a6d1c267669627061d23f2dd7d7397f471581021e03c817c281cb6efa1d2769
-docfiles size=6
+containersize 38592
+containerchecksum 3e5bb2983ea7329e4d3a48a29a5902d0245b0bd07f6cc3d272358701bd7df8bef808cd23810a70ab60209dea2d8788624e98497c6c04c917a59874a84ed94a30
+doccontainersize 14304
+doccontainerchecksum 7bb6c2bc9dd0bceddb4b5aaa8d7143c40fb41baac2065cfbaf14642acb33bb7f05703d7b8469da0e92453ec10f0b8252d00b05588d7846835d622be097a83f8d
+docfiles size=7
  texmf-dist/doc/context/scripts/mkii/mptopdf.man
  texmf-dist/doc/man/man1/mptopdf.1
  texmf-dist/doc/man/man1/mptopdf.man1.pdf

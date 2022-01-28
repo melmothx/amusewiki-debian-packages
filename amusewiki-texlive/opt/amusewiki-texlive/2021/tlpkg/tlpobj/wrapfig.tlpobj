@@ -1,22 +1,22 @@
 name wrapfig
 category Package
-revision 22048
+revision 61719
 shortdesc Produces figures which text can flow around
 longdesc Allows figures or tables to have text wrapped around them. Does
 longdesc not work in combination with list environments, but can be used
 longdesc in a parbox or minipage, and in twocolumn format. Supports the
 longdesc float package.
-containersize 9360
-containerchecksum ea9d0693a43f985b9ab13a51e0af82b866adc8500dfb9f42e8b20ce8facd07d0534749bda61d13bc86b921300336c9f7e6099f252c4c65370a2e2cb4423589ae
-doccontainersize 337900
-doccontainerchecksum 9ba4292d2641a31f3719ca66e3d80ca70638f9c943bfad9e9e08543f57a53eccc1292930e95d6a3677d0696e0deb1d1ca698b83eb7285baae275b70ac808be33
+containersize 9336
+containerchecksum afa6eed496f63dda436a9a57c9f056ae88fb7985328d58d81fddde743a737b1ec69a5409941a76a28840d938397928925500628b2e11859713871977545278e2
+doccontainersize 337904
+doccontainerchecksum 27aa1cfb0641876516eefd483f5f37e25e06c24bc255fe81afadd985d9a5ea73d311184ad46120d57d8dfc584da02f99c90128c6e0cead71064d00c1bae09f7b
 docfiles size=87
  texmf-dist/doc/latex/wrapfig/multiple-span.txt details="How to use wrapfig to span multiple columns"
  texmf-dist/doc/latex/wrapfig/wrapfig-doc.pdf details="Package documentation"
  texmf-dist/doc/latex/wrapfig/wrapfig-doc.tex
 runfiles size=7
  texmf-dist/tex/latex/wrapfig/wrapfig.sty
-catalogue-also floatflt
+catalogue-also wrapfig2
 catalogue-ctan /macros/latex/contrib/wrapfig
 catalogue-license lppl
 catalogue-topics text-flow

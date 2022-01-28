@@ -1,6 +1,6 @@
 name dvips
 category TLCore
-revision 57972
+revision 61719
 shortdesc A DVI to PostScript driver
 longdesc This package has been withdrawn from CTAN, and bundled into the
 longdesc distributions' package sets. Development now takes place within
@@ -8,10 +8,10 @@ longdesc the TeX Live framework, and it is no longer available as a
 longdesc separate package. For download, support, and other information,
 longdesc please see TeX Live.
 depend dvips.ARCH
-containersize 58080
-containerchecksum 31069dd768bfad8c3430abb001e5d73d1b5481c6a0216801c3e04c5571e9e841a77ef6176b6d42ca3ffd5b8860790f37ac6dded1a453120aea96ac7a2c207563
-doccontainersize 522148
-doccontainerchecksum a66136f6f457a6e4953f25e7489c98668d950da10c37668d8332ccf5b20eeec5f493b84ca014c944dd8b241cfe3b0621f6096ce4b3a6f732e3816026a7835245
+containersize 58076
+containerchecksum ec872f68ac7aaf3e5540d396f264c4cf0305b09e26fa98c7139be2e99b841d918b9fd7327bdb7febbc172fa119ecf4d189effaeffe9067c9cc5fa7b4c302ee7b
+doccontainersize 522144
+doccontainerchecksum 0c49c4f4799b10cfd3f1072cd24213d59bf94f3e7c05b2259eb012ffa12d2014e8f832cf97b57e2641e7abad313a4933b48bd54e6617176b12bc6257aac25d75
 docfiles size=289
  texmf-dist/doc/dvips/NEWS
  texmf-dist/doc/dvips/README details="Readme"
@@ -101,8 +101,8 @@ runfiles size=138
  texmf-dist/tex/generic/dvips/rotate.sty
  texmf-dist/tex/generic/dvips/rotate.tex
 catalogue-contact-bugs https://lists.tug.org/tex-k
-catalogue-contact-home http://tug.org/dvips
-catalogue-contact-repository http://tug.org/svn/texlive/trunk/Build/source/texk/dvipsk/
+catalogue-contact-home https://tug.org/dvips
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/dvipsk/
 catalogue-contact-support https://lists.tug.org/tex-k
 catalogue-license other-free
 catalogue-topics dvi-print
