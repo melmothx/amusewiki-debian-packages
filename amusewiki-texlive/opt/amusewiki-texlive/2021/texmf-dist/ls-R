@@ -2588,6 +2588,7 @@ lualibs
 luaotfload
 luatexbase
 luatexja
+lua-uni-algos
 
 ./doc/luatex/base:
 graphics
@@ -2676,6 +2677,11 @@ luatexja-ja.pdf
 luatexja-ruby.pdf
 luatexja-ruby.tex
 README
+
+./doc/luatex/lua-uni-algos:
+lua-uni-algos.pdf
+lua-uni-algos.tex
+README.md
 
 ./doc/man:
 man1
@@ -25638,6 +25644,7 @@ lualibs
 luaotfload
 luatexbase
 luatexja
+lua-uni-algos
 
 ./tex/luatex/ctablestack:
 ctablestack.sty
@@ -25893,6 +25900,13 @@ lltjp-stfloats.sty
 lltjp-tascmac.sty
 lltjp-unicode-math.sty
 lltjp-xunicode.sty
+
+./tex/luatex/lua-uni-algos:
+lua-uni-algos.lua
+lua-uni-case.lua
+lua-uni-graphemes.lua
+lua-uni-normalize.lua
+lua-uni-parse.lua
 
 ./tex/plain:
 amsfonts

@@ -1,0 +1,183 @@
+\documentclass{article}
+\usepackage{doc, shortvrb, metalogo, hyperref, fontspec}
+% \setmainfont{Noto Serif}
+% \setmonofont{FreeMono}
+\title{Unicode algorithms for Lua\TeX\thanks{This document corresponds to \pkg{lua-uni-algos} v0.4.1.}}
+\author{Marcel Krüger\thanks{E-Mail: \href{mailto:tex@2krueger.de}{\nolinkurl{tex@2krueger.de}}}}
+\MakeShortVerb\|
+\newcommand\pkg{\texttt}
+\begin{document}
+\maketitle
+Dealing with general Unicode encoded data comes with many challenges because it has to respect individual concerns of many different scripts and languages. The Unicode consortium maintains multiple useful algorithms which can sometimes make this task much easier.
+
+\pkg{lua-uni-algos} tries to make the most fundamental algorithms available for authors of Lua-based packages to aid in handling Unicode data.
+
+Currently this package implements:
+\begin{description}
+  \item[Unicode normalization] Normalize a given Lua string into any of the normalization forms NFC, NFD, NFKC, or NFKD as specified in the Unicode standard, section 2.12.
+  \item[Case folding] Fold Unicode codepoints into a form which eliminates all case distinctions. This can be used for case-independent matching of strings. Not to be confused with case mapping which maps all characters to lower/upper/titlecase: In contrast to case mapping, case folding is mostly locale independent but does not give results which should be shown to users.
+  \item[Grapheme cluster segmentation] Identify a grapheme cluster, a unit of text which is perceived as a single character by typical users, according to the rules in UAX \#29, section 3.
+\end{description}
+\section{Normalization}
+Unicode normalization is handled by the Lua module |lua-uni-normalize|.
+You can either load it directly with
+\begin{verbatim}
+local normalize = require'lua-uni-normalize'
+\end{verbatim}
+or if you need access to all implemented algorithms you can use
+\begin{verbatim}
+local uni_algos = require'lua-uni-algos'
+local normalize = uni_algos.normalize
+\end{verbatim}
+
+Then, four functions are available: |normalize.NFC|, |normalize.NFD|, |normalize.NFKC|, and |normalize.NFKD|.
+If you do not know which of these you need, then you should probably |normalize.NFC|. All functions are used in the same way:
+\begin{verbatim}
+local str = "Äpfel…"
+print("Original:", str)
+print("NFC:", normalize.NFC(str))
+print("NFD:", normalize.NFD(str))
+print("NFKC:", normalize.NFKC(str))
+print("NFKD:", normalize.NFKD(str))
+\end{verbatim}
+This results in
+\begin{verbatim}
+Original:	Äpfel…
+NFC:	Äpfel…
+NFD:	Äpfel…
+NFKC:	Äpfel...
+NFKD:	Äpfel...
+\end{verbatim}
+(This example is shown in Latin Modern Mono which has the (for this purpose) very useful property of not handling combining character very well.
+In a well-behaving font, the `...C` and `...D` lines should look the same.)
+
+Additionally for direct normalization of Lua\TeX\ node lists is supported.
+There are two functions |normalize.node.NFC| and |normalize.direct.NFC| taking upto four parameters: The first parameter is the head of the node list to be converted.
+The second parameter is the font id of the affected character nodes. Only non-protected glyph nodes of the specified font will be normalized. Pass |nil| for the font
+to normalize without respecting the font in the process. The third parameter is an optional table. If it is not |nil|, normalization is supressed if it might add glyph
+which map to |false| (or |nil|) in this table. If the forth argument is |true|, normalization will never join two glyph nodes with different attributes.
+
+For NFD and NFKD equivalent functions exists without the last parameter (since they never compose nodes, they never have to deal with composing nodes with different
+attributes.
+
+NFKC is not supported for node list normalization since the author is not convinced that there is any usecase for it. (Probably there isn't any usecase for node list
+NFKD normalization either, but that was easy to implement while NFKC would need separate data tables.
+
+\section{Case folding}
+For case folding load the Lua module |lua-uni-case|.
+You can either load it directly with
+\begin{verbatim}
+local uni_case = require'lua-uni-case'
+\end{verbatim}
+or if you need access to all implemented algorithms you can use
+\begin{verbatim}
+local uni_algos = require'lua-uni-algos'
+local uni_case = uni_algos.case
+\end{verbatim}
+
+The main function is |uni_case.casefold(str, full, special)|. It accepts three parameters: A Lua string |str| to be case folded, a boolean |full| to specify if the number of codepoints is allowed to change in the progress (This should normally be set to |true|.) and a boolean |special| which enables special handling for Turkish languages (In most cases, this should be set to |false|.)
+The function returns the case-folded string:
+\begin{verbatim}
+local str = "Straße…"
+print("Original:", str)
+print("Case folded (full=false):", uni_case.casefold(str, false, false))
+print("Case folded (full=true):", uni_case.casefold(str, true, false))
+\end{verbatim}
+This results in
+
+\noindent\begingroup
+  \ttfamily
+  \directlua{
+    local uni_case = require'lua-uni-case'
+    local str = "Straße…"
+    tex.sprint("Original:", str, '\\\\')
+    tex.sprint("Case folded (full=false):", uni_case.casefold(str, false, false), '\\\\')
+    tex.sprint("Case folded (full=true):", uni_case.casefold(str, true, false), '\\\\')
+  }\par
+\endgroup
+
+In most cases, you will want to normalize the string after casefolding.
+
+For cases where you want to casefold something which is not given as a Lua string, you can use the function |uni_case.casefold_lookup(cp, full, special)|. Instead of a string, it accepts a codepoint as first parameter and returns a table of codepoints. A string can be casefolded by replacing every codepoints with the sequence of codepoints returned by |uni_case.casefold_lookup|. If |casefold_lookup| returns |false| or |nil|, the codepoint should not be changed.
+
+\section{Grapheme clusters}
+Grapheme cluster handling is handled by the Lua module |lua-uni-graphemes|.
+You can either load it directly with
+\begin{verbatim}
+local graphemes = require'lua-uni-graphemes'
+\end{verbatim}
+or if you need access to all implemented algorithms you can use
+\begin{verbatim}
+local uni_algos = require'lua-uni-algos'
+local graphemes = uni_algos.graphemes
+\end{verbatim}
+
+Sometimes we want to look at a single character of a string, but identifying what a character is is not that easy in Unicode. A simple example is the character from the previous section: ``Ä''
+The NFD form is certainly a single character, but is encoded using two codepoints: U+0041 (LATIN CAPITAL LETTER A) and U+0308 (COMBINING DIAERESIS). Or the Tamil letter Ni which is encoded as U+0BA8 (TAMIL LETTER NA) followed by U+0BBF (TAMIL VOWEL SIGN I). But sometimes it can be useful to identify characters, e.g.\ for letterspacing or letterines.
+
+There are two main interfaces for this: One iterator for iterating over grapheme clusters and one direct interface to the underlying state machine:
+
+\begin{verbatim}
+for final, first, grapheme in graphemes.graphemes'Äpfel' do
+  print(grapheme)
+end
+\end{verbatim}
+% \begin{verbatim}
+% for final, first, grapheme in graphemes.graphemes'Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍A̴̵̜̰͔ͫ͗͢L̠ͨͧͩ͘G̴̻͈͍͔̹̑͗̎̅͛́Ǫ̵̹̻̝̳͂̌̌͘!͖̬̰̙̗̿̋ͥͥ̂ͣ̐́́͜͞' do
+%   print(grapheme)
+% end
+% \end{verbatim}
+
+\noindent\begingroup
+  \ttfamily
+  \directlua{
+    local graphemes = require'./lua-uni-graphemes'
+    for final, first, grapheme in graphemes.graphemes'Äpfel' do
+      tex.sprint(grapheme, '\string\\\string\\')
+    end
+  }\par
+\endgroup
+
+The more powerful state machine interface |graphemes.read_codepoint| takes two parameters: A new codepoint and a state.
+At the beginning, the state can be omitted.
+For every codepoint in your input, call the function with the new codepoint and the last state. Then there are two return values: The first one is a boolean telling you if the current codepoint is the beginning of a new cluster, the second is a new state you have to pass with the next codepoint.
+
+So e.g.\ to find cluster boundaries in the Unicode codepoint sequence U+0041 U+0308 U+0BA8 U+0BBF you could use
+
+\begin{verbatim}
+local graphemes = require'lua-uni-graphemes'
+local new_cluster, state
+new_cluster, state = graphemes.read_codepoint(0x0041, state)
+print(new_cluster)
+new_cluster, state = graphemes.read_codepoint(0x0308, state)
+print(new_cluster)
+new_cluster, state = graphemes.read_codepoint(0x0BA8, state)
+print(new_cluster)
+new_cluster, state = graphemes.read_codepoint(0x0BBF, state)
+print(new_cluster)
+\end{verbatim}
+  
+\noindent resulting in
+
+\noindent\begingroup
+  \ttfamily
+  \directlua{
+    local graphemes = require'lua-uni-graphemes'
+    local new_cluster, state
+    new_cluster, state = graphemes.read_codepoint(0x0041, state)
+    tex.sprint(tostring(new_cluster), '\string\\\string\\')
+    new_cluster, state = graphemes.read_codepoint(0x0308, state)
+    tex.sprint(tostring(new_cluster), '\string\\\string\\')
+    new_cluster, state = graphemes.read_codepoint(0x0BA8, state)
+    tex.sprint(tostring(new_cluster), '\string\\\string\\')
+    new_cluster, state = graphemes.read_codepoint(0x0BBF, state)
+    tex.sprint(tostring(new_cluster), '\string\\\string\\')
+  }\par
+\endgroup
+
+\vskip-\baselineskip
+\noindent meaning the first and third codepoint start a new cluster.
+
+Do not try to interpret the |state|, it has no defined values and might change at any point.
+
+\end{document}

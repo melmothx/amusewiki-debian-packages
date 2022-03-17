@@ -406,3 +406,5 @@
 [Thu Mar 17 09:24:51 2022]   OK: euptex.fmt/euptex uplatex.fmt/euptex uplatex-dev.fmt/euptex
 [Thu Mar 17 09:24:51 2022] command: fmtutil-sys --byengine uptex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/F8OGUsVPId/Qx7nCrl19Q
 [Thu Mar 17 09:24:51 2022]   OK: uptex.fmt/uptex
+[Thu Mar 17 10:04:22 2022] install: lua-uni-algos
+[Thu Mar 17 10:04:22 2022] command: mktexlsr
