@@ -1,6 +1,6 @@
 name amsfonts
 category Package
-revision 29208
+revision 61937
 shortdesc TeX fonts from the American Mathematical Society
 longdesc An extended set of fonts for use in mathematics, including:
 longdesc extra mathematical symbols; blackboard bold letters (uppercase
@@ -22,10 +22,10 @@ execute addMixedMap cmextra.map
 execute addMixedMap cyrillic.map
 execute addMixedMap latxfont.map
 execute addMixedMap symbols.map
-containersize 3626276
-containerchecksum ff1256ae20f435327c12424613a15aa8f207e9133325e3a823ca7ef9951b8d52acb56cc69cbf9f3c0860ac43c9a74ae54154d1cd956d7e25612307dcc6e74585
+containersize 3626268
+containerchecksum 6a9f80bc8b6b2afc3ff6ad151a290743d37e10ddeaf7efa969f3fec40cab0492860496c7bf0abeb410124aeaaa15a53640017c8d12b630e68c59dfe186519e52
 doccontainersize 1162540
-doccontainerchecksum fe0df1a9efc821e21adc0e21bcfaf2defb1749e3206d7dac8cd9b667747c37303cb2c69283a89aa8740fc3e08e8803408903a2a95eb0b91e910931a8333c2fca
+doccontainerchecksum fe0917bf9d65d15155f287626edb17d692db7ef2e888fce30b867bb0c873b0166949b3b5f3965f70b6b237d7b874a7fd3411e53b87368acc7447dc0e8bda55f1
 docfiles size=321
  texmf-dist/doc/fonts/amsfonts/OFL-FAQ.txt
  texmf-dist/doc/fonts/amsfonts/OFL.txt
@@ -36,8 +36,8 @@ docfiles size=321
  texmf-dist/doc/fonts/amsfonts/cmmib57.pdf
  texmf-dist/doc/fonts/amsfonts/eufrak.pdf details="Eufrak package documentation"
  texmf-dist/doc/fonts/amsfonts/euscript.pdf details="Eucal and euscript package documentation"
-srccontainersize 49152
-srccontainerchecksum 49a99f519fbba1ae7ba91ffe392b4c1bf7b9246ab573a4f2c8b41fa252f080efe66c5df2acc36a5ea9570e51d55890bd89565ec2174ca7aa98980b49aa060a98
+srccontainersize 49156
+srccontainerchecksum 4145ce58620f84133e8d7a7639fe376631c92398161283c69c9d1119c14e4d404ed067f2aff2fab7cc0c2249d1fcdea81591b45a1cc72bc08835b99ac8a5a6f7
 runfiles size=1879
  texmf-dist/fonts/afm/public/amsfonts/cm/cmb10.afm
  texmf-dist/fonts/afm/public/amsfonts/cm/cmbsy10.afm
@@ -647,7 +647,7 @@ runfiles size=1879
  texmf-dist/tex/plain/amsfonts/amssym.def
  texmf-dist/tex/plain/amsfonts/amssym.tex
  texmf-dist/tex/plain/amsfonts/cyracc.def
-catalogue-contact-home http://www.ams.org/tex/amsfonts.html
+catalogue-contact-home http://www.ams.org/arc/resources/amsfonts-about.html
 catalogue-ctan /fonts/amsfonts
 catalogue-license ofl
 catalogue-topics font font-maths font-symbol-maths font-bbd font-type1 font-mf

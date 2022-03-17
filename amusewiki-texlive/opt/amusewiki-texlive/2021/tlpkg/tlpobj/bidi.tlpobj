@@ -1,15 +1,15 @@
 name bidi
 category Package
-revision 55193
+revision 61881
 shortdesc Bidirectional typesetting in plain TeX and LaTeX, using XeTeX
 longdesc A convenient interface for typesetting bidirectional texts with
 longdesc plain TeX and LaTeX. The package includes adaptations for use
 longdesc with many other commonly-used packages.
-containersize 116328
-containerchecksum dba36e375340a6d852eba98b83ad8e0821e684424a53069a4eb21acad43ba32cba11a68b971fa8bbbc6380a89c2432916e8a048de85cd5ab377d7811570a9be6
-doccontainersize 3737268
-doccontainerchecksum 16e8062ffec0b64faaa2c1f4916c8decb38510af7279607d11ce0537cdbdd57dd90e9901e47b7396758b9653321f8e14716a809740f5d4c0f610358899ce333d
-docfiles size=1026
+containersize 116592
+containerchecksum f808ba2bcb34b2ba19b5f2266af7971b800ade0d2ff571fa5eaa1acb7c5e49258af0cb096c1252457101f277c0f169dd49d375d5da5975b080a9879e7d6e4cab
+doccontainersize 3747572
+doccontainerchecksum 3753aef9bacfc6f6f177a0df8e7f60d372d4189f888f0e8783c9d1b4f0e6399cf396f1678b9eb211a92c2954ad7a1c4adf33abde40da0e3d6e47a93ec8b3bf8e
+docfiles size=1030
  texmf-dist/doc/xelatex/bidi/README details="Readme"
  texmf-dist/doc/xelatex/bidi/bidi-bibitem.pdf
  texmf-dist/doc/xelatex/bidi/bidi-doc.pdf details="Package user documentation"
@@ -34,9 +34,9 @@ docfiles size=1026
  texmf-dist/doc/xelatex/bidi/test2-colortbl.tex
  texmf-dist/doc/xelatex/bidi/test2-wrapfig.tex
  texmf-dist/doc/xelatex/bidi/test3-wrapfig.tex
-srccontainersize 133892
-srccontainerchecksum bbdbf08f87deff3ba6ff97869bcfb36b996f2985f4b28b4f598ea76827242d54b3e319379a9b027c2a6790f86e4503edf7d3f7e131f6ee34d48cfb042a8eed80
-runfiles size=293
+srccontainersize 134360
+srccontainerchecksum 66c45a65e9e95340968cc5b0be01971cb35df5176f9537638bb2c444acae0dbdd9bf41a0b1bdd1bc355d9353ee7cb6f0f0f0e06369694dbd17a8a5be03240be6
+runfiles size=294
  texmf-dist/tex/xelatex/bidi/adjmulticol-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/algorithm2e-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/amsart-xetex-bidi.def
@@ -166,9 +166,11 @@ runfiles size=293
  texmf-dist/tex/xelatex/bidi/wrapfig-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/xcolor-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/xltxtra-xetex-bidi.def
-catalogue-contact-bugs https://github.com/persiantex/bidi/issues
-catalogue-contact-repository https://github.com/persiantex/bidi
+catalogue-contact-announce https://github.com/tex-persian/bidi/discussions/categories/announcements
+catalogue-contact-bugs https://github.com/tex-persian/bidi/issues
+catalogue-contact-repository https://github.com/tex-persian/bidi
+catalogue-contact-support https://github.com/tex-persian/bidi/discussions
 catalogue-ctan /macros/xetex/latex/bidi
 catalogue-license lppl1.3c
 catalogue-topics typesetting xetex bidi class
-catalogue-version 36.3
+catalogue-version 36.5

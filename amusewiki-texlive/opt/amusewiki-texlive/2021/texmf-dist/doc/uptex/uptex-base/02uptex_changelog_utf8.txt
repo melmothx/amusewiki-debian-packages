@@ -1,5 +1,22 @@
 ### ChangeLog / 変更履歴
 
+2022.01.23 Ver1.28-20220123a
+  TeXLive svn r61708 base
+  Build/source/texk/web2c/uptexdir:
+    * uptex-m.ch, uppltotf.ch, uptftopl.ch, updvitype.ch, upbibtex.ch,
+      uptex_version.h:
+      Bump upTeX version.
+    * uptex-m.ch, upbibtex.ch, kanji.c:
+      Update reference of Unicode blocks to
+      "Blocks-14.0.0.txt Date: 2021-01-22, 23:29:00 GMT [KW]".
+    * COPYRIGHT, COPYRIGHT.ja:
+      Update copyright year.
+    * upkcat.test, tests/kcat.tex, tests/upkcat.txt: Add a new test.
+  samples:
+    Update.
+  00readme_uptex.txt, 01uptex_doc_utf8.txt:
+    Update.
+
 2020.10.31 Ver1.27-20201031a
   TeXLive svn r56746 base
   Build/source/texk/web2c/uptexdir:

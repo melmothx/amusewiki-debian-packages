@@ -1,6 +1,6 @@
 name texlive-scripts
 category TLCore
-revision 61757
+revision 61939
 shortdesc TeX Live infrastructure programs
 longdesc Includes install-tl, tl-portable, rungs, etc.; not needed for
 longdesc tlmgr to run but still ours. Not included in tlcritical.
@@ -8,11 +8,11 @@ depend texlive-scripts.ARCH
 depend texlive.infra
 execute addMap mathpple.map
 postaction shortcut type=menu name="TeX Live command-line"   cmd=TEXDIR/tlpkg/installer/tl-cmd.bat
-containersize 108396
-containerchecksum f8f3972788066b9db5ab2d564036c29f95feae5a82af7a0410c9813e173683be5b864e538bd930318318afb0bc54a650c28a6bf8130ca38917a1712df3c08024
-doccontainersize 403116
-doccontainerchecksum ece87d7daddc2cbf7d9c95a9fa400374823ba8805f005cee916ec46cb48289e6485ac38cfb8bd30a0219c809b03be5a88bfb2ce7e81b2304f82d753fc5d2492f
-docfiles size=501
+containersize 108392
+containerchecksum 26b6efb7394b99714490b284ecc8a74594b8fb093b6f23f71527f41fd7afe9d679478f5b29abe49b383f5558e5f052a9a5424b784e444118f220ee6cce911dd7
+doccontainersize 403416
+doccontainerchecksum e4346319b38d7c6f0664b24d94ddfc582ab908690b76d813dc1560b9cbec1ec20cb204ce7070232e26ddef01c35a2c6daa748928be61bdc9f5fe53b1a9dd0db1
+docfiles size=502
  doc.html
  texmf-dist/doc/man/man1/fmtutil-sys.1
  texmf-dist/doc/man/man1/fmtutil-sys.man1.pdf

@@ -1,6 +1,6 @@
 ___________________
 The bidi package
-v36.3
+v36.5
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -16,10 +16,22 @@ In doing so, please always explain your issue well enough,
 and always include a minimal working example showing the
 issue.
 
-Current version release date: 2020/05/17
+You may also have conversations, ask questions and post answers
+without opening issues using the Discussions space:
+
+  <https://github.com/tex-persian/bidi/discussions>
+
+The announcements for the new releases of the package will
+also appear in the Discussions space under the Announcements
+category.
+
+Current version release date: 2022/02/04
 
 ___________________________________________
-Copyright (c) Vafa Khalighi 2007--2020
+Vafa Khalighi
+tex-persian@vafa.ac
+
+Copyright (c) Vafa Khalighi 2007--2022
 Copyright (c) bidi-tex GitHub Organization 2018--2020
 
 It may be distributed and/or modified under the LaTeX Project Public License,

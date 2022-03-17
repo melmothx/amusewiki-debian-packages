@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (INITEX)  28 JAN 2022 16:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (INITEX)  9 FEB 2022 17:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -51,7 +51,7 @@ LaTeX2e <2021-11-15> patch level 1
 -texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.ltx
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/latex/l3kernel/expl3-code.tex
-Package: expl3 2022-01-21 L3 programming layer (code)
+Package: expl3 2022-02-05 L3 programming layer (code)
 \c_max_int=\count24
 \l_tmpa_int=\count25
 \l_tmpb_int=\count26
@@ -2268,10 +2268,10 @@ xes to external files and packages
 )
  ) )
 Beginning to dump on file pdflatex.fmt
- (preloaded format=pdflatex 2022.1.28)
-21690 strings of total length 435542
-287992 memory locations dumped; current usage is 165&286263
-18291 multiletter control sequences
+ (preloaded format=pdflatex 2022.2.9)
+21699 strings of total length 435744
+288185 memory locations dumped; current usage is 165&286456
+18300 multiletter control sequences
 \font\nullfont=nullfont
 \font\c__fp_exp_intarray=cmr10 at 0.00002pt
 \font\c__fp_trig_intarray=cmr10 at 0.00003pt

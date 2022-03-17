@@ -576,11 +576,20 @@
 \def\null{\hbox{}}
 \let\bgroup={
 \let\egroup=}
-{\catcode`\^^M=\active % these lines must end with %
-  \gdef\obeylines{\catcode`\^^M\active \let^^M\par}%
-  \global\let^^M\par} % this is in case ^^M appears in a \write
-\def\obeyspaces{\catcode`\ \active}
-{\obeyspaces\global\let =\space}
+\begingroup
+\catcode`\^^M=\active % these lines must end with %
+  \gdef\obeylines{\catcode`\^^M\active%
+    \let^^M\obeyedline%
+  }%
+  \global\let^^M\par % this is in case ^^M appears in a \write
+\endgroup
+\protected\gdef\obeyedline{\par}
+\global\let\obeyedspace\space
+\begingroup
+\catcode`\ =\active%
+\gdef\obeyspaces{\catcode`\ \active\let =\obeyedspace}%
+\global\let =\space%
+\endgroup
 \long\def \loop #1\repeat{%
   \def\iterate{#1\relax  % Extra \relax
                \expandafter\iterate\fi
@@ -696,7 +705,7 @@
 \def\fmtname{LaTeX2e}
 \edef\fmtversion
    {2022-06-01}
-\def\patch@level{-1}
+\def\patch@level{-2}
 \edef\development@branch@name{develop \the\year-\the\month-\the\day}
 \iffalse
 \def\reserved@a#1/#2/#3\@nil{%
@@ -14344,6 +14353,23 @@ Type  H <return>  for immediate help.}%
 }
 %%% From File: ltkeys.dtx
 \ExplSyntaxOn
+\group_begin:
+  \cs_set_protected:Npn \__keys_tmp:nn #1#2
+    {
+      \quark_if_recursion_tail_stop:n {#1}
+      \cs_new_eq:cc
+        { \c__keys_props_root_str . #2 }
+        { \c__keys_props_root_str . #1 }
+      \__keys_tmp:nn
+    }
+  \__keys_tmp:nn
+    { code }            { code }
+    { legacy_if_set:n } { if }
+    { tl_set:N }        { store }
+    { usage:n }         { usage }
+    { \q_recursion_tail } { }
+    \q_recursion_stop
+\group_end:
 \cs_generate_variant:Nn \clist_put_right:Nn { Nv }
 \clist_new:N \l__keys_options_clist
 \bool_new:N \l__keys_options_loading_bool
@@ -14370,7 +14396,7 @@ Type  H <return>  for immediate help.}%
     \bool_set_true:N \l__keys_options_loading_bool
     \keys_set:nV {#2} \l__keys_options_clist
     \bool_set_false:N \l__keys_options_loading_bool
-    \cs_set_eq:NN \@unprocessedoptions \scan_stop:
+    \AtEndOfPackage { \cs_set_eq:NN \@unprocessedoptions \scan_stop: }
     \__keys_option_end:
     \__keys_options_loaded:n {#2}
   }

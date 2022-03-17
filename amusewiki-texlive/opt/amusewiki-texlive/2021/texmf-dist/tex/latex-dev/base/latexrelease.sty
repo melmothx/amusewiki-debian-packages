@@ -848,6 +848,40 @@ of this package available from CTAN}
   \let\tracingstacklevels\@undefined
 \fi
 \EndIncludeInRelease
+\IncludeInRelease{2022/06/01}{\obeylines}%
+    {Add a redirection to obeylines and obeyspaces}%
+\begingroup
+\catcode`\^^M=\active % these lines must end with %
+  \gdef\obeylines{\catcode`\^^M\active%
+    \let^^M\obeyedline%
+  }%
+  \global\let^^M\par % this is in case ^^M appears in a \write
+\endgroup
+\protected\gdef\obeyedline{\par}
+\global\let\obeyedspace\space
+\begingroup
+\catcode`\ =\active%
+\gdef\obeyspaces{\catcode`\ \active\let =\obeyedspace}%
+\global\let =\space%
+\endgroup
+\EndIncludeInRelease
+\IncludeInRelease{0000/00/00}{\obeylines}%
+    {Add a redirection to obeylines and obeyspaces}%
+
+\expandafter\let\csname obeylines \endcsname\@undefined
+\expandafter\let\csname obeyspace \endcsname\@undefined
+
+\begingroup
+\catcode`\^^M=\active % these lines must end with %
+  \gdef\obeylines{\catcode`\^^M\active \let^^M\par %
+                 }%
+  \global\let^^M\RawParEnd % this is in case ^^M appears in a \write
+\endgroup
+\def\obeyspaces{\catcode`\ \active}
+
+\let\obeyedline\@undefined
+\let\obeyedspace\@undefined
+\EndIncludeInRelease
 \IncludeInRelease{2021/06/01}{\loggingall}
                  {\tracingstacklevels and \tracinglostchars=3}%
 \edef\loggingall{%

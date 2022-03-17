@@ -1,15 +1,15 @@
-This is upTeX, Version 3.141592653-p3.9.0-u1.27 (utf8.uptex) (TeX Live 2021) (INITEX)  30 DEC 2021 10:37
+This is upTeX, Version 3.141592653-p3.9.0-u1.27 (utf8.uptex) (TeX Live 2021) (INITEX)  9 FEB 2022 17:12
  restricted \write18 enabled.
  %&-line parsing enabled.
 **uptex.ini
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/uptex/uptex-base/uptex.ini
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/uptex/uptex-base/uptex.tex
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/plain/base/plain.tex Preloading the plain format: codes,
-registers,
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/uptex/uptex-base/uptex.ini
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/uptex/uptex-base/uptex.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/plain/base/plain.tex
+Preloading the plain format: codes, registers,
 \maxdimen=\dimen10
 \hideskip=\skip10
 \centering=\skip11
@@ -32,7 +32,8 @@ registers,
 \slfam=\fam5
 \bffam=\fam6
 \ttfam=\fam7
- macros,
+
+macros,
 \strutbox=\box11
 \mscount=\count25
 \tabs=\box12
@@ -41,25 +42,24 @@ registers,
  math definitions,
 \rootbox=\box15
 \p@renwd=\dimen15
-
-output routines,
+ output routines,
 \headline=\toks10
 \footline=\toks11
 \footins=\insert254
 \topins=\insert253
  hyphenation
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyphen/hyphen.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyphen/hyphen.tex))
 \minfam=\fam8
 \gtfam=\fam9
 \tminfam=\fam10
 \tgtfam=\fam11
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/uptex/uptex-base/ukinsoku.tex)) )
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/uptex/uptex-base/ukinsoku.tex)) )
 Beginning to dump on file uptex.fmt
- (preloaded format=uptex 2021.12.30)
-2174 strings of total length 32070
+ (preloaded format=uptex 2022.2.9)
+2174 strings of total length 32276
 5060 memory locations dumped; current usage is 128&4911
 999 multiletter control sequences
 \font\nullfont=nullfont

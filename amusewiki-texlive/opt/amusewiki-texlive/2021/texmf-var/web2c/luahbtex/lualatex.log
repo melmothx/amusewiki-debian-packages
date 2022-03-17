@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (INITEX)  28 JAN 2022 16:52
+This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (INITEX)  9 FEB 2022 17:12
  restricted system commands enabled.
 **lualatex.ini
 
@@ -53,7 +53,7 @@ LaTeX2e <2021-11-15> patch level 1
 -texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.ltx
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/latex/l3kernel/expl3-code.tex
-Package: expl3 2022-01-21 L3 programming layer (code)
+Package: expl3 2022-02-05 L3 programming layer (code)
 \@expl@luadata@bytecode=\luabytecode1
 Inserting `ltx.luadata' at position 1 in `pre_dump'.
 Lua function tex_strcmp:D = 1
@@ -1222,10 +1222,10 @@ xes to external files and packages
 )
 ))
 Beginning to dump on file lualatex.fmt
- (format=lualatex 2022.1.28)
-22189 strings using 364307 bytes
-685739 memory locations dumped; current usage is 204&316929
-20821 multiletter control sequences
+ (format=lualatex 2022.2.9)
+22198 strings using 364509 bytes
+686125 memory locations dumped; current usage is 204&317122
+20830 multiletter control sequences
 \font\nullfont=nullfont
 \font\OMX/cmex/m/n/10=cmex10
 \font\tenln=line10

@@ -1,6 +1,6 @@
 name xetex
 category TLCore
-revision 61719
+revision 61937
 shortdesc An extended variant of TeX for use with Unicode sources
 longdesc XeTeX is a TeX typesetting engine using Unicode and supporting
 longdesc modern font technologies such as OpenType, TrueType or Apple
@@ -38,10 +38,10 @@ depend xetexconfig
 execute AddFormat name=xelatex engine=xetex patterns=language.dat   options="-etex xelatex.ini"   fmttriggers=atbegshi,atveryend,babel,cm,everyshi,firstaid,hyphen-base,l3backend,l3kernel,l3packages,latex,latex-fonts,tex-ini-files,unicode-data,lm
 execute AddFormat name=xetex engine=xetex patterns=language.def   options="-etex xetex.ini"   fmttriggers=cm,hyphen-base,tex-ini-files,unicode-data,etex,plain
 postaction script file=tlpkg/tlpostcode/xetex.pl
-containersize 7780
-containerchecksum e63a8f3e80ec3c0babe3ff606c717bf6fd9f59515b13bbb6f7542bb986fcaff9706c1cd75f9d06e260e990dc9f024e9381dab13aa0beb6bba8d455ea16bc83fb
+containersize 7784
+containerchecksum be0f6341c937d70783cc426b043ac48fd3fa2bad7bfe7519c914afd12e2517af721aa15ec29bccbc191396d80bb96a19411fe285f108a0eddae8205b6f0e95f5
 doccontainersize 633104
-doccontainerchecksum 04657f8955d8a3d78df8556985f5c06c58bcfbfb2e92242cec73305bf8d07dd178e3426fadbc8e4dac0e9698e5b6c89b80ad8742aacc9feb5ec431c25ee278ea
+doccontainerchecksum 899a804871225fe6b8053f4ff491b927bb343ba758030ed16a80892d75bd5e4d2b35dc1477e9a0fa226eb560facd39f0c17332f5270324bae4079c1d4b57f83b
 docfiles size=182
  texmf-dist/doc/man/man1/xelatex-unsafe.1
  texmf-dist/doc/man/man1/xelatex-unsafe.man1.pdf
@@ -68,5 +68,5 @@ catalogue-contact-announce https://lists.tug.org/xetex-announce
 catalogue-contact-home https://tug.org/xetex
 catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/xetexdir
 catalogue-contact-support https://lists.tug.org/xetex
-catalogue-license lgpl
+catalogue-license x11
 catalogue-topics engine

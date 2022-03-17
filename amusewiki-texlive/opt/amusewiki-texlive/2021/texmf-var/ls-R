@@ -1,58 +1,58 @@
 % ls-R -- filename database for kpathsea; do not change this line.
+
 ./:
 .:
-fonts
 ls-R
+fonts
 tex
 web2c
 xdvi
 
 ./fonts:
 conf
-map
-pk
 tfm
+pk
+map
 
 ./fonts/conf:
-conf
 texlive-fontconfig.conf
+conf
 
 ./fonts/conf/conf:
 
+./fonts/tfm:
+
+./fonts/pk:
+
 ./fonts/map:
-dvipdfmx
 dvips
 pdftex
-
-./fonts/map/dvipdfmx:
-updmap
-
-./fonts/map/dvipdfmx/updmap:
-kanjix.map
+dvipdfmx
 
 ./fonts/map/dvips:
 updmap
 
 ./fonts/map/dvips/updmap:
+ps2pk.map
+psfonts_pk.map
 builtin35.map
 download35.map
-ps2pk.map
 psfonts.map
-psfonts_pk.map
 psfonts_t1.map
 
 ./fonts/map/pdftex:
 updmap
 
 ./fonts/map/pdftex/updmap:
-pdftex_dl14.map
 pdftex.map
 pdftex_ndl14.map
+pdftex_dl14.map
 
-./fonts/pk:
+./fonts/map/dvipdfmx:
+updmap
 
-./fonts/tfm:
-
+./fonts/map/dvipdfmx/updmap:
+kanjix.map
 
 ./tex:
 context
@@ -67,24 +67,24 @@ config
 config
 
 ./tex/generic/config:
-language.dat
-language.dat.lua
 language.def
+language.dat.lua
+language.dat
 
 ./web2c:
-eptex
-euptex
-luahbtex
-luatex
-metafont
-pdftex
-ptex
-tex
-tlmgr-commands.log
 tlmgr.log
-updmap.log
-uptex
+eptex
+tlmgr-commands.log
+luatex
 xetex
+tex
+luahbtex
+uptex
+metafont
+ptex
+updmap.log
+pdftex
+euptex
 
 ./web2c/eptex:
 eptex.fmt
@@ -94,62 +94,63 @@ platex-dev.log
 platex.fmt
 platex.log
 
-./web2c/euptex:
-euptex.fmt
-euptex.log
-uplatex-dev.fmt
-uplatex-dev.log
-uplatex.fmt
-uplatex.log
-
-./web2c/luahbtex:
-luahbtex.fmt
-luahbtex.log
-lualatex.fmt
-lualatex.log
-
 ./web2c/luatex:
+luatex.log
+luatex.fmt
 dvilualatex.fmt
 dvilualatex.log
 dviluatex.fmt
 dviluatex.log
-luatex.fmt
-luatex.log
 
-./web2c/metafont:
-mf.base
-mf.log
-
-./web2c/pdftex:
-etex.fmt
-etex.log
-latex.fmt
-latex.log
-mptopdf.fmt
-mptopdf.log
-pdfetex.fmt
-pdfetex.log
-pdflatex.fmt
-pdflatex.log
-pdftex.fmt
-pdftex.log
-
-./web2c/ptex:
-ptex.fmt
-ptex.log
+./web2c/xetex:
+xelatex.log
+xelatex.fmt
+xetex.fmt
+xetex.log
 
 ./web2c/tex:
 tex.fmt
 tex.log
 
+./web2c/luahbtex:
+luahbtex.fmt
+lualatex.fmt
+luahbtex.log
+lualatex.log
+
 ./web2c/uptex:
 uptex.fmt
 uptex.log
 
-./web2c/xetex:
-xelatex.fmt
-xelatex.log
-xetex.fmt
-xetex.log
+./web2c/metafont:
+mf.log
+mf.base
+
+./web2c/ptex:
+ptex.fmt
+ptex.log
+
+./web2c/pdftex:
+pdfetex.fmt
+mptopdf.log
+pdfetex.log
+mptopdf.fmt
+latex.log
+latex.fmt
+pdftex.fmt
+pdflatex.log
+etex.fmt
+pdflatex.fmt
+pdftex.log
+etex.log
+
+./web2c/euptex:
+uplatex.log
+euptex.fmt
+uplatex-dev.log
+euptex.log
+uplatex-dev.fmt
+uplatex.fmt
 
 ./xdvi:
+

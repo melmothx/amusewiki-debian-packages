@@ -1,6 +1,6 @@
 name latex-base-dev
 category Package
-revision 61598
+revision 61902
 shortdesc Development pre-release of the LaTeX kernel
 longdesc This package provides a testing release for upcoming LaTeX2e
 longdesc kernel changes. Testing by the LaTeX team itself suggests that
@@ -9,11 +9,11 @@ longdesc users is required by adding these changes to the release LaTeX
 longdesc kernel. Typically, the code here will be used by a TeX system
 longdesc to create dedicated formats, for example pdflatex-dev, which
 longdesc can then be used explicitly for testing.
-containersize 222916
-containerchecksum 41f61ac442779210ae8e776cd5b1d6964bf266a5bac4024238ebb6daaad1f98f4fea7532e4185d4e40af29d848c54a955585d66333daf65301452aa198fa8a7e
-doccontainersize 29352936
-doccontainerchecksum 1bb149bd5e7598d15bbec6e2d848080629ada8086be4e406d77d86084f0e8a3d3a40c17b5fd09f0276e1c3c3066ea6e36b43fcb21b17a60f8d297155c84ac67e
-docfiles size=9227
+containersize 223192
+containerchecksum d3e26994513fb2a3716ba070342cc284157dfe50a8b839500bcc1dbe47d96247e91d70f3aec340f7ffaacd7de11adbd0854132d3e15bdbcc0269327b445b987f
+doccontainersize 29400040
+doccontainerchecksum 6bd7b0fd86e001974b7af3fa84c90b07ad4ccfb8dfb0f45d63e734e7c568aa464e639a946716828719305ad22fac5fb4b842557e5bf87179f8c7be713ef85ef0
+docfiles size=9239
  texmf-dist/doc/latex-dev/base/README.md details="Readme"
  texmf-dist/doc/latex-dev/base/alltt.pdf
  texmf-dist/doc/latex-dev/base/bugs.txt
@@ -172,8 +172,8 @@ docfiles size=9227
  texmf-dist/doc/latex-dev/base/utf8ienc.pdf
  texmf-dist/doc/latex-dev/base/webcomp.err
  texmf-dist/doc/latex-dev/base/webcomp.pdf
-srccontainersize 695636
-srccontainerchecksum 9cc498767a623681c09bf9ea28d8f79eac8c3bc147a0e0f754ce63c2d55d2cf823ad05528b2fb69bd96b911442443d685095662d62f72951018342976c40dd2f
+srccontainersize 697140
+srccontainerchecksum dac416e0f1899108b3eb1362d340c1e92c33ff09d75d6c5fedf2956908b1125a59e7d801b727fac8c5b284cecd5d23a6629e16bdd05a091360c38637f2243c59
 runfiles size=628
  texmf-dist/tex/latex-dev/base/alltt.sty
  texmf-dist/tex/latex-dev/base/ansinew.def
@@ -344,4 +344,4 @@ catalogue-also latex-base
 catalogue-ctan /macros/latex-dev/base
 catalogue-license lppl1.3c
 catalogue-topics format class latex-devel
-catalogue-version 2022-06-01 pre-release 1
+catalogue-version 2022-06-01 pre-release 2

@@ -1,16 +1,16 @@
 name luatexja
 category Package
-revision 61485
+revision 61937
 shortdesc Typeset Japanese with Lua(La)TeX
 longdesc The package offers support for typesetting Japanese documents
 longdesc with LuaTeX. Either of the Plain and LaTeX2e formats may be
 longdesc used with the package.
 depend luatexbase
-containersize 191008
-containerchecksum 7ce61f59c6ace10daa78d10f7516c8058fe02b9f1cec4ef1a761cd0ab085ccf4d0d090c1405cb38afafba68bc537120c9f3b00904198224c407e39596c2db706
-doccontainersize 3232668
-doccontainerchecksum 9024ef0b8873f0d19e2d4558b2e22e7919f094e56693ccc687e42961fe866fe76dcd5c81440166e2edaf2028fd2882d28c351156a14283f590b7bdf439b44809
-docfiles size=972
+containersize 191480
+containerchecksum eb7d3fd33ee8d9d29d3b1b7ac2324f266d7940359cf53d41a83a13f0c5765afc7f8b53b3d96a0bdd13c44d8fa47230869452eeaa393485b3f0257d58923b9434
+doccontainersize 3241264
+doccontainerchecksum e487b9bb9a52e41ad386a7adf7d528acfbf5fc09617fe90750af1b040035e5f3a739f5a08219a59cb321085fe196c2f14e67df1c62a6b80e808580afd551acf1
+docfiles size=974
  texmf-dist/doc/luatex/luatexja/COPYING
  texmf-dist/doc/luatex/luatexja/README details="Readme"
  texmf-dist/doc/luatex/luatexja/jfm-test.lua
@@ -28,8 +28,8 @@ docfiles size=972
  texmf-dist/doc/luatex/luatexja/luatexja.dtx
  texmf-dist/doc/luatex/luatexja/luatexja.ins
 srccontainersize 83316
-srccontainerchecksum af1a85083fa203aea813d702f5e1da76ec4bb73b8d090b977c53523d70e0f539d29407172516a7913f1c951df05705487fe6037af1184fefb72ebd9751d24c94
-runfiles size=410
+srccontainerchecksum 198020cb68133c9253fe242072b869c4df8f859d4cc26460f5e364c1fa0fa8a6f98f132ab58ac42c07a1df1361a1999beba95d72d9b1f099644ad1f6971ab48c
+runfiles size=411
  texmf-dist/tex/luatex/luatexja/addons/luatexja-adjust.sty
  texmf-dist/tex/luatex/luatexja/addons/luatexja-ajmacros.sty
  texmf-dist/tex/luatex/luatexja/addons/luatexja-fontspec-27c.sty
@@ -128,5 +128,5 @@ catalogue-contact-home https://osdn.net/projects/luatex-ja/wiki/FrontPage(en)
 catalogue-contact-repository https://osdn.net/projects/luatex-ja/scm/git/luatexja/
 catalogue-ctan /macros/luatex/generic/luatexja
 catalogue-license bsd
-catalogue-topics japanese luatex class
-catalogue-version 20220103.0
+catalogue-topics japanese luatex class macro-gen
+catalogue-version 20220207.0

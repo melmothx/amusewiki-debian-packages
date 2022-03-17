@@ -325,3 +325,35 @@
 [Fri Jan 28 16:52:42 2022]   OK: platex-dev.fmt/eptex
 [Fri Jan 28 16:55:17 2022] install: carlisle
 [Fri Jan 28 16:55:17 2022] command: mktexlsr
+[Wed Feb  9 17:12:31 2022] update: amsfonts (29208 -> 61937)
+[Wed Feb  9 17:12:32 2022] update: bidi (55193 -> 61881)
+[Wed Feb  9 17:12:32 2022] update: graphics-def (61111 -> 61899)
+[Wed Feb  9 17:12:33 2022] update: iftex (56594 -> 61910)
+[Wed Feb  9 17:12:33 2022] update: kpathsea (61719 -> 61937)
+[Wed Feb  9 17:12:34 2022] update: l3backend (61588 -> 61931)
+[Wed Feb  9 17:12:36 2022] update: l3kernel (61685 -> 61903)
+[Wed Feb  9 17:12:40 2022] update: latex-base-dev (61598 -> 61902)
+[Wed Feb  9 17:12:41 2022] update: luatexja (61485 -> 61937)
+[Wed Feb  9 17:12:42 2022] update: texlive-scripts (61757 -> 61939)
+[Wed Feb  9 17:12:42 2022] update: uptex-base (59407 -> 61795)
+[Wed Feb  9 17:12:43 2022] update: xetex (61719 -> 61937)
+[Wed Feb  9 17:12:43 2022] command: mktexlsr
+[Wed Feb  9 17:12:43 2022] command: updmap-sys
+[Wed Feb  9 17:12:44 2022] command: fmtutil-sys --byengine euptex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/8jGMzqPoH3/oJDUgV5lDJ
+[Wed Feb  9 17:12:48 2022]   OK: euptex.fmt/euptex uplatex-dev.fmt/euptex uplatex.fmt/euptex
+[Wed Feb  9 17:12:48 2022] command: fmtutil-sys --byengine uptex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/8jGMzqPoH3/oJDUgV5lDJ
+[Wed Feb  9 17:12:48 2022]   OK: uptex.fmt/uptex
+[Wed Feb  9 17:12:48 2022] command: fmtutil-sys --byengine xetex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/8jGMzqPoH3/oJDUgV5lDJ
+[Wed Feb  9 17:12:53 2022]   OK: xetex.fmt/xetex xelatex.fmt/xetex
+[Wed Feb  9 17:12:53 2022] command: fmtutil-sys --byfmt latex --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/8jGMzqPoH3/oJDUgV5lDJ
+[Wed Feb  9 17:12:55 2022]   OK: latex.fmt/pdftex
+[Wed Feb  9 17:12:55 2022] command: fmtutil-sys --byfmt lualatex --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/8jGMzqPoH3/oJDUgV5lDJ
+[Wed Feb  9 17:12:57 2022]   OK: lualatex.fmt/luahbtex
+[Wed Feb  9 17:12:57 2022] command: fmtutil-sys --byfmt pdflatex --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/8jGMzqPoH3/oJDUgV5lDJ
+[Wed Feb  9 17:12:58 2022]   OK: pdflatex.fmt/pdftex
+[Wed Feb  9 17:12:58 2022] command: fmtutil-sys --byfmt platex-dev --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/8jGMzqPoH3/oJDUgV5lDJ
+[Wed Feb  9 17:12:59 2022]   OK: platex-dev.fmt/eptex
+[Wed Feb  9 17:12:59 2022] command: fmtutil-sys --byfmt platex --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/8jGMzqPoH3/oJDUgV5lDJ
+[Wed Feb  9 17:13:00 2022]   OK: platex.fmt/eptex
+[Wed Feb  9 17:13:00 2022] command: fmtutil-sys --byfmt dvilualatex --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/8jGMzqPoH3/oJDUgV5lDJ
+[Wed Feb  9 17:13:02 2022]   OK: dvilualatex.fmt/luatex

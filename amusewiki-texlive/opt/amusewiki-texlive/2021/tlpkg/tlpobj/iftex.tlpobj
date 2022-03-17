@@ -1,6 +1,6 @@
 name iftex
 category Package
-revision 56594
+revision 61910
 shortdesc Am I running under pdfTeX, XeTeX or LuaTeX?
 longdesc The package, which works both for Plain TeX and for LaTeX,
 longdesc defines the \ifPDFTeX, \ifXeTeX, and \ifLuaTeX conditionals for
@@ -8,11 +8,11 @@ longdesc testing which engine is being used for typesetting. The package
 longdesc also provides the \RequirePDFTeX, \RequireXeTeX, and
 longdesc \RequireLuaTeX commands which throw an error if pdfTeX, XeTeX
 longdesc or LuaTeX (respectively) is not the engine in use.
-containersize 3008
-containerchecksum 07e15945295e3d5c2f6a6e4087d16f1f5ca6014f2ae98bfd25a18d32efd07c4da4542676fa164ecdbe326d478b1370337577638ed2031cdb9f0b2b1961b86855
-doccontainersize 218576
-doccontainerchecksum a0497c07ddc2087b8291c9f017101950bb774ae387db082497b859491e38d4fe22d7f69ee9bc093ee9d70d7b67796fdbe643b76322f5fa3577aba5733c7aa105
-docfiles size=56
+containersize 3132
+containerchecksum ac7958c10c0cd5ee3a82273632445423c347bc9c5fc2015b97fdb7018d7a07b7e1316761698973b325314e945fba6c86be0dd49e058ecf74a55ccf2b9df8774f
+doccontainersize 228940
+doccontainerchecksum d51b452532fcffce4b1078ab26396bc4f8739e2c3025917b4ce88af2e5aecfbe0a54e481f1683afe2d25259c6f73e27be8f257beb1b599f9817dc37df427fd70
+docfiles size=60
  texmf-dist/doc/generic/iftex/README.md details="Readme"
  texmf-dist/doc/generic/iftex/iftex.pdf details="Package documentation"
  texmf-dist/doc/generic/iftex/iftex.tex
@@ -29,4 +29,4 @@ catalogue-contact-repository https://github.com/latex3/iftex
 catalogue-ctan /macros/generic/iftex
 catalogue-license lppl1.3c
 catalogue-topics env-query macro-gen
-catalogue-version 1.0d
+catalogue-version 1.0f

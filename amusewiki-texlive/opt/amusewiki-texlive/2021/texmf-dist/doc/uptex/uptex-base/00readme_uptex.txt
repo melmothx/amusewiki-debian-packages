@@ -1,5 +1,5 @@
 upTeX, upLaTeX  --- unicode version of ASCII pTeX, pLaTeX
-2020.10.31 Ver1.27
+2022.01.23 Ver1.28
 TANAKA, Takuji   ttk(at)t-lab(dot)opal(dot)ne(dot)jp
 
 [ Contents ]
@@ -25,4 +25,6 @@ No warranty.
     https://asciidwango.github.io/ptex/ (by DWANGO Co., Ltd.)
 [2] upTeX, upLaTeX ― unicode version of pTeX, pLaTeX
     http://www.t-lab.opal.ne.jp/tex/uptex_en.html
+[3] upTeX source and document
+    https://github.com/t-tk/upTeX-source
 

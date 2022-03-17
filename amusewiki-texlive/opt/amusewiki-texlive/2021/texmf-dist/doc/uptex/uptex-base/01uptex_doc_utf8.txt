@@ -1,5 +1,5 @@
 upTeX, upLaTeX  --- 内部unicode版 pTeX, pLaTeX の実装
-2020.10.31 Ver1.27
+2022.01.23 Ver1.28
 TANAKA, Takuji   ttk(at)t-lab(dot)opal(dot)ne(dot)jp
 
 ◇ upTeX開発のねらい
@@ -96,8 +96,7 @@ CJKのレパートリーの範囲を和文の組版に利用する。8bit欧文�
     pTeX からの改造量はやや大きいが、欧文 TeX との対称性は良くなる。
 <6> U+2xxxx (Supplimentary Ideograph Plane, SIP) の漢字など
     BMP以上かつ全角幅の文字はサポートする。
-    BMP以上かつ全角幅以外の文字は、jfmの拡張によりサポートする方針だが、
-    dviware の対応状況に差が出る可能性を考慮しオプション扱いとする。
+    BMP以上かつ全角幅以外の文字は、jfmの拡張によりサポートする。
 <7> 日本ローカル色を薄めるだけの目的での機能変更、整理、削除は行わない。
     \xkanjiskip, \euc などはそのままの名称、機能で維持する。
     理由は、少々の手当で日本ローカル色が払拭できるはずもなく、
@@ -130,20 +129,20 @@ pTeX を中心に推移してきた日本の TeX ユーザーが
     内部エンコーディングはほぼUTF-32(註1)。
 <2> 入力ファイル(.texなど)はUTF-8とISO-2022-JPの自動判定。
     出力ファイル(.log, .auxなど)はUTF-8。
-<3> tfm(jfm)のエンコーディングはUCS-2。
+<3> tfm(jfm)のエンコーディングはほぼUTF-32(註1)、
     エンコーディング名は JY2, JT2 とする。
-    U+FFFFを越える文字は、U+2xxxx(SIP)の漢字を想定し、
-    jfmのフォーマットが従来のpTeXのものを用い
-    chartype が defaultの 0 の全角文字として組版する。
-    jfmのフォーマットは文字コード24bitを扱えるように拡張するが、
-    dviwareの拡張jfmへの対応が進むまで当面オプションとする。
+    U+FFFF以下の文字では、jfmのフォーマットは従来のpTeXと互換である。
+    U+FFFFを越える文字は、defaultではU+2xxxx(SIP)の漢字を想定し、
+    chartype が defaultの 0 の全角等幅文字として組版する。
+    U+FFFF超えかつ可変文字幅を扱えるようjfmのフォーマットを
+    文字コード24bitに拡張するが、拡張jfmに対応したdviwareを必要とする。
 <4> dvi, vfにはUnicodeスカラー値を2〜3バイトで記録する(註2)。
     U+FFFF以下の文字はset2で、U+FFFFを越える文字はset3で扱う。
     和文として扱える文字コードの最大値はUnicodeの最大値U+10FFFF。
 <5> 和文、欧文の切替えは、コードレンジのチェックに加えkcatcodeを見て行う。
     kcatcode=16,17,18なら漢字,かな,和文その他記号(pTeXと同様)で、
     kcatcode=15なら欧文、非CJKの文字(新規)。
-    kcatcode=19ならhangul(新規)。hangul直後の改行は欧文同様、
+    kcatcode=19ならhangul(新規)。hangul直後の改行は欧文同様
     空白と看做すが、それ以外の点では、漢字と全く同じ動作になっている。
 <6> 欧文と判定されればUTF-8の8bit可変長文字列として内部処理する。
     オリジナルの欧文TeXと完全に互換の処理ができる。
@@ -178,10 +177,8 @@ pTeX を中心に推移してきた日本の TeX ユーザーが
    \char`<文字>, \chardef では文字コードが255以下の場合には欧文動作、
    256以上の場合には和文動作となる。
    \kchar`<文字>, \kchardef では文字コード範囲によらず和文動作となる。
-<15> 従来デフォルトのフォントはset2の範囲で済むようにし、
-   set3を含むフォント(vf)はオプションとしていたが、
-   dviwareのset3対応の普及が進んでおり
-   2018年2月よりset3を含むフォント(vf)を標準とした。
+<15> set3を含むフォント(vf)を含むフォント(vf)を標準とする(2018年2月以降)。
+   dviwareのset3対応の普及が進んだため。
 <16> ISO-2022-JP{-3,-2004}, EUC-JISX0213, Shift_JISX0213などの
    JIS X 0213系エンコーディングも使用可能にする案もあったが
    開発凍結する。
@@ -227,10 +224,10 @@ kcatcodeは、文字コードを引数として表を参照して求めていた
 upTeXでは、欧文と同等に(k)catcodeと文字コードの組となるように変更した。
 和文/欧文トークンは 29bit を重ならないように使用していることになる。
 U+10FFFFのUnicode最大値までを和文として処理できることを想定している。
-U+1xxxxの文字は考慮していない。Omegaの拡張的アプローチが必要か。
-※2: U+FFFF超の文字は当面U+2xxxxの漢字のみを想定し、
-U+2xxxxのchar typeをdefaultの0番と解釈することにすれば、
-jfmは当面拡張する必要がない。
+※2: U+FFFF超の文字は全角同幅(U+2xxxxの漢字など)を想定した場合
+U+2xxxxのchar typeをdefaultの0番と解釈し、
+jfmは従来のpTeX(16bit)の仕様の範囲で処理が可能。
+U+FFFF超かつ可変幅は拡張jfmで対応する。
 (2), (3), (4)のあたりで欧文8bit(TeX)との共存も可能。
 欧文のcatcodeで使用しているレンジをさらに上位バイトに移動し、
 和文24bit, 欧文16bit(Omega) と共存可能にし、
@@ -432,35 +429,36 @@ kcatcodeは原則としてUnicodeのblock毎に与えられる。
  (0x00)  0x0000.. 0x007F  <15>  Basic Latin
  (0x02)  0x0100.. 0x017F  <15>  Latin Extended-A
  (0x03)  0x0180.. 0x024F  <15>  Latin Extended-B
- (0x24)  0x1100.. 0x11FF  <19>  Hangul Jamo
- (0x45)  0x1E00.. 0x1EFF  <15>  Latin Extended Additional
- (0x67)  0x2E80.. 0x2EFF  <16>  CJK Radicals Supplement
- (0x68)  0x2F00.. 0x2FEF  <16>  Kangxi Radicals
- (0x69)  0x2FF0.. 0x2FFF  <16>  Ideographic Description Characters
- (0x6B)  0x3040.. 0x309F  <17>  Hiragana
- (0x6C)  0x30A0.. 0x30FF  <17>  Katakana
- (0x6D)  0x3100.. 0x312F  <16>  Bopomofo
- (0x6E)  0x3130.. 0x318F  <19>  Hangul Compatibility Jamo
- (0x6F)  0x3190.. 0x319F  <16>  Kanbun
- (0x70)  0x31A0.. 0x31BF  <16>  Bopomofo Extended
- (0x71)  0x31C0.. 0x31EF  <16>  CJK Strokes
- (0x72)  0x31F0.. 0x31FF  <17>  Katakana Phonetic Extensions
- (0x75)  0x3400.. 0x4DBF  <16>  CJK Unified Ideographs Extension A
- (0x77)  0x4E00.. 0x9FFF  <16>  CJK Unified Ideographs
- (0x87)  0xA960.. 0xA97F  <19>  Hangul Jamo Extended-A
- (0x92)  0xAC00.. 0xD7AF  <19>  Hangul Syllables
- (0x93)  0xD7B0.. 0xD7FF  <19>  Hangul Jamo Extended-B
- (0x98)  0xF900.. 0xFAFF  <16>  CJK Compatibility Ideographs
- (0x103) 0x1B000..0x1B0FF <17>  Kana Supplement
- (0x104) 0x1B100..0x1B12F <17>  Kana Extended-A
- (0x105) 0x1B130..0x1B16F <17>  Small Kana Extension
- (0x129) 0x20000..0x2A6FF <16>  CJK Unified Ideographs Extension B
- (0x12A) 0x2A700..0x2B73F <16>  CJK Unified Ideographs Extension C
- (0x12B) 0x2B740..0x2B81F <16>  CJK Unified Ideographs Extension D
- (0x12C) 0x2B820..0x2CEAF <16>  CJK Unified Ideographs Extension E
- (0x12D) 0x2CEB0..0x2F7FF <16>  CJK Unified Ideographs Extension F
- (0x12E) 0x2F800..0x2FFFF <16>  CJK Compatibility Ideographs Supplement
- (0x12F) 0x30000..0x3134F <16>  CJK Unified Ideographs Extension G
+ (0x25)  0x1100.. 0x11FF  <19>  Hangul Jamo
+ (0x46)  0x1E00.. 0x1EFF  <15>  Latin Extended Additional
+ (0x68)  0x2E80.. 0x2EFF  <16>  CJK Radicals Supplement
+ (0x69)  0x2F00.. 0x2FEF  <16>  Kangxi Radicals
+ (0x6A)  0x2FF0.. 0x2FFF  <16>  Ideographic Description Characters
+ (0x6C)  0x3040.. 0x309F  <17>  Hiragana
+ (0x6D)  0x30A0.. 0x30FF  <17>  Katakana
+ (0x6E)  0x3100.. 0x312F  <16>  Bopomofo
+ (0x6F)  0x3130.. 0x318F  <19>  Hangul Compatibility Jamo
+ (0x70)  0x3190.. 0x319F  <16>  Kanbun
+ (0x71)  0x31A0.. 0x31BF  <16>  Bopomofo Extended
+ (0x72)  0x31C0.. 0x31EF  <16>  CJK Strokes
+ (0x73)  0x31F0.. 0x31FF  <17>  Katakana Phonetic Extensions
+ (0x76)  0x3400.. 0x4DBF  <16>  CJK Unified Ideographs Extension A
+ (0x78)  0x4E00.. 0x9FFF  <16>  CJK Unified Ideographs
+ (0x88)  0xA960.. 0xA97F  <19>  Hangul Jamo Extended-A
+ (0x93)  0xAC00.. 0xD7AF  <19>  Hangul Syllables
+ (0x94)  0xD7B0.. 0xD7FF  <19>  Hangul Jamo Extended-B
+ (0x99)  0xF900.. 0xFAFF  <16>  CJK Compatibility Ideographs
+ (0x10A) 0x1AFF0..0x1AFFF <17>  Kana Extended-B
+ (0x10B) 0x1B000..0x1B0FF <17>  Kana Supplement
+ (0x10C) 0x1B100..0x1B12F <17>  Kana Extended-A
+ (0x10D) 0x1B130..0x1B16F <17>  Small Kana Extension
+ (0x135) 0x20000..0x2A6FF <16>  CJK Unified Ideographs Extension B
+ (0x136) 0x2A700..0x2B73F <16>  CJK Unified Ideographs Extension C
+ (0x137) 0x2B740..0x2B81F <16>  CJK Unified Ideographs Extension D
+ (0x138) 0x2B820..0x2CEAF <16>  CJK Unified Ideographs Extension E
+ (0x139) 0x2CEB0..0x2F7FF <16>  CJK Unified Ideographs Extension F
+ (0x13A) 0x2F800..0x2FFFF <16>  CJK Compatibility Ideographs Supplement
+ (0x13B) 0x30000..0x3134F <16>  CJK Unified Ideographs Extension G
 (上記の文字の範囲は実装に基づいており、Blocks.txtに記述されている範囲より広い場合がある)
 ○Unicode blockの例外
  (0x1FD) 0xAA, 0xBA, 0xC0..0xD6, 0xD8..0xF6, 0xF8..0xFF <15>  Latin-1 Letters
@@ -485,7 +483,7 @@ upTeXのkcatcodeのデフォルト値が16,17,19のブロックは返り値をtr
          0x0400.. 0x04FF  <18>  Cyrillic
          0x0500.. 0x052F  <18>  Cyrillic Supplement
          0x1C80.. 0x1C8F  <18>  Cyrillic Extended-C
- (0x45)  0x1E00.. 0x1EFF  <15>  Latin Extended Additional
+ (0x46)  0x1E00.. 0x1EFF  <15>  Latin Extended Additional
          0x1F00.. 0x1FFF  <18>  Greek Extended
          0x2C60.. 0x2C7F  <18>  Latin Extended-C
          0x2DE0.. 0x2DFF  <18>  Cyrillic Extended-A
@@ -496,6 +494,7 @@ upTeXのkcatcodeのデフォルト値が16,17,19のブロックは返り値をtr
          0xA720.. 0xA7FF  <18>  Latin Extended-D
          0xAB30.. 0xAB6F  <18>  Latin Extended-E
          0xFE30.. 0xFE4F  <18>  CJK Compatibility Forms (全角英数、半角カナを除く)
+         0x10780..0x107BF <18>  Latin Extended-F
  ○Unicode blockの例外
  (0x1FD) 0xAA, 0xBA, 0xC0..0xD6, 0xD8..0xF6, 0xF8..0xFF <15>  Latin-1 Letters
 
@@ -610,8 +609,9 @@ dviout    set2の範囲では改造無しでフォントの設定のみでほぼ
   http://oku.edu.mie-u.ac.jp/~okumura/texfaq/qa/51610.html
   http://oku.edu.mie-u.ac.jp/~okumura/texfaq/qa/51705.html
   の問題点の御報告がある。
-  開発版で修正案を取り入れていただいた。
-  (Ref. http://tug.org/svn/dviout?view=revision&revision=178 )
+  開発版, CTAN版で修正案を取り入れていただいた。
+  http://tug.org/svn/dviout?view=revision&revision=178
+  https://ctan.org/pkg/dviout
 utfパッケージ  uptex-0.30では動いている。
   uptex-1.xxの配布には含まない。
 

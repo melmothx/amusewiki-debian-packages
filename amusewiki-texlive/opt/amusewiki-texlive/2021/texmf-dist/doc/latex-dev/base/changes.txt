@@ -1,3 +1,4 @@
+
 ================================================================================
 This file lists changes to the LaTeX2e files in reverse chronological order of
 publication (therefore the dates might be out of sequence if there are hotfixes).
@@ -5,15 +6,38 @@ It is provided for convenience only.  It therefore makes no claims to
 completeness or accuracy and it contains some references to files that
 are not part of the distribution.
 ================================================================================
-2021-12-30 Ulrike Fischer <Ulrike.Fischer@latex-project.org>
 
-	* ltmeta.dtx:
-	Adapted bundle name to new name `LaTeX-lab'
+2022-02-05  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* ltkeys.dtx (section{Plain \TeX}):
+	  Create key properties at the 2e layer
+          Add .code property
+
+2022-01-25  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* ltplain.dtx (section{Plain \TeX}):
+	Alter \obeyspaces and \obeylines to use a redirection for special
+	use cases (gh/367)}
+
+2022-01-20  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* doc.dtx (subsection{Keys supported by doc):
+	Fixed key handling for nohyperref and nomulticol (gh/750).
+
+2022-01-15  Joseph Wright  <Joseph.Wright-project.org>
+
+	* ltkeys.dtx:
+        Clear option data in \AtEndOfPackage hook
 
 2022-01-06  Joseph Wright  <Joseph.Wright-project.org>
 
 	* ltexpl.dtx (section{Document-level command names for expl3 functions}):
 	Adjust document-level names for \exp_args:Nc and the like
+
+2021-12-30 Ulrike Fischer <Ulrike.Fischer@latex-project.org>
+
+	* ltmeta.dtx:
+	Adapted bundle name to new name `LaTeX-lab'
 
 2021-12-31 Phelype Oleinik  <phelype.oleinik@latex-project.org>
 

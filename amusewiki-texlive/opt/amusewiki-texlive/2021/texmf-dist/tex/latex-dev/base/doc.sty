@@ -53,7 +53,7 @@
 \DeclareCurrentRelease{v3}{2022-06-01}
 
 \ProvidesPackage{doc}
-  [2022/06/01 v3.0g
+  [2022/06/01 v3.0h
    Standard LaTeX documentation package V3 (FMi)]
 %%
 %% Package `doc' to use with LaTeX 2e
@@ -89,7 +89,7 @@
     hyperref / true  .code:n = { \legacy_if_set_true:n  { doc@hyperref } },
     hyperref / false .code:n = { \legacy_if_set_false:n { doc@hyperref } },
     hyperref  .default:n = { true },
-    hyperref  .choice:,
+    nohyperref  .choice:,
     nohyperref / true  .code:n = { \legacy_if_set_false:n  { doc@hyperref } },
     nohyperref / false .code:n = { \legacy_if_set_true:n { doc@hyperref } },
     nohyperref  .default:n = { true },
@@ -100,7 +100,7 @@
     nomulticol  .choice:,
     nomulticol / true  .code:n = { \legacy_if_set_false:n  { doc@multicol } },
     nomulticol / false .code:n = { \legacy_if_set_true:n { doc@multicol } },
-    multicol  .default:n = { true },
+    nomulticol  .default:n = { true },
     debugshow  .choice:,
     debugshow / true  .code:n = { \legacy_if_set_true:n  { doc@debugshow } },
     debugshow / false .code:n = { \legacy_if_set_false:n { doc@debugshow } },

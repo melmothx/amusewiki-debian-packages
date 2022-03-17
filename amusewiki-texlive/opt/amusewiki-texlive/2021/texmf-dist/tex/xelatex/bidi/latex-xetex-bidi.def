@@ -7,7 +7,10 @@
 %% bidi.dtx  (with options: `table,latex-xetex-bidi.def')
 %% 
 %%   __________________________________________________
-%%   Copyright (c) 2007--2020  Vafa Khalighi
+%%   Vafa Khalighi
+%%   tex-persian@vafa.ac
+%% 
+%%   Copyright (c) 2007--2022  Vafa Khalighi
 %%   Copyright (c) 2018--2020 bidi-tex GitHub Organization
 %% 
 %%   It may be distributed and/or modified under the LaTeX Project Public License,
@@ -18,7 +21,7 @@
 %%   by Vafa Khalighi.
 %% 
 %% 
-%% \CheckSum{50426}
+%% \CheckSum{50477}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -35,7 +38,7 @@
 %%   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %%   Right brace   \}     Tilde         \~}
 %%
-\ProvidesFile{latex-xetex-bidi.def}[2019/03/03 v1.3.7 bidi adaptations  for `latex.ltx' for XeTeX engine]
+\ProvidesFile{latex-xetex-bidi.def}[2022/02/01 v1.3.8 bidi adaptations  for `latex.ltx' for XeTeX engine]
 \newcommand{\TeXXeTOn}{\TeXXeTstate\@ne}
 \newcommand{\TeXXeTOff}{\TeXXeTstate\z@}
 \TeXXeTOn
@@ -726,6 +729,28 @@ $\@@underline{\hbox{#1}}\m@th$\relax\fi\fi}
    \hbox to\linewidth{\if@RTL\beginR\fi\@itemfudge
    \hskip\dimen\@curtabmar\box\@curline\hfil\if@RTL\endR\fi}%
 \fi}
+
+\ExplSyntaxOn
+\cs_undefine:N \__shipout_picture_overlay:n
+\cs_new:Npn \__shipout_picture_overlay:n #1 {
+    \__shipout_init_page_origins:
+    \if@RTL
+      \kern \__dim_eval:w \textwidth-\c__shipout_horigin_tl \scan_stop:
+    \else
+      \kern -\c__shipout_horigin_tl \scan_stop:
+    \fi
+    \vbox_to_zero:n {
+      \kern -\c__shipout_vorigin_tl \scan_stop:
+      \unitlength 1pt \scan_stop:
+      \hbox_set_to_wd:Nnn \l__shipout_tmp_box \c_zero_dim
+                          { \ignorespaces #1 \hss }
+      \box_set_ht:Nn \l__shipout_tmp_box \c_zero_dim
+      \box_set_dp:Nn \l__shipout_tmp_box \c_zero_dim
+      \box_use:N \l__shipout_tmp_box
+      \tex_vss:D
+    }
+}
+\ExplSyntaxOff
 
 \newcommand*{\bidi@font@@outputpage}{}
 
