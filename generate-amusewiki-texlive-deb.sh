@@ -27,6 +27,8 @@ fi
 
 cat amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/tex/generic/babel/locale/sr/babel-sr-Latn.ini > amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/tex/generic/babel/locale/sr/babel-sr.ini
 
+cat patches/italian-utf8.xdy > amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/xindy/modules/lang/italian/utf8.xdy
+
 # create symbolic links
 rm -f      amusewiki-texlive/opt/amusewiki-texlive/current
 ln -s $year amusewiki-texlive/opt/amusewiki-texlive/current
