@@ -23,6 +23,10 @@ if [ "$1" = "bootstrap" ]; then
     rm -rf amusewiki/local/install-texlive
 fi
 
+# patch serbian data
+
+cat amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/tex/generic/babel/locale/sr/babel-sr-Latn.ini > amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/tex/generic/babel/locale/sr/babel-sr.ini
+
 # create symbolic links
 rm -f      amusewiki-texlive/opt/amusewiki-texlive/current
 ln -s $year amusewiki-texlive/opt/amusewiki-texlive/current
