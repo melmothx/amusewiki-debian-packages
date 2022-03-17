@@ -1,4 +1,4 @@
-This is upTeX, Version 3.141592653-p3.9.0-u1.27 (utf8.uptex) (TeX Live 2021) (INITEX)  9 FEB 2022 17:12
+This is upTeX, Version 3.141592653-p3.9.0-u1.27 (utf8.uptex) (TeX Live 2021) (INITEX)  17 MAR 2022 09:24
  restricted \write18 enabled.
  %&-line parsing enabled.
 **uptex.ini
@@ -58,8 +58,8 @@ macros,
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/uptex/uptex-base/ukinsoku.tex)) )
 Beginning to dump on file uptex.fmt
- (preloaded format=uptex 2022.2.9)
-2174 strings of total length 32276
+ (preloaded format=uptex 2022.3.17)
+2174 strings of total length 32277
 5060 memory locations dumped; current usage is 128&4911
 999 multiletter control sequences
 \font\nullfont=nullfont

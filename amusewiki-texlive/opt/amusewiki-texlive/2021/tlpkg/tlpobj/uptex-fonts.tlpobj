@@ -1,14 +1,14 @@
 name uptex-fonts
 category Package
-revision 54045
+revision 62593
 shortdesc Fonts for use with upTeX
 longdesc The bundle contains fonts (TFM and VF) for use with upTeX. This
 longdesc is a redistribution derived from the upTeX distribution by
 longdesc Takuji Tanaka.
-containersize 169608
-containerchecksum 600d47ed277ce4bc0ad0de219e307b2c4741229c0e02ad94f7dddb2f309309922fcfbc9de5e115d85ad45b53485ff844e70d5af8086f7a16980ac579795c2e7f
-doccontainersize 5168
-doccontainerchecksum 3c41c19b078bb5f66b8231025e39df2b7b9b959d3a4a45b04058f670d6a08e83bef50c889045aa55caddfe7ccb8a5c7582c43115b4749232490f999574fd0ec7
+containersize 182744
+containerchecksum 89fa503990e768f5125de1a3161c2b6e14cf7eeeccb81664dfff43cd097b59210988464c587a199202f0c4836fd598c6ff6db6e7d39ab36a3be41e9e14e1f6ea
+doccontainersize 5156
+doccontainerchecksum 2a6aa685c8b1636c37021a76dd40703744af62942aa3f36c4f33f6d2e5961cb96f5379056207d807bfe9bcfabb0265e9aaf64a84f9c80ebd084e2520ca4d31e2
 docfiles size=6
  texmf-dist/doc/fonts/uptex-fonts/LICENSE
  texmf-dist/doc/fonts/uptex-fonts/README.md details="Readme"

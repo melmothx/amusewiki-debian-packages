@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (INITEX)  9 FEB 2022 17:12
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (INITEX)  17 MAR 2022 09:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -816,8 +816,8 @@ Retaining: \et@xerr, \et@xinput, \et@xlibhdr, \et@xmsg, \et@xtoks, \et@xwarn,
 
  )
 Beginning to dump on file xetex.fmt
- (preloaded format=xetex 2022.2.9)
-72918 strings of total length 140418
+ (preloaded format=xetex 2022.3.17)
+72918 strings of total length 140419
 12098 memory locations dumped; current usage is 647&10614
 4223 multiletter control sequences
 \font\nullfont=nullfont

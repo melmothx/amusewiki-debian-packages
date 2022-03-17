@@ -21,7 +21,7 @@
 %%   by Vafa Khalighi.
 %% 
 %% 
-%% \CheckSum{50477}
+%% \CheckSum{50574}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -38,7 +38,7 @@
 %%   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %%   Right brace   \}     Tilde         \~}
 %%
-\ProvidesFile{eso-pic-xetex-bidi.def}[2022/02/01 v0.3 bidi adaptations for eso-pic package for XeTeX engine]
+\ProvidesFile{eso-pic-xetex-bidi.def}[2022/02/18 v0.4 bidi adaptations for eso-pic package for XeTeX engine]
 \renewcommand\AtPageLowerLeft[1]{\AtPageUpperLeft{%
   \put(\if@RTLmain\paperwidth\else 0\fi,-\paperheight){#1}}}
 
@@ -46,15 +46,25 @@
   \renewcommand\AtTextUpperLeft[1]{%
     \begingroup
       \ifodd\c@page
-        \ESO@tempdima=\spinemargin
+        \if@RTLmain
+          \ESO@tempdima=\paperwidth
+          \advance\ESO@tempdima-\textwidth
+          \advance\ESO@tempdima-\spinemargin
+        \else
+          \ESO@tempdima=\spinemargin
+        \fi
       \else
-        \ESO@tempdima=\paperwidth
-        \advance\ESO@tempdima-\textwidth
-        \advance\ESO@tempdima-\spinemargin
+        \if@RTLmain
+          \ESO@tempdima=\spinemargin
+        \else
+          \ESO@tempdima=\paperwidth
+          \advance\ESO@tempdima-\textwidth
+          \advance\ESO@tempdima-\spinemargin
+        \fi
       \fi
       \ESO@tempdimb=-\uppermargin
       \AtPageUpperLeft{%
-        \put(\if@RTLmain-\fi\ESO@tempdima,\ESO@tempdimb){#1}%
+        \put(\if@RTLmain-\textwidth-\fi\ESO@tempdima,\ESO@tempdimb){#1}%
       }%
     \endgroup
   }
@@ -84,7 +94,7 @@
       \advance\ESO@tempdimb-\headheight
       \advance\ESO@tempdimb-\headsep
       \AtPageUpperLeft{%
-        \put(\if@RTLmain-\fi\ESO@tempdima,\ESO@tempdimb){#1}%
+        \put(\if@RTLmain-\textwidth-\fi\ESO@tempdima,\ESO@tempdimb){#1}%
       }%
     \endgroup
   }

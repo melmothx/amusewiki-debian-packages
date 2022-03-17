@@ -6,9 +6,9 @@
                      Luaotfload configuration file
 -----------------------------------------------------------------------
 
-:Date:                  2021-05-21
+:Date:                  2022-02-27
 :Copyright:             GPL v2.0
-:Version:               3.18
+:Version:               3.20
 :Manual section:        5
 :Manual group:          text processing
 
@@ -228,6 +228,8 @@ Section ``misc``
 +---------------+--------+-------------------------+
 |  version      |   s    |  <Luaotfload version>   |
 +---------------+--------+-------------------------+
+|  keepnames    |   b    |  ``true``               |
++---------------+--------+-------------------------+
 
 With ``statistics`` enabled, extra statistics will be collected during
 index creation and appended to the index file. It may then be queried
@@ -240,6 +242,10 @@ terminal dimensions cannot be retrieved.
 
 The value of ``version`` is derived from the version string hard-coded
 in the Luaotfload source. Override at your own risk.
+
+The ``keepnames`` option decides if the ConTeXt fontloader should keep
+names it considers useless or if they should be discarded. This option
+only takes effect after font caches are regenererated.
 
 
 Section ``paths``

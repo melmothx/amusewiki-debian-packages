@@ -22,8 +22,8 @@ end
 -- progname and version
 fullname = kpse.find_file('texdoc/texdoclib', 'lua')
 progname = 'Texdoc'
-version = '3.3.1'
-release_date = '2021-05-20'
+version = '3.4'
+release_date = '2022-03-03'
 
 -- make sure to update setup_config_from_cl() accordingly
 -- and set a default value in setup_config_from_defaults() if relevant
@@ -64,7 +64,7 @@ Repository: <https://github.com/TeX-Live/texdoc>
 Please email bugs to <texdoc@tug.org>.]]
 
 copyright_msg = [[
-Copyright 2008-2021 Manuel Pégourié-Gonnard, Takuto Asakura, the TeX Live Team.
+Copyright 2008-2022 Manuel Pégourié-Gonnard, Takuto Asakura, the TeX Live Team.
 License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
 This is free software: you are free to change and redistribute it.]]
 
@@ -104,7 +104,7 @@ notfound_msg_ph = 'PKGNAME'
 
 -- exit codes
 exit_ok = 0
-exit_error = 1 -- apparently hard-coded in Lua
+exit_error = 1  -- apparently hard-coded in Lua
 exit_usage = 2
 exit_notfound = 3
 
@@ -129,13 +129,34 @@ known_debugs = {
 }
 
 -- various cache or non-cache files
-cache_name = 'texdoc/cache-tlpdb.lua' -- relative to TEXMFVAR
+cache_name = 'texdoc/cache-tlpdb.lua'  -- relative to TEXMFVAR
 data_tlpdb_name = 'texdoc/Data.tlpdb.lua'
 
-place_holder = '%%s' -- used for viewer commands
+place_holder = '%%s'  -- used for viewer commands
 
 -- kpse path separator
 kpse_sep = (os.type == 'windows') and ';' or ':'
+
+-- language codes
+-- Note: corrected with `find $TEXMFDIST/doc/ | awk 'match(
+--       $0, /(.*)-(\w{2}).pdf/, a){print a[2]}'`
+lang_codes = {
+    cn = 'zh',  -- Chinese (alias)
+    cz = 'cz',  -- Chech/Slovak
+    de = 'de',  -- German
+    ee = 'et',  -- Estonian
+    en = 'en',  -- English
+    es = 'es',  -- Spanish
+    fr = 'fr',  -- French
+    it = 'it',  -- Italian
+    ja = 'ja',  -- Japanese
+    nl = 'nl',  -- Dutch
+    pl = 'pl',  -- Polish
+    ro = 'ro',  -- Romanian
+    ru = 'ru',  -- Russian
+    sr = 'sr',  -- Serbian
+    zh = 'zh',  -- Chinese
+}
 
 -- END constants
 

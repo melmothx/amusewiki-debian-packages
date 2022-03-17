@@ -1,6 +1,6 @@
 name graphics-def
 category Package
-revision 61899
+revision 62085
 shortdesc Colour and graphics option files
 longdesc This bundle is a combined distribution consisting of dvips.def,
 longdesc pdftex.def, luatex.def, xetex.def, dvipdfmx.def, and
@@ -8,10 +8,10 @@ longdesc dvisvgm.def driver option files for the LaTeX graphics and
 longdesc color packages. It is hoped that by combining their source
 longdesc repositories at https://github.com/latex3/graphics-def it will
 longdesc be easier to coordinate updates.
-containersize 10988
-containerchecksum 0f7e3fbef047aff08bbc9245a803a3c22d95ffe5bd9e0030514857d83293d8c7f88028ce3bdb8dc8eea25dcff01e8b523cccf86676b4cb37f961719434d63eaa
-doccontainersize 604
-doccontainerchecksum 5d1addd8f3ae542951b1b28711b3376ad0000ea809f7394d7651597e7fbeadd022d297d02d4fd92db6a61c477d1f8239e129bec154b6208a26977004a093ae1a
+containersize 10980
+containerchecksum 0a427939d98618a357241fee7512c9f2f716a88b207b49fb31367ba4088643136004619a2a5fb0ec720895577188a5ec0860d4499e159af129f7f788f5d6d380
+doccontainersize 608
+doccontainerchecksum 7ae1018461ac342ca2ad85f7cbea7c6d04a48964cf4e07d68d1e2887ffe3081f1144a037899335cba24c4b5d6badc61b480114d10dc4fb45615b0f85897c4fb0
 docfiles size=1
  texmf-dist/doc/latex/graphics-def/README.md details="Readme"
 runfiles size=23

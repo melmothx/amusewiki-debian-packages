@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p3.9.0-u1.27-210218-2.6 (utf8.uptex) (TeX Live 2021) (INITEX)  9 FEB 2022 17:12
+This is e-upTeX, Version 3.141592653-p3.9.0-u1.27-210218-2.6 (utf8.uptex) (TeX Live 2021) (INITEX)  17 MAR 2022 09:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -722,8 +722,8 @@ Retaining: \et@xerr, \et@xinput, \et@xlibhdr, \et@xmsg, \et@xtoks, \et@xwarn,
 \et@xl@@d, \et@xl@ad, \et@xload, \et@xlang, \et@xhash, \eTeX, \epTeX, \eupTeX,
 \etexhdrchk, \etexstatus, \module, \uselanguage, \r@tain, \r@cycle, ) )
 Beginning to dump on file euptex.fmt
- (preloaded format=euptex 2022.2.9)
-4260 strings of total length 103573
+ (preloaded format=euptex 2022.3.17)
+4260 strings of total length 103574
 10182 memory locations dumped; current usage is 228&8957
 1514 multiletter control sequences
 \font\nullfont=nullfont

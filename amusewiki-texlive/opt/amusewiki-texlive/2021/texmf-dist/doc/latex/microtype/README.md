@@ -4,7 +4,7 @@ The `microtype` package
 
 **Subliminal refinements towards typographical perfection**
 
-  (v3.0b -- 2021/12/10)
+  (v3.0d -- 2022/03/14)
 
 
 Overview
@@ -58,7 +58,7 @@ To install the package, use one of the following methods
 
 - To use the latest development version, clone the github repository at
   `https://github.com/schlcht/microtype` and run `make`
-  (or just `pdflatex microtype.ins` to generate the run files).
+  (or just `latex microtype.ins` to generate the run files).
 
 
 License
@@ -67,7 +67,7 @@ License
 This work may be distributed and/or modified under the conditions of the
 LaTeX Project Public License, either version 1.3c of this license or (at
 your option) any later version. The latest version of this license is in:
-http://www.latex-project.org/lppl.txt, and version 1.3c or later is part
+https://www.latex-project.org/lppl.txt, and version 1.3c or later is part
 of all distributions of LaTeX version 2005/12/01 or later.
 
 This work has the LPPL maintenance status 'maintained'.
@@ -82,4 +82,4 @@ provided that: (1) the original copyright statement is not removed, and
 (2) the identification string is changed.
 
 ------------------------------------------------------
-Copyright (c) 2004--2021  R Schlicht `<w.m.l@gmx.net>`
+Copyright (c) 2004--2022  R Schlicht `<w.m.l@gmx.net>`

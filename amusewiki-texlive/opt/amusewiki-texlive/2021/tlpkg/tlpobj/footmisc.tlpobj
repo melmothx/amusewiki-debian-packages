@@ -1,6 +1,6 @@
 name footmisc
 category Package
-revision 23330
+revision 62527
 shortdesc A range of footnote options
 longdesc A collection of ways to change the typesetting of footnotes.
 longdesc The package provides means of changing the layout of the
@@ -17,20 +17,25 @@ longdesc packages, though those are both also portmanteau packages.
 longdesc (Don't be seduced by fnpara, whose implementation is improved
 longdesc by the present package.) The perpage option is also offered by
 longdesc footnpag and by the rather more general-purpose perpage
-containersize 5904
-containerchecksum 50d0d02b243936d2455ad2353c0da1b77aab9f8f822033a98062d979b686163b94798784dc6b8496dda3ef38eadbd04a21e153f0fa9a76b499c50159c169fb85
-doccontainersize 325412
-doccontainerchecksum 3a732fe8a1ca364275a7b0849be097e307ba322ff611a650a4625cc47792410b974055c75165b62ec8d5d2a128b0d6a194d798248bcd6bae266c7638ffe67e01
-docfiles size=81
- texmf-dist/doc/latex/footmisc/README details="Readme"
- texmf-dist/doc/latex/footmisc/footmisc.pdf details="Package documentation" language="en"
-srccontainersize 19772
-srccontainerchecksum 3489b4c09a145ba19d25120a48368470d65c2407a8c5697946ae669fdd63f0dc7176ea171ccd2a815055a6fc16f02523f7b2ca084c60159c1768a8a3b2eccf11
-runfiles size=7
+containersize 7672
+containerchecksum c55f3aac5f84a30738bfbf6ad6110a39e27ad9be50a6d454794512612649c008e6c55d94484abdb57a0ba9d76e8fd9ce85c7ea973e2bfab718f49b94c7f52f5b
+doccontainersize 511220
+doccontainerchecksum c5a29fa3c76554d043a4ee0b7eb429428a4158a00c1617ab57e616ad99e83b3ef2319bd447fcf80d66e9038cb8972d557f4a6db9cc29aae8769d3c0f702df578
+docfiles size=154
+ texmf-dist/doc/latex/footmisc/README.md details="Readme"
+ texmf-dist/doc/latex/footmisc/changes.txt
+ texmf-dist/doc/latex/footmisc/footmisc-code.pdf
+ texmf-dist/doc/latex/footmisc/footmisc-code.tex
+ texmf-dist/doc/latex/footmisc/footmisc-doc.pdf details="Package documentation"
+ texmf-dist/doc/latex/footmisc/footmisc-doc.tex
+srccontainersize 22204
+srccontainerchecksum d6f2f90be95d4a459a2cf658bc0c1d5cda34fd61a4c4022924861385ba0e177e065736e9e1542dd15dd420ad2aa4a1bfa412161cdc2e2bea162174acddf8957f
+runfiles size=13
+ texmf-dist/tex/latex/footmisc/footmisc-2011-06-06.sty
  texmf-dist/tex/latex/footmisc/footmisc.sty
 catalogue-also endnotes ftnright footmisx
-catalogue-contact-bugs https://github.com/FrankMittelbach/fmitex/issues
+catalogue-contact-repository https://github.com/frankmittelbach/fmitex-footmisc
 catalogue-ctan /macros/latex/contrib/footmisc
-catalogue-license lppl1.3
+catalogue-license lppl1.3c
 catalogue-topics footnote
-catalogue-version 5.5b
+catalogue-version 6.0d

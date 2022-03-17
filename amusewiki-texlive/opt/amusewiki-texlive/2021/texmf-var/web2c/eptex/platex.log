@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (INITEX)  9 FEB 2022 17:12
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (INITEX)  17 MAR 2022 09:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -52,7 +52,7 @@ LaTeX2e <2021-11-15> patch level 1
 -texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.ltx
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/latex/l3kernel/expl3-code.tex
-Package: expl3 2022-02-05 L3 programming layer (code)
+Package: expl3 2022-02-24 L3 programming layer (code)
 \c_max_int=\count24
 \l_tmpa_int=\count25
 \l_tmpb_int=\count26
@@ -1129,7 +1129,7 @@ Local configuration file hyphen.cfg used
 
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/generic/babel/hyphen.cfg
-File: hyphen.cfg 2022/01/26 3.70 Babel hyphens
+File: hyphen.cfg 2022/02/26 3.73 Babel hyphens
 \l@english=\language0
 
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
@@ -2232,10 +2232,10 @@ Loading kinsoku patterns for japanese.
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/platex/base/kinsoku.tex)) ) )
 Beginning to dump on file platex.fmt
- (preloaded format=platex 2022.2.9)
-21237 strings of total length 416582
-294542 memory locations dumped; current usage is 246&293479
-18524 multiletter control sequences
+ (preloaded format=platex 2022.3.17)
+21239 strings of total length 416640
+294725 memory locations dumped; current usage is 246&293662
+18526 multiletter control sequences
 \font\nullfont=nullfont
 \font\c__fp_exp_intarray=cmr10 at 0.00002pt
 \font\c__fp_trig_intarray=cmr10 at 0.00003pt

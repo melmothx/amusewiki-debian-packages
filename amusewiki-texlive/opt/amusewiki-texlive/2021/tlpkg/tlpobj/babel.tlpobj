@@ -1,6 +1,6 @@
 name babel
 category Package
-revision 61748
+revision 62203
 shortdesc Multilingual support for LaTeX, LuaLaTeX, XeLaTeX, and Plain TeX
 longdesc This package manages culturally-determined typographical (and
 longdesc other) rules for a wide range of languages. A document may
@@ -12,16 +12,16 @@ longdesc has to be done for each language. Included is also a set of ini
 longdesc files for about 250 languages. Many language styles work with
 longdesc pdfLaTeX, as well as with XeLaTeX and LuaLaTeX, out of the box.
 longdesc A few even work with plain formats.
-containersize 183100
-containerchecksum a497f9e37b9d233923e7b085c5a95360c96d826fedb82ea42ac2e11cfdbe4c9af12c918b0f322573911c43ec8b00a5ff94190b5df11c7256a7391c93ab883004
-doccontainersize 841020
-doccontainerchecksum d7edf99b5182a3cafe1991f2fd4c76a9e0903be31ff27325f21276d45766804000d464eda2c9b054a5ba4060b212cc59a93cf6d91afc6bb1caf50d84516bb0ba
+containersize 184200
+containerchecksum d9d59cbe3f170a51c5d0698360674a9812ab8b37c26724aa8c5656c202d79b61e751b06e71cdc6f3494eb2fbd6bbab9fe6880e82b68c5c621fff267b3e3b72c6
+doccontainersize 842860
+doccontainerchecksum b39012a469033103419b9301cef42edaca68d785cd0cbfd18a9db226e034f08cdec6ad653676db4f0919c300284ddb236dbc10291d74ce98ce998e61e0f7c21e
 docfiles size=210
  texmf-dist/doc/latex/babel/README.md details="Readme"
  texmf-dist/doc/latex/babel/babel.pdf details="Package documentation"
-srccontainersize 697412
-srccontainerchecksum 968c284cb4f8631ea388d4d18c7018cc451cd7150e5dd99dae7773b565b705afc0a34f14edc166808c5f86034c64ffd2feb34f7478650e44d6ac227415987791
-runfiles size=977
+srccontainersize 698900
+srccontainerchecksum 168924d39cd278c3eda6df5e46d4b39cf0695f2de0554349d1fbd28c0e318f8c5962895cb172d0322f026f8852a00274ad90b628bf26cf10b600d1e78815b48f
+runfiles size=981
  texmf-dist/makeindex/babel/bbglo.ist
  texmf-dist/makeindex/babel/bbind.ist
  texmf-dist/tex/generic/babel/UKenglish.sty
@@ -728,4 +728,4 @@ catalogue-contact-repository https://github.com/latex3/babel
 catalogue-ctan /macros/latex/required/babel/base
 catalogue-license lppl1.3
 catalogue-topics multilingual
-catalogue-version 3.70
+catalogue-version 3.73

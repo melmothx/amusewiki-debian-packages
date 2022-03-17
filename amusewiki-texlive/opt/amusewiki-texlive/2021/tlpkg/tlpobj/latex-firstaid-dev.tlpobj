@@ -1,21 +1,21 @@
 name latex-firstaid-dev
 category Package
-revision 61719
+revision 62726
 shortdesc Development pre-release of the LaTeX firstaid package
 longdesc This is a pre-release version of the standard LaTeX firstaid
 longdesc package. It accompanies the pre-testing kernel code
 longdesc (latex-base-dev), and is intended for testing by knowledgeable
 longdesc users.
-containersize 3280
-containerchecksum ba71d7fd54088dfc6b6888307dcea8e0ef4415fd8be810a97e320cab7c3bbcbe5d9af6569fafe569236c9db91d87345424054d149ceca0aa08c8bb2f205b6c50
-doccontainersize 232576
-doccontainerchecksum e924eae30aa45a43e7b0dbb639e35511b5d9f13e1407d0a1becdfdfd8933d0c3e5f28936871a409474743a821ff1d390ad3ee15f6ddd4707bd1c9b10185a0a96
+containersize 3212
+containerchecksum 8bff0c8a3adab1876c98f0d7275a47bc61f0b94ced7e43da2c7f84cd815f1c3efb6480d112f92d7642760d4197cfbec0e98a0940315538ee89853a63304d1107
+doccontainersize 234732
+doccontainerchecksum 12e44cfae5c6a5ad4ba72112e6b86b77e08400beb4b2a18f28314b000badabfd49401a3c8b2b2b217753a8b5ffef6fd8c578a05421bfba4e3009b5b8c7842e41
 docfiles size=61
  texmf-dist/doc/latex-dev/firstaid/README.md details="Readme"
  texmf-dist/doc/latex-dev/firstaid/changes.txt
  texmf-dist/doc/latex-dev/firstaid/latex2e-first-aid-for-external-files.pdf details="Package documentation"
-srccontainersize 7564
-srccontainerchecksum 8241e522bbb4a958d19129ff8c0862e6eb7d4eb28cbf60a4e4c375c6d356a3d505a3c9fe36a90be286d7cb4ccb9b8816c5566751039cf76b79e69601492bc4f7
+srccontainersize 7720
+srccontainerchecksum 772039c2bf0c7e7ec2acccd63e500bfbc07065cb45933dfa5ac9f238f03eb8ef97be282a42dce7dd3d2c4b06f0b1c76f14ea1524d682ae0d4e7324f86d4383d1
 runfiles size=4
  texmf-dist/tex/latex-dev/firstaid/everysel-ltx.sty
  texmf-dist/tex/latex-dev/firstaid/filehook-ltx.sty
@@ -23,4 +23,4 @@ runfiles size=4
 catalogue-ctan /macros/latex-dev/required/firstaid
 catalogue-license lppl1.3c
 catalogue-topics format bugfix latex-devel
-catalogue-version 1.0q
+catalogue-version 1.0r

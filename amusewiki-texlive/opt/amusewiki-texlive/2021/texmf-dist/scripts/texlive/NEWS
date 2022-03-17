@@ -1,7 +1,26 @@
 (This file public domain.  Originally written by Norbert Preining and
 Karl Berry, 2010.)
 
+<p><b>tlmgr 61401 (released 8feb22):</b>
+<li>on darwin, use our own curl cert bundle (now updated),
+    to try to avoid cert expiration problems, since Apple will not fix
+    old versions
+    (<a href="https://savannah.nongnu.org/forum/forum.php?forum_id=10054"
+     >background</a>,
+     <a href="https://tug.org/pipermail/tex-live/2021-November/047540.html"
+     >symptom</a>).
+<li>avoid creating file named "nul" on Windows when checking mirror status.
+<li>implementation: use strict; use warnings; for Perl modules.
+
+<p><b>tlmgr 60693 (released 12oct21):</b>
+<li>use TEXMFROOT instead of SELFAUTOPARENT to allow easier relocating
+    (<a href="https://tug.org/pipermail/tex-live/2021-September/047394.html"
+     >thread</a>).
+
+<p><b>tlmgr 60557 (released 20sep21):</b>
 <li>omit &ldquo;done running&rdquo; line for fmtutil.
+<li>allow : to separate argument values as well as , to placate powershell.
+<li>config.guess: back to `...`. Whew.
 
 <p><b>tlmgr 59208 (released 15may21):</b>
 <li>still trying to optimize the ssl multiplexor resolution.
@@ -16,6 +35,8 @@ Karl Berry, 2010.)
 <p><b>tlmgr 58938 (released 21apr21):</b>
 <li>adapt to https://mirror.ctan.org now being available.
 <li>when install option create_formats=0, only refresh existing formats.
+
+<p>TeX Live 2021 released.
 
 <p><b>tlmgr 57705 (released 12feb21):</b>
 <li>use pure Perl solution to rmdir TL tree for uninstall.

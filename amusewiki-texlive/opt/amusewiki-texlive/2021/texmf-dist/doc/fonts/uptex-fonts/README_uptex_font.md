@@ -94,6 +94,10 @@ JIS -> Unicode conversion is ambiguous and depends on tables.
 ChangeLog
 ---------
 
+### uptex-fonts-20220310
+* cmap/UTF8-UTF16:
+  Updated (Version: 1.008).
+
 ### uptex-fonts-20200229
 * cmap/UTF8-UTF16:
   Updated (Version: 1.007).

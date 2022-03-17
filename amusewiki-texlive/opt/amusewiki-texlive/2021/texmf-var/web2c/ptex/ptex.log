@@ -1,15 +1,15 @@
-This is pTeX, Version 3.141592653-p3.9.0 (utf8.euc) (TeX Live 2021) (INITEX)  30 DEC 2021 10:37
+This is pTeX, Version 3.141592653-p3.9.0 (utf8.euc) (TeX Live 2021) (INITEX)  17 MAR 2022 09:24
  restricted \write18 enabled.
  %&-line parsing enabled.
 **ptex.ini
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/ptex/ptex-base/ptex.ini
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/ptex/ptex-base/ptex.tex
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/plain/base/plain.tex Preloading the plain format: codes,
-registers,
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/ptex/ptex-base/ptex.ini
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/ptex/ptex-base/ptex.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/plain/base/plain.tex
+Preloading the plain format: codes, registers,
 \maxdimen=\dimen10
 \hideskip=\skip10
 \centering=\skip11
@@ -32,7 +32,8 @@ registers,
 \slfam=\fam5
 \bffam=\fam6
 \ttfam=\fam7
- macros,
+
+macros,
 \strutbox=\box11
 \mscount=\count25
 \tabs=\box12
@@ -41,25 +42,24 @@ registers,
  math definitions,
 \rootbox=\box15
 \p@renwd=\dimen15
-
-output routines,
+ output routines,
 \headline=\toks10
 \footline=\toks11
 \footins=\insert254
 \topins=\insert253
  hyphenation
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/generic/hyphen/hyphen.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/generic/hyphen/hyphen.tex))
 \minfam=\fam8
 \gtfam=\fam9
 \tminfam=\fam10
 \tgtfam=\fam11
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2021/te
-xmf-dist/tex/ptex/ptex-base/kinsoku.tex)) )
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2021/texmf-dist/tex/ptex/ptex-base/kinsoku.tex)) )
 Beginning to dump on file ptex.fmt
- (preloaded format=ptex 2021.12.30)
-2180 strings of total length 32081
+ (preloaded format=ptex 2022.3.17)
+2180 strings of total length 32288
 5055 memory locations dumped; current usage is 128&4906
 991 multiletter control sequences
 \font\nullfont=nullfont

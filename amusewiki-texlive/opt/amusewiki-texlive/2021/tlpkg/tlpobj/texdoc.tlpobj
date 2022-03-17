@@ -1,6 +1,6 @@
 name texdoc
 category TLCore
-revision 59283
+revision 62380
 shortdesc Documentation access for TeX Live
 longdesc texdoc is a Lua script providing easy access to the
 longdesc documentation in TeX Live: PDF, DVI, plain text files, and
@@ -10,10 +10,10 @@ longdesc program by the same name to do the same job, but its
 longdesc implementation is unrelated.
 depend kpathsea
 depend texdoc.ARCH
-containersize 26932
-containerchecksum 1504bbeb86a1329632fad25b98b967bad8c68fe8249f1ac9f4c017a50fc1c79994f58f3545681741213fe28d94b568bf4afb8b2010e93198a7df2c75bc3cebeb
-doccontainersize 135656
-doccontainerchecksum bb79a2cf6c9a013a9b3c4c11597f86617043c8abea84b86f11a9ad5093655d68e0ce8d04e59b077f832c513c25e407d9ec06bdc412c3427d9ec43bb5103ea42e
+containersize 27488
+containerchecksum 83551289e923ecf13ffbd27d950d4fb8026d06d2600160fea6d397d5fbbdf2deb80ca8f0286bd022308910fd0b5ee00f235598324453a3cd4eab7b6956a34958
+doccontainersize 135720
+doccontainerchecksum 5c8ea335b2b1d1c7829653a1ca0df3eb3a5f75f808d8bc2b2a8177f01d8d317e76f536cb6b55471cc4076c2938ae01623185a90033bd453b94134ba35a9a0062
 docfiles size=53
  texmf-dist/doc/man/man1/texdoc.1
  texmf-dist/doc/man/man1/texdoc.man1.pdf
@@ -23,7 +23,7 @@ docfiles size=53
  texmf-dist/doc/support/texdoc/texdoc-doc.cls
  texmf-dist/doc/support/texdoc/texdoc.pdf details="Package documentation"
  texmf-dist/doc/support/texdoc/texdoc.tex
-runfiles size=30
+runfiles size=31
  texmf-dist/scripts/texdoc/texdoc.tlu
  texmf-dist/scripts/texdoc/texdoclib-alias.tlu
  texmf-dist/scripts/texdoc/texdoclib-cli.tlu
@@ -43,4 +43,4 @@ catalogue-contact-support https://lists.tug.org/texdoc
 catalogue-ctan /support/texdoc
 catalogue-license gpl
 catalogue-topics view-doc
-catalogue-version 3.3.1
+catalogue-version 3.4

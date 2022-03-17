@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "INSTALL-TL 1"
-.TH INSTALL-TL 1 "2021-05-02" "perl v5.34.0" "User Contributed Perl Documentation"
+.TH INSTALL-TL 1 "2022-02-22" "perl v5.34.0" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -145,8 +145,6 @@ install\-tl \- TeX Live cross\-platform installer
 install-tl [\fIoption\fR]...
 .PP
 install\-tl\-windows.bat [\fIoption\fR]...
-.PP
-install\-tl\-advanced.bat [\fIoption\fR]...
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
 This installer creates a runnable TeX Live installation from various
@@ -271,6 +269,10 @@ actions.  To install multiple custom binary sets, manually rename
 For more information on custom binaries, see
 <https://tug.org/texlive/custom\-bin.html>.  For general information on
 building TeX Live, see <https://tug.org/texlive/build.html>.
+.IP "\fB\-debug\-fakenet\fR" 4
+.IX Item "-debug-fakenet"
+Pretend we're doing a network install, for the sole purpose of testing
+broken downloads via moving package files aside in a tlnet mirror.
 .IP "\fB\-debug\-translation\fR" 4
 .IX Item "-debug-translation"
 In the former Perl/Tk \s-1GUI\s0 modes, this option reported any missing,
@@ -563,9 +565,6 @@ Set the default paper size for all relevant programs; must be either
 .el .IP "\f(CWTEXLIVE_INSTALL_PREFIX\fR" 4
 .IX Item "TEXLIVE_INSTALL_PREFIX"
 .PD 0
-.ie n .IP """TEXLIVE_INSTALL_TEXDIR""" 4
-.el .IP "\f(CWTEXLIVE_INSTALL_TEXDIR\fR" 4
-.IX Item "TEXLIVE_INSTALL_TEXDIR"
 .ie n .IP """TEXLIVE_INSTALL_TEXMFCONFIG""" 4
 .el .IP "\f(CWTEXLIVE_INSTALL_TEXMFCONFIG\fR" 4
 .IX Item "TEXLIVE_INSTALL_TEXMFCONFIG"
@@ -585,11 +584,13 @@ Set the default paper size for all relevant programs; must be either
 .el .IP "\f(CWTEXLIVE_INSTALL_TEXMFSYSVAR\fR" 4
 .IX Item "TEXLIVE_INSTALL_TEXMFSYSVAR"
 .PD
-Specify the respective directories.  \f(CW\*(C`TEXLIVE_INSTALL_PREFIX\*(C'\fR defaults
-to \f(CW\*(C`/usr/local/texlive\*(C'\fR, while \f(CW\*(C`TEXLIVE_INSTALL_TEXDIR\*(C'\fR defaults to
-the release directory within that prefix, e.g.,
-\&\f(CW\*(C`/usr/local/texlive/2016\*(C'\fR.  All the defaults can be seen by running the
+Specify the respective directories. \f(CW\*(C`TEXLIVE_INSTALL_PREFIX\*(C'\fR defaults
+to \f(CW\*(C`/usr/local/texlive\*(C'\fR. All the defaults can be seen by running the
 installer interactively and then typing \f(CW\*(C`D\*(C'\fR for the directory menu.
+.Sp
+To override the so-called \f(CW\*(C`TEXDIR\*(C'\fR, which defaults to the release
+directory within that prefix, e.g., \f(CW\*(C`/usr/local/texlive/2020\*(C'\fR, use a
+profile file (q.v.).
 .ie n .IP """NOPERLDOC""" 4
 .el .IP "\f(CWNOPERLDOC\fR" 4
 .IX Item "NOPERLDOC"
@@ -600,4 +601,4 @@ This script and its documentation were written for the TeX Live
 distribution (<https://tug.org/texlive>) and both are licensed under the
 \&\s-1GNU\s0 General Public License Version 2 or later.
 .PP
-\&\f(CW$Id:\fR install-tl 59056 2021\-05\-02 21:48:01Z karl $
+\&\f(CW$Id:\fR install-tl 62146 2022\-02\-22 22:48:10Z karl $

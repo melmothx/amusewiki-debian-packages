@@ -1,6 +1,6 @@
 name uplatex
 category Package
-revision 59450
+revision 62145
 shortdesc pLaTeX2e and miscellaneous macros for upTeX
 longdesc The bundle provides pLaTeX2e macros for upTeX by Takuji Tanaka.
 longdesc This is a community edition syncing with platex. The bundle
@@ -28,9 +28,9 @@ depend uptex-fonts
 execute AddFormat name=uplatex engine=euptex options="*uplatex.ini"           patterns=language.dat           fmttriggers=atbegshi,atveryend,babel,cm,everyshi,firstaid,hyphen-base,l3backend,l3kernel,l3packages,latex,latex-fonts,tex-ini-files,unicode-data,uptex-fonts,platex,latex
 execute AddFormat name=uplatex-dev engine=euptex options="*uplatex.ini"           patterns=language.dat           fmttriggers=atbegshi,atveryend,babel,cm,everyshi,firstaid,hyphen-base,l3backend,l3kernel,l3packages,latex,latex-fonts,tex-ini-files,unicode-data,uptex-fonts,platex,l3kernel,latex-base-dev,latex-firstaid-dev
 containersize 14828
-containerchecksum 6d9c990c0458138c3753cb8ef1d0ae075ed8322cfdd1e4173374fc37f6918b951152f3e2385b3d24f0278e20c6d0da9a256fda2db3d0a3869cb000ee9f8a99a2
+containerchecksum c6921321aea4bbd27ae38dc7181f7e5f2991b11d02475f07eae4f67d86c4c6b35fc7a07daa1e24775386b84e651b9d827e0833ce1c3b9570d36e6e50388e199a
 doccontainersize 776324
-doccontainerchecksum e18c72acbbd80445b7a45d91a40230bf57a806c6e0c74387d20cba12261fb43fecc9b2183dc7e754905ef27a50e2cb209099761adc91144077b5661db3f661bb
+doccontainerchecksum 2f7b23faacaf8decea79007ba01f98138fc456d8fc90140cac58f8c31695972d4046e35eb0fe333e1369b2b71ea499ff4b279d3ffc9b5f585c543089a6c5291e
 docfiles size=201
  texmf-dist/doc/man/man1/uplatex.1
  texmf-dist/doc/man/man1/uplatex.man1.pdf
@@ -40,8 +40,8 @@ docfiles size=201
  texmf-dist/doc/uplatex/base/uplatex-en.pdf details="Package documentation"
  texmf-dist/doc/uplatex/base/uplatex.pdf details="Package documentation" language="ja"
  texmf-dist/doc/uplatex/base/upldoc.pdf
-srccontainersize 50744
-srccontainerchecksum e567fb0b2a557f2b1cf441fbbe80b0341e31a71bb848f5aa924ca3602db9df9cffd023ac10d1eb388bd3b31aaf88f9f6fca323d0eb8ce774872cb20f3d34eb65
+srccontainersize 50748
+srccontainerchecksum eaf73039d2ae9f2b6c902d0627ea2af7efef6584dfd60ff7b6debd06c32aec54fc5b4374078ff0250ffd90c53f73d03512dc24cd78f3dd11c25a5b5ed58a7845
 runfiles size=94
  texmf-dist/tex/uplatex/base/jt2gt.fd
  texmf-dist/tex/uplatex/base/jt2mc.fd

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (INITEX)  28 JAN 2022 16:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (INITEX)  17 MAR 2022 09:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -849,7 +849,7 @@ Retaining: \et@xerr, \et@xinput, \et@xlibhdr, \et@xmsg, \et@xtoks, \et@xwarn,
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/plain/config/pdftexmagfix.tex) )
 Beginning to dump on file pdfetex.fmt
- (preloaded format=pdfetex 2022.1.28)
+ (preloaded format=pdfetex 2022.3.17)
 5361 strings of total length 135336
 13383 memory locations dumped; current usage is 203&10274
 1679 multiletter control sequences

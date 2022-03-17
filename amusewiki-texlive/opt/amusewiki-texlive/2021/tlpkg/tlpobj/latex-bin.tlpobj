@@ -1,6 +1,6 @@
 name latex-bin
 category TLCore
-revision 57972
+revision 62145
 shortdesc LaTeX executables and man pages
 depend atbegshi
 depend atveryend
@@ -30,10 +30,10 @@ execute AddFormat name=dvilualatex engine=luatex           patterns=language.dat
 execute AddFormat name=latex engine=pdftex           patterns=language.dat           options="-translate-file=cp227.tcx *latex.ini"           fmttriggers=atbegshi,atveryend,babel,cm,everyshi,firstaid,hyphen-base,l3backend,l3kernel,l3packages,latex,latex-fonts,tex-ini-files,unicode-data,latex,dehyph,hyph-utf8,latexconfig
 execute AddFormat name=lualatex engine=luahbtex           patterns=language.dat,language.dat.lua           options="lualatex.ini"           fmttriggers=atbegshi,atveryend,babel,cm,everyshi,firstaid,hyphen-base,l3backend,l3kernel,l3packages,latex,latex-fonts,tex-ini-files,unicode-data,latex,lm,luaotfload
 execute AddFormat name=pdflatex engine=pdftex           patterns=language.dat           options="-translate-file=cp227.tcx *pdflatex.ini"           fmttriggers=atbegshi,atveryend,babel,cm,everyshi,firstaid,hyphen-base,l3backend,l3kernel,l3packages,latex,latex-fonts,tex-ini-files,unicode-data,latex,dehyph,hyph-utf8,latexconfig
-containersize 616
-containerchecksum b349e8fad2765c4a87b471532dcfafedc0a9711237c6e967011727da7bad3a5ed27a89eca81af324aa84958872d0b78c68e6d9490fced44eb7636b2fbf36611f
+containersize 620
+containerchecksum b88578c4e2b7ff3e2aac32c6299818026819cce2d04c9213e8e1cff32076af898019e5c2335a3e29a84fb3c3b83f092d7492fd5c53fd30ac2430d1ae8fa6d88e
 doccontainersize 53816
-doccontainerchecksum 7cfb465f4db5089e7fa41762a0437f5f51445efdb9aba5d676dc5933e0fbcfbe0fda31baf83e20f2d16e6a7a0019c71752af8744d02ad12636adb9afb8cb3041
+doccontainerchecksum 821831a3126be1408b7f034c6160cb63529dd95b333abe1d060a57caee5d974e17613f95af68d0e185c9c1aa9aa36cb7708f87e5cabe6f92da746e7a1cb45780
 docfiles size=32
  texmf-dist/doc/man/man1/dvilualatex.1
  texmf-dist/doc/man/man1/dvilualatex.man1.pdf

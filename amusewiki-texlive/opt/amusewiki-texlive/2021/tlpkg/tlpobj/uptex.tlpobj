@@ -1,6 +1,6 @@
 name uptex
 category Package
-revision 61107
+revision 62145
 shortdesc Unicode version of pTeX
 longdesc upTeX is an extension of pTeX, using UTF-8 input and producing
 longdesc UTF-8 output. It was originally designed to improve support for
@@ -25,9 +25,9 @@ execute addKanjiMap uptex-ko-@koEmbed@.map
 execute addKanjiMap uptex-sc-@scEmbed@.map
 execute addKanjiMap uptex-tc-@tcEmbed@.map
 containersize 912
-containerchecksum 4237df16758a5495555936a94d3e075bd23a53bfa12da26bf04c9da852bf3daf5847b055327dd5eaed10dbb45e09ec514640138ec7a2cd4cb358bfbc2e1d29f6
+containerchecksum 92e903bb603e956faa34cab85c4b184b492ab7381358a0c401a47848392b6ffcc1b888b3e36be046fa1fd2279235a737d020c8f4286c9162a20de359132b3649
 doccontainersize 241568
-doccontainerchecksum fd8ace9f65be4a636bd39be9acde4dc23eb4214d54a51f8773e5232fe8864fdd36d34af4c892e12db4cbd768e52d5f0fd6271063e4b3ceb740448ffaac3d3bdb
+doccontainerchecksum 2cf664d0ca66b6cfb5cb8472ca1b2d0c8db650ac518dc3fb24a1c98ee7db5ad556971a59be064a7f4c6e9c3a4ea2e041f0d76e1edaaff6c304e72201eb3072af
 docfiles size=142
  texmf-dist/doc/man/man1/euptex.1
  texmf-dist/doc/man/man1/euptex.man1.pdf

@@ -1,6 +1,6 @@
 name hyperref
 category Package
-revision 59511
+revision 62142
 shortdesc Extensive support for hypertext in LaTeX
 longdesc The hyperref package is used to handle cross-referencing
 longdesc commands in LaTeX to produce hypertext links in the document.
@@ -29,11 +29,11 @@ depend rerunfilecheck
 depend stringenc
 depend url
 depend zapfding
-containersize 91296
-containerchecksum dc42b72e2eccdb7a29181cfac8f95a6bf41f1eba9ec7943f2b00fd71b85ff46269d4ad437a924e7f6d5af81e375ae8cf0a1a64dc301e0ccaa327e1d073f41f3e
-doccontainersize 3288268
-doccontainerchecksum 3e79668b8e7e032f272f23cb0d89faf420c8354b41a80beb50cda4fc0b914add05979b5de753b38a634d8da5f9c45d8660074d7e23f04d2092cfefaabae8eed2
-docfiles size=1048
+containersize 90464
+containerchecksum 1f36f263f577e66d12e9360e34cab4cb0b9d6364ed5e80e0d0a9810d3763629ec5e110ec9aa00f0ac772c5dde2798e748cce954ec5929f7a8a3b7cd3130820dc
+doccontainersize 3250152
+doccontainerchecksum 3b70f6fbbc789d55f61cbd78b30243be4782693d71aa8db5a2383354afbe5f4e4debe79bd53a3d72e090e7bf25459c8cb82d60db129f27f164c502615c55101d
+docfiles size=1046
  texmf-dist/doc/latex/hyperref/ChangeLog.txt
  texmf-dist/doc/latex/hyperref/README.md details="Readme"
  texmf-dist/doc/latex/hyperref/backref.pdf
@@ -46,14 +46,15 @@ docfiles size=1048
  texmf-dist/doc/latex/hyperref/hyperref-doc5.html
  texmf-dist/doc/latex/hyperref/hyperref-doc6.html
  texmf-dist/doc/latex/hyperref/hyperref-doc7.html
+ texmf-dist/doc/latex/hyperref/hyperref-doc8.html
  texmf-dist/doc/latex/hyperref/hyperref.pdf
  texmf-dist/doc/latex/hyperref/manifest.txt
  texmf-dist/doc/latex/hyperref/nameref.pdf
  texmf-dist/doc/latex/hyperref/paper.pdf details="Paper on tagging and navigation" language="en"
  texmf-dist/doc/latex/hyperref/slides.pdf
-srccontainersize 446776
-srccontainerchecksum 165969bddfb4d12fe8cc4d646d49369c382ca5369c74f7865462014ab7da0edb188520ca003b4ae3040015a3a2a9c3e0e565c5c811c0b1178a78895e102f45de
-runfiles size=208
+srccontainersize 448360
+srccontainerchecksum 24816ef84e06ab000bb7fa54194b4749eac1874fc8eae5ab86b314c02713ef484845d35bdca89e440409832f26561398cf500eee479ae6cf2a1dbf88b8a89e14
+runfiles size=202
  texmf-dist/tex/latex/hyperref/backref.sty
  texmf-dist/tex/latex/hyperref/hdvipdfm.def
  texmf-dist/tex/latex/hyperref/hdvips.def
@@ -68,7 +69,7 @@ runfiles size=208
  texmf-dist/tex/latex/hyperref/hvtexhtm.def
  texmf-dist/tex/latex/hyperref/hvtexmrk.def
  texmf-dist/tex/latex/hyperref/hxetex.def
- texmf-dist/tex/latex/hyperref/hyperref-langpatches.def
+ texmf-dist/tex/latex/hyperref/hyperref-patches.sty
  texmf-dist/tex/latex/hyperref/hyperref.sty
  texmf-dist/tex/latex/hyperref/hypertex.def
  texmf-dist/tex/latex/hyperref/minitoc-hyper.sty
@@ -88,5 +89,5 @@ catalogue-contact-bugs https://github.com/latex3/hyperref/issues
 catalogue-contact-home https://github.com/latex3/hyperref
 catalogue-ctan /macros/latex/contrib/hyperref
 catalogue-license lppl1.3
-catalogue-topics hyper pdf-feat adobe-distiller form-fillin
-catalogue-version 7.00m
+catalogue-topics hyper pdf-feat adobe-distiller form-fillin etex
+catalogue-version 7.00n

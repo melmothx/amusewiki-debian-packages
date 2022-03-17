@@ -32,7 +32,7 @@
 \beginfrontmatter
 
   \setdocumenttitle  {The \identifier{luaotfload} package}
-  \setdocumentdate   {2021-05-21 v3.18}
+  \setdocumentdate   {2022-02-27 v3.20}
   \setdocumentauthor {LaTeX3 Project\\
                       Elie Roux · Khaled Hosny · Philipp Gesang · Ulrike Fischer · Marcel Krüger\\
                       Home: \hyperlink {https://github.com/latex3/luaotfload}}
@@ -62,6 +62,31 @@ Supported is the \identifier{luatex} versions of a current TeXLive 2019 (and a c
 \endsection
 
 \beginsection{Changes}
+\beginsubsection {New in version 3.20 (by Ulrike Fischer/Marcel Krüger)}
+\begin{itemize}
+  \item A bug in luaotfload-tool has been corrected.
+  \item The directory for the font name database has been corrected and no
+    longer uses the development directory.
+\end{itemize}
+\endsubsection
+
+\beginsubsection {New in version 3.19 (by Ulrike Fischer/Marcel Krüger)}
+\begin{itemize}
+  \item When used with Lua\TeX\ 1.15.0 or newer, variable fonts are supported
+    when using the \texttt{harf} shaper too.
+  \item A new algorithm for selecting fonts based on font family names allows
+    to more reliably load fonts based on their family name.
+  \item The compiled font database gets compressed to reduce disk space and
+    improve performance on newer systems.
+  \item Broken rendering of some TrueType based variable fonts has been fixed.
+  \item Text automatically gets normalized to Unicode's NFC before shaping.
+    This improves rendering for text written in decomposed forms for many
+    fonts. This can be turned off by passing the \texttt{-normalize} font
+    feature.
+  \item A number of small bugfixes.
+ \end{itemize}
+\endsubsection
+
 \beginsubsection {New in version 3.18 (by Ulrike Fischer/Marcel Krüger)}
 \begin{itemize}
   \item Now variable fonts can be loaded with default values without specifying
@@ -504,7 +529,7 @@ where \meta{prefix} is either \inlinecode{file:} or \inlinecode {name:}.\footnot
   %
   For a working example see the
   \hyperlink [test in the luaotfload
-  repo]{https://github.com/latex3/luaotfload/blob/master/testfiles/my-resolver.lvt}.
+  repo]{https://github.com/latex3/luaotfload/blob/main/testfiles/my-resolver.lvt}.
 }
 %
 It determines whether the font loader should interpret the request as
@@ -2477,7 +2502,8 @@ code imported from \CONTEXT.
 
 The complete text of the license is given as a separate file \fileent
 {COPYING} in the toplevel directory of the
-\hyperlink [\fileent {Luaotfload} Git repository]{https://github.com/lualatex/luaotfload/blob/master/COPYING}.\\
+\hyperlink [\fileent {Luaotfload} Git
+repository]{https://github.com/latex3/luaotfload/blob/main/COPYING}.\\
 Distributions probably package it as \fileent
 {doc/luatex/luaotfload/COPYING} in the relevant \fileent {texmf} tree.
 

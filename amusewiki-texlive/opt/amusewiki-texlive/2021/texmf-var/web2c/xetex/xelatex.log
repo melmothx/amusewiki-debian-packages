@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (INITEX)  9 FEB 2022 17:12
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (INITEX)  17 MAR 2022 09:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -47,7 +47,7 @@ LaTeX2e <2021-11-15> patch level 1
 -texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.ltx
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/latex/l3kernel/expl3-code.tex
-Package: expl3 2022-02-05 L3 programming layer (code)
+Package: expl3 2022-02-24 L3 programming layer (code)
 \c_max_int=\count24
 \l_tmpa_int=\count25
 \l_tmpb_int=\count26
@@ -1160,7 +1160,7 @@ Local configuration file hyphen.cfg used
 
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/generic/babel/hyphen.cfg
-File: hyphen.cfg 2022/01/26 3.70 Babel hyphens
+File: hyphen.cfg 2022/02/26 3.73 Babel hyphens
 
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/generic/babel/xebabel.def)
@@ -1817,10 +1817,10 @@ xes to external files and packages
 )
  ) )
 Beginning to dump on file xelatex.fmt
- (preloaded format=xelatex 2022.2.9)
-89331 strings of total length 468750
-297293 memory locations dumped; current usage is 299&292675
-20844 multiletter control sequences
+ (preloaded format=xelatex 2022.3.17)
+89333 strings of total length 468808
+297476 memory locations dumped; current usage is 299&292858
+20846 multiletter control sequences
 \font\nullfont=nullfont
 \font\c__fp_exp_intarray=cmr10 at 0.00002pt
 \font\c__fp_trig_intarray=cmr10 at 0.00003pt

@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
-# $Id: install-tl 61236 2021-12-06 22:13:25Z karl $
-# Copyright 2007-2021
+# $Id: install-tl 62146 2022-02-22 22:48:10Z karl $
+# Copyright 2007-2022
 # Reinhard Kotucha, Norbert Preining, Karl Berry, Siep Kroonenberg.
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
@@ -10,7 +10,7 @@
 
 use strict; use warnings;
 
-my $svnrev = '$Revision: 61236 $';
+my $svnrev = '$Revision: 62146 $';
 $svnrev =~ m/: ([0-9]+) /;
 $::installerrevision = ($1 ? $1 : 'unknown');
 
@@ -298,11 +298,15 @@ my $opt_scheme = "";
 my $opt_version = 0;
 my $opt_warn_checksums = 1;
 my $opt_font;
+# we might want to set this to 1 ...? TODO
+my $opt_continue = 0;
 # unusual cases:
 $::opt_select_repository = 0;
 our $opt_in_place = 0;
 # don't set this to a value, see below
 my $opt_verify_downloads;
+# debug options
+my $opt_debug_fakenet = 0;
 
 # show all options even those not relevant for that arch
 $::opt_all_options = 0;
@@ -316,6 +320,9 @@ $::lang = "en";
 
 # do not debug translations by default
 $::debug_translation = 0;
+
+# List of packages that failed to install but we continued due to --continue
+@::installation_failed_packages = ();
 
 # before we try to interact with the user, we need to know whether or not
 # install-tl was called from an external gui. This gui will start install-tl
@@ -361,8 +368,10 @@ process_logging_options();
 # now the others
 GetOptions(
            "all-options"                 => \$::opt_all_options,
+           "continue"                    => \$opt_continue,
            "custom-bin=s"                => \$opt_custom_bin,
            "debug-translation"           => \$::debug_translation,
+           "debug-fakenet"               => \$opt_debug_fakenet,
            "fancyselector",
            "force-platform|force-arch=s" => \$opt_force_arch,
            "gui:s"                       => \$opt_gui,
@@ -639,7 +648,7 @@ if ($opt_profile eq "") {
 
   # before we start the installation we check for the existence of
   # a previous installation, and in case we ship inform the UI
-  if (!exists $ENV{"TEXLIVE_INSTALL_NO_WELCOME"}) {
+  if (!exists $ENV{"TEXLIVE_INSTALL_NO_RESUME"}) {
     my $tlmgrwhich = which("tlmgr");
     if ($tlmgrwhich) {
       my $dn = dirname($tlmgrwhich);
@@ -716,6 +725,27 @@ if ($opt_gui eq 'text' or $opt_gui eq 'extl' or $opt_profile ne "") {
   }
   printf STDOUT "Installed on platform %s at %s\n",
       $vars{'this_platform'}, $vars{'TEXDIR'} if ($opt_gui eq 'extl');
+
+  if (@::installation_failed_packages) {
+    print <<EOF;
+
+*** PLEASE READ THIS WARNING ***********************************
+
+The following (inessential) packages failed to install properly:
+
+  @::installation_failed_packages
+
+You can fix this by running this command:
+  tlmgr update --all --reinstall-forcibly-removed
+to complete the installation.
+
+However, if the problem was a failure to download (by far the
+most common cause), you need to ensure that your network connection
+is working first.
+******************************************************************
+
+EOF
+  }
 }
 exit $status;
 
@@ -1527,7 +1557,7 @@ sub set_platforms_supported {
 
 # Environment variables and default values on UNIX:
 #   TEXLIVE_INSTALL_PREFIX         /usr/local/texlive   => $tex_prefix
-#   TEXLIVE_INSTALL_TEXDIR         $tex_prefix/2010     => $TEXDIR
+#                                  $tex_prefix/2010     => $TEXDIR
 #   TEXLIVE_INSTALL_TEXMFSYSVAR    $TEXDIR/texmf-var
 #   TEXLIVE_INSTALL_TEXMFSYSCONFIG $TEXDIR/texmf-config
 #   TEXLIVE_INSTALL_TEXMFLOCAL     $tex_prefix/texmf-local
@@ -2107,24 +2137,29 @@ sub read_profile {
 } # read_profile
 
 sub do_install_packages {
-  # let's install the critical packages first, since they are the most
-  # likely to fail (so let's fail early), and nothing is usable without them.
+  # We split installation of packages into two stages:
+  # - first critical packages, those absolutely necessary for working
+  # - all the other packages, that can be also installed afterwards
+  #   via tlmgr
+  # If something fails in the first group, we stop the installation.
+  # If something fails in the second group:
+  #   - if --continue is given, try to continue install
+  #   - if --continue is not given, terminate (behaviour till now)
+  #
+  my @criticalwhat = ();
   my @what = ();
-  foreach my $package (sort {
-      if ($a =~ /$CriticalPackagesRegexp/) {
-        if ($b =~ /$CriticalPackagesRegexp/) {
-          return $a cmp $b; # both critical
-        } else {
-          return -1; # critical before non-critical
-        }
-      } elsif ($b =~ /$CriticalPackagesRegexp/) {
-        return 1; # critical before non-critical 
-      } else {
-        return $a cmp $b;
-      }
-    } keys %install) {
-    push (@what, $package) if ($install{$package} == 1);
+  my @surely_fail_packages = ( @CriticalPackagesList, @TeXLive::TLConfig::InstallExtraRequiredPackages );
+  for my $package (keys %install) {
+    if (member($package, @surely_fail_packages)) {
+      push @criticalwhat, $package if ($install{$package} == 1);
+    } else {
+      push @what, $package if ($install{$package} == 1);
+    }
   }
+  @criticalwhat = sort @criticalwhat;
+  @what = sort @what;
+  # determine retrial behavior
+  my $retry = $opt_debug_fakenet || ($media eq "NET");
   # temporary unset the localtlpdb options responsible for
   # running all kind of postactions, since install_packages
   # would call them without the PATH already set up
@@ -2132,9 +2167,15 @@ sub do_install_packages {
   $localtlpdb->option ("desktop_integration", "0");
   $localtlpdb->option ("file_assocs", "0");
   $localtlpdb->option ("post_code", "0");
-  if (!install_packages($tlpdb,$media,$localtlpdb,\@what,
+  if (!install_packages($tlpdb,$media,$localtlpdb,\@criticalwhat,
                         $vars{'tlpdbopt_install_srcfiles'},
-                        $vars{'tlpdbopt_install_docfiles'})) {
+                        $vars{'tlpdbopt_install_docfiles'},
+                        $retry, 0)
+      ||
+      !install_packages($tlpdb,$media,$localtlpdb,\@what,
+                        $vars{'tlpdbopt_install_srcfiles'},
+                        $vars{'tlpdbopt_install_docfiles'},
+                        $retry, $opt_continue)) {
     my $profile_name = "installation.profile";
     create_profile($profile_name);
     tlwarn("Installation failed.\n");
@@ -2145,9 +2186,7 @@ sub do_install_packages {
       my $repostr = ($opt_location ? " --repository $location" : "");
       my $args = "--profile $profile_name [YOUR-EXTRA-ARGS]";
       if (win32()) {
-        tlwarn("  install-tl-windows.bat$repostr $args\n"
-              ."or\n"
-              ."  install-tl-advanced.bat$repostr $args\n");
+        tlwarn("  install-tl-windows.bat$repostr $args\n");
       } else {
         tlwarn("  install-tl$repostr $args\n");
       }
@@ -2631,8 +2670,6 @@ install-tl [I<option>]...
 
 install-tl-windows.bat [I<option>]...
 
-install-tl-advanced.bat [I<option>]...
-
 =head1 DESCRIPTION
 
 This installer creates a runnable TeX Live installation from various
@@ -2772,6 +2809,11 @@ C<custom> before doing each.
 For more information on custom binaries, see
 L<https://tug.org/texlive/custom-bin.html>.  For general information on
 building TeX Live, see L<https://tug.org/texlive/build.html>.
+
+=item B<-debug-fakenet>
+
+Pretend we're doing a network install, for the sole purpose of testing
+broken downloads via moving package files aside in a tlnet mirror.
 
 =item B<-debug-translation>
 
@@ -3078,8 +3120,6 @@ C<letter> or C<a4>. The default is C<a4>.
 
 =item C<TEXLIVE_INSTALL_PREFIX>
 
-=item C<TEXLIVE_INSTALL_TEXDIR>
-
 =item C<TEXLIVE_INSTALL_TEXMFCONFIG>
 
 =item C<TEXLIVE_INSTALL_TEXMFVAR>
@@ -3092,11 +3132,13 @@ C<letter> or C<a4>. The default is C<a4>.
 
 =item C<TEXLIVE_INSTALL_TEXMFSYSVAR>
 
-Specify the respective directories.  C<TEXLIVE_INSTALL_PREFIX> defaults
-to C</usr/local/texlive>, while C<TEXLIVE_INSTALL_TEXDIR> defaults to
-the release directory within that prefix, e.g.,
-C</usr/local/texlive/2016>.  All the defaults can be seen by running the
+Specify the respective directories. C<TEXLIVE_INSTALL_PREFIX> defaults
+to C</usr/local/texlive>. All the defaults can be seen by running the
 installer interactively and then typing C<D> for the directory menu.
+
+To override the so-called C<TEXDIR>, which defaults to the release
+directory within that prefix, e.g., C</usr/local/texlive/2020>, use a
+profile file (q.v.).
 
 =item C<NOPERLDOC>
 
@@ -3111,7 +3153,7 @@ This script and its documentation were written for the TeX Live
 distribution (L<https://tug.org/texlive>) and both are licensed under the
 GNU General Public License Version 2 or later.
 
-$Id: install-tl 61236 2021-12-06 22:13:25Z karl $
+$Id: install-tl 62146 2022-02-22 22:48:10Z karl $
 =cut
 
 # to remake HTML version: pod2html --cachedir=/tmp install-tl >/tmp/itl.html

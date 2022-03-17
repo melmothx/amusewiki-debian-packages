@@ -7,7 +7,7 @@
 %% serbian.dtx  (with options: `code')
 %% This is a generated file.
 %% 
-%% Copyright 2019--2021 Uroš Stefanović and any individual authors
+%% Copyright 2019--2022 Uroš Stefanović and any individual authors
 %% listed elsewhere in this file.  All rights reserved.
 %% 
 %% This file is intended to be used with the Babel system.
@@ -29,7 +29,7 @@
 %% and covered by LPPL is defined by the unpacking scripts (with
 %% extension .ins) which are part of the distribution.
 \ProvidesLanguage{serbian}
-        [2021/04/10 2.1 Serbian Latin support for the Babel system]
+        [2022/02/16 2.2 Serbian Latin support for the Babel system]
 %% File `serbian.dtx'
 \LdfInit{serbian}{captionsserbian}
 \ifdefined\if@srb@uni@ode
@@ -121,8 +121,23 @@
     oktobar\or
     novembar\or
     decembar\fi}%
+   \def\month@serbian@gen{\ifcase\month\or
+    januara\or
+    februara\or
+    marta\or
+    aprila\or
+    maja\or
+    juna\or
+    jula\or
+    avgusta\or
+    septembra\or
+    oktobra\or
+    novembra\or
+    decembra\fi}%
     \def\today{\number\day.~\month@serbian\ \number\year\@ifstar{}{.}}%
-    \def\todayRoman{\number\day.~\@Roman\month~\number\year\@ifstar{}{.}}}
+    \def\todayRoman{\number\day.~\@Roman\month~\number\year\@ifstar{}{.}}%
+    \def\todayGen{\number\day.~\month@serbian@gen\ \number\year\@ifstar{}{.}}%
+    \def\todayArabic{\number\day.~\number\month.~\number\year\@ifstar{}{.}}}
   \let\dateserbian@datei=\dateserbian
   \addto\dateserbian@datei{
     \def\month@serbian@datei{\ifnum\month=6 juni%

@@ -32,8 +32,6 @@
 
 <p>install-tl-windows.bat [<i>option</i>]...</p>
 
-<p>install-tl-advanced.bat [<i>option</i>]...</p>
-
 <h1 id="DESCRIPTION">DESCRIPTION</h1>
 
 <p>This installer creates a runnable TeX Live installation from various media, including over the network, from local hard disk, a DVD, etc. The installer works on all platforms supported by TeX Live. For information on initially downloading TeX Live, see <a href="https://tug.org/texlive/acquire.html">https://tug.org/texlive/acquire.html</a>.</p>
@@ -124,6 +122,12 @@
 <p>If you have built your own set of TeX Live binaries (perhaps because your platform was not supported by TeX Live out of the box), this option allows you to specify the <i>path</i> to a directory where the binaries for the current system are present. The installation will continue as usual, but at the end all files from <i>path</i> are copied over to <code>bin/custom/</code> under your installation directory and this <code>bin/custom/</code> directory is what will be added to the path for the post-install actions. To install multiple custom binary sets, manually rename <code>custom</code> before doing each.</p>
 
 <p>For more information on custom binaries, see <a href="https://tug.org/texlive/custom-bin.html">https://tug.org/texlive/custom-bin.html</a>. For general information on building TeX Live, see <a href="https://tug.org/texlive/build.html">https://tug.org/texlive/build.html</a>.</p>
+
+</dd>
+<dt id="debug-fakenet"><b>-debug-fakenet</b></dt>
+<dd>
+
+<p>Pretend we&#39;re doing a network install, for the sole purpose of testing broken downloads via moving package files aside in a tlnet mirror.</p>
 
 </dd>
 <dt id="debug-translation"><b>-debug-translation</b></dt>
@@ -400,10 +404,6 @@ tlpdbopt_w32_multi_user</code></pre>
 <dd>
 
 </dd>
-<dt id="TEXLIVE_INSTALL_TEXDIR"><code>TEXLIVE_INSTALL_TEXDIR</code></dt>
-<dd>
-
-</dd>
 <dt id="TEXLIVE_INSTALL_TEXMFCONFIG"><code>TEXLIVE_INSTALL_TEXMFCONFIG</code></dt>
 <dd>
 
@@ -427,7 +427,9 @@ tlpdbopt_w32_multi_user</code></pre>
 <dt id="TEXLIVE_INSTALL_TEXMFSYSVAR"><code>TEXLIVE_INSTALL_TEXMFSYSVAR</code></dt>
 <dd>
 
-<p>Specify the respective directories. <code>TEXLIVE_INSTALL_PREFIX</code> defaults to <code>/usr/local/texlive</code>, while <code>TEXLIVE_INSTALL_TEXDIR</code> defaults to the release directory within that prefix, e.g., <code>/usr/local/texlive/2016</code>. All the defaults can be seen by running the installer interactively and then typing <code>D</code> for the directory menu.</p>
+<p>Specify the respective directories. <code>TEXLIVE_INSTALL_PREFIX</code> defaults to <code>/usr/local/texlive</code>. All the defaults can be seen by running the installer interactively and then typing <code>D</code> for the directory menu.</p>
+
+<p>To override the so-called <code>TEXDIR</code>, which defaults to the release directory within that prefix, e.g., <code>/usr/local/texlive/2020</code>, use a profile file (q.v.).</p>
 
 </dd>
 <dt id="NOPERLDOC"><code>NOPERLDOC</code></dt>
@@ -442,7 +444,7 @@ tlpdbopt_w32_multi_user</code></pre>
 
 <p>This script and its documentation were written for the TeX Live distribution (<a href="https://tug.org/texlive">https://tug.org/texlive</a>) and both are licensed under the GNU General Public License Version 2 or later.</p>
 
-<p>$Id: install-tl 59056 2021-05-02 21:48:01Z karl $</p>
+<p>$Id: install-tl 62146 2022-02-22 22:48:10Z karl $</p>
 
 
 </body>

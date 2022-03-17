@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
 
-# Serbian Cyrillic language module for Babel, v3.1
+# Serbian Cyrillic language module for Babel, v3.2
 
 Released under the LaTeX Project Public License v1.3 or later.
 See http://www.latex-project.org/lppl.txt
@@ -47,6 +47,10 @@ or
     \usepackage[english,serbianc.ijekav]{babel}
 	
 Also, the attributes 'datei' and 'quotes' are defined.
+
+## CHANGES v3.2
+
+New date formats are available.
 
 ## CHANGES v3.1
 

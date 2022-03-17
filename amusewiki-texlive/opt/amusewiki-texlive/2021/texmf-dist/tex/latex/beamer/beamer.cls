@@ -12,14 +12,14 @@
 % See the file doc/licenses/LICENSE for more details.
 
 \ProvidesClass{beamer}
-  [2022/01/21 v3.65 A class for typesetting presentations]
+  [2022/02/08 v3.66 A class for typesetting presentations]
 
 % Setup modes and check for article option
 % Also loads packages required by both beamer and beamerarticle
 \RequirePackage{beamerbasemodes}
 
 % For testing PDF versus DVI mode
-\RequirePackage{ifpdf}
+\RequirePackage{iftex}
 
 %
 %
@@ -351,7 +351,7 @@
 %
 
 % before processing beamer options for \pgfmathparse
-\RequirePackage{pgfcore}
+\RequirePackage{pgfmath}
 
 \ExecuteOptionsBeamer{c}
 \ProcessOptionsBeamer
@@ -363,6 +363,7 @@
 \beamer@filterclassoptions
 
 % Low-level graphic drawing and advanced color support.
+\RequirePackage{pgfcore}
 \RequirePackage{xxcolor}
 
 % Normally loaded by hyperref but to be on the safe side ...

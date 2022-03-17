@@ -1,6 +1,6 @@
 .\" Man page generated from reStructuredText.
 .
-.TH LUAOTFLOAD.CONF 5 "2021-05-21" "3.18" "text processing"
+.TH LUAOTFLOAD.CONF 5 "2022-02-27" "3.20" "text processing"
 .SH NAME
 luaotfload.conf \- Luaotfload configuration file
 .
@@ -373,6 +373,14 @@ T}	T{
 <Luaotfload version>
 T}
 _
+T{
+keepnames
+T}	T{
+b
+T}	T{
+\fBtrue\fP
+T}
+_
 .TE
 .sp
 With \fBstatistics\fP enabled, extra statistics will be collected during
@@ -386,6 +394,10 @@ terminal dimensions cannot be retrieved.
 .sp
 The value of \fBversion\fP is derived from the version string hard\-coded
 in the Luaotfload source. Override at your own risk.
+.sp
+The \fBkeepnames\fP option decides if the ConTeXt fontloader should keep
+names it considers useless or if they should be discarded. This option
+only takes effect after font caches are regenererated.
 .SS Section \fBpaths\fP
 .TS
 center;

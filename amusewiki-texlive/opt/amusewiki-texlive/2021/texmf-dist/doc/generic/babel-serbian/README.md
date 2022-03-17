@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
 
-# Serbian Latin language module for Babel, v2.1
+# Serbian Latin language module for Babel, v2.2
 
 Released under the LaTeX Project Public License v1.3 or later.
 See http://www.latex-project.org/lppl.txt
@@ -19,13 +19,17 @@ lualatex.exe).
 
 Typesetting in ijekavian dialect:
 
-    \usepackage[english,serbianc]{babel}
-    \languageattribute{serbianc}{ijekav}
+    \usepackage[english,serbian]{babel}
+    \languageattribute{serbian}{ijekav}
 or
 
-    \usepackage[english,serbianc.ijekav]{babel}
+    \usepackage[english,serbian.ijekav]{babel}
 	
 Also, the attributes 'datei' and 'quotes' are defined.
+
+## CHANGES v2.2
+
+New date formats are available.
 
 ## CHANGES v2.1
 

@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (INITEX)  28 JAN 2022 16:52
+This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (INITEX)  17 MAR 2022 09:24
  restricted system commands enabled.
 **luatex.ini
 
@@ -188,7 +188,7 @@ Retaining: \et@xerr, \et@xinput, \et@xlibhdr, \et@xmsg, \et@xtoks, \et@xwarn,
 \et@xl@@d, \et@xl@ad, \et@xload, \et@xlang, \et@xhash, \eTeX, \etexhdrchk,
 \etexstatus, \module, \uselanguage, \r@tain, \r@cycle,))
 Beginning to dump on file luahbtex.fmt
- (format=luahbtex 2022.1.28)
+ (format=luahbtex 2022.3.17)
 3644 strings using 13639 bytes
 68809 memory locations dumped; current usage is 149&8461
 2156 multiletter control sequences

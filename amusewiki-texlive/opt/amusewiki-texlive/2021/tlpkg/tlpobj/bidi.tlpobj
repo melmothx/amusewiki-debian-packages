@@ -1,15 +1,15 @@
 name bidi
 category Package
-revision 61881
+revision 62073
 shortdesc Bidirectional typesetting in plain TeX and LaTeX, using XeTeX
 longdesc A convenient interface for typesetting bidirectional texts with
 longdesc plain TeX and LaTeX. The package includes adaptations for use
 longdesc with many other commonly-used packages.
-containersize 116592
-containerchecksum f808ba2bcb34b2ba19b5f2266af7971b800ade0d2ff571fa5eaa1acb7c5e49258af0cb096c1252457101f277c0f169dd49d375d5da5975b080a9879e7d6e4cab
-doccontainersize 3747572
-doccontainerchecksum 3753aef9bacfc6f6f177a0df8e7f60d372d4189f888f0e8783c9d1b4f0e6399cf396f1678b9eb211a92c2954ad7a1c4adf33abde40da0e3d6e47a93ec8b3bf8e
-docfiles size=1030
+containersize 117328
+containerchecksum 6f9ccac604ea3e8550f3459fd8a5c3644a85f75019ce8bd006a5d44b5e7ca74e7684288310c332dfb2bfb586ae248cd616611c93ee70f0d3fcfabd776d0f7d7b
+doccontainersize 3756132
+doccontainerchecksum 054fca2837aaa14384851a75d0f8436b0b4f63dbc22fa6555d9a7190969ec52f5698be80afe347ec23c2bfe2cc2a3b6fc5a40733b85f7eed1c0d8d4431b8be20
+docfiles size=1033
  texmf-dist/doc/xelatex/bidi/README details="Readme"
  texmf-dist/doc/xelatex/bidi/bidi-bibitem.pdf
  texmf-dist/doc/xelatex/bidi/bidi-doc.pdf details="Package user documentation"
@@ -34,9 +34,9 @@ docfiles size=1030
  texmf-dist/doc/xelatex/bidi/test2-colortbl.tex
  texmf-dist/doc/xelatex/bidi/test2-wrapfig.tex
  texmf-dist/doc/xelatex/bidi/test3-wrapfig.tex
-srccontainersize 134360
-srccontainerchecksum 66c45a65e9e95340968cc5b0be01971cb35df5176f9537638bb2c444acae0dbdd9bf41a0b1bdd1bc355d9353ee7cb6f0f0f0e06369694dbd17a8a5be03240be6
-runfiles size=294
+srccontainersize 135040
+srccontainerchecksum eddb35271b71dbe2a8987f9935866cda046ecd7590bd549368c3081fa5aef493252610a6bc9fc18fee03cbaa0f746bb98e8a6f68d2d64c8af5528c0d0e2493cf
+runfiles size=298
  texmf-dist/tex/xelatex/bidi/adjmulticol-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/algorithm2e-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/amsart-xetex-bidi.def
@@ -103,6 +103,7 @@ runfiles size=294
  texmf-dist/tex/xelatex/bidi/floatrow-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/flowfram-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/footnote-xetex-bidi.def
+ texmf-dist/tex/xelatex/bidi/footnotebackref-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/framed-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/ftnright-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/geometry-xetex-bidi.def
@@ -118,6 +119,7 @@ runfiles size=294
  texmf-dist/tex/xelatex/bidi/listings-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/loadingorder-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/longtable-xetex-bidi.def
+ texmf-dist/tex/xelatex/bidi/lscape-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/mathtools-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/mdframed-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/memoir-xetex-bidi.def
@@ -131,6 +133,7 @@ runfiles size=294
  texmf-dist/tex/xelatex/bidi/ntheorem-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/overpic-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/pdfbase-xetex-bidi.def
+ texmf-dist/tex/xelatex/bidi/pdflscape-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/pdfpages-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/pgfcorescopes.code-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/picinpar-xetex-bidi.def
@@ -173,4 +176,4 @@ catalogue-contact-support https://github.com/tex-persian/bidi/discussions
 catalogue-ctan /macros/xetex/latex/bidi
 catalogue-license lppl1.3c
 catalogue-topics typesetting xetex bidi class
-catalogue-version 36.5
+catalogue-version 36.7

@@ -1,6 +1,6 @@
 name ptex
 category Package
-revision 59502
+revision 62145
 shortdesc A TeX system for publishing in Japanese
 longdesc pTeX adds features related to vertical writing, and deals with
 longdesc other problems in typesetting Japanese. A manual (in both
@@ -17,9 +17,9 @@ execute AddFormat name=eptex engine=eptex options="*eptex.ini"           pattern
 execute AddFormat name=ptex engine=ptex options="ptex.ini"           fmttriggers=cm,hyphen-base,knuth-lib,plain,ptex-base,ptex-fonts
 execute addKanjiMap ptex-@jaEmbed@@jaVariant@.map
 containersize 692
-containerchecksum 4183d235d990089401faa180297940df927621d5c0846d7e4e1e04a8c82257d75f0dd868590e724568fec92fba09ba1c9a0550673dd24c5484de562e8079d8b6
+containerchecksum 26c84a96b8b15553c55c2dd3b51224c627ffd9fba19341dd0353582e3c1c5d50ee6d67f2f4257180e32c9f4236bc5d0ad7da058f99833e50e93b684161d1eb74
 doccontainersize 121228
-doccontainerchecksum d05bd8a2379392db485e6d544584513983d4fd598e49848df2daef8b76f3ecfde23445184ba902cdb311fa3bde648c66629a9bcea2b65f10d85e5985052e9bbd
+doccontainerchecksum a314b70ce2362da62ca45f42213214d336a93fbb70f0c08f59cb72b44791e5acc216e045868f50c48b6d69c39e7d8b7317c48f2b495408b0138a5b3f87d0b297
 docfiles size=54
  texmf-dist/doc/man/man1/eptex.1
  texmf-dist/doc/man/man1/eptex.man1.pdf

@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "TLMGR 1"
-.TH TLMGR 1 "2021-09-20" "perl v5.34.0" "User Contributed Perl Documentation"
+.TH TLMGR 1 "2021-12-11" "perl v5.34.0" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1677,59 +1677,54 @@ ignored.  All other lines must look like:
 where the spaces are optional but the \f(CW\*(C`=\*(C'\fR is required.
 .PP
 The allowed keys are:
-.ie n .IP """auto\-remove"", value 0 or 1 (default 1), same as command-line option." 4
-.el .IP "\f(CWauto\-remove\fR, value 0 or 1 (default 1), same as command-line option." 4
-.IX Item "auto-remove, value 0 or 1 (default 1), same as command-line option."
+.ie n .IP """auto\-remove ="" 0 or 1 (default 1), same as command-line option." 4
+.el .IP "\f(CWauto\-remove =\fR 0 or 1 (default 1), same as command-line option." 4
+.IX Item "auto-remove = 0 or 1 (default 1), same as command-line option."
 .PD 0
-.ie n .IP """gui\-expertmode"", value 0 or 1 (default 1). This switches between the full \s-1GUI\s0 and a simplified \s-1GUI\s0 with only the most common settings." 4
-.el .IP "\f(CWgui\-expertmode\fR, value 0 or 1 (default 1). This switches between the full \s-1GUI\s0 and a simplified \s-1GUI\s0 with only the most common settings." 4
-.IX Item "gui-expertmode, value 0 or 1 (default 1). This switches between the full GUI and a simplified GUI with only the most common settings."
-.ie n .IP """gui\-lang"" \fIllcode\fR, with a language code value as with the command-line option." 4
-.el .IP "\f(CWgui\-lang\fR \fIllcode\fR, with a language code value as with the command-line option." 4
-.IX Item "gui-lang llcode, with a language code value as with the command-line option."
-.ie n .IP """no\-checksums"", value 0 or 1 (default 0, see below)." 4
-.el .IP "\f(CWno\-checksums\fR, value 0 or 1 (default 0, see below)." 4
-.IX Item "no-checksums, value 0 or 1 (default 0, see below)."
-.ie n .IP """persistent\-downloads"", value 0 or 1 (default 1), same as command-line option." 4
-.el .IP "\f(CWpersistent\-downloads\fR, value 0 or 1 (default 1), same as command-line option." 4
-.IX Item "persistent-downloads, value 0 or 1 (default 1), same as command-line option."
-.ie n .IP """require\-verification"", value 0 or 1 (default 0), same as command-line option." 4
-.el .IP "\f(CWrequire\-verification\fR, value 0 or 1 (default 0), same as command-line option." 4
-.IX Item "require-verification, value 0 or 1 (default 0), same as command-line option."
-.ie n .IP """tkfontscale"", value any float. Controls the scaling of fonts in the Tk based frontends." 4
-.el .IP "\f(CWtkfontscale\fR, value any float. Controls the scaling of fonts in the Tk based frontends." 4
-.IX Item "tkfontscale, value any float. Controls the scaling of fonts in the Tk based frontends."
-.ie n .IP """update\-exclude"", value: comma-separated list of packages (no space allowed). Same as the command line option ""\-\-exclude"" for the action ""update""." 4
-.el .IP "\f(CWupdate\-exclude\fR, value: comma-separated list of packages (no space allowed). Same as the command line option \f(CW\-\-exclude\fR for the action \f(CWupdate\fR." 4
-.IX Item "update-exclude, value: comma-separated list of packages (no space allowed). Same as the command line option --exclude for the action update."
-.ie n .IP """verify\-downloads"", value 0 or 1 (default 1), same as command-line option." 4
-.el .IP "\f(CWverify\-downloads\fR, value 0 or 1 (default 1), same as command-line option." 4
-.IX Item "verify-downloads, value 0 or 1 (default 1), same as command-line option."
+.ie n .IP """gui\-expertmode ="" 0 or 1 (default 1). This switches between the full \s-1GUI\s0 and a simplified \s-1GUI\s0 with only the most common settings." 4
+.el .IP "\f(CWgui\-expertmode =\fR 0 or 1 (default 1). This switches between the full \s-1GUI\s0 and a simplified \s-1GUI\s0 with only the most common settings." 4
+.IX Item "gui-expertmode = 0 or 1 (default 1). This switches between the full GUI and a simplified GUI with only the most common settings."
+.ie n .IP """gui\-lang ="" \fIllcode\fR, with a language code value as with the command-line option." 4
+.el .IP "\f(CWgui\-lang =\fR \fIllcode\fR, with a language code value as with the command-line option." 4
+.IX Item "gui-lang = llcode, with a language code value as with the command-line option."
+.ie n .IP """no\-checksums ="" 0 or 1 (default 0, see below)." 4
+.el .IP "\f(CWno\-checksums =\fR 0 or 1 (default 0, see below)." 4
+.IX Item "no-checksums = 0 or 1 (default 0, see below)."
+.ie n .IP """persistent\-downloads ="" 0 or 1 (default 1), same as command-line option." 4
+.el .IP "\f(CWpersistent\-downloads =\fR 0 or 1 (default 1), same as command-line option." 4
+.IX Item "persistent-downloads = 0 or 1 (default 1), same as command-line option."
+.ie n .IP """require\-verification ="" 0 or 1 (default 0), same as command-line option." 4
+.el .IP "\f(CWrequire\-verification =\fR 0 or 1 (default 0), same as command-line option." 4
+.IX Item "require-verification = 0 or 1 (default 0), same as command-line option."
+.ie n .IP """tkfontscale ="" \fIfloating-point number\fR (default 1.0); scaling factor for fonts in the Tk-based frontends." 4
+.el .IP "\f(CWtkfontscale =\fR \fIfloating-point number\fR (default 1.0); scaling factor for fonts in the Tk-based frontends." 4
+.IX Item "tkfontscale = floating-point number (default 1.0); scaling factor for fonts in the Tk-based frontends."
+.ie n .IP """update\-exclude ="" \fIcomma-separated list of packages\fR (no spaces allowed). Same as the command line option ""\-\-exclude"" for the ""update"" action." 4
+.el .IP "\f(CWupdate\-exclude =\fR \fIcomma-separated list of packages\fR (no spaces allowed). Same as the command line option \f(CW\-\-exclude\fR for the \f(CWupdate\fR action." 4
+.IX Item "update-exclude = comma-separated list of packages (no spaces allowed). Same as the command line option --exclude for the update action."
+.ie n .IP """verify\-downloads ="" 0 or 1 (default 1), same as command-line option." 4
+.el .IP "\f(CWverify\-downloads =\fR 0 or 1 (default 1), same as command-line option." 4
+.IX Item "verify-downloads = 0 or 1 (default 1), same as command-line option."
 .PD
 .PP
 The system-wide config file can contain one additional key:
-.ie n .IP """allowed\-actions"" \fIaction1\fR [,\fIaction\fR,...] The value is a comma-separated list of ""tlmgr"" actions which are allowed to be executed when ""tlmgr"" is invoked in system mode (that is, without ""\-\-usermode"")." 4
-.el .IP "\f(CWallowed\-actions\fR \fIaction1\fR [,\fIaction\fR,...] The value is a comma-separated list of \f(CWtlmgr\fR actions which are allowed to be executed when \f(CWtlmgr\fR is invoked in system mode (that is, without \f(CW\-\-usermode\fR)." 4
-.IX Item "allowed-actions action1 [,action,...] The value is a comma-separated list of tlmgr actions which are allowed to be executed when tlmgr is invoked in system mode (that is, without --usermode)."
-This allows distributors to include the \f(CW\*(C`tlmgr\*(C'\fR in their packaging, but
-allow only a restricted set of actions that do not interfere with their
-distro package manager.  For native TeX Live installations, it doesn't
-make sense to set this.
+.ie n .IP """allowed\-actions ="" \fIaction1\fR[,\fIaction2\fR,...] The value is a comma-separated list (no spaces) of ""tlmgr"" actions which are allowed to be executed when ""tlmgr"" is invoked in system mode (that is, without ""\-\-usermode""). This allows distributors to include ""tlmgr"" in their packaging, but allow only a restricted set of actions that do not interfere with their distro package manager. For native TeX Live installations, it doesn't make sense to set this." 4
+.el .IP "\f(CWallowed\-actions =\fR \fIaction1\fR[,\fIaction2\fR,...] The value is a comma-separated list (no spaces) of \f(CWtlmgr\fR actions which are allowed to be executed when \f(CWtlmgr\fR is invoked in system mode (that is, without \f(CW\-\-usermode\fR). This allows distributors to include \f(CWtlmgr\fR in their packaging, but allow only a restricted set of actions that do not interfere with their distro package manager. For native TeX Live installations, it doesn't make sense to set this." 4
+.IX Item "allowed-actions = action1[,action2,...] The value is a comma-separated list (no spaces) of tlmgr actions which are allowed to be executed when tlmgr is invoked in system mode (that is, without --usermode). This allows distributors to include tlmgr in their packaging, but allow only a restricted set of actions that do not interfere with their distro package manager. For native TeX Live installations, it doesn't make sense to set this."
 .PP
-The \f(CW\*(C`no\-checksums\*(C'\fR key needs more explanation.  By default, package
-checksums computed and stored on the server (in the \s-1TLPDB\s0) are compared
-to checksums computed locally after downloading.  \f(CW\*(C`no\-checksums\*(C'\fR
-disables this process.
-.PP
-The checksum algorithm is \s-1SHA\-512.\s0  Your system must have one of (looked
-for in this order) the Perl \f(CW\*(C`Digest::SHA\*(C'\fR module, the \f(CW\*(C`openssl\*(C'\fR
-program (<https://openssl.org>), the \f(CW\*(C`sha512sum\*(C'\fR program (from \s-1GNU\s0
-Coreutils, <https://www.gnu.org/software/coreutils>), or finally the
-\&\f(CW\*(C`shasum\*(C'\fR program (just to support old Macs).  If none of these are
-available, a warning is issued and \f(CW\*(C`tlmgr\*(C'\fR proceeds without checking
-checksums.  (Incidentally, other \s-1SHA\s0 implementations, such as the pure
-Perl and pure Lua modules, are much too slow to be usable in our
-context.)  \f(CW\*(C`no\-checksums\*(C'\fR avoids the warning.
+Finally, the \f(CW\*(C`no\-checksums\*(C'\fR key needs more explanation. By default,
+package checksums computed and stored on the server (in the \s-1TLPDB\s0) are
+compared to checksums computed locally after downloading.
+\&\f(CW\*(C`no\-checksums\*(C'\fR disables this process. The checksum algorithm is
+\&\s-1SHA\-512.\s0 Your system must have one of (looked for in this order) the
+Perl \f(CW\*(C`Digest::SHA\*(C'\fR module, the \f(CW\*(C`openssl\*(C'\fR program
+(<https://openssl.org>), the \f(CW\*(C`sha512sum\*(C'\fR program (from \s-1GNU\s0 Coreutils,
+<https://www.gnu.org/software/coreutils>), or finally the \f(CW\*(C`shasum\*(C'\fR
+program (just to support old Macs). If none of these are available, a
+warning is issued and \f(CW\*(C`tlmgr\*(C'\fR proceeds without checking checksums.
+\&\f(CW\*(C`no\-checksums\*(C'\fR avoids the warning. (Incidentally, other \s-1SHA\s0
+implementations, such as the pure Perl and pure Lua modules, are much
+too slow to be usable in our context.)
 .SH "CRYPTOGRAPHIC VERIFICATION"
 .IX Header "CRYPTOGRAPHIC VERIFICATION"
 \&\f(CW\*(C`tlmgr\*(C'\fR and \f(CW\*(C`install\-tl\*(C'\fR perform cryptographic verification if
@@ -1858,7 +1853,6 @@ just as in normal mode.
 .IX Subsection "User mode generate, option, paper"
 In user mode, these actions operate only on the user tree's
 configuration files and/or \f(CW\*(C`texlive.tlpdb\*(C'\fR.
-creates configuration files in user tree
 .SH "MULTIPLE REPOSITORIES"
 .IX Header "MULTIPLE REPOSITORIES"
 The main TeX Live repository contains a vast array of packages.
@@ -2389,4 +2383,4 @@ This script and its documentation were written for the TeX Live
 distribution (<https://tug.org/texlive>) and both are licensed under the
 \&\s-1GNU\s0 General Public License Version 2 or later.
 .PP
-\&\f(CW$Id:\fR tlmgr.pl 60557 2021\-09\-20 10:46:43Z preining $
+\&\f(CW$Id:\fR tlmgr.pl 61236 2021\-12\-06 22:13:25Z karl $

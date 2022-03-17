@@ -357,3 +357,52 @@
 [Wed Feb  9 17:13:00 2022]   OK: platex.fmt/eptex
 [Wed Feb  9 17:13:00 2022] command: fmtutil-sys --byfmt dvilualatex --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/8jGMzqPoH3/oJDUgV5lDJ
 [Wed Feb  9 17:13:02 2022]   OK: dvilualatex.fmt/luatex
+[Thu Mar 17 09:23:37 2022] update: texlive.infra (60693 -> 62112)
+[Thu Mar 17 09:23:37 2022] update: texlive.infra.x86_64-linux (57933 -> 61925)
+[Thu Mar 17 09:23:37 2022] command: mktexlsr
+[Thu Mar 17 09:24:10 2022] update: babel (61748 -> 62203)
+[Thu Mar 17 09:24:11 2022] update: babel-polish (30283 -> 62681)
+[Thu Mar 17 09:24:11 2022] update: babel-serbian (58836 -> 62041)
+[Thu Mar 17 09:24:11 2022] update: babel-serbianc (58816 -> 62110)
+[Thu Mar 17 09:24:12 2022] update: beamer (61684 -> 61954)
+[Thu Mar 17 09:24:13 2022] update: bidi (61881 -> 62073)
+[Thu Mar 17 09:24:13 2022] update: footmisc (23330 -> 62527)
+[Thu Mar 17 09:24:13 2022] update: graphics-def (61899 -> 62085)
+[Thu Mar 17 09:24:14 2022] update: hyperref (59511 -> 62142)
+[Thu Mar 17 09:24:16 2022] update: l3kernel (61903 -> 62165)
+[Thu Mar 17 09:24:19 2022] update: latex-base-dev (61902 -> 62726)
+[Thu Mar 17 09:24:19 2022] update: latex-bin (57972 -> 62145)
+[Thu Mar 17 09:24:20 2022] update: latex-firstaid-dev (61719 -> 62726)
+[Thu Mar 17 09:24:21 2022] update: luaotfload (59293 -> 62239)
+[Thu Mar 17 09:24:21 2022] update: luatex (61454 -> 62174)
+[Thu Mar 17 09:24:22 2022] update: luatexja (61937 -> 62637)
+[Thu Mar 17 09:24:23 2022] update: microtype (61266 -> 62718)
+[Thu Mar 17 09:24:23 2022] update: pdftex (57973 -> 62145)
+[Thu Mar 17 09:24:24 2022] update: platex (61273 -> 62145)
+[Thu Mar 17 09:24:24 2022] update: ptex (59502 -> 62145)
+[Thu Mar 17 09:24:25 2022] update: texdoc (59283 -> 62380)
+[Thu Mar 17 09:24:25 2022] update: texlive-common (61281 -> 62149)
+[Thu Mar 17 09:24:25 2022] update: texlive-msg-translations (60760 -> 62192)
+[Thu Mar 17 09:24:26 2022] update: texlive-scripts (61939 -> 62733)
+[Thu Mar 17 09:24:26 2022] update: uplatex (59450 -> 62145)
+[Thu Mar 17 09:24:27 2022] update: uptex (61107 -> 62145)
+[Thu Mar 17 09:24:27 2022] update: uptex-fonts (54045 -> 62593)
+[Thu Mar 17 09:24:28 2022] update: xetex (61937 -> 62145)
+[Thu Mar 17 09:24:28 2022] command: mktexlsr
+[Thu Mar 17 09:24:28 2022] command: updmap-sys
+[Thu Mar 17 09:24:29 2022] command: fmtutil-sys --byengine xetex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/F8OGUsVPId/Qx7nCrl19Q
+[Thu Mar 17 09:24:35 2022]   OK: xetex.fmt/xetex xelatex.fmt/xetex
+[Thu Mar 17 09:24:35 2022] command: fmtutil-sys --byengine ptex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/F8OGUsVPId/Qx7nCrl19Q
+[Thu Mar 17 09:24:35 2022]   OK: ptex.fmt/ptex
+[Thu Mar 17 09:24:35 2022] command: fmtutil-sys --byengine luatex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/F8OGUsVPId/Qx7nCrl19Q
+[Thu Mar 17 09:24:38 2022]   OK: luatex.fmt/luatex dviluatex.fmt/luatex dvilualatex.fmt/luatex
+[Thu Mar 17 09:24:38 2022] command: fmtutil-sys --byengine eptex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/F8OGUsVPId/Qx7nCrl19Q
+[Thu Mar 17 09:24:41 2022]   OK: eptex.fmt/eptex platex.fmt/eptex platex-dev.fmt/eptex
+[Thu Mar 17 09:24:41 2022] command: fmtutil-sys --byengine pdftex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/F8OGUsVPId/Qx7nCrl19Q
+[Thu Mar 17 09:24:46 2022]   OK: pdftex.fmt/pdftex latex.fmt/pdftex etex.fmt/pdftex mptopdf.fmt/pdftex pdfetex.fmt/pdftex pdflatex.fmt/pdftex
+[Thu Mar 17 09:24:46 2022] command: fmtutil-sys --byengine luahbtex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/F8OGUsVPId/Qx7nCrl19Q
+[Thu Mar 17 09:24:48 2022]   OK: luahbtex.fmt/luahbtex lualatex.fmt/luahbtex
+[Thu Mar 17 09:24:48 2022] command: fmtutil-sys --byengine euptex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/F8OGUsVPId/Qx7nCrl19Q
+[Thu Mar 17 09:24:51 2022]   OK: euptex.fmt/euptex uplatex.fmt/euptex uplatex-dev.fmt/euptex
+[Thu Mar 17 09:24:51 2022] command: fmtutil-sys --byengine uptex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/F8OGUsVPId/Qx7nCrl19Q
+[Thu Mar 17 09:24:51 2022]   OK: uptex.fmt/uptex

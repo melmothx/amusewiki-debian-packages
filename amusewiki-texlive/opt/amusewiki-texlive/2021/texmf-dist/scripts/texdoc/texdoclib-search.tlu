@@ -39,22 +39,9 @@ end
 -- (or known basename according to basename_list)
 local function check_ext(file)
     file = file:lower()
-    -- remove zipext if applicable
-    file = texdoc.util.parse_zip(file)
-    -- then do the normal thing
-    for _, e in ipairs(texdoc.config.get_value('ext_list')) do
-        if e == '*' then
-            return true
-        elseif (e == '') then
-            if not file:find('.', 1, true) then
-                return true
-            end
-        else
-            local dot_e = '.' .. e
-            if file:sub(-#dot_e) == dot_e then
-                return true
-            end
-        end
+    -- has a known extention?
+    if texdoc.util.get_ext(file) ~= nil then
+        return true
     end
     -- is the basename good?
     for _, b in ipairs(texdoc.config.get_value('basename_list')) do
@@ -443,6 +430,33 @@ end
 
 -- tlpdb means TeX Live Package DataBase and tlp means TeX Live Package
 
+-- return an iterator that ouputs the keys in order
+local function opairs(t)
+    local tkeys = {}
+
+    -- use the counter len to avoid the cost of table.insert and to save the
+    -- length of tkeys for later use in the iterator
+    local len = 0
+    for k, _ in pairs(t) do
+        len = len + 1
+        tkeys[len] = k
+    end
+
+    table.sort(tkeys)
+
+    local i = 0
+    local function iterator()
+        i = i + 1
+        if i > len then
+           return nil
+        else
+           return tkeys[i], t[tkeys[i]]
+        end
+    end
+
+    return iterator
+end
+
 -- return true if cache exists and is newer than original, false otherwise
 local function good_cache(cache, ori)
     local cache_date = lfs.attributes(cache, 'modification')
@@ -556,25 +570,25 @@ print_out_tlpinfo = function(filename)
 
     -- s_meta
     printf('local s_meta = {\n')
-    for k, v in pairs(s_meta) do
+    for k, v in opairs(s_meta) do
         printf('  [%q] = {', k)
-        for i, j in pairs(v) do printf('[%q] = %q, ', i, j) end
+        for i, j in opairs(v) do printf('[%q] = %q, ', i, j) end
         printf('},\n')
     end
     printf('}\n')
 
     -- tlp_from_runfile
     printf('local tlp_from_runfile = {\n')
-    for k, v in pairs(tlp_from_runfile) do
+    for k, v in opairs(tlp_from_runfile) do
         printf('  [%q] = {', k)
-        for f in pairs(v) do printf('[%q]=true,', f) end
+        for f in opairs(v) do printf('[%q]=true,', f) end
         printf('},\n')
     end
     printf('}\n')
 
     -- tlp_doclist
     printf('local tlp_doclist = {\n')
-    for k, v in pairs(tlp_doclist) do
+    for k, v in opairs(tlp_doclist) do
         printf('  [%q] = {\n', k)
         for _, f in ipairs(v) do printf('    %q,\n', f) end
         printf('  },\n')

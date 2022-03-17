@@ -1,6 +1,6 @@
 name microtype
 category Package
-revision 61266
+revision 62718
 shortdesc Subliminal refinements towards typographical perfection
 longdesc The package provides a LaTeX interface to the micro-typographic
 longdesc extensions that were introduced by pdfTeX and have since also
@@ -22,18 +22,18 @@ longdesc available with pdfTeX or LuaTeX. The alternative package
 longdesc 'letterspace', which also works with plain TeX, provides the
 longdesc user commands for letterspacing only, omitting support for all
 longdesc other extensions.
-containersize 55504
-containerchecksum 9750c821263b26667c9a235d2f167962fbdd55ab3719a8a5234be15a47381138120af4a3c40627a9a827e08cc7c3166290894ca17b5c76f6d952e34c663e3897
-doccontainersize 2636264
-doccontainerchecksum c48e763db211d9405b4da181a9ea079cc03c64fc21e7b04b26dc5bd3e70bddf442a92774a75b324dc54044a7f1a300f4d5f93464a0aec3c5764a078bf15465ef
-docfiles size=690
+containersize 55772
+containerchecksum ab7077468c11482f81fc59a64fb07dadc0e562b8fbd6ddf326a91f27fd23c276fe42ebee39e0fbc702e4876ec4539da82cc0db1dcc6f2c9851885d2f66398672
+doccontainersize 2647504
+doccontainerchecksum 50c6f588f8382d5071e5789f3df1f84c9ee9af7833423e317b474f124f86676457cce6b85f9d06383864724e554c080e56db888170fe423c328123b00a299cc0
+docfiles size=694
  texmf-dist/doc/latex/microtype/README.md details="Package README"
  texmf-dist/doc/latex/microtype/microtype-code.pdf details="Implementation details"
  texmf-dist/doc/latex/microtype/microtype.pdf details="User manual"
  texmf-dist/doc/latex/microtype/test-microtype.tex
-srccontainersize 166132
-srccontainerchecksum 4362c81b57b88291cb8dd11c050a2da56fac0f372b5d0ef592468114ab8f1b6f8580d64db7128d9ce0486d4489afcda7cc1f12fa04e02c687059c02e15c50211
-runfiles size=124
+srccontainersize 168124
+srccontainerchecksum 6f4873de50445ecc7ca9ef4ca53cfe77683eb5be44b4059003d7de51fb0f4c645e72f75da332f6d62343e235d7ee6c4101b7eb98061d15d3873f9cbaa8c7ce44
+runfiles size=126
  texmf-dist/tex/latex/microtype/letterspace.sty
  texmf-dist/tex/latex/microtype/microtype-luatex.def
  texmf-dist/tex/latex/microtype/microtype-pdftex.def
@@ -69,4 +69,4 @@ catalogue-contact-repository https://github.com/schlcht/microtype/
 catalogue-ctan /macros/latex/contrib/microtype
 catalogue-license lppl1.3c
 catalogue-topics micro-layout letterspace
-catalogue-version 3.0b
+catalogue-version 3.0d

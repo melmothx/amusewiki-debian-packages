@@ -40,7 +40,7 @@
     \wlog{File: #1 #4 #3 <#2>}%
     \let\ProvidesFile\@undefined}
 \fi
-\ProvidesFile{babel.def}[2022/01/26 3.70 Babel common definitions]
+\ProvidesFile{babel.def}[2022/02/26 3.73 Babel common definitions]
 \ifx\AtBeginDocument\@undefined  % TODO. change test.
   \def\@empty{}
 \def\loadlocalcfg#1{%
@@ -406,8 +406,8 @@
 \expandafter\newif\csname ifbbl@single\endcsname
 \chardef\bbl@bidimode\z@
 \fi
-\def\bbl@version{3.70}
-\def\bbl@date{2022/01/26}
+\def\bbl@version{3.73}
+\def\bbl@date{2022/02/26}
 \ifx\language\@undefined
   \csname newcount\endcsname\language
 \fi
@@ -2524,6 +2524,8 @@
    % == onchar ==
   \ifx\bbl@KVP@onchar\@nil\else
     \bbl@luahyphenate
+    \bbl@exp{%
+      \\\AddToHook{env/document/before}{{\\\select@language{#2}{}}}}%
     \directlua{
       if Babel.locale_mapped == nil then
         Babel.locale_mapped = true

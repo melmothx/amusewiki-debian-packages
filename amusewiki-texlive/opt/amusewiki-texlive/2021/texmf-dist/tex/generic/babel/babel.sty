@@ -34,7 +34,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}[2005/12/01]
-\ProvidesPackage{babel}[2022/01/26 3.70 The Babel package]
+\ProvidesPackage{babel}[2022/02/26 3.73 The Babel package]
 \@ifpackagewith{babel}{debug}
   {\providecommand\bbl@trace[1]{\message{^^J[ #1 ]}}%
    \let\bbl@debug\@firstofone
@@ -453,8 +453,8 @@
       \expandafter\@secondoftwo
     \fi}
 \fi
-\def\bbl@version{3.70}
-\def\bbl@date{2022/01/26}
+\def\bbl@version{3.73}
+\def\bbl@date{2022/02/26}
 \ifx\language\@undefined
   \csname newcount\endcsname\language
 \fi
@@ -2571,6 +2571,8 @@
    % == onchar ==
   \ifx\bbl@KVP@onchar\@nil\else
     \bbl@luahyphenate
+    \bbl@exp{%
+      \\\AddToHook{env/document/before}{{\\\select@language{#2}{}}}}%
     \directlua{
       if Babel.locale_mapped == nil then
         Babel.locale_mapped = true
@@ -4211,6 +4213,10 @@
         \fi
       \fi}%
   \fi
+\else
+  \bbl@info{Main language set with 'main='. Except if you have\\%
+            problems, prefer the default mechanism for setting\\%
+            the main language. Reported}
 \fi
 \ifx\bbl@opt@main\@nnil\else
   \bbl@csarg\let{loadmain\expandafter}\csname ds@\bbl@opt@main\endcsname
@@ -4219,34 +4225,34 @@
 \bbl@foreach\bbl@language@opts{%
   \def\bbl@tempa{#1}%
   \ifx\bbl@tempa\bbl@opt@main\else
-    \bbl@ifunset{ds@#1}%
-      {\ifnum\bbl@iniflag<\tw@    % 0 ø (other = ldf)
-         \DeclareOption{#1}{\bbl@load@language{#1}}%
-       \else                      % + * (other = ini)
-         \DeclareOption{#1}{%
-           \bbl@ldfinit
-           \babelprovide[import]{#1}%
-           \bbl@afterldf{}}%
-       \fi}%
-      {}%
+    \ifnum\bbl@iniflag<\tw@    % 0 ø (other = ldf)
+      \bbl@ifunset{ds@#1}%
+        {\DeclareOption{#1}{\bbl@load@language{#1}}}%
+        {}%
+    \else                      % + * (other = ini)
+      \DeclareOption{#1}{%
+        \bbl@ldfinit
+        \babelprovide[import]{#1}%
+        \bbl@afterldf{}}%
+    \fi
   \fi}
 \bbl@foreach\@classoptionslist{%
   \def\bbl@tempa{#1}%
   \ifx\bbl@tempa\bbl@opt@main\else
-    \bbl@ifunset{ds@#1}%
-      {\ifnum\bbl@iniflag<\tw@    % 0 ø (other = ldf)
-         \IfFileExists{#1.ldf}%
-           {\DeclareOption{#1}{\bbl@load@language{#1}}}%
-           {}%
-       \else                      % + * (other = ini)
-         \IfFileExists{babel-#1.tex}%
-           {\DeclareOption{#1}{%
-              \bbl@ldfinit
-              \babelprovide[import]{#1}%
-              \bbl@afterldf{}}}%
-           {}%
-       \fi}%
-    {}%
+    \ifnum\bbl@iniflag<\tw@    % 0 ø (other = ldf)
+      \bbl@ifunset{ds@#1}%
+        {\IfFileExists{#1.ldf}%
+          {\DeclareOption{#1}{\bbl@load@language{#1}}}%
+          {}}%
+        {}%
+     \else                      % + * (other = ini)
+       \IfFileExists{babel-#1.tex}%
+         {\DeclareOption{#1}{%
+            \bbl@ldfinit
+            \babelprovide[import]{#1}%
+            \bbl@afterldf{}}}%
+         {}%
+     \fi
   \fi}
 \def\AfterBabelLanguage#1{%
   \bbl@ifsamestring\CurrentOption{#1}{\global\bbl@add\bbl@afterlang}{}}

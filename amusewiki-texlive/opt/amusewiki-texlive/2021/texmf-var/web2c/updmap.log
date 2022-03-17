@@ -1,5 +1,5 @@
 updmap version r59152 (2021-05-09 23:49:52 +0200)
-Wed Feb  9 17:12:43 2022
+Thu Mar 17 09:24:29 2022
 
 Using the following config files:
   /home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/web2c/updmap.cfg
@@ -2661,15 +2661,15 @@ uzdr
 
 Files generated:
   /home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-var/fonts/map/dvips/updmap:
-       15932 2022-02-09 17:12:43 builtin35.map
-       21405 2022-02-09 17:12:43 download35.map
-      105788 2022-02-09 17:12:43 psfonts_pk.map
-      111954 2022-02-09 17:12:43 psfonts_t1.map
-      111949 2022-02-09 17:12:43 ps2pk.map
-          14 2022-02-09 17:12:43 psfonts.map -> psfonts_t1.map
+       15932 2022-03-17 09:24:29 builtin35.map
+       21405 2022-03-17 09:24:29 download35.map
+      105788 2022-03-17 09:24:29 psfonts_pk.map
+      111954 2022-03-17 09:24:29 psfonts_t1.map
+      111949 2022-03-17 09:24:29 ps2pk.map
+          14 2022-03-17 09:24:29 psfonts.map -> psfonts_t1.map
   /home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-var/fonts/map/pdftex/updmap:
-      111956 2022-02-09 17:12:43 pdftex_dl14.map
-      110291 2022-02-09 17:12:43 pdftex_ndl14.map
-          15 2022-02-09 17:12:43 pdftex.map -> pdftex_dl14.map
+      111956 2022-03-17 09:24:29 pdftex_dl14.map
+      110291 2022-03-17 09:24:29 pdftex_ndl14.map
+          15 2022-03-17 09:24:29 pdftex.map -> pdftex_dl14.map
   /home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-var/fonts/map/dvipdfmx/updmap:
-         455 2022-02-09 17:12:43 kanjix.map
+         455 2022-03-17 09:24:29 kanjix.map

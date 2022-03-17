@@ -623,6 +623,7 @@ piedmontese.pdf
 
 ./doc/generic/babel-polish:
 polish.pdf
+README.md
 
 ./doc/generic/babel-portuges:
 portuges.pdf
@@ -1977,8 +1978,12 @@ LICENSE
 README.md
 
 ./doc/latex/footmisc:
-footmisc.pdf
-README
+changes.txt
+footmisc-code.pdf
+footmisc-code.tex
+footmisc-doc.pdf
+footmisc-doc.tex
+README.md
 
 ./doc/latex/fp:
 documentation.pdf
@@ -2035,6 +2040,7 @@ hyperref-doc4.html
 hyperref-doc5.html
 hyperref-doc6.html
 hyperref-doc7.html
+hyperref-doc8.html
 hyperref-doc.css
 hyperref-doc.html
 hyperref-doc.pdf
@@ -21890,6 +21896,7 @@ occitan.ldf
 piedmontese.ldf
 
 ./tex/generic/babel-polish:
+polish-compat.ldf
 polish.ldf
 
 ./tex/generic/babel-portuges:
@@ -24097,6 +24104,7 @@ lthumpush.fd
 lthwaree.fd
 
 ./tex/latex/footmisc:
+footmisc-2011-06-06.sty
 footmisc.sty
 
 ./tex/latex/fp:
@@ -24170,7 +24178,7 @@ hvtex.def
 hvtexhtm.def
 hvtexmrk.def
 hxetex.def
-hyperref-langpatches.def
+hyperref-patches.sty
 hyperref.sty
 hypertex.def
 minitoc-hyper.sty
@@ -25681,7 +25689,7 @@ lualibs-util-tab.lua
 lualibs-util-tpl.lua
 
 ./tex/luatex/luaotfload:
-fontloader-2021-05-20.lua
+fontloader-2022-02-24.lua
 fontloader-basics-chr.lua
 fontloader-basics-gen.lua
 fontloader-basics-nod.lua
@@ -25753,6 +25761,9 @@ luaotfload-filelist.lua
 luaotfload-glyphlist.lua
 luaotfload-harf-define.lua
 luaotfload-harf-plug.lua
+luaotfload-harf-var-cff2.lua
+luaotfload-harf-var-t2-writer.lua
+luaotfload-harf-var-ttf.lua
 luaotfload-init.lua
 luaotfload-letterspace.lua
 luaotfload-loaders.lua
@@ -26158,6 +26169,7 @@ fleqn-xetex-bidi.def
 floatrow-xetex-bidi.def
 float-xetex-bidi.def
 flowfram-xetex-bidi.def
+footnotebackref-xetex-bidi.def
 footnote-xetex-bidi.def
 framed-xetex-bidi.def
 ftnright-xetex-bidi.def
@@ -26174,6 +26186,7 @@ lineno-xetex-bidi.def
 listings-xetex-bidi.def
 loadingorder-xetex-bidi.def
 longtable-xetex-bidi.def
+lscape-xetex-bidi.def
 mathtools-xetex-bidi.def
 mdframed-xetex-bidi.def
 memoir-xetex-bidi.def
@@ -26187,6 +26200,7 @@ ntheorem-hyper-xetex-bidi.def
 ntheorem-xetex-bidi.def
 overpic-xetex-bidi.def
 pdfbase-xetex-bidi.def
+pdflscape-xetex-bidi.def
 pdfpages-xetex-bidi.def
 pgfcorescopes.code-xetex-bidi.def
 picinpar-xetex-bidi.def

@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (INITEX)  9 FEB 2022 17:12
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (INITEX)  17 MAR 2022 09:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -46,13 +46,13 @@ catcodes, registers,
 \interfootnotelinepenalty=\count23
 \strutbox=\box11
 
-LaTeX2e <2022-06-01> pre-release-2 (develop 2022-2-9 branch)
+LaTeX2e <2022-06-01> pre-release-3 (develop 2022-3-17 branch)
 
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.ltx
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/latex/l3kernel/expl3-code.tex
-Package: expl3 2022-02-05 L3 programming layer (code)
+Package: expl3 2022-02-24 L3 programming layer (code)
 \c_max_int=\count24
 \l_tmpa_int=\count25
 \l_tmpb_int=\count26
@@ -240,7 +240,7 @@ document commands,
 \@mainaux=\write1
 \@partaux=\write2
 \@clubpenalty=\count125
-LaTeX Info: Redefining \IfFileExists on input line 6925.
+LaTeX Info: Redefining \IfFileExists on input line 6938.
  font encodings, lengths,
 \everymath=\toks12
 \everydisplay=\toks13
@@ -379,503 +379,503 @@ p)
 -texlive/2021/texmf-dist/tex/latex-dev/base/preload.ltx
 File: preload.ltx 2021/10/04 v2.1g LaTeX Kernel (Font Preloading)
 ))
-LaTeX Font Info:    Setting ? sub-encoding to TS1/9 on input line 10687.
-LaTeX Font Info:    Setting ccr sub-encoding to TS1/0 on input line 10688.
-LaTeX Font Info:    Setting cmbr sub-encoding to TS1/0 on input line 10689.
-LaTeX Font Info:    Setting cmr sub-encoding to TS1/0 on input line 10690.
-LaTeX Font Info:    Setting cmss sub-encoding to TS1/0 on input line 10691.
-LaTeX Font Info:    Setting cmtl sub-encoding to TS1/0 on input line 10692.
-LaTeX Font Info:    Setting cmtt sub-encoding to TS1/0 on input line 10693.
-LaTeX Font Info:    Setting cmvtt sub-encoding to TS1/0 on input line 10694.
-LaTeX Font Info:    Setting pxr sub-encoding to TS1/0 on input line 10695.
-LaTeX Font Info:    Setting pxss sub-encoding to TS1/0 on input line 10696.
-LaTeX Font Info:    Setting pxtt sub-encoding to TS1/0 on input line 10697.
-LaTeX Font Info:    Setting qag sub-encoding to TS1/0 on input line 10698.
-LaTeX Font Info:    Setting qbk sub-encoding to TS1/0 on input line 10699.
-LaTeX Font Info:    Setting qcr sub-encoding to TS1/0 on input line 10700.
-LaTeX Font Info:    Setting qcs sub-encoding to TS1/0 on input line 10701.
-LaTeX Font Info:    Setting qhvc sub-encoding to TS1/0 on input line 10702.
-LaTeX Font Info:    Setting qhv sub-encoding to TS1/0 on input line 10703.
-LaTeX Font Info:    Setting qpl sub-encoding to TS1/0 on input line 10704.
-LaTeX Font Info:    Setting qtm sub-encoding to TS1/0 on input line 10705.
-LaTeX Font Info:    Setting qzc sub-encoding to TS1/0 on input line 10706.
-LaTeX Font Info:    Setting txr sub-encoding to TS1/0 on input line 10707.
-LaTeX Font Info:    Setting txss sub-encoding to TS1/0 on input line 10708.
-LaTeX Font Info:    Setting txtt sub-encoding to TS1/0 on input line 10709.
-LaTeX Font Info:    Setting lmr sub-encoding to TS1/1 on input line 10710.
-LaTeX Font Info:    Setting lmdh sub-encoding to TS1/1 on input line 10711.
-LaTeX Font Info:    Setting lmss sub-encoding to TS1/1 on input line 10712.
-LaTeX Font Info:    Setting lmssq sub-encoding to TS1/1 on input line 10713.
-LaTeX Font Info:    Setting lmvtt sub-encoding to TS1/1 on input line 10714.
-LaTeX Font Info:    Setting lmtt sub-encoding to TS1/1 on input line 10715.
-LaTeX Font Info:    Setting ptmx sub-encoding to TS1/2 on input line 10717.
-LaTeX Font Info:    Setting ptmj sub-encoding to TS1/2 on input line 10718.
-LaTeX Font Info:    Setting ul8 sub-encoding to TS1/2 on input line 10719.
-LaTeX Font Info:    Setting bch sub-encoding to TS1/5 on input line 10720.
-LaTeX Font Info:    Setting futj sub-encoding to TS1/5 on input line 10721.
-LaTeX Font Info:    Setting futs sub-encoding to TS1/5 on input line 10722.
-LaTeX Font Info:    Setting futx sub-encoding to TS1/5 on input line 10723.
-LaTeX Font Info:    Setting pag sub-encoding to TS1/5 on input line 10724.
-LaTeX Font Info:    Setting pbk sub-encoding to TS1/5 on input line 10725.
-LaTeX Font Info:    Setting pcr sub-encoding to TS1/5 on input line 10726.
-LaTeX Font Info:    Setting phv sub-encoding to TS1/5 on input line 10727.
-LaTeX Font Info:    Setting pnc sub-encoding to TS1/5 on input line 10728.
-LaTeX Font Info:    Setting pplj sub-encoding to TS1/5 on input line 10729.
-LaTeX Font Info:    Setting pplx sub-encoding to TS1/5 on input line 10730.
-LaTeX Font Info:    Setting ppl sub-encoding to TS1/5 on input line 10731.
-LaTeX Font Info:    Setting ptm sub-encoding to TS1/5 on input line 10732.
-LaTeX Font Info:    Setting pzc sub-encoding to TS1/5 on input line 10733.
-LaTeX Font Info:    Setting ul9 sub-encoding to TS1/5 on input line 10734.
-LaTeX Font Info:    Setting dayroms sub-encoding to TS1/6 on input line 10735.
-LaTeX Font Info:    Setting dayrom sub-encoding to TS1/6 on input line 10736.
-LaTeX Font Info:    Setting augie sub-encoding to TS1/8 on input line 10737.
-LaTeX Font Info:    Setting put sub-encoding to TS1/8 on input line 10738.
-LaTeX Font Info:    Setting uag sub-encoding to TS1/8 on input line 10739.
-LaTeX Font Info:    Setting ugq sub-encoding to TS1/8 on input line 10740.
-LaTeX Font Info:    Setting zi4 sub-encoding to TS1/9 on input line 10741.
-LaTeX Font Info:    Setting hls sub-encoding to TS1/5 on input line 10742.
-LaTeX Font Info:    Setting hlst sub-encoding to TS1/5 on input line 10743.
-LaTeX Font Info:    Setting hlct sub-encoding to TS1/5 on input line 10744.
-LaTeX Font Info:    Setting hlh sub-encoding to TS1/5 on input line 10745.
-LaTeX Font Info:    Setting hlx sub-encoding to TS1/8 on input line 10746.
-LaTeX Font Info:    Setting hlce sub-encoding to TS1/8 on input line 10747.
-LaTeX Font Info:    Setting hlcn sub-encoding to TS1/8 on input line 10748.
-LaTeX Font Info:    Setting hlcw sub-encoding to TS1/8 on input line 10749.
-LaTeX Font Info:    Setting hlcf sub-encoding to TS1/8 on input line 10750.
-LaTeX Font Info:    Setting lato-LF sub-encoding to TS1/0 on input line 10751.
-LaTeX Font Info:    Setting lato-TLF sub-encoding to TS1/0 on input line 10751.
+LaTeX Font Info:    Setting ? sub-encoding to TS1/9 on input line 10700.
+LaTeX Font Info:    Setting ccr sub-encoding to TS1/0 on input line 10701.
+LaTeX Font Info:    Setting cmbr sub-encoding to TS1/0 on input line 10702.
+LaTeX Font Info:    Setting cmr sub-encoding to TS1/0 on input line 10703.
+LaTeX Font Info:    Setting cmss sub-encoding to TS1/0 on input line 10704.
+LaTeX Font Info:    Setting cmtl sub-encoding to TS1/0 on input line 10705.
+LaTeX Font Info:    Setting cmtt sub-encoding to TS1/0 on input line 10706.
+LaTeX Font Info:    Setting cmvtt sub-encoding to TS1/0 on input line 10707.
+LaTeX Font Info:    Setting pxr sub-encoding to TS1/0 on input line 10708.
+LaTeX Font Info:    Setting pxss sub-encoding to TS1/0 on input line 10709.
+LaTeX Font Info:    Setting pxtt sub-encoding to TS1/0 on input line 10710.
+LaTeX Font Info:    Setting qag sub-encoding to TS1/0 on input line 10711.
+LaTeX Font Info:    Setting qbk sub-encoding to TS1/0 on input line 10712.
+LaTeX Font Info:    Setting qcr sub-encoding to TS1/0 on input line 10713.
+LaTeX Font Info:    Setting qcs sub-encoding to TS1/0 on input line 10714.
+LaTeX Font Info:    Setting qhvc sub-encoding to TS1/0 on input line 10715.
+LaTeX Font Info:    Setting qhv sub-encoding to TS1/0 on input line 10716.
+LaTeX Font Info:    Setting qpl sub-encoding to TS1/0 on input line 10717.
+LaTeX Font Info:    Setting qtm sub-encoding to TS1/0 on input line 10718.
+LaTeX Font Info:    Setting qzc sub-encoding to TS1/0 on input line 10719.
+LaTeX Font Info:    Setting txr sub-encoding to TS1/0 on input line 10720.
+LaTeX Font Info:    Setting txss sub-encoding to TS1/0 on input line 10721.
+LaTeX Font Info:    Setting txtt sub-encoding to TS1/0 on input line 10722.
+LaTeX Font Info:    Setting lmr sub-encoding to TS1/1 on input line 10723.
+LaTeX Font Info:    Setting lmdh sub-encoding to TS1/1 on input line 10724.
+LaTeX Font Info:    Setting lmss sub-encoding to TS1/1 on input line 10725.
+LaTeX Font Info:    Setting lmssq sub-encoding to TS1/1 on input line 10726.
+LaTeX Font Info:    Setting lmvtt sub-encoding to TS1/1 on input line 10727.
+LaTeX Font Info:    Setting lmtt sub-encoding to TS1/1 on input line 10728.
+LaTeX Font Info:    Setting ptmx sub-encoding to TS1/2 on input line 10730.
+LaTeX Font Info:    Setting ptmj sub-encoding to TS1/2 on input line 10731.
+LaTeX Font Info:    Setting ul8 sub-encoding to TS1/2 on input line 10732.
+LaTeX Font Info:    Setting bch sub-encoding to TS1/5 on input line 10733.
+LaTeX Font Info:    Setting futj sub-encoding to TS1/5 on input line 10734.
+LaTeX Font Info:    Setting futs sub-encoding to TS1/5 on input line 10735.
+LaTeX Font Info:    Setting futx sub-encoding to TS1/5 on input line 10736.
+LaTeX Font Info:    Setting pag sub-encoding to TS1/5 on input line 10737.
+LaTeX Font Info:    Setting pbk sub-encoding to TS1/5 on input line 10738.
+LaTeX Font Info:    Setting pcr sub-encoding to TS1/5 on input line 10739.
+LaTeX Font Info:    Setting phv sub-encoding to TS1/5 on input line 10740.
+LaTeX Font Info:    Setting pnc sub-encoding to TS1/5 on input line 10741.
+LaTeX Font Info:    Setting pplj sub-encoding to TS1/5 on input line 10742.
+LaTeX Font Info:    Setting pplx sub-encoding to TS1/5 on input line 10743.
+LaTeX Font Info:    Setting ppl sub-encoding to TS1/5 on input line 10744.
+LaTeX Font Info:    Setting ptm sub-encoding to TS1/5 on input line 10745.
+LaTeX Font Info:    Setting pzc sub-encoding to TS1/5 on input line 10746.
+LaTeX Font Info:    Setting ul9 sub-encoding to TS1/5 on input line 10747.
+LaTeX Font Info:    Setting dayroms sub-encoding to TS1/6 on input line 10748.
+LaTeX Font Info:    Setting dayrom sub-encoding to TS1/6 on input line 10749.
+LaTeX Font Info:    Setting augie sub-encoding to TS1/8 on input line 10750.
+LaTeX Font Info:    Setting put sub-encoding to TS1/8 on input line 10751.
+LaTeX Font Info:    Setting uag sub-encoding to TS1/8 on input line 10752.
+LaTeX Font Info:    Setting ugq sub-encoding to TS1/8 on input line 10753.
+LaTeX Font Info:    Setting zi4 sub-encoding to TS1/9 on input line 10754.
+LaTeX Font Info:    Setting hls sub-encoding to TS1/5 on input line 10755.
+LaTeX Font Info:    Setting hlst sub-encoding to TS1/5 on input line 10756.
+LaTeX Font Info:    Setting hlct sub-encoding to TS1/5 on input line 10757.
+LaTeX Font Info:    Setting hlh sub-encoding to TS1/5 on input line 10758.
+LaTeX Font Info:    Setting hlx sub-encoding to TS1/8 on input line 10759.
+LaTeX Font Info:    Setting hlce sub-encoding to TS1/8 on input line 10760.
+LaTeX Font Info:    Setting hlcn sub-encoding to TS1/8 on input line 10761.
+LaTeX Font Info:    Setting hlcw sub-encoding to TS1/8 on input line 10762.
+LaTeX Font Info:    Setting hlcf sub-encoding to TS1/8 on input line 10763.
+LaTeX Font Info:    Setting lato-LF sub-encoding to TS1/0 on input line 10764.
+LaTeX Font Info:    Setting lato-TLF sub-encoding to TS1/0 on input line 10764.
 
-LaTeX Font Info:    Setting lato-OsF sub-encoding to TS1/0 on input line 10751.
+LaTeX Font Info:    Setting lato-OsF sub-encoding to TS1/0 on input line 10764.
 
-LaTeX Font Info:    Setting lato-TOsF sub-encoding to TS1/0 on input line 10751
+LaTeX Font Info:    Setting lato-TOsF sub-encoding to TS1/0 on input line 10764
 .
 LaTeX Font Info:    Setting opensans-LF sub-encoding to TS1/0 on input line 107
-52.
+65.
 LaTeX Font Info:    Setting opensans-TLF sub-encoding to TS1/0 on input line 10
-752.
-LaTeX Font Info:    Setting opensans-OsF sub-encoding to TS1/0 on input line 10
-752.
-LaTeX Font Info:    Setting opensans-TOsF sub-encoding to TS1/0 on input line 1
-0752.
-LaTeX Font Info:    Setting cantarell-LF sub-encoding to TS1/0 on input line 10
-753.
-LaTeX Font Info:    Setting cantarell-TLF sub-encoding to TS1/0 on input line 1
-0753.
-LaTeX Font Info:    Setting cantarell-OsF sub-encoding to TS1/0 on input line 1
-0753.
-LaTeX Font Info:    Setting cantarell-TOsF sub-encoding to TS1/0 on input line 
-10753.
-LaTeX Font Info:    Setting fbb-LF sub-encoding to TS1/0 on input line 10754.
-LaTeX Font Info:    Setting fbb-TLF sub-encoding to TS1/0 on input line 10754.
-LaTeX Font Info:    Setting fbb-OsF sub-encoding to TS1/0 on input line 10754.
-LaTeX Font Info:    Setting fbb-TOsF sub-encoding to TS1/0 on input line 10754.
-
-LaTeX Font Info:    Setting tli sub-encoding to TS1/1 on input line 10755.
-LaTeX Font Info:    Setting Alegreya-LF sub-encoding to TS1/2 on input line 107
-56.
-LaTeX Font Info:    Setting Alegreya-TLF sub-encoding to TS1/2 on input line 10
-756.
-LaTeX Font Info:    Setting Alegreya-OsF sub-encoding to TS1/2 on input line 10
-756.
-LaTeX Font Info:    Setting Alegreya-TOsF sub-encoding to TS1/2 on input line 1
-0756.
-LaTeX Font Info:    Setting AlegreyaSans-LF sub-encoding to TS1/2 on input line
- 10757.
-LaTeX Font Info:    Setting AlegreyaSans-TLF sub-encoding to TS1/2 on input lin
-e 10757.
-LaTeX Font Info:    Setting AlegreyaSans-OsF sub-encoding to TS1/2 on input lin
-e 10757.
-LaTeX Font Info:    Setting AlegreyaSans-TOsF sub-encoding to TS1/2 on input li
-ne 10757.
-LaTeX Font Info:    Setting DejaVuSans-TLF sub-encoding to TS1/2 on input line 
-10758.
-LaTeX Font Info:    Setting DejaVuSansCondensed-TLF sub-encoding to TS1/2 on in
-put line 10759.
-LaTeX Font Info:    Setting DejaVuSansMono-TLF sub-encoding to TS1/2 on input l
-ine 10760.
-LaTeX Font Info:    Setting EBGaramond-LF sub-encoding to TS1/2 on input line 1
-0761.
-LaTeX Font Info:    Setting EBGaramond-TLF sub-encoding to TS1/2 on input line 
-10761.
-LaTeX Font Info:    Setting EBGaramond-OsF sub-encoding to TS1/2 on input line 
-10761.
-LaTeX Font Info:    Setting EBGaramond-TOsF sub-encoding to TS1/2 on input line
- 10761.
-LaTeX Font Info:    Setting Tempora-TLF sub-encoding to TS1/2 on input line 107
-62.
-LaTeX Font Info:    Setting Tempora-TOsF sub-encoding to TS1/2 on input line 10
-763.
-LaTeX Font Info:    Setting Arimo-TLF sub-encoding to TS1/3 on input line 10764
-.
-LaTeX Font Info:    Setting Carlito-LF sub-encoding to TS1/3 on input line 1076
-5.
-LaTeX Font Info:    Setting Carlito-TLF sub-encoding to TS1/3 on input line 107
-65.
-LaTeX Font Info:    Setting Carlito-OsF sub-encoding to TS1/3 on input line 107
-65.
-LaTeX Font Info:    Setting Carlito-TOsF sub-encoding to TS1/3 on input line 10
 765.
-LaTeX Font Info:    Setting FiraSans-LF sub-encoding to TS1/3 on input line 107
-66.
-LaTeX Font Info:    Setting FiraSans-TLF sub-encoding to TS1/3 on input line 10
+LaTeX Font Info:    Setting opensans-OsF sub-encoding to TS1/0 on input line 10
+765.
+LaTeX Font Info:    Setting opensans-TOsF sub-encoding to TS1/0 on input line 1
+0765.
+LaTeX Font Info:    Setting cantarell-LF sub-encoding to TS1/0 on input line 10
 766.
-LaTeX Font Info:    Setting FiraSans-OsF sub-encoding to TS1/3 on input line 10
-766.
-LaTeX Font Info:    Setting FiraSans-TOsF sub-encoding to TS1/3 on input line 1
+LaTeX Font Info:    Setting cantarell-TLF sub-encoding to TS1/0 on input line 1
 0766.
-LaTeX Font Info:    Setting IBMPlexSans-TLF sub-encoding to TS1/3 on input line
- 10767.
-LaTeX Font Info:    Setting Merriweather-OsF sub-encoding to TS1/3 on input lin
-e 10768.
-LaTeX Font Info:    Setting Montserrat-LF sub-encoding to TS1/3 on input line 1
+LaTeX Font Info:    Setting cantarell-OsF sub-encoding to TS1/0 on input line 1
+0766.
+LaTeX Font Info:    Setting cantarell-TOsF sub-encoding to TS1/0 on input line 
+10766.
+LaTeX Font Info:    Setting fbb-LF sub-encoding to TS1/0 on input line 10767.
+LaTeX Font Info:    Setting fbb-TLF sub-encoding to TS1/0 on input line 10767.
+LaTeX Font Info:    Setting fbb-OsF sub-encoding to TS1/0 on input line 10767.
+LaTeX Font Info:    Setting fbb-TOsF sub-encoding to TS1/0 on input line 10767.
+
+LaTeX Font Info:    Setting tli sub-encoding to TS1/1 on input line 10768.
+LaTeX Font Info:    Setting Alegreya-LF sub-encoding to TS1/2 on input line 107
+69.
+LaTeX Font Info:    Setting Alegreya-TLF sub-encoding to TS1/2 on input line 10
+769.
+LaTeX Font Info:    Setting Alegreya-OsF sub-encoding to TS1/2 on input line 10
+769.
+LaTeX Font Info:    Setting Alegreya-TOsF sub-encoding to TS1/2 on input line 1
 0769.
-LaTeX Font Info:    Setting Montserrat-TLF sub-encoding to TS1/3 on input line 
-10769.
-LaTeX Font Info:    Setting Montserrat-OsF sub-encoding to TS1/3 on input line 
-10769.
-LaTeX Font Info:    Setting Montserrat-TOsF sub-encoding to TS1/3 on input line
- 10769.
-LaTeX Font Info:    Setting MontserratAlternates-LF sub-encoding to TS1/3 on in
-put line 10770.
-LaTeX Font Info:    Setting MontserratAlternates-TLF sub-encoding to TS1/3 on i
-nput line 10770.
-LaTeX Font Info:    Setting MontserratAlternates-OsF sub-encoding to TS1/3 on i
-nput line 10770.
-LaTeX Font Info:    Setting MontserratAlternates-TOsF sub-encoding to TS1/3 on 
-input line 10770.
-LaTeX Font Info:    Setting SourceCodePro-TLF sub-encoding to TS1/3 on input li
-ne 10771.
-LaTeX Font Info:    Setting SourceCodePro-TOsF sub-encoding to TS1/3 on input l
-ine 10772.
-LaTeX Font Info:    Setting SourceSansPro-LF sub-encoding to TS1/3 on input lin
-e 10773.
-LaTeX Font Info:    Setting SourceSansPro-TLF sub-encoding to TS1/3 on input li
-ne 10773.
-LaTeX Font Info:    Setting SourceSansPro-OsF sub-encoding to TS1/3 on input li
-ne 10773.
-LaTeX Font Info:    Setting SourceSansPro-TOsF sub-encoding to TS1/3 on input l
+LaTeX Font Info:    Setting AlegreyaSans-LF sub-encoding to TS1/2 on input line
+ 10770.
+LaTeX Font Info:    Setting AlegreyaSans-TLF sub-encoding to TS1/2 on input lin
+e 10770.
+LaTeX Font Info:    Setting AlegreyaSans-OsF sub-encoding to TS1/2 on input lin
+e 10770.
+LaTeX Font Info:    Setting AlegreyaSans-TOsF sub-encoding to TS1/2 on input li
+ne 10770.
+LaTeX Font Info:    Setting DejaVuSans-TLF sub-encoding to TS1/2 on input line 
+10771.
+LaTeX Font Info:    Setting DejaVuSansCondensed-TLF sub-encoding to TS1/2 on in
+put line 10772.
+LaTeX Font Info:    Setting DejaVuSansMono-TLF sub-encoding to TS1/2 on input l
 ine 10773.
+LaTeX Font Info:    Setting EBGaramond-LF sub-encoding to TS1/2 on input line 1
+0774.
+LaTeX Font Info:    Setting EBGaramond-TLF sub-encoding to TS1/2 on input line 
+10774.
+LaTeX Font Info:    Setting EBGaramond-OsF sub-encoding to TS1/2 on input line 
+10774.
+LaTeX Font Info:    Setting EBGaramond-TOsF sub-encoding to TS1/2 on input line
+ 10774.
+LaTeX Font Info:    Setting Tempora-TLF sub-encoding to TS1/2 on input line 107
+75.
+LaTeX Font Info:    Setting Tempora-TOsF sub-encoding to TS1/2 on input line 10
+776.
+LaTeX Font Info:    Setting Arimo-TLF sub-encoding to TS1/3 on input line 10777
+.
+LaTeX Font Info:    Setting Carlito-LF sub-encoding to TS1/3 on input line 1077
+8.
+LaTeX Font Info:    Setting Carlito-TLF sub-encoding to TS1/3 on input line 107
+78.
+LaTeX Font Info:    Setting Carlito-OsF sub-encoding to TS1/3 on input line 107
+78.
+LaTeX Font Info:    Setting Carlito-TOsF sub-encoding to TS1/3 on input line 10
+778.
+LaTeX Font Info:    Setting FiraSans-LF sub-encoding to TS1/3 on input line 107
+79.
+LaTeX Font Info:    Setting FiraSans-TLF sub-encoding to TS1/3 on input line 10
+779.
+LaTeX Font Info:    Setting FiraSans-OsF sub-encoding to TS1/3 on input line 10
+779.
+LaTeX Font Info:    Setting FiraSans-TOsF sub-encoding to TS1/3 on input line 1
+0779.
+LaTeX Font Info:    Setting IBMPlexSans-TLF sub-encoding to TS1/3 on input line
+ 10780.
+LaTeX Font Info:    Setting Merriweather-OsF sub-encoding to TS1/3 on input lin
+e 10781.
+LaTeX Font Info:    Setting Montserrat-LF sub-encoding to TS1/3 on input line 1
+0782.
+LaTeX Font Info:    Setting Montserrat-TLF sub-encoding to TS1/3 on input line 
+10782.
+LaTeX Font Info:    Setting Montserrat-OsF sub-encoding to TS1/3 on input line 
+10782.
+LaTeX Font Info:    Setting Montserrat-TOsF sub-encoding to TS1/3 on input line
+ 10782.
+LaTeX Font Info:    Setting MontserratAlternates-LF sub-encoding to TS1/3 on in
+put line 10783.
+LaTeX Font Info:    Setting MontserratAlternates-TLF sub-encoding to TS1/3 on i
+nput line 10783.
+LaTeX Font Info:    Setting MontserratAlternates-OsF sub-encoding to TS1/3 on i
+nput line 10783.
+LaTeX Font Info:    Setting MontserratAlternates-TOsF sub-encoding to TS1/3 on 
+input line 10783.
+LaTeX Font Info:    Setting SourceCodePro-TLF sub-encoding to TS1/3 on input li
+ne 10784.
+LaTeX Font Info:    Setting SourceCodePro-TOsF sub-encoding to TS1/3 on input l
+ine 10785.
+LaTeX Font Info:    Setting SourceSansPro-LF sub-encoding to TS1/3 on input lin
+e 10786.
+LaTeX Font Info:    Setting SourceSansPro-TLF sub-encoding to TS1/3 on input li
+ne 10786.
+LaTeX Font Info:    Setting SourceSansPro-OsF sub-encoding to TS1/3 on input li
+ne 10786.
+LaTeX Font Info:    Setting SourceSansPro-TOsF sub-encoding to TS1/3 on input l
+ine 10786.
 LaTeX Font Info:    Setting SourceSerifPro-LF sub-encoding to TS1/3 on input li
-ne 10774.
+ne 10787.
 LaTeX Font Info:    Setting SourceSerifPro-TLF sub-encoding to TS1/3 on input l
-ine 10774.
+ine 10787.
 LaTeX Font Info:    Setting SourceSerifPro-OsF sub-encoding to TS1/3 on input l
-ine 10774.
+ine 10787.
 LaTeX Font Info:    Setting SourceSerifPro-TOsF sub-encoding to TS1/3 on input 
-line 10774.
-LaTeX Font Info:    Setting Tinos-TLF sub-encoding to TS1/3 on input line 10775
+line 10787.
+LaTeX Font Info:    Setting Tinos-TLF sub-encoding to TS1/3 on input line 10788
 .
 LaTeX Font Info:    Setting AccanthisADFStdNoThree-LF sub-encoding to TS1/4 on 
-input line 10776.
-LaTeX Font Info:    Setting Cabin-TLF sub-encoding to TS1/4 on input line 10777
+input line 10789.
+LaTeX Font Info:    Setting Cabin-TLF sub-encoding to TS1/4 on input line 10790
 .
 LaTeX Font Info:    Setting Caladea-TLF sub-encoding to TS1/4 on input line 107
-78.
-LaTeX Font Info:    Setting Chivo-LF sub-encoding to TS1/4 on input line 10779.
+91.
+LaTeX Font Info:    Setting Chivo-LF sub-encoding to TS1/4 on input line 10792.
 
-LaTeX Font Info:    Setting Chivo-TLF sub-encoding to TS1/4 on input line 10779
+LaTeX Font Info:    Setting Chivo-TLF sub-encoding to TS1/4 on input line 10792
 .
-LaTeX Font Info:    Setting Chivo-OsF sub-encoding to TS1/4 on input line 10779
+LaTeX Font Info:    Setting Chivo-OsF sub-encoding to TS1/4 on input line 10792
 .
-LaTeX Font Info:    Setting Chivo-TOsF sub-encoding to TS1/4 on input line 1077
-9.
+LaTeX Font Info:    Setting Chivo-TOsF sub-encoding to TS1/4 on input line 1079
+2.
 LaTeX Font Info:    Setting ClearSans-TLF sub-encoding to TS1/4 on input line 1
-0780.
+0793.
 LaTeX Font Info:    Setting Coelacanth-LF sub-encoding to TS1/4 on input line 1
-0781.
+0794.
 LaTeX Font Info:    Setting CrimsonPro-LF sub-encoding to TS1/4 on input line 1
-0782.
+0795.
 LaTeX Font Info:    Setting CrimsonPro-TLF sub-encoding to TS1/4 on input line 
-10782.
+10795.
 LaTeX Font Info:    Setting CrimsonPro-OsF sub-encoding to TS1/4 on input line 
-10782.
+10795.
 LaTeX Font Info:    Setting CrimsonPro-TOsF sub-encoding to TS1/4 on input line
- 10782.
+ 10795.
 LaTeX Font Info:    Setting FiraMono-TLF sub-encoding to TS1/4 on input line 10
-783.
+796.
 LaTeX Font Info:    Setting FiraMono-TOsF sub-encoding to TS1/4 on input line 1
-0784.
-LaTeX Font Info:    Setting Go-TLF sub-encoding to TS1/4 on input line 10785.
-LaTeX Font Info:    Setting GoMono-TLF sub-encoding to TS1/4 on input line 1078
-6.
+0797.
+LaTeX Font Info:    Setting Go-TLF sub-encoding to TS1/4 on input line 10798.
+LaTeX Font Info:    Setting GoMono-TLF sub-encoding to TS1/4 on input line 1079
+9.
 LaTeX Font Info:    Setting InriaSans-LF sub-encoding to TS1/4 on input line 10
-787.
+800.
 LaTeX Font Info:    Setting InriaSans-TLF sub-encoding to TS1/4 on input line 1
-0787.
+0800.
 LaTeX Font Info:    Setting InriaSans-OsF sub-encoding to TS1/4 on input line 1
-0787.
+0800.
 LaTeX Font Info:    Setting InriaSans-TOsF sub-encoding to TS1/4 on input line 
-10787.
+10800.
 LaTeX Font Info:    Setting InriaSerif-LF sub-encoding to TS1/4 on input line 1
-0788.
+0801.
 LaTeX Font Info:    Setting InriaSerif-TLF sub-encoding to TS1/4 on input line 
-10788.
+10801.
 LaTeX Font Info:    Setting InriaSerif-OsF sub-encoding to TS1/4 on input line 
-10788.
+10801.
 LaTeX Font Info:    Setting InriaSerif-TOsF sub-encoding to TS1/4 on input line
- 10788.
+ 10801.
 LaTeX Font Info:    Setting LibertinusSans-LF sub-encoding to TS1/4 on input li
-ne 10789.
-LaTeX Font Info:    Setting LibertinusSans-TLF sub-encoding to TS1/4 on input l
-ine 10789.
-LaTeX Font Info:    Setting LibertinusSans-OsF sub-encoding to TS1/4 on input l
-ine 10789.
-LaTeX Font Info:    Setting LibertinusSans-TOsF sub-encoding to TS1/4 on input 
-line 10789.
-LaTeX Font Info:    Setting LibertinusSerif-LF sub-encoding to TS1/4 on input l
-ine 10790.
-LaTeX Font Info:    Setting LibertinusSerif-TLF sub-encoding to TS1/4 on input 
-line 10790.
-LaTeX Font Info:    Setting LibertinusSerif-OsF sub-encoding to TS1/4 on input 
-line 10790.
-LaTeX Font Info:    Setting LibertinusSerif-TOsF sub-encoding to TS1/4 on input
- line 10790.
-LaTeX Font Info:    Setting LibreBodoni-TLF sub-encoding to TS1/4 on input line
- 10791.
-LaTeX Font Info:    Setting LibreFranklin-TLF sub-encoding to TS1/4 on input li
-ne 10792.
-LaTeX Font Info:    Setting LinguisticsPro-LF sub-encoding to TS1/4 on input li
-ne 10793.
-LaTeX Font Info:    Setting LinguisticsPro-OsF sub-encoding to TS1/4 on input l
-ine 10794.
-LaTeX Font Info:    Setting LinuxBiolinumT-LF sub-encoding to TS1/4 on input li
-ne 10795.
-LaTeX Font Info:    Setting LinuxBiolinumT-TLF sub-encoding to TS1/4 on input l
-ine 10795.
-LaTeX Font Info:    Setting LinuxBiolinumT-OsF sub-encoding to TS1/4 on input l
-ine 10795.
-LaTeX Font Info:    Setting LinuxBiolinumT-TOsF sub-encoding to TS1/4 on input 
-line 10795.
-LaTeX Font Info:    Setting LinuxLibertineT-LF sub-encoding to TS1/4 on input l
-ine 10796.
-LaTeX Font Info:    Setting LinuxLibertineT-TLF sub-encoding to TS1/4 on input 
-line 10796.
-LaTeX Font Info:    Setting LinuxLibertineT-OsF sub-encoding to TS1/4 on input 
-line 10796.
-LaTeX Font Info:    Setting LinuxLibertineT-TOsF sub-encoding to TS1/4 on input
- line 10796.
-LaTeX Font Info:    Setting MerriweatherSans-OsF sub-encoding to TS1/4 on input
- line 10797.
-LaTeX Font Info:    Setting MintSpirit-LF sub-encoding to TS1/4 on input line 1
-0798.
-LaTeX Font Info:    Setting MintSpirit-TLF sub-encoding to TS1/4 on input line 
-10798.
-LaTeX Font Info:    Setting MintSpirit-OsF sub-encoding to TS1/4 on input line 
-10798.
-LaTeX Font Info:    Setting MintSpirit-TOsF sub-encoding to TS1/4 on input line
- 10798.
-LaTeX Font Info:    Setting MintSpiritNoTwo-LF sub-encoding to TS1/4 on input l
-ine 10799.
-LaTeX Font Info:    Setting MintSpiritNoTwo-TLF sub-encoding to TS1/4 on input 
-line 10799.
-LaTeX Font Info:    Setting MintSpiritNoTwo-OsF sub-encoding to TS1/4 on input 
-line 10799.
-LaTeX Font Info:    Setting MintSpiritNoTwo-TOsF sub-encoding to TS1/4 on input
- line 10799.
-LaTeX Font Info:    Setting PTMono-TLF sub-encoding to TS1/4 on input line 1080
-0.
-LaTeX Font Info:    Setting PTSans-TLF sub-encoding to TS1/4 on input line 1080
-1.
-LaTeX Font Info:    Setting PTSansCaption-TLF sub-encoding to TS1/4 on input li
 ne 10802.
-LaTeX Font Info:    Setting PTSansNarrow-TLF sub-encoding to TS1/4 on input lin
-e 10803.
-LaTeX Font Info:    Setting PTSerif-TLF sub-encoding to TS1/4 on input line 108
-04.
-LaTeX Font Info:    Setting PTSerifCaption-TLF sub-encoding to TS1/4 on input l
-ine 10805.
-LaTeX Font Info:    Setting Raleway-TLF sub-encoding to TS1/4 on input line 108
-06.
-LaTeX Font Info:    Setting Raleway-TOsF sub-encoding to TS1/4 on input line 10
-807.
-LaTeX Font Info:    Setting Roboto-LF sub-encoding to TS1/4 on input line 10808
-.
-LaTeX Font Info:    Setting Roboto-TLF sub-encoding to TS1/4 on input line 1080
-8.
-LaTeX Font Info:    Setting Roboto-OsF sub-encoding to TS1/4 on input line 1080
-8.
-LaTeX Font Info:    Setting Roboto-TOsF sub-encoding to TS1/4 on input line 108
-08.
-LaTeX Font Info:    Setting RobotoMono-TLF sub-encoding to TS1/4 on input line 
-10809.
-LaTeX Font Info:    Setting RobotoSlab-TLF sub-encoding to TS1/4 on input line 
-10810.
-LaTeX Font Info:    Setting Rosario-LF sub-encoding to TS1/4 on input line 1081
-1.
-LaTeX Font Info:    Setting Rosario-TLF sub-encoding to TS1/4 on input line 108
-11.
-LaTeX Font Info:    Setting Rosario-OsF sub-encoding to TS1/4 on input line 108
-11.
-LaTeX Font Info:    Setting Rosario-TOsF sub-encoding to TS1/4 on input line 10
-811.
-LaTeX Font Info:    Setting SticksTooText-LF sub-encoding to TS1/4 on input lin
-e 10812.
-LaTeX Font Info:    Setting SticksTooText-TLF sub-encoding to TS1/4 on input li
-ne 10812.
-LaTeX Font Info:    Setting SticksTooText-OsF sub-encoding to TS1/4 on input li
-ne 10812.
-LaTeX Font Info:    Setting SticksTooText-TOsF sub-encoding to TS1/4 on input l
+LaTeX Font Info:    Setting LibertinusSans-TLF sub-encoding to TS1/4 on input l
+ine 10802.
+LaTeX Font Info:    Setting LibertinusSans-OsF sub-encoding to TS1/4 on input l
+ine 10802.
+LaTeX Font Info:    Setting LibertinusSans-TOsF sub-encoding to TS1/4 on input 
+line 10802.
+LaTeX Font Info:    Setting LibertinusSerif-LF sub-encoding to TS1/4 on input l
+ine 10803.
+LaTeX Font Info:    Setting LibertinusSerif-TLF sub-encoding to TS1/4 on input 
+line 10803.
+LaTeX Font Info:    Setting LibertinusSerif-OsF sub-encoding to TS1/4 on input 
+line 10803.
+LaTeX Font Info:    Setting LibertinusSerif-TOsF sub-encoding to TS1/4 on input
+ line 10803.
+LaTeX Font Info:    Setting LibreBodoni-TLF sub-encoding to TS1/4 on input line
+ 10804.
+LaTeX Font Info:    Setting LibreFranklin-TLF sub-encoding to TS1/4 on input li
+ne 10805.
+LaTeX Font Info:    Setting LinguisticsPro-LF sub-encoding to TS1/4 on input li
+ne 10806.
+LaTeX Font Info:    Setting LinguisticsPro-OsF sub-encoding to TS1/4 on input l
+ine 10807.
+LaTeX Font Info:    Setting LinuxBiolinumT-LF sub-encoding to TS1/4 on input li
+ne 10808.
+LaTeX Font Info:    Setting LinuxBiolinumT-TLF sub-encoding to TS1/4 on input l
+ine 10808.
+LaTeX Font Info:    Setting LinuxBiolinumT-OsF sub-encoding to TS1/4 on input l
+ine 10808.
+LaTeX Font Info:    Setting LinuxBiolinumT-TOsF sub-encoding to TS1/4 on input 
+line 10808.
+LaTeX Font Info:    Setting LinuxLibertineT-LF sub-encoding to TS1/4 on input l
+ine 10809.
+LaTeX Font Info:    Setting LinuxLibertineT-TLF sub-encoding to TS1/4 on input 
+line 10809.
+LaTeX Font Info:    Setting LinuxLibertineT-OsF sub-encoding to TS1/4 on input 
+line 10809.
+LaTeX Font Info:    Setting LinuxLibertineT-TOsF sub-encoding to TS1/4 on input
+ line 10809.
+LaTeX Font Info:    Setting MerriweatherSans-OsF sub-encoding to TS1/4 on input
+ line 10810.
+LaTeX Font Info:    Setting MintSpirit-LF sub-encoding to TS1/4 on input line 1
+0811.
+LaTeX Font Info:    Setting MintSpirit-TLF sub-encoding to TS1/4 on input line 
+10811.
+LaTeX Font Info:    Setting MintSpirit-OsF sub-encoding to TS1/4 on input line 
+10811.
+LaTeX Font Info:    Setting MintSpirit-TOsF sub-encoding to TS1/4 on input line
+ 10811.
+LaTeX Font Info:    Setting MintSpiritNoTwo-LF sub-encoding to TS1/4 on input l
 ine 10812.
+LaTeX Font Info:    Setting MintSpiritNoTwo-TLF sub-encoding to TS1/4 on input 
+line 10812.
+LaTeX Font Info:    Setting MintSpiritNoTwo-OsF sub-encoding to TS1/4 on input 
+line 10812.
+LaTeX Font Info:    Setting MintSpiritNoTwo-TOsF sub-encoding to TS1/4 on input
+ line 10812.
+LaTeX Font Info:    Setting PTMono-TLF sub-encoding to TS1/4 on input line 1081
+3.
+LaTeX Font Info:    Setting PTSans-TLF sub-encoding to TS1/4 on input line 1081
+4.
+LaTeX Font Info:    Setting PTSansCaption-TLF sub-encoding to TS1/4 on input li
+ne 10815.
+LaTeX Font Info:    Setting PTSansNarrow-TLF sub-encoding to TS1/4 on input lin
+e 10816.
+LaTeX Font Info:    Setting PTSerif-TLF sub-encoding to TS1/4 on input line 108
+17.
+LaTeX Font Info:    Setting PTSerifCaption-TLF sub-encoding to TS1/4 on input l
+ine 10818.
+LaTeX Font Info:    Setting Raleway-TLF sub-encoding to TS1/4 on input line 108
+19.
+LaTeX Font Info:    Setting Raleway-TOsF sub-encoding to TS1/4 on input line 10
+820.
+LaTeX Font Info:    Setting Roboto-LF sub-encoding to TS1/4 on input line 10821
+.
+LaTeX Font Info:    Setting Roboto-TLF sub-encoding to TS1/4 on input line 1082
+1.
+LaTeX Font Info:    Setting Roboto-OsF sub-encoding to TS1/4 on input line 1082
+1.
+LaTeX Font Info:    Setting Roboto-TOsF sub-encoding to TS1/4 on input line 108
+21.
+LaTeX Font Info:    Setting RobotoMono-TLF sub-encoding to TS1/4 on input line 
+10822.
+LaTeX Font Info:    Setting RobotoSlab-TLF sub-encoding to TS1/4 on input line 
+10823.
+LaTeX Font Info:    Setting Rosario-LF sub-encoding to TS1/4 on input line 1082
+4.
+LaTeX Font Info:    Setting Rosario-TLF sub-encoding to TS1/4 on input line 108
+24.
+LaTeX Font Info:    Setting Rosario-OsF sub-encoding to TS1/4 on input line 108
+24.
+LaTeX Font Info:    Setting Rosario-TOsF sub-encoding to TS1/4 on input line 10
+824.
+LaTeX Font Info:    Setting SticksTooText-LF sub-encoding to TS1/4 on input lin
+e 10825.
+LaTeX Font Info:    Setting SticksTooText-TLF sub-encoding to TS1/4 on input li
+ne 10825.
+LaTeX Font Info:    Setting SticksTooText-OsF sub-encoding to TS1/4 on input li
+ne 10825.
+LaTeX Font Info:    Setting SticksTooText-TOsF sub-encoding to TS1/4 on input l
+ine 10825.
 LaTeX Font Info:    Setting UniversalisADFStd-LF sub-encoding to TS1/4 on input
- line 10813.
+ line 10826.
 LaTeX Font Info:    Setting Almendra-OsF sub-encoding to TS1/5 on input line 10
-814.
+827.
 LaTeX Font Info:    Setting Baskervaldx-LF sub-encoding to TS1/5 on input line 
-10815.
+10828.
 LaTeX Font Info:    Setting Baskervaldx-TLF sub-encoding to TS1/5 on input line
- 10815.
+ 10828.
 LaTeX Font Info:    Setting Baskervaldx-OsF sub-encoding to TS1/5 on input line
- 10815.
+ 10828.
 LaTeX Font Info:    Setting Baskervaldx-TOsF sub-encoding to TS1/5 on input lin
-e 10815.
+e 10828.
 LaTeX Font Info:    Setting BaskervilleF-LF sub-encoding to TS1/5 on input line
- 10816.
+ 10829.
 LaTeX Font Info:    Setting BaskervilleF-TLF sub-encoding to TS1/5 on input lin
-e 10816.
+e 10829.
 LaTeX Font Info:    Setting BaskervilleF-OsF sub-encoding to TS1/5 on input lin
-e 10816.
+e 10829.
 LaTeX Font Info:    Setting BaskervilleF-TOsF sub-encoding to TS1/5 on input li
-ne 10816.
-LaTeX Font Info:    Setting Bitter-TLF sub-encoding to TS1/5 on input line 1081
-7.
-LaTeX Font Info:    Setting Cinzel-LF sub-encoding to TS1/5 on input line 10818
+ne 10829.
+LaTeX Font Info:    Setting Bitter-TLF sub-encoding to TS1/5 on input line 1083
+0.
+LaTeX Font Info:    Setting Cinzel-LF sub-encoding to TS1/5 on input line 10831
 .
 LaTeX Font Info:    Setting CinzelDecorative-LF sub-encoding to TS1/5 on input 
-line 10819.
+line 10832.
 LaTeX Font Info:    Setting DejaVuSerif-TLF sub-encoding to TS1/5 on input line
- 10820.
+ 10833.
 LaTeX Font Info:    Setting DejaVuSerifCondensed-TLF sub-encoding to TS1/5 on i
-nput line 10821.
+nput line 10834.
 LaTeX Font Info:    Setting GilliusADF-LF sub-encoding to TS1/5 on input line 1
-0822.
+0835.
 LaTeX Font Info:    Setting GilliusADFCond-LF sub-encoding to TS1/5 on input li
-ne 10823.
+ne 10836.
 LaTeX Font Info:    Setting GilliusADFNoTwo-LF sub-encoding to TS1/5 on input l
-ine 10824.
+ine 10837.
 LaTeX Font Info:    Setting GilliusADFNoTwoCond-LF sub-encoding to TS1/5 on inp
-ut line 10825.
+ut line 10838.
 LaTeX Font Info:    Setting LobsterTwo-LF sub-encoding to TS1/5 on input line 1
-0826.
+0839.
 LaTeX Font Info:    Setting OldStandard-TLF sub-encoding to TS1/5 on input line
- 10827.
+ 10840.
 LaTeX Font Info:    Setting PlayfairDisplay-TLF sub-encoding to TS1/5 on input 
-line 10828.
+line 10841.
 LaTeX Font Info:    Setting PlayfairDisplay-TOsF sub-encoding to TS1/5 on input
- line 10829.
+ line 10842.
 LaTeX Font Info:    Setting TheanoDidot-TLF sub-encoding to TS1/5 on input line
- 10830.
+ 10843.
 LaTeX Font Info:    Setting TheanoDidot-TOsF sub-encoding to TS1/5 on input lin
-e 10831.
+e 10844.
 LaTeX Font Info:    Setting TheanoModern-TLF sub-encoding to TS1/5 on input lin
-e 10832.
+e 10845.
 LaTeX Font Info:    Setting TheanoModern-TOsF sub-encoding to TS1/5 on input li
-ne 10833.
+ne 10846.
 LaTeX Font Info:    Setting TheanoOldStyle-TLF sub-encoding to TS1/5 on input l
-ine 10834.
+ine 10847.
 LaTeX Font Info:    Setting TheanoOldStyle-TOsF sub-encoding to TS1/5 on input 
-line 10835.
+line 10848.
 LaTeX Font Info:    Setting Crimson-TLF sub-encoding to TS1/6 on input line 108
-36.
+49.
 LaTeX Font Info:    Setting IBMPlexMono-TLF sub-encoding to TS1/6 on input line
- 10837.
+ 10850.
 LaTeX Font Info:    Setting IBMPlexSerif-TLF sub-encoding to TS1/6 on input lin
-e 10838.
+e 10851.
 LaTeX Font Info:    Setting LibertinusMono-TLF sub-encoding to TS1/6 on input l
-ine 10839.
+ine 10852.
 LaTeX Font Info:    Setting LibertinusSerifDisplay-LF sub-encoding to TS1/6 on 
-input line 10840.
+input line 10853.
 LaTeX Font Info:    Setting LinuxLibertineDisplayT-LF sub-encoding to TS1/6 on 
-input line 10841.
+input line 10854.
 LaTeX Font Info:    Setting LinuxLibertineDisplayT-TLF sub-encoding to TS1/6 on
- input line 10841.
+ input line 10854.
 LaTeX Font Info:    Setting LinuxLibertineDisplayT-OsF sub-encoding to TS1/6 on
- input line 10841.
+ input line 10854.
 LaTeX Font Info:    Setting LinuxLibertineDisplayT-TOsF sub-encoding to TS1/6 o
-n input line 10841.
+n input line 10854.
 LaTeX Font Info:    Setting LinuxLibertineMonoT-LF sub-encoding to TS1/6 on inp
-ut line 10842.
+ut line 10855.
 LaTeX Font Info:    Setting LinuxLibertineMonoT-TLF sub-encoding to TS1/6 on in
-put line 10843.
+put line 10856.
 LaTeX Font Info:    Setting Overlock-LF sub-encoding to TS1/6 on input line 108
-44.
+57.
 LaTeX Font Info:    Setting CormorantGaramond-LF sub-encoding to TS1/7 on input
- line 10845.
+ line 10858.
 LaTeX Font Info:    Setting CormorantGaramond-TLF sub-encoding to TS1/7 on inpu
-t line 10845.
+t line 10858.
 LaTeX Font Info:    Setting CormorantGaramond-OsF sub-encoding to TS1/7 on inpu
-t line 10845.
+t line 10858.
 LaTeX Font Info:    Setting CormorantGaramond-TOsF sub-encoding to TS1/7 on inp
-ut line 10845.
+ut line 10858.
 LaTeX Font Info:    Setting Heuristica-TLF sub-encoding to TS1/7 on input line 
-10846.
+10859.
 LaTeX Font Info:    Setting Heuristica-TOsF sub-encoding to TS1/7 on input line
- 10847.
+ 10860.
 LaTeX Font Info:    Setting IMFELLEnglish-TLF sub-encoding to TS1/7 on input li
-ne 10848.
+ne 10861.
 LaTeX Font Info:    Setting LibreBaskerville-TLF sub-encoding to TS1/7 on input
- line 10849.
-LaTeX Font Info:    Setting LibreCaslon-LF sub-encoding to TS1/7 on input line 
-10850.
-LaTeX Font Info:    Setting LibreCaslon-TLF sub-encoding to TS1/7 on input line
- 10850.
-LaTeX Font Info:    Setting LibreCaslon-OsF sub-encoding to TS1/7 on input line
- 10850.
-LaTeX Font Info:    Setting LibreCaslon-TOsF sub-encoding to TS1/7 on input lin
-e 10850.
-LaTeX Font Info:    Setting Marcellus-LF sub-encoding to TS1/7 on input line 10
-851.
-LaTeX Font Info:    Setting NotoSans-LF sub-encoding to TS1/7 on input line 108
-52.
-LaTeX Font Info:    Setting NotoSans-TLF sub-encoding to TS1/7 on input line 10
-852.
-LaTeX Font Info:    Setting NotoSans-OsF sub-encoding to TS1/7 on input line 10
-852.
-LaTeX Font Info:    Setting NotoSans-TOsF sub-encoding to TS1/7 on input line 1
-0852.
-LaTeX Font Info:    Setting NotoSansMono-TLF sub-encoding to TS1/7 on input lin
-e 10853.
-LaTeX Font Info:    Setting NotoSansMono-TOsF sub-encoding to TS1/7 on input li
-ne 10854.
-LaTeX Font Info:    Setting NotoSerif-LF sub-encoding to TS1/7 on input line 10
-855.
-LaTeX Font Info:    Setting NotoSerif-TLF sub-encoding to TS1/7 on input line 1
-0855.
-LaTeX Font Info:    Setting NotoSerif-OsF sub-encoding to TS1/7 on input line 1
-0855.
-LaTeX Font Info:    Setting NotoSerif-TOsF sub-encoding to TS1/7 on input line 
-10855.
-LaTeX Font Info:    Setting Quattrocento-TLF sub-encoding to TS1/7 on input lin
-e 10856.
-LaTeX Font Info:    Setting QuattrocentoSans-TLF sub-encoding to TS1/7 on input
- line 10857.
-LaTeX Font Info:    Setting XCharter-TLF sub-encoding to TS1/7 on input line 10
-858.
-LaTeX Font Info:    Setting XCharter-TOsF sub-encoding to TS1/7 on input line 1
-0859.
-LaTeX Font Info:    Setting erewhon-LF sub-encoding to TS1/7 on input line 1086
-0.
-LaTeX Font Info:    Setting erewhon-TLF sub-encoding to TS1/7 on input line 108
-60.
-LaTeX Font Info:    Setting erewhon-OsF sub-encoding to TS1/7 on input line 108
-60.
-LaTeX Font Info:    Setting erewhon-TOsF sub-encoding to TS1/7 on input line 10
-860.
-LaTeX Font Info:    Setting ComicNeue-TLF sub-encoding to TS1/7 on input line 1
-0861.
-LaTeX Font Info:    Setting ComicNeueAngular-TLF sub-encoding to TS1/7 on input
  line 10862.
-LaTeX Font Info:    Setting Forum-LF sub-encoding to TS1/7 on input line 10863.
+LaTeX Font Info:    Setting LibreCaslon-LF sub-encoding to TS1/7 on input line 
+10863.
+LaTeX Font Info:    Setting LibreCaslon-TLF sub-encoding to TS1/7 on input line
+ 10863.
+LaTeX Font Info:    Setting LibreCaslon-OsF sub-encoding to TS1/7 on input line
+ 10863.
+LaTeX Font Info:    Setting LibreCaslon-TOsF sub-encoding to TS1/7 on input lin
+e 10863.
+LaTeX Font Info:    Setting Marcellus-LF sub-encoding to TS1/7 on input line 10
+864.
+LaTeX Font Info:    Setting NotoSans-LF sub-encoding to TS1/7 on input line 108
+65.
+LaTeX Font Info:    Setting NotoSans-TLF sub-encoding to TS1/7 on input line 10
+865.
+LaTeX Font Info:    Setting NotoSans-OsF sub-encoding to TS1/7 on input line 10
+865.
+LaTeX Font Info:    Setting NotoSans-TOsF sub-encoding to TS1/7 on input line 1
+0865.
+LaTeX Font Info:    Setting NotoSansMono-TLF sub-encoding to TS1/7 on input lin
+e 10866.
+LaTeX Font Info:    Setting NotoSansMono-TOsF sub-encoding to TS1/7 on input li
+ne 10867.
+LaTeX Font Info:    Setting NotoSerif-LF sub-encoding to TS1/7 on input line 10
+868.
+LaTeX Font Info:    Setting NotoSerif-TLF sub-encoding to TS1/7 on input line 1
+0868.
+LaTeX Font Info:    Setting NotoSerif-OsF sub-encoding to TS1/7 on input line 1
+0868.
+LaTeX Font Info:    Setting NotoSerif-TOsF sub-encoding to TS1/7 on input line 
+10868.
+LaTeX Font Info:    Setting Quattrocento-TLF sub-encoding to TS1/7 on input lin
+e 10869.
+LaTeX Font Info:    Setting QuattrocentoSans-TLF sub-encoding to TS1/7 on input
+ line 10870.
+LaTeX Font Info:    Setting XCharter-TLF sub-encoding to TS1/7 on input line 10
+871.
+LaTeX Font Info:    Setting XCharter-TOsF sub-encoding to TS1/7 on input line 1
+0872.
+LaTeX Font Info:    Setting erewhon-LF sub-encoding to TS1/7 on input line 1087
+3.
+LaTeX Font Info:    Setting erewhon-TLF sub-encoding to TS1/7 on input line 108
+73.
+LaTeX Font Info:    Setting erewhon-OsF sub-encoding to TS1/7 on input line 108
+73.
+LaTeX Font Info:    Setting erewhon-TOsF sub-encoding to TS1/7 on input line 10
+873.
+LaTeX Font Info:    Setting ComicNeue-TLF sub-encoding to TS1/7 on input line 1
+0874.
+LaTeX Font Info:    Setting ComicNeueAngular-TLF sub-encoding to TS1/7 on input
+ line 10875.
+LaTeX Font Info:    Setting Forum-LF sub-encoding to TS1/7 on input line 10876.
 
 LaTeX Font Info:    Setting Cochineal-LF sub-encoding to TS1/8 on input line 10
-864.
+877.
 LaTeX Font Info:    Setting Cochineal-TLF sub-encoding to TS1/8 on input line 1
-0864.
+0877.
 LaTeX Font Info:    Setting Cochineal-OsF sub-encoding to TS1/8 on input line 1
-0864.
+0877.
 LaTeX Font Info:    Setting Cochineal-TOsF sub-encoding to TS1/8 on input line 
-10864.
+10877.
 LaTeX Font Info:    Setting AlgolRevived-TLF sub-encoding to TS1/9 on input lin
-e 10865.
+e 10878.
  page nos., x-ref,
 environments, center,
 \@rightskip=\skip27
@@ -885,7 +885,7 @@ environments, center,
 \jot=\dimen52
 \interdisplaylinepenalty=\count129
 \rootbox=\box33
-LaTeX Info: Redefining \: on input line 11357.
+LaTeX Info: Redefining \: on input line 11370.
 \c@equation=\count130
 \@eqcnt=\count131
 \@eqpen=\count132
@@ -928,7 +928,7 @@ LaTeX Info: Redefining \: on input line 11357.
 \fboxsep=\dimen68
 \@mplistdepth=\count144
 \@mpfootins=\insert254
-LaTeX Info: Redefining \underline on input line 11994.
+LaTeX Info: Redefining \underline on input line 12007.
 \@gtempa=\dimen69
 \@gtempa=\dimen70
 \@gtempa=\dimen71
@@ -984,8 +984,8 @@ LaTeX Info: Redefining \underline on input line 11994.
 \@dashdim=\dimen103
 \@dashbox=\box41
 \@dashcnt=\count157
-LaTeX Info: Command `\linethickness' is already robust on input line 12783.
-LaTeX Info: Command `\thinlines' is already robust on input line 12789.
+LaTeX Info: Command `\linethickness' is already robust on input line 12796.
+LaTeX Info: Command `\thinlines' is already robust on input line 12802.
  title, sectioning,
 \@secpenalty=\count158
 \c@secnumdepth=\count159
@@ -1129,7 +1129,7 @@ Local configuration file hyphen.cfg used
 
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/generic/babel/hyphen.cfg
-File: hyphen.cfg 2022/01/26 3.70 Babel hyphens
+File: hyphen.cfg 2022/02/26 3.73 Babel hyphens
 \l@english=\language0
 
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
@@ -1709,7 +1709,7 @@ EC Welsh hyphenation patterns
 -texlive/2021/texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-cy.ec.tex)))
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/latex-dev/base/utf8.def
-File: utf8.def 2021/12/13 v1.2o UTF-8 support
+File: utf8.def 2022/02/13 v1.3a UTF-8 support
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding OMS ...
@@ -1717,7 +1717,7 @@ Now handling font encoding OMS ...
 
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/latex-dev/base/omsenc.dfu
-File: omsenc.dfu 2021/12/13 v1.2o UTF-8 support
+File: omsenc.dfu 2022/02/13 v1.3a UTF-8 support
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
    defining Unicode char U+00B7 (decimal 183)
@@ -1730,7 +1730,7 @@ Now handling font encoding OT1 ...
 
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/latex-dev/base/ot1enc.dfu
-File: ot1enc.dfu 2021/12/13 v1.2o UTF-8 support
+File: ot1enc.dfu 2022/02/13 v1.3a UTF-8 support
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -1780,7 +1780,7 @@ Now handling font encoding T1 ...
 
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/latex-dev/base/t1enc.dfu
-File: t1enc.dfu 2021/12/13 v1.2o UTF-8 support
+File: t1enc.dfu 2022/02/13 v1.3a UTF-8 support
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -2061,7 +2061,7 @@ Now handling font encoding TS1 ...
 
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/latex-dev/base/ts1enc.dfu
-File: ts1enc.dfu 2021/12/13 v1.2o UTF-8 support
+File: ts1enc.dfu 2022/02/13 v1.3a UTF-8 support
    defining Unicode char U+00A2 (decimal 162)
    defining Unicode char U+00A3 (decimal 163)
    defining Unicode char U+00A4 (decimal 164)
@@ -2154,7 +2154,7 @@ Now handling font encoding U ...
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/latex-dev/firstaid/latex2e-first-aid-for-external-
 files.ltx
-File: latex2e-first-aid-for-external-files.ltx 2021/11/11 v1.0q LaTeX kernel fi
+File: latex2e-first-aid-for-external-files.ltx 2022/02/20 v1.0r LaTeX kernel fi
 xes to external files and packages
 )
 )
@@ -2241,10 +2241,10 @@ Loading kinsoku patterns for japanese.
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/platex/base/kinsoku.tex)) ) )
 Beginning to dump on file platex-dev.fmt
- (preloaded format=platex-dev 2022.2.9)
-21301 strings of total length 417962
-296260 memory locations dumped; current usage is 246&295197
-18588 multiletter control sequences
+ (preloaded format=platex-dev 2022.3.17)
+21323 strings of total length 418436
+296942 memory locations dumped; current usage is 246&295879
+18610 multiletter control sequences
 \font\nullfont=nullfont
 \font\c__fp_exp_intarray=cmr10 at 0.00002pt
 \font\c__fp_trig_intarray=cmr10 at 0.00003pt

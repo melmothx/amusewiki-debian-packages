@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (INITEX)  28 JAN 2022 16:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (INITEX)  17 MAR 2022 09:24
  restricted \write18 enabled.
  %&-line parsing enabled.
  (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2021/texmf-dist/web2c/cp227.tcx)
@@ -141,7 +141,7 @@ loading : ConTeXt Support Macros / PDF
 loading : ConTeXt Support Macros / MPS extensions
 ) )
 Beginning to dump on file mptopdf.fmt
- (preloaded format=mptopdf 2022.1.28)
+ (preloaded format=mptopdf 2022.3.17)
 3311 strings of total length 50319
 13894 memory locations dumped; current usage is 116&13747
 1669 multiletter control sequences

@@ -1,21 +1,23 @@
 name babel-polish
 category Package
-revision 30283
+revision 62681
 shortdesc Babel support for Polish
 longdesc The package provides the language definition file for support
 longdesc of Polish in babel. Some shortcuts are defined, as well as
 longdesc translations to Polish of standard "LaTeX names".
-containersize 3360
-containerchecksum cfd5f27f92e75883572adce926cbcfa9d9248367979c3b3411e6ca1c2d4bf441d2fa790dfff94f0f6001c68f354628334aa0a920ee68900398879c978cf962e4
-doccontainersize 134416
-doccontainerchecksum 6f12e4c792eda6ec33db820bf3e0c9a0fbec8f07adf413c4c98d40624cbf8d46588e16271e459eedcb37ceb2f89f13c3a9dab89122172fe2b8ee9330ab6109fe
-docfiles size=33
+containersize 3908
+containerchecksum 7fb2ecdbd158e44450e79455d9c6644a629873af3c193aa60a27d6aa63b33c238662638ba0e84a77319874fa070e5084c2499484cdf0e5ce46b30164afb4df35
+doccontainersize 398864
+doccontainerchecksum 50e3d424b9ead34ddec45e136d8639cfb998d0cc15f9b7cb3e0646dc86b69747d939de675f6d3d8f75f2f909bf4d790ee3b576db5283a0711943c153a3723a33
+docfiles size=99
+ texmf-dist/doc/generic/babel-polish/README.md
  texmf-dist/doc/generic/babel-polish/polish.pdf details="Package documentation"
-srccontainersize 7592
-srccontainerchecksum 19d6cd158e48666b843628d0325d0e52ebbe137d28686d8b31199e9bad1c4d3393487aa300179688af5b9f7307eea8376f8ba82ed2209efcf39abef094787d82
-runfiles size=3
+srccontainersize 11588
+srccontainerchecksum 49bb009ca3e5976eb698347ddaf7ad22139c3d6f7c13384a035638419815a315a079ea2ee9b1df2547536ef1cb541647e9a59e7b274fd22ae7cd0ae1a11faa54
+runfiles size=5
+ texmf-dist/tex/generic/babel-polish/polish-compat.ldf
  texmf-dist/tex/generic/babel-polish/polish.ldf
 catalogue-ctan /macros/latex/contrib/babel-contrib/polish
 catalogue-license lppl1.3
 catalogue-topics polish
-catalogue-version 1.2l
+catalogue-version 1.3

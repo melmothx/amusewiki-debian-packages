@@ -1,6 +1,6 @@
 name latex-base-dev
 category Package
-revision 61902
+revision 62726
 shortdesc Development pre-release of the LaTeX kernel
 longdesc This package provides a testing release for upcoming LaTeX2e
 longdesc kernel changes. Testing by the LaTeX team itself suggests that
@@ -9,11 +9,11 @@ longdesc users is required by adding these changes to the release LaTeX
 longdesc kernel. Typically, the code here will be used by a TeX system
 longdesc to create dedicated formats, for example pdflatex-dev, which
 longdesc can then be used explicitly for testing.
-containersize 223192
-containerchecksum d3e26994513fb2a3716ba070342cc284157dfe50a8b839500bcc1dbe47d96247e91d70f3aec340f7ffaacd7de11adbd0854132d3e15bdbcc0269327b445b987f
-doccontainersize 29400040
-doccontainerchecksum 6bd7b0fd86e001974b7af3fa84c90b07ad4ccfb8dfb0f45d63e734e7c568aa464e639a946716828719305ad22fac5fb4b842557e5bf87179f8c7be713ef85ef0
-docfiles size=9239
+containersize 223716
+containerchecksum 1be1522f20a449edfccff1603adf0edf455ee7ab2f1bcaf47ed52e6f9a3c8603d957438f11271c4eed3ab55792f9a4c26561792f1bd3fe72635ec9fe062f3e4b
+doccontainersize 29432012
+doccontainerchecksum 8c6202df21370d296906d4b3dfd6ebd0a0658ef76725f6753f17c7bd4e0e1dfdafa110c968747c3bcaf546382c5c8b343a77c028c786d4d35a466e7dc096612e
+docfiles size=9253
  texmf-dist/doc/latex-dev/base/README.md details="Readme"
  texmf-dist/doc/latex-dev/base/alltt.pdf
  texmf-dist/doc/latex-dev/base/bugs.txt
@@ -172,9 +172,9 @@ docfiles size=9239
  texmf-dist/doc/latex-dev/base/utf8ienc.pdf
  texmf-dist/doc/latex-dev/base/webcomp.err
  texmf-dist/doc/latex-dev/base/webcomp.pdf
-srccontainersize 697140
-srccontainerchecksum dac416e0f1899108b3eb1362d340c1e92c33ff09d75d6c5fedf2956908b1125a59e7d801b727fac8c5b284cecd5d23a6629e16bdd05a091360c38637f2243c59
-runfiles size=628
+srccontainersize 698448
+srccontainerchecksum ad3489239c75fc9357e7bd6a56c5153f27571643d10eca85999f37e0c838d7044cb6438e759716f8d0c8da7ac09e07469480813a87824a11ecb73c7c9b874f36
+runfiles size=629
  texmf-dist/tex/latex-dev/base/alltt.sty
  texmf-dist/tex/latex-dev/base/ansinew.def
  texmf-dist/tex/latex-dev/base/applemac.def
@@ -344,4 +344,4 @@ catalogue-also latex-base
 catalogue-ctan /macros/latex-dev/base
 catalogue-license lppl1.3c
 catalogue-topics format class latex-devel
-catalogue-version 2022-06-01 pre-release 2
+catalogue-version 2022-06-01 pre-release 3
