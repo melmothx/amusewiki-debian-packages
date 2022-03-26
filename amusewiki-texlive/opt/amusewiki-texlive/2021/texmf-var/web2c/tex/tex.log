@@ -1,4 +1,4 @@
-This is TeX, Version 3.141592653 (TeX Live 2021) (INITEX)  28 JAN 2022 16:52
+This is TeX, Version 3.141592653 (TeX Live 2021) (INITEX)  22 MAR 2022 13:24
 **tex.ini
 
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
@@ -47,7 +47,7 @@ macros,
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/generic/hyphen/hyphen.tex)) )
 Beginning to dump on file tex.fmt
- (preloaded format=tex 2022.1.28)
+ (preloaded format=tex 2022.3.22)
 2028 strings of total length 29992
 4991 memory locations dumped; current usage is 110&4878
 926 multiletter control sequences

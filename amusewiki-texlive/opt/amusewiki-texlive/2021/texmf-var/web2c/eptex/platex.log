@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (INITEX)  17 MAR 2022 09:24
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (INITEX)  22 MAR 2022 13:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2232,7 +2232,7 @@ Loading kinsoku patterns for japanese.
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/platex/base/kinsoku.tex)) ) )
 Beginning to dump on file platex.fmt
- (preloaded format=platex 2022.3.17)
+ (preloaded format=platex 2022.3.22)
 21239 strings of total length 416640
 294725 memory locations dumped; current usage is 246&293662
 18526 multiletter control sequences

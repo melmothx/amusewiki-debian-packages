@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (INITEX)  17 MAR 2022 09:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (INITEX)  22 MAR 2022 13:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -845,7 +845,7 @@ Retaining: \et@xerr, \et@xinput, \et@xlibhdr, \et@xmsg, \et@xtoks, \et@xwarn,
 \et@xl@@d, \et@xl@ad, \et@xload, \et@xlang, \et@xhash, \eTeX, \etexhdrchk,
 \etexstatus, \module, \uselanguage, \r@tain, \r@cycle,) )
 Beginning to dump on file etex.fmt
- (preloaded format=etex 2022.3.17)
+ (preloaded format=etex 2022.3.22)
 5351 strings of total length 134570
 13383 memory locations dumped; current usage is 203&10243
 1677 multiletter control sequences

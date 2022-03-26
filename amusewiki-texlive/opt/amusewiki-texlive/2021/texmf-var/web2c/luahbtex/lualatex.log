@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (INITEX)  17 MAR 2022 09:24
+This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (INITEX)  22 MAR 2022 13:24
  restricted system commands enabled.
 **lualatex.ini
 
@@ -1222,7 +1222,7 @@ xes to external files and packages
 )
 ))
 Beginning to dump on file lualatex.fmt
- (format=lualatex 2022.3.17)
+ (format=lualatex 2022.3.22)
 22200 strings using 364567 bytes
 686491 memory locations dumped; current usage is 204&317305
 20832 multiletter control sequences

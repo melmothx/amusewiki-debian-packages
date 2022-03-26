@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.13.2 (TeX Live 2021)  (INITEX)  17 MAR 2022 09:24
+This is LuaTeX, Version 1.13.2 (TeX Live 2021)  (INITEX)  22 MAR 2022 13:24
  restricted system commands enabled.
 **dvilualatex.ini
 
@@ -1224,9 +1224,9 @@ xes to external files and packages
 )
 )))
 Beginning to dump on file dvilualatex.fmt
- (format=dvilualatex 2022.3.17)
+ (format=dvilualatex 2022.3.22)
 22205 strings using 364591 bytes
-686499 memory locations dumped; current usage is 204&317309
+686479 memory locations dumped; current usage is 204&317311
 20832 multiletter control sequences
 \font\nullfont=nullfont
 \font\OMX/cmex/m/n/10=cmex10

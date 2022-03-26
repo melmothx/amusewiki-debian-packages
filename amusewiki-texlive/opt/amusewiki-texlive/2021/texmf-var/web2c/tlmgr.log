@@ -408,3 +408,27 @@
 [Thu Mar 17 09:24:51 2022]   OK: uptex.fmt/uptex
 [Thu Mar 17 10:04:22 2022] install: lua-uni-algos
 [Thu Mar 17 10:04:22 2022] command: mktexlsr
+[Tue Mar 22 13:24:31 2022] update: hyphen-base (61052 -> 62756)
+[Tue Mar 22 13:24:32 2022] update: luaotfload (62239 -> 62789)
+[Tue Mar 22 13:24:33 2022] update: texdoc (62380 -> 62816)
+[Tue Mar 22 13:24:33 2022] update: texlive-scripts (62733 -> 62847)
+[Tue Mar 22 13:24:33 2022] command: mktexlsr
+[Tue Mar 22 13:24:33 2022] command: updmap-sys
+[Tue Mar 22 13:24:34 2022] command: fmtutil-sys --byengine eptex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/JW3Px8QONd/wmTvM9IZgf
+[Tue Mar 22 13:24:37 2022]   OK: eptex.fmt/eptex platex-dev.fmt/eptex platex.fmt/eptex
+[Tue Mar 22 13:24:37 2022] command: fmtutil-sys --byengine xetex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/JW3Px8QONd/wmTvM9IZgf
+[Tue Mar 22 13:24:43 2022]   OK: xetex.fmt/xetex xelatex.fmt/xetex
+[Tue Mar 22 13:24:43 2022] command: fmtutil-sys --byengine luatex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/JW3Px8QONd/wmTvM9IZgf
+[Tue Mar 22 13:24:45 2022]   OK: luatex.fmt/luatex dvilualatex.fmt/luatex dviluatex.fmt/luatex
+[Tue Mar 22 13:24:45 2022] command: fmtutil-sys --byengine tex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/JW3Px8QONd/wmTvM9IZgf
+[Tue Mar 22 13:24:46 2022]   OK: tex.fmt/tex
+[Tue Mar 22 13:24:46 2022] command: fmtutil-sys --byengine uptex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/JW3Px8QONd/wmTvM9IZgf
+[Tue Mar 22 13:24:46 2022]   OK: uptex.fmt/uptex
+[Tue Mar 22 13:24:46 2022] command: fmtutil-sys --byengine pdftex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/JW3Px8QONd/wmTvM9IZgf
+[Tue Mar 22 13:24:51 2022]   OK: pdftex.fmt/pdftex etex.fmt/pdftex mptopdf.fmt/pdftex pdflatex.fmt/pdftex latex.fmt/pdftex pdfetex.fmt/pdftex
+[Tue Mar 22 13:24:51 2022] command: fmtutil-sys --byengine ptex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/JW3Px8QONd/wmTvM9IZgf
+[Tue Mar 22 13:24:51 2022]   OK: ptex.fmt/ptex
+[Tue Mar 22 13:24:51 2022] command: fmtutil-sys --byengine euptex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/JW3Px8QONd/wmTvM9IZgf
+[Tue Mar 22 13:24:54 2022]   OK: euptex.fmt/euptex uplatex-dev.fmt/euptex uplatex.fmt/euptex
+[Tue Mar 22 13:24:54 2022] command: fmtutil-sys --byengine luahbtex --no-error-if-no-format --no-error-if-no-engine=luajithbtex,luajittex,mfluajit --status-file=/tmp/JW3Px8QONd/wmTvM9IZgf
+[Tue Mar 22 13:24:56 2022]   OK: luahbtex.fmt/luahbtex lualatex.fmt/luahbtex

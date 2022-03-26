@@ -1,6 +1,6 @@
 name texdoc
 category TLCore
-revision 62380
+revision 62816
 shortdesc Documentation access for TeX Live
 longdesc texdoc is a Lua script providing easy access to the
 longdesc documentation in TeX Live: PDF, DVI, plain text files, and
@@ -10,10 +10,10 @@ longdesc program by the same name to do the same job, but its
 longdesc implementation is unrelated.
 depend kpathsea
 depend texdoc.ARCH
-containersize 27488
-containerchecksum 83551289e923ecf13ffbd27d950d4fb8026d06d2600160fea6d397d5fbbdf2deb80ca8f0286bd022308910fd0b5ee00f235598324453a3cd4eab7b6956a34958
-doccontainersize 135720
-doccontainerchecksum 5c8ea335b2b1d1c7829653a1ca0df3eb3a5f75f808d8bc2b2a8177f01d8d317e76f536cb6b55471cc4076c2938ae01623185a90033bd453b94134ba35a9a0062
+containersize 27496
+containerchecksum a160a32f5a29c87548bc09bb9c7529ca629ddbfbecbc3751bb913b8b22f5b211a1bf97279e071df6f4a74202dfd284b5978a91b6e6aaab207152057c33894620
+doccontainersize 135768
+doccontainerchecksum 0d496c27cdec8c4fd4ab7ff3205c667fd523821e6fdb91e123ad10d0ba97da87f3d64b6182bac8fd627dea0cf654d067726737ff826372abdfee020cba2fc824
 docfiles size=53
  texmf-dist/doc/man/man1/texdoc.1
  texmf-dist/doc/man/man1/texdoc.man1.pdf
@@ -43,4 +43,4 @@ catalogue-contact-support https://lists.tug.org/texdoc
 catalogue-ctan /support/texdoc
 catalogue-license gpl
 catalogue-topics view-doc
-catalogue-version 3.4
+catalogue-version 3.4.1

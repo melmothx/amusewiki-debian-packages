@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (INITEX)  17 MAR 2022 09:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (INITEX)  22 MAR 2022 13:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2268,7 +2268,7 @@ xes to external files and packages
 )
  ) )
 Beginning to dump on file latex.fmt
- (preloaded format=latex 2022.3.17)
+ (preloaded format=latex 2022.3.22)
 21700 strings of total length 435776
 288362 memory locations dumped; current usage is 165&286633
 18302 multiletter control sequences

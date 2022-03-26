@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (INITEX)  17 MAR 2022 09:24
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (INITEX)  22 MAR 2022 13:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -722,7 +722,7 @@ Retaining: \et@xerr, \et@xinput, \et@xlibhdr, \et@xmsg, \et@xtoks, \et@xwarn,
 \et@xl@@d, \et@xl@ad, \et@xload, \et@xlang, \et@xhash, \eTeX, \epTeX,
 \etexhdrchk, \etexstatus, \module, \uselanguage, \r@tain, \r@cycle, ) )
 Beginning to dump on file eptex.fmt
- (preloaded format=eptex 2022.3.17)
+ (preloaded format=eptex 2022.3.22)
 4260 strings of total length 103294
 10169 memory locations dumped; current usage is 228&8943
 1504 multiletter control sequences

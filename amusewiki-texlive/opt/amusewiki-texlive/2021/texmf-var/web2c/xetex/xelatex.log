@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (INITEX)  17 MAR 2022 09:24
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (INITEX)  22 MAR 2022 13:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1817,7 +1817,7 @@ xes to external files and packages
 )
  ) )
 Beginning to dump on file xelatex.fmt
- (preloaded format=xelatex 2022.3.17)
+ (preloaded format=xelatex 2022.3.22)
 89333 strings of total length 468808
 297476 memory locations dumped; current usage is 299&292858
 20846 multiletter control sequences

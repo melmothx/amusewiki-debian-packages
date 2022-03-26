@@ -1,4 +1,4 @@
-This is pTeX, Version 3.141592653-p3.9.0 (utf8.euc) (TeX Live 2021) (INITEX)  17 MAR 2022 09:24
+This is pTeX, Version 3.141592653-p3.9.0 (utf8.euc) (TeX Live 2021) (INITEX)  22 MAR 2022 13:24
  restricted \write18 enabled.
  %&-line parsing enabled.
 **ptex.ini
@@ -58,7 +58,7 @@ macros,
 (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
 -texlive/2021/texmf-dist/tex/ptex/ptex-base/kinsoku.tex)) )
 Beginning to dump on file ptex.fmt
- (preloaded format=ptex 2022.3.17)
+ (preloaded format=ptex 2022.3.22)
 2180 strings of total length 32288
 5055 memory locations dumped; current usage is 128&4906
 991 multiletter control sequences
