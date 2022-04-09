@@ -12,7 +12,7 @@ set -e
 
 basedir=`pwd`
 build=${BUILD:-1}
-year=2021
+year=2022
 
 if [ "$1" = "bootstrap" ]; then
     rm -rf amusewiki-texlive/opt
