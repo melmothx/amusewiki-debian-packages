@@ -1,15 +1,17 @@
 Source: libbytes-random-secure-tiny-perl
+Maintainer: Marco Pessotto <melmothx@gmail.com>
 Section: perl
 Priority: optional
-Maintainer: Marco Pessotto <melmothx@gmail.com>
-Build-Depends: debhelper (>= 9)
-Build-Depends-Indep: perl
-Standards-Version: 3.9.8
+Build-Depends: debhelper-compat (= 13)
+Build-Depends-Indep: libtest-simple-perl <!nocheck>,
+                     perl
+Standards-Version: 4.5.1
 Homepage: https://metacpan.org/release/Bytes-Random-Secure-Tiny
 
 Package: libbytes-random-secure-tiny-perl
 Architecture: all
-Depends: ${misc:Depends}, ${perl:Depends}
+Depends: ${misc:Depends},
+         ${perl:Depends}
 Description: tiny Perl extension to generate cryptographically-secure random bytes.
  Bytes::Random::Secure::Tiny provides random bytes from a
  cryptographically secure random number generator (ISAAC), seeded from

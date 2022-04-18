@@ -1,3 +1,9 @@
+libbytes-random-secure-tiny-perl (1.011-1) unstable; urgency=medium
+
+  * Updated to latest
+
+ -- Marco Pessotto <melmothx@gmail.com>  Mon, 18 Apr 2022 09:17:19 +0200
+
 libbytes-random-secure-tiny-perl (1.008-1) unstable; urgency=low
 
   * Initial Release.

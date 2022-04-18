@@ -4,11 +4,11 @@ Upstream-Contact: David Oswald <davido@cpan.org>
 Upstream-Name: Bytes-Random-Secure-Tiny
 
 Files: *
-Copyright: David Oswald <davido@cpan.org>
+Copyright: 2015 David Oswald <davido@cpan.org>
 License: Artistic or GPL-1+
 
 Files: debian/*
-Copyright: 2019, Marco Pessotto <melmothx@gmail.com>
+Copyright: 2019, 2022, Marco Pessotto <melmothx@gmail.com>
 License: Artistic or GPL-1+
 
 License: Artistic
