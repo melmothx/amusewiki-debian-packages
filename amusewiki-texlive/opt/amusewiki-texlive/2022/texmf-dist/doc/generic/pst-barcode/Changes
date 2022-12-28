@@ -1,0 +1,341 @@
+----- pst-barcode.tex
+0.19  2022-08-23 - The parse option was extended to perform replacement 
+                   of control character names such as ^NUL and ^RS with their ASCII value.
+				 - The horizontal alignment of text in matrix symbols was fixed.
+                 - Various fixes were made for the encoding of Data Matrix, DotCode and Micro QR Code symbols.
+                 - The encoding of QR Code symbols was optimised.
+				 - The encoding of Rectangular Micro QR Code symbols was aligned with the final release of the specification.
+ - The linear render now uses filled polygons rather than stroked lines.
+ - Code 93 Extended was amended to not shift encode "$%+/" symbols.
+ - Support was added for USPS FIM E marks.
+ - Support for AI (715) was added to the GS1 linter.
+ - Ultracode tile colours are now defined as RGB rather than CMYK. New tile colour patterns are defined for the upcoming revision.
+ - A bug in the encoding of certain Aztec Code symbols was fixed.
+ - A bug in the encoding of certain Dotcode symbols was fixed.
+ - A bug in the encoding of QR Code symbols containing Kanji compression was fixed.
+ - The rMQR encoding was optimised, potentially resulting in smaller symbols.
+ - The colours for Ultracode symbols were changed to RGB values rather than CMYK.
+ - The metrics for Ultracode symbols was updated and a raw mode was added.
+ - Linting of GS1 AI (4308) was fixed.
+ - Linting of the check character pair for AI (8013) was added.
+ - Linting for GS1 coupon AIs (8110) and (8112) was added.
+ - Linting for GS1 AI syntax data was expanded and fixed.
+ - A convenience encoder for GS1 DotCode was added.
+ - GS1 Composite Component symbols were fixed.
+ - Linting was added to GS1 Composite Components.
+ - Linting for GS1 AI syntax data was added.
+ - A bug in the compact encoding methods 0110X for GS1 DataBar Expanded formats was fixed.
+ - The parse and parsefnc options are now processed by a single routine that allows their escape patterns to coexist in the input data.
+ - Bugs in ECI processing with PDF417 and MicroPDF417 were fixed.
+ - A bug in the seperator pattern for GS1 DataBar Expanded Stacked Composite was fixed.
+ - A bug in leaving punctuation mode in Aztec Code was fixed.
+ - An inefficiency in the QR Code encoding was fixed.
+ - ECI support was added to Code One.
+ - A bug in Data Matrix for ECI checks at end of data was fixed.
+ - ECI support was added to Data Matrix, Aztec Code, QR Code, PDF417, MicroPDF417, Maxicode and DotCode.
+ - GS1 DataBar Limited was updated to include a righthand whitespace guard.
+ - Code 32 was fixed to avoid overwriting the provided barcode string.
+ - A new encoder for Swiss QR Code was added.
+ - The Codablock F encoding was optimised potentially resulting in smaller symbols.
+ - The GS1 DataBar Stacked, GS1 DataBar Stacked Omnidirectional and GS1 DataBar Expanded Stacked separator patterns were fixed.
+ - A bug in GS1-128 that sometimes prevented encoding with a Composite Component was fixed.
+ - Bugs in GS1 Composite Component encoding were fixed.
+ - The GS1 QR Code encoder was fixed.
+ - Changes were required to the package build script due to new defaults in recent versions of GhostScript.
+ - Preliminary support for the Rectangular Micro QR Code symbology was added.
+ - The encoders were amended to workaround a non-standard operator on Harlequin RIPs.
+ - A distict encoder was added for Data Matrix Rectangular Extension.
+ - The Data Matrix encoder was enhanced to include the ISO formats for DMRE.
+ - A crash with a certain encoding of data in GS1 Databar Expanded based symbologies was fixed.
+ - A bug in the Code 128 encoder when composite component linkage flags were used with data terminating in mode C was fixed.
+ - An encoder for the Royal Mail Mailmark symbology was added.
+ - The performance of the renmatrix renderer was slightly optimised.
+ - The performance of the renmatrix renderer was significantly improved.
+ - A recent regression in the Data Matrix encoder was fixed.
+ - The Data Matrix encoder was fixed to avoid certain cases where switching between C40, Text and X12 encoding might latch repeatedly.
+ - Preliminary support for the JAB Code symbology was added.
+ - The raw option was added to the Data Matrix encoder.
+ - The base size of Ultracode symbols was increased.
+ - Support for symbols composed of dots was added to the renmatrix renderer.
+ - The DotCode encoder was amended to use the dotty matrix feature.
+ - A bug in the DotCode encoder's handling of FNC3 message separator characters was fixed.
+ - The DotCode encoder was fixed to support optimised handling of "FNC1 in First" for leading numeric input.
+ - The performance of the Channel Code encoder was improved.
+ - The base symbol size of the DotCode encoder was increased.
+ - The DotCode encoder was enhanced to fix weaknesses with the mask evaluation algorithm.
+ - The Channel Code encoder checksum calculation for channels 4 and 7 was fixed.
+ - Fixed end of data region encoding error with EDIFACT encoding in Data Matrix.
+ - Preliminary support for the Ultracode symbology was added.
+ - The renmatrix renderer was improved to support colour symbols.
+0.18  2017-08-22 - changed fonts to URW nimbus
+                 - fix bug in pst-barcode.pro 
+0.17  2017-08-05 - new font file to embed the Type 1 fonts
+                   uses the GhostScript fonts with an alias
+                   for the defrault names
+0.16a 2017-04-12 - modified documentation
+0.16  2017-04-12 - new pro file, new codes
+                 - The GS1 North American Coupon encoder was fixed to support the 
+                   textyalign option.
+                 - Support for the GS1 North American Coupon barcode was added.
+                 - Symbologies accepting GS1 Application Identifier formatted 
+                   data were fixed so as not to clobber successive field values 
+                   when multiple identical AIs are given.
+0.15  2016-04-22 - new pro file, new codes
+0.14  2015-10-10 - updated documentation, new pro file
+0.13  2015-05-11 - updated documentation, new pro file
+0.12  2013-10-26 - added option file for including an external file
+0.11  2013-10-06 - added more options for data matrix
+0.10  2012-08-25 - using another code for loading the ps code
+0.09  2012-06-25 - using another code for loading the ps code
+0.08  2011-03-10 - take care of the function interface of the pro file
+0.07  2009-08-12 - take care of the function interface of the pro file
+0.04  2006-07-23 - adding support for the ISBN-13 code
+                 - printing the code from the current point and
+                   no more from the origin
+0.03  2005-07-26 - Changes to the documentation and the syntax
+                   of psbarcode (hv) 
+0.02  2005-07-26 - first version (hv) 
+
+
+----- pst-barcode.sty
+0.01  2005-07-26 first version (hv) 
+
+
+----- pst-barcode.pro
+
+2022-08-21 - bug fixes and optimisations for QR Code, Micro QR Code, Data
+             Matrix, DotCode, Aztec Code, GS1 Composite Components, GS1
+             DataBar, Code 32, Codablock F, GS1-128, Channel Code and Code 93.
+           - new barcodes for Swiss QR Code, Rectangular Micro QR Code, Data
+             Matrix Rectanguar Extension, Royal Mail Mailmark and FIM E marks,
+             GS1 Digital Link QR Code, GS1 Digital Link Data Matrix.
+           - validation of GS1 AI syntax data and GS1 Digital Link URIs.
+           - ECI support for all supported symbologies.
+           - parsing of named escape sequences for ASCII control characters,
+             e.g. ^NUL and ^RS.
+           - linear render uses filled polygons rather than stroked lines.
+           - matrix render performance improvements.
+2017-08-22 - fix bug with Times
+2017-04-12 - some new barcodes
+2016-04-21 - some new barcodes
+2015-05-11 - several fixes for the code
+2013-10-06 - the Data Matrix encoder now supports C40, Text and 
+             ANSI X12 encoding modes as well as the FNC1, PROG, 
+             05 Macro and 06 Macro prefixes
+2012-11-15 - renlinear was modified to avoid a clash with a 
+             predefined name in Distiller.
+2012-06-26 - The QR Code encoder was modified so that Micro QR Code 
+             symbols do not require the use of raw mode. 
+           - Support for the alphanumeric, numeric, and kanji encodings
+             was added to the QR Code encoder. 
+           - The PZN symbology was extended with support
+             for PZN8. 
+           - Support for the GS1 DataMatrix symbology was added. 
+           - A bug in double digit ASCII encodation of the Data Matrix 
+             symbology was fixed. 
+           - The EDIFACT, C40, TEXT, and X12 encodation schemes were 
+             removed from the Data Matrix symbology, as
+             these were buggy. 
+           - Support for FNC1 character as added to the Data Matrix symbology.
+2012-06-25 - The QR Code encoder was modified to select an 
+             optimal encoder based on the data.
+	   - A bug in the symbol size selection for 
+	     QR Code was fixed.
+           - The QR Code encoder was optimised by 
+             allowing the terminator pattern to be trimmed.
+           - Support for the alphanumeric, numeric and 
+             kanji encodings was added to the qrcode encoder.
+           - The PZN symbology was extended with support for PZN8.
+           - The 1.5 scale factor was removed from the 
+             DataMatrix encoder.
+
+2011-03-10 - The error correction code for Maxicode symbols was improved.
+           - Codablock F was fixed for short data inputs.
+           - Support for the Codablock F symbology was added.
+           - Support for the HIBC Codablock F symbology was added.
+           - The optimised encoding of Code 16K symbols was simplified.
+	   - The optimised encoding of Code 128 symbols was simplified and
+	     improved.
+           - The optimised encoding of Code 128 symbols was improved.
+	   - Support for the extended datalength option was added to the Code
+	     16K symbology.
+           - Support for the Code 16K symbology was added.
+	   - The optimal start character selection for Code 128 symbols was
+	     improved.
+           - Support for the Code 49 symbology was added.
+           - Support for the Code One symbology was added.
+	   - The GS1 DataBar Expanded Composite and GS1 DataBar Expanded
+	     Stacked Composite symbologies were amended so that their separator
+             patterns are correctly generated.
+	   - The GS1 DataBar Omnidirectional Composite, GS1 DataBar Stacked
+	     Composite, GS1 DataBar Stacked Omnidirectional Composite, GS1
+	     DataBar Truncated symbologies were amended so that their separator
+             patterns are correctly generated.
+	   - GS1-128 Composite was fixed so that the 2D component is correctly
+	     aligned.
+	   - Preliminary support for the GS1 DataBar Omnidirectional Composite,
+	     GS1 DataBar Stacked Composite, GS1 DataBar Stacked Omnidirectional
+	     Composite, GS1 DataBar Truncated, GS1 DataBar Limited, GS1 DataBar
+             Expanded, GS1 DataBar Expanded Stacked symbologies were added.
+           - The default height for the GS1-128 symbologies was changed.
+	   - Preliminary support for the GS1 DataBar Limited Composite
+	     symbology was added.
+	   - Preliminary support for the EAN-8 Composite, UPC-A Composite and
+	     UPC-E Composite symbologies was added.
+           - Support for the GS1 Composite 2D components was added.
+           - Preliminary support for the EAN-13 Composite symbology was added.
+	   - Renamed rss14 to databaromni, rsslimited to databarlimited,
+	     rssexpanded to databarexpanded.
+	   - Added convenience encoders for GS1 DataBar Stacked, GS1 DataBar
+	     Stacked Omnidirectional, GS1 DataBar Truncated and GS1 DataBar
+             Expanded Stacked.
+           - Support for the HIBC MicroPDF417 symbology was added.
+           - Support for the MicroPDF417 symbology was added.
+	   - Support for CC-A/B amd CC-C composite linkage was added to the
+	     GS1-128 symbology.
+	   - The Code 128 symbology was extended with support for composite
+	     linkage pseudo characters.
+	   - PDF417 was amended to automatically select an appropriate number
+	     of columns when not provided.
+           - The default error correction levels for PDF417 symbols were updated.
+	   - A bug in the encoding of the general purpose field ending in
+	     numeric mode of GS1 DataBar expanded symbols was fixed.
+	   - Renamed occurrences of alpha mode to alphanumeric in GS1 Databar
+	     Expanded symbology to disambiguate from the standard GS1 alpha
+             encoding.
+	   - The list of FNC1 exempt GS-1 application identifiers was fixed in
+	     the GS1-128 and GS1 DataBar symbologies.
+	   - Fixed occurances of a bad programming paradigm that could result
+	     in the incorrect generation of certain symbols when including
+             multiple instances.
+           - Support for the Deutsche Post Leitcode Symbology was added.
+           - Support for the Deutsche Post Identcode Symbology was added.
+	   - A checkoffset option was added to the posicode encoder to
+	     facilitate multirow symbols.
+           - Support for the Flattermarken symbology was added.
+           - Checksum support for the Channel Code encoder was added.
+           - Support for the PosiCode symbology was added.
+	   - An option to use a short finder pattern was added to the Channel
+	     Code encoder.
+           - Support for the Channel Code symbology was added.
+	   - Support for the HIBC Code 39, HIBC Code 128, HIBC Data Matrix,
+	     HIBC PDF417 and HIBC QR Code symbologies was added.
+           - The efficiency of the Two-Track Pharmacode encoder was improved.
+           - The escape sequences for the special shift characters were changed.
+           - Support for the Code 93 Extended symbology was added.
+           - Support for the Code 39 Extended symbology was added.
+           - Support for the ITF-14 symbology was added.
+           - Support for the SSCC-18 symbology was added.
+           - Support for the GS1-14 symbology was added.
+           - Support for the GS1-128 symbology was added.
+           - The code128 encoder was modified to automatically encode the input.
+           - Support for the Pharmazentralnummer (PZN) symbology was added.
+           - The text parameters for EAN an UPC symbols are now applied to the addons.
+           - A bug in the display of the ISSN check digit was fixed.
+           - Support for Code 32 (Italian Pharmacode) was added.
+	   - Added daft encoder to make it easier to create miscellaneous
+	     symbols in a custom 4 state symbology.
+	   - Support was added to the Plessey symbology for the unidirectional
+	     variant.
+           - Support for the BC412 symbology was added.
+           - A bug in the calculation of the border height was fixed.
+           - The example for Two-track Pharmacode was changes to display a border.
+           - Support for the Two-track Pharmacode symbology was added.
+           - Support for the ISSN symbology was added.
+           - Support for the ISMN symbology was added.
+           - The ISBN encoder was improved to upgrade ISBN-10 input to ISBN-13.
+	   - The code2of5 encoder was improved to support the IATA, matrix,
+	     COOP, and Datalogic versions of the symbology.
+	   - A bug was fixed that could allow the generation of invalid MSI
+	     symbols when using a modulus 11 check digit.
+           - Support for the Telepen symbology was added.
+	   - A bug in the placement of human readable text for Plessey and MSI
+	     symbols was fixed.
+	   - The bar-space widths were amended for Plessey and MSI symbols were
+	     amended to better conform to their specifications.
+           - A bug in the calculation of the checksum of Plessey symbols was fixed.
+           - A bug in the calculation of the checksum of MSI symbols was fixed.
+           - Additional checksum types where added to the MSI symbology.
+	   - A bug in the determination of the error correction level of PDF417
+	     symbols was fixed.
+           - A bug in QR Code mask evaluation was fixed.
+           - Support for the USPS PLANET symbology was added.
+	   - An input handling bug in the USPS POSTNET encoder was fixed.
+	   - The list of FNC1 exempt application identifiers in GS1 DataBar
+	     Expanded was fixed.
+	   - A bug in the numeric encoding of the general purpose field of GS1
+	     DataBar Expanded symbols was fixed.
+           - Support for UPC-E1 was added to the upce encoder.
+	   - Converted to a set of PostScript named resources rather than a
+	     procedure list.
+           - A bug in the symbol selection algorithm for QR Code was fixed.
+	   - Ensure that auto-encoding a micro-format QR Code symbol fails
+	     rather than produces a full-format symbol.
+	   - Convert interleaved2of5 encoder to use barratio and spaceratio to
+	     set the narrow to wide bar ratio.
+	   - Ensure that the UPC-E encoder does not fail silently when an
+	     invalid input is given.
+2009-08-13 - Added support for pdf417
+2009-08-06 - Added support for several 2D matrix codes
+2007-07-10 - Added QR code, Aztex code.
+2007-05-22 - Added parsable example options field to each encoder.
+	   - An encoder for the Pharmaceutical Binary Code symbology was added.
+2007-04-22 - Added CMYK colorspace support.
+	   - Fixed incorrect checksum calculation for UPC-E symbols.
+	   - Added raw encoder to make it easier to create 
+	     miscellaneous symbols in a custom symbology.
+	   - Functional comments were added to the head of the encoders 
+	     to allow applications to extract the symbology name and 
+	     example input data.
+	   - An encoder for the Reduced Space Symbology RSS Expanded was added.
+	   - The incorrect definition of the USPS FIM-B symbol was fixed.
+	   - An encoder for the Reduced Space Symbology RSS Limited was added.
+	   - The efficiency of RSS-14 was improved.
+	   - An encoder for the Reduced Space Symbology RSS-14 was added.
+	   - An encoder for the new OneCode symbology used by the 
+	     US Postal Service was added.
+2006-03-04 - An encoder for the Reduced Space Symbology RSS Expanded 
+             was added.
+           - The incorrect definition of the USPS FIM-B symbol was fixed.
+           - An encoder for the Reduced Space Symbology RSS Limited was added.
+             The efficiency of RSS-14 was improved.
+           - An encoder for the new OneCode symbology used by the US 
+             Postal Service was added.
+           - The FIM symbols now render according to their specification.
+           - The Postnet, Royal Mail, AusPost and KIX encoders were amended 
+             so that the metrics of their default symbols confirms 
+             strongly to their respective specifications.
+           - The encoders now pass an array containing the widths of the 
+             bar space succession to the renderer allowing for sub-point 
+             horizontal precision.
+           - The default border positions for EAN and UPC symbols were 
+             amended to properly enclose the human readable text.
+           - The colour support code was fixed to prevent overwriting of 
+             the current colour when values are left unspecified.
+           - The logic to guard whitespace in EAN symbols was migrated 
+             from the encoders to the renderer.
+           - The whitespace guard symbols are now drawn directly making them 
+             independant of any font.
+           - The inter-guard bar height of EANs and UPCs was amended.
+           - The renderer was amended to support the passing of encoder 
+             specific arguments.
+           - The options barcolor, textcolor, bordercolor, showbackground 
+             and backgroundcolor were added to the renderer.
+           - A flaw in the derivation of the top border height was fixed.
+           - add support for the new ISBN-13
+           - printing the code from the current point
+           - The performance of the renderer was improved by avoiding 
+             unnecessary calls of setfont
+           - The auspost encoder was extended to support the customer 
+             information field. 
+2005-10-24 - A new encoder for the bar codes used by the 
+             Australian Postal Service was added. 
+2005-10-17 - adding a checksum for code 2of5 encoder
+2005-10-14 - some more changes to the possible charcters
+2005-09-26  - A new encoder was added to support the generation 
+              of miscellaneous symbols.
+            - Support for generation of FIM symbols used on 
+	      US Postal service reply mail was added.
+2005-09-15  added Kix -- Dutch mail
+2005-09-17  choose the right syntax for saving the length
+2005-09-08  some more tweaks to the code

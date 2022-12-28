@@ -1,0 +1,6995 @@
+\hypertarget{symbology-reference}{%
+\section{Symbology Reference}\label{symbology-reference}}
+
+\hypertarget{point-of-sale}{%
+\subsection{Point of Sale}\label{point-of-sale}}
+
+\hypertarget{ean-13}{%
+\subsubsection{EAN-13}\label{ean-13}}
+
+\textbf{EAN-13} is an extension of the \protect\hyperlink{upc-a}{UPC-A}
+barcode symbology that usually carries a GTIN-13. It was designed by the
+International Article Numbering Association in 1976 for identification
+of retail goods at point of sale outside of the US.
+
+Also known as: EAN, UCC-13, European Article Number, International
+Article Number, JAN, JAN-13, IAN, WPC, SAAN, UCCET, ABAC, BCCI, ICA,
+MANA, KANC, ANA, ANC.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  EAN-13+2 is an extension of EAN-13 that includes a
+  \protect\hyperlink{ean-2}{two-digit add-on}.
+\item
+  EAN-13+5 is an extension of EAN-13 that includes a
+  \protect\hyperlink{ean-5}{five-digit add-on}.
+\item
+  EAN-99 is a special form of EAN-13 starting with \texttt{99} that is
+  used as an in-store coupon.
+\item
+  \protect\hyperlink{ean-8}{EAN-8} is a barcode symbology derived from
+  EAN-13 that is designed for small packaging. It uses a distinct
+  numbering system based on GTIN-8.
+\item
+  \protect\hyperlink{isbn}{ISBN} is a variant of EAN-13 used to identify
+  books.
+\item
+  \protect\hyperlink{ismn}{ISMN} is a variant of EAN-13 used to identify
+  printed music.
+\item
+  \protect\hyperlink{issn}{ISSN} is a variant of EAN-13 used to identify
+  periodicals.
+\item
+  \protect\hyperlink{gs1-composite-symbols}{EAN-13 Composite} is a
+  variant of EAN-13 that should be used when a CC-A or CC-B GS1
+  Composite 2D component is required.
+\end{itemize}
+
+Standards: ISO/IEC 15420, BS EN 797, GS1 General Specifications.
+
+\hypertarget{data-and-options}{%
+\paragraph{Data and Options}\label{data-and-options}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field for a EAN-13 may contain twelve or thirteen digits,
+  optionally followed by a space then two or five digits if an
+  \protect\hyperlink{ean-2}{EAN-2} or \protect\hyperlink{ean-5}{EAN-5}
+  add-on is required.
+\item
+  If twelve digits of primary data are supplied then the check digit is
+  calculated automatically. Otherwise the provided check digit will be
+  verified.
+\item
+  The \textbf{includetext} option should normally be supplied.
+\item
+  The \textbf{guardwhitespace} option enables the display of whitespace
+  guard marks.
+\end{itemize}
+
+\hypertarget{examples}{%
+\paragraph{Examples}\label{examples}}
+
+Identical symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    9771473968012
+Options: includetext guardwhitespace
+Encoder: ean13
+\end{verbatim}
+
+\begin{verbatim}
+Data:    977147396801
+Options: includetext guardwhitespace
+Encoder: ean13
+\end{verbatim}
+
+\includegraphics{images/ean13-1.eps}
+
+A symbol that includes a \protect\hyperlink{ean-5}{five-digit add-on}:
+
+\begin{verbatim}
+Data:    9771473968012 54499
+Options: includetext guardwhitespace
+Encoder: ean13
+\end{verbatim}
+
+\includegraphics{images/ean13-2.eps}
+
+\hypertarget{ean-8}{%
+\subsubsection{EAN-8}\label{ean-8}}
+
+\textbf{EAN-8} is derived from the \protect\hyperlink{ean-13}{EAN-13}
+barcode symbology and is designed for small packaging. It usually
+carries a GTIN-8.
+
+Also known as: UCC-8, JAN-8.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  EAN-8+2 is an extension of EAN-8 that includes a
+  \protect\hyperlink{ean-2}{two-digit add-on}.
+\item
+  EAN-8+5 is an extension of EAN-8 that includes a
+  \protect\hyperlink{ean-5}{five-digit add-on}.
+\item
+  EAN-Velocity is a special form of EAN-8 starting with \texttt{0} that
+  is used for in-store coupons.
+\item
+  \protect\hyperlink{ean-13}{EAN-13} is a longer variant of EAN-8 which
+  has a distinct number system based on GTIN-13.
+\item
+  \protect\hyperlink{gs1-composite-symbols}{EAN-8 Composite} is a
+  variant of EAN-8 that should be used when a CC-A or CC-B GS1 composite
+  2D component is required.
+\end{itemize}
+
+Standards: ISO/IEC 15420, BS EN 797, GS1 General Specifications.
+
+\hypertarget{data-and-options-1}{%
+\paragraph{Data and Options}\label{data-and-options-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field takes either seven or eight digits, optionally followed
+  by a space then two or five digits if an
+  \protect\hyperlink{ean-2}{EAN-2} or \protect\hyperlink{ean-5}{EAN-5}
+  add-on is required.
+\item
+  If seven digits of primary data are supplied then the check digit is
+  calculated automatically. Otherwise the provided check digit will be
+  verified.
+\item
+  The \textbf{includetext} option should normally be supplied.
+\item
+  The \textbf{guardwhitespace} option enables the display of whitespace
+  guard marks.
+\end{itemize}
+
+\hypertarget{examples-1}{%
+\paragraph{Examples}\label{examples-1}}
+
+Identical symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    01335583
+Options: includetext
+Encoder: ean8
+\end{verbatim}
+
+\begin{verbatim}
+Data:    0133558
+Options: includetext
+Encoder: ean8
+\end{verbatim}
+
+\includegraphics{images/ean8-1.eps}
+
+Truncated with whitespace guards:
+
+\begin{verbatim}
+Data:    01335583
+Options: includetext height=0.5 guardwhitespace
+Encoder: ean8
+\end{verbatim}
+
+\includegraphics{images/ean8-2.eps}
+
+\hypertarget{upc-a}{%
+\subsubsection{UPC-A}\label{upc-a}}
+
+The \textbf{UPC-A} barcode symbology is used for identification of
+retail goods at point of sale inside of the US. It usually carries a
+GTIN-12.
+
+Also known as: UPC, UCC-12, Universal Product Code.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  UPC-A+2 is an extension of UPC-A that includes a
+  \protect\hyperlink{ean-2}{two-digit add-on}.
+\item
+  UPC-A+5 is an extension of UPC-A that includes a
+  \protect\hyperlink{ean-5}{five-digit add-on}.
+\item
+  \protect\hyperlink{upc-e}{UPC-E} is a barcode symbology derived from
+  UPC-A that is designed for small packaging.
+\item
+  \protect\hyperlink{gs1-composite-symbols}{UPC-A Composite} is a
+  variant of UPC-A that should be used when a CC-A or CC-B
+  \protect\hyperlink{gs1-composite-symbols}{GS1 composite} 2D component
+  is required.
+\item
+  A UPC-A symbol can be converted to an
+  \protect\hyperlink{ean-13}{EAN-13} symbol by prefixing the GTIN-12
+  with 0 to make the equivalent GTIN-13.
+\end{itemize}
+
+Standards: ISO/IEC 15420, BS EN 797, GS1 General Specifications.
+
+\hypertarget{data-and-options-2}{%
+\paragraph{Data and Options}\label{data-and-options-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field for a UPC-A may contain eleven or twelve digits,
+  optionally followed by a space then two or five digits if an
+  \protect\hyperlink{ean-2}{EAN-2} or \protect\hyperlink{ean-5}{EAN-5}
+  add-on is required.
+\item
+  Alternatively, the data field may contain seven or eight digits of a
+  \protect\hyperlink{upc-e}{UPC-E} to produce the equivalent UPC-A
+  symbol.
+\item
+  If eleven digits of primary data are supplied then the check digit is
+  calculated automatically. Otherwise the provided check digit will be
+  verified.
+\item
+  The \textbf{includetext} option should normally be supplied.
+\end{itemize}
+
+\hypertarget{examples-2}{%
+\paragraph{Examples}\label{examples-2}}
+
+Identical symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    788581014974
+Options: includetext
+Encoder: upca
+\end{verbatim}
+
+\begin{verbatim}
+Data:    78858101497
+Options: includetext
+Encoder: upca
+\end{verbatim}
+
+\includegraphics{images/upca-1.eps}
+
+A symbol that includes a \protect\hyperlink{ean-5}{five-digit add-on}:
+
+\begin{verbatim}
+Data:    788581014974 54499
+Options: includetext guardwhitespace
+Encoder: upca
+\end{verbatim}
+
+\includegraphics{images/upca-2.eps}
+
+\hypertarget{upc-e}{%
+\subsubsection{UPC-E}\label{upc-e}}
+
+\textbf{UPC-E} is a compacted form of the
+\protect\hyperlink{upc-a}{UPC-A} barcode symbology that usually carries
+a GTIN-12 with a number system of \emph{0} or \emph{1} that has been
+zero compressed.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  UPC-E0 is a UPC-E with a number system of \emph{0}.
+\item
+  UPC-E1 is a UPC-E with a number system of \emph{1}.
+\item
+  UPC-E+2 is an extension of UPC-E that includes a
+  \protect\hyperlink{ean-2}{two-digit add-on}.
+\item
+  UPC-E+5 is an extension of UPC-E that includes a
+  \protect\hyperlink{ean-5}{five-digit add-on}.
+\item
+  \protect\hyperlink{upc-a}{UPC-A} is the full size form of UPC-E.
+\item
+  \protect\hyperlink{gs1-composite-symbols}{UPC-E Composite} is a
+  variant of UPC-E that should be used when a CC-A or CC-B GS1 Composite
+  2D component is required.
+\end{itemize}
+
+Standards: ISO/IEC 15420, BS EN 797, GS1 General Specifications.
+
+\hypertarget{data-and-options-3}{%
+\paragraph{Data and Options}\label{data-and-options-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field takes either seven or eight digits, optionally followed
+  by a space then two or five digits if an
+  \protect\hyperlink{ean-2}{EAN-2} or \protect\hyperlink{ean-5}{EAN-5}
+  add-on is required.
+\item
+  Alternatively, the data field may contain eleven or twelve digits of a
+  \protect\hyperlink{upc-a}{UPC-A} to produce the equivalent UPC-E
+  symbol, provided that the input can be zero suppressed.
+\item
+  If seven digits of primary data are supplied then the check digit is
+  calculated automatically. Otherwise the provided check digit will be
+  verified.
+\item
+  The \textbf{includetext} option should normally be supplied.
+\end{itemize}
+
+\hypertarget{examples-3}{%
+\paragraph{Examples}\label{examples-3}}
+
+Identical symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    01234565
+Options: includetext
+Encoder: upce
+\end{verbatim}
+
+\begin{verbatim}
+Data:    0123456
+Options: includetext
+Encoder: upce
+\end{verbatim}
+
+\includegraphics{images/upce-1.eps}
+
+A truncated symbol:
+
+\begin{verbatim}
+Data:    01234565
+Options: includetext height=0.5
+Encoder: upce
+\end{verbatim}
+
+\includegraphics{images/upce-2.eps}
+
+\hypertarget{isbn}{%
+\subsubsection{ISBN}\label{isbn}}
+
+An \textbf{ISBN} barcode is a variant of
+\protect\hyperlink{ean-13}{EAN-13} that is used to identify books.
+
+Also known as: ISBN-13, International Standard Book Number, Bookland
+EAN-13.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  ISBN-10 is a legacy format that was depreciated for public use after
+  1st January 2007.
+\end{itemize}
+
+Standards: ISO 2108, ISO/IEC 15420, BS EN 797, GS1 General
+Specifications.
+
+\hypertarget{data-and-options-4}{%
+\paragraph{Data and Options}\label{data-and-options-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data should contain twelve or thirteen digits separated
+  appropriately by dash characters \emph{-}.
+\item
+  The data can also be provided in legacy ISBN-10 format as nine or ten
+  digits separated appropriately by dash characters \emph{-}. This will
+  be automatically upgraded to the ISBN-13 format.
+\item
+  If the last digit of the primary data is not given then the ISBN check
+  digit is calculated automatically, otherwise it will be verified.
+\item
+  The primary data can optionally be followed by a space then two or
+  five digits if an \protect\hyperlink{ean-2}{EAN-2} or
+  \protect\hyperlink{ean-5}{EAN-5} add-on is required.
+\item
+  The \textbf{includetext} option should normally be supplied.
+\item
+  The \textbf{guardwhitespace} option enables the display of whitespace
+  guard marks.
+\item
+  The following options are also relevant to this barcode symbology:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{isbntextfont}: PostScript font name for text above symbol
+  \item
+    \textbf{isbntextsize}: Font size for the text above symbol, in
+    points
+  \item
+    \textbf{isbntextxoffset}: Horizontal position of ISBN text, in
+    points
+  \item
+    \textbf{isbntextyoffset}: Vertical position of ISBN text, in points
+  \end{itemize}
+\item
+  \emph{Deprecated.} The \textbf{legacy} option prevents ISBN-10 input
+  from being upgraded to ISBN-13 and will result in a symbol that is
+  obsolete and should not be used at point of sale.
+\end{itemize}
+
+\hypertarget{example-isbn}{%
+\paragraph{Example ISBN}\label{example-isbn}}
+
+Identical symbols, input provided with and without an ISBN check digit:
+
+\begin{verbatim}
+Data:    978-1-873671-00-9
+Options: includetext
+Encoder: isbn
+\end{verbatim}
+
+\begin{verbatim}
+Data:    978-1-873671-00
+Options: includetext
+Encoder: isbn
+\end{verbatim}
+
+\includegraphics{images/isbn-1.eps}
+
+An ISBN with a \protect\hyperlink{ean-5}{five-digit add-on}:
+
+\begin{verbatim}
+Data:    978-1-873671-00-9 54499
+Options: includetext guardwhitespace
+Encoder: isbn
+\end{verbatim}
+
+\includegraphics{images/isbn-2.eps}
+
+The following ISBN-10 input will be automatically upgraded to a valid
+ISBN-13 symbol:
+
+\begin{verbatim}
+Data:    1-86074-271-2
+Options: includetext
+Encoder: isbn
+\end{verbatim}
+
+\begin{verbatim}
+Data:    1-86074-271
+Options: includetext
+Encoder: isbn
+\end{verbatim}
+
+\includegraphics{images/isbn-3.eps}
+
+\hypertarget{example-isbn-10}{%
+\paragraph{Example ISBN-10}\label{example-isbn-10}}
+
+Note that ISBN-10 is legacy format not for use at P.O.S.
+
+The following will generate an obsolete ISBN-10 symbol:
+
+\begin{verbatim}
+Data:    1-86074-271-8
+Options: legacy includetext guardwhitespace
+Encoder: isbn
+\end{verbatim}
+
+\begin{verbatim}
+Data:    1-86074-271
+Options: legacy includetext guardwhitespace
+Encoder: isbn
+\end{verbatim}
+
+\includegraphics{images/isbn-4.eps}
+
+\hypertarget{ismn}{%
+\subsubsection{ISMN}\label{ismn}}
+
+An \textbf{ISMN} barcode is a variant of
+\protect\hyperlink{ean-13}{EAN-13} with a prefix \emph{979} that is used
+to identify printed music.
+
+Also known as: International Standard Music Number, ISMN-13.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  ISMN-10 is a legacy format that was depreciated for public use.
+\end{itemize}
+
+Standards: ISO 10957, ISO/IEC 15420, BS EN 797, GS1 General
+Specifications.
+
+\hypertarget{data-and-options-5}{%
+\paragraph{Data and Options}\label{data-and-options-5}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data should contain twelve or thirteen digits separated
+  appropriately by dash characters \emph{-}.
+\item
+  The data can also be provided in legacy ISMN-10 format start \emph{M-}
+  then eight or nine digits separated appropriately by dash characters
+  \emph{-}. This will be automatically upgraded to the ISMN-13 format.
+\item
+  If the last digit of the primary data is not given then the ISMN check
+  digit is calculated automatically, otherwise it will be verified.
+\item
+  The primary data can optionally be followed by a space then two or
+  five digits if an \protect\hyperlink{ean-2}{EAN-2} or
+  \protect\hyperlink{ean-5}{EAN-5} add-on is required.
+\item
+  The \textbf{includetext} option should normally be supplied.
+\item
+  The \textbf{guardwhitespace} option enables the display of whitespace
+  guard marks.
+\item
+  The following options are also relevant to this barcode symbology:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{ismntextfont}: PostScript font name for text above symbol
+  \item
+    \textbf{ismntextsize}: Font size for the text above symbol, in
+    points
+  \item
+    \textbf{ismntextxoffset}: Horizontal position of ISMN text, in
+    points
+  \item
+    \textbf{ismntextyoffset}: Vertical position of ISMN text, in points
+  \end{itemize}
+\item
+  \emph{Deprecated.} The \textbf{legacy} option prevents ISMN-10 input
+  from being upgraded to ISMN-13 and will result in a symbol that is
+  obsolete and should not be used at point of sale.
+\end{itemize}
+
+\hypertarget{example-ismn}{%
+\paragraph{Example ISMN}\label{example-ismn}}
+
+Identical symbols, input provided with and without an ISMN check digit:
+
+\begin{verbatim}
+Data:    979-0-2600-0043-8
+Options: includetext
+Encoder: ismn
+\end{verbatim}
+
+\begin{verbatim}
+Data:    979-0-2600-0043
+Options: includetext
+Encoder: ismn
+\end{verbatim}
+
+\includegraphics{images/ismn-1.eps}
+
+The following ISMN-10 input will be automatically upgraded to a valid
+ISMN-13 symbol:
+
+\begin{verbatim}
+Data:    M-345-24680-5
+Options: includetext
+Encoder: ismn
+\end{verbatim}
+
+\begin{verbatim}
+Data:    M-345-24680
+Options: includetext
+Encoder: ismn
+\end{verbatim}
+
+\includegraphics{images/ismn-2.eps}
+
+\hypertarget{example-ismn-10}{%
+\paragraph{Example ISMN-10}\label{example-ismn-10}}
+
+Note that ISMN-10 is a legacy format not for use at P.O.S.
+
+The following will generate an obsolete ISMN-10 symbol:
+
+\begin{verbatim}
+Data:    M-345-24680-5
+Options: legacy includetext guardwhitespace
+Encoder: ismn
+\end{verbatim}
+
+\begin{verbatim}
+Data:    M-345-24680
+Options: legacy includetext guardwhitespace
+Encoder: ismn
+\end{verbatim}
+
+\includegraphics{images/ismn-3.eps}
+
+\hypertarget{issn}{%
+\subsubsection{ISSN}\label{issn}}
+
+An \textbf{ISSN} barcode is an \protect\hyperlink{ean-13}{EAN-13} with
+prefix \emph{977} used to identify periodicals.
+
+Also known as: International Standard Serial Number.
+
+Standards: ISO 3297, ISO/IEC 15420, BS EN 797, GS1 General
+Specifications.
+
+\hypertarget{data-and-options-6}{%
+\paragraph{Data and Options}\label{data-and-options-6}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data should contain the seven or eight digits ISSN separated by a
+  dash characters \emph{-}, followed by a two-digit sequence variant,
+  optionally followed by two or five digits if a
+  \protect\hyperlink{ean-2}{two-digit add-on} or
+  \protect\hyperlink{ean-5}{five-digit add-on} is required.
+\item
+  If the last digit of the ISSN data is not given then the ISSN check
+  digit is calculated automatically, otherwise it will be verified.
+\item
+  The \textbf{includetext} option should normally be supplied.
+\item
+  The \textbf{guardwhitespace} option enables the display of whitespace
+  guard marks.
+\item
+  The following options are also relevant to this barcode symbology:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{issntextfont}: PostScript font name for text above symbol
+  \item
+    \textbf{issntextsize}: Font size for the text above symbol, in
+    points
+  \item
+    \textbf{issntextxoffset}: Horizontal position of ISSN text, in
+    points
+  \item
+    \textbf{issntextyoffset}: Vertical position of ISSN text, in points
+  \end{itemize}
+\end{itemize}
+
+A sequence variant is a two-digit number that usually starts at zero and
+is incremented whenever the recommended retail price is amended, where
+applicable.
+
+\hypertarget{example}{%
+\paragraph{Example}\label{example}}
+
+Identical symbols, input provided with and without an ISSN check digit
+and having sequence number \emph{00}:
+
+\begin{verbatim}
+Data:    0317-8471 00
+Options: includetext guardwhitespace
+Encoder: issn
+\end{verbatim}
+
+\begin{verbatim}
+Data:    0317-847 00
+Options: includetext guardwhitespace
+Encoder: issn
+\end{verbatim}
+
+\includegraphics{images/issn-1.eps}
+
+An ISSN with sequence number \emph{03} and a
+\protect\hyperlink{ean-2}{two-digit add-on} representing issue number
+\emph{17}:
+
+\begin{verbatim}
+Data:    0317-8471 03 17
+Options: includetext guardwhitespace
+Encoder: issn
+\end{verbatim}
+
+\begin{verbatim}
+Data:    0317-847 03 17
+Options: includetext guardwhitespace
+Encoder: issn
+\end{verbatim}
+
+\includegraphics{images/issn-2.eps}
+
+\hypertarget{two-dimensional}{%
+\subsection{Two-Dimensional}\label{two-dimensional}}
+
+\hypertarget{aztec-code}{%
+\subsubsection{Aztec Code}\label{aztec-code}}
+
+\textbf{Aztec Code} is a 2D matrix-style barcode symbology. It can
+encode full 256-character extended-ASCII.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{aztec-runes}{Aztec Runes} are a set of small
+  barcode symbols that are used for special applications.
+\end{itemize}
+
+Standards: ISO/IEC 24778, ANSI/AIM BC13 - ISS Aztec Code.
+
+\hypertarget{data-and-options-7}{%
+\paragraph{Data and Options}\label{data-and-options-7}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can contain any extended ASCII data. The default
+  interpretation of data by readers is in accordance with ISO/IEC
+  8859-1. When supported by the receiver characters from other code
+  pages can be encoded using Extended Channel Interpretation (ECI).
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}FNC1}: FNC1
+  \item
+    \texttt{\^{}ECI000000} to \texttt{\^{}ECI999999}: ECI indicators
+  \end{itemize}
+\item
+  The \textbf{eclevel} option is used to specify the percentage of error
+  correction to be applied when expanding the data, by default
+  \texttt{23}.
+\item
+  The \textbf{ecaddchars} option is used to specify how many additional
+  error correction characters to apply the data once expanded by the
+  eclevel percentage, by default \texttt{3}.
+\item
+  The \textbf{layers} option is used to specify a particular number of
+  layers in which to encode the data, between \texttt{1} and
+  \texttt{32}. By default the encoder will create a symbol with be
+  minimal number of layers to encode the given data.
+\item
+  The \textbf{format} option is used to select between
+  \texttt{format=full} and \texttt{format=compact} symbol types. By
+  default the encoder will choose the most appropriate format to create
+  a symbol of minimal size.
+\item
+  The \textbf{readerinit} option denotes that the symbol is used for
+  programming the barcode reader.
+\item
+  The \textbf{raw} option denotes that the data field is providing the
+  input as a pre-encoded bitstream suitable for direct low-level
+  encoding.
+\item
+  \emph{Deprecated: Use \protect\hyperlink{aztec-runes}{Aztec Runes}
+  instead.} The \textbf{format} option can also be used to create Aztec
+  Code "runes", using \texttt{format=rune}. In this case the rune symbol
+  number should be given in the data field.
+\end{itemize}
+
+\hypertarget{examples-4}{%
+\paragraph{Examples}\label{examples-4}}
+
+\begin{verbatim}
+Data:    This is Aztec Code
+Options: 
+Encoder: azteccode
+\end{verbatim}
+
+\includegraphics{images/aztec-1.eps}
+
+\begin{verbatim}
+Data:    This is ^065ztec Code
+Options: parse eclevel=50 ecaddchars=0
+Encoder: azteccode
+\end{verbatim}
+
+\includegraphics{images/aztec-6.eps}
+
+\begin{verbatim}
+Data:    ABC123
+Options: layers=3 format=full
+Encoder: azteccode
+\end{verbatim}
+
+\includegraphics{images/aztec-2.eps}
+
+\begin{verbatim}
+Data:    ABC123
+Options: format=compact
+Encoder: azteccode
+\end{verbatim}
+
+\includegraphics{images/aztec-5.eps}
+
+\begin{verbatim}
+Data:    00100111001000000101001101111000010100111100101000000110
+Options: raw
+Encoder: azteccode
+\end{verbatim}
+
+\includegraphics{images/aztec-4.eps}
+
+\hypertarget{aztec-runes}{%
+\subsubsection{Aztec Runes}\label{aztec-runes}}
+
+\textbf{Aztec Runes} are a set of small barcode symbols that are used
+for special applications.
+
+Variants:
+
+\protect\hyperlink{aztec-code}{Aztec Code} is a 2D matrix-style barcode
+symbology that can encode full 256 character extended-ASCII.
+
+Standards: ISO/IEC 24778, ANSI/AIM BC13 - ISS Aztec Code.
+
+\hypertarget{data-and-options-8}{%
+\paragraph{Data and Options}\label{data-and-options-8}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field contains the rune number \texttt{0} to \texttt{255}.
+\end{itemize}
+
+\hypertarget{examples-5}{%
+\paragraph{Examples}\label{examples-5}}
+
+\begin{verbatim}
+Data:    25
+Options: 
+Encoder: aztecrune
+\end{verbatim}
+
+\includegraphics{images/aztec-3.eps}
+
+\hypertarget{data-matrix}{%
+\subsubsection{Data Matrix}\label{data-matrix}}
+
+The \textbf{Data Matrix} symbology is 2D matrix-style barcode that can
+encode full 256 character extended-ASCII.
+
+Also known as: Data Matrix ECC 200, DataMatrix.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{data-matrix-rectangular}{Data Matrix Rectangular}
+  is a variant of Data Matrix that uses rectangular symbols.
+\item
+  \protect\hyperlink{data-matrix-rectangular-extension}{Data Matrix
+  Rectangular Extension} is a variant of Data Matrix Rectangular that
+  provides a greater range of symbol dimensions.
+\item
+  \protect\hyperlink{gs1-datamatrix}{GS1 DataMatrix} is a variant of
+  Data Matrix that should be used when encoding data that is in
+  \protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+  Application Identifier standard format}.
+\item
+  \protect\hyperlink{gs1-digital-link-data-matrix}{GS1 Digital Link Data
+  Matrix} is a variant of Data Matrix that should be used when encoding
+  a GS1 Digital Link URI.
+\item
+  \protect\hyperlink{hibc-symbols}{HIBC Data Matrix} is a variant of
+  Data Matrix that should be used when encoding HIBC formatted data.
+\item
+  \protect\hyperlink{mailmark}{Royal Mail Mailmark} is a variant of Data
+  Matrix that is used by the Royal Mail postal service on letters and
+  other small mailpieces.
+\end{itemize}
+
+Standards: ISO/IEC 16022, ANSI/AIM BC11 - ISS Data Matrix.
+
+\hypertarget{data-and-options-9}{%
+\paragraph{Data and Options}\label{data-and-options-9}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can contain any extended ASCII data. The default
+  interpretation of data by readers is in accordance with ISO/IEC
+  8859-1. When supported by the receiver characters from other code
+  pages can be encoded using Extended Channel Interpretation (ECI).
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value. This is useful for specifying unprintable characters.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}FNC1}: FNC1. \emph{Recommendation: Use
+    \protect\hyperlink{gs1-datamatrix}{GS1 DataMatrix} for encoding GS1
+    AI syntax data.}
+  \item
+    \texttt{\^{}PROG}: PROG - Reader programming
+  \item
+    \texttt{\^{}ECI000000} to \texttt{\^{}ECI999999}: ECI indicators
+  \end{itemize}
+\item
+  Whenever the data field contains suitable input, the encoder will
+  compress ISO/IEC 15434 structured data (internally using the 05 Macro
+  and 06 Macro codewords.)
+\item
+  When the \textbf{dotty} option is specified the modules are rendered
+  as dots rather than squares. The dot radius can be adjusted using the
+  \textbf{inkspread} option.
+\item
+  The \textbf{columns} and \textbf{rows} options are used to specify the
+  size of the symbol.
+\item
+  The \textbf{version} option can also be used to specify the symbol
+  size, as \texttt{version=RxC}. Valid options are \emph{10x10},
+  \emph{12x12}, \emph{14x14}, \emph{16x16}, \emph{18x18}, \emph{20x20},
+  \emph{22x22}, \emph{24x24}, \emph{26x26}, \emph{32x32}, \emph{36x36},
+  \emph{40x40}, \emph{44x44}, \emph{48x48}, \emph{52x52}, \emph{64x64},
+  \emph{72x72}, \emph{80x80}, \emph{88x88}, \emph{96x96},
+  \emph{104x104}, \emph{120x120}, \emph{132x132}, \emph{144x144}
+\item
+  If \textbf{columns}, \textbf{rows} and \textbf{version} are
+  unspecified the encoder will default to creating a symbol of the
+  specified \textbf{format} that is the minimum size to represent the
+  given data.
+\item
+  The \textbf{raw} option denotes that the data field is providing the
+  input as pre-encoded codewords in \texttt{\^{}NNN} format, suitable
+  for direct low-level encoding.
+\item
+  \emph{Deprecated}: The \textbf{format} option is used to specify the
+  shape of the symbol, either:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{square} (default)
+  \item
+    \texttt{rectangle}: Use
+    \protect\hyperlink{data-matrix-rectangular}{Data Matrix Rectangular}
+    for rectangular symbols.
+  \end{itemize}
+\item
+  \emph{Deprecated: Use
+  \protect\hyperlink{data-matrix-rectangular-extension}{Data Matrix
+  Rectangular Extension}.} The \textbf{dmre} option enables Data Matrix
+  Rectangular Extension symbols based on the ISO/IEC standard, which
+  increases the number of rectangular symbol sizes available.
+\item
+  \emph{Deprecated: Use
+  \protect\hyperlink{data-matrix-rectangular-extension}{Data Matrix
+  Rectangular Extension} with dimdmre option.} The \textbf{dindmre}
+  option enables Data Matrix Rectangular Extension symbols based on the
+  obsolete DIN standard.
+\item
+  \emph{Deprecated: For internal use.} The \textbf{mailmark} option
+  signifies the requirement to use Mailmark-specific encoding.
+\end{itemize}
+
+\hypertarget{examples-6}{%
+\paragraph{Examples}\label{examples-6}}
+
+Identical symbols, automatically sized, the latter showing use of the
+parse option:
+
+\begin{verbatim}
+Data:    This is Data Matrix
+Options: 
+Encoder: datamatrix
+\end{verbatim}
+
+\begin{verbatim}
+Data:    This is ^068ata Matrix
+Options: parse
+Encoder: datamatrix
+\end{verbatim}
+
+\includegraphics{images/datamatrix-1.eps}
+
+Identical symbols with a fixed size:
+
+\begin{verbatim}
+Data:    Fixed size
+Options: version=48x48
+Encoder: datamatrix
+\end{verbatim}
+
+\begin{verbatim}
+Data:    Fixed size
+Options: rows=48 columns=48
+Encoder: datamatrix
+\end{verbatim}
+
+\includegraphics{images/datamatrix-2.eps}
+
+A rectangular symbol with a fixed size:
+
+\begin{verbatim}
+Data:    Rectangular
+Options: format=rectangle version=16x48
+Encoder: datamatrix
+\end{verbatim}
+
+\includegraphics{images/datamatrix-3.eps}
+
+An advanced use containing "hidden data" in the padding codewords as
+used by some non-standard, "high-security" applications. The technique
+works by filling the symbol using raw codewords formed from the standard
+data immediately followed by the non-standard padding data beginning
+with \texttt{\^{}129}:
+
+\begin{verbatim}
+Data:    ^066^067^068^142^052^129^161^056^206^101^251^147
+Options: version=16x16 raw
+Encoder: datamatrix
+\end{verbatim}
+
+\hypertarget{data-matrix-rectangular}{%
+\subsubsection{Data Matrix Rectangular}\label{data-matrix-rectangular}}
+
+The \textbf{Data Matrix Rectangular} symbology is a rectangular variant
+of \protect\hyperlink{data-matrix}{Data Matrix}.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{data-matrix}{Data Matrix} is the standard square
+  variant of the symbology.
+\item
+  \protect\hyperlink{data-matrix-rectangular-extension}{Data Matrix
+  Rectangular Extension} is a variant of Data Matrix Rectangular that
+  provides a greater range of symbol dimensions.
+\end{itemize}
+
+Standards: ISO/IEC 16022, ANSI/AIM BC11 - ISS Data Matrix.
+
+\hypertarget{data-and-options-10}{%
+\paragraph{Data and Options}\label{data-and-options-10}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can contain any extended ASCII data. The default
+  interpretation of data by readers is in accordance with ISO/IEC
+  8859-1. When supported by the receiver characters from other code
+  pages can be encoded using Extended Channel Interpretation (ECI).
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value. This is useful for specifying unprintable characters.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}FNC1}: FNC1. \emph{Recommendation: Use
+    \protect\hyperlink{gs1-datamatrix}{GS1 DataMatrix} for encoding GS1
+    AI syntax data.}
+  \item
+    \texttt{\^{}PROG}: PROG - Reader programming
+  \item
+    \texttt{\^{}ECI000000} to \texttt{\^{}ECI999999}: ECI indicators
+  \end{itemize}
+\item
+  Whenever the data field contains suitable input, the encoder will
+  compress ISO/IEC 15434 structured data (internally using the 05 Macro
+  and 06 Macro codewords.)
+\item
+  When the \textbf{dotty} option is specified the modules are rendered
+  as dots rather than squares. The dot radius can be adjusted using the
+  \textbf{inkspread} option.
+\item
+  \emph{Deprecated: Use
+  \protect\hyperlink{data-matrix-rectangular-extension}{Data Matrix
+  Rectangular Extension}.} The \textbf{dmre} option enables Data Matrix
+  Rectangular Extension symbols based on the ISO/IEC standard, which
+  increases the number of rectangular symbol sizes available.
+\item
+  \emph{Deprecated: Standard is obsolete. Use
+  \protect\hyperlink{data-matrix-rectangular-extension}{Data Matrix
+  Rectangular Extension} with the dindmre option.} The \textbf{dindmre}
+  option enables Data Matrix Rectangular Extension symbols based on the
+  obsolete DIN standard.
+\item
+  The \textbf{columns} and \textbf{rows} options are used to specify the
+  size of the symbol.
+\item
+  The \textbf{version} option can also be used to specify the symbol
+  size, as \texttt{version=RxC}. Valid options are \emph{8x18},
+  \emph{8x32}, \emph{12x26}, \emph{12x36}, \emph{16x36}, \emph{16x48}.
+\item
+  If \textbf{columns}, \textbf{rows} and \textbf{version} are
+  unspecified the encoder will default to creating a symbol that is the
+  minimum size to represent the given data.
+\item
+  The \textbf{raw} option denotes that the data field is providing the
+  input as pre-encoded codewords in \texttt{\^{}NNN} format, suitable
+  for direct low-level encoding.
+\end{itemize}
+
+\hypertarget{examples-7}{%
+\paragraph{Examples}\label{examples-7}}
+
+A rectangular symbol with a fixed size:
+
+\begin{verbatim}
+Data:    Rectangular
+Options: version=16x48
+Encoder: datamatrixrectangular
+\end{verbatim}
+
+\includegraphics{images/datamatrix-3.eps}
+
+\hypertarget{data-matrix-rectangular-extension}{%
+\subsubsection{Data Matrix Rectangular
+Extension}\label{data-matrix-rectangular-extension}}
+
+The \textbf{Data Matrix Rectangular Extension} symbology is an
+enhancement to \protect\hyperlink{data-matrix-rectangular}{Data Matrix
+Rectangular} that provides a greater range of symbol dimensions.
+
+Also known as: DMRE.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{data-matrix}{Data Matrix} is the standard square
+  variant of the symbology.
+\item
+  \protect\hyperlink{data-matrix-rectangular}{Data Matrix Rectangular}
+  is the original rectangular variant of Data Matrix that provides a
+  limited range of symbol dimensions.
+\end{itemize}
+
+Standards: ISO/IEC 21471.
+
+\hypertarget{data-and-options-11}{%
+\paragraph{Data and Options}\label{data-and-options-11}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can contain any extended ASCII data. The default
+  interpretation of data by readers is in accordance with ISO/IEC
+  8859-1. When supported by the receiver characters from other code
+  pages can be encoded using Extended Channel Interpretation (ECI).
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value. This is useful for specifying unprintable characters.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}FNC1}: FNC1
+  \item
+    \texttt{\^{}PROG}: PROG - Reader programming
+  \item
+    \texttt{\^{}ECI000000} to \texttt{\^{}ECI999999}: ECI indicators
+  \end{itemize}
+\item
+  Whenever the data field contains suitable input, the encoder will
+  compress ISO/IEC 15434 structured data (internally using the 05 Macro
+  and 06 Macro codewords.)
+\item
+  When the \textbf{dotty} option is specified the modules are rendered
+  as dots rather than squares. The dot radius can be adjusted using the
+  \textbf{inkspread} option.
+\item
+  The \textbf{columns} and \textbf{rows} options are used to specify the
+  size of the symbol.
+\item
+  The \textbf{version} option can also be used to specify the symbol
+  size, as \texttt{version=RxC}. Valid options are \emph{8x18},
+  \emph{8x32}, \emph{8x48}, \emph{8x64}, \emph{8x80}, \emph{8x96},
+  \emph{8x120}, \emph{8x144}, \emph{12x26}, \emph{12x36}, \emph{12x64},
+  \emph{12x88}, \emph{16x36}, \emph{16x48}, \emph{16x64}, \emph{20x36},
+  \emph{20x44}, \emph{20x64}, \emph{22x48}, \emph{24x48}, \emph{24x64},
+  \emph{26x40}, \emph{26x48}, \emph{26x64}.
+\item
+  If \textbf{columns}, \textbf{rows} and \textbf{version} are
+  unspecified the encoder will default to creating a symbol that is the
+  minimum size to represent the given data.
+\item
+  The \textbf{raw} option denotes that the data field is providing the
+  input as pre-encoded codewords in \texttt{\^{}NNN} format, suitable
+  for direct low-level encoding.
+\item
+  \emph{Deprecated: Standard is obsolete.} The \textbf{dindmre} option
+  select Data Matrix Rectangular Extension symbols whose dimensions are
+  based on the obsolete DIN standard, rather than the current ISO
+  standard.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    With \texttt{dindmre} the valid version \textbf{options} are
+    \emph{8x18}, \emph{8x32}, \emph{8x48}, \emph{8x64}, \emph{12x26},
+    \emph{12x36}, \emph{12x64}, \emph{16x36}, \emph{16x48},
+    \emph{16x64}, \emph{24x32}, \emph{24x36}, \emph{24x48},
+    \emph{24x64}, \emph{26x32}, \emph{26x40}, \emph{26x48},
+    \emph{26x64}.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{examples-8}{%
+\paragraph{Examples}\label{examples-8}}
+
+A DMRE symbol with a fixed size:
+
+\begin{verbatim}
+Data:    1234
+Options: version=8x80
+Encoder: datamatrixrectangularextension
+\end{verbatim}
+
+\includegraphics{images/datamatrix-4.eps}
+
+\hypertarget{han-xin-code}{%
+\subsubsection{Han Xin Code}\label{han-xin-code}}
+
+The \textbf{Han Xin Code} symbology is a 2D matrix-style barcode
+symbology that can encode full 256 character extended-ASCII.
+
+Also known as: Chinese Sensible.
+
+Standards: GB/T 21049-2007.
+
+\hypertarget{data-and-options-12}{%
+\paragraph{Data and Options}\label{data-and-options-12}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can contain any extended ASCII data. The default
+  interpretation of data by readers is in accordance with ISO/IEC
+  8859-1.
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters.
+\item
+  The \textbf{eclevel} option is used to specify the error correction
+  level:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{eclevel=L1} - Lowest
+  \item
+    \texttt{eclevel=L2}
+  \item
+    \texttt{eclevel=L3}
+  \item
+    \texttt{eclevel=L4} - Highest
+  \end{itemize}
+\item
+  The \textbf{version} option is used to specify the size of the symbol,
+  1 to 84.
+\item
+  If unspecified the encoder will select the version of the symbol that
+  is the minimum size to represent the given data at the selected error
+  correction level.
+\end{itemize}
+
+\hypertarget{examples-9}{%
+\paragraph{Examples}\label{examples-9}}
+
+\begin{verbatim}
+Data:    Han Xin Code
+Options: version=10 eclevel=L4
+Encoder: hanxin
+\end{verbatim}
+
+\includegraphics{images/hanxin-1.eps}
+
+\hypertarget{micropdf417}{%
+\subsubsection{MicroPDF417}\label{micropdf417}}
+
+The \textbf{MicroPDF417} barcode symbology is 2D stacked-linear barcode
+based on \protect\hyperlink{pdf417}{PDF417} that can encode full 256
+character extended-ASCII.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{pdf417}{PDF417} is a larger variant of the
+  MicroPDF417 barcode.
+\item
+  \protect\hyperlink{hibc-symbols}{HIBC MicroPDF417} is a variant of
+  MicroPDF417 that should be used when encoding HIBC formatted data.
+\end{itemize}
+
+Standards: ISO/IEC 24728, AIM ISS - MicroPDF417.
+
+\hypertarget{data-and-options-13}{%
+\paragraph{Data and Options}\label{data-and-options-13}}
+
+\begin{itemize}
+\item
+  The data field can contain any extended ASCII data. The default
+  interpretation of data by readers is in accordance with ISO/IEC
+  8859-1. When supported by the receiver characters from other code
+  pages can be encoded using Extended Channel Interpretation (ECI).
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}ECI000000} to \texttt{\^{}ECI811799}: ECI indicators
+  \end{itemize}
+\item
+  The \textbf{columns} and \textbf{rows} options are used to specify the
+  size of the symbol. Valid values are:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{1x11}, \emph{1x14}, \emph{1x17}, \emph{1x20}, \emph{1x24},
+    \emph{1x28}, \emph{2x8}, \emph{2x11}, \emph{2x14}, \emph{2x17},
+    \emph{2x20}, \emph{2x23}, \emph{2x26}, \emph{3x6}, \emph{3x8},
+    \emph{3x10}, \emph{3x12}, \emph{3x15}, \emph{3x20}, \emph{3x26},
+    \emph{3x32}, \emph{3x38}, \emph{3x44}, \emph{4x4}, \emph{4x6},
+    \emph{4x8}, \emph{4x10}, \emph{4x12}, \emph{4x15}, \emph{4x20},
+    \emph{4x26}, \emph{4x32}, \emph{4x38}, \emph{4x44}
+  \end{itemize}
+\item
+  If the \textbf{columns} and \textbf{rows} are unspecified the encoder
+  will default to creating a symbol that is the minimum size to
+  represent the given data.
+\item
+  The \textbf{rowmult} option is used to specify how tall each bar is,
+  with respect to the minimum module width. The default is 3.
+\item
+  The \textbf{raw} option denotes that the data field is providing the
+  input as a pre-encoded codewords in \texttt{\^{}NNN} format, suitable
+  for direct low-level encoding.
+\item
+  \emph{Deprecated: Internal use.} The \textbf{cca} option identifies
+  this symbol as a \emph{CC-A} 2D component of a
+  \protect\hyperlink{gs1-composite-symbols}{GS1 Composite} symbol.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Special size rules apply when the \textbf{cca} option is given, in
+    which case the \textbf{columns} and \textbf{rows} options that are
+    used to specify the size of the symbol must be one of:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \emph{2x5}, \emph{2x6}, \emph{2x7}, \emph{2x8}, \emph{2x9},
+      \emph{2x10}, \emph{2x12}, \emph{3x4}, \emph{3x5}, \emph{3x6},
+      \emph{3x7}, \emph{3x8}, \emph{4x3}, \emph{4x4}, \emph{4x5},
+      \emph{4x6}, \emph{4x7}
+    \end{itemize}
+  \end{itemize}
+\item
+  \emph{Deprecated: Internal use.} The \textbf{ccb} option identifies
+  this symbol as a \emph{CC-B} 2D component of a
+  \protect\hyperlink{gs1-composite-symbols}{GS1 Composite} symbol.
+\end{itemize}
+
+\hypertarget{examples-10}{%
+\paragraph{Examples}\label{examples-10}}
+
+\begin{verbatim}
+Data:    MicroPDF417
+Options: 
+Encoder: micropdf417
+\end{verbatim}
+
+\includegraphics{images/micropdf417-1.eps}
+
+\begin{verbatim}
+Data:    MicroP^068F417
+Options: parse rows=15 columns=4
+Encoder: micropdf417
+\end{verbatim}
+
+\includegraphics{images/micropdf417-2.eps}
+
+\hypertarget{pdf417}{%
+\subsubsection{PDF417}\label{pdf417}}
+
+The \textbf{PDF417} barcode symbology is 2D stacked-linear barcode that
+can encode full 256 character extended-ASCII.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{compact-pdf417}{Compact PDF417} is a shortened form
+  of the PDF417 barcode that is used in applications where the space for
+  the symbol is restricted.
+\item
+  \protect\hyperlink{micropdf417}{MicroPDF417} is a smaller variant of
+  the PDF417 barcode.
+\item
+  \protect\hyperlink{hibc-symbols}{HIBC PDF417} is a variant of PDF417
+  that should be used when encoding HIBC formatted data.
+\end{itemize}
+
+Standards: ISO/IEC 15438, DD ENV 12925, AIM USS - PDF417.
+
+\hypertarget{data-and-options-14}{%
+\paragraph{Data and Options}\label{data-and-options-14}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can contain any extended ASCII data. The default
+  interpretation of data by readers is in accordance with ISO/IEC
+  8859-1. When supported by the receiver characters from other code
+  pages can be encoded using Extended Channel Interpretation (ECI).
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}ECI000000} to \texttt{\^{}ECI811799}: ECI indicators.
+  \end{itemize}
+\item
+  The \textbf{eclevel} option is used to specify the error correction
+  level, from 1 to 5. The default is to choose a standard level of error
+  correction that is determined by the encoded data length.
+\item
+  The \textbf{columns} option specifies the number of columns (or groups
+  of bars) in the output symbol, from 1 to 30.
+\item
+  The \textbf{rows} option specifies the minimum number of rows in the
+  symbol, from 3 to 90.
+\item
+  If \textbf{rows} is unspecified the encoder will select a number that
+  creates a symbol that is the minimum size to represent the given data.
+\item
+  The \textbf{rowmult} option is used to specify how tall each bar is,
+  with respect to the minimum module width. The default is 3.
+\item
+  The \textbf{raw} option denotes that the data field is providing the
+  input as a pre-encoded codewords in \texttt{\^{}NNN} format, suitable
+  for direct low-level encoding.
+\item
+  \emph{Deprecated: Use \protect\hyperlink{compact-pdf417}{Compact
+  PDF417} instead. The \textbf{compact} option is used to create a
+  compact/truncated PDF417 symbol that has fewer bars per row that a
+  standard symbol and hence is more narrow.}
+\item
+  \emph{Deprecated: Internal use.} The \textbf{ccc} option identifies
+  this symbol as a \emph{CC-C} 2D component of a
+  \protect\hyperlink{gs1-composite-symbols}{GS1 Composite} symbol.
+\end{itemize}
+
+\hypertarget{examples-11}{%
+\paragraph{Examples}\label{examples-11}}
+
+\begin{verbatim}
+Data:    PDF417
+Options: 
+Encoder: pdf417
+\end{verbatim}
+
+\includegraphics{images/pdf417-1.eps}
+
+\begin{verbatim}
+Data:    P^068F417
+Options: parse columns=2 rows=15
+Encoder: pdf417
+\end{verbatim}
+
+\includegraphics{images/pdf417-2.eps}
+
+\begin{verbatim}
+Data:    Strong error correction
+Options: columns=2 eclevel=5
+Encoder: pdf417
+\end{verbatim}
+
+\includegraphics{images/pdf417-4.eps}
+
+\begin{verbatim}
+Data:    ^453^178^121^239
+Options: raw columns=2
+Encoder: pdf417
+\end{verbatim}
+
+\includegraphics{images/pdf417-5.eps}
+
+\hypertarget{compact-pdf417}{%
+\subsubsection{Compact PDF417}\label{compact-pdf417}}
+
+\textbf{Compact PDF417} is a shortened form of the
+\protect\hyperlink{pdf417}{PDF417} barcode that is used in applications
+where the space for the symbol is restricted.
+
+Also known as: Truncated PDF417
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{pdf417}{PDF417} is the larger, more popular
+  variant.
+\item
+  \protect\hyperlink{micropdf417}{MicroPDF417} is a smaller variant of
+  the PDF417 barcode.
+\item
+  \protect\hyperlink{hibc-symbols}{HIBC PDF417} is a variant of PDF417
+  that should be used when encoding HIBC formatted data.
+\end{itemize}
+
+Standards: ISO/IEC 15438, DD ENV 12925, AIM USS - PDF417.
+
+\hypertarget{data-and-options-15}{%
+\paragraph{Data and Options}\label{data-and-options-15}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can contain any extended ASCII data. The default
+  interpretation of data by readers is in accordance with ISO/IEC
+  8859-1. When supported by the receiver characters from other code
+  pages can be encoded using Extended Channel Interpretation (ECI).
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}ECI000000} to \texttt{\^{}ECI811799}: ECI indicators
+  \end{itemize}
+\item
+  The \textbf{eclevel} option is used to specify the error correction
+  level, from 1 to 5. The default is to choose a standard level of error
+  correction that is determined by the encoded data length.
+\item
+  The \textbf{columns} option specifies the number of columns (or groups
+  of bars) in the output symbol, from 1 to 30.
+\item
+  The \textbf{rows} option specifies the minimum number of rows in the
+  symbol, from 3 to 90.
+\item
+  If \textbf{rows} is unspecified the encoder will select a number that
+  creates a symbol that is the minimum size to represent the given data.
+\item
+  The \textbf{rowmult} option is used to specify how tall each bar is,
+  with respect to the minimum module width. The default is 3.
+\item
+  The \textbf{raw} option denotes that the data field is providing the
+  input as a pre-encoded codewords in \texttt{\^{}NNN} format, suitable
+  for direct low-level encoding.
+\end{itemize}
+
+\hypertarget{examples-12}{%
+\paragraph{Examples}\label{examples-12}}
+
+\begin{verbatim}
+Data:    A truncated PDF417
+Options: columns=4
+Encoder: pdf417compact
+\end{verbatim}
+
+\includegraphics{images/pdf417-3.eps}
+
+\hypertarget{qr-code}{%
+\subsubsection{QR Code}\label{qr-code}}
+
+The \textbf{QR Code} symbology is a 2D matrix-style barcode symbology
+that can encode full 256 character extended-ASCII.
+
+Also known as: Quick Response Code.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{micro-qr-code}{Micro QR Code} is a small QR Code
+  that is used in applications that require a small symbol space.
+\item
+  \protect\hyperlink{gs1-qr-code}{GS1 QR Code} is a variant of Data
+  Matrix that should be used when encoding data that is in
+  \protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+  Application Identifier standard format}.
+\item
+  \protect\hyperlink{gs1-digital-link-qr-code}{GS1 Digital Link QR Code}
+  is a variant of Data Matrix that should be used when encoding a GS1
+  Digital Link URI.
+\item
+  \protect\hyperlink{hibc-symbols}{HIBC QR Code} is a variant of QR Code
+  that should be used when encoding HIBC formatted data.
+\item
+  \protect\hyperlink{swiss-qr-code}{Swiss QR Code} is a variant of the
+  QR Code for use with the QR-bill application supporting Swiss
+  payments.
+\end{itemize}
+
+Standards: ISO/IEC 18004, JIS X 0510, ITS - QR Code, AIM ISS - QR Code.
+
+\hypertarget{data-and-options-16}{%
+\paragraph{Data and Options}\label{data-and-options-16}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can contain any extended ASCII data. The default
+  interpretation of data by readers is in accordance with ISO/IEC
+  8859-1. When supported by the receiver characters from other code
+  pages can be encoded using Extended Channel Interpretation (ECI).
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}FNC1}: FNC1. \emph{Recommendation: Use
+    \protect\hyperlink{gs1-qr-code}{GS1 QR Code} for encoding GS1 AI
+    syntax data.}
+  \item
+    \texttt{\^{}ECI000000} to \texttt{\^{}ECI999999}: ECI indicators
+  \end{itemize}
+\item
+  The \textbf{eclevel} option is used to specify the error correction
+  level:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{eclevel=L} - Low
+  \item
+    \texttt{eclevel=M} - Medium (default)
+  \item
+    \texttt{eclevel=Q} - Quality
+  \item
+    \texttt{eclevel=H} - High
+  \end{itemize}
+\item
+  The \textbf{version} option is used to specify the size of the symbol,
+  1 to 40.
+\item
+  If unspecified the encoder will select the version of the symbol that
+  is the minimum size to represent the given data at the selected error
+  correction level.
+\item
+  \emph{Deprecated}: The \textbf{format} option is used to specify the
+  symbol type, either:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{full} (default)
+  \item
+    \texttt{micro}: Use \protect\hyperlink{micro-qr-code}{Micro QR Code}
+    for Micro QR Code symbols.
+  \item
+    \texttt{rmqr}: The standard is still in draft.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{examples-13}{%
+\paragraph{Examples}\label{examples-13}}
+
+\begin{verbatim}
+Data:    QR Code
+Options: 
+Encoder: qrcode
+\end{verbatim}
+
+\begin{verbatim}
+Data:    QR ^067ode
+Options: parse
+Encoder: qrcode
+\end{verbatim}
+
+\includegraphics{images/qrcode-1.eps}
+
+\begin{verbatim}
+Data:    QR CODE 1234
+Options: version=10 eclevel=Q
+Encoder: qrcode
+\end{verbatim}
+
+\includegraphics{images/qrcode-2.eps}
+
+\hypertarget{micro-qr-code}{%
+\subsubsection{Micro QR Code}\label{micro-qr-code}}
+
+The \textbf{Micro QR Code} symbology is a smaller variant of
+\protect\hyperlink{qr-code}{QR Code} that is used in applications that
+require a small symbol space.
+
+Also known as: Micro Quick Response Code.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{qr-code}{QR Code} is the more popular, larger
+  variant.
+\end{itemize}
+
+Standards: ISO/IEC 18004, JIS X 0510, ITS - QR Code, AIM ISS - QR Code.
+
+\hypertarget{data-and-options-17}{%
+\paragraph{Data and Options}\label{data-and-options-17}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can contain any extended ASCII data. The default
+  interpretation of data by readers is in accordance with ISO/IEC
+  8859-1.
+\item
+  An appropriate size will be selected to work around the following
+  restrictions:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    An M1 symbol is only compatible with numeric data.
+  \item
+    An M2 symbol is only compatible with alphanumeric data.
+  \end{itemize}
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters.
+\item
+  The \textbf{version} option is used to specify the size of the symbol,
+  either \texttt{version=M1}, \texttt{version=M2}, \texttt{version=M3}
+  or \texttt{version=M4}.
+\item
+  The \textbf{eclevel} option is used to specify the error correction
+  level:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{eclevel=L} - Low (default)
+  \item
+    \texttt{eclevel=M} - Medium; Not compatible with M1 symbols
+  \item
+    \texttt{eclevel=Q} - Quality; Only compatible with M4 symbols
+  \end{itemize}
+\item
+  If unspecified the encoder will select the version of the symbol that
+  is the minimum size to represent the given data at the selected error
+  correction level.
+\end{itemize}
+
+\hypertarget{examples-14}{%
+\paragraph{Examples}\label{examples-14}}
+
+\begin{verbatim}
+Data:    01234567
+Options: 
+Encoder: microqrcode
+\end{verbatim}
+
+\includegraphics{images/qrcode-5.eps}
+
+\hypertarget{swiss-qr-code}{%
+\subsubsection{Swiss QR Code}\label{swiss-qr-code}}
+
+\textbf{Swiss QR Code} is a variant of the
+\protect\hyperlink{qr-code}{QR Code} barcode symbology for use with the
+QR-bill application supporting Swiss payments.
+
+Standards: Swiss Implementation Guidelines QR-bill, ISO/IEC 18004, ITS -
+QR Code
+
+\hypertarget{data-and-options-18}{%
+\paragraph{Data and Options}\label{data-and-options-18}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input is provided in the format described in the Swiss
+  Implementation Guidelines QR-bill document.
+\item
+  The \textbf{version} option is used to specify the size of the symbol,
+  5 to 25. This is not typically specified.
+\item
+  If the \textbf{version} is unspecified the encoder will default to
+  creating a symbol that is the minimum size to represent the given data
+  at the selected error correction level.
+\end{itemize}
+
+Note: Swiss QR Code specifies that the image shall be 46mm x 46mm
+(excluding quiet zone), irrespective of QR Code version, and is
+overlayed with a fixed 7mm x 7mm Swiss Cross pattern. The Swiss Cross
+pitch bears no relation to the module width of the QR symbol, so we must
+assume that the application provides sufficient resolution throughout
+the print process that defects produced by issues such as pixel grazing
+are insignificant. Therefore, unlike most other encoders, we do not pick
+a fixed module width to assist with grid fitting but rather ensure that
+the image is scaled to a fixed size, per the specification.
+
+\hypertarget{example-1}{%
+\paragraph{Example}\label{example-1}}
+
+\begin{verbatim}
+Data:
+         SPC
+         0200
+         1
+         CH5800791123000889012
+         S
+         Robert Schneider AG
+         Rue du Lac
+         1268
+         2501
+         Biel
+         CH
+         
+         
+         
+         
+         
+         
+         
+         199.95
+         CHF
+         K
+         Pia-Maria Rutschmann-Schnyder
+         Grosse Marktgasse 28
+         9400 Rorschach
+         
+         
+         CH
+         SCOR
+         RF18539007547034
+         
+         EPD
+Options:
+Encoder: swissqrcode
+\end{verbatim}
+
+\includegraphics{images/swissqrcode-1.eps}
+
+\hypertarget{one-dimensional}{%
+\subsection{One-Dimensional}\label{one-dimensional}}
+
+\hypertarget{code-128}{%
+\subsubsection{Code 128}\label{code-128}}
+
+\textbf{Code 128} is an arbitrarily long, high-density barcode symbology
+that can be used to encode full 256 character extended-ASCII.
+
+Also known as: USD-6, USS-128, Code 128A, Code 128B, Code 128C.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{gs1-128}{GS1-128} is a variant of Code 128 that
+  should be used when encoding data that is in
+  \protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+  Application Identifier standard format}.
+\item
+  \protect\hyperlink{hibc-symbols}{HIBC Code 128} is a variant of Code
+  128 that should be used when encoding HIBC formatted data.
+\end{itemize}
+
+Standards: ISO/IEC 15417, ANSI/AIM BC4 - ISS Code 128, BS EN 799.
+
+\hypertarget{data-and-options-19}{%
+\paragraph{Data and Options}\label{data-and-options-19}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input can consist of any extended ASCII data. The
+  default interpretation of data by readers is in accordance with
+  ISO/IEC 8859-1.
+\item
+  The mandatory check digit is calculated automatically.
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII or extended-ASCII value, useful for specifying unprintable
+  characters, e.g. \texttt{\^{}029} for \emph{GS}, \texttt{\^{}209} for
+  \emph{Ñ}, etc.
+\item
+  \emph{FNC4} function characters will be inserted automatically to
+  allow the encoding of extended ASCII characters.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}FNC1}: FNC1. \emph{Recommendation: Use
+    \protect\hyperlink{gs1-128}{GS1-128} for encoding GS1 AI syntax
+    data.}
+  \item
+    \texttt{\^{}FNC2}: FNC2
+  \item
+    \texttt{\^{}FNC3}: FNC3
+  \end{itemize}
+\item
+  The \textbf{raw} option denotes that the data field is providing the
+  input as pre-encoded codewords in \texttt{\^{}NNN} format, suitable
+  for direct low-level encoding.
+\item
+  \emph{Deprecated: For internal use.} When the \textbf{parsefnc} option
+  is specified, the special pseudo characters \texttt{\^{}LNKA} and
+  \texttt{\^{}LNKC} at the end of the symbol indicate that a GS1-128
+  symbol includes a \emph{CC-A/B} or \emph{CC-C} GS1 composite 2D
+  component.
+\end{itemize}
+
+\hypertarget{example-2}{%
+\paragraph{Example}\label{example-2}}
+
+\begin{verbatim}
+Data:    Count0123456789!
+Options: includetext
+Encoder: code128
+\end{verbatim}
+
+\includegraphics{images/code128-1.eps}
+
+\hypertarget{code-39}{%
+\subsubsection{Code 39}\label{code-39}}
+
+The \textbf{Code 39} barcode symbology is discrete, variable length and
+self-checking.
+
+Also known as: Code 3 of 9, LOGMARS, Alpha39, USD-3, USS-39.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{code-39-extended}{Code 39 Extended} is a variant of
+  Code 39 that can be used to encode full 128 character ASCII with the
+  use of shift character combinations.
+\item
+  \protect\hyperlink{hibc-symbols}{HIBC Code39} is a variant of Code 39
+  that should be used when encoding HIBC formatted data.
+\item
+  AIM USD-2 is a subset of Code 39 containing the characters A-Z, 0-9,
+  \emph{space}, \texttt{-} and \texttt{.}.
+\end{itemize}
+
+Standards: ISO/IEC 16388, ANSI/AIM BC1 - USS Code 39, BS EN 800, MIL STD
+1189.
+
+\hypertarget{data-and-options-20}{%
+\paragraph{Data and Options}\label{data-and-options-20}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can hold any of the following:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Numbers 0-9
+  \item
+    Capital letters A-Z
+  \item
+    Symbols \texttt{-.\$/+\%*} and \emph{space}
+  \end{itemize}
+\item
+  The \textbf{includecheck} option calculates the check digit.
+\item
+  The \textbf{includecheckintext} option makes the calculated checksum
+  appear in the human readable text.
+\item
+  The \textbf{hidestars} option suppresses the asterisks in the human
+  readable text.
+\end{itemize}
+
+\hypertarget{examples-15}{%
+\paragraph{Examples}\label{examples-15}}
+
+\begin{verbatim}
+Data:    CODE39
+Options: includetext
+Encoder: code39
+\end{verbatim}
+
+\includegraphics{images/code39-1.eps}
+
+\begin{verbatim}
+Data:    CODE39
+Options: includecheck includetext includecheckintext
+Encoder: code39
+\end{verbatim}
+
+\includegraphics{images/code39-2.eps}
+
+\begin{verbatim}
+Data:    CODE39
+Options: hidestars includecheck includetext
+Encoder: code39
+\end{verbatim}
+
+\includegraphics{images/code39-3.eps}
+
+\hypertarget{code-39-extended}{%
+\subsubsection{Code 39 Extended}\label{code-39-extended}}
+
+The \textbf{Code 39 Extended} barcode symbology is discrete, variable
+length and self-checking. It is based on
+\protect\hyperlink{code-39}{Code 39} but can encode full 128 character
+ASCII by using shift combinations.
+
+Also known as: Code 39 Full ASCII.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{code-39}{Code 39} is a simpler variant of Code 39
+  Extended.
+\end{itemize}
+
+Standards: ISO/IEC 16388, ANSI/AIM BC1 - USS Code 39, BS EN 800.
+
+\hypertarget{data-and-options-21}{%
+\paragraph{Data and Options}\label{data-and-options-21}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can consist of any ASCII data.
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters, e.g.
+  \texttt{\^{}029} for \emph{GS}, etc.
+\item
+  The \textbf{includecheck} option calculates the check digit.
+\item
+  The \textbf{includecheckintext} causes the calculated check digit to
+  appear in the human readable text.
+\item
+  The \textbf{hidestars} option suppresses the asterisks in the human
+  readable text.
+\end{itemize}
+
+\hypertarget{examples-16}{%
+\paragraph{Examples}\label{examples-16}}
+
+\begin{verbatim}
+Data:    Code39 Ext!
+Options: includetext includecheck
+Encoder: code39ext
+\end{verbatim}
+
+\includegraphics{images/code39ext-1.eps}
+
+\begin{verbatim}
+Data:    Code39^029Extended
+Options: parse includecheck
+Encoder: code39ext
+\end{verbatim}
+
+\includegraphics{images/code39ext-2.eps}
+
+\hypertarget{code-93}{%
+\subsubsection{Code 93}\label{code-93}}
+
+\textbf{Code 93} is a continuous, variable length, self-checking barcode
+symbology.
+
+Also known as: USD-7, USS-93.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{code-93-extended}{Code 93 Extended} is a variant of
+  Code 93 that can be used to encode full 128 character ASCII with the
+  use of special shift character combinations.
+\end{itemize}
+
+Standards: ANSI/AIM BC5 - USS Code 93, ITS 93i.
+
+\hypertarget{data-and-options-22}{%
+\paragraph{Data and Options}\label{data-and-options-22}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can hold any of the following:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Numbers 0-9
+  \item
+    Capital letters A-Z
+  \item
+    Symbols \texttt{-.\$/+\%*} and \emph{space}
+  \end{itemize}
+\item
+  The \textbf{includecheck} option calculates the two check digits.
+\item
+  \emph{Deprecated: For internal use.} The \textbf{parsefnc} option
+  allows the special shift characters to be supplied as escape
+  sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}SFT\$}: (\$)
+  \item
+    \texttt{\^{}SFT\%}: (\%)
+  \item
+    \texttt{\^{}SFT/}: (/)
+  \item
+    \texttt{\^{}SFT+}: (+)
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{examples-17}{%
+\paragraph{Examples}\label{examples-17}}
+
+\begin{verbatim}
+Data:    CODE93
+Options: includecheck
+Encoder: code93
+\end{verbatim}
+
+\includegraphics{images/code93-1.eps}
+
+Code 93 including a special shift combination \texttt{(/)A} representing
+\emph{!}:
+
+\begin{verbatim}
+Data:    CODE93^SFT/A
+Options: parsefnc includecheck
+Encoder: code93
+\end{verbatim}
+
+\includegraphics{images/code93-2.eps}
+
+\hypertarget{code-93-extended}{%
+\subsubsection{Code 93 Extended}\label{code-93-extended}}
+
+The \textbf{Code 93 Extended} barcode symbology is continuous, variable
+length and self-checking. It is based on
+\protect\hyperlink{code-93}{Code 93} but can encode full 128 character
+ASCII using four additional shift characters: \emph{(\$)} \emph{(\%)}
+\emph{(/)} \emph{(+)}
+
+Also known as: Code 93 Full ASCII.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{code-93}{Code 93} is a simpler variant of the Code
+  93 Extended barcode symbology.
+\end{itemize}
+
+Standards: ANSI/AIM BC5 - USS Code 93, ITS 93i.
+
+\hypertarget{data-and-options-23}{%
+\paragraph{Data and Options}\label{data-and-options-23}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can consist of any ASCII data.
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters, e.g.
+  \texttt{\^{}029} for \emph{GS}, etc.
+\item
+  The \textbf{includecheck} option calculates the two check digits.
+\end{itemize}
+
+\hypertarget{examples-18}{%
+\paragraph{Examples}\label{examples-18}}
+
+\begin{verbatim}
+Data:    Code93Ext!
+Options: includecheck
+Encoder: code93ext
+\end{verbatim}
+
+\includegraphics{images/code93ext-1.eps}
+
+\begin{verbatim}
+Data:    Code93^029Extended
+Options: parse includecheck
+Encoder: code93ext
+\end{verbatim}
+
+\includegraphics{images/code93ext-2.eps}
+
+\hypertarget{interleaved-2-of-5}{%
+\subsubsection{Interleaved 2 of 5}\label{interleaved-2-of-5}}
+
+\textbf{Interleaved 2 of 5} is a high-density numeric barcode symbology.
+
+Also known as: ITF, Code 2 of 5 Interleaved, USD-1, USS-Interleaved 2 of
+5.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{itf-14}{ITF-14} is a variant of Interleaved 2 of 5
+  that should be used when encoding a fourteen-digit GTIN.
+\end{itemize}
+
+Standards: ISO/IEC 16390, ANSI/AIM BC2 - USS Interleaved 2 of 5, BS EN
+801.
+
+\hypertarget{data-and-options-24}{%
+\paragraph{Data and Options}\label{data-and-options-24}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data can consist of any number of digits.
+\item
+  If the length of the symbol including the possible check digit would
+  be odd then the data is prefixed by \emph{0}.
+\item
+  The \textbf{includecheck} option calculates the check digit.
+\item
+  The \textbf{includecheckintext} option makes the calculated checksum
+  appear in the human readable text.
+\end{itemize}
+
+\hypertarget{examples-19}{%
+\paragraph{Examples}\label{examples-19}}
+
+\begin{verbatim}
+Data:    0123456789
+Options: 
+Encoder: interleaved2of5
+\end{verbatim}
+
+\includegraphics{images/itf-1.eps}
+
+\begin{verbatim}
+Data:    2401234567
+Options: includecheck includetext includecheckintext
+Encoder: interleaved2of5
+\end{verbatim}
+
+\includegraphics{images/itf-2.eps}
+
+\hypertarget{supply-chain}{%
+\subsection{Supply Chain}\label{supply-chain}}
+
+\hypertarget{ean-14}{%
+\subsubsection{EAN-14}\label{ean-14}}
+
+\textbf{EAN-14} is an implementation of the
+\protect\hyperlink{gs1-128}{GS1-128} barcode symbology with \emph{AI
+(01)} that is used to encode a lone GTIN-14.
+
+Also known as: UCC-14.
+
+Standards: ISO/IEC 15417, ANSI/AIM BC4-1999 ISS, BS EN 799, GS1 General
+Specifications.
+
+\hypertarget{data-and-options-25}{%
+\paragraph{Data and Options}\label{data-and-options-25}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input must be a solitary \emph{AI (01)} with thirteen
+  or fourteen digits of a GTIN, i.e. \texttt{(01)...}.
+\item
+  Arbitrary spacing may be placed between the digits to format the human
+  readable text without interfering with the encoded data.
+\item
+  If thirteen digits of primary data are supplied then the check digit
+  is calculated automatically. Otherwise the provided check digit will
+  be verified.
+\end{itemize}
+
+\hypertarget{examples-20}{%
+\paragraph{Examples}\label{examples-20}}
+
+Identical symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    (01)04601234567893
+Options: includetext
+Encoder: ean14
+\end{verbatim}
+
+\begin{verbatim}
+Data:    (01)0460123456789
+Options: includetext
+Encoder: ean14
+\end{verbatim}
+
+\includegraphics{images/ean14-1.eps}
+
+\hypertarget{itf-14}{%
+\subsubsection{ITF-14}\label{itf-14}}
+
+\textbf{ITF-14} is an implementation of the
+\protect\hyperlink{interleaved-2-of-5}{Interleaved 2 of 5} barcode
+symbology that is typically used to encode a GTIN-14, GTIN-13 or
+GTIN-12.
+
+Also known as: UPC Shipping Container Symbol, SCS, UPC Case Code.
+
+Standards: ISO/IEC 16390, ANSI/AIM BC2-1995 USS, BS EN 801, GS1 General
+Specifications.
+
+\hypertarget{data-and-options-26}{%
+\paragraph{Data and Options}\label{data-and-options-26}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data consists of either thirteen or fourteen digits.
+\item
+  Arbitrary spacing may be placed between the digits to format the human
+  readable text without interfering with the encoded data.
+\item
+  If thirteen digits are supplied then the check digit is calculated
+  automatically. Otherwise the provided check digit will be verified.
+\end{itemize}
+
+\hypertarget{examples-21}{%
+\paragraph{Examples}\label{examples-21}}
+
+Identical symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    04601234567893
+Options: includetext
+Encoder: itf14
+\end{verbatim}
+
+\begin{verbatim}
+Data:    0460123456789
+Options: includetext
+Encoder: itf14
+\end{verbatim}
+
+\includegraphics{images/itf-14-1.eps}
+
+\hypertarget{sscc-18}{%
+\subsubsection{SSCC-18}\label{sscc-18}}
+
+\textbf{SSCC-18} is an implementation of the
+\protect\hyperlink{gs1-128}{GS1-128} barcode symbology with \emph{AI
+(00)} that is typically used to encode an eighteen-digit shipping
+container serial number.
+
+Also known as: EAN-18, NVE.
+
+Standards: ISO/IEC 15417, ANSI/AIM BC4-1999 ISS, BS EN 799, GS1 General
+Specifications.
+
+\hypertarget{data-and-options-27}{%
+\paragraph{Data and Options}\label{data-and-options-27}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input must be a solitary \emph{AI (00)} with seventeen
+  or eighteen digits of a Serial Shipping Container Code, i.e.
+  \texttt{(00)...}.
+\item
+  Arbitrary spacing may be placed between the digits to format the human
+  readable text without interfering with the encoded data.
+\item
+  If seventeen digits of primary data are supplied then the check digit
+  is calculated automatically. Otherwise the provided check digit will
+  be verified.
+\end{itemize}
+
+\hypertarget{example-3}{%
+\paragraph{Example}\label{example-3}}
+
+Identical symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    (00)006141411234567890
+Options: includetext
+Encoder: sscc18
+\end{verbatim}
+
+\begin{verbatim}
+Data:    (00)00614141123456789
+Options: includetext
+Encoder: sscc18
+\end{verbatim}
+
+\includegraphics{images/sscc18-1.eps}
+
+\hypertarget{gs1-datamatrix}{%
+\subsubsection{GS1 DataMatrix}\label{gs1-datamatrix}}
+
+\textbf{GS1 DataMatrix} is an implementation of the
+\protect\hyperlink{data-matrix}{Data Matrix} (ECC 200) barcode symbology
+with \protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+formatted} data.
+
+Standards: ISO/IEC 16022, ANSI/AIM BC11 ISS, GS1 General Specifications.
+
+\hypertarget{data-and-options-28}{%
+\paragraph{Data and Options}\label{data-and-options-28}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input is provided in
+  \protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+  Application Identifier standard format} starting with the mandatory
+  \emph{(01)} Application Identifier.
+\item
+  Note that it is not necessary to specify \emph{FNC1} characters since
+  the encoder will insert these automatically where necessary.
+\item
+  \emph{Deprecated.} The \textbf{dontlint} option disables GS1
+  Application Identifier syntax validation allowing images to be
+  generated for input that does not comply with GS1 standards.
+\item
+  The \textbf{format} option is used to specify the shape of the symbol,
+  either \texttt{square} (default) or \texttt{rectangle}.
+\item
+  The \textbf{columns} and \textbf{rows} options are used to specify the
+  size of the symbol.
+\item
+  The \textbf{version} option can also be used to specify the symbol
+  size, as \texttt{version=RxC}. Valid options are:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    With \texttt{format=square}: \emph{10x10}, \emph{12x12},
+    \emph{14x14}, \emph{16x16}, \emph{18x18}, \emph{20x20},
+    \emph{22x22}, \emph{24x24}, \emph{26x26}, \emph{32x32},
+    \emph{36x36}, \emph{40x40}, \emph{44x44}, \emph{48x48},
+    \emph{52x52}, \emph{64x64}, \emph{72x72}, \emph{80x80},
+    \emph{88x88}, \emph{96x96}, \emph{104x104}, \emph{120x120},
+    \emph{132x132}, \emph{144x144}
+  \item
+    With \texttt{format=rectangle}: \emph{8x18}, \emph{8x32},
+    \emph{12x26}, \emph{12x36}, \emph{16x36}, \emph{16x48}
+  \end{itemize}
+\item
+  If \textbf{columns}, \textbf{rows} and \textbf{version} are
+  unspecified the encoder will default to creating a symbol of the
+  specified \textbf{format} that is the minimum size to represent the
+  given data.
+\end{itemize}
+
+\hypertarget{example-4}{%
+\paragraph{Example}\label{example-4}}
+
+\begin{verbatim}
+Data:    (01)95012345678903(3103)000123
+Options: 
+Encoder: gs1datamatrix
+\end{verbatim}
+
+\includegraphics{images/gs1datamatrix-1.eps}
+
+\hypertarget{gs1-qr-code}{%
+\subsubsection{GS1 QR Code}\label{gs1-qr-code}}
+
+\textbf{GS1 QR Code} is an implementation of the
+\protect\hyperlink{qr-code}{QR Code} barcode symbology with
+\protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+formatted data}.
+
+Standards: ISO/IEC 18004, ITS - QR Code, GS1 General Specifications.
+
+\hypertarget{data-and-options-29}{%
+\paragraph{Data and Options}\label{data-and-options-29}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input is provided in
+  \protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+  Application Identifier standard format} starting with the mandatory
+  \emph{(01)} and \emph{(8200)} Application Identifiers.
+\item
+  Note that it is not necessary to specify \emph{FNC1} characters since
+  the encoder will insert these automatically where necessary.
+\item
+  \emph{Deprecated.} The \textbf{dontlint} option disables GS1
+  Application Identifier syntax validation allowing images to be
+  generated for input that does not comply with GS1 standards.
+\item
+  The \textbf{eclevel} option is used to specify the error correction
+  level:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{eclevel=L} - Low
+  \item
+    \texttt{eclevel=M} - Medium (default)
+  \item
+    \texttt{eclevel=Q} - Quality
+  \item
+    \texttt{eclevel=H} - High
+  \end{itemize}
+\item
+  The \textbf{version} option is used to specify the size of the symbol,
+  1 to 40.
+\item
+  If the \textbf{version} is unspecified the encoder will default to
+  creating a symbol that is the minimum size to represent the given data
+  at the selected error correction level.
+\end{itemize}
+
+\hypertarget{example-5}{%
+\paragraph{Example}\label{example-5}}
+
+\begin{verbatim}
+Data:    (01)03453120000011(8200)http://www.abc.net
+Options: 
+Encoder: gs1qrcode
+\end{verbatim}
+
+\includegraphics{images/gs1qrcode-1.eps}
+
+\begin{verbatim}
+Data:    (01)03453120000011(8200)http://abc.net(10)XYZ(410)9501101020917
+Options: 
+Encoder: gs1qrcode
+\end{verbatim}
+
+\includegraphics{images/gs1qrcode-2.eps}
+
+\hypertarget{gs1-digital-link-datamatrix}{%
+\subsubsection{GS1 Digital Link
+DataMatrix}\label{gs1-digital-link-datamatrix}}
+
+\textbf{GS1 Digital Link DataMatrix} is an implementation of the
+\protect\hyperlink{data-matrix}{Data Matrix} (ECC 200) barcode symbology
+containing a GS1 Digital Link URI.
+
+Standards: ISO/IEC 16022, ANSI/AIM BC11 ISS, GS1 Digital Link Standard:
+URI Syntax.
+
+\hypertarget{data-and-options-30}{%
+\paragraph{Data and Options}\label{data-and-options-30}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input is provided as a GS1 Digital Link URI.
+\item
+  \emph{Deprecated.} The \textbf{dontlint} option disables GS1
+  Application Identifier syntax validation allowing images to be
+  generated for input that does not comply with GS1 standards.
+\item
+  The \textbf{format} option is used to specify the shape of the symbol,
+  either \texttt{square} (default) or \texttt{rectangle}.
+\item
+  The \textbf{columns} and \textbf{rows} options are used to specify the
+  size of the symbol.
+\item
+  The \textbf{version} option can also be used to specify the symbol
+  size, as \texttt{version=RxC}. Valid options are:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    With \texttt{format=square}: \emph{10x10}, \emph{12x12},
+    \emph{14x14}, \emph{16x16}, \emph{18x18}, \emph{20x20},
+    \emph{22x22}, \emph{24x24}, \emph{26x26}, \emph{32x32},
+    \emph{36x36}, \emph{40x40}, \emph{44x44}, \emph{48x48},
+    \emph{52x52}, \emph{64x64}, \emph{72x72}, \emph{80x80},
+    \emph{88x88}, \emph{96x96}, \emph{104x104}, \emph{120x120},
+    \emph{132x132}, \emph{144x144}
+  \item
+    With \texttt{format=rectangle}: \emph{8x18}, \emph{8x32},
+    \emph{12x26}, \emph{12x36}, \emph{16x36}, \emph{16x48}
+  \end{itemize}
+\item
+  If \textbf{columns}, \textbf{rows} and \textbf{version} are
+  unspecified the encoder will default to creating a symbol of the
+  specified \textbf{format} that is the minimum size to represent the
+  given data.
+\end{itemize}
+
+\hypertarget{example-6}{%
+\paragraph{Example}\label{example-6}}
+
+\begin{verbatim}
+Data:    https://id.gs1.org/01/12312312312333/22/ABC%2d123?99=XYZ%2f987#test
+Options: 
+Encoder: gs1dldatamatrix
+\end{verbatim}
+
+\hypertarget{gs1-qr-digital-link-code}{%
+\subsubsection{GS1 QR Digital Link
+Code}\label{gs1-qr-digital-link-code}}
+
+\textbf{GS1 Digital Link QR Code} is an implementation of the
+\protect\hyperlink{qr-code}{QR Code} barcode symbology containing a GS1
+Digital Link URI.
+
+Standards: ISO/IEC 18004, ITS - QR Code, GS1 Digital Link Standard: URI
+Syntax.
+
+\hypertarget{data-and-options-31}{%
+\paragraph{Data and Options}\label{data-and-options-31}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input is provided as a GS1 Digital Link URI.
+\item
+  \emph{Deprecated.} The \textbf{dontlint} option disables GS1
+  Application Identifier syntax validation allowing images to be
+  generated for input that does not comply with GS1 standards.
+\item
+  The \textbf{eclevel} option is used to specify the error correction
+  level:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{eclevel=L} - Low
+  \item
+    \texttt{eclevel=M} - Medium (default)
+  \item
+    \texttt{eclevel=Q} - Quality
+  \item
+    \texttt{eclevel=H} - High
+  \end{itemize}
+\item
+  The \textbf{version} option is used to specify the size of the symbol,
+  1 to 40.
+\item
+  If the \textbf{version} is unspecified the encoder will default to
+  creating a symbol that is the minimum size to represent the given data
+  at the selected error correction level.
+\end{itemize}
+
+\hypertarget{example-7}{%
+\paragraph{Example}\label{example-7}}
+
+\begin{verbatim}
+Data:    https://id.gs1.org/01/12312312312333/22/ABC%2d123?99=XYZ%2f987#test
+Options: 
+Encoder: gs1dlqrcode
+\end{verbatim}
+
+\hypertarget{gs1-128}{%
+\subsubsection{GS1-128}\label{gs1-128}}
+
+\textbf{GS1-128} is an implementation of the
+\protect\hyperlink{code-128}{Code 128} barcode symbology which carries
+\protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+formatted} data, including a GTIN-14.
+
+Also known as: UCC/EAN-128, EAN-128, UCC-128.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{gs1-composite-symbols}{GS1-128 Composite} is a
+  variant of GS1-128 that should be used when a CC-A, CC-B or CC-C GS1
+  composite 2D component is required.
+\item
+  \protect\hyperlink{ean-14}{EAN-14} is a variant of GS1-128 that should
+  be used when encoding a lone fourteen-digit GTIN.
+\item
+  \protect\hyperlink{sscc-18}{SSCC-18} is a variant of GS1-128 that
+  should be used when encoding a lone eighteen-digit SSCC.
+\end{itemize}
+
+Standards: ISO/IEC 15417, ANSI/AIM BC4-1999 ISS, BS EN 799, GS1 General
+Specifications.
+
+\hypertarget{data-and-options-32}{%
+\paragraph{Data and Options}\label{data-and-options-32}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input is provided in
+  \protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+  Application Identifier standard format}.
+\item
+  Note that it is not necessary to specify \emph{FNC1} characters since
+  the encoder will insert these automatically where necessary.
+\item
+  \emph{Deprecated.} The \textbf{dontlint} option disables GS1
+  Application Identifier syntax validation allowing images to be
+  generated for input that does not comply with GS1 standards.
+\item
+  \emph{Deprecated: For internal use.} The \textbf{linkagea} option
+  specifies that the symbol includes a \emph{CC-A} or \emph{CC-B} GS1
+  composite 2D component.
+\item
+  \emph{Deprecated: For internal use.} The \textbf{linkagec} option
+  specifies that the symbol includes a \emph{CC-C} GS1 composite 2D
+  component.
+\end{itemize}
+
+\hypertarget{examples-22}{%
+\paragraph{Examples}\label{examples-22}}
+
+GTIN \emph{95012345678903}; Weight \emph{0.123kg}:
+
+\begin{verbatim}
+Data:    (01)95012345678903(3103)000123
+Options: includetext
+Encoder: gs1-128
+\end{verbatim}
+
+\includegraphics{images/ean128-1.eps}
+
+GTIN \emph{0061414199996}; Expiration date \emph{1st Jan 2010}; Batch
+\emph{123ABC}; Serial \emph{1234567890}:
+
+\begin{verbatim}
+Data:    (01)0061414199996(17)100101(10)123ABC(21)1234567890
+Options: includetext
+Encoder: gs1-128
+\end{verbatim}
+
+\includegraphics{images/ean128-2.eps}
+
+\hypertarget{gs1-dotcode}{%
+\subsubsection{GS1 DotCode}\label{gs1-dotcode}}
+
+\textbf{GS1 DotCode} is an implementation of the
+\protect\hyperlink{dotcode}{DotCode} barcode symbology with
+\protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+formatted} data.
+
+Standards: AIM - ISS DotCode, GS1 General Specifications.
+
+\hypertarget{data-and-options-33}{%
+\paragraph{Data and Options}\label{data-and-options-33}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input is provided in
+  \protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+  Application Identifier standard format}.
+\item
+  Note that it is not necessary to specify \emph{FNC1} characters since
+  the encoder will insert these automatically where necessary.
+\item
+  \emph{Deprecated.} The \textbf{dontlint} option disables GS1
+  Application Identifier syntax validation allowing images to be
+  generated for input that does not comply with GS1 standards.
+\item
+  The \textbf{ratio} is used to specify the aspect ratio of the symbol.
+  The default is 1.5.
+\item
+  The \textbf{columns} and \textbf{rows} options are used to specify the
+  size of the symbol. When these are not specified a symbol is generated
+  that maintains the selected aspect ratio.
+\item
+  \emph{Deprecated: Use only if performance is a concern.} The
+  \textbf{fast} option is used to enable the optional high-speed symbol
+  masking algorithm.
+\end{itemize}
+
+\hypertarget{examples-23}{%
+\paragraph{Examples}\label{examples-23}}
+
+\begin{verbatim}
+Data:    (235)5vBZIF%!<B;?oa%(01)01234567890128(8008)19052001
+Options: rows=16
+Encoder: gs1dotcode
+\end{verbatim}
+
+\includegraphics{images/gs1dotcode-1.eps}
+
+\hypertarget{gs1-databar-family}{%
+\subsection{GS1 DataBar Family}\label{gs1-databar-family}}
+
+\hypertarget{gs1-databar-omnidirectional}{%
+\subsubsection{GS1 DataBar
+Omnidirectional}\label{gs1-databar-omnidirectional}}
+
+\textbf{GS1 DataBar Omnidirectional} is a fixed-length, linear barcode
+symbology that can be used to encode a GTIN-14 for use at point of sale.
+
+Also known as: RSS-14
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{gs1-databar-stacked-omnidirectional}{GS1 DataBar
+  Stacked Omnidirectional} is a variant of GS1 DataBar Omnidirectional
+  for use where a taller, narrower symbol is required.
+\item
+  \protect\hyperlink{gs1-composite-symbols}{GS1 DataBar Omnidirectional
+  Composite} is a variant of GS1 DataBar Omnidirectional that should be
+  used when a CC-A or CC-B GS1 composite 2D component is required.
+\end{itemize}
+
+Standards: ISO/IEC 24724, ITS Reduced Space Symbology (RSS), AIM ISS -
+Reduced Space Symbology (RSS), GS1 General Specifications.
+
+\hypertarget{data-and-options-34}{%
+\paragraph{Data and Options}\label{data-and-options-34}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input is must be a solitary \emph{AI (01)} with
+  thirteen or fourteen digits of a GTIN, i.e. \texttt{(01)...}.
+\item
+  If thirteen digits of \emph{AI (01)} data are supplied then the check
+  digit is calculated automatically, otherwise the provided check digit
+  will be verified.
+\item
+  \emph{Deprecated: For internal use.} The \textbf{linkage} option
+  signifies the presence of a GS1 composite 2D component.
+\end{itemize}
+
+\hypertarget{examples-24}{%
+\paragraph{Examples}\label{examples-24}}
+
+Identical symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    (01)24012345678905
+Options: 
+Encoder: databaromni
+\end{verbatim}
+
+\begin{verbatim}
+Data:    (01)2401234567890
+Options: 
+Encoder: databaromni
+\end{verbatim}
+
+\includegraphics{images/databaromni-1.eps}
+
+\hypertarget{gs1-databar-stacked-omnidirectional}{%
+\subsubsection{GS1 DataBar Stacked
+Omnidirectional}\label{gs1-databar-stacked-omnidirectional}}
+
+\textbf{GS1 DataBar Stacked Omnidirectional} is a fixed-length, stacked
+linear barcode symbology that can be used to encode a GTIN-14 for use a
+point of sale.
+
+Also known as: RSS-14 Stacked Omnidirectional.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{gs1-databar-omnidirectional}{GS1 DataBar
+  Omnidirectional} is a variant of GS1 DataBar Stacked Omnidirectional
+  for use where a shorter, wider symbol is required.
+\item
+  \protect\hyperlink{gs1-composite-symbols}{GS1 DataBar Stacked
+  Omnidirectional Composite} is a variant of GS1 DataBar Stacked
+  Omnidirectional that should be used when a CC-A or CC-B
+  \protect\hyperlink{gs1-composite-symbols}{GS1 composite} 2D component
+  is required.
+\end{itemize}
+
+Standards: ISO/IEC 24724, ITS Reduced Space Symbology (RSS), AIM ISS -
+Reduced Space Symbology (RSS), GS1 General Specifications.
+
+\hypertarget{data-and-options-35}{%
+\paragraph{Data and Options}\label{data-and-options-35}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input must be a solitary \emph{AI (01)} with thirteen
+  or fourteen digits of a GTIN, i.e. \texttt{(01)...}.
+\item
+  If thirteen digits of \emph{AI (01)} data are supplied then the check
+  digit is calculated automatically, otherwise the provided check digit
+  will be verified.
+\item
+  \emph{Deprecated: For internal use.} The \textbf{linkage} option
+  signifies the presence of a GS1 composite 2D component.
+\end{itemize}
+
+\hypertarget{examples-25}{%
+\paragraph{Examples}\label{examples-25}}
+
+Identical symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    (01)24012345678905
+Options: 
+Encoder: databarstackedomni
+\end{verbatim}
+
+\begin{verbatim}
+Data:    (01)2401234567890
+Options: 
+Encoder: databarstackedomni
+\end{verbatim}
+
+\includegraphics{images/databarstackedomni-1.eps}
+
+\hypertarget{gs1-databar-expanded}{%
+\subsubsection{GS1 DataBar Expanded}\label{gs1-databar-expanded}}
+
+\textbf{GS1 DataBar Expanded} is a variable-length, linear barcode
+symbology that can be used to encode a GTIN-14 alongside a number of
+other application identifiers for use at point of sale.
+
+Also known as: RSS Expanded.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{gs1-databar-expanded-stacked}{GS1 DataBar Expanded
+  Stacked} is a variant of GS1 DataBar Expanded for use where a taller,
+  narrower symbol is required.
+\item
+  \protect\hyperlink{gs1-composite-symbols}{GS1 DataBar Expanded
+  Composite} is a variant of GS1 DataBar Expanded that should be used
+  when a CC-A or CC-B GS1 composite 2D component is required.
+\item
+  \protect\hyperlink{gs1-north-american-coupon-code}{GS1 North American
+  Coupon Code} is an applicaiton of GS1 DataBar Expanded for use with a
+  paperless coupon system.
+\end{itemize}
+
+Standards: ISO/IEC 24724, ITS Reduced Space Symbology (RSS), AIM ISS -
+Reduced Space Symbology (RSS), GS1 General Specifications.
+
+\hypertarget{data-and-options-36}{%
+\paragraph{Data and Options}\label{data-and-options-36}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input is provided in
+  \protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+  Application Identifier standard format}.
+\item
+  Note that it is not necessary to specify \emph{FNC1} characters since
+  the encoder will insert these automatically where necessary.
+\item
+  \emph{Deprecated.} The \textbf{dontlint} option disables GS1
+  Application Identifier syntax validation allowing images to be
+  generated for input that does not comply with GS1 standards.
+\item
+  If the data contains a number of application identifiers matching any
+  of the specifications below then they should be provided in this given
+  order for maximum encoding efficiency:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{(01)9...(3103)...}
+  \item
+    \texttt{(01)9...(3202)...}
+  \item
+    \texttt{(01)9...(3203)...}
+  \item
+    \texttt{(01)9...(310x/320x)...(11/13/15/17)...}
+  \item
+    \texttt{(01)9...(310x/320x)...}
+  \item
+    \texttt{(01)9...(392x)...}
+  \item
+    \texttt{(01)9...(393x)...}
+  \item
+    \texttt{(01)...}
+  \end{itemize}
+\item
+  \emph{Deprecated: For internal use.} The \textbf{linkage} option
+  signifies the presence of a GS1 composite 2D component.
+\end{itemize}
+
+\hypertarget{examples-26}{%
+\paragraph{Examples}\label{examples-26}}
+
+\begin{verbatim}
+Data:    (01)95012345678903(3103)000123
+Options: 
+Encoder: databarexpanded
+\end{verbatim}
+
+\includegraphics{images/databarexpanded-1.eps}
+
+\hypertarget{gs1-databar-expanded-stacked}{%
+\subsubsection{GS1 DataBar Expanded
+Stacked}\label{gs1-databar-expanded-stacked}}
+
+\textbf{GS1 DataBar Expanded Stacked} is a variable-length,
+stacked-linear barcode symbology that can be used to encode a GTIN-14
+alongside a number of other application identifiers for use at point of
+sale.
+
+Also known as: RSS Expanded Stacked.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{gs1-databar-expanded}{GS1 DataBar Expanded} is a
+  variant of GS1 DataBar Expanded Stacked for use where a shorter, wider
+  symbol is required.
+\item
+  \protect\hyperlink{gs1-composite-symbols}{GS1 DataBar Expanded Stacked
+  Composite} is a variant of GS1 DataBar Expanded Stacked that should be
+  used when a CC-A or CC-B GS1 composite 2D component is required.
+\item
+  \protect\hyperlink{gs1-north-american-coupon-code}{GS1 North American
+  Coupon Code} is an applicaiton of GS1 DataBar Expanded for use with a
+  paperless coupon system.
+\end{itemize}
+
+Standards: ISO/IEC 24724, ITS Reduced Space Symbology (RSS), AIM ISS -
+Reduced Space Symbology (RSS), GS1 General Specifications.
+
+\hypertarget{data-and-options-37}{%
+\paragraph{Data and Options}\label{data-and-options-37}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input is provided in
+  \protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+  Application Identifier standard format}.
+\item
+  Note that it is not necessary to specify \emph{FNC1} characters since
+  the encoder will insert these automatically where necessary.
+\item
+  \emph{Deprecated.} The \textbf{dontlint} option disables GS1
+  Application Identifier syntax validation allowing images to be
+  generated for input that does not comply with GS1 standards.
+\item
+  If the data contains a number of application identifiers matching any
+  of the specifications below then they should be provided in this given
+  order for maximum encoding efficiency:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{(01)9...(3103)...}
+  \item
+    \texttt{(01)9...(3202)...}
+  \item
+    \texttt{(01)9...(3203)...}
+  \item
+    \texttt{(01)9...(310x/320x)...(11/13/15/17)...}
+  \item
+    \texttt{(01)9...(310x/320x)...}
+  \item
+    \texttt{(01)9...(392x)...}
+  \item
+    \texttt{(01)9...(393x)...}
+  \item
+    \texttt{(01)...}
+  \end{itemize}
+\item
+  The \textbf{segments} option is used to specify the maximum number of
+  segments per row which must be an even number. The default is
+  \emph{4}.
+\item
+  \emph{Deprecated: For internal use.} The \textbf{linkage} option
+  signifies the presence of a GS1 composite 2D component.
+\end{itemize}
+
+\hypertarget{examples-27}{%
+\paragraph{Examples}\label{examples-27}}
+
+\begin{verbatim}
+Data:    (01)95012345678903(3103)000123
+Options: segments=4
+Encoder: databarexpandedstacked
+\end{verbatim}
+
+\includegraphics{images/databarexpandedstacked-1.eps}
+
+\hypertarget{gs1-databar-truncated}{%
+\subsubsection{GS1 DataBar Truncated}\label{gs1-databar-truncated}}
+
+\textbf{GS1 DataBar Truncated} is a fixed-length, linear barcode
+symbology that can be used to encode a GTIN-14 for in-house
+applications.
+
+Also known as: RSS-14 Truncated.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{gs1-databar-stacked}{GS1 DataBar Stacked} is a
+  variant of GS1 DataBar Truncated for use where a taller, narrower
+  symbol is required.
+\item
+  \protect\hyperlink{gs1-composite-symbols}{GS1 DataBar Truncated
+  Composite} is a variant of GS1 DataBar Truncated that should be used
+  when a CC-A or CC-B GS1 composite 2D component is required.
+\end{itemize}
+
+Standards: ISO/IEC 24724, ITS Reduced Space Symbology (RSS), AIM ISS -
+Reduced Space Symbology (RSS), GS1 General Specifications.
+
+\hypertarget{data-and-options-38}{%
+\paragraph{Data and Options}\label{data-and-options-38}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input must be a solitary \emph{AI (01)} with 13 or 14
+  digits of a GTIN, i.e. \texttt{(01)...}.
+\item
+  If thirteen digits of \emph{AI (01)} data are supplied then the check
+  digit is calculated automatically, otherwise the provided check digit
+  will be verified.
+\item
+  \emph{Deprecated: For internal use.} The \textbf{linkage} option
+  signifies the presence of a GS1 composite 2D component.
+\end{itemize}
+
+\hypertarget{examples-28}{%
+\paragraph{Examples}\label{examples-28}}
+
+Identical symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    (01)24012345678905
+Options: 
+Encoder: databartruncated
+\end{verbatim}
+
+\begin{verbatim}
+Data:    (01)2401234567890
+Options: 
+Encoder: databartruncated
+\end{verbatim}
+
+\includegraphics{images/databartruncated-1.eps}
+
+\hypertarget{gs1-databar-stacked}{%
+\subsubsection{GS1 DataBar Stacked}\label{gs1-databar-stacked}}
+
+\textbf{GS1 DataBar Stacked} is a fixed-length, stacked linear barcode
+symbology that can be used to encode a GTIN-14 for in-house
+applications.
+
+Also known as: RSS-14 Stacked.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{gs1-databar-truncated}{GS1 DataBar Truncated} is a
+  variant of GS1 DataBar Stacked for use where a shorter, wider symbol
+  is required.
+\item
+  \protect\hyperlink{gs1-composite-symbols}{GS1 DataBar Stacked
+  Composite} is a variant of GS1 DataBar Stacked that should be used
+  when a CC-A or CC-B GS1 composite 2D component is required.
+\end{itemize}
+
+Standards: ISO/IEC 24724, ITS Reduced Space Symbology (RSS), AIM ISS -
+Reduced Space Symbology (RSS), GS1 General Specifications.
+
+\hypertarget{data-and-options-39}{%
+\paragraph{Data and Options}\label{data-and-options-39}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input must be a solitary \emph{AI (01)} with thirteen
+  or fourteen digits of a GTIN, i.e. \texttt{(01)...}.
+\item
+  If thirteen digits of \emph{AI (01)} data are supplied then the check
+  digit is calculated automatically, otherwise the provided check digit
+  will be verified.
+\item
+  \emph{Deprecated: For internal use.} The \textbf{linkage} option
+  signifies the presence of a GS1 composite 2D component.
+\end{itemize}
+
+\hypertarget{examples-29}{%
+\paragraph{Examples}\label{examples-29}}
+
+Identical symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    (01)24012345678905
+Options: 
+Encoder: databarstacked
+\end{verbatim}
+
+\begin{verbatim}
+Data:    (01)2401234567890
+Options: 
+Encoder: databarstacked
+\end{verbatim}
+
+\includegraphics{images/databarstacked-1.eps}
+
+\hypertarget{gs1-databar-limited}{%
+\subsubsection{GS1 DataBar Limited}\label{gs1-databar-limited}}
+
+\textbf{GS1 DataBar Limited} is fixed-length, linear barcode symbology
+that can be used to encode a GTIN-14 beginning with \emph{0} or \emph{1}
+for in-house applications.
+
+Also known as: RSS Limited.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{gs1-composite-symbols}{GS1 DataBar Limited
+  Composite} is a variant of GS1 DataBar Limited that should be used
+  when a CC-A or CC-B GS1 composite 2D component is required.
+\end{itemize}
+
+Standards: ISO/IEC 24724, ITS Reduced Space Symbology (RSS), AIM ISS -
+Reduced Space Symbology (RSS), GS1 General Specifications.
+
+\hypertarget{data-and-options-40}{%
+\paragraph{Data and Options}\label{data-and-options-40}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input must be a solitary \emph{AI (01)} with thirteen
+  or fourteen digits of a GTIN starting with \emph{0} or \emph{1}, i.e.
+  \texttt{(01)0...} or \texttt{(01)1...}.
+\item
+  If thirteen digits of \emph{AI (01)} data are supplied then the check
+  digit is calculated automatically, otherwise the provided check digit
+  will be verified.
+\item
+  \emph{Deprecated: For internal use.} The \textbf{linkage} option
+  signifies the presence of a GS1 composite 2D component.
+\end{itemize}
+
+\hypertarget{examples-30}{%
+\paragraph{Examples}\label{examples-30}}
+
+Identical symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    (01)15012345678907
+Options: 
+Encoder: databarlimited
+\end{verbatim}
+
+\begin{verbatim}
+Data:    (01)1501234567890
+Options: 
+Encoder: databarlimited
+\end{verbatim}
+
+\includegraphics{images/databarlimited-1.eps}
+
+\hypertarget{gs1-north-american-coupon-code}{%
+\subsubsection{GS1 North American Coupon
+Code}\label{gs1-north-american-coupon-code}}
+
+\textbf{GS1 North American Coupon Code} is an implementation of the
+\protect\hyperlink{gs1-databar-expanded}{GS1 DataBar Expanded} barcode
+symbology with AI (8110) that is used as a paperless coupon system at
+point of sale.
+
+Also known as: GS1 DataBar Coupon, U.S. Coupon Code.
+
+Standards: North American Coupon Application Guideline Using GS1 DataBar
+Expanded Symbols, ISO/IEC 24724, GS1 General Specifications.
+
+\hypertarget{data-and-options-41}{%
+\paragraph{Data and Options}\label{data-and-options-41}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input is provided in
+  \protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+  Application Identifier standard format} and must be a solitary AI
+  (8110).
+\item
+  The \textbf{segments} option is used to specify the maximum number of
+  segments per row which must be an even number. The default is
+  \emph{4}.
+\end{itemize}
+
+\hypertarget{examples-31}{%
+\paragraph{Examples}\label{examples-31}}
+
+\begin{verbatim}
+Data:    (8110)106141416543213500110000310123196000
+Options: includetext segments=8
+Encoder: gs1northamericancoupon
+\end{verbatim}
+
+\includegraphics{images/gs1northamericancoupon-1.eps}
+
+\hypertarget{postal-symbols}{%
+\subsection{Postal Symbols}\label{postal-symbols}}
+
+\hypertarget{australia-post-4-state-customer-code}{%
+\subsubsection{Australia Post 4 State Customer
+Code}\label{australia-post-4-state-customer-code}}
+
+The \textbf{Australia Post 4 State Customer Code} is a barcode used by
+the Australian Postal Service to encode the data on letter mail.
+
+\hypertarget{data-and-options-42}{%
+\paragraph{Data and Options}\label{data-and-options-42}}
+
+\begin{itemize}
+\tightlist
+\item
+  The first two characters of the data field are digits used to specify
+  the manditory FCC type of the symbols, either \texttt{11},
+  \texttt{45}, \texttt{59} or \texttt{67}.
+\item
+  The next eight characters are digits that specify the manditory DPID.
+\item
+  The number of remaining characters varies according to the given FCC
+  code and these specify the contents of the customer information field
+  in one of two alphabets:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The \textbf{custinfoenc} option should be supplied as
+    \texttt{custinfoenc=numeric} if the customer information field is to
+    be encoded using the numeric alphabet which can contain the digits
+    0-9.
+  \item
+    Otherwise the customer information field is encoded using the
+    default character encoding, \texttt{custinfoenc=character}, which
+    permits any of the following characters:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Upper case letters \texttt{A-Z}
+    \item
+      Lower case letters \texttt{a-z}
+    \item
+      Digits \texttt{0-9}
+    \item
+      Symbols \texttt{space} and \texttt{\#}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{examples-32}{%
+\paragraph{Examples}\label{examples-32}}
+
+FCC 62 symbol with character customer data:
+
+\begin{verbatim}
+Data:    6279438541AaaB 155
+Options: custinfoenc=character
+Encoder: auspost
+\end{verbatim}
+
+\includegraphics{images/auspost-1.eps}
+
+FCC 59 symbol with numeric customer data:
+
+\begin{verbatim}
+Data:    593221132401234567
+Options: custinfoenc=numeric
+Encoder: auspost
+\end{verbatim}
+
+\includegraphics{images/auspost-2.eps}
+
+\hypertarget{deutsche-post-identcode}{%
+\subsubsection{Deutsche Post Identcode}\label{deutsche-post-identcode}}
+
+\textbf{Deutsche Post Identcode} is an implementation of the
+\protect\hyperlink{interleaved-2-of-5}{Interleaved 2 of 5} barcode
+symbology that is used by German Post for mail routing.
+
+Also known as: DHL Identcode.
+
+\hypertarget{data-and-options-43}{%
+\paragraph{Data and Options}\label{data-and-options-43}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data consists of a consecutive string of eleven or twelve digits
+  consisting of:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Two-digit primary distribution centre identifier
+  \item
+    Three-digit customer identifier
+  \item
+    Six-digit mail piece identifier
+  \item
+    One-digit check digit (may be omitted)
+  \end{itemize}
+\item
+  If eleven digits are supplied then the check digit is calculated
+  automatically. Otherwise the provided check digit will be verified.
+\end{itemize}
+
+\hypertarget{example-8}{%
+\paragraph{Example}\label{example-8}}
+
+Identical symbols, input provided with an without a check digit:
+
+\begin{verbatim}
+Data:    563102430313
+Options: includetext
+Encoder: identcode
+\end{verbatim}
+
+\begin{verbatim}
+Data:    56310243031
+Options: includetext
+Encoder: identcode
+\end{verbatim}
+
+\includegraphics{images/identcode-1.eps}
+
+\hypertarget{deutsche-post-leitcode}{%
+\subsubsection{Deutsche Post Leitcode}\label{deutsche-post-leitcode}}
+
+The \textbf{Deutsche Post Leitcode} barcode symbology is an
+implementation of the \protect\hyperlink{interleaved-2-of-5}{Interleaved
+2 of 5} barcode that is used by German Post for mail routing.
+
+Also known as: DHL Leitcode.
+
+\hypertarget{data-and-options-44}{%
+\paragraph{Data and Options}\label{data-and-options-44}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data consists of a consecutive string of thirteen or fourteen
+  digits consisting of:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Five-digit postal code
+  \item
+    Three-digit street identifier
+  \item
+    Three-digit house number
+  \item
+    Two-digit product code
+  \item
+    One-digit check digit (may be omitted)
+  \end{itemize}
+\item
+  If thirteen digits are supplied then the check digit is calculated
+  automatically. Otherwise the provided check digit will be verified.
+\end{itemize}
+
+\hypertarget{examples-33}{%
+\paragraph{Examples}\label{examples-33}}
+
+Identical symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    21348075016401
+Options: includetext
+Encoder: leitcode
+\end{verbatim}
+
+\begin{verbatim}
+Data:    2134807501640
+Options: includetext
+Encoder: leitcode
+\end{verbatim}
+
+\includegraphics{images/leitcode-1.eps}
+
+\hypertarget{japan-post-4-state-barcode}{%
+\subsubsection{Japan Post 4 State
+Barcode}\label{japan-post-4-state-barcode}}
+
+The \textbf{Japan Post 4 state barcode} symbology is used by the Japan
+Post service to encode the delivery point identifier on letter mail.
+
+\hypertarget{data-and-options-45}{%
+\paragraph{Data and Options}\label{data-and-options-45}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data may contain any of the following characters:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Capital letters \texttt{A-Z}
+  \item
+    Digits \texttt{0-9}
+  \item
+    Hyphen \texttt{-}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{example-9}{%
+\paragraph{Example}\label{example-9}}
+
+\begin{verbatim}
+Data:    6540123789-A-K-Z
+Options: 
+Encoder: japanpost
+\end{verbatim}
+
+\includegraphics{images/japanpost-1.eps}
+
+\hypertarget{maxicode}{%
+\subsubsection{MaxiCode}\label{maxicode}}
+
+The \textbf{MaxiCode} barcode symbology is a 2D barcode based on a
+hexagonal matrix surrounding a bulls eye pattern. It can encode a
+structured carrier message and full 256 character extended-ASCII.
+
+Also known as: UPS Code, Code 6, Dense Code.
+
+Standards: ISO/IEC 16023, ANSI/AIM BC10 - ISS MaxiCode.
+
+\hypertarget{data-and-options-46}{%
+\paragraph{Data and Options}\label{data-and-options-46}}
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{mode} option is used to specify how the data is structured
+  in the symbol:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{mode=2} - Formatted data containing a Structured Carrier
+    Message with a numeric (US domestic) postal code.
+  \item
+    \texttt{mode=3} - Formatted data containing a Structured Carrier
+    Message with an alphanumeric (international) postal code.
+  \item
+    \texttt{mode=4} - Unstructured extended ASCII data using standard
+    error correction.
+  \item
+    \texttt{mode=5} - Unstructured extended ASCII data using enhanced
+    error correction.
+  \item
+    \texttt{mode=6} - Barcode reader programming.
+  \end{itemize}
+\item
+  If \textbf{mode} is unspecified the encoder will default to selecting
+  \texttt{mode=5} if the encoded length of the input data permits
+  enhanced error correction, otherwise it will select \texttt{mode=4}
+  which provides standard error correction.
+\item
+  The default interpretation of data by readers is in accordance with
+  ISO/IEC 8859-1. When supported by the receiver characters from other
+  code pages can be encoded using Extended Channel Interpretation (ECI).
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}ECI000000} to \texttt{\^{}ECI999999}: ECI indicators
+  \end{itemize}
+\item
+  If \texttt{mode=4}, \texttt{mode=5} or \texttt{mode=6} the data field
+  may contain any extended ASCII data.
+\item
+  If \texttt{mode=2} or \texttt{mode=3} the data field must begin with a
+  properly structured carrier message, followed by any extended ASCII
+  data.
+\item
+  The structured carrier message contains a postal code, three-digit
+  class of service and a three-digit ISO country code separated by
+  \emph{GS} (ASCII 29) characters. It is formatted in the data field as
+  follows:
+  \texttt{{[}postal\ code{]}\^{}029{[}country\ code{]}\^{}029{[}service\ class{]}\^{}029}.
+  If \texttt{mode=2} the postcode must be numeric, whilst if
+  \texttt{mode=3} the postcode may contain up to six digits, upper case
+  letters and spaces.
+\item
+  Alternatively, messages may begin with the special application field
+  identifier \texttt{{[})\textgreater{}\{RS\}01\{GS\}yy} where
+  \texttt{\{RS\}} represents ASCII value 30, \texttt{\{GS\}} represents
+  ASCII value 29 and \texttt{yy} is a two-digit year. In parse mode this
+  is represented as \texttt{{[})\textgreater{}\^{}03001\^{}0299}. If
+  \texttt{mode=2} or \texttt{mode=3} this must be immediately followed
+  by the structured carrier message.
+\end{itemize}
+
+\hypertarget{examples-34}{%
+\paragraph{Examples}\label{examples-34}}
+
+\begin{verbatim}
+Data:    This is MaxiCode
+Options: 
+Encoder: maxicode
+\end{verbatim}
+
+\begin{verbatim}
+Data:    This is Maxi^067ode
+Options: parse
+Encoder: maxicode
+\end{verbatim}
+
+\includegraphics{images/maxicode-1.eps}
+
+\begin{verbatim}
+Data:    152382802^029840^029001^0291Z00004951^029UPSN^02906X610^029159^0291234567^0291/1^029^029Y^029634 ALPHA DR^029PITTSBURGH^029PA^029^004
+Options: mode=2 parse
+Encoder: maxicode
+\end{verbatim}
+
+\includegraphics{images/maxicode-2.eps}
+
+\begin{verbatim}
+Data:    ABC123^029840^029001^0291Z00004951^029UPSN^02906X610^029159^0291234567^0291/1^029^029Y^029634 ALPHA DR^029PITTSBURGH^029PA^029^004
+Options: mode=3 parse
+Encoder: maxicode
+\end{verbatim}
+
+\includegraphics{images/maxicode-3.eps}
+
+\begin{verbatim}
+Data:    [\)>^03001^02996152382802^029840^029001^0291Z00004951^029UPSN^02906X610^029159^0291234567^0291/1^029^029Y^029634 ALPHA DR^029PITTSBURGH^029PA^029^004
+Options: mode=2 parse
+Encoder: maxicode
+\end{verbatim}
+
+\includegraphics{images/maxicode-4.eps}
+
+\hypertarget{royal-mail-4-state-customer-code}{%
+\subsubsection{Royal Mail 4 State Customer
+Code}\label{royal-mail-4-state-customer-code}}
+
+The \textbf{Royal Mail 4 State Customer Code} is a barcode symbology
+used by the British Postal Service to encode the postcode and delivery
+point identifier on letter mail.
+
+Also known as: RM4SCC, CBC, BPO 4 State Code
+
+\hypertarget{data-and-options-47}{%
+\paragraph{Data and Options}\label{data-and-options-47}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data may contain any of the following characters from the postcode
+  and DPID:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Capital letters A-Z
+  \item
+    Digits 0-9
+  \end{itemize}
+\item
+  The maditory checksum digit is calculated automatically and must not
+  be included in the data field
+\end{itemize}
+
+\hypertarget{example-10}{%
+\paragraph{Example}\label{example-10}}
+
+\begin{verbatim}
+Data:    LE28HS9Z
+Options: includetext
+Encoder: royalmail
+\end{verbatim}
+
+\includegraphics{images/rm4scc-1.eps}
+
+\hypertarget{royal-mail-mailmark}{%
+\subsubsection{Royal Mail Mailmark}\label{royal-mail-mailmark}}
+
+\textbf{Royal Mail Mailmark} is an implementation of the
+\protect\hyperlink{data-matrix}{Data Matrix} (ECC 200) barcode symbology
+for application within the Royal Mail postal system.
+
+Standards: Royal Mail Mailmark Barcode Definition Document
+
+\hypertarget{data-and-options-48}{%
+\paragraph{Data and Options}\label{data-and-options-48}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field input consists of 45 characters of Mailmark structured
+  data (including required space padding) followed by variable-length,
+  free-formatted customer data.
+\item
+  Note: Due to the fixed-length field format of the message data it is
+  important to carefully preserve spaces in the data field.
+\item
+  The mandatory \textbf{type} option is used to specify the size of the
+  symbol, either \texttt{7}, \texttt{9} or \texttt{29}.
+\end{itemize}
+
+\hypertarget{example-11}{%
+\paragraph{Example}\label{example-11}}
+
+\begin{verbatim}
+Data:    JGB 012100123412345678AB19XY1A 0             www.xyz.com
+Options: type=29
+Encoder: mailmark
+\end{verbatim}
+
+\hypertarget{royal-tnt-post-4-state-barcode}{%
+\subsubsection{Royal TNT Post 4 state
+barcode}\label{royal-tnt-post-4-state-barcode}}
+
+The \textbf{Royal TNT Post 4 state barcode} symbology is used by the
+Dutch Postal Service to encode the delivery point identifier on letter
+mail.
+
+Also known as: KIX, Klant IndeX.
+
+\hypertarget{data-and-options-49}{%
+\paragraph{Data and Options}\label{data-and-options-49}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data may contain any of the following characters from the DPID:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Capital letters \texttt{A-Z}
+  \item
+    Digits \texttt{0-9}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{example-12}{%
+\paragraph{Example}\label{example-12}}
+
+\begin{verbatim}
+Data:    1231FZ13XHS
+Options: includetext
+Encoder: kix
+\end{verbatim}
+
+\includegraphics{images/kix-1.eps}
+
+\hypertarget{usps-intelligent-mail}{%
+\subsubsection{USPS Intelligent Mail}\label{usps-intelligent-mail}}
+
+The \textbf{USPS Intelligent Mail} barcode is used by the US Postal
+service to encode the delivery and sender information on letter mail.
+
+Also known as: USPS OneCode.
+
+Standards: USPS-STD-11.
+
+\hypertarget{data-and-options-50}{%
+\paragraph{Data and Options}\label{data-and-options-50}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data contains 31 digits representing the following:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Barcode Identifier - two digits
+  \item
+    Service Type Identifier - three digits
+  \item
+    Mailer ID, Sequence Number - either six then nine digits
+    respectively or nine then six digits respectively
+  \item
+    Delivery Point ZIP Code - eleven digits
+  \end{itemize}
+\item
+  The mandatory checksum digit is calculated automatically and must not
+  be included in the data field.
+\end{itemize}
+
+\hypertarget{example-13}{%
+\paragraph{Example}\label{example-13}}
+
+\begin{verbatim}
+Data:    0123456709498765432101234567891
+Options: includetext
+Encoder: onecode
+\end{verbatim}
+
+\includegraphics{images/onecode-1.eps}
+
+\hypertarget{usps-postnet}{%
+\subsubsection{USPS POSTNET}\label{usps-postnet}}
+
+The \textbf{USPS POSTNET} barcode symbology is used by the US Postal
+service to encode the ZIP code information on letter mail.
+
+\hypertarget{data-and-options-51}{%
+\paragraph{Data and Options}\label{data-and-options-51}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field contains the digits from the ZIP code, without dashes.
+\item
+  The mandatory checksum is calculated automatically and must not be
+  included in the data field.
+\end{itemize}
+
+\hypertarget{example-14}{%
+\paragraph{Example}\label{example-14}}
+
+\begin{verbatim}
+Data:    12345123412
+Options: 
+Encoder: postnet
+\end{verbatim}
+
+\includegraphics{images/postnet-1.eps}
+
+\hypertarget{usps-planet}{%
+\subsubsection{USPS PLANET}\label{usps-planet}}
+
+The \textbf{USPS PLANET} barcode symbology is used by the US Postal
+service to encode the ZIP code information on letter mail.
+
+\hypertarget{data-and-options-52}{%
+\paragraph{Data and Options}\label{data-and-options-52}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field contains eleven or thirteen digits, without dashes.
+\item
+  The mandatory checksum is calculated automatically and must not be
+  included in the data field.
+\end{itemize}
+
+\hypertarget{example-15}{%
+\paragraph{Example}\label{example-15}}
+
+\begin{verbatim}
+Data:   01234567890
+Options: 
+Encoder: planet
+\end{verbatim}
+
+\includegraphics{images/planet-1.eps}
+
+\hypertarget{usps-fim-symbols}{%
+\subsubsection{USPS FIM Symbols}\label{usps-fim-symbols}}
+
+The \textbf{USPS FIM} encoder is used to generate static predefined
+barcode symbols.
+
+\hypertarget{data-and-options-53}{%
+\paragraph{Data and Options}\label{data-and-options-53}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field accepts one of the following values:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{fima} - US Postal Service FIM-A symbol
+  \item
+    \texttt{fimb} - US Postal Service FIM-B symbol
+  \item
+    \texttt{fimc} - US Postal Service FIM-C symbol
+  \item
+    \texttt{fimd} - US Postal Service FIM-D symbol
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{examples-35}{%
+\paragraph{Examples}\label{examples-35}}
+
+A USPS FIM A symbol:
+
+\begin{verbatim}
+Data:    fima
+Options: 
+Encoder: symbol
+\end{verbatim}
+
+\includegraphics{images/fima-1.eps}
+
+A USPS FIM B symbol:
+
+\begin{verbatim}
+Data:    fimb
+Options: 
+Encoder: symbol
+\end{verbatim}
+
+\includegraphics{images/fimb-1.eps}
+
+A USPS FIM C symbol:
+
+\begin{verbatim}
+Data:    fimc
+Options: 
+Encoder: symbol
+\end{verbatim}
+
+\includegraphics{images/fimc-1.eps}
+
+A USPS FIM D symbol:
+
+\begin{verbatim}
+Data:    fimd
+Options: 
+Encoder: symbol
+\end{verbatim}
+
+\includegraphics{images/fimd-1.eps}
+
+\hypertarget{pharmaceutical-symbols}{%
+\subsection{Pharmaceutical Symbols}\label{pharmaceutical-symbols}}
+
+\hypertarget{italian-pharmacode}{%
+\subsubsection{Italian Pharmacode}\label{italian-pharmacode}}
+
+\textbf{Italian Pharmacode} is a discrete, fixed length, self-checking
+barcode symbology used for pharmaceutical products in Italy.
+
+Also known as: Code 32, IMH, Radix 32.
+
+\hypertarget{data-and-options-54}{%
+\paragraph{Data and Options}\label{data-and-options-54}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field must contain either eight or nine digits from the code.
+  The leading \emph{A} which is provided in some applications must be
+  omitted.
+\item
+  The mandatory check digit is calculated automatically if it is not
+  provided, otherwise the provided check digit is verified.
+\end{itemize}
+
+\hypertarget{examples-36}{%
+\paragraph{Examples}\label{examples-36}}
+
+Identical symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    012345676
+Options: includetext
+Encoder: code32
+\end{verbatim}
+
+\begin{verbatim}
+Data:    01234567
+Options: includetext
+Encoder: code32
+\end{verbatim}
+
+\includegraphics{images/code32-1.eps}
+
+\hypertarget{pharmacode}{%
+\subsubsection{Pharmacode}\label{pharmacode}}
+
+\textbf{Pharmacode} is a binary barcode symbology that is used by the
+Pharmaceutical industry.
+
+Also known as: Pharmaceutical Binary Code. Laetus Code.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{two-track-pharmacode}{Two-track Pharmacode} is a
+  variant of the Pharmacode barcode.
+\end{itemize}
+
+\hypertarget{data-and-options-55}{%
+\paragraph{Data and Options}\label{data-and-options-55}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field must contain a number between \texttt{3} and
+  \texttt{131070} inclusive.
+\item
+  The \textbf{nwidth}, \textbf{wwidth} and \textbf{swidth} options can
+  be used to specify a custom width (in points) for the narrow bars,
+  wide bars and inter-bar spaces respectively.
+\end{itemize}
+
+\hypertarget{example-16}{%
+\paragraph{Example}\label{example-16}}
+
+\begin{verbatim}
+Data:    117480
+Options: 
+Encoder: pharmacode
+\end{verbatim}
+
+\includegraphics{images/pharmacode-1.eps}
+
+\hypertarget{two-track-pharmacode}{%
+\subsubsection{Two-Track Pharmacode}\label{two-track-pharmacode}}
+
+\textbf{Two-Track Pharmacode} is a binary barcode symbology used by the
+Pharmaceutical industry.
+
+Also known as: Two-track Pharmaceutical Binary Code, Two-track Laetus
+Code.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{pharmacode}{Pharmacode} is a variant of the
+  Two-track Pharmacode barcode.
+\end{itemize}
+
+\hypertarget{data-and-options-56}{%
+\paragraph{Data and Options}\label{data-and-options-56}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field must contain a number between \texttt{4} and
+  \texttt{64570080} inclusive.
+\end{itemize}
+
+\hypertarget{example-17}{%
+\paragraph{Example}\label{example-17}}
+
+\begin{verbatim}
+Data:    117480
+Options: 
+Encoder: pharmacode2
+\end{verbatim}
+
+\includegraphics{images/pharmacode2-1.eps}
+
+\hypertarget{pzn}{%
+\subsubsection{PZN}\label{pzn}}
+
+\textbf{PZN} is a discrete, fixed length, self-checking barcode
+symbology used for pharmaceutical products in Germany.
+
+Also known as: Pharmazentralnummer.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  PZN7 is the seven-digit format.
+\item
+  PZN8 is the eight-digit format.
+\end{itemize}
+
+\hypertarget{data-and-options-57}{%
+\paragraph{Data and Options}\label{data-and-options-57}}
+
+\begin{itemize}
+\tightlist
+\item
+  For the default PZN7 encoding, the data field must contain six digits
+  or seven digits.
+\item
+  The \textbf{pzn8} option specifies that a PZN8 symbol is required, in
+  which case the data field must contain seven digits or eight digits.
+\item
+  The mandatory check digit is calculated automatically if not provided,
+  otherwise the provided check digit is verified.
+\item
+  Note: by definition, not all six-digit or seven-digit number sequences
+  are valid inputs.
+\end{itemize}
+
+\hypertarget{examples-37}{%
+\paragraph{Examples}\label{examples-37}}
+
+Identical PZN7 symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    1234562
+Options: includetext
+Encoder: pzn
+\end{verbatim}
+
+\begin{verbatim}
+Data:    123456
+Options: includetext
+Encoder: pzn
+\end{verbatim}
+
+\includegraphics{images/pzn-1.eps}
+
+Identical PZN8 symbols, input provided with and without a check digit:
+
+\begin{verbatim}
+Data:    0275808
+Options: pzn8 includetext
+Encoder: pzn
+\end{verbatim}
+
+\begin{verbatim}
+Data:    02758089
+Options: pzn8 includetext
+Encoder: pzn
+\end{verbatim}
+
+\includegraphics{images/pzn-2.eps}
+
+\hypertarget{hibc-symbols}{%
+\subsection{HIBC Symbols}\label{hibc-symbols}}
+
+\textbf{HIBC barcodes} use a number of general symbologies as carrier
+symbols for data structured according to the LIC and PAS structured data
+definitions.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{hibc-code-39}{HIBC Code 39} is a variant of
+  \protect\hyperlink{code-39}{Code 39}.
+\item
+  \protect\hyperlink{hibc-code-128}{HIBC Code 128} is a variant of
+  \protect\hyperlink{code-128}{Code 128}.
+\item
+  \protect\hyperlink{hibc-pdf417}{HIBC PDF417} is a variant of
+  \protect\hyperlink{pdf417}{PDF417}.
+\item
+  \protect\hyperlink{hibc-micropdf417}{HIBC MicroPDF417} is a variant of
+  \protect\hyperlink{micropdf417}{MicroPDF417}.
+\item
+  \protect\hyperlink{hibc-qr-code}{HIBC QR Code} is a variant of
+  \protect\hyperlink{qr-code}{QR Code}.
+\item
+  \protect\hyperlink{hibc-data-matrix}{HIBC Data Matrix} is a variant of
+  \protect\hyperlink{data-matrix}{Data Matrix}.
+\item
+  \protect\hyperlink{hibc-codablock-f}{HIBC Codablock F} is a variant of
+  \protect\hyperlink{codablock-f}{Codablock F}.
+\end{itemize}
+
+Standards: ANSI/HIBC Provider Applications Standard, ANSI/HIBC Supplier
+Labelling Standard, ANSI/HIBC Positive Identification for Patient
+Safety, ANSI/HIBC Syntax Standard.
+
+\hypertarget{data-and-options-58}{%
+\paragraph{Data and Options}\label{data-and-options-58}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data should be pre-encoded to describe the intended barcode
+  content.
+\item
+  The HIBC \emph{+} character is prefixed automatically.
+\item
+  The mandatory HIBC check character is automatically appended to the
+  input.
+\end{itemize}
+
+\hypertarget{hibc-code-39}{%
+\subsubsection{HIBC Code 39}\label{hibc-code-39}}
+
+\begin{verbatim}
+Data:    A123BJC5D6E71
+Options: includetext
+Encoder: hibccode39
+\end{verbatim}
+
+\includegraphics{images/hibccode39-1.eps}
+
+\hypertarget{hibc-code-128}{%
+\subsubsection{HIBC Code 128}\label{hibc-code-128}}
+
+\begin{verbatim}
+Data:    A123BJC5D6E71
+Options: includetext
+Encoder: hibccode128
+\end{verbatim}
+
+\includegraphics{images/hibccode128-1.eps}
+
+\hypertarget{hibc-pdf417}{%
+\subsubsection{HIBC PDF417}\label{hibc-pdf417}}
+
+\begin{verbatim}
+Data:    A123BJC5D6E71
+Options: 
+Encoder: hibcpdf417
+\end{verbatim}
+
+\includegraphics{images/hibcpdf417-1.eps}
+
+\hypertarget{hibc-micropdf417}{%
+\subsubsection{HIBC MicroPDF417}\label{hibc-micropdf417}}
+
+\begin{verbatim}
+Data:    A123BJC5D6E71
+Options: 
+Encoder: hibcmicropdf417
+\end{verbatim}
+
+\includegraphics{images/hibcmicropdf417-1.eps}
+
+\hypertarget{hibc-qr-code}{%
+\subsubsection{HIBC QR Code}\label{hibc-qr-code}}
+
+\begin{verbatim}
+Data:    A123BJC5D6E71
+Options: 
+Encoder: hibcqrcode
+\end{verbatim}
+
+\includegraphics{images/hibcqrcode-1.eps}
+
+\hypertarget{hibc-data-matrix}{%
+\subsubsection{HIBC Data Matrix}\label{hibc-data-matrix}}
+
+\begin{verbatim}
+Data:    A123BJC5D6E71
+Options: 
+Encoder: hibcdatamatrix
+\end{verbatim}
+
+\includegraphics{images/hibcdatamatrix-1.eps}
+
+\hypertarget{hibc-codablock-f}{%
+\subsubsection{HIBC Codablock F}\label{hibc-codablock-f}}
+
+\begin{verbatim}
+Data:    A123BJC5D6E71
+Options: 
+Encoder: hibccodablockf
+\end{verbatim}
+
+\includegraphics{images/hibccodablockf-1.eps}
+
+\hypertarget{less-used-symbols}{%
+\subsection{Less-used Symbols}\label{less-used-symbols}}
+
+\hypertarget{bc412}{%
+\subsubsection{BC412}\label{bc412}}
+
+The \textbf{BC412} barcode symbology is single width, variable length
+barcode that is used for silicon wafer identification by the
+semiconductor manufacturing industry.
+
+Also known as: BC412 SEMI, BC412 IBM.
+
+\hypertarget{data-and-options-59}{%
+\paragraph{Data and Options}\label{data-and-options-59}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can hold any of the following:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Numbers 0-9
+  \item
+    Capital letters A-Z, excluding O
+  \end{itemize}
+\item
+  The \textbf{includestartstop} option enables the display of start and
+  stop bars.
+\item
+  The \textbf{includecheck} option calculates the check character.
+\item
+  The \textbf{includecheckintext} option makes the calculated checksum
+  appear in the human readable text.
+\item
+  The \textbf{semi} option enables conformance to the SEMI standard by
+  enabling start and stop bars as well as a check character.
+\item
+  The \textbf{inkspread} option can be used to adjust the width of the
+  bars.
+\end{itemize}
+
+\hypertarget{examples-38}{%
+\paragraph{Examples}\label{examples-38}}
+
+\begin{verbatim}
+Data:    BC412
+Options: includecheck
+Encoder: bc412
+\end{verbatim}
+
+\includegraphics{images/bc412-1.eps}
+
+\begin{verbatim}
+Data:    BC412
+Options: includestartstop
+Encoder: bc412
+\end{verbatim}
+
+\includegraphics{images/bc412-2.eps}
+
+\begin{verbatim}
+Data:    BC412
+Options: semi
+Encoder: bc412
+\end{verbatim}
+
+\includegraphics{images/bc412-3.eps}
+
+\hypertarget{channel-code}{%
+\subsubsection{Channel Code}\label{channel-code}}
+
+\textbf{Channel Code} is a linear, continuous, self-checking,
+bidirectional barcode symbology that encodes between two and seven
+digits in a short space.
+
+Standards: ANSI/AIM BC12 - USS Channel Code.
+
+\hypertarget{data-and-options-60}{%
+\paragraph{Data and Options}\label{data-and-options-60}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can hold zero prefixed values from any of the following
+  ranges:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Channel 3: \texttt{00-26}
+  \item
+    Channel 4: \texttt{000-292}
+  \item
+    Channel 5: \texttt{0000-3493}
+  \item
+    Channel 6: \texttt{00000-44072}
+  \item
+    Channel 7: \texttt{000000-576688}
+  \item
+    Channel 8: \texttt{0000000-7742862}
+  \end{itemize}
+\item
+  The channel is determined to be one more than the number of digits
+  given in the data field.
+\item
+  The \textbf{shortfinder} option generates a symbol with a shortened
+  finder pattern.
+\item
+  The \textbf{includecheck} option appends an optional check bar suffix.
+\end{itemize}
+
+\hypertarget{examples-39}{%
+\paragraph{Examples}\label{examples-39}}
+
+A channel 3 symbol holding the value five:
+
+\begin{verbatim}
+Data:    05
+Options: includetext
+Encoder: channelcode
+\end{verbatim}
+
+\includegraphics{images/channelcode-1.eps}
+
+A channel 4 symbol holding the value 123:
+
+\begin{verbatim}
+Data:    123
+Options: includetext
+Encoder: channelcode
+\end{verbatim}
+
+\includegraphics{images/channelcode-2.eps}
+
+A channel 4 symbol holding the value five including optional check bars:
+
+\begin{verbatim}
+Data:    005
+Options: includetext includecheck
+Encoder: channelcode
+\end{verbatim}
+
+\includegraphics{images/channelcode-3.eps}
+
+A channel 3 symbol holding the value 26 with a shorteded finder pattern:
+
+\begin{verbatim}
+Data:    26
+Options: shortfinder includetext
+Encoder: channelcode
+\end{verbatim}
+
+\includegraphics{images/channelcode-4.eps}
+
+\hypertarget{codabar}{%
+\subsubsection{Codabar}\label{codabar}}
+
+\textbf{Codabar} is a linear, discrete, self-checking, bidirectional
+barcode symbology that can encode digits, six symbols and four delimiter
+characters. It is primarily used by libraries and blood banks, photo
+labs and FedEx airbills.
+
+Also known as: Rationalized Codabar, Ames Code, NW-7, USD-4,
+USS-Codabar, ABC Codabar, Monarch, Code 2 of 7.
+
+Standards: ANSI/AIM BC3 - USS Codabar, BS EN 798.
+
+\hypertarget{data-and-options-61}{%
+\paragraph{Data and Options}\label{data-and-options-61}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field must start and stop with one of the following
+  delimiters
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{ABCD}
+  \item
+    \texttt{TNE*} (with the \emph{altstartstop} option)
+  \end{itemize}
+\item
+  The data field can otherwise hold any of the following
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Digits 0-9
+  \item
+    Symbols \texttt{-\$:/.+}
+  \end{itemize}
+\item
+  The \textbf{altstartstop} option specifies that the alternative set of
+  delimiter characters is in use.
+\item
+  The \textbf{includecheck} option calculates the check digit.
+\item
+  The \textbf{includecheckintext} option makes the calculated check
+  characters appear in the human readable text.
+\end{itemize}
+
+\hypertarget{example-18}{%
+\paragraph{Example}\label{example-18}}
+
+\begin{verbatim}
+Data:    A0123456789B
+Options: includecheck includetext includecheckintext
+Encoder: rationalizedCodabar
+\end{verbatim}
+
+\includegraphics{images/codabar-1.eps}
+
+\hypertarget{codablock-f}{%
+\subsubsection{Codablock F}\label{codablock-f}}
+
+The \textbf{Codablock F} barcode symbology is 2D stacked-linear barcode
+that consists of a number of stacked \protect\hyperlink{code-128}{Code
+128} symbols. It can encode full 256 character extended-ASCII.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{hibc-symbols}{HIBC Codablock F} is a variant of
+  Codablock F that should be used when encoding HIBC formatted data.
+\end{itemize}
+
+Standards: USS Codablock F.
+
+\hypertarget{data-and-options-62}{%
+\paragraph{Data and Options}\label{data-and-options-62}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can consist of any extended-ASCII data. The default
+  interpretation of data by readers is in accordance with ISO/IEC
+  8859-1.
+\item
+  \emph{FNC4} function characters will be inserted automatically to
+  allow the encoding of extended ASCII characters.
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}FNC1}: FNC1
+  \item
+    \texttt{\^{}FNC2}: FNC2
+  \item
+    \texttt{\^{}FNC3}: FNC3
+  \item
+    \texttt{\^{}ECI000000} to \texttt{\^{}ECI999999}: ECI indicators
+  \end{itemize}
+\item
+  The \textbf{columns} option specifies the number of columns in the
+  symbol, default 8.
+\item
+  The \textbf{rows} option specifies the number of rows in the symbol,
+  between 2 and 44.
+\item
+  If \textbf{rows} is unspecified the encoder will default to the
+  smallest number of rows that can hold the given data.
+\item
+  The \textbf{raw} option denotes that the data field is providing the
+  input as a pre-encoded codewords in \texttt{\^{}NNN} format, suitable
+  for direct low-level encoding.
+\item
+  The \textbf{rowheight} option specifies the height of the bars in each
+  row in points. The default is 10.
+\item
+  The \textbf{sepheight} option specifies the height of the separator
+  bars enclosing the rows in points. The default is 1.
+\end{itemize}
+
+\hypertarget{examples-40}{%
+\paragraph{Examples}\label{examples-40}}
+
+\begin{verbatim}
+Data:    Codablock F
+Options: 
+Encoder: codablockf
+\end{verbatim}
+
+\includegraphics{images/codablockf-1.eps}
+
+\begin{verbatim}
+Data:    CODABLOCK F 34567890123456789010040digit
+Options: columns=8 rows=5
+Encoder: codablockf
+\end{verbatim}
+
+\includegraphics{images/codablockf-2.eps}
+
+\begin{verbatim}
+Data:    Short bars, fat seperators
+Options: columns=10 rows=8 rowheight=6 sepheight=2
+Encoder: codablockf
+\end{verbatim}
+
+\includegraphics{images/codablockf-3.eps}
+
+\hypertarget{code-11}{%
+\subsubsection{Code 11}\label{code-11}}
+
+\textbf{Code 11} is a linear, discrete, non-self-checking,
+bidirectional, numeric barcode symbology that is primarily used for
+labelling telecommunication equipment.
+
+Also known as: USD-8.
+
+\hypertarget{data-and-options-63}{%
+\paragraph{Data and Options}\label{data-and-options-63}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data consists of digits and the dash character \emph{-}.
+\item
+  The \textbf{includecheck} option calculates the check digits.
+\item
+  For less than 10 data digits a single check digit is used.
+\item
+  For 10 or more data digits two check digits are used.
+\end{itemize}
+
+\hypertarget{example-19}{%
+\paragraph{Example}\label{example-19}}
+
+\begin{verbatim}
+Data:    0123456789
+Options: includecheck includetext includecheckintext
+Encoder: code11
+\end{verbatim}
+
+\includegraphics{images/code11-1.eps}
+
+\hypertarget{code-16k}{%
+\subsubsection{Code 16K}\label{code-16k}}
+
+The \textbf{Code 16K} barcode symbology is 2D stacked-linear barcode
+that can encode full 256 character extended-ASCII with the use of the
+\emph{FNC4} shift character.
+
+Also known as: USS-16K
+
+Standards: ANSI/AIM BC7 - USS Code 16K, BS EN 12323.
+
+\hypertarget{data-and-options-64}{%
+\paragraph{Data and Options}\label{data-and-options-64}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can consist of any extended ASCII data. The default
+  interpretation of data by readers is in accordance with ISO/IEC
+  8859-1.
+\item
+  \emph{FNC4} function characters will be inserted automatically to
+  allow the encoding of extended ASCII characters.
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}FNC1}: FNC1
+  \item
+    \texttt{\^{}FNC2}: FNC2
+  \item
+    \texttt{\^{}FNC3}: FNC3
+  \end{itemize}
+\item
+  The \textbf{mode} option specifies the mode for the symbol. It is
+  usual to leave this unspecified in which case the most appropriate
+  mode that results in the shortest symbol is automatically selected
+  based in the input data.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{mode=0} - Starting code set A
+  \item
+    \texttt{mode=1} - Starting code set B
+  \item
+    \texttt{mode=2} - Starting code set C
+  \item
+    \texttt{mode=3} - Starting code set B with implied \emph{FNC1}
+  \item
+    \texttt{mode=4} - Starting code set C with implied \emph{FNC1}
+  \item
+    \texttt{mode=5} - Starting code set C with implied \emph{Shift B}
+  \item
+    \texttt{mode=6} - Starting code set C with implied \emph{Double
+    Shift B}
+  \end{itemize}
+\item
+  The \textbf{pos} option specifies this symbol to be part of multi-part
+  structured data. For example \texttt{pos=25} specifies this to be the
+  second symbol in a group of five symbols.
+\item
+  The \textbf{rows} option specifies the number of rows in the symbol,
+  between two and sixteen.
+\item
+  If \textbf{rows} is unspecified the encoder will default to the
+  smallest number of rows that can hold the given data.
+\item
+  The \textbf{raw} option denotes that the data field is providing the
+  input as a pre-encoded codewords in \texttt{\^{}NNN} format, suitable
+  for direct low-level encoding.
+\item
+  The \textbf{rowheight} option specifies the height of the bars in each
+  row in points. The default is 10.
+\item
+  The \textbf{sepheight} option specifies the height of the separator
+  bars enclosing the rows in points. The default is 1.
+\end{itemize}
+
+\hypertarget{examples-41}{%
+\paragraph{Examples}\label{examples-41}}
+
+\begin{verbatim}
+Data:    Abcd-1234567890-wxyZ
+Options: 
+Encoder: code16k
+\end{verbatim}
+
+\includegraphics{images/code16k-1.eps}
+
+\begin{verbatim}
+Data:    Code 16K
+Options: rows=10
+Encoder: code16k
+\end{verbatim}
+
+\includegraphics{images/code16k-2.eps}
+
+\begin{verbatim}
+Data:    Short bars, fat seperators
+Options: rows=8 rowheight=5 sepheight=2
+Encoder: code16k
+\end{verbatim}
+
+\includegraphics{images/code16k-3.eps}
+
+\hypertarget{code-25}{%
+\subsubsection{Code 25}\label{code-25}}
+
+\textbf{Code 2 of 5} is a simple low density numeric barcode symbology.
+
+Also known as: Code 25, Industrial 2 of 5, Standard 2 of 5
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{iata-2-of-5}{IATA 2 of 5}, Computer Identics 2 of
+  5.
+\item
+  \protect\hyperlink{datalogic-2-of-5}{Datalogic 2 of 5}.
+\item
+  \protect\hyperlink{matrix-2-of-5}{Matrix 2 of 5}.
+\item
+  \protect\hyperlink{coop-2-of-5}{COOP 2 of 5}.
+\end{itemize}
+
+\hypertarget{data-and-options-65}{%
+\paragraph{Data and Options}\label{data-and-options-65}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data consists of any number of digits.
+\item
+  The \textbf{includecheck} option calculates the check digit.
+\item
+  \emph{Deprecated}: The \textbf{version} option determines which
+  variant to use:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{version=industrial} (default) - Industrial 2 of 5.
+  \item
+    \texttt{version=iata} - \emph{Deprecated: Use
+    \protect\hyperlink{iata-2-of-5}{IATA 2 of 5}}
+  \item
+    \texttt{version=datalogic} - \emph{Deprecated: Use
+    \protect\hyperlink{datalogic-2-of-5}{Datalogic 2 of 5}}
+  \item
+    \texttt{version=matrix} - \emph{Deprecated: Use
+    \protect\hyperlink{matrix-2-of-5}{Matrix 2 of 5}}
+  \item
+    \texttt{version=coop} - \emph{Deprecated: Use
+    \protect\hyperlink{coop-2-of-5}{COOP 2 of 5}}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{examples-42}{%
+\paragraph{Examples}\label{examples-42}}
+
+\begin{verbatim}
+Data:    01234567
+Options: 
+Encoder: code2of5
+\end{verbatim}
+
+\includegraphics{images/code25-1.eps}
+
+\hypertarget{dotcode}{%
+\subsubsection{DotCode}\label{dotcode}}
+
+The \textbf{DotCode} symbology is 2D matrix-style barcode that can
+encode full 256 character extended-ASCII.
+
+Also known as: Ribbon Code
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{gs1-dotcode}{GS1 DotCode} is a variant of DotCode
+  that should be used when encoding data that is in
+  \protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+  Application Identifier standard format}.
+\end{itemize}
+
+Standards: AIM - ISS DotCode.
+
+\hypertarget{data-and-options-66}{%
+\paragraph{Data and Options}\label{data-and-options-66}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can contain any extended ASCII data. The default
+  interpretation of data by readers is in accordance with ISO/IEC
+  8859-1.
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value. This is useful for specifying unprintable characters.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}FNC1}: FNC1. \emph{Recommendation: Use
+    \protect\hyperlink{gs1-dotcode}{GS1 DotCode} for encoding GS1 AI
+    syntax data.}
+  \item
+    \texttt{\^{}FNC2}: FNC2
+  \item
+    \texttt{\^{}FNC3}: FNC3
+  \end{itemize}
+\item
+  The \textbf{ratio} is used to specify the aspect ratio of the symbol.
+  The default is 1.5.
+\item
+  The \textbf{columns} and \textbf{rows} options are used to specify the
+  size of the symbol. When these are not specified a symbol is generated
+  that maintains the selected aspect ratio.
+\item
+  \emph{Deprecated: Use only if performance is a concern.} The
+  \textbf{fast} option is used to enable the optional high-speed symbol
+  masking algorithm.
+\end{itemize}
+
+\hypertarget{examples-43}{%
+\paragraph{Examples}\label{examples-43}}
+
+\begin{verbatim}
+Data:    This is DotCode
+Options: inkspread=0.16
+Encoder: dotcode
+\end{verbatim}
+
+\includegraphics{images/dotcode-1.eps}
+
+\hypertarget{ultracode}{%
+\subsubsection{Ultracode}\label{ultracode}}
+
+The \textbf{Ultracode} symbology is a colour, 2D matrix-style barcode
+symbology that can encode full 256 character extended-ASCII.
+
+Standards: AIM ISS - Ultracode.
+
+\hypertarget{data-and-options-67}{%
+\paragraph{Data and Options}\label{data-and-options-67}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can contain any extended ASCII data. The default
+  interpretation of data by readers is in accordance with ISO/IEC
+  8859-1.
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}FNC1}: FNC1
+  \item
+    \texttt{\^{}FNC3}: FNC3
+  \end{itemize}
+\item
+  The \textbf{eclevel} option is used to specify the error correction
+  level:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{eclevel=EC0} - Error detection only
+  \item
+    \texttt{eclevel=EC1} - Low
+  \item
+    \texttt{eclevel=EC2} - Medium (default)
+  \item
+    \texttt{eclevel=EC3}
+  \item
+    \texttt{eclevel=EC4}
+  \item
+    \texttt{eclevel=EC5} - Highest
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{examples-44}{%
+\paragraph{Examples}\label{examples-44}}
+
+\begin{verbatim}
+Data:    Nice colours!
+Options: eclevel=EC3
+Encoder: ultracode
+\end{verbatim}
+
+\includegraphics{images/ultracode-1.eps}
+
+\hypertarget{iata-2-of-5}{%
+\subsubsection{IATA 2 of 5}\label{iata-2-of-5}}
+
+\textbf{IATA 2 of 5} is a variant of the
+\protect\hyperlink{code-25}{Code 2 of 5} barcode symbology.
+
+Also known as: Computer Identics 2 of 5.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{code-25}{Industrial 2 of 5}, Standard 2 of 5.
+\item
+  \protect\hyperlink{datalogic-2-of-5}{Datalogic 2 of 5}.
+\item
+  \protect\hyperlink{matrix-2-of-5}{Matrix 2 of 5}.
+\item
+  \protect\hyperlink{coop-2-of-5}{COOP 2 of 5}.
+\end{itemize}
+
+\hypertarget{data-and-options-68}{%
+\paragraph{Data and Options}\label{data-and-options-68}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data consists of any number of digits.
+\item
+  The \textbf{includecheck} option calculates the check digit.
+\end{itemize}
+
+\hypertarget{examples-45}{%
+\paragraph{Examples}\label{examples-45}}
+
+\begin{verbatim}
+Data:    01234567
+Options: includetext includecheck includecheckintext
+Encoder: iata2of5
+\end{verbatim}
+
+\includegraphics{images/code25-2.eps}
+
+\hypertarget{matrix-2-of-5}{%
+\subsubsection{Matrix 2 of 5}\label{matrix-2-of-5}}
+
+\textbf{Matrix 2 of 5} is a variant of the
+\protect\hyperlink{code-25}{Code 2 of 5} barcode symbology.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{code-25}{Industrial 2 of 5}, Standard 2 of 5.
+\item
+  \protect\hyperlink{iata-2-of-5}{IATA 2 of 5}, Computer Identics 2 of
+  5.
+\item
+  \protect\hyperlink{datalogic-2-of-5}{Datalogic 2 of 5}.
+\item
+  \protect\hyperlink{coop-2-of-5}{COOP 2 of 5}.
+\end{itemize}
+
+\hypertarget{data-and-options-69}{%
+\paragraph{Data and Options}\label{data-and-options-69}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data consists of any number of digits.
+\item
+  The \textbf{includecheck} option calculates the check digit.
+\end{itemize}
+
+\hypertarget{datalogic-2-of-5}{%
+\subsubsection{Datalogic 2 of 5}\label{datalogic-2-of-5}}
+
+\textbf{Datalogic 2 of 5} is a variant of the
+\protect\hyperlink{code-25}{Code 2 of 5} barcode symbology.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{code-25}{Industrial 2 of 5}, Standard 2 of 5.
+\item
+  \protect\hyperlink{iata-2-of-5}{IATA 2 of 5}, Computer Identics 2 of
+  5.
+\item
+  \protect\hyperlink{matrix-2-of-5}{Matrix 2 of 5}.
+\item
+  \protect\hyperlink{coop-2-of-5}{COOP 2 of 5}.
+\end{itemize}
+
+\hypertarget{data-and-options-70}{%
+\paragraph{Data and Options}\label{data-and-options-70}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data consists of any number of digits.
+\item
+  The \textbf{includecheck} option calculates the check digit.
+\end{itemize}
+
+\hypertarget{coop-2-of-5}{%
+\subsubsection{COOP 2 of 5}\label{coop-2-of-5}}
+
+\textbf{COOP 2 of 5} is a variant of the
+\protect\hyperlink{code-25}{Code 2 of 5} barcode symbology.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{code-25}{Industrial 2 of 5}, Standard 2 of 5.
+\item
+  \protect\hyperlink{iata-2-of-5}{IATA 2 of 5}, Computer Identics 2 of
+  5.
+\item
+  \protect\hyperlink{datalogic-2-of-5}{Datalogic 2 of 5}.
+\item
+  \protect\hyperlink{matrix-2-of-5}{Matrix 2 of 5}.
+\end{itemize}
+
+\hypertarget{data-and-options-71}{%
+\paragraph{Data and Options}\label{data-and-options-71}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data consists of any number of digits.
+\item
+  The \textbf{includecheck} option calculates the check digit.
+\end{itemize}
+
+\hypertarget{code-49}{%
+\subsubsection{Code 49}\label{code-49}}
+
+The \textbf{Code 49} barcode symbology is 2D stacked-linear barcode that
+can encode 128 character ASCII.
+
+Also known as: USS-49.
+
+Standards: ANSI/AIM BC6 - USS Code 49.
+
+\hypertarget{data-and-options-72}{%
+\paragraph{Data and Options}\label{data-and-options-72}}
+
+\begin{itemize}
+\tightlist
+\item
+  The input can consist of any ASCII data.
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}FNC1}: FNC1
+  \item
+    \texttt{\^{}FNC2}: FNC2
+  \item
+    \texttt{\^{}FNC3}: FNC3
+  \end{itemize}
+\item
+  The \textbf{mode} option specifies the mode for the symbol. It is
+  usual to leave this unspecified in which case the most appropriate
+  mode that results in the shortest symbol is automatically selected
+  based in the input data.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{mode=0} - regular alphanumeric mode
+  \item
+    \texttt{mode=1} - append mode
+  \item
+    \texttt{mode=2} - numeric mode
+  \item
+    \texttt{mode=3} - group alphanumeric mode
+  \item
+    \texttt{mode=4} - alphanumeric mode starting shift 1
+  \item
+    \texttt{mode=5} - alphanumeric mode starting shift 2
+  \item
+    \texttt{mode=6} - reserved
+  \end{itemize}
+\item
+  The \textbf{pos} option specifies this symbol to be part of multi-part
+  structured data, i.e. selecting \texttt{mode=3}. For example
+  \texttt{pos=25} specifies this to be the second symbol in a group of
+  five symbols.
+\item
+  The \textbf{rows} option specifies the number of rows in the symbol,
+  between \emph{2} and \emph{8}.
+\item
+  If \textbf{rows} is unspecified the encoder will default to the
+  smallest number of rows that can hold the given data.
+\item
+  The \textbf{rowheight} option specifies the height of the bars in each
+  row in points. The default is \emph{10}.
+\item
+  The \textbf{sepheight} option specifies the height of the separator
+  bars enclosing the rows in points. The default is \emph{1}.
+\end{itemize}
+
+\hypertarget{examples-46}{%
+\paragraph{Examples}\label{examples-46}}
+
+\begin{verbatim}
+Data:    MULTIPLE ROWS IN CODE 49
+Options: 
+Encoder: code49
+\end{verbatim}
+
+\includegraphics{images/code49-1.eps}
+
+\begin{verbatim}
+Data:    CODE 49
+Options: rows=8
+Encoder: code49
+\end{verbatim}
+
+\includegraphics{images/code49-2.eps}
+
+\begin{verbatim}
+Data:    Short bars, fat seperators
+Options: rows=8 rowheight=6 sepheight=2
+Encoder: code49
+\end{verbatim}
+
+\includegraphics{images/code49-3.eps}
+
+\hypertarget{code-one}{%
+\subsubsection{Code One}\label{code-one}}
+
+\textbf{Code One} was the earliest public domain 2D matrix-style
+barcode. It is used by the health care and recycling industry and can
+encode full 256 character extended-ASCII.
+
+Also known as: Code 1, Code 1S.
+
+Standards: AIM USS - Code One.
+
+\hypertarget{data-and-options-73}{%
+\paragraph{Data and Options}\label{data-and-options-73}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can consist of any ASCII data for \emph{standard} and
+  \emph{T-type} symbols. The default interpretation of data by readers
+  is in accordance with ISO/IEC 8859-1. When supported by the receiver
+  characters from other code pages can be encoded using Extended Channel
+  Interpretation (ECI).
+\item
+  Note: \emph{S-type} symbols are special in that they represent a
+  numeric value so may only contain digits.
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters, e.g.
+  \texttt{\^{}029} for \emph{GS}, etc.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}FNC1}: FNC1
+  \item
+    \texttt{\^{}FNC3}: FNC3
+  \item
+    \texttt{\^{}ECI000000} to \texttt{\^{}ECI999999}: ECI indicators
+  \end{itemize}
+\item
+  The \textbf{version} option is used to specify the size and type of
+  the symbol:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{A}, \texttt{B}, \texttt{C}, \texttt{D}, \texttt{E},
+    \texttt{F}, \texttt{G}, \texttt{H} - for standard format symbols
+    (default automatic selection)
+  \item
+    \texttt{version=T-16}, \texttt{version=T-32}, \texttt{version=T-48}
+    - \emph{T-type} symbols
+  \item
+    \texttt{version=S-10}, \texttt{version=S-20}, \texttt{version=S-30}
+    - \emph{S-type} symbols
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{examples-47}{%
+\paragraph{Examples}\label{examples-47}}
+
+\begin{verbatim}
+Data:    Code One
+Options: 
+Encoder: codeone
+\end{verbatim}
+
+\includegraphics{images/codeone-1.eps}
+
+\begin{verbatim}
+Data:    Code One
+Options: version=C
+Encoder: codeone
+\end{verbatim}
+
+\includegraphics{images/codeone-2.eps}
+
+\begin{verbatim}
+Data:    Code One
+Options: version=T-32
+Encoder: codeone
+\end{verbatim}
+
+\includegraphics{images/codeone-3.eps}
+
+\begin{verbatim}
+Data:    406990
+Options: version=S-10
+Encoder: codeone
+\end{verbatim}
+
+\includegraphics{images/codeone-4.eps}
+
+\hypertarget{msi-plessey}{%
+\subsubsection{MSI Plessey}\label{msi-plessey}}
+
+\textbf{MSI Plessey} is a continuous, non-self-checking, arbitrary
+length, numeric barcode symbology.
+
+Also known as: MSI, MSI Modified Plessey.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{plessey}{Plessey (UK)} is the original barcode upon
+  which MSI Modified Plessey was based.
+\end{itemize}
+
+\hypertarget{data-and-options-74}{%
+\paragraph{Data and Options}\label{data-and-options-74}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data can consist of any number of digits.
+\item
+  The \textbf{includecheck} option calculates the check digit or check
+  digits.
+\item
+  The \textbf{includecheckintext} option makes the calculated check
+  characters appear in the human readable text.
+\item
+  The \textbf{checktype} option is used to specify the type of checksum,
+  either:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{checktype=mod10} (default)
+  \item
+    \texttt{checktype=mod1010}
+  \item
+    \texttt{checktype=mod11}
+  \item
+    \texttt{checktype=ncrmod11}
+  \item
+    \texttt{checktype=mod1110}
+  \item
+    \texttt{checktype=ncrmod1110}
+  \end{itemize}
+\item
+  The \textbf{badmod11} option allows a \texttt{checktype=mod11}
+  checksum value of 10 to be encoded with a pair of check digits
+  \emph{10}. Normally in \texttt{checktype=mod11}, any input whose
+  checksum evaluates to \emph{10} is considered invalid having no
+  correct representation.
+\end{itemize}
+
+\hypertarget{examples-48}{%
+\paragraph{Examples}\label{examples-48}}
+
+\begin{verbatim}
+Data:    0123456789
+Options: includecheck includetext
+Encoder: msi
+\end{verbatim}
+
+\includegraphics{images/msi-1.eps}
+
+\begin{verbatim}
+Data:    0123456789
+Options: includecheck checktype=mod1110 includetext includecheckintext
+Encoder: msi
+\end{verbatim}
+
+\includegraphics{images/msi-2.eps}
+
+\begin{verbatim}
+Data:    0123456785
+Options: includecheck checktype=mod11 badmod11 includetext includecheckintext
+Encoder: msi
+\end{verbatim}
+
+\includegraphics{images/msi-3.eps}
+
+\hypertarget{plessey}{%
+\subsubsection{Plessey}\label{plessey}}
+
+\textbf{Plessey} is a continuous, arbitrary length barcode symbology for
+encoding hexadecimal data.
+
+Also known as: Anker Code.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{msi-plessey}{MSI Modified Plessey} is a variant of
+  the Plessey (UK) barcode developed by the MSI Data Corporation.
+\end{itemize}
+
+\hypertarget{data-and-options-75}{%
+\paragraph{Data and Options}\label{data-and-options-75}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data can contain any of the following:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Numbers \texttt{0-9}
+  \item
+    Capital letters \texttt{A-F}
+  \end{itemize}
+\item
+  Two manditory check characters implementing a CRC check are
+  automatically included.
+\item
+  The \textbf{includecheckintext} option makes the calculated check
+  characters appear in the human readable text.
+\item
+  The \textbf{unidirectional} option generates a unidirectional Plessey
+  symbol.
+\end{itemize}
+
+\hypertarget{examples-49}{%
+\paragraph{Examples}\label{examples-49}}
+
+Equivalent symbols, the latter displaying the two mandatory check
+characters:
+
+\begin{verbatim}
+Data:    01234ABCD
+Options: includetext
+Encoder: plessey
+\end{verbatim}
+
+\includegraphics{images/plessey-1.eps}
+
+\begin{verbatim}
+Data:    01234ABCD
+Options: includetext includecheckintext
+Encoder: plessey
+\end{verbatim}
+
+\includegraphics{images/plessey-2.eps}
+
+A unidirectional symbol:
+
+\begin{verbatim}
+Data:    01234ABCD
+Options: unidirectional
+Encoder: plessey
+\end{verbatim}
+
+\includegraphics{images/plessey-3.eps}
+
+\hypertarget{posicode}{%
+\subsubsection{PosiCode}\label{posicode}}
+
+\textbf{PosiCode} is a continuous, variable length, non-self-checking,
+bidirectional barcode symbology that is designed for use within printing
+processes where it is difficult to precisely control the width of a bar.
+
+Standards: ITS PosiCode.
+
+\hypertarget{data-and-options-76}{%
+\paragraph{Data and Options}\label{data-and-options-76}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can hold the following:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    For \emph{standard} symbols: Any extended ASCII data. The default
+    interpretation of data by readers is in accordance with ISO/IEC
+    8859-1.
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \emph{FNC4} function characters will be inserted automatically to
+      allow the encoding of extended ASCII characters.
+    \end{itemize}
+  \item
+    For \emph{limited} symbols: letters \texttt{A-Z}, digits
+    \texttt{0-9}, symbols \texttt{-} and \texttt{.}
+  \end{itemize}
+\item
+  The \textbf{version} option is used to specify the variant of the
+  symbol, either:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{version=a} (default)
+  \item
+    \texttt{version=b}
+  \item
+    \texttt{version=limiteda}
+  \item
+    \texttt{version=limitedb}
+  \end{itemize}
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters, e.g.
+  \texttt{\^{}029} for \emph{GS}, etc.
+\item
+  When the \textbf{parsefnc} option is specified, non-data function
+  characters can be specified by escape sequences:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\^{}FNC1}: FNC1
+  \item
+    \texttt{\^{}FNC2}: FNC2
+  \item
+    \texttt{\^{}FNC3}: FNC3
+  \end{itemize}
+\item
+  The \textbf{inkspread} option can be used to adjust the width of the
+  bars.
+\end{itemize}
+
+\hypertarget{example-posicode}{%
+\paragraph{Example PosiCode}\label{example-posicode}}
+
+Equivalent ways to generate a PosiCode A symbol:
+
+\begin{verbatim}
+Data:    Abc123
+Options: 
+Encoder: posicode
+\end{verbatim}
+
+\begin{verbatim}
+Data:    Abc123
+Options: version=a
+Encoder: posicode
+\end{verbatim}
+
+\includegraphics{images/posicode-1.eps}
+
+PosiCode A including a \emph{GS} (ASCII 29) character:
+
+\begin{verbatim}
+Data:    AB^029CD
+Options: parse
+Encoder: posicode
+\end{verbatim}
+
+\includegraphics{images/posicode-2.eps}
+
+PosiCode A including an \emph{FNC2} special character:
+
+\begin{verbatim}
+Data:    AB^FNC2CD
+Options: parsefnc
+Encoder: posicode
+\end{verbatim}
+
+\includegraphics{images/posicode-3.eps}
+
+PosiCode B symbol with widened bars:
+
+\begin{verbatim}
+Data:    Abc123
+Options: version=b inkspread=-1
+Encoder: posicode
+\end{verbatim}
+
+\includegraphics{images/posicode-4.eps}
+
+\hypertarget{example-limited-posicode}{%
+\paragraph{Example Limited PosiCode}\label{example-limited-posicode}}
+
+Limited PosiCode A with narrowed bars:
+
+\begin{verbatim}
+Data:    ABC-12.3
+Options: version=limiteda
+Encoder: posicode
+\end{verbatim}
+
+\includegraphics{images/posicode-5.eps}
+
+Limited PosiCode B:
+
+\begin{verbatim}
+Data:    ABC-12.3
+Options: version=limitedb
+Encoder: posicode
+\end{verbatim}
+
+\includegraphics{images/posicode-6.eps}
+
+\hypertarget{telepen}{%
+\subsubsection{Telepen}\label{telepen}}
+
+\textbf{Telepen} is an arbitrary length barcode symbology for encoding
+all 128 ASCII characters without the need for shift characters.
+
+Also known as: Telepen Alpha, Telepen Full ASCII.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{telepen-numeric}{Telepen Numeric}.
+\end{itemize}
+
+Standards: USS Telepen.
+
+\hypertarget{data-and-options-77}{%
+\paragraph{Data and Options}\label{data-and-options-77}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data can contain any standard ASCII data, values 0-127.
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters.
+\item
+  The mandatory check digit is automatically included.
+\item
+  \emph{Deprecated: Use \protect\hyperlink{telepen-numeric}{Telepen
+  Numeric} instead. When the \textbf{numeric} option is given, the data
+  is read as either pairs of digits or \texttt{0X}, \texttt{1X}, etc.
+  The singular values \texttt{\^{}000} to \texttt{\^{}016} can also be
+  encoded using the \emph{parse} option.}
+\end{itemize}
+
+\hypertarget{examples-50}{%
+\paragraph{Examples}\label{examples-50}}
+
+\begin{verbatim}
+Data:    Telepen
+Options: includetext
+Encoder: telepen
+\end{verbatim}
+
+\includegraphics{images/telepen-1.eps}
+
+\begin{verbatim}
+Data:    Telepen^013
+Options: parse
+Encoder: telepen
+\end{verbatim}
+
+\includegraphics{images/telepen-2.eps}
+
+\hypertarget{telepen-numeric}{%
+\subsubsection{Telepen Numeric}\label{telepen-numeric}}
+
+\textbf{Telepen Numeric} is a variant of the Telepen symbology for
+efficient encoding of numeric data.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{telepen}{Telepen Alpha}.
+\end{itemize}
+
+Standards: USS Telepen.
+
+\hypertarget{data-and-options-78}{%
+\paragraph{Data and Options}\label{data-and-options-78}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data is provided as either pairs of digits or \texttt{0X},
+  \texttt{1X}, etc. The singular values \texttt{\^{}000} to
+  \texttt{\^{}016} can also be encoded using the \emph{parse} option.
+\item
+  When the \textbf{parse} option is specified, any instances of
+  \texttt{\^{}NNN} in the data field are replaced with their equivalent
+  ASCII value, useful for specifying unprintable characters.
+\item
+  The mandatory check digit is automatically included.
+\end{itemize}
+
+\hypertarget{examples-51}{%
+\paragraph{Examples}\label{examples-51}}
+
+\begin{verbatim}
+Data:    123456
+Options: 
+Encoder: telepennumeric
+\end{verbatim}
+
+\includegraphics{images/telepen-3.eps}
+
+\begin{verbatim}
+Data:    1X345X
+Options: 
+Encoder: telepennumeric
+\end{verbatim}
+
+\includegraphics{images/telepen-4.eps}
+
+\begin{verbatim}
+Data:    1234^005
+Options: parse includetext
+Encoder: telepennumeric
+\end{verbatim}
+
+\includegraphics{images/telepen-5.eps}
+
+\hypertarget{gs1-composite-symbols}{%
+\subsection{GS1 Composite Symbols}\label{gs1-composite-symbols}}
+
+\textbf{GS1 Composite} barcode symbologies consist of a primary
+component beneath a 2D component (variations of
+\protect\hyperlink{micropdf417}{MicroPDF417} and
+\protect\hyperlink{pdf417}{PDF417}) used to encode supplementary
+\protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+formatted data}.
+
+Variants:
+
+\begin{itemize}
+\tightlist
+\item
+  \protect\hyperlink{ean-13-composite}{EAN-13 Composite} is a variant of
+  \protect\hyperlink{ean-13}{EAN-13}.
+\item
+  \protect\hyperlink{ean-8-composite}{EAN-8 Composite} is a variant of
+  \protect\hyperlink{ean-8}{EAN-8}.
+\item
+  \protect\hyperlink{upc-a-composite}{UPC-A Composite} is a variant of
+  \protect\hyperlink{upc-a}{UPC-A}.
+\item
+  \protect\hyperlink{upc-e-composite}{UPC-E Composite} is a variant of
+  \protect\hyperlink{upc-e}{UPC-E}.
+\item
+  \protect\hyperlink{gs1-databar-omnidirectional-composite}{GS1 DataBar
+  Omnidirectional Composite} is a variant of
+  \protect\hyperlink{gs1-databar-omnidirectional}{GS1 DataBar
+  Omnidirectional}.
+\item
+  \protect\hyperlink{gs1-databar-stacked-omnidirectional-composite}{GS1
+  DataBar Stacked Omnidirectional Composite} is a variant of
+  \protect\hyperlink{gs1-databar-stacked-omnidirectional}{GS1 DataBar
+  Stacked Omnidirectional}.
+\item
+  \protect\hyperlink{gs1-databar-expanded-composite}{GS1 DataBar
+  Expanded Composite} is a variant of
+  \protect\hyperlink{gs1-databar-expanded}{GS1 DataBar Expanded}.
+\item
+  \protect\hyperlink{gs1-databar-expanded-stacked-composite}{GS1 DataBar
+  Expanded Stacked Composite} is a variant of
+  \protect\hyperlink{gs1-databar-expanded-stacked}{GS1 DataBar Expanded
+  Stacked}.
+\item
+  \protect\hyperlink{gs1-databar-truncated-composite}{GS1 DataBar
+  Truncated Composite} is a variant of
+  \protect\hyperlink{gs1-databar-truncated}{GS1 DataBar Truncated}.
+\item
+  \protect\hyperlink{gs1-databar-stacked-composite}{GS1 DataBar Stacked
+  Composite} is a variant of \protect\hyperlink{gs1-databar-stacked}{GS1
+  DataBar Stacked}.
+\item
+  \protect\hyperlink{gs1-databar-limited-composite}{GS1 DataBar Limited
+  Composite} is a variant of \protect\hyperlink{gs1-databar-limited}{GS1
+  DataBar Limited}.
+\item
+  \protect\hyperlink{gs1-128-composite}{GS1-128 Composite} is a variant
+  of \protect\hyperlink{gs1-128}{GS1-128}.
+\end{itemize}
+
+Standards: ISO/IEC 24723, ITS EAN.UCC Composite Symbology, AIM ISS -
+EAN.UCC Composite Symbology, GS1 General Specifications.
+
+\hypertarget{data-and-options-79}{%
+\paragraph{Data and Options}\label{data-and-options-79}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field consists of a primary and secondary component separated
+  by a pipe \texttt{\textbar{}} character.
+\item
+  The data for the primary component (preceding the pipe) is entered in
+  a format identical to the corresponding non-composite barcode
+  symbology.
+\item
+  The data for the 2D component (following the pipe) is entered in
+  \protect\hyperlink{gs1-application-identifier-standard-format}{GS1
+  Application Identifier standard format}.
+\item
+  Note that it is not necessary to specify \emph{FNC1} characters since
+  the encoder will insert these automatically where necessary.
+\item
+  \emph{Deprecated.} The \textbf{dontlint} option disables GS1
+  Application Identifier syntax validation allowing images to be
+  generated for input that does not comply with GS1 standards.
+\item
+  For maximum efficiency, if the data for the 2D component contains a
+  number of application identifiers matching any of the specifications
+  below then they should be provided in this given order:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{(11)...(10)...}
+  \item
+    \texttt{(17)...(10)...}
+  \item
+    \texttt{(90)\{0-3\ digits\ not\ starting\ 0\}\{upper\ alpha\}...}
+  \end{itemize}
+\item
+  \emph{Deprecated: Default is best unless your application dictates
+  otherwise.} The \textbf{ccversion} option is used to select a specific
+  2D component:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{ccversion=a} - \protect\hyperlink{cc-a}{CC-A}
+  \item
+    \texttt{ccversion=b} - \protect\hyperlink{cc-b}{CC-B}
+  \item
+    \texttt{ccversion=c} - \protect\hyperlink{cc-c}{CC-C}
+    (\protect\hyperlink{gs1-128-composite}{GS1-128 Composite} only)
+  \item
+    If \textbf{ccversion} is not specified a CC-A component will be
+    selected if the data will fit, otherwise a CC-B component will be
+    used. In the case of \protect\hyperlink{gs1-128-composite}{GS1-128
+    Composite} a CC-C component will be used if the data does not fit
+    within either a CC-A or CC-B component.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{ean-13-composite}{%
+\subsubsection{EAN-13 Composite}\label{ean-13-composite}}
+
+\begin{verbatim}
+Data:    331234567890|(99)1234-abcd
+Options: includetext guardwhitespace
+Encoder: ean13composite
+\end{verbatim}
+
+\includegraphics{images/ean13composite-1.eps}
+
+\hypertarget{ean-8-composite}{%
+\subsubsection{EAN-8 Composite}\label{ean-8-composite}}
+
+\begin{verbatim}
+Data:    12345670|(21)A12345678
+Options: includetext guardwhitespace
+Encoder: ean8composite
+\end{verbatim}
+
+\includegraphics{images/ean8composite-1.eps}
+
+\hypertarget{upc-a-composite}{%
+\subsubsection{UPC-A Composite}\label{upc-a-composite}}
+
+\begin{verbatim}
+Data:    01600033610|(99)1234-abcd
+Options: includetext
+Encoder: upcacomposite
+\end{verbatim}
+
+\includegraphics{images/upcacomposite-1.eps}
+
+\hypertarget{upc-e-composite}{%
+\subsubsection{UPC-E Composite}\label{upc-e-composite}}
+
+\begin{verbatim}
+Data:    0121230|(15)021231
+Options: includetext
+Encoder: upcecomposite
+\end{verbatim}
+
+\includegraphics{images/upcecomposite-1.eps}
+
+\hypertarget{gs1-databar-omnidirectional-composite}{%
+\subsubsection{GS1 DataBar Omnidirectional
+Composite}\label{gs1-databar-omnidirectional-composite}}
+
+\begin{verbatim}
+Data:    (01)03612345678904|(11)990102
+Options: 
+Encoder: databaromnicomposite
+\end{verbatim}
+
+\includegraphics{images/databaromnicomposite-1.eps}
+
+\hypertarget{gs1-databar-stacked-omnidirectional-composite}{%
+\subsubsection{GS1 DataBar Stacked Omnidirectional
+Composite}\label{gs1-databar-stacked-omnidirectional-composite}}
+
+\begin{verbatim}
+Data:    (01)03612345678904|(11)990102
+Options: 
+Encoder: databarstackedomnicomposite
+\end{verbatim}
+
+\includegraphics{images/databarstackedomnicomposite-1.eps}
+
+\hypertarget{gs1-databar-expanded-composite}{%
+\subsubsection{GS1 DataBar Expanded
+Composite}\label{gs1-databar-expanded-composite}}
+
+\begin{verbatim}
+Data:    (01)93712345678904(3103)001234|(91)1A2B3C4D5E
+Options: 
+Encoder: databarexpandedcomposite
+\end{verbatim}
+
+\includegraphics{images/databarexpandedcomposite-1.eps}
+
+\hypertarget{gs1-databar-expanded-stacked-composite}{%
+\subsubsection{GS1 DataBar Expanded Stacked
+Composite}\label{gs1-databar-expanded-stacked-composite}}
+
+\begin{verbatim}
+Data:    (01)00012345678905(10)ABCDEF|(21)12345678
+Options: segments=4
+Encoder: databarexpandedstackedcomposite
+\end{verbatim}
+
+\includegraphics{images/databarexpandedstackedcomposite-1.eps}
+
+\hypertarget{gs1-databar-truncated-composite}{%
+\subsubsection{GS1 DataBar Truncated
+Composite}\label{gs1-databar-truncated-composite}}
+
+\begin{verbatim}
+Data:    (01)03612345678904|(11)990102
+Options: 
+Encoder: databartruncatedcomposite
+\end{verbatim}
+
+\includegraphics{images/databartruncatedcomposite-1.eps}
+
+\hypertarget{gs1-databar-stacked-composite}{%
+\subsubsection{GS1 DataBar Stacked
+Composite}\label{gs1-databar-stacked-composite}}
+
+\begin{verbatim}
+Data:    (01)03412345678900|(17)010200
+Options: 
+Encoder: databarstackedcomposite
+\end{verbatim}
+
+\includegraphics{images/databarstackedcomposite-1.eps}
+
+\hypertarget{gs1-databar-limited-composite}{%
+\subsubsection{GS1 DataBar Limited
+Composite}\label{gs1-databar-limited-composite}}
+
+\begin{verbatim}
+Data:    (01)03512345678907|(21)abcdefghijklmnopqrstuv
+Options: 
+Encoder: databarlimitedcomposite
+\end{verbatim}
+
+\includegraphics{images/databarlimitedcomposite-1.eps}
+
+\hypertarget{gs1-128-composite}{%
+\subsubsection{GS1-128 Composite}\label{gs1-128-composite}}
+
+GS1-128 Composite with a CC-A 2D component:
+
+\begin{verbatim}
+Data:    (01)03212345678906|(21)A1B2C3D4E5F6G7H8
+Options: 
+Encoder: gs1-128composite
+\end{verbatim}
+
+\includegraphics{images/ean128composite-1.eps}
+
+GS1-128 Composite with a CC-C 2D component:
+
+\begin{verbatim}
+Data:    (00)030123456789012340|(02)13012345678909(37)24(10)1234567ABCDEFG
+Options: ccversion=c
+Encoder: gs1-128composite
+\end{verbatim}
+
+\includegraphics{images/ean128composite-2.eps}
+
+\hypertarget{cc-a}{%
+\subsubsection{CC-A}\label{cc-a}}
+
+Isolated CC-A 2D component:
+
+\begin{verbatim}
+Data:    (01)95012345678903
+Options: ccversion=a cccolumns=3
+Encoder: gs1-cc
+\end{verbatim}
+
+\includegraphics{images/gs1composite-1.eps}
+
+\hypertarget{cc-b}{%
+\subsubsection{CC-B}\label{cc-b}}
+
+Isolated CC-B 2D component:
+
+\begin{verbatim}
+Data:    (01)95012345678903(3103)000123
+Options: ccversion=b cccolumns=4
+Encoder: gs1-cc
+\end{verbatim}
+
+\includegraphics{images/gs1composite-2.eps}
+
+\hypertarget{cc-c}{%
+\subsubsection{CC-C}\label{cc-c}}
+
+Isolated CC-C 2D component:
+
+\begin{verbatim}
+Data:    (02)13012345678909(37)24(10)1234567ABCDEFG
+Options: ccversion=c cccolumns=5
+Encoder: gs1-cc
+\end{verbatim}
+
+\includegraphics{images/gs1composite-3.eps}
+
+\hypertarget{raw-symbols}{%
+\subsection{Raw Symbols}\label{raw-symbols}}
+
+\hypertarget{daft}{%
+\subsubsection{DAFT}\label{daft}}
+
+\textbf{DAFT} is an encoder for directly specifying the descender,
+ascender, full-height, tracker-bar succession for a custom 4 state
+barcode symbol.
+
+\hypertarget{data-and-options-80}{%
+\paragraph{Data and Options}\label{data-and-options-80}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field contains a sequence of the characters \texttt{D},
+  \texttt{A}, \texttt{F} or \texttt{T} to denote the descender,
+  ascender, full-height and tracker bars of a custom 4 state symbol.
+\end{itemize}
+
+\hypertarget{example-20}{%
+\paragraph{Example}\label{example-20}}
+
+\begin{verbatim}
+Data:    FATDAFTDAD
+Options: 
+Encoder: daft
+\end{verbatim}
+
+\includegraphics{images/daft-1.eps}
+
+\hypertarget{flattermarken}{%
+\subsubsection{Flattermarken}\label{flattermarken}}
+
+\textbf{Flattermarken} are identification marks used in book production
+that facilitate the proper arrangement of bound sections by a book
+binder.
+
+\hypertarget{data-and-options-81}{%
+\paragraph{Data and Options}\label{data-and-options-81}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field can holding any sequence of digits corresponds to a 9
+  module width with the following meaning:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{1-9}: a single mark exists in the corresponding module
+    position
+  \item
+    \texttt{0}: unmarked sequence of modules
+  \end{itemize}
+\item
+  The \textbf{inkspread} option can be used to adjust the width of the
+  bars.
+\item
+  If greater fidelity is required then the \protect\hyperlink{raw}{raw}
+  encoder should be used instead.
+\end{itemize}
+
+\hypertarget{example-21}{%
+\paragraph{Example}\label{example-21}}
+
+\begin{verbatim}
+Data:    1304
+Options: inkspread=-1
+Encoder: flattermarken
+\end{verbatim}
+
+\includegraphics{images/flattermarken-1.eps}
+
+\hypertarget{raw}{%
+\subsubsection{Raw}\label{raw}}
+
+The \textbf{raw} encoder is used for directly specifying the space/bar
+succession of a custom barcode symbol.
+
+\hypertarget{data-and-options-82}{%
+\paragraph{Data and Options}\label{data-and-options-82}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field contains an alternating sequence of widths (1 to 9) for
+  the bars and spaces of a custom symbol.
+\end{itemize}
+
+\hypertarget{example-22}{%
+\paragraph{Example}\label{example-22}}
+
+\begin{verbatim}
+Data:    331132131313411122131311333213114131131221323
+Options: height=0.5
+Encoder: raw
+\end{verbatim}
+
+\includegraphics{images/raw-1.eps}
+
+\hypertarget{partial-symbols}{%
+\subsection{Partial Symbols}\label{partial-symbols}}
+
+\hypertarget{ean-2}{%
+\subsubsection{EAN-2}\label{ean-2}}
+
+\textbf{EAN-2} is the two-digit add-on code that accompanies a EAN or
+UPC type barcode symbol such as an \protect\hyperlink{isbn}{ISBN} or
+\protect\hyperlink{issn}{ISSN}.
+
+Also known as: Two-Digit Add-On, Two-Digit Supplement, UPC-2
+
+\hypertarget{data-and-options-83}{%
+\paragraph{Data and Options}\label{data-and-options-83}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field must contain two digits.
+\item
+  The \textbf{includetext} option should normally be supplied.
+\end{itemize}
+
+\hypertarget{example-23}{%
+\paragraph{Example}\label{example-23}}
+
+\begin{verbatim}
+Data:    05
+Options: includetext guardwhitespace
+Encoder: ean2
+\end{verbatim}
+
+\includegraphics{images/ean2-1.eps}
+
+\hypertarget{ean-5}{%
+\subsubsection{EAN-5}\label{ean-5}}
+
+\textbf{EAN-5} is the five-digit add-on code that accompanies an EAN or
+UPC type barcode symbol such as an \protect\hyperlink{isbn}{ISBN} or
+\protect\hyperlink{issn}{ISSN}.
+
+Also known as: Five-Digit Add-On, Five-Digit Supplement, UPC-5
+
+\hypertarget{data-and-options-84}{%
+\paragraph{Data and Options}\label{data-and-options-84}}
+
+\begin{itemize}
+\tightlist
+\item
+  The data field must contain five digits.
+\item
+  The \textbf{includetext} option should normally be supplied.
+\end{itemize}
+
+\hypertarget{example-24}{%
+\paragraph{Example}\label{example-24}}
+
+\begin{verbatim}
+Data:    90200
+Options: includetext guardwhitespace
+Encoder: ean5
+\end{verbatim}
+
+\includegraphics{images/ean5-1.eps}
+
+\hypertarget{gs1-application-identifier-standard-format}{%
+\subsection{GS1 Application Identifier Standard
+Format}\label{gs1-application-identifier-standard-format}}
+
+Certain barcode symbologies (including
+\protect\hyperlink{gs1-128}{GS1-128},
+\protect\hyperlink{gs1-databar-expanded}{GS1 DataBar Expanded},
+\protect\hyperlink{gs1-datamatrix}{GS1 DataMatrix},
+\protect\hyperlink{gs1-qr-code}{GS1 QR Code} and
+\protect\hyperlink{gs1-composite-symbols}{GS1 Composite Symbols})
+represent standardized GS1 data and require that their data field is
+provided in GS1 Application Identifier standard format, consisting of a
+concatenated string of \emph{AIs} along with their corresponding values.
+
+The AIs are a set of approximately one hundred two-, three- or
+four-digit prefixes written within parentheses that represent physical
+attributes and business information, e.g.
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{(00)} is an eighteen-digit SSCC.
+\item
+  \emph{(01)} is a fourteen-digit GTIN.
+\item
+  \emph{(403)} is a variable-length routing code.
+\end{itemize}
+
+The following input represents GTIN \emph{0061414199996}; Expiration
+Date \emph{1 January 2010}; Batch \emph{123ABC}; Serial
+\emph{1234567890}:
+
+\begin{verbatim}
+(01)0061414199996(17)100101(10)123ABC(21)1234567890
+\end{verbatim}
+
+Encoders for barcode symbologies that expect data in GS1 Application
+Identifier standard format will take care of parsing the input and
+inserting any necessary \emph{FNC1} characters to delimit variable
+length fields.
+
+Note: Instances of parentheses, \texttt{(} and \texttt{)}, within
+Application Identifier values in the input must be escaped using the
+\protect\hyperlink{input-processingux5cux23parse}{\texttt{parse} option}
+as \texttt{\^{}040} and \texttt{\^{}041}, respectively.
+
+\hypertarget{gs1-application-identifier-linting}{%
+\paragraph{GS1 Application Identifier
+Linting}\label{gs1-application-identifier-linting}}
+
+The input is checked against the structural rules for the GS1
+Application Identifiers, as described in
+\href{https://www.linkedin.com/pulse/gs1-application-identifier-syntax-dictionary-terry-burton/}{this
+article}, unless the \textbf{dontlint} option is given. The Application
+Identifier definitions are provided in the
+\href{http://www.gs1.org/barcodes-epcrfid-id-keys/gs1-general-specifications}{GS1
+General Specifications}.
+
+\hypertarget{options-reference}{%
+\section{Options Reference}\label{options-reference}}
+
+\hypertarget{check-digits}{%
+\subsection{Check Digits}\label{check-digits}}
+
+\hypertarget{includecheck}{%
+\subsubsection{includecheck}\label{includecheck}}
+
+Generate check digit(s) for symbologies where the use of check digits is
+optional.
+
+\hypertarget{example-25}{%
+\paragraph{Example}\label{example-25}}
+
+Calculate the optional check characters of this Code 93 symbol:
+
+\begin{verbatim}
+Data:    CHECK ME OUT
+Options: includecheck
+Encoder: code93
+\end{verbatim}
+
+\includegraphics{images/optincludecheck.eps}
+
+\hypertarget{includecheckintext}{%
+\subsubsection{includecheckintext}\label{includecheckintext}}
+
+Show the calculated check digit in the human readable text.
+
+\hypertarget{notes}{%
+\paragraph{Notes}\label{notes}}
+
+\begin{itemize}
+\tightlist
+\item
+  For barcode symbologies where the check digit is not mandatory, this
+  option must be used in combination with \textbf{includecheck}.
+\item
+  If any part of the checksum does not have a printable representation
+  then that part is not displayed.
+\end{itemize}
+
+\hypertarget{example-26}{%
+\paragraph{Example}\label{example-26}}
+
+Display the check digit of this Royal Mail barcode:
+
+\begin{verbatim}
+Data:    LE28HS9Z
+Options: includetext includecheckintext
+Encoder: royalmail
+\end{verbatim}
+
+\includegraphics{images/optincludecheckintext.eps}
+
+\hypertarget{input-processing}{%
+\subsection{Input Processing}\label{input-processing}}
+
+\hypertarget{parse}{%
+\subsubsection{parse}\label{parse}}
+
+In supporting barcode symbologies, when the \emph{parse} option is
+specified, any instances of \texttt{\^{}NNN} in the data field are
+replaced with their equivalent ASCII value, useful for specifying
+unprintable characters.
+
+Additionally, control character names can be used to specify equivalent
+ASCII values, as follows:
+
+\begin{longtable}[]{@{}lr@{}}
+\toprule()
+Sequence & ASCII value \\
+\midrule()
+\endhead
+\texttt{\^{}NUL} & 0 \\
+\texttt{\^{}SOH} & 1 \\
+\texttt{\^{}STX} & 2 \\
+\texttt{\^{}ETX} & 3 \\
+\texttt{\^{}EOT} & 4 \\
+\texttt{\^{}ENQ} & 5 \\
+\texttt{\^{}ACK} & 6 \\
+\texttt{\^{}BEL} & 7 \\
+\texttt{\^{}BS} & 8 \\
+\texttt{\^{}TAB} & 9 \\
+\texttt{\^{}LF} & 10 \\
+\texttt{\^{}VT} & 11 \\
+\texttt{\^{}FF} & 12 \\
+\texttt{\^{}CR} & 13 \\
+\texttt{\^{}DLE} & 16 \\
+\texttt{\^{}DC1} & 17 \\
+\texttt{\^{}DC2} & 18 \\
+\texttt{\^{}DC3} & 19 \\
+\texttt{\^{}DC4} & 20 \\
+\texttt{\^{}NAK} & 21 \\
+\texttt{\^{}SYN} & 22 \\
+\texttt{\^{}ETB} & 23 \\
+\texttt{\^{}CAN} & 24 \\
+\texttt{\^{}EM} & 25 \\
+\texttt{\^{}SUB} & 26 \\
+\texttt{\^{}ESC} & 27 \\
+\texttt{\^{}FS} & 28 \\
+\texttt{\^{}GS} & 29 \\
+\texttt{\^{}RS} & 30 \\
+\texttt{\^{}US} & 31 \\
+\bottomrule()
+\end{longtable}
+
+ASCII control characters \texttt{SO} and \texttt{SI} cannot be encoded
+by name (since \texttt{SO} would prefix clash with \texttt{SOH}).
+
+Note: When this option is enabled, literal instances of "\^{}" in the
+data should be escaped as \texttt{\^{}094} to avoid replacement if the
+subsequent data characters represent a valid substitution. For example,
+literal "\^{}123" in the input data can be escaped as
+\texttt{\^{}094123}, literal "\^{}RS" in the data can be escaped as
+\texttt{\^{}094RS}, and literal "\^{}ABC" in the data cam be escaped as
+\texttt{\^{}094ABC} (in case \texttt{\^{}ABC} becomes a valid
+substitution in the future).
+
+\hypertarget{example-27}{%
+\paragraph{Example}\label{example-27}}
+
+Equivalent symbols:
+
+\begin{verbatim}
+Data:    This is Data Matrix
+Options: 
+Encoder: datamatrix
+\end{verbatim}
+
+\begin{verbatim}
+Data:    This is ^068ata Matrix
+Options: parse
+Encoder: datamatrix
+\end{verbatim}
+
+\includegraphics{images/optparse.eps}
+
+\hypertarget{parsefnc}{%
+\subsubsection{parsefnc}\label{parsefnc}}
+
+In supporting barcode symbologies, when the \textbf{parsefnc} option is
+specified, non-data function characters can be specified by escaped
+combinations such as \texttt{\^{}FNC1}, \texttt{\^{}FNC4},
+\texttt{\^{}SFT/} and \texttt{\^{}ECI000003}.
+
+Note: When this option is enabled, literal instances of \texttt{\^{}} in
+the input data can be escaped as \texttt{\^{}\^{}}.
+
+\hypertarget{example-28}{%
+\paragraph{Example}\label{example-28}}
+
+Manually-composed Code 93 Extended demonstrating use of the special
+shift combination \texttt{(/)A} to represent \emph{!}:
+
+\begin{verbatim}
+Data:    TERRY^SFT/A
+Options: parsefnc includecheck
+Encoder: code93
+\end{verbatim}
+
+\includegraphics{images/optparsefnc.eps}
+
+\hypertarget{symbol-dimensions}{%
+\subsection{Symbol Dimensions}\label{symbol-dimensions}}
+
+\hypertarget{height}{%
+\subsubsection{height}\label{height}}
+
+Height of longest bar, in inches.
+
+\hypertarget{example-29}{%
+\paragraph{Example}\label{example-29}}
+
+A 1/2 inch tall EAN-13:
+
+\begin{verbatim}
+Data:    977147396801
+Options: includetext height=0.5
+Encoder: ean13
+\end{verbatim}
+
+\includegraphics{images/optheight.eps}
+
+\hypertarget{width}{%
+\subsubsection{width}\label{width}}
+
+Stretch the symbol to precisely this width, in inches.
+
+\hypertarget{notes-1}{%
+\paragraph{Notes}\label{notes-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  This parameter literally stretches the symbol and text to the desired
+  width which will may distort the human readable text.
+\item
+  For information about resizing symbols read the article on
+  \protect\hyperlink{resizing-symbols}{resizing symbols}.
+\end{itemize}
+
+\hypertarget{example-30}{%
+\paragraph{Example}\label{example-30}}
+
+A 2 inch wide Code 93 symbol:
+
+\begin{verbatim}
+Data:    TERRY
+Options: width=2
+Encoder: code93
+\end{verbatim}
+
+\includegraphics{images/optwidth.eps}
+
+\hypertarget{element-properties}{%
+\subsection{Element Properties}\label{element-properties}}
+
+These are options that allow you to compensate for print gain or print
+loss resulting from the properties of the printing process or substrate.
+
+\hypertarget{inkspread}{%
+\subsubsection{inkspread}\label{inkspread}}
+
+For linear barcodes, the amount by which to reduce the bar widths to
+compensate for inkspread, in points.
+
+For matrix barcodes, the amount by which the reduce the width and height
+of dark modules to compensate for inkspread, in points.
+
+\hypertarget{notes-2}{%
+\paragraph{Notes}\label{notes-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  Negative values will increase the bar width.
+\end{itemize}
+
+\hypertarget{example-31}{%
+\paragraph{Example}\label{example-31}}
+
+Code 39 for a printer with very runny ink:
+
+\begin{verbatim}
+Data:    TEZ
+Options: inkspread=0.6
+Encoder: code39
+\end{verbatim}
+
+\includegraphics{images/optinkspread.eps}
+
+\hypertarget{inkspreadh}{%
+\subsubsection{inkspreadh}\label{inkspreadh}}
+
+For matrix barcodes, the amount by which the reduce the width of dark
+modules to compensate for inkspread, in points.
+
+Note: inkspreadh is most useful for stacked-linear type barcodes such as
+PDF417 and Codablock F.
+
+\hypertarget{inkspreadv}{%
+\subsubsection{inkspreadv}\label{inkspreadv}}
+
+For matrix barcodes, the amount by which the reduce the height of dark
+modules to compensate for inkspread, in points.
+
+\hypertarget{dotty}{%
+\subsubsection{dotty}\label{dotty}}
+
+For matrix barcodes, render the modules as dots rather than squares. The
+dot radius can be adjusted using the \textbf{inkspread} option.
+
+\hypertarget{text-properties}{%
+\subsection{Text Properties}\label{text-properties}}
+
+\hypertarget{includetext}{%
+\subsubsection{includetext}\label{includetext}}
+
+Show human readable text for data in symbol.
+
+\hypertarget{notes-3}{%
+\paragraph{Notes}\label{notes-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  If a character in the data does not have a printable representation
+  then it is not displayed
+\end{itemize}
+
+\hypertarget{example-32}{%
+\paragraph{Example}\label{example-32}}
+
+Display the text encoded in this Code 39 symbol:
+
+\begin{verbatim}
+Data:    SEE ME
+Options: includetext
+Encoder: code39
+\end{verbatim}
+
+\includegraphics{images/optincludetext.eps}
+
+\hypertarget{textfont}{%
+\subsubsection{textfont}\label{textfont}}
+
+The PostScript font name for text.
+
+\hypertarget{notes-4}{%
+\paragraph{Notes}\label{notes-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  The font name must be the literal name of a PostScript font that is
+  available to the system.
+\item
+  This option should be used in combination with the
+  \textbf{includetext} option.
+\item
+  The PostScript font name for a font file can be determined with the
+  following command from the fontconfig library:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{fc-scan\ -\/-format\ "\%\{postscriptname\}\textbackslash{}n"\ /usr/share/fonts/truetype/somefont.ttf}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{example-33}{%
+\paragraph{Example}\label{example-33}}
+
+Customise the human readable text of this USPS POSTNET symbol
+
+\begin{verbatim}
+Data:    64501
+Options: includetext textfont=Times-Roman textsize=9
+Encoder: postnet
+\end{verbatim}
+
+\includegraphics{images/opttextfont.eps}
+
+\hypertarget{textsize}{%
+\subsubsection{textsize}\label{textsize}}
+
+The font size of the text in points.
+
+\hypertarget{note}{%
+\paragraph{Note}\label{note}}
+
+\begin{itemize}
+\tightlist
+\item
+  This option should be used in combination with the
+  \textbf{includetext} option.
+\end{itemize}
+
+\hypertarget{example-34}{%
+\paragraph{Example}\label{example-34}}
+
+Customise the human readable text of this USPS POSTNET symbol
+
+\begin{verbatim}
+Data:    64501
+Options: includetext textfont=Times-Roman textsize=9
+Encoder: postnet
+\end{verbatim}
+
+\includegraphics{images/opttextfont.eps}
+
+\hypertarget{textgaps}{%
+\subsubsection{textgaps}\label{textgaps}}
+
+The inter-character spacing of the text.
+
+\hypertarget{note-1}{%
+\paragraph{Note}\label{note-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  This option should be used in combination with the \textbf{textxalign}
+  option.
+\end{itemize}
+
+\hypertarget{alttext}{%
+\subsubsection{alttext}\label{alttext}}
+
+Specify text to display other than what is provided in the data field.
+
+\hypertarget{note-2}{%
+\paragraph{Note}\label{note-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  This option should be used in combination with the includetext option.
+\end{itemize}
+
+\hypertarget{text-positioning}{%
+\subsection{Text Positioning}\label{text-positioning}}
+
+\hypertarget{textxalign}{%
+\subsubsection{textxalign}\label{textxalign}}
+
+The \textbf{textxalign} option is used to specify where to horizontally
+position the text.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{textxalign=offleft}
+\item
+  \texttt{textxalign=left}
+\item
+  \texttt{textxalign=center}
+\item
+  \texttt{textxalign=right}
+\item
+  \texttt{textxalign=offright}
+\item
+  \texttt{textxalign=justify}
+\end{itemize}
+
+\hypertarget{textyalign}{%
+\subsubsection{textyalign}\label{textyalign}}
+
+The \textbf{textyalign} option is used to specify where to vertically
+position the text.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{textyalign=below}
+\item
+  \texttt{textyalign=center}
+\item
+  \texttt{textyalign=above}
+\end{itemize}
+
+\hypertarget{textxoffset}{%
+\subsubsection{textxoffset}\label{textxoffset}}
+
+The horizontal position of the text in points relative to the default
+position.
+
+\hypertarget{textyoffset}{%
+\subsubsection{textyoffset}\label{textyoffset}}
+
+The vertical position of the text in points relative to the default
+position.
+
+\hypertarget{notes-5}{%
+\paragraph{Notes}\label{notes-5}}
+
+\begin{itemize}
+\tightlist
+\item
+  By default (in the absence of \textbf{textxalign} or
+  \textbf{textyalign}), each character of text is placed immediately
+  below the corresponding modules where this is possible.
+\item
+  Where there isn\textquotesingle t such a direct relationship then the
+  default is to position the text centrally beneath the symbol.
+\end{itemize}
+
+\hypertarget{border-properties}{%
+\subsection{Border Properties}\label{border-properties}}
+
+\hypertarget{showborder}{%
+\subsubsection{showborder}\label{showborder}}
+
+Display a border around the symbol.
+
+\hypertarget{example-35}{%
+\paragraph{Example}\label{example-35}}
+
+Display a customised border around this Codabar symbol:
+
+\begin{verbatim}
+Data:    A3+14-63B
+Options: includetext showborder borderwidth=2 borderbottom=8
+Encoder: rationalizedCodabar
+\end{verbatim}
+
+\includegraphics{images/optborder.eps}
+
+\hypertarget{borderwidth}{%
+\subsubsection{borderwidth}\label{borderwidth}}
+
+Width of the border, in points.
+
+\hypertarget{borderleft}{%
+\subsubsection{borderleft}\label{borderleft}}
+
+Gap between the left edge of the border and the symbol, in points.
+
+\hypertarget{borderright}{%
+\subsubsection{borderright}\label{borderright}}
+
+Gap between the right edge of the border and the symbol, in points.
+
+\hypertarget{bordertop}{%
+\subsubsection{bordertop}\label{bordertop}}
+
+Gap between the top edge of the border and the symbol, in points.
+
+\hypertarget{borderbottom}{%
+\subsubsection{borderbottom}\label{borderbottom}}
+
+Gap between the bottom edge of the border and the symbol, in points.
+
+\hypertarget{symbol-colors}{%
+\subsection{Symbol Colors}\label{symbol-colors}}
+
+\hypertarget{barcolor}{%
+\subsubsection{barcolor}\label{barcolor}}
+
+Color of the bars or dark modules, either as a hex \texttt{RRGGBB} value
+or a hex \texttt{CCMMYYKK} value.
+
+\hypertarget{backgroundcolor}{%
+\subsubsection{backgroundcolor}\label{backgroundcolor}}
+
+Color of the light background or light modules, either as a hex
+\texttt{RRGGBB} value or a hex \texttt{CCMMYYKK} value.
+
+\hypertarget{bordercolor}{%
+\subsubsection{bordercolor}\label{bordercolor}}
+
+Color of the border, either as a hex \texttt{RRGGBB} value or a hex
+\texttt{CCMMYYKK} value.
+
+\hypertarget{textcolor}{%
+\subsubsection{textcolor}\label{textcolor}}
+
+Color of the respective component, either as a hex \texttt{RRGGBB} value
+or a hex \texttt{CCMMYYKK} value.
+
+\hypertarget{examples-52}{%
+\paragraph{Examples}\label{examples-52}}
+
+Colorized Code 11 symbol using the RGB colour space:
+
+\begin{verbatim}
+Data:    0123456789
+Options: includetext barcolor=AA0000 textcolor=008888 backgroundcolor=FFFF60 showborder bordercolor=0000FF textyoffset=-8
+Encoder: code11
+\end{verbatim}
+
+\includegraphics{images/optcolorrgb.eps}
+
+Colorized Code 11 symbol using the CMYK colour space:
+
+\begin{verbatim}
+Data:    0123456789
+Options: includetext barcolor=AA000000 textcolor=00888844 backgroundcolor=CCCC6000 showborder bordercolor=00FF0088
+Encoder: code11
+\end{verbatim}
+
+\includegraphics{images/optcolorcmyk.eps}
+
+\hypertarget{ean-upc-add-ons}{%
+\subsection{EAN-UPC Add Ons}\label{ean-upc-add-ons}}
+
+\hypertarget{addontextfont}{%
+\subsubsection{addontextfont}\label{addontextfont}}
+
+The font name of the add on text.
+
+\hypertarget{notes-6}{%
+\paragraph{Notes}\label{notes-6}}
+
+\begin{itemize}
+\tightlist
+\item
+  The font name must be the literal name of a PostScript available font.
+\item
+  These options must be used in combination with the
+  \textbf{includetext} option.
+\end{itemize}
+
+\hypertarget{addontextsize}{%
+\subsubsection{addontextsize}\label{addontextsize}}
+
+The size of the add on text, in points
+
+\hypertarget{notes-7}{%
+\paragraph{Notes}\label{notes-7}}
+
+\begin{itemize}
+\tightlist
+\item
+  These options must be used in combination with the
+  \textbf{includetext} option.
+\end{itemize}
+
+\hypertarget{example-36}{%
+\paragraph{Example}\label{example-36}}
+
+Customise the human readable text of this USPS POSTNET symbol
+
+\begin{verbatim}
+Data:    64501
+Options: includetext textfont=Times-Roman textsize=9
+Encoder: postnet
+\end{verbatim}
+
+\includegraphics{images/opttextfont.eps}
+
+\hypertarget{addontextxoffset}{%
+\subsubsection{addontextxoffset}\label{addontextxoffset}}
+
+Overrides the default horizontal positioning of the add on text.
+
+\hypertarget{addontextyoffset}{%
+\subsubsection{addontextyoffset}\label{addontextyoffset}}
+
+Overrides the default vertical positioning of the add on text.
+
+\hypertarget{ean-upc-guards}{%
+\subsection{EAN-UPC Guards}\label{ean-upc-guards}}
+
+\hypertarget{guardwhitespace}{%
+\subsubsection{guardwhitespace}\label{guardwhitespace}}
+
+Display whitespace guards.
+
+\hypertarget{example-37}{%
+\paragraph{Example}\label{example-37}}
+
+ISBN-13 with tiny whitespace guard:
+
+\begin{verbatim}
+Data:    978-1-873671-00
+Options: includetext guardwhitespace guardwidth=3 guardheight=3
+Encoder: isbn
+\end{verbatim}
+
+\includegraphics{images/optguardsize.eps}
+
+\hypertarget{guardwidth}{%
+\subsubsection{guardwidth}\label{guardwidth}}
+
+Width of the whitespace guards, in points.
+
+\hypertarget{guardheight}{%
+\subsubsection{guardheight}\label{guardheight}}
+
+Height of the whitespace guards, in points.
+
+\hypertarget{guardleftpos}{%
+\subsubsection{guardleftpos}\label{guardleftpos}}
+
+Override the default horizontal position of the left whitespace guard.
+
+\hypertarget{guardrightpos}{%
+\subsubsection{guardrightpos}\label{guardrightpos}}
+
+Override the default horizontal position of the right whitespace guard.
+
+\hypertarget{guardleftypos}{%
+\subsubsection{guardleftypos}\label{guardleftypos}}
+
+Override the default vertical position of the left whitespace guard.
+
+\hypertarget{guardrightypos}{%
+\subsubsection{guardrightypos}\label{guardrightypos}}
+
+Override the default vertical position of the right whitespace guard.
+
+\hypertarget{example-38}{%
+\paragraph{Example}\label{example-38}}
+
+EAN-8 with very mangled whitespace guards:
+
+\begin{verbatim}
+Data:    01335583
+Options: includetext guardwhitespace guardleftpos=14 guardrightpos=7 guardleftypos=15 guardrightypos=4
+Encoder: ean8
+\end{verbatim}
+
+\includegraphics{images/optguardpos.eps}

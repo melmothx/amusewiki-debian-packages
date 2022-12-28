@@ -1,0 +1,6 @@
+soft pgf		# Only needed for optional pgf-filehook
+soft fink		# compatibility patches if loaded
+soft listings	# compatibility patches if loaded
+soft memoir	    # compatibility patches if loaded
+soft scrlfile   # compatibility patches if loaded
+soft ydoc		# for compilation of package manual only

@@ -1,0 +1,262 @@
+%%
+%% This is file `ctex-heading-beamer.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% ctex.dtx  (with options: `heading,beamer')
+%% 
+%%     Copyright (C) 2003--2022
+%%     CTEX.ORG and any individual authors listed in the documentation.
+%% ---------------------------------------------------------------------
+%% 
+%%     This work may be distributed and/or modified under the
+%%     conditions of the LaTeX Project Public License, either
+%%     version 1.3c of this license or (at your option) any later
+%%     version. This version of this license is in
+%%        http://www.latex-project.org/lppl/lppl-1-3c.txt
+%%     and the latest version of this license is in
+%%        http://www.latex-project.org/lppl.txt
+%%     and version 1.3 or later is part of all distributions of
+%%     LaTeX version 2005/12/01 or later.
+%% 
+%%     This work has the LPPL maintenance status "maintained".
+%% 
+%% ---------------------------------------------------------------------
+%% 
+\GetIdInfo$Id: ctex.dtx 13a2256 2022-07-14 18:54:09 +0800 Qing Lee <sobenlee@gmail.com> $
+  {Heading modification for beamer (CTEX)}
+\ProvidesExplFile{ctex-beamer.def}
+  {\ExplFileDate}{2.5.10}{\ExplFileDescription}
+\seq_const_from_clist:Nn \c__ctex_headings_seq
+  { part , section , subsection }
+\cs_new_protected:Npn \__ctex_initial_heading:n #1
+  {
+    \tl_new:c { CTEX@pre#1 }
+    \tl_new:c { CTEX@post#1 }
+    \tl_const:cx { CTEXthe#1 }
+      {
+        \exp_not:c { CTEX@pre#1 }
+        \exp_not:c { CTEX@the#1 }
+        \exp_not:c { CTEX@post#1 }
+      }
+    \tl_const:cx { CTEX@#1name }
+      {
+        \group_begin:
+          \exp_not:c { CTEX@#1@nameformat }
+            {
+              \exp_not:c { CTEX@pre#1 }
+              \exp_not:N \tl_if_empty:NTF
+              \exp_not:c { CTEX@#1@numberformat }
+                { \exp_not:c { CTEX@the#1 } }
+                {
+                  \group_begin:
+                    \exp_not:c { CTEX@#1@numberformat }
+                    \exp_not:c { CTEX@the#1 }
+                  \group_end:
+                }
+              \exp_not:c { CTEX@post#1 }
+            }
+        \group_end:
+      }
+  }
+\cs_new_protected:Npn \__ctex_def_heading_keys:n #1
+  {
+    \exp_args:NNe \tl_put_right:Nn \l__ctex_tmp_tl
+      {
+        #1                  .meta:nn = { ctex / #1 } { ##1 } ,
+        #1 / name            .code:n =
+          { \ctex_assign_heading_name:nn {#1} { ##1 } } ,
+        #1 / number        .tl_set:N = \exp_not:c { CTEX@the#1 } ,
+        #1 / beforeskip    .tl_set:N = \exp_not:c { CTEX@#1@beforeskip } ,
+        #1 / afterskip     .tl_set:N = \exp_not:c { CTEX@#1@afterskip} ,
+        #1 / indent        .tl_set:N = \exp_not:c { CTEX@#1@indent } ,
+        #1 / numbering   .bool_set:N = \exp_not:c { CTEX@#1@numbering } ,
+        #1 / numbering    .initial:n = true ,
+        #1 / beforeskip   .initial:n = \c_zero_skip ,
+        #1 / afterskip    .initial:n = \c_zero_skip ,
+        #1 / indent       .initial:n = \c_zero_dim ,
+        #1 / beforeskip   .value_required:n = true ,
+        #1 / afterskip    .value_required:n = true ,
+        #1 / indent       .value_required:n = true ,
+        \__ctex_plus_key_aux:nn {#1} { format } ,
+        \__ctex_plus_key_aux:nn {#1} { nameformat } ,
+        \__ctex_plus_key_aux:nn {#1} { numberformat } ,
+        \__ctex_plus_key_aux:nn {#1} { titleformat } ,
+        \__ctex_plus_key_aux:nn {#1} { aftername } ,
+        \__ctex_plus_key_aux:nn {#1} { aftertitle } ,
+      }
+  }
+\cs_new:Npn \__ctex_plus_key_aux:nn #1#2
+  {
+    #1 / #2   .tl_set:N = \exp_not:c { CTEX@#1@#2 } ,
+    #1 / #2 +   .code:n =
+      { \tl_put_right:Nn \exp_not:c { CTEX@#1@#2 } { ##1 } } ,
+    #1 / #2 ~ + .code:n =
+      { \tl_put_right:Nn \exp_not:c { CTEX@#1@#2 } { ##1 } }
+  }
+\NewDocumentCommand \ctex_assign_heading_name:nn
+  { m > { \SplitArgument { 1 } { , } } +m }
+  { \__ctex_assign_heading_name:nnn {#1} #2 }
+\cs_new_protected:Npn \__ctex_assign_heading_name:nnn #1#2#3
+  {
+    \tl_set:cn { CTEX@pre#1 } {#2}
+    \tl_if_novalue:nTF {#3}
+      { \tl_clear:c { CTEX@post#1 } }
+      { \tl_set:cn { CTEX@post#1 } {#3} }
+  }
+\group_begin:
+\tl_clear:N \l__ctex_tmp_tl
+\seq_map_inline:Nn \c__ctex_headings_seq
+  {
+    \__ctex_initial_heading:n {#1}
+    \__ctex_def_heading_keys:n {#1}
+  }
+\exp_args:NNo \group_end: \ctex_define:n { \l__ctex_tmp_tl }
+\cs_new_protected:Npn \CTEX@heading@format@initial
+  {
+    \normalfont
+    \tl_clear:N \l__ctex_autoindent_tl
+    \int_set:Nn \tex_interlinepenalty:D { 10 000 }
+    \tex_noindent:D
+  }
+\cs_new_protected:Npn \ctex_indent_box:n #1
+  {
+    \dim_set:Nn \tex_parindent:D {#1}
+    \__ctex_insert_indent:
+  }
+\cs_new_protected:Npn \__ctex_insert_indent:
+  {
+    \dim_compare:nNnF \tex_parindent:D = \c_zero_dim
+      { \tex_indent:D }
+  }
+\cs_new_eq:NN \CTEX@indentbox \ctex_indent_box:n
+\ExplSyntaxOff
+\defbeamertemplate*{part page}{CTEX}[1][]{%
+  \begingroup
+    \par \addvspace{\glueexpr\CTEX@part@beforeskip\relax}%
+    \CTEX@heading@format@initial
+    \CTEX@part@format{%
+      \CTEX@indentbox{\CTEX@part@indent}%
+      \ifodd \CTEX@part@numbering
+        \CTEX@partname \CTEX@part@aftername
+      \fi
+      \begin{beamercolorbox}[sep=16pt,center,#1]{part title}
+        \CTEX@part@titleformat \insertpart \CTEX@part@aftertitle
+      \end{beamercolorbox}}%
+    \par \addvspace{\glueexpr\CTEX@part@afterskip\relax}%
+  \endgroup}
+\defbeamertemplate*{section page}{CTEX}[1][]{%
+  \begingroup
+    \par \addvspace{\glueexpr\CTEX@section@beforeskip\relax}%
+    \CTEX@heading@format@initial
+    \CTEX@section@format{%
+      \CTEX@indentbox{\CTEX@section@indent}%
+      \ifodd \CTEX@section@numbering
+        \CTEX@sectionname \CTEX@section@aftername
+      \fi
+      \begin{beamercolorbox}[sep=12pt,center,#1]{part title}
+        \CTEX@section@titleformat \insertsection \CTEX@section@aftertitle
+      \end{beamercolorbox}}%
+    \par \addvspace{\glueexpr\CTEX@section@afterskip\relax}%
+  \endgroup}
+\defbeamertemplate*{subsection page}{CTEX}[1][]{%
+  \begingroup
+    \par \addvspace{\glueexpr\CTEX@subsection@beforeskip\relax}%
+    \CTEX@heading@format@initial
+    \CTEX@subsection@format{%
+      \CTEX@indentbox{\CTEX@subsection@indent}%
+      \ifodd \CTEX@subsection@numbering
+        \CTEX@subsectionname \CTEX@subsection@aftername
+      \fi
+      \begin{beamercolorbox}[sep=8pt,center,#1]{part title}
+        \CTEX@subsection@titleformat \insertsubsection \CTEX@subsection@aftertitle
+      \end{beamercolorbox}}%
+    \par \addvspace{\glueexpr\CTEX@subsection@afterskip\relax}%
+  \endgroup}
+\defbeamertemplatealias{part page}{default}{CTEX}
+\defbeamertemplatealias{section page}{default}{CTEX}
+\defbeamertemplatealias{subsection page}{default}{CTEX}
+\ExplSyntaxOn
+\ctex_define:n
+  {
+    tocdepth              .code:n = \ctex_heading_depth:ne { tocdepth } {#1} ,
+    tocdepth    .value_required:n = true
+  }
+\cs_new_protected:Npn \ctex_heading_depth:nn #1#2
+  {
+    \prop_get:NnNTF \c__ctex_heading_level_prop {#2} \l__ctex_tmp_tl
+      { \setcounter {#1} { \l__ctex_tmp_tl } }
+      { \setcounter {#1} { \int_eval:n {#2} } }
+  }
+\cs_generate_variant:Nn \ctex_heading_depth:nn { ne }
+\prop_const_from_keyval:Nn \c__ctex_heading_level_prop
+  {
+    part          =  0 ,
+    section       =  1 ,
+    subsection    =  2 ,
+    subsubsection =  3 ,
+    paragraph     =  4 ,
+    subparagraph  =  5
+  }
+\cs_new_protected:Npn \CTEX@setcurrentlabel@n #1
+  {
+    \protected@edef \@currentlabel
+      {
+        \cs_if_exist:cTF { CTEX@the#1 }
+          { \exp_args:cc { p@#1 } { CTEX@the#1 } }
+          { \exp_not:o { \@currentlabel } }
+      }
+  }
+\cs_new_protected:Npn \ctex_varioref_hook:
+  {
+    \seq_map_inline:Nn \c__ctex_headings_seq
+      { \ctex_fix_varioref_label:n { ##1 } }
+    \ctex_at_end_package:nn { cleveref } { \ctex_cleveref_hook: }
+  }
+\cs_new_protected:Npn \ctex_fix_varioref_label:n #1
+  {
+    \tl_if_empty:cT { p@#1 }
+      { \exp_args:Nnx \labelformat {#1} { \exp_not:c { CTEX@the#1 } } }
+  }
+\cs_new_protected:Npn \ctex_cleveref_hook:
+  {
+    \@ifpackageloaded { hyperref }
+      {
+        \@ifpackagewith { hyperref } { implicit = false }
+          { }
+          { \__ctex_cleveref_hook_aux:N \H@refstepcounter }
+      }
+      {
+        \__ctex_cleveref_hook_aux:N \refstepcounter@noarg
+        \__ctex_cleveref_hook_aux:N \refstepcounter@optarg
+      }
+    \__ctex_cleveref_hook_aux:N \appendix
+  }
+\cs_new_protected:Npn \__ctex_cleveref_hook_aux:N #1
+  {
+    \ctex_patch_cmd_all:NnnnTF #1
+      {
+        \ExplSyntaxOff
+        \char_set_catcode_letter:n { 64 }
+      }
+      { \endcsname \csname the }
+      { \expandafter \endcsname \csname the }
+      { }
+      { \ctex_patch_failure:N #1 }
+  }
+\cs_if_exist:NTF \labelformat
+  { \ctex_varioref_hook: }
+  {
+    \cs_new_eq:NN \CTEX@save@refstepcounter \refstepcounter
+    \RenewDocumentCommand \refstepcounter { m }
+      {
+        \CTEX@save@refstepcounter {#1}
+        \CTEX@setcurrentlabel@n {#1}
+      }
+    \ctex_at_end_package:nn { varioref } { \ctex_varioref_hook: }
+  }
+\ctex_scheme_input:o { \l__ctex_scheme_tl }
+%% 
+%%
+%% End of file `ctex-heading-beamer.def'.

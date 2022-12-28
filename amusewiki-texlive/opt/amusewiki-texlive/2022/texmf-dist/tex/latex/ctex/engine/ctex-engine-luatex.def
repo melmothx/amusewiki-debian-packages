@@ -1,0 +1,1282 @@
+%%
+%% This is file `ctex-engine-luatex.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% ctex.dtx  (with options: `luatex')
+%% 
+%%     Copyright (C) 2003--2022
+%%     CTEX.ORG and any individual authors listed in the documentation.
+%% ---------------------------------------------------------------------
+%% 
+%%     This work may be distributed and/or modified under the
+%%     conditions of the LaTeX Project Public License, either
+%%     version 1.3c of this license or (at your option) any later
+%%     version. This version of this license is in
+%%        http://www.latex-project.org/lppl/lppl-1-3c.txt
+%%     and the latest version of this license is in
+%%        http://www.latex-project.org/lppl.txt
+%%     and version 1.3 or later is part of all distributions of
+%%     LaTeX version 2005/12/01 or later.
+%% 
+%%     This work has the LPPL maintenance status "maintained".
+%% 
+%% ---------------------------------------------------------------------
+%% 
+\GetIdInfo$Id: ctex.dtx 13a2256 2022-07-14 18:54:09 +0800 Qing Lee <sobenlee@gmail.com> $
+  {LuaLaTeX adapter (CTEX)}
+\ProvidesExplFile{ctex-engine-luatex.def}
+  {\ExplFileDate}{2.5.10}{\ExplFileDescription}
+\msg_new:nnn { ctex } { luatexja-loaded }
+  {
+    Package~`luatexja'~can~not~be~loaded~before~`ctex'.\\
+    Loading~file~`#1'~will~abort!
+  }
+\@ifpackageloaded { luatexja }
+  { \msg_critical:nnx { ctex } { luatexja-loaded } { \g_file_curr_name_str } }
+  {
+    \ctex_at_begin_package:nn { luatexja }
+      { \msg_redirect_name:nnn { ctexhook } { disable-package } { info } }
+    \ctex_at_end_package:nn { luatexja }
+      { \msg_redirect_name:nnn { ctexhook } { disable-package } { } }
+    \ctex_disable_package:n { ltj-latex }
+  }
+\RequirePackage { luatexja }
+\@ifpackagelater { luatexja } { 2020/04/12 } { }
+  { \msg_error:nnn { ctex } { package-too-old } { luatexja } }
+\RequirePackage { fontspec }
+\@ifpackagelater { fontspec } { 2020/02/21 } { }
+  { \msg_error:nnn { ctex } { package-too-old } { fontspec } }
+\ctex_at_end:n { \char_set_catcode_comment:n { \ltjlineendcomment } }
+\ExplSyntaxOff
+\ltjdefcharrange{1}{"80-"36F, "1E00-"1EFF}
+\ltjdefcharrange{2}{"370-"4FF, "1F00-"1FFF}
+\ltjdefcharrange{3}{%
+  "2000-"243F, "2460-"24FF, "2500-"27BF, "2900-"29FF, "2B00-"2BFF}
+\ltjdefcharrange{4}{%
+   "500-"10FF, "1200-"1DFF, "2440-"245F, "27C0-"28FF, "2A00-"2AFF,
+  "2C00-"2E7F, "4DC0-"4DFF, "A4D0-"A95F, "A980-"ABFF, "E000-"F8FF,
+  "FB00-"FE0F, "FE20-"FE2F, "FE70-"FEFF, "10000-"1AFFF, "1B170-"1F0FF,
+  "1F300-"1FFFF, "2000-"206F}
+\ltjdefcharrange{5}{"D800-"DFFF, "E0000-"E00FF, "E01F0-"10FFFF}
+\ltjdefcharrange{6}{%
+  "2E80-"2EFF, "3000-"30FF, "3190-"319F, "31F0-"4DBF,
+  "4E00-"9FFF, "F900-"FAFF, "FE10-"FE1F, "FE30-"FE6F, "FF00-"FFEF,
+  "1B000-"1B16F, "1F100-"1F2FF, "20000-"3FFFF, "E0100-"E01EF}
+\ltjdefcharrange{7}{%
+  "1100-"11FF, "2F00-"2FFF, "3100-"318F, "31A0-"31EF, "A000-"A4CF,
+  "A960-"A97F, "AC00-"D7FF}
+\ltjdefcharrange{8}{"A7, "A8, "B0, "B1, "B4, "B6, "D7, "F7}
+\ltjdefcharrange{9}{%
+  "00B7, "2018, "2019, "201C, "201D, "2013, "2014, "2025, "2026, "2027, "2E3A}
+\ltjsetparameter{jacharrange={-1, -2, -3, -4, -5, +6, +7, -8, +9}}
+\directlua{for x=128,255 do luatexja.math.is_math_letters[x] = true end}
+\@ifpackagelater{luatexja}{2020/08/08}
+  { \ltjsetparameter { autospacing, autoxspacing, differentjfm = paverage } }
+  {
+    \directlua{
+      local s = kpse.find_file('ltj-kinsoku.lua', 'tex')
+      luatexja.stack.charprop_stack_table[0] = s and dofile(s) or {}
+    }
+    \ltjsetparameter{kanjiskip=\z@ plus .4pt minus .5pt,
+      xkanjiskip=.25\zw plus 1pt minus 1pt,
+      autospacing, autoxspacing, jacharrange={-1},
+      yalbaselineshift=\z@, yjabaselineshift=\z@,
+      jcharwidowpenalty=500, differentjfm=paverage
+    }
+  }
+\ExplSyntaxOn
+\cs_new_protected:Npn \CTEX@alchar #1
+  { \CTEX@beginallalchar #1 \CTEX@endallalchar }
+\cs_new_protected:Npn \CTEX@beginallalchar
+  {
+    \group_begin:
+      \ctex_ltj_zero_globaldefs:
+      \ltj@allalchar
+  }
+\cs_new_protected:Npn \CTEX@endallalchar
+  { \group_end: }
+\cs_new_protected:Npn \CTEX@chardef@text@cmd #1
+  {
+    \cs_set_eq:NN \@ifdefinable \@@ifdefinable
+    \tl_set:Nn \l__ctex_ltj_cmd_tl {#1}
+    \tex_afterassignment:D \__ctex_ltj_chardef_text_cmd:
+    \tex_chardef:D #1
+  }
+\tl_new:N \l__ctex_ltj_cmd_tl
+\cs_new_protected:Npn \__ctex_ltj_chardef_text_cmd:
+  { \exp_after:wN \__ctex_ltj_chardef_text_cmd_aux:N \l__ctex_ltj_cmd_tl }
+\cs_new_protected:Npn \__ctex_ltj_chardef_text_cmd_aux:N #1
+  {
+    \int_compare:nNnF {#1} < { "80 }
+      { \cs_set_protected:Npx #1 { \CTEX@alchar { \tex_Uchar:D #1 } } }
+  }
+\cs_new_protected:Npn \CTEX@text@composite@x #1#2
+  {
+    \CTEX@beginallalchar
+      \cs_if_exist_use:NF #1 {#2}
+    \CTEX@endallalchar
+  }
+\cs_new_protected:Npx \CTEX@add@unicode@accent #1#2
+  {
+    \CTEX@beginallalchar
+      \exp_not:N \tl_if_blank:nTF {#2} { \tex_Uchar:D "A0 ~ } {#2}
+      \exp_not:N \tex_Uchar:D \tex_numexpr:D #1 \scan_stop:
+    \CTEX@endallalchar
+  }
+\cs_new_protected:Npn \CTEX@patch@text@cmd #1
+  {
+    \exp_args:NNc \__ctex_ltj_patch_text_cmd:NN #1
+      { \UnicodeEncodingName \token_to_str:N #1 }
+  }
+\cs_new_protected:Npn \__ctex_ltj_patch_text_cmd:NN #1#2
+  {
+    \cs_set_eq:NN \CTEX@textcmd #2
+    \ctex_preto_cmd:NnnTF \CTEX@textcmd
+      { \ExplSyntaxOff \makeatletter }
+      { \CTEX@beginallalchar }
+      {
+        \ctex_appto_cmd:NnnTF \CTEX@textcmd
+          { \ExplSyntaxOff \makeatletter }
+          { \CTEX@endallalchar }
+          { \cs_set_eq:NN #2 \CTEX@textcmd }
+          { \ctex_patch_failure:N #1 }
+      }
+      { \ctex_patch_failure:N #1 }
+  }
+\cs_new_protected:Npn \CTEX@patch@tunec
+  {
+    \cs_set_eq:NN \chardef@text@cmd   \CTEX@chardef@text@cmd
+    \ctex_file_input:n { tuenc.def }
+    \cs_set_eq:NN \@text@composite@x  \CTEX@text@composite@x
+    \cs_set_eq:NN \add@unicode@accent \CTEX@add@unicode@accent
+    \CTEX@patch@text@cmd \textasteriskcentered
+  }
+\@ifpackageloaded { xunicode }
+  { }
+  { \CTEX@patch@tunec }
+\ctex_at_end_package:nn { xunicode }
+  {
+    \RequirePackage { xunicode-addon }
+    \AtBeginUTFCommand { \CTEX@beginallalchar }
+    \AtEndUTFCommand   { \CTEX@endallalchar }
+  }
+\ctex_at_end_package:nn { listings }
+  { \RequirePackage { lltjp-listings } }
+\group_begin:
+\char_set_catcode_space:n { 32 }
+\lua_now:e
+  {
+    ctex = ctex or { }
+    local ctex = ctex
+    local functions = lua.get_functions_table()
+    local new_luafunction = luatexbase.new_luafunction
+    local create, set_lua = token.create, token.set_lua
+    local lua_cmds = {
+      lua_call            = true ,
+      lua_expandable_call = true ,
+    }
+    local newluacmd = function (name, func, ...)
+      local tok = create(name)
+      local id = lua_cmds[tok.cmdname] and tok.index
+      local id = id or new_luafunction(name)
+      set_lua(name, id, ...)
+      functions[id] = func
+    end
+    ctex.newluacmd = newluacmd
+    local ltjfont = luatexja.jfont
+    local getattribute = tex.getattribute
+    local tex_set, sprint = tex.set, tex.sprint
+    local scan_int, scan_arg = token.scan_int, token.scan_argument
+    newluacmd("ctex_ltj_add_kyenc:n", ltjfont.add_kyenc_list, "global", "protected")
+    newluacmd("ctex_ltj_is_kenc:n", ltjfont.is_kenc, "global")
+    newluacmd("ctex_ltj_patch_external_font:n", function ()
+      local s = scan_arg()
+      local is_braced, is_quoted
+      if s:sub(1,1) == '{' and s:sub(-1)=='}' then
+        is_braced = true; s = s:sub(2,-2)
+      end
+      if s:sub(1,1) == '"' and s:sub(-1) == '"' then
+        is_quoted = true; s = s:sub(2,-2)
+      end
+      s = s .. ltjfont.print_aftl_address()
+      if     is_braced then s = '{'..s..'}'
+      elseif is_quoted then s = '"'..s..'"'
+      end
+      sprint(-2, s)
+    end, "global")
+    newluacmd("ctex_ltj_set_alt_font:nnnn", function ()
+      local b = tonumber(scan_arg())
+      local e = tonumber(scan_arg())
+      local alt  = scan_arg()
+      local base = scan_arg()
+      ltjfont.set_alt_font_latex(b, e, alt, base)
+    end, "global", "protected")
+    newluacmd("ctex_ltj_clear_alt_font:n", function ()
+      local base = scan_arg()
+      ltjfont.clear_alt_font_latex(base)
+    end, "global", "protected")
+    newluacmd("ctex_ltj_pickup_alt_font:nn", function ()
+      local base = scan_arg()
+      local size = scan_arg()
+      ltjfont.output_alt_font_cmd("y", base)
+      ltjfont.pickup_alt_font_a(size)
+    end, "global", "protected")
+    newluacmd("__ctex_ltj_pickup_alt_font:Nn", function ()
+      local num  = scan_int()
+      local base = scan_arg()
+      ltjfont.pickup_alt_font_b(num, base)
+    end, "global", "protected")
+    newluacmd("__ctex_ltj_if_alt_set:nT", ltjfont.does_alt_set, "global")
+    newluacmd("ctex_ltj_zero_globaldefs:", function ()
+      tex_set("globaldefs", 0)
+    end, "global", "protected")
+  }
+\group_end:
+\cs_new_protected:Npn \ctex_ltj_select_font:
+  {
+    \group_begin: \exp_args:NNc \group_end:
+    \cs_if_exist_use:NF { \l__ctex_ltj_current_font_tl }
+      { \tl_if_empty:NF \CJK@family { \__ctex_ltj_select_font_aux: } }
+  }
+\tl_new:N \CJK@family
+\tl_new:N \l__ctex_ltj_current_font_tl
+\tl_set:Nn \l__ctex_ltj_current_font_tl
+  { \CJK@encoding / \CJK@family / \f@series / \f@shape / \f@size }
+\cs_new_protected:Npn \__ctex_ltj_select_font_aux:
+  {
+    \group_begin:
+      \tl_set_eq:NN \f@encoding \CJK@encoding
+      \tl_set_eq:NN \f@family \CJK@family
+      \cs_set_eq:NN \pickup@font \ctex_ltj_pickup_font:
+      \__ctex_ltj_push_fontname:n { \curr@fontshape / \f@size }
+      \ctex_ltj_pickup_font:
+    \group_end:
+    \font@name
+    \__ctex_ltj_pop_fontname:
+    \cs_if_exist:cF { \l__ctex_ltj_current_font_tl }
+      { \__ctex_ltj_select_font_aux: }
+  }
+\cs_new_protected:Npn \__ctex_ltj_push_fontname:n #1
+  {
+    \seq_gpush:No \g__ctex_ltj_fontname_seq { \font@name }
+    \tl_gset:Nx \font@name { \exp_not:c {#1} }
+  }
+\cs_new_protected:Npn \__ctex_ltj_pop_fontname:
+  {
+    \seq_gpop:NNT \g__ctex_ltj_fontname_seq \l__ctex_ltj_tmp_tl
+      { \tl_gset_eq:NN \font@name \l__ctex_ltj_tmp_tl }
+  }
+\seq_new:N \g__ctex_ltj_fontname_seq
+\cs_new_protected:Npn \ctex_ltj_pickup_font:
+  {
+    \exp_after:wN \cs_if_exist:NF \font@name
+      {
+        \group_begin:
+          \cs_set_eq:NN \extract@font \ctex_ltj_extract_font:
+          \cs_set_eq:NN \do@subst@correction \ctex_ltj_subst_font:
+          \define@newfont
+        \group_end:
+      }
+  }
+\cs_new_eq:NN \pickup@jfont \ctex_ltj_pickup_font:
+\cs_new_protected_nopar:Npn \ctex_ltj_extract_font:
+  {
+    \get@external@font
+    \ctex_ltj_if_alternate_shape_exist:nT { \curr@fontshape }
+      {
+        \tl_set:Nx \external@font
+          { \exp_after:wN \__ctex_ltj_patch_external_font:w \external@font }
+      }
+    \exp_after:wN \globaljfont \font@name \external@font \scan_stop:
+    \font@name
+    \ctex_ltj_use_jfont:
+    \use:c { \f@encoding + \f@family }
+    \use:c { \curr@fontshape }
+  }
+\cs_new_protected_nopar:Npn \ctex_ltj_use_jfont:
+  { \tex_setfontid:D \ltj@curjfnt }
+\cs_new_protected_nopar:Npn \ctex_ltj_subst_font:
+  {
+    \ctex_ltj_if_alternate_shape_exist:nF { \curr@fontshape }
+      {
+        \group_begin:
+        \tl_set_eq:NN \CJK@family \f@family
+        \cs_if_exist:cF { \l__ctex_ltj_current_font_tl  }
+          {
+            \cs_gset_protected_nopar:Npx \subst@correction
+              {
+                \cs_new_eq:NN
+                  \exp_not:c { \l__ctex_ltj_current_font_tl }
+                  \font@name
+              }
+            \group_insert_after:N \group_insert_after:N
+            \group_insert_after:N \subst@correction
+          }
+        \group_end:
+      }
+  }
+\prg_new_conditional:Npnn \ctex_ltj_if_alternate_shape_exist:n #1 { T , F , TF }
+  {
+    \__ctex_ltj_if_alt_set:nT {#1} { \prg_return_true: \use_none:n }
+    \prg_return_false:
+  }
+\cs_new:Npn \__ctex_ltj_patch_external_font:w #1 ~ at
+  { \ctex_ltj_patch_external_font:n {#1} ~ at }
+\cs_new_protected:Npn \ctex_ltj_select_alternate_font:
+  {
+    \ctex_ltj_if_alternate_shape_exist:nT { \l__ctex_ltj_current_shape_tl }
+      {
+        \ctex_ltj_pickup_alt_font:nn
+          { \l__ctex_ltj_current_shape_tl } { \f@size }
+      }
+  }
+\tl_new:N \l__ctex_ltj_current_shape_tl
+\tl_set:Nn \l__ctex_ltj_current_shape_tl
+  { \CJK@encoding / \CJK@family / \f@series / \f@shape }
+\cs_new_protected:Npn \ltj@pickup@altfont@auxy #1
+  {
+    \cs_if_exist:cF { #1/\f@size }
+      {
+        \group_begin:
+          \use:e { \exp_not:N \split@name #1 / \f@size } \@nil
+          \__ctex_ltj_push_fontname:n { \curr@fontshape / \f@size }
+          \ctex_ltj_pickup_font:
+        \group_end:
+        \__ctex_ltj_pop_fontname:
+      }
+  }
+\cs_new_protected:Npn \ltj@pickup@altfont@copy #1#2
+  {
+    \ltj@@getjfontnumber #1
+    \__ctex_ltj_pickup_alt_font:Nn \ltj@tempcntc {#2}
+  }
+\cs_new:Npn \ctex_ltj_if_jfont:nTF #1
+  {
+    \ctex_ltj_is_kenc:n { \__ctex_ltj_ltj_if_jfont:w #1 / \q_stop }
+    \legacy_if:nTF { in@ }
+  }
+\cs_new:Npn \__ctex_ltj_ltj_if_jfont:w #1 / #2 \q_stop
+  {#1}
+\cs_new:Npn \ctex_ltj_if_jfont_math:NTF #1
+  { \exp_after:wN \__ctex_ltj_if_jfont_math:w \token_to_str:N #1 \q_stop }
+\group_begin:
+  \char_set_catcode_other:N M
+  \cs_new:Npn \__ctex_ltj_if_jfont_math:w #1 M #2#3 \q_stop
+    { \ctex_ltj_if_jfont:nTF {#3} }
+\group_end:
+\cs_new_protected:Npn \ctex_ltj_get_and_define_fonts:nN #1#2
+  {
+    \exp_args:No \ctex_ltj_if_jfont:nTF { \token_to_str:N #2 }
+      { \ctex_ltj_get_and_define_fonts_ja:nN }
+      { \ctex_ltj_get_and_define_fonts_al:nN }
+      {#1} #2
+  }
+\cs_new_eq:NN \ctex_ltj_get_and_define_fonts_al:nN \getanddefine@fonts
+\cs_set_eq:NN \getanddefine@fonts \ctex_ltj_get_and_define_fonts:nN
+\cs_new_protected:Npn \ctex_ltj_get_and_define_fonts_ja:nN #1#2
+  {
+    \tl_gset:Nx \font@name { \use:c { \token_to_str:N #2 / \tf@size } }
+    \ctex_ltj_pickup_font: \tl_set_eq:NN \textfont@name \font@name
+    \tl_gset:Nx \font@name { \use:c { \token_to_str:N #2 / \sf@size } }
+    \ctex_ltj_pickup_font: \tl_set_eq:NN \scriptfont@name \font@name
+    \tl_gset:Nx \font@name { \use:c { \token_to_str:N #2 / \ssf@size } }
+    \ctex_ltj_pickup_font:
+    \tl_put_right:Nx \math@fonts
+      {
+        \ltj@setpar@global
+        \ltj@@set@stackfont #1 , \textfont@name   \c_colon_str { MJT }
+        \ltj@@set@stackfont #1 , \scriptfont@name \c_colon_str { MJS }
+        \ltj@@set@stackfont #1 , \font@name       \c_colon_str { MJSS }
+      }
+  }
+\cs_new_protected:Npn \ctex_ltj_use_math_group:Nn #1#2
+  {
+    \mode_if_math:T
+      {
+        \math@bgroup
+          \cs_if_eq:cNF { M@ \f@encoding } #1 {#1}
+          \ctex_ltj_math_group_hook:
+          \ctex_ltj_if_jfont_math:NTF #1
+            { \jfam } { \mathgroup } #2 \scan_stop:
+        \math@egroup
+      }
+  }
+\cs_new_eq:NN \ctex_ltj_math_group_hook: \prg_do_nothing:
+\cs_set_eq:NN \use@mathgroup \ctex_ltj_use_math_group:Nn
+\cs_new_protected:Npn \ctex_ltj_set_math_letter:NN #1#2
+  {
+    \group_begin:
+      \cs_set_protected:Npn #1 ##1##2##3
+        { \ltjsetmathletter { ##1 } }
+      #2
+    \group_end:
+  }
+\ctex_at_end_package:nn { unicode-math }
+  {
+    \cs_if_exist:NTF \um_input_math_symbol_table:
+      {
+        \ctex_ltj_set_math_letter:NN
+          \um_sym:nnn
+          \um_input_math_symbol_table:
+      }
+      {
+        \cs_set_eq:NN \use@mathgroup \ctex_ltj_use_math_group:Nn
+        \cs_set_protected:Npn \ctex_ltj_math_group_hook:
+          { \__um_switchto_literal: }
+        \ctex_ltj_set_math_letter:NN
+          \__um_sym:nnn
+          \__um_input_math_symbol_table:
+      }
+  }
+\cs_new_protected:Npn \ctex_set_jfm:n #1
+  {
+    \prop_get:NnNF \l__ctex_ltj_redirect_jfm_prop {#1} \l__ctex_ltj_jfm_tl
+      { \tl_set:Nn \l__ctex_ltj_jfm_tl {#1} }
+  }
+\cs_generate_variant:Nn \ctex_set_jfm:n { o }
+\prop_new:N \l__ctex_ltj_redirect_jfm_prop
+\prop_set_from_keyval:Nn \l__ctex_ltj_redirect_jfm_prop
+  {
+    plain    = mono ,
+    quanjiao = zh_CN / quanjiao ,
+    banjiao  = zh_CN / banjiao ,
+    kaiming  = zh_CN / kaiming
+  }
+\keys_define:nn { ctex_ltj / fontspec }
+  {
+    JFM           .code:n = \ctex_set_jfm:n {#1} ,
+    JFM .value_required:n = true
+  }
+\tl_new:N \l__ctex_ltj_jfm_tl
+\ctex_set_jfm:o { \l__ctex_punct_tl }
+\tl_const:Nn \CJK@encoding { LTJY3 }
+\DeclareFontEncoding { \CJK@encoding } { } { }
+\use:e
+  {
+    \exp_not:N \DeclareFontSubstitution
+      { \CJK@encoding } { song } { \mddefault } { \shapedefault }
+  }
+\ctex_ltj_add_kyenc:n { \CJK@encoding }
+\DeclareFontFamily { \CJK@encoding } { song } { }
+\DeclareFontShape { \CJK@encoding } { song } { \mddefault } { \shapedefault }
+  { <-> psft:SimSun:cid=Adobe-GB1-5;jfm=\l__ctex_ltj_jfm_tl } { }
+\DeclareFontShape { \CJK@encoding } { song } { \bfdefault } { \shapedefault }
+  { <-> psft:SimHei:cid=Adobe-GB1-5;jfm=\l__ctex_ltj_jfm_tl } { }
+\tl_const:Nn \c__ctex_ltj_math_tl { CJKmath }
+\DeclareSymbolFont { \c__ctex_ltj_math_tl }
+  { \CJK@encoding } { song } { \mddefault } { \shapedefault }
+\SetSymbolFont { \c__ctex_ltj_math_tl } { bold }
+  { \CJK@encoding } { song } { \bfdefault } { \shapedefault }
+\int_const:Nn \c__ctex_ltj_math_fam_int { \use:c { sym \c__ctex_ltj_math_tl } }
+\jfam \c__ctex_ltj_math_fam_int
+\newfontfeature { CID }     {    cid = #1 }
+\newfontfeature { JFM }     {    jfm = #1 }
+\newfontfeature { JFM-var } { jfmvar = #1 }
+\keys_define:nn { fontspec-preparse-external }
+  {
+    NoEmbed .code:n =
+      { \cs_set_eq:NN \__fontspec_fontname_wrap:n \__ctex_ltj_noembed_wrap:n }
+  }
+\cs_new:Npn \__ctex_ltj_noembed_wrap:n #1 { psft: #1 }
+\cs_new_protected:Npn \ctex_ltj_set_family:nnn #1#2#3
+  {
+    \group_begin:
+    \clist_clear:N \l__ctex_ltj_char_range_clist
+    \prop_clear:N \l__ctex_ltj_alternate_prop
+    \tl_set:Nn \l__ctex_ltj_base_CJKfamily_tl {#1}
+    \keys_set_known:nnN { ctex_ltj / fontspec } {#2} \l__ctex_ltj_tmp_tl
+    \clist_set:No \l__ctex_ltj_font_options_clist { \l__ctex_ltj_tmp_tl }
+    \ctex_ltj_set_alternate_family:nnF {#1} {#3}
+      {
+        \prop_gput:Nnn \g__ctex_ltj_family_font_name_prop {#1} {#3}
+        \prop_gput:Nno \g__ctex_ltj_family_font_options_prop
+          {#1} { \l__ctex_ltj_font_options_clist }
+        \__ctex_ltj_update_family_uid:N \l__ctex_ltj_font_options_clist
+        \__ctex_ltj_use_global_options:N \l__ctex_ltj_font_options_clist
+        \__ctex_ltj_gset_family_cs:nn {#1} {#3}
+      }
+    \group_end:
+  }
+\tl_new:N \l__ctex_ltj_base_CJKfamily_tl
+\clist_new:N \l__ctex_ltj_font_options_clist
+\cs_new_protected:Npn \__ctex_ltj_use_global_options:N #1
+  {
+    \clist_concat:NNN #1 \g__ctex_ltj_default_features_clist #1
+    \clist_put_left:Nx #1
+      { NFSSEncoding = \CJK@encoding , JFM = \l__ctex_ltj_jfm_tl }
+  }
+\prop_new:N \g__ctex_ltj_family_name_prop
+\prop_new:N \g__ctex_ltj_family_font_name_prop
+\prop_new:N \g__ctex_ltj_family_font_options_prop
+\cs_new_protected:Npn \__ctex_ltj_check_family:n #1
+  {
+    \prop_gpop:NnNT \g__ctex_ltj_family_font_name_prop {#1} \l__ctex_ltj_tmp_tl
+      {
+        \cs_undefine:c { \__ctex_ltj_family_csname:n {#1} }
+        \cs_undefine:c { \__ctex_ltj_alternate_cs:n {#1} }
+        \prop_gpop:NnNT \g__ctex_ltj_family_name_prop {#1} \l__ctex_ltj_base_family_tl
+          {
+            \use:c { \__ctex_ltj_alternate_cs:n { clear / #1 } }
+            \cs_undefine:c { \__ctex_ltj_alternate_cs:n { clear / #1 } }
+            \cs_undefine:c { \__ctex_ltj_alternate_cs:n { reset / #1 } }
+            \prop_gremove:Nn \g__ctex_ltj_reset_alternate_prop {#1}
+          }
+        \msg_warning:nnxx { ctex } { redefine-family } {#1} { \l__ctex_ltj_tmp_tl }
+      }
+  }
+\tl_new:N \l__ctex_ltj_tmp_tl
+\msg_new:nnn { ctex } { redefine-family }
+  { Redefining~CJKfamily~`\__ctex_ltj_msg_family_map:n {#1}'~(#2). }
+\cs_new_protected:Npn \__ctex_ltj_gset_family_cs:nn #1#2
+  {
+    \cs_gset_protected:cpx { \__ctex_ltj_family_csname:n {#1} }
+      {
+        \group_begin:
+        \exp_not:n { \cs_set_eq:NN \CJKfamily \use_none:n }
+        \exp_not:n { \fontspec_gset_family:Nnn \g__ctex_ltj_fontspec_family_tl }
+          { \exp_not:o { \l__ctex_ltj_font_options_clist } } {#2}
+        \prop_gput:Nno \exp_not:N \g__ctex_ltj_family_name_prop {#1}
+          { \exp_not:N \g__ctex_ltj_fontspec_family_tl }
+        \__ctex_ltj_set_alternate_family:n {#1}
+        \group_end:
+      }
+  }
+\tl_new:N \l__ctex_ltj_base_family_tl
+\tl_new:N \g__ctex_ltj_fontspec_family_tl
+\cs_new:Npn \__ctex_ltj_family_csname:n #1 { ctex_ltj/family/#1 }
+\cs_new_protected:Npn \__ctex_ltj_set_alternate_family:n #1
+  {
+    \tl_set:Nn \l__ctex_ltj_base_CJKfamily_tl {#1}
+    \tl_set_eq:NN \l__ctex_ltj_base_family_tl \g__ctex_ltj_fontspec_family_tl
+    \cs_if_exist_use:c { \__ctex_ltj_alternate_cs:n { reset / #1 } }
+    \cs_if_exist_use:c { \__ctex_ltj_alternate_cs:n {#1} }
+  }
+\cs_new:Npn \__ctex_ltj_alternate_cs:n #1 { ctex_ltj/alternate_family/#1 }
+\NewDocumentCommand \CJKfamily { m }
+  { \ctex_ltj_switch_family:x {#1} \tex_ignorespaces:D }
+\cs_new_protected:Npn \ctex_ltj_switch_family:n #1
+  {
+    \ctex_ltj_family_if_exist:nNTF {#1} \CJK@family
+      {
+        \tl_set:Nn \l_ctex_ltj_family_tl {#1}
+        \selectfont
+      }
+      { \__ctex_ltj_family_unknown_warning:n {#1} }
+  }
+\tl_new:N \l_ctex_ltj_family_tl
+\cs_generate_variant:Nn \ctex_ltj_switch_family:n { x }
+\prg_new_protected_conditional:Npnn \ctex_ltj_family_if_exist:nN #1#2 { T , F , TF }
+  {
+    \prop_get:NnNTF \g__ctex_ltj_family_name_prop {#1} #2
+      { \prg_return_true: }
+      {
+        \cs_if_exist_use:cTF { \__ctex_ltj_family_csname:n {#1} }
+          {
+            \tl_set_eq:NN #2 \g__ctex_ltj_fontspec_family_tl
+            \prg_return_true:
+          }
+          { \prg_return_false: }
+      }
+  }
+\prg_generate_conditional_variant:Nnn \ctex_ltj_family_if_exist:nN { x } { T , F , TF }
+\cs_new_protected:Npn \__ctex_ltj_family_unknown_warning:n #1
+  {
+    \prop_if_empty:NF \g__ctex_ltj_family_font_name_prop
+      {
+        \seq_if_in:NnF \g__ctex_ltj_unknown_family_seq {#1}
+          {
+            \seq_gput_right:Nn \g__ctex_ltj_unknown_family_seq {#1}
+            \msg_warning:nnn { ctex } { family-unknown } {#1}
+          }
+      }
+  }
+\seq_new:N \g__ctex_ltj_unknown_family_seq
+\msg_new:nnn { ctex } { family-unknown }
+  {
+    Unknown~CJK~family~`\__ctex_ltj_msg_family_map:n {#1}'~is~being~ignored.\\
+    Try~to~use~`\__ctex_ltj_msg_def_family_map:n {#1}'~to~define~it.
+  }
+\cs_new:Npn \__ctex_ltj_msg_def_family_map:n #1
+  {
+    \str_case_e:nnF {#1}
+      {
+        \CJKrmdefault { \token_to_str:N \setCJKmainfont }
+        \CJKsfdefault { \token_to_str:N \setCJKsansfont }
+        \CJKttdefault { \token_to_str:N \setCJKmonofont }
+      }
+      { \token_to_str:N \setCJKfamilyfont \{ #1 \} }
+    [...]\{...\}
+  }
+\cs_new:Npn \__ctex_ltj_msg_family_map:n #1
+  {
+    \str_case_e:nnF {#1}
+      {
+        \CJKrmdefault { \token_to_str:N \CJKrmdefault }
+        \CJKsfdefault { \token_to_str:N \CJKsfdefault }
+        \CJKttdefault { \token_to_str:N \CJKttdefault }
+      }
+      {#1}
+  }
+\cs_new_protected:Npn \ctex_ltj_fontspec:nn #1#2
+  {
+    \prop_get:NnNTF \g__ctex_ltj_fontspec_prop
+      { CJKfontspec/#1/#2/id } \l_ctex_ltj_family_tl
+      { \ctex_ltj_switch_family:x { \l_ctex_ltj_family_tl } }
+      {
+        \int_gincr:N \g__ctex_ltj_family_int
+        \__ctex_ltj_fontspec:enn
+          { CJKfontspec ( \int_use:N \g__ctex_ltj_family_int ) }
+          {#1} {#2}
+      }
+  }
+\cs_new_protected:Npn \ctex_ltj_fontspec:ee #1#2
+  { \use:e { \ctex_ltj_fontspec:nn {#1} {#2} } }
+\cs_new_protected:Npn \__ctex_ltj_fontspec:nnn #1#2#3
+  {
+    \bool_if:NT \l__ctex_ltj_add_alternate_bool
+      {
+        \cs_if_free:cF
+          { \__ctex_ltj_alternate_cs:n { reset / \l_ctex_ltj_family_tl } }
+          {
+            \cs_gset_eq:cc
+              { \__ctex_ltj_alternate_cs:n { reset / #1 } }
+              { \__ctex_ltj_alternate_cs:n { reset / \l_ctex_ltj_family_tl } }
+            \cs_gset_eq:cc
+              { \__ctex_ltj_alternate_cs:n { clear / #1 } }
+              { \__ctex_ltj_alternate_cs:n { clear / \l_ctex_ltj_family_tl } }
+          }
+        \bool_set_false:N \l__ctex_ltj_add_alternate_bool
+      }
+    \prop_gput:Nnn \g__ctex_ltj_fontspec_prop { CJKfontspec/#2/#3/id } {#1}
+    \ctex_ltj_set_family:nnn {#1} {#2} {#3}
+    \ctex_ltj_switch_family:n {#1}
+  }
+\cs_generate_variant:Nn \__ctex_ltj_fontspec:nnn { e }
+\prop_new:N \g__ctex_ltj_fontspec_prop
+\cs_new_protected:Npn \ctex_ltj_add_font_features:n #1
+  { \ctex_ltj_add_font_features:xn { \l_ctex_ltj_family_tl } {#1} }
+\cs_new_protected:Npn \ctex_ltj_add_font_features:nn #1#2
+  {
+    \prop_get:NnNTF \g__ctex_ltj_family_font_name_prop
+      {#1} \l__ctex_ltj_tmp_tl
+      {
+        \prop_get:NnN \g__ctex_ltj_family_font_options_prop
+          {#1} \l__ctex_ltj_font_options_clist
+        \clist_put_right:Nn \l__ctex_ltj_font_options_clist {#2}
+        \bool_set_true:N \l__ctex_ltj_add_alternate_bool
+        \ctex_ltj_fontspec:ee
+          { \exp_not:o { \l__ctex_ltj_font_options_clist } }
+          { \exp_not:o { \l__ctex_ltj_tmp_tl } }
+      }
+      { \msg_warning:nn { ctex } { addCJKfontfeature-ignored } }
+  }
+\bool_new:N \l__ctex_ltj_add_alternate_bool
+\cs_generate_variant:Nn \ctex_ltj_add_font_features:n  { x }
+\cs_generate_variant:Nn \ctex_ltj_add_font_features:nn { x }
+\msg_new:nnn { ctex } { addCJKfontfeature-ignored }
+  {
+    \token_to_str:N \addCJKfontfeature (s)~ignored.\\
+    It~cannot~be~used~with~a~font~that~wasn't~selected~by~ctex.
+  }
+\cs_new_protected:Npn \__ctex_ltj_pass_args:nnnn #1#2#3#4
+  {
+    \tl_if_novalue:nTF {#2}
+      { \__ctex_ltj_post_arg:w {#1} {#3} {#4} }
+      {
+        \use:e { #1 {#2} {#3} }
+        #4
+      }
+  }
+\NewDocumentCommand \__ctex_ltj_post_arg:w { m m m O { } }
+  {
+    \use:e { #1 {#4} {#2} }
+    #3
+  }
+\NewDocumentCommand \setCJKfamilyfont { m o m }
+  {
+    \__ctex_ltj_pass_args:nnnn
+      { \ctex_ltj_set_family:nnn {#1} } {#2} {#3}
+      { }
+  }
+\NewDocumentCommand \newCJKfontfamily { o m o m }
+  {
+    \tl_set:Nx \l__ctex_ltj_tmp_tl
+      { \tl_if_novalue:nTF {#1} { \cs_to_str:N #2 } {#1} }
+    \cs_new_protected:Npx #2
+      { \ctex_ltj_switch_family:n { \l__ctex_ltj_tmp_tl } }
+    \__ctex_ltj_pass_args:nnnn
+      { \ctex_ltj_set_family:nnn { \l__ctex_ltj_tmp_tl } } {#3} {#4}
+      { }
+  }
+\NewDocumentCommand \CJKfontspec { o m }
+  {
+    \__ctex_ltj_pass_args:nnnn
+      { \ctex_ltj_fontspec:nn } {#1} {#2}
+      { \tex_ignorespaces:D }
+  }
+\NewDocumentCommand \addCJKfontfeatures { m }
+  {
+    \ctex_ltj_add_font_features:x {#1}
+    \tex_ignorespaces:D
+  }
+\cs_new_eq:NN \addCJKfontfeature \addCJKfontfeatures
+\NewDocumentCommand \setCJKmainfont { o m }
+  {
+    \__ctex_ltj_pass_args:nnnn
+      { \ctex_ltj_set_family:nnn { \CJKrmdefault } } {#1} {#2}
+      { \normalfont }
+  }
+\cs_new_eq:NN \setCJKromanfont \setCJKmainfont
+\NewDocumentCommand \setCJKsansfont { o m }
+  {
+    \__ctex_ltj_pass_args:nnnn
+      { \ctex_ltj_set_family:nnn { \CJKsfdefault } } {#1} {#2}
+      { \normalfont }
+  }
+\NewDocumentCommand \setCJKmonofont { o m }
+  {
+    \__ctex_ltj_pass_args:nnnn
+      { \ctex_ltj_set_family:nnn { \CJKttdefault } } {#1} {#2}
+      { \normalfont }
+  }
+\NewDocumentCommand \setCJKmathfont { o m }
+  {
+    \__ctex_ltj_pass_args:nnnn
+      { \ctex_ltj_set_family:nnn { \c__ctex_ltj_math_tl } } {#1} {#2}
+      { }
+  }
+\NewDocumentCommand \defaultCJKfontfeatures { m }
+  { \clist_gset:Nn \g__ctex_ltj_default_features_clist {#1} }
+\clist_new:N \g__ctex_ltj_default_features_clist
+\@onlypreamble \setCJKmainfont
+\@onlypreamble \setCJKsansfont
+\@onlypreamble \setCJKmonofont
+\@onlypreamble \setCJKmathfont
+\@onlypreamble \setCJKromanfont
+\@onlypreamble \defaultCJKfontfeatures
+\cs_new_protected:Npn \ctex_ltj_ensure_default_family:
+  {
+    \prop_if_empty:NF \g__ctex_ltj_family_font_name_prop
+      {
+        \ctex_ltj_family_if_exist:xNF { \CJKfamilydefault } \l__ctex_ltj_tmp_tl
+          {
+            \str_if_eq:eeTF { \CJKfamilydefault } { \CJKrmdefault }
+              { \use:n }
+              {
+                \ctex_ltj_family_if_exist:xNTF { \CJKrmdefault } \l__ctex_ltj_tmp_tl
+                  { \tl_gset:Nn \CJKfamilydefault { \CJKrmdefault } \use_none:n }
+                  { \use:n }
+              }
+              {
+                \prop_map_inline:Nn \g__ctex_ltj_family_font_name_prop
+                  {
+                    \prop_map_break:n
+                      { \tl_gset_rescan:Nnn \CJKfamilydefault { } { ##1 } }
+                  }
+              }
+          }
+        \normalfont
+        \ctex_ltj_update_mathfont:
+      }
+  }
+\cs_new_protected:Npn \ctex_ltj_update_mathfont:
+  {
+    \ctex_ltj_family_if_exist:xNTF { \c__ctex_ltj_math_tl } \l__ctex_ltj_tmp_tl
+      { \ctex_ltj_update_mathfont:n { \l__ctex_ltj_tmp_tl } }
+      {
+        \ctex_ltj_family_if_exist:xNT { \CJKfamilydefault } \l__ctex_ltj_tmp_tl
+          { \ctex_ltj_update_mathfont:n { \l__ctex_ltj_tmp_tl } }
+      }
+  }
+\cs_new_protected:Npn \ctex_ltj_update_mathfont:n #1
+  {
+    \tl_const:Nx \c__ctex_ltj_math_family_tl {#1}
+    \DeclareSymbolFont { \c__ctex_ltj_math_tl } { \CJK@encoding }
+      { \c__ctex_ltj_math_family_tl } { \mddefault } { \shapedefault }
+    \cs_if_free:cTF
+      { \CJK@encoding/\c__ctex_ltj_math_family_tl/\bfdefault/\shapedefault }
+      {
+        \SetSymbolFont { \c__ctex_ltj_math_tl } { bold } { \CJK@encoding }
+          { \c__ctex_ltj_math_family_tl } { \mddefault } { \shapedefault }
+      }
+      {
+        \SetSymbolFont { \c__ctex_ltj_math_tl } { bold } { \CJK@encoding }
+          { \c__ctex_ltj_math_family_tl } { \bfdefault } { \shapedefault }
+      }
+  }
+\keys_define:nn { ctex_ltj / fontspec }
+  {
+    AlternateFont  .code:n = \ctex_ltj_set_alternate_prop:n {#1} ,
+    AlternateFont  .value_required:n = true ,
+    CharRange .clist_set:N = \l__ctex_ltj_char_range_clist ,
+    CharRange .value_required:n = true
+  }
+\cs_new_protected:Npn \ctex_ltj_set_alternate_prop:n #1
+  { \clist_map_function:nN {#1} \__ctex_ltj_push_alternate_prop:n }
+\cs_new_protected:Npn \__ctex_ltj_push_alternate_prop:n #1
+  {
+    \clist_set:Nx \l__ctex_ltj_tmp_clist { \tl_head:n {#1} }
+    \tl_remove_all:Nn \l__ctex_ltj_tmp_clist { ~ }
+    \exp_args:No \__ctex_ltj_push_alternate_prop:nn
+      { \l__ctex_ltj_tmp_clist } {#1}
+  }
+\cs_new_protected:Npn \__ctex_ltj_push_alternate_prop:nn #1
+  {
+    \prop_remove:Nn \l__ctex_ltj_alternate_prop {#1}
+    \prop_put:Nnn \l__ctex_ltj_alternate_prop {#1}
+  }
+\clist_new:N \l__ctex_ltj_tmp_clist
+\prop_new:N \l__ctex_ltj_alternate_prop
+\cs_new_protected:Npn \ctex_ltj_set_alternate_family:nnF
+  {
+    \clist_if_empty:NTF \l__ctex_ltj_char_range_clist
+      { \__ctex_ltj_set_family_aux:nnn }
+      { \__ctex_ltj_set_alternate_family_aux:nnn }
+  }
+\cs_new_protected:Npn \__ctex_ltj_set_family_aux:nnn #1#2#3
+  {
+    \__ctex_ltj_check_family:n {#1}
+    \prop_if_empty:NF \l__ctex_ltj_alternate_prop
+      { \ctex_ltj_save_alternate_seq:cn { \__ctex_ltj_alternate_cs:n {#1} } {#2} }
+    #3
+  }
+\cs_new_protected:Npn \__ctex_ltj_set_alternate_family_aux:nnn #1#2#3
+  { \ctex_ltj_set_alternate_family:nn {#1} {#2} }
+\cs_new_protected:Npn \ctex_ltj_save_alternate_seq:Nn #1#2
+  {
+    \prop_map_inline:Nn \l__ctex_ltj_alternate_prop
+      { \__ctex_ltj_save_alternate_auxi:w ##2 { } \q_mark #1 {#2} }
+  }
+\cs_new_protected:Npn \__ctex_ltj_save_alternate_auxi:w #1#2#
+  {
+    \tl_if_blank:nTF {#2}
+      { \__ctex_ltj_save_alternate_auxii:w {#1} }
+      { \__ctex_ltj_save_alternate_auxii:w {#1} {#2} }
+  }
+\cs_new_protected:Npn \__ctex_ltj_save_alternate_auxii:w #1#2#3 #4 \q_mark #5#6
+  {
+    \clist_set:Nn \l__ctex_ltj_char_range_clist {#1}
+    \clist_set:Nn \l__ctex_ltj_alternate_options_clist {#3}
+    \__ctex_ltj_use_global_options:N \l__ctex_ltj_alternate_options_clist
+    \tl_if_blank:nTF {#2}
+      { \tl_set:Nn \l__ctex_ltj_tmp_tl {#6} }
+      {
+        \tl_set:Nx \l__ctex_ltj_tmp_tl { \tl_trim_spaces:n {#2} }
+        \tl_replace_all:Nnn \l__ctex_ltj_tmp_tl { * } {#6}
+      }
+    \use:e
+      {
+        \ctex_ltj_save_alternate_family:Nnnn \exp_not:N #5
+          { \exp_not:o { \l__ctex_ltj_char_range_clist } }
+          { \exp_not:o { \l__ctex_ltj_alternate_options_clist } }
+          { \exp_not:o { \l__ctex_ltj_tmp_tl } }
+      }
+  }
+\clist_new:N \l__ctex_ltj_alternate_options_clist
+\cs_generate_variant:Nn \ctex_ltj_save_alternate_seq:Nn { c }
+\cs_new_protected:Npn \ctex_ltj_set_alternate_family:nn #1#2
+  {
+    \__ctex_ltj_update_family_uid:N \l__ctex_ltj_font_options_clist
+    \__ctex_ltj_use_global_options:N \l__ctex_ltj_font_options_clist
+    \ctex_ltj_set_alternate_family:coonn
+      { \__ctex_ltj_alternate_cs:n {#1} }
+      { \l__ctex_ltj_char_range_clist }
+      { \l__ctex_ltj_font_options_clist } {#2} {#1}
+  }
+\cs_new_protected:Npn \ctex_ltj_set_alternate_family:Nnnnn #1#2#3#4#5
+  {
+    \prop_get:NnNT \g__ctex_ltj_family_name_prop {#5} \l__ctex_ltj_base_family_tl
+      { \ctex_ltj_set_alternate_family:nnn {#2} {#3} {#4} }
+    \ctex_ltj_save_alternate_family:Nnnn #1 {#2} {#3} {#4}
+  }
+\cs_generate_variant:Nn \ctex_ltj_set_alternate_family:Nnnnn { coo }
+\cs_new_protected:Npn \ctex_ltj_save_alternate_family:Nnnn #1#2#3#4
+  {
+    \cs_if_exist:NF #1 { \cs_set_eq:NN #1 \prg_do_nothing: }
+    \cs_gset_protected:Npx #1
+      { \exp_not:o { #1 \ctex_ltj_set_alternate_family:nnn {#2} {#3} {#4} } }
+  }
+\cs_new_protected:Npn \ctex_ltj_set_alternate_family:nnn #1#2#3
+  {
+    \group_begin:
+    \cs_set_eq:NN \CJKfamily \use_none:n
+    \ctex_ltj_swap_cs:NN
+      \DeclareFontShape@ \ctex_ltj_declare_alternate_shape:nnnnnn
+    \tl_set:Nn \l__ctex_ltj_char_range_clist {#1}
+    \fontspec_set_family:Nnn \l__ctex_ltj_alternate_family_tl {#2} {#3}
+    \group_end:
+  }
+\tl_new:N \l__ctex_ltj_alternate_family_tl
+\cs_new_protected:Npn \ctex_ltj_swap_cs:NN #1#2
+  {
+    \cs_set_eq:NN \__ctex_ltj_tmp:w #1
+    \cs_set_eq:NN #1 #2
+    \cs_set_eq:NN #2 \__ctex_ltj_tmp:w
+    \cs_undefine:N \__ctex_ltj_tmp:w
+  }
+\keys_define:nn { fontspec } { LTJFONTUID .code:n = }
+\cs_new_protected:Npn \__ctex_ltj_update_family_uid:N #1
+  {
+    \int_gincr:N \g__ctex_ltj_family_int
+    \clist_put_right:Nx #1 { LTJFONTUID = \int_use:N \g__ctex_ltj_family_int }
+  }
+\int_new:N \g__ctex_ltj_family_int
+\cs_new_protected:Npn \ctex_ltj_declare_alternate_shape:nnnnnn #1#2#3#4#5#6
+  {
+    \ctex_ltj_declare_alternate_shape:nnnnnn {#1} {#2} {#3} {#4} {#5} {#6}
+    \ctex_ltj_set_alternate_shape:Nnnnnnn \l__ctex_ltj_char_range_clist
+      { \l__ctex_ltj_base_family_tl } {#3} {#4} {#2} {#3} {#4}
+  }
+\cs_new_protected:Npn \ctex_ltj_set_alternate_shape:Nnnnnnn #1#2#3#4#5#6#7
+  {
+    \clist_map_inline:Nn #1
+      {
+        \prop_get:NnNTF \g__ctex_ltj_char_range_prop { ##1 } \l__ctex_ltj_char_range_tl
+          {
+            \ctex_ltj_set_alternate_shape:nnN { #2/#3/#4 } { #5/#6/#7 }
+              \l__ctex_ltj_char_range_tl
+          }
+          { \ctex_ltj_set_alternate_shape:nnn { #2/#3/#4 } { #5/#6/#7 } { ##1 } }
+      }
+    \__ctex_ltj_save_alternate_shape:cn
+      { \__ctex_ltj_alternate_cs:n { clear / \l__ctex_ltj_base_CJKfamily_tl } }
+      { \ctex_ltj_clear_alt_font:n { \CJK@encoding/#2/#3/#4 } }
+  }
+\NewDocumentCommand \ctex_ltj_set_alternate_shape:nnn
+  { m m > { \SplitArgument { 1 } { -> } } m }
+  { \ctex_ltj_set_alternate_shape:nnnn {#1} {#2} #3 }
+\cs_new_protected:Npn \ctex_ltj_set_alternate_shape:nnnn #1#2#3#4
+  {
+    \ctex_ltj_set_alternate_shape:e
+      {
+        \__ctex_ltj_range_normalization:nn {#3} {#4}
+        { \CJK@encoding / \exp_not:n {#2} }
+        { \CJK@encoding / \exp_not:n {#1} }
+      }
+  }
+\cs_new_protected:Npn \ctex_ltj_set_alternate_shape:n #1
+  {
+    \ctex_ltj_set_alt_font:nnnn #1
+    \__ctex_ltj_save_alternate_shape:cn
+      { \__ctex_ltj_alternate_cs:n { reset / \l__ctex_ltj_base_CJKfamily_tl } }
+      { \ctex_ltj_set_alt_font:nnnn #1 }
+  }
+\cs_generate_variant:Nn \ctex_ltj_set_alternate_shape:n { e }
+\cs_new_protected:Npn \ctex_ltj_set_alternate_shape:nnN #1#2#3
+  {
+    \tl_map_inline:Nn #3
+      {
+        \ctex_ltj_set_alternate_shape:n
+          {
+            ##1
+            { \CJK@encoding/#2 }
+            { \CJK@encoding/#1 }
+          }
+      }
+  }
+\cs_new_protected:Npn \__ctex_ltj_save_alternate_shape:Nn #1#2
+  {
+    \group_begin:
+      \cs_if_exist:NF #1 { \cs_set_eq:NN #1 \prg_do_nothing: }
+      \cs_set_eq:NN \l__ctex_ltj_base_family_tl \scan_stop:
+      \cs_gset_protected:Npx #1 { \exp_not:o {#1} #2 }
+    \group_end:
+  }
+\cs_generate_variant:Nn \__ctex_ltj_save_alternate_shape:Nn { c }
+\ctex_define:n
+  {
+    clearalternatefont    .code:n =
+      { \clist_map_function:eN {#1} \ctex_ltj_clear_alternate_font:n } ,
+    resetalternatefont    .code:n =
+      { \clist_map_function:eN {#1} \ctex_ltj_reset_alternate_font:n } ,
+    clearalternatefont .default:n = \l_ctex_ltj_family_tl ,
+    resetalternatefont .default:n = \l_ctex_ltj_family_tl
+  }
+\cs_new_protected:Npn \ctex_ltj_clear_alternate_font:n #1
+  {
+    \group_begin:
+      \ctex_ltj_family_if_exist:xNTF {#1} \l__ctex_ltj_base_family_tl
+        {
+          \cs_if_exist_use:cT
+            { \__ctex_ltj_alternate_cs:n { clear / #1 } }
+            {
+              \prop_gput:Nno \g__ctex_ltj_reset_alternate_prop
+                {#1} { \l__ctex_ltj_base_family_tl }
+              \tl_set_eq:NN \CJK@family \l__ctex_ltj_base_family_tl
+              \selectfont
+            }
+        }
+        { \__ctex_ltj_family_unknown_warning:n {#1} }
+    \group_end:
+  }
+\cs_new_protected:Npn \ctex_ltj_reset_alternate_font:n #1
+  {
+    \group_begin:
+      \prop_gpop:NnNT \g__ctex_ltj_reset_alternate_prop {#1} \CJK@family
+        {
+          \tl_set_eq:NN \l__ctex_ltj_base_family_tl \CJK@family
+          \use:c { \__ctex_ltj_alternate_cs:n { reset / #1 } }
+          \selectfont
+        }
+    \group_end:
+  }
+\prop_new:N \g__ctex_ltj_reset_alternate_prop
+\cs_generate_variant:Nn \clist_map_function:nN { e }
+\ctex_define:n
+  {
+    declarecharrange .code:n = \ctex_ltj_declare_char_range:e {#1} ,
+    declarecharrange .value_required:n = true
+  }
+\cs_new_protected:Npn \ctex_ltj_declare_char_range:n #1
+  { \clist_map_inline:nn {#1} { \__ctex_ltj_declare_char_range:nn ##1 } }
+\cs_generate_variant:Nn \ctex_ltj_declare_char_range:n { e }
+\cs_new_protected:Npn \__ctex_ltj_declare_char_range:nn #1
+  { \tl_trim_spaces_apply:nN {#1} \ctex_ltj_declare_char_range:nn }
+\cs_new_protected:Npn \ctex_ltj_declare_char_range:nn #1#2
+  {
+    \tl_clear:N \l__ctex_ltj_char_range_tl
+    \clist_map_function:nN {#2} \ctex_ltj_save_char_range:n
+    \prop_gput:Nno \g__ctex_ltj_char_range_prop {#1} { \l__ctex_ltj_char_range_tl }
+    \ctex_ltj_def_char_range_key:n {#1}
+    \tl_clear:N \l__ctex_ltj_char_range_tl
+  }
+\tl_new:N \l__ctex_ltj_char_range_tl
+\prop_new:N \g__ctex_ltj_char_range_prop
+\NewDocumentCommand \ctex_ltj_save_char_range:n
+  { > { \SplitArgument { 1 } { -> } } m }
+  { \ctex_ltj_save_char_range:nn #1 }
+\cs_new_protected:Npn \ctex_ltj_save_char_range:nn #1#2
+  {
+    \tl_put_right:Nx \l__ctex_ltj_char_range_tl
+      { { \__ctex_ltj_range_normalization:nn {#1} {#2} } }
+  }
+\cs_new:Npn \__ctex_ltj_range_normalization:nn #1#2
+  {
+    \tl_if_novalue:nTF {#2}
+      {
+        { \int_eval:n {#1} }
+        { \int_eval:n {#1} }
+      }
+      {
+        { \int_eval:n { \tl_if_blank:nTF {#1} { \c__ctex_ltj_range_min_int } {#1} } }
+        { \int_eval:n { \tl_if_blank:nTF {#2} { \c__ctex_ltj_range_max_int } {#2} } }
+      }
+  }
+\int_const:Nn \c__ctex_ltj_range_min_int { "80 }
+\int_const:Nn \c__ctex_ltj_range_max_int { \c_max_char_int }
+\cs_new_protected:Npn \ctex_ltj_def_char_range_key:n #1
+  {
+    \keys_if_exist:nnF { ctex_ltj / fontspec } {#1}
+      {
+        \keys_define:nn { ctex_ltj / fontspec }
+          { #1 .code:n = \ctex_ltj_char_range_key:nn {#1} { ##1 } }
+      }
+  }
+\cs_new_protected:Npn \ctex_ltj_char_range_key:nn #1#2
+  {
+    \tl_if_blank:nTF {#2}
+      { \clist_set:Nn \l__ctex_ltj_char_range_clist {#1} }
+      { \__ctex_ltj_push_alternate_prop:nn {#1} { {#1} #2 } }
+  }
+\AtBeginDocument
+  {
+    \ctex_appto_cmd:NnnTF \verbatim@font
+      { \char_set_catcode_letter:n { 64 } }
+      { \CTEX@verbatim@font@hook }
+      { }
+      { \ctex_patch_failure:N \verbatim@font }
+  }
+\cs_new_protected:Npn \CTEX@verbatim@font@hook
+  { \ltjsetparameter { autospacing = false , autoxspacing = false } }
+\cs_set_eq:NN \@@italiccorr \/
+\cs_new_protected:Npn \ctex_ltj_set_kanjiskip:N
+  { \ltj@setpar@global \ltjsetkanjiskip }
+\cs_new_protected:Npn \ctex_ltj_set_xkanjiskip:N
+  { \ltj@setpar@global \ltjsetxkanjiskip }
+\cs_new_protected:Npn \ctex_provide_font_hook:NNN #1#2
+  {
+    \exp_args:Nc \__ctex_provide_font_hook_aux:NNNN
+      { CTEX \cs_to_str:N #2 } #1#2
+  }
+\cs_if_exist:NTF \ctex_gadd_ltxhook:nn
+  {
+    \cs_new_protected:Npn \__ctex_provide_font_hook_aux:NNNN #1#2#3#4
+      {
+        \tl_new:N #1
+        \exp_args:Nx \ctex_gadd_ltxhook:nn { \cs_to_str:N #2 } {#1}
+      }
+  }
+  {
+    \cs_new_protected:Npn \__ctex_provide_font_hook_aux:NNNN #1#2#3#4
+      {
+        \tl_new:N #1
+        \cs_if_exist:NTF #3
+          { \tl_gput_right:Nn #3 {#1} }
+          { \ctex_parse_name:NN \tl_replace_once:Nnn #2 {#4} { #1#4 } }
+      }
+  }
+\ctex_provide_font_hook:NNN \rmfamily \@rmfamilyhook \selectfont
+\ctex_provide_font_hook:NNN \sffamily \@sffamilyhook \selectfont
+\ctex_provide_font_hook:NNN \ttfamily \@ttfamilyhook \selectfont
+\ctex_provide_font_hook:NNN \normalfont \@defaultfamilyhook \usefont
+\tl_if_exist:NF \CJKfamilydefault
+  { \tl_const:Nn \CJKfamilydefault { \CJKrmdefault } }
+\tl_if_exist:NF \CJKrmdefault { \tl_const:Nn \CJKrmdefault { rm } }
+\tl_if_exist:NF \CJKsfdefault { \tl_const:Nn \CJKsfdefault { sf } }
+\tl_if_exist:NF \CJKttdefault { \tl_const:Nn \CJKttdefault { tt } }
+\tl_gput_right:Nn \CTEX@rmfamilyhook { \CJKfamily { \CJKrmdefault } }
+\tl_gput_right:Nn \CTEX@sffamilyhook { \CJKfamily { \CJKsfdefault } }
+\tl_gput_right:Nn \CTEX@ttfamilyhook { \CJKfamily { \CJKttdefault } }
+\tl_gput_right:Nn \CTEX@defaultfamilyhook { \CJKfamily { \CJKfamilydefault } }
+\normalfont
+\ctex_at_end_preamble:n { \ctex_update_default_family: }
+\cs_new_protected:Npn \ctex_update_default_family:
+  {
+    \tl_if_eq:NNT \CJKfamilydefault \l__ctex_family_default_init_tl
+      {
+        \group_begin:
+          \cs_set_eq:NN \__ctex_family_default_wrap:n \exp_not:n
+          \tl_gset:Nx \CJKfamilydefault
+            {
+              \str_case:onF { \familydefault }
+                {
+                  { \rmdefault } { \exp_not:N \CJKrmdefault }
+                  { \sfdefault } { \exp_not:N \CJKsfdefault }
+                  { \ttdefault } { \exp_not:N \CJKttdefault }
+                }
+                { \CJKfamilydefault }
+            }
+        \group_end:
+      }
+    \ctex_ltj_ensure_default_family:
+  }
+\tl_new:N \l__ctex_family_default_init_tl
+\cs_new_eq:NN \__ctex_family_default_wrap:n \use:n
+\tl_set:Nx \l__ctex_family_default_init_tl
+  {
+    \exp_not:N \__ctex_family_default_wrap:n
+      { \exp_not:o { \CJKfamilydefault } }
+  }
+\tl_gset_eq:NN \CJKfamilydefault \l__ctex_family_default_init_tl
+\ctex_hypersetup:n { pdfencoding = unicode }
+\cs_new_protected:Npn \ctex_update_ccwd:
+  { \skip_set:Nn \ccwd { \ltjgetparameter { kanjiskip } + \zw } }
+\dim_new:N \ccwd
+\cs_new_protected:Npn \ctex_update_ccglue:
+  { \ctex_ltj_set_kanjiskip:N \l__ctex_ccglue_skip }
+\skip_new:N \l__ctex_ccglue_skip
+\prg_new_conditional:Npnn \ctex_if_ccglue_touched: { TF }
+  {
+    \skip_if_eq:nnTF { \l__ctex_ccglue_skip } { \ltjgetparameter { kanjiskip } }
+      { \prg_return_false: } { \prg_return_true: }
+  }
+\cs_new_protected:Npn \ctex_update_em_unit:
+  { \dim_set:Nn \ccwd { \zw } }
+\cs_new_protected:Npn \ctex_add_to_selectfont:n #1
+  {
+    \cs_set_protected:Npx \CTEX@selectfont@hook
+      { \exp_not:o { \CTEX@selectfont@hook #1 } }
+  }
+\cs_new_eq:NN \CTEX@selectfont@hook \prg_do_nothing:
+\bool_if:NTF \c__ctex_everysel_loaded_bool
+  {
+    \cs_if_free:NF \@EverySelectfont@Init
+      {
+        \group_begin:
+        \cs_set:Npn \__ctex_tmp:N #1
+          {
+            \tl_set:Nn \l__ctex_tmp_tl {#1}
+            \cs_new_eq:NN \CTEX@selectfont@save #1
+            \cs_new_protected:Npn \__ctex_restore_selectfont:
+              {
+                \cs_if_free:NF \scr@new@selectfont
+                  {
+                    \cs_set_eq:NN \scr@new@selectfont #1
+                    \cs_set_eq:NN \CTEX@selectfont@save \scr@selectfont
+                  }
+                \tl_put_left:Nn \@EverySelectfont@Init
+                  { \cs_set_eq:NN #1 \CTEX@selectfont@save }
+                \cs_undefine:N \__ctex_restore_selectfont:
+              }
+          }
+        \ctex_parse_name:NN \__ctex_tmp:N \selectfont
+      \exp_last_unbraced:NNo \group_end:
+      \ctex_patch_cmd_once:NnnnTF { \l__ctex_tmp_tl }
+        { \ExplSyntaxOff }
+        { \size@update }
+        { \CTEX@selectfont@hook \size@update }
+        { \__ctex_restore_selectfont: }
+        { \ctex_patch_failure:N \selectfont }
+      }
+    \cs_new_protected:Npn \ctex_gadd_selectfont_hook:n
+      { \EverySelectfont }
+  }
+  {
+    \cs_new_protected:Npn \ctex_gadd_selectfont_hook:n
+      { \ctex_gadd_ltxhook:nn { selectfont } }
+  }
+\ctex_gadd_selectfont_hook:n { \CTEX@selectfont@hook }
+\ctex_add_to_selectfont:n
+  {
+    \ctex_ltj_select_font:
+    \ctex_ltj_select_alternate_font:
+  }
+\tl_set:Nn \CJK@family { song } \selectfont
+\tl_clear:N \CJK@family
+\cs_new_protected:Npn \ctex_update_xkanjiskip:
+  {
+    \skip_if_eq:nnT
+      { \ltjgetparameter { xkanjiskip } } { \l__ctex_xkanjiskip_skip }
+      {
+        \skip_set:Nn \l__ctex_xkanjiskip_skip { \l__ctex_xkanjiskip_tl }
+        \ctex_ltj_set_xkanjiskip:N \l__ctex_xkanjiskip_skip
+      }
+  }
+\tl_new:N \l__ctex_xkanjiskip_tl
+\tl_set:Nn \l__ctex_xkanjiskip_tl
+  { .25\zw plus 1pt minus 1pt }
+\skip_new:N \l__ctex_xkanjiskip_skip
+\skip_set:Nn \l__ctex_xkanjiskip_skip
+  { \ltjgetparameter { xkanjiskip } }
+\ctex_add_to_selectfont:n { \ctex_update_xkanjiskip: }
+\dim_new:N \cht
+\dim_new:N \cdp
+\dim_new:N \cwd
+\group_begin:
+\char_set_catcode_space:n { 32 }
+\lua_now:e
+  {
+    local nulltable = { }
+    local fmt = luatexja.jfont.font_metric_table
+    local getattribute = tex.getattribute
+    local setdimen = tex.setdimen
+    ctex.newluacmd("ctex_update_kanjisize:", function ()
+      local ft = fmt[getattribute("ltj@curjfnt")] or nulltable
+      local ft = ft and ft.char_type or nulltable
+      local fk = ft and ft[0] or nulltable
+      setdimen("cht", fk.height or 0)
+      setdimen("cdp", fk.depth or 0)
+      setdimen("cwd", fk.width or ft.zw or 0)
+    end, "global", "protected")
+  }
+\group_end:
+\ctex_add_to_selectfont:n { \ctex_update_kanjisize: }
+\ctex_define:n
+  {
+    space .code:n =
+      { \msg_warning:nn { ctex } { invalid-option } }
+  }
+\ctex_define:n
+  {
+    punct .code:n =
+      {
+        \tl_set:Nx \l__ctex_punct_tl {#1}
+        \ctex_set_jfm:o { \l__ctex_punct_tl }
+      } ,
+    punct .default:n = { quanjiao } ,
+  }
+%% 
+%%
+%% End of file `ctex-engine-luatex.def'.

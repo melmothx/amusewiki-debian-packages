@@ -1,0 +1,7 @@
+% this will typeset only documentation but not the code
+
+\AtBeginDocument{\OnlyDescription
+                 \let\tableofcontents\relax
+                  \RenewCommandCopy\MaybeStop\StopEventually
+                 }
+\input{ltcmdhooks.dtx}

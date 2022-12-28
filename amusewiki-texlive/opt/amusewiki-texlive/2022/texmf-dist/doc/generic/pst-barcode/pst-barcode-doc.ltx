@@ -1,0 +1,383 @@
+%% $Id: pst-barcode-doc.ltx 588 2022-08-23 16:49:51Z herbert $
+\RequirePackage{pdfmanagement-testphase}
+\DeclareDocumentMetadata{}
+
+\documentclass[11pt,english,bibliography=totoc,parskip=false,headings=small,
+    headinclude=false,footinclude=false,twoside,usegeometry]{pst-doc}
+\usepackage{pst-barcode,blindtext,multicol}
+\usepackage{biblatex}
+\makeatletter
+\def\blx@err@patch#1{}
+\makeatother
+\addbibresource{\jobname.bib}
+
+\geometry{inner=2cm,outer=3cm,marginparwidth=2.5cm,marginparsep=2mm}
+
+\let\pstBarcodeFV\fileversion
+\lstset{preset=\centering,pos=l,wide=false,vsep=5mm,language=PSTricks,%width=0.5\linewidth,
+    morekeywords={multidipole,parallel},basicstyle=\footnotesize\ttfamily}
+
+\RedeclareSectionCommand[
+  afterskip=3pt plus 1pt minus 1pt,
+  beforeskip=4pt plus 1pt minus 1pt]{paragraph}
+\RedeclareSectionCommand[
+  afterskip=3pt plus 1pt minus 1pt,
+  beforeskip=4pt plus 1pt minus 1pt]{subparagraph}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+%
+\def\bgImage{\begin{pspicture}(1in,1in)
+\psbarcode{Herbert Voss Freie Universitaet Berlin}{rows=52 columns=52}{datamatrix}
+\end{pspicture}}
+
+\begin{filecontents*}[force]{demo.tex}
+\documentclass{article}
+\usepackage{pst-barcode,fancyvrb}
+\begin{document}
+\VerbatimInput{\jobname.tex}% test 
+
+\begin{pspicture}(2in,2in)
+  \psbarcode[file]{\jobname.tex}{}{qrcode}
+\end{pspicture}
+\end{document}
+\end{filecontents*}
+
+\def\tightlist{\parskip=0pt%\itemskip=0pt
+}
+
+
+
+\begin{document}
+
+\title{\texttt{pst-barcode}}
+\subtitle{A PSTricks package for drawing barcodes; v.\pstBarcodeFV}
+\author{Terry Burton \\Herbert Voß}
+%\docauthor{Herbert Vo\ss}
+\date{\today}
+\settitle
+
+\tableofcontents
+
+\clearpage
+
+\begin{abstract}
+\noindent
+The \LPack{pstricks} related package provides (essentially) one macro
+for printing barcodes. The type of the code is defined by a parameter
+and passed to postscript.
+
+%\vfill\noindent
+%Thanks to: \\
+%    Jean-C\^ome Charpentier.
+\end{abstract}
+
+\section{Introduction}
+The \LPack{pstricks} package provides (essentially) one macro
+for printing barcodes. The type of the code is defined by a parameter
+and passed to postscript.
+To install the package put the three files in a place, where \TeX{} will search
+for the files:
+
+\bigskip\noindent
+\begin{tabular}{@{} l l l @{}}\hline
+\emph{name} & \emph{meaning}& \emph{target dir} \\\hline
+\verb+pst-barcode.tex+ & \LaTeX\ style file -- wrapper & \verb+$LOCALTEXMF/tex/generic/pstricks/+\\
+\verb+pst-barcode.sty+ & \TeX\ file -- PS interface &\verb+$LOCALTEXMF/tex/latex/pstricks/+\\
+\verb+pst-barcode.pro+ & PostScript file & \verb+$LOCALTEXMF/dvips/pstricks/+ \\
+\verb+pst-barcode-doc.tex+ & documentation source & \verb+$LOCALTEXMF/doc/pstricks/+\\
+\verb+pst-barcode-doc.bib+ & bibliography source & \verb+$LOCALTEXMF/doc/pstricks/+\\
+\verb+pst-barcode-doc.pdf+ & documentation & \verb+$LOCALTEXMF/doc/pstricks/+ \\\hline%$
+\end{tabular}
+
+\bigskip
+There is only one macro \verb+\psbarcode+ with the usual PSTricks syntax
+\begin{BDef}
+\Lcs{psbarcode}\OptArgs\Largb{text or filename}\Largb{PS options}\Largb{barcode type}
+\end{BDef}
+
+Important is the fact, that the barcode is printed in a \TeX\ box of zero dimension.
+If you want to save some space in your text, use the \Lenv{pspicture} environment
+or the \Lcs{makebox} macro.
+
+
+
+\section{The options}
+\subsection{The \TeX\ options}
+
+\begin{tabular}{@{}lll@{}}\hline
+\emph{name} & \emph{default} & \emph{remarks}\\\hline
+\Lkeyword{transx} & 0 & horizontal shift\\
+\Lkeyword{transy} & 0 & vertical shift\\
+\Lkeyword{scalex} & 1 & horizontal scaling\\
+\Lkeyword{scaley} & 1 & vertical scaling\\
+\Lkeyword{rotate} & 0 & rotating angle in degrees\\\hline
+\Lkeyword{file}   & false & load an external file for the text\\\hline
+\end{tabular}
+
+\subsection{The PostScript options}
+
+\begin{tabularx}{\textwidth}{@{}llX@{}}\hline
+\emph{name} & \emph{default} & \emph{remarks}\\\hline
+\Lps{height} & 1 &  dimension is inch\\
+\Lps{textsize} & 10 & dimension is pt\\
+\Lps{textpos} & -2 & dimension is pt; it is the shift for additional code text\\
+\Lps{inkspread} & 0.15 & dimension is pt\\
+\Lps{showborder} & --  & - \\
+\Lps{borderwidth} & 0.5  & dimension in pt \\
+\Lps{borderleft} & 10  & dimension in pt\\
+\Lps{borderright} & 10  & dimension in pt\\
+\Lps{bordertop} & 1  & dimension in pt\\
+\Lps{borderbottom} & 1  & dimension in pt\\
+\Lps{borderwidth} & 0.5  & dimension in pt\\
+\Lps{width} & --  & dimension in inch\\
+%
+\Lps{font} & /Helvetica & must be a PostScript font\\
+\Lps{includetext} & -- & enable human readable text \\
+\Lps{includecheck} & -- & enable check digit \\
+\Lps{includecheckintext} & -- & check digit visible in text\\
+\Lps{parse} & -- & parse variable field für decimal values, like \^{}032 for space, and convert them to ASCII\\\hline
+\end{tabularx}
+
+
+
+\subsection{Examples for the TeX options}
+
+\begin{LTXexample}[pos=t,preset=\centering]
+\psframebox{\begin{pspicture}(2.5,1in)
+\psbarcode{01335583}{includetext}{ean8}
+\end{pspicture}}\quad
+\psframebox{\begin{pspicture}(-2.6,-1.5)(0.4,0.2in)
+\psbarcode[rotate=180,linecolor=red]{01335583}{includetext guardwhitespace height=0.6}{ean8}
+\end{pspicture}}\quad
+\psframebox{\begin{pspicture}(3.8,1in)
+\psbarcode[scalex=1.5,scaley=0.5,transy=1]{01335583}{includetext inkspread=0.5}{ean8}
+\end{pspicture}}
+\end{LTXexample}
+
+
+\begin{LTXexample}[pos=t,preset=\centering]
+\begin{pspicture}(2in,2in)
+  \psbarcode[file]{demo.tex}{}{qrcode}
+\end{pspicture}
+\end{LTXexample}
+
+The contents of the external file \texttt{demo.tex}:
+
+\VerbatimInput{demo.tex}
+
+
+\newpage
+\subsection{Examples for the PostScript options}
+
+\begin{LTXexample}[pos=t,preset=\centering]
+\begin{pspicture}(3.5,1.2in)
+\psbarcode{01335583}{includetext guardwhitespace height=0.6}{ean8}
+\end{pspicture}
+\begin{pspicture}(3.5,1.2in)
+\psbarcode{01335583}{textsize=15 includetext guardwhitespace height=0.6}{ean8}
+\end{pspicture}
+\begin{pspicture}(3.5,1.2in)
+\psbarcode{01335583}{includetext inkspread=0.5}{ean8}
+\end{pspicture}
+\begin{pspicture}(3.5,1.2in)
+\psbarcode{01335583}{includetext textpos=0}{ean8}
+\end{pspicture}
+\end{LTXexample}
+
+
+
+\begin{LTXexample}[pos=t,preset=\centering]
+\begin{pspicture}(3.5,1.2in)
+\psbarcode{01335583}{includetext guardwhitespace}{ean8}
+\end{pspicture}
+\begin{pspicture}(3.5,1.2in)
+\psbarcode{01335583}{textsize=15 includetext guardwhitespace width=2}{ean8}
+\end{pspicture}
+\end{LTXexample}
+
+
+
+
+
+\section{Usage}
+By default the barcode has a width and a height of zero. Using the \Lcs{parbox}
+macro or the \Lenv{pspicture} environment can reserve the needed space for
+the barcode. The \Lcs{fbox} in the following examples is used
+only for demonstration.
+
+\xLps{code39}
+\begin{LTXexample}[width=.5\linewidth]
+foo
+\fbox{%
+  \parbox[b][1in]{1.5in}{\psbarcode{241078}{includetext width=1.5 height=1}{code39}}}
+bar
+\end{LTXexample}
+
+\xLps{code39}
+\bigskip
+\begin{LTXexample}[pos=l,width=.5\linewidth]
+foo
+\fbox{%
+\begin{pspicture}(0,-8pt)(1.5in,1in)
+  \psbarcode{241078}{includetext width=1.5 height=1}{code39}
+\end{pspicture}}
+bar
+\end{LTXexample}
+
+
+\section{Available Codes}
+
+\begingroup
+\ttfamily
+\begin{compactitem}
+\item EAN-13 (EAN, UCC-13, JAN, JAN-13, EAN-13+2, EAN-13+5, EAN-99), 
+\item EAN-8 (UCC-8, JAN-8, EAN-8+2, EAN-8+5, EAN-Velocity), 
+\item UPC-A (UPC, UCC-12, UPC-A+2, UPC-A+5), 
+\item UPC-E (UPC-E0, UPC-E1, UPC-E+2, UPC-E+5), 
+\item ISBN (ISBN-13, ISBN-10, Bookland EAN-13), 
+\item ISMN, 
+\item ISSN, 
+\item EAN-5 \& EAN-2 (EAN/UPC add-ons), 
+\item GS1 DataBar Omnidirectional (RSS-14), 
+\item GS1 DataBar Stacked (RSS-14 Stacked), 
+\item GS1 DataBar Stacked Omnidirectional (RSS-14 Stacked Omnidirectional), 
+\item GS1 DataBar Truncated (RSS-14 Truncated), 
+\item GS1 DataBar Limited (RSS Limited), 
+\item GS1 DataBar Expanded (RSS Expanded), 
+\item GS1 DataBar Expanded Stacked (RSS Expanded Stacked), 
+\item GS1-128 (UCC/EAN-128, EAN-128, UCC-128), 
+\item SSCC-18 (EAN-18, NVE), 
+\item EAN-14 (UCC-14), 
+\item ITF-14 (UPC SCS), 
+\item QR Code (Quick Response Code), 
+\item Micro QR Code, 
+\item GS1 QR Code, 
+\item Data Matrix (Data Matrix ECC 200, Data Matrix Rectangular Extension), 
+\item GS1 DataMatrix, 
+\item Aztec Code (Compact Aztec Code), 
+\item Aztec Runes, 
+\item PDF417, 
+\item Compact PDF417 (Truncated PDF417), 
+\item MicroPDF417, 
+\item Han Xin Code (Chinese Sensible), 
+\item MaxiCode (UPS Code, Code 6), 
+\item Codablock F, 
+\item Code 16K (USS-16K), 
+\item Code 49 (USS-49), 
+\item Code One (Code 1, Code 1S), 
+\item USPS POSTNET, 
+\item USPS PLANET, 
+\item USPS Intelligent Mail (USPS OneCode), 
+\item USPS FIM, 
+\item Royal Mail (RM4SCC, CBC), 
+\item Royal TNT Post (KIX), 
+\item Japan Post, 
+\item Australia Post, 
+\item Deutsche Post Identcode (DHL Identcode), 
+\item Deutsche Post Leitcode (DHL Leitcode), 
+\item Pharmacode (Pharmaceutical Binary Code), 
+\item Two-track Pharmacode (Two-track Pharmaceutical Binary Code), 
+\item Italian-Pharmacode (Code 32, IMH), 
+\item PZN (Pharmazentralnummer, PZN-8, PZN-7), 
+\item Code 39 (Code 3 of 9, LOGMARS, Alpha39, USD-3, USD-2, USS-39), 
+\item Code 39 Extended (Code 39 Full ASCII), 
+\item Code 93 (USD-7, USS-93), 
+\item Code 93 Extended (Code 93 Full ASCII), 
+\item Code 128 (Code 128A, Code 128B, Code 128C, USD-6, USS-128), 
+\item Code 25 (Code 2 of 5, Industrial 2 of 5), 
+\item IATA-2 of 5, 
+\item Datalogic 2 of 5, 
+\item Matrix 2 of 5, 
+\item COOP 2 of 5, 
+\item Interleaved 2 of 5 (ITF, Code 2 of 5 Interleaved, USD-1, USS-Interleaved 2 of 5), 
+\item Code 11 (USD-8), 
+\item Codabar (Rationalized Codabar, Ames Code, NW-7, USD-4, USS-Codabar, Monarch, Code 2 of 7), 
+\item Plessey (Anker Code), 
+\item MSI Plessey (MSI, MSI Modified Plessey), 
+\item Telepen (Telepen Alpha, Telepen Full ASCII), 
+\item Telepen Numeric, 
+\item Channel Code, 
+\item PosiCode (PosiCode A, PosiCode B), 
+\item BC412 (BC412 SEMI, BC412 IBM), 
+\item GS1 Composite Symbols (EAN-13 Composite, EAN-8 Composite, UPC-A Composite, UPC-E Composite, GS1 DataBar Omnidirectional Composite, 
+\item           GS1 DataBar Stacked Composite, GS1 DataBar Stacked Omni Composite, GS1 DataBar Truncated Composite, 
+\item           GS1 DataBar Limited Composite, GS1 DataBar Expanded Composite, GS1 DataBar Expanded Stacked Composite, 
+\item           GS1-128 Composite), 
+\item HIBC barcodes (HIBC Code 39, HIBC Code 128, HIBC Data Matrix, HIBC PDF417, HIBC MicroPDF417, HIBC QR Code, HIBC Codablock F) 
+\end{compactitem}
+\endgroup
+
+%\clearpage
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\input{pst-barcode-doc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\clearpage
+%\newgeometry{inner=2cm,outer=4cm,marginparwidth=3cm,marginparsep=2mm}
+%\textwidth=\dimexpr\textwidth-1cm\relax
+
+\section{QR code in the margin}
+The marginnotes are placed with the help of the macro of the same name \Lcs{marginnote},
+which itself needs package \LPack{narginnote}. It is loaded by default if the macro
+doesn't exists.
+
+\begin{lstlisting}
+\QR[1]<barcode>{http://mirror.ctan.org/help/Catalogue/bytopic.html\#barcode}
+\blindtext
+
+{\psset{fontstyle=\scriptsize\ttfamily}%
+  \QR[1]{http://mirror.ctan.org/help/Catalogue/bytopic.html\#barcode}%
+}
+\blindtext
+
+\QR{http://mirror.ctan.org/usergrps/dante/dtk/doc/beispiel.pdf}
+\blindtext
+\QR<Beispiel>{http://mirror.ctan.org/usergrps/dante/dtk/doc/beispiel.pdf}
+\blindtext
+
+\QR{http://de.wikipedia.org/wiki/QR-Code}
+\blindtext
+\end{lstlisting}
+
+\QR[1]<barcode>{http://mirror.ctan.org/help/Catalogue/bytopic.html\#barcode}
+\blindtext
+
+{\psset{fontstyle=\scriptsize\ttfamily}%
+  \QR[1]{http://mirror.ctan.org/help/Catalogue/bytopic.html\#barcode}%
+}
+\blindtext
+
+\QR{http://mirror.ctan.org/usergrps/dante/dtk/doc/beispiel.pdf}
+\blindtext
+\QR<Beispiel>{http://mirror.ctan.org/usergrps/dante/dtk/doc/beispiel.pdf}
+\blindtext
+
+\QR{http://de.wikipedia.org/wiki/QR-Code}
+\blindtext
+
+
+\restoregeometry
+
+\section{List of all optional arguments for \texttt{pst-barcode}}
+
+\xkvview{family=pst-barcode,columns={key,type,default}}
+
+
+\bgroup
+\raggedright
+\nocite{*}
+\printbibliography
+\egroup
+
+\printindex
+\end{document}
+
+

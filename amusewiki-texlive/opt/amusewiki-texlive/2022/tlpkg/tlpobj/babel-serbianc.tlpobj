@@ -1,0 +1,21 @@
+name babel-serbianc
+category Package
+revision 64588
+shortdesc Babel module to support Serbian Cyrillic
+longdesc The package provides support for Serbian documents written in
+longdesc Cyrillic, in babel.
+containersize 4336
+containerchecksum c4c4bf91fb22d0766bbab6a9980b0faa19f4031cabd044a309478f9ee700bc26247a10051f10d36c8cd88425820d2f800d3947d005fa9fb8b54429efdeb3c8c8
+doccontainersize 293708
+doccontainerchecksum a173daa03c9da413b4f200a0427e5293676ff3bc64dfd21d945977fc78fa9172ebcd73bad2c7ebd8976ee252cebe3c78d03ac9aa10b2be9984bc34b66ac5ac66
+docfiles size=78
+ texmf-dist/doc/generic/babel-serbianc/README.md details="Readme"
+ texmf-dist/doc/generic/babel-serbianc/serbianc.pdf details="Package documentation"
+srccontainersize 9872
+srccontainerchecksum 13a4981f6ff19cc1664bb2da360479814723651379c445e3fd272167df761dd07c3cc5b19072fe99de8b08b2b41485d08aca6fc1c16325fbbf7ce1ff1fab77ee
+runfiles size=4
+ texmf-dist/tex/generic/babel-serbianc/serbianc.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/serbianc
+catalogue-license lppl1.3
+catalogue-topics serbian multilingual-addon
+catalogue-version 3.2a

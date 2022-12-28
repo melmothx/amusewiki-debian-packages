@@ -1,0 +1,54 @@
+name xecjk
+category Package
+revision 64059
+shortdesc Support for CJK documents in XeLaTeX
+longdesc A LaTeX package for typesetting CJK documents in the way users
+longdesc have become used to, in the CJK package. The package requires a
+longdesc current version of xtemplate (and hence of the current LaTeX3
+longdesc development environment).
+depend ctex
+containersize 221848
+containerchecksum 3382b181053c76e58ba3f77b195765d83e5515a48b0c73580fc19305bd395de8d19b98be3494da8201b0a22a851a53c82dda14beb54a545b652cd0bd5719af67
+doccontainersize 1622808
+doccontainerchecksum b2dd0caf3317d708cc001b5aba57979f86eaa20d9d38d360650b45fbb683603e2075658a0c0a9c0631c81ea06ecac27694c45df47f053d9e7440901d66280295
+docfiles size=428
+ texmf-dist/doc/xelatex/xecjk/README.md details="Readme"
+ texmf-dist/doc/xelatex/xecjk/example/xeCJK-example-CJKecglue.tex
+ texmf-dist/doc/xelatex/xecjk/example/xeCJK-example-CJKfntef.tex
+ texmf-dist/doc/xelatex/xecjk/example/xeCJK-example-CM.tex
+ texmf-dist/doc/xelatex/xecjk/example/xeCJK-example-autofake.tex
+ texmf-dist/doc/xelatex/xecjk/example/xeCJK-example-checksingle.tex
+ texmf-dist/doc/xelatex/xecjk/example/xeCJK-example-fallback.tex
+ texmf-dist/doc/xelatex/xecjk/example/xeCJK-example-listings.tex
+ texmf-dist/doc/xelatex/xecjk/example/xeCJK-example-mathblock.tex
+ texmf-dist/doc/xelatex/xecjk/example/xeCJK-example-punctstyle.tex
+ texmf-dist/doc/xelatex/xecjk/example/xeCJK-example-subCJKblock.tex
+ texmf-dist/doc/xelatex/xecjk/example/xeCJK-example-verbatim.tex
+ texmf-dist/doc/xelatex/xecjk/xeCJK.pdf details="Package documentation (Chinese)" language="zh"
+ texmf-dist/doc/xelatex/xecjk/xunicode-symbols.pdf
+ texmf-dist/doc/xelatex/xecjk/xunicode-symbols.tex
+srccontainersize 90040
+srccontainerchecksum 07fe51d62358a376d2f3cc2774cf606bd4e9f8b3bd3fb202427f34c3c15b004fed5985f7fe776b3529a83ea4aa3e3e176311e14bb0a02cf055eb501a3f474839
+runfiles size=179
+ texmf-dist/fonts/misc/xetex/fontmapping/xecjk/full-stop.map
+ texmf-dist/fonts/misc/xetex/fontmapping/xecjk/full-stop.tec
+ texmf-dist/fonts/misc/xetex/fontmapping/xecjk/fullwidth-stop.map
+ texmf-dist/fonts/misc/xetex/fontmapping/xecjk/fullwidth-stop.tec
+ texmf-dist/fonts/misc/xetex/fontmapping/xecjk/han-simp.map
+ texmf-dist/fonts/misc/xetex/fontmapping/xecjk/han-simp.tec
+ texmf-dist/fonts/misc/xetex/fontmapping/xecjk/han-trad.map
+ texmf-dist/fonts/misc/xetex/fontmapping/xecjk/han-trad.tec
+ texmf-dist/tex/xelatex/xecjk/xeCJK-listings.sty
+ texmf-dist/tex/xelatex/xecjk/xeCJK.cfg
+ texmf-dist/tex/xelatex/xecjk/xeCJK.sty
+ texmf-dist/tex/xelatex/xecjk/xeCJKfntef.sty
+ texmf-dist/tex/xelatex/xecjk/xunicode-addon.sty
+ texmf-dist/tex/xelatex/xecjk/xunicode-extra.def
+catalogue-contact-bugs https://github.com/CTeX-org/ctex-kit/issues
+catalogue-contact-home http://www.ctex.org/
+catalogue-contact-repository https://github.com/CTeX-org/ctex-kit
+catalogue-contact-support https://github.com/CTeX-org/ctex-kit/issues
+catalogue-ctan /macros/xetex/latex/xecjk
+catalogue-license lppl1.3c
+catalogue-topics chinese japanese korean xetex expl3
+catalogue-version 3.9.1

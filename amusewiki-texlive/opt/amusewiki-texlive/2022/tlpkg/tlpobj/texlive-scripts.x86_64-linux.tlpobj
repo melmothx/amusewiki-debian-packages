@@ -1,0 +1,20 @@
+name texlive-scripts.x86_64-linux
+category TLCore
+revision 64356
+shortdesc x86_64-linux files of texlive-scripts
+containersize 596
+containerchecksum e9905c021a34725cff15168a29f1d396c120b2b1c4b95acb1b95e3d8f73fe2b8187da30ff5eb17cb7eb0af5e8e63b7cf751f2082f5e5fbc4652e4f9bc3237d26
+binfiles arch=x86_64-linux size=13
+ bin/x86_64-linux/fmtutil
+ bin/x86_64-linux/fmtutil-sys
+ bin/x86_64-linux/fmtutil-user
+ bin/x86_64-linux/man
+ bin/x86_64-linux/mktexfmt
+ bin/x86_64-linux/mktexmf
+ bin/x86_64-linux/mktexpk
+ bin/x86_64-linux/mktextfm
+ bin/x86_64-linux/rungs
+ bin/x86_64-linux/texhash
+ bin/x86_64-linux/updmap
+ bin/x86_64-linux/updmap-sys
+ bin/x86_64-linux/updmap-user

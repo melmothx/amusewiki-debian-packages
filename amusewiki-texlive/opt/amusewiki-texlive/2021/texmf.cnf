@@ -1,4 +1,0 @@
-TEXMFHOME = ~/texmf
-TEXMFCONFIG = ~/.amusewiki-texlive-2021/texmf-config
-TEXMFVAR = ~/.amusewiki-texlive-2021/year/texmf-var
-ASYMPTOTE_HOME = $TEXMFCONFIG/asymptote

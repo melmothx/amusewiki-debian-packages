@@ -1,8 +1,0 @@
-\ProvidesFile{gloss-irish.ldf}[polyglossia: module for irish]
-
-% We only provide this gloss for babel compatibility. Since irish is 
-% a gaelic variety, we use 'gaelic' with variant 'irish' now.
-
-\xpg@load@master@language{gaelic}
-
-\endinput

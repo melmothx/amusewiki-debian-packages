@@ -1,0 +1,26 @@
+name svn-prov
+category Package
+revision 64967
+shortdesc Subversion variants of \Provides... macros
+longdesc The package introduces Subversion variants of the standard
+longdesc LaTeX macros \ProvidesPackage, \ProvidesClass and \ProvidesFile
+longdesc where the file name and date is extracted from Subversion Id
+longdesc keywords. The file name may also be given explicitly as an
+longdesc optional argument.
+containersize 2412
+containerchecksum 319bd5de2870a3c8237aa5013f7807bf3c2c5ef7fa4618a400cd5ab60ec8cb88b94510b0129862c5d98a11e2241f9790f8c84473447df8e21cbe711d52268e98
+doccontainersize 242148
+doccontainerchecksum 01cfb48533e07065f477724efe4c3fcff13691da0393a0d8a9dc9cf4b5d3e3953ce233f8331c1e5857c2259ac6dd7e4859793bb194d750f35ecf3723dd7b4b0d
+docfiles size=74
+ texmf-dist/doc/latex/svn-prov/svn-prov.pdf details="Package documentation"
+srccontainersize 9996
+srccontainerchecksum 1e0206e1506082c8ca5ece1e66b9c85650b986e92e5906a96e7156964f3004af2d008815f86c609eba48f02a0750403fa3860ef2a3bc14689140c8826cb3881b
+runfiles size=2
+ texmf-dist/tex/latex/svn-prov/svn-prov.sty
+catalogue-contact-bugs https://github.com/MartinScharrer/svn-prov/issues
+catalogue-contact-home https://github.com/MartinScharrer/svn-prov
+catalogue-contact-repository https://github.com/MartinScharrer/svn-prov.git
+catalogue-ctan /macros/latex/contrib/svn-prov
+catalogue-license lppl
+catalogue-topics version-control doc-mgmt
+catalogue-version 3.1862

@@ -1,0 +1,12 @@
+% Language definition file (part of polyglossia v1.59 -- 2022/11/29)
+%
+\ProvidesFile{gloss-portuges.ldf}[polyglossia: module for Portuguese]
+
+% We only provide this gloss for backwards compatibility. The name
+% 'portuges' was selected in accordance with babel (which probably
+% introduced it in 8.3 filename times). Since polyglossia uses full
+% English language names, we use 'portuguese' now.
+
+\xpg@load@master@language{portuguese}
+     
+\endinput

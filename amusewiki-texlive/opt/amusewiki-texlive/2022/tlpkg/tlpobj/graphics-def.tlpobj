@@ -1,0 +1,29 @@
+name graphics-def
+category Package
+revision 64487
+shortdesc Colour and graphics option files
+longdesc This bundle is a combined distribution consisting of dvips.def,
+longdesc pdftex.def, luatex.def, xetex.def, dvipdfmx.def, and
+longdesc dvisvgm.def driver option files for the LaTeX graphics and
+longdesc color packages. It is hoped that by combining their source
+longdesc repositories at https://github.com/latex3/graphics-def it will
+longdesc be easier to coordinate updates.
+containersize 10740
+containerchecksum 7f811afae5119a42f97c23f65bfead8e7ba7e64796688b219eff78914115f8dbffa6e3aba97208f67d38b6463819ed2cf49e173aebcbe73aef8c2cf399ef803c
+doccontainersize 604
+doccontainerchecksum b52099d553c2bdf52ddb7b50231303f106db445d58e675ad819dd0dd84750f0fc6d164fa21deb1f622644a6651e6bdbe41ad3362fb021f4a7da2e7599fe0a526
+docfiles size=1
+ texmf-dist/doc/latex/graphics-def/README.md details="Readme"
+runfiles size=23
+ texmf-dist/tex/latex/graphics-def/dvipdfmx.def
+ texmf-dist/tex/latex/graphics-def/dvips.def
+ texmf-dist/tex/latex/graphics-def/dvisvgm.def
+ texmf-dist/tex/latex/graphics-def/luatex.def
+ texmf-dist/tex/latex/graphics-def/pdftex.def
+ texmf-dist/tex/latex/graphics-def/xetex.def
+catalogue-contact-bugs https://github.com/latex3/graphics-def/issues
+catalogue-contact-home https://www.latex-project.org/
+catalogue-contact-repository https://github.com/latex3/graphics-def
+catalogue-ctan /macros/latex/contrib/graphics-def
+catalogue-license lppl1.3c
+catalogue-topics graphics-drv

@@ -1,0 +1,21 @@
+name babel-norsk
+category Package
+revision 65093
+shortdesc Babel support for Norwegian
+longdesc The package provides the language definition file for support
+longdesc of Norwegian in babel. Some shortcuts are defined, as well as
+longdesc translations to Norsk of standard "LaTeX names".
+containersize 2872
+containerchecksum e5ca8c827ddc30ca33b1fc3da98e6576938aef4041d56c77b329ba69851a6576f4315228bb5188dc09aa3180890f3545d0b24f31da89c868ea11e92263f2a9fb
+doccontainersize 142428
+doccontainerchecksum f67830ab2e6b46370ad0737b64149ee8e0c1c9ecd68920ecc0ff43518335e884941b4469d91d0202f6a7927c1e5eb44507a5e43308effd89e1f1846f80de5355
+docfiles size=35
+ texmf-dist/doc/generic/babel-norsk/norsk.pdf details="Package documentation"
+srccontainersize 6788
+srccontainerchecksum 48506bcb93e7f8cb27b8c5e6257fc1e8247db04c94de6b9710438179647bdf6f1d9a0b5c811156bc79fb9ae301493df49536335a9b8fd939ae0852d4745843c8
+runfiles size=2
+ texmf-dist/tex/generic/babel-norsk/norsk.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/norsk
+catalogue-license lppl1.3
+catalogue-topics norwegian multilingual-addon
+catalogue-version 2.0i

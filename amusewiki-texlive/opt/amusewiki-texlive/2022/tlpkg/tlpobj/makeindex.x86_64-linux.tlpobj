@@ -1,0 +1,9 @@
+name makeindex.x86_64-linux
+category Package
+revision 62187
+shortdesc x86_64-linux files of makeindex
+containersize 50104
+containerchecksum 46546cedc7c5fb454d333144d4a71b209178fff039aa61e02fc8fd8a3ed7f5d4a838312f32fc910ef21e750fcec94f3567ad384a535921e57ed9b988ccb732a9
+binfiles arch=x86_64-linux size=38
+ bin/x86_64-linux/makeindex
+ bin/x86_64-linux/mkindex

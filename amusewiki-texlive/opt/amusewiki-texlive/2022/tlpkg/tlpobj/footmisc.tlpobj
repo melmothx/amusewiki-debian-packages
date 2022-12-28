@@ -1,0 +1,41 @@
+name footmisc
+category Package
+revision 62524
+shortdesc A range of footnote options
+longdesc A collection of ways to change the typesetting of footnotes.
+longdesc The package provides means of changing the layout of the
+longdesc footnotes themselves (including setting them in 'paragraphs' --
+longdesc the para option), a way to number footnotes per page (the
+longdesc perpage option), to make footnotes disappear in a 'moving'
+longdesc argument (stable option) and to deal with multiple references
+longdesc to footnotes from the same place (multiple option). The package
+longdesc also has a range of techniques for labelling footnotes with
+longdesc symbols rather than numbers. Some of the functions of the
+longdesc package are overlap with the functionality of other packages.
+longdesc The para option is also provided by the manyfoot and bigfoot
+longdesc packages, though those are both also portmanteau packages.
+longdesc (Don't be seduced by fnpara, whose implementation is improved
+longdesc by the present package.) The perpage option is also offered by
+longdesc footnpag and by the rather more general-purpose perpage
+containersize 7672
+containerchecksum 85a082bfa68f0ab8d9cc252d04521b45bac8a3c4d005920c1806515efdea6668b3df3b57f51780b8d4bf4cd7d4e06751f41087b76da3b0dc9d916f3716cdc522
+doccontainersize 511244
+doccontainerchecksum 5c3e00ea325942affe2c68b6855207801b0155b79b1f33cdf3c2dc5d65f17bc94b6fb94e09c1ad8c823035232dc305d9131ae89bb726685354adb2a23117987d
+docfiles size=154
+ texmf-dist/doc/latex/footmisc/README.md details="Readme"
+ texmf-dist/doc/latex/footmisc/changes.txt
+ texmf-dist/doc/latex/footmisc/footmisc-code.pdf
+ texmf-dist/doc/latex/footmisc/footmisc-code.tex
+ texmf-dist/doc/latex/footmisc/footmisc-doc.pdf details="Package documentation"
+ texmf-dist/doc/latex/footmisc/footmisc-doc.tex
+srccontainersize 22216
+srccontainerchecksum 526a64c71dd03b67dd0df1d735573bd51db7c6929aa1626c61fda42b7619ebad8b6127c2db8e08fdfc79f54e8c113080001fe6141f1412b0cf8b175c11a32972
+runfiles size=13
+ texmf-dist/tex/latex/footmisc/footmisc-2011-06-06.sty
+ texmf-dist/tex/latex/footmisc/footmisc.sty
+catalogue-also endnotes ftnright footmisx
+catalogue-contact-repository https://github.com/frankmittelbach/fmitex-footmisc
+catalogue-ctan /macros/latex/contrib/footmisc
+catalogue-license lppl1.3c
+catalogue-topics footnote
+catalogue-version 6.0d

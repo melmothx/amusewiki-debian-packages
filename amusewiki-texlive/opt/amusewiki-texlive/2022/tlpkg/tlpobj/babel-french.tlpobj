@@ -1,0 +1,30 @@
+name babel-french
+category Package
+revision 65000
+shortdesc Babel contributed support for French
+longdesc The package, formerly known as frenchb, establishes French
+longdesc conventions in a document (or a subset of the conventions, if
+longdesc French is not the main language of the document).
+containersize 15380
+containerchecksum b91309912e25c323989deb4878a08327709ea25b6f9708b10c3bef712fcb29069c91c8df7829569fd94e943abdc756a8219095ef2a7c29da376c3c03aed72b94
+doccontainersize 508568
+doccontainerchecksum a06a1a4a4d83910a42d6c20dfaab2ebcf746a3e4a336d0fe38ecbda39479a435445f007c22b310b6c6fed7253fc5ce9263558f35a81603d4a7e1ab791b07b3ea
+docfiles size=160
+ texmf-dist/doc/generic/babel-french/README.md details="Readme"
+ texmf-dist/doc/generic/babel-french/frenchb-doc.pdf details="User manual" language="fr"
+ texmf-dist/doc/generic/babel-french/frenchb-doc.tex
+ texmf-dist/doc/generic/babel-french/frenchb.pdf details="Package documentation"
+srccontainersize 55528
+srccontainerchecksum fe6de0df3b3871d79b64b618cd09be498c4cb720f060fb5eabf595a88265ba2f2047ffc039f714f7607e255af7e25c17c1c8ca0d650bfd83a99f05d7100ece39
+runfiles size=24
+ texmf-dist/tex/generic/babel-french/acadian.ldf
+ texmf-dist/tex/generic/babel-french/canadien.ldf
+ texmf-dist/tex/generic/babel-french/francais.ldf
+ texmf-dist/tex/generic/babel-french/french.ldf
+ texmf-dist/tex/generic/babel-french/frenchb.ldf
+ texmf-dist/tex/generic/babel-french/frenchb.lua
+catalogue-contact-home http://daniel.flipo.free.fr/babel-french
+catalogue-ctan /macros/latex/contrib/babel-contrib/french
+catalogue-license lppl1.3
+catalogue-topics french multilingual-addon
+catalogue-version 3.5o

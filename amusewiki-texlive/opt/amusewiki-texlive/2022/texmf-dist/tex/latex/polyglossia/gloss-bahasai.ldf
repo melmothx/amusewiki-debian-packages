@@ -1,0 +1,10 @@
+% Language definition file (part of polyglossia v1.59 -- 2022/11/29)
+%
+\ProvidesFile{gloss-bahasai.ldf}[polyglossia: module for Bahasa Indonesia]
+
+% We only provide this gloss for babel compatibility. Since bahasai is 
+% a malay variety, we use 'malay' with variant 'indonesian' now.
+
+\xpg@load@master@language{malay}
+
+\endinput

@@ -1,0 +1,90 @@
+%% $Id: pst-barcode.tex 591 2022-08-23 16:54:56Z herbert $
+%%
+%% This is file `pst-barcode.tex',
+%%
+%% IMPORTANT NOTICE:
+%%
+%% Package `pst-barcode.tex'
+%%
+%% Terry Burton <tez _at_ terryburton.co.uk>
+%% Herbert Voss <hvoss _at_ tug.org>
+%%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+%%
+%% DESCRIPTION:
+%%   `pst-barcode' is a PSTricks package to draw barcodes
+%%
+\csname PSTBarcodeLoaded\endcsname
+\let\PSTBarcodeLoaded\endinput
+\ifx\PSTricksLoaded\endinput\else\input pstricks.tex\fi
+%
+\def\fileversion{0.19}
+\def\filedate{2022/08/21}
+\message{`PST-barcode' v\fileversion, \filedate\space (tb,hv)}
+%
+\edef\PstAtCode{\the\catcode`\@} \catcode`\@=11\relax
+\ifx\PSTXKeyLoaded\endinput\else\input pst-xkey \fi
+\pst@addfams{pst-barcode}
+%\pstheader{pst-barcode.fonts}
+\pstheader{pst-barcode.pro}
+%
+\@ifundefined{marginnote}{\RequirePackage{marginnote}}{}
+%
+\newsavebox\QR@box
+\define@key[psset]{pst-barcode}{fontstyle}[\small]{\def\pst@fontstyle{#1}}
+\define@key[psset]{pst-barcode}{transx}[0]{\pst@getlength{#1}\psk@barcode@transx}
+\define@key[psset]{pst-barcode}{transy}[0]{\pst@getlength{#1}\psk@barcode@transy}
+\define@key[psset]{pst-barcode}{scalex}[1]{\def\psk@barcode@scalex{#1}}
+\define@key[psset]{pst-barcode}{scaley}[1]{\def\psk@barcode@scaley{#1}}
+\define@key[psset]{pst-barcode}{rotate}[0]{\pst@getangle{#1}\psk@barcode@rotate}
+\define@boolkey[psset]{pst-barcode}[Pst@]{file}[true]{}
+\psset[pst-barcode]{transx=0,transy=0,scalex=1,scaley=1,rotate=0,file=false,
+	fontstyle=\small\ttfamily}
+%
+\def\psbarcode{\pst@object{psbarcode}}
+\def\psbarcode@i#1#2#3{%
+  \begin@SpecialObj
+  \addto@pscode{
+    gsave
+    \psk@barcode@rotate\space
+    \psk@barcode@scalex\space \psk@barcode@scaley\space
+    \psk@barcode@transx\space \psk@barcode@transy\space
+    translate scale rotate
+    0 0 moveto 
+    \ifPst@file 
+      /File 10000 string def
+      /ExternalFile { (#1)(r) file } def
+      ExternalFile File readstring
+      ExternalFile closefile
+      File 0 rightTrim 	% strip the /000 on the right
+%      pstack
+    \else (#1) \fi
+    (#2) /#3 /uk.co.terryburton.bwipp findresource exec
+    grestore
+  }%
+  \end@SpecialObj%
+  \ignorespaces%
+}
+%
+%
+\def\short@url#1/#2\@nil{\ifx\relax#2\relax #1\else\short@url#2\@nil\fi}
+\def\QR{\@ifnextchar[\QR@i{\QR@i[0.5]}}
+\def\QR@i[#1]{\@ifnextchar<{\QR@ii[#1]}{\QR@ii[#1]<>}}
+\def\QR@ii[#1]<#2>#3{%
+  \marginnote{\pspicture(#1in,#1in)
+  \expandafter\psbarcode\expandafter{#2}{width=#1 height=#1}{qrcode}
+  \endpspicture
+  \newline\noindent
+  \ifx\relax#2\relax 
+    \sbox\QR@box{\expandafter\pst@fontstyle\short@url#3/\@nil}% Speichere Kurz-URL in \QRbox
+  \else 
+    \sbox\QR@box{#2}%
+  \fi
+  \ifdim\wd\QR@box>#1in\resizebox{#1in}{\ht\QR@box}{\usebox\QR@box}\else\usebox\QR@box\fi}}
+%
+\catcode`\@=\PstAtCode\relax
+%
+%% END: pst-barcode.tex
+\endinput

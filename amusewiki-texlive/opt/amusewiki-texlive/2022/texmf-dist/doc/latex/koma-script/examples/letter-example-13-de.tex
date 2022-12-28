@@ -1,0 +1,30 @@
+\documentclass[foldmarks=true,foldmarks=blmtP,
+  fromalign=center,fromrule=afteraddress,
+  fromphone,fromemail,
+  version=last]{scrlttr2}
+\usepackage[ngerman]{babel}
+\begin{document}
+\setkomavar{fromname}{Peter Musterfrau}
+\setkomavar{fromaddress}{Hinter dem Tal 2\\
+                         54321 Musterheim}
+\setkomavar{fromphone}{0\,12\,34~56\,78}
+\setkomavar{fromemail}{Peter@Musterfrau.invalid}
+\begin{letter}{%
+    Petra Mustermann\\
+    Vor dem Berg 1\\
+    12345 Musterhausen%
+  }
+\opening{Liebe Vereinsvorsitzende,}
+seit einem Jahr gab es keine Mitgliederversammlung
+mehr. Ich erinnere daran, dass unsere Satzung eine
+solche jedes halbe Jahr vorsieht. Ich fordere den
+Vorstand daher auf, umgehend eine solche in
+Angriff zu nehmen.
+\closing{In Erwartung einer Einladung}
+\ps PS: Ich hoffe, Du nimmst mir das nicht krumm.
+\setkomavar*{enclseparator}{Anlage}
+\encl{Auszug aus der Satzung, in dem die
+  Mitgliederversammlungen geregelt sind}
+\cc{Die Vereinsvorsitzende\\Alle Mitglieder}
+\end{letter}
+\end{document}

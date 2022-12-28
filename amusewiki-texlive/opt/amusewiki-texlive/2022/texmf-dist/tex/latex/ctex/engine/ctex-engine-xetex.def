@@ -1,0 +1,142 @@
+%%
+%% This is file `ctex-engine-xetex.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% ctex.dtx  (with options: `xetex')
+%% 
+%%     Copyright (C) 2003--2022
+%%     CTEX.ORG and any individual authors listed in the documentation.
+%% ---------------------------------------------------------------------
+%% 
+%%     This work may be distributed and/or modified under the
+%%     conditions of the LaTeX Project Public License, either
+%%     version 1.3c of this license or (at your option) any later
+%%     version. This version of this license is in
+%%        http://www.latex-project.org/lppl/lppl-1-3c.txt
+%%     and the latest version of this license is in
+%%        http://www.latex-project.org/lppl.txt
+%%     and version 1.3 or later is part of all distributions of
+%%     LaTeX version 2005/12/01 or later.
+%% 
+%%     This work has the LPPL maintenance status "maintained".
+%% 
+%% ---------------------------------------------------------------------
+%% 
+\GetIdInfo$Id: ctex.dtx 13a2256 2022-07-14 18:54:09 +0800 Qing Lee <sobenlee@gmail.com> $
+  {XeLaTeX adapter (CTEX)}
+\ProvidesExplFile{ctex-engine-xetex.def}
+  {\ExplFileDate}{2.5.10}{\ExplFileDescription}
+\RequirePackage { xeCJK }
+\exp_args:Ne \xeCJKsetup
+  {
+    LoadFandol   = false ,
+    PunctStyle   = \l__ctex_punct_tl
+  }
+\@ifpackagelater { fontspec } { 2014/05/25 } { }
+  { \msg_error:nnn { ctex } { package-too-old } { fontspec } }
+\ctex_hypersetup:n { pdfencoding = unicode }
+\ctex_at_end_package:nn { xeCJKfntef }
+  {
+    \@ifpackagelater { xeCJKfntef } { 2014/11/04 }
+      {
+        \cs_new_protected:Npn \__ctex_clear_fntef_color:n #1
+          { \xeCJKsetup { #1 / format = { } } }
+      }
+      {
+        \cs_new_protected:Npn \__ctex_clear_fntef_color:n #1
+          { \tl_clear:c { CJK#1color } }
+      }
+    \clist_map_inline:nn
+      { underdot , underline , underdblline , underwave , sout , xout }
+      { \__ctex_clear_fntef_color:n {#1} }
+  }
+\cs_new_protected:Npn \ctex_update_ccwd:
+  {
+    \hbox_set:Nn \l__ctex_tmp_box { \CJKglue }
+    \dim_set:Nn \ccwd { \box_wd:N \l__ctex_tmp_box + \f@size \p@ }
+  }
+\dim_new:N \ccwd
+\cs_new_protected:Npn \ctex_update_ccglue:
+  {
+    \cs_set_protected:Npn \CJKglue
+      { \skip_horizontal:N \l__ctex_ccglue_skip }
+  }
+\skip_new:N \l__ctex_ccglue_skip
+\prg_new_conditional:Npnn \ctex_if_ccglue_touched: { TF }
+  {
+    \if_meaning:w \CJKglue \__ctex_ccglue:
+      \prg_return_false: \else: \prg_return_true: \fi:
+  }
+\ctex_at_end:n { \cs_new_eq:NN \__ctex_ccglue: \CJKglue }
+\cs_new_protected:Npn \ctex_update_em_unit:
+  { \dim_set:Nn \ccwd { \f@size \p@ } }
+\cs_new_protected:Npn \ctex_add_to_selectfont:n #1
+  {
+    \cs_set_protected:Npx \CTEX@selectfont@hook
+      { \exp_not:o { \CTEX@selectfont@hook #1 } }
+  }
+\cs_new_eq:NN \CTEX@selectfont@hook \prg_do_nothing:
+\bool_if:NTF \c__ctex_everysel_loaded_bool
+  {
+    \cs_if_free:NF \@EverySelectfont@Init
+      {
+        \group_begin:
+        \cs_set:Npn \__ctex_tmp:N #1
+          {
+            \tl_set:Nn \l__ctex_tmp_tl {#1}
+            \cs_new_eq:NN \CTEX@selectfont@save #1
+            \cs_new_protected:Npn \__ctex_restore_selectfont:
+              {
+                \cs_if_free:NF \scr@new@selectfont
+                  {
+                    \cs_set_eq:NN \scr@new@selectfont #1
+                    \cs_set_eq:NN \CTEX@selectfont@save \scr@selectfont
+                  }
+                \tl_put_left:Nn \@EverySelectfont@Init
+                  { \cs_set_eq:NN #1 \CTEX@selectfont@save }
+                \cs_undefine:N \__ctex_restore_selectfont:
+              }
+          }
+        \ctex_parse_name:NN \__ctex_tmp:N \selectfont
+      \exp_last_unbraced:NNo \group_end:
+      \ctex_patch_cmd_once:NnnnTF { \l__ctex_tmp_tl }
+        { \ExplSyntaxOff }
+        { \size@update }
+        { \CTEX@selectfont@hook \size@update }
+        { \__ctex_restore_selectfont: }
+        { \ctex_patch_failure:N \selectfont }
+      }
+    \cs_new_protected:Npn \ctex_gadd_selectfont_hook:n
+      { \EverySelectfont }
+  }
+  {
+    \cs_new_protected:Npn \ctex_gadd_selectfont_hook:n
+      { \ctex_gadd_ltxhook:nn { selectfont } }
+  }
+\ctex_gadd_selectfont_hook:n { \CTEX@selectfont@hook }
+\ctex_define:n
+  {
+    space .choice: ,
+    space / true  .code:n =
+      { \xeCJKsetup { CJKspace = true } } ,
+    space / auto  .code:n =
+      { \xeCJKsetup { CJKspace = false } } ,
+    space / false .code:n =
+      { \xeCJKsetup { CJKspace = false } } ,
+    space .default:n = { true } ,
+    space .initial:n = { auto }
+  }
+\ctex_define:n
+  {
+    punct .code:n =
+      {
+        \tl_set:Nx \l__ctex_punct_tl {#1}
+        \xeCJKsetup { PunctStyle = \l__ctex_punct_tl }
+      } ,
+    punct .default:n = { quanjiao } ,
+  }
+%% 
+%%
+%% End of file `ctex-engine-xetex.def'.

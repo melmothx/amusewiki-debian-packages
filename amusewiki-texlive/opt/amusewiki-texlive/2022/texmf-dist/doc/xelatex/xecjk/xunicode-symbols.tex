@@ -1,0 +1,187 @@
+%%
+%% This is file `xunicode-symbols.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% xeCJK.dtx  (with options: `xunicode-symbols')
+%% 
+\documentclass[a4paper]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xunicode-addon}
+\usepackage{array,longtable,booktabs}
+\usepackage{zref-base}
+
+\setmainfont{FreeSerif}
+\newfontfamily\falllbackfont{Segoe UI Symbol}
+
+\makeatletter
+\ExplSyntaxOn
+\cs_new_protected:Npx \__xunsym_restore_catcode:
+  { \char_set_catcode:nn { 0 } { \char_value_catcode:n { 0 } } }
+\file_if_exist:nTF { xunicode-commands.tex }
+  { \char_set_catcode_comment:n { 0 } }
+  { \char_set_catcode_ignore:n { 0 } }
+^^@ \tl_new:N \l__xunsym_command_tl
+^^@ \int_new:N \l__xunsym_command_int
+^^@ \iow_new:N \g__xunsym_command_iow
+^^@ \iow_new:N \g__xunsym_combine_mark_iow
+^^@ \ior_new:N \g__xunsym_unicode_ior
+^^@ \prop_new:N \l__xunsym_command_prop
+^^@ \prop_new:N \l__xunsym_combine_mark_prop
+^^@ \prop_new:N \l__xunsym_combine_marks_prop
+^^@ \cs_new_protected:Npn \SaveUTFCommands
+^^@   {
+^^@     \group_begin:
+^^@     \__xunsym_restore_catcode:
+^^@     \cs_set_eq:NN \DeclareTextAccent \use_none:nnn
+^^@     \cs_set_eq:NN \DeclareUTFComposite \use_none:n
+^^@     \cs_set_eq:NN \DeclareUTFEncodedAccent \use_none:nnn
+^^@     \cs_set_eq:NN \DeclareUTFDoubleEncodedAccent \use_none:nnn
+^^@     \cs_set_eq:NN \DeclareUTFDoubleEncodedSymbol \use_none:nnn
+^^@     \cs_set_eq:NN \DeclareUTFCommand \use_none:nn
+^^@     \cs_set_eq:NN \DeclareUTFTIPACommand \use_none:n
+^^@     \cs_set_eq:NN \DeclareUTFCompositeCommand \use_none:nnn
+^^@     \cs_set_eq:NN \DeclareUTFSymbol \__xunsym_save_UTF_command:Nn
+^^@     \cs_set_eq:NN \DeclareUTFCompositeSymbol \__xunsym_save_UTF_command:Nnn
+^^@     \cs_set_eq:NN \DeclareEncodedCompositeCharacter \__xunsym_save_combine_mark:nnnn
+^^@     \cs_set_eq:NN \DeclareEncodedCompositeAccents \__xunsym_save_combine_marks:nnnn
+^^@     \DeclareDocumentCommand \DeclareUTFcharacter { O { \UTFencname } m m }
+^^@       { \__xunsym_save_UTF_command:NNn \l__xunsym_command_prop {##3} {##2} }
+^^@     \DeclareDocumentCommand \DeclareUTFcomposite { O { \UTFencname } m m m }
+^^@       { \__xunsym_save_UTF_command:NNnn \l__xunsym_command_prop {##3} {##4} {##2} }
+^^@     \ReloadXunicode { \UTFencname }
+^^@     \ior_open:NnTF \g__xunsym_unicode_ior { UnicodeData.txt }
+^^@       {
+^^@         \iow_open:Nn \g__xunsym_command_iow { xunicode-commands.tex }
+^^@         \iow_open:Nn \g__xunsym_combine_mark_iow { xunicode-combine-marks.tex }
+^^@         \ior_map_inline:Nn \g__xunsym_unicode_ior { \__xunsym_make_table:w ##1 \q_stop }
+^^@         \__xunsym_write_combine_marks:
+^^@         \ior_close:N \g__xunsym_unicode_ior
+^^@         \iow_close:N \g__xunsym_command_iow
+^^@         \iow_close:N \g__xunsym_combine_mark_iow
+^^@         \group_end:
+^^@       }
+^^@       {
+^^@         \group_end:
+^^@         \msg_fatal:nn { __xunsym } { UnicodeData }
+^^@       }
+^^@   }
+^^@ \msg_new:nnn { __xunsym } { UnicodeData }
+^^@   { File~`UnicodeData.txt`~not~found. }
+^^@ \cs_new_protected:Npn \__xunsym_save_UTF_command:Nn
+^^@   { \__xunsym_save_UTF_command:NNn \l__xunsym_command_prop }
+^^@ \cs_new_protected:Npn \__xunsym_save_UTF_command:Nnn
+^^@   { \__xunsym_save_UTF_command:NNnn \l__xunsym_command_prop }
+^^@ \cs_new_protected:Npn \__xunsym_save_UTF_command:NNn #1#2#3
+^^@   { \__xunsym_save_UTF_text_command:Nxx #1 { \use_none:n #3 } { \token_to_str:N #2 } }
+^^@ \cs_new_protected:Npn \__xunsym_save_UTF_command:NNnn #1#2#3#4
+^^@   {
+^^@     \__xunsym_save_UTF_text_command:Nxx #1 { \use_none:n #4 }
+^^@       {
+^^@         \token_to_str:N #2 \c_left_brace_str
+^^@         \tl_if_single:nTF {#3} { \token_to_str:N #3 } { \tl_to_str:n {#3} }
+^^@         \c_right_brace_str
+^^@       }
+^^@   }
+^^@ \cs_new_protected:Npn \__xunsym_save_combine_mark:nnnn #1#2#3#4
+^^@   { \__xunsym_save_UTF_text_command:Nxx \l__xunsym_combine_mark_prop {#3} { \token_to_str:N #2 } }
+^^@ \cs_new_protected:Npn \__xunsym_save_combine_marks:nnnn #1#2#3#4
+^^@   { \__xunsym_save_UTF_text_command:Nxx \l__xunsym_combine_marks_prop { { "#4 } { "#3 } } { \token_to_str:N #2 } }
+^^@ \cs_new_protected:Npn \__xunsym_save_UTF_text_command:Nxx #1#2#3
+^^@   { \use:e { \__xunsym_save_UTF_text_command:Nnn \exp_not:N #1 {#2} {#3} } }
+^^@ \cs_new_protected:Npn \__xunsym_save_UTF_text_command:Nnn #1#2#3
+^^@   {
+^^@     \prop_get:NnNTF #1 {#2} \l__xunsym_command_tl
+^^@       { \prop_put:Nno #1 {#2} { \l__xunsym_command_tl , #3 } }
+^^@       { \prop_put:Nnn #1 {#2} {#3} }
+^^@   }
+^^@ \cs_new_protected:Npn \__xunsym_make_table:w #1 ; #2 ; #3 \q_stop
+^^@   {
+^^@     \prop_get:NnNT \l__xunsym_command_prop {#1} \l__xunsym_command_tl
+^^@       {
+^^@         \iow_now:Nx \g__xunsym_command_iow
+^^@           { \token_to_str:N \UnicodeTextSymbol { "#1 } { \l__xunsym_command_tl } {#2} }
+^^@       }
+^^@     \prop_get:NnNT \l__xunsym_combine_mark_prop {#1} \l__xunsym_command_tl
+^^@       {
+^^@         \iow_now:Nx \g__xunsym_combine_mark_iow
+^^@           { \token_to_str:N \UnicodeCombineMark { "#1 } { \l__xunsym_command_tl } {#2} }
+^^@       }
+^^@   }
+^^@ \cs_new_protected:Npn \__xunsym_write_combine_marks:
+^^@   {
+^^@     \prop_map_inline:Nn \l__xunsym_combine_marks_prop
+^^@       {
+^^@         \iow_now:Nx \g__xunsym_combine_mark_iow
+^^@           { \token_to_str:N \UnicodeCombineMarks ##1 {##2} }
+^^@       }
+^^@   }
+^^@ \ExplSyntaxOff
+^^@ \SaveUTFCommands
+^^@ \ExplSyntaxOn
+\__xunsym_restore_catcode:
+\int_new:N \g__xunsym_symbol_int
+\int_new:N \g__xunsym_table_int
+\DeclareDocumentCommand \UnicodeTextSymbol { m v m }
+  {
+    \int_gincr:N \g__xunsym_symbol_int
+    \use_none:n #1 &
+    \scan_stop:
+    \reverse_if:N \tex_iffontchar:D \tex_font:D #1 \exp_stop_f: \falllbackfont \fi:
+    \tex_char:D #1 \exp_stop_f: &
+    \tl_set:Nn \l_tmpa_clist {#2}
+    \clist_use:Nn \l_tmpa_clist { \par }
+    \strut
+    & #3 \\
+  }
+\cs_set_eq:NN \UnicodeCombineMark \UnicodeTextSymbol
+\DeclareDocumentCommand \UnicodeCombineMarks { m m v }
+  {
+    \int_gincr:N \g__xunsym_symbol_int
+    \use_none:n #1 ~ \use_none:n #2 &
+    \tex_char:D #1 \exp_stop_f: \tex_char:D #2 \exp_stop_f: &
+    \tl_set:Nn \l_tmpa_clist {#3}
+    \clist_use:Nn \l_tmpa_clist { \par }
+    \strut \\
+  }
+\DeclareDocumentCommand \UTFTABLE { m m }
+  {
+    \int_gincr:N \g__xunsym_table_int
+    \exp_args:Nx \__xunsym_make_table:nnn { UTFTABLE - \int_use:N \g__xunsym_table_int } {#1} {#2}
+  }
+\cs_new_protected:Npn \__xunsym_make_table:nnn #1#2#3
+  {
+    \section{#2~(\zref@extractdefault{#1}{default}{0})}
+    \zref@refused{#1}
+    \noindent
+    \begin{longtable}[c]{>{\ttfamily\footnotesize}rc>{\ttfamily\footnotesize}p{55mm}>{\tiny}l}
+      \toprule
+      \multicolumn1c{\normalfont\normalsize USV} &
+      \normalfont\normalsize Symbol &
+      \normalfont\normalsize Macro(s) &
+      \normalfont\normalsize Description \\
+      \midrule \endhead
+      \bottomrule \endfoot
+      \int_gzero:N \g__xunsym_symbol_int
+      \input{#3}
+    \end{longtable}
+    \group_begin:
+      \zref@setcurrent{default}{\int_use:N\g__xunsym_symbol_int}
+      \zref@wrapper@immediate{\zref@labelbyprops{#1}{default}}
+    \group_end:
+  }
+\cs_generate_variant:Nn \__xunsym_make_table:nnn { x }
+\ExplSyntaxOff
+
+\begin{document}
+
+\UTFTABLE{Symbols}{xunicode-commands.tex}
+
+\UTFTABLE{Combining Marks}{xunicode-combine-marks.tex}
+
+\end{document}
+%% 
+%%
+%% End of file `xunicode-symbols.tex'.

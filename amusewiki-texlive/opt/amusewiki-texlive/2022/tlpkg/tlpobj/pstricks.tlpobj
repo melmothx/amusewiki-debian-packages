@@ -1,0 +1,116 @@
+name pstricks
+category Package
+revision 65346
+catalogue pstricks-base
+shortdesc PostScript macros for TeX
+longdesc PSTricks offers an extensive collection of macros for
+longdesc generating PostScript that is usable with most TeX macro
+longdesc formats, including Plain TeX, LaTeX, AMS-TeX, and AMS-LaTeX.
+longdesc Included are macros for colour, graphics, pie charts, rotation,
+longdesc trees and overlays. It has many special features, including a
+longdesc wide variety of graphics (picture drawing) macros, with a
+longdesc flexible interface and with colour support. There are macros
+longdesc for colouring or shading the cells of tables. The package
+longdesc pstricks-add contains bug-fixes and additions for PSTricks
+longdesc (among other things). PSTricks ordinarily uses PostScript
+longdesc \special commands, which are not supported by pdf(La)TeX. This
+longdesc limitation may be overcome by using either the pst-pdf or the
+longdesc pdftricks package, to generate a PDF inclusion from a PSTricks
+longdesc diagram. PSTricks macros can also generate PDF output when the
+longdesc document is processed XeTeX, without the need for other
+longdesc supporting packages.
+containersize 87888
+containerchecksum aad3d0a383c8b815324a3f07c02a6c747d026a2b107ce4e24be6dc868dc884e0202239ea19fc4ecca786000ae61169422095217d42b826466f0e3886c58cc2b9
+doccontainersize 11085932
+doccontainerchecksum c996a3e2d4c088c3ae6332855882f461a931969e9f88ad64bf656d2b11ad10bf06e5076d381f316f95de1d40d68e437ae8cd1fc450b1e387ee39c54e0d7feb4e
+docfiles size=3181
+ texmf-dist/doc/generic/pstricks/PSTricks.bib
+ texmf-dist/doc/generic/pstricks/README details="Readme"
+ texmf-dist/doc/generic/pstricks/ctandir.sty
+ texmf-dist/doc/generic/pstricks/images/flowers.eps
+ texmf-dist/doc/generic/pstricks/images/tiger.eps
+ texmf-dist/doc/generic/pstricks/images/tiger.pdf
+ texmf-dist/doc/generic/pstricks/pst-doc.bst
+ texmf-dist/doc/generic/pstricks/pst-doc.ist
+ texmf-dist/doc/generic/pstricks/pst-doc.pdf
+ texmf-dist/doc/generic/pstricks/pst-news.sty
+ texmf-dist/doc/generic/pstricks/pst-news.tex
+ texmf-dist/doc/generic/pstricks/pst-news05.pdf
+ texmf-dist/doc/generic/pstricks/pst-news05.tex
+ texmf-dist/doc/generic/pstricks/pst-news06.pdf
+ texmf-dist/doc/generic/pstricks/pst-news06.tex
+ texmf-dist/doc/generic/pstricks/pst-news08.pdf
+ texmf-dist/doc/generic/pstricks/pst-news08.tex
+ texmf-dist/doc/generic/pstricks/pst-news09.pdf
+ texmf-dist/doc/generic/pstricks/pst-news09.tex
+ texmf-dist/doc/generic/pstricks/pst-news10.pdf
+ texmf-dist/doc/generic/pstricks/pst-news10.tex
+ texmf-dist/doc/generic/pstricks/pst-news11.pdf
+ texmf-dist/doc/generic/pstricks/pst-news11.tex
+ texmf-dist/doc/generic/pstricks/pst-news12.pdf
+ texmf-dist/doc/generic/pstricks/pst-news12.tex
+ texmf-dist/doc/generic/pstricks/pst-news13.pdf
+ texmf-dist/doc/generic/pstricks/pst-news13.tex
+ texmf-dist/doc/generic/pstricks/pst-news14.pdf
+ texmf-dist/doc/generic/pstricks/pst-news14.tex
+ texmf-dist/doc/generic/pstricks/pst-news15.pdf
+ texmf-dist/doc/generic/pstricks/pst-news15.tex
+ texmf-dist/doc/generic/pstricks/pst-news16.pdf
+ texmf-dist/doc/generic/pstricks/pst-news16.tex
+ texmf-dist/doc/generic/pstricks/pst-news17.pdf
+ texmf-dist/doc/generic/pstricks/pst-news17.tex
+ texmf-dist/doc/generic/pstricks/pst-news18.pdf
+ texmf-dist/doc/generic/pstricks/pst-news18.tex
+ texmf-dist/doc/generic/pstricks/pst-news19.pdf
+ texmf-dist/doc/generic/pstricks/pst-news19.tex
+ texmf-dist/doc/generic/pstricks/pst-news20.pdf
+ texmf-dist/doc/generic/pstricks/pst-news20.tex
+ texmf-dist/doc/generic/pstricks/pst-news21.pdf details="Latest news bulletin"
+ texmf-dist/doc/generic/pstricks/pst-news21.tex
+ texmf-dist/doc/generic/pstricks/pst-news22.pdf
+ texmf-dist/doc/generic/pstricks/pst-news22.tex
+ texmf-dist/doc/generic/pstricks/pst-user.pdf details="Package documentation"
+ texmf-dist/doc/generic/pstricks/pst-user.tgz
+ texmf-dist/doc/generic/pstricks/pstricks-bug.tex
+ texmf-dist/doc/generic/pstricks/pstricks-doc.pdf
+ texmf-dist/doc/generic/pstricks/test-pst.pdf
+ texmf-dist/doc/generic/pstricks/test-pst.tex
+runfiles size=130
+ texmf-dist/dvips/pstricks/pst-algparser.pro
+ texmf-dist/dvips/pstricks/pst-dots.pro
+ texmf-dist/dvips/pstricks/pst-dots97.pro
+ texmf-dist/dvips/pstricks/pstricks.pro
+ texmf-dist/dvips/pstricks/pstricks97.pro
+ texmf-dist/tex/generic/pstricks/config/README.cfg
+ texmf-dist/tex/generic/pstricks/config/distiller.cfg
+ texmf-dist/tex/generic/pstricks/config/dvips.cfg
+ texmf-dist/tex/generic/pstricks/config/dvipsone.cfg
+ texmf-dist/tex/generic/pstricks/config/gastex.cfg
+ texmf-dist/tex/generic/pstricks/config/textures.cfg
+ texmf-dist/tex/generic/pstricks/config/vtex.cfg
+ texmf-dist/tex/generic/pstricks/config/xdvipdfmx.cfg
+ texmf-dist/tex/generic/pstricks/pst-fp.tex
+ texmf-dist/tex/generic/pstricks/pst-key.tex
+ texmf-dist/tex/generic/pstricks/pstricks-arrows.tex
+ texmf-dist/tex/generic/pstricks/pstricks-color.tex
+ texmf-dist/tex/generic/pstricks/pstricks-dots.tex
+ texmf-dist/tex/generic/pstricks/pstricks-tex.def
+ texmf-dist/tex/generic/pstricks/pstricks-xetex.def
+ texmf-dist/tex/generic/pstricks/pstricks.con
+ texmf-dist/tex/generic/pstricks/pstricks.tex
+ texmf-dist/tex/generic/pstricks/pstricks97.tex
+ texmf-dist/tex/latex/pstricks/pst-all.sty
+ texmf-dist/tex/latex/pstricks/pst-doc.cls
+ texmf-dist/tex/latex/pstricks/pst-key.sty
+ texmf-dist/tex/latex/pstricks/pstcol.sty
+ texmf-dist/tex/latex/pstricks/pstricks-pdf.sty
+ texmf-dist/tex/latex/pstricks/pstricks.sty
+catalogue-alias pstricks
+catalogue-also pstricks-add
+catalogue-contact-home https://tug.org/PSTricks/main.cgi/
+catalogue-contact-repository https://archiv.dante.de/~herbert/TeXnik/
+catalogue-contact-support https://tug.org/mailman/listinfo/pstricks
+catalogue-ctan /graphics/pstricks/base
+catalogue-license lppl1.3
+catalogue-topics graphics-in-tex colour pstricks dvips-special xetex
+catalogue-version 3.18

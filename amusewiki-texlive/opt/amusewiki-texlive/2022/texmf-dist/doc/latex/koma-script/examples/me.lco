@@ -1,0 +1,20 @@
+\ProvidesFile{me.lco}[2008/06/11 lco (Joe Public)]
+\KOMAoptions{foldmarks=true,foldmarks=blmtP,
+  fromphone,fromemail,fromlogo,subject=titled}
+\setkomavar{fromname}{Joe Public}
+\setkomavar{signature}{Joe Public\\
+  (former chairman)}
+\renewcommand*{\raggedsignature}{\raggedright}
+\setkomavar{fromaddress}{2 Valley\\
+                         SAMPLEBY\\
+                         ZY32 1XW}
+\setkomavar{fromphone}{0\,12\,34~56\,78}
+\setkomavar{fromemail}{joe@public.invalid}
+\setkomavar{fromlogo}{%
+  \includegraphics{musterlogo}}
+\setkomavar{location}{\raggedright
+  Club member no.~4711\\
+  since 11.09.2001\\
+  chairman 2003--2005}
+\setkomavar{place}{Sampleby}
+\setkomavar{frombank}{Bank of Friendly Greetings}

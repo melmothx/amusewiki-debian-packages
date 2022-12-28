@@ -1,0 +1,104 @@
+%%
+%% This is file `ctex-zhmap-ubuntu.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% ctex.dtx  (with options: `zhmap,ubuntu')
+%% 
+%%     Copyright (C) 2003--2022
+%%     CTEX.ORG and any individual authors listed in the documentation.
+%% ---------------------------------------------------------------------
+%% 
+%%     This work may be distributed and/or modified under the
+%%     conditions of the LaTeX Project Public License, either
+%%     version 1.3c of this license or (at your option) any later
+%%     version. This version of this license is in
+%%        http://www.latex-project.org/lppl/lppl-1-3c.txt
+%%     and the latest version of this license is in
+%%        http://www.latex-project.org/lppl.txt
+%%     and version 1.3 or later is part of all distributions of
+%%     LaTeX version 2005/12/01 or later.
+%% 
+%%     This work has the LPPL maintenance status "maintained".
+%% 
+%% ---------------------------------------------------------------------
+%% 
+\begingroup\catcode61\catcode48\catcode32=10\relax%
+  \catcode 35=6  % #
+  \catcode 45=12 % -
+  \catcode123=1  % {
+  \catcode125=2  % }
+  \toks0{\endlinechar=\the\endlinechar\relax}%
+  \toks2{\endlinechar=-1 }%
+  \def\x#1 #2 {%
+    \toks0\expandafter{\the\toks0 \catcode#1=\the\catcode#1\relax}%
+    \toks2\expandafter{\the\toks2 \catcode#1=#2 }}%
+  \x  13  5 % carriage return
+  \x  32 10 % space
+  \x  35  6 % #
+  \x  40 12 % (
+  \x  41 12 % )
+  \x  45 12 % -
+  \x  46 12 % .
+  \x  47 12 % /
+  \x  58 12 % :
+  \x  60 12 % <
+  \x  61 12 % =
+  \x  64 11 % @
+  \x  91 12 % [
+  \x  93 12 % ]
+  \x 123  1 % {
+  \x 125  2 % }
+  \edef\x#1{\endgroup%
+    \edef\noexpand#1{%
+      \the\toks0 %
+      \let\noexpand\noexpand\noexpand#1%
+          \noexpand\noexpand\noexpand\undefined%
+      \noexpand\noexpand\noexpand\endinput}%
+    \the\toks2}%
+\expandafter\x\csname ctex@zhmap@endinput\endcsname
+\begingroup\expandafter\endgroup
+\expandafter\let\csname ifzhmappdf\expandafter\endcsname\csname
+  \expandafter\ifx\csname ifctexpdf\endcsname\relax
+    \expandafter\ifx\csname pdfoutput\endcsname\relax
+      iffalse\else\ifnum\pdfoutput < 1 iffalse\else iftrue\fi\fi
+  \else ifctexpdf\fi
+\endcsname
+\begingroup
+\expandafter\ifx\csname ProvidesFile\endcsname\relax
+  \long\def\x#1\ProvidesFile#2[#3]{%
+    #1%
+    \immediate\write-1{File: #2 #3}%
+    \expandafter\xdef\csname ver@#2\endcsname{#3}}
+  \expandafter\x%
+\fi
+\endgroup
+\ProvidesFile{ctex-zhmap-ubuntu.tex}%
+  [2022/07/14 v2.5.10 Ubuntu font map loader for DVIPDFMx (CTEX)]
+\ifzhmappdf
+%% pdfTeX does not support OTF fonts
+\else
+  \special{pdf:mapline gbk@UGBK@          unicode :2:NotoSerifCJK-Regular.ttc}
+  \special{pdf:mapline gbksong@UGBK@      unicode :2:NotoSerifCJK-Regular.ttc}
+  \special{pdf:mapline gbkkai@UGBK@       unicode gkai00mp.ttf}
+  \special{pdf:mapline gbkhei@UGBK@       unicode :2:NotoSansCJK-Regular.ttc}
+  \special{pdf:mapline gbkfs@UGBK@        unicode :2:NotoSerifCJK-Regular.ttc}
+  \special{pdf:mapline cyberb@Unicode@    unicode :2:NotoSerifCJK-Regular.ttc}
+  \special{pdf:mapline unisong@Unicode@   unicode :2:NotoSerifCJK-Regular.ttc}
+  \special{pdf:mapline unikai@Unicode@    unicode gkai00mp.ttf}
+  \special{pdf:mapline unihei@Unicode@    unicode :2:NotoSansCJK-Regular.ttc}
+  \special{pdf:mapline unifs@Unicode@     unicode :2:NotoSerifCJK-Regular.ttc}
+  \special{pdf:mapline gbksongsl@UGBK@    unicode :2:NotoSerifCJK-Regular.ttc -s .167}
+  \special{pdf:mapline gbkkaisl@UGBK@     unicode gkai00mp.ttf                -s .167}
+  \special{pdf:mapline gbkheisl@UGBK@     unicode :2:NotoSansCJK-Regular.ttc  -s .167}
+  \special{pdf:mapline gbkfssl@UGBK@      unicode :2:NotoSerifCJK-Regular.ttc -s .167}
+  \special{pdf:mapline unisongsl@Unicode@ unicode :2:NotoSerifCJK-Regular.ttc -s .167}
+  \special{pdf:mapline unikaisl@Unicode@  unicode gkai00mp.ttf                -s .167}
+  \special{pdf:mapline uniheisl@Unicode@  unicode :2:NotoSansCJK-Regular.ttc  -s .167}
+  \special{pdf:mapline unifssl@Unicode@   unicode :2:NotoSerifCJK-Regular.ttc -s .167}
+\fi
+\ctex@zhmap@endinput
+%% 
+%%
+%% End of file `ctex-zhmap-ubuntu.tex'.

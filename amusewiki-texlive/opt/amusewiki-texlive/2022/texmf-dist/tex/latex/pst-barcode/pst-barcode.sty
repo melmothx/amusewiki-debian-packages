@@ -1,0 +1,12 @@
+%% $Id: pst-barcode.sty 590 2022-08-23 16:53:11Z herbert $
+\RequirePackage{pstricks}
+\ProvidesPackage{pst-barcode}[2022/08/23 package wrapper for 
+  pst-barcode.tex (hv)]
+\input{pst-barcode.tex}
+\ProvidesFile{pst-barcode.tex}
+  [\filedate\space v\fileversion\space `PST-barcode' (hv)]
+\IfFileExists{pst-barcode.pro}{%
+  \ProvidesFile{pst-barcode.pro}
+    [2022/08/23  PostScript prologue file (hv)]
+    \@addtofilelist{pst-barcode.pro}}{}%
+\endinput

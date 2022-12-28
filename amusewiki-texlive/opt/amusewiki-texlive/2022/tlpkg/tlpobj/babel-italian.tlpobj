@@ -1,0 +1,20 @@
+name babel-italian
+category Package
+revision 62890
+shortdesc Babel support for Italian text
+longdesc The package provides language definitions for use in babel.
+containersize 3908
+containerchecksum a30e451e39ed4e073e3a188ecd19933b965ffe94aeee3acc9b3443466df1fcf86b7a04ee0c6283bb92b17b0b11a975f9df7ebfdfa3306fbc15f6e2214e30afee
+doccontainersize 463660
+doccontainerchecksum 4fe9d39aef8a29737aa8a6f945f1efec3a442aa072cb6fc63ba358c372d02a718f10a5d25df58014333c2a6bac9e97dc84e3dad86f8d81d45e4c1216a9eaf0ee
+docfiles size=117
+ texmf-dist/doc/generic/babel-italian/README.txt details="Readme"
+ texmf-dist/doc/generic/babel-italian/italian.pdf details="Package documentation"
+srccontainersize 23708
+srccontainerchecksum 48a5d7f150658558638d3354398462cb5999a3ff18b2479885a989db816711610b9c2ba9b237d5ea1e11eae66441d8f6d88656f6df73e2b7d49e11959c79ae2f
+runfiles size=3
+ texmf-dist/tex/generic/babel-italian/italian.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/italian
+catalogue-license lppl1.3c
+catalogue-topics italian multilingual-addon
+catalogue-version 1.4.07

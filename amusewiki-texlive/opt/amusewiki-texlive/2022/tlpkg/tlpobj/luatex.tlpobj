@@ -1,0 +1,71 @@
+name luatex
+category TLCore
+revision 64839
+shortdesc The LuaTeX engine
+longdesc LuaTeX is a greatly extended version of pdfTeX using Lua as an
+longdesc embedded scripting language. The LuaTeX project's main
+longdesc objective is to provide an open and configurable variant of TeX
+longdesc while at the same time offering substantive backward
+longdesc compatibility. LuaTeX uses Unicode (as UTF-8) as its default
+longdesc input encoding, and is able to use modern (OpenType and
+longdesc TrueType) fonts (for both text and mathematics).
+depend cm
+depend etex
+depend hyph-utf8
+depend hyphen-base
+depend knuth-lib
+depend luatex.ARCH
+depend plain
+depend tex-ini-files
+depend unicode-data
+execute AddFormat name=dviluatex engine=luatex options="dviluatex.ini"   patterns=language.def,language.dat.lua   fmttriggers=cm,etex,hyphen-base,knuth-lib,plain,tex-ini-files,unicode-data,hyph-utf8
+execute AddFormat name=luatex engine=luatex options="luatex.ini"   patterns=language.def,language.dat.lua   fmttriggers=cm,etex,hyphen-base,knuth-lib,plain,tex-ini-files,unicode-data,hyph-utf8
+containersize 12832
+containerchecksum 3789aa894fa2472f763275ddb045178acb51bbcbfa5f88d0dfee5498932089519b273ca5f6bf413992578638a7331e88b69f976db75cb9aeb50bf7d5f0396a69
+doccontainersize 1903744
+doccontainerchecksum f7c0807c1b4548666efa133330f1ecae7d85a0465357c5dc90f77d65b34d73e8755fe825155f2688a066f73f3cd9c76cab29a7ab06ce4406854177db4242fb51
+docfiles size=706
+ texmf-dist/doc/luatex/base/graphics/luaharfbuzz.pdf
+ texmf-dist/doc/luatex/base/luatex-backend.tex
+ texmf-dist/doc/luatex/base/luatex-callbacks.tex
+ texmf-dist/doc/luatex/base/luatex-contents.tex
+ texmf-dist/doc/luatex/base/luatex-enhancements.tex
+ texmf-dist/doc/luatex/base/luatex-export-titlepage.tex
+ texmf-dist/doc/luatex/base/luatex-firstpage.tex
+ texmf-dist/doc/luatex/base/luatex-fontloader.tex
+ texmf-dist/doc/luatex/base/luatex-fonts.tex
+ texmf-dist/doc/luatex/base/luatex-graphics.tex
+ texmf-dist/doc/luatex/base/luatex-harfbuzz.tex
+ texmf-dist/doc/luatex/base/luatex-introduction.tex
+ texmf-dist/doc/luatex/base/luatex-languages.tex
+ texmf-dist/doc/luatex/base/luatex-logos.tex
+ texmf-dist/doc/luatex/base/luatex-lua.tex
+ texmf-dist/doc/luatex/base/luatex-math.tex
+ texmf-dist/doc/luatex/base/luatex-modifications.tex
+ texmf-dist/doc/luatex/base/luatex-nodes.tex
+ texmf-dist/doc/luatex/base/luatex-preamble.tex
+ texmf-dist/doc/luatex/base/luatex-registers.tex
+ texmf-dist/doc/luatex/base/luatex-statistics.tex
+ texmf-dist/doc/luatex/base/luatex-style.tex
+ texmf-dist/doc/luatex/base/luatex-tex.tex
+ texmf-dist/doc/luatex/base/luatex-titlepage.tex
+ texmf-dist/doc/luatex/base/luatex.pdf details="LuaTeX Reference"
+ texmf-dist/doc/luatex/base/luatex.tex
+ texmf-dist/doc/man/man1/dviluatex.1
+ texmf-dist/doc/man/man1/dviluatex.man1.pdf
+ texmf-dist/doc/man/man1/luatex.1
+ texmf-dist/doc/man/man1/luatex.man1.pdf
+ texmf-dist/doc/man/man1/texlua.1
+ texmf-dist/doc/man/man1/texlua.man1.pdf
+ texmf-dist/doc/man/man1/texluac.1
+ texmf-dist/doc/man/man1/texluac.man1.pdf
+runfiles size=37
+ texmf-dist/tex/generic/config/luatex-unicode-letters.tex
+ texmf-dist/tex/generic/config/luatexiniconfig.tex
+ texmf-dist/web2c/texmfcnf.lua
+catalogue-contact-bugs https://mailman.ntg.nl/mailman/listinfo/dev-luatex
+catalogue-contact-home http://luatex.org
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/luatexdir
+catalogue-contact-support https://lists.tug.org/luatex
+catalogue-license gpl2+
+catalogue-topics engine

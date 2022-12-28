@@ -1,0 +1,789 @@
+%%
+%% This is file `ctex-heading-article.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% ctex.dtx  (with options: `heading,article')
+%% 
+%%     Copyright (C) 2003--2022
+%%     CTEX.ORG and any individual authors listed in the documentation.
+%% ---------------------------------------------------------------------
+%% 
+%%     This work may be distributed and/or modified under the
+%%     conditions of the LaTeX Project Public License, either
+%%     version 1.3c of this license or (at your option) any later
+%%     version. This version of this license is in
+%%        http://www.latex-project.org/lppl/lppl-1-3c.txt
+%%     and the latest version of this license is in
+%%        http://www.latex-project.org/lppl.txt
+%%     and version 1.3 or later is part of all distributions of
+%%     LaTeX version 2005/12/01 or later.
+%% 
+%%     This work has the LPPL maintenance status "maintained".
+%% 
+%% ---------------------------------------------------------------------
+%% 
+\GetIdInfo$Id: ctex.dtx 13a2256 2022-07-14 18:54:09 +0800 Qing Lee <sobenlee@gmail.com> $
+  {Heading modification for article (CTEX)}
+\ProvidesExplFile{ctex-article.def}
+  {\ExplFileDate}{2.5.10}{\ExplFileDescription}
+\seq_const_from_clist:Nn \c__ctex_section_headings_seq
+  { section , subsection , subsubsection , paragraph , subparagraph }
+\seq_new:N \c__ctex_headings_seq
+\seq_gset_eq:NN \c__ctex_headings_seq \c__ctex_section_headings_seq
+\seq_gput_left:Nn \c__ctex_headings_seq { part }
+\cs_new_protected:Npn \__ctex_initial_heading:n #1
+  {
+    \tl_new:c { CTEX@pre#1 }
+    \tl_new:c { CTEX@post#1 }
+    \tl_const:cx { CTEXthe#1 }
+      {
+        \exp_not:c { CTEX@pre#1 }
+        \exp_not:c { CTEX@the#1 }
+        \exp_not:c { CTEX@post#1 }
+      }
+    \tl_const:cx { CTEX@#1name }
+      {
+        \group_begin:
+          \exp_not:c { CTEX@#1@nameformat }
+            {
+              \exp_not:c { CTEX@pre#1 }
+              \exp_not:N \tl_if_empty:NTF
+              \exp_not:c { CTEX@#1@numberformat }
+                { \exp_not:c { CTEX@the#1 } }
+                {
+                  \group_begin:
+                    \exp_not:c { CTEX@#1@numberformat }
+                    \exp_not:c { CTEX@the#1 }
+                  \group_end:
+                }
+              \exp_not:c { CTEX@post#1 }
+            }
+        \group_end:
+      }
+  }
+\cs_new_protected:Npn \__ctex_def_heading_keys:n #1
+  {
+    \exp_args:NNe \tl_put_right:Nn \l__ctex_tmp_tl
+      {
+        #1                  .meta:nn = { ctex / #1 } { ##1 } ,
+        #1 / name            .code:n =
+          { \ctex_assign_heading_name:nn {#1} { ##1 } } ,
+        #1 / number        .tl_set:N = \exp_not:c { CTEX@the#1 } ,
+        #1 / beforeskip    .tl_set:N = \exp_not:c { CTEX@#1@beforeskip } ,
+        #1 / afterskip     .tl_set:N = \exp_not:c { CTEX@#1@afterskip} ,
+        #1 / indent        .tl_set:N = \exp_not:c { CTEX@#1@indent } ,
+        #1 / numbering   .bool_set:N = \exp_not:c { CTEX@#1@numbering } ,
+        #1 / numbering    .initial:n = true ,
+        #1 / beforeskip   .initial:n = \c_zero_skip ,
+        #1 / afterskip    .initial:n = \c_zero_skip ,
+        #1 / indent       .initial:n = \c_zero_dim ,
+        #1 / beforeskip   .value_required:n = true ,
+        #1 / afterskip    .value_required:n = true ,
+        #1 / indent       .value_required:n = true ,
+        #1 / afterindent .bool_set:N = \exp_not:c { CTEX@#1@afterindent } ,
+        #1 / fixskip     .bool_set:N = \exp_not:c { CTEX@#1@fixskip } ,
+        #1 / hang        .bool_set:N = \exp_not:c { CTEX@#1@hang } ,
+        #1 / hang         .initial:n = true ,
+        #1 / runin       .bool_set:N = \exp_not:c { CTEX@#1@runin } ,
+        #1 / tocline      .cs_set:Np = \exp_not:c { CTEX@#1@tocline } ##1##2 ,
+        \__ctex_plus_key_aux:nn {#1} { break } ,
+        \__ctex_plus_key_aux:nn {#1} { format } ,
+        \__ctex_plus_key_aux:nn {#1} { nameformat } ,
+        \__ctex_plus_key_aux:nn {#1} { numberformat } ,
+        \__ctex_plus_key_aux:nn {#1} { titleformat } ,
+        \__ctex_plus_key_aux:nn {#1} { aftername } ,
+        \__ctex_plus_key_aux:nn {#1} { aftertitle } ,
+      }
+  }
+\cs_new:Npn \__ctex_plus_key_aux:nn #1#2
+  {
+    #1 / #2   .tl_set:N = \exp_not:c { CTEX@#1@#2 } ,
+    #1 / #2 +   .code:n =
+      { \tl_put_right:Nn \exp_not:c { CTEX@#1@#2 } { ##1 } } ,
+    #1 / #2 ~ + .code:n =
+      { \tl_put_right:Nn \exp_not:c { CTEX@#1@#2 } { ##1 } }
+  }
+\NewDocumentCommand \ctex_assign_heading_name:nn
+  { m > { \SplitArgument { 1 } { , } } +m }
+  { \__ctex_assign_heading_name:nnn {#1} #2 }
+\cs_new_protected:Npn \__ctex_assign_heading_name:nnn #1#2#3
+  {
+    \tl_set:cn { CTEX@pre#1 } {#2}
+    \tl_if_novalue:nTF {#3}
+      { \tl_clear:c { CTEX@post#1 } }
+      { \tl_set:cn { CTEX@post#1 } {#3} }
+  }
+\group_begin:
+\tl_clear:N \l__ctex_tmp_tl
+\seq_map_inline:Nn \c__ctex_headings_seq
+  {
+    \__ctex_initial_heading:n {#1}
+    \__ctex_def_heading_keys:n {#1}
+  }
+\exp_args:NNo \group_end: \ctex_define:n { \l__ctex_tmp_tl }
+\cs_new_protected:Npn \CTEX@heading@format@initial
+  {
+    \normalfont
+    \tl_clear:N \l__ctex_autoindent_tl
+    \int_set:Nn \tex_interlinepenalty:D { 10 000 }
+    \tex_noindent:D
+  }
+\cs_new_protected:Npn \ctex_indent_box:n #1
+  {
+    \dim_set:Nn \tex_parindent:D {#1}
+    \__ctex_insert_indent:
+  }
+\cs_new_protected:Npn \__ctex_insert_indent:
+  {
+    \dim_compare:nNnF \tex_parindent:D = \c_zero_dim
+      { \tex_indent:D }
+  }
+\cs_new_eq:NN \CTEX@indentbox \ctex_indent_box:n
+\cs_new_protected:Npn \CTEX@fixheadingskip
+  {
+    \par
+    \dim_set:Nn \tex_prevdepth:D { -1000pt }
+    \skip_sub:Nn \l__ctex_heading_skip { \tex_parskip:D }
+  }
+\skip_new:N \l__ctex_heading_skip
+\cs_new_protected:Npn \CTEX@setheadingskip
+  { \skip_set:Nn \l__ctex_heading_skip }
+\cs_new_eq:NN \CTEX@headingskip \l__ctex_heading_skip
+\ProvideDocumentCommand \partmark { m }
+  { \markboth { } { } }
+\cs_new_eq:NN \CTEXifname \use_ii:nn
+\cs_new_protected:Npn \CTEX@ifnametrue
+  { \cs_set_eq:NN \CTEXifname \use_i:nn }
+\cs_new_protected:Npn \CTEX@ifnamefalse
+  { \cs_set_eq:NN \CTEXifname \use_ii:nn }
+\cs_new_protected:Npn \CTEX@addtocline #1#2
+  { \addcontentsline { toc } {#1} { \use:c { CTEX@#1@tocline } {#1} {#2} } }
+\renewcommand\part{%
+  \if@noskipsec \leavevmode \fi
+  \par
+  \CTEX@part@break
+  \CTEX@setheadingskip \CTEX@part@beforeskip
+  \ifodd \CTEX@part@fixskip \CTEX@fixheadingskip \fi
+  \addvspace \CTEX@headingskip
+  \ifodd \CTEX@part@afterindent
+   \@afterindenttrue
+  \else
+   \@afterindentfalse
+  \fi
+  \secdef\@part\@spart}
+\def\@part[#1]#2{%
+  \ifnum \c@secnumdepth >\m@ne
+    \ifodd \CTEX@part@numbering
+      \CTEX@ifnametrue
+      \refstepcounter{part}%
+    \else
+      \CTEX@ifnamefalse
+      \CTEX@makeanchor{part*}%
+    \fi
+  \else
+    \CTEX@ifnamefalse
+    \CTEX@makeanchor{part*}%
+  \fi
+  \CTEX@gettitle{#1}%
+  \CTEX@addtocline{part}{#1}%
+  \partmark{#1}%
+  \begingroup
+    \CTEX@heading@format@initial
+    \CTEX@part@format{%
+      \CTEX@headinghang{part}%
+        {\CTEXifname{\CTEX@partname\CTEX@part@aftername}{}}%
+        \CTEX@part@titleformat{#2}%
+        \CTEX@part@aftertitle}\par
+  \endgroup
+  \nobreak
+  \CTEX@setheadingskip \CTEX@part@afterskip
+  \ifodd \CTEX@part@fixskip \CTEX@fixheadingskip \fi
+  \vskip \CTEX@headingskip
+  \@afterheading}
+\def\@spart#1{%
+  \CTEX@ifnamefalse
+  \CTEX@makeanchor@spart{part*}%
+  \CTEX@gettitle{#1}%
+  \begingroup
+    \CTEX@heading@format@initial
+    \CTEX@part@format{%
+      \CTEX@headinghang{part}{}%
+      \CTEX@part@titleformat{#1}%
+      \CTEX@part@aftertitle}\par
+  \endgroup
+  \nobreak
+  \CTEX@setheadingskip \CTEX@part@afterskip
+  \ifodd \CTEX@part@fixskip \CTEX@fixheadingskip \fi
+  \vskip \CTEX@headingskip
+  \@afterheading}
+\def\@startsection#1#2#3#4#5#6{%
+  \if@noskipsec \leavevmode \fi
+  \par
+  \CTEX@update@sectionformat@n{#1}%
+  \ifodd \CTEX@afterindent
+    \@afterindenttrue
+  \else
+    \@afterindentfalse
+  \fi
+  \if@nobreak
+    \everypar{}%
+  \else
+    \csname CTEX@#1@break\endcsname
+    \CTEX@setheadingskip{#4}%
+    \ifodd \CTEX@fixskip \CTEX@fixheadingskip \fi
+    \addvspace \CTEX@headingskip
+  \fi
+  \@ifstar
+    {\CTEX@makeanchor@ssect{#1*}\@ssect{#3}{#4}{#5}{#6}}%
+    {\@dblarg{\@sect{#1}{#2}{#3}{#4}{#5}{#6}}}}
+\def\@seccntformat#1{%
+  \csname CTEX@#1name\endcsname
+  \csname CTEX@#1@aftername\endcsname}
+\def\@sect#1#2#3#4#5#6[#7]#8{%
+  \ifnum #2>\c@secnumdepth
+    \CTEX@ifnamefalse
+    \CTEX@makeanchor@sect{#1*}%
+    \let\@svsec\@empty
+  \else
+    \ifodd \csname CTEX@#1@numbering\endcsname
+      \CTEX@ifnametrue
+      \refstepcounter{#1}%
+      \protected@edef\@svsec{\@seccntformat{#1}\relax}%
+    \else
+      \CTEX@ifnamefalse
+      \CTEX@makeanchor{#1*}%
+      \let\@svsec\@empty
+    \fi
+  \fi
+  \CTEX@gettitle{#7}%
+  \unless \ifodd \CTEX@runin
+    \begingroup
+      \CTEX@heading@format@initial
+      #6{%
+        \CTEX@sectionhang{#3}{\@svsec}%
+        \csname CTEX@#1@titleformat\endcsname{#8}%
+        \csname CTEX@#1@aftertitle\endcsname}\par
+    \endgroup
+    \csname #1mark\endcsname{#7}%
+    \CTEX@addtocline{#1}{#7}%
+  \else
+    \def\@svsechd{%
+      #6{%
+        {\CTEX@indentbox{#3}}\@svsec
+        \csname CTEX@#1@titleformat\endcsname{#8}%
+        \csname CTEX@#1@aftertitle\endcsname}%
+      \csname #1mark\endcsname{#7}%
+      \CTEX@addtocline{#1}{#7}}%
+  \fi
+  \@xsect{#5}}
+\def\@ssect#1#2#3#4#5{%
+  \CTEX@ifnamefalse
+  \CTEX@gettitle{#5}%
+  \unless \ifodd \CTEX@runin
+    \begingroup
+      \CTEX@heading@format@initial
+      #4{%
+        \CTEX@sectionhang{#1}{}%
+          \CTEX@titleformat@n{#5}%
+          \CTEX@aftertitle}\par
+    \endgroup
+  \else
+    \def\@svsechd{#4{{\CTEX@indentbox{#1}}%
+      \CTEX@titleformat@n{#5}\CTEX@aftertitle}}%
+  \fi
+  \@xsect{#3}}
+\def\@xsect#1{%
+  \unless \ifodd \CTEX@runin
+    \par \nobreak
+    \CTEX@setheadingskip{#1}%
+    \ifodd \CTEX@fixskip \CTEX@fixheadingskip \fi
+    \vskip \CTEX@headingskip
+    \@afterheading
+  \else
+    \@nobreakfalse
+    \global\@noskipsectrue
+    \everypar{%
+      \if@noskipsec
+        \global\@noskipsecfalse
+       {\setbox\z@\lastbox}%
+        \clubpenalty\@M
+        \begingroup \@svsechd \endgroup
+        \unskip
+        \CTEX@heading@glue{#1}%
+      \else
+        \clubpenalty \@clubpenalty
+        \everypar{}%
+      \fi}%
+  \fi
+  \ignorespaces}
+\cs_new_protected:Npn \CTEX@headinghang #1
+  {
+    \ctex_heading_hang:cnn
+      { CTEX@#1@hang }
+      { \use:c { CTEX@#1@indent } }
+  }
+\cs_new_protected:Npn \CTEX@sectionhang
+  { \ctex_heading_hang:Nnn \CTEX@hang }
+\cs_new_protected:Npn \ctex_heading_hang:Nnn #1#2#3
+  {
+    \dim_set:Nn \tex_parindent:D {#2}
+    \bool_if:NTF #1
+      { \ctex_hang_from:n }
+      { \use:n }
+      { \__ctex_insert_indent: #3 }
+  }
+\cs_new_protected:Npn \ctex_hang_from:n #1
+  {
+    \tex_noindent:D
+    \hbox_set:Nn \l__ctex_tmp_box {#1}
+    \tex_hangindent:D = \box_wd:N \l__ctex_tmp_box
+    \box_use_drop:N \l__ctex_tmp_box
+  }
+\cs_generate_variant:Nn \ctex_heading_hang:Nnn { c }
+\cs_new_protected:Npn \ctex_heading_glue:n #1
+  {
+    \group_begin:
+      \skip_set:Nn \l__ctex_heading_skip {#1}
+      \dim_compare:nNnF \l__ctex_heading_skip = \c_zero_dim
+        { \skip_horizontal:N \l__ctex_heading_skip }
+    \group_end:
+  }
+\cs_new_eq:NN \CTEX@heading@glue \ctex_heading_glue:n
+\cs_new_protected:Npn \CTEX@update@sectionformat@n #1
+  {
+    \cs_set_eq:Nc \CTEX@titleformat@n { CTEX@#1@titleformat }
+    \cs_set_eq:Nc \CTEX@aftertitle    { CTEX@#1@aftertitle }
+    \cs_set_eq:Nc \CTEX@afterindent   { CTEX@#1@afterindent }
+    \cs_set_eq:Nc \CTEX@fixskip       { CTEX@#1@fixskip }
+    \cs_set_eq:Nc \CTEX@hang          { CTEX@#1@hang }
+    \cs_set_eq:Nc \CTEX@runin         { CTEX@#1@runin }
+  }
+\cs_new_eq:NN \CTEX@titleformat@n \use:n
+\cs_new_eq:NN \CTEX@aftertitle \prg_do_nothing:
+\cs_new_eq:NN \CTEX@afterindent \c_true_bool
+\cs_new_eq:NN \CTEX@fixskip \c_false_bool
+\cs_new_eq:NN \CTEX@hang \c_true_bool
+\cs_new_eq:NN \CTEX@runin \c_false_bool
+\cs_new:Npn \CTEX@part@tocline #1#2
+  {
+    \CTEXifname
+      { \CTEXthepart \hspace { 1em } }
+      { }
+    #2
+  }
+\cs_new:Npn \CTEXnumberline #1
+  {
+    \CTEXifname
+      { \protect \numberline { \use:c { CTEXthe #1 } } }
+      { }
+  }
+\int_zero:N \l__ctex_tmp_int
+\seq_map_inline:Nn \c__ctex_section_headings_seq
+  {
+    \int_incr:N \l__ctex_tmp_int
+    \cs_gset_protected:cpx  {#1}
+      {
+        \exp_not:N \@startsection {#1}
+          { \int_use:N \l__ctex_tmp_int }
+          { \exp_not:c { CTEX@#1@indent } }
+          { \exp_not:c { CTEX@#1@beforeskip } }
+          { \exp_not:c { CTEX@#1@afterskip } }
+          { \exp_not:N \normalfont \exp_not:c { CTEX@#1@format } }
+      }
+    \cs_new:cpn { CTEX@#1@tocline } ##1##2
+      { \CTEXnumberline { ##1 } ##2 }
+  }
+\ctex_define:n
+  {
+    appendix                .meta:nn = { ctex / appendix } {#1} ,
+    appendix / name          .code:n =
+      { \ctex_assign_heading_name:nn { appendix } {#1} } ,
+    appendix / number      .tl_set:N = \CTEX@appendix@number ,
+    appendix / numbering .bool_set:N = \CTEX@appendix@numbering ,
+    appendix / numbering  .initial:n = true
+  }
+\tl_new:N \CTEX@preappendix
+\tl_new:N \CTEX@postappendix
+\cs_new_eq:NN \CTEX@save@appendix \appendix
+\cs_gset_protected:Npn \appendix
+  {
+    \CTEX@save@appendix
+    \gdef \CTEX@presection { \CTEX@preappendix }
+    \gdef \CTEX@thesection { \CTEX@appendix@number }
+    \gdef \CTEX@postsection { \CTEX@postappendix }
+    \gdef \CTEX@section@numbering { \CTEX@appendix@numbering }
+  }
+\cs_new_protected:Npn \CTEX@makeanchor #1
+  { }
+\seq_const_from_clist:Nn \c__ctex_headings_cs_seq
+  { part , spart , sect , ssect }
+\seq_map_inline:Nn \c__ctex_headings_cs_seq
+  {
+    \cs_new_eq:cc { CTEX@ #1 } { @ #1 }
+    \cs_new_eq:cN { CTEX@makeanchor@ #1 } \CTEX@makeanchor
+  }
+\cs_new_protected:Npn \CTEX@hyperheadinghook
+  {
+    \group_begin:
+      \legacy_if:nTF { Hy@implicit }
+        {
+          \cs_set_eq:NN \H@old@chapter \Hy@org@chapter
+          \seq_map_inline:Nn \c__ctex_headings_cs_seq
+            {
+              \cs_if_eq:ccT { H@old@ ##1 } { CTEX@ ##1 }
+                {
+                  \cs_gset_eq:cc { @ ##1 } { CTEX@ ##1 }
+                  \cs_gset_eq:cN { CTEX@makeanchor@ ##1 } \CTEX@makeanchor
+                }
+            }
+        }
+        {
+          \seq_map_inline:Nn \c__ctex_headings_cs_seq
+            { \cs_gset_eq:cN { CTEX@makeanchor@ ##1 } \CTEX@makeanchor }
+        }
+    \group_end:
+  }
+\ctex_at_end_package:nn { hyperref }
+  {
+    \cs_gset_protected:Npn \CTEX@makeanchor #1
+      {
+        \Hy@MakeCurrentHrefAuto {#1}
+        \Hy@raisedlink
+          {
+            \hyper@anchorstart { \@currentHref }
+            \hyper@anchorend
+          }
+      }
+    \CTEX@hyperheadinghook
+  }
+\cs_new_protected:Npn \CTEX@gettitle #1
+  { }
+\ctex_at_end_package:nn { nameref }
+  {
+    \cs_gset_protected:Npn \CTEX@gettitle { \NR@gettitle }
+    \seq_map_inline:Nn \c__ctex_headings_cs_seq
+      {
+        \cs_if_eq:ccT { NR@ #1 } { CTEX@ #1 }
+          { \cs_gset_eq:cc { @ #1 } { CTEX@ #1 } }
+      }
+  }
+\cs_new_protected:Npn \ctex_titlesec_hook:
+  {
+    \@ifpackagewith { titlesec } { explicit }
+      {
+        \cs_set_eq:NN \__ctex_titlesec_format:Nn
+                      \__ctex_titlesec_format_explicit:Nn
+      }
+      { }
+    \clist_map_inline:nn
+      { indentafter , noindentafter , indentfirst , nonindentfirst }
+      {
+        \@ifpackagewith { titlesec } { ##1 }
+          {
+            \clist_map_break:n
+              { \cs_set_eq:NN \__ctex_titlesec_hook:n \__ctex_titlesec_format:n }
+          }
+          { }
+      }
+    \seq_map_function:NN \c__ctex_section_headings_seq \__ctex_titlesec_hook:n
+  }
+\cs_new_protected:Npn \__ctex_titlesec_hook:n #1
+  {
+    \__ctex_titlesec_format:n {#1}
+    \exp_args:Nc \__ctex_titlesec_spacing:Nn { ttls@#1 } {#1}
+  }
+\cs_new_protected:Npn \__ctex_titlesec_format:n #1
+  {
+    \cs_if_free:cF { ttlf@#1 }
+      { \exp_args:Nc \__ctex_titlesec_format:Nn { ttlf@#1 } {#1} }
+  }
+\cs_new_protected:Npn \__ctex_titlesec_format:Nn #1#2
+  {
+    \tl_set:Nx #1
+      {
+        \bool_if:cTF { CTEX@#2@runin }
+          { \exp_not:N \ttlh@runin }
+          { \exp_not:N \ttlh@hang }
+        \tl_tail:N #1
+      }
+  }
+\cs_new_protected:Npn \__ctex_titlesec_format_explicit:Nn #1#2
+  {
+    \cs_set_nopar:Npx #1 ##1
+      {
+        \bool_if:cTF { CTEX@#2@runin }
+          { \exp_not:N \ttlh@runin }
+          { \exp_not:N \ttlh@hang }
+        \exp_args:No \tl_tail:n { #1 { } }
+      }
+  }
+\cs_new_protected:Npn \__ctex_titlesec_spacing:Nn #1#2
+  { \tl_set:Nx #1 { \exp_after:wN \__ctex_titlesec_spacing:nnnnnn #1 {#2} } }
+\cs_new:Npn \__ctex_titlesec_spacing:nnnnnn #1#2#3#4#5#6
+  {
+    \exp_not:n { {#1} {#2} {#3} {#4} }
+    { \bool_if:cTF { CTEX@#6@afterindent } { \@ne } { \z@ } }
+  }
+\@ifpackageloaded { titlesec }
+  { }
+  {
+    \ctex_at_end_package:nn { titlesec }
+      {
+        \@ifpackagewith { titlesec } { loadonly }
+          { }
+          { \ctex_titlesec_hook: }
+      }
+  }
+\ctex_at_end_package:nn { titlesec }
+  {
+    \cs_if_free:NF \ttl@tocpart
+      {
+        \cs_set_protected:Npn \ttl@tocpart
+          { \tl_set:Nn \ttl@a { \CTEXthepart \hspace { 1em } } }
+      }
+    \seq_map_inline:Nn \c__ctex_headings_seq
+      {
+        \cs_if_exist:cF { ttl@toc #1 }
+          {
+            \cs_new_protected:cpx { ttl@toc #1 }
+              {
+                \tl_set:Nn \exp_not:N \ttl@a
+                  {
+                    \exp_not:N \protect
+                    \exp_not:N \numberline { \exp_not:c { CTEXthe #1 } }
+                  }
+              }
+          }
+      }
+  }
+\ctex_at_end_package:nn { titlesec }
+  {
+    \ctex_patch_cmd:Nnn \ttl@labelling
+      { \let \ifttl@toclabel \ifttl@label }
+      {
+        \let \ifttl@toclabel \ifttl@label
+        \CTEX@updatettlifname
+      }
+    \cs_new_protected:Npn \CTEX@updatettlifname
+      { \legacy_if:nTF { ttl@label } { \CTEX@ifnametrue } { \CTEX@ifnamefalse } }
+  }
+\group_begin:
+\char_set_catcode_other:N \#
+\cs_new_protected:Npn \ctex_titleps_hook:
+  {
+    \ctex_patch_cmd:Nnn \ttl@settopmark
+      { \protect \@namedef { the#1 } { \@nameuse { the#1 } } }
+      {
+        \protect \@namedef { the#1 } { \@nameuse { the#1 } }
+        \CTEX@titlepslabel@set {#1}
+      }
+    \ctex_patch_cmd:Nnn \ttl@setsubmark
+      { \protect \@namedef { the#1 } { } }
+      {
+        \protect \@namedef { the#1 } { }
+        \CTEX@titlepslabel@clear {#1}
+      }
+    \ctex_patch_cmd:Nnn \ttl@setsubmark
+      { \protect \@namedef { the#2 } { \@nameuse { the#2 } } }
+      {
+        \protect \@namedef { the#2 } { \@nameuse { the#2 } }
+        \CTEX@titlepslabel@set {#2}
+      }
+  }
+\group_end:
+\cs_new:Npn \CTEX@titlepslabel@set #1
+  {
+    \cs_if_free:cF { CTEXthe#1 }
+      { \protect \@namedef { CTEXthe#1 } { \@nameuse { CTEXthe#1 } } }
+  }
+\cs_new:Npn \CTEX@titlepslabel@clear #1
+  {
+    \cs_if_free:cF { CTEXthe#1 }
+      { \protect \@namedef { CTEXthe#1 } { } }
+  }
+\ctex_at_end_package:nn { titlesec }
+  { \cs_if_free:NF \ttl@settopmark { \ctex_titleps_hook: } }
+\ctex_at_end_package:nn { titleps } { \ctex_titleps_hook: }
+\ctex_at_end_package:nn { titleps }
+  {
+    \cs_set_protected:Npn \ttl@setifthe #1
+      {
+        \exp_args:Nco \cs_set:Npn { ifthe #1 }
+          {
+            \CTEXifname
+              { \protect \@firstoftwo }
+              { \protect \@secondoftwo }
+          }
+      }
+    \seq_map_function:NN \c__ctex_headings_seq \ttl@setifthe
+  }
+\cs_new_protected:Npn \CTEX@toc@width@n #1
+  {
+    \hbox_set:Nn \l__ctex_tmp_box {#1}
+    \dim_set:Nn \@tempdima
+      {
+        \dim_max:nn { \@tempdima }
+          { \box_wd:N \l__ctex_tmp_box + \f@size \p@ / 2 }
+      }
+  }
+\group_begin:
+\char_set_catcode_other:N \#
+\use:n
+  {
+    \group_end:
+    \ctex_preto_cmd:NnnTF \numberline { \ExplSyntaxOff }
+      { \CTEX@toc@width@n {#1} }
+      { }
+      { \ctex_patch_failure:N \numberline }
+    \cs_new_protected:Npn \__ctex_patch_toc_width:n \c_parameter_token 1
+      {
+        \@ifpackageloaded { \c_parameter_token 1 }
+          { }
+          {
+            \ctex_at_end_package:nn { \c_parameter_token 1 }
+              {
+                \ctex_preto_cmd:NnnTF \numberline
+                  { \char_set_catcode_letter:n { 64 } }
+                  { \CTEX@toc@width@n {#1} }
+                  { }
+                  { \ctex_patch_failure:N \numberline }
+              }
+          }
+      }
+  }
+\__ctex_patch_toc_width:n { tocloft  }
+\__ctex_patch_toc_width:n { titletoc }
+\legacy_if:nTF { @twoside }
+  {
+    \ctex_patch_cmd:Nnn \ps@headings
+      { \ifnum \c@secnumdepth > \z@ \thesection \quad \fi }
+      { \CTEXifname { \CTEXthesection \quad } { } }
+    \ctex_patch_cmd:Nnn \ps@headings
+      { \ifnum \c@secnumdepth > \@ne \thesubsection \quad \fi }
+      { \CTEXifname { \CTEXthesubsection \quad } { } }
+  }
+  {
+    \ctex_patch_cmd:Nnn \ps@headings
+      { \ifnum \c@secnumdepth > \m@ne \thesection \quad \fi }
+      { \CTEXifname { \CTEXthesection \quad } { } }
+  }
+\ctex_at_end_package:nn { fancyhdr }
+  {
+    \ctex_patch_cmd:Nnn \f@nch@initialise
+      { \ifnum \c@secnumdepth > \z@ \thesection \hskip 1em \relax \fi }
+      { \CTEXifname { \CTEXthesection \quad } { } }
+    \ctex_patch_cmd:Nnn \f@nch@initialise
+      { \ifnum \c@secnumdepth > \@ne \thesubsection \hskip 1em \relax \fi }
+      { \CTEXifname { \CTEXthesubsection \quad } { } }
+    \ctex_patch_cmd:Nnn \f@nch@initialise
+      { \ifnum \c@secnumdepth > \m@ne \@chapapp\ \thechapter . ~ \ \fi }
+      { \CTEXifname { \CTEXthechapter \quad } { } }
+    \ctex_patch_cmd:Nnn \f@nch@initialise
+      { \ifnum \c@secnumdepth > \z@ \thesection . ~ \ \fi }
+      { \CTEXifname { \CTEXthesection \quad } { } }
+    \f@nch@initialise
+    \@ifpackagewith { fancyhdr } { headings }
+      {
+        \legacy_if:nTF { @twoside }
+          {
+            \ctex_patch_cmd:Nnn \ps@headings
+              { \ifnum \c@secnumdepth > \z@ \thesection \quad \fi }
+              { \CTEXifname { \CTEXthesection \quad } { } }
+            \ctex_patch_cmd:Nnn \ps@headings
+              { \ifnum \c@secnumdepth > \@ne \thesubsection \quad \fi }
+              { \CTEXifname { \CTEXthesubsection \quad } { } }
+          }
+          {
+            \ctex_patch_cmd:Nnn \ps@headings
+              { \ifnum \c@secnumdepth > \z@ \thesection \quad \fi }
+              { \CTEXifname { \CTEXthesection \quad } { } }
+          }
+      }
+      { }
+  }
+\ctex_define:n
+  {
+    secnumdepth           .code:n = \ctex_heading_depth:ne { secnumdepth } {#1} ,
+    secnumdepth .value_required:n = true ,
+    tocdepth              .code:n = \ctex_heading_depth:ne { tocdepth } {#1} ,
+    tocdepth    .value_required:n = true
+  }
+\cs_new_protected:Npn \ctex_heading_depth:nn #1#2
+  {
+    \prop_get:NnNTF \c__ctex_heading_level_prop {#2} \l__ctex_tmp_tl
+      { \setcounter {#1} { \l__ctex_tmp_tl } }
+      { \setcounter {#1} { \int_eval:n {#2} } }
+  }
+\cs_generate_variant:Nn \ctex_heading_depth:nn { ne }
+\prop_const_from_keyval:Nn \c__ctex_heading_level_prop
+  {
+    part          =  0 ,
+    section       =  1 ,
+    subsection    =  2 ,
+    subsubsection =  3 ,
+    paragraph     =  4 ,
+    subparagraph  =  5
+  }
+\cs_new_protected:Npn \CTEX@setcurrentlabel@n #1
+  {
+    \protected@edef \@currentlabel
+      {
+        \cs_if_exist:cTF { CTEX@the#1 }
+          { \exp_args:cc { p@#1 } { CTEX@the#1 } }
+          { \exp_not:o { \@currentlabel } }
+      }
+  }
+\cs_new_protected:Npn \ctex_varioref_hook:
+  {
+    \seq_map_inline:Nn \c__ctex_headings_seq
+      { \ctex_fix_varioref_label:n { ##1 } }
+    \ctex_at_end_package:nn { cleveref } { \ctex_cleveref_hook: }
+  }
+\cs_new_protected:Npn \ctex_fix_varioref_label:n #1
+  {
+    \tl_if_empty:cT { p@#1 }
+      { \exp_args:Nnx \labelformat {#1} { \exp_not:c { CTEX@the#1 } } }
+  }
+\cs_new_protected:Npn \ctex_cleveref_hook:
+  {
+    \@ifpackageloaded { hyperref }
+      {
+        \@ifpackagewith { hyperref } { implicit = false }
+          { }
+          { \__ctex_cleveref_hook_aux:N \H@refstepcounter }
+      }
+      {
+        \__ctex_cleveref_hook_aux:N \refstepcounter@noarg
+        \__ctex_cleveref_hook_aux:N \refstepcounter@optarg
+      }
+    \__ctex_cleveref_hook_aux:N \appendix
+  }
+\cs_new_protected:Npn \__ctex_cleveref_hook_aux:N #1
+  {
+    \ctex_patch_cmd_all:NnnnTF #1
+      {
+        \ExplSyntaxOff
+        \char_set_catcode_letter:n { 64 }
+      }
+      { \endcsname \csname the }
+      { \expandafter \endcsname \csname the }
+      { }
+      { \ctex_patch_failure:N #1 }
+  }
+\cs_if_exist:NTF \labelformat
+  { \ctex_varioref_hook: }
+  {
+    \cs_new_eq:NN \CTEX@save@refstepcounter \refstepcounter
+    \RenewDocumentCommand \refstepcounter { m }
+      {
+        \CTEX@save@refstepcounter {#1}
+        \CTEX@setcurrentlabel@n {#1}
+      }
+    \ctex_at_end_package:nn { varioref } { \ctex_varioref_hook: }
+  }
+\ctex_scheme_input:o { \l__ctex_scheme_tl }
+%% 
+%%
+%% End of file `ctex-heading-article.def'.

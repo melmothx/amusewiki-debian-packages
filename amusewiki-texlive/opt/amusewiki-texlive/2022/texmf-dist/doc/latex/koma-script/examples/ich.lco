@@ -1,0 +1,19 @@
+\ProvidesFile{ich.lco}[2008/06/11 lco (Peter Musterfrau)]
+\KOMAoptions{foldmarks=true,foldmarks=blmtP,
+  fromphone,fromemail,fromlogo,subject=titled}
+\setkomavar{fromname}{Peter Musterfrau}
+\setkomavar{signature}{Peter Musterfrau\\
+  (ehemaliger Vorsitzender)}
+\renewcommand*{\raggedsignature}{\raggedright}
+\setkomavar{fromaddress}{Hinter dem Tal 2\\
+                         54321 Musterheim}
+\setkomavar{fromphone}{0\,12\,34~56\,78}
+\setkomavar{fromemail}{Peter@Musterfrau.invalid}
+\setkomavar{fromlogo}{%
+  \includegraphics{musterlogo}}
+\setkomavar{location}{\raggedright
+  Mitglied Nr.~4711\\
+  seit dem 11.09.2001\\
+  Vorsitzender in den Jahren 2003--2005}
+\setkomavar{place}{Musterheim}
+\setkomavar{frombank}{Bank freundlichen Gru\ss es}
