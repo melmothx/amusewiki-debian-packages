@@ -1,0 +1,60 @@
+% Test Babel's "ini" file for Greek
+% © 2023 Günter Milde
+
+% Setup for Greek with localisation from the "ini" files.
+\newcommand{\SETUP}{
+
+  \ifdefined\UnicodeEncodingName % set by XeTeX/LuaTeX
+  \else  % 8-bit TeX
+    \usepackage{lmodern}
+    \usepackage[LGR,T1]{fontenc}
+    % \usepackage{textalpha}
+    \ProvideTextCommandDefault{\greekscript}{\fontencoding{LGR}\selectfont
+                               \def\encodingdefault{\greekfontencoding}}
+    \ProvideTextCommandDefault{\ensuregreek}[1]{\leavevmode{\greekscript ##1}}
+    % Babel <= (3.84) misses the automatic font encoding switch to LGR
+    % \addto\extrasgreek{\greekscript}
+    % \addto\noextrasgreek{\latintext}
+  \fi
+
+  \usepackage[greek, english, provide*=*]{babel}
+
+  \ifdefined\UnicodeEncodingName % set by XeTeX/LuaTeX
+    \babelfont{rm}[Scale=0.92]{DejaVu Serif}
+    % The "ini" Greek setup does not load extended Greek definitions for TU.
+    % Load textalpha or provide dummy definitions:
+    % \usepackage{textalpha}
+    \ProvideTextCommand{\ensuregreek}{TU}[1]{##1}
+    \ProvideTextCommand{\greekscript}{TU}{}
+    \ProvideTextCommand{\textalpha}{TU}{\cs{textalpha}}
+    \ProvideTextCommand{\textOmega}{TU}{\cs{textOmega}}
+  \fi
+
+  \usepackage{hyperref}
+  \hypersetup{unicode, colorlinks=true,linkcolor=blue,urlcolor=blue}
+
+  % fallbacks for commands defined in babel-greek:
+  \providecommand*\greekfontencoding{None}
+  % \providecommand*\lgrfont[1]{\cs{lgrfont} \emph{missing}}
+  \ProvideTextCommandDefault{\textampersand}{\&}
+  \providecommand*\greeknumeral[1]{\{##1\}}
+}
+
+\newcommand{\SETUPDOC}{%
+This test uses Babel's built-in Greek support (``ini'' file,
+cf. \href{https://latex3.github.io/babel/guides/locale-greek.html}
+{Babel>Locales>Greek}).
+
+The following problems can be easily fixed by loading the \emph{textalpha}
+package.
+\begin{itemize}
+  \item Accents not dropped with old (pre 2022/06) \cs{MakeUppercase}.
+  \item Greek LICR macros unknown in TU.
+\end{itemize}
+
+The new 2023/02/10 \cs{MakeUppercase} code fixes the UPPERCASE of Greek
+Unicode literals (including a fix for the ``hiatus'' problem).
+
+}
+
+\input{test-greek.tex}

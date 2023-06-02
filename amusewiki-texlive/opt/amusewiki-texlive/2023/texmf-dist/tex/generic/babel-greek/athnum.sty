@@ -1,0 +1,109 @@
+%%
+%% This is file `athnum.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% athnum.dtx  (with options: `package')
+%% This is a generated file.
+%% 
+%% Copyright 1989-2008 Apostolos Syropoulos, Johannes L. Braams, Günter Milde,
+%% and the authors listed elsewhere in this file. All rights reserved.
+%% 
+%% This file was generated from file(s) of the babel-greek package.
+%% ----------------------------------------------------------------
+%% 
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% The Current Maintainer of this work is Günter Milde <milde@users.sf.net>.
+%% 
+%% Babel-greek is a contributed package providing support for the Greek
+%% language and script via the Babel system (https://ctan.org/pkg/babel).
+%% 
+%% The list of derived (unpacked) files belonging to this work
+%% and covered by LPPL is defined by the unpacking script (babel-greek.ins)
+%% which is part of the package.
+%% \CheckSum{146}
+%% This is file `athnum.dtx'
+%% (c) 1997-2007 Apostolos Syropoulos.
+%% Changes in version 2 © 2022, 2023 Günter Milde
+%% All rights reserved.
+%%\title{Athenian (Attic) Numerals}
+\NeedsTeXFormat{LaTeX2e}[1996/01/01]
+\ProvidesPackage{athnum}[2023/03/17 v2.0.1 Athenian numerals]
+\ifdefined \UnicodeEncodingName % set by LaTeX for XeTeX/LuaTeX
+  \providecommand*{\greekfontencoding}{\UnicodeEncodingName}
+  \providecommand*{\athnum@greek@fontencdef}{tuenc-greek}
+\else
+  \providecommand*{\greekfontencoding}{LGR}
+  \providecommand*{\athnum@greek@fontencdef}{lgrenc}
+\fi
+\@ifl@aded{def}{\athnum@greek@fontencdef}{}
+{% else
+  \InputIfFileExists{\athnum@greek@fontencdef .def}{}{% else
+    \PackageError{athnum}{Font support for the Greek script missing.\\
+               can't typeset Greek symbols.\\
+               Install the "greek-fontenc" package.}
+              {I can't find the \athnum@greek@fontencdef .def file
+               for the Greek fonts (encoding \greekfontencoding).}
+    \@@end
+  }
+}
+\ProvideTextCommandDefault{\ensuregreek}[1]{%
+  \leavevmode{\fontencoding{\greekfontencoding}\selectfont #1}}
+\newcount\@ath@num
+\DeclareRobustCommand*{\@@athnum}[1]{%
+        \@ath@num#1\relax
+        \ifnum\@ath@num<\@ne%
+          \space%
+          \PackageWarning{athnum}{%
+          Illegal value (\the\@ath@num) for athenian numeral}%
+        \else\ifnum\@ath@num>249999%
+          \space%
+          \PackageWarning{athnum}{%
+          Illegal value (\the\@ath@num) for athenian numeral}%
+        \else
+            \@whilenum\@ath@num>49999\do{%
+               \textpentemuria\advance\@ath@num-50000}%
+            \@whilenum\@ath@num>9999\do{%
+               \textMu\advance\@ath@num-\@M}%
+            \ifnum\@ath@num>4999%
+               \textpenteqilioi\advance\@ath@num-5000%
+            \fi\relax
+            \@whilenum\@ath@num>999\do{%
+               \textChi\advance\@ath@num-\@m}%
+            \ifnum\@ath@num>499%
+               \textpentehekaton\advance\@ath@num-500%
+            \fi\relax
+            \@whilenum\@ath@num>99\do{%
+               \textEta\advance\@ath@num-100}%
+            \ifnum\@ath@num>49%
+               \textpentedeka\advance\@ath@num-50%
+            \fi\relax
+            \@whilenum\@ath@num>9\do{%
+               \textDelta\advance\@ath@num by-10}%
+            \@whilenum\@ath@num>4\do{%
+               \textPi\advance\@ath@num-5}%
+            \ifcase\@ath@num \or \textIota
+       \or \textIota\textIota
+       \or \textIota\textIota\textIota
+       \or \textIota\textIota\textIota\textIota\fi%
+   \fi\fi}
+\def\@athnum#1{%
+     \expandafter\@@athnum\expandafter{\the#1}}
+\def\athnum#1{%
+     \textrm{\ensuregreek{%
+       \@ath@num#1\relax
+       \@athnum{\@ath@num}}%
+     }}
+\endinput
+%%
+%% End of file `athnum.sty'.

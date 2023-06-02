@@ -1,0 +1,46 @@
+name texdoc
+category TLCore
+revision 66227
+shortdesc Documentation access for TeX Live
+longdesc texdoc is a Lua script providing easy access to the
+longdesc documentation in TeX Live: PDF, DVI, plain text files, and
+longdesc more. Viewing and other configuration can be extensively
+longdesc customized. It is distributed with TeX Live; MiKTeX provides a
+longdesc program by the same name to do the same job, but its
+longdesc implementation is unrelated.
+depend kpathsea
+depend texdoc.ARCH
+containersize 29668
+containerchecksum 02e7d23e20983f96d05725eb91a4f8bed6bdad0051e9f3c152f945e22255c70e7c0b2d93eeca1fdbbc2ca550a7a15d46540ecbb383575b03a4da9bfcea4e42aa
+doccontainersize 140932
+doccontainerchecksum 80ddcd5d32e02ac87ebba175b3f2e253ca02daf70e38ec5a6db1a0e595349ad33d6b7cf7e95f8af7de621600a58b952927edde04319adec13fa139fa0b634970
+docfiles size=54
+ texmf-dist/doc/man/man1/texdoc.1
+ texmf-dist/doc/man/man1/texdoc.man1.pdf
+ texmf-dist/doc/support/texdoc/COPYING
+ texmf-dist/doc/support/texdoc/NEWS
+ texmf-dist/doc/support/texdoc/README.md details="Readme"
+ texmf-dist/doc/support/texdoc/texdoc-doc.cls
+ texmf-dist/doc/support/texdoc/texdoc.pdf details="Package documentation"
+ texmf-dist/doc/support/texdoc/texdoc.tex
+runfiles size=34
+ texmf-dist/scripts/texdoc/texdoc.tlu
+ texmf-dist/scripts/texdoc/texdoclib-alias.tlu
+ texmf-dist/scripts/texdoc/texdoclib-cli.tlu
+ texmf-dist/scripts/texdoc/texdoclib-config.tlu
+ texmf-dist/scripts/texdoc/texdoclib-const.tlu
+ texmf-dist/scripts/texdoc/texdoclib-score.tlu
+ texmf-dist/scripts/texdoc/texdoclib-search.tlu
+ texmf-dist/scripts/texdoc/texdoclib-util.tlu
+ texmf-dist/scripts/texdoc/texdoclib-view.tlu
+ texmf-dist/scripts/texdoc/texdoclib.tlu
+ texmf-dist/texdoc/texdoc.cnf
+catalogue-also texdoctk
+catalogue-contact-bugs https://github.com/TeX-Live/texdoc/issues
+catalogue-contact-home https://tug.org/texdoc/
+catalogue-contact-repository https://github.com/TeX-Live/texdoc
+catalogue-contact-support https://lists.tug.org/texdoc
+catalogue-ctan /support/texdoc
+catalogue-license gpl
+catalogue-topics view-doc
+catalogue-version 4.0.1

@@ -1,0 +1,759 @@
+% Test document for Babel-Greek
+% © 2013, 2023 Günter Milde
+
+% Configuration constants (see test-greek-8bit-luatex.tex for a use case)
+
+\providecommand{\SETUP}{
+  \usepackage[LGR,T1]{fontenc}
+  \usepackage{lmodern}
+  % \usepackage{kerkis}
+  % \usepackage{gfsdidot}
+  % \usepackage{dejavu}
+  % \usepackage{textalpha} % support Greek literal chars and LICR "everywhere"
+  \ifdefined \UnicodeEncodingName
+    \usepackage{fontspec}
+    % \setmainfont[%
+    %   ItalicFont=NewCM10-Italic.otf,%
+    %   BoldFont=NewCM10-Bold.otf,%
+    %   BoldItalicFont=NewCM10-BoldItalic.otf,%
+    %   SmallCapsFeatures={Numbers=OldStyle}]{NewCM10-Regular.otf}
+    % \setsansfont[%
+    %   ItalicFont=NewCMSans10-Oblique.otf,%
+    %   BoldFont=NewCMSans10-Bold.otf,%
+    %   BoldItalicFont=NewCMSans10-BoldOblique.otf,%
+    %   SmallCapsFeatures={Numbers=OldStyle}]{NewCMSans10-Regular.otf}
+    % \setmonofont[%
+    %   ItalicFont=NewCMMono10-Italic.otf,%
+    %   BoldFont=NewCMMono10-Bold.otf,%
+    %   BoldItalicFont=NewCMMono10-BoldOblique.otf,%
+    %   SmallCapsFeatures={Numbers=OldStyle}]{NewCMMono10-Regular.otf}
+    %
+    \setmainfont[Scale=0.92]{DejaVu Serif}
+  \fi
+
+  % Load and configure Babel:
+
+  \usepackage[greek,% comment out "greek" to test the "basic support"
+              % greek.local-LGR-fixes,
+              english]{babel}
+  % Uncomment the desired language variant
+  % Default: modern monotonic Greek
+  %
+  \languageattribute{greek}{polutoniko}  % "modern" polytonic Greek
+  % \languageattribute{greek}{polytonic} % alias for polutoniko
+  % \languageattribute{greek}{ancient}  % ancient Greek
+  %
+  % Support for the pseudo-language "polutonikogreek", used instead of "greek",
+  % is kept for backwards compatibility:
+  % \usepackage[polutonikogreek,english]{babel}
+  %
+  % For backwards compatibility, you can also use
+  % \selectlanguage{polutonikogreek} instead of \selectlanguage{greek} etc.
+  % if the "polutoniko" Greek language variant is selected.
+
+  % Make ; active to prevent mapping to a middle dot:
+  \languageattribute{greek}{keep-semicolon}
+}
+
+\providecommand{\SETUPDOC}{
+  Test the support for the Greek language as defined in the file
+  \file{greek.ldf} (source \file{greek.dtx}).
+}
+
+\documentclass[a4paper]{article}
+
+\SETUP
+
+\usepackage{hyperref}
+\hypersetup{unicode, colorlinks=true,linkcolor=blue,urlcolor=blue}
+% \usepackage{bookmark}
+
+\usepackage{parskip}
+
+% Semantic styling:
+
+\newcommand{\file}{\texttt}
+\newcommand{\cs}[1]{\texttt{\textbackslash#1}}
+\newcommand{\pkgref}[1]{\emph{\href{https://ctan.org/pkg/#1}{#1}}}
+
+
+% Auxiliary commands:
+
+% print the selected language variant
+\newcommand{\GreekLanguageVariant}{%
+  \ifx\captionsgreek\captionspolutonikogreek
+    \ifx\captionsgreek\captionsancientgreek
+      ancient%
+    \else
+      polutoniko%
+    \fi
+  \else
+    monotoniko%
+  \fi
+}
+
+% The paragraph after \showhyphenpar is printed with all words
+% shown as hy-phen-ated.
+% from https://tex.stackexchange.com/questions/55282/display-hyphenation-options-for-a-specific-word/55283#55283
+\def\showhyphenpar{\bgroup
+   \def\par{\setparams\endgraf\composelines}
+   \setbox0=\vbox\bgroup \noindent\hskip0pt\relax}
+\def\setparams{\rightskip=0pt plus1fil
+   \linepenalty=1000 \pretolerance=-1 \hyphenpenalty=-10000}
+\def\composelines{\setbox2=\hbox{}%
+   \loop \setbox0=\lastbox \unskip \unpenalty
+   \ifhbox0 % je už \vbox vyprázdněn?
+     \global\setbox2=\hbox{\unhbox0\unskip\unhbox2}
+   \repeat
+   \egroup % vyprázdněný \vbox ukončím
+   \exhyphenpenalty=10000 % \box2 vyšoupnu do vnějšího seznamu
+   \emergencystretch=4em \leavevmode\unhbox2 \endgraf\egroup}
+
+% --------------------------------------------------------------------------
+
+\begin{document}
+
+\title{Test the Greek support for Babel}
+\author{Günter Milde}
+\date{\today}
+\maketitle
+
+\SETUPDOC % print additional setup information.
+
+\tableofcontents
+
+
+\section{Language Switch}
+
+The declaration \verb|\selectlanguage| switches between languages.
+
+\begin{quote}
+  \selectlanguage{greek}
+  Τί φήις; Ἱδὼν ἐνθέδε παῖδ’ ἐλευθέραν
+  τὰς πλησίον Νύμφας στεφανοῦσαν, Σώστρατε,
+  ἐρῶν άπῆλθες εὐθύς;
+\end{quote}
+
+\textbf{Warning: With 8-bit TeX, Latin letters and some symbols in the input
+are mapped to Greek equivalents!}.
+Without precautions, quotes copied from external sources (like this Wikpedia
+entry about the question mark) may come out simply wrong:
+\begin{quote}
+  \selectlanguage{greek}
+  Το \textbf{ερωτηματικό} (ελλ. \textbf{;} , λατ. \textbf{?}) είναι το
+  σημείο στίξης το οποίο τοποθετείται στο τέλος κάθε ευθείας ερωτηματικής
+  πρότασης σε πολλές γλώσσες.
+\end{quote}
+See section~\ref{Latin transliteration} for remedies.
+
+The command \verb|\foreignlanguage| sets its second argument in the language
+specified as first argument. This is intended for short text parts or
+single words like \foreignlanguage{greek}{Βιβλιοθήκη}.
+
+Input may use literal Greek characters (\foreignlanguage{greek}{α \ldots Ω}),
+LICR macros (\foreignlanguage{greek}{\textalpha{} \ldots{} \textOmega}),
+or the Latin transliteration (\foreignlanguage{greek}{a \ldots{} W}) defined
+by the LGR font encoding (if LGR is used).
+
+There should be no inserted space before or after the language switch (this
+may happen if there are unescaped linebreaks in the font or language
+definitions):
+\begin{quotation}
+  Change script with \cs{ensuregreek}: |\ensuregreek{δοῦλος}|.
+
+  Change language with \cs{foreignlanguage}:
+  	 	       |\foreignlanguage{greek}{δοῦλος}|.
+
+  Change language with \cs{selectlanguage}:
+                       |\selectlanguage{greek}δοῦλος\selectlanguage{english}|.
+\end{quotation}
+
+
+\section{Auto-strings}
+
+\emph{Babel} defines macros for several autogenerated strings so that they
+may appear in the choosen language. \emph{Babel-greek} uses LICR%
+\footnote{LaTeX internal character representation} macros in
+order to let the string macros work independent of the font encoding.
+
+\selectlanguage{greek}
+\begin{abstract}
+  \ensureascii{Look for the abstract name. Today is} \today.
+\end{abstract}
+\selectlanguage{english}
+
+Show the auto-strings for language variant ``\GreekLanguageVariant''.
+
+\subsection{Captions}
+
+\newcommand{\AutoStrings}{%
+  \abstractname,
+  \alsoname,
+  \appendixname,
+  \bibname,\\
+  \ccname,
+  \chaptername,
+  \contentsname,
+  \enclname,\\
+  \figurename,
+  \glossaryname,
+  \headtoname,
+  \indexname,\\
+  \listfigurename ,
+  \listtablename,\\
+  \pagename,
+  \partname,
+  \prefacename,
+  \proofname,\\
+  \refname,
+  \seename,
+  \tablename
+}
+\selectlanguage{greek}
+\AutoStrings
+\selectlanguage{english}
+
+Test correct upcasing (dropping of accents):
+
+\selectlanguage{greek}
+\MakeUppercase{\AutoStrings}
+\selectlanguage{english}
+
+\subsection{Months}
+
+
+\begin{quotation}
+  \selectlanguage{greek}
+  \newcounter{origmonth}
+  \setcounter{origmonth}{\the\month}
+  \newcounter{foo}
+  \stepcounter{foo} \month=\value{foo} \today \qquad \MakeUppercase{\today}
+
+  \stepcounter{foo} \month=\value{foo} \today \qquad \MakeUppercase{\today}
+
+  \stepcounter{foo} \month=\value{foo} \today \qquad \MakeUppercase{\today}
+
+  \stepcounter{foo} \month=\value{foo} \today \qquad \MakeUppercase{\today}
+
+  \stepcounter{foo} \month=\value{foo} \today \qquad \MakeUppercase{\today}
+
+  \stepcounter{foo} \month=\value{foo} \today \qquad \MakeUppercase{\today}
+
+  \stepcounter{foo} \month=\value{foo} \today \qquad \MakeUppercase{\today}
+
+  \stepcounter{foo} \month=\value{foo} \today \qquad \MakeUppercase{\today}
+
+  \stepcounter{foo} \month=\value{foo} \today \qquad \MakeUppercase{\today}
+
+  \stepcounter{foo} \month=\value{foo} \today \qquad \MakeUppercase{\today}
+
+  \stepcounter{foo} \month=\value{foo} \today \qquad \MakeUppercase{\today}
+
+  \stepcounter{foo} \month=\value{foo} \today \qquad \MakeUppercase{\today}
+  \month=\value{origmonth}
+\end{quotation}
+
+
+\section{Hyphenation}
+
+Patterns for the Greek language variants:
+
+\makeatletter
+monotonic: \verb|\l@monogreek| = \the\l@monogreek \\
+polytonic: \verb|\l@polygreek| = \the\l@polygreek \\
+ancient:   \verb|\l@ancientgreek| = \the\l@ancientgreek
+
+current: \verb|\l@greek| = \the\l@greek
+\makeatletter
+
+Greek paragraph:
+\begin{quote}
+  \selectlanguage{greek}
+  \showhyphenpar
+  \ensureascii{monotonic:} Ευρετήριο,  επίσης,  Απόδειξη \\
+  \ensureascii{polytonic:} Εὑρετήριο,  ἐπίσης,  Ἀπόδειξη \\
+  \ensureascii{ancient:}   Εὑρετήριον, ὡσαύτως, Ἀπόδειξις
+\end{quote}
+
+English paragraph with Greek text (\verb|\foreignlanguage{greek}|):
+\begin{quote}
+  \showhyphenpar
+  monotonic:  \foreignlanguage{greek}{Ευρετήριο,  επίσης,  Απόδειξη } \\
+  polytonic:  \foreignlanguage{greek}{Εὑρετήριο,  ἐπίσης,  Ἀπόδειξη } \\
+  ancient:  \foreignlanguage{greek}{Εὑρετήριον, ὡσαύτως, Ἀπόδειξις}
+\end{quote}
+
+English paragraph with Greek script (\verb|\ensuregreek|): no hypenation
+\begin{quote}
+  \showhyphenpar
+  monotonic:  \ensuregreek{Ευρετήριο,  επίσης,  Απόδειξη } \\
+  polytonic:  \ensuregreek{Εὑρετήριο,  ἐπίσης,  Ἀπόδειξη } \\
+  ancient:  \ensuregreek{Εὑρετήριον, ὡσαύτως, Ἀπόδειξις}
+\end{quote}
+
+\section{Greek Numerals (\greeknumeral{1} \ldots{} \greeknumeral{999999})%
+         \label{sec:greek-numerals}}
+
+\emph{Babel-Greek} provides the macros \verb|\greeknumeral| and
+\verb|\Greeknumeral| for the conversion of Arabic numbers from 1 to 999\,999
+into their Greek counterparts (\greeknumeral{1}, \greeknumeral{2},
+\greeknumeral{3}, \ldots, \greeknumeral{999999}).
+See \href{babel-greek-doc.html#greek-numerals}{babel-greek-doc}
+for the formation rules and configuration options
+and \file{test-greeknum.pdf} for samples.
+
+Examples:
+
+\newcommand*{\shownumeral}[2]{\mbox{#2 = \csname #1\endcsname{#2}}}
+\newcommand*{\numeralsample}[1]{%
+  \shownumeral{#1}{36}\quad
+  \shownumeral{#1}{94}\quad
+  \shownumeral{#1}{678}\quad
+  \shownumeral{#1}{2002}\quad
+  \shownumeral{#1}{923090}}
+
+\numeralsample{greeknumeral}
+
+\numeralsample{Greeknumeral}
+
+Users can redefine the macros \verb`\greeknumeralsix` and
+\verb`\greeknumeralSix` as well as \verb`\greeknumeralninety`
+\verb`\greeknumeralNinety` to configure the used symbols.
+
+If a font misses glyphs for the Greek numeral signs, subsitute characters
+may be defined with the macros
+\cs{textdexiakeraia} and \cs{textaristerikeraia}.
+
+\ifdefined \greeknumeralsix
+  Example (use ``archaic kappa'', ``varstigma'' with pdftex and substitute
+  chars for the numeral signs with Xe/LuaTeX):
+  \renewcommand*{\greeknumeralninety}{\textqoppa}
+  \renewcommand*{\greeknumeralNinety}{\textQoppa}
+  \ifdefined\UnicodeEncodingName
+    \renewcommand*{\textdexiakeraia}{\textquoteright}
+    \renewcommand*{\textaristerikeraia}{\quotesinglbase}
+  \else
+    \renewcommand*{\greeknumeralSix}{\textvarstigma}
+  \fi
+
+  \numeralsample{greeknumeral}
+
+  \numeralsample{Greeknumeral}
+
+  The macro \verb|\Grtoday| produces the current date with the month
+  and the day as greek numerals. Today is \ensuregreek{\Grtoday}.
+
+  \subsection{Alphabetical counters}
+
+  In line with Greek typographical tradition (and to avoid messed up
+  alphabetical counters with LGR fonts), \emph{babel-greek} changes
+  the internal LaTeX commands \cs{@alph} and \cs{@Alph}
+  to use Greek numerals inside Greek text parts
+  (see section~\ref{sec:LGR-redefinitions} for an example).
+
+\fi
+
+\section{Font Encoding}
+
+TeX's standard 8-bit text fonts don't provide for Greek characters.
+Every language switch to \texttt{greek} calls the \verb|\extrasgreek|
+language hook which in turn calls \verb|\greekscript| to ensure a
+Greek-supporting font encoding (LGR or TU).
+With the current setup, this document uses
+\begin{itemize}
+  \item \greekfontencoding{} as \verb|\greekfontencoding|,
+  \item \latinencoding{} as \verb|\latinencoding|, and
+        \makeatletter \ensureascii{\cf@encoding} \makeatother
+        inside \verb|\ensureascii|.
+\end{itemize}
+
+If \verb|\greekfontencoding| is LGR, \emph{babel-greek} performs additional
+setup steps to fix issues with the Latin transliteration (see below).
+If it is TU, \emph{babel-greek} loads Greek LICR definitions from the file
+\file{tuenc-greek.def}\footnote{%
+    Provided by \pkgref{greek-fontenc} since version~0.14 (2020-02-28)}.
+\ifdefined\UnicodeEncodingName
+  %
+  % Attention: \meaning\greekfontencoding\ != \meaning\UnicodeEncodingName
+  \expandafter\ifx\greekfontencoding\UnicodeEncodingName
+    With this setup, it is also possible to use accent macros instead of
+    pre-composed Unicode characters for letters with diacritics,
+    ὃρα = \`<ορα = \accdasiavaria{ο}ρα.
+  \fi
+\fi
+
+\ifdefined\greekscript
+  Switching to a font encoding supporting the Greek script is possible without
+  switching the Babel language using the declarations \verb|\greekscript| (no
+  switch if the current encoding supports the Greek script (e.g. the Unicode
+  font encodings TU and PU) or \verb|\greektext| (always switch to LGR) and the
+  corresponding functions \verb|\ensuregreek| and \verb|\lgrfont|.%
+    \footnote{Hyphenation patterns are not changed,
+              check for wrong hyphenations.}
+  These commands also work in the middle of a paragraph or word:
+  \greekscript Φίλων τοῦ \textlatin{TeX} (ΕΦΤ) --
+  \latintext Friends (\ensuregreek{F\'ilwn}) of TeX.
+\fi
+
+
+\subsection{LGR's \emph{Latin transliteration}%
+            \label{Latin transliteration}}
+
+LGR has Greek characters in the slots reserved for Latin characters and
+other symbols in a TeX \emph{standard text font encoding}.
+This allows the use of a \emph{Latin transliteration} for the input of Greek
+characters\footnote{see \file{usage.pdf}}, however, characters that should
+be printed as Latin characters must be protected from conversion by a font
+encoding switch, either selecting a different language or wrapping them with
+\verb|\ensureascii| (provided by the Babel core), that sets its argument
+using an ASCII-compatible font encoding. The legacy declaration
+\verb|\latintext| switches the font encoding to \verb|\latinencoding|.
+
+With the Unicode font encoding TU, Latin characters can be used in Greek
+text parts and the Latin transliteration does not work (but see the
+last example below).
+
+The following quote (with the Babel language set to Greek) illustrates the
+problem:
+
+Literal characters, words in the ``foreign'' script protected:
+\begin{quote}
+  \selectlanguage{greek}
+  Φίλων τοῦ \textlatin{TeX} (ΕΦΤ) --
+  \selectlanguage{english}
+  Friends (\ensuregreek{Φίλων}) of TeX.
+\end{quote}
+
+Unprotected ASCII characters come out as Greek characters with LGR:
+\begin{quote}
+  \selectlanguage{greek}
+  Φίλων τοῦ TeX (ΕΦΤ) -- Friends (Φίλων) of TeX.
+\end{quote}
+
+The Latin transliteration works in LGR but not TU:
+\begin{quote}
+  \selectlanguage{greek}
+  F'ilwn to\~u \ensureascii{TeX} (EFT) --
+  \selectlanguage{english}
+  \latintext Friends (\ensuregreek{F\'ilwn}) of TeX.
+\end{quote}
+
+\ifdefined\lgrfont
+  The Latin transliteration can be used with also with
+  Xe/LuaTeX, if the input text is wrapped in \cs{lgrfont}
+    \footnote{available, if the LGR encoding is loaded
+    with the \pkgref{fontenc} package}
+  but may result in non-matching fonts and wrong hyphenation:
+  \begin{quote}
+    \selectlanguage{greek}
+    \lgrfont{F'ilwn to\~u \ensureascii{TeX} (EFT)} --
+    \selectlanguage{english}
+    \latintext Friends (\lgrfont{F\'ilwn}) of TeX.
+  \end{quote}
+\fi
+
+\subsubsection{The \texttt{keep-semicolon} attribute}
+
+The LGR font encoding uses the Latin question mark as input for the
+\emph{erotimatiko} and maps the semicolon to a middle dot (\emph{ano
+teleia}). As a result, Unicode-encoded texts that use the semicolon as
+\emph{erotimatiko} end up with an \emph{ano teleia} in its place:
+
+The character 037E GREEK QUESTION MARK works with both, Xe/LuaTeX and 8-bit
+TeX. However it is deprecated and Unicode normalizes it to 003B SEMICOLON.
+This means that even texts wich use the GREEK QUESTION MARK may and up with
+SEMICOLON after drag-and-drop or other processing and with a middle dot in
+the final output.
+
+With the \texttt{keep-semicolon} language attribute, 003B SEMICOLON is made
+active and inserts an \emph{erotimatiko} also with LGR encoded fonts, if the
+text language is set to Greek:
+
+\begin{tabular}{lcccl}
+  Input & \latinencoding{} & \greekfontencoding & Greek \\
+  003F QUESTION MARK       & ? & \ensuregreek{?}
+                               & \foreignlanguage{greek}{?} \\
+                                            \\
+  037E GREEK QUESTION MARK & ␣ & \ensuregreek{;}
+                               & \foreignlanguage{greek}{;}
+                               & not defined for T1         \\
+  003B SEMICOLON           & ; & \ensuregreek{;}
+                               & \foreignlanguage{greek}{;} \\
+  00B7 MIDDLE DOT          & · & \ensuregreek{·}
+                               & \foreignlanguage{greek}{·} \\
+\end{tabular}
+
+This attribute is ignored with Unicode fonts (where the SEMICOLON literal
+always prints a semicolon character).
+
+Test in math mode:
+\newcommand{\semicolontest}{ab; $a b; a\;b, (\mathrm{a;}\textrm{a;}2)$}
+English: \semicolontest, Greek: \foreignlanguage{greek}{\semicolontest}.
+
+\subsubsection{LGR-proofed macros}
+
+\emph{Babel-greek} provides LGR-local variants for some
+\emph{TextCommand}s that rely on a standard text encoding.\footnote{%
+  These workarounds cannot be done in \file{lgrenc.def} from the
+  \pkgref{greek-fontenc} package because they are not allowed in a
+  ``font encoding definition file'' [\file{fntguide.pdf}].}
+The fallback definitions for some \emph{textcomp} symbols compose the
+symbols out of Latin letters.
+The fixes must not overwrite the selection of pre-composed symbols
+from \pkgref{textcomp} or TU (try copy and paste from the PDF output).
+
+LGR fonts have a middle dot glyph at the place of the ampersand. The new
+\emph{TextCommand} \verb|\textampersand| always prints an ampersand.
+\makeatletter \newcommand{\AsciiSymbolTest}{(\f@encoding) ©®™
+                          A\textampersand W}
+\makeatother
+\begin{quote}
+  English: \AsciiSymbolTest\\
+  English: \ensuregreek{\AsciiSymbolTest}\\
+  Greek: \foreignlanguage{greek}{\AsciiSymbolTest}
+\end{quote}
+% English (LGR), input as macro:
+% \lgrfont{|\textcopyright|\textregistered|\texttrademark|
+%            A\textampersand W.}
+
+
+\ifdefined\lgrfont% babel-greek and LGR font encoding loaded
+
+  \subsection{LGR re-definitions \label{sec:LGR-redefinitions}}
+
+  The generic macro \verb|\&| is re-defined inside Greek text parts to use
+  the original definition in math mode and \cs{textampersand} in text
+  mode.
+
+  \subsubsection{Roman numerals \label{sec:roman-numerals}}
+
+  Without fixes, Roman numerals are printed according to the Latin
+  transliteration (including the conversion of ``v'' to a
+  ZERO WIDTH NON-JOINER) if the font encoding is LGR:
+
+  \makeatletter
+  \newcommand{\RomanNumeralTest}{\f@encoding:
+              \romannumeral 1, \romannumeral 2, \romannumeral 3,
+              \romannumeral 4, \ldots, \romannumeral 1975}
+  \makeatother
+  \begin{quote}
+    \RomanNumeralTest\\
+    \lgrfont{\RomanNumeralTest}
+  \end{quote}
+
+  Roman numerals are used by the default document classes, e.g., in the third
+  level of enumerations or as page numbers in the frontmatter of a book.
+  They may move to auto-generated document parts like the ToC,
+  (hyper)references, or an index.
+
+  As document authors cannot wrap page numbers in a ToC in \verb|\ensureascii|,
+  \emph{Babel-greek} redefines the internal LaTeX commands \verb|\@roman| and
+  \verb|\@Roman| to make Roman numberals LGR-proof.
+  Unfortunately, this breaks Makeindex (cf. \file{test-lgr-fixes.tex}).
+
+\fi
+
+
+\subsubsection{Example}
+
+In Greek text parts, enumerated lists use Greek numerals in the second and
+fourth level and ASCII-proofed Roman numerals in the third level.
+
+\selectlanguage{greek}
+\begin{enumerate}
+  \item item 1
+  \begin{enumerate}
+    \item item 1.1
+    \begin{enumerate}
+      \item item 1.1.1
+       \begin{enumerate}
+         \item item 1.1.1.1
+         \item item 1.1.1.2
+         \item item 1.1.1.3 \label{item 1.1.1.3}
+       \end{enumerate}
+      \item item 1.1.2
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+\selectlanguage{english}
+
+\selectlanguage{english}
+Setting the language back to English should restore the alphabetic numbering:
+\begin{enumerate}
+  \item item 1
+  \begin{enumerate}
+    \item item 1.1
+    \begin{enumerate}
+      \item item 1.1.1
+       \begin{enumerate}
+         \item item 1.1.1.1
+         \item item 1.1.1.2
+         \item item 1.1.1.3
+       \end{enumerate}
+      \item item 1.1.2
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+More test of the LGR-redefinitions are in \file{test-lgr-fixes.tex}.
+
+\ifdefined\lgrfont
+\else
+  \end{document}
+\fi
+
+\section{Up- and downcasing in Greek}
+
+Capital Greek letters have diacritics (except the dialytika and sub-iota) to
+the left (instead of above) and drop them in uppercase (except the
+dialytika), e.g., \ensuregreek{μαΐστρος $\mapsto$ \MakeUppercase{μαΐστρος}}.
+For literal Greek characters and accent macros, these rules are implemented
+and tested in the required package \pkgref{greek-fontenc}.
+
+Tonos and dasia mark a \emph{hiatus} (break-up of a diphthong) if
+placed on the first vowel of a diphthong.
+A dialytika must be placed on the second vowel if they are dropped, e.g.
+%
+\newcommand{\HiatusLICR}{\acctonos\textalpha\textiota,
+                         \acctonos\textalpha\textupsilon,
+                         \acctonos\textepsilon\textiota,
+                         \'>\textalpha\textiota,
+                         \'>\textalpha\textupsilon,
+                         \accpsili\textalpha\textupsilon,
+                         \accdasiaoxia\textepsilon\textiota}%
+\ensuregreek{\HiatusLICR\ $\mapsto$ \MakeUppercase{\HiatusLICR}}.
+
+Some affected words:
+\begin{quotation}
+  \selectlanguage{greek}
+  \newcommand*{\aylos}{% from teubner.sty: άυλος → ΑΫΛΟΣ
+    \acctonos\textalpha\textupsilon\textlambda\textomicron\textfinalsigma}
+  \aylos{} $\mapsto$ \MakeUppercase{\aylos},
+  \renewcommand*{\aylos}{% polytonic: ἄυλος → ΑΫΛΟΣ
+    \'>\textalpha\textupsilon\textlambda\textomicron\textfinalsigma}
+  \aylos{} $\mapsto$ \MakeUppercase{\aylos},
+
+  % from http://diacritics.typo.cz/index.php?id=69
+  \newcommand*{\maina}{%μάινα → ΜΑΪΝΑ
+    \textmu\acctonos\textalpha\textiota\textnu\textalpha}
+  \maina{} $\mapsto$ \MakeUppercase{\maina},
+
+  % from  http://de.wikipedia.org/wiki/Neugriechische_Orthographie#Das_Trema
+  \newcommand*{\keik}{% κέικ → ΚΕΪΚ
+    \textkappa\acctonos\textepsilon\textiota\textkappa}
+  \keik{} $\mapsto$ \MakeUppercase{\keik},
+
+  \newcommand*{\ahypnia}{% ἀυπνία → ΑΫΠΝΙΑ
+    \accpsili\textalpha\textupsilon\textpi\textnu\acctonos\textiota\textalpha}
+  \ahypnia{} $\mapsto$ \MakeUppercase{\ahypnia},
+
+  % from http://multilingualtypesetting.co.uk/blog/greek-typesetting-tips/
+  \newcommand*{\romeika}{\textrho\textomega\textmu
+                         \acctonos\textepsilon\textiota\textkappa\textalpha}
+  \romeika{} $\mapsto$ \MakeUppercase{\romeika}.
+\end{quotation}
+
+With the pre-2022/06 \cs{MakeUppercase}, automatic upcasing of words with
+\emph{hiatus} works correctly only if the accents are input as macro and the
+letters as macro or via the Latin transliteration.
+
+With the current (2023/02/10) \cs{MakeUppercase}, it works for literal
+Unicode input and named accents. The \cs{uccode} changes are ignored.
+
+\subsection{Changed uccode/lccode values for LGR}
+
+LGR encoded fonts define ligatures for characters with diacritics. To enable
+correct upcasing, \emph{babel-greek} changes the uc/lccodes of some
+characters. Characters used to input diacritics are mapped to the ``empty''
+character 0x9f = 159.
+
+To minimise side-effects (see below), uc/lccodes are only changed:
+\begin{itemize}
+  \item if \cs{greekfontencoding} is a ``short macro'' expanding to LGR,%
+        \footnote{i.e. not in documents using Unicode fonts unless
+           \cs{greekfontencoding} is explicitly set to \texttt{LGR} before
+           loading \emph{babel-greek}}
+  \item if the LaTeX version is older than 2022/06, as \cs{uccode}s are ignored
+        by the \cs{MakeUppercase} implementation introduced in this version,
+  \item for accents that are actually required in the selcected language
+        variant (i.e. only for the \emph{tonos}, if the language variant
+        is the default ``monotonic''.
+\end{itemize}
+
+With \cs{greekfontencoding} \greekfontencoding, LaTeX version \fmtversion,
+and language variant ``\GreekLanguageVariant'' we get for
+dialytika\footnote{%
+  Unless followed by a to-be accented vowel, the quotation mark \texttt{"}
+  is converted to an upper right apostrophe by LGR.},
+sub-iota, tonos/oxia, varia, psili, and dasia:
+
+\newcommand{\AccentCharacters}{" | ' ` > <}
+\begin{quote}
+  \selectlanguage{greek}
+  \AccentCharacters{} $\mapsto$ \MakeUppercase{\AccentCharacters}
+\end{quote}
+
+\emph{Composite command} definitions ensure that combined accents
+also work for accent characters ``upcased'' to the charcter
+No 159 = 0x9f):
+
+\newcommand{\CombinedAccentSample}{
+  \ifdefined \UnicodeEncodingName
+    % TODO: combined accents swallow whitespace after base char
+    %       unless protected
+    \"'υ{} \"`υ{} \`"υ{} \'"υ{} \`<α{} \'<α{}
+  \else
+    \"'u   \"`u   \`"u   \'"u   \`<a   \'<a   \'<ai
+  \fi
+  \'<\textalpha\textiota
+}
+\begin{quote}
+  \selectlanguage{greek}
+  \CombinedAccentSample{} $\mapsto$ \MakeUppercase{\CombinedAccentSample}
+\end{quote}
+
+With babel-greek versions up to 1.11, using the tilde for the
+\emph{perispomeni} accent inside \verb|\MakeUppercase| led to a
+\begin{quote}
+  \texttt{Package inputenc Error: Invalid UTF-8 byte "9F}
+\end{quote}
+(even without loading \emph{inputenc} and with \verb|\UseRawInputEncoding|).%
+\footnote{cf.
+  \href{https://www.latex-project.org/news/latex2e-news/ltnews28.pdf}%
+  {LaTeX News 28}}
+Version 1.12 fixes the issue so that all three input variants work again
+(with LaTeX versions up to 2022/06)%
+\footnote{The implementation of \cs{MakeUppercase}
+    introduced in the 2022/06 LaTeX release, cf.\
+    \href{https://www.latex-project.org/news/latex2e-news/ltnews35.pdf}%
+    {LaTeX News 35}, works (almost) fine with literal input but currently
+     fails with the Latin transliteration and standard accent macros.}
+\begin{quote}
+  \selectlanguage{greek}
+  \greektext
+  ~u \~u \accperispomeni{u} $\mapsto$ \MakeUppercase{~u \~u \accperispomeni{u}}
+\end{quote}
+
+
+The changed uc/lccodes have strange effects on Latin text parts
+in Greek paragraphs if only the encoding is switched:
+\begin{quote}
+  \selectlanguage{greek}
+  \foreignlanguage{english}{English:
+    Let's see: \AccentCharacters{} $\mapsto$
+    \MakeUppercase{Let's see: \AccentCharacters}}\\
+  \ensureascii{\cs{ensureascii}:
+    Let's see: \AccentCharacters{} $\mapsto$
+    \MakeUppercase{Let's see: \AccentCharacters}}
+\end{quote}
+%
+To limit the effect on, e.g., section headings (which are printed
+capitalised with the ``headings'' style), uccodes for ``v''
+(zero-width space) and ``c'' (final sigma) are not changed.
+Use \verb|\textcompwordmark| instead of \texttt{v} and autosigma
+(\texttt{s}) instead of \texttt{c} in text parts that could/should
+become upcased, e.g., \lgrfont{a\textcompwordmark us $\mapsto$
+\MakeUppercase{a\textcompwordmark us}}
+not \lgrfont{avuc $\mapsto$ \MakeUppercase{avuc}}.
+
+\end{document}

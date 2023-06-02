@@ -1,0 +1,222 @@
+-- texdoclib-cli.tlu: command-line interfaces for texdoc
+--
+-- The TeX Live Team, GPLv3, see texdoclib.tlu for details
+
+-- dependencies
+local texdoc = {
+    const = require 'texdoclib-const',
+    util = require 'texdoclib-util',
+    config = require 'texdoclib-config',
+    search = require 'texdoclib-search',
+    view = require 'texdoclib-view',
+}
+
+-- shortcuts
+local M = {}
+local C = texdoc.const
+local err_print = texdoc.util.err_print
+
+--------------------------   parsing options   --------------------------
+
+-- modified Alternative GetOpt
+-- cf. http://lua-users.org/wiki/AlternativeGetOpt
+local function getopt(arg, options)
+    local tmp = nil
+    local tab = {}
+    local saved_arg = {table.unpack(arg)}
+
+    for k, v in ipairs(saved_arg) do
+        if string.sub(v, 1, 2) == '--' then
+            table.remove(arg, 1)
+            local x = string.find(v, '=', 1, true)
+            if x then
+                table.insert(tab, {string.sub(v, 3, x - 1), string.sub(v, x+1)})
+            else
+                table.insert(tab, {string.sub(v, 3), true})
+            end
+
+        elseif string.sub(v, 1, 1) == '-' then
+            table.remove(arg, 1)
+            local y = 2
+            local l = string.len(v)
+            local jopt
+
+            while (y <= l) do
+                jopt = string.sub(v, y, y)
+
+                if string.find(options, jopt, 1, true) then
+                    if y < l then
+                        tmp = string.sub(v, y + 1)
+                        y = l
+                    else
+                        table.remove(arg, 1)
+                        tmp = saved_arg[k + 1]
+                    end
+
+                    -- check the existence of an argument
+                    if not tmp then
+                        err_print('error',
+                            'Option -%s requires an argument.', jopt)
+                        os.exit(C.exit_error)
+                    end
+
+                    if string.match(tmp, '^%-') then
+                        table.insert(tab, {jopt, false})
+                    else
+                        table.insert(tab, {jopt, tmp})
+                    end
+                else
+                    table.insert(tab, {jopt, true})
+                end
+                y = y + 1
+            end
+
+        else
+            if tmp then tmp = nil else break end
+        end
+    end
+
+    return tab
+end
+
+local function parse_options()
+    local curr_arg
+    local option
+    local cl_config = {}
+
+    -- actual parsing
+    local optstring = ''
+    for _, o in pairs(C.options) do
+        if o['type'] == 'string' and o['short'] then
+            optstring = optstring .. o['short']
+        end
+    end
+    local opts = getopt(arg, optstring)
+
+    for _, tp in ipairs(opts) do
+        local k, v = tp[1], tp[2]
+        if #k == 1 then
+            curr_arg = '-' .. k
+        else
+            curr_arg = '--' .. k
+        end
+
+        for i, o in ipairs(C.options) do
+            if k == o["short"] or k == o["long"] then
+                k = i
+                break
+            end
+        end
+
+        option = C.options[k]
+        if option['group'] == 'action' then
+            if option['long'] == 'just-view' then
+                return true, 'view', cl_config
+            elseif option['long'] == 'print-completion' then
+                return true, 'complete', cl_config
+            else
+                return true, option['long'], cl_config
+            end
+        elseif option['group'] then
+            if option['type'] == 'boolean' then
+                option['action'](cl_config, curr_arg)
+            elseif option['type'] == 'string' then
+                option['action'](cl_config, curr_arg, v)
+            end
+
+        -- having trouble
+        else
+            err_print('error', 'unknown option: ' .. curr_arg)
+            err_print('error', C.error_msg)
+            return false
+        end
+    end
+
+    return true, action, cl_config
+end
+
+--------------------------   process execution   --------------------------
+
+-- handling actions
+local function do_action(action)
+    if action == 'help' then
+        texdoc.util.print_usage()
+        os.exit(C.exit_ok)
+    elseif action == 'version' then
+        print(string.format(
+            '%s %s (%s)', C.progname, C.version, C.release_date) ..
+            '\n\n' .. C.copyright_msg)
+        os.exit(C.exit_ok)
+    elseif action == 'files' then
+        print(texdoc.util.w32_path(C.fullname) .. ' ' .. C.version)
+        texdoc.config.show_config_files(true)
+        os.exit(C.exit_ok)
+    elseif action == 'view' then
+        if not arg[1] then
+            err_print('error', 'Missing file operand to --just-view.')
+            err_print('error', C.error_msg)
+            os.exit(C.exit_usage)
+        end
+        texdoc.view.view_file(arg[1])
+        os.exit(C.exit_ok)
+    elseif action == 'complete' then
+        if not arg[1] then
+            err_print('error', 'Missing shell operand to --print-completion.')
+            err_print('error', C.error_msg)
+            os.exit(C.exit_usage)
+        elseif arg[1] == 'zsh' then
+            texdoc.util.print_zsh_completion()
+            os.exit(C.exit_ok)
+        else
+            err_print('error', arg[1] .. ' is not supported currently!')
+            os.exit(C.exit_error)
+        end
+    end
+end
+
+-- the main loop
+local function do_texdoc()
+    texdoc.search.init_databases()
+
+    for _, docname in ipairs(arg) do
+        -- do we have more then one argument?
+        local multiarg = not not arg[2]
+        -- get results
+        local doclist = texdoc.search.get_doclist(docname)
+        -- deliver results to the user
+        texdoc.view.deliver_results(docname, doclist, multiarg)
+    end
+end
+
+--------------------------   the main function   --------------------------
+
+function M.exec()
+    -- parsing command-line options
+    local ok, action, cl_config = parse_options()
+
+    if not ok then
+        os.exit(C.exit_usage)
+    end
+
+    -- setup config and alias
+    texdoc.config.setup_config_and_alias(cl_config)
+
+    -- special action
+    do_action(action)
+
+    -- do we actually have arguments?
+    if not arg[1] then
+        err_print('error', 'No action specified.')
+        err_print('error', C.error_msg)
+        os.exit(C.exit_usage)
+    end
+
+    -- the main feature
+    do_texdoc()
+
+    os.exit(C.exit_ok)
+end
+
+return M
+
+-- vim: ft=lua:

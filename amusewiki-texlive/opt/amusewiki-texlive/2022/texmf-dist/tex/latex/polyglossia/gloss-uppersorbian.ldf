@@ -1,9 +1,0 @@
-% Language definition file (part of polyglossia v1.59 -- 2022/11/29)
-%
-\ProvidesFile{gloss-uppersorbian.ldf}[polyglossia: module for Upper Sorbian]
-
-% We provide this as a babel alias
-
-\xpg@load@master@language{sorbian}
-
-\endinput

@@ -1,0 +1,94 @@
+name platex
+category Package
+revision 66186
+shortdesc pLaTeX2e and miscellaneous macros for pTeX
+longdesc The bundle provides pLaTeX2e and miscellaneous macros for pTeX
+longdesc and e-pTeX. This is a community edition forked from the
+longdesc original ASCII edition (ptex-texmf-2.5).
+depend atbegshi
+depend atveryend
+depend babel
+depend cm
+depend everyshi
+depend firstaid
+depend hyphen-base
+depend l3backend
+depend l3kernel
+depend l3packages
+depend latex
+depend latex-base-dev
+depend latex-firstaid-dev
+depend latex-fonts
+depend platex.ARCH
+depend ptex
+depend ptex-fonts
+depend tex-ini-files
+depend unicode-data
+depend uptex
+execute AddFormat name=platex engine=eptex options="*platex.ini"           patterns=language.dat           fmttriggers=atbegshi,atveryend,babel,cm,everyshi,firstaid,hyphen-base,l3backend,l3kernel,l3packages,latex,latex-fonts,tex-ini-files,unicode-data,ptex-fonts,latex
+execute AddFormat name=platex-dev engine=euptex options="*platex.ini"           patterns=language.dat           fmttriggers=atbegshi,atveryend,babel,cm,everyshi,firstaid,hyphen-base,l3backend,l3kernel,l3packages,latex,latex-fonts,tex-ini-files,unicode-data,ptex-fonts,l3kernel,latex-base-dev,latex-firstaid-dev
+containersize 42308
+containerchecksum f258b1b54d2d0726fe97323c23f2bdcf1bccfdb1ee7dc1b9a32ac8af7b7c8b1a1f0a9958c5d43c3c33ff414358634be4c3c790f035625b7fe80a4f9f42b2adfa
+doccontainersize 1982668
+doccontainerchecksum 51992f6d3ed6749e9136db4930644b82c435efb6af85fcac1dc254c22e06c5fd017d9bc83f642060d814b86c56fdde6ff97056240b0ab857743203fe5ae2fd7d
+docfiles size=512
+ texmf-dist/doc/man/man1/platex.1
+ texmf-dist/doc/man/man1/platex.man1.pdf
+ texmf-dist/doc/platex/base/LICENSE
+ texmf-dist/doc/platex/base/README.md details="Readme"
+ texmf-dist/doc/platex/base/exppl2e.pdf
+ texmf-dist/doc/platex/base/platex-en.pdf details="Package documentation"
+ texmf-dist/doc/platex/base/platex.pdf details="Package documentation" language="ja"
+ texmf-dist/doc/platex/base/platexrelease.pdf
+ texmf-dist/doc/platex/base/pldoc.pdf
+srccontainersize 140240
+srccontainerchecksum e0cf572377102151ba3f49f58d27b352641fccfdc58cae60acadc36e26d12ff21f19119f940d5f54e7f0359b572ff746f07a86a8cd524b05d90efc43480756a2
+runfiles size=169
+ texmf-dist/tex/platex/base/exppl2e.sty
+ texmf-dist/tex/platex/base/jarticle.cls
+ texmf-dist/tex/platex/base/jarticle.sty
+ texmf-dist/tex/platex/base/jbk10.clo
+ texmf-dist/tex/platex/base/jbk11.clo
+ texmf-dist/tex/platex/base/jbk12.clo
+ texmf-dist/tex/platex/base/jbook.cls
+ texmf-dist/tex/platex/base/jbook.sty
+ texmf-dist/tex/platex/base/jltxdoc.cls
+ texmf-dist/tex/platex/base/jreport.cls
+ texmf-dist/tex/platex/base/jreport.sty
+ texmf-dist/tex/platex/base/jsize10.clo
+ texmf-dist/tex/platex/base/jsize11.clo
+ texmf-dist/tex/platex/base/jsize12.clo
+ texmf-dist/tex/platex/base/jt1gt.fd
+ texmf-dist/tex/platex/base/jt1mc.fd
+ texmf-dist/tex/platex/base/jy1gt.fd
+ texmf-dist/tex/platex/base/jy1mc.fd
+ texmf-dist/tex/platex/base/kinsoku.tex
+ texmf-dist/tex/platex/base/oldpfont.sty
+ texmf-dist/tex/platex/base/pfltrace.sty
+ texmf-dist/tex/platex/base/pl209.def
+ texmf-dist/tex/platex/base/platex.ltx
+ texmf-dist/tex/platex/base/platexrelease.sty
+ texmf-dist/tex/platex/base/plcore.ltx
+ texmf-dist/tex/platex/base/pldefs.ltx
+ texmf-dist/tex/platex/base/plexpl3.ltx
+ texmf-dist/tex/platex/base/plexpl3.sty
+ texmf-dist/tex/platex/base/plext.sty
+ texmf-dist/tex/platex/base/plnews.cls
+ texmf-dist/tex/platex/base/ptrace.sty
+ texmf-dist/tex/platex/base/tarticle.cls
+ texmf-dist/tex/platex/base/tarticle.sty
+ texmf-dist/tex/platex/base/tbk10.clo
+ texmf-dist/tex/platex/base/tbk11.clo
+ texmf-dist/tex/platex/base/tbk12.clo
+ texmf-dist/tex/platex/base/tbook.cls
+ texmf-dist/tex/platex/base/tbook.sty
+ texmf-dist/tex/platex/base/treport.cls
+ texmf-dist/tex/platex/base/treport.sty
+ texmf-dist/tex/platex/base/tsize10.clo
+ texmf-dist/tex/platex/base/tsize11.clo
+ texmf-dist/tex/platex/base/tsize12.clo
+ texmf-dist/tex/platex/config/platex.ini
+catalogue-contact-repository https://github.com/texjporg/platex
+catalogue-ctan /macros/jptex/latex/platex
+catalogue-license bsd3
+catalogue-topics format class japanese

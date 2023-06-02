@@ -1,0 +1,636 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>install-tl - TeX Live cross-platform installer</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:karl@new.tug.org" />
+</head>
+
+<body>
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a></li>
+  <li><a href="#REFERENCES">REFERENCES</a></li>
+  <li><a href="#EXAMPLES">EXAMPLES</a></li>
+  <li><a href="#OPTIONS">OPTIONS</a></li>
+  <li><a href="#PROFILES">PROFILES</a></li>
+  <li><a href="#ENVIRONMENT-VARIABLES">ENVIRONMENT VARIABLES</a></li>
+  <li><a href="#DIRECTORY-TREES">DIRECTORY TREES</a></li>
+  <li><a href="#BUGS">BUGS</a></li>
+  <li><a href="#AUTHORS-AND-COPYRIGHT">AUTHORS AND COPYRIGHT</a></li>
+</ul>
+
+<h1 id="NAME">NAME</h1>
+
+<p>install-tl - TeX Live cross-platform installer</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<p>install-tl [<i>option</i>]...</p>
+
+<p>install-tl-windows.bat [<i>option</i>]...</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>This installer creates a runnable TeX Live installation from various media, including over the network, from local hard disk, a DVD, etc. The installer works on all platforms supported by TeX Live. For information on initially downloading TeX Live, see <a href="https://tug.org/texlive/acquire.html">https://tug.org/texlive/acquire.html</a>.</p>
+
+<p>The basic idea of TeX Live installation is for you to choose one of the top-level <i>schemes</i>, each of which is defined as a different set of <i>collections</i> and <i>packages</i>, where a collection is a set of packages, and a package is what contains actual files. Each package is in exactly one collection, while schemes can contain any combination of packages and collections.</p>
+
+<p>Within the installer, you can choose a scheme, and further customize the set of collections to install, but not the set of the packages. To work at the package level, use <code>tlmgr</code> (reference just below) after the initial installation is complete.</p>
+
+<p>The default is <code>scheme-full</code>, which installs everything, and this is highly recommended.</p>
+
+<h1 id="REFERENCES">REFERENCES</h1>
+
+<p>Post-installation configuration, package updates, and more, are handled through <b>tlmgr</b>(1), the TeX Live Manager (<a href="https://tug.org/texlive/tlmgr.html">https://tug.org/texlive/tlmgr.html</a>).</p>
+
+<p>The most up-to-date version of this installer documentation is on the Internet at <a href="https://tug.org/texlive/doc/install-tl.html">https://tug.org/texlive/doc/install-tl.html</a>.</p>
+
+<p>For step-by-step instructions, see <a href="https://tug.org/texlive/quickinstall.html">https://tug.org/texlive/quickinstall.html</a>.</p>
+
+<p>For the full documentation of TeX Live, see <a href="https://tug.org/texlive/doc">https://tug.org/texlive/doc</a>.</p>
+
+<h1 id="EXAMPLES">EXAMPLES</h1>
+
+<p>With no options, <code>install-tl</code> drops you into an interactive menu where essentially all default settings can be changed. With options, you can initialize the settings in various ways, or perform the installation without interaction. Some examples:</p>
+
+<dl>
+
+<dt id="install-tl---paper-letter"><code>install-tl --paper=letter</code></dt>
+<dd>
+
+<p>Initialize paper size setting. The only values allowed are <code>letter</code> and (the default) <code>a4</code>.</p>
+
+</dd>
+<dt id="install-tl---scheme-scheme"><code>install-tl --scheme</code> <i>scheme</i></dt>
+<dd>
+
+<p>Initialize the installation scheme; the default is <code>full</code>. For a list of schemes, see the interactive <code>S</code> menu.</p>
+
+</dd>
+<dt id="install-tl---no-interaction"><code>install-tl --no-interaction</code></dt>
+<dd>
+
+<p>Perform the installation immediately after parsing options, without entering the interactive menu.</p>
+
+</dd>
+<dt id="install-tl---profile-texlive.profile"><code>install-tl --profile</code> <i>texlive.profile</i></dt>
+<dd>
+
+<p>Install, without interaction, according to the given TL profile file; see <a href="#PROFILES">&quot;PROFILES&quot;</a> below. To initialize from the profile and then enter the interactive menu, add <code>--init-from-profile</code>.</p>
+
+</dd>
+</dl>
+
+<p>Full documentation follows.</p>
+
+<h1 id="OPTIONS">OPTIONS</h1>
+
+<p>As usual, all options can be specified in any order, and with either a leading <code>-</code> or <code>--</code>. An argument value can be separated from its option by either a space or <code>=</code>.</p>
+
+<p>The options relating to customization of the installation can also be selected in the interactive installation menus (GUI or text).</p>
+
+<dl>
+
+<dt id="gui-module"><b>-gui</b> [[=]<i>module</i>]</dt>
+<dd>
+
+</dd>
+<dt id="no-gui"><b>-no-gui</b></dt>
+<dd>
+
+<p>If no <i>module</i> is given, starts the Tcl/Tk (see below) GUI installer.</p>
+
+<p>If <i>module</i> is given loads the given installer module. Currently the following modules are supported:</p>
+
+<dl>
+
+<dt id="text"><code>text</code></dt>
+<dd>
+
+<p>The text mode user interface (default on Unix systems, including Macs). Same as the <code>-no-gui</code> option.</p>
+
+</dd>
+<dt id="tcl-or-perltk-or-wizard-or-expert-or-nothing"><code>tcl</code> (or &quot;perltk&quot; or &quot;wizard&quot; or &quot;expert&quot; or nothing)</dt>
+<dd>
+
+<p>The Tcl/Tk user interface (default on Windows). It starts with a small number of configuration options, roughly equivalent to what the former wizard option offers, but a button <code>Advanced</code> takes you to a screen with roughly the same options as the former <code>perltk</code> interface.</p>
+
+</dd>
+</dl>
+
+<p>The default GUI requires Tcl/Tk. This was standard on Macs, but has been removed in the latest macOS releases. It&#39;s often already installed on GNU/Linux, or can be easily installed through a distro package manager. For Windows, TeX Live provides a Tcl/Tk runtime.</p>
+
+</dd>
+<dt id="lang-llcode"><b>-lang</b> <i>llcode</i></dt>
+<dd>
+
+<p>By default, the Tcl GUI uses the language detection built into Tcl/Tk. If that fails you can select a different language by giving this option with a language code (based on ISO 639-1). Currently supported (but not necessarily completely translated) are: English (en, default), Czech (cs), German (de), French (fr), Italian (it), Japanese (ja), Dutch (nl), Polish (pl), Brazilian Portuguese (pt_BR), Russian (ru), Slovak (sk), Slovenian (sl), Serbian (sr), Ukrainian (uk), Vietnamese (vi), simplified Chinese (zh_CN), and traditional Chinese (zh_TW).</p>
+
+</dd>
+<dt id="repository-url-path"><b>-repository</b> <i>url|path</i></dt>
+<dd>
+
+<p>Specify the package repository to be used as the source of the installation. In short, this can be a directory name or a url using http(s), ftp, or scp. The documentation for <code>tlmgr</code> has the details (<a href="https://tug.org/texlive/doc/tlmgr.html#OPTIONS">https://tug.org/texlive/doc/tlmgr.html#OPTIONS</a>).</p>
+
+<p>For installation, the default is to pick a mirror automatically, using <a href="https://mirror.ctan.org/systems/texlive/tlnet">https://mirror.ctan.org/systems/texlive/tlnet</a>; the chosen mirror is then used for the entire download. You can use the special argument <code>ctan</code> as an abbreviation for this. (See <a href="https://ctan.org">https://ctan.org</a> for more about CTAN and its mirrors.)</p>
+
+<p>After installation is complete, you can use that installation as the repository for another installation. If you chose to install less than the full scheme containing all packages, the list of available schemes will be adjusted accordingly.</p>
+
+</dd>
+<dt id="select-repository"><b>-select-repository</b></dt>
+<dd>
+
+<p>This option allows you to choose a particular mirror from the current list of active CTAN mirrors. This option is supported in the <code>text</code> and <code>gui</code> installer modes, and will also offer to install from local media if available, or from a repository specified on the command line. It&#39;s useful when the (default) automatic redirection does not choose a good host for you.</p>
+
+</dd>
+<dt id="all-options"><b>-all-options</b></dt>
+<dd>
+
+<p>Normally options not relevant to the current platform are not shown (e.g., when running on Unix, Windows-specific options are omitted). Giving this command line option allows configuring such &quot;foreign&quot; settings.</p>
+
+</dd>
+<dt id="custom-bin-path"><b>-custom-bin</b> <i>path</i></dt>
+<dd>
+
+<p>If you have built your own set of TeX Live binaries (e.g., because precompiled binaries were not provided by TL for your platform), this option allows you to specify the <i>path</i> to a directory where the binaries for the current system are present. The installation will continue as usual, but at the end all files from <i>path</i> are copied over to <code>bin/custom/</code> under your installation directory and this <code>bin/custom/</code> directory is what will be added to the path for the post-install actions. To install multiple custom binary sets, manually rename <code>custom</code> before doing each.</p>
+
+<p>For more information on custom binaries, see <a href="https://tug.org/texlive/custom-bin.html">https://tug.org/texlive/custom-bin.html</a>. For general information on building TeX Live, see <a href="https://tug.org/texlive/build.html">https://tug.org/texlive/build.html</a>.</p>
+
+</dd>
+<dt id="debug-fakenet"><b>-debug-fakenet</b></dt>
+<dd>
+
+<p>Pretend we&#39;re doing a network install. This is for the sole purpose of testing the code to handle broken downloads, via moving package files aside in a tlnet mirror hierarchy.</p>
+
+</dd>
+<dt id="debug-setup-vars"><b>-debug-setup-vars</b></dt>
+<dd>
+
+<p>Print final values of directory variables; for more debugging information on how they were set, also specify <code>-v</code>.</p>
+
+</dd>
+<dt id="debug-translation"><b>-debug-translation</b></dt>
+<dd>
+
+<p>In the former Perl/Tk GUI modes, this option reported any missing, or more likely untranslated, messages to standard error. Not yet implemented for the Tcl interface. Helpful for translators to see what remains to be done.</p>
+
+</dd>
+<dt id="force-platform-platform"><b>-force-platform</b> <i>platform</i></dt>
+<dd>
+
+<p>Instead of auto-detecting the current platform, use <i>platform</i>. Binaries for this platform must be present in <code>bin/</code><i>platform</i><code>/</code> and they must be runnable, or installation will fail. <code>-force-arch</code> is a synonym.</p>
+
+</dd>
+<dt id="help---help"><b>-help</b>, <b>--help</b>, <b>-?</b></dt>
+<dd>
+
+<p>Display this help and exit. (This help is also on the web at <a href="https://tug.org/texlive/doc/install-tl.html">https://tug.org/texlive/doc/install-tl.html</a>). Sometimes the <code>perldoc</code> and/or <code>PAGER</code> programs on the system have problems, possibly resulting in control characters being literally output. This can&#39;t always be detected, but you can set the <code>NOPERLDOC</code> environment variable and <code>perldoc</code> will not be used.</p>
+
+</dd>
+<dt id="in-place"><b>-in-place</b></dt>
+<dd>
+
+<p>This is a quick-and-dirty installation option in case you already have an rsync or svn checkout of TeX Live. It will use the checkout as-is and will just do the necessary post-install. Be warned that the file <code>tlpkg/texlive.tlpdb</code> may be rewritten, that removal has to be done manually, and that the only realistic way to maintain this installation is to redo it from time to time. This option is not available via the installer interfaces. USE AT YOUR OWN RISK.</p>
+
+</dd>
+<dt id="init-from-profile-profile_file"><b>-init-from-profile</b> <i>profile_file</i></dt>
+<dd>
+
+<p>Similar to <b>-profile</b> (see <a href="#PROFILES">&quot;PROFILES&quot;</a> below), but only initializes the installation configuration from <i>profile_file</i> and then starts a normal interactive session. Environment variables are not ignored.</p>
+
+</dd>
+<dt id="logfile-file"><b>-logfile</b> <i>file</i></dt>
+<dd>
+
+<p>Write both all messages (informational, debugging, warnings) to <i>file</i>, in addition to standard output or standard error.</p>
+
+<p>If this option is not given, the installer will create a log file in the root of the writable installation tree, for example, <code>/usr/local/texlive/YYYY/install-tl.log</code> for the <i>YYYY</i> release.</p>
+
+</dd>
+<dt id="no-cls"><b>-no-cls</b></dt>
+<dd>
+
+<p>For the text mode installer only: do not clear the screen when entering a new menu. For debugging.</p>
+
+</dd>
+<dt id="no-continue"><b>-no-continue</b></dt>
+<dd>
+
+<p>Quit early on installation failure of a non-core package.</p>
+
+<p>By default, a few core packages are installed first; then, a failed installation of any other (non-core) package is noted, but does not stop the installation. Any such failed packages are retried, once.</p>
+
+<p>If the retry also fails, by default the installer proceeds to completion anyway, with the idea that it was a transient network problem and reinstallation will succeed later. If this option is specified, and the retry fails, the installer aborts.</p>
+
+</dd>
+<dt id="no-doc-install"><b>-no-doc-install</b></dt>
+<dd>
+
+</dd>
+<dt id="no-src-install"><b>-no-src-install</b></dt>
+<dd>
+
+<p>Do not install the documentation resp. source package files, both for the immediate installation and for future updates. After installation, inclusion of the doc/src files can be re-enabled via <code>tlmgr</code>:</p>
+
+<pre><code>tlmgr option docfiles 1
+tlmgr option srcfiles 1</code></pre>
+
+<p>If you later find that you want the doc/src files for a package that has been installed without them, you can get them like this (using the <code>fontspec</code> package as the example):</p>
+
+<pre><code>tlmgr install --reinstall --with-doc --with-src fontspec</code></pre>
+
+<p>The source files mentioned here are those relating to TeX packages, such as <code>.dtx</code> files. The sources that are compiled to make the binaries are available separately: see <a href="https://tug.org/texlive/svn/">https://tug.org/texlive/svn/</a>.</p>
+
+</dd>
+<dt id="no-installation"><b>-no-installation</b></dt>
+<dd>
+
+<p>Do not perform any installation. This is for debugging the initialization and setup routines without touching the disk.</p>
+
+</dd>
+<dt id="no-interaction"><b>-no-interaction</b></dt>
+<dd>
+
+<p>Do not enter the interactive menu; immediately perform the installation after initialization and option parsing. Also omit the check for a previous installation and asking about importing previous settings.</p>
+
+</dd>
+<dt id="no-persistent-downloads"><b>-no-persistent-downloads</b></dt>
+<dd>
+
+</dd>
+<dt id="persistent-downloads"><b>-persistent-downloads</b></dt>
+<dd>
+
+<p>For network installs, activating this option makes the installer try to set up a persistent connection using the <code>LWP</code> Perl module. This opens only one connection between your computer and the server per session and reuses it, instead of initiating a new download for each package, which typically yields a significant speed-up.</p>
+
+<p>This option is turned on by default, and the installation program will fall back to using <code>wget</code> if this is not possible. To disable usage of LWP and persistent connections, use <code>-no-persistent-downloads</code>.</p>
+
+</dd>
+<dt id="no-verify-downloads"><b>-no-verify-downloads</b></dt>
+<dd>
+
+<p>By default, if a GnuPG <code>gpg</code> binary is found in PATH, downloads are verified against a cryptographic signature. This option disables such verification. The full description is in the Crytographic Verification section of the <code>tlmgr</code> documentation, e.g., <a href="https://tug.org/texlive/doc/tlmgr.html#CRYPTOGRAPHIC-VERIFICATION">https://tug.org/texlive/doc/tlmgr.html#CRYPTOGRAPHIC-VERIFICATION</a></p>
+
+</dd>
+<dt id="non-admin"><b>-non-admin</b></dt>
+<dd>
+
+<p>For Windows only: configure for the current user, not for all users.</p>
+
+</dd>
+<dt id="paper-a4-letter"><b>-paper</b> <code>a4</code><b>|</b><code>letter</code></dt>
+<dd>
+
+<p>Set the default paper size for all TeX Live programs, as specified. The default is <code>a4</code>. The paper size can be set after installation with the <code>tlmgr paper</code> command.</p>
+
+</dd>
+<dt id="portable"><b>-portable</b></dt>
+<dd>
+
+<p>Install for portable use, e.g., on a USB stick. See the <code>instopt_portable</code> description below for details.</p>
+
+</dd>
+<dt id="print-platform"><b>-print-platform</b></dt>
+<dd>
+
+<p>Print the TeX Live identifier for the detected platform (hardware/operating system) combination to standard output, and exit. <code>-print-arch</code> is a synonym.</p>
+
+</dd>
+<dt id="profile-profile_file"><b>-profile</b> <i>profile_file</i></dt>
+<dd>
+
+<p>Load <i>profile_file</i> and do the installation with no user interaction, that is, a batch (unattended) install. Environment variables are ignored. See <a href="#PROFILES">&quot;PROFILES&quot;</a> below.</p>
+
+</dd>
+<dt id="q"><b>-q</b></dt>
+<dd>
+
+<p>Omit normal informational messages.</p>
+
+</dd>
+<dt id="scheme-scheme"><b>-scheme</b> <i>scheme</i></dt>
+<dd>
+
+<p>Schemes are the highest level of package grouping in TeX Live; the default is to use the <code>full</code> scheme, which includes everything. This option overrides that default. The <i>scheme</i> argument value may optionally have a prefix <code>scheme-</code>. The list of supported scheme names depends on what your package repository provides; see the interactive menu list.</p>
+
+</dd>
+<dt id="texdir-dir"><b>-texdir</b> <i>dir</i></dt>
+<dd>
+
+<p>Specify the system installation directory; the default is <code>/usr/local/texlive/YYYY</code> for release YYYY. Specifying this option also causes the <code>TEXMFLOCAL</code>, <code>TEXMFSYSCONFIG</code>, and <code>TEXMFSYSVAR</code> directories to be set as subdirectories of <i>dir</i>, so they don&#39;t have to be set individually.</p>
+
+<p>There is a brief summary of these directories trees at <a href="#DIRECTORY-TREES">&quot;DIRECTORY TREES&quot;</a> below; for details on the trees set up by default, and their intended usage, see the main TeX Live documentation at <a href="https://tug.org/texlive/doc">https://tug.org/texlive/doc</a>.</p>
+
+</dd>
+<dt id="texuserdir-dir"><b>-texuserdir</b> <i>dir</i></dt>
+<dd>
+
+<p>Specify the user installation directory; the default is <code>~/.texliveYYYY</code> (except on Macs, where there is no leading dot). Specifying this also causes the <code>TEXMFHOME</code>, <code>TEXMFCONFIG</code>, and <code>TEXMFVAR</code> directories to be set as subdirectories of <i>dir</i>.</p>
+
+</dd>
+<dt id="texmflocal-dir"><b>-texmflocal</b> <i>dir</i></dt>
+<dd>
+
+<p>Specify the <code>TEXMFLOCAL</code> directory; the default is <code>/usr/local/texlive/texmf-local</code>, that is, one level up from the main installation. This is so locally-installed packages can be easily used across releases, which is usually desirable. Specifying the <code>-texdir</code> option changes this, putting <code>TEXMFLOCAL</code> under the main tree. The <code>-texmflocal</code> option can be used to specify an explicit directory.</p>
+
+<p>Anything installed here must follow the TeX directory structure (TDS), e.g., <code>TEXMFHOME/tex/latex/mypkg/mypkg.sty</code>. TDS reference: <a href="https://tug.org/tds">https://tug.org/tds</a>.</p>
+
+</dd>
+<dt id="texmfhome-dir"><b>-texmfhome</b> <i>dir</i></dt>
+<dd>
+
+<p>Specify the <code>TEXMFHOME</code> directory; the default is <code>~/texmf</code>, except on Macs, where it is <code>~/Library/texmf</code>. Analogously to <code>TEXMFLOCAL</code>, the <code>-texuserdir</code> option changes this default.</p>
+
+<p>Also as with <code>TEXMFLOCAL</code>, anything installed here must follow the TDS.</p>
+
+</dd>
+<dt id="texmfsysconfig-dir"><b>-texmfsysconfig</b> <i>dir</i></dt>
+<dd>
+
+</dd>
+<dt id="texmfsysvar-dir"><b>-texmfsysvar</b> <i>dir</i></dt>
+<dd>
+
+<p>Specify the <code>TEXMFSYSCONFIG</code> and <code>TEXMFSYSVAR</code> system directories.</p>
+
+</dd>
+<dt id="texmfconfig-dir"><b>-texmfconfig</b> <i>dir</i></dt>
+<dd>
+
+</dd>
+<dt id="texmfvar-dir"><b>-texmfvar</b> <i>dir</i></dt>
+<dd>
+
+<p>Specify the <code>TEXMFCONFIG</code> and <code>TEXMFVAR</code> user directories. The defaults are <code>~/.texliveYYYY/texmf-{config,var}</code>, except on Macs, where the leading dot is omitted (<code>~/texliveYYYY/...</code>).</p>
+
+</dd>
+<dt id="v"><b>-v</b></dt>
+<dd>
+
+<p>Include verbose debugging messages; repeat for maximum debugging: <code>-v -v</code>. (Further repeats are accepted but ignored.)</p>
+
+</dd>
+<dt id="version---version"><b>-version</b>, <b>--version</b></dt>
+<dd>
+
+<p>Output version information and exit. If <code>-v</code> is also given, the versions of the TeX Live modules used are also reported.</p>
+
+</dd>
+</dl>
+
+<h1 id="PROFILES">PROFILES</h1>
+
+<p>A <i>profile</i> file normally contains all the values needed to perform an installation. After a normal installation has finished, a profile for that exact installation is written to the file <code>tlpkg/texlive.profile</code>. In addition, from the text menu one can select <code>P</code> to save the current setup as a profile at any time. These are small text files; feel free to peruse and edit them according to your needs.</p>
+
+<p>Such a profile file can be given as the argument to <code>-profile</code>, for example to redo the exact same installation on a different system. Alternatively, you can use a custom profile, most easily created by starting from a generated one and changing values. An empty profile file will cause the installer to use the defaults.</p>
+
+<p>As mentioned above, the installer only supports selection by scheme and collections, not individual packages, so packages cannot be specified in profile files either. Use <code>tlmgr</code> to work at the package level.</p>
+
+<p>Within a profile file, each line consists of</p>
+
+<p><i>variable</i> [<i>value</i>]</p>
+
+<p>except for comment lines starting with <code>#</code>. The possible variable names are listed below. Values, when present, are either <code>0</code> or <code>1</code> for booleans, or strings (which must be specified without any quote characters). Leading whitespace is ignored.</p>
+
+<p>If the variable <code>selected_scheme</code> is defined and <i>no</i> collection variables at all are defined, then the collections required by the specified scheme (which might change over time) are installed, without explicitly listing them. This eases maintenance of profile files. If any collections are specified in a profile, though, then the scheme is ignored and all desired collections must be given explicitly.</p>
+
+<p>For example, a line</p>
+
+<pre><code>selected_scheme scheme-small</code></pre>
+
+<p>along with definitions for the installation directories (given below under &quot;path options&quot;) suffices to install the &quot;small&quot; scheme with all default options. The schemes are described in the <code>S</code> menu in the text installer, or equivalent.</p>
+
+<p>In addition to <code>selected_scheme</code>, here are the other variable names supported in a profile:</p>
+
+<p><b>collection options</b> (prefix <code>collection-</code>)</p>
+
+<p>Collections are specified with a variable name with the prefix <code>collection-</code> followed by a collection name; there is no value. For instance, <code>collection-basic</code>. The collections are described in the <code>C</code> menu.</p>
+
+<p>Schemes and collections (and packages) are ultimately defined by the files in the <code>tlpkg/tlpsrc/</code> source directory.</p>
+
+<p><b>path options</b></p>
+
+<p>It is best to define all of these, even though they may not be used in a given installation, so as to avoid unintentionally getting a default value that could cause problems later.</p>
+
+<pre><code>TEXDIR
+TEXMFLOCAL
+TEXMFSYSCONFIG
+TEXMFSYSVAR
+TEXMFCONFIG
+TEXMFVAR
+TEXMFHOME</code></pre>
+
+<p><b>installer options</b> (prefix <code>instopt_</code>)</p>
+
+<dl>
+
+<dt id="instopt_adjustpath-default-0-on-Unix-1-on-Windows"><code>instopt_adjustpath</code> (default 0 on Unix, 1 on Windows)</dt>
+<dd>
+
+<p>Adjust <code>PATH</code> environment variable.</p>
+
+</dd>
+<dt id="instopt_adjustrepo-default-1"><code>instopt_adjustrepo</code> (default 1)</dt>
+<dd>
+
+<p>Set remote repository to a multiplexed CTAN mirror after installation; see <code>-repository</code> above.</p>
+
+</dd>
+<dt id="instopt_letter-default-0"><code>instopt_letter</code> (default 0)</dt>
+<dd>
+
+<p>Set letter size paper as the default, instead of a4.</p>
+
+</dd>
+<dt id="instopt_portable-default-0"><code>instopt_portable</code> (default 0)</dt>
+<dd>
+
+<p>Install for portable use, e.g., on a USB stick, without touching the host system. Specifically, this forces the user directories <code>TEXMFHOME</code>, <code>TEXMFCONFIG</code>, <code>TEXMFVAR</code> to be identical to the system directories <code>TEXMFLOCAL</code>, <code>TEXMFSYSCONFIG</code>, <code>TEXMFSYSVAR</code>, respectively (regardless of other options and environment variable.)</p>
+
+<p>In addition, on Windows, it disables the desktop integration, path adjustment, and file associations actions usually performed.</p>
+
+</dd>
+<dt id="instopt_write18_restricted-default-1"><code>instopt_write18_restricted</code> (default 1)</dt>
+<dd>
+
+<p>Enable <code>\write18</code> for a restricted set of programs.</p>
+
+</dd>
+</dl>
+
+<p><b>tlpdb options</b> (prefix <code>tlpdbopt_</code>)</p>
+
+<p>The definitive list is given in <code>tlpkg/TeXLive/TLConfig.pm</code>, in the hash <code>%TeXLive::TLConfig::TLPDBOptions</code>, together with explanations. All items given there <i>except</i> for <code>tlpdbopt_location</code> can be specified. Here is the current list:</p>
+
+<pre><code>tlpdbopt_autobackup
+tlpdbopt_backupdir
+tlpdbopt_create_formats
+tlpdbopt_desktop_integration
+tlpdbopt_file_assocs
+tlpdbopt_generate_updmap
+tlpdbopt_install_docfiles
+tlpdbopt_install_srcfiles
+tlpdbopt_post_code
+tlpdbopt_sys_bin
+tlpdbopt_sys_info
+tlpdbopt_sys_man
+tlpdbopt_w32_multi_user</code></pre>
+
+<p><b>platform options</b> (prefix <code>binary_</code>)</p>
+
+<p>For each supported platform in TeX Live (directories under <code>bin/</code>), the variable <code>binary_</code><i>PLATFORM</i> can be set with value 1. For example:</p>
+
+<pre><code>binary_x86_64-linux 1</code></pre>
+
+<p>If no <code>binary_</code> settings are made, the default is whatever the current machine is running.</p>
+
+<p>In releases before 2017, many profile variables had different names (not documented here; see the <code>install-tl</code> source). They are accepted and transformed to the names given above. When a profile is written, the names above are always used.</p>
+
+<p>For more details on all of the above options, consult the TeX Live installation manual, linked from <a href="https://tug.org/texlive/doc">https://tug.org/texlive/doc</a>.</p>
+
+<h1 id="ENVIRONMENT-VARIABLES">ENVIRONMENT VARIABLES</h1>
+
+<p>For ease in scripting and debugging, <code>install-tl</code> looks for the following environment variables. They are not of interest for normal user installations.</p>
+
+<dl>
+
+<dt id="NOPERLDOC"><code>NOPERLDOC</code></dt>
+<dd>
+
+<p>Don&#39;t try to run the <code>--help</code> message through <code>perldoc</code>.</p>
+
+</dd>
+<dt id="TEXLIVE_DOWNLOADER"><code>TEXLIVE_DOWNLOADER</code></dt>
+<dd>
+
+</dd>
+<dt id="TL_DOWNLOAD_PROGRAM"><code>TL_DOWNLOAD_PROGRAM</code></dt>
+<dd>
+
+</dd>
+<dt id="TL_DOWNLOAD_ARGS"><code>TL_DOWNLOAD_ARGS</code></dt>
+<dd>
+
+<p>These override the normal choice of a download program; see the <code>tlmgr</code> documentation, e.g., <a href="https://tug.org/texlive/doc/tlmgr.html#ENVIRONMENT-VARIABLES">https://tug.org/texlive/doc/tlmgr.html#ENVIRONMENT-VARIABLES</a>.</p>
+
+</dd>
+<dt id="TEXLIVE_INSTALL_ENV_NOCHECK"><code>TEXLIVE_INSTALL_ENV_NOCHECK</code></dt>
+<dd>
+
+<p>Omit the check for environment variables containing the string <code>tex</code>. People developing TeX-related software are likely to have many such variables.</p>
+
+</dd>
+<dt id="TEXLIVE_INSTALL_NO_CONTEXT_CACHE"><code>TEXLIVE_INSTALL_NO_CONTEXT_CACHE</code></dt>
+<dd>
+
+<p>Omit creating the ConTeXt cache. This is useful for redistributors.</p>
+
+</dd>
+<dt id="TEXLIVE_INSTALL_NO_DISKCHECK"><code>TEXLIVE_INSTALL_NO_DISKCHECK</code></dt>
+<dd>
+
+<p>If set to 1, omit free disk space check. By default, if a POSIX-compliant <code>df</code> program (supporting <code>-Pk</code>) is available, the installer checks for available disk space in the selected installation location, and will abort installation if there is insufficient disk space, plus a margin of 100MB. An equivalent check is made on Windows (not involving <code>df</code>).</p>
+
+</dd>
+<dt id="TEXLIVE_INSTALL_NO_RESUME"><code>TEXLIVE_INSTALL_NO_RESUME</code></dt>
+<dd>
+
+<p>Omit check for installing on top of a previous installation and then asking about importing previous settings.</p>
+
+</dd>
+<dt id="TEXLIVE_INSTALL_NO_WELCOME"><code>TEXLIVE_INSTALL_NO_WELCOME</code></dt>
+<dd>
+
+<p>Omit printing the welcome message after successful installation, e.g., when testing.</p>
+
+</dd>
+<dt id="TEXLIVE_INSTALL_PAPER"><code>TEXLIVE_INSTALL_PAPER</code></dt>
+<dd>
+
+<p>Set the default paper size for all relevant programs; must be either <code>letter</code> or <code>a4</code>. The default is <code>a4</code>.</p>
+
+</dd>
+<dt id="TEXLIVE_INSTALL_PREFIX"><code>TEXLIVE_INSTALL_PREFIX</code></dt>
+<dd>
+
+</dd>
+<dt id="TEXLIVE_INSTALL_TEXMFCONFIG"><code>TEXLIVE_INSTALL_TEXMFCONFIG</code></dt>
+<dd>
+
+</dd>
+<dt id="TEXLIVE_INSTALL_TEXMFVAR"><code>TEXLIVE_INSTALL_TEXMFVAR</code></dt>
+<dd>
+
+</dd>
+<dt id="TEXLIVE_INSTALL_TEXMFHOME"><code>TEXLIVE_INSTALL_TEXMFHOME</code></dt>
+<dd>
+
+</dd>
+<dt id="TEXLIVE_INSTALL_TEXMFLOCAL"><code>TEXLIVE_INSTALL_TEXMFLOCAL</code></dt>
+<dd>
+
+</dd>
+<dt id="TEXLIVE_INSTALL_TEXMFSYSCONFIG"><code>TEXLIVE_INSTALL_TEXMFSYSCONFIG</code></dt>
+<dd>
+
+</dd>
+<dt id="TEXLIVE_INSTALL_TEXMFSYSVAR"><code>TEXLIVE_INSTALL_TEXMFSYSVAR</code></dt>
+<dd>
+
+<p>Specify the respective directories. <code>TEXLIVE_INSTALL_PREFIX</code> defaults to <code>/usr/local/texlive</code>. All the defaults can be seen by running the installer interactively and then typing <code>D</code> for the directory menu.</p>
+
+<p>The various command line options for specifying directories override these environment variables; since specifying both is usually accidental, a warning is given if the values are different.</p>
+
+</dd>
+</dl>
+
+<h1 id="DIRECTORY-TREES">DIRECTORY TREES</h1>
+
+<p>There are a plethora of ways to specify the plethora of directory trees used by TeX Live. By far the simplest, and recommended, approach is not to change anything. The defaults suffice for the vast majority of installations.</p>
+
+<p>But, for the sake of explanation, here is a table of the trees and the command line options that change them. The first group of three are system directories, and the second group of three are user directories; the two groups are quite analogous.</p>
+
+<pre><code>+----------------+--------------------------------------+--------------+------------------+
+|    tree        | default                              | group change | single change    |
++----------------+--------------------------------------+--------------+------------------+
+| TEXMFLOCAL     | /usr/local/texlive/texmf-local       | --texdir     | --texmflocal     |
+| TEXMFSYSVAR    | /usr/local/texlive/YYYY/texmf-var    | --texdir     | --texmfsysvar    |
+| TEXMFSYSCONFIG | /usr/local/texlive/YYYY/texmf-config | --texdir     | --texmfsysconfig |
++----------------+--------------------------------------+--------------+------------------+
+| TEXMFHOME      | ~/texmf                              | --texuserdir | --texmfhome      |
+| TEXMFVAR       | ~/.texliveYYYY/texmf-var             | --texuserdir | --texmfvar       |
+| TEXMFCONFIG    | ~/.texliveYYYY/texmf-config          | --texuserdir | --texmfconfig    |
++----------------+--------------------------------------+--------------+------------------+</code></pre>
+
+<p>In addition, as mentioned in the previous section, each tree has an environment variable <code>TEXLIVE_INSTALL_</code><i>tree</i> which overrides the default; command line and profile settings both override environment variable settings.</p>
+
+<p>The defaults vary slightly on Macs, as explained above in <a href="#OPTIONS">&quot;OPTIONS&quot;</a>.</p>
+
+<p>For the user trees, the default value uses <code>~</code>, and this is left as a literal <code>~</code> in <code>texmf.cnf</code>. That way, each user can have their own <code>TEXMFHOME</code>, etc., as intended. On the other hand, for the system trees, if <code>~</code> is used during the installation, this is assumed to simply be a typing shorthand, and the expanded home directory is written in <code>texmf.cnf</code>, since it doesn&#39;t make sense to have user-specific system directories.</p>
+
+<p>For more on the directory trees and their intended usage, see the main TeX Live documentation at <a href="https://tug.org/texlive/doc">https://tug.org/texlive/doc</a>.</p>
+
+<h1 id="BUGS">BUGS</h1>
+
+<p>The <code>install-tl</code> script copies itself into the installed tree. Usually, it can be run from there, using the installed tree as the source for another installation. Occasionally, however, there may be incompatibilities in the code of the new <code>install-tl</code> and the infrastructure, resulting in (probably) inscrutable Perl errors. The way forward is to run <code>install-tl</code> out of the installer package (<code>install-tl-unx.tar.gz</code> or <code>install-tl.zip</code>) instead of the installation. Feel free to also report the issue; usually the code can be easily synced up again.</p>
+
+<p>By the way, do not try to use <code>install-tl</code> to adjust options or installed packages in an existing installed tree. Use <code>tlmgr</code> instead.</p>
+
+<h1 id="AUTHORS-AND-COPYRIGHT">AUTHORS AND COPYRIGHT</h1>
+
+<p>This script and its documentation were written for the TeX Live distribution (<a href="https://tug.org/texlive">https://tug.org/texlive</a>) and both are licensed under the GNU General Public License Version 2 or later.</p>
+
+<p>$Id: install-tl 66578 2023-03-12 17:33:10Z karl $</p>
+
+
+</body>
+
+</html>
+
+

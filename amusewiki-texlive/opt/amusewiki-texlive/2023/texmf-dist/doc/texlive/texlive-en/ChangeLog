@@ -1,0 +1,57 @@
+2023-05-22  Karl Berry  <karl@freefriends.org>
+
+	* texlive-en.tex: let's try [12pt].
+	* tex-live.sty: adjust \geometry.
+	Have to fix plenty of under/overfull boxes, but maybe worth it.
+
+2023-05-22  Karl Berry  <karl@freefriends.org>
+
+	* texlive-en.tex
+	(2020): x86_64-darwinlegacy dropped X11.
+	(2023): for 32-bit Windows, TL22 must be installed; mention
+	Windows ARM emulation status.
+	(2023): LuaTeX 1.17.0 post-release update.
+
+2023-03-01  Karl Berry  <karl@freefriends.org>
+
+	* texlive-en.tex (sec:tl-coll-dists): fix section title to have
+	MiKTeX also.
+	(throughout): use \ConTeXt\ more consistently.
+
+2023-02-26  Karl Berry  <karl@freefriends.org>
+
+	* texlive-en.tex (sec:tl-coll-dists): replace proTeXt with MiKTeX;
+	other tweaks.
+	(throughout): use \TL\ more consistently.
+
+2022-12-26  Karl Berry  <karl@freefriends.org>
+
+	* texlive-en.tex (sysfontconfig): update to something closer to
+	current reality. See thread both before and after:
+	https://tug.org/pipermail/tex-live/2022-December/048733.html
+
+2022-03-19  Karl Berry  <karl@freefriends.org>
+
+	* Makefile (html-separate): remove spurious `.
+	* texlive-en.tex: missing \ref, found by Takuto.
+
+2022-01-26  Karl Berry  <karl@freefriends.org>
+
+	* tex-live.sty: # is not TeX comment character.
+	Publish new pdf/html, since changes so far aren't 2022-specific,
+	and getting alt text out now seems like it wouldn't hurt.
+
+2022-01-25  Karl Berry  <karl@freefriends.org>
+
+	* tex-live.sty (\tlpng): require new third argument for alt text.
+	* texlive-en.tex: change all \tlpng calls.
+	* live4ht.cfg (graphics*): remove \Configure, redundant with
+	\tlpng macro now.
+
+	* Makefile (env): texlive-en before texlive-common,
+	for sake of example.
+	(run_htlatex, htopts1, htopts2): new variables to separate out the
+	htlatex invocation.
+	(html1 h): new targets to just run htlatex once.
+
+(Public domain.)

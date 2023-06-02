@@ -1,0 +1,52 @@
+% Copyright 2007 by Till Tantau
+% Copyright 2023 by Joseph Wright, samcarter
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file LICENSE.md for more details.
+
+\DeclareOptionBeamer{compress}{\beamer@compresstrue}
+\ProcessOptionsBeamer
+  
+\mode<presentation>
+
+\setbeamercolor{section in head/foot}{use=structure,bg=structure.fg!25!bg}
+
+\useoutertheme[subsection=false]{miniframes}
+
+\setbeamertemplate{frametitle}[default][center]
+
+\AtBeginDocument{%    
+  \begingroup
+    \selectcolormodel{gray}
+    \pgfdeclareverticalshading{beamer@headfade}{\the\paperwidth}{%
+      color(0ex)=(pgftransparent!100);%
+      color(1.25cm)=(pgftransparent!0)
+    }
+    \pgfdeclarefading{beamer@headfademask}{\pgfuseshading{beamer@headfade}}
+  \endgroup  
+}
+
+\addtoheadtemplate{%
+  \begingroup%
+    \begin{pgfpicture}
+      \begin{pgfscope}%
+        \usebeamercolor{section in head/foot}%
+        \pgfsetfillcolor{section in head/foot.bg}%
+        \pgfpathrectangle{\pgfpoint{-.5\paperwidth}{-0.625cm}}{\pgfpoint{\paperwidth}{1.25cm}}%
+        \pgfsetfading{beamer@headfademask}{}%
+        \pgfusepath{fill}%
+      \end{pgfscope}%
+    \end{pgfpicture}%
+  \endgroup%
+  \vskip-1.25cm%
+  \setbeamercolor{section in head/foot}{bg=}%
+}{}
+
+\beamertemplatedotitem
+
+\mode
+<all>

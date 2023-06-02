@@ -1,0 +1,1066 @@
+% Backrolling does not work for \MakeUppercase (cf. LaTeX News 35)
+% \RequirePackage{latexbug}
+%\RequirePackage[2022-05-01]{latexrelease}
+
+\documentclass[a4paper]{article}
+
+\usepackage[LGR,T1]{fontenc}
+\usepackage{lmodern}
+
+\ifdefined \UnicodeEncodingName
+  \usepackage{fontspec}
+  \setmainfont{FreeSerif}
+  \newcommand*{\texengine}{Xe/LuaLaTeX}
+\else
+  \usepackage{lmodern}
+  \newcommand*{\texengine}{pdfLaTeX}
+\fi
+
+% Load encoding definitions
+\usepackage[normalize-symbols]{textalpha}  % "Greek script everywhere"
+
+% With TL22, the special handling of Greek UPPERCASE is only triggered
+% if the text language is set to "greek" with Babel:
+%
+\usepackage[greek,english]{babel}  % babel-greek
+% \usepackage[greek,english,provide=*]{babel}    % Babel's Greek "ini"
+\languageattribute{greek}{polutoniko}  % "modern" polytonic Greek
+
+
+\usepackage[unicode,colorlinks,linkcolor=blue]{hyperref}
+\usepackage{bookmark}
+
+% Auxiliary commands
+
+\newcommand{\langGreek}{\foreignlanguage{greek}}
+
+% print the selected language variant
+\newcommand{\GreekLanguageVariant}{%
+  \ifx\captionsgreek\captionspolutonikogreek
+    \ifx\captionsgreek\captionsancientgreek
+      ancient%
+    \else
+      polutoniko%
+    \fi
+  \else
+    monotoniko%
+  \fi
+}
+
+% test effect of new implementations on compilation time:
+%
+% pdflatex from TL22 is about 7 times slower than the version from TL21
+% (7s vs. 1s for this document with 13 pages).
+% With the dummy definitons,
+% \renewcommand{\MakeUppercase}{}
+% \renewcommand{\MakeLowercase}{}
+% pdflatex from TL22 is a bit faster than before
+% (0.7s vs. 1s for this document),
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+\tableofcontents
+
+\section{Test case conversions of Greek letters}
+
+This document tests the combination of \verb|MakeUppercase| and Greek.
+
+\makeatletter
+It is compiled with \texengine, format version \fmtversion{} patch-level
+\patch@level{} and the L3 programming layer from \ExplFileDate{}.
+\makeatother
+The \verb|\greekfontencoding| is \greekfontencoding.
+
+\section{Unicode literals}
+
+\subsection{Greek and Coptic}
+
+Characters from the Greek and Coptic Unicode block that are supported by
+\emph{greek-fontenc} and \emph{greek-inputenc}:
+
+\newcommand{\GreekAndCoptic}{
+    \raggedright
+    ␣  ␣  ␣  ␣  ʹ  ͵  ␣  ␣  ␣  ␣  ͺ  ␣  ␣  ␣  ;  ␣  \\
+    ␣  ␣  ␣  ␣  ΄  ΅  Ά  ·  Έ  Ή  Ί  ␣  Ό  ␣  Ύ  Ώ  \\
+    ΐ  Α  Β  Γ  Δ  Ε  Ζ  Η  Θ  Ι  Κ  Λ  Μ  Ν  Ξ  Ο  \\
+    Π  Ρ  ␣  Σ  Τ  Υ  Φ  Χ  Ψ  Ω  Ϊ  Ϋ  ά  έ  ή  ί  \\
+    ΰ  α  β  γ  δ  ε  ζ  η  θ  ι  κ  λ  μ  ν  ξ  ο  \\
+    π  ρ  ς  σ  τ  υ  φ  χ  ψ  ω  ϊ  ϋ  ό  ύ  ώ  ␣  \\
+    ϐ  ϑ  ␣  ␣  ␣  ϕ  ϖ  ␣  Ϙ  ϙ  Ϛ  ϛ  Ϝ  ϝ  Ϟ  ϟ  \\
+    Ϡ  ϡ  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ϰ  ϱ ϴ ϵ ␣  \\
+
+}
+\begin{quote}
+  \selectlanguage{greek}
+  \GreekAndCoptic
+\end{quote}
+%
+MakeUppercase:
+\begin{quote}
+  \selectlanguage{greek}
+  \MakeUppercase{\GreekAndCoptic}
+\end{quote}
+%
+MakeLowercase:
+\begin{quote}
+ \selectlanguage{greek}
+  \MakeLowercase{\GreekAndCoptic}
+\end{quote}
+
+The lowercase of \langGreek{Σ} is the «auto-sigma»
+(\verb|\textautosigma|): \langGreek{ΣΣ $\mapsto$ \MakeLowercase{ΣΣ}}.
+Add a ZWNJ or use the \verb|\noboundary| macro to prevent conversion to
+final sigma: \langGreek{\MakeLowercase{ΣΣ‌}}.
+
+
+\subsection{Greek extended}
+
+Characters of the Greek Extended Unicode block:
+
+\newcommand{\GreekExtended}{\raggedright
+  ἀ   ἁ   ἂ   ἃ   ἄ   ἅ   ἆ    ἇ    Ἀ   Ἁ   Ἂ   Ἃ   Ἄ   Ἅ   Ἆ  Ἇ \\
+  ἐ   ἑ   ἒ   ἓ   ἔ   ἕ   ␣    ␣    Ἐ   Ἑ   Ἒ   Ἓ   Ἔ   Ἕ        \\
+  ἠ   ἡ   ἢ   ἣ   ἤ   ἥ   ἦ    ἧ    Ἠ   Ἡ   Ἢ   Ἣ   Ἤ   Ἥ   Ἦ  Ἧ \\
+  ἰ   ἱ   ἲ   ἳ   ἴ   ἵ   ἶ    ἷ    Ἰ   Ἱ   Ἲ   Ἳ   Ἴ   Ἵ   Ἶ  Ἷ \\
+  ὀ   ὁ   ὂ   ὃ   ὄ   ὅ   ␣    ␣    Ὀ   Ὁ   Ὂ   Ὃ   Ὄ   Ὅ        \\
+  ὐ   ὑ   ὒ   ὓ   ὔ   ὕ   ὖ    ὗ    ␣   Ὑ   ␣   Ὓ   ␣   Ὕ   ␣  Ὗ \\
+  ὠ   ὡ   ὢ   ὣ   ὤ   ὥ   ὦ    ὧ    Ὠ   Ὡ   Ὢ   Ὣ   Ὤ   Ὥ   Ὦ  Ὧ \\
+  ὰ   ά   ὲ   έ   ὴ   ή   ὶ    ί    ὸ   ό   ὺ   ύ   ὼ   ώ        \\
+  ᾀ   ᾁ   ᾂ   ᾃ   ᾄ   ᾅ   ᾆ    ᾇ    ᾈ   ᾉ   ᾊ   ᾋ   ᾌ   ᾍ   ᾎ  ᾏ \\
+  ᾐ   ᾑ   ᾒ   ᾓ   ᾔ   ᾕ   ᾖ    ᾗ    ᾘ   ᾙ   ᾚ   ᾛ   ᾜ   ᾝ   ᾞ  ᾟ \\
+  ᾠ   ᾡ   ᾢ   ᾣ   ᾤ   ᾦ   ᾧ    ᾥ    ᾨ   ᾩ   ᾪ   ᾫ   ᾬ   ᾭ   ᾮ  ᾯ \\
+  ᾰ   ᾱ   ᾲ   ᾳ   ᾴ   ␣   ᾶ    ᾷ    Ᾰ   Ᾱ   Ὰ   Ά   ᾼ   ᾽   ι  ᾿ \\
+  ῀   ῁   ῂ   ῃ   ῄ   ␣   ῆ    ῇ    Ὲ   Έ   Ὴ   Ή   ῌ   ῍   ῎  ῏ \\
+  ῐ   ῑ   ῒ   ΐ   ␣   ␣   ῖ    ῗ    Ῐ   Ῑ   Ὶ   Ί   ␣   ῝   ῞  ῟ \\
+  ῠ   ῡ   ῢ   ΰ   ␣   ␣   ῤ    ῥ    ῦ   ῧ   Ὺ   Ύ   Ῥ   ῭   ΅  ` \\
+  ␣   ␣   ῲ   ῳ   ῴ   ␣   ῶ    ῷ    Ὸ   Ό   Ὼ   Ώ   ῼ   ´   ῾  ␣
+}
+
+\begin{quote}
+  \selectlanguage{greek}
+  \GreekExtended
+\end{quote}
+%
+MakeUppercase:
+\begin{quote}
+  \selectlanguage{greek}
+  \MakeUppercase{\GreekExtended}
+\end{quote}
+
+MakeLowercase:
+\begin{quote}
+  \selectlanguage{greek}
+  \MakeLowercase{\GreekExtended}
+\end{quote}
+
+% With TeXLive 2020 (old \verb|\Makeuppercase|),
+% all accents except dialytika and prosgegrammeni are dropped in UPPERCASE
+% and kept in lowercase.
+% No errors.
+%
+% With current TeXLive:
+%   pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022)
+%   LaTeX2e <2022-11-01> patch level 1
+%   L3 programming layer <2023-02-22>
+%
+% Upcasing ``Unicode errors'' are resolved.
+%
+% Uppercase of character ';' 0x37E GREEK QUESTION MARK is a semicolon
+% which is mapped to '·' 0x387 GREEK ANO TELEIA by LGR. :(
+%
+% Accents dropped with MakeUppercase (not for single letter ή) :)
+% TODO: how to treat MakeUppercase of a single captial «΄Η»?
+%
+% Should the “educational”/“Latin” accents *macron* and *breve* (*vrachy*)
+% be kept (they stay above capital letters similar to the dialytika,
+% they are kept by Apostolos Syropoulos' “xgreek” package and in babel-greek
+% “since ages”) or dropped (they are optional even in lowercase or titlecase
+% and dropped for the entry by the English wiktionary).
+% https://en.wiktionary.org/wiki/Wiktionary:About_Ancient_Greek#Diacritics_and_accentuation
+%
+% Spacing prosgegrammeni (ι) turned to capital Iota. (minor)
+%
+% Spacing single diacritics are kept. (irrelevant, OK)
+% Spacing combining diacritics are mapped to single diacritics. (irrelevant)
+%
+% Auto-Hiatus: ἀυπνία → ΑΥΠΝΙΑ (missing dialytika on the Upsilon).
+
+% With pdfLaTeX and LGR, a ZWNJ or the ``\noboundary`` macro can be used to
+% prevent conversion of trailing Σ to a final sigma ς by ``\MakeLowercase``.
+% This does not work with Unicode fonts (XeTeX/LuaTeX).
+
+% With XeTeX and Unicode fonts,
+\subsubsection{hiatus}
+
+Tonos and dasia mark a \emph{hiatus} (break-up of a diphthong) if placed on
+the first of two consecutive vowels (άι, άυ, έι, ἀυ, ἄι, ἄυ, ἔι).
+A dialytika must be placed on the second vowel if they are dropped.
+
+Since the 2022/06 LaTeX release, it works with monotonic Unicode literals
+(since 2023/02/10] also some polytonic but fails with psili):
+\begin{quote}
+  \selectlanguage{greek}
+  \newcommand*{\hiatest}{άι, άυ, έι, ἄι, ἄυ, ἔι, ἀυ}
+  \hiatest{} $\mapsto$ \MakeUppercase{\hiatest}
+\end{quote}
+
+Example \foreignlanguage{greek}{ἀυπνία $\mapsto$ \MakeUppercase{ἀυπνία}}
+(missing dialytika on the Upsilon).
+
+\section{LICR macros}
+
+This section compares literal Unicode Greek characters to characters input
+as LICR macros
+
+\subsection{Greek and Coptic}
+
+\subsubsection{short accent macros}
+
+\renewcommand{\GreekAndCoptic}{% only characters supported by LGR
+  \raggedright
+  ␣  ␣  ␣  ␣  ʹ  ͵  ␣  ␣  ␣  ␣  ͺ  ␣  ␣  ␣  ;  ␣  \\
+  ␣  ␣  ␣  ␣  \textnumeralsigngreek{} \textnumeralsignlowergreek{}
+  ␣  ␣  ␣  ␣  { }\ypogegrammeni{} ␣  ␣  ␣  \texterotimatiko\\
+
+  ␣  ␣  ␣  ␣  ΄  ΅  Ά  ·  Έ  Ή  Ί  ␣  Ό  ␣  Ύ  Ώ  \\
+
+  ␣  ␣  ␣  ␣ \'{ } \"'{ } \'\textAlpha{} \textanoteleia{}
+  \'\textEpsilon{} \'\textEta{} \'\textIota{}
+  ␣ \'\textOmicron{} ␣ \'\textUpsilon{} \'\textOmega{} \\
+
+  ΐ  Α  Β  Γ  Δ  Ε  Ζ  Η  Θ  Ι  Κ  Λ  Μ  Ν  Ξ  Ο  \\
+  \'"\textiota{} \textAlpha{} \textBeta{} \textGamma{} \textDelta{}
+  \textEpsilon{} \textZeta{} \textEta{} \textTheta{} \textIota{}
+  \textKappa{} \textLambda{} \textMu{} \textNu{} \textXi{} \textOmicron{} \\
+
+  Π  Ρ  ␣  Σ  Τ  Υ  Φ  Χ  Ψ  Ω  Ϊ  Ϋ  ά  έ  ή  ί  \\
+  \textPi{} \textRho{} ␣ \textSigma{} \textTau{} \textUpsilon{}
+  \textPhi{} \textChi{} \textPsi{} \textOmega{} \"\textIota{}
+  \"\textUpsilon{} \'\textalpha{} \'\textepsilon{} \'\texteta{}
+  \'\textiota{} \\
+
+  ΰ  α  β  γ  δ  ε  ζ  η  θ  ι  κ  λ  μ  ν  ξ  ο  \\
+  \"'\textupsilon{} \textalpha{} \textbeta{} \textgamma{} \textdelta{}
+  \textepsilon{} \textzeta{} \texteta{} \texttheta{} \textiota{}
+  \textkappa{} \textlambda{} \textmu{} \textnu{} \textxi{} \textomicron{} \\
+
+  π  ρ  ς  σ  τ  υ  φ  χ  ψ  ω  ϊ  ϋ  ό  ύ  ώ  ␣  \\
+  \textpi{} \textrho{} \textfinalsigma{} \textsigma{} \texttau{}
+  \textupsilon{} \textphi{} \textchi{} \textpsi{} \textomega{} \"\textiota{}
+  \"\textupsilon{} \'\textomicron{} \'\textupsilon{} \'\textomega{} \\
+
+  ϐ  ϑ  ␣  ␣  ␣  ϕ  ϖ  ␣  Ϙ  ϙ  Ϛ  ϛ  Ϝ  ϝ  Ϟ  ϟ  \\
+  \textbetasymbol{} \textthetasymbol{} ␣  ␣  ␣ \textphisymbol{}
+  \textpisymbol{} ␣ \textQoppa{} \textqoppa{} \textStigma{} \textstigma{}
+  \textDigamma{} \textdigamma{} \textKoppa{} \textkoppa{} \\
+
+  Ϡ  ϡ  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ϰ  ϱ ϴ ϵ \\
+  \textSampi{} \textsampi{} ␣  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ␣
+  \textkappasymbol{} \textrhosymbol{} \textThetasymbol{} \textepsilonsymbol
+}
+
+No case change:
+
+\begin{quote}
+  \selectlanguage{greek}
+  \GreekAndCoptic
+\end{quote}
+%
+MakeUppercase:
+\begin{quote}
+  \selectlanguage{greek}
+  \MakeUppercase{\GreekAndCoptic}
+\end{quote}
+%
+MakeLowercase:
+\begin{quote}
+ \selectlanguage{greek}
+  \MakeLowercase{\GreekAndCoptic}
+\end{quote}
+
+\subsubsection{named accent macros}
+
+\renewcommand{\GreekAndCoptic}{% only characters supported by LGR
+  \raggedright
+  ␣  ␣  ␣  ␣  ʹ  ͵  ␣  ␣  ␣  ␣  ͺ  ␣  ␣  ␣  ;  ␣  \\
+  ␣  ␣  ␣  ␣  \textnumeralsigngreek{} \textnumeralsignlowergreek{}
+  ␣  ␣  ␣  ␣  { }\ypogegrammeni{} ␣  ␣  ␣  \texterotimatiko\\
+
+  ␣  ␣  ␣  ␣  ΄  ΅  Ά  ·  Έ  Ή  Ί  ␣  Ό  ␣  Ύ  Ώ  \\
+  ␣  ␣  ␣  ␣ \acctonos{ } \accdialytikatonos{ } \acctonos\textAlpha{}
+  \textanoteleia{} \acctonos\textEpsilon{} \acctonos\textEta{}
+  \acctonos\textIota{} ␣ \acctonos\textOmicron{} ␣ \acctonos\textUpsilon{}
+  \acctonos\textOmega{} \\
+
+  ΐ  Α  Β  Γ  Δ  Ε  Ζ  Η  Θ  Ι  Κ  Λ  Μ  Ν  Ξ  Ο  \\
+  \accdialytikatonos\textiota{} \textAlpha{} \textBeta{} \textGamma{}
+  \textDelta{} \textEpsilon{} \textZeta{} \textEta{} \textTheta{} \textIota{}
+  \textKappa{} \textLambda{} \textMu{} \textNu{} \textXi{} \textOmicron{} \\
+
+  Π  Ρ  ␣  Σ  Τ  Υ  Φ  Χ  Ψ  Ω  Ϊ  Ϋ  ά  έ  ή  ί  \\
+  \textPi{} \textRho{} ␣ \textSigma{} \textTau{} \textUpsilon{}
+  \textPhi{} \textChi{} \textPsi{} \textOmega{} \accdialytika\textIota{}
+  \accdialytika\textUpsilon{} \acctonos\textalpha{} \acctonos\textepsilon{}
+  \acctonos\texteta{} \acctonos\textiota{} \\
+
+  ΰ  α  β  γ  δ  ε  ζ  η  θ  ι  κ  λ  μ  ν  ξ  ο  \\
+  \accdialytikatonos\textupsilon{} \textalpha{} \textbeta{} \textgamma{}
+  \textdelta{} \textepsilon{} \textzeta{} \texteta{} \texttheta{} \textiota{}
+  \textkappa{} \textlambda{} \textmu{} \textnu{} \textxi{} \textomicron{} \\
+
+  π  ρ  ς  σ  τ  υ  φ  χ  ψ  ω  ϊ  ϋ  ό  ύ  ώ  ␣  \\
+  \textpi{} \textrho{} \textfinalsigma{} \textsigma{} \texttau{}
+  \textupsilon{} \textphi{} \textchi{} \textpsi{} \textomega{}
+  \accdialytika\textiota{} \accdialytika\textupsilon{}
+  \acctonos\textomicron{} \acctonos\textupsilon{} \acctonos\textomega{} \\
+
+  ϐ  ϑ  ␣  ␣  ␣  ϕ  ϖ  ␣  Ϙ  ϙ  Ϛ  ϛ  Ϝ  ϝ  Ϟ  ϟ  \\
+  \textbetasymbol{} \textthetasymbol{} ␣  ␣  ␣ \textphisymbol{}
+  \textpisymbol{} ␣ \textQoppa{} \textqoppa{} \textStigma{} \textstigma{}
+  \textDigamma{} \textdigamma{} \textKoppa{} \textkoppa{} \\
+
+  Ϡ  ϡ  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ϰ  ϱ ϴ ϵ \\
+  \textSampi{} \textsampi{} ␣  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ␣  ␣
+  \textkappasymbol{} \textrhosymbol{} \textThetasymbol{} \textepsilonsymbol
+}
+No case change:
+\begin{quote}
+  \selectlanguage{greek}
+  \GreekAndCoptic
+\end{quote}
+%
+MakeUppercase:
+\begin{quote}
+  \selectlanguage{greek}
+  \MakeUppercase{\GreekAndCoptic}
+\end{quote}
+%
+MakeLowercase:
+\begin{quote}
+ \selectlanguage{greek}
+  \MakeLowercase{\GreekAndCoptic}
+\end{quote}
+
+
+\subsection{Greek extended}
+
+\subsubsection{short accent macros}
+
+\renewcommand{\GreekExtended}{\raggedright
+  ἀ   ἁ   ἂ   ἃ   ἄ   ἅ   ἆ    ἇ    Ἀ   Ἁ   Ἂ   Ἃ   Ἄ   Ἅ   Ἆ  Ἇ \\
+  \>\textalpha{}
+  \<\textalpha{}
+  \>`\textalpha{}
+  \<`\textalpha{}
+  \>'\textalpha{}
+  \<'\textalpha{}
+  \~>\textalpha{}
+  \~<\textalpha{}
+  \>\textAlpha{}
+  \<\textAlpha{}
+  \>`\textAlpha{}
+  \<`\textAlpha{}
+  \>'\textAlpha{}
+  \<'\textAlpha{}
+  \~>\textAlpha{}
+  \~<\textAlpha{} \\
+
+  ἐ   ἑ   ἒ   ἓ   ἔ   ἕ   ␣    ␣    Ἐ   Ἑ   Ἒ   Ἓ   Ἔ   Ἕ        \\
+  \>\textepsilon{}
+  \<\textepsilon{}
+  \>`\textepsilon{}
+  \<`\textepsilon{}
+  \>'\textepsilon{}
+  \<'\textepsilon{}
+  ␣ ␣ \>\textEpsilon{}
+  \<\textEpsilon{}
+  \>`\textEpsilon{}
+  \<`\textEpsilon{}
+  \>'\textEpsilon{}
+  \<'\textEpsilon{}\\
+
+  ἠ   ἡ   ἢ   ἣ   ἤ   ἥ   ἦ    ἧ    Ἠ   Ἡ   Ἢ   Ἣ   Ἤ   Ἥ   Ἦ  Ἧ \\
+  \>\texteta{}
+  \<\texteta{}
+  \>`\texteta{}
+  \<`\texteta{}
+  \>'\texteta{}
+  \<'\texteta{}
+  \~>\texteta{}
+  \~<\texteta{}
+  \>\textEta{}
+  \<\textEta{}
+  \>`\textEta{}
+  \<`\textEta{}
+  \>'\textEta{}
+  \<'\textEta{}
+  \~>\textEta{}
+  \~<\textEta{} \\
+
+  ἰ   ἱ   ἲ   ἳ   ἴ   ἵ   ἶ    ἷ    Ἰ   Ἱ   Ἲ   Ἳ   Ἴ   Ἵ   Ἶ  Ἷ \\
+  \>\textiota{}
+  \<\textiota{}
+  \>`\textiota{}
+  \<`\textiota{}
+  \>'\textiota{}
+  \<'\textiota{}
+  \~>\textiota{}
+  \~<\textiota{}
+  \>\textIota{}
+  \<\textIota{}
+  \>`\textIota{}
+  \<`\textIota{}
+  \>'\textIota{}
+  \<'\textIota{}
+  \~>\textIota{}
+  \~<\textIota{} \\
+
+  ὀ   ὁ   ὂ   ὃ   ὄ   ὅ   ␣    ␣    Ὀ   Ὁ   Ὂ   Ὃ   Ὄ   Ὅ        \\
+  \>\textomicron{}
+  \<\textomicron{}
+  \>`\textomicron{}
+  \<`\textomicron{}
+  \>'\textomicron{}
+  \<'\textomicron{}
+  ␣ ␣ \>\textOmicron{}
+  \<\textOmicron{}
+  \>`\textOmicron{}
+  \<`\textOmicron{}
+  \>'\textOmicron{}
+  \<'\textOmicron{} \\
+
+  ὐ   ὑ   ὒ   ὓ   ὔ   ὕ   ὖ    ὗ    ␣   Ὑ   ␣   Ὓ   ␣   Ὕ   ␣  Ὗ \\
+  \>\textupsilon{}
+  \<\textupsilon{}
+  \>`\textupsilon{}
+  \<`\textupsilon{}
+  \>'\textupsilon{}
+  \<'\textupsilon{}
+  \~>\textupsilon{}
+  \~<\textupsilon{}
+  ␣ \<\textUpsilon{}
+  ␣ \<`\textUpsilon{}
+  ␣ \<'\textUpsilon{}
+  ␣ \~<\textUpsilon{} \\
+
+  ὠ   ὡ   ὢ   ὣ   ὤ   ὥ   ὦ    ὧ    Ὠ   Ὡ   Ὢ   Ὣ   Ὤ   Ὥ   Ὦ  Ὧ \\
+  \>\textomega{}
+  \<\textomega{}
+  \>`\textomega{}
+  \<`\textomega{}
+  \>'\textomega{}
+  \<'\textomega{}
+  \~>\textomega{}
+  \~<\textomega{}
+  \>\textOmega{}
+  \<\textOmega{}
+  \>`\textOmega{}
+  \<`\textOmega{}
+  \>'\textOmega{}
+  \<'\textOmega{}
+  \~>\textOmega{}
+  \~<\textOmega{} \\
+
+  ὰ   ά   ὲ   έ   ὴ   ή   ὶ    ί    ὸ   ό   ὺ   ύ   ὼ   ώ        \\
+  \`\textalpha{}
+  \'\textalpha{}
+  \`\textepsilon{}
+  \'\textepsilon{}
+  \`\texteta{}
+  \'\texteta{}
+  \`\textiota{}
+  \'\textiota{}
+  \`\textomicron{}
+  \'\textomicron{}
+  \`\textupsilon{}
+  \'\textupsilon{}
+  \`\textomega{}
+  \'\textomega{} \\
+
+  ᾀ   ᾁ   ᾂ   ᾃ   ᾄ   ᾅ   ᾆ    ᾇ    ᾈ   ᾉ   ᾊ   ᾋ   ᾌ   ᾍ   ᾎ  ᾏ \\
+  \>\textalpha\ypogegrammeni{}
+  \<\textalpha\ypogegrammeni{}
+  \>`\textalpha\ypogegrammeni{}
+  \<`\textalpha\ypogegrammeni{}
+  \>'\textalpha\ypogegrammeni{}
+  \<'\textalpha\ypogegrammeni{}
+  \~>\textalpha\ypogegrammeni{}
+  \~<\textalpha\ypogegrammeni{}
+  \>\textAlpha\ypogegrammeni{}
+  \<\textAlpha\ypogegrammeni{}
+  \>`\textAlpha\ypogegrammeni{}
+  \<`\textAlpha\ypogegrammeni{}
+  \>'\textAlpha\ypogegrammeni{}
+  \<'\textAlpha\ypogegrammeni{}
+  \~>\textAlpha\ypogegrammeni{}
+  \~<\textAlpha\ypogegrammeni{} \\
+
+  ᾐ   ᾑ   ᾒ   ᾓ   ᾔ   ᾕ   ᾖ    ᾗ    ᾘ   ᾙ   ᾚ   ᾛ   ᾜ   ᾝ   ᾞ  ᾟ \\
+  \>\texteta\ypogegrammeni{}
+  \<\texteta\ypogegrammeni{}
+  \>`\texteta\ypogegrammeni{}
+  \<`\texteta\ypogegrammeni{}
+  \>'\texteta\ypogegrammeni{}
+  \<'\texteta\ypogegrammeni{}
+  \~>\texteta\ypogegrammeni{}
+  \~<\texteta\ypogegrammeni{}
+  \>\textEta\ypogegrammeni{}
+  \<\textEta\ypogegrammeni{}
+  \>`\textEta\ypogegrammeni{}
+  \<`\textEta\ypogegrammeni{}
+  \>'\textEta\ypogegrammeni{}
+  \<'\textEta\ypogegrammeni{}
+  \~>\textEta\ypogegrammeni{}
+  \~<\textEta\ypogegrammeni{} \\
+
+  ᾠ   ᾡ   ᾢ   ᾣ   ᾤ   ᾦ   ᾧ    ᾥ    ᾨ   ᾩ   ᾪ   ᾫ   ᾬ   ᾭ   ᾮ  ᾯ \\
+  \>\textomega\ypogegrammeni{}
+  \<\textomega\ypogegrammeni{}
+  \>`\textomega\ypogegrammeni{}
+  \<`\textomega\ypogegrammeni{}
+  \>'\textomega\ypogegrammeni{}
+  \<'\textomega\ypogegrammeni{}
+  \~>\textomega\ypogegrammeni{}
+  \~<\textomega\ypogegrammeni{}
+  \>\textOmega\ypogegrammeni{}
+  \<\textOmega\ypogegrammeni{}
+  \>`\textOmega\ypogegrammeni{}
+  \<`\textOmega\ypogegrammeni{}
+  \>'\textOmega\ypogegrammeni{}
+  \<'\textOmega\ypogegrammeni{}
+  \~>\textOmega\ypogegrammeni{}
+  \~<\textOmega\ypogegrammeni{} \\
+
+  ᾰ   ᾱ   ᾲ   ᾳ   ᾴ   ␣   ᾶ    ᾷ    Ᾰ   Ᾱ   Ὰ   Ά   ᾼ   ᾽   ι  ᾿ \\
+  \u\textalpha{}
+  \=\textalpha{}
+  \`\textalpha\ypogegrammeni{}
+  \textalpha\ypogegrammeni{}
+  \'\textalpha\ypogegrammeni{}
+  ␣ \~\textalpha{}
+  \~\textalpha\ypogegrammeni{}
+  \u\textAlpha{}
+  \=\textAlpha{}
+  \`\textAlpha{}
+  \'\textAlpha{}
+  \textAlpha\ypogegrammeni{}
+  \>{}
+  \prosgegrammeni{}
+  \>{} \\
+
+  ῀   ῁   ῂ   ῃ   ῄ   ␣   ῆ    ῇ    Ὲ   Έ   Ὴ   Ή   ῌ   ῍   ῎  ῏ \\
+  \~{}
+  \"\~{}
+  \`\texteta\ypogegrammeni{}
+  \texteta\ypogegrammeni{}
+  \'\texteta\ypogegrammeni{}
+  ␣ \~\texteta{}
+  \~\texteta\ypogegrammeni{}
+  \`\textEpsilon{}
+  \'\textEpsilon{}
+  \`\textEta{}
+  \'\textEta{}
+  \textEta\ypogegrammeni{}
+  \>`{}
+  \>'{}
+  \~>{} \\
+
+  ῐ   ῑ   ῒ   ΐ   ␣   ␣   ῖ    ῗ    Ῐ   Ῑ   Ὶ   Ί   ␣   ῝   ῞  ῟ \\
+  \u\textiota{}
+  \=\textiota{}
+  \`"\textiota{}
+  \'"\textiota{}
+  ␣ ␣ \~\textiota{}
+  \~"\textiota{}
+  \u\textIota{}
+  \=\textIota{}
+  \`\textIota{}
+  \'\textIota{}
+  ␣
+  \<`{}
+  \<'{}
+  \~<{} \\
+
+  ῠ   ῡ   ῢ   ΰ   ῤ    ῥ    ῦ   ῧ   Ῠ  Ῡ  Ὺ   Ύ   Ῥ   ῭   ΅  ` \\
+  \u\textupsilon{}
+  \=\textupsilon{}
+  \`"\textupsilon{}
+  \'"\textupsilon{}
+  \>\textrho{}
+  \<\textrho{}
+  \~\textupsilon{}
+  \~"\textupsilon{}
+  \u\textUpsilon{}
+  \=\textUpsilon{}
+  \`\textUpsilon{}
+  \'\textUpsilon{}
+  \<\textRho{}
+  \`"{}
+  \'"{}
+  \`{} \\
+
+  ␣   ␣   ῲ   ῳ   ῴ   ␣   ῶ    ῷ    Ὸ   Ό   Ὼ   Ώ   ῼ   ´   ῾  ␣ \\
+
+  ␣ ␣ \`\textomega\ypogegrammeni{}
+  \textomega\ypogegrammeni{}
+  \'\textomega\ypogegrammeni{}
+  ␣ \~\textomega{}
+  \~\textomega\ypogegrammeni{}
+  \`\textOmicron{}
+  \'\textOmicron{}
+  \`\textOmega{}
+  \'\textOmega{}
+  \textOmega\ypogegrammeni{}
+  \'{}
+  \<{} ␣
+}
+
+No case change:
+\begin{quote}
+  \selectlanguage{greek}
+  \GreekExtended
+\end{quote}
+%
+MakeUppercase:
+\begin{quote}
+  \selectlanguage{greek}
+  \MakeUppercase{\GreekExtended}
+\end{quote}
+%
+MakeLowercase:
+\begin{quote}
+  \selectlanguage{greek}
+  \MakeLowercase{\GreekExtended}
+\end{quote}
+
+
+\subsubsection{named accent macros}
+
+\renewcommand{\GreekExtended}{\raggedright
+  ἀ   ἁ   ἂ   ἃ   ἄ   ἅ   ἆ    ἇ    Ἀ   Ἁ   Ἂ   Ἃ   Ἄ   Ἅ   Ἆ  Ἇ \\
+  \accpsili\textalpha{}
+  \accdasia\textalpha{}
+  \accpsilivaria\textalpha{}
+  \accdasiavaria\textalpha{}
+  \accpsilioxia\textalpha{}
+  \accdasiaoxia\textalpha{}
+  \accpsiliperispomeni\textalpha{}
+  \accdasiaperispomeni\textalpha{}
+  \accpsili\textAlpha{}
+  \accdasia\textAlpha{}
+  \accpsilivaria\textAlpha{}
+  \accdasiavaria\textAlpha{}
+  \accpsilioxia\textAlpha{}
+  \accdasiaoxia\textAlpha{}
+  \accpsiliperispomeni\textAlpha{}
+  \accdasiaperispomeni\textAlpha{} \\
+
+  ἐ   ἑ   ἒ   ἓ   ἔ   ἕ   ␣    ␣    Ἐ   Ἑ   Ἒ   Ἓ   Ἔ   Ἕ  \\
+  \accpsili\textepsilon{}
+  \accdasia\textepsilon{}
+  \accpsilivaria\textepsilon{}
+  \accdasiavaria\textepsilon{}
+  \accpsilioxia\textepsilon{}
+  \accdasiaoxia\textepsilon{}
+  ␣ ␣ \accpsili\textEpsilon{}
+  \accdasia\textEpsilon{}
+  \accpsilivaria\textEpsilon{}
+  \accdasiavaria\textEpsilon{}
+  \accpsilioxia\textEpsilon{}
+  \accdasiaoxia\textEpsilon{}\\
+
+  ἠ   ἡ   ἢ   ἣ   ἤ   ἥ   ἦ    ἧ    Ἠ   Ἡ   Ἢ   Ἣ   Ἤ   Ἥ   Ἦ  Ἧ \\
+  \accpsili\texteta{}
+  \accdasia\texteta{}
+  \accpsilivaria\texteta{}
+  \accdasiavaria\texteta{}
+  \accpsilioxia\texteta{}
+  \accdasiaoxia\texteta{}
+  \accpsiliperispomeni\texteta{}
+  \accdasiaperispomeni\texteta{}
+  \accpsili\textEta{}
+  \accdasia\textEta{}
+  \accpsilivaria\textEta{}
+  \accdasiavaria\textEta{}
+  \accpsilioxia\textEta{}
+  \accdasiaoxia\textEta{}
+  \accpsiliperispomeni\textEta{}
+  \accdasiaperispomeni\textEta{} \\
+
+  ἰ   ἱ   ἲ   ἳ   ἴ   ἵ   ἶ    ἷ    Ἰ   Ἱ   Ἲ   Ἳ   Ἴ   Ἵ   Ἶ  Ἷ \\
+  \accpsili\textiota{}
+  \accdasia\textiota{}
+  \accpsilivaria\textiota{}
+  \accdasiavaria\textiota{}
+  \accpsilioxia\textiota{}
+  \accdasiaoxia\textiota{}
+  \accpsiliperispomeni\textiota{}
+  \accdasiaperispomeni\textiota{}
+  \accpsili\textIota{}
+  \accdasia\textIota{}
+  \accpsilivaria\textIota{}
+  \accdasiavaria\textIota{}
+  \accpsilioxia\textIota{}
+  \accdasiaoxia\textIota{}
+  \accpsiliperispomeni\textIota{}
+  \accdasiaperispomeni\textIota{} \\
+
+  ὀ   ὁ   ὂ   ὃ   ὄ   ὅ   ␣    ␣    Ὀ   Ὁ   Ὂ   Ὃ   Ὄ   Ὅ  \\
+  \accpsili\textomicron{}
+  \accdasia\textomicron{}
+  \accpsilivaria\textomicron{}
+  \accdasiavaria\textomicron{}
+  \accpsilioxia\textomicron{}
+  \accdasiaoxia\textomicron{}
+  ␣ ␣ \accpsili\textOmicron{}
+  \accdasia\textOmicron{}
+  \accpsilivaria\textOmicron{}
+  \accdasiavaria\textOmicron{}
+  \accpsilioxia\textOmicron{}
+  \accdasiaoxia\textOmicron{} \\
+
+  ὐ   ὑ   ὒ   ὓ   ὔ   ὕ   ὖ    ὗ    ␣   Ὑ   ␣   Ὓ   ␣   Ὕ   ␣  Ὗ \\
+  \accpsili\textupsilon{}
+  \accdasia\textupsilon{}
+  \accpsilivaria\textupsilon{}
+  \accdasiavaria\textupsilon{}
+  \accpsilioxia\textupsilon{}
+  \accdasiaoxia\textupsilon{}
+  \accpsiliperispomeni\textupsilon{}
+  \accdasiaperispomeni\textupsilon{}
+  ␣ \accdasia\textUpsilon{}
+  ␣ \accdasiavaria\textUpsilon{}
+  ␣ \accdasiaoxia\textUpsilon{}
+  ␣ \accdasiaperispomeni\textUpsilon{} \\
+
+  ὠ   ὡ   ὢ   ὣ   ὤ   ὥ   ὦ    ὧ    Ὠ   Ὡ   Ὢ   Ὣ   Ὤ   Ὥ   Ὦ  Ὧ \\
+  \accpsili\textomega{}
+  \accdasia\textomega{}
+  \accpsilivaria\textomega{}
+  \accdasiavaria\textomega{}
+  \accpsilioxia\textomega{}
+  \accdasiaoxia\textomega{}
+  \accpsiliperispomeni\textomega{}
+  \accdasiaperispomeni\textomega{}
+  \accpsili\textOmega{}
+  \accdasia\textOmega{}
+  \accpsilivaria\textOmega{}
+  \accdasiavaria\textOmega{}
+  \accpsilioxia\textOmega{}
+  \accdasiaoxia\textOmega{}
+  \accpsiliperispomeni\textOmega{}
+  \accdasiaperispomeni\textOmega{} \\
+
+  ὰ   ά   ὲ   έ   ὴ   ή   ὶ    ί    ὸ   ό   ὺ   ύ   ὼ   ώ \\
+  \accvaria\textalpha{}
+  \accoxia\textalpha{}
+  \accvaria\textepsilon{}
+  \accoxia\textepsilon{}
+  \accvaria\texteta{}
+  \accoxia\texteta{}
+  \accvaria\textiota{}
+  \accoxia\textiota{}
+  \accvaria\textomicron{}
+  \accoxia\textomicron{}
+  \accvaria\textupsilon{}
+  \accoxia\textupsilon{}
+  \accvaria\textomega{}
+  \accoxia\textomega{} \\
+
+  ᾀ   ᾁ   ᾂ   ᾃ   ᾄ   ᾅ   ᾆ    ᾇ    ᾈ   ᾉ   ᾊ   ᾋ   ᾌ   ᾍ   ᾎ  ᾏ \\
+  \accpsili\textalpha\ypogegrammeni{}
+  \accdasia\textalpha\ypogegrammeni{}
+  \accpsilivaria\textalpha\ypogegrammeni{}
+  \accdasiavaria\textalpha\ypogegrammeni{}
+  \accpsilioxia\textalpha\ypogegrammeni{}
+  \accdasiaoxia\textalpha\ypogegrammeni{}
+  \accpsiliperispomeni\textalpha\ypogegrammeni{}
+  \accdasiaperispomeni\textalpha\ypogegrammeni{}
+  \accpsili\textAlpha\ypogegrammeni{}
+  \accdasia\textAlpha\ypogegrammeni{}
+  \accpsilivaria\textAlpha\ypogegrammeni{}
+  \accdasiavaria\textAlpha\ypogegrammeni{}
+  \accpsilioxia\textAlpha\ypogegrammeni{}
+  \accdasiaoxia\textAlpha\ypogegrammeni{}
+  \accpsiliperispomeni\textAlpha\ypogegrammeni{}
+  \accdasiaperispomeni\textAlpha\ypogegrammeni{} \\
+
+  ᾐ   ᾑ   ᾒ   ᾓ   ᾔ   ᾕ   ᾖ    ᾗ    ᾘ   ᾙ   ᾚ   ᾛ   ᾜ   ᾝ   ᾞ  ᾟ \\
+  \accpsili\texteta\ypogegrammeni{}
+  \accdasia\texteta\ypogegrammeni{}
+  \accpsilivaria\texteta\ypogegrammeni{}
+  \accdasiavaria\texteta\ypogegrammeni{}
+  \accpsilioxia\texteta\ypogegrammeni{}
+  \accdasiaoxia\texteta\ypogegrammeni{}
+  \accpsiliperispomeni\texteta\ypogegrammeni{}
+  \accdasiaperispomeni\texteta\ypogegrammeni{}
+  \accpsili\textEta\ypogegrammeni{}
+  \accdasia\textEta\ypogegrammeni{}
+  \accpsilivaria\textEta\ypogegrammeni{}
+  \accdasiavaria\textEta\ypogegrammeni{}
+  \accpsilioxia\textEta\ypogegrammeni{}
+  \accdasiaoxia\textEta\ypogegrammeni{}
+  \accpsiliperispomeni\textEta\ypogegrammeni{}
+  \accdasiaperispomeni\textEta\ypogegrammeni{} \\
+
+  ᾠ   ᾡ   ᾢ   ᾣ   ᾤ   ᾦ   ᾧ    ᾥ    ᾨ   ᾩ   ᾪ   ᾫ   ᾬ   ᾭ   ᾮ  ᾯ \\
+  \accpsili\textomega\ypogegrammeni{}
+  \accdasia\textomega\ypogegrammeni{}
+  \accpsilivaria\textomega\ypogegrammeni{}
+  \accdasiavaria\textomega\ypogegrammeni{}
+  \accpsilioxia\textomega\ypogegrammeni{}
+  \accdasiaoxia\textomega\ypogegrammeni{}
+  \accpsiliperispomeni\textomega\ypogegrammeni{}
+  \accdasiaperispomeni\textomega\ypogegrammeni{}
+  \accpsili\textOmega\ypogegrammeni{}
+  \accdasia\textOmega\ypogegrammeni{}
+  \accpsilivaria\textOmega\ypogegrammeni{}
+  \accdasiavaria\textOmega\ypogegrammeni{}
+  \accpsilioxia\textOmega\ypogegrammeni{}
+  \accdasiaoxia\textOmega\ypogegrammeni{}
+  \accpsiliperispomeni\textOmega\ypogegrammeni{}
+  \accdasiaperispomeni\textOmega\ypogegrammeni{} \\
+
+  ᾰ   ᾱ   ᾲ   ᾳ   ᾴ   ␣   ᾶ    ᾷ    Ᾰ   Ᾱ   Ὰ   Ά   ᾼ   ᾽   ι  ᾿ \\
+  \u\textalpha{}
+  \=\textalpha{}
+  \accvaria\textalpha\ypogegrammeni{}
+  \textalpha\ypogegrammeni{}
+  \accoxia\textalpha\ypogegrammeni{}
+  ␣ \accperispomeni\textalpha{}
+  \accperispomeni\textalpha\ypogegrammeni{}
+  \u\textAlpha{}
+  \=\textAlpha{}
+  \accvaria\textAlpha{}
+  \accoxia\textAlpha{}
+  \textAlpha\ypogegrammeni{}
+  \accpsili{}
+  \prosgegrammeni{}
+  \accpsili{} \\
+
+  ῀   ῁   ῂ   ῃ   ῄ   ␣   ῆ    ῇ    Ὲ   Έ   Ὴ   Ή   ῌ   ῍   ῎  ῏ \\
+  \accperispomeni{}
+  \accdialytikaperispomeni{}
+  \accvaria\texteta\ypogegrammeni{}
+  \texteta\ypogegrammeni{}
+  \accoxia\texteta\ypogegrammeni{}
+  ␣ \accperispomeni\texteta{}
+  \accperispomeni\texteta\ypogegrammeni{}
+  \accvaria\textEpsilon{}
+  \accoxia\textEpsilon{}
+  \accvaria\textEta{}
+  \accoxia\textEta{}
+  \textEta\ypogegrammeni{}
+  \accpsilivaria{}
+  \accpsilioxia{}
+  \accpsiliperispomeni{} \\
+
+  ῐ   ῑ   ῒ   ΐ   ␣   ␣   ῖ    ῗ    Ῐ   Ῑ   Ὶ   Ί   ␣   ῝   ῞  ῟ \\
+  \u\textiota{}
+  \=\textiota{}
+  \accdialytikavaria\textiota{}
+  \accdialytikatonos\textiota{}
+  ␣ ␣ \accperispomeni\textiota{}
+  \accperispomeni"\textiota{}
+  \u\textIota{}
+  \=\textIota{}
+  \accvaria\textIota{}
+  \accoxia\textIota{}
+  ␣
+  \accdasiavaria{}
+  \accdasiaoxia{}
+  \accdasiaperispomeni{} \\
+
+  ῠ   ῡ   ῢ   ΰ   ῤ    ῥ    ῦ   ῧ   Ῠ  Ῡ  Ὺ   Ύ   Ῥ   ῭   ΅  ` \\
+  \u\textupsilon{}
+  \=\textupsilon{}
+  \accdialytikavaria\textupsilon{}
+  \accdialytikatonos\textupsilon{}
+  \accpsili\textrho{}
+  \accdasia\textrho{}
+  \accperispomeni\textupsilon{}
+  \accdialytikaperispomeni\textupsilon{}
+  \u\textUpsilon{}
+  \=\textUpsilon{}
+  \accvaria\textUpsilon{}
+  \accoxia\textUpsilon{}
+  \accdasia\textRho{}
+  \accdialytikavaria{}
+  \accdialytikatonos{}
+  \accvaria{} \\
+
+  ␣   ␣   ῲ   ῳ   ῴ   ␣   ῶ    ῷ    Ὸ   Ό   Ὼ   Ώ   ῼ   ´   ῾  ␣ \\
+
+  ␣ ␣ \accvaria\textomega\ypogegrammeni{}
+  \textomega\ypogegrammeni{}
+  \accoxia\textomega\ypogegrammeni{}
+  ␣ \accperispomeni\textomega{}
+  \accperispomeni\textomega\ypogegrammeni{}
+  \accvaria\textOmicron{}
+  \accoxia\textOmicron{}
+  \accvaria\textOmega{}
+  \accoxia\textOmega{}
+  \textOmega\ypogegrammeni{}
+  \accoxia{}
+  \accdasia{} ␣
+}
+
+No case change:
+\begin{quote}
+  \selectlanguage{greek}
+  \GreekExtended
+\end{quote}
+%
+MakeUppercase:
+\begin{quote}
+  \selectlanguage{greek}
+  \MakeUppercase{\GreekExtended}
+\end{quote}
+%
+MakeLowercase:
+\begin{quote}
+  \selectlanguage{greek}
+  \MakeLowercase{\GreekExtended}
+\end{quote}
+
+
+\section{Latin transliteration}
+
+\ifdefined \UnicodeEncodingName % set by LaTeX for Unicode-aware engines
+  \textbf{Warning:}
+  As the uc/lccode re-definitions are not performed when Unicode fonts are
+  used, the accents are not dropped from upcased Latin transliterations.
+  Accent macros work fine also in Latin transliterations with Xe/LuaTeX.
+\fi
+
+\subsection{Greek and Coptic}
+
+Every second line is input as Latin transliteration:
+
+\let\:\textvisiblespace
+
+\renewcommand{\GreekAndCoptic}{%
+             ͺ  ;  ␣  ␣  ΄  ΅  Ά  ·  Έ  Ή  Ί  ␣  Ό  ␣  Ύ  Ώ  \\
+  \lgrfont{  |  ?  \: \: ' "' 'A  ; 'E 'H 'I  \:'O  \:'U 'W} \\
+             ΐ  Α  Β  Γ  Δ  Ε  Ζ  Η  Θ  Ι  Κ  Λ  Μ  Ν  Ξ  Ο  \\
+  \lgrfont{'"i  A  B  G  D  E  Z  H  J  I  K  L  M  N  X  O} \\
+             Π  Ρ  ␣  Σ  Τ  Υ  Φ  Χ  Ψ  Ω  Ϊ  Ϋ  ά  έ  ή  ί  \\
+  \lgrfont{  P  R  \: S  T  U  F  Q  Y  W "I "U 'a 'e 'h 'i} \\
+             ΰ  α  β  γ  δ  ε  ζ  η  θ  ι  κ  λ  μ  ν  ξ  ο  \\
+  \lgrfont{'"u  a  b  g  d  e  z  h  j  i  k  l  m  n  x  o} \\
+             π  ρ  ς  σ  τ  υ  φ  χ  ψ  ω  ϊ  ϋ  ό  ύ  ώ  ␣  \\
+  \lgrfont{  p  r  s  s\textcompwordmark{}
+                         t  u  f  q  y  w "i "u 'o 'u 'w  \:}
+}
+
+\begin{quote}
+  \selectlanguage{greek}
+  \GreekAndCoptic
+\end{quote}
+%
+MakeUppercase:
+
+\begin{quote}
+  \selectlanguage{greek}
+  \MakeUppercase{\GreekAndCoptic}
+\end{quote}
+%
+Letters upcased, dialytika and sub-iota unchanged, other diacritics dropped
+(if \verb|\greekfontencoding| is LGR).
+
+
+MakeLowercase:
+
+\begin{quote}
+  \selectlanguage{greek}
+  \MakeLowercase{\GreekAndCoptic}
+\end{quote}
+%
+With LGR, the lowercase of \ensuregreek{Σ} is the «auto-sigma»
+(\verb|\textautosigma|): \ensuregreek{ΣΣ $\mapsto$ \MakeLowercase{ΣΣ}}.
+Add a ZWNJ or use the \verb|\noboundary| macro to prevent conversion to
+final sigma: \ensuregreek{\MakeLowercase{ΣΣ‌}}.
+The lowercase of GREEK LETTER STIGMA \ensuregreek{Ϛ} is
+\ensuregreek{\MakeLowercase{Ϛ}}, not \verb|\textvarstigma|%
+\ifdefined \UnicodeEncodingName \else
+  (\ensuregreek\textvarstigma)%
+\fi .
+
+\subsection{Greek extended}
+
+Every second line is input as Latin transliteration. The current language
+variant is \emph\GreekLanguageVariant.
+
+\renewcommand{\GreekExtended}{\raggedright
+            ἀ   ἁ    ἂ    ἃ    ἄ    ἅ    ἆ    ἇ     Ἀ    Ἁ    Ἂ    Ἃ    Ἄ    Ἅ    Ἆ    Ἇ   \\
+  \lgrfont{>a  <a  >`a  <`a  >'a  <'a  >~a  <~a    >A   <A  >`A  <`A  >'A  <'A  >~A  <~A } \\
+            ἐ   ἑ    ἒ    ἓ    ἔ    ἕ    ␣    ␣     Ἐ    Ἑ    Ἒ    Ἓ    Ἔ    Ἕ             \\
+  \lgrfont{>e  <e  >`e  <`e  >'e  <'e    \:   \:   >E   <E  >`E  <`E  >'E  <'E           } \\
+            ἠ   ἡ    ἢ    ἣ    ἤ    ἥ    ἦ    ἧ     Ἠ    Ἡ    Ἢ    Ἣ    Ἤ    Ἥ    Ἦ    Ἧ   \\
+  \lgrfont{>h  <h  >`h  <`h  >'h  <'h  >~h  <~h    >H   <H  >`H  <`H  >'H  <'H  >~H  <~H } \\
+            ἰ   ἱ    ἲ    ἳ    ἴ    ἵ    ἶ    ἷ     Ἰ    Ἱ    Ἲ    Ἳ    Ἴ    Ἵ    Ἶ    Ἷ   \\
+  \lgrfont{>i  <i  >`i  <`i  >'i  <'i  >~i  <~i    >I   <I  >`I  <`I  >'I  <'I  >~I  <~I } \\
+            ὀ   ὁ    ὂ    ὃ    ὄ    ὅ    ␣    ␣     Ὀ    Ὁ    Ὂ    Ὃ    Ὄ    Ὅ             \\
+  \lgrfont{>o  <o  >`o  <`o  >'o  <'o    \:   \:   >O   <O  >`O  <`O  >'O  <'O           } \\
+            ὐ   ὑ    ὒ    ὓ    ὔ    ὕ    ὖ    ὗ     ␣    Ὑ    ␣    Ὓ    ␣    Ὕ    ␣    Ὗ   \\
+  \lgrfont{>u  <u  >`u  <`u  >'u  <'u  >~u  <~u     \:  <U    \: <`U    \: <'U    \: <~U } \\
+            ὠ   ὡ    ὢ    ὣ    ὤ    ὥ    ὦ    ὧ     Ὠ    Ὡ    Ὢ    Ὣ    Ὤ    Ὥ    Ὦ    Ὧ   \\
+  \lgrfont{>w  <w  >`w  <`w  >'w  <'w  >~w  <~w    >W   <W  >`W  <`W  >'W  <'W  >~W  <~W } \\
+            ὰ   ά    ὲ    έ    ὴ    ή    ὶ    ί     ὸ    ό    ὺ    ύ    ὼ    ώ             \\
+  \lgrfont{`a  'a   `e   'e   `h   'h   `i   'i    `o   'o   `u   'u   `w   'w           } \\
+            ᾀ   ᾁ    ᾂ    ᾃ    ᾄ    ᾅ    ᾆ    ᾇ     ᾈ    ᾉ    ᾊ    ᾋ    ᾌ    ᾍ    ᾎ    ᾏ   \\
+  \lgrfont{>a| <a| >`a| <`a| >'a| <'a| >~a| <~a|   >A|  <A| >`A| <`A| >'A| <'A| >~A| <~A|} \\
+            ᾐ   ᾑ    ᾒ    ᾓ    ᾔ    ᾕ    ᾖ    ᾗ     ᾘ    ᾙ    ᾚ    ᾛ    ᾜ    ᾝ    ᾞ    ᾟ   \\
+  \lgrfont{>h| <h| >`h| <`h| >'h| <'h| >~h| <~h|   >H|  <H| >`H| <`H| >'H| <'H| >~H| <~H|} \\
+            ᾠ   ᾡ    ᾢ    ᾣ    ᾤ    ᾦ    ᾧ    ᾥ     ᾨ    ᾩ    ᾪ    ᾫ    ᾬ    ᾭ    ᾮ    ᾯ   \\
+  \lgrfont{>w| <w| >`w| <`w| >'w| <'w| >~w| <~w|   >W|  <W| >`W| <`W| >'W| <'W| >~W| <~W|} \\
+            ᾰ   ᾱ    ᾲ    ᾳ    ᾴ    ␣    ᾶ    ᾷ     Ᾰ    Ᾱ    Ὰ    Ά    ᾼ    ᾽    ι    ᾿   \\
+\lgrfont{\u{a} \=a  `a|   a|  'a|   \:  ~a   ~a| \u{A} \=A   `A   'A    A|   >    |    > } \\
+            ῀   ῁    ῂ    ῃ    ῄ    ␣    ῆ    ῇ     Ὲ    Έ    Ὴ    Ή    ῌ    ῍     ῎   ῏   \\
+   \lgrfont{~  "~   `h|   h|  'h|   \:  ~h   ~h|   `E   'E   `H   'H    H|   >`   >'  ~> } \\
+            ῐ   ῑ    ῒ    ΐ    ␣    ␣    ῖ    ῗ     Ῐ    Ῑ    Ὶ    Ί    ␣    ῝     ῞   ῟   \\
+\lgrfont{\u{i} \=i `"i  '"i    \:   \:  ~i  ~"i  \u{I} \=I   `I   'I    \:  <`    <'  ~< } \\
+            ῠ   ῡ    ῢ    ΰ    ␣    ␣    ῤ    ῥ     ῦ    ῧ    Ὺ    Ύ    Ῥ    ῭     ΅   `   \\
+\lgrfont{\u{u} \=u `"u  '"u    \:   \:  >r   <r    ~u  ~"u   `U   'U   <R   `"    '"   ` } \\
+             ␣   ␣   ῲ    ῳ    ῴ    ␣    ῶ    ῷ     Ὸ    Ό    Ὼ    Ώ    ῼ    ´     ῾       \\
+  \lgrfont{  \:  \: `w|   w|  'w|   \:  ~w   ~w|   `O   'O   `W   'W    W|   '   <       }
+}
+
+\begin{quote}
+  \selectlanguage{greek}
+  \GreekExtended
+\end{quote}
+
+With monotonic Greek or if the Greek font encoding is not LGR, the tilde
+keeps its default expansion as NBSP and transliterations involving \verb|~|
+fail. (The tilde accent \verb|\~| as well as combined accents involving the
+tilde work in all language variants.)
+
+MakeUppercase:
+
+\begin{quote}
+  \selectlanguage{greek}
+  \MakeUppercase{\GreekExtended}
+\end{quote}
+
+Breathings, combined accents and varia are re-mapped to the "empty" char
+only with the language variants \emph{polutoniko} or \emph{ancient}
+(currently \GreekLanguageVariant) as they are not required with monotonic
+Greek and only if \verb|\greekfontencoding| is LGR.
+
+In literal input, the uppercase of spacing combining accents including a
+dialytika \verb|"~ "` "'| appears as apostrophe, as a single \verb|"| stands
+for an apostrophe in the LGR transliteration if followed by a space or empty
+character.
+
+MakeLowercase:
+
+\begin{quote}
+  \selectlanguage{greek}
+  \MakeLowercase{\GreekExtended}
+\end{quote}
+
+
+\end{document}

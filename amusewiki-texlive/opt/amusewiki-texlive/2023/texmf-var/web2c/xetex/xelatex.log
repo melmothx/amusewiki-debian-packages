@@ -1,0 +1,1932 @@
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (INITEX)  2 JUN 2023 09:57
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**xelatex.ini
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/tex-ini-files/xelatex.ini
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/latex.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/texsys.cfg)
+\openout15 = `texsys.aux'.
+
+
+./texsys.aux found
+
+
+\@currdir set to: ./.
+
+
+Assuming \openin and \input 
+have the same search path.
+
+
+Defining UNIX/DOS style filename parser.
+
+catcodes, registers,
+\@inputcheck=\read0
+\@unused=\write0
+\maxdimen=\dimen10
+\hideskip=\skip10
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip11
+\voidb@x=\box10
+ parameters,
+\normalbaselineskip=\skip12
+\normallineskip=\skip13
+\normallineskiplimit=\dimen13
+\interfootnotelinepenalty=\count23
+\strutbox=\box11
+
+LaTeX2e <2022-11-01> patch level 1
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/l3kernel/expl3.ltx
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/l3kernel/expl3-code.tex
+Package: expl3 2023-05-22 L3 programming layer (code)
+\c_max_int=\count24
+\l_tmpa_int=\count25
+\l_tmpb_int=\count26
+\g_tmpa_int=\count27
+\g_tmpb_int=\count28
+\l__seq_internal_a_int=\count29
+\l__seq_internal_b_int=\count30
+\g__kernel_prg_map_int=\count31
+\c__ior_term_noprompt_ior=\count32
+\c_log_iow=\count33
+\l_iow_line_count_int=\count34
+\l__iow_line_target_int=\count35
+\l__iow_one_indent_int=\count36
+\l__iow_indent_int=\count37
+\c_zero_dim=\dimen14
+\c_max_dim=\dimen15
+\l_tmpa_dim=\dimen16
+\l_tmpb_dim=\dimen17
+\g_tmpa_dim=\dimen18
+\g_tmpb_dim=\dimen19
+\c_zero_skip=\skip14
+\c_max_skip=\skip15
+\l_tmpa_skip=\skip16
+\l_tmpb_skip=\skip17
+\g_tmpa_skip=\skip18
+\g_tmpb_skip=\skip19
+\c_zero_muskip=\muskip10
+\c_max_muskip=\muskip11
+\l_tmpa_muskip=\muskip12
+\l_tmpb_muskip=\muskip13
+\g_tmpa_muskip=\muskip14
+\g_tmpb_muskip=\muskip15
+\l_keys_choice_int=\count38
+\l__intarray_loop_int=\count39
+\c__intarray_sp_dim=\dimen20
+\g__intarray_font_int=\count40
+\c__fp_leading_shift_int=\count41
+\c__fp_middle_shift_int=\count42
+\c__fp_trailing_shift_int=\count43
+\c__fp_big_leading_shift_int=\count44
+\c__fp_big_middle_shift_int=\count45
+\c__fp_big_trailing_shift_int=\count46
+\c__fp_Bigg_leading_shift_int=\count47
+\c__fp_Bigg_middle_shift_int=\count48
+\c__fp_Bigg_trailing_shift_int=\count49
+\g__fp_array_int=\count50
+\l__fp_array_loop_int=\count51
+\g__cctab_allocate_int=\count52
+\l__sort_length_int=\count53
+\l__sort_min_int=\count54
+\l__sort_top_int=\count55
+\l__sort_max_int=\count56
+\l__sort_true_max_int=\count57
+\l__sort_block_int=\count58
+\l__sort_begin_int=\count59
+\l__sort_end_int=\count60
+\l__sort_A_int=\count61
+\l__sort_B_int=\count62
+\l__sort_C_int=\count63
+\l__str_modulo_int=\count64
+\l__tl_analysis_normal_int=\count65
+\l__tl_analysis_index_int=\count66
+\l__tl_analysis_nesting_int=\count67
+\l__tl_analysis_type_int=\count68
+\l__tl_peek_charcode_int=\count69
+\l__regex_internal_a_int=\count70
+\l__regex_internal_b_int=\count71
+\l__regex_internal_c_int=\count72
+\l__regex_balance_int=\count73
+\l__regex_group_level_int=\count74
+\l__regex_mode_int=\count75
+\c__regex_cs_in_class_mode_int=\count76
+\c__regex_cs_mode_int=\count77
+\l__regex_catcodes_int=\count78
+\l__regex_default_catcodes_int=\count79
+\c__regex_catcode_L_int=\count80
+\c__regex_catcode_O_int=\count81
+\c__regex_catcode_A_int=\count82
+\c__regex_all_catcodes_int=\count83
+\l__regex_show_lines_int=\count84
+\l__regex_min_state_int=\count85
+\l__regex_max_state_int=\count86
+\l__regex_left_state_int=\count87
+\l__regex_right_state_int=\count88
+\l__regex_capturing_group_int=\count89
+\g__regex_case_int=\count90
+\l__regex_case_max_group_int=\count91
+\l__regex_min_pos_int=\count92
+\l__regex_max_pos_int=\count93
+\l__regex_curr_pos_int=\count94
+\l__regex_start_pos_int=\count95
+\l__regex_success_pos_int=\count96
+\l__regex_curr_char_int=\count97
+\l__regex_curr_catcode_int=\count98
+\l__regex_last_char_int=\count99
+\l__regex_last_char_success_int=\count100
+\l__regex_case_changed_char_int=\count101
+\l__regex_curr_state_int=\count102
+\l__regex_step_int=\count103
+\l__regex_min_thread_int=\count104
+\l__regex_max_thread_int=\count105
+\l__regex_replacement_csnames_int=\count106
+\l__regex_match_count_int=\count107
+\l__regex_min_submatch_int=\count108
+\l__regex_submatch_int=\count109
+\l__regex_zeroth_submatch_int=\count110
+\l__regex_added_begin_int=\count111
+\l__regex_added_end_int=\count112
+\g__regex_trace_regex_int=\count113
+\c_empty_box=\box12
+\l_tmpa_box=\box13
+\l_tmpb_box=\box14
+\g_tmpa_box=\box15
+\g_tmpb_box=\box16
+\l__box_top_dim=\dimen21
+\l__box_bottom_dim=\dimen22
+\l__box_left_dim=\dimen23
+\l__box_right_dim=\dimen24
+\l__box_top_new_dim=\dimen25
+\l__box_bottom_new_dim=\dimen26
+\l__box_left_new_dim=\dimen27
+\l__box_right_new_dim=\dimen28
+\l__box_internal_box=\box17
+\l__color_internal_int=\count114
+\g__color_model_int=\count115
+\l__coffin_internal_box=\box18
+\l__coffin_internal_dim=\dimen29
+\l__coffin_offset_x_dim=\dimen30
+\l__coffin_offset_y_dim=\dimen31
+\l__coffin_x_dim=\dimen32
+\l__coffin_y_dim=\dimen33
+\l__coffin_x_prime_dim=\dimen34
+\l__coffin_y_prime_dim=\dimen35
+\c_empty_coffin=\box19
+\l__coffin_aligned_coffin=\box20
+\l__coffin_aligned_internal_coffin=\box21
+\l_tmpa_coffin=\box22
+\l_tmpb_coffin=\box23
+\g_tmpa_coffin=\box24
+\g_tmpb_coffin=\box25
+\l__coffin_bounding_shift_dim=\dimen36
+\l__coffin_left_corner_dim=\dimen37
+\l__coffin_right_corner_dim=\dimen38
+\l__coffin_bottom_corner_dim=\dimen39
+\l__coffin_top_corner_dim=\dimen40
+\l__coffin_scaled_total_height_dim=\dimen41
+\l__coffin_scaled_width_dim=\dimen42
+\c__coffin_empty_coffin=\box26
+\l__coffin_display_coffin=\box27
+\l__coffin_display_coord_coffin=\box28
+\l__coffin_display_pole_coffin=\box29
+\l__coffin_display_offset_dim=\dimen43
+\l__coffin_display_x_dim=\dimen44
+\l__coffin_display_y_dim=\dimen45
+\g__codepoint_data_ior=\read1
+)) hacks, document commands,
+\l__cmd_current_arg_int=\count116
+\g__cmd_grabber_int=\count117
+\l__cmd_m_args_int=\count118
+\l__cmd_v_nesting_int=\count119
+\l__hook_labels_int=\count120
+\l__hook_patch_num_args_int=\count121
+\@tempcnta=\count122
+\@tempcntb=\count123
+\@tempdima=\dimen46
+\@tempdimb=\dimen47
+\@tempdimc=\dimen48
+\@tempboxa=\box30
+\@tempskipa=\skip20
+\@tempskipb=\skip21
+\@temptokena=\toks10
+\@flushglue=\skip22
+
+control, par,
+\everypar=\toks11
+\g_para_indent_box=\box31
+ spacing,
+\@savsk=\dimen49
+\@savsf=\count124
+\smallskipamount=\skip23
+\medskipamount=\skip24
+\bigskipamount=\skip25
+\sp@ce@skip=\skip26
+\fill=\skip27
+ files,
+\@mainaux=\write1
+\@partaux=\write2
+\@clubpenalty=\count125
+LaTeX Info: Redefining \IfFileExists on input line 7158.
+ font encodings, lengths,
+\everymath=\toks12
+\everydisplay=\toks13
+\series@check@toks=\toks14
+\every@math@size=\toks15
+\lower@bound=\dimen50
+\upper@bound=\dimen51
+\c@localmathalphabets=\count126
+\c@mv@normal=\count127
+\c@mv@bold=\count128
+
+====================================
+
+Local config file fonttext.cfg used
+
+====================================
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/fonttext.cfg
+File: fonttext.cfg 2021/01/15 v3.0i LaTeX Kernel (Uncustomized text font setup)
+
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/fonttext.ltx
+File: fonttext.ltx 2021/01/15 v3.0i LaTeX Kernel (Text font setup)
+
+=== Don't modify this file, use a .cfg file instead ===
+
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/omlenc.def
+File: omlenc.def 2021/04/29 v2.0v Standard LaTeX file
+)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/omsenc.def
+File: omsenc.def 2021/04/29 v2.0v Standard LaTeX file
+)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/ot1enc.def
+File: ot1enc.def 2021/04/29 v2.0v Standard LaTeX file
+)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2021/04/29 v2.0v Standard LaTeX file
+)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/tuenc.def
+File: tuenc.def 2021/04/29 v2.0v Standard LaTeX file
+)
+LaTeX Font Info:    Trying to load font information for TU+lmr on input line 61
+.
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/tulmr.fd
+File: tulmr.fd 2021/07/23 v1.8a Standard LaTeX font definitions for Latin Moder
+n
+)
+LaTeX Font Info:    Trying to load font information for TU+lmss on input line 6
+2.
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/tulmss.fd
+File: tulmss.fd 2021/07/23 v1.8a Standard LaTeX font definitions for Latin Mode
+rn
+)
+LaTeX Font Info:    Trying to load font information for TU+lmtt on input line 6
+3.
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/tulmtt.fd
+File: tulmtt.fd 2021/07/23 v1.8a Standard LaTeX font definitions for Latin Mode
+rn
+)
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 6
+7.
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/t1cmr.fd
+File: t1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/ot1cmr.fd
+File: ot1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/ot1cmss.fd
+File: ot1cmss.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/ot1cmtt.fd
+File: ot1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)))
+====================================
+
+Local config file fontmath.cfg used
+
+====================================
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/fontmath.cfg
+File: fontmath.cfg 2021/01/15 v3.0i LaTeX Kernel (Uncustomized math font setup)
+
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/fontmath.ltx
+File: fontmath.ltx 2021/01/15 v3.0i LaTeX Kernel (Math font setup)
+
+=== Don't modify this file, use a .cfg file instead ===
+
+LaTeX Font Info:    Redeclaring font encoding OML on input line 44.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 45.
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/omlcmm.fd
+File: omlcmm.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/omscmsy.fd
+File: omscmsy.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/omxcmex.fd
+File: omxcmex.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/ucmr.fd
+File: ucmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)
+\symoperators=\mathgroup0
+\symletters=\mathgroup1
+\symsymbols=\mathgroup2
+\symlargesymbols=\mathgroup3
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 63.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/m/it --> OML/cmm/b/it on input line 64.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/m/n --> OMS/cmsy/b/n on input line 65.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 73.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/m/it --> OT1/cmr/bx/it on input line 74.
+))
+====================================
+
+Local config file preload.cfg used
+
+=====================================
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/preload.cfg
+File: preload.cfg 2021/01/15 v3.0i LaTeX Kernel (Uncustomized preload font setu
+p)
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/base/preload.ltx
+File: preload.ltx 2021/10/04 v2.1g LaTeX Kernel (Font Preloading)
+))
+LaTeX Font Info:    Setting ? sub-encoding to TS1/9 on input line 10938.
+LaTeX Font Info:    Setting ccr sub-encoding to TS1/0 on input line 10939.
+LaTeX Font Info:    Setting cmbr sub-encoding to TS1/0 on input line 10940.
+LaTeX Font Info:    Setting cmr sub-encoding to TS1/0 on input line 10941.
+LaTeX Font Info:    Setting cmss sub-encoding to TS1/0 on input line 10942.
+LaTeX Font Info:    Setting cmtl sub-encoding to TS1/0 on input line 10943.
+LaTeX Font Info:    Setting cmtt sub-encoding to TS1/0 on input line 10944.
+LaTeX Font Info:    Setting cmvtt sub-encoding to TS1/0 on input line 10945.
+LaTeX Font Info:    Setting pxr sub-encoding to TS1/0 on input line 10946.
+LaTeX Font Info:    Setting pxss sub-encoding to TS1/0 on input line 10947.
+LaTeX Font Info:    Setting pxtt sub-encoding to TS1/0 on input line 10948.
+LaTeX Font Info:    Setting qag sub-encoding to TS1/0 on input line 10949.
+LaTeX Font Info:    Setting qbk sub-encoding to TS1/0 on input line 10950.
+LaTeX Font Info:    Setting qcr sub-encoding to TS1/0 on input line 10951.
+LaTeX Font Info:    Setting qcs sub-encoding to TS1/0 on input line 10952.
+LaTeX Font Info:    Setting qhvc sub-encoding to TS1/0 on input line 10953.
+LaTeX Font Info:    Setting qhv sub-encoding to TS1/0 on input line 10954.
+LaTeX Font Info:    Setting qpl sub-encoding to TS1/0 on input line 10955.
+LaTeX Font Info:    Setting qtm sub-encoding to TS1/0 on input line 10956.
+LaTeX Font Info:    Setting qzc sub-encoding to TS1/0 on input line 10957.
+LaTeX Font Info:    Setting txr sub-encoding to TS1/0 on input line 10958.
+LaTeX Font Info:    Setting txss sub-encoding to TS1/0 on input line 10959.
+LaTeX Font Info:    Setting txtt sub-encoding to TS1/0 on input line 10960.
+LaTeX Font Info:    Setting lmr sub-encoding to TS1/1 on input line 10961.
+LaTeX Font Info:    Setting lmdh sub-encoding to TS1/1 on input line 10962.
+LaTeX Font Info:    Setting lmss sub-encoding to TS1/1 on input line 10963.
+LaTeX Font Info:    Setting lmssq sub-encoding to TS1/1 on input line 10964.
+LaTeX Font Info:    Setting lmvtt sub-encoding to TS1/1 on input line 10965.
+LaTeX Font Info:    Setting lmtt sub-encoding to TS1/1 on input line 10966.
+LaTeX Font Info:    Setting ptmx sub-encoding to TS1/2 on input line 10968.
+LaTeX Font Info:    Setting ptmj sub-encoding to TS1/2 on input line 10969.
+LaTeX Font Info:    Setting ul8 sub-encoding to TS1/2 on input line 10970.
+LaTeX Font Info:    Setting bch sub-encoding to TS1/5 on input line 10971.
+LaTeX Font Info:    Setting futj sub-encoding to TS1/5 on input line 10972.
+LaTeX Font Info:    Setting futs sub-encoding to TS1/5 on input line 10973.
+LaTeX Font Info:    Setting futx sub-encoding to TS1/5 on input line 10974.
+LaTeX Font Info:    Setting pag sub-encoding to TS1/5 on input line 10975.
+LaTeX Font Info:    Setting pbk sub-encoding to TS1/5 on input line 10976.
+LaTeX Font Info:    Setting pcr sub-encoding to TS1/5 on input line 10977.
+LaTeX Font Info:    Setting phv sub-encoding to TS1/5 on input line 10978.
+LaTeX Font Info:    Setting pnc sub-encoding to TS1/5 on input line 10979.
+LaTeX Font Info:    Setting pplj sub-encoding to TS1/5 on input line 10980.
+LaTeX Font Info:    Setting pplx sub-encoding to TS1/5 on input line 10981.
+LaTeX Font Info:    Setting ppl sub-encoding to TS1/5 on input line 10982.
+LaTeX Font Info:    Setting ptm sub-encoding to TS1/5 on input line 10983.
+LaTeX Font Info:    Setting pzc sub-encoding to TS1/5 on input line 10984.
+LaTeX Font Info:    Setting ul9 sub-encoding to TS1/5 on input line 10985.
+LaTeX Font Info:    Setting dayroms sub-encoding to TS1/6 on input line 10986.
+LaTeX Font Info:    Setting dayrom sub-encoding to TS1/6 on input line 10987.
+LaTeX Font Info:    Setting augie sub-encoding to TS1/8 on input line 10988.
+LaTeX Font Info:    Setting put sub-encoding to TS1/8 on input line 10989.
+LaTeX Font Info:    Setting uag sub-encoding to TS1/8 on input line 10990.
+LaTeX Font Info:    Setting ugq sub-encoding to TS1/8 on input line 10991.
+LaTeX Font Info:    Setting zi4 sub-encoding to TS1/9 on input line 10992.
+LaTeX Font Info:    Setting hls sub-encoding to TS1/5 on input line 10993.
+LaTeX Font Info:    Setting hlst sub-encoding to TS1/5 on input line 10994.
+LaTeX Font Info:    Setting hlct sub-encoding to TS1/5 on input line 10995.
+LaTeX Font Info:    Setting hlh sub-encoding to TS1/5 on input line 10996.
+LaTeX Font Info:    Setting hlx sub-encoding to TS1/8 on input line 10997.
+LaTeX Font Info:    Setting hlce sub-encoding to TS1/8 on input line 10998.
+LaTeX Font Info:    Setting hlcn sub-encoding to TS1/8 on input line 10999.
+LaTeX Font Info:    Setting hlcw sub-encoding to TS1/8 on input line 11000.
+LaTeX Font Info:    Setting hlcf sub-encoding to TS1/8 on input line 11001.
+LaTeX Font Info:    Setting lato-LF sub-encoding to TS1/0 on input line 11002.
+LaTeX Font Info:    Setting lato-TLF sub-encoding to TS1/0 on input line 11002.
+
+LaTeX Font Info:    Setting lato-OsF sub-encoding to TS1/0 on input line 11002.
+
+LaTeX Font Info:    Setting lato-TOsF sub-encoding to TS1/0 on input line 11002
+.
+LaTeX Font Info:    Setting opensans-LF sub-encoding to TS1/0 on input line 110
+03.
+LaTeX Font Info:    Setting opensans-TLF sub-encoding to TS1/0 on input line 11
+003.
+LaTeX Font Info:    Setting opensans-OsF sub-encoding to TS1/0 on input line 11
+003.
+LaTeX Font Info:    Setting opensans-TOsF sub-encoding to TS1/0 on input line 1
+1003.
+LaTeX Font Info:    Setting cantarell-LF sub-encoding to TS1/0 on input line 11
+004.
+LaTeX Font Info:    Setting cantarell-TLF sub-encoding to TS1/0 on input line 1
+1004.
+LaTeX Font Info:    Setting cantarell-OsF sub-encoding to TS1/0 on input line 1
+1004.
+LaTeX Font Info:    Setting cantarell-TOsF sub-encoding to TS1/0 on input line 
+11004.
+LaTeX Font Info:    Setting fbb-LF sub-encoding to TS1/0 on input line 11005.
+LaTeX Font Info:    Setting fbb-TLF sub-encoding to TS1/0 on input line 11005.
+LaTeX Font Info:    Setting fbb-OsF sub-encoding to TS1/0 on input line 11005.
+LaTeX Font Info:    Setting fbb-TOsF sub-encoding to TS1/0 on input line 11005.
+
+LaTeX Font Info:    Setting tli sub-encoding to TS1/1 on input line 11006.
+LaTeX Font Info:    Setting Alegreya-LF sub-encoding to TS1/2 on input line 110
+07.
+LaTeX Font Info:    Setting Alegreya-TLF sub-encoding to TS1/2 on input line 11
+007.
+LaTeX Font Info:    Setting Alegreya-OsF sub-encoding to TS1/2 on input line 11
+007.
+LaTeX Font Info:    Setting Alegreya-TOsF sub-encoding to TS1/2 on input line 1
+1007.
+LaTeX Font Info:    Setting AlegreyaSans-LF sub-encoding to TS1/2 on input line
+ 11008.
+LaTeX Font Info:    Setting AlegreyaSans-TLF sub-encoding to TS1/2 on input lin
+e 11008.
+LaTeX Font Info:    Setting AlegreyaSans-OsF sub-encoding to TS1/2 on input lin
+e 11008.
+LaTeX Font Info:    Setting AlegreyaSans-TOsF sub-encoding to TS1/2 on input li
+ne 11008.
+LaTeX Font Info:    Setting DejaVuSans-TLF sub-encoding to TS1/2 on input line 
+11009.
+LaTeX Font Info:    Setting DejaVuSansCondensed-TLF sub-encoding to TS1/2 on in
+put line 11010.
+LaTeX Font Info:    Setting DejaVuSansMono-TLF sub-encoding to TS1/2 on input l
+ine 11011.
+LaTeX Font Info:    Setting EBGaramond-LF sub-encoding to TS1/2 on input line 1
+1012.
+LaTeX Font Info:    Setting EBGaramond-TLF sub-encoding to TS1/2 on input line 
+11012.
+LaTeX Font Info:    Setting EBGaramond-OsF sub-encoding to TS1/2 on input line 
+11012.
+LaTeX Font Info:    Setting EBGaramond-TOsF sub-encoding to TS1/2 on input line
+ 11012.
+LaTeX Font Info:    Setting Tempora-TLF sub-encoding to TS1/2 on input line 110
+13.
+LaTeX Font Info:    Setting Tempora-TOsF sub-encoding to TS1/2 on input line 11
+014.
+LaTeX Font Info:    Setting Arimo-TLF sub-encoding to TS1/3 on input line 11015
+.
+LaTeX Font Info:    Setting Carlito-LF sub-encoding to TS1/3 on input line 1101
+6.
+LaTeX Font Info:    Setting Carlito-TLF sub-encoding to TS1/3 on input line 110
+16.
+LaTeX Font Info:    Setting Carlito-OsF sub-encoding to TS1/3 on input line 110
+16.
+LaTeX Font Info:    Setting Carlito-TOsF sub-encoding to TS1/3 on input line 11
+016.
+LaTeX Font Info:    Setting FiraSans-LF sub-encoding to TS1/3 on input line 110
+17.
+LaTeX Font Info:    Setting FiraSans-TLF sub-encoding to TS1/3 on input line 11
+017.
+LaTeX Font Info:    Setting FiraSans-OsF sub-encoding to TS1/3 on input line 11
+017.
+LaTeX Font Info:    Setting FiraSans-TOsF sub-encoding to TS1/3 on input line 1
+1017.
+LaTeX Font Info:    Setting IBMPlexSans-TLF sub-encoding to TS1/3 on input line
+ 11018.
+LaTeX Font Info:    Setting Merriweather-OsF sub-encoding to TS1/3 on input lin
+e 11019.
+LaTeX Font Info:    Setting Montserrat-LF sub-encoding to TS1/3 on input line 1
+1020.
+LaTeX Font Info:    Setting Montserrat-TLF sub-encoding to TS1/3 on input line 
+11020.
+LaTeX Font Info:    Setting Montserrat-OsF sub-encoding to TS1/3 on input line 
+11020.
+LaTeX Font Info:    Setting Montserrat-TOsF sub-encoding to TS1/3 on input line
+ 11020.
+LaTeX Font Info:    Setting MontserratAlternates-LF sub-encoding to TS1/3 on in
+put line 11021.
+LaTeX Font Info:    Setting MontserratAlternates-TLF sub-encoding to TS1/3 on i
+nput line 11021.
+LaTeX Font Info:    Setting MontserratAlternates-OsF sub-encoding to TS1/3 on i
+nput line 11021.
+LaTeX Font Info:    Setting MontserratAlternates-TOsF sub-encoding to TS1/3 on 
+input line 11021.
+LaTeX Font Info:    Setting SourceCodePro-TLF sub-encoding to TS1/3 on input li
+ne 11022.
+LaTeX Font Info:    Setting SourceCodePro-TOsF sub-encoding to TS1/3 on input l
+ine 11023.
+LaTeX Font Info:    Setting SourceSansPro-LF sub-encoding to TS1/3 on input lin
+e 11024.
+LaTeX Font Info:    Setting SourceSansPro-TLF sub-encoding to TS1/3 on input li
+ne 11024.
+LaTeX Font Info:    Setting SourceSansPro-OsF sub-encoding to TS1/3 on input li
+ne 11024.
+LaTeX Font Info:    Setting SourceSansPro-TOsF sub-encoding to TS1/3 on input l
+ine 11024.
+LaTeX Font Info:    Setting SourceSerifPro-LF sub-encoding to TS1/3 on input li
+ne 11025.
+LaTeX Font Info:    Setting SourceSerifPro-TLF sub-encoding to TS1/3 on input l
+ine 11025.
+LaTeX Font Info:    Setting SourceSerifPro-OsF sub-encoding to TS1/3 on input l
+ine 11025.
+LaTeX Font Info:    Setting SourceSerifPro-TOsF sub-encoding to TS1/3 on input 
+line 11025.
+LaTeX Font Info:    Setting Tinos-TLF sub-encoding to TS1/3 on input line 11026
+.
+LaTeX Font Info:    Setting AccanthisADFStdNoThree-LF sub-encoding to TS1/4 on 
+input line 11027.
+LaTeX Font Info:    Setting Cabin-TLF sub-encoding to TS1/4 on input line 11028
+.
+LaTeX Font Info:    Setting Caladea-TLF sub-encoding to TS1/4 on input line 110
+29.
+LaTeX Font Info:    Setting Chivo-LF sub-encoding to TS1/4 on input line 11030.
+
+LaTeX Font Info:    Setting Chivo-TLF sub-encoding to TS1/4 on input line 11030
+.
+LaTeX Font Info:    Setting Chivo-OsF sub-encoding to TS1/4 on input line 11030
+.
+LaTeX Font Info:    Setting Chivo-TOsF sub-encoding to TS1/4 on input line 1103
+0.
+LaTeX Font Info:    Setting ClearSans-TLF sub-encoding to TS1/4 on input line 1
+1031.
+LaTeX Font Info:    Setting Coelacanth-LF sub-encoding to TS1/4 on input line 1
+1032.
+LaTeX Font Info:    Setting CrimsonPro-LF sub-encoding to TS1/4 on input line 1
+1033.
+LaTeX Font Info:    Setting CrimsonPro-TLF sub-encoding to TS1/4 on input line 
+11033.
+LaTeX Font Info:    Setting CrimsonPro-OsF sub-encoding to TS1/4 on input line 
+11033.
+LaTeX Font Info:    Setting CrimsonPro-TOsF sub-encoding to TS1/4 on input line
+ 11033.
+LaTeX Font Info:    Setting FiraMono-TLF sub-encoding to TS1/4 on input line 11
+034.
+LaTeX Font Info:    Setting FiraMono-TOsF sub-encoding to TS1/4 on input line 1
+1035.
+LaTeX Font Info:    Setting Go-TLF sub-encoding to TS1/4 on input line 11036.
+LaTeX Font Info:    Setting GoMono-TLF sub-encoding to TS1/4 on input line 1103
+7.
+LaTeX Font Info:    Setting InriaSans-LF sub-encoding to TS1/4 on input line 11
+038.
+LaTeX Font Info:    Setting InriaSans-TLF sub-encoding to TS1/4 on input line 1
+1038.
+LaTeX Font Info:    Setting InriaSans-OsF sub-encoding to TS1/4 on input line 1
+1038.
+LaTeX Font Info:    Setting InriaSans-TOsF sub-encoding to TS1/4 on input line 
+11038.
+LaTeX Font Info:    Setting InriaSerif-LF sub-encoding to TS1/4 on input line 1
+1039.
+LaTeX Font Info:    Setting InriaSerif-TLF sub-encoding to TS1/4 on input line 
+11039.
+LaTeX Font Info:    Setting InriaSerif-OsF sub-encoding to TS1/4 on input line 
+11039.
+LaTeX Font Info:    Setting InriaSerif-TOsF sub-encoding to TS1/4 on input line
+ 11039.
+LaTeX Font Info:    Setting LibertinusSans-LF sub-encoding to TS1/4 on input li
+ne 11040.
+LaTeX Font Info:    Setting LibertinusSans-TLF sub-encoding to TS1/4 on input l
+ine 11040.
+LaTeX Font Info:    Setting LibertinusSans-OsF sub-encoding to TS1/4 on input l
+ine 11040.
+LaTeX Font Info:    Setting LibertinusSans-TOsF sub-encoding to TS1/4 on input 
+line 11040.
+LaTeX Font Info:    Setting LibertinusSerif-LF sub-encoding to TS1/4 on input l
+ine 11041.
+LaTeX Font Info:    Setting LibertinusSerif-TLF sub-encoding to TS1/4 on input 
+line 11041.
+LaTeX Font Info:    Setting LibertinusSerif-OsF sub-encoding to TS1/4 on input 
+line 11041.
+LaTeX Font Info:    Setting LibertinusSerif-TOsF sub-encoding to TS1/4 on input
+ line 11041.
+LaTeX Font Info:    Setting LibreBodoni-TLF sub-encoding to TS1/4 on input line
+ 11042.
+LaTeX Font Info:    Setting LibreFranklin-TLF sub-encoding to TS1/4 on input li
+ne 11043.
+LaTeX Font Info:    Setting LinguisticsPro-LF sub-encoding to TS1/4 on input li
+ne 11044.
+LaTeX Font Info:    Setting LinguisticsPro-OsF sub-encoding to TS1/4 on input l
+ine 11045.
+LaTeX Font Info:    Setting LinuxBiolinumT-LF sub-encoding to TS1/4 on input li
+ne 11046.
+LaTeX Font Info:    Setting LinuxBiolinumT-TLF sub-encoding to TS1/4 on input l
+ine 11046.
+LaTeX Font Info:    Setting LinuxBiolinumT-OsF sub-encoding to TS1/4 on input l
+ine 11046.
+LaTeX Font Info:    Setting LinuxBiolinumT-TOsF sub-encoding to TS1/4 on input 
+line 11046.
+LaTeX Font Info:    Setting LinuxLibertineT-LF sub-encoding to TS1/4 on input l
+ine 11047.
+LaTeX Font Info:    Setting LinuxLibertineT-TLF sub-encoding to TS1/4 on input 
+line 11047.
+LaTeX Font Info:    Setting LinuxLibertineT-OsF sub-encoding to TS1/4 on input 
+line 11047.
+LaTeX Font Info:    Setting LinuxLibertineT-TOsF sub-encoding to TS1/4 on input
+ line 11047.
+LaTeX Font Info:    Setting MerriweatherSans-OsF sub-encoding to TS1/4 on input
+ line 11048.
+LaTeX Font Info:    Setting MintSpirit-LF sub-encoding to TS1/4 on input line 1
+1049.
+LaTeX Font Info:    Setting MintSpirit-TLF sub-encoding to TS1/4 on input line 
+11049.
+LaTeX Font Info:    Setting MintSpirit-OsF sub-encoding to TS1/4 on input line 
+11049.
+LaTeX Font Info:    Setting MintSpirit-TOsF sub-encoding to TS1/4 on input line
+ 11049.
+LaTeX Font Info:    Setting MintSpiritNoTwo-LF sub-encoding to TS1/4 on input l
+ine 11050.
+LaTeX Font Info:    Setting MintSpiritNoTwo-TLF sub-encoding to TS1/4 on input 
+line 11050.
+LaTeX Font Info:    Setting MintSpiritNoTwo-OsF sub-encoding to TS1/4 on input 
+line 11050.
+LaTeX Font Info:    Setting MintSpiritNoTwo-TOsF sub-encoding to TS1/4 on input
+ line 11050.
+LaTeX Font Info:    Setting PTMono-TLF sub-encoding to TS1/4 on input line 1105
+1.
+LaTeX Font Info:    Setting PTSans-TLF sub-encoding to TS1/4 on input line 1105
+2.
+LaTeX Font Info:    Setting PTSansCaption-TLF sub-encoding to TS1/4 on input li
+ne 11053.
+LaTeX Font Info:    Setting PTSansNarrow-TLF sub-encoding to TS1/4 on input lin
+e 11054.
+LaTeX Font Info:    Setting PTSerif-TLF sub-encoding to TS1/4 on input line 110
+55.
+LaTeX Font Info:    Setting PTSerifCaption-TLF sub-encoding to TS1/4 on input l
+ine 11056.
+LaTeX Font Info:    Setting Raleway-TLF sub-encoding to TS1/4 on input line 110
+57.
+LaTeX Font Info:    Setting Raleway-TOsF sub-encoding to TS1/4 on input line 11
+058.
+LaTeX Font Info:    Setting Roboto-LF sub-encoding to TS1/4 on input line 11059
+.
+LaTeX Font Info:    Setting Roboto-TLF sub-encoding to TS1/4 on input line 1105
+9.
+LaTeX Font Info:    Setting Roboto-OsF sub-encoding to TS1/4 on input line 1105
+9.
+LaTeX Font Info:    Setting Roboto-TOsF sub-encoding to TS1/4 on input line 110
+59.
+LaTeX Font Info:    Setting RobotoMono-TLF sub-encoding to TS1/4 on input line 
+11060.
+LaTeX Font Info:    Setting RobotoSlab-TLF sub-encoding to TS1/4 on input line 
+11061.
+LaTeX Font Info:    Setting Rosario-LF sub-encoding to TS1/4 on input line 1106
+2.
+LaTeX Font Info:    Setting Rosario-TLF sub-encoding to TS1/4 on input line 110
+62.
+LaTeX Font Info:    Setting Rosario-OsF sub-encoding to TS1/4 on input line 110
+62.
+LaTeX Font Info:    Setting Rosario-TOsF sub-encoding to TS1/4 on input line 11
+062.
+LaTeX Font Info:    Setting SticksTooText-LF sub-encoding to TS1/4 on input lin
+e 11063.
+LaTeX Font Info:    Setting SticksTooText-TLF sub-encoding to TS1/4 on input li
+ne 11063.
+LaTeX Font Info:    Setting SticksTooText-OsF sub-encoding to TS1/4 on input li
+ne 11063.
+LaTeX Font Info:    Setting SticksTooText-TOsF sub-encoding to TS1/4 on input l
+ine 11063.
+LaTeX Font Info:    Setting UniversalisADFStd-LF sub-encoding to TS1/4 on input
+ line 11064.
+LaTeX Font Info:    Setting Almendra-OsF sub-encoding to TS1/5 on input line 11
+065.
+LaTeX Font Info:    Setting Baskervaldx-LF sub-encoding to TS1/5 on input line 
+11066.
+LaTeX Font Info:    Setting Baskervaldx-TLF sub-encoding to TS1/5 on input line
+ 11066.
+LaTeX Font Info:    Setting Baskervaldx-OsF sub-encoding to TS1/5 on input line
+ 11066.
+LaTeX Font Info:    Setting Baskervaldx-TOsF sub-encoding to TS1/5 on input lin
+e 11066.
+LaTeX Font Info:    Setting BaskervilleF-LF sub-encoding to TS1/5 on input line
+ 11067.
+LaTeX Font Info:    Setting BaskervilleF-TLF sub-encoding to TS1/5 on input lin
+e 11067.
+LaTeX Font Info:    Setting BaskervilleF-OsF sub-encoding to TS1/5 on input lin
+e 11067.
+LaTeX Font Info:    Setting BaskervilleF-TOsF sub-encoding to TS1/5 on input li
+ne 11067.
+LaTeX Font Info:    Setting Bitter-TLF sub-encoding to TS1/5 on input line 1106
+8.
+LaTeX Font Info:    Setting Cinzel-LF sub-encoding to TS1/5 on input line 11069
+.
+LaTeX Font Info:    Setting CinzelDecorative-LF sub-encoding to TS1/5 on input 
+line 11070.
+LaTeX Font Info:    Setting DejaVuSerif-TLF sub-encoding to TS1/5 on input line
+ 11071.
+LaTeX Font Info:    Setting DejaVuSerifCondensed-TLF sub-encoding to TS1/5 on i
+nput line 11072.
+LaTeX Font Info:    Setting GilliusADF-LF sub-encoding to TS1/5 on input line 1
+1073.
+LaTeX Font Info:    Setting GilliusADFCond-LF sub-encoding to TS1/5 on input li
+ne 11074.
+LaTeX Font Info:    Setting GilliusADFNoTwo-LF sub-encoding to TS1/5 on input l
+ine 11075.
+LaTeX Font Info:    Setting GilliusADFNoTwoCond-LF sub-encoding to TS1/5 on inp
+ut line 11076.
+LaTeX Font Info:    Setting LobsterTwo-LF sub-encoding to TS1/5 on input line 1
+1077.
+LaTeX Font Info:    Setting OldStandard-TLF sub-encoding to TS1/5 on input line
+ 11078.
+LaTeX Font Info:    Setting PlayfairDisplay-TLF sub-encoding to TS1/5 on input 
+line 11079.
+LaTeX Font Info:    Setting PlayfairDisplay-TOsF sub-encoding to TS1/5 on input
+ line 11080.
+LaTeX Font Info:    Setting TheanoDidot-TLF sub-encoding to TS1/5 on input line
+ 11081.
+LaTeX Font Info:    Setting TheanoDidot-TOsF sub-encoding to TS1/5 on input lin
+e 11082.
+LaTeX Font Info:    Setting TheanoModern-TLF sub-encoding to TS1/5 on input lin
+e 11083.
+LaTeX Font Info:    Setting TheanoModern-TOsF sub-encoding to TS1/5 on input li
+ne 11084.
+LaTeX Font Info:    Setting TheanoOldStyle-TLF sub-encoding to TS1/5 on input l
+ine 11085.
+LaTeX Font Info:    Setting TheanoOldStyle-TOsF sub-encoding to TS1/5 on input 
+line 11086.
+LaTeX Font Info:    Setting Crimson-TLF sub-encoding to TS1/6 on input line 110
+87.
+LaTeX Font Info:    Setting IBMPlexMono-TLF sub-encoding to TS1/6 on input line
+ 11088.
+LaTeX Font Info:    Setting IBMPlexSerif-TLF sub-encoding to TS1/6 on input lin
+e 11089.
+LaTeX Font Info:    Setting LibertinusMono-TLF sub-encoding to TS1/6 on input l
+ine 11090.
+LaTeX Font Info:    Setting LibertinusSerifDisplay-LF sub-encoding to TS1/6 on 
+input line 11091.
+LaTeX Font Info:    Setting LinuxLibertineDisplayT-LF sub-encoding to TS1/6 on 
+input line 11092.
+LaTeX Font Info:    Setting LinuxLibertineDisplayT-TLF sub-encoding to TS1/6 on
+ input line 11092.
+LaTeX Font Info:    Setting LinuxLibertineDisplayT-OsF sub-encoding to TS1/6 on
+ input line 11092.
+LaTeX Font Info:    Setting LinuxLibertineDisplayT-TOsF sub-encoding to TS1/6 o
+n input line 11092.
+LaTeX Font Info:    Setting LinuxLibertineMonoT-LF sub-encoding to TS1/6 on inp
+ut line 11093.
+LaTeX Font Info:    Setting LinuxLibertineMonoT-TLF sub-encoding to TS1/6 on in
+put line 11094.
+LaTeX Font Info:    Setting Overlock-LF sub-encoding to TS1/6 on input line 110
+95.
+LaTeX Font Info:    Setting CormorantGaramond-LF sub-encoding to TS1/7 on input
+ line 11096.
+LaTeX Font Info:    Setting CormorantGaramond-TLF sub-encoding to TS1/7 on inpu
+t line 11096.
+LaTeX Font Info:    Setting CormorantGaramond-OsF sub-encoding to TS1/7 on inpu
+t line 11096.
+LaTeX Font Info:    Setting CormorantGaramond-TOsF sub-encoding to TS1/7 on inp
+ut line 11096.
+LaTeX Font Info:    Setting Heuristica-TLF sub-encoding to TS1/7 on input line 
+11097.
+LaTeX Font Info:    Setting Heuristica-TOsF sub-encoding to TS1/7 on input line
+ 11098.
+LaTeX Font Info:    Setting IMFELLEnglish-TLF sub-encoding to TS1/7 on input li
+ne 11099.
+LaTeX Font Info:    Setting LibreBaskerville-TLF sub-encoding to TS1/7 on input
+ line 11100.
+LaTeX Font Info:    Setting LibreCaslon-LF sub-encoding to TS1/7 on input line 
+11101.
+LaTeX Font Info:    Setting LibreCaslon-TLF sub-encoding to TS1/7 on input line
+ 11101.
+LaTeX Font Info:    Setting LibreCaslon-OsF sub-encoding to TS1/7 on input line
+ 11101.
+LaTeX Font Info:    Setting LibreCaslon-TOsF sub-encoding to TS1/7 on input lin
+e 11101.
+LaTeX Font Info:    Setting Marcellus-LF sub-encoding to TS1/7 on input line 11
+102.
+LaTeX Font Info:    Setting NotoSans-LF sub-encoding to TS1/7 on input line 111
+03.
+LaTeX Font Info:    Setting NotoSans-TLF sub-encoding to TS1/7 on input line 11
+103.
+LaTeX Font Info:    Setting NotoSans-OsF sub-encoding to TS1/7 on input line 11
+103.
+LaTeX Font Info:    Setting NotoSans-TOsF sub-encoding to TS1/7 on input line 1
+1103.
+LaTeX Font Info:    Setting NotoSansMono-TLF sub-encoding to TS1/7 on input lin
+e 11104.
+LaTeX Font Info:    Setting NotoSansMono-TOsF sub-encoding to TS1/7 on input li
+ne 11105.
+LaTeX Font Info:    Setting NotoSerif-LF sub-encoding to TS1/7 on input line 11
+106.
+LaTeX Font Info:    Setting NotoSerif-TLF sub-encoding to TS1/7 on input line 1
+1106.
+LaTeX Font Info:    Setting NotoSerif-OsF sub-encoding to TS1/7 on input line 1
+1106.
+LaTeX Font Info:    Setting NotoSerif-TOsF sub-encoding to TS1/7 on input line 
+11106.
+LaTeX Font Info:    Setting Quattrocento-TLF sub-encoding to TS1/7 on input lin
+e 11107.
+LaTeX Font Info:    Setting QuattrocentoSans-TLF sub-encoding to TS1/7 on input
+ line 11108.
+LaTeX Font Info:    Setting XCharter-TLF sub-encoding to TS1/7 on input line 11
+109.
+LaTeX Font Info:    Setting XCharter-TOsF sub-encoding to TS1/7 on input line 1
+1110.
+LaTeX Font Info:    Setting erewhon-LF sub-encoding to TS1/7 on input line 1111
+1.
+LaTeX Font Info:    Setting erewhon-TLF sub-encoding to TS1/7 on input line 111
+11.
+LaTeX Font Info:    Setting erewhon-OsF sub-encoding to TS1/7 on input line 111
+11.
+LaTeX Font Info:    Setting erewhon-TOsF sub-encoding to TS1/7 on input line 11
+111.
+LaTeX Font Info:    Setting ComicNeue-TLF sub-encoding to TS1/7 on input line 1
+1112.
+LaTeX Font Info:    Setting ComicNeueAngular-TLF sub-encoding to TS1/7 on input
+ line 11113.
+LaTeX Font Info:    Setting Forum-LF sub-encoding to TS1/7 on input line 11114.
+
+LaTeX Font Info:    Setting Cochineal-LF sub-encoding to TS1/8 on input line 11
+115.
+LaTeX Font Info:    Setting Cochineal-TLF sub-encoding to TS1/8 on input line 1
+1115.
+LaTeX Font Info:    Setting Cochineal-OsF sub-encoding to TS1/8 on input line 1
+1115.
+LaTeX Font Info:    Setting Cochineal-TOsF sub-encoding to TS1/8 on input line 
+11115.
+LaTeX Font Info:    Setting AlgolRevived-TLF sub-encoding to TS1/9 on input lin
+e 11116.
+ page nos., x-ref, environments, center,
+\@rightskip=\skip28
+
+verbatim,
+\@verbvisiblespacebox=\box32
+ math definitions,
+\jot=\dimen52
+\interdisplaylinepenalty=\count129
+\rootbox=\box33
+LaTeX Info: Redefining \: on input line 11623.
+\c@equation=\count130
+\@eqcnt=\count131
+\@eqpen=\count132
+\@centering=\skip29
+\topsep=\skip30
+\partopsep=\skip31
+\itemsep=\skip32
+\parsep=\skip33
+\@topsep=\skip34
+\@topsepadd=\skip35
+\@outerparskip=\skip36
+\leftmargin=\dimen53
+\rightmargin=\dimen54
+\listparindent=\dimen55
+\itemindent=\dimen56
+\labelwidth=\dimen57
+\labelsep=\dimen58
+\linewidth=\dimen59
+\@totalleftmargin=\dimen60
+\leftmargini=\dimen61
+\leftmarginii=\dimen62
+\leftmarginiii=\dimen63
+\leftmarginiv=\dimen64
+\leftmarginv=\dimen65
+\leftmarginvi=\dimen66
+\@listdepth=\count133
+\@itempenalty=\count134
+\@beginparpenalty=\count135
+\@endparpenalty=\count136
+\@labels=\box34
+\par@deathcycles=\count137
+\@enumdepth=\count138
+\c@enumi=\count139
+\c@enumii=\count140
+\c@enumiii=\count141
+\c@enumiv=\count142
+\@itemdepth=\count143
+ boxes,
+\fboxrule=\dimen67
+\fboxsep=\dimen68
+\@mplistdepth=\count144
+\@mpfootins=\insert254
+LaTeX Info: Redefining \underline on input line 12272.
+\@gtempa=\dimen69
+\@gtempa=\dimen70
+\@gtempa=\dimen71
+\@gtempa=\dimen72
+\@gtempa=\dimen73
+\@gtempa=\dimen74
+\@gtempa=\dimen75
+\@gtempa=\dimen76
+\@gtempa=\dimen77
+\@gtempa=\dimen78
+\@gtempa=\dimen79
+\@gtempa=\dimen80
+\@gtempa=\dimen81
+\@gtempa=\dimen82
+\@nxttabmar=\count145
+\@curtabmar=\count146
+\@curtab=\count147
+\@hightab=\count148
+\@tabpush=\count149
+\@curline=\box35
+\@curfield=\box36
+\@tabfbox=\box37
+\tabbingsep=\dimen83
+\@chclass=\count150
+\@lastchclass=\count151
+\@chnum=\count152
+\arraycolsep=\dimen84
+\tabcolsep=\dimen85
+\arrayrulewidth=\dimen86
+\doublerulesep=\dimen87
+\@arstrutbox=\box38
+\@wholewidth=\dimen88
+\@halfwidth=\dimen89
+\unitlength=\dimen90
+\@picbox=\box39
+\@picht=\dimen91
+\@ovxx=\dimen92
+\@ovyy=\dimen93
+\@ovdx=\dimen94
+\@ovdy=\dimen95
+\@ovro=\dimen96
+\@ovri=\dimen97
+\@xarg=\count153
+\@yarg=\count154
+\@yyarg=\count155
+\@multicnt=\count156
+\@xdim=\dimen98
+\@ydim=\dimen99
+\@linechar=\box40
+\@linelen=\dimen100
+\@clnwd=\dimen101
+\@clnht=\dimen102
+\@dashdim=\dimen103
+\@dashbox=\box41
+\@dashcnt=\count157
+LaTeX Info: Command `\linethickness' is already robust on input line 13061.
+LaTeX Info: Command `\thinlines' is already robust on input line 13067.
+ title, sectioning,
+\@secpenalty=\count158
+\c@secnumdepth=\count159
+\c@tocdepth=\count160
+ contents, floats,
+\@floatpenalty=\count161
+
+footnotes,
+\footins=\insert253
+\c@footnote=\count162
+\c@mpfootnote=\count163
+\footnotesep=\dimen104
+ index, bibliography,
+\l__mark_box=\box42
+\pkgcls@targetdate=\count164
+\l_shipout_box=\box43
+\l__shipout_raw_box=\box44
+\l__shipout_firstpage_box=\box45
+\l_shipout_box_ht_dim=\dimen105
+\l_shipout_box_dp_dim=\dimen106
+\l_shipout_box_wd_dim=\dimen107
+\l_shipout_box_ht_plus_dp_dim=\dimen108
+\l__shipout_tmp_box=\box46
+\g_shipout_readonly_int=\count165
+\g_shipout_totalpages_int=\count166
+ output,
+\bx@A=\insert252
+\bx@B=\insert251
+\bx@C=\insert250
+\bx@D=\insert249
+\bx@E=\insert248
+\bx@F=\insert247
+\bx@G=\insert246
+\bx@H=\insert245
+\bx@I=\insert244
+\bx@J=\insert243
+\bx@K=\insert242
+\bx@L=\insert241
+\bx@M=\insert240
+\bx@N=\insert239
+\bx@O=\insert238
+\bx@P=\insert237
+\bx@Q=\insert236
+\bx@R=\insert235
+\bx@S=\insert234
+\bx@T=\insert233
+\bx@U=\insert232
+\bx@V=\insert231
+\bx@W=\insert230
+\bx@X=\insert229
+\bx@Y=\insert228
+\bx@Z=\insert227
+\bx@AA=\insert226
+\bx@BB=\insert225
+\bx@CC=\insert224
+\bx@DD=\insert223
+\bx@EE=\insert222
+\bx@FF=\insert221
+\bx@GG=\insert220
+\bx@HH=\insert219
+\bx@II=\insert218
+\bx@JJ=\insert217
+\bx@KK=\insert216
+\bx@LL=\insert215
+\bx@MM=\insert214
+\bx@NN=\insert213
+\bx@OO=\insert212
+\bx@PP=\insert211
+\bx@QQ=\insert210
+\bx@RR=\insert209
+\bx@SS=\insert208
+\bx@TT=\insert207
+\bx@UU=\insert206
+\bx@VV=\insert205
+\bx@WW=\insert204
+\bx@XX=\insert203
+\bx@YY=\insert202
+\bx@ZZ=\insert201
+\topmargin=\dimen109
+\oddsidemargin=\dimen110
+\evensidemargin=\dimen111
+\headheight=\dimen112
+\headsep=\dimen113
+\footskip=\dimen114
+\textheight=\dimen115
+\textwidth=\dimen116
+\columnwidth=\dimen117
+\columnsep=\dimen118
+\columnseprule=\dimen119
+\marginparwidth=\dimen120
+\marginparsep=\dimen121
+\marginparpush=\dimen122
+\@begindvibox=\box47
+\@maxdepth=\dimen123
+\paperheight=\dimen124
+\paperwidth=\dimen125
+\stockheight=\dimen126
+\stockwidth=\dimen127
+\col@number=\count167
+\@topnum=\count168
+\@toproom=\dimen128
+\@dbltopnum=\count169
+\@dbltoproom=\dimen129
+\@botnum=\count170
+\@botroom=\dimen130
+\@colnum=\count171
+\@textmin=\dimen131
+\@fpmin=\dimen132
+\@colht=\dimen133
+\@colroom=\dimen134
+\@pageht=\dimen135
+\@pagedp=\dimen136
+\@mparbottom=\dimen137
+\@currtype=\count172
+\@outputbox=\box48
+\@leftcolumn=\box49
+\@holdpg=\box50
+\@kludgeins=\insert200
+\@fpstype=\count173
+\@reqcolroom=\dimen138
+\@textfloatsheight=\dimen139
+\c@topnumber=\count174
+\c@bottomnumber=\count175
+\c@totalnumber=\count176
+\c@dbltopnumber=\count177
+\floatsep=\skip37
+\textfloatsep=\skip38
+\intextsep=\skip39
+\dblfloatsep=\skip40
+\dbltextfloatsep=\skip41
+\@fptop=\skip42
+\@fpsep=\skip43
+\@fpbot=\skip44
+\@dblfptop=\skip45
+\@dblfpsep=\skip46
+\@dblfpbot=\skip47
+\@lowpenalty=\count178
+\@medpenalty=\count179
+\@highpenalty=\count180
+\c__mark_class_2e-left_mark=\marks1
+\c__mark_class_2e-right_mark=\marks2
+\c__mark_class_2e-right-nonempty_mark=\marks3
+  Unicode character data,
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/unicode-data/load-unicode-data.tex 
+load-unicode-data.tex v1.16 (2022-09-17)
+Reading Unicode data
+# UnicodeData-15.0.0.txt
+# Modified 2022-09-17 11:45:00 GMT [JAW]
+)
+===========================================
+Local configuration file hyphen.cfg used
+===========================================
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/babel/hyphen.cfg
+File: hyphen.cfg 2023/05/11 v3.89 Babel hyphens
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/babel/xebabel.def)
+\l@english=\language0
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyphen/hyphen.tex)
+\l@usenglish=\language0
+\l@USenglish=\language0
+\l@american=\language0
+\l@dumylang=\language1
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyphen/dumyhyph.tex)
+\l@nohyphenation=\language2
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyphen/zerohyph.tex)
+\l@afrikaans=\language3
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-af.tex
+UTF-8 Afrikaans hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-af.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-af.tex))
+\l@ancientgreek=\language4
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-grc.tex
+UTF-8 Hyphenation patterns for Ancient Greek
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-grc.tex))
+\l@ibycus=\language5
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyphen/ibyhyph.tex
+Greek hyphenation patterns for Ibycus encoding, v3.0)
+\l@arabic=\language6
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyphen/zerohyph.tex)
+\l@armenian=\language7
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hy.tex
+UTF-8 Armenian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-hy.tex))
+\l@basque=\language8
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-eu.tex
+UTF-8 Basque hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-eu.tex))
+\l@belarusian=\language9
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-be.tex
+UTF-8 Belarusian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-be.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-be.tex))
+\l@bulgarian=\language10
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-bg.tex
+UTF-8 Bulgarian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-bg.tex
+Bulgarian hyphenation patterns (options: --safe-morphology --standalone-tex, ve
+rsion 21 October 2017)))
+\l@catalan=\language11
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ca.tex
+UTF-8 Catalan hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-ca.tex))
+\l@pinyin=\language12
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-zh-latn-pinyin.tex
+UTF-8 Pinyin Hyphenation Patterns (with tone markers) 2018-11-25 (WL)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-zh-latn-pinyin.tex))
+\l@churchslavonic=\language13
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-cu.tex
+UTF-8 Church Slavonic hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-cu.tex))
+\l@coptic=\language14
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-cop.tex
+UTF-8 Coptic hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-cop.tex))
+\l@croatian=\language15
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hr.tex
+UTF-8 Croatian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-hr.tex))
+\l@czech=\language16
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-cs.tex
+UTF-8 Czech hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-cs.tex))
+\l@danish=\language17
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-da.tex
+UTF-8 Danish hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-da.tex))
+\l@dutch=\language18
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-nl.tex
+UTF-8 Dutch hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-nl.tex))
+\l@ukenglish=\language19
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-en-gb.tex
+ASCII Hyphenation patterns for British English
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-en-gb.tex))
+\l@british=\language19
+\l@UKenglish=\language19
+\l@usenglishmax=\language20
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-en-us.tex
+ASCII Hyphenation patterns for American English
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-en-us.tex))
+\l@esperanto=\language21
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-eo.tex
+UTF-8 Esperanto hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-eo.tex))
+\l@estonian=\language22
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-et.tex
+UTF-8 Estonian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-et.tex))
+\l@ethiopic=\language23
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mul-ethi.tex
+UTF-8 Pan-Ethiopic hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-mul-ethi.tex))
+\l@amharic=\language23
+\l@geez=\language23
+\l@farsi=\language24
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyphen/zerohyph.tex)
+\l@persian=\language24
+\l@finnish=\language25
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fi.tex
+UTF-8 Finnish hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-fi.tex))
+\l@schoolfinnish=\language26
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fi-x-school.tex
+UTF-8 Finnish hyphenation patterns for school
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-fi-x-school.tex))
+\l@french=\language27
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fr.tex
+UTF-8 French hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-fr.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-fr.tex))
+\l@patois=\language27
+\l@francais=\language27
+\l@friulan=\language28
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-fur.tex
+UTF-8 Friulan hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-fur.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-fur.tex))
+\l@galician=\language29
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-gl.tex
+UTF-8 Galician hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-gl.tex))
+\l@georgian=\language30
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ka.tex
+UTF-8 Georgian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-ka.tex))
+\l@german=\language31
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-de-1901.tex
+UTF-8 German hyphenation patterns (traditional orthography)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-de-1901.tex
+German Hyphenation Patterns (Traditional Orthography) `dehypht-x' 2021-02-26 (W
+L)))
+\l@ngerman=\language32
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-de-1996.tex
+UTF-8 German hyphenation patterns (reformed orthography)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-de-1996.tex
+German Hyphenation Patterns (Reformed Orthography, 2006) `dehyphn-x' 2021-02-26
+ (WL)))
+\l@swissgerman=\language33
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-de-ch-1901.tex
+UTF-8 Swiss-German hyphenation patterns (traditional orthography)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-de-ch-1901.tex
+Swiss-German Hyphenation Patterns (Traditional Orthography) `dehyphts-x' 2021-0
+2-26 (WL)))
+\l@greek=\language34
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-el-polyton.tex
+UTF-8 Hyphenation patterns for multi-accent (polytonic) Modern Greek
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-el-polyton.tex))
+\l@polygreek=\language34
+\l@monogreek=\language35
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-el-monoton.tex
+UTF-8 Hyphenation patterns for uni-accent (monotonic) Modern Greek
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-el-monoton.tex))
+\l@hungarian=\language36
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hu.tex
+UTF-8 Hungarian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-hu.tex))
+\l@icelandic=\language37
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-is.tex
+UTF-8 Icelandic hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-is.tex))
+\l@assamese=\language38
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-as.tex
+UTF-8 Assamese hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-as.tex))
+\l@bengali=\language39
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-bn.tex
+UTF-8 Bengali hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-bn.tex))
+\l@gujarati=\language40
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-gu.tex
+UTF-8 Gujarati hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-gu.tex))
+\l@hindi=\language41
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hi.tex
+UTF-8 Hindi hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-hi.tex))
+\l@kannada=\language42
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-kn.tex
+UTF-8 Kannada hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-kn.tex))
+\l@malayalam=\language43
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ml.tex
+UTF-8 Malayalam hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-ml.tex))
+\l@marathi=\language44
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mr.tex
+UTF-8 Marathi hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-mr.tex))
+\l@oriya=\language45
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-or.tex
+UTF-8 Oriya hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-or.tex))
+\l@pali=\language46
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pi.tex
+UTF-8 Pali hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-pi.tex))
+\l@panjabi=\language47
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pa.tex
+UTF-8 Panjabi hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-pa.tex))
+\l@tamil=\language48
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ta.tex
+UTF-8 Tamil hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-ta.tex))
+\l@telugu=\language49
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-te.tex
+UTF-8 Telugu hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-te.tex))
+\l@indonesian=\language50
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-id.tex
+ASCII Indonesian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-id.tex))
+\l@interlingua=\language51
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ia.tex
+ASCII Hyphenation patterns for Interlingua
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-ia.tex))
+\l@irish=\language52
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ga.tex
+UTF-8 Irish hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-ga.tex))
+\l@italian=\language53
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-it.tex
+UTF-8 Italian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-it.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-it.tex))
+\l@kurmanji=\language54
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-kmr.tex
+UTF-8 Kurmanji hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-kmr.tex))
+\l@classiclatin=\language55
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-la-x-classic.tex
+UTF-8 Classical Latin hyphenation patterns, v.2.0 2019-07-03
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-la-x-classic.tex))
+\l@latin=\language56
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-la.tex
+UTF-8 Latin hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-la.tex))
+\l@liturgicallatin=\language57
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-la-x-liturgic.tex
+UTF-8 Liturgical Latin hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-la-x-liturgic.tex))
+\l@latvian=\language58
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-lv.tex
+UTF-8 Latvian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-lv.tex))
+\l@lithuanian=\language59
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-lt.tex
+UTF-8 Lithuanian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-lt.tex))
+\l@macedonian=\language60
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mk.tex
+UTF-8 Macedonian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-mk.tex))
+\l@mongolian=\language61
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mn-cyrl.tex
+UTF-8 (New) Mongolian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-mn-cyrl.tex))
+\l@mongolianlmc=\language62
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mn-cyrl-x-lmc.tex
+UTF-8 Mongolian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-mn-cyrl-x-lmc.tex))
+\l@bokmal=\language63
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-nb.tex
+UTF-8 Norwegian Bokmal hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-nb.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-no.tex)))
+\l@norwegian=\language63
+\l@norsk=\language63
+\l@nynorsk=\language64
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-nn.tex
+UTF-8 Norwegian Nynorsk hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-nn.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-no.tex)))
+\l@occitan=\language65
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-oc.tex
+UTF-8 Occitan hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-oc.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-oc.tex))
+\l@piedmontese=\language66
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pms.tex
+UTF-8 Piedmontese hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-pms.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-pms.tex))
+\l@polish=\language67
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pl.tex
+UTF-8 Polish hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-pl.tex))
+\l@portuguese=\language68
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pt.tex
+UTF-8 Portuguese hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-pt.tex))
+\l@portuges=\language68
+\l@romanian=\language69
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ro.tex
+UTF-8 Romanian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-ro.tex))
+\l@romansh=\language70
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-rm.tex
+UTF-8 Romansh hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-rm.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-rm.tex))
+\l@russian=\language71
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ru.tex
+UTF-8 Russian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-ru.tex))
+\l@sanskrit=\language72
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sa.tex
+UTF-8 Sanskrit hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-sa.tex))
+\l@serbian=\language73
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sr-latn.tex
+UTF-8 Serbian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-sh-latn.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-sh-cyrl.tex))
+\l@serbianc=\language74
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sr-cyrl.tex
+UTF-8 Serbian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-sh-latn.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-sh-cyrl.tex))
+\l@slovak=\language75
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sk.tex
+UTF-8 Slovak hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-sk.tex))
+\l@slovenian=\language76
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sl.tex
+UTF-8 Slovenian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-sl.tex))
+\l@slovene=\language76
+\l@spanish=\language77
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-es.tex
+UTF-8 Spanish hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-es.tex))
+\l@espanol=\language77
+\l@swedish=\language78
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sv.tex
+UTF-8 Swedish hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-sv.tex))
+\l@thai=\language79
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-th.tex
+UTF-8 Thai hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-th.tex))
+\l@turkish=\language80
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-tr.tex
+UTF-8 Turkish hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-tr.tex))
+\l@turkmen=\language81
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-tk.tex
+UTF-8 Turkmen hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-tk.tex))
+\l@ukrainian=\language82
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-uk.tex
+UTF-8 Ukrainian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-uk.tex)
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-uk.tex))
+\l@uppersorbian=\language83
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hsb.tex
+UTF-8 Upper Sorbian hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-hsb.tex))
+\l@welsh=\language84
+
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-cy.tex
+UTF-8 Welsh hyphenation patterns
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-cy.tex)))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
+xmf-dist/tex/latex/firstaid/latex2e-first-aid-for-external-files.ltx
+File: latex2e-first-aid-for-external-files.ltx 2022/10/29 v1.0u LaTeX kernel fi
+xes to external files and packages
+)
+ ) )
+Beginning to dump on file xelatex.fmt
+ (preloaded format=xelatex 2023.6.2)
+88812 strings of total length 467153
+1843702 memory locations dumped; current usage is 302&346236
+20323 multiletter control sequences
+\font\nullfont=nullfont
+\font\c__fp_exp_intarray=cmr10 at 0.00002pt
+\font\c__fp_trig_intarray=cmr10 at 0.00003pt
+\font\c_initex_cctab=cmr10 at 0.00005pt
+\font\c_other_cctab=cmr10 at 0.00006pt
+\font\c_str_cctab=cmr10 at 0.00008pt
+\font\g__regex_state_active_intarray=cmr10 at 0.00009pt
+\font\g__regex_thread_info_intarray=cmr10 at 0.0001pt
+\font\g__regex_submatch_prev_intarray=cmr10 at 0.00012pt
+\font\g__regex_submatch_begin_intarray=cmr10 at 0.00014pt
+\font\g__regex_submatch_end_intarray=cmr10 at 0.00015pt
+\font\g__regex_submatch_case_intarray=cmr10 at 0.00017pt
+\font\g__regex_balance_intarray=cmr10 at 0.00018pt
+\font\g__codepoint_uppercase_index_intarray=cmr10 at 0.0002pt
+\font\g__codepoint_lowercase_index_intarray=cmr10 at 0.00021pt
+\font\g__codepoint_uppercase_blocks_intarray=cmr10 at 0.00023pt
+\font\g__codepoint_lowercase_blocks_intarray=cmr10 at 0.00024pt
+\font\OMX/cmex/m/n/10=cmex10
+\font\tenln=line10
+\font\tenlnw=linew10
+\font\tencirc=lcircle10
+\font\tencircw=lcirclew10
+\font\OT1/cmr/m/n/5=cmr5
+\font\OT1/cmr/m/n/7=cmr7
+\font\OT1/cmr/m/n/10=cmr10
+\font\OML/cmm/m/it/5=cmmi5
+\font\OML/cmm/m/it/7=cmmi7
+\font\OML/cmm/m/it/10=cmmi10
+\font\OMS/cmsy/m/n/5=cmsy5
+\font\OMS/cmsy/m/n/7=cmsy7
+\font\OMS/cmsy/m/n/10=cmsy10
+\font\c_code_cctab=cmr10 at 0.00026pt
+\font\c_document_cctab=cmr10 at 0.00027pt
+512280 words of font info for 32 preloaded fonts
+1348 hyphenation exceptions
+Hyphenation trie of length 496716 has 8663 ops out of 35111
+  143 for language 84
+  110 for language 83
+  138 for language 82
+  7 for language 81
+  12 for language 80
+  53 for language 79
+  127 for language 78
+  195 for language 77
+  71 for language 76
+  248 for language 75
+  66 for language 74
+  66 for language 73
+  15 for language 72
+  119 for language 71
+  43 for language 70
+  58 for language 69
+  7 for language 68
+  194 for language 67
+  37 for language 66
+  23 for language 65
+  852 for language 64
+  852 for language 63
+  21 for language 62
+  38 for language 61
+  38 for language 60
+  77 for language 59
+  58 for language 58
+  206 for language 57
+  25 for language 56
+  316 for language 55
+  27 for language 54
+  37 for language 53
+  229 for language 52
+  38 for language 51
+  21 for language 50
+  6 for language 49
+  7 for language 48
+  6 for language 47
+  12 for language 46
+  6 for language 45
+  6 for language 44
+  8 for language 43
+  6 for language 42
+  6 for language 41
+  6 for language 40
+  6 for language 39
+  6 for language 38
+  147 for language 37
+  185 for language 36
+  20 for language 35
+  44 for language 34
+  420 for language 33
+  424 for language 32
+  432 for language 31
+  39 for language 30
+  76 for language 29
+  40 for language 28
+  89 for language 27
+  6 for language 26
+  31 for language 25
+  3 for language 23
+  113 for language 22
+  145 for language 21
+  377 for language 20
+  224 for language 19
+  265 for language 18
+  60 for language 17
+  63 for language 16
+  19 for language 15
+  15 for language 14
+  111 for language 13
+  3 for language 12
+  21 for language 11
+  54 for language 10
+  36 for language 9
+  5 for language 8
+  2 for language 7
+  148 for language 5
+  78 for language 4
+  137 for language 3
+  2 for language 1
+  181 for language 0
+No pages of output.
+# actual command line used during this run
+# xetex -ini   -jobname=xelatex -progname=xelatex -etex xelatex.ini </dev/null

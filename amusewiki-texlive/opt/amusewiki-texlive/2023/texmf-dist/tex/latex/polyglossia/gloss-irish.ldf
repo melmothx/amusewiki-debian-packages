@@ -1,0 +1,10 @@
+% Language definition file (part of polyglossia v1.62 -- 2023/04/22)
+%
+\ProvidesFile{gloss-irish.ldf}[polyglossia: module for Irish]
+
+% We only provide this gloss for babel compatibility. Since irish is 
+% a gaelic variety, we use 'gaelic' with variant 'irish' now.
+
+\xpg@load@master@language{gaelic}
+
+\endinput

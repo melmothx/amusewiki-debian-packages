@@ -1,0 +1,50 @@
+name metafont
+category Package
+revision 66186
+shortdesc A system for specifying fonts
+longdesc The program takes a programmatic specification of a font, and
+longdesc produces a bitmap font (whose properties are defined by a set
+longdesc of parameters of the target device), and metrics for use by
+longdesc TeX. The bitmap output may be converted into a format directly
+longdesc usable by a device driver, etc., by the tools provided in the
+longdesc parallel mfware distribution. Third parties have developed
+longdesc tools to convert the bitmap output to outline fonts. The
+longdesc distribution includes the source of Knuth's Metafont book; this
+longdesc source is there to read, as an example of writing TeX -- it
+longdesc should not be processed without Knuth's direct permission. The
+longdesc mailing list tex-fonts@math.utah.edu is the best for general
+longdesc discussion of Metafont usage; the tex-k@tug.org list is best
+longdesc for bug reports about building the software, etc.
+depend kpathsea
+depend metafont.ARCH
+depend modes
+execute AddFormat name=mf engine=mf-nowin           options="-translate-file=cp227.tcx mf.ini"           fmttriggers=modes
+containersize 8824
+containerchecksum 2ba715c32631b3ce24aba65e7e1df90a7beabc52b855f5e81cd383f94399e439a344f8a8a21f38648d34d546ca8f1890a74922836557cae5cd05ac945013d71e
+doccontainersize 53096
+doccontainerchecksum 48b1def32bfba5ab1123712fe41d69f979e33a77456801c21f030de8a39b37fcae179db44a517d7b194d7e6e6eb93d770e179ca49db9014cd433c86ef91b07d0
+docfiles size=36
+ texmf-dist/doc/man/man1/inimf.1
+ texmf-dist/doc/man/man1/inimf.man1.pdf
+ texmf-dist/doc/man/man1/mf-nowin.1
+ texmf-dist/doc/man/man1/mf-nowin.man1.pdf
+ texmf-dist/doc/man/man1/mf.1
+ texmf-dist/doc/man/man1/mf.man1.pdf
+runfiles size=13
+ texmf-dist/metafont/base/mf.mf
+ texmf-dist/metafont/base/plain.mf
+ texmf-dist/metafont/config/cmmf.ini
+ texmf-dist/metafont/config/mf.ini
+ texmf-dist/metafont/misc/mode2dpi.mf
+ texmf-dist/metafont/misc/mode2dpixy.mf
+ texmf-dist/metafont/misc/modename.mf
+ texmf-dist/metafont/misc/ps2mfbas.mf
+catalogue-alias mf
+catalogue-also metapost
+catalogue-contact-bugs https://lists.tug.org/tex-k
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
+catalogue-contact-support https://lists.tug.org/tex-k
+catalogue-ctan /systems/knuth/dist/mf
+catalogue-license knuth
+catalogue-topics font-devel font-proc
+catalogue-version 2.71828182

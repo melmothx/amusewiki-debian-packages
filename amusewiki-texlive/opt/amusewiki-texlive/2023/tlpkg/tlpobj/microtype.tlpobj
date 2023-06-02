@@ -1,0 +1,72 @@
+name microtype
+category Package
+revision 66587
+shortdesc Subliminal refinements towards typographical perfection
+longdesc The package provides a LaTeX interface to the micro-typographic
+longdesc extensions that were introduced by pdfTeX and have since also
+longdesc propagated to XeTeX and LuaTeX: most prominently, character
+longdesc protrusion and font expansion, furthermore the adjustment of
+longdesc interword spacing and additional kerning, as well as
+longdesc hyphenatable letterspacing (tracking) and the possibility to
+longdesc disable all or selected ligatures. These features may be
+longdesc applied to customisable sets of fonts, and all
+longdesc micro-typographic aspects of the fonts can be configured in a
+longdesc straight-forward and flexible way. Settings for various fonts
+longdesc are provided. Note that character protrusion requires pdfTeX,
+longdesc LuaTeX, or XeTeX. Font expansion works with pdfTeX or LuaTeX.
+longdesc The package will by default enable protrusion and expansion if
+longdesc they can safely be assumed to work. Disabling ligatures
+longdesc requires pdfTeX or LuaTeX, while the adjustment of interword
+longdesc spacing and of kerning only works with pdfTeX. Letterspacing is
+longdesc available with pdfTeX or LuaTeX. The alternative package
+longdesc 'letterspace', which also works with plain TeX, provides the
+longdesc user commands for letterspacing only, omitting support for all
+longdesc other extensions.
+containersize 57304
+containerchecksum c80e6bb2c13432ecae2be22622e3bbfe82342ca138f61870cb8f3c2d7ec93f431bee5ae0a9619d4ad6a842b0752ecb73131452d6ac5c5fba7732ad4d5c979fa6
+doccontainersize 2625520
+doccontainerchecksum 6f7eb5d18fc2864c0bff52f7af82b3284766cef64d2ba8f4aa9f2f6d26af3e47e3be9d486f29e646e92ca597cc1129dacb5d1c03dbe155503ae046e4badbecf7
+docfiles size=689
+ texmf-dist/doc/latex/microtype/README.md details="Package README"
+ texmf-dist/doc/latex/microtype/microtype-code.pdf details="Implementation details"
+ texmf-dist/doc/latex/microtype/microtype.pdf details="User manual"
+ texmf-dist/doc/latex/microtype/test-microtype.tex
+srccontainersize 173376
+srccontainerchecksum 77d5f0e22a97ac0291e891df206618460a2672fc36c79a91db2b5212092d65acb0e1cbe0ecf82e0a31704baef207a48f817b5fa65abc4d6e6c031acdd85ed602
+runfiles size=128
+ texmf-dist/tex/latex/microtype/letterspace.sty
+ texmf-dist/tex/latex/microtype/microtype-luatex.def
+ texmf-dist/tex/latex/microtype/microtype-pdftex.def
+ texmf-dist/tex/latex/microtype/microtype-show.sty
+ texmf-dist/tex/latex/microtype/microtype-xetex.def
+ texmf-dist/tex/latex/microtype/microtype.cfg
+ texmf-dist/tex/latex/microtype/microtype.lua
+ texmf-dist/tex/latex/microtype/microtype.sty
+ texmf-dist/tex/latex/microtype/mt-CharisSIL.cfg
+ texmf-dist/tex/latex/microtype/mt-EBGaramond.cfg
+ texmf-dist/tex/latex/microtype/mt-LatinModernRoman.cfg
+ texmf-dist/tex/latex/microtype/mt-NewComputerModern.cfg
+ texmf-dist/tex/latex/microtype/mt-Palatino.cfg
+ texmf-dist/tex/latex/microtype/mt-TU-basic.cfg
+ texmf-dist/tex/latex/microtype/mt-TU-empty.cfg
+ texmf-dist/tex/latex/microtype/mt-bch.cfg
+ texmf-dist/tex/latex/microtype/mt-blg.cfg
+ texmf-dist/tex/latex/microtype/mt-cmr.cfg
+ texmf-dist/tex/latex/microtype/mt-euf.cfg
+ texmf-dist/tex/latex/microtype/mt-eur.cfg
+ texmf-dist/tex/latex/microtype/mt-eus.cfg
+ texmf-dist/tex/latex/microtype/mt-msa.cfg
+ texmf-dist/tex/latex/microtype/mt-msb.cfg
+ texmf-dist/tex/latex/microtype/mt-mvs.cfg
+ texmf-dist/tex/latex/microtype/mt-pmn.cfg
+ texmf-dist/tex/latex/microtype/mt-ppl.cfg
+ texmf-dist/tex/latex/microtype/mt-ptm.cfg
+ texmf-dist/tex/latex/microtype/mt-ugm.cfg
+ texmf-dist/tex/latex/microtype/mt-zpeu.cfg
+catalogue-also pdfcprot
+catalogue-contact-bugs https://github.com/schlcht/microtype/issues
+catalogue-contact-repository https://github.com/schlcht/microtype/
+catalogue-ctan /macros/latex/contrib/microtype
+catalogue-license lppl1.3c
+catalogue-topics micro-layout letterspace
+catalogue-version 3.1a

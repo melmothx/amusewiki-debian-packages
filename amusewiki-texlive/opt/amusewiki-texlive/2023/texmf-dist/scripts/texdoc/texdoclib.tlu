@@ -1,0 +1,37 @@
+-- texdoclib.tlu: the texdoc library
+
+--[[
+Copyright 2008-2023 Manuel Pégourié-Gonnard, Takuto Asakura, the TeX Live Team.
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+
+Previous work in the public domain:
+- Contributions from Reinhard Kotucha (2008).
+- First texlua versions by Frank Küster (2007).
+- Original shell script by Thomas Esser, David Aspinall, and Simon Wilkinson.
+--]]
+
+local texdoc = {
+    const = require('texdoclib-const'),
+    util = require('texdoclib-util'),
+    alias = require('texdoclib-alias'),
+    score = require('texdoclib-score'),
+    config = require('texdoclib-config'),
+    search = require('texdoclib-search'),
+    view = require('texdoclib-view'),
+    cli = require('texdoclib-cli'),
+}
+
+return texdoc
+
+-- vim: ft=lua:

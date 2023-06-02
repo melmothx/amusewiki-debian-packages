@@ -1,0 +1,189 @@
+% Test fixes for the LGR font encoding
+\documentclass[a4paper,oneside]{book}
+
+\pagestyle{headings}
+
+\usepackage[LGR,T1]{fontenc}
+\usepackage{lmodern}
+
+% Play with the modifiers and watch the effects:
+\newcommand*{\greeklanguagespecifier}{%
+  % greek%
+  greek.local-LGR-fixes%
+  % greek.no-LGR-fixes%
+}
+
+\usepackage[\greeklanguagespecifier,english]{babel}
+
+% hyperref and makeindex both have special requirements for \@roman & \@Roman
+\usepackage{hyperref}
+\hypersetup{unicode, colorlinks=true,linkcolor=blue,urlcolor=blue}
+\usepackage{makeidx}
+\makeindex
+
+
+\begin{document}
+
+% Pagenumbering uses Roman numerals in the front matter for "book" class
+\frontmatter
+
+\tableofcontents
+% Check Roman page numbers!
+
+\chapter{Preface \label{ch:preface}}
+
+This document tests workarounds for the non-standard LGR Greek text font
+encoding for \emph{necessity}, \emph{effects}, and \emph{side-effects}.
+
+The ideal result would be that all Roman numerals came out as expeced
+and the Index would contain two entries.
+
+The new language attributes \texttt{local-LGR-fixes} and
+\texttt{no-LGR-fixes} provide a tradeoff: limiting the work-arounds to local
+scope or skipping them completely helps with the index but breaks some of
+the Roman numbers. This can help in documents using only small Greek text
+parts. In the current compilation, Babel is called with the
+\texttt{\greeklanguagespecifier} and \texttt{english} options.
+
+In this document, English text in Greek text parts is not protected against
+the Greek transliteration (deliberately, to show clearly where Greek is the
+active language). See the source \texttt{*.tex} file for the English
+original.
+
+\begin{enumerate}
+  \item Problem
+  \begin{enumerate}
+    \item Roman numerals require Latin characters.
+    \item Alphabetic counters use Latin characters, too.
+    \item
+      In document parts using the LGR font encoding, this leads to errors.
+    \begin{enumerate}
+      \item While an ``i'' is still recognizable after conversion to a
+            small Iota, a ``v'', say, becomes an invisible no-break space.
+      \item The transliteration of ``a) b) c) d) e) f) g)''
+            leads to strange results, too.%
+	    \label{item with roman number}
+    \end{enumerate}
+  \end{enumerate}
+  \item Solution for (a): wrapping roman numbers in \verb|\ensureascii|.
+  \begin{enumerate}
+    \item However, some numbers, e.g. page numbers are auto-generated
+          at ``unpredictible'' places.
+          Other are used at places ``inaccessible'' to the author (e.g. the
+          page number of a Greek chapter in the ToC).
+
+          → Re-define counter-formatting functions to make them LGR-proof.
+
+    \item Moving arguments complicate the matter.
+    \begin{enumerate}
+      \item The proofing must be robust (to some degree) to fix, e.g.,
+            a Roman page number of a Greek chapter in the ToC.
+      \item The proofing must be global to work reliably.
+    \end{enumerate}
+  \end{enumerate}
+  \item Side-effect: the proofing makes Makeindex fail if there are
+        index entries on pages with Roman numbering.
+
+	\index{makeindex-problem}
+        Makeindex expects ``pagenumbers'' to be simple text strings, without
+	font encoding change or similar. Cf.
+	\href{https://github.com/latex3/babel/issues/170}{Babel issue~\#170}.
+
+\end{enumerate}
+
+
+\selectlanguage{greek}
+\chapter{Προλογος \label{ch:prologos}}
+
+\begin{enumerate}
+  \item Problem
+  \begin{enumerate}
+    \item Roman numerals require Latin characters.
+    \item Alphabetic counters use Latin characters, too.
+    \item
+      In document parts using the LGR font encoding, this leads to errors.
+    \begin{enumerate}
+      \item While an ``i'' is still recognizable after conversion to a
+            small Iota, a ``v'', say, becomes an invisible no-break space.
+	    \index{invisible-v-problem}
+      \item A transliteration of ``a) b) c) d) e) f) g)''
+            leads to strange results, too.%
+	    \label{item with roman number greek}
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+% \newpage
+% Second page of the Greek preface.
+
+\selectlanguage{english}
+
+
+\mainmatter
+
+\chapter{First Chapter \label{ch:1}}
+
+\section{Page references}
+
+The ``preface'' is at page \pageref{ch:preface}.
+The ``\ensuregreek{prologos}'' is at page \pageref{ch:prologos}.
+
+\section{Page references from a Greek text part}
+
+\selectlanguage{greek}
+
+Ο ''\ensureascii{preface}'' βρίσκεται στη σελίδα
+ \pageref{ch:preface}.
+Ο ``πρόλογος'' βρίσκεται στη σελίδα \pageref{ch:prologos}.
+
+\selectlanguage{english}
+
+\begin{itemize}
+\item With ``local-LGR-fixes'', the page number of the \ensuregreek{Προλογος}
+      comes out wrong.
+\item Authors can fix it by wrapping the \verb|\pageref| function.
+      However, a change of the the default ``LGR fix scope'' to ``local''
+      may break existing documents.
+\end{itemize}
+
+
+\section{References to items in an enumeration}
+
+See item \ref{item with roman number} in an English list.
+See item \ref{item with roman number greek} in a Greek list.
+
+\section{References to items in an enumeration from a Greek text part}
+
+\selectlanguage{greek}
+
+See item \ref{item with roman number} in an English list.
+See item \ref{item with roman number greek} in a Greek list.
+
+\selectlanguage{english}
+
+\begin{itemize}
+\item The ``alph'' counter in the ``English'' list comes out wrong.
+      (This is also the behaviour in previous versions of babel-greek.)
+\item Authors must treat references to non-Greek text parts similar to
+      non-Greek words and abbreviations (wrap in \verb|\ensureascii|).
+\end{itemize}
+
+\section{The Index}
+
+The next page should show an Index with 2 entries
+(see \texttt{test-lgr-fixes.idx}).
+
+\begin{itemize}
+\item With global LGR fixes, no index entry is printed (both are rejected by
+      \texttt{makeindex} because of the font encoding change command
+      preceding the page number.
+\item With ``local-LGR-fixes'', only ``makeindex-problem'' is rejected.
+      (The pagenumber is generated when the \verb|\chapter| command starts
+      the \ensuregreek{Prologos} on a new page. At this point, the active
+      language is Greek and the font encoding LGR.)
+\end{itemize}
+
+\backmatter
+\printindex
+
+\end{document}

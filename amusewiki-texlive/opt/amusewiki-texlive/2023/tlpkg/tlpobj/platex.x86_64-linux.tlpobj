@@ -1,0 +1,9 @@
+name platex.x86_64-linux
+category Package
+revision 66079
+shortdesc x86_64-linux files of platex
+containersize 344
+containerchecksum b06a3d7a54970d4ac40c4d04bcadbf2a408ab941136a6bcc96f5504c281922edec0da36808c6ce49320d57dccf419aca3b119f0b021d873b0e85b2648965a189
+binfiles arch=x86_64-linux size=2
+ bin/x86_64-linux/platex
+ bin/x86_64-linux/platex-dev

@@ -1,0 +1,72 @@
+\documentclass[a4paper]{article}
+\usepackage{ifthen}
+\usepackage[LGR,T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{longtable,ltcaption,array}
+\usepackage[textwidth=14cm]{geometry} % to fit the number table
+\setlength{\extrarowheight}{2pt}
+\usepackage{parskip}
+
+\ifdefined \UnicodeEncodingName
+  \usepackage{fontspec}
+  % \setmainfont{Linux Libertine O} % no GREEK ACROPHONIC ATTIC numbers
+  % \setmainfont{Liberation Serif}  % no GREEK ACROPHONIC ATTIC numbers
+  \setmainfont{FreeSerif}
+\else
+  \usepackage{lmodern}
+\fi
+
+
+\usepackage{textalpha}
+\usepackage{athnum}
+
+\begin{document}
+\title{Test Attic numerals}
+\author{Günter Milde}
+\date{2022/12/08}
+\maketitle
+
+The Greek font encoding is \greekfontencoding.\footnote{
+  Since version 2.0 you can use \emph{athnum} also without
+  \emph{babel-greek} and with Unicode fonts (if they support the
+  ``Greek acrophonic attic'' number symbols for 50, 500, and 5000).}
+
+\begin{tabular}{rrrrrrrrr}
+\toprule
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\athnum{1} & \athnum{2} & \athnum{3} & \athnum{4} &
+\athnum{5} & \athnum{6} & \athnum{7} & \athnum{8} & \athnum{9} \\
+
+10 & 20 & 30 & 40 & 50 & 60 & 70 & 80 & 90 \\
+\athnum{10} & \athnum{20} & \athnum{30} & \athnum{40} &
+\athnum{50} & \athnum{60} & \athnum{70} & \athnum{80} & \athnum{90} \\
+
+100 & 200 & 300 & 400 & 500 & 600 & 700 & 800 & 900 \\
+\athnum{100} & \athnum{200} & \athnum{300} & \athnum{400} &
+\athnum{500} & \athnum{600} & \athnum{700} & \athnum{800} & \athnum{900} \\
+
+1000 & 2000 & 3000 & 4000 & 5000 & 6000 & 7000 & 8000 & 9000 \\
+\athnum{1000}& \athnum{2000}& \athnum{3000}& \athnum{4000}&
+\athnum{5000}& \athnum{6000}& \athnum{7000}& \athnum{8000}& \athnum{9000} \\
+
+10000 & 20000 & 30000 & 40000 & 50000 & 60000 & 70000 & 80000 & 90000 \\
+\athnum{10000}&\athnum{20000}&\athnum{30000}&\athnum{40000}&
+\athnum{50000}&\athnum{60000}&\athnum{70000}&\athnum{80000}&\athnum{90000} \\
+
+\bottomrule
+\end{tabular}
+
+Some examples:
+
+
+678 = \athnum{678}, 2022 = \athnum{2022}
+
+Largest ``canonical'' number: 9999 = \athnum{9999}
+
+Largest allowed number: 249999 = \athnum{249999}
+
+Hexadecimal input works, too: \texttt{"10} = \athnum{"10}
+
+Attic numerals in math mode: $a = \textrm{\athnum{678}}, b = \athnum{2022}$
+
+\end{document}

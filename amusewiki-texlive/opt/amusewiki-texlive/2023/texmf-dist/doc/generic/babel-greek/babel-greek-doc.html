@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="generator" content="Docutils 0.20b.dev: https://docutils.sourceforge.io/" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="dcterms.rights" content="© 1997 Apostolos Syropoulos, Claudio Beccari, Johannes Brahms, © 2013 – 2023 Günter Milde." />
+<title>babel-greek</title>
+<link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
+<style type="text/css">
+
+/* Minimal style sheet for the HTML output of Docutils.                    */
+/*                                                                         */
+/* :Author: Günter Milde, based on html4css1.css by David Goodger          */
+/* :Id: $Id$                                                               */
+/* :Copyright: © 2015, 2021 Günter Milde.                                  */
+/* :License: Released under the terms of the `2-Clause BSD license`_,      */
+/*    in short:                                                            */
+/*                                                                         */
+/*    Copying and distribution of this file, with or without modification, */
+/*    are permitted in any medium without royalty provided the copyright   */
+/*    notice and this notice are preserved.                                */
+/*                                                                         */
+/*    This file is offered as-is, without any warranty.                    */
+/*                                                                         */
+/* .. _2-Clause BSD license: http://www.spdx.org/licenses/BSD-2-Clause     */
+
+/* This CSS3 stylesheet defines rules for Docutils elements without        */
+/* HTML equivalent. It is required to make the document semantics visible. */
+/*                                                                         */
+/* .. _validates: http://jigsaw.w3.org/css-validator/validator$link        */
+
+/* titles */
+p.topic-title,
+p.admonition-title,
+p.system-message-title {
+  font-weight: bold;
+}
+p.sidebar-title,
+p.rubric {
+  font-weight: bold;
+  font-size: larger;
+}
+p.rubric {
+  color: maroon;
+}
+p.subtitle,
+p.section-subtitle,
+p.sidebar-subtitle {
+  font-weight: bold;
+  margin-top: -0.5em;
+}
+h1 + p.subtitle {
+  font-size: 1.6em;
+}
+a.toc-backref {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Warnings, Errors */
+.system-messages h2,
+.system-message-title,
+span.problematic {
+  color: red;
+}
+
+/* Inline Literals */
+.docutils.literal {
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+/* do not wrap at hyphens and similar: */
+.literal > span.pre { white-space: nowrap; }
+
+/* Lists */
+
+/* compact and simple lists: no margin between items */
+.simple  li, .simple  ul, .simple  ol,
+.compact li, .compact ul, .compact ol,
+.simple  > li p, dl.simple  > dd,
+.compact > li p, dl.compact > dd {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* Nested Paragraphs */
+p:first-child { margin-top: 0; }
+p:last-child { margin-bottom: 0; }
+details > p:last-child { margin-bottom: 1em; }
+
+/* Table of Contents */
+.contents ul.auto-toc { /* section numbers present */
+  list-style-type: none;
+}
+
+/* Enumerated Lists */
+ol.arabic     { list-style: decimal }
+ol.loweralpha { list-style: lower-alpha }
+ol.upperalpha { list-style: upper-alpha }
+ol.lowerroman { list-style: lower-roman }
+ol.upperroman { list-style: upper-roman }
+
+/* Definition Lists and Derivatives */
+dt .classifier { font-style: italic }
+dt .classifier:before {
+  font-style: normal;
+  margin: 0.5em;
+  content: ":";
+}
+/* Field Lists and similar */
+/* bold field name, content starts on the same line */
+dl.field-list,
+dl.option-list,
+dl.docinfo {
+  display: flow-root;
+}
+dl.field-list > dt,
+dl.option-list > dt,
+dl.docinfo > dt {
+  font-weight: bold;
+  clear: left;
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding-right: 0.2em;
+}
+/* Offset for field content (corresponds to the --field-name-limit option) */
+dl.field-list > dd,
+dl.option-list > dd,
+dl.docinfo > dd {
+  margin-left:  9em; /* ca. 14 chars in the test examples, fit all Docinfo fields */
+}
+/* start nested lists on new line */
+dd > dl:first-child,
+dd > ul:first-child,
+dd > ol:first-child {
+  clear: left;
+}
+/* start field-body on a new line after long field names */
+dl.field-list > dd > *:first-child,
+dl.option-list > dd > *:first-child
+{
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+}
+
+/* Bibliographic Fields (docinfo) */
+dl.docinfo pre.address {
+  font: inherit;
+  margin: 0.5em 0;
+}
+dl.docinfo > dd.authors > p { margin: 0; }
+
+/* Option Lists */
+dl.option-list > dt { font-weight: normal; }
+span.option { white-space: nowrap; }
+
+/* Footnotes and Citations  */
+
+.footnote, .citation { margin: 1em 0; } /* default paragraph skip (Firefox) */
+/* hanging indent */
+.citation { padding-left: 2em; }
+.footnote { padding-left: 1.7em; }
+.footnote.superscript { padding-left: 1.0em; }
+.citation > .label { margin-left: -2em; }
+.footnote > .label { margin-left: -1.7em; }
+.footnote.superscript > .label { margin-left: -1.0em; }
+
+.footnote > .label + *,
+.citation > .label + * {
+  display: inline-block;
+  margin-top: 0;
+  vertical-align: top;
+}
+.footnote > .backrefs + *,
+.citation > .backrefs + * {
+  margin-top: 0;
+}
+.footnote > .label + p, .footnote > .backrefs + p,
+.citation > .label + p, .citation > .backrefs + p {
+  display: inline;
+  vertical-align: inherit;
+}
+
+.backrefs { user-select: none; }
+.backrefs > a { font-style: italic; }
+
+/* superscript footnotes */
+a[role="doc-noteref"].superscript,
+.footnote.superscript > .label,
+.footnote.superscript > .backrefs {
+  vertical-align: super;
+  font-size: smaller;
+  line-height: 1;
+}
+a[role="doc-noteref"].superscript > .fn-bracket,
+.footnote.superscript > .label > .fn-bracket {
+  /* hide brackets in display but leave for copy/paste */
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+}
+[role="doc-noteref"].superscript + [role="doc-noteref"].superscript {
+  padding-left: 0.15em; /* separate consecutive footnote references */
+  /* TODO: unfortunately, "+" also selects with text between the references. */
+}
+
+/* Alignment */
+.align-left   {
+  text-align: left;
+  margin-right: auto;
+}
+.align-center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.align-right  {
+  text-align: right;
+  margin-left: auto;
+}
+.align-top    { vertical-align: top; }
+.align-middle { vertical-align: middle; }
+.align-bottom { vertical-align: bottom; }
+
+/* reset inner alignment in figures and tables */
+figure.align-left, figure.align-right,
+table.align-left, table.align-center, table.align-right {
+  text-align: inherit;
+}
+
+/* Text Blocks */
+.topic { margin: 1em 2em; }
+.sidebar,
+.admonition,
+.system-message {
+  margin: 1em 2em;
+  border: thin solid;
+  padding: 0.5em 1em;
+}
+div.line-block { display: block; }
+div.line-block div.line-block, pre { margin-left: 2em; }
+
+/* Code line numbers: dropped when copying text from the page */
+pre.code .ln { display: none; }
+pre.code code:before {
+  content: attr(data-lineno); /* …, none) fallback not supported by any browser */
+  color: gray;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+}
+td, th {
+  border: thin solid silver;
+  padding: 0 1ex;
+}
+.borderless td, .borderless th {
+  border: 0;
+  padding: 0;
+  padding-right: 0.5em /* separate table cells */
+}
+
+table > caption {
+  text-align: left;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+table.captionbelow {
+  caption-side: bottom;
+}
+
+/* Document Header and Footer */
+header { border-bottom: 1px solid black; }
+footer { border-top: 1px solid black; }
+
+/* Images are block-level by default in Docutils */
+/* New HTML5 block elements: set display for older browsers */
+img, header, footer, main, aside, nav, section, figure, video, details {
+  display: block;
+}
+/* inline images */
+p img, p video, figure img, figure video {
+  display: inline;
+}
+
+</style>
+<style type="text/css">
+
+/* CSS3_ style sheet for the output of Docutils HTML5 writer.  */
+/* Generic responsive design for all screen sizes.                         */
+/*                                                                         */
+/* :Author: Günter Milde                                                   */
+/*                                                                         */
+/* :Id: $Id$                                                               */
+/* :Copyright: © 2021 Günter Milde.                                        */
+/* :License: Released under the terms of the `2-Clause BSD license`_,      */
+/*    in short:                                                            */
+/*                                                                         */
+/*    Copying and distribution of this file, with or without modification, */
+/*    are permitted in any medium without royalty provided the copyright   */
+/*    notice and this notice are preserved.                                */
+/*                                                                         */
+/*    This file is offered as-is, without any warranty.                    */
+/*                                                                         */
+/* .. _2-Clause BSD license: http://www.spdx.org/licenses/BSD-2-Clause     */
+/* .. _CSS3: https://www.w3.org/Style/CSS/                                 */
+
+/* Note:     								   */
+/* This style sheet is provisional:					   */
+/* the API is not settled and may change with any minor Docutils version.  */
+
+
+
+/* General Settings */
+/* ================ */
+
+
+* { box-sizing: border-box; }
+
+body {
+  background-color: #fafaf6;
+  margin: auto;
+  --field-indent: 6.6em; /* indent of fields in field lists */
+  --sidebar-margin-right: 0; /* adapted in media queries below */
+}
+main {
+  counter-reset: figure table;
+}
+body > * {
+  background-color: white;
+  line-height: 1.6;
+  padding: 0.5rem calc(29% - 7.2rem); /* go from 5% to 15% (8.15em/54em) */
+  margin: auto;
+  max-width: 100rem;
+}
+sup, sub { /* avoid additional inter-line space for lines with sup/sub */
+  line-height: 1;
+}
+
+/* Vertical Space (Parskip) */
+p, ol, ul, dl, li,
+div.line-block,
+.topic,
+.footnote, .citation,
+div > math,
+table {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+h1, h2, h3, h4, h5, h6,
+dl > dd, details > p:last-child {
+  margin-bottom: 0.5em;
+}
+
+/* Indented Blocks */
+blockquote, figure, .topic {
+  margin: 1em 2%;
+  padding-left: 1em;
+}
+div.line-block div.line-block,
+pre, dd, dl.option-list {
+  margin-left: calc(2% + 1em);
+}
+
+/* Object styling */
+/* ============== */
+
+footer, header {
+  font-size: small;
+}
+
+/* Frontmatter */
+div.dedication {
+  padding: 0;
+  margin: 1.4em 0;
+  font-style: italic;
+  font-size: large;
+}
+.dedication p.topic-title {
+  display: none;
+}
+
+blockquote p.attribution,
+.topic p.attribution {
+  text-align: right;
+}
+
+/* Table of Contents */
+nav.contents ul {
+  padding-left: 1em;
+}
+ul.auto-toc > li > p { /* hanging indent */
+  padding-left: 1em;
+  text-indent: -1em;
+}
+main > nav.contents  ul:not(.auto-toc) {
+  list-style-type: square;
+}
+main > nav.contents  ul ul:not(.auto-toc) {
+  list-style-type: disc;
+}
+main > nav.contents  ul ul ul:not(.auto-toc) {
+  list-style-type: '\2B29\ ';
+}
+main > nav.contents  ul ul ul ul:not(.auto-toc) {
+  list-style-type: '\2B1D\ ';
+}
+main > nav.contents  ul ul ul ul ul:not(.auto-toc) {
+  list-style-type: '\2B2A\ ';
+}
+nav.contents ul > li::marker {
+  color: grey;
+}
+
+/* Transitions */
+hr {
+  margin: 1em 10%;
+}
+
+/* Lists */
+
+ul, ol {
+  padding-left: 1.1em; /* indent by bullet width (Firefox, DejaVu fonts) */
+}
+dl.field-list > dd,
+dl.docinfo > dd {
+  margin-left: var(--field-indent); /* adapted in media queries or HTML */
+}
+dl.option-list > dd {
+  margin-left: 20%;
+}
+/* run-in: start field-body on same line after long field names */
+dl.field-list.run-in > dd p {
+  display: block;
+}
+/* "description style" like in most dictionaries, encyclopedias etc. */
+dl.description {
+  display: flow-root;
+}
+dl.description > dt {
+  clear: left;
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding-right: 0.3em;
+  font-weight: bold;
+}
+dl.description > dd:after {
+  display: table;
+  content: "";
+  clear: left; /* clearfix for empty descriptions */
+}
+/* start lists nested in description/field lists on new line */
+dd > dl:first-child,
+dd > ul:first-child,
+dd > ol:first-child {
+  clear: left;
+}
+
+/* disclosures */
+details { padding-left: 1em; }
+summary { margin-left: -1em; }
+
+/* Footnotes and Citations */
+.footnote {
+  font-size: small;
+}
+
+/* Images, Figures, and Tables */
+img {
+  display: block;
+}
+p > img, p > a > img,
+figure > img, figure > a > img {
+  display: inline;
+}
+
+figcaption,
+table > caption {
+  /*   font-size: small; */
+  font-style: italic;
+}
+figcaption > .legend {
+  font-size: small;
+  font-style: initial;
+}
+figure.numbered > figcaption > p:before {
+  counter-increment: figure;
+  content: "Figure " counter(figure) ": ";
+  font-weight: bold;
+  font-style: initial;
+}
+
+table tr {
+  text-align: left;
+  vertical-align: baseline;
+}
+table.booktabs { /* "booktabs" style (no vertical lines) */
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+}
+table.booktabs * {
+  border: 0;
+}
+table.booktabs th {
+  border-bottom: thin solid;
+}
+table.numbered > caption:before {
+  counter-increment: table;
+  content: "Table " counter(table) ": ";
+  font-weight: bold;
+  font-style: initial;
+}
+
+/* Admonitions and System Messages */
+.admonition,
+div.system-message {
+  border: thin solid silver;
+  margin: 1em 2%;
+  padding: 0.5em 1em;
+}
+.caution p.admonition-title,
+.attention p.admonition-title,
+.danger p.admonition-title,
+.warning p.admonition-title,
+div.error {
+  color: maroon;
+}
+div.system-message > p > span.literal {
+  overflow-wrap: break-word;
+}
+
+/* Literal and Code */
+pre.literal-block, pre.doctest{
+  padding: 0.2em;
+  overflow-x: auto;
+}
+.literal-block, .doctest, span.literal {
+  background-color: #f6f9f8;
+}
+.system-message span.literal {
+  background-color: inherit;
+}
+
+/* basic highlighting: for a complete scheme, see */
+/* https://docutils.sourceforge.io/sandbox/stylesheets/ */
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+/* Hyperlink References */
+a {
+  text-decoration: none; /* for chromium */
+  /* Wrap links at any place, if this is the only way to prevent overflow */
+  overflow-wrap: break-word;
+}
+.contents a, a.toc-backref, a.citation-reference {
+  overflow-wrap: inherit;
+}
+/* Undecorated Links (see also minimal.css) */
+/* a.citation-reference, */
+.citation a.fn-backref {
+  color: inherit;
+}
+a:hover {
+  text-decoration: underline;
+}
+*:hover > a.toc-backref:after {
+  content: " \2191"; /* ↑ UPWARDS ARROW */
+  color: grey;
+}
+*:hover > a.self-link:after {
+  content: "\1F517"; /* LINK SYMBOL */
+  color: grey;
+  font-size: smaller;
+  margin-left: 0.2em;
+}
+/* highlight the target of the current URL */
+section:target > h2, section:target > h3, section:target > h4,
+section:target > h5, section:target > h6,
+.contents :target,
+.contents:target > .topic-title,
+[role="doc-biblioentry"]:target > .label,
+[role="doc-biblioref"]:target,
+[role="note"]:target, /* Docutils 0.18 ... 0.19 */
+[role="doc-footnote"]:target, /* Docutils >= 0.20 */
+[role="doc-noteref"]:target {
+  background-color: #d2e6ec;
+}
+
+/* Block Alignment */
+/* Let content flow to the side of aligned images and figures */
+
+/* no floats around this elements */
+footer, header, hr,
+h1, h2, h3 {
+  clear: both;
+}
+
+img.align-left,
+video.align-left,
+figure.align-left,
+table.align-left {
+  margin-left: 0;
+  padding-left: 0;
+  margin-right: 0.5em;
+  clear: left;
+  float: left;
+}
+img.align-right,
+video.align-right,
+figure.align-right,
+table.align-right {
+  margin-left: 0.5em;
+  margin-right: 0;
+  clear: right;
+  float: right;
+}
+
+/* Margin Elements */
+/* see below for screen size dependent rules */
+.sidebar,
+.marginal,
+.admonition.marginal {
+  max-width: 40%;
+  border: none;
+  background-color: #efefea;
+  margin: 0.5em var(--sidebar-margin-right) 0.5em 1em;
+  padding: 0.5em;
+  padding-left: 0.7em;
+  clear: right;
+  float: right;
+  font-size: small;
+}
+.sidebar {
+  width: 40%;
+}
+
+/* Math */
+/* for math-output=MathML (for math-output=HTML, see math.css) */
+math .boldsymbol {
+  font-weight: bold;
+}
+mstyle.mathscr, mi.mathscr {
+  font-family: STIX;
+}
+
+/* Adaptive page layout */
+/* ==================== */
+
+@media (max-width: 30em) {
+  /* Smaller margins and no floating elements for small screens */
+  /* (main text less than 40 characters/line) */
+  body > * {
+    padding: 0.5rem 5%;
+    line-height: 1.4
+  }
+  .sidebar,
+  .marginal,
+  .admonition.marginal {
+    width: auto;
+    max-width: 100%;
+    float: none;
+  }
+  dl.option-list,
+  pre {
+    margin-left: 0;
+  }
+  body {
+    --field-indent: 4em;
+  }
+  dl.field-list.narrow, dl.docinfo, dl.option-list {
+    --field-indent: 2.4em;
+  }
+  pre, pre * {
+  font-size: 0.9em;
+  /* overflow: auto; */
+  }
+}
+
+@media (min-width: 54em) {
+  /* Move ToC to the left */
+  /* Main text width before: 70% ≙ 35em ≙ 75…95 chrs (Dejavu/Times) */
+  /*                  after:      ≳ 30em ≙ 54…70 chrs (Dejavu/Times) */
+  body.with-toc {
+    padding-left: 8%;
+  }
+  body.with-toc > * {
+    margin-left: 0;
+    padding-left: 22rem; /* fallback for webkit */
+    padding-left: min(22%, 22rem);
+    padding-right: 7%;
+  }
+  main > nav.contents { /* global ToC */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: min(25%, 25em);
+    height: 100vh;
+    margin: 0;
+    background-color: #fafaf6;
+    padding: 1em 2% 0 2%;
+    overflow: auto;
+  }
+  main > nav.contents > * {
+    padding-left: 0;
+    line-height: 1.4;
+  }
+  main > nav.contents a {
+  color: inherit;
+  }
+}
+
+@media (min-width: 70em) {
+  body {
+    --field-indent: 9em;
+  }
+}
+
+@media (min-width: 77em) {
+  /* Move marginalia to 6rem from right border       */
+  /* .sidebar,                                       */
+  /* .marginal,                                      */
+  /* .admonition.marginal {                          */
+  /*   margin-right: calc(6rem - 15%);               */
+  /* }                                               */
+  /* BUG: margin is calculated for break point width */
+  /* workaround: variable + many breakpoints         */
+  body > * {
+    padding-left: 18%;
+    padding-right: 28%; /* fallback for webkit */
+    padding-right: min(28%, 28rem);
+    --sidebar-margin-right: -20rem;
+  }
+  /* limit main text to ~ 50em ≙ 85…100 characters DejaVu rsp. …120 Times */
+  body.with-toc > * {
+    padding-left: min(22%, 22rem);
+    padding-right: calc(78% - 50rem); /* fallback for webkit */
+    padding-right: min(78% - 50rem, 28rem);
+    --sidebar-margin-right: 0;
+  }
+}
+
+@media (min-width: 85em) {
+  body.with-toc > * {
+    --sidebar-margin-right: -9rem;
+  }
+}
+
+@media (min-width: 90em) {
+  /* move marginalia into the margin */
+  body > * {
+    padding-left: min(22%, 22rem);
+    --sidebar-margin-right: -23rem;
+  }
+  body.with-toc > * {
+    --sidebar-margin-right: -14rem;
+  }
+}
+
+@media (min-width: 99em) {
+  /* move marginalia out of main text area */
+  body.with-toc > * {
+    --sidebar-margin-right: -20rem;
+  }
+  body > *, body.with-toc > * { /* for webkit */
+    padding-left: 22rem;
+    padding-right: 28rem;
+  }
+  .admonition.marginal,
+  .marginal {
+    width: 40%; /* make marginal figures, ... "full width" */
+  }
+}
+
+@media (min-width: 104em) {
+  body.with-toc > * {
+    --sidebar-margin-right: -23rem;
+  }
+}
+
+</style>
+</head>
+<body class="with-toc">
+<main id="babel-greek">
+<h1 class="title">babel-greek</h1>
+<p class="subtitle" id="babel-support-for-the-greek-language-and-script">Babel support for the Greek language and script</p>
+<dl class="docinfo">
+<dt class="version">Version<span class="colon">:</span></dt>
+<dd class="version">1.13.1 (<a class="reference internal" href="#changelog">changelog</a>)</dd>
+<dt class="copyright">Copyright<span class="colon">:</span></dt>
+<dd class="copyright">© 1997 Apostolos Syropoulos, Claudio Beccari, Johannes Brahms,
+© 2013 – 2023 Günter Milde.</dd>
+<dt class="licence">Licence<span class="colon">:</span></dt>
+<dd class="licence"><p>This work may be distributed and/or modified under the
+conditions of the <a class="reference external" href="http://www.latex-project.org/lppl.txt">LaTeX Project Public License</a>, either
+version 1.3 of this license or any later version.</p>
+</dd>
+<dt class="home">Home<span class="colon">:</span></dt>
+<dd class="home"><p><a class="reference external" href="https://codeberg.org/milde/greek-tex">https://codeberg.org/milde/greek-tex</a></p>
+</dd>
+<dt class="latest-release">Latest Release<span class="colon">:</span></dt>
+<dd class="latest-release"><p><a class="reference external" href="https://ctan.org/pkg/babel-greek">https://ctan.org/pkg/babel-greek</a></p>
+</dd>
+</dl>
+<div class="topic abstract" role="doc-abstract">
+<p class="topic-title">Abstract</p>
+<p><cite>babel-greek</cite> is a contributed package providing comprehensive
+support for the Greek language and script via the <a class="reference external" href="https://ctan.org/pkg/babel">Babel</a> system.
+Document authors can select between the <em>monotonic</em>
+(single-diacritic), <em>polytonic</em> (multiple-diacritic), and
+<em>ancient</em> orthography of the Greek language.</p>
+</div>
+<nav class="contents" id="contents" role="doc-toc">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#files" id="toc-entry-1">Files</a></p></li>
+<li><p><a class="reference internal" href="#requirements" id="toc-entry-2">Requirements</a></p></li>
+<li><p><a class="reference internal" href="#download-and-installation" id="toc-entry-3">Download and Installation</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="toc-entry-4">Usage</a></p></li>
+<li><p><a class="reference internal" href="#greek-text-fonts" id="toc-entry-5">Greek text fonts</a></p></li>
+<li><p><a class="reference internal" href="#lgr-latin-transliteration" id="toc-entry-6">LGR Latin Transliteration</a></p></li>
+<li><p><a class="reference internal" href="#greek-numerals" id="toc-entry-7">Greek Numerals</a></p></li>
+<li><p><a class="reference internal" href="#changelog" id="toc-entry-8">Changelog</a></p></li>
+<li><p><a class="reference internal" href="#references" id="toc-entry-9">References</a></p></li>
+</ul>
+</nav>
+<section id="files">
+<h2><a class="toc-backref" href="#toc-entry-1" role="doc-backlink">Files</a></h2>
+<dl class="simple">
+<dt><a class="reference external" href="babel-greek.dtx">babel-greek.dtx</a></dt>
+<dd><p>Source of the language definition file <span class="docutils literal">greek.ldf</span> for use with <a class="reference external" href="https://ctan.org/pkg/babel">Babel</a>.
+[<a class="reference external" href="babel-greek.pdf">babel-greek.pdf</a>]</p>
+</dd>
+<dt><a class="reference external" href="athnum.dtx">athnum.dtx</a></dt>
+<dd><p>Athenian (Attic, Herodianic, or acrophonic) Numerals. [<a class="reference external" href="athnum.pdf">athnum.pdf</a>]</p>
+</dd>
+<dt><a class="reference external" href="grmath.dtx">grmath.dtx</a></dt>
+<dd><p>Greek log-like Operators. [<a class="reference external" href="grmath.pdf">grmath.pdf</a>]</p>
+</dd>
+<dt><a class="reference external" href="babel-greek.ins">babel-greek.ins</a></dt>
+<dd><p><a class="reference external" href="https://ctan.org/pkg/docstrip">DocStrip</a> batch file.</p>
+</dd>
+<dt><a class="reference external" href="usage.tex">usage.tex</a></dt>
+<dd><p>Description of the <a class="reference internal" href="#lgr-latin-transliteration">LGR Latin transliteration</a> and the <a class="reference internal" href="#greek-numerals">Greek numerals</a>.
+[<a class="reference external" href="usage.pdf">usage.pdf</a>]</p>
+</dd>
+<dt>test-*.tex</dt>
+<dd><p>Documented test samples.
+[<a class="reference external" href="test-greek.pdf">test-greek.pdf</a>, <a class="reference external" href="test-greeknum.pdf">test-greeknum.pdf</a>, <a class="reference external" href="test-athnum.pdf">test-athnum.pdf</a>]</p>
+</dd>
+</dl>
+</section>
+<section id="requirements">
+<h2><a class="toc-backref" href="#toc-entry-2" role="doc-backlink">Requirements</a></h2>
+<p>The <cite>babel-greek</cite> package requires the <a class="reference external" href="https://ctan.org/pkg/babel">Babel</a> package and font
+definition files from the <a class="reference external" href="https://ctan.org/pkg/greek-fontenc">greek-fontenc</a> package. The <a class="reference external" href="https://ctan.org/pkg/greek-inputenc">greek-inputenc</a>
+package is recommended when using 8-bit TeX engines.</p>
+<p>Typesetting Greek texts requires <a class="reference internal" href="#greek-text-fonts">Greek text fonts</a>.</p>
+<p>Plain TeX is currently not supported. Patches are welcome.</p>
+</section>
+<section id="download-and-installation">
+<h2><a class="toc-backref" href="#toc-entry-3" role="doc-backlink">Download and Installation</a></h2>
+<p>The simplest way is to get and install this package from your
+distribution using its installation manager.</p>
+<p>Alternatively:</p>
+<ul>
+<li><p>Download the latest <a class="reference external" href="https://mirrors.ctan.org/macros/latex/contrib/babel-contrib/greek.zip">release</a> from the package’s <a class="reference external" href="https://www.ctan.org/pkg/babel-greek">CTAN page</a> or a
+<a class="reference external" href="https://codeberg.org/milde/greek-tex/archive/master.zip">snapshot</a> of the <a class="reference external" href="https://codeberg.org/milde/greek-tex/">greek-tex</a> repository.</p></li>
+<li><p>Unpack the source archive to a temporary location.</p></li>
+<li><p>From the <span class="docutils literal"><span class="pre">babel-greek</span></span> directory,
+run <span class="docutils literal">tex</span> or <span class="docutils literal">latex</span> on the batch file <span class="docutils literal"><span class="pre">babel-greek.ins</span></span>.</p>
+<p>This will generate the files <span class="docutils literal">greek.ldf</span>, <span class="docutils literal">athnum.sty</span>, and
+<span class="docutils literal">grmath.sty</span> in the current directory.</p>
+</li>
+<li><p>Move all files ending in <span class="docutils literal">.ldf</span> or <span class="docutils literal">.sty</span> into a directory
+in the TeX search path.</p></li>
+<li><p>To produce the documentation, run the file <span class="docutils literal">usage.tex</span> and all files
+ending in <span class="docutils literal">.dtx</span> through LaTeX.</p></li>
+</ul>
+<p>The last steps can be automated using the Unix <a class="reference external" href="https://en.wikipedia.org/wiki/Make_(software)">make</a> tool.
+The repository sources include a <a class="reference external" href="https://codeberg.org/milde/greek-tex/src/branch/master/babel-greek/Makefile">Makefile</a> defining the targets</p>
+<dl class="field-list simple">
+<dt><span class="docutils literal">all</span><span class="colon">:</span></dt>
+<dd><p>(re)build packages, documentation, and tests,</p>
+</dd>
+<dt><span class="docutils literal">packages</span><span class="colon">:</span></dt>
+<dd><p>(re)build the packages,</p>
+</dd>
+<dt><span class="docutils literal">doc</span><span class="colon">:</span></dt>
+<dd><p>(re)generate HTML and PDF documentation files,</p>
+</dd>
+<dt><span class="docutils literal">test</span><span class="colon">:</span></dt>
+<dd><p>run LaTeX on the test documents,</p>
+</dd>
+<dt><span class="docutils literal">update</span><span class="colon">:</span></dt>
+<dd><p>copy packages into a local TeX tree,<a class="footnote-reference superscript" href="#update" id="footnote-reference-1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+</dd>
+<dt><span class="docutils literal"><span class="pre">update-package</span></span><span class="colon">:</span></dt>
+<dd><p>copy documentation and sources into a local
+TeX tree,<a class="footnote-reference superscript" href="#update" id="footnote-reference-2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+</dd>
+<dt><span class="docutils literal">clean</span><span class="colon">:</span></dt>
+<dd><p>delete auxiliary files.</p>
+</dd>
+</dl>
+<aside class="footnote-list superscript">
+<aside class="footnote superscript" id="update" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#footnote-reference-1">1</a>,<a role="doc-backlink" href="#footnote-reference-2">2</a>)</span>
+<p>This is a simple <span class="docutils literal">cp <span class="pre">--update</span></span> to a pre-set path.
+The destination directory must exist. Files no longer present in the
+package are not removed.</p>
+</aside>
+</aside>
+</section>
+<section id="usage">
+<h2><a class="toc-backref" href="#toc-entry-4" role="doc-backlink">Usage</a></h2>
+<p>To <strong>load Greek language support</strong> with Babel, use the <span class="docutils literal">greek</span>
+document option or pass the <span class="docutils literal">greek</span> option to Babel. For example,</p>
+<pre class="code latex literal-block"><code><span class="keyword">\usepackage</span><span class="name attribute">[greek,english]</span><span class="name builtin">{</span>babel<span class="name builtin">}</span></code></pre>
+<p>activates support for Greek text parts in an English document.<a class="footnote-reference superscript" href="#footnote-1" id="footnote-reference-3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
+<p>For ancient Greek, set the language attribute  “ancient”, either
+after loading Babel</p>
+<pre class="code latex literal-block"><code><span class="keyword">\usepackage</span><span class="name attribute">[greek,english]</span><span class="name builtin">{</span>babel<span class="name builtin">}</span>
+<span class="keyword">\languageattribute</span><span class="name builtin">{</span>greek<span class="name builtin">}{</span>ancient<span class="name builtin">}</span></code></pre>
+<p>or as modifier</p>
+<pre class="code latex literal-block"><code><span class="keyword">\usepackage</span><span class="name attribute">[greek.ancient,english]</span><span class="name builtin">{</span>babel<span class="name builtin">}</span></code></pre>
+<p>Similarly, the attribute “polutoniko” selects the modern polytonic Greek
+language variant,</p>
+<pre class="code latex literal-block"><code><span class="keyword">\usepackage</span><span class="name attribute">[greek.polutoniko,english]</span><span class="name builtin">{</span>babel<span class="name builtin">}</span></code></pre>
+<p>The <a class="reference external" href="https://ctan.org/pkg/babel">Babel</a> core provides two commands to <strong>select the active language</strong>:</p>
+<ul class="simple">
+<li><p>The declaration <span class="docutils literal">\selectlanguage{greek}</span> switches to the Greek
+language,</p></li>
+<li><p>the function <span class="docutils literal"><span class="pre">\foreignlanguage{greek}{&lt;some</span> text&gt;}</span> sets
+its second argument in Greek.</p></li>
+</ul>
+<p>Both ensure support for the Greek script and select Greek
+case-changing and hyphenation rules.
+For details see the <a class="reference external" href="https://ctan.org/pkg/babel">Babel</a> documentation and <a class="reference external" href="babel-greek.pdf">babel-greek.pdf</a>.</p>
+<p>Input of Greek characters is possible</p>
+<ul class="simple">
+<li><p>as literal characters (α … Ω)<a class="footnote-reference superscript" href="#footnote-2" id="footnote-reference-4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>,</p></li>
+<li><p>as LICR macro (<span class="docutils literal">\textalpha{} ... \textOmega</span>),</p></li>
+<li><p>or via the <a class="reference internal" href="#lgr-latin-transliteration">LGR Latin transliteration</a> (a … W)<a class="footnote-reference superscript" href="#footnote-3" id="footnote-reference-5" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>.</p></li>
+</ul>
+<p>For details and caveats, see <a class="reference external" href="test-greek.pdf">test-greek.pdf</a> and the example files
+provided with <a class="reference external" href="https://ctan.org/pkg/greek-fontenc">greek-fontenc</a>.</p>
+<aside class="footnote-list superscript">
+<aside class="footnote superscript" id="footnote-1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#footnote-reference-3">2</a><span class="fn-bracket">]</span></span>
+<p>The <em>last</em> language option sets the document’s main language.</p>
+</aside>
+<aside class="footnote superscript" id="footnote-2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#footnote-reference-4">3</a><span class="fn-bracket">]</span></span>
+<p>with the <a class="reference external" href="https://ctan.org/pkg/greek-inputenc">greek-inputenc</a> package or XeTeX/LuaTeX</p>
+</aside>
+<aside class="footnote superscript" id="footnote-3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#footnote-reference-5">4</a><span class="fn-bracket">]</span></span>
+<p>only with 8-bit <a class="reference external" href="http://mirrors.ctan.org/language/greek/greek-fontenc/greek-fontenc-doc.html#lgr">LGR</a> fonts</p>
+</aside>
+</aside>
+</section>
+<section id="greek-text-fonts">
+<h2><a class="toc-backref" href="#toc-entry-5" role="doc-backlink">Greek text fonts</a></h2>
+<p>A list of <a class="reference external" href="https://ctan.org/topic/font-greek">Greek text fonts for use with LaTeX</a> is available at CTAN.</p>
+<p>The non-standard <strong>LGR</strong> <a class="reference external" href="https://mirrors.ctan.org/macros/latex/base/encguide.pdf">font encoding</a> is used for typesetting Greek with
+“traditional” <strong>8-bit TeX</strong> engines (pdfTeX). Fonts in this encoding include
+the <a class="reference external" href="https://ctan.org/pkg/cbgreek-complete">CB fonts</a> (matching CM), <a class="reference external" href="https://ctan.org/pkg/grtimes">grtimes</a> (Greek Times), <a class="reference external" href="https://ctan.org/pkg/kerkis">Kerkis</a> (matching
+URW Bookman), and the <a class="reference external" href="https://ctan.org/pkg/gfs">GFS font collection</a>.
+The package <a class="reference external" href="https://ctan.org/pkg/cbfonts-fd">cbfonts-fd</a> registers the CB fonts as Greek substitute for
+the Computer Modern and Latin Modern font families.  For other font
+families, declaring Greek fonts as supplement for matching Latin font
+families can be done with the <code class="latex">\DeclareFontFamilySubstitution</code>
+macro (see section <cite>Providing font family substitutions</cite> in <a class="citation-reference" href="#fntguide" id="citation-reference-1" role="doc-biblioref">[fntguide]</a>).</p>
+<p><strong>Unicode fonts</strong> used with <strong>XeTeX</strong> or <strong>LuaTeX</strong> provide slots for all
+Unicode characters in one font but commonly only a subset of the actual
+glyphs.</p>
+<aside class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The default <strong>Latin Modern</strong> Unicode font
+<strong>contains only a few Greek letters!</strong>
+Unsupported characters are silently dropped from the output.
+Warnings about missing glyphs are written to the log file
+but not to the console.</p>
+</aside>
+<p>Select a suitable font with <a class="reference external" href="https://ctan.org/pkg/babel">Babel</a>’s font selecting framework or <a class="reference external" href="https://ctan.org/pkg/fontspec">fontspec</a>.
+Examples for suitable fonts are <a class="reference external" href="https://ctan.org/pkg/cm-unicode">CM-unicode</a> or <a class="reference external" href="https://ctan.org/pkg/libertine">Linux Libertine</a> as well
+as any system-wide installed OTF font that supports Greek (e.g. <a class="reference external" href="http://dejavu-fonts.org">Deja Vu</a>).
+See, e.g., the list of free <a class="reference external" href="https://fontinfo.opensuse.org/scripts/script-Greek.html">fonts supporting Greek script</a> by
+openSUSE’s fontinfo.</p>
+</section>
+<section id="lgr-latin-transliteration">
+<h2><a class="toc-backref" href="#toc-entry-6" role="doc-backlink">LGR Latin Transliteration</a></h2>
+<p>The LGR font encoding allows input of Greek characters via a Latin
+transliteration. This enables simple input with a Latin keyboard. Characters
+with diacritics may be selected with accent macros (cf. <a class="reference external" href="https://ctan.org/pkg/greek-fontenc">greek-fontenc</a>) or
+via the ligature definitions in the font (see <a class="reference external" href="usage.pdf">usage.pdf</a>).</p>
+<p>The following ASCII characters are converted to Greek symbols:</p>
+<table>
+<tbody>
+<tr><td><p>A</p></td>
+<td><p>B</p></td>
+<td><p>G</p></td>
+<td><p>D</p></td>
+<td><p>E</p></td>
+<td><p>Z</p></td>
+<td><p>H</p></td>
+<td><p>J</p></td>
+<td><p>I</p></td>
+<td><p>K</p></td>
+<td><p>L</p></td>
+<td><p>M</p></td>
+<td><p>N</p></td>
+<td><p>X</p></td>
+<td><p>O</p></td>
+<td><p>P</p></td>
+<td><p>R</p></td>
+<td><p>S</p></td>
+<td></td>
+<td><p>T</p></td>
+<td><p>U</p></td>
+<td><p>F</p></td>
+<td><p>Q</p></td>
+<td><p>Y</p></td>
+<td><p>W</p></td>
+</tr>
+<tr><td><p>Α</p></td>
+<td><p>Β</p></td>
+<td><p>Γ</p></td>
+<td><p>Δ</p></td>
+<td><p>Ε</p></td>
+<td><p>Ζ</p></td>
+<td><p>Η</p></td>
+<td><p>Θ</p></td>
+<td><p>Ι</p></td>
+<td><p>Κ</p></td>
+<td><p>Λ</p></td>
+<td><p>Μ</p></td>
+<td><p>Ν</p></td>
+<td><p>Ξ</p></td>
+<td><p>Ο</p></td>
+<td><p>Π</p></td>
+<td><p>Ρ</p></td>
+<td><p>Σ</p></td>
+<td></td>
+<td><p>Τ</p></td>
+<td><p>Υ</p></td>
+<td><p>Φ</p></td>
+<td><p>Χ</p></td>
+<td><p>Ψ</p></td>
+<td><p>Ω</p></td>
+</tr>
+<tr><td><p>a</p></td>
+<td><p>b</p></td>
+<td><p>g</p></td>
+<td><p>d</p></td>
+<td><p>e</p></td>
+<td><p>z</p></td>
+<td><p>h</p></td>
+<td><p>j</p></td>
+<td><p>i</p></td>
+<td><p>k</p></td>
+<td><p>l</p></td>
+<td><p>m</p></td>
+<td><p>n</p></td>
+<td><p>x</p></td>
+<td><p>o</p></td>
+<td><p>p</p></td>
+<td><p>r</p></td>
+<td><p>s</p></td>
+<td><p>c</p></td>
+<td><p>t</p></td>
+<td><p>u</p></td>
+<td><p>f</p></td>
+<td><p>q</p></td>
+<td><p>y</p></td>
+<td><p>w</p></td>
+</tr>
+<tr><td><p>α</p></td>
+<td><p>β</p></td>
+<td><p>γ</p></td>
+<td><p>δ</p></td>
+<td><p>ε</p></td>
+<td><p>ζ</p></td>
+<td><p>η</p></td>
+<td><p>θ</p></td>
+<td><p>ι</p></td>
+<td><p>κ</p></td>
+<td><p>λ</p></td>
+<td><p>μ</p></td>
+<td><p>ν</p></td>
+<td><p>ξ</p></td>
+<td><p>ο</p></td>
+<td><p>π</p></td>
+<td><p>ρ</p></td>
+<td><p>σ</p></td>
+<td><p>ς</p></td>
+<td><p>τ</p></td>
+<td><p>υ</p></td>
+<td><p>φ</p></td>
+<td><p>χ</p></td>
+<td><p>ψ</p></td>
+<td><p>ω</p></td>
+</tr>
+</tbody>
+</table>
+<p>Accent symbols and punctuation:</p>
+<table>
+<tbody>
+<tr><td><p>tonos/oxia</p></td>
+<td><p><span class="docutils literal">'a</span></p></td>
+<td><p>ά</p></td>
+<td><p>right apostrophe</p></td>
+<td><p><span class="docutils literal">''</span></p></td>
+<td><p>’</p></td>
+</tr>
+<tr><td><p>varia</p></td>
+<td><p><span class="docutils literal">`a</span></p></td>
+<td><p>ὰ</p></td>
+<td><p>left apostrophe</p></td>
+<td><p>``</p></td>
+<td><p>‘</p></td>
+</tr>
+<tr><td><p>dasia</p></td>
+<td><p><span class="docutils literal">&lt;a</span></p></td>
+<td><p>ἁ</p></td>
+<td><p>left quotation mark</p></td>
+<td><p><span class="docutils literal">((</span></p></td>
+<td><p>«</p></td>
+</tr>
+<tr><td><p>psili</p></td>
+<td><p><span class="docutils literal">&gt;a</span></p></td>
+<td><p>ἀ</p></td>
+<td><p>right quotation mark</p></td>
+<td><p><span class="docutils literal">))</span></p></td>
+<td><p>»</p></td>
+</tr>
+<tr><td><p>perispomeni</p></td>
+<td><p><span class="docutils literal">\~a</span></p></td>
+<td><p>ᾶ</p></td>
+<td><p>erotimatiko</p></td>
+<td><p><span class="docutils literal">?</span></p></td>
+<td><p>;</p></td>
+</tr>
+<tr><td><p>dialytika</p></td>
+<td><p><span class="docutils literal">&quot;i</span></p></td>
+<td><p>ϊ</p></td>
+<td><p>ano teleia<a class="footnote-reference superscript" href="#footnote-4" id="footnote-reference-6" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a></p></td>
+<td><p><span class="docutils literal">;</span></p></td>
+<td><p>·</p></td>
+</tr>
+<tr><td><p>ypogegrammeni</p></td>
+<td><p><span class="docutils literal">a|</span></p></td>
+<td><p>ᾳ</p></td>
+<td><p>zero width non-joiner</p></td>
+<td><p><span class="docutils literal">av|</span></p></td>
+<td><p>αͺ</p></td>
+</tr>
+</tbody>
+</table>
+<p>The downside is, that you cannot print Latin letters and some symbols if
+LGR is the active font encoding. This means that for every Latin-written
+word or acronym in a Greek text part, an explicit font encoding switch is
+required.</p>
+<aside class="footnote-list superscript">
+<aside class="footnote superscript" id="footnote-4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#footnote-reference-6">5</a><span class="fn-bracket">]</span></span>
+<p>The “<span class="target" id="keep-semicolon">keep-semicolon</span>” language attribute prevents the mapping of
+a semicolon to a middle dot to allow its use as Greek question mark
+(erotimatiko).</p>
+</aside>
+</aside>
+</section>
+<section id="greek-numerals">
+<h2><a class="toc-backref" href="#toc-entry-7" role="doc-backlink">Greek Numerals</a></h2>
+<p><cite>babel-greek</cite> provides the macros <code class="latex">\greeknumeral</code> and
+<code class="latex">\Greeknumeral</code> to transform a number into its corresponding
+<a class="reference external" href="https://en.wikipedia.org/wiki/Greek_numerals">Greek numeral</a>
+(see also section <a class="reference external" href="http://mirrors.ctan.org/macros/latex/contrib/babel-contrib/greek/babel-greek.pdf#greek-numbering">Greek numbering</a> in the PDF documentation).</p>
+<p>The classic <cite>Greek numerals</cite>, also known as Ionic, Ionian, Milesian, or
+Alexandrian numerals were introduced to Athens along with the Ionic alphabet
+from the city of Miletus in Ionia replacing the <a class="reference external" href="https://en.wikipedia.org/wiki/Attic_numerals">Attic numerals</a>.
+They are still used in everyday life for ordinal numbers and
+more generally by the Orthodox church and certain scholars.</p>
+<p>Greek numerals use several now obsolete letters:
+<a class="reference external" href="https://en.wikipedia.org/wiki/Digamma">digamma</a> ϝ or <a class="reference external" href="https://en.wikipedia.org/wiki/Stigma_(ligature)">stigma</a> ϛ, <a class="reference external" href="https://en.wikipedia.org/wiki/Koppa_(letter)">koppa</a> ϟ or ϙ, and <a class="reference external" href="https://en.wikipedia.org/wiki/Sampi">sampi</a> ϡ <a class="citation-reference" href="#nicholas-05" id="citation-reference-2" role="doc-biblioref">[Nicholas-05]</a>.</p>
+<ul>
+<li><p>Standing for 6 is the <a class="reference external" href="https://en.wikipedia.org/wiki/Digamma">digamma</a> ϝ, the sixth letter of the Ionic
+alphabet (just as its Latin equivalent F is the sixth letter of the
+Latin alphabet). As Greek script turned to uncial and then lowercase,
+the numeral changed its shape and became conflated with another,
+similar sign: the ligature for sigma-tau <a class="reference external" href="https://en.wikipedia.org/wiki/Stigma_(ligature)">stigma</a> ϛ.
+The letters στ are frequently used as replacement.</p>
+<p>There is no significant tradition of ϝ being used as a numeral in
+editions of classical texts, even though the Ancients clearly used
+digamma rather than stigma as their numeral.</p>
+</li>
+<li><p>Three different signs are in use for the number 90: Classicists use the
+“archaic <a class="reference external" href="https://en.wikipedia.org/wiki/Koppa_(letter)">koppa</a>” ϙ, and more rarely its uncial form (resembling the
+“<a class="reference external" href="https://en.wikipedia.org/wiki/Koppa_(Cyrillic)">Cyrillic letter koppa</a>” ҁ or the “Gothic letter ninety” 𐍁).
+Modern Greeks use the “Greek letter koppa” ϟ exclusively and
+do not recognise ϙ at all, let alone as a glyph variant of ϟ.</p></li>
+<li><p>The sign for the number 900 is the <a class="reference external" href="https://en.wikipedia.org/wiki/Sampi">sampi</a> ϡ. Its shape, developed
+during its use in minuscule handwriting of the Byzantine era.  Earlier
+variants similar to the “archaic sampi” ͳ and the “Gothic Letter Nine
+Hundred” 𐍊 are not used in Greek.</p></li>
+</ul>
+<p>Users can redefine the macros <code class="latex">\greeknumeralsix</code>,
+<code class="latex">\greeknumeralSix</code>, <code class="latex">\greeknumeralninety</code>, and
+<code class="latex">\greeknumeralNinety</code> to configure the used symbols,
+for example</p>
+<pre class="code latex literal-block"><code><span class="keyword">\renewcommand</span><span class="name builtin">{</span><span class="keyword">\greeknumeralninety</span><span class="name builtin">}{</span><span class="keyword">\textkoppa</span><span class="name builtin">}</span>
+<span class="keyword">\renewcommand</span><span class="name builtin">{</span><span class="keyword">\greeknumeralNinety</span><span class="name builtin">}{</span><span class="keyword">\textKoppa</span><span class="name builtin">}</span>
+<span class="keyword">\ifdefined</span> <span class="keyword">\textvarstigma</span>
+  <span class="keyword">\renewcommand</span><span class="name builtin">{</span><span class="keyword">\greeknumeralSix</span><span class="name builtin">}{</span><span class="keyword">\textvarstigma</span><span class="name builtin">}</span>
+<span class="keyword">\fi</span></code></pre>
+<p>sets the symbol for 90 to the “modern” koppa ϟ also for ancient Greek
+and the “capital” 6 symbol to the variant stigma glyph (only defined in LGR).</p>
+</section>
+<section id="changelog">
+<h2><a class="toc-backref" href="#toc-entry-8" role="doc-backlink">Changelog</a></h2>
+<dl class="simple">
+<dt>1.4  (2013-05-17)</dt>
+<dd><ul class="simple">
+<li><p>New maintainer.</p></li>
+<li><p>The encoding definition file <span class="docutils literal">lgrenc.def</span> moved to the
+<a class="reference external" href="https://ctan.org/pkg/greek-fontenc">greek-fontenc</a> package.</p></li>
+</ul>
+</dd>
+<dt>1.5  (2013-06-21)</dt>
+<dd><ul class="simple">
+<li><p>Bugfixes and cleanup.</p></li>
+<li><p>LICR macros in string definitions.</p></li>
+<li><p>LGR font encoding not used with XeTeX/LuaTeX.</p></li>
+<li><p>Input “xgreek-fixes.def” from <a class="reference external" href="https://ctan.org/pkg/polyglossia">polyglossia</a> with Xe/LuaTeX.</p></li>
+</ul>
+</dd>
+<dt>1.5a (2013-07-02)</dt>
+<dd><ul class="simple">
+<li><p>Fix LaTeX bugs babel/3707, <a class="reference external" href="http://www.latex-project.org/cgi-bin/ltxbugs2html?pr=babel/4303">babel/4303</a> and <a class="reference external" href="http://www.latex-project.org/cgi-bin/ltxbugs2html?pr=babel/4305">babel/4305</a></p></li>
+</ul>
+</dd>
+<dt>1.6  (2013-07-19)</dt>
+<dd><ul class="simple">
+<li><p>Experimental support for XeTeX/LuaTeX.</p></li>
+</ul>
+</dd>
+<dt>1.7  (2013-09-09)</dt>
+<dd><ul class="simple">
+<li><p>CB-Fonts font definition files moved to CB-Fonts package.</p></li>
+<li><p>Do not auto-load euenc.def with XeTeX/LuaTeX.</p></li>
+</ul>
+</dd>
+<dt>1.7a (2013-09-13)</dt>
+<dd><ul class="simple">
+<li><p>Fix bug <a class="reference external" href="http://www.latex-project.org/cgi-bin/ltxbugs2html?pr=babel/4360">babel/4360</a>: spurious <span class="docutils literal">\fi</span>.</p></li>
+</ul>
+</dd>
+<dt>1.7b (2013-10-01)</dt>
+<dd><ul class="simple">
+<li><p>Fix upcasing of babel strings with Xe/LuaTeX.</p></li>
+</ul>
+</dd>
+<dt>1.8  (2013-12-02)</dt>
+<dd><ul class="simple">
+<li><p>Rename <span class="docutils literal">greek.dtx</span> to <span class="docutils literal"><span class="pre">babel-greek</span></span> so that <a class="reference external" href="https://ctan.org/pkg/texdoc">texdoc</a>
+shows the right documentation.</p></li>
+<li><p>Compatibility with Xe/LuaTeX in Unicode and 8-bit mode.</p></li>
+</ul>
+</dd>
+<dt>1.8a (2013-12-03)</dt>
+<dd><ul class="simple">
+<li><p>Set <span class="docutils literal">\encodingdefault</span> in <span class="docutils literal">\greekscript</span> to fix Greek
+in footnotes etc. with document language Greek.</p></li>
+</ul>
+</dd>
+<dt>1.9  (2014-07-20)</dt>
+<dd><ul class="simple">
+<li><p>New attribute for ancient Greek, load correct hyphenation
+patterns (patch by Claudio Beccari).</p></li>
+<li><p>Bugfix for <span class="docutils literal">\Makeuppercase</span></p></li>
+</ul>
+</dd>
+<dt>1.9a (2014-09-12)</dt>
+<dd><ul class="simple">
+<li><p>Remove duplicate code, documentation review.</p></li>
+</ul>
+</dd>
+<dt>1.9b (2014-09-18)</dt>
+<dd><ul class="simple">
+<li><p>Remove spurious whitespace from <span class="docutils literal">\extrasgreek</span> definition.</p></li>
+<li><p>Use named macros instead of non-standard short macros
+for <em>psili</em> and <em>dasia</em> in the string definitions.</p></li>
+</ul>
+</dd>
+<dt>1.9c (2014-10-21)</dt>
+<dd><ul class="simple">
+<li><p>Fix dummy hyphenation language names (patch by Ulrike Fischer).</p></li>
+</ul>
+</dd>
+<dt>1.9d (2015-09-04)</dt>
+<dd><ul class="simple">
+<li><p>Remove <cite>grsymb</cite> (macros for Greek symbols).
+This package is outdated and obsoleted by <a class="reference external" href="https://ctan.org/pkg/greek-fontenc">greek-fontenc</a>
+(reported by Claudio Beccari).</p></li>
+<li><p>Unicode uc/lc corrections now in <cite>greek-fontenc</cite>.</p></li>
+</ul>
+</dd>
+<dt>1.9e (2015-11-27)</dt>
+<dd><ul class="simple">
+<li><p>Fix bug in lccode-setting loop (patch by Enrico Gregorio).</p></li>
+</ul>
+</dd>
+<dt>1.9f (2016-02-04)</dt>
+<dd><ul class="simple">
+<li><p>Support for new standard Unicode text font encoding “TU”.</p></li>
+</ul>
+</dd>
+<dt>1.9g (2016-09-07)</dt>
+<dd><ul class="simple">
+<li><p>Babel 3.9i deprecated <span class="docutils literal">\textlatin</span> and fixed <span class="docutils literal">\latinencoding</span>.
+1.9h (2019-07-11)</p></li>
+<li><p>Move breathing composite commands to <a class="reference external" href="https://ctan.org/pkg/greek-fontenc">textalpha</a>.</p></li>
+</ul>
+</dd>
+<dt>1.9i (2020-02-28)</dt>
+<dd><ul class="simple">
+<li><p>Update test for Unicode fonts.</p></li>
+<li><p>Fix accent in <span class="docutils literal">\seename</span> and <span class="docutils literal">\alsoname</span>.</p></li>
+</ul>
+</dd>
+<dt>1.9j (2020-03-17)</dt>
+<dd><ul class="simple">
+<li><p>Fix ampersand in math mode.</p></li>
+</ul>
+</dd>
+<dt>1.10 (2020-11-10)</dt>
+<dd><ul class="simple">
+<li><p>Use <span class="docutils literal">TU</span> as <span class="docutils literal">\greekfontencoding</span> for Xe/LuaTeX (set by LaTeX as
+<a class="reference external" href="https://www.latex-project.org/news/latex2e-news/ltnews26.pdf">default font encoding for Unicode engines</a> since 2017/01/01).</p></li>
+<li><p>Use zig-zaggy <span class="docutils literal">\textkoppa</span> for <span class="docutils literal">\greeknumeral{90}</span>.</p></li>
+<li><p>PDF-string secure implementation of <span class="docutils literal">\greeknumeral</span> from <a class="reference external" href="https://ctan.org/pkg/hyperref">hyperref</a>.</p></li>
+<li><p>Load <span class="docutils literal"><span class="pre">puenc-greek.def</span></span> (from <a class="reference external" href="https://ctan.org/pkg/greek-fontenc">greek-fontenc</a>) if used with hyperref
+(polytonic Greek in PDF-strings).</p></li>
+</ul>
+</dd>
+<dt>1.11 (2020-11-20)</dt>
+<dd><ul class="simple">
+<li><p>Configurable <a class="reference internal" href="#greek-numerals">Greek numerals</a> 6 and 90.</p></li>
+<li><p>Save/restore previous font encoding instead of switching
+to hard-coded <span class="docutils literal">\latinencoding</span> when leaving Greek.</p></li>
+</ul>
+</dd>
+<dt>1.12 (2023-03-04)</dt>
+<dd><ul class="simple">
+<li><p>Do not change the uccode values if the LaTeX version is newer than
+2022/06. The new <span class="docutils literal">\MakeUppercase</span> definition ignores them and fails
+with the “dummy” character 0x9f (cf. <a class="citation-reference" href="#ltnews35" id="citation-reference-3" role="doc-biblioref">[ltnews35]</a>, <a class="reference external" href="https://github.com/latex3/latex2e/issues/987">LaTeX issue 987</a>).</p></li>
+<li><p>New modifiers <span class="docutils literal"><span class="pre">local-LGR-fixes</span></span> and <span class="docutils literal"><span class="pre">no-LGR-fixes</span></span> to address
+indexing problmes with Roman numerals (<a class="reference external" href="https://github.com/latex3/babel/issues/170">Babel issue 170</a>). Provisional.</p></li>
+<li><p>New TextCommand <span class="docutils literal">\EnsureStandardFontEncoding</span>.</p></li>
+<li><p>Rename <span class="docutils literal">\textgreek</span> to <span class="docutils literal">\lgrfont</span> to avoid confusion with a
+language changing command.</p></li>
+<li><p>Documentation update and refactoring.</p></li>
+<li><p>Drop LGR-local re-definition of <span class="docutils literal">\SS</span>.</p></li>
+<li><p><a class="reference external" href="athnum.dtx">athnum.dtx</a> 2.0:
+Don’t require Babel.
+Use LICR macros instead of the Latin transliteration.</p></li>
+</ul>
+</dd>
+<dt>1.13 (2023-03-15)</dt>
+<dd><ul class="simple">
+<li><p>New language attribute “<a class="reference internal" href="#keep-semicolon">keep-semicolon</a>”.</p></li>
+<li><p>Rename <span class="docutils literal">\greek&#64;tilde</span> to <span class="docutils literal">\bbl&#64;greek&#64;tilde</span>, simplify definition.</p></li>
+<li><p>Fix links, update documentation.</p></li>
+</ul>
+</dd>
+<dt>1.13.1 (2023-03-17)</dt>
+<dd><ul class="simple">
+<li><p>Don’t use text command in math mode with “keep-semicolon”.</p></li>
+<li><p><a class="reference external" href="athnum.dtx">athnum.dtx</a> 2.0.1: Fix behaviour in math mode.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="references">
+<h2><a class="toc-backref" href="#toc-entry-9" role="doc-backlink">References</a></h2>
+<div role="list" class="citation-list">
+<div class="citation" id="fntguide" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#citation-reference-1">fntguide</a><span class="fn-bracket">]</span></span>
+<p>LaTeX Project Team <cite>LaTeX2e font selection</cite>, December 2021.
+<a class="reference external" href="https://www.latex-project.org/help/documentation/fntguide.pdf">https://www.latex-project.org/help/documentation/fntguide.pdf</a></p>
+</div>
+<div class="citation" id="ltnews35" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#citation-reference-3">ltnews35</a><span class="fn-bracket">]</span></span>
+<p>LaTeX Project Team <cite>LaTeX News 35</cite>, June 2022.
+<a class="reference external" href="https://www.latex-project.org/news/latex2e-news/ltnews35.pdf">https://www.latex-project.org/news/latex2e-news/ltnews35.pdf</a></p>
+</div>
+<div class="citation" id="nicholas-05" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#citation-reference-2">Nicholas-05</a><span class="fn-bracket">]</span></span>
+<p>Nick Nicholas <cite>Numerals: Stigma, Koppa, Sampi</cite>, 2005.
+<a class="reference external" href="https://opoudjis.net/unicode/numerals.html">https://opoudjis.net/unicode/numerals.html</a></p>
+</div>
+<div class="citation" id="vlachou-22" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Vlachou-22<span class="fn-bracket">]</span></span>
+<p>Irene Vlachou
+<cite>Polytonic Greek: a guide for type designers</cite>, 2022.
+<a class="reference external" href="https://irenevl.github.io/Polytonic-tutorial/">https://irenevl.github.io/Polytonic-tutorial/</a></p>
+</div>
+<div class="citation" id="haralambous-98" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Haralambous-98<span class="fn-bracket">]</span></span>
+<p>Yannis Haralambous
+<cite>From Unicode to Typography, a Case Study: the Greek Script</cite>, 1998.
+<a class="reference external" href="https://hal.science/hal-02101618">https://hal.science/hal-02101618</a></p>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>

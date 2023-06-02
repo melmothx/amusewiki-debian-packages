@@ -1,0 +1,35 @@
+name epstopdf
+category Package
+revision 66695
+shortdesc Convert EPS to PDF using Ghostscript
+longdesc Epstopdf is a Perl script that converts an EPS file to an
+longdesc 'encapsulated' PDF file (a single page file whose media box is
+longdesc the same as the original EPS's bounding box). The resulting
+longdesc file suitable for inclusion by pdfTeX as an image. The script
+longdesc is adapted to run both on Windows and on Unix-alike systems.
+longdesc The script makes use of Ghostscript for the actual conversion
+longdesc to PDF. It assumes Ghostscript version 6.51 or later, and (by
+longdesc default) suppresses its automatic rotation of pages where most
+longdesc of the text is not horizontal. LaTeX users may make use of the
+longdesc epstopdf package, which will run the epstopdf script "on the
+longdesc fly", thus giving the illusion that pdfLaTeX is accepting EPS
+longdesc graphic files.
+depend epstopdf.ARCH
+containersize 12836
+containerchecksum 6cf52419bb325f0c210aa7831d6ee9b5c4f6b0c07ab0faf9952679ac7a61c6571aa61dd97a63543aee4df1d69567a7a5d02210a129727a220f4711d6bf2cc26e
+doccontainersize 30880
+doccontainerchecksum dfd26542d3be0037c43f5029de776d86d2d4c8215e18d845eedeb5090200ba4ae148cd51c42b4611509a35419e7a45b74e8f3ce4650c7a408dda5b029ac07a13
+docfiles size=20
+ texmf-dist/doc/man/man1/epstopdf.1
+ texmf-dist/doc/man/man1/epstopdf.man1.pdf details="Manual page"
+ texmf-dist/doc/man/man1/repstopdf.1
+ texmf-dist/doc/man/man1/repstopdf.man1.pdf
+ texmf-dist/doc/support/epstopdf/README details="Readme"
+runfiles size=9
+ texmf-dist/scripts/epstopdf/epstopdf.pl
+catalogue-also epstopdf-pkg
+catalogue-contact-home https://tug.org/epstopdf/
+catalogue-ctan /support/epstopdf
+catalogue-license other-free
+catalogue-topics graphics-epspdf
+catalogue-version 2.31

@@ -1,9 +1,0 @@
-name xdvi.x86_64-linux
-category TLCore
-revision 62187
-shortdesc x86_64-linux files of xdvi
-containersize 547340
-containerchecksum 256c8db87e8e5d4167853c0d824ce49b2659598567d53a8060744c7d18c60529e35ec7b636313fded06a2cbda29965b48d52c3f74cf299071de280cbfab7a1c5
-binfiles arch=x86_64-linux size=324
- bin/x86_64-linux/xdvi
- bin/x86_64-linux/xdvi-xaw

@@ -1,0 +1,2416 @@
+%%
+%% This is file `plcore.ltx',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% plvers.dtx  (with options: `plcore')
+%% plexpl3.dtx  (with options: `plcore')
+%% plfonts.dtx  (with options: `plcore')
+%% plcore.dtx  (with options: `plcore')
+%% plvers.dtx  (with options: `plfinal')
+%% 
+%% Copyright (c) 2010 ASCII MEDIA WORKS
+%% Copyright (c) 2016-2020 Japanese TeX Development Community
+%% 
+%% This file is part of the pLaTeX2e system (community edition).
+%% -------------------------------------------------------------
+%% 
+%% File: plvers.dtx
+\ifx\fmtversion\@undefined
+    \errhelp{Please reinstall LaTeX.}%
+    \errmessage{This cannot happen!^^JYour file `latex.ltx'
+                might be broken}\@@end
+\else
+  \ifnum\expandafter\@parse@version\fmtversion//00\@nil<20170415
+    \errhelp{Please update your TeX installation; if not available,
+             obtain it^^Jmanually from CTAN
+             (https://ctan.org/pkg/latex-base) or from^^JGitHub
+             (https://github.com/latex3/latex2e).}%
+    \errmessage{This version of pLaTeX2e requires LaTeX2e 2017-04-15
+                or newer!^^JObtain a newer version of `latex',
+                otherwise pLaTeX2e setup will^^Jnever succeed}\@@end
+  \fi
+\fi
+\def\pfmtname{pLaTeX2e}
+\def\pfmtversion
+   {2023-02-14}
+\def\ppatch@level{1}
+\edef\platexBANNER{\noexpand\platexNILa
+                   \the\everyjob % LaTeX banner and delayed codes
+                   \noexpand\platexNILb}
+\begingroup
+  \ifnum\ppatch@level=0
+    \toks2={\pfmtname\space<\pfmtversion>}%
+  \else\ifnum\ppatch@level>0
+    \toks2={\pfmtname\space<\pfmtversion>+\ppatch@level}%
+  \else
+    \toks2={\pfmtname\space<\pfmtversion>-pre\ppatch@level}%
+  \fi\fi
+  \ifdefined\LaTeXReleaseInfo
+    \global\LaTeXReleaseInfo\expandafter{\expanded{%
+      \noexpand\show@release@info{\the\toks2, based on}%
+      \unexpanded\expandafter{\the\LaTeXReleaseInfo}%
+    }}%
+  \else
+    \edef\platexNILa#1\typeout#2#3\platexNILb{%
+      #1\noexpand\typeout{\the\toks2 \space(based on #2)}#3}
+    \global\everyjob\expandafter\expandafter\expandafter{\platexBANNER}%
+  \fi
+\endgroup
+\let\platexBANNER=\@undefined
+\chardef\pltx@newhook@avail=\z@
+\@ifl@t@r\fmtversion{2020/10/01}{\chardef\pltx@newhook@avail=\@ne}{}
+\newif\if@plincludeinrelease
+\@plincludeinreleasefalse
+\def\plIncludeInRelease#1{%
+  \if@plincludeinrelease
+    \PackageError{platexrelease}
+      {mis-matched \string\plIncludeInRelease}%
+      {There is an \string\plEndIncludeRelease\space missing}%
+    \@plincludeinreleasefalse
+  \fi
+  \kernel@ifnextchar[%
+  {\@plIncludeInRelease{#1}}
+  {\@plIncludeInRelease{#1}[#1]}}
+\def\@plIncludeInRelease#1[#2]{\@plIncludeInRele@se{#2}}
+\def\@plIncludeInRele@se#1#2#3{%
+  \toks@{[#1] #3}%
+  \expandafter\ifx\csname\string#2+\@currname+plIIR\endcsname\relax
+    \ifnum\expandafter\@parse@version#1//00\@nil
+          >\expandafter\@parse@version\pfmtversion//00\@nil
+      \GenericInfo{}{Skipping: \the\toks@}%
+     \expandafter\expandafter\expandafter\@gobble@plIncludeInRelease
+    \else
+      \GenericInfo{}{Applying: \the\toks@}%
+      \@plincludeinreleasetrue
+      \expandafter\let\csname\string#2+\@currname+plIIR\endcsname\@empty
+    \fi
+  \else
+    \GenericInfo{}{Already applied: \the\toks@}%
+    \expandafter\@gobble@plIncludeInRelease
+  \fi
+}
+\def\plEndIncludeInRelease{%
+  \if@plincludeinrelease
+    \@plincludeinreleasefalse
+  \else
+    \PackageError{platexrelease}
+      {mis-matched \string\plEndIncludeInRelease}{}%
+  \fi}
+\long\def\@gobble@plIncludeInRelease#1\plEndIncludeInRelease{%
+  \@plincludeinreleasefalse
+  \@check@plIncludeInRelease#1\plIncludeInRelease
+    \@check@plIncludeInRelease\@end@check@plIncludeInRelease}
+\long\def\@check@plIncludeInRelease#1\plIncludeInRelease
+  #2#3\@end@check@plIncludeInRelease{%
+  \ifx\@check@plIncludeInRelease#2\else
+    \PackageError{platexrelease}
+      {skipped \string\plIncludeInRelease\space for tag \string#2}{}%
+  \fi}
+%% File: plexpl3.dtx
+\ifdefined\ExplSyntaxOn %--- expl3 available BEGIN
+\ExplSyntaxOn
+\input plexpl3.ltx
+\ExplSyntaxOff
+\fi                     %--- expl3 available END
+%% File: plfonts.dtx
+\let\k@encoding\@empty
+\let\ck@encoding\@empty
+\let\cy@encoding\@empty
+\let\ct@encoding\@empty
+\let\k@family\@empty
+\let\k@series\@empty
+\let\k@shape\@empty
+\def\curr@kfontshape{\k@encoding/\k@family/\k@series/\k@shape}
+\def\rel@fontshape{\f@encoding/\f@family/\f@series/\f@shape}
+\newdimen\Cht
+\newdimen\cht
+\newdimen\Cdp
+\newdimen\cdp
+\newdimen\Cwd
+\newdimen\cwd
+\newdimen\Cvs
+\newdimen\cvs
+\newdimen\Chs
+\newdimen\chs
+\newdimen\cHT
+\let\afont\font
+\def\inlist@#1#2{%
+  \edef\reserved@a{%
+    \unexpanded{\def\in@@##1<}%
+    \detokenize{#1}%
+    \unexpanded{>##2##3\in@@{\ifx\in@##2\in@false\else\in@true\fi}\in@@}%
+    \detokenize{#2}%
+    \unexpanded{<}%
+    \detokenize{#1}%
+    \unexpanded{>\in@\in@@}}%
+  \reserved@a}
+\def\fam@elt{\noexpand\fam@elt}
+\def\enc@elt{\noexpand\enc@elt}
+\def\fenc@list{\enc@elt<OML>\enc@elt<T1>\enc@elt<OT1>\enc@elt<OMS>%
+               \enc@elt<OMX>\enc@elt<TS1>\enc@elt<U>}
+\let\kenc@list\@empty
+\let\kyenc@list\@empty
+\let\ktenc@list\@empty
+\def\kfam@list{\fam@elt<mc>\fam@elt<gt>}
+\def\ffam@list{\fam@elt<cmr>\fam@elt<cmss>\fam@elt<cmtt>%
+               \fam@elt<cmm>\fam@elt<cmsy>\fam@elt<cmex>}
+\let\notkfam@list\ffam@list
+\let\notffam@list\kfam@list
+\newbox\tstrutbox
+\newbox\zstrutbox
+\newbox\ystrutbox
+\def\strutbox{\iftdir\tstrutbox\else\ystrutbox\fi}
+\DeclareRobustCommand\strut{\relax
+  \iftdir
+    \ifmmode\copy\tstrutbox\else\unhcopy\tstrutbox\fi
+  \else
+    \ifmmode\copy\ystrutbox\else\unhcopy\ystrutbox\fi
+  \fi}
+\DeclareRobustCommand\tstrut{\relax\hbox{\tate
+   \ifmmode\copy\tstrutbox\else\unhcopy\tstrutbox\fi}}
+\DeclareRobustCommand\zstrut{\relax\hbox{\tate
+   \ifmmode\copy\zstrutbox\else\unhcopy\zstrutbox\fi}}
+\DeclareRobustCommand\ystrut{\relax\hbox{\yoko
+    \ifmmode\copy\ystrutbox\else\unhcopy\ystrutbox\fi}}
+\def\DeclareFontEncoding{%
+  \begingroup
+  \nfss@catcodes
+  \expandafter\endgroup
+  \DeclareFontEncoding@}
+\def\DeclareFontEncoding@#1#2#3{%
+  \expandafter
+  \ifx\csname T@#1\endcsname\relax
+     \def\cdp@elt{\noexpand\cdp@elt}%
+     \xdef\cdp@list{\cdp@list\cdp@elt{#1}%
+                    {\default@family}{\default@series}%
+                    {\default@shape}}%
+     \expandafter\let\csname#1-cmd\endcsname\@changed@cmd
+     \def\enc@elt{\noexpand\enc@elt}%
+     \xdef\fenc@list{\fenc@list\enc@elt<#1>}%
+  \else
+     \@font@info{Redeclaring font encoding #1}%
+  \fi
+  \global\@namedef{T@#1}{#2}%
+  \global\@namedef{M@#1}{\default@M#3}%
+  \xdef\LastDeclaredEncoding{#1}%
+  }
+\let\DeclareFontEncoding@saved\DeclareFontEncoding@
+\ifx\IeC\@undefined\else
+\def\DeclareFontEncoding@#1#2#3{%
+  \expandafter
+  \ifx\csname T@#1\endcsname\relax
+     \def\cdp@elt{\noexpand\cdp@elt}%
+     \xdef\cdp@list{\cdp@list\cdp@elt{#1}%
+                    {\default@family}{\default@series}%
+                    {\default@shape}}%
+     \expandafter\let\csname#1-cmd\endcsname\@changed@cmd
+     \begingroup
+       \wlog{Now handling font encoding #1 ...}%
+       \lowercase{%
+         \InputIfFileExists{#1enc.dfu}}%
+            {\wlog{... processing UTF-8 mapping file for font %
+                       encoding #1}}%
+            {\wlog{... no UTF-8 mapping file for font encoding #1}}%
+     \endgroup
+     \def\enc@elt{\noexpand\enc@elt}%
+     \xdef\fenc@list{\fenc@list\enc@elt<#1>}%
+  \else
+     \@font@info{Redeclaring font encoding #1}%
+  \fi
+  \global\@namedef{T@#1}{#2}%
+  \global\@namedef{M@#1}{\default@M#3}%
+  \xdef\LastDeclaredEncoding{#1}%
+  }
+\fi
+\def\DeclareKanjiEncoding#1{%
+  \@latex@warning{%
+     The \string\DeclareKanjiEncoding\space is obsoleted command.  Please use
+     \MessageBreak
+     the \string\DeclareTateKanjiEncoding\space for `Tate-kumi' encoding, and
+     \MessageBreak
+     the \string\DeclareYokoKanjiEncoding\space for `Yoko-kumi' encoding.
+     \MessageBreak
+     I treat the `#1' encoding as `Yoko-kumi'.}
+  \DeclareYokoKanjiEncoding{#1}%
+}
+\def\DeclareYokoKanjiEncoding{%
+  \begingroup
+  \nfss@catcodes
+  \expandafter\endgroup
+  \DeclareYokoKanjiEncoding@}
+\def\DeclareYokoKanjiEncoding@#1#2#3{%
+  \expandafter
+  \ifx\csname T@#1\endcsname\relax
+    \def\cdp@elt{\noexpand\cdp@elt}%
+    \xdef\cdp@list{\cdp@list\cdp@elt{#1}%
+                    {\default@k@family}{\default@k@series}%
+                    {\default@k@shape}}%
+    \expandafter\let\csname#1-cmd\endcsname\@changed@kcmd
+    \def\enc@elt{\noexpand\enc@elt}%
+    \xdef\kyenc@list{\kyenc@list\enc@elt<#1>}%
+    \xdef\kenc@list{\kenc@list\enc@elt<#1>}%
+  \else
+    \@font@info{Redeclaring KANJI (yoko) font encoding #1}%
+  \fi
+  \global\@namedef{T@#1}{#2}%
+  \global\@namedef{M@#1}{\default@KM#3}%
+  }
+\def\DeclareTateKanjiEncoding{%
+  \begingroup
+  \nfss@catcodes
+  \expandafter\endgroup
+  \DeclareTateKanjiEncoding@}
+\def\DeclareTateKanjiEncoding@#1#2#3{%
+  \expandafter
+  \ifx\csname T@#1\endcsname\relax
+    \def\cdp@elt{\noexpand\cdp@elt}%
+    \xdef\cdp@list{\cdp@list\cdp@elt{#1}%
+                    {\default@k@family}{\default@k@series}%
+                    {\default@k@shape}}%
+    \expandafter\let\csname#1-cmd\endcsname\@changed@kcmd
+    \def\enc@elt{\noexpand\enc@elt}%
+    \xdef\ktenc@list{\ktenc@list\enc@elt<#1>}%
+    \xdef\kenc@list{\kenc@list\enc@elt<#1>}%
+  \else
+    \@font@info{Redeclaring KANJI (tate) font encoding #1}%
+  \fi
+  \global\@namedef{T@#1}{#2}%
+  \global\@namedef{M@#1}{\default@KM#3}%
+  }
+\@onlypreamble\DeclareKanjiEncoding
+\@onlypreamble\DeclareYokoKanjiEncoding
+\@onlypreamble\DeclareYokoKanjiEncoding@
+\@onlypreamble\DeclareTateKanjiEncoding
+\@onlypreamble\DeclareTateKanjiEncoding@
+\def\DeclareKanjiEncodingDefaults#1#2{%
+  \ifx\relax#1\else
+    \ifx\default@KT\@empty\else
+      \@font@info{Overwriting KANJI encoding scheme text defaults}%
+    \fi
+    \gdef\default@KT{#1}%
+  \fi
+  \ifx\relax#2\else
+    \ifx\default@KM\@empty\else
+      \@font@info{Overwriting KANJI encoding scheme math defaults}%
+    \fi
+    \gdef\default@KM{#2}%
+  \fi}
+\let\default@KT\@empty
+\let\default@KM\@empty
+\@onlypreamble\DeclareKanjiEncodingDefaults
+\def\KanjiEncodingPair#1#2{\@namedef{t@enc@#1}{#2}\@namedef{y@enc@#2}{#1}}
+\def\ensure@KanjiEncodingPair#1{%
+  \edef\reserved@a{\csname #1@enc@\k@encoding\endcsname}%
+  \edef\reserved@b{\csname c#1@encoding\endcsname}%
+  \ifcat\relax\reserved@a
+    \@latex@error
+      {KANJI Encoding pair for `\k@encoding' undefined}%
+      {Use \string\KanjiEncodingPair, falling back to `\reserved@b'...}%
+    \expandafter\edef\reserved@a{\reserved@b}%
+  \fi}
+\def\DeclareFontFamily#1#2#3{%
+ \@ifundefined{T@#1}%
+    {\@latex@error{Encoding scheme `#1' unknown}\@eha}%
+    {\edef\tmp@item{{#2}}%
+     \expandafter\expandafter\expandafter
+     \inlist@\expandafter\tmp@item\expandafter{\ffam@list}%
+     \ifin@ \else
+        \def\fam@elt{\noexpand\fam@elt}%
+        \xdef\ffam@list{\ffam@list\fam@elt<#2>}%
+     \fi
+     \def\reserved@a{#3}%
+     \global
+     \expandafter\let\csname #1+#2\expandafter\endcsname
+            \ifx \reserved@a\@empty
+              \@empty
+            \else \reserved@a
+            \fi
+    }%
+}
+\def\DeclareKanjiFamily#1#2#3{%
+ \@ifundefined{T@#1}%
+    {\@latex@error{KANJI Encoding scheme `#1' unknown}\@eha}%
+    {\edef\tmp@item{{#2}}%
+     \expandafter\expandafter\expandafter
+     \inlist@\expandafter\tmp@item\expandafter{\kfam@list}%
+     \ifin@ \else
+        \def\fam@elt{\noexpand\fam@elt}%
+        \xdef\kfam@list{\kfam@list\fam@elt<#2>}%
+     \fi
+     \def\reserved@a{#3}%
+     \global
+     \expandafter\let\csname #1+#2\expandafter\endcsname
+            \ifx \reserved@a\@empty
+              \@empty
+            \else \reserved@a
+            \fi
+     }%
+}
+\def\DeclareKanjiSubstitution#1#2#3#4{%
+  \expandafter\ifx\csname T@#1\endcsname\relax
+    \@latex@error{KANJI Encoding scheme `#1' unknown}\@eha
+  \else
+    \begingroup
+       \def\reserved@a{#1}%
+       \toks@{}%
+       \def\cdp@elt##1##2##3##4{%
+         \def\reserved@b{##1}%
+         \ifx\reserved@a\reserved@b
+           \addto@hook\toks@{\cdp@elt{#1}{#2}{#3}{#4}}%
+         \else
+           \addto@hook\toks@{\cdp@elt{##1}{##2}{##3}{##4}}%
+         \fi}%
+       \cdp@list
+       \xdef\cdp@list{\the\toks@}%
+    \endgroup
+    \global\@namedef{D@#1}{\def\default@k@family{#2}% !!!
+                           \def\default@k@series{#3}% !!!
+                           \def\default@k@shape{#4}}% !!!
+  \fi}
+\@onlypreamble\DeclareKanjiSubstitution
+\def\DeclareErrorKanjiFont#1#2#3#4#5{%
+   \xdef\error@kfontshape{%
+      \noexpand\expandafter\noexpand\split@name\noexpand\string
+      \expandafter\noexpand\csname#1/#2/#3/#4/#5\endcsname
+      \noexpand\@nil}%
+   \gdef\default@k@family{#2}%
+   \gdef\default@k@series{#3}%
+   \gdef\default@k@shape{#4}%
+   }
+\@onlypreamble\DeclareErrorKanjiFont
+\def\wrong@al@fontshape{%
+    \csname D@\f@encoding\endcsname   % install defaults if in math
+    \edef\reserved@a{\csname\curr@fontshape\endcsname}%
+  \ifx\last@fontshape\reserved@a
+     \errmessage{Corrupted NFSS tables}%
+     \error@fontshape
+  \else
+    \let\f@shape\default@shape
+    \expandafter\ifx\csname\curr@fontshape\endcsname\relax
+       \let\f@series\default@series
+        \expandafter
+          \ifx\csname\curr@fontshape\endcsname\relax
+           \let\f@family\default@family
+           \begingroup
+              \try@load@fontshape
+           \endgroup
+        \fi \fi
+  \fi
+     \@font@warning{Font shape `\expandafter\string\reserved@a'
+                     \expandafter\@gobble\string\@undefined\MessageBreak
+                   using `\curr@fontshape' instead\@wrong@font@char}%
+    \global\let\last@fontshape\reserved@a
+    \gdef\@defaultsubs{%
+      \@font@warning{Some font shapes were not available, defaults
+                      substituted.\@gobbletwo}}%
+    \global\expandafter\expandafter\expandafter\let
+       \expandafter\reserved@a
+           \csname\curr@fontshape\endcsname
+    \xdef\font@name{%
+      \csname\curr@fontshape/\f@size\endcsname}%
+    \pickup@font}
+\def\wrong@ja@fontshape{%
+    \csname D@\f@encoding\endcsname   % install defaults if in math
+    \edef\reserved@a{\csname\curr@fontshape\endcsname}%
+  \ifx\last@fontshape\reserved@a
+     \errmessage{Corrupted NFSS tables}%
+     \error@fontshape
+  \else
+    \let\f@shape\default@k@shape % !!!
+    \expandafter\ifx\csname\curr@fontshape\endcsname\relax
+       \let\f@series\default@k@series % !!!
+        \expandafter
+          \ifx\csname\curr@fontshape\endcsname\relax
+           \let\f@family\default@k@family % !!!
+           \begingroup
+              \try@load@fontshape
+           \endgroup
+        \fi \fi
+  \fi
+     \@font@warning{Font shape `\expandafter\string\reserved@a'
+                     \expandafter\@gobble\string\@undefined\MessageBreak
+                   using `\curr@fontshape' instead\@wrong@font@char}%
+    \global\let\last@fontshape\reserved@a
+    \gdef\@defaultsubs{%
+      \@font@warning{Some font shapes were not available, defaults
+                      substituted.\@gobbletwo}}%
+    \global\expandafter\expandafter\expandafter\let
+       \expandafter\reserved@a
+           \csname\curr@fontshape\endcsname
+    \xdef\font@name{%
+      \csname\curr@fontshape/\f@size\endcsname}%
+    \pickup@font}
+\def\wrong@fontshape{%
+  \edef\tmp@item{{\f@encoding}}%
+  \expandafter\expandafter\expandafter
+  \inlist@\expandafter\tmp@item\expandafter{\kenc@list}%
+  \ifin@
+    \wrong@ja@fontshape
+  \else
+    \wrong@al@fontshape
+  \fi
+}
+\def\DeclareFixedFont#1#2#3#4#5#6{%
+   \begingroup
+      \let\afont\font
+      \math@fontsfalse
+      \every@math@size{}%
+      \fontsize{#6}\z@
+      \edef\tmp@item{{#2}}%
+      \expandafter\expandafter\expandafter
+      \inlist@\expandafter\tmp@item\expandafter{\kyenc@list}%
+      \ifin@
+        \usekanji{#2}{#3}{#4}{#5}%
+        \let\font\jfont
+      \else
+        \expandafter\expandafter\expandafter
+        \inlist@\expandafter\tmp@item\expandafter{\ktenc@list}%
+        \ifin@
+          \usekanji{#2}{#3}{#4}{#5}%
+          \let\font\tfont
+        \else
+          \useroman{#2}{#3}{#4}{#5}%
+          \let\font\afont
+        \fi
+      \fi
+      \global\expandafter\let\expandafter#1\the\font
+      \let\font\afont
+   \endgroup
+  }
+\def\pltx@do@subst@correction@al{%
+       \xdef\subst@correction{%
+          \font@name
+          \global\expandafter\font
+            \csname \curr@fontshape/\f@size\endcsname
+            \noexpand\fontname\font
+           \relax}%
+       \aftergroup\subst@correction
+}
+\def\pltx@do@subst@correction@yoko{%
+       \xdef\subst@correction{%
+          \font@name
+          \global\expandafter\jfont
+            \csname \curr@fontshape/\f@size\endcsname
+            \noexpand\fontname\jfont
+           \relax}%
+       \aftergroup\subst@correction
+}
+\def\pltx@do@subst@correction@tate{%
+       \xdef\subst@correction{%
+          \font@name
+          \global\expandafter\tfont
+            \csname \curr@fontshape/\f@size\endcsname
+            \noexpand\fontname\tfont
+           \relax}%
+       \aftergroup\subst@correction
+}
+\def\do@subst@correction{%
+  \edef\tmp@item{{\f@encoding}}%
+  \expandafter\expandafter\expandafter
+  \inlist@\expandafter\tmp@item\expandafter{\kyenc@list}%
+  \ifin@\pltx@do@subst@correction@yoko
+  \else
+    \expandafter\expandafter\expandafter
+    \inlist@\expandafter\tmp@item\expandafter{\ktenc@list}%
+    \ifin@\pltx@do@subst@correction@tate\else
+      \pltx@do@subst@correction@al
+    \fi
+  \fi
+}
+\def\reDeclareMathAlphabet#1#2#3{%
+  \edef#1{\noexpand\protect\expandafter\noexpand\csname%
+    \expandafter\@gobble\string#1\space\space\endcsname}%
+  \edef\@tempa{\expandafter\@gobble\string#2}%
+  \edef\@tempb{\expandafter\@gobble\string#3}%
+  \edef\@tempc{\string @\expandafter\@gobbletwo\string#2}%
+  \ifx\@tempc\@tempa%
+    \edef\@tempa{\expandafter\@gobbletwo\string#2}%
+    \edef\@tempb{\expandafter\@gobbletwo\string#3}%
+  \fi
+  \expandafter\edef\csname\expandafter\@gobble\string#1\space\space\endcsname%
+    {\noexpand\DualLang@mathalph@bet%
+      {\expandafter\noexpand\csname\@tempa\space\endcsname}%
+      {\expandafter\noexpand\csname\@tempb\space\endcsname}%
+  }%
+}
+\@onlypreamble\reDeclareMathAlphabet
+\def\DualLang@mathalph@bet#1#2{%
+  \relax\ifmmode
+    \ifx\math@bgroup\bgroup%     2e normal style     (\mathrm{...})
+      \bgroup\let\DualLang@Mfontsw\DLMfontsw@standard
+    \else
+      \ifx\math@bgroup\relax%    2e two letter style (\rm->\mathrm)
+        \let\DualLang@Mfontsw\DLMfontsw@oldstyle
+      \else
+        \ifx\math@bgroup\@empty% 2.09 oldlfont style ({\mathrm ...})
+          \let\DualLang@Mfontsw\DLMfontsw@oldlfont
+        \else%                   panic! assume 2e normal style
+          \bgroup\let\DualLang@Mfontsw\DLMfontsw@standard
+        \fi
+      \fi
+    \fi
+  \else
+    \let\DualLang@Mfontsw\@firstoftwo
+  \fi
+  \DualLang@Mfontsw{#1}{#2}%
+}
+\def\DLMfontsw@standard#1#2#3{#1{#2{#3}}\egroup}
+\def\DLMfontsw@oldstyle#1#2{#1\relax\@fontswitch\relax{#2}}
+\def\DLMfontsw@oldlfont#1#2{#1\relax#2\relax}
+\def\all@shape{all}%
+\def\DeclareRelationFont#1#2#3#4#5#6#7#8{%
+  \def\rel@shape{#4}%
+  \ifx\rel@shape\@empty
+     \global
+     \expandafter\def\csname rel@#1/#2/#3/all\endcsname{%
+       \romanencoding{#5}\romanfamily{#6}%
+       \romanseries{#7}}%
+  \else
+     \global
+     \expandafter\def\csname rel@#1/#2/#3/#4\endcsname{%
+       \romanencoding{#5}\romanfamily{#6}%
+       \romanseries{#7}\romanshape{#8}}%
+  \fi
+}
+\def\SetRelationFont#1#2#3#4#5#6#7#8{%
+  \def\rel@shape{#4}%
+  \ifx\rel@shape\@empty
+     \expandafter\def\csname rel@#1/#2/#3/all\endcsname{%
+       \romanencoding{#5}\romanfamily{#6}%
+       \romanseries{#7}}%
+  \else
+     \expandafter\def\csname rel@#1/#2/#3/#4\endcsname{%
+       \romanencoding{#5}\romanfamily{#6}%
+       \romanseries{#7}\romanshape{#8}}%
+  \fi
+}
+\newif\if@knjcmd
+\DeclareRobustCommand\userelfont{\@knjcmdtrue}
+\ifx\delayed@f@adjustment\@undefined % --- for <= 2020-10-01 BEGIN
+%%
+\DeclareRobustCommand\selectfont{%
+  \let\tmp@error@fontshape\error@fontshape
+  \let\error@fontshape\error@kfontshape
+  \edef\tmp@item{{\k@encoding}}%
+  \expandafter\expandafter\expandafter
+  \inlist@\expandafter\tmp@item\expandafter{\kyenc@list}%
+  \ifin@
+    \let\cy@encoding\k@encoding
+    \ensure@KanjiEncodingPair{t}%
+    \edef\ct@encoding{\csname t@enc@\k@encoding\endcsname}%
+  \else
+    \expandafter\expandafter\expandafter
+    \inlist@\expandafter\tmp@item\expandafter{\ktenc@list}%
+    \ifin@
+      \let\ct@encoding\k@encoding
+      \ensure@KanjiEncodingPair{y}%
+      \edef\cy@encoding{\csname y@enc@\k@encoding\endcsname}%
+    \else
+      \@latex@error{KANJI Encoding scheme `\k@encoding' unknown}\@eha
+    \fi
+  \fi
+  \let\font\tfont
+  \let\k@encoding\ct@encoding
+  \xdef\font@name{\csname\curr@kfontshape/\f@size\endcsname}%
+  \pickup@font
+  \font@name
+  \let\font\jfont
+  \let\k@encoding\cy@encoding
+  \xdef\font@name{\csname\curr@kfontshape/\f@size\endcsname}%
+  \pickup@font
+  \font@name
+  \expandafter\def\expandafter\k@encoding\tmp@item
+  \kenc@update
+  \let\error@fontshape\tmp@error@fontshape
+  \if@knjcmd \@knjcmdfalse
+    \expandafter\ifx
+    \csname rel@\k@encoding/\k@family/\k@series/\k@shape\endcsname\relax
+      \expandafter\ifx
+         \csname rel@\k@encoding/\k@family/\k@series/all\endcsname\relax
+      \else
+         \csname rel@\k@encoding/\k@family/\k@series/all\endcsname
+      \fi
+    \else
+       \csname rel@\k@encoding/\k@family/\k@series/\k@shape\endcsname
+    \fi
+  \fi
+  \let\font\afont
+  \xdef\font@name{\csname\curr@fontshape/\f@size\endcsname}%
+  \pickup@font
+  \font@name
+  \enc@update
+  \ifx\f@linespread\baselinestretch \else
+    \set@fontsize\baselinestretch\f@size\f@baselineskip
+  \fi
+  \size@update}
+%%
+\else        % --- for <= 2020-10-01 END & for >= 2021-06-01 BEGIN
+%%
+\DeclareRobustCommand\selectfont{%
+  % !! sync with ltfsstrc.dtx 2021/04/26 v3.0o BEGIN
+  \ifx\delayed@k@adjustment\@empty
+  \else
+    \let\k@shape@saved\k@shape
+    \let\k@series@saved\k@series
+    \delayed@k@adjustment
+    \begingroup\let\f@encoding\k@encoding\let\f@family\k@family
+      \maybe@load@fontshape\endgroup
+    \ifcsname \k@encoding/\k@family/\k@series/\k@shape \endcsname
+    \else
+      \let\k@shape\k@shape@saved
+      \let\k@series\k@series@saved
+      \let\delayed@merge@kanji@shape\merge@kanji@shape
+      \let\delayed@merge@kanji@series\merge@kanji@series
+      \delayed@k@adjustment
+      \let\delayed@merge@kanji@shape\merge@kanji@shape@without@substitution
+      \let\delayed@merge@kanji@series\merge@kanji@series@without@substitution
+    \fi
+    \let\delayed@k@adjustment\@empty
+  \fi
+  \@forced@series@kanjifalse
+  % !! sync with ltfsstrc.dtx 2021/04/26 v3.0o END
+  \let\tmp@error@fontshape\error@fontshape
+  \let\error@fontshape\error@kfontshape
+  \edef\tmp@item{{\k@encoding}}%
+  \expandafter\expandafter\expandafter
+  \inlist@\expandafter\tmp@item\expandafter{\kyenc@list}%
+  \ifin@
+    \let\cy@encoding\k@encoding
+    \ensure@KanjiEncodingPair{t}%
+    \edef\ct@encoding{\csname t@enc@\k@encoding\endcsname}%
+  \else
+    \expandafter\expandafter\expandafter
+    \inlist@\expandafter\tmp@item\expandafter{\ktenc@list}%
+    \ifin@
+      \let\ct@encoding\k@encoding
+      \ensure@KanjiEncodingPair{y}%
+      \edef\cy@encoding{\csname y@enc@\k@encoding\endcsname}%
+    \else
+      \@latex@error{KANJI Encoding scheme `\k@encoding' unknown}\@eha
+    \fi
+  \fi
+  \let\font\tfont
+  \let\k@encoding\ct@encoding
+  \xdef\font@name{\csname\curr@kfontshape/\f@size\endcsname}%
+  \pickup@font
+  \font@name
+  \let\font\jfont
+  \let\k@encoding\cy@encoding
+  \xdef\font@name{\csname\curr@kfontshape/\f@size\endcsname}%
+  \pickup@font
+  \font@name
+  \expandafter\def\expandafter\k@encoding\tmp@item
+  \kenc@update
+  \let\error@fontshape\tmp@error@fontshape
+  \if@knjcmd \@knjcmdfalse
+    \expandafter\ifx
+    \csname rel@\k@encoding/\k@family/\k@series/\k@shape\endcsname\relax
+      \expandafter\ifx
+         \csname rel@\k@encoding/\k@family/\k@series/all\endcsname\relax
+      \else
+         \csname rel@\k@encoding/\k@family/\k@series/all\endcsname
+      \fi
+    \else
+       \csname rel@\k@encoding/\k@family/\k@series/\k@shape\endcsname
+    \fi
+  \fi
+  % !! sync with ltfsstrc.dtx 2021/04/26 v3.0o BEGIN
+  \ifx\delayed@f@adjustment\@empty
+  \else
+    \let\f@shape@saved\f@shape
+    \let\f@series@saved\f@series
+    \delayed@f@adjustment
+    \maybe@load@fontshape
+    \ifcsname \f@encoding/\f@family/\f@series/\f@shape \endcsname
+    \else
+      \let\f@shape\f@shape@saved
+      \let\f@series\f@series@saved
+      \let\delayed@merge@font@shape\merge@font@shape
+      \let\delayed@merge@font@series\merge@font@series
+      \delayed@f@adjustment
+      \let\delayed@merge@font@shape\merge@font@shape@without@substitution
+      \let\delayed@merge@font@series\merge@font@series@without@substitution
+    \fi
+    \let\delayed@f@adjustment\@empty
+  \fi
+  \@forced@seriesfalse
+  % !! sync with ltfsstrc.dtx 2021/04/26 v3.0o END
+  \let\font\afont
+  \xdef\font@name{\csname\curr@fontshape/\f@size\endcsname}%
+  \pickup@font
+  \font@name
+  \UseHook{selectfont}% since LaTeX2e 2021-06-01
+  \enc@update
+  \ifx\f@linespread\baselinestretch \else
+    \set@fontsize\baselinestretch\f@size\f@baselineskip
+  \fi
+  \size@update}
+%%
+\fi          % --- for >= 2021-06-01 END
+\def\set@fontsize#1#2#3{%
+    \@defaultunits\@tempdimb#2pt\relax\@nnil
+    \edef\f@size{\strip@pt\@tempdimb}%
+    \@defaultunits\@tempskipa#3pt\relax\@nnil
+    \edef\f@baselineskip{\the\@tempskipa}%
+    \edef\f@linespread{#1}%
+    \let\baselinestretch\f@linespread
+    \def\size@update{%
+      \baselineskip\f@baselineskip\relax
+      \baselineskip\f@linespread\baselineskip
+      \normalbaselineskip\baselineskip
+      \adjustbaseline
+      \setbox\ystrutbox\hbox{\yoko
+          \vrule\@width\z@
+                \@height.7\baselineskip \@depth.3\baselineskip}%
+      \setbox\tstrutbox\hbox{\tate
+          \vrule\@width\z@
+                \@height.5\baselineskip \@depth.5\baselineskip}%
+      \setbox\zstrutbox\hbox{\tate
+          \vrule\@width\z@
+                \@height.7\baselineskip \@depth.3\baselineskip}%
+        \let\size@update\relax}}
+\newbox\adjust@box
+\newdimen\adjust@dimen
+\DeclareRobustCommand\adjustbaseline{%
+    \setbox\adjust@box\hbox{\char\jis"3441}%"
+    \cht\ht\adjust@box
+    \cdp\dp\adjust@box
+    \cwd\wd\adjust@box
+    \cvs\normalbaselineskip
+    \chs\cwd
+    \cHT\cht \advance\cHT\cdp
+  \iftdir
+    \setbox\adjust@box\hbox{\tbaselineshift\z@ M}%
+    \adjust@dimen\ht\adjust@box
+    \advance\adjust@dimen\dp\adjust@box
+    \advance\adjust@dimen-\cHT
+    \divide\adjust@dimen\tw@
+    \advance\adjust@dimen\cdp
+    \advance\adjust@dimen-\dp\adjust@box
+    \tbaselineshift\adjust@dimen
+  \fi}
+\DeclareRobustCommand\romanencoding[1]{%
+    \expandafter\ifx\csname T@#1\endcsname\relax
+      \@latex@error{Encoding scheme `#1' unknown}\@eha
+    \else
+      \edef\f@encoding{#1}%
+      \ifx\cf@encoding\f@encoding
+        \let\enc@update\relax
+      \else
+        \let\enc@update\@@enc@update
+      \fi
+    \fi
+}
+\DeclareRobustCommand\kanjiencoding[1]{%
+    \expandafter\ifx\csname T@#1\endcsname\relax
+      \@latex@error{KANJI Encoding scheme `#1' unknown}\@eha
+    \else
+      \edef\k@encoding{#1}%
+      \ifx\ck@encoding\k@encoding
+         \let\kenc@update\relax
+      \else
+         \let\kenc@update\@@kenc@update
+      \fi
+    \fi
+}
+\DeclareRobustCommand\fontencoding[1]{%
+  \edef\tmp@item{{#1}}%
+  \expandafter\expandafter\expandafter
+  \inlist@\expandafter\tmp@item\expandafter{\kenc@list}%
+  \ifin@ \kanjiencoding{#1}\else\romanencoding{#1}\fi}
+\def\@@kenc@update{%
+  \default@KT
+  \csname T@\k@encoding\endcsname
+  \csname D@\k@encoding\endcsname
+  \let\kenc@update\relax
+  \let\ck@encoding\k@encoding
+  \edef\tmp@item{{\k@encoding}}%
+  \expandafter\expandafter\expandafter
+  \inlist@\expandafter\tmp@item\expandafter{\kyenc@list}%
+  \ifin@ \let\cy@encoding\k@encoding
+  \else
+    \expandafter\expandafter\expandafter
+    \inlist@\expandafter\tmp@item\expandafter{\ktenc@list}%
+    \ifin@ \let\ct@encoding\k@encoding
+    \else
+      \@latex@error{KANJI Encoding scheme `\k@encoding' unknown}\@eha
+    \fi
+  \fi
+}
+\let\kenc@update\relax
+\def\@changed@kcmd#1#2{%
+   \ifx\protect\@typeset@protect
+      \@inmathwarn#1%
+      \expandafter\ifx\csname\ck@encoding\string#1\endcsname\relax
+         \expandafter\ifx\csname ?\string#1\endcsname\relax
+            \expandafter\def\csname ?\string#1\endcsname{%
+               \TextSymbolUnavailable#1%
+            }%
+         \fi
+         \global\expandafter\let
+               \csname\cf@encoding \string#1\expandafter\endcsname
+               \csname ?\string#1\endcsname
+      \fi
+      \csname\ck@encoding\string#1%
+         \expandafter\endcsname
+   \else
+      \noexpand#1%
+   \fi}
+\newif\if@notkfam
+\newif\if@notffam
+\newif\if@tempswz
+\DeclareRobustCommand\romanfamily[1]{\edef\f@family{#1}}
+\DeclareRobustCommand\kanjifamily[1]{\edef\k@family{#1}}
+\DeclareRobustCommand\fontfamily[1]{%
+  \edef\tmp@item{{#1}}%
+  \@notkfamfalse
+  \@notffamfalse
+  \expandafter\expandafter\expandafter
+  \inlist@\expandafter\tmp@item\expandafter{\kfam@list}%
+  \ifin@ \edef\k@family{#1}%
+  \else
+    \expandafter\expandafter\expandafter
+    \inlist@\expandafter\tmp@item\expandafter{\notkfam@list}%
+    \ifin@ \@notkfamtrue
+    \else
+      \@tempswzfalse
+      \def\fam@elt{\noexpand\fam@elt}%
+      \message{(I search kanjifont definition file:}%
+      \def\enc@elt<##1>{\message{.}%
+        \edef\reserved@a{\lowercase{\noexpand\IfFileExists{##1#1.fd}}}%
+        \reserved@a{\@tempswztrue}{}\relax}%
+      \kenc@list
+      \message{)}%
+      \if@tempswz
+        \edef\k@family{#1}%
+      \else
+        \@notkfamtrue
+        \xdef\notkfam@list{\notkfam@list\fam@elt<#1>}%
+      \fi
+  \fi\fi
+  \expandafter\expandafter\expandafter
+  \inlist@\expandafter\tmp@item\expandafter{\ffam@list}%
+  \ifin@ \edef\f@family{#1}\else
+    \expandafter\expandafter\expandafter
+    \inlist@\expandafter\tmp@item\expandafter{\notffam@list}%
+    \ifin@ \@notffamtrue \else
+      \@tempswzfalse
+      \def\fam@elt{\noexpand\fam@elt}%
+      \message{(I search font definition file:}%
+      \def\enc@elt<##1>{\message{.}%
+        \edef\reserved@a{\lowercase{\noexpand\IfFileExists{##1#1.fd}}}%
+        \reserved@a{\@tempswztrue}{}\relax}%
+      \fenc@list
+      \message{)}%
+      \if@tempswz
+        \edef\f@family{#1}%
+      \else
+        \@notffamtrue
+        \xdef\notffam@list{\notffam@list\fam@elt<#1>}%
+      \fi
+  \fi\fi
+  \if@notkfam\if@notffam
+      \edef\k@family{#1}\edef\f@family{#1}%
+  \fi\fi}
+\ifx\fontseriesforce\@undefined      % old
+        \def\pltx@latex@level{0}
+\else                                % 2020-02-02
+  \ifx\@forced@seriestrue\@undefined
+    \ifnum\patch@level<1\relax                  % patch level 0
+        \def\pltx@latex@level{1}% use \@reserveda
+    \else                                       % patch level 1, 2
+        \def\pltx@latex@level{2}
+    \fi
+  \else
+    \ifx\series@maybe@drop@one@m\@undefined     % patch level 3, 4
+        \def\pltx@latex@level{3}
+    \else
+      \ifx\series@maybe@drop@one@m@x\@undefined % patch level 5
+        \def\pltx@latex@level{4}
+        % anticipating LaTeX2e 'develop' branch (after 23b7244)
+        % this temporary code will be removed in the future
+        %\let\series@maybe@drop@one@m@x\series@maybe@drop@one@m
+        %\def\series@maybe@drop@one@m#1{%
+        %  \expandafter\series@maybe@drop@one@m@x\expandafter{#1}}
+      \else
+        \def\pltx@latex@level{5}
+      \fi
+    \fi
+  \fi
+\fi
+\edef\pltx@reset@catcode@trick{\catcode`\noexpand\~=\the\catcode`\~\relax}
+\def\pltx@temp@catcode@ix{\catcode`\~=9\relax}
+\def\pltx@temp@catcode@xiv{\catcode`\~=14\relax}
+\ifnum\pltx@latex@level<3\relax
+  \pltx@temp@catcode@xiv % hide if-tokens
+\else
+  \pltx@temp@catcode@ix  % reveal if-tokens
+\fi
+\ifx\delayed@f@adjustment\@undefined   % old
+  \let\delayed@k@adjustment\@undefined
+\else                                  % 2021-06-01
+  \let\delayed@k@adjustment\@empty
+\fi
+\ifx\@forced@seriestrue\@undefined % old
+  \let\@forced@series@kanjifalse\@undefined
+  \let\@forced@series@kanjitrue\@undefined
+\else                              % 2020-02-02 PL3 or later
+  \expandafter\newif\csname if@forced@series@kanji\endcsname
+\fi
+\ifx\fontseriesforce\@undefined  % old
+\DeclareRobustCommand\romanseries[1]{\edef\f@series{#1}}
+\DeclareRobustCommand\kanjiseries[1]{\edef\k@series{#1}}
+\DeclareRobustCommand\fontseries[1]{\kanjiseries{#1}\romanseries{#1}}
+\else                            % 2020-02-02
+\ifx\delayed@f@adjustment\@undefined % --- for <= 2020-10-01 BEGIN
+\DeclareRobustCommand\romanseries[1]{\@forced@seriesfalse\merge@font@series{#1}}
+\DeclareRobustCommand\kanjiseries[1]{\@forced@series@kanjifalse\merge@kanji@series{#1}}
+\DeclareRobustCommand\fontseries[1]{\kanjiseries{#1}\romanseries{#1}}
+\else        % --- for <= 2020-10-01 END & for >= 2021-06-01 BEGIN
+\DeclareRobustCommand\romanseries[1]{\@forced@seriesfalse
+    \expandafter\def\expandafter\delayed@f@adjustment\expandafter
+        {\delayed@f@adjustment\delayed@merge@font@series{#1}}}
+\DeclareRobustCommand\kanjiseries[1]{\@forced@series@kanjifalse
+    \expandafter\def\expandafter\delayed@k@adjustment\expandafter
+        {\delayed@k@adjustment\delayed@merge@kanji@series{#1}}}
+\DeclareRobustCommand\fontseries[1]{\kanjiseries{#1}\romanseries{#1}}
+\fi          % --- for >= 2021-06-01 END
+\fi
+\ifx\fontseriesforce\@undefined  % old
+\let\romanseriesforce\@undefined
+\let\kanjiseriesforce\@undefined
+\else                            % 2020-02-02
+\ifx\delayed@f@adjustment\@undefined % --- for <= 2020-10-01 BEGIN
+\DeclareRobustCommand\romanseriesforce[1]{\@forced@seriestrue\edef\f@series{#1}}
+\DeclareRobustCommand\kanjiseriesforce[1]{\@forced@series@kanjitrue\edef\k@series{#1}}
+\DeclareRobustCommand\fontseriesforce[1]{\kanjiseriesforce{#1}\romanseriesforce{#1}}
+\else        % --- for <= 2020-10-01 END & for >= 2021-06-01 BEGIN
+\DeclareRobustCommand\romanseriesforce[1]{\@forced@seriestrue
+    \expandafter\def\expandafter\delayed@f@adjustment\expandafter
+      {\delayed@f@adjustment\edef\f@series{#1}}}
+\DeclareRobustCommand\kanjiseriesforce[1]{\@forced@series@kanjitrue
+    \expandafter\def\expandafter\delayed@k@adjustment\expandafter
+      {\delayed@k@adjustment\edef\k@series{#1}}}
+\DeclareRobustCommand\fontseriesforce[1]{\kanjiseriesforce{#1}\romanseriesforce{#1}}
+\fi          % --- for >= 2021-06-01 END
+\fi
+\ifx\fontseriesforce\@undefined  % old
+\let\merge@kanji@series\@undefined
+\let\merge@kanji@series@\@undefined
+\let\set@target@series@kanji\@undefined
+\else                            % 2020-02-02
+\def\merge@kanji@series#1{%
+  \expandafter\expandafter\expandafter
+  \merge@kanji@series@
+    \csname series@\k@series @#1\endcsname
+    {#1}%
+    \@nil
+}
+\def\merge@kanji@series@#1#2#3\@nil{%
+  \def\reserved@a{#3}%
+  \ifx\reserved@a\@empty
+    \set@target@series@kanji{#2}%
+  \else
+    \begingroup\let\f@encoding\k@encoding\let\f@family\k@family
+      \maybe@load@fontshape\endgroup
+    \edef\reserved@a{\k@encoding /\k@family /#1/\k@shape}%
+     \ifcsname \reserved@a \endcsname
+       \set@target@series@kanji{#1}%
+    \else
+       \ifcsname \k@encoding /\k@family /#2/\k@shape \endcsname
+         \set@target@series@kanji{#2}%
+         {\let\curr@fontshape\curr@kfontshape\@font@shape@subst@warning}%
+       \else
+         \set@target@series@kanji{#3}%
+         {\let\curr@fontshape\curr@kfontshape\@font@shape@subst@warning}%
+       \fi
+    \fi
+  \fi
+}
+\def\set@target@series@kanji#1{%
+    \edef\k@series{#1}%
+    \series@maybe@drop@one@m\k@series\k@series
+}
+\fi
+\ifx\merge@font@series@without@substitution\@undefined % old
+\let\merge@kanji@series@without@substitution\@undefined
+\let\merge@kanji@series@without@substitution@\@undefined
+\let\delayed@merge@kanji@series\@undefined
+\else                                                  % 2021-06-01
+\def\merge@kanji@series@without@substitution#1{%
+  \expandafter\expandafter\expandafter
+  \merge@kanji@series@without@substitution@
+    \csname series@\k@series @#1\endcsname
+    {#1}%
+    \@nil
+}
+\def\merge@kanji@series@without@substitution@#1#2#3\@nil{%
+  \def\reserved@a{#3}%
+  \ifx\reserved@a\@empty
+    \set@target@series@kanji{#2}%
+  \else
+    \set@target@series@kanji{#1}%
+  \fi
+}
+\let\delayed@merge@kanji@series\merge@kanji@series@without@substitution
+\fi
+\ifx\@shape@roman@kanjitrue\@undefined % just in case
+  \expandafter\newif\csname if@shape@roman@kanji\endcsname
+\fi
+\ifx\fontshapeforce\@undefined   % old
+\DeclareRobustCommand\romanshape[1]{\edef\f@shape{#1}}
+\DeclareRobustCommand\kanjishape[1]{\edef\k@shape{#1}}
+\DeclareRobustCommand\fontshape[1]{%
+  \set@safe@kanji@shape{#1}{}%
+  \edef\f@shape{#1}%
+}
+\else                            % 2020-02-02
+\ifx\delayed@f@adjustment\@undefined % --- for <= 2020-10-01 BEGIN
+\DeclareRobustCommand\romanshape[1]{\merge@font@shape{#1}}
+\DeclareRobustCommand\kanjishape[1]{\merge@kanji@shape{#1}}
+\DeclareRobustCommand\fontshape[1]{%
+  \@shape@roman@kanjitrue
+  \kanjishape{#1}\romanshape{#1}%
+  \@shape@roman@kanjifalse}
+\else        % --- for <= 2020-10-01 END & for >= 2021-06-01 BEGIN
+\DeclareRobustCommand\romanshape[1]{%
+    \expandafter\def\expandafter\delayed@f@adjustment\expandafter
+        {\delayed@f@adjustment\delayed@merge@font@shape{#1}}}
+\DeclareRobustCommand\kanjishape[1]{%
+    \expandafter\def\expandafter\delayed@k@adjustment\expandafter
+        {\delayed@k@adjustment\delayed@merge@kanji@shape{#1}}}
+\DeclareRobustCommand\fontshape[1]{%
+    \romanshape{#1}%
+    \expandafter\def\expandafter\delayed@k@adjustment\expandafter
+        {\delayed@k@adjustment\@shape@roman@kanjitrue
+         \delayed@merge@kanji@shape{#1}\@shape@roman@kanjifalse}}
+\fi          % --- for >= 2021-06-01 END
+\fi
+\ifx\fontshapeforce\@undefined   % old
+\let\romanshapeforce\@undefined
+\let\kanjishapeforce\@undefined
+\else                            % 2020-02-02
+\ifx\delayed@f@adjustment\@undefined % --- for <= 2020-10-01 BEGIN
+\DeclareRobustCommand\romanshapeforce[1]{\edef\f@shape{#1}}
+\DeclareRobustCommand\kanjishapeforce[1]{\edef\k@shape{#1}}
+\DeclareRobustCommand\fontshapeforce[1]{%
+  \set@safe@kanji@shape{#1}{}%
+  \edef\f@shape{#1}%
+}
+\else        % --- for <= 2020-10-01 END & for >= 2021-06-01 BEGIN
+\DeclareRobustCommand\romanshapeforce[1]{%
+    \expandafter\def\expandafter\delayed@f@adjustment\expandafter
+        {\delayed@f@adjustment\edef\f@shape{#1}}}
+\DeclareRobustCommand\kanjishapeforce[1]{%
+    \expandafter\def\expandafter\delayed@k@adjustment\expandafter
+        {\delayed@k@adjustment\edef\k@shape{#1}}}
+\DeclareRobustCommand\fontshapeforce[1]{%
+    \expandafter\def\expandafter\delayed@k@adjustment\expandafter
+        {\delayed@k@adjustment\set@safe@kanji@shape{#1}{}}%
+    \expandafter\def\expandafter\delayed@f@adjustment\expandafter
+        {\delayed@f@adjustment\edef\f@shape{#1}}%
+}
+\fi          % --- for >= 2021-06-01 END
+\fi
+\ifx\fontseriesforce\@undefined  % old
+\let\merge@kanji@shape\@undefined
+\let\merge@kanji@shape@\@undefined
+\else                            % 2020-02-02
+\def\merge@kanji@shape#1{%
+  \expandafter\expandafter\expandafter
+  \merge@kanji@shape@
+    \csname shape@\k@shape @#1\endcsname
+    {#1}%
+    \@nil
+}
+\def\merge@kanji@shape@#1#2#3\@nil{%
+  \def\reserved@a{#3}%
+  \ifx\reserved@a\@empty
+   \if@shape@roman@kanji
+    \set@safe@kanji@shape{#2}{}%
+   \else
+    \edef\k@shape{#2}%
+   \fi
+  \else
+    \begingroup\let\f@encoding\k@encoding\let\f@family\k@family
+      \maybe@load@fontshape\endgroup
+    \edef\reserved@a{\k@encoding /\k@family /\k@series/#1}%
+     \ifcsname \reserved@a\endcsname
+       \edef\k@shape{#1}%
+    \else
+       \ifcsname \k@encoding /\k@family /\k@series/#2\endcsname
+         \edef\k@shape{#2}%
+         {\let\curr@fontshape\curr@kfontshape\@font@shape@subst@warning}%
+       \else
+        \if@shape@roman@kanji
+         \set@safe@kanji@shape{#3}%
+         {{\let\curr@fontshape\curr@kfontshape\@font@shape@subst@warning}}%
+        \else
+         \edef\k@shape{#3}%
+         {\let\curr@fontshape\curr@kfontshape\@font@shape@subst@warning}%
+        \fi
+       \fi
+    \fi
+  \fi
+}
+\fi
+\ifx\merge@font@shape@without@substitution\@undefined  % old
+\let\merge@kanji@shape@without@substitution\@undefined
+\let\merge@kanji@shape@without@substitution@\@undefined
+\let\delayed@merge@kanji@shape\@undefined
+\else                                                  % 2021-06-01
+\def\merge@kanji@shape@without@substitution#1{%
+  \expandafter\expandafter\expandafter
+  \merge@kanji@shape@without@substitution@
+    \csname shape@\k@shape @#1\endcsname
+    {#1}%
+    \@nil
+}
+\def\merge@kanji@shape@without@substitution@#1#2#3\@nil{%
+  \def\reserved@a{#3}%
+  \ifx\reserved@a\@empty
+    \edef\k@shape{#2}%
+  \else
+    \edef\k@shape{#1}%
+  \fi
+}
+\let\delayed@merge@kanji@shape\merge@kanji@shape@without@substitution
+\fi
+\def\set@safe@kanji@shape#1#2{%
+  \edef\reserved@b{\k@encoding /\k@family /\k@series/#1}%
+   \ifcsname \reserved@b\endcsname
+     \edef\k@shape{#1}%
+     #2%
+  \else
+    \@kanji@shape@nochange@info{\reserved@b}%
+  \fi
+}
+\def\@kanji@shape@nochange@info#1{%
+    \@font@info{Kanji font shape `#1' undefined\MessageBreak
+                No change}%
+}
+\ifx\set@target@series\@undefined    % old
+\DeclareRobustCommand\usekanji[4]{\kanjiencoding{#1}%
+    \edef\k@family{#2}%
+    \edef\k@series{#3}%
+    \edef\k@shape{#4}\selectfont
+    \ignorespaces}
+\DeclareRobustCommand\useroman[4]{\romanencoding{#1}%
+    \edef\f@family{#2}%
+    \edef\f@series{#3}%
+    \edef\f@shape{#4}\selectfont
+    \ignorespaces}
+\else                                % 2020-02-02
+\ifx\delayed@f@adjustment\@undefined % --- for <= 2020-10-01 BEGIN
+\DeclareRobustCommand\usekanji[4]{\kanjiencoding{#1}%
+    \edef\k@family{#2}%
+    \set@target@series@kanji{#3}%
+    \edef\k@shape{#4}\selectfont
+    \ignorespaces}
+\DeclareRobustCommand\useroman[4]{\romanencoding{#1}%
+    \edef\f@family{#2}%
+    \set@target@series{#3}%
+    \edef\f@shape{#4}\selectfont
+    \ignorespaces}
+\else        % --- for <= 2020-10-01 END & for >= 2021-06-01 BEGIN
+\DeclareRobustCommand\usekanji[4]{\kanjiencoding{#1}%
+    \edef\k@family{#2}%
+    \set@target@series@kanji{#3}%
+    \edef\k@shape{#4}%
+    \let\delayed@k@adjustment\@empty
+    \selectfont
+    \ignorespaces}
+\DeclareRobustCommand\useroman[4]{\romanencoding{#1}%
+    \edef\f@family{#2}%
+    \set@target@series{#3}%
+    \edef\f@shape{#4}%
+    \let\delayed@f@adjustment\@empty
+    \selectfont
+    \ignorespaces}
+\fi          % --- for >= 2021-06-01 END
+\fi                                  % done
+\DeclareRobustCommand\usefont[4]{%
+  \edef\tmp@item{{#1}}%
+  \expandafter\expandafter\expandafter
+  \inlist@\expandafter\tmp@item\expandafter{\kenc@list}%
+  \ifin@ \usekanji{#1}{#2}{#3}{#4}%
+  \else\useroman{#1}{#2}{#3}{#4}%
+  \fi}
+\ifnum\pltx@newhook@avail=\z@ % --- for <= 2020-02-02 BEGIN
+\ifx\@defaultfamilyhook\@undefined  % old
+\DeclareRobustCommand\normalfont{%
+    \kanjiencoding{\kanjiencodingdefault}%
+    \edef\k@family{\kanjifamilydefault}%
+    \edef\k@series{\kanjiseriesdefault}%
+    \edef\k@shape{\kanjishapedefault}%
+    \romanencoding{\encodingdefault}%
+    \edef\f@family{\familydefault}%
+    \edef\f@series{\seriesdefault}%
+    \edef\f@shape{\shapedefault}%
+    \selectfont}
+\else                               % 2020-02-02 PL2
+\g@addto@macro\@defaultfamilyhook{%
+    \kanjiencoding{\kanjiencodingdefault}%
+    \edef\k@family{\kanjifamilydefault}%
+    \edef\k@series{\kanjiseriesdefault}%
+    \edef\k@shape{\kanjishapedefault}%
+}
+\fi                                 % done
+\else % --- for <= 2020-02-02 END & for >= 2020-10-01 BEGIN
+\ifx\delayed@f@adjustment\@undefined % --- for == 2020-10-01 BEGIN
+\AddToHook{normalfont}{%
+    \kanjiencoding{\kanjiencodingdefault}%
+    \edef\k@family{\kanjifamilydefault}%
+    \edef\k@series{\kanjiseriesdefault}%
+    \edef\k@shape{\kanjishapedefault}%
+}
+\else        % --- for == 2020-10-01 END & for >= 2021-06-01 BEGIN
+\AddToHook{normalfont}{%
+    \kanjiencoding{\kanjiencodingdefault}%
+    \edef\k@family{\kanjifamilydefault}%
+    \edef\k@series{\kanjiseriesdefault}%
+    \edef\k@shape{\kanjishapedefault}%
+    \let\delayed@k@adjustment\@empty
+}
+\fi          % --- for >= 2021-06-01 END
+\fi   % --- for >= 2020-10-01 END
+\adjustbaseline
+\let\reset@font\normalfont
+\ifx\bfseries@rm\@undefined  % old
+\let\bfseries@mc\@undefined
+\let\bfseries@gt\@undefined
+\let\mdseries@mc\@undefined
+\let\mdseries@gt\@undefined
+\else                        % 2020-02-02
+\edef\bfseries@mc{\bfdefault}% b
+\edef\bfseries@gt{\bfdefault}% b
+\edef\mdseries@mc{\mddefault}% m
+\edef\mdseries@gt{\mddefault}% m
+\fi
+\ifx\expand@font@defaults\@undefined\else %<*2020-02-02|2020-10-01|.>
+\ifnum\pltx@newhook@avail=\z@ % --- for == 2020-02-02 BEGIN
+\g@addto@macro\expand@font@defaults{%
+  \edef\mcdef@ult{\mcdefault}%
+  \edef\gtdef@ult{\gtdefault}%
+  \edef\kanjidef@ult{\kanjifamilydefault}%
+}
+\else % --- for == 2020-02-02 END & for >= 2020-10-01 BEGIN
+\AddToHook{expand@font@defaults}{%
+  \edef\mcdef@ult{\mcdefault}%
+  \edef\gtdef@ult{\gtdefault}%
+ %\edef\kanjidef@ult{\kanjifamilydefault}% !! sync with 2020/04/13 v3.1n
+}
+\fi   % --- for >= 2020-10-01 END
+\fi %</2020-02-02|2020-10-01|.>
+\ifx\bfseries@rm\@undefined\else %<*2020-02-02|2020-10-01|.>
+\ifnum\pltx@newhook@avail=\z@ % --- for == 2020-02-02 BEGIN
+\DeclareRobustCommand\bfseries{%
+  \not@math@alphabet\bfseries\mathbf
+  \expand@font@defaults
+  % changed \fontseries -> \romanseries
+    \ifx\f@family\rmdef@ult      \romanseries\bfseries@rm
+    \else\ifx\f@family\sfdef@ult \romanseries\bfseries@sf
+    \else\ifx\f@family\ttdef@ult \romanseries\bfseries@tt
+    \else                        \romanseries\bfdefault
+    \fi\fi\fi
+  % changed \fontseries -> \kanjiseries
+    \ifx\k@family\mcdef@ult      \kanjiseries\bfseries@mc
+    \else\ifx\k@family\gtdef@ult \kanjiseries\bfseries@gt
+    \else                        \kanjiseries\bfdefault
+    \fi\fi
+  \selectfont
+}
+\DeclareRobustCommand\mdseries{%
+  \not@math@alphabet\mdseries\relax
+  \expand@font@defaults
+  % changed \fontseries -> \romanseries
+    \ifx\f@family\rmdef@ult      \romanseries\mdseries@rm
+    \else\ifx\f@family\sfdef@ult \romanseries\mdseries@sf
+    \else\ifx\f@family\ttdef@ult \romanseries\mdseries@tt
+    \else                        \romanseries\mddefault
+    \fi\fi\fi
+  % changed \fontseries -> \kanjiseries
+    \ifx\k@family\mcdef@ult      \kanjiseries\mdseries@mc
+    \else\ifx\k@family\gtdef@ult \kanjiseries\mdseries@gt
+    \else                        \kanjiseries\mddefault
+    \fi\fi
+  \selectfont
+}
+\else % --- for == 2020-02-02 END & for >= 2020-10-01 BEGIN
+\AddToHook{bfseries/defaults}{%
+    \let\bfseries@mc\bfdef@ult
+    \let\bfseries@gt\bfdef@ult
+}
+\AddToHook{bfseries}{%
+  % changed \fontseries -> \kanjiseries
+    \ifx\k@family\mcdef@ult      \kanjiseries\bfseries@mc
+    \else\ifx\k@family\gtdef@ult \kanjiseries\bfseries@gt
+    \else                        \kanjiseries\bfdefault
+    \fi\fi
+}
+\AddToHook{mdseries/defaults}{%
+    \let\mdseries@mc\mddef@ult
+    \let\mdseries@gt\mddef@ult
+}
+\AddToHook{mdseries}{%
+  % changed \fontseries -> \kanjiseries
+    \ifx\k@family\mcdef@ult      \kanjiseries\mdseries@mc
+    \else\ifx\k@family\gtdef@ult \kanjiseries\mdseries@gt
+    \else                        \kanjiseries\mddefault
+    \fi\fi
+}
+\fi   % --- for >= 2020-10-01 END
+\fi %</2020-02-02|2020-10-01|.>
+\ifx\prepare@family@series@update\@undefined  % old
+\let\prepare@family@series@update@kanji\@undefined
+\let\@meta@family@list@kanji\@undefined
+\let\update@series@target@value@kanji\@undefined
+\else                                         % 2020-02-02
+\def\prepare@family@series@update#1#2{%
+~\if@forced@series
+~  \romanfamily#2%   % changed \fontfamily -> \romanfamily
+~\else
+   \expand@font@defaults
+   \let\target@series@value\@empty
+   \def\target@meta@family@value{#1}%
+   \expandafter\edef\csname ??def@ult\endcsname{\f@family}%
+   \let\@elt\update@series@target@value
+      \@meta@family@list
+      \@elt{??}%
+   \let\@elt\relax
+   \romanfamily#2%   % changed \fontfamily -> \romanfamily
+   \ifx\target@series@value\@empty
+   \else
+     \ifx \f@series\target@series@value
+     \else
+       \maybe@load@fontshape
+       \series@maybe@drop@one@m\target@series@value\f@series
+     \fi
+   \fi
+~\fi
+}
+\def\prepare@family@series@update@kanji#1#2{%
+~\if@forced@series@kanji
+~  \kanjifamily#2%
+~\else
+   \expand@font@defaults
+   \let\target@series@value\@empty
+   \def\target@meta@family@value{#1}%
+   \expandafter\edef\csname ??def@ult\endcsname{\k@family}%
+   \let\@elt\update@series@target@value@kanji
+      \@meta@family@list@kanji
+      \@elt{??}%
+   \let\@elt\relax
+   \kanjifamily#2%
+   \ifx\target@series@value\@empty
+   \else
+     \ifx \k@series\target@series@value
+     \else
+       \begingroup\let\f@encoding\k@encoding\let\f@family\k@family
+         \maybe@load@fontshape\endgroup
+       \series@maybe@drop@one@m\target@series@value\k@series
+     \fi
+   \fi
+~\fi
+}
+\def\@meta@family@list@kanji{\@elt{mc}\@elt{gt}}
+\def\update@series@target@value@kanji#1{%
+  \def\reserved@a{#1}%
+  \ifx\target@meta@family@value\reserved@a   % rm -> rm do nothing
+  \else
+    \expandafter\ifx\csname#1def@ult\endcsname\k@family
+      \let\@elt\@gobble
+      \expandafter\let\expandafter\reserved@b
+                      \csname mdseries@\target@meta@family@value\endcsname
+      \expandafter\let\expandafter\reserved@c
+                      \csname bfseries@\target@meta@family@value\endcsname
+      \expandafter\series@maybe@drop@one@m
+          \csname mdseries@#1\endcsname\reserved@d
+      \ifx\reserved@d\k@series
+                                      \let\target@series@value\reserved@b
+      \else
+        \expandafter\series@maybe@drop@one@m
+           \csname bfseries@#1\endcsname\reserved@d
+        \ifx\reserved@d\k@series
+                                      \let\target@series@value\reserved@c
+      \else\ifx\k@series\mddef@ult    \let\target@series@value\reserved@b
+      \else\ifx\k@series\bfdef@ult    \let\target@series@value\reserved@c
+      \fi\fi\fi\fi
+    \fi
+  \fi
+}
+\fi
+\expandafter\ifx\csname init@series@setup\endcsname\relax
+\else   %<*2020-02-02|2020-10-01|.>
+\ifnum\pltx@newhook@avail=\z@ % --- for == 2020-02-02 BEGIN
+\g@addto@macro\init@series@setup{%
+  \ifx\kanjidef@ult\mcdef@ult      \mcfamily
+  \else\ifx\kanjidef@ult\gtdef@ult \gtfamily
+  \fi\fi
+}%
+\else % --- for == 2020-02-02 END & for >= 2020-10-01 BEGIN
+\g@addto@macro\init@series@setup{%
+  % !! sync with 2020/04/13 v3.1n BEGIN
+  \ifx\kanjiseriesdefault\kanjiseriesdefault@kernel
+    \mdseries
+    \let\kanjiseriesdefault\k@series
+  \fi
+  % !! sync with 2020/04/13 v3.1n END
+}%
+\fi   % --- for >= 2020-10-01 END
+\fi     %</2020-02-02|2020-10-01|.>
+\ifnum\pltx@newhook@avail>\z@ % --- for >= 2020-10-01 BEGIN
+\def\code@after@pldefs{%
+\expandafter\def\expandafter\kanjiseriesdefault
+  \expandafter{\kanjiseriesdefault\@empty}
+\let\kanjiseriesdefault@kernel\kanjiseriesdefault}
+\fi                           % --- for >= 2020-10-01 END
+\ifx\prepare@family@series@update@kanji\@undefined  % old
+\DeclareRobustCommand\mcfamily
+        {\not@math@alphabet\mcfamily\mathmc
+         \kanjifamily\mcdefault\selectfont}
+\DeclareRobustCommand\gtfamily
+        {\not@math@alphabet\gtfamily\mathgt
+         \kanjifamily\gtdefault\selectfont}
+\else                                               % 2020-02-02
+\DeclareRobustCommand\mcfamily
+    {\not@math@alphabet\mcfamily\mathmc
+     \prepare@family@series@update@kanji{mc}\mcdefault\selectfont}
+\DeclareRobustCommand\gtfamily
+    {\not@math@alphabet\gtfamily\mathgt
+     \prepare@family@series@update@kanji{gt}\gtdefault\selectfont}
+\fi
+\DeclareTextFontCommand{\textmc}{\mcfamily}
+\DeclareTextFontCommand{\textgt}{\gtfamily}
+%%
+\ifnum\pltx@latex@level>0\relax       % 2020-02-02
+\ifnum\pltx@latex@level<3\relax       % 2020-02-02 patch level 0--2 (no flags)
+\DeclareRobustCommand\romanseries[1]{\merge@font@series{#1}}
+\DeclareRobustCommand\kanjiseries[1]{\merge@kanji@series{#1}}
+\DeclareRobustCommand\fontseries[1]{\kanjiseries{#1}\romanseries{#1}}
+\DeclareRobustCommand\romanseriesforce[1]{\edef\f@series{#1}}
+\DeclareRobustCommand\kanjiseriesforce[1]{\edef\k@series{#1}}
+\DeclareRobustCommand\fontseriesforce[1]{\kanjiseriesforce{#1}\romanseriesforce{#1}}
+\fi
+\ifnum\pltx@latex@level=1\relax       % 2020-02-02 patch level 0 (\@reserveda)
+\def\merge@kanji@series@#1#2#3\@nil{%
+  \def\@reserveda{#3}%
+  \ifx\@reserveda\@empty
+    \set@target@series@kanji{#2}%
+  \else
+    \begingroup\let\f@encoding\k@encoding\let\f@family\k@family
+      \maybe@load@fontshape\endgroup
+    \edef\@reserveda{\k@encoding /\k@family /#1/\k@shape}%
+     \ifcsname \@reserveda \endcsname
+       \set@target@series@kanji{#1}%
+    \else
+       \ifcsname \k@encoding /\k@family /#2/\k@shape \endcsname
+         \set@target@series@kanji{#2}%
+         {\let\curr@fontshape\curr@kfontshape\@font@shape@subst@warning}%
+       \else
+         \set@target@series@kanji{#3}%
+         {\let\curr@fontshape\curr@kfontshape\@font@shape@subst@warning}%
+       \fi
+    \fi
+  \fi
+}
+\def\merge@kanji@shape@#1#2#3\@nil{%
+  \def\@reserveda{#3}%
+  \ifx\@reserveda\@empty
+    \edef\k@shape{#2}%
+  \else
+    \begingroup\let\f@encoding\k@encoding\let\f@family\k@family
+      \maybe@load@fontshape\endgroup
+    \edef\@reserveda{\k@encoding /\k@family /\k@series/#1}%
+     \ifcsname \@reserveda\endcsname
+       \edef\k@shape{#1}%
+    \else
+       \ifcsname \k@encoding /\k@family /\k@series/#2\endcsname
+         \edef\k@shape{#2}%
+         {\let\curr@fontshape\curr@kfontshape\@font@shape@subst@warning}%
+       \else
+         \edef\k@shape{#3}%
+         {\let\curr@fontshape\curr@kfontshape\@font@shape@subst@warning}%
+       \fi
+    \fi
+  \fi
+}
+\fi
+\ifnum\pltx@latex@level<4\relax       % 2020-02-02 patch level 0--4 (drop m)
+\def\set@target@series@kanji#1{%
+    \edef\k@series{#1}%
+    \edef\k@series{\expandafter\series@drop@one@m\k@series mm\series@drop@one@m}%
+}
+\else\ifnum\pltx@latex@level=4\relax  % 2020-02-02 patch level 5 (old syntax)
+\def\set@target@series@kanji#1{%
+    \edef\k@series{#1}%
+    \expandafter\series@maybe@drop@one@m\expandafter{\k@series}\k@series
+}
+\fi\fi
+\ifnum\pltx@latex@level<5\relax       % 2020-02-02 patch level 0--5
+\def\prepare@family@series@update#1#2{%
+~\if@forced@series
+~  \romanfamily#2%   % changed \fontfamily -> \romanfamily
+~\else
+   \expand@font@defaults
+   \let\target@series@value\@empty
+   \def\target@meta@family@value{#1}%
+~  \expandafter\edef\csname ??def@ult\endcsname{\f@family}%
+   \let\@elt\update@series@target@value
+      \@meta@family@list
+~     \@elt{??}%
+   \let\@elt\relax
+   \romanfamily#2%   % changed \fontfamily -> \romanfamily
+   \ifx\target@series@value\@empty
+   \else
+     \ifx \f@series\target@series@value
+     \else
+       \maybe@load@fontshape
+       \let\f@series\target@series@value
+     \fi
+   \fi
+~\fi
+}
+\def\prepare@family@series@update@kanji#1#2{%
+~\if@forced@series@kanji
+~  \kanjifamily#2%
+~\else
+   \expand@font@defaults
+   \let\target@series@value\@empty
+   \def\target@meta@family@value{#1}%
+~  \expandafter\edef\csname ??def@ult\endcsname{\k@family}%
+   \let\@elt\update@series@target@value@kanji
+      \@meta@family@list@kanji
+~     \@elt{??}%
+   \let\@elt\relax
+   \kanjifamily#2%
+   \ifx\target@series@value\@empty
+   \else
+     \ifx \k@series\target@series@value
+     \else
+       \begingroup\let\f@encoding\k@encoding\let\f@family\k@family
+         \maybe@load@fontshape\endgroup
+       \let\k@series\target@series@value
+     \fi
+   \fi
+~\fi
+}
+\def\@meta@family@list@kanji{\@elt{mc}\@elt{gt}}
+\def\update@series@target@value@kanji#1{%
+  \def\reserved@a{#1}%
+  \ifx\target@meta@family@value\reserved@a   % rm -> rm do nothing
+  \else
+    \expandafter\ifx\csname#1def@ult\endcsname\k@family
+      \let\@elt\@gobble
+      \expandafter\let\expandafter\reserved@b
+                      \csname mdseries@\target@meta@family@value\endcsname
+      \expandafter\let\expandafter\reserved@c
+                      \csname bfseries@\target@meta@family@value\endcsname
+      \expandafter\ifx\csname mdseries@#1\endcsname\k@series
+                                      \let\target@series@value\reserved@b
+      \else\expandafter\ifx\csname bfseries@#1\endcsname\k@series
+                                      \let\target@series@value\reserved@c
+      \else\ifx\k@series\mddef@ult    \let\target@series@value\reserved@b
+      \else\ifx\k@series\bfdef@ult    \let\target@series@value\reserved@c
+      \fi\fi\fi\fi
+    \fi
+  \fi
+}
+\fi
+\fi
+%%
+\pltx@reset@catcode@trick
+\let\romanprocess@table\process@table
+\def\kanjiprocess@table{%
+  \kanjiencoding\kanjiencodingdefault
+  \edef\k@family{\kanjifamilydefault}%
+  \edef\k@series{\kanjiseriesdefault}%
+  \edef\k@shape{\kanjishapedefault}%
+}
+\def\process@table{%
+  \romanprocess@table
+  \kanjiprocess@table
+}
+\@onlypreamble\romanprocess@table
+\@onlypreamble\kanjiprocess@table
+\ifx\DeclareEmphSequence\@undefined % old
+\DeclareRobustCommand\em
+        {\@nomath\em \ifdim \fontdimen\@ne\font >\z@
+                       \eminnershape \else \gtfamily \itshape \fi}%
+\else
+\DeclareRobustCommand\em{%          % 2020-02-02
+  \@nomath\em
+  \ifx\emfontdeclare@clist\@empty
+    \ifdim \fontdimen\@ne\font >\z@
+      \eminnershape \else \gtfamily \itshape \fi
+  \else
+  \edef\em@currfont{\csname\curr@fontshape/\f@size\endcsname}%
+    \expandafter\do@emfont@update\emfontdeclare@clist\do@emfont@update
+  \fi
+}
+\fi
+\def\eminnershape{\mcfamily \upshape}%
+\DeclareTextCommandDefault{\textunderscore}{%
+  \leavevmode\kern.06em
+  \raise-\iftdir\ifmdir\ybaselineshift
+         \else\tbaselineshift\fi
+         \else\ybaselineshift\fi
+  \vbox{\hrule\@width.3em}}
+\def\pltx@saved@oalign#1{\leavevmode\vtop{\baselineskip\z@skip \lineskip.25ex%
+  \ialign{##\crcr#1\crcr}}}
+\def\pltx@oalign#1{\ifmmode
+  \leavevmode\vtop{\baselineskip\z@skip \lineskip.25ex%
+    \ialign{##\crcr#1\crcr}}%
+\else
+  \iftdir\ybaselineshift\tbaselineshift\fi
+  \m@th$\hbox{\vtop{\baselineskip\z@skip \lineskip.25ex%
+    \ialign{##\crcr#1\crcr}}}$%
+\fi}
+\def\pltx@saved@ltx@sh@ft #1{%
+  \dimen@ #1%
+  \kern \strip@pt
+    \fontdimen1\font \dimen@
+  } % kern by #1 times the current slant
+\def\pltx@ltx@sh@ft #1{%
+  \ybaselineshift\z@
+  \dimen@ #1%
+  \kern \strip@pt
+    \fontdimen1\font \dimen@
+  } % kern by #1 times the current slant
+\def\g@tlastchart@#1{#1\ifx\lastnodechar\@undefined\m@ne\else\lastnodechar\fi}
+\def\pltx@mark{\pltx@mark@}
+\let\pltx@scanstop\relax
+\long\def\pltx@cond#1\fi{%
+  #1\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi}
+\def\pltx@pdfencA{PD1}
+\def\pltx@composite@chkenc{%
+  \ifx\pltx@pdfencA\f@encoding
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi}
+\long\def\pltx@isletter#1{%
+  \expandafter\pltx@isletter@i#1\pltx@scanstop}
+\long\def\pltx@isletter@i#1\pltx@scanstop{%
+  \pltx@cond\ifx\pltx@mark#1\pltx@mark\fi{\@firstoftwo}%
+    {\pltx@isletter@ii\pltx@scanstop#1\pltx@scanstop{}#1\pltx@mark}}
+\long\def\pltx@isletter@ii#1\pltx@scanstop#{%
+  \pltx@cond\ifx\pltx@mark#1\pltx@mark\fi%
+    {\pltx@isletter@iii}{\pltx@isletter@iv}}
+\long\def\pltx@isletter@iii#1\pltx@mark{\@secondoftwo}
+\long\def\pltx@isletter@iv#1#2#3\pltx@mark{%
+  \pltx@cond\ifx\pltx@mark#3\pltx@mark\fi{%
+    \pltx@cond{\ifnum0\ifcat A\noexpand#21\fi\ifcat=\noexpand#21\fi>\z@}\fi
+      {\@firstoftwo}{\pltx@composite@chkenc}%
+  }{\pltx@composite@chkenc}}
+\def\pltx@saved@text@composite@x#1{%
+   \ifx#1\relax
+      \expandafter\@secondoftwo
+   \else
+      \expandafter\@firstoftwo
+   \fi
+   #1}
+\def\pltx@text@composite@x#1#2{%
+  \ifx#1\relax
+    #2%
+  \else\pltx@isletter{#1}{#1}{%
+    \begingroup
+    \setbox\z@\hbox\bgroup
+      \ybaselineshift\z@\tbaselineshift\z@
+      #1%
+      \g@tlastchart@\@tempcntb
+      \xdef\pltx@composite@temp{\noexpand\@tempcntb=\the\@tempcntb\relax}%
+      \aftergroup\pltx@composite@temp
+    \egroup
+    \ifnum\@tempcntb<\@cclvi
+      \ifnum\@tempcntb>\m@ne
+        \ifodd\xspcode\@tempcntb\else\leavevmode\null\fi
+      \fi
+      \begingroup\m@th$%
+        \ifx\textbaselineshiftfactor\@undefined\else
+          \textbaselineshiftfactor\z@\fi
+        \box\z@
+      $\endgroup
+      \ifnum\@tempcntb>\m@ne
+        \ifnum\xspcode\@tempcntb<2\null\fi
+      \fi
+    \else
+      {\ybaselineshift\z@\tbaselineshift\z@#1}%
+    \fi
+    \endgroup}%
+  \fi
+}
+\DeclareRobustCommand\fixcompositeaccent{%
+  \let\oalign\pltx@oalign
+  \let\ltx@sh@ft\pltx@ltx@sh@ft
+  \let\@text@composite@x\pltx@text@composite@x
+}
+\DeclareRobustCommand\nofixcompositeaccent{%
+  \let\oalign\pltx@saved@oalign
+  \let\ltx@sh@ft\pltx@saved@ltx@sh@ft
+  \let\@text@composite@x\pltx@saved@text@composite@x
+}
+\nofixcompositeaccent
+\ifx\protected\@undefined
+\def\<{\inhibitglue}
+\else
+\protected\def\<{\ifvmode\leavevmode\fi\inhibitglue}
+\fi
+%% File: plcore.dtx
+\def\NeedsTeXFormat#1{%
+   \def\reserved@a{#1}%
+   \ifx\reserved@a\pfmtname
+     \expandafter\@needsPformat
+   \else
+     \ifx\reserved@a\fmtname
+       \expandafter\expandafter\expandafter\@needsformat
+     \else
+       \@latex@error{This file needs format `\reserved@a'%
+          \MessageBreak but this is `\pfmtname'}{%
+          The current input file will not be processed
+          further,\MessageBreak
+          because it was written for some other flavor of
+          TeX.\MessageBreak\@ehd}%
+       \endinput
+     \fi
+   \fi}
+\def\@needsPformat{\@ifnextchar[\@needsPf@rmat{}}
+\def\@needsPf@rmat[#1]{%
+    \@ifl@t@r\pfmtversion{#1}{}%
+    {\@latex@warning@no@line
+        {You have requested release `#1' of pLaTeX,\MessageBreak
+         but only release `\pfmtversion' is available}}}
+\@onlypreamble\@needsPformat
+\@onlypreamble\@needsPf@rmat
+\def\documentstyle{%
+  \makeatletter\input{pl209.def}\makeatother
+  \documentclass}
+\ifx\lastnodesubtype\@undefined
+  \let\removejfmglue\@undefined
+\else
+  \setbox0\hbox{%
+    \ifnum\jis"2121="3000 %% upTeX check
+      \jfont\tenmin=upjisr-h at 9.62216pt
+    \else
+      \jfont\tenmin=min10
+    \fi\tenmin
+    \char\jis"214B\null\setbox0\lastbox
+    \global\chardef\pltx@gluetype\lastnodetype
+    \global\chardef\pltx@jfmgluesubtype\lastnodesubtype
+  }
+  \setbox0=\box\voidb@x
+  \protected\def\removejfmglue{%
+    \ifnum\lastnodetype=\pltx@gluetype\relax
+      \ifnum\lastnodesubtype=\pltx@jfmgluesubtype\relax
+        \unskip
+      \fi
+    \fi}
+\fi
+\def\cleardoublepage{\clearpage\if@twoside
+  \ifodd\c@page
+    \iftdir
+      \hbox{}\thispagestyle{empty}\newpage
+      \if@twocolumn\hbox{}\newpage\fi
+    \fi
+  \else
+    \ifydir
+      \hbox{}\thispagestyle{empty}\newpage
+      \if@twocolumn\hbox{}\newpage\fi
+    \fi
+  \fi\fi}
+\def\@gnewline #1{%
+  \ifvmode
+    \@nolnerr
+  \else
+    \unskip \reserved@e {\reserved@f#1}\nobreak \hfil \break \null
+    \ignorespaces
+  \fi}
+\def\pltx@adjust@wd@outputbox{%
+  \ifydir\else\vbox{\pdfprimitive\everypar{}\hskip\z@}\fi}
+\def\pltx@adjust@wd@outputbox@vtryfc{%
+  \ifydir\else\pdfprimitive\everypar{}\hskip\z@\fi}
+\gdef\@makecol{%
+   \setbox\@outputbox\box\@cclv%
+   \let\@elt\relax % added on LaTeX (ltoutput.dtx 2003/12/16 v1.2k)
+   \xdef\@freelist{\@freelist\@midlist}%
+   \global \let \@midlist \@empty
+   \@combinefloats
+   \let\pltx@textbottom\@textbottom % save (pLaTeX 2017/02/25)
+   \ifvoid\footins\else % changed (pLaTeX 2017/02/25)
+     \setbox\@outputbox \vbox {%
+       \boxmaxdepth \@maxdepth
+       \unvbox \@outputbox
+       \@textbottom % inserted here (pLaTeX 2017/02/25)
+       \vskip \skip\footins
+       \color@begingroup
+         \normalcolor
+         \footnoterule
+         \unvbox \footins
+       \color@endgroup
+       }%
+       \let\@textbottom\relax % disable temporarily (pLaTeX 2017/02/25)
+   \fi
+   \ifvbox\@kludgeins
+     \@makespecialcolbox
+   \else
+     \setbox\@outputbox \vbox to\@colht {%
+       %\boxmaxdepth \@maxdepth    % comment out on LaTeX 1997/12/01
+       \@texttop
+       \dimen@ \dp\@outputbox
+       \unvbox \@outputbox
+       \pltx@adjust@wd@outputbox
+       \vskip -\dimen@
+       \@textbottom
+       }%
+   \fi
+   \let\@textbottom\pltx@textbottom % restore (pLaTeX 2017/02/25)
+   \global \maxdepth \@maxdepth
+}
+\gdef\@makespecialcolbox{%
+   \setbox\@outputbox \vbox {%
+     \@texttop
+     \dimen@ \dp\@outputbox
+     \unvbox\@outputbox
+     \vskip-\dimen@
+     }%
+   \@tempdima \@colht
+   \ifdim \wd\@kludgeins>\z@
+     \advance \@tempdima -\ht\@outputbox
+     \advance \@tempdima \pageshrink
+     \setbox\@outputbox \vbox to \@colht {%
+       \unvbox\@outputbox
+       \vskip \@tempdima
+       \@textbottom
+       \ifvoid\footins\else % for pLaTeX
+         \vskip\skip\footins
+         \color@begingroup
+            \normalcolor
+            \footnoterule
+            \unvbox \footins
+         \color@endgroup
+       \fi
+     }%
+   \else
+     \advance \@tempdima -\ht\@kludgeins
+     \setbox \@outputbox \vbox to \@colht {%
+       \vbox to \@tempdima {%
+         \unvbox\@outputbox
+         \@textbottom
+         \ifvoid\footins\else % for pLaTeX
+           \vskip\skip\footins
+           \color@begingroup
+              \normalcolor
+              \footnoterule
+              \unvbox \footins
+           \color@endgroup
+         \fi
+       }\vss}%
+   \fi
+   {\setbox \@tempboxa \box \@kludgeins}%
+}
+\def\@reinserts{%
+  \ifvoid\footins\else\insert\footins{%
+    \iftbox\footins\tate\else\yoko\fi
+    \unvbox\footins}\fi
+  \ifvbox\@kludgeins\insert\@kludgeins{\unvbox\@kludgeins}\fi
+}
+\def\@vtryfc #1{%
+  \global\setbox\@outputbox\vbox{\pltx@adjust@wd@outputbox@vtryfc}%
+  \let\@elt\@wtryfc
+  \@flsucceed
+  \global\setbox\@outputbox \vbox to\@colht{%
+    \vskip \@fptop
+    \vskip -\@fpsep
+    \unvbox \@outputbox
+    \vskip \@fpbot}%
+  \let\@elt\relax
+  \xdef #1{\@failedlist\@flfail}%
+  \xdef\@freelist{\@freelist\@flsucceed}}
+\newif\iftombow \tombowfalse
+\newif\iftombowdate \tombowdatetrue
+\newdimen\@tombowwidth
+\setlength{\@tombowwidth}{.1\p@}
+\def\@tombowbleed{3mm}
+\def\@tombowcolor{\normalcolor}
+\newbox\@TL\newbox\@Tl
+\newbox\@TC
+\newbox\@TR\newbox\@Tr
+\newbox\@BL\newbox\@Bl
+\newbox\@BC
+\newbox\@BR\newbox\@Br
+\newbox\@CL
+\newbox\@CR
+\font\@bannerfont=cmtt9
+\newtoks\@bannertoken
+\@bannertoken{}
+\def\maketombowbox{%
+  \setbox\@TL\hbox to\z@{\yoko\hss
+      \vrule width\dimexpr 10mm+\@tombowbleed\relax height\@tombowwidth depth\z@
+      \vrule height10mm width\@tombowwidth depth\z@
+      \iftombowdate
+        \raise4pt\hbox to\z@{\hskip5mm\@bannerfont\the\@bannertoken\hss}%
+      \fi}%
+  \setbox\@Tl\hbox to\z@{\yoko\hss
+      \vrule width10mm height\@tombowwidth depth\z@
+      \vrule height\dimexpr 10mm+\@tombowbleed\relax width\@tombowwidth depth\z@}%
+  \setbox\@TC\hbox{\yoko
+      \vrule width10mm height\@tombowwidth depth\z@
+      \vrule height10mm width\@tombowwidth depth\z@
+      \vrule width10mm height\@tombowwidth depth\z@}%
+  \setbox\@TR\hbox to\z@{\yoko
+      \vrule height10mm width\@tombowwidth depth\z@
+      \vrule width\dimexpr 10mm+\@tombowbleed\relax height\@tombowwidth depth\z@\hss}%
+  \setbox\@Tr\hbox to\z@{\yoko
+      \vrule height\dimexpr 10mm+\@tombowbleed\relax width\@tombowwidth depth\z@
+      \vrule width10mm height\@tombowwidth depth\z@\hss}%
+  \setbox\@BL\hbox to\z@{\yoko\hss
+      \vrule width\dimexpr 10mm+\@tombowbleed\relax depth\@tombowwidth height\z@
+      \vrule depth10mm width\@tombowwidth height\z@}%
+  \setbox\@Bl\hbox to\z@{\yoko\hss
+      \vrule width10mm depth\@tombowwidth height\z@
+      \vrule depth\dimexpr 10mm+\@tombowbleed\relax width\@tombowwidth height\z@}%
+  \setbox\@BC\hbox{\yoko
+      \vrule width10mm depth\@tombowwidth height\z@
+      \vrule depth10mm width\@tombowwidth height\z@
+      \vrule width10mm depth\@tombowwidth height\z@}%
+  \setbox\@BR\hbox to\z@{\yoko
+      \vrule depth10mm width\@tombowwidth height\z@
+      \vrule width\dimexpr 10mm+\@tombowbleed\relax depth\@tombowwidth height\z@\hss}%
+  \setbox\@Br\hbox to\z@{\yoko
+      \vrule depth\dimexpr 10mm+\@tombowbleed\relax width\@tombowwidth height\z@
+      \vrule width10mm depth\@tombowwidth height\z@\hss}%
+  \setbox\@CL\hbox to\z@{\yoko\hss
+      \vrule width10mm height.5\@tombowwidth depth.5\@tombowwidth
+      \vrule height10mm depth10mm width\@tombowwidth}%
+  \setbox\@CR\hbox to\z@{\yoko
+      \vrule height10mm depth10mm width\@tombowwidth
+      \vrule height.5\@tombowwidth depth.5\@tombowwidth width10mm\hss}%
+}
+\def\@outputtombow{%
+  \iftombow
+  \vbox to\z@{\kern-\dimexpr 10mm+\@tombowbleed\relax\relax
+    \boxmaxdepth\maxdimen
+    \moveleft\@tombowbleed \vbox to\@@paperheight{%
+    \color@begingroup
+      \@tombowcolor
+      \hbox to\@@paperwidth{\hskip\@tombowbleed\relax
+         \copy\@TL\hfill\copy\@TC\hfill\copy\@TR\hskip\@tombowbleed}%
+      \kern-10mm
+      \hbox to\@@paperwidth{\copy\@Tl\hfill\copy\@Tr}%
+      \vfill
+      \hbox to\@@paperwidth{\copy\@CL\hfill\copy\@CR}%
+      \vfill
+      \hbox to\@@paperwidth{\copy\@Bl\hfill\copy\@Br}%
+      \kern-10mm
+      \hbox to\@@paperwidth{\hskip\@tombowbleed\relax
+         \copy\@BL\hfill\copy\@BC\hfill\copy\@BR\hskip\@tombowbleed}%
+    \color@endgroup
+    }\vss
+  }%
+  \fi
+}
+\newdimen\@@paperheight
+\newdimen\@@paperwidth
+\newdimen\@@topmargin
+\def\@tombowreset@@paper{%
+     \@@topmargin\topmargin
+     \iftombow
+       \@@paperwidth\paperwidth
+       \advance\@@paperwidth 2\dimexpr\@tombowbleed\relax
+       \@@paperheight\paperheight \advance\@@paperheight 10mm\relax
+       \advance\@@paperheight 2\dimexpr\@tombowbleed\relax
+       \advance\@@topmargin 1in\relax \advance\@themargin 1in\relax
+     \fi
+}
+\def\@outputpage{%
+\begingroup % the \endgroup is put in by \aftergroup
+  \iftdir
+    \dimen\z@\textwidth \textwidth\textheight \textheight\dimen\z@
+  \fi
+  \let \protect \noexpand
+  \language\document@default@language
+  \@resetactivechars
+  \global\let\@@if@newlist\if@newlist
+  \global\@newlistfalse
+  \@parboxrestore
+  \shipout\vbox{\yoko
+    \set@typeset@protect
+    \aftergroup\endgroup
+    \aftergroup\set@typeset@protect
+     \if@specialpage
+       \global\@specialpagefalse\@nameuse{ps@\@specialstyle}%
+     \fi
+     \if@twoside
+       \ifodd\count\z@ \let\@thehead\@oddhead \let\@thefoot\@oddfoot
+          \iftdir\let\@themargin\evensidemargin
+          \else\let\@themargin\oddsidemargin\fi
+       \else \let\@thehead\@evenhead
+          \let\@thefoot\@evenfoot
+           \iftdir\let\@themargin\oddsidemargin
+           \else\let\@themargin\evensidemargin\fi
+     \fi\fi
+     \@tombowreset@@paper
+     \reset@font
+     \normalsize
+     \normalsfcodes
+     \let\label\@gobble
+     \let\index\@gobble
+     \let\glossary\@gobble
+     \baselineskip\z@skip \lineskip\z@skip \lineskiplimit\z@
+    \@begindvi
+    \@outputtombow
+    \vskip \@@topmargin
+    \moveright\@themargin\vbox{%
+      \setbox\@tempboxa \vbox to\headheight{%
+        \vfil
+        \color@hbox
+          \normalcolor
+          \hb@xt@\textwidth{\@thehead}%
+        \color@endbox
+      }%                        %% 22 Feb 87
+      \dp\@tempboxa \z@
+      \box\@tempboxa
+      \vskip \headsep
+      \box\@outputbox
+      \baselineskip \footskip
+      \color@hbox
+        \normalcolor
+        \hb@xt@\textwidth{\@thefoot}%
+      \color@endbox
+    }%
+  }%
+  \global\let\if@newlist\@@if@newlist
+  \global \@colht \textheight
+  \stepcounter{page}%
+  \let\firstmark\botmark
+}
+\chardef\pltx@AtBeginDvi@untouched\z@
+\ifdefined\ExplSyntaxOn %--- expl3 available BEGIN
+\ExplSyntaxOn
+\if_cs_exist:N \__shipout_add_firstpage_material:Nn
+  \chardef\pltx@AtBeginDvi@untouched\@ne
+\fi:
+\ExplSyntaxOff
+\fi                     %--- expl3 available END
+\ifnum\pltx@AtBeginDvi@untouched>\z@\else
+\DeclareRobustCommand \AtBeginDvi [1]{%
+  \global \setbox \@begindvibox
+    \vbox{\yoko \unvbox \@begindvibox #1}}%
+\fi
+\let\pltx@AtBeginDvi@untouched\@undefined
+\ifdefined\ExplSyntaxOn %--- expl3 available BEGIN
+\ExplSyntaxOn
+\cs_if_exist:NT \__shipout_execute_cont: { %--- IF LEVEL 1 BEGIN
+\cs_if_exist:NF \__platex_original_shipout_execute_cont: {
+  \cs_new_eq:NN \__platex_original_shipout_execute_cont:
+                \__shipout_execute_cont:
+  }
+\cs_if_exist:NF \l__platex_shipout_dummy_box {
+    \box_new:N \l__platex_shipout_dummy_box
+  }
+\cs_set:Npn \__shipout_execute_cont:
+  {
+    % if \l_shipout_box is not a \yoko-box (= horizontal writing),
+    % then make it a \yoko-box behorehand.
+    \platex_if_box_yoko:NF \l_shipout_box {
+      \vbox_set:Nn \l_shipout_box
+        {
+            \platex_direction_yoko:
+            \box_use:N \l_shipout_box
+        }
+    }
+    % if the current direction is not \yoko,
+    % then enclose \__shipout_execute_cont: with
+    % a dummy \yoko-box named \l__platex_shipout_dummy_box.
+    \platex_if_direction_yoko:TF {
+      \__platex_original_shipout_execute_cont:
+    }{
+      \vbox_set:Nn \l__platex_shipout_dummy_box
+        {
+          \platex_direction_yoko:
+          \__platex_original_shipout_execute_cont:
+        }
+      % [Limitation] the code above may discard some contents,
+      % so we'd like to put it back by \box\l__platex_shipout_dummy_box.
+      % however, an infinite loop occurs if we uncomment the line below
+      % so we can't.
+      %\box_use:N \l__platex_shipout_dummy_box
+    }
+  }
+}                                          %--- IF LEVEL 1 END
+\cs_if_exist:NT \__shipout_execute_nohooks_cont: { %--- IF LEVEL 1 BEGIN
+\cs_if_exist:NF \__platex_original_shipout_execute_nohooks_cont: {
+  \cs_new_eq:NN \__platex_original_shipout_execute_nohooks_cont:
+                \__shipout_execute_nohooks_cont:
+  }
+\cs_set:Npn \__shipout_execute_nohooks_cont:
+  {
+    \platex_if_box_yoko:NF \l__shipout_raw_box {
+      \vbox_set:Nn \l__shipout_raw_box
+        {
+            \platex_direction_yoko:
+            \box_use:N \l__shipout_raw_box
+        }
+    }
+    \platex_if_direction_yoko:TF {
+      \__platex_original_shipout_execute_nohooks_cont:
+    }{
+      \vbox_set:Nn \l__platex_shipout_dummy_box
+        {
+          \platex_direction_yoko:
+          \__platex_original_shipout_execute_nohooks_cont:
+        }
+    }
+  }
+}                                                  %--- IF LEVEL 1 END
+\ExplSyntaxOff
+\fi                     %--- expl3 available END
+\def\@floatboxreset{%
+      \pltx@save@float@dir  % pLaTeX
+      \reset@font
+      \normalsize
+      \@setminipage
+}
+\def\@endfloatbox{%
+      \par\vskip\z@skip      %% \par\vskip\z@ added 15 Dec 87
+      \@minipagefalse
+      \outer@nobreak
+      \pltx@check@float@dir  % pLaTeX
+    \egroup                  %% end of vbox
+  \color@endbox
+}
+\def\pltx@save@float@dir{%
+  \edef\pltx@float@dir@first{\iftdir\tate\else\yoko\fi}}
+\def\pltx@check@float@dir{%
+  \ifx\pltx@float@dir@first\@undefined\else
+    \edef\pltx@float@dir@last{\iftdir\tate\else\yoko\fi}%
+    \ifx\pltx@float@dir@last\pltx@float@dir@first\else
+      \pltx@err@float@dir
+    \fi
+  \fi}
+\def\pltx@err@float@dir{%
+  \@latex@error{Direction change inside float!?\MessageBreak
+    Use \noexpand\layoutcaption provided in
+    \string\usepackage{plext}}\@ehc}
+\renewcommand\@makefnmark{%
+  \ifydir \hbox{}\hbox{\@textsuperscript{\normalfont\@thefnmark}}\hbox{}%
+  \else\hbox{\yoko\@textsuperscript{\normalfont\@thefnmark}}\fi}
+\ifx\@undefined\pltx@foot@penalty \newcount\pltx@foot@penalty \fi
+\pltx@foot@penalty\z@
+\def\footnote{\inhibitglue
+     \@ifnextchar[\@xfootnote{\stepcounter\@mpfn
+     \protected@xdef\@thefnmark{\thempfn}%
+     \@footnotemark\@footnotetext}}
+\def\footnotemark{\inhibitglue
+   \@ifnextchar[\@xfootnotemark
+     {\stepcounter{footnote}%
+      \protected@xdef\@thefnmark{\thefootnote}%
+      \@footnotemark}}
+\def\footnotetext{%
+  \ifhmode\pltx@foot@penalty\lastpenalty\unpenalty\fi%
+  \@ifnextchar [\@xfootnotenext
+    {\protected@xdef\@thefnmark{\thempfn}%
+     \@footnotetext}}
+\long\def\@footnotetext#1{%
+  \ifydir\def\@tempa{\yoko}\else\def\@tempa{\tate}\fi
+  \insert\footins{\@tempa%
+    \reset@font\footnotesize
+    \interlinepenalty\interfootnotelinepenalty
+    \splittopskip\footnotesep
+    \splitmaxdepth \dp\strutbox \floatingpenalty \@MM
+    \hsize\columnwidth \@parboxrestore
+    \def\@currentcounter{footnote}%
+    \protected@edef\@currentlabel{%
+       \csname p@footnote\endcsname\@thefnmark
+    }%
+    \color@begingroup
+      \@makefntext{%
+        \rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}%
+    \par
+    \color@endgroup}\ifhmode\null\fi
+    \ifnum\pltx@foot@penalty=\z@\else
+      \penalty\pltx@foot@penalty
+      \pltx@foot@penalty\z@
+    \fi}
+\def\@footnotemark{\leavevmode
+  \ifhmode\edef\@x@sf{\the\spacefactor}\nobreak\fi
+  \ifydir\@makefnmark
+  \else\hbox to\z@{\hskip-.25zw\raise.9zh\@makefnmark\hss}\fi
+  \ifhmode\spacefactor\@x@sf\fi\relax}
+\def\@setref#1#2#3{%
+  \ifx#1\relax
+    \protect\G@refundefinedtrue
+    \nfss@text{\reset@font\bfseries ??}%
+    \@latex@warning{Reference `#3' on page \thepage \space
+              undefined}%
+  \else
+    \expandafter#2#1\protect\@setref@{}% change \null to \protect\@setref@{}
+  \fi}
+\def\@setref@{\ifhmode\spacefactor\@m\fi}
+\if@compatibility\else
+\def\verb{\relax\ifmmode\hbox\else\leavevmode\vadjust{}\fi
+  \bgroup
+    \verb@eol@error \let\do\@makeother \dospecials
+    \verbatim@font\@noligs
+    \language\l@nohyphenation
+    \@ifstar\@sverb\@verb}
+\fi
+\def\do@noligs#1{%
+  \catcode`#1\active
+  \begingroup
+     \lccode`\~`#1\relax
+     \lowercase{\endgroup\def~{\leavevmode\vadjust{}\char`#1}}}
+\gdef\@startline{%
+     \ifnum \@nxttabmar >\@hightab
+       \@badtab
+       \global\@nxttabmar \@hightab
+     \fi
+     \global\@curtabmar \@nxttabmar
+     \global\@curtab \@curtabmar
+     \global\setbox\@curline \hbox {}%
+     \@startfield
+     \strut\inhibitglue}
+\gdef\@stopfield{\null\color@endgroup\egroup}
+\newcommand\printglossary{\@input@{\jobname.gls}}
+\newcount\hour
+\newcount\minute
+\ifx\removejfmglue\@undefined
+\def\@tabclassz{%
+  \ifcase\@lastchclass
+    \@acolampacol
+  \or
+    \@ampacol
+  \or
+  \or
+  \or
+    \@addamp
+  \or
+    \@acolampacol
+  \or
+    \@firstampfalse\@acol
+  \fi
+  \edef\@preamble{%
+    \@preamble{%
+      \ifcase\@chnum
+        \hfil\mbox{\inhibitglue\ignorespaces\@sharp\unskip}\hfil % c
+      \or
+        \hskip1sp\mbox{\inhibitglue\ignorespaces\@sharp\unskip}\hfil % l
+      \or
+        \hfil\hskip1sp\mbox{\inhibitglue\ignorespaces\@sharp\unskip}% % r
+      \fi}}}
+\else
+\def\@tabclassz{%
+  \ifcase\@lastchclass
+    \@acolampacol
+  \or
+    \@ampacol
+  \or
+  \or
+  \or
+    \@addamp
+  \or
+    \@acolampacol
+  \or
+    \@firstampfalse\@acol
+  \fi
+  \edef\@preamble{%
+    \@preamble{%
+      \ifcase\@chnum
+        \hfil\hskip1sp\inhibitglue
+        \ignorespaces\@sharp\unskip\removejfmglue\hfil % c
+      \or
+        \hskip1sp\inhibitglue
+        \ignorespaces\@sharp\unskip\removejfmglue\hfil % l
+      \or
+        \hfil\hskip1sp\inhibitglue
+        \ignorespaces\@sharp\unskip\removejfmglue % r
+      \fi}}}
+\fi
+\def\@classv{\@addtopreamble{\@startpbox{\@nextchar}\pltx@next@inhibitglue\ignorespaces
+\@sharp\unskip\@endpbox}}
+\protected\def\pltx@next@inhibitglue{%
+  \ifhmode\inhibitglue\else
+  \edef\@tempa{\everypar{%
+    \everypar{\unexpanded\expandafter{\the\everypar}}%
+    \unexpanded\expandafter{\the\everypar}\inhibitglue}}%
+  \@tempa\fi}
+\def\@tabular{\leavevmode \null\hbox \bgroup $\let\@acol\@tabacol
+   \let\@classz\@tabclassz
+   \let\@classiv\@tabclassiv \let\\\@tabularcr\@tabarray}
+\def\endtabular{\crcr\egroup\egroup $\egroup\null}
+\expandafter \let \csname endtabular*\endcsname = \endtabular
+\let\@parboxto\@empty
+\long\def\@iiiparbox#1#2[#3]#4#5{%
+  \leavevmode
+  \@pboxswfalse
+  \setlength\@tempdima{#4}%
+  \@begin@tempboxa\vbox{\hsize\@tempdima\@parboxrestore#5\@@par}%
+    \ifx\relax#2\else
+      \setlength\@tempdimb{#2}%
+      \edef\@parboxto{to\the\@tempdimb}%
+    \fi
+    \if#1b\vbox
+    \else\if #1t\vtop
+    \else\ifmmode\vcenter
+    \else\@pboxswtrue\null$\vcenter% !!!
+    \fi\fi\fi
+    \@parboxto{\let\hss\vss\let\unhbox\unvbox
+       \csname bm@#3\endcsname}%
+    \if@pboxsw \m@th$\null\fi% !!!
+  \@end@tempboxa}
+\DeclareRobustCommand\underline[1]{%
+  \relax
+  \ifmmode\@@underline{#1}%
+  \else \leavevmode\null$\@@underline{\hbox{#1}}\m@th$\null\relax\fi}
+\ifx\widowpenalties\@undefined
+    \mathchardef\e@alloc@top=255
+    \let\e@alloc@chardef\chardef
+\else
+  \ifx\omathchar\@undefined
+    \mathchardef\e@alloc@top=32767
+    \let\e@alloc@chardef\mathchardef
+  \else
+    \omathchardef\e@alloc@top=65535
+    \let\e@alloc@chardef\omathchardef
+  \fi
+\fi
+\let\float@count\e@alloc@top
+\ifx\omathchar\@undefined
+  \chardef\e@mathgroup@top=16 % LaTeX2e kernel standard
+\else
+  \mathchardef\e@mathgroup@top=256 % for e-pTeX FAM256 patched
+\fi
+\ifx\l@nohyphenation \@undefined
+  \newlanguage\l@nohyphenation
+\fi
+\ifx\document@default@language \@undefined
+  \let\document@default@language\m@ne
+\fi
+%% File: plvers.dtx
+\ifnum\pltx@newhook@avail=\z@
+\expandafter\def\expandafter\process@table\expandafter{%
+  \expandafter\p@warn@latexrelease\process@table}
+\begingroup
+\toks@\expandafter{\expandafter\p@warn@latexrelease\@begindocumenthook}
+\xdef\@begindocumenthook{\the\toks@}
+\endgroup
+\else
+\AddToHook{begindocument/before}{\p@warn@latexrelease}
+\fi
+\def\p@warn@latexrelease{%
+  \ifx\latexreleaseversion\@undefined\else
+    \ifx\platexreleaseversion\@undefined
+      \@latex@warning@no@line{%
+        Package latexrelease is loaded.\MessageBreak
+        Some patches in pLaTeX2e core may be overwritten.\MessageBreak
+        Consider using platexrelease.\MessageBreak
+        See platex.pdf for detail}%
+    \fi
+  \fi
+  \let\p@warn@latexrelease\relax
+}
+\endinput
+%%
+%% End of file `plcore.ltx'.

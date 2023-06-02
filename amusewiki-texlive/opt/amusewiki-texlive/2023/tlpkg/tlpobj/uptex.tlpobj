@@ -1,0 +1,48 @@
+name uptex
+category Package
+revision 66381
+shortdesc Unicode version of pTeX
+longdesc upTeX is an extension of pTeX, using UTF-8 input and producing
+longdesc UTF-8 output. It was originally designed to improve support for
+longdesc Japanese, but is also useful for documents in Chinese and
+longdesc Korean. It can process Chinese simplified, Chinese traditional,
+longdesc Japanese, and Korean simultaneously, and can also process
+longdesc original LaTeX with \inputenc{utf8} and Babel
+longdesc (Latin/Cyrillic/Greek etc.) by switching its \kcatcode tables.
+depend cm
+depend etex
+depend hyphen-base
+depend knuth-lib
+depend plain
+depend ptex-base
+depend uptex-base
+depend uptex-fonts
+depend uptex.ARCH
+execute AddFormat name=euptex engine=euptex options="*euptex.ini"           patterns=language.def           fmttriggers=cm,hyphen-base,knuth-lib,plain,uptex-base,uptex-fonts,etex,ptex-base
+execute AddFormat name=uptex engine=euptex options="uptex.ini"           fmttriggers=cm,hyphen-base,knuth-lib,plain,uptex-base,uptex-fonts
+execute addKanjiMap uptex-@jaEmbed@@jaVariant@.map
+execute addKanjiMap uptex-ko-@koEmbed@.map
+execute addKanjiMap uptex-sc-@scEmbed@.map
+execute addKanjiMap uptex-tc-@tcEmbed@.map
+containersize 912
+containerchecksum fea7d0156a1f8b8a66fc061d454c1318fe98e6c1a3c618fd9e31fda4246c7a55684df6e01b986d0c296a7a9458c3489af0e4bb2142341a95e5279da97668b4a1
+doccontainersize 62068
+doccontainerchecksum edd326824f93b2e893ac9bc7b6f498178427477138c2e068a3cffddfef5ac658cfad2671454caa6c222bf165a2d4a16964fa67eed86c01342d119053f31a3fa3
+docfiles size=33
+ texmf-dist/doc/man/man1/euptex.1
+ texmf-dist/doc/man/man1/euptex.man1.pdf
+ texmf-dist/doc/man/man1/upbibtex.1
+ texmf-dist/doc/man/man1/upbibtex.man1.pdf
+ texmf-dist/doc/man/man1/uppltotf.1
+ texmf-dist/doc/man/man1/uppltotf.man1.pdf
+ texmf-dist/doc/man/man1/uptex.1
+ texmf-dist/doc/man/man1/uptex.man1.pdf
+ texmf-dist/doc/man/man1/uptftopl.1
+ texmf-dist/doc/man/man1/uptftopl.man1.pdf
+catalogue-alias euptex
+catalogue-contact-bugs https://lists.tug.org/tex-k
+catalogue-contact-home http://www.t-lab.opal.ne.jp/tex/uptex_en.html
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/uptexdir
+catalogue-contact-support https://lists.tug.org/tex-k
+catalogue-license other-free
+catalogue-topics engine japanese chinese korean multilingual

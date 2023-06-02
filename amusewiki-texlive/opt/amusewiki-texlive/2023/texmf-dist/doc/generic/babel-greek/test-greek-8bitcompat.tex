@@ -1,0 +1,39 @@
+% Test Babel-Greek with LuaTeX and 8-bit fonts
+% © 2022 Günter Milde
+
+% Setup for LuaTeX with 8-bit fonts
+\newcommand{\SETUP}{
+  % LGR must be defined before loading "luainputenc" (bug in luainputenc?)
+  \usepackage[LGR,T1]{fontenc}
+  \usepackage{lmodern}
+  % \usepackage[largesc]{newtxtext}
+  % \DeclareFontFamilySubstitution{LGR}{ntxtlf}{NimbusSerif}
+  \usepackage[utf8]{luainputenc}
+  \newcommand*{\greekfontencoding}{LGR} % force LGR setup¹
+
+  \usepackage[greek,
+              % greek.local-LGR-fixes,
+              english]{babel}
+  % Uncomment the desired language variant
+  % \languageattribute{greek}{polutoniko}  % "modern" polytonic Greek
+  \languageattribute{greek}{ancient}  % ancient Greek
+}
+
+\newcommand{\SETUPDOC}{%
+This test is
+\ifdefined\luatexversion compiled
+\else                    intended for but \textbf{not} compiled
+\fi
+with LuaTeX in 8-bit compatibility mode.
+It loads the \pkgref{luainputenc} package for UTF-8 decoding
+and sets \texttt{\textbackslash greekfontencoding} to LGR.
+
+Hyphenation in Greek text parts fails (would require the
+8-bit hyphenation patterns, i.a., a loader fix for LuaTeX).
+}
+
+\input{test-greek.tex}
+
+% ¹TODO: Currently, defining \greekfontencoding must be done with
+% 	 \def or \newcommand* and fails with \newcommand because
+%    	 of the fragile string comparison using \ifx in greek.ldf!

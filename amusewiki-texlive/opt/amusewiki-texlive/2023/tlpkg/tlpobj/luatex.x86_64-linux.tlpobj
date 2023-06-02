@@ -1,0 +1,11 @@
+name luatex.x86_64-linux
+category TLCore
+revision 66986
+shortdesc x86_64-linux files of luatex
+containersize 1618088
+containerchecksum dce44ad93c900be17dc5474be02fdf25ddd0c88cbf569de0c050aebaa1d7f6bfd468fe302fa21ec972e944095c50505186b1cc41e0a94582548201864998ba1b
+binfiles arch=x86_64-linux size=1965
+ bin/x86_64-linux/dviluatex
+ bin/x86_64-linux/luatex
+ bin/x86_64-linux/texlua
+ bin/x86_64-linux/texluac

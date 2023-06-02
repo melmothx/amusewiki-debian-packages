@@ -1,0 +1,413 @@
+-- texdoclib-const.tlu: global constants for texdoc
+--
+-- The TeX Live team, GPLv3, see texdoclib.tlu for details
+
+-- use an empty environment that will become texdoc_env.C (see EOF)
+local constants = {}
+local kpse = kpse or require 'kpse'
+local os = os or require 'os'
+local setfenv = setfenv
+local texdoc_env
+
+if setfenv then -- Lua <5.2
+    texdoc_env = getfenv()
+    setfenv(1, constants)
+else
+    texdoc_env = _ENV
+    _ENV = constants
+end
+
+-- BEGIN constants
+
+-- progname and version
+fullname = kpse.find_file('texdoc/texdoclib', 'lua')
+progname = 'Texdoc'
+version = '4.0.1'
+release_date = '2023-02-27'
+
+-- make sure to update setup_config_from_cl() accordingly
+-- and set a default value in setup_config_from_defaults() if relevant
+usage_msg = [[
+Usage: texdoc [OPTION]... NAME...
+   or: texdoc [OPTION]... ACTION
+
+Try to find appropriate TeX documentation for the specified NAME(s).
+Alternatively, perform the given ACTION and exit.
+
+Options:
+{{mode}}
+
+{{interaction}}
+
+{{debug}}
+
+Actions:
+{{action}}
+
+Full manual available via `texdoc texdoc'.
+
+Website: <https://tug.org/texdoc/>
+Repository: <https://github.com/TeX-Live/texdoc>
+Please email bugs to <texdoc@tug.org>.]]
+
+zsh_completion = [[
+compdef __texdoc texdoc
+
+__texdoc() {
+  local options=(
+    {{action}}
+    + mode
+    {{mode}}
+    + interaction
+    {{interaction}}
+    + debug
+    {{debug}}
+  )
+  _arguments -C -A $options \
+    '*: :->arguments' && return
+  case $state in
+    arguments)
+      local tlpdb="$(kpsewhich -var-value TEXMFROOT)/tlpkg/texlive.tlpdb"
+      _values package $(awk '/^name[^.]*$/ {print $2}' $tlpdb)
+    ;;
+  esac
+}
+]]
+
+--[[ structure of the options table
+
+options = {
+    {
+        desc = <string> description,
+        long = <string> long option name,
+        short = <string> short option name,
+        type = <string> argument type (boolean|string),
+        group = <string> group of the option, -- also used for shell completion
+        action = <function> to be called
+    },
+    ...
+}
+--]]
+
+options = {
+    -- action
+    {
+        desc = 'Print this help message.',
+        long = 'help',
+        short = 'h',
+        type = 'boolean',
+        group = 'action'
+    },
+    {
+        desc = 'Print the version number.',
+        long = 'version',
+        short = 'V',
+        type = 'boolean',
+        group = 'action'
+    },
+    {
+        desc = 'Print the list of configuration files used.',
+        long = 'files',
+        short = 'f',
+        type = 'boolean',
+        group = 'action'
+    },
+    {
+        desc = 'Display FILE, given with full path (no searching).',
+        long = 'just-view',
+        type = 'string',
+        metavar = 'FILE',
+        complete = 'files',
+        group = 'action'
+    },
+    {
+        desc = 'Print SHELL completion.',
+        long = 'print-completion',
+        type = 'string',
+        metavar = 'SHELL',
+        complete = {'zsh'},
+        group = 'action',
+    },
+    -- mode
+    {
+        desc = 'Use view mode: start a viewer. (default)',
+        long = 'view',
+        short = 'w',
+        type = 'boolean',
+        group = 'mode',
+        action = function(cl_config, opt_name)
+            table.insert(cl_config, {'mode', 'view', opt_name})
+        end
+    },
+    {
+        desc = 'Use mixed mode (view or list).',
+        long = 'mixed',
+        short = 'm',
+        type = 'boolean',
+        group = 'mode',
+        action = function(cl_config, opt_name)
+            table.insert(cl_config, {'mode', 'mixed', opt_name})
+        end
+    },
+    {
+        desc = 'Use list mode: show a list of results.',
+        long = 'list',
+        short = 'l',
+        type = 'boolean',
+        group = 'mode',
+        action = function(cl_config, opt_name)
+            table.insert(cl_config, {'mode', 'list', opt_name})
+        end
+    },
+    {
+        desc = 'Use showall mode: show also "bad" results.',
+        long = 'showall',
+        short = 's',
+        type = 'boolean',
+        group = 'mode',
+        action = function(cl_config, opt_name)
+            table.insert(cl_config, {'mode', 'showall', opt_name})
+        end
+    },
+    -- interaction
+    {
+        desc = 'Use interactive menus. (default)',
+        long = 'interact',
+        short = 'i',
+        type = 'boolean',
+        group = 'interaction',
+        action = function(cl_config, opt_name)
+            table.insert(cl_config, {'interact_switch', 'true', opt_name})
+        end
+    },
+    {
+        desc = 'Use plain lists, no interaction required.',
+        long = 'nointeract',
+        short = 'I',
+        type = 'boolean',
+        group = 'interaction',
+        action = function(cl_config, opt_name)
+            table.insert(cl_config, {'interact_switch', 'false', opt_name})
+        end
+    },
+    -- output format
+    {
+        desc = 'Machine-readable output for lists (implies -I).',
+        long = 'machine',
+        short = 'M',
+        type = 'boolean',
+        group = 'interaction',
+        action = function(cl_config, opt_name)
+            table.insert(cl_config, {'machine_switch', 'true', opt_name})
+        end
+    },
+    -- verbosity
+    {
+        desc = 'Suppress warnings and most error messages.',
+        long = 'quiet',
+        short = 'q',
+        type = 'boolean',
+        group = 'debug',
+        action = function(cl_config, opt_name)
+            table.insert(cl_config, {'verbosity_level', '0', opt_name})
+        end
+    },
+    {
+        desc = 'Print additional information (e.g., viewer command).',
+        long = 'verbose',
+        short = 'v',
+        type = 'boolean',
+        group = 'debug',
+        action = function(cl_config, opt_name)
+            table.insert(cl_config, {'verbosity_level', '3', opt_name})
+        end
+    },
+    -- debug
+    {
+        desc = 'Activate all debug output (equal to "--debug=all").',
+        short = 'D',
+        type = 'boolean',
+        group = 'debug',
+        action = function(cl_config, opt_name)
+            table.insert(cl_config, {'debug_list', 'all', opt_name})
+        end
+    },
+    {
+        desc = 'Activate debug output restricted to LIST.',
+        long = 'debug',
+        short = 'd',
+        metavar = 'LIST',
+        type = 'string',
+        complete = 'debugs',
+        group = 'debug',
+        action = function(cl_config, opt_name, val)
+            if val == true then val = 'all' end
+            table.insert(cl_config, {'debug_list', val, opt_name})
+        end
+    },
+    -- config
+    {
+        desc = 'Set configuration item NAME to VALUE.',
+        short = 'c',
+        metavar = 'NAME=VALUE',
+        type = 'string',
+        complete = 'options',
+        group = 'debug',
+        action = function(cl_config, opt_name, val)
+            table.insert(cl_config, {val, nil, opt_name})
+        end
+    },
+}
+
+copyright_msg = [[
+Copyright 2008-2023 Manuel Pégourié-Gonnard, Takuto Asakura, the TeX Live Team.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.]]
+
+actions_ph = 'Actions:\n'
+
+known_options = {
+    'viewer_.*',
+    'mode',
+    'interact_switch',
+    'machine_switch',
+    'ext_list',
+    'basename_list',
+    'badext_list',
+    'badbasename_list',
+    'suffix_list',
+    'verbosity_level',
+    'debug_list',
+    'lastfile_switch',
+    'rm_dir',
+    'rm_file',
+    'unzip_.*',
+    'zipext_list',
+    'max_lines',
+    'lang',
+    'fuzzy_level',
+    'texlive_tlpdb',
+    'online_url',
+}
+
+error_msg = [[
+Try `texdoc --help' for short help, `texdoc texdoc' for full manual.]]
+
+notfound_msg = [[
+Sorry, no local documentation found for "PKGNAME".
+You can try the online version of Texdoc at <https://texdoc.org>.
+If you are unsure about the name, try full-text searching on CTAN.
+Search form: <https://www.ctan.org/search/>]]
+notfound_msg_ph = 'PKGNAME'
+
+badmatch_msg = [[
+Unfortunately, there are no good matches for "PKGNAME".
+
+Here are the top three matches:
+]]
+badmatch_msg_ph = 'PKGNAME'
+badmatch_prompt = [[
+Enter number of file to view, Y to search online, or any other key to exit: ]]
+
+nomatch_msg = [[
+Unfortunately, there are no good matches for "PKGNAME".
+
+]]
+nomatch_msg_ph = 'PKGNAME'
+
+nolocaldocs_msg = [[
+You don't appear to have any local documentation installed.
+
+]]
+nolocaldocs_prompt = [[
+Would you like to search online? (y/N) ]]
+
+online_msg = [[
+There may be online documentation available for "PKGNAME" at
+    URL
+This documentation may be for a different version than you have installed.
+
+]]
+online_msg_url = 'URL'
+online_msg_ph = 'PKGNAME'
+online_baseurl_ph = 'PKGNAME'
+
+-- exit codes
+exit_ok = 0
+exit_error = 1  -- apparently hard-coded in Lua
+exit_usage = 2
+exit_notfound = 3
+
+err_priority = {
+    error = 1,
+    warning = 2,
+    info = 3,
+}
+min_verbosity = '0'  -- (nothing at all)
+max_verbosity = '3'
+def_verbosity = '2'
+
+known_debugs = {
+    config = {'files'},
+    files = {},
+    search = {},
+    score = {},
+    texdocs = {},
+    tlpdb = {},
+    version = {},
+    view = {},
+}
+
+-- various cache or non-cache files
+cache_name = 'texdoc/cache-tlpdb.lua'  -- relative to TEXMFVAR
+data_tlpdb_name = 'texdoc/Data.tlpdb.lua'
+
+place_holder = '%%s'  -- used for viewer commands
+
+-- kpse path separator
+kpse_sep = (os.type == 'windows') and ';' or ':'
+
+-- language codes
+-- Note: corrected with `find $TEXMFDIST/doc/ | awk 'match(
+--       $0, /(.*)-(\w{2}).pdf/, a){print a[2]}'`
+lang_codes = {
+    cn = 'zh',  -- Chinese (alias)
+    cz = 'cz',  -- Chech/Slovak
+    de = 'de',  -- German
+    ee = 'et',  -- Estonian
+    en = 'en',  -- English
+    es = 'es',  -- Spanish
+    fr = 'fr',  -- French
+    it = 'it',  -- Italian
+    ja = 'ja',  -- Japanese
+    nl = 'nl',  -- Dutch
+    pl = 'pl',  -- Polish
+    ro = 'ro',  -- Romanian
+    ru = 'ru',  -- Russian
+    sr = 'sr',  -- Serbian
+    zh = 'zh',  -- Chinese
+}
+
+-- END constants
+
+-- get our previous environment back
+if setfenv then
+    setfenv(1, texdoc_env)
+else
+    _ENV = texdoc_env
+end
+
+-- Make table C a read-only proxy to the local <constants>.
+-- Note this is not deep read-only: C.known_debugs is read-only, but
+-- C.known_debugs.version isn't, for instance.
+local C = {}
+setmetatable(C, {
+    __index = constants,
+    __newindew = function()
+        error('Internal error: attempt to modify a constant.')
+    end
+})
+
+return C
+
+-- vim: ft=lua:

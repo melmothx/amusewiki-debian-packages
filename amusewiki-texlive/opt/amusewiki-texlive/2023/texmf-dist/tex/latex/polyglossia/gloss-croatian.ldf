@@ -1,0 +1,267 @@
+% Language definition file (part of polyglossia v1.62 -- 2023/04/22)
+%
+\ProvidesFile{gloss-croatian.ldf}[polyglossia: module for Croatian]
+\PolyglossiaSetup{croatian}{
+  bcp47=hr,
+  bcp47-language=hr,
+  bcp47-script=Latn,
+  langtag=HRV,
+  hyphennames={croatian},
+  hyphenmins={2,2}, % aligned with https://ctan.org/pkg/hrhyph patterns and http://lebesgue.math.hr/~nenad/Diplomski/Maja_Ribaric_2011.pdf
+  frenchspacing=true, % recommendation from Damir Bralić
+  indentfirst=false, % recommendation from Damir Bralić
+  fontsetup=true
+}
+
+% BCP-47 compliant aliases
+\setlanguagealias*{croatian}{hr}
+
+\ifluatex
+  \RequirePackage{luavlna}
+\fi
+
+\define@boolkey{croatian}[croatian@]{babelshorthands}[true]{}
+
+\define@boolkey{croatian}[croatian@]{disabledigraphs}[true]{}
+
+% Alias kept for backwards compatibility. Please do not remove
+\define@boolkey{croatian}[croatian@]{disableligatures}[true]{%
+   \xpg@warning{The option disableligatures is deprected.\MessageBreak
+                Please use disabledigraphs instead}%
+   \ifcroatian@disableligatures
+      \croatian@disabledigraphstrue
+   \else
+      \croatian@disabledigraphsfalse
+   \fi
+}
+
+\define@boolkey{croatian}[croatian@]{splithyphens}[true]{}
+
+\define@boolkey{croatian}[croatian@]{localalph}[true]{}
+
+% Register default options
+\xpg@initialize@gloss@options{croatian}{babelshorthands=false,disabledigraphs=false,
+                                        splithyphens=true,localalph=true}
+
+\ifsystem@babelshorthands
+  \setkeys{croatian}{babelshorthands=true}
+\else
+  \setkeys{croatian}{babelshorthands=false}
+\fi
+
+\ifcsundef{initiate@active@char}{%
+  \input{babelsh.def}%
+  \initiate@active@char{"}%
+  \shorthandoff{"}%
+}{}
+
+\def\croatian@@splhyphen#1{%
+  \def\croatian@sh@tmp{%
+       \if\croatian@sh@next-#1%
+       \else\expandafter\croatian@@@splhyphen{#1}\fi%
+     }%
+     \futurelet\croatian@sh@next\croatian@sh@tmp%
+}
+
+\def\croatian@@@splhyphen#1{%
+  \ifnum\hyphenchar \font>0%
+    \kern\z@\discretionary{-}{\char\hyphenchar\the\font}{#1}%
+    \nobreak\hskip\z@%
+  \else%
+    #1%
+  \fi%
+}
+
+\def\croatian@splhyphen{%
+  \croatian@@splhyphen{-}%
+}
+
+\def\croatian@shorthands{%
+  \bbl@activate{"}%
+  \def\language@group{croatian}%
+  \declare@shorthand{croatian}{"=}{\penalty\@M-\hskip\z@skip}%
+  \declare@shorthand{croatian}{""}{\hskip\z@skip}%
+  \declare@shorthand{croatian}{"~}{\textormath{\leavevmode\hbox{-}}{-}}%
+  \declare@shorthand{croatian}{"-}{\nobreak\-\bbl@allowhyphens}%
+  \declare@shorthand{croatian}{"|}{%
+      \textormath{\penalty\@M\discretionary{-}{}{\kern.03em}%
+      \bbl@allowhyphens}{}%
+  }%
+  \declare@shorthand{croatian}{"/}{\textormath
+    {\bbl@allowhyphens\discretionary{/}{}{/}\bbl@allowhyphens}{}}%
+  \declare@shorthand{croatian}{"`}{„}%
+  \declare@shorthand{croatian}{"'}{”}%
+  \declare@shorthand{croatian}{"<}{«}%
+  \declare@shorthand{croatian}{">}{»}%
+  \declare@shorthand{croatian}{"D}{\xpg@hr@digraph{D}}%
+  \declare@shorthand{croatian}{"d}{\xpg@hr@digraph{d}}%
+  \declare@shorthand{croatian}{"L}{\xpg@hr@digraph{L}}%
+  \declare@shorthand{croatian}{"l}{\xpg@hr@digraph{l}}%
+  \declare@shorthand{croatian}{"N}{\xpg@hr@digraph{N}}%
+  \declare@shorthand{croatian}{"n}{\xpg@hr@digraph{n}}%
+}
+
+\def\nocroatian@shorthands{%
+  \@ifundefined{initiate@active@char}{}{\bbl@deactivate{"}}%
+}
+
+\ifxetex
+  % splithyphens
+  \newXeTeXintercharclass\croatian@hyphen % -
+  \newXeTeXintercharclass\croatian@nonsyllabicpreposition%
+\fi
+
+\def\croatian@hyphens{%
+    \ifluatex
+      \AfterPreamble{\enablesplithyphens{croatian}}%
+    \else
+      \XeTeXinterchartokenstate=1
+      \XeTeXcharclass `\- \croatian@hyphen
+      \XeTeXinterchartoks \z@ \croatian@hyphen = {\croatian@@splhyphen}% "-" -> "\croatian@@splhyphen-"
+      % necessary if used together with vlna:
+      \XeTeXinterchartoks \croatian@nonsyllabicpreposition \croatian@hyphen = {\croatian@@splhyphen}% "-" -> "\croatian@@splhyphen-"
+    \fi%
+}
+
+\def\nocroatian@hyphens{%
+    \ifluatex
+      \AfterPreamble{\disablesplithyphens{croatian}}%
+    \else
+      \XeTeXcharclass `\- \z@
+    \fi%
+}
+
+\newcommand*\hr@charifavailable[3]{%
+   \ifcroatian@disabledigraphs% no notion of digraphs at all
+     \bgroup#3\egroup%
+   \else% digraph...
+     \charifavailable{#1}{#2}% ... either a Unicode original or a mimic of one
+   \fi%
+}
+
+% Provide croatian digraphs if available in current font
+\protected\def\xpg@hr@digraph#1#2{%
+ \bgroup%
+  % 1. DŽ, Dž and dž
+  \ifx#1D%
+    \ifx#2Z\relax%
+       \hr@charifavailable{01C4}{D\nobreak Ž}{DŽ}%
+    \else%
+       \ifx#2z\relax
+          \hr@charifavailable{01C5}{D\nobreak ž}{Dž}%
+       \else
+           D#2%
+       \fi%
+    \fi%
+  \fi%
+  \ifx#1d%
+    \ifx#2z\relax
+       \hr@charifavailable{01C6}{d\nobreak ž}{dž}%
+    \else
+       d#2%
+    \fi%
+  \fi%
+  % 2. LJ, Lj and lj
+  \ifx#1L%
+    \ifx#2J\relax%
+       \hr@charifavailable{01C7}{L\nobreak J}{LJ}%
+    \else%
+       \ifx#2j\relax
+          \hr@charifavailable{01C8}{L\nobreak j}{Lj}%
+       \else
+           L#2%
+       \fi%
+    \fi%
+  \fi%
+  \ifx#1l%
+    \ifx#2j\relax
+       \hr@charifavailable{01C9}{l\nobreak j}{lj}%
+    \else
+       l#2%
+    \fi%
+  \fi%
+  % 2. NJ, Nj and nj
+  \ifx#1N%
+    \ifx#2J\relax%
+       \hr@charifavailable{01CA}{N\nobreak J}{NJ}%
+    \else%
+       \ifx#2j\relax
+          \hr@charifavailable{01CB}{N\nobreak j}{Nj}%
+       \else
+           N#2%
+       \fi%
+    \fi%
+  \fi%
+  \ifx#1n%
+    \ifx#2j\relax
+       \hr@charifavailable{01CC}{n\nobreak j}{nj}%
+    \else
+       n#2%
+    \fi%
+  \fi%
+  \egroup%
+}
+
+\def\captionscroatian{%
+  \def\prefacename{Predgovor}%
+  \def\refname{Literatura}%
+  \def\abstractname{Sažetak}%
+  \def\bibname{Bibliografija}%
+  \def\chaptername{Poglav\xpg@hr@digraph{l}{j}e}%
+  \def\appendixname{Dodatak}%
+  \def\contentsname{Sadržaj}%
+  \def\listfigurename{Popis slika}%
+  \def\listtablename{Popis tablica}%
+  \def\indexname{Kazalo}%
+  \def\figurename{Slika}%
+  \def\tablename{Tablica}%
+  \def\partname{Dio}%
+  \def\enclname{Prilozi}%
+  \def\ccname{Kopija}%
+  \def\headtoname{Prima}%
+  \def\pagename{Stranica}%
+  \def\seename{Vidjeti}%
+  \def\alsoname{Također vidjeti}%
+  \def\proofname{Dokaz}%
+  \def\glossaryname{Pojmovnik}%
+}
+
+\def\datecroatian{%
+  \def\today{\number\day.~\ifcase\month\or
+    siječ\xpg@hr@digraph{n}{j}a\or ve\xpg@hr@digraph{l}{j}ače\or
+    ožujka\or trav\xpg@hr@digraph{n}{j}a\or svib\xpg@hr@digraph{n}{j}a\or
+    lip\xpg@hr@digraph{n}{j}a\or srp\xpg@hr@digraph{n}{j}a\or
+    kolovoza\or rujna\or listopada\or studenoga\or prosinca\fi \space \number\year.}%
+}
+
+\def\croatian@@alph#1{%
+  \ifcase#1\or a\or b\or c\or d\or e\or f\or g\or h\or i\or j\or k\or l\or
+  m\or n\or o\or p\or r\or s\or t\or u\or v\or z\else#1\fi
+}
+\def\croatian@@Alph#1{%
+  \ifcase#1\or A\or B\or C\or D\or E\or F\or G\or H\or I\or J\or K\or L\or
+  M\or N\or O\or P\or R\or S\or T\or U\or V\or Z\else#1\fi
+}
+
+\def\croatian@alph#1{\expandafter\croatian@@alph\csname c@#1\endcsname}
+\def\croatian@Alph#1{\expandafter\croatian@@Alph\csname c@#1\endcsname}
+
+\def\noextras@croatian{%
+  \ifcroatian@babelshorthands\nocroatian@shorthands\fi%
+  \nocroatian@hyphens%
+  \let\alph\latinalph\let\Alph\latinAlph%
+}
+
+\def\blockextras@croatian{%
+  \ifcroatian@babelshorthands\croatian@shorthands\else\nocroatian@shorthands\fi%
+  \ifcroatian@splithyphens\croatian@hyphens\else\nocroatian@hyphens\fi%
+  \ifcroatian@localalph\let\alph\croatian@alph\let\Alph\croatian@Alph\fi%
+}
+
+\def\inlineextras@croatian{%
+  \ifcroatian@babelshorthands\croatian@shorthands\else\nocroatian@shorthands\fi%
+  \ifcroatian@splithyphens\croatian@hyphens\else\nocroatian@hyphens\fi%
+  \ifcroatian@localalph\let\alph\croatian@alph\let\Alph\croatian@Alph\fi%
+}
+
+\endinput

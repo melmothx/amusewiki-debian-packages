@@ -1,0 +1,121 @@
+%
+% plextarray.sty
+% written by Hironobu Yamashita (@aminophen)
+%
+% This package is part of the platex-tools bundle.
+% https://github.com/aminophen/platex-tools
+%
+% This package is expected to be compatible with
+%   * array.sty in latex-tools
+%     (2016/10/06 v2.4d -- 2021/10/04 v2.5f)
+%   * plext.sty in platex
+%     (2001/09/26 v1.2  -- 2020/10/07 v1.2m)
+% Largely based on lltjext.sty from LuaTeX-ja project.
+%
+
+\NeedsTeXFormat{pLaTeX2e}
+\ProvidesPackage{plextarray}
+  [2022/09/13 v1.1e Tabular extension package for plext and array]
+\RequirePackage{plext}
+\RequirePackage{plarray}
+
+%% save definitions from array.sty
+%  the <dir> option will be handled later in \@tabarray
+\def\array{\col@sep\arraycolsep
+  \def\d@llarbegin{$}\let\d@llarend\d@llarbegin\def\@halignto{}%
+  \@tabarray}
+\def\tabular{\def\@halignto{}\@tabular}
+%% merged definitions from array.sty and plext.sty
+%  take <dir> option first as in plext.sty,
+%  which will be passed to \@tabarray
+\@namedef{tabular*}{\@ifnextchar<%>
+   {\p@stabular}{\p@stabular<Z>}}
+\def\p@stabular<#1>#2{%
+   \setlength\dimen@{#2}%
+   \edef\@halignto{to\the\dimen@}\@tabular<#1>}
+
+%% patching internal code for array.sty and plext.sty
+%
+\@ifpackagelater{array}{2018/09/13}{\@firstoftwo}{\@secondoftwo}
+{% = for 2018/09/13 v2.4i or newer
+\def\@startpbox#1{\bgroup
+  \color@begingroup
+  \box@dir\adjustbaseline %% added
+  \setlength\hsize{#1}\@arrayparboxrestore
+   \everypar{%
+      \vrule \@height \ht\@arstrutbox \@width \z@
+      \everypar{}}%
+   }%
+}% =
+{% = for 2018/04/30 v2.4h or older
+\def\@startpbox#1{\bgroup
+  \box@dir\adjustbaseline %% added
+  \setlength\hsize{#1}\@arrayparboxrestore
+   \everypar{%
+      \vrule \@height \ht\@arstrutbox \@width \z@
+      \everypar{}}%
+   }%
+}% =
+%
+\def\@tabarray{\@ifnextchar<\p@tabarray{\p@tabarray<Z>}}
+%
+%% merged \@array (from array.sty) and \p@array (from plext.sty)
+\def\p@array<#1>[#2]#3{%
+  %%%%% new code for box direction
+  \let\box@dir\relax
+  \iftdir
+    \if #1y\relax
+      \let\box@dir\yoko
+      \@tempcnta=\z@    % \(y)strutbox
+    \else\if #1z\relax
+      \@rotswtrue
+      \let\box@dir\tate
+      \@tempcnta=\tw@   % \zstrutbox
+    \else
+      \let\box@dir\tate
+      \@tempcnta=\@ne   % \tstrutbox
+    \fi\fi
+  \else
+    \if #1t\relax
+      \let\box@dir\tate
+      \@tempcnta=\@ne   % \tstrutbox
+    \else
+      \let\box@dir\yoko
+      \@tempcnta=\z@    % \(y)strutbox
+    \fi
+  \fi
+  %%%%% new code end
+  \setbox \@arstrutbox \hbox{\box@dir %% add \box@dir
+      % the behavior of \strutbox has been changed
+      % (box resister -> conditional macro) in pLaTeX2e 2017/04/08;
+      % so, \strutbox should appear after \box@dir is applied.
+      \@tempcntb=\ifcase\@tempcnta\strutbox
+                 \or\tstrutbox\or\zstrutbox\or\@ctrerr\fi
+      \@tempdima \ht \@tempcntb
+      \advance \@tempdima by\extrarowheight
+      \vrule \@height \arraystretch \@tempdima
+             \@depth \arraystretch \dp \@tempcntb
+             \@width \z@}%
+  \fork@array@option<#1>[#2]%  %% merged from plext
+  \begingroup
+  \@mkpream{#3}%
+  % following definition of \@preamble is from plext (\edef -> \xdef),
+  % with \noexpand before \ialign following array's documentation.
+  \xdef\@preamble{\noexpand \ialign \noexpand \@halignto
+                  \bgroup \tabskip \z@skip \@arstrut \@preamble
+                          \tabskip \z@skip \cr}%
+  \endgroup
+  \@arrayleft
+  \@begin@alignbox %% defined inside \fork@array@option
+  \bgroup
+  \box@dir\adjustbaseline
+  \let\par\@empty
+  \let\@sharp##\let\protect\relax
+  \let\\\@arraycr\let\tabularnewline\\
+  \lineskip\z@skip\baselineskip\z@skip\@preamble}
+%
+\def\endarray{\crcr \egroup \egroup \@end@alignbox \@arrayright \gdef\@preamble{}}
+%
+%% done
+
+\endinput

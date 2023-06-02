@@ -1,0 +1,40 @@
+name ttfutils
+category TLCore
+revision 66186
+shortdesc convert TrueType to TFM and PK fonts
+longdesc Utilities: ttf2afm ttf2pk ttf2tfm ttfdump. FreeType is the
+longdesc underlying library.
+depend ttfutils.ARCH
+containersize 108724
+containerchecksum 2e4eba2acd3b97297d2629ad93fdac4587afdfff30584ff77f69574efde4172ce60b904100c70d168016e8cb5c6407f4b4ef5ed7b3c83f942b7477af2f101be7
+doccontainersize 138048
+doccontainerchecksum bac6812f37f1d53184a4944e91b06c4ecd6a03d96d78956781c4b01c38ec3b65b74032704d98a4951f8dd5ad84ff54d82891c12e7db99ac58e687e535758decc
+docfiles size=65
+ texmf-dist/doc/man/man1/ttf2afm.1
+ texmf-dist/doc/man/man1/ttf2afm.man1.pdf
+ texmf-dist/doc/man/man1/ttf2pk.1
+ texmf-dist/doc/man/man1/ttf2pk.man1.pdf
+ texmf-dist/doc/man/man1/ttf2tfm.1
+ texmf-dist/doc/man/man1/ttf2tfm.man1.pdf
+ texmf-dist/doc/man/man1/ttfdump.1
+ texmf-dist/doc/man/man1/ttfdump.man1.pdf
+ texmf-dist/doc/ttf2pk/ttf2pk.doc
+ texmf-dist/doc/ttf2pk/ttf2pk.txt
+ texmf-dist/doc/ttf2pk/ttf2tfm.txt
+runfiles size=219
+ texmf-dist/fonts/enc/ttf2pk/base/T1-WGL4.enc
+ texmf-dist/fonts/sfd/ttf2pk/Big5.sfd
+ texmf-dist/fonts/sfd/ttf2pk/EUC.sfd
+ texmf-dist/fonts/sfd/ttf2pk/HKSCS.sfd
+ texmf-dist/fonts/sfd/ttf2pk/KS-HLaTeX.sfd
+ texmf-dist/fonts/sfd/ttf2pk/SJIS.sfd
+ texmf-dist/fonts/sfd/ttf2pk/UBg5plus.sfd
+ texmf-dist/fonts/sfd/ttf2pk/UBig5.sfd
+ texmf-dist/fonts/sfd/ttf2pk/UGB.sfd
+ texmf-dist/fonts/sfd/ttf2pk/UGBK.sfd
+ texmf-dist/fonts/sfd/ttf2pk/UJIS.sfd
+ texmf-dist/fonts/sfd/ttf2pk/UKS-HLaTeX.sfd
+ texmf-dist/fonts/sfd/ttf2pk/UKS.sfd
+ texmf-dist/fonts/sfd/ttf2pk/Unicode.sfd
+ texmf-dist/ttf2pk/VPS.rpl
+ texmf-dist/ttf2pk/ttf2pk.cfg

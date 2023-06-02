@@ -1,0 +1,39 @@
+name etex
+category Package
+revision 66203
+shortdesc An extended version of TeX, from the NTS project
+longdesc An extended version of TeX (which is capable of running as if
+longdesc it were TeX unmodified). E-TeX has been specified by the LaTeX
+longdesc team as the engine for the development of LaTeX2e, in the
+longdesc immediate future; as a result, LaTeX programmers may (in all
+longdesc current TeX distributions) assume e-TeX functionality. The
+longdesc pdftex engine directly incorporates the e-TeX extensions. The
+longdesc development source for e-TeX is the TeX Live source repository.
+containersize 11508
+containerchecksum 419c85187d6832c9624c70936b3ad879987f665e54bf1fb9a7ddeb1096d09677693987b187e8d60691235d721a1b995fbda36351ce754b9c6a2a44bd015c0ac3
+doccontainersize 194596
+doccontainerchecksum ae5b1f4d0b7746e294697567da95a400ada069223e497d4ff906d13e4515e879d85532675886ef0d14564604163659c3d6715ff00ff29fa06fd876eed9cf60b6
+docfiles size=134
+ texmf-dist/doc/etex/base/ChangeLog
+ texmf-dist/doc/etex/base/NTS-FAQ
+ texmf-dist/doc/etex/base/etex_gen.tex
+ texmf-dist/doc/etex/base/etex_man.pdf details="System documentation (v2.0)"
+ texmf-dist/doc/etex/base/etex_man.sty
+ texmf-dist/doc/etex/base/etex_man.tex
+ texmf-dist/doc/etex/base/etex_ref.html
+ texmf-dist/doc/etex/base/etex_src.html
+ texmf-dist/doc/etex/base/legal.html
+ texmf-dist/doc/etex/base/nts-group.html
+ texmf-dist/doc/etex/base/webmerge.tex
+ texmf-dist/doc/man/man1/etex.1
+ texmf-dist/doc/man/man1/etex.man1.pdf
+runfiles size=11
+ texmf-dist/fonts/source/public/etex/xbmc10.mf
+ texmf-dist/fonts/tfm/public/etex/xbmc10.tfm
+ texmf-dist/tex/plain/etex/etex.src
+ texmf-dist/tex/plain/etex/etexdefs.lib
+catalogue-contact-bugs https://lists.tug.org/tex-k
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/etexdir
+catalogue-contact-support https://lists.tug.org/tex-k
+catalogue-license knuth
+catalogue-topics engine

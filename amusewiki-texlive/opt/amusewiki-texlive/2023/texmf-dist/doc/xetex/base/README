@@ -1,0 +1,17 @@
+$Id: README 66203 2023-02-26 21:56:36Z karl $
+
+XeTeX is an extension of Donald Knuth's TeX, originally and primarily
+written by Jonathan Kew.  It natively supports UTF-8 Unicode input and
+TrueType and OpenType fonts, mainly via external third-party libraries.
+(Run xetex --version to see a list of the principal ones.)
+
+XeTeX's user-level output is a PDF file; it does not support standard
+DVI output, but an extended DVI format which is converted to PDF by
+xdvipdfmx.
+
+XeTeX home page: https://tug.org/xetex
+CTAN Catalogue entry: https://ctan.org/pkg/xetex
+XeTeX reference manual (unofficial): https://ctan.org/pkg/xetexref
+
+(This tiny README file is public domain, originally written by
+Karl Berry, 2015.)

@@ -1,0 +1,9 @@
+% Language definition file (part of polyglossia v1.62 -- 2023/04/22)
+%
+\ProvidesFile{gloss-swissgerman.ldf}[polyglossia: module for Swiss German (old spelling)]
+
+% We provide this as a babel alias
+
+\xpg@load@master@language{german}
+
+\endinput

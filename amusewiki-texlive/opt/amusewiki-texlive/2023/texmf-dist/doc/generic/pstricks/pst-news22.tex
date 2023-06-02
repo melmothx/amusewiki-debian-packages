@@ -1,0 +1,74 @@
+%% $Id: pst-news21.tex 382 2021-12-29 19:19:18Z herbert $
+\RequirePackage{pdfmanagement-testphase}
+\DeclareDocumentMetadata{}
+\documentclass[11pt,english,BCOR=10mm,DIV=12,bibliography=totoc,parskip=false,headings=small,
+    headinclude=false,footinclude=false,twoside,usegeometry,dvipsnames]{pst-doc}
+    
+\usepackage{libertinus}
+\usepackage{hvlogos}
+\listfiles
+%\usepackage[svgnames,dvipsnames,x11names,pspdf=-dALLOWPSTRANSPARENCY]{pstricks-pdf}
+\usepackage{showexpl,pst-arrow,pst-plot,pst-geometrictools}
+\lstset{explpreset={pos=l,width=-99pt,overhang=0pt,hsep=\columnsep,vsep=\bigskipamount,rframe={},extendedchars},
+    escapechar=?}
+
+\usepackage{biblatex}
+\addbibresource{PSTricks.bib}
+\def\Lcs#1{\texttt{\textbackslash#1}}
+\begin{document}
+
+\title{\texttt{News -- \the\year}\\ \Large new macros and bugfixes for the basic package.}
+\author{Herbert Voß}
+\date{\today}
+
+\settitle
+
+\tableofcontents
+
+\part{\texttt{pstricks} -- package}
+
+This version of the News was run with \verb|lualatex| \emph{without} using Ghostscript.
+The PDF file was created in a direkt way by Lua. If you run \texttt{lualatex} then the
+packahe \texttt{luapstricks} is automatically loaded.
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.sty}}
+%--------------------------------------------------------------------------------------
+The optional argument \texttt{gsfonts} can be used to load only the symbol font from GhostScript.
+Otherwise the one from URW or the system is used, which is the default.
+
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{pstricks.tex} (v. 3.17 -- 2022/10/22)}
+%--------------------------------------------------------------------------------------
+
+
+\subsection{pgf library}
+
+This version fixes a problem with the upcoming pgf from which PSTricks uses the \Lcs{foreach}
+command as \Lcs{pgfforeach}.
+
+\subsection{Arrows}
+
+
+There are new arrow types and a new optional argument \Lkeyword{tipcolor}.
+Checking \Lkeyword{tipcolor} can be suppressed by setting
+
+\begin{verbatim}
+\makeatletter
+\ps@check@tipcplor{}
+\makeatother
+\end{verbatim}
+
+This is only needed in some rare cases, e.g. \Lcs{pscustom} with \Lcs{code} and
+color setting on PS level.
+
+
+\nocite{*}
+\printbibliography
+
+
+\end{document}
+

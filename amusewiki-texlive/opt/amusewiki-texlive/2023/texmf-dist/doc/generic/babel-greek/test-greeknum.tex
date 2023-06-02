@@ -1,0 +1,131 @@
+\documentclass[a4paper]{article}
+\usepackage{ifthen}
+\usepackage[LGR,T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{longtable,ltcaption,array}
+\usepackage[textwidth=14cm]{geometry} % to fit the number table
+\setlength{\extrarowheight}{2pt}
+\usepackage{parskip}
+\pagestyle{empty}
+
+\ifdefined \UnicodeEncodingName
+  \usepackage{fontspec}
+  \setmainfont{Linux Libertine O} % no GREEK ACROPHONIC ATTIC numbers
+  % \setmainfont{Liberation Serif}  % no GREEK ACROPHONIC ATTIC numbers
+  % \setmainfont{FreeSerif}
+\else
+  \usepackage{lmodern}
+  % \usepackage{kerkis}   % !! Data loss: \textStigma and \textSampi
+    			  %    characters missing!
+  % \usepackage{gfsdidot} % !! Data loss: \textsampi, \textSampi,
+                          %    and \textStigma characters missing!
+  % \usepackage{dejavu}   % !! Data loss: \textSampi character missing!
+  % Prevent dataloss with re-definitions, e.g:
+  % \renewcommand*{\greeknumeralSix}{\textSigma\textTau} % default \textStigma
+  % \renewcommand*{\greeknumeralNinety}{\textsampi}      % default \textSampi
+\fi
+
+
+\usepackage[greek,english]{babel}
+
+\begin{document}
+\section*{Test Greek (Milesian) numerals}
+\author{Günter Milde}
+\date{2023/01/06}
+
+Babel-greek defines the functions \verb|\greeknumeral| and
+\verb|\Greeknumeral| that work similar to the TeX primitive
+\verb|\romannumeral|. For details and configuration options, see
+\texttt{babel-greek.pdf}.
+
+Examples:
+
+\newcommand*{\greeknumeralsample}[1]{\mbox{#1 = \greeknumeral{#1}}}
+\newcommand*{\Greeknumeralsample}[1]{\mbox{#1 = \Greeknumeral{#1}}}
+
+\greeknumeralsample{16}\quad
+\greeknumeralsample{32}\quad
+\greeknumeralsample{64}\quad
+\greeknumeralsample{678}\quad
+\greeknumeralsample{2022}\quad
+\greeknumeralsample{123456}
+
+\Greeknumeralsample{16}\quad
+\Greeknumeralsample{32}\quad
+\Greeknumeralsample{64}\quad
+\Greeknumeralsample{678}\quad
+\Greeknumeralsample{2022}\quad
+\Greeknumeralsample{123456}
+
+Hexadecimal input works, too: \greeknumeralsample{"10}
+
+Largest supported number: \greeknumeralsample{999999}
+
+Values outside the supported range are printed as arabic decimal numbers
+(a warning is issued):
+\greeknumeralsample{-1}\quad
+\greeknumeralsample{0}\quad
+\greeknumeralsample{"1000000}
+
+All Ionic number symbols.
+The Greek font encoding is \greekfontencoding.
+
+\begin{tabular}{rrrrrrrrr}
+\toprule
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\greeknumeral{1} & \greeknumeral{2} & \greeknumeral{3} & \greeknumeral{4} &
+\greeknumeral{5} & \greeknumeral{6} & \greeknumeral{7} & \greeknumeral{8} & \greeknumeral{9} \\[0.3em]
+
+10 & 20 & 30 & 40 & 50 & 60 & 70 & 80 & 90 \\
+\greeknumeral{10} & \greeknumeral{20} & \greeknumeral{30} & \greeknumeral{40} &
+\greeknumeral{50} & \greeknumeral{60} & \greeknumeral{70} & \greeknumeral{80} & \greeknumeral{90} \\[0.3em]
+
+100 & 200 & 300 & 400 & 500 & 600 & 700 & 800 & 900 \\
+\greeknumeral{100} & \greeknumeral{200} & \greeknumeral{300} & \greeknumeral{400} &
+\greeknumeral{500} & \greeknumeral{600} & \greeknumeral{700} & \greeknumeral{800} & \greeknumeral{900} \\[0.3em]
+
+1000 & 2000 & 3000 & 4000 & 5000 & 6000 & 7000 & 8000 & 9000 \\
+\greeknumeral{1000}& \greeknumeral{2000}& \greeknumeral{3000}& \greeknumeral{4000}&
+\greeknumeral{5000}& \greeknumeral{6000}& \greeknumeral{7000}& \greeknumeral{8000}& \greeknumeral{9000} \\[0.3em]
+
+10000 & 20000 & 30000 & 40000 & 50000 & 60000 & 70000 & 80000 & 90000 \\
+\greeknumeral{10000}&\greeknumeral{20000}&\greeknumeral{30000}&\greeknumeral{40000}&
+\greeknumeral{50000}&\greeknumeral{60000}&\greeknumeral{70000}&\greeknumeral{80000}&\greeknumeral{90000} \\[0.3em]
+
+100000 & 200000 & 300000 & 400000 & 500000 & 600000 & 700000 & 800000 & 900000 \\
+\greeknumeral{100000}&\greeknumeral{200000}&\greeknumeral{300000}&\greeknumeral{400000}&
+\greeknumeral{500000}&\greeknumeral{600000}&\greeknumeral{700000}&\greeknumeral{800000}&\greeknumeral{900000} \\[0.3em]
+
+\bottomrule
+\end{tabular}
+
+\begin{tabular}{rrrrrrrrr}
+\toprule
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\Greeknumeral{1} & \Greeknumeral{2} & \Greeknumeral{3} & \Greeknumeral{4} &
+\Greeknumeral{5} & \Greeknumeral{6} & \Greeknumeral{7} & \Greeknumeral{8} & \Greeknumeral{9} \\[0.3em]
+
+10 & 20 & 30 & 40 & 50 & 60 & 70 & 80 & 90 \\
+\Greeknumeral{10} & \Greeknumeral{20} & \Greeknumeral{30} & \Greeknumeral{40} &
+\Greeknumeral{50} & \Greeknumeral{60} & \Greeknumeral{70} & \Greeknumeral{80} & \Greeknumeral{90} \\[0.3em]
+
+100 & 200 & 300 & 400 & 500 & 600 & 700 & 800 & 900 \\
+\Greeknumeral{100} & \Greeknumeral{200} & \Greeknumeral{300} & \Greeknumeral{400} &
+\Greeknumeral{500} & \Greeknumeral{600} & \Greeknumeral{700} & \Greeknumeral{800} & \Greeknumeral{900} \\[0.3em]
+
+1000 & 2000 & 3000 & 4000 & 5000 & 6000 & 7000 & 8000 & 9000 \\
+\Greeknumeral{1000}& \Greeknumeral{2000}& \Greeknumeral{3000}& \Greeknumeral{4000}&
+\Greeknumeral{5000}& \Greeknumeral{6000}& \Greeknumeral{7000}& \Greeknumeral{8000}& \Greeknumeral{9000} \\[0.3em]
+
+10000 & 20000 & 30000 & 40000 & 50000 & 60000 & 70000 & 80000 & 90000 \\
+\Greeknumeral{10000}&\Greeknumeral{20000}&\Greeknumeral{30000}&\Greeknumeral{40000}&
+\Greeknumeral{50000}&\Greeknumeral{60000}&\Greeknumeral{70000}&\Greeknumeral{80000}&\Greeknumeral{90000} \\[0.3em]
+
+100000 & 200000 & 300000 & 400000 & 500000 & 600000 & 700000 & 800000 & 900000 \\
+\Greeknumeral{100000}&\Greeknumeral{200000}&\Greeknumeral{300000}&\Greeknumeral{400000}&
+\Greeknumeral{500000}&\Greeknumeral{600000}&\Greeknumeral{700000}&\Greeknumeral{800000}&\Greeknumeral{900000} \\
+
+\bottomrule
+\end{tabular}
+
+\end{document}

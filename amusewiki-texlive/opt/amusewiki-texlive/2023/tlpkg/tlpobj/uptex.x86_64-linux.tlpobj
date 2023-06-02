@@ -1,0 +1,17 @@
+name uptex.x86_64-linux
+category Package
+revision 66382
+shortdesc x86_64-linux files of uptex
+containersize 1354456
+containerchecksum fd508f11ee7a801f4475bfef9db80f4085da2899cf694606e1f066f06c55afc96c82d018433cffc3444656875622a19ec6e6fe98602802a450642eb93cd574d4
+binfiles arch=x86_64-linux size=964
+ bin/x86_64-linux/euptex
+ bin/x86_64-linux/r-upmpost
+ bin/x86_64-linux/upbibtex
+ bin/x86_64-linux/updvitomp
+ bin/x86_64-linux/updvitype
+ bin/x86_64-linux/upmpost
+ bin/x86_64-linux/uppltotf
+ bin/x86_64-linux/uptex
+ bin/x86_64-linux/uptftopl
+ bin/x86_64-linux/wovp2ovf
