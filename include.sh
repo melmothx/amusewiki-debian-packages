@@ -18,6 +18,7 @@ for p in "$@"; do
         reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb stretch $p
         reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb buster $p
         reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb bullseye $p
+        reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb bookworm $p
         mkdir -p uploaded
         mv $p uploaded
     else
@@ -42,7 +43,7 @@ cat <<EOF > /var/www/packages.amusewiki.org/repos/apt/index.html
     <title>Amusewiki debian packages</title>
   </head>
   <body>
-    <h1>How to install <a href="https://amusewiki.org">amusewiki</a> in 4 commands (on Debian Stretch/Buster/Bullseye and Ubuntu 18.04 LTS)</h1>
+    <h1>How to install <a href="https://amusewiki.org">amusewiki</a> in 4 commands (on Debian Stretch/Buster/Bullseye/Bookworm and Ubuntu 18.04 LTS)</h1>
 
 <p>Please note that the .deb packages provided here are fully compatible for Debian and Ubuntu, and the instructions are the same
 even if the source list will say <code>debian</code>.</p>
@@ -72,7 +73,7 @@ article</a> for a combined setup Apache/Nginx.
 # wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -
     </pre>
     <h2>Add a source list entry</h2>
-    <p>Please use <code>bullseye</code> (for Debian Bullseye) or <code>buster</code> (for Debian Buster) instead of <code>stretch</code> (Debian Stretch and Ubuntu 18.04) depending on your distribution. See below for the details.</p>
+    <p>Please use <code>bullseye</code> (for Debian Bullseye) or <code>buster</code> (for Debian Buster) or <code>bookworm</code> (for Debian Bookworm) instead of <code>stretch</code> (Debian Stretch and Ubuntu 18.04) depending on your distribution. See below for the details.</p>
     <pre>
 # echo 'deb http://packages.amusewiki.org/debian stretch main' &gt; /etc/apt/sources.list.d/amusewiki.list
     </pre>
@@ -110,6 +111,21 @@ it, you can look at <code>/var/log/amusewiki/installation.log</code>
     <p>
       <a href="/debian/pool">You can browse them here</a>
     </p>
+    <div>
+      <h2>Bookworm</h2>
+    <pre>
+# echo 'deb http://packages.amusewiki.org/debian bookworm main' &gt; /etc/apt/sources.list.d/amusewiki.list
+    </pre>
+
+      <pre>
+EOF
+
+reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list bookworm | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
+
+cat <<EOF>>/var/www/packages.amusewiki.org/repos/apt/index.html
+      </pre>
+    </div>
+
     <div>
       <h2>Bullseye</h2>
     <pre>
