@@ -70,7 +70,7 @@ article</a> for a combined setup Apache/Nginx.
 
     <h2>Add the key</h2>
     <pre>
-# wget -O - https://packages.amusewiki.org/amusewiki.gpg.key | apt-key add -
+# wget -qO- https://packages.amusewiki.org/amusewiki.gpg.key | tee /etc/apt/trusted.gpg.d/amusewiki.asc
     </pre>
     <h2>Add a source list entry</h2>
     <p>Please use <code>bullseye</code> (for Debian Bullseye) or <code>buster</code> (for Debian Buster) or <code>bookworm</code> (for Debian Bookworm) instead of <code>stretch</code> (Debian Stretch and Ubuntu 18.04) depending on your distribution. See below for the details.</p>
