@@ -2,4 +2,4 @@
 *.build
 *.changes
 *.buildinfo
-amusewiki-texlive/opt/amusewiki-texlive/2021/tlpkg/backups/
+amusewiki-texlive/opt/amusewiki-texlive/*/tlpkg/backups/
