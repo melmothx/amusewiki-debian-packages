@@ -1,0 +1,92 @@
+\documentclass[
+    coverwidth=15cm,
+    coverheight=20cm,
+    spinewidth=25mm,
+    flapwidth=6cm,
+    wrapwidth=5mm,
+    ]{bookcover}
+
+\newbookcovercomponenttype{center rotate}{
+    \vfill
+    \centering
+    \rotatebox[origin=c]{-90}{#1}
+    \vfill}
+
+\usepackage[outline]{contour}% It doesn't work with xelatex and lualatex
+\contourlength{1pt}
+\usepackage[english]{babel}
+\usepackage{kantlipsum,microtype}
+
+\begin{document}
+
+\begin{bookcover}
+
+% Remark
+\begin{bookcoverelement}{center}{above front}
+    \textcolor{blue}{A dust jacket example}
+\end{bookcoverelement}
+
+% Background color on the whole cover
+\begin{bookcoverelement}{color}{bg whole}
+    black
+\end{bookcoverelement}
+
+% Background picture on the whole cover without flaps
+\begin{bookcoverelement}{picture}{bg whole without flaps}
+    ./figures/bookcover-bg.jpg
+\end{bookcoverelement}
+
+% Transparent areas on the back cover
+\begin{bookcoverelement}{tikz}{bg back and wrap}
+    \fill[opacity=0.3,black!50] 
+    (0,0) rectangle (25mm,\partheight) 
+    (part.north east) rectangle ([xshift=-5cm]part.south east);
+\end{bookcoverelement}
+
+% Transparent areas on the front cover
+\begin{bookcoverelement}{tikz}{bg front and wrap}
+    \fill[opacity=0.3,black!50] 
+    (0,0) rectangle (50mm,\partheight) 
+    (part.north east) rectangle ([xshift=-25mm]part.south east);
+\end{bookcoverelement}
+
+% Picture on the front cover behind the title
+\begin{bookcoverelement}{center}{front}
+    \includegraphics{./figures/bookcover-cards.pdf}
+\end{bookcoverelement}
+
+% Author and title on the front cover
+\begin{bookcoverelement}{normal}{front}[,,,5cm]
+    \centering
+    \color{yellow!60!black}\sffamily\bfseries
+    \resizebox{!}{5mm}{\contour{black}{Rose Taylor}}\\[26mm]
+    \resizebox{!}{7mm}{\contour{black}{GAMBLING SYSTEMS}}\\[8mm]
+    \resizebox{!}{7mm}{\contour{black}{AND STRATEGIES}}\\
+\end{bookcoverelement}
+
+% Title on the spine
+\begin{bookcoverelement}{center rotate}{spine}
+    \color{yellow!60!black}\huge\sffamily\bfseries
+    \contour{black}{Rose Taylor -- Gambling Systems and Strategies}
+\end{bookcoverelement}
+
+% Text on the back cover
+\begin{bookcoverelement}{normal}{back}[2cm,2cm,2cm,2cm]
+    \color{white}\kant[1]
+\end{bookcoverelement}
+
+% Text and picture on the front flap
+\begin{bookcoverelement}{normal}{front flap}[1cm,1cm,1cm,2cm]
+    \color{white}\kant[2]
+    \vfill
+    {\centering\includegraphics{./figures/bookcover-dice.pdf}\par}
+\end{bookcoverelement}
+
+% Text on the back flap
+\begin{bookcoverelement}{normal}{back flap}[1cm,2cm,1cm,2cm]
+    \color{white}\kant[3]
+\end{bookcoverelement}
+
+\end{bookcover}
+
+\end{document}

@@ -1,0 +1,79 @@
+\documentclass[
+    spinewidth=15mm,
+    markcolor=black,
+    ]{bookcover}
+
+\usepackage[latin]{babel}
+\usepackage{lipsum,microtype}
+
+\begin{document}
+
+% ----------------------------------------------------------------------
+% Outside cover
+% ----------------------------------------------------------------------
+
+\begin{bookcover}
+
+% Remark
+\bookcovercomponent{center}{above front}{
+    \textcolor{red}{\textsc{Annales Mathematicae} book cover (outside)}}
+
+% Blue area on the back cover
+\bookcovercomponent{tikz}{bg back}{
+    \fill[blue!50](7/48,0)--(17.5,24.5)--(17.5,0)--cycle;}
+
+% Blue area on the front cover
+\bookcovercomponent{tikz}{bg front}{
+    \fill[blue!50](0,0)--(0,24.5)--(833/48,0)--cycle;}
+
+% Background color on the spine
+\bookcovercomponent{color}{bg spine}{blue!50}
+
+% Title on the spine
+\bookcovercomponent{center}{spine}{
+    \rotatebox[origin=c]{-90}{\large\bfseries
+        ANNALES MATHEMATICAE 43.~(2020)}}
+
+% Text and picture on the front cover
+\bookcovercomponent{normal}{front}[22mm,20mm,22mm,40mm]{
+    \centering
+    {\huge\bfseries ANNALES\\ MATHEMATICAE\\[13mm]}
+    {\large\bfseries TOMUS 43.~(2020)}
+    \vfill
+    \includegraphics{./figures/bookcover-pi.pdf}
+    \vfill
+    {\large COMMISSIO REDACTORIUM}\\[3mm]
+    \lipsum[2]}
+
+% Text on the back cover
+\bookcovercomponent{normal}{back}[22mm,10mm,22mm,30mm]{
+    {\centering\large ABSTRACTUM\\[5mm]}
+    \lipsum[1-4]}
+
+\end{bookcover}
+
+% ----------------------------------------------------------------------
+% Inside cover
+% ----------------------------------------------------------------------
+
+\begin{bookcover}
+
+% Remark
+\bookcovercomponent{center}{above inside back}{
+    \textcolor{red}{\textsc{Annales Mathematicae} book cover (inside)}}
+
+% Background color on the whole inside cover
+\bookcovercomponent{color}{bg whole}{blue!50}
+
+% Text on the inside back cover
+\bookcovercomponent{normal}{inside back}[22mm,10mm,22mm,30mm]{
+    \color{white}
+    {\centering\bfseries
+    ANNALES MATHEMATICAE\\[3mm]
+    Acta internationalis mathematicae\par}
+    \bigskip
+    \lipsum[1]}
+
+\end{bookcover}
+
+\end{document}

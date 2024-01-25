@@ -1217,6 +1217,7 @@ beamer
 bigfoot
 bigintcalc
 bitset
+bookcover
 bookmark
 carlisle
 chngcntr
@@ -1636,6 +1637,35 @@ README.md
 ./doc/latex/bitset:
 bitset.pdf
 README.md
+
+./doc/latex/bookcover:
+bookcover-example1.pdf
+bookcover-example1.tex
+bookcover-example2.pdf
+bookcover-example2.tex
+bookcover.pdf
+figures
+README
+
+./doc/latex/bookcover/figures:
+bookcover-barcode.pdf
+bookcover-bg.jpg
+bookcover-cards.pdf
+bookcover-description.pdf
+bookcover-dice.pdf
+bookcover-dustjacket.pdf
+bookcover-foldingmargin.pdf
+bookcover-margins.pdf
+bookcover-newpart.pdf
+bookcover-parts.pdf
+bookcover-pi.pdf
+bookcover-ruler.pdf
+bookcover-scheme-foldingmargin.pdf
+bookcover-scheme-withflaps.pdf
+bookcover-scheme-withoutflaps.pdf
+bookcover-tikzclip.pdf
+bookcover-tikz.pdf
+bookcover-trimming.pdf
 
 ./doc/latex/bookmark:
 bookmark-example.tex
@@ -23752,6 +23782,7 @@ auxhook
 base
 beamer
 bigfoot
+bookcover
 bookmark
 carlisle
 chngcntr
@@ -24162,6 +24193,9 @@ xmpmulti.sty
 bigfoot.sty
 perpage.sty
 suffix.sty
+
+./tex/latex/bookcover:
+bookcover.cls
 
 ./tex/latex/bookmark:
 bkm-dvipdfm.def
