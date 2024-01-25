@@ -18,7 +18,7 @@
 %
 % The KOMA-Script bundle consists of all files listed in MANIFEST.md.
 % ======================================================================
-%%% From File: $Id: scrjura.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrjura.dtx 4062 2023-06-24 15:55:11Z kohm $
 %<identify>%%%            (run: identify)
 %<init>%%%            (run: init)
 %<options>%%%            (run: options)
@@ -28,9 +28,9 @@
 %<*dtx>
 \begingroup
   \def\filedate$#1: #2-#3-#4 #5${\gdef\filedate{#2/#3/#4}}
-  \filedate$Date: 2023-04-17 11:45:11 +0200 (Mo, 17. Apr 2023) $
+  \filedate$Date: 2023-06-24 17:55:11 +0200 (Sa, 24. Jun 2023) $
   \def\filerevision$#1: #2 ${\gdef\filerevision{r#2}}
-  \filerevision$Revision: 4032 $
+  \filerevision$Revision: 4062 $
 \endgroup
 \expandafter\ifx\csname ProvidesFile\endcsname\relax
 \def\ProvidesFile#1[#2]{}
@@ -945,13 +945,17 @@
 % \end{fontelement}
 % \begin{counter}{@AbsClause}
 % \begin{macro}{\theH@AbsClause}
+% \changes{v3.41}{2023/06/24}{Ulrike Fischer requested to use \cs{def} instead
+%   of \cs{newcommand*}}
 % \begin{command}{\theHClause,\theHSubClause}
+% \changes{v3.41}{2023/06/24}{Ulrike Fischer requested to use \cs{def} instead
+%   of \cs{newcommand*}}
 %    \begin{macrocode}
 % Here we have some not good tested code for \pkg{hyperref}.
 \newcounter{@AbsClause}
-\newcommand*{\theH@AbsClause}{P-\arabic{@AbsClause}}
-\newcommand*{\theHClause}{\theH@AbsClause}
-\newcommand*{\theHSubClause}{\theH@AbsClause}
+\def\theH@AbsClause{P-\arabic{@AbsClause}}
+\def\theHClause{\theH@AbsClause}
+\def\theHSubClause{\theH@AbsClause}
 %    \end{macrocode}
 % \end{command}
 % \end{macro}
@@ -1004,11 +1008,13 @@
 %    \end{macrocode}
 % \changes{v0.9f}{2016/02/24}{\cs{protect}\cs{\@nameuse} instead of
 %   \cs{csname}\dots\cs{endcsname}}
+% \changes{v3.41}{2023/06/24}{update of \cs{@currentcounter} added}
 %    \begin{macrocode}
     \protected@edef\theClause{%
       \protect\@nameuse{\scrjura@env@type @Clauseformat}{\contract@number}%
     }%
     \protected@edef\@currentlabel{\theClause}%
+    \def\@currentcounter{Clause}%
   \fi
   \stepcounter{@AbsClause}%
   \begingroup\expandafter\expandafter\expandafter\endgroup
@@ -1059,12 +1065,13 @@
 % \end{macro}
 %
 % \begin{macro}{\contract@subparagraph}
-% \changes{v0.6a}{2012/10/08}{fehlendes \cs{par} ergänzt}%^^A
+% \changes{v0.6a}{2012/10/08}{fehlendes \cs{par} ergänzt}
 % \changes{v0.7}{2013/04/18}{Zähler \texttt{contractAbsoluteClause} wird
-%     erhöht}%^^A
+%   erhöht}
 % \changes{v0.7}{2013/04/28}{Abstand nach der Nummer als Bestandteil der
-%     Nummer setzen}%^^A
-% \changes{v0.9i}{2017/02/23}{Verwendung von \cs{ext@toc}}%^^A
+%   Nummer setzen}
+% \changes{v0.9i}{2017/02/23}{Verwendung von \cs{ext@toc}}
+% \changes{v3.41}{2023/06/24}{update of \cs{@currentcounter} added}
 % Das entspricht bis auf wenige Kleinigkeiten, die Unterparagraphen betreffen,
 % |\contract@paragraph|
 %    \begin{macrocode}
@@ -1094,6 +1101,7 @@
     \endgroup
     \protected@edef\theSubClause{\theClause\contract@number}%
     \protected@edef\@currentlabel{\theSubClause}%
+    \def\@currentcounter{SubClause}%
   \fi
   \stepcounter{@AbsClause}%
   \begingroup\expandafter\expandafter\expandafter\endgroup
@@ -1340,6 +1348,8 @@
 %   option}
 % \begin{counter}{par}
 % \begin{command}{\thepar,\theHpar}
+% \changes{v3.41}{2023/06/24}{Ulrike Fischer requested to use \cs{def} instead
+%   of \cs{newcommand*}}
 % \begin{command}{\parformat}
 % \changes{v0.7}{2013/06/07}{new font element \fnt{parnumber}}
 % \begin{command}{\parformatseparation}
@@ -1358,7 +1368,7 @@
 %<*body>
 \newcounter{par}
 \renewcommand*{\thepar}{\arabic{par}}
-\newcommand*{\theHpar}{\theH@AbsClause-\Roman{par}}
+\def\theHpar{\theH@AbsClause-\Roman{par}}
 \newcommand*{\parformat}{(\thepar)}
 \newcommand*{\parformatseparation}{\nobreakspace}
 \newkomafont{parnumber}{}
@@ -1810,6 +1820,8 @@
 % Numbering of sentences.
 % \begin{counter}{sentence}
 % \begin{command}{\thesentence,\theHsentence}
+% \changes{v3.41}{2023/06/24}{Ulrike Fischer requested to use \cs{def} instead
+%   of \cs{newcommand*}}
 % \begin{macro}{\p@sentence}
 % \changes{v3.27}{2019/10/09}{adaption for \LaTeX{} 2019-10-01}
 % The counter is used for numbering the sentences. It is important to add the
@@ -1825,7 +1837,7 @@
 %<*body>
 \newcounter{sentence}[par]
 \renewcommand*{\thesentence}{\arabic{sentence}}
-\newcommand*{\theHsentence}{\theHpar-\arabic{sentence}}
+\def\theHsentence{\theHpar-\arabic{sentence}}
 \scr@ifundefinedorrelax{labelformat}{%
   \renewcommand*{\p@sentence}{\expandafter\p@@sentence}
   \newcommand*{\p@@sentence}[1]{\p@par{{\par@cite{\thepar}}%

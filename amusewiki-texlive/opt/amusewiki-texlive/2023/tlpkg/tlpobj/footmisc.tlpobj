@@ -1,6 +1,6 @@
 name footmisc
 category Package
-revision 67232
+revision 67556
 shortdesc A range of footnote options
 longdesc A collection of ways to change the typesetting of footnotes.
 longdesc The package provides means of changing the layout of the
@@ -17,10 +17,10 @@ longdesc packages, though those are both also portmanteau packages.
 longdesc (Don't be seduced by fnpara, whose implementation is improved
 longdesc by the present package.) The perpage option is also offered by
 longdesc footnpag and by the rather more general-purpose perpage
-containersize 7676
-containerchecksum 7d276a76e395634de9f0133831823bbc127820d191497383b89ce08a8e87fa3e5cf37cde5e583728db91e18310588196707bb6be0948d890e9b5d8d5fe814d94
-doccontainersize 513832
-doccontainerchecksum 7ce5bf254ee1acf8e4b83ac7112660514f8abb7cebf1168d822f575e234026a0f694604c5acabc2ea47bc366e3857bb67477961521cc97e6cea5aca5a697ae9d
+containersize 7684
+containerchecksum 814aa0a1add20812ca241280a408c1bba21920c2751f171a67532aaf6e4dafd786578701a7f431a0295a139052c8c7c37f46c7e4df35e6fd14f468a5c7181b75
+doccontainersize 514744
+doccontainerchecksum 4a257a2b7620bc8660785ab5d8c8f167ba044e2bf8fc6b340b8645c549f9d4c528d9fec9110671f1dd757892c6193681bc845b57a7ab722423c8184a276f8043
 docfiles size=156
  texmf-dist/doc/latex/footmisc/README.md details="Readme"
  texmf-dist/doc/latex/footmisc/changes.txt
@@ -28,8 +28,8 @@ docfiles size=156
  texmf-dist/doc/latex/footmisc/footmisc-code.tex
  texmf-dist/doc/latex/footmisc/footmisc-doc.pdf details="Package documentation"
  texmf-dist/doc/latex/footmisc/footmisc-doc.tex
-srccontainersize 22300
-srccontainerchecksum 7aa8922a2530576201498b08bca69599a1f1c1720ebd2983589cdd08c18a676219e0d0500652adddb6192713780f6a1f36e67b138a697be03fd52f92401bf73c
+srccontainersize 22404
+srccontainerchecksum 514acb8de22592d5211c97ad8a82659374e574c4ed972604443036381875d33d2e5956788fd9f9577ca1feda59290209f5165568dd00dd0f059dc43fba4efe14
 runfiles size=13
  texmf-dist/tex/latex/footmisc/footmisc-2011-06-06.sty
  texmf-dist/tex/latex/footmisc/footmisc.sty
@@ -38,4 +38,4 @@ catalogue-contact-repository https://github.com/frankmittelbach/fmitex-footmisc
 catalogue-ctan /macros/latex/contrib/footmisc
 catalogue-license lppl1.3c
 catalogue-topics footnote
-catalogue-version 6.0e
+catalogue-version 6.0f

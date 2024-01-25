@@ -49,10 +49,10 @@
 %%%            (run: identify)
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{scrlayer-scrpage}[%
-  2023/04/24 v3.40 KOMA-Script
+  2023/07/07 v3.41 KOMA-Script
   package
   (end user interface for scrlayer)]
-%%% From File: $Id: scrlayer.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrlayer.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: init)
 \RequirePackage{scrlayer}
 \scr@ifundefinedorrelax{scrlayer@AtEndOfPackage}{%
@@ -76,15 +76,15 @@
     {pagestyleset=KOMA-Script}%
   }%
 }
-%%% From File: $Id: scrlayer.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrlayer.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: options)
 \KOMA@key{markcase}{%
 \scrlayer@AtEndOfPackage{%
   \begingroup
     \KOMA@set@ncmdkey{markcase}{reserved@a}{%
-      {upper}{0},{lower}{1},{used}{2},%
-      {ignoreuppercase}{3},{nouppercase}{3},%
-      {ignoreupper}{3},{noupper}{3}%
+      {upper}{0},{lower}{1},{title}{2},{used}{3},%
+      {ignoreuppercase}{4},{nouppercase}{4},%
+      {ignoreupper}{4},{noupper}{4}%
     }{#1}%
     \ifx\FamilyKeyState\FamilyKeyStateProcessed
       \aftergroup\FamilyKeyStateProcessed
@@ -95,6 +95,15 @@
           \aftergroup\scrlayer@forceignoreuppercasefalse
         \or
           \aftergroup\MakeLowercase
+          \aftergroup\scrlayer@forceignoreuppercasefalse
+        \or
+          \scr@ifundefinedorrelax{MakeTitlecase}{%
+            \PackageWarning{scrlayer}{`markcase=title' ignored because
+              \string\MakeTitlecase\space not available}%
+            \aftergroup\MakeMarkcase
+          }{%
+            \aftergroup\MakeTitlecase
+          }%
           \aftergroup\scrlayer@forceignoreuppercasefalse
         \or
           \aftergroup\@firstofone
@@ -635,7 +644,7 @@
 \KOMA@ifkey{hmode}{sls@leavevmode}
 \KOMA@ifkey{autoenlargeheadfoot}{sls@autoenlarge}
 \KOMAExecuteOptions{autoenlargeheadfoot=true}
-%%% From File: $Id: scrlayer.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrlayer.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: body)
 \KOMAProcessOptions\relax
 \expandafter\let

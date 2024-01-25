@@ -1,6 +1,6 @@
 name polyglossia
 category Package
-revision 66917
+revision 69093
 shortdesc An alternative to babel for XeLaTeX and LuaLaTeX
 longdesc This package provides a complete Babel replacement for users of
 longdesc LuaLaTeX and XeLaTeX; it relies on the fontspec package,
@@ -11,11 +11,11 @@ depend fontspec
 depend iftex
 depend makecmds
 depend xkeyval
-containersize 124632
-containerchecksum 30470fa1539ad1bcb69cbc64881c7dec7fa8c8c94147b5628b5ea75f8853e5eedbecbef09b88b6148182b38ebe47fbd625f4119e901a05417bf3bfda607dbfc0
-doccontainersize 726236
-doccontainerchecksum 2a310ed7f917bbc140be9ed16421638d88673eea238a8ceffea4161d55ab27e36406906029e9014c64547f33f9b8c37165bc055b91a0d3bca37c8f7bc405ad72
-docfiles size=232
+containersize 126768
+containerchecksum 615880e38a7faa377698fe79ad6fffd16eeff067b95a6b70e459cfa68c530499e84e3bd040735f12a29349641f2f1ca2af270bb6ec884426b628bb7ebe491133
+doccontainersize 815268
+doccontainerchecksum 8faec17cb9a8b3c30728a8b527794b1b58c9e8d26670e53433ecdaddaa341fdf8fa8f599e4cd5452ac854abf0f7b8d4216ea72af0148087e10460757af3602d5
+docfiles size=259
  texmf-dist/doc/latex/polyglossia/README.md details="Readme"
  texmf-dist/doc/latex/polyglossia/example-arabic.pdf
  texmf-dist/doc/latex/polyglossia/example-arabic.tex
@@ -25,6 +25,8 @@ docfiles size=232
  texmf-dist/doc/latex/polyglossia/example-japanese.tex
  texmf-dist/doc/latex/polyglossia/example-korean.pdf
  texmf-dist/doc/latex/polyglossia/example-korean.tex
+ texmf-dist/doc/latex/polyglossia/example-odia.pdf
+ texmf-dist/doc/latex/polyglossia/example-odia.tex
  texmf-dist/doc/latex/polyglossia/example-thai.pdf
  texmf-dist/doc/latex/polyglossia/example-thai.tex
  texmf-dist/doc/latex/polyglossia/examples.pdf
@@ -33,9 +35,9 @@ docfiles size=232
  texmf-dist/doc/latex/polyglossia/polyglossia.tex
  texmf-dist/doc/latex/polyglossia/test-welsh.pdf
  texmf-dist/doc/latex/polyglossia/test-welsh.tex
-srccontainersize 165476
-srccontainerchecksum dda959b34cf3452520fec6aa8b6eab6230f37cff5e21761a137c46103ced381eb2c53941aff14ed6ac1aecb53ef6c7f102923d4210a6381176f86437857f0286
-runfiles size=389
+srccontainersize 169816
+srccontainerchecksum 73734000d3720ebdd98c31973e89b35636d3eecd3ffd7a5ecf5ab2650182f33da8dabcbca138b63e1f6472c003e36ebd9c8962921ee7c1825d5daea44f8f47d9
+runfiles size=400
  texmf-dist/fonts/misc/xetex/fontmapping/polyglossia/arabicdigits.map
  texmf-dist/fonts/misc/xetex/fontmapping/polyglossia/arabicdigits.tec
  texmf-dist/fonts/misc/xetex/fontmapping/polyglossia/bengalidigits.map
@@ -46,6 +48,8 @@ runfiles size=389
  texmf-dist/fonts/misc/xetex/fontmapping/polyglossia/farsidigits.tec
  texmf-dist/fonts/misc/xetex/fontmapping/polyglossia/gurmukhidigits.map
  texmf-dist/fonts/misc/xetex/fontmapping/polyglossia/gurmukhidigits.tec
+ texmf-dist/fonts/misc/xetex/fontmapping/polyglossia/odiadigits.map
+ texmf-dist/fonts/misc/xetex/fontmapping/polyglossia/odiadigits.tec
  texmf-dist/fonts/misc/xetex/fontmapping/polyglossia/thaidigits.map
  texmf-dist/fonts/misc/xetex/fontmapping/polyglossia/thaidigits.tec
  texmf-dist/tex/latex/polyglossia/arabicnumbers.sty
@@ -163,6 +167,7 @@ runfiles size=389
  texmf-dist/tex/latex/polyglossia/gloss-farsi.ldf
  texmf-dist/tex/latex/polyglossia/gloss-fi.ldf
  texmf-dist/tex/latex/polyglossia/gloss-finnish.ldf
+ texmf-dist/tex/latex/polyglossia/gloss-fr-CA-u-sd-canb.ldf
  texmf-dist/tex/latex/polyglossia/gloss-fr-CA.ldf
  texmf-dist/tex/latex/polyglossia/gloss-fr-CH.ldf
  texmf-dist/tex/latex/polyglossia/gloss-fr-FR.ldf
@@ -252,6 +257,8 @@ runfiles size=389
  texmf-dist/tex/latex/polyglossia/gloss-nswissgerman.ldf
  texmf-dist/tex/latex/polyglossia/gloss-nynorsk.ldf
  texmf-dist/tex/latex/polyglossia/gloss-occitan.ldf
+ texmf-dist/tex/latex/polyglossia/gloss-odia.ldf
+ texmf-dist/tex/latex/polyglossia/gloss-or.ldf
  texmf-dist/tex/latex/polyglossia/gloss-pa.ldf
  texmf-dist/tex/latex/polyglossia/gloss-persian.ldf
  texmf-dist/tex/latex/polyglossia/gloss-piedmontese.ldf
@@ -298,6 +305,7 @@ runfiles size=389
  texmf-dist/tex/latex/polyglossia/hebrewcal.sty
  texmf-dist/tex/latex/polyglossia/hijrical.sty
  texmf-dist/tex/latex/polyglossia/nkonumbers.sty
+ texmf-dist/tex/latex/polyglossia/odiadigits.sty
  texmf-dist/tex/latex/polyglossia/polyglossia-french.lua
  texmf-dist/tex/latex/polyglossia/polyglossia-korean.lua
  texmf-dist/tex/latex/polyglossia/polyglossia-latin.lua
@@ -314,4 +322,4 @@ catalogue-contact-repository https://github.com/reutenauer/polyglossia
 catalogue-ctan /macros/unicodetex/latex/polyglossia
 catalogue-license mit lppl1.3 cc0
 catalogue-topics multilingual use-xetex use-luatex
-catalogue-version 1.62
+catalogue-version 1.66

@@ -23,11 +23,11 @@
 %%
 %% ----------------------------------------------------------------
 %% Copyright (C) 2003-2021 by Dr. Uwe Kern <xcolor at ukern dot de>
-%%               2021-2022    LaTeX Project https://github.com/latex3/xcolor/issues
+%%               2021-2023    LaTeX Project https://github.com/latex3/xcolor/issues
 %% ----------------------------------------------------------------
 %%
-\def\XCfileversion{v2.14}%
-\def\XCfiledate{2022/06/12}%
+\def\XCfileversion{v3.01}%
+\def\XCfiledate{2023/11/15}%
 \def\ukfile#1#2#3#4%
  {\def\ukhead
    {\ifnum#1>2 \perCent!^^J\fi
@@ -53,6 +53,7 @@
 \usepostamble\PStail
 \ukfile3{xcolor}{dvips}{LaTeX color extensions}
 }
+
 \endinput
 %%
 %% End of file `xcolor.lox'.

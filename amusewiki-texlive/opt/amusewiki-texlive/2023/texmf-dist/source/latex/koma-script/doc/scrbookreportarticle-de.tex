@@ -24,7 +24,7 @@
 % ============================================================================
 
 \KOMAProvidesFile{scrbookreportarticle-de.tex}
-                 [$Date: 2023-04-20 10:04:17 +0200 (Do, 20. Apr 2023) $
+                 [$Date: 2023-05-10 17:45:46 +0200 (Mi, 10. Mai 2023) $
                   KOMA-Script guide (chapter: scrbook, scrreprt, scrartcl)]
 
 \chapter{Die Hauptklassen \Class{scrbook}, \Class{scrreprt}, \Class{scrartcl}}
@@ -3253,6 +3253,39 @@ wenn Sie ein Paket verwenden, das in die Generierung von Tabellen- und
 Abbildungstiteln eingreift und deren Aussehen verändert. Dies sollte
 selbstverständlich sein, wird aber leider häufig nicht bedacht.
 
+\begin{Declaration}
+  \begin{Environment}{figure}
+  \end{Environment}
+  \begin{Environment}{figure*}
+  \end{Environment}
+  \begin{Environment}{figure-}
+  \end{Environment}
+  \begin{Environment}{table}
+  \end{Environment}
+  \begin{Environment}{table*}
+  \end{Environment}
+  \begin{Environment}{table-}
+  \end{Environment}
+\end{Declaration}
+Die \KOMAScript-Klassen \Class{scrbook}, \Class{scrreprt} und \Class{scrartcl}
+verwenden die in \autoref{sec:tocbasic.declarenewtoc},
+\DescPageRef{tocbasic.cmd.DeclareNewTOC} dokumentierte Anweisung
+\DescRef{tocbasic.cmd.DeclareNewTOC} zu Definition der von den Standardklassen
+gewohnten Umgebungen \Environment{figure} und
+\Environment{table}. Selbstverständlich werden dabei auch die für den
+zweispaltigen Modus vorgesehenen Umgebungen \Environment{figure*} und
+\Environment{table*} definiert, die für spaltenübergreifende Abbildungen und
+Tabellen am Seitenanfang gedacht sind. Da bei der Definition neben der
+Einstellung \Option{float} auch
+\Option{nonfloat}\ChangedAt{v3.36}{\Class{scrartcl}\and \Class{scrbook}\and
+  \Class{scrreprt}} verwendet wird, werden außerdem auch die nicht gleitenden
+Umgebungen \Environment{figure-} und \Environment{table-} definiert. Diese
+können wie die anderen Umgebungen verwendet werden und spannen letztlich eine
+\Environment{minipage} mit passendem Abstand davor und danach
+auf. Bei\textnote{Achtung!} gemischter Verwendung von gleitenden und nicht
+gleitenden Umgebungen ist der Anwender selbst für die korrekte Reihenfolge bei
+der Ausgabe und damit bei der Nummerierung verantwortlich.%
+\EndIndexGroup
 
 \begin{Declaration}
   \OptionVName{captions}{Einstellung}
@@ -3748,13 +3781,18 @@ jedoch eventuell durch das Laden von Paketen wie
 \end{Example}%
 In gleicher Weise, wie in obigem Beispiel eine Tabelle innerhalb einer
 Abbildungsumgebung gesetzt und mit einem Titel versehen wird, könnte man auch
-eine nicht gleitende Tabelle außerhalb jeder Gleitumgebung setzen. Auch dabei
-sollte in der Regel eine \Environment{minipage} verwendet werden, um zu
-verhindern, dass zwischen Überschrift und Tabelle ein Seitenumbruch erfolgen
-kann. Zusätzlich sollte man die \Environment{minipage} dann noch in eine
-\Environment{flushleft}-Umgebung einbetten, um einerseits einen gefälligen
-Abstand zum Text davor und dahinter zu erreichen und andererseits den
-Absatzeinzug vor der \Environment{minipage} zu verhindern.%
+eine nicht gleitende Tabelle außerhalb jeder Gleitumgebung
+setzen. Dabei\ChangedAt{v3.41}{\Class{scrbook}\and \Class{scrreprt}\and
+  \Class{scrartcl}} versucht \KOMAScript{} auch einen Seitenumbruch zwischen
+der Überschrift und der Tabelle zu verhindern. Das kann allerdings nicht in
+allen Fällen sichergestellt werden. Daher sollte in der Regel eine
+\Environment{minipage} verwendet werden, um zu verhindern, dass zwischen
+Überschrift und Tabelle ein Seitenumbruch erfolgen kann. Zusätzlich sollte man
+die \Environment{minipage} dann noch in eine \Environment{flushleft}-Umgebung
+einbetten, um einerseits einen gefälligen Abstand zum Text davor und dahinter
+zu erreichen und andererseits den Absatzeinzug vor der \Environment{minipage}
+zu verhindern. Einfacher ist natürlich direkt die Umgebung
+\DescRef{\LabelBase.env.table-}\IndexEnv{table-} zu verwenden.%
 \EndIndexGroup
 
 

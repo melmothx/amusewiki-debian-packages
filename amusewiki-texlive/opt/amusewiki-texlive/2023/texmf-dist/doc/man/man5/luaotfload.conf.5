@@ -1,6 +1,6 @@
 .\" Man page generated from reStructuredText.
 .
-.TH LUAOTFLOAD.CONF 5 "2022-10-03" "3.23" "text processing"
+.TH LUAOTFLOAD.CONF 5 "2023-08-31" "3.26" "text processing"
 .SH NAME
 luaotfload.conf \- Luaotfload configuration file
 .
@@ -216,6 +216,14 @@ T}	T{
 T}
 _
 T{
+location\-precedence
+T}	T{
+s
+T}	T{
+\fB"system,texmf,local\fP
+T}
+_
+T{
 max\-fonts
 T}	T{
 n
@@ -287,6 +295,12 @@ It corresponds loosely to the \fB\-\-formats\fP option to
 list does not contain any useful identifiers, the default list
 \fB"otf,ttf,ttc"\fP will be used.
 .sp
+The variable \fBlocation\-precedence\fP selects where and in which order
+luaotfload searches for fonts. Fonts in earlier locations are preferred.
+The three supported locations are \fBsystem\fP for system specific font
+directories, \fBtexmf\fP for fonts which are part of the TeX{} distribution
+and \fBlocal\fP for local fonts.
+.sp
 The variable \fBmax\-fonts\fP determines after processing how many font
 files the font scanner will terminate the search. This is useful for
 debugging issues with the font index and has the same effect as the
@@ -296,7 +310,8 @@ The \fBscan\-local\fP flag, if set, will incorporate the current working
 directory as a font search location. NB: This will potentially slow
 down document processing because a font index with local fonts will not
 be saved to disk, so these fonts will have to be re\-indexed whenever
-the document is built.
+the document is built. Setting \fBscan_local\fP to \fBfalse\fP is the same
+as removing \fBlocal\fP from \fBlocation\-precedence\fP\&.
 .sp
 The \fBskip\-read\fP flag is only useful for debugging: It makes
 Luaotfload skip reading fonts. The font information for rebuilding the
@@ -515,6 +530,14 @@ T}	T{
 \fB"default"\fP
 T}
 _
+T{
+default_dvi_driver
+T}	T{
+s
+T}	T{
+\fB"dvisvgm"\fP
+T}
+_
 .TE
 .sp
 Unqualified font lookups are treated with the flexible “anonymous”
@@ -588,6 +611,17 @@ subsequent lookups. The alternative, \fBnormal\fP circumvents the cache
 and resolves every request individually. (Since to the restructuring of
 the font name index in Luaotfload 2.4 the performance difference
 between the cached and uncached lookups should be marginal.)
+.sp
+When luaotfload is used in \fBDVI\fP mode, the \fBdefault_dvi_driver\fP option
+determines how OpenType fonts are represented in the DVI output. In most
+cases the default value \fBdvisvgm\fP should be set, it uses a format
+supported by multiple backends including \fBdvipdfmx\fP and \fBdvisvgm\fP
+which uses GIDs to identify characters.
+Setting this to \fBxdvipsk\fP uses an unstable internal format instead
+which will change depending on the luaotfload, engine, or font version.
+No one should rely on the mapping between DVI character codes and font glyphs
+in this mode unless they tightly control all involved versions and are deeply
+familiar with the implementation.
 .SH FILES
 .sp
 Luaotfload only processes the first configuration file it encounters at

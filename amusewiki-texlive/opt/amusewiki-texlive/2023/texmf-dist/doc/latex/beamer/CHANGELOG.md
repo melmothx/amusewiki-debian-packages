@@ -8,6 +8,17 @@ a major and minor version only.
 
 ## [Unreleased]
 
+## [v3.71]
+
+### Changed
+
+- scale height of tree and split headlines with fontsize of `section in head/foot`
+
+### Fixed
+
+- ensure that shadows of rounded blocks use proper black for their shadow
+- using correct template for `\structure` in article mode (see #862)
+
 ## [v3.70]
 
 ### Added
@@ -243,7 +254,8 @@ a major and minor version only.
 - Support for `noxcolor` with `beamerarticle` (see #483)
 - Treatment of mixed overlay/alert specifications
 
-[Unreleased]: https://github.com/josephwright/beamer/compare/v3.70...HEAD
+[Unreleased]: https://github.com/josephwright/beamer/compare/v3.71...HEAD
+[v3.71]: https://github.com/josephwright/beamer/compare/v3.70...v3.71
 [v3.70]: https://github.com/josephwright/beamer/compare/v3.69...v3.70
 [v3.69]: https://github.com/josephwright/beamer/compare/v3.68...v3.69
 [v3.68]: https://github.com/josephwright/beamer/compare/v3.67...v3.68

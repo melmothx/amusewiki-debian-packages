@@ -18,6 +18,6 @@ this redistribution also follows it (see [LICENSE](./LICENSE)).
 
 ## Release Date
 
-2023-01-28
+2023-09-16
 
 Japanese TeX Development Community

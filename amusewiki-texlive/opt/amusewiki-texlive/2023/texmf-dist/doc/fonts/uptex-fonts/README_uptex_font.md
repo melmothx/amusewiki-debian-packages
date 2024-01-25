@@ -94,6 +94,13 @@ JIS -> Unicode conversion is ambiguous and depends on tables.
 ChangeLog
 ---------
 
+### uptex-fonts-20230916
+* cmap/UTF8-UTF16:
+  Updated (Version: 1.010).
+* vf/upsch{rm,gt}-{h,v}.vf:
+  Regenerated with makejvf ver.20230916
+  which refers to Adobe-GB1-6 (2023/04/20).
+
 ### uptex-fonts-20230128
 * cmap/UTF8-UTF16:
   Updated (Version: 1.009).

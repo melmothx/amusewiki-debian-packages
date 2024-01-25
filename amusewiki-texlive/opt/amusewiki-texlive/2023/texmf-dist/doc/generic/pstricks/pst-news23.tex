@@ -30,6 +30,10 @@
 %--------------------------------------------------------------------------------------
 \section{\texttt{pstricks.sty}}
 %--------------------------------------------------------------------------------------
+With \LuaLaTeX\ the package now tries to detect if the command \Lcs{DocumentMetadata} is
+needed. If yes, than it is defined as \Verb|\DocumentMetadata{}|. This code does not really
+worked, the reason why the user has to set \Lcs{DocumentMetadata} by it's own.
+
 
 %--------------------------------------------------------------------------------------
 \section{\texttt{pstricks.tex} (v. 3.19 -- 2023/04/30)}

@@ -26,15 +26,16 @@
     % \usepackage{textalpha}
     \ProvideTextCommand{\ensuregreek}{TU}[1]{##1}
     \ProvideTextCommand{\greekscript}{TU}{}
-    \ProvideTextCommand{\textalpha}{TU}{\cs{textalpha}}
-    \ProvideTextCommand{\textOmega}{TU}{\cs{textOmega}}
+    \ProvideTextCommand{\textalpha}{TU}{only with the \pkgref{textalpha}
+    					package}
+    \ProvideTextCommand{\textOmega}{TU}{}
   \fi
 
   \usepackage{hyperref}
   \hypersetup{unicode, colorlinks=true,linkcolor=blue,urlcolor=blue}
 
   % fallbacks for commands defined in babel-greek:
-  \providecommand*\greekfontencoding{None}
+  \providecommand*\greekfontencoding{not set}
   % \providecommand*\lgrfont[1]{\cs{lgrfont} \emph{missing}}
   \ProvideTextCommandDefault{\textampersand}{\&}
   \providecommand*\greeknumeral[1]{\{##1\}}

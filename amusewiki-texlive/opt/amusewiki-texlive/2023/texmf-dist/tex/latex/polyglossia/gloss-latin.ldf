@@ -1,4 +1,4 @@
-% Language definition file (part of polyglossia v1.62 -- 2023/04/22)
+% Language definition file (part of polyglossia v1.66 -- 2023/12/11)
 %
 \ProvidesFile{gloss-latin.ldf}[polyglossia: module for Latin]
 
@@ -408,7 +408,7 @@
     \bool_set_true:N \l_polyglossia_latin_capitalize_month_bool
     \bool_set_false:N \l_polyglossia_latin_punctuation_spacing_bool
     \str_set:Nn \l_polyglossia_latin_variant_str {medieval}
-    \SetLanguageKeys {latin} { babelname = medievallatin, bcp47 = la-x-medieval, bcp47-extension-x = medieval }
+    \SetLanguageKeys {latin} { babelname = medievallatin, bcp47 = la-x-medieval, bcp47-extension-x = medieval, bcp47-casing = la-x-medieval }
     \polyglossia_latin_use_modern_patterns:
   }
 
@@ -670,7 +670,7 @@
 \cs_new:Npn \polyglossia_latin_shorthands:
   {
     \def \language@group {latin}
-    \bbl@activate {"}
+    \xpg@activate@shorthands ["]
     \declare@shorthand {latin} {"}
       {
         \mode_if_math:TF
@@ -684,7 +684,7 @@
     % The ' shorthand is normally turned off to avoid problems with the unicode-math
     % package. We have to turn it on here.
     \shorthandon {'}
-    \bbl@activate {'}
+    \xpg@activate@shorthands [']
     \declare@shorthand {latin} {'}
       {
         \mode_if_math:TF
@@ -988,8 +988,8 @@
 
 \cs_new:Npn \polyglossia_latin_no_shorthands:
   {
-    \bbl@deactivate {"}
-    \bbl@deactivate {'}
+    \xpg@deactivate@shorthands ["]
+    \xpg@deactivate@shorthands [']
   }
 
 \cs_new:Npn \polyglossia_latin_no_prosodic_shorthands:

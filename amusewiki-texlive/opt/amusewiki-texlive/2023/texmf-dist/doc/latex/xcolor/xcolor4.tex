@@ -22,15 +22,16 @@
 %% in the same archive or directory.)
 %%
 \ProvidesFile{xcolor4}
- [2022/06/12 v2.14 Color driver test (UK)]
+ [2023/11/15 v3.01 Color driver test (UK)]
 %%
 %% ----------------------------------------------------------------
 %% Copyright (C) 2003-2021 by Dr. Uwe Kern <xcolor at ukern dot de>
-%%               2021-2022    LaTeX Project https://github.com/latex3/xcolor/issues
+%%               2021-2023    LaTeX Project https://github.com/latex3/xcolor/issues
 %% ----------------------------------------------------------------
 %%
-\def\XCfileversion{v2.14}%
-\def\XCfiledate{2022/06/12}%
+\def\XCfileversion{v3.01}%
+\def\XCfiledate{2023/11/15}%
+
 \listfiles
 \documentclass[a4paper]{article}
 %%\PassOptionsToPackage{dvipdf}{xcolor}
@@ -126,7 +127,7 @@
    {\immediate\write\@tempa{\@@tmp}}}
 \immediate\closeout\@tempa
 \@@end}% end of driver list construction code
-\edef\Options{\expandafter\@gobble\XC@@opt}
+\edef\Options{}
 \@tfor\@@tmp:={dvipdf}{dvipdfm}{dvipdfmx}{dvips}{dvipsone}{dviwin}{dviwindo}%
               {emtex}{oztex}{pctex32}{pctexhp}{pctexps}{pctexwin}{pdftex}%
               {tcidvi}{textures}{truetex}{vtex}{xdvi}{xetex}%

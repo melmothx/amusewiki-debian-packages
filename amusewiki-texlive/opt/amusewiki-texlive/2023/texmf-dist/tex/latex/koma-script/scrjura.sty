@@ -44,15 +44,15 @@
 %% find a complete unmodified copy of LaTeX2e at
 %% <http://mirror.ctan.org/tex-archive/macros/latex/base/>.
 %% 
-%%% From File: $Id: scrjura.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrjura.dtx 4062 2023-06-24 15:55:11Z kohm $
 %%%            (run: identify)
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \ProvidesPackage{scrjura}[%
-  2023/04/24 v3.40 KOMA-Script
+  2023/07/07 v3.41 KOMA-Script
   package
   (for jurists)
 ]
-%%% From File: $Id: scrjura.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrjura.dtx 4062 2023-06-24 15:55:11Z kohm $
 %%%            (run: init)
 \@ifpackageloaded{hyperref}{%
   \PackageError{scrjura}{Package hyperref already loaded}{%
@@ -70,7 +70,7 @@
   numwidth=2em,
   level=\maxdimen
 ]{default}{cpar}
-%%% From File: $Id: scrjura.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrjura.dtx 4062 2023-06-24 15:55:11Z kohm $
 %%%            (run: options)
 \KOMA@ifkey{contract}{@documentcontract}
 \IfLTXAtLeastTF{2020/10/01}{%
@@ -281,10 +281,10 @@
   \KOMA@DeclareDeprecatedOption[scrjura]{parcitename}{ref=parlong}
   \KOMA@DeclareDeprecatedOption[scrjura]{sentencecitename}{ref=sentencelong}
 }
-%%% From File: $Id: scrjura.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrjura.dtx 4062 2023-06-24 15:55:11Z kohm $
 %%%            (run: postoptions)
 \KOMAProcessOptions\relax
-%%% From File: $Id: scrjura.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrjura.dtx 4062 2023-06-24 15:55:11Z kohm $
 %%%            (run: body)
 \providecommand*{\DeprecatedParagraph}{%
   \PackageError{scrjura}{modification of old document needed}{%
@@ -529,9 +529,9 @@
 \newcommand*{\contract@paragraph@font}{\usekomafont{Clause}%
   \@hangfrom}
 \newcounter{@AbsClause}
-\newcommand*{\theH@AbsClause}{P-\arabic{@AbsClause}}
-\newcommand*{\theHClause}{\theH@AbsClause}
-\newcommand*{\theHSubClause}{\theH@AbsClause}
+\def\theH@AbsClause{P-\arabic{@AbsClause}}
+\def\theHClause{\theH@AbsClause}
+\def\theHSubClause{\theH@AbsClause}
 \newcommand*{\contract@paragraph}[1]{%
   \stepcounter{\scrjura@env@type AbsoluteClause}%
   \ManualPar\parnumbertrue
@@ -560,6 +560,7 @@
       \protect\@nameuse{\scrjura@env@type @Clauseformat}{\contract@number}%
     }%
     \protected@edef\@currentlabel{\theClause}%
+    \def\@currentcounter{Clause}%
   \fi
   \stepcounter{@AbsClause}%
   \begingroup\expandafter\expandafter\expandafter\endgroup
@@ -618,6 +619,7 @@
     \endgroup
     \protected@edef\theSubClause{\theClause\contract@number}%
     \protected@edef\@currentlabel{\theSubClause}%
+    \def\@currentcounter{SubClause}%
   \fi
   \stepcounter{@AbsClause}%
   \begingroup\expandafter\expandafter\expandafter\endgroup
@@ -755,7 +757,7 @@
 \newcommand*{\scrjura@@usetype}[1]{}
 \newcounter{par}
 \renewcommand*{\thepar}{\arabic{par}}
-\newcommand*{\theHpar}{\theH@AbsClause-\Roman{par}}
+\def\theHpar{\theH@AbsClause-\Roman{par}}
 \newcommand*{\parformat}{(\thepar)}
 \newcommand*{\parformatseparation}{\nobreakspace}
 \newkomafont{parnumber}{}
@@ -1000,7 +1002,7 @@
 }
 \newcounter{sentence}[par]
 \renewcommand*{\thesentence}{\arabic{sentence}}
-\newcommand*{\theHsentence}{\theHpar-\arabic{sentence}}
+\def\theHsentence{\theHpar-\arabic{sentence}}
 \scr@ifundefinedorrelax{labelformat}{%
   \renewcommand*{\p@sentence}{\expandafter\p@@sentence}
   \newcommand*{\p@@sentence}[1]{\p@par{{\par@cite{\thepar}}%
@@ -1119,7 +1121,7 @@
     }%
   \fi
 }
-%%% From File: $Id: scrjura.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrjura.dtx 4062 2023-06-24 15:55:11Z kohm $
 %%%            (run: final)
 %%% From File: $Id: scrlogo.dtx 4032 2023-04-17 09:45:11Z kohm $
 \RequirePackage{scrlogo}

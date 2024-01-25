@@ -13,7 +13,7 @@
 %% (but please observe conditions on bug reports sent to that address!)
 %% 
 %% 
-%% Copyright (C) 1993-2022
+%% Copyright (C) 1993-2023
 %% The LaTeX Project and any individual authors listed elsewhere
 %% in this file.
 %% 
@@ -46,7 +46,7 @@
 \DeclareCurrentRelease{}{2020-10-01}
 
 \ProvidesPackage{array}
-         [2022/09/04 v2.5g Tabular extension package (FMi)]
+         [2023/10/16 v2.5g Tabular extension package (FMi)]
 %%
 
 \def\@addtopreamble#1{\xdef\@preamble{\@preamble #1}}
@@ -194,7 +194,6 @@
 \def\@xargarraycr#1{\unskip\gdef\do@row@strut
  {\@tempdima #1\advance\@tempdima \dp\@arstrutbox
    \vrule \@depth\@tempdima \@width\z@\global\let\do@row@strut\relax}%
- %    \begin{macrocode}
    \ifnum\@multicnt >\z@ \do@row@strut \fi
    \cr}
 \let\do@row@strut\relax

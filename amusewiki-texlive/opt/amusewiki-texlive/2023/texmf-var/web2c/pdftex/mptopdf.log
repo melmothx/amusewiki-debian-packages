@@ -1,16 +1,16 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (INITEX)  2 JUN 2023 09:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (INITEX)  25 JAN 2024 20:30
  restricted \write18 enabled.
  %&-line parsing enabled.
- (/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/texmf-dist/web2c/cp227.tcx)
+ (/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki-texlive/2023/texmf-dist/web2c/cp227.tcx)
 **mptopdf.tex
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
-xmf-dist/tex/generic/context/mptopdf/mptopdf.tex
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
-xmf-dist/tex/context/base/mkii/syst-tex.mkii
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
-xmf-dist/tex/plain/base/plain.tex Preloading the plain format: codes,
-registers,
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2023/texmf-dist/tex/generic/context/mptopdf/mptopdf.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2023/texmf-dist/tex/context/base/mkii/syst-tex.mkii
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2023/texmf-dist/tex/plain/base/plain.tex
+Preloading the plain format: codes, registers,
 \maxdimen=\dimen10
 \hideskip=\skip10
 \centering=\skip11
@@ -128,21 +128,21 @@ output routines,
 skipping \input in plain
 skipping \tenrm in plain
 ))
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
-xmf-dist/tex/context/base/mkii/supp-mis.mkii
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2023/texmf-dist/tex/context/base/mkii/supp-mis.mkii
 loading : ConTeXt Support Macros / Miscellaneous (2004.10.26)
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
-xmf-dist/tex/context/base/mkii/supp-pdf.mkii
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 loading : ConTeXt Support Macros / PDF
 )
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
-xmf-dist/tex/context/base/mkii/supp-mpe.mkii
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2023/texmf-dist/tex/context/base/mkii/supp-mpe.mkii
 loading : ConTeXt Support Macros / MPS extensions
 ) )
 Beginning to dump on file mptopdf.fmt
- (preloaded format=mptopdf 2023.6.2)
-3320 strings of total length 50257
+ (preloaded format=mptopdf 2024.1.25)
+3320 strings of total length 50498
 13894 memory locations dumped; current usage is 116&13747
 1675 multiletter control sequences
 \font\nullfont=nullfont

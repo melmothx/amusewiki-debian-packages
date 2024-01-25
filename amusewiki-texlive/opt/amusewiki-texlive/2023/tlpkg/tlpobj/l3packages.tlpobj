@@ -1,6 +1,6 @@
 name l3packages
 category Package
-revision 65722
+revision 68507
 shortdesc High-level LaTeX3 concepts
 longdesc This collection contains implementations for aspects of the
 longdesc LaTeX3 kernel, dealing with higher-level ideas such as the
@@ -17,11 +17,11 @@ longdesc provides a means of defining generic functions using a
 longdesc key-value syntax xfrac, which provides flexible split-level
 longdesc fractions
 depend l3kernel
-containersize 21928
-containerchecksum 39204e9cd356a5202dddad329cefa5bb47d11e6553609fbcf79a878c524b8f67e868e027015e304fb626d5bb953a69743390174f20f489302682e08a512c26f0
-doccontainersize 1831688
-doccontainerchecksum 3ece8153e345f4678cf5e4c05200033a64fc7e0d9e80d42ad8f32604f8b78a888ab86a98a8c68144855773d96650698af82af3be77fc7523d7cb9ec36a9c5d9a
-docfiles size=546
+containersize 22112
+containerchecksum aaf755351982e89531305e3f7a037db69e15b1b1eabb4140cb7a3a0a4db7c9604222cf0b9622d05b7637da310634f4ca1f00ab5941f51f152eb46b77165e4c92
+doccontainersize 1832932
+doccontainerchecksum 05231cdbc1f9bf3ad9775893099c46705f155a15e3ce9c4e8fb3d92422a3bd3dce9d05cd89e6f45c1d2afcf4c3dd469995e8d156e045d95b2788a4712ad5f094
+docfiles size=547
  texmf-dist/doc/latex/l3packages/CHANGELOG.md
  texmf-dist/doc/latex/l3packages/README.md details="Readme"
  texmf-dist/doc/latex/l3packages/l3keys2e/l3keys2e-demo.tex
@@ -30,9 +30,9 @@ docfiles size=546
  texmf-dist/doc/latex/l3packages/xfrac/xfrac.pdf details="xfrac documentation"
  texmf-dist/doc/latex/l3packages/xparse/xparse.pdf details="xparse documentation"
  texmf-dist/doc/latex/l3packages/xtemplate/xtemplate.pdf details="xtemplate documentation"
-srccontainersize 45696
-srccontainerchecksum 8a113832ec4aab128ef471c496a86bde774c9b86f77beef04b8eed03ee8c78c57004786d4606a67e5bfdccdfd41fcf7875fc96f2e03e59b6f0884cf5e03a6644
-runfiles size=66
+srccontainersize 46252
+srccontainerchecksum 642810f1d5eb19059e0d5541b3cf98c6e7412c1cd3194d469eedf9df5d53ba8c1d0f3ecd382df18637408648d252c3c52bb6e730391049626d8dc5076bb3b7e7
+runfiles size=67
  texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
  texmf-dist/tex/latex/l3packages/xfp/xfp.sty
  texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty

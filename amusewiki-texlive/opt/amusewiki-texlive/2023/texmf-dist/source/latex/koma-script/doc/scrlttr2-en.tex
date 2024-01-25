@@ -24,7 +24,7 @@
 % ============================================================================
 
 \KOMAProvidesFile{scrlttr2-en.tex}%
-                 [$Date: 2023-04-20 10:04:17 +0200 (Do, 20. Apr 2023) $
+                 [$Date: 2023-04-25 09:00:44 +0200 (Di, 25. Apr 2023) $
                   KOMA-Script guide (chapter: scrlttr2)]
 
 \translator{Harald Bongartz\and Georg Grandke\and Raimund Kohl\and Jens-Uwe
@@ -3909,27 +3909,45 @@ available.
   \Variable{nexthead}%
   \Variable{nextfoot}%
 \end{Declaration}
-At times, however, you may want to the header or the footer of subsequent pages
-to more closely resemble the letterhead page. In these cases, you must dispense
-with the predefined options that can be selected with the 
-\DescRef{\LabelBase.option.pagenumber}\IndexOption{pagenumber} option described above. 
-Instead, you can customise the header and footer of subsequent pages using the
+At times, however, you may want to the header or the footer of subsequent
+pages to more closely resemble the letterhead page. In these cases, you must
+dispense with the predefined options that can be selected with the
+\DescRef{\LabelBase.option.pagenumber}\IndexOption{pagenumber} option
+described above.  Instead, you can customise the header and footer of
+subsequent pages using the
 \DescRef{\LabelBase.pagestyle.headings}\IndexPagestyle{headings}%
 \important{\DescRef{\LabelBase.pagestyle.headings},
   \DescRef{\LabelBase.pagestyle.myheadings}} or
-\DescRef{\LabelBase.pagestyle.myheadings}\IndexPagestyle{myheadings} page styles with \Class{scrlttr2}\OnlyAt{\Class{scrlttr2}},
-and the \DescRef{\LabelBase.pagestyle.letter}%
-\IndexPagestyle{letter}\important{\DescRef{\LabelBase.pagestyle.letter}} page style
-with \Package{scrletter}\OnlyAt{\Package{scrletter}}.  To do so, you create the
-structure you want in the \PName{content} of
+\DescRef{\LabelBase.pagestyle.myheadings}\IndexPagestyle{myheadings} page
+styles with \Class{scrlttr2}\OnlyAt{\Class{scrlttr2}}, and the
+\DescRef{\LabelBase.pagestyle.letter}%
+\IndexPagestyle{letter}\important{\DescRef{\LabelBase.pagestyle.letter}} page
+style with \Package{scrletter}\OnlyAt{\Package{scrletter}}.  To do so, you
+create the structure you want in the \PName{content} of
 the\ChangedAt{v3.08}{\Class{scrlttr2}} \Variable{nexthead} or
-\Variable{nextfoot} variables. Within the \PName{content} of
-\Variable{nexthead} and \Variable{nextfoot} you can, for example, use the \Macro{parbox}
-command to place several boxes next to or beneath each other (see \cite{latex:usrguide}). More advanced users should
-be able to create their own headers and footers. Of course, you can
-and should also make use of additional variables using
-\DescRef{\LabelBase.cmd.usekomavar}. \KOMAScript{} does not use the
-\PName{description} for either variable.
+\Variable{nextfoot} variables.
+
+Since the page styles of \Class{scrlttr2}\important{\Class{scrlttr2}} are not
+designed for multi-line heads and feet the output of both variables is done in
+a horizontal box. With this initially neither paragraphs nor line breaks or
+similar are possible. But within the \PName{content} of \Variable{nexthead}
+and \Variable{nextfoot} you can, for example, use the \Macro{parbox} command
+to place several boxes next to or beneath each other (see
+\cite{latex:usrguide}). More advanced users should be able to create their own
+headers and footers. Of course, you can and should also make use of additional
+variables using \DescRef{\LabelBase.cmd.usekomavar}.
+
+An alternative for multi-line headers and footers it to use the
+\Package{scrlayer-scrpage}\IndexPackage{scrlayer-scrpage}%
+\important{\Package{scrlayer-scrpage}} package described in
+\autoref{cha:scrlayer-scrpage}. The
+\Package{scrletter}\important{\Package{scrletter}} package uses for definition
+of page style \DescRef{\LabelBase.pagestyle.letter}%
+\IndexPagestyle{letter}\important{\DescRef{\LabelBase.pagestyle.letter}}
+already \Package{scrlayer-scrpage} anyway and is therefore not affected by the
+above restriction.
+
+\KOMAScript{} does not use the \PName{description} for either variable.%
 %
 %Only\textnote{Attention!} for compatibility reason the deprecated commands
 %\Macro{nexthead}\IndexCmd[indexmain]{nexthead} and
@@ -3937,9 +3955,8 @@ and should also make use of additional variables using
 %releases before 3.08 are also implemented. Nevertheless, you should not use
 %those.%
 %
-\EndIndexGroup
-\EndIndexGroup
-%
+\EndIndexGroup%
+\EndIndexGroup%
 \EndIndexGroup
 
 
@@ -4540,3 +4557,4 @@ its documentation.%
 %%% ispell-local-dictionary: "en_GB"
 %%% eval: (flyspell-mode 1)
 %%% End: 
+

@@ -9,11 +9,11 @@
 %% This is a generated file.
 %% 
 %% Project: zref
-%% Version: 2022-04-07 v2.34
+%% Version: 2023-09-14 v2.35
 %% 
 %% Copyright (C)
 %%   2006-2012 Heiko Oberdiek
-%%   2016-2022 Oberdiek Package Support Group
+%%   2016-2023 Oberdiek Package Support Group
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either
@@ -47,7 +47,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{zref-pageattr}%
-  [2022-04-07 v2.34 Module pageattr for zref (HO)]%
+  [2023-09-14 v2.35 Module pageattr for zref (HO)]%
 \RequirePackage{zref-base}[2019/11/29]
 \ifx\ZREF@base@ok Y%
 \else
@@ -99,7 +99,6 @@
   \expandafter\endinput
 \fi
 \RequirePackage{zref-abspage}[2019/11/29]
-\RequirePackage{atveryend}[2010/03/24]
 \RequirePackage{pdftexcmds}[2010/04/01]
 \let\ZREF@temp=Y%
 \ltx@IfUndefined{pdf@escapehex}{\let\ZREF@temp=N}{}
@@ -128,7 +127,7 @@
         \fi
       }%
     }{}%
-    \AtVeryEndDocument{\ZREF@pa@AtVeryEnd}%
+    \AddToHook{enddocument/afteraux}{\ZREF@pa@AtVeryEnd}%
   \fi
 }
 \let\ZREF@temp=Y%
@@ -211,7 +210,7 @@
     }%
   }%
 }
-\AfterLastShipout{%
+\AddToHook {enddocument/afterlastpage}{%
   \ZREF@pa@AfterLastShipout
 }
 \endinput

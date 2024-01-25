@@ -1,13 +1,13 @@
 name texlive-msg-translations
 category TLCore
-revision 66901
+revision 69346
 shortdesc translations of the TeX Live installer and TeX Live Manager
 longdesc This package contains the translated messages of the TeX Live
 longdesc installer and TeX Live Manager. For information on creating or
 longdesc updating translations, see
 longdesc http://tug.org/texlive/doc.html#install-tl-xlate.
 containersize 151740
-containerchecksum d6db0293eaf9e4b96173d3ec35e3e5e2e77410811a2ff261555dcfe54abbb79d28443de338a00a3944670bc910d1ddec1baf2e1b17c391753a54b271e14eafc2
+containerchecksum b7d8293947eafc561873918f658e372feafadc7de9ff8b2b5c65bade32b40bf99c1172fbb9737cd8e5d2c057dde88e392561db36c093518f49249198646f7148
 runfiles size=375
  tlpkg/translations/README
  tlpkg/translations/cs.po

@@ -18,16 +18,16 @@
 %
 % This work consists of all files listed in MANIFEST.md.
 % ======================================================================
-%%% From File: $Id: scrkernel-floats.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-floats.dtx 4054 2023-05-10 14:35:36Z kohm $
 %<option>%%%            (run: option)
 %<body>%%%            (run: body)
 %<*dtx>
 \ifx\ProvidesFile\undefined\def\ProvidesFile#1[#2]{}\fi
 \begingroup
   \def\filedate$#1: #2-#3-#4 #5${\gdef\filedate{#2/#3/#4}}
-  \filedate$Date: 2023-04-17 11:45:11 +0200 (Mo, 17. Apr 2023) $
+  \filedate$Date: 2023-05-10 16:35:36 +0200 (Mi, 10. Mai 2023) $
   \def\filerevision$#1: #2 ${\gdef\filerevision{r#2}}
-  \filerevision$Revision: 4032 $
+  \filerevision$Revision: 4054 $
   \edef\reserved@a{%
     \noexpand\endgroup
     \noexpand\ProvidesFile{scrkernel-floats.dtx}%
@@ -865,21 +865,32 @@
 % \changes{v2.8j}{2001/07/30}{using \cs{@@makecaption}}
 % \changes{v2.8q}{2001/11/17}{special treatment of one line captions is optional}
 % \changes{v2.8q}{2001/11/17}{caption width can be limited}
+% \changes{v3.41}{2023/05/10}{no page break below caption above or above
+%   caption below content}
+% \begin{command}{\captionnopagebreak}
+% \changes{v3.41}{2023/05/10}{new}
+% Can be redefined by users to allow page breaks between content and caption.
 %    \begin{macrocode}
+\expandafter\ifnum\scr@v@is@ge{3.41}%
+  \newcommand*{\captionnopagebreak}{\nopagebreak}
+\else
+  \newcommand*{\captionnopagebreak}{}
+\fi
 \newcommand{\@makecaption}[2]{%
   \if@captionabove
     \vskip\belowcaptionskip
   \else
-    \vskip\abovecaptionskip
+    \captionnopagebreak\vskip\abovecaptionskip\captionnopagebreak
   \fi
   \@@makecaption\@firstofone{#1}{#2}%
   \if@captionabove
-    \vskip\abovecaptionskip
+    \captionnopagebreak\vskip\abovecaptionskip\captionnopagebreak
   \else
     \vskip\belowcaptionskip
   \fi
 }
 %    \end{macrocode}
+% \end{command}
 % \begin{macro}{\cap@width,\cap@left,\cap@right}
 % \changes{v2.8q}{2001/11/17}{added}
 % Multi line captions can printed with a reduced with. If the width is reduced

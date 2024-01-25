@@ -1,20 +1,20 @@
 name uptex-fonts
 category Package
-revision 65657
+revision 68297
 shortdesc Fonts for use with upTeX
 longdesc The bundle contains fonts (TFM and VF) for use with upTeX. This
 longdesc is a redistribution derived from the upTeX distribution by
 longdesc Takuji Tanaka.
-containersize 188432
-containerchecksum c5afc2563064da4f84ce962ab09966a4907bef73d776fa8c2851b7fff7de2bdcf0616c88dc75310e41c163ec9ce03fa737d87ae65cce41116f63a89be07c9033
-doccontainersize 5176
-doccontainerchecksum 7ed628337cba71518e3319c7c427f0eb6f825a3173d29ce217d48e8d49e5ddae41ac2aff43da9563f326341b650ef05e4c1f779b76e2203aec5b282cb4e30309
+containersize 198384
+containerchecksum 1802a5ff347ee4b9eabb93e4da5881a19b9861e3144009839d7779f61bf362dfa5be2a37b42b64041af7083ac756aaf788ad9a69cb4ba97887b21e78f6a794bf
+doccontainersize 5248
+doccontainerchecksum 5cfc4bbb9ba533d38bc52e5274c0cc42bca2a2cf6c3ddb623eb4f48c9a49275b2a6959311935fd3e1ca32ce775da6bf0c531542a49c31039c438000d1d15c8ab
 docfiles size=6
  texmf-dist/doc/fonts/uptex-fonts/LICENSE
  texmf-dist/doc/fonts/uptex-fonts/README.md details="Readme"
  texmf-dist/doc/fonts/uptex-fonts/README_ASCII_Corp.txt
  texmf-dist/doc/fonts/uptex-fonts/README_uptex_font.md
-runfiles size=6666
+runfiles size=6834
  texmf-dist/fonts/cmap/uptex-fonts/UTF8-UTF16
  texmf-dist/fonts/cmap/uptex-fonts/UniJIS2004up-UTF16-H
  texmf-dist/fonts/cmap/uptex-fonts/UniJIS2004up-UTF16-V

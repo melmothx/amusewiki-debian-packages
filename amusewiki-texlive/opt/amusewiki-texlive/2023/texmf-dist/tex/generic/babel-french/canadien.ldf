@@ -24,7 +24,7 @@
 %% Please report errors to: <daniel (dot) flipo (at) free (dot) fr>
 %% 
 \ProvidesLanguage{canadien}
-         [2023/03/08 v3.5q French support from the babel system]
+         [2023-12-19 v3.5r French support from the babel system]
 \PackageWarning{canadien.ldf}%
   {Option `canadien' for Babel is *deprecated*,\MessageBreak
    it might be removed sooner or later.  Please\MessageBreak
@@ -38,5 +38,6 @@
 \let\extrasacadian\extrasfrench
 \let\noextrasacadian\noextrasfrench
 \endinput
+%% 
 %%
 %% End of file `canadien.ldf'.

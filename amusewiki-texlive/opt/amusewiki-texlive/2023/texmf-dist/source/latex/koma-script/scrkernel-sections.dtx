@@ -18,7 +18,7 @@
 %
 % This work consists of all files listed in MANIFEST.md.
 % ======================================================================
-%%% From File: $Id: scrkernel-sections.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-sections.dtx 4069 2023-06-29 08:55:54Z kohm $
 % The runs of run-time file generation:
 %<preidentify>%%%            (run: preidentify)
 % - everything that is needed before selfidentification of resulting files
@@ -40,9 +40,9 @@
 \ifx\ProvidesFile\undefined\def\ProvidesFile#1[#2]{}\fi
 \begingroup
   \def\filedate$#1: #2-#3-#4 #5${\gdef\filedate{#2/#3/#4}}
-  \filedate$Date: 2023-04-17 11:45:11 +0200 (Mo, 17. Apr 2023) $
+  \filedate$Date: 2023-06-29 10:55:54 +0200 (Do, 29. Jun 2023) $
   \def\filerevision$#1: #2 ${\gdef\filerevision{r#2}}
-  \filerevision$Revision: 4032 $
+  \filerevision$Revision: 4069 $
   \edef\reserved@a{%
     \noexpand\endgroup
     \noexpand\ProvidesFile{scrkernel-sections.dtx}%
@@ -1184,10 +1184,43 @@
 \providecommand*\@currentlabelname{}
 \FamilyStringKey[.section]{KOMAarg}{tocentry}{\@currenttocentry}
 \FamilyStringKey[.section]{KOMAarg}{head}{\@currentheadentry}
+\IfLTXAtLeastTF{2020/10/01}{%
+  \NewHook{\KOMAClassName/option/section/reference/fallback}%
+}{}%
 \DefineFamilyKey[.section]{KOMAarg}{reference}{%
   \scr@ifundefinedorrelax{NR@gettitle}{%
     \scr@ifundefinedorrelax{GetTitleString}{%
-      \def\@currentlabelname{#1}%
+%    \end{macrocode}
+% \changes{v3.41}{2023/06/29}{substitute definition of \cs{@currentlabelname}
+%   changed}
+% This case is complicated. Up to \LaTeX{} 2022/11/01 it was good enough to
+% use:
+% \begin{verbatim}
+% \def\@currentlabelname{#1}
+% \end{verbatim}
+% But from \LaTeX{} 2023/06/01 the kernel definition of \cs{label}
+% additionally writes \cs{@currentlabelname} to the \file{aux}-file. So this
+% breaks, if \cs{label} is part of the argument, because it results in an
+% infinite expansion loop. To avoid this, the code has been changed. To
+% remove \cs{label}, \cs{index}, \cs{glossary}.
+% \begin{description}
+% \item[ToDo:] The current \cs{@currentlabelname} code is only a workaround
+%   for \href{https://sourceforge.net/p/koma-script/tickets/55/}{issue 55}.
+%   Maybe using an empty value would be better. But in this case, what to do
+%   with \cs{TG@gettitle} and \cs{ztitlerefsetup}?
+% \end{description}
+%    \begin{macrocode}
+      \begingroup
+        \let\label\@gobble
+        \let\index\@gobble
+        \let\glossary\@gobble
+        \scr@ifundefinedorrelax{UseHook}{}{%
+          \UseHook{\KOMAClassName/option/section/reference/fallback}%
+        }%
+        \protected@edef\@currentlabelname{#1}%
+      \expandafter\expandafter\expandafter\endgroup
+      \expandafter\def\expandafter\@currentlabelname\expandafter{%
+        \@currentlabelname}%
     }{%
       \GetTitleString{#1}%
       \let\@currentlabelname\GetTitleStringResult

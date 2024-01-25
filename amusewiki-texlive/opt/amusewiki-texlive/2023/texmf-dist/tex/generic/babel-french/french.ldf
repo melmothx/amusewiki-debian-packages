@@ -24,10 +24,10 @@
 %% Please report errors to: <daniel (dot) flipo (at) free (dot) fr>
 %% 
 \ProvidesLanguage{french}
-         [2023/03/08 v3.5q French support from the babel system]
+         [2023-12-19 v3.5r French support from the babel system]
 %%
 %%  Babel package for LaTeX version 2e
-%%  Copyright © 1996-2022
+%%  Copyright © 1996-2023
 %%            by Daniel Flipo <daniel (dot) flipo (at) free (dot) fr>
 %%
 \LdfInit\CurrentOption{FBclean@on@exit}
@@ -153,15 +153,16 @@
     \FB@luatex@puncttrue\FB@active@punctfalse
   \fi
 \fi
-\newcount\FB@nonchar
+\newcount\FB@stdchar
 \newif\ifFB@xetex@punct
 \ifdefined\XeTeXinterchartokenstate
   \FB@xetex@puncttrue\FB@active@punctfalse
-  \ifdim\the\XeTeXversion\XeTeXrevision pt<0.99994pt
-    \FB@nonchar=255 \relax
+  \ifdim\the\XeTeXversion\XeTeXrevision\p@ < 0.99994\p@
+    \chardef\FB@nonchar="FF \relax
   \else
-    \FB@nonchar=4095 \relax
+    \chardef\FB@nonchar="FFF \relax
   \fi
+  \FB@stdchar=\z@
 \fi
 \newcommand*{\FBguillspace}{\hskip .8\fontdimen2\font
                               plus .3\fontdimen3\font
@@ -304,14 +305,14 @@
   }
 \fi
 \ifFB@xetex@punct
-   \ifLaTeXe
+  \ifLaTeXe
     \PackageInfo{french.ldf}{No need for active punctuation
                              characters\MessageBreak with this
                              version of XeTeX!\MessageBreak reported}
-   \else
+  \else
     \fb@info{No need for active punctuation characters\\
              with this version of XeTeX!}
-   \fi
+  \fi
    \newXeTeXintercharclass\FB@punctthick
    \newXeTeXintercharclass\FB@punctthin
    \newXeTeXintercharclass\FB@punctnul
@@ -323,16 +324,47 @@
      \edef\x{\endgroup
        \def\noexpand\originalTeX{\the\toks@ #2=\the#1#2\relax}}%
      \x}
-   \def\FB@charlist{"21,"3A,"3B,"3F,"AB,"BB,"28,"5B,"A0,"202F,%
-                    "29,"5D,"7B,"7D,"2C,"2D,"2E,"22,"25,"27,"60,"2019}
-%% \changes{v3.5o}{2022/11/03}{\cs{shorthandon} and \cs{shorthandoff}
+   \def\FB@charlist{"21,"3A,"3B,"3F,"AB,"BB,"28,"5B,"A0,"202F}
+   \def\FB@charlistUCC{}
+   \def\FB@charlistxeCJK{}
+   \edef\FB@charlistsave{\FB@charlist}
+   \ifLaTeXe
+     \AtBeginDocument{%
+       \@ifpackageloaded{ucharclasses}%
+         {\ifdefined\BasicLatinClass
+            \RenewCommandCopy{\FB@stdchar}{\BasicLatinClass}%
+            \def\FB@charlistUCC{"C0,"C2,"C6,"C7,"C8,"C9,"CA,"CB,"CE,"CF,%
+              "D4,"D6,"D9,"DB,"DC,"E0,"E2,"E6,"E7,"E8,"E9,"EA,"EB,"EE,%
+              "EF,"F4,"F6,"F9,"FB,"FC,"152,"153,"17F,"2019}%
+            \addto\FB@charlist{,\FB@charlistUCC}%
+            \edef\FB@charlistsave{\FB@charlist}%
+          \fi
+         }{}%
+       \@ifpackageloaded{xeCJK}%
+         {\def\FB@charlistxeCJK{%
+                  "29,"5D,"7B,"7D,"2C,"2D,"2E,"22,"25,"27,"60,"2019}%
+          \addto\FB@charlist{,\FB@charlistxeCJK}%
+          \edef\FB@charlistsave{\FB@charlist}%
+         }{}%
+     }
+   \fi
    \newcommand*{\FB@xetex@punct@french}{%
      \babel@savevariable{\XeTeXinterchartokenstate}%
-     \bbl@for\FB@char\FB@charlist
+     \bbl@for\FB@char\FB@charlistsave
           {\FBsavevariable@loop{\XeTeXcharclass}{\FB@char}}%
+     \ifx\FB@charlistUCC\@empty\else
+        \bbl@for\FB@char\FB@charlistUCC
+          {\XeTeXcharclass \FB@char \FB@stdchar}%
+     \fi
+     \ifx\FB@charlistxeCJK\@empty\else
+       \bbl@for\FB@char\FB@charlistxeCJK
+               {\XeTeXcharclass\FB@char=\FB@stdchar}%
+     \fi
+     \bbl@for\FB@char {`\[,`\(,"A0,"202F}%
+             {\XeTeXcharclass\FB@char=\FB@punctnul}%
      \XeTeXinterchartokenstate=\@ne
      \XeTeXcharclass `\: = \FB@punctthick
-     \XeTeXinterchartoks \z@ \FB@punctthick = {%
+     \XeTeXinterchartoks \FB@stdchar \FB@punctthick = {%
            \ifFB@spacing\ifhmode\FDP@colonspace\fi\fi}%
      \XeTeXinterchartoks \FB@guilf \FB@punctthick = {%
            \ifFB@spacing\FDP@colonspace\fi}%
@@ -346,10 +378,9 @@
                \fi
              \fi
            \fi}%
-     \bbl@for\FB@char
-             {`\;,`\!,`\?}%
+     \bbl@for\FB@char {`\;,`\!,`\?}%
              {\XeTeXcharclass\FB@char=\FB@punctthin}%
-     \XeTeXinterchartoks \z@ \FB@punctthin = {%
+     \XeTeXinterchartoks \FB@stdchar \FB@punctthin = {%
            \ifFB@spacing\ifhmode\FDP@thinspace\fi\fi}%
      \XeTeXinterchartoks \FB@guilf \FB@punctthin = {%
            \ifFB@spacing\FDP@thinspace\fi}%
@@ -363,22 +394,16 @@
                \fi
              \fi
            \fi}%
-     \XeTeXinterchartoks \FB@guilo \z@ = {%
+     \XeTeXinterchartoks \FB@guilo \FB@stdchar = {%
            \ifFB@spacing\FB@guillspace\fi}%
      \XeTeXinterchartoks \FB@guilo \FB@nonchar = {%
            \ifFB@spacing\FB@guillspace\ignorespaces\fi}%
-     \XeTeXinterchartoks \z@ \FB@guilf = {%
+     \XeTeXinterchartoks \FB@stdchar \FB@guilf = {%
            \ifFB@spacing\FB@guillspace\fi}%
      \XeTeXinterchartoks \FB@punctthin \FB@guilf = {%
            \ifFB@spacing\FB@guillspace\fi}%
      \XeTeXinterchartoks \FB@nonchar \FB@guilf = {%
            \ifFB@spacing\unskip\FB@guillspace\fi}%
-     \bbl@for\FB@char
-             {`\[,`\(,"A0,"202F}%
-             {\XeTeXcharclass\FB@char=\FB@punctnul}%
-     \bbl@for\FB@char
-             {`\{,`\,,`\.,`\-,`\),`\],`\},`\%,"22,"27,"60,"2019}%
-             {\XeTeXcharclass\FB@char=\z@}%
    }
    \addto\extrasfrench{\FB@xetex@punct@french}
 \fi
@@ -816,7 +841,8 @@
   \newcommand*{\std@math@comma}{\mathcode`\,=\std@mcc}
 \fi
 \let\dec@m@c\relax
-\newif\if@FBpreamble \ifLaTeXe \@FBpreambletrue \fi
+\newif\if@FBpreamble
+\ifLaTeXe \@FBpreambletrue \fi
 \newif\if@preamble@DecimalMathComma
 \newcommand*{\DecimalMathComma}{%
   \if@FBpreamble \@preamble@DecimalMathCommatrue
@@ -847,32 +873,7 @@
     \fi
   \fi
 }
-\ifLaTeXe
-  \AtBeginDocument{%
-    \@FBpreamblefalse
-    \@ifpackageloaded{icomma}%
-       {\FB@icommatrue
-        \if@preamble@DecimalMathComma
-          \PackageWarning{french.ldf}{%
-            icomma package loaded, \protect\DecimalMathComma%
-            \MessageBreak does nothing.  Reported}%
-        \fi
-       }%
-       {\if@preamble@DecimalMathComma
-          \ifFB@mainlanguage@FR \dec@math@comma \fi
-          \let\dec@m@c\dec@math@comma
-          \addto\extrasfrench{\dec@m@c}%
-          \ifdefined\extrasacadian
-            \addto\extrasacadian{\dec@m@c}%
-          \fi
-        \fi
-        \addto\noextrasfrench{\std@math@comma}%
-        \ifdefined\noextrasacadian
-           \addto\noextrasacadian{\std@math@comma}%
-        \fi
-       }%
-  }
-\else
+\ifLaTeXe\else
   \addto\noextrasfrench{\std@math@comma}
 \fi
 \newcommand*{\nombre}[1]{{#1}\fb@warning{*** \noexpand\nombre
@@ -882,7 +883,7 @@
 \fi
 \let\FBstop@here\relax
 \def\FBclean@on@exit{%
-  \let\ifLaTeXe\undefined
+  \let\ifLaTeXe\iffalse
   \let\LaTeXetrue\undefined
   \let\LaTeXefalse\undefined
   \let\FB@llc\loadlocalcfg
@@ -896,6 +897,30 @@
     \endinput}
 \fi
 \FBstop@here
+\AtBeginDocument{%
+  \@FBpreamblefalse
+  \@ifpackageloaded{icomma}%
+     {\FB@icommatrue
+      \if@preamble@DecimalMathComma
+        \PackageWarning{french.ldf}{%
+          icomma package loaded, \protect\DecimalMathComma%
+          \MessageBreak does nothing.  Reported}%
+      \fi
+     }%
+     {\if@preamble@DecimalMathComma
+        \ifFB@mainlanguage@FR \dec@math@comma \fi
+        \let\dec@m@c\dec@math@comma
+        \addto\extrasfrench{\dec@m@c}%
+        \ifdefined\extrasacadian
+          \addto\extrasacadian{\dec@m@c}%
+        \fi
+      \fi
+      \addto\noextrasfrench{\std@math@comma}%
+      \ifdefined\noextrasacadian
+         \addto\noextrasacadian{\std@math@comma}%
+      \fi
+     }%
+  }
 \renewcommand*{\nombre}[1]{\Warning@nombre{#1}}
 \newcommand*{\Warning@nombre}[1]{%
    \ifdefined\numprint
@@ -1955,5 +1980,6 @@
 \ldf@finish\CurrentOption
 \let\loadlocalcfg\FB@llc
 \endinput
+%% 
 %%
 %% End of file `french.ldf'.

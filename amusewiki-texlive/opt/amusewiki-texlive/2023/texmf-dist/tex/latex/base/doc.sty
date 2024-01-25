@@ -13,7 +13,7 @@
 %% (but please observe conditions on bug reports sent to that address!)
 %% 
 %% 
-%% Copyright (C) 1993-2022
+%% Copyright (C) 1993-2024
 %% The LaTeX Project and any individual authors listed elsewhere
 %% in this file.
 %% 
@@ -53,7 +53,7 @@
 \DeclareCurrentRelease{v3}{2022-06-01}
 
 \ProvidesPackage{doc}
-  [2022/07/03 v3.0k
+  [2022/11/13 v3.0m
    Standard LaTeX documentation package V3 (FMi)]
 %%
 %% Package `doc' to use with LaTeX 2e
@@ -292,38 +292,28 @@
 \@namedef{verbatim*}{\@beginparpenalty \predisplaypenalty \@verbatim
               \@setupverbvisiblespace
               \MacroFont \@vobeyspaces \@sxverbatim}
-\def\@verbatim{\trivlist \item[]\if@minipage\else\vskip\parskip\fi
-      \leftskip\@totalleftmargin\rightskip\z@
-      \parindent\z@\parfillskip\@flushglue\parskip\z@
-      \@@par
-      \@tempswafalse
- \def\par{\if@tempswa\hbox{}\fi\@tempswatrue\@@par
-          \penalty\interlinepenalty
+\def\@verbatim{\trivlist \item\relax
+  \if@minipage\else\vskip\parskip\fi
+  \leftskip\@totalleftmargin\rightskip\z@
+  \parindent\z@\parfillskip\@flushglue\parskip\z@
+  \language\l@nohyphenation
+  \@@par
+  \@tempswafalse
+  \def\par{%
+    \if@tempswa
+      \leavevmode \null \@@par\penalty\interlinepenalty
+    \else
+      \@tempswatrue
+      \ifhmode\@@par\penalty\interlinepenalty\fi
+    \fi
    \check@percent}%
- \obeylines
- \let\do\do@noligs \verbatim@nolig@list
- \let\do\@makeother \dospecials}
+  \let\do\@makeother \dospecials
+  \obeylines \verbatim@font \@noligs
+  \everypar \expandafter{\the\everypar \unpenalty}%
+}
 {\catcode`\%=12
  \long\gdef\check@percent#1{\ifx #1%\let\next\@empty \else
                                     \let\next=#1\fi \next}}
-\def\verb{\relax\ifmmode\hbox\else\leavevmode\null\fi
-  \bgroup \let\do\do@noligs \verbatim@nolig@list
-    \ttfamily \verb@eol@error \let\do\@makeother \dospecials
-    \@ifstar{\@sverb}{\@vobeyspaces \frenchspacing \@sverb}}
-\let\verb@balance@group\@empty
-\def\verb@egroup{\global\let\verb@balance@group\@empty\egroup}
-\begingroup
-  \obeylines%
-  \gdef\verb@eol@error{\obeylines%
-    \def^^M{\verb@egroup\@latex@error{%
-            \noexpand\verb command ended by end of line}\@ehc}}%
-\endgroup
-\def\verbatim@nolig@list{\do\`\do\<\do\>\do\,\do\'\do\-}
-\def\do@noligs#1{%
-  \catcode`#1\active
-  \begingroup
-     \lccode`\~=`#1\relax
-     \lowercase{\endgroup\def~{\leavevmode\kern\z@\char`#1}}}
 \newcount\macro@cnt \macro@cnt=0
 \newskip\MacroTopsep     \MacroTopsep = 7pt plus 2pt minus 2pt
 \begingroup
@@ -360,16 +350,11 @@
      \let\next\macro@name
      \else \let\next\short@macro  \fi
    \next}
-\begingroup
-\catcode`\&=12
-\gdef\short@macro#1{\begingroup
-   \uccode`\&=\expandafter`\string#1%
-   \uppercase{\def\x{\def\macro@namepart{&}}}%
-   \expandafter\endgroup\x
+\def\short@macro#1{%
+   \edef\macro@namepart{\string#1}%
      \maybe@index@short@macro\macro@namepart
     \scan@allowedfalse#1%
     \scan@allowedtrue }
-\endgroup
 \def\macro@name#1{\edef\macro@namepart{\macro@namepart#1}%
      \futurelet\next\more@macroname}
 \def\more@macroname{\ifcat\noexpand\next a%
@@ -447,7 +432,7 @@
 }
 \cs_set_eq:NN \maybe@index@macro \__doc_maybe_index:o
 \cs_new:Npn \__doc_maybe_index_short:o #1 {
-  \exp_args:Nf \__doc_maybe_index_aux:nN { \tl_to_str:o {#1} }
+  \exp_args:No \__doc_maybe_index_aux:nN #1
                                          \SpecialShortIndex
 }
 \cs_set_eq:NN \maybe@index@short@macro \__doc_maybe_index_short:o
@@ -479,7 +464,7 @@
           {\cs_to_str:N \^^M } {\def\reserved@a{ \string \space \actualchar }
                                 \def\reserved@b { \space }
                                 \let\reserved@c \@empty                          }
-          { }                  {\def\reserved@a{ \string \space \actualchar }
+          { ~ }                {\def\reserved@a{ \string \space \actualchar }
                                 \def\reserved@b { \space }
                                 \let\reserved@c \@empty                          }
           {\c_left_brace_str} { \def\reserved@a{ \bgroup \actualchar }

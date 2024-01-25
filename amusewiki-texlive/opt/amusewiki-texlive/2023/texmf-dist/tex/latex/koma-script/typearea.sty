@@ -48,7 +48,7 @@
 %% find a complete unmodified copy of LaTeX2e at
 %% <http://mirror.ctan.org/tex-archive/macros/latex/base/>.
 %% 
-%%% From File: $Id: scrkernel-version.dtx 4038 2023-04-24 07:06:57Z kohm $
+%%% From File: $Id: scrkernel-version.dtx 4070 2023-07-07 07:08:40Z kohm $
 \begingroup
   \catcode`\@11\relax
   \ifx\KOMAScriptVersion\undefined
@@ -70,7 +70,7 @@
       \fi
     }
   \fi
-  \@CheckKOMAScriptVersion{2023/04/24 v3.40 KOMA-Script}%
+  \@CheckKOMAScriptVersion{2023/07/07 v3.41 KOMA-Script}%
 \endgroup
 \providecommand*{\scr@pkgextension}{\@pkgextension}
 \AtBeginDocument{%
@@ -80,13 +80,13 @@
 %%%            (run: identify)
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \ProvidesPackage{typearea}[%
-  2023/04/24 v3.40 KOMA-Script
+  2023/07/07 v3.41 KOMA-Script
   package
   (type area)]
-%%% From File: $Id: scrkernel-basics.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-basics.dtx 4051 2023-04-26 16:01:28Z kohm $
 %%%            (run: load)
 \RequirePackage{scrkbase}[\KOMAScriptVersion]
-%%% From File: $Id: scrkernel-compatibility.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-compatibility.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: init)
 \providecommand*
   {\scr@compatibility}{\scr@v@last}
@@ -175,13 +175,14 @@
 \@namedef{scr@v@3.38}{20}
 \@namedef{scr@v@3.39}{20}
 \@namedef{scr@v@3.40}{20}
-\@namedef{scr@v@last}{20}
+\@namedef{scr@v@3.41}{21}
+\@namedef{scr@v@last}{21}
 %%% From File: $Id: scrkernel-typearea.dtx 4032 2023-04-17 09:45:11Z kohm $
 %%%            (run: init)
 \providecommand\ta@divlist{{}{}{}{}{}{}{}{}{}{8}{10}{12}}
 \providecommand\ta@divlistelse{1}
 \newcommand*{\@lastdiv}{\z@}\let\@lastdiv\relax
-%%% From File: $Id: scrkernel-compatibility.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-compatibility.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: option)
 \KOMA@key{version}[last]{%
   \scr@ifundefinedorrelax{scr@v@#1}{%
@@ -1044,7 +1045,7 @@
   \KOMAExecuteOptions{twoside=false}
 \fi
 \KOMAProcessOptions\relax
-%%% From File: $Id: scrkernel-compatibility.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-compatibility.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: body)
 %%% From File: $Id: scrkernel-typearea.dtx 4032 2023-04-17 09:45:11Z kohm $
 %%%            (run: body)

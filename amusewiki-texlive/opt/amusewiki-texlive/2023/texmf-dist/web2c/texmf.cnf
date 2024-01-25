@@ -653,6 +653,8 @@ extractbb,\
 gregorio,\
 kpsewhich,\
 makeindex,\
+memoize-extract.pl,\
+memoize-extract.py,\
 repstopdf,\
 r-mpost,\
 texosquery-jre8,\

@@ -24,7 +24,7 @@
 % ============================================================================
 
 \KOMAProvidesFile{common-pagestylemanipulation-de.tex}
-                 [$Date: 2022-06-05 12:40:11 +0200 (So, 05. Jun 2022) $
+                 [$Date: 2023-06-16 10:32:27 +0200 (Fr, 16. Jun 2023) $
                   KOMA-Script guide (common paragraph: 
                                      Setting up defined page styles)]
 
@@ -441,6 +441,18 @@
           definiert \DescRef{\LabelBase.cmd.MakeMarkcase} so um, dass
           automatische Kolumnentitel mit Hilfe von \Macro{MakeUppercase} in
           Großbuchstaben gewandelt werden (Versalsatz).%
+        }\\[-1.7ex]
+        \pventry{title}{\IndexOption[indexmain]{markcase~=title}%
+          \IfThisCommonLabelBase{scrlayer}{%
+            \ChangedAt{v3.41}{\Package{scrlayer}}}{%
+            \IfThisCommonLabelBase{scrlayer-scrpage}{%
+              \ChangedAt{v3.41}{\Package{scrlayer-scrpage}}}}{}%
+          definiert \DescRef{\LabelBase.cmd.MakeMarkcase} so um, dass
+          automatische Kolumnentitel mit Hilfe von \Macro{MakeTitlecase}
+          gewandelt werden (\emph{Englischer Titelsatz}). Dabei werden Nummer
+          und Titel getrennt behandelt. Ist \Macro{MakeTitlecase} wegen eines
+          zu alten \LaTeX{} Kerns nicht definiert, wird eine Warnung
+          ausgegeben und die Option ignoriert.%
         }\\[-1.7ex]
         \pventry{used}{\IndexOption[indexmain]{markcase~=used}%
           definiert \DescRef{\LabelBase.cmd.MakeMarkcase} so um, dass für

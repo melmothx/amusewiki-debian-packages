@@ -1,5 +1,35 @@
 ### ChangeLog / 変更履歴
 
+2023.09.16 Ver1.30-20230916a
+  TeXLive svn r68294 base
+  Build/source/texk/web2c/uptexdir:
+    * uptex-m.ch, uptex_version.h:
+      Bump upTeX version.
+    * uptexextra.h:
+      Add AUTHOR "Japanese TeX Development Community"
+    * uptex-m.ch, kanji.c:
+      Update reference of Unicode blocks to
+      "Blocks-15.1.0.txt Date: 2023-07-28, 15:47:20 GMT".
+    * uptex-m.ch:
+      Proper support for \kchar in math mode.
+      from Hironobu Yamashita san
+      https://github.com/texjporg/tex-jp-build/pull/159
+    * kanji.c: Check character code range < 2^24.
+      from Hironobu Yamashita san
+      https://github.com/texjporg/tex-jp-build/issues/160
+    * COPYRIGHT, COPYRIGHT.ja:
+      Update copyright year.
+    * upkcat.test, uptriptest.test, upver.test,
+      tests/kcat.tex, tests/upkcat.txt:
+      Update tests.
+    * gkhuge.test, newjfm.test, uparse.test,
+      tests/gkhuge*, tests/testnewu*, tests/unibib*, tests/uparse*:
+      Remove tests which are not related to the upTeX engine.
+  samples:
+    Update.
+  00readme_uptex.txt, 01uptex_doc_utf8.txt:
+    Update.
+
 2023.02.12 Ver1.29-20230212a
   samples:
     Update.

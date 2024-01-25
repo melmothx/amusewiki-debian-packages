@@ -1,11 +1,26 @@
 (This file public domain.  Originally written by Norbert Preining and
 Karl Berry, 2010.)
 
+<p><b>tlmgr 69413 (released 15jan24):</b>
+<li>refrain from updating if the remote repository is older than the current
+    installation; this is checked via the texlive-scripts package revision.
+<li>use our own root certificate bundle on all platforms, to support LWP
+    more widely, notably on macOS.
+
+<p><b>tlmgr 66903 (released 20nov23):</b>
+<li>message wording.
+
+<p><b>tlmgr 66818 (released 15nov23):</b>
+<li>detect a remote repository older than the local installation (i.e.,
+    a stale mirror), and don't update, to avoid incorrect package removals.
+<li>warn if a file or directory could not be removed.
+<li>the installer's curl-ca-bundle.crt updated.
+
 <p><b>tlmgr 66798 (released 11apr23):</b>
 <li>base context cache regeneration on ls-R mtimes.
 <li>support context paper size setting.
 
-<p>TeX Live 2022 released.
+<p>TeX Live 2023 released.
 
 <p><b>tlmgr 66457 (released 8mar23):</b>
 <li>tweaking context cache generation commands.

@@ -1,19 +1,19 @@
 name tools
 category Package
-revision 64892
+revision 68941
 catalogue latex-tools
 shortdesc The LaTeX standard tools bundle
 longdesc A collection of (variously) simple tools provided as part of
 longdesc the LaTeX required tools distribution, comprising the packages:
 longdesc afterpage, array, bm, calc, dcolumn, delarray, enumerate,
 longdesc fileerr, fontsmpl, ftnright, hhline, indentfirst, layout,
-longdesc longtable, multicol, rawfonts, showkeys, somedefs, tabularx,
-longdesc theorem, trace, varioref, verbatim, xr, and xspace.
-containersize 43248
-containerchecksum f82eb761a74b85924fa51fee338e3c911545e4f96ef2ee78a236f5c10d6d566184b40bf46d2924650cc57ab4e3df94cff1e78ea1d196bd280dd2191b4ead01c5
-doccontainersize 5313768
-doccontainerchecksum c47db012171f64b2b8554a00397b7fe0b5d262510fecd3171ef1525eb2f1a2113c24b85458e3762d6f908a0617414bcb07eb5cbc14108c8be84c6b5f90ed3ea9
-docfiles size=1765
+longdesc longtable, multicol, rawfonts, shellesc, showkeys, somedefs,
+longdesc tabularx, theorem, trace, varioref, verbatim, xr, and xspace.
+containersize 43420
+containerchecksum 6da3f34edda1c3839737f6ce0db95a899af8c47fe9901a502dbc6a6c95ae9fbe317c7365d6cebe3a20bdce8af0e37b803480f8489de57ccc6daac8a758a5c9d9
+doccontainersize 5316304
+doccontainerchecksum 614a64b6d5f25c4fd691d629f70f1fc0f614aa4ac1a1a5a6e06f6ab0edcc0a8e8cd14c2cce498aa75ef3320e493c7ef69cd6ac858505519e10b8414b9cbb13ca
+docfiles size=1766
  texmf-dist/doc/latex/tools/README.md details="Readme"
  texmf-dist/doc/latex/tools/afterpage.pdf
  texmf-dist/doc/latex/tools/array.pdf
@@ -45,8 +45,8 @@ docfiles size=1765
  texmf-dist/doc/latex/tools/verbatim.pdf
  texmf-dist/doc/latex/tools/xr.pdf
  texmf-dist/doc/latex/tools/xspace.pdf
-srccontainersize 228796
-srccontainerchecksum 952c2fa3d0fdd06d784c9b577cb311d7910b807b8a8126915844baf582d2c7eaea6a984db7648d9d66ad104fe47ed96f88a80bc5a6c1b9d1e6dec07ae3a0abe6
+srccontainersize 229424
+srccontainerchecksum 2bd6ea620d71ae1e5fab48f5b361560e290a2633668b03a36259228b0cf8f9eb5acecee705c66052dab306288c1defd46a366548f7aa66cf04e802bc40122caf
 runfiles size=121
  texmf-dist/tex/latex/tools/.tex
  texmf-dist/tex/latex/tools/afterpage.sty
@@ -98,3 +98,4 @@ runfiles size=121
 catalogue-ctan /macros/latex/required/tools
 catalogue-license lppl1.3c
 catalogue-topics collection
+catalogue-version 2023-11-01c

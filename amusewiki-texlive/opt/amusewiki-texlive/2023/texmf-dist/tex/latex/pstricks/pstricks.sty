@@ -1,4 +1,4 @@
-% $Id: pstricks.sty 645 2022-10-25 04:57:20Z herbert $
+% $Id: pstricks.sty 806 2023-11-06 20:39:03Z herbert $
 %%
 %% This is file `pstricks.sty'.
 %%
@@ -8,7 +8,7 @@
 %% pstcol.sty   Copyright (C) 1994-1996 1999 David Carlisle
 %% pstricks.sty Copyright (C) 2004-     Rolf Niepraschk <Rolf.Niepraschk@gmx.de>
 %%                                      Herbert Voss <hvoss@tug.org>
-%%                            2019-current  Herbert Voss <hvoss@tug.org>
+%%                            2019-     Herbert Voss <hvoss@tug.org>
 %%
 %% This package may be distributed under the terms of the LaTeX Project
 %% Public License, as described in lppl.txt in the base LaTeX distribution.
@@ -17,8 +17,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 
-
-\ProvidesPackage{pstricks}[2022/19/23 v0.72 LaTeX wrapper for `PSTricks' (RN,HV)]
+\ProvidesPackage{pstricks}[2023/11/06 v0.74 LaTeX wrapper for `PSTricks' (RN,HV)]
 % 
 \def\documentclass{%
   \edef\@tempa{\jobname.tex }%
@@ -84,6 +83,9 @@
 
 \DeclareOption*{\PassOptionsToPackage\CurrentOption{\pst@ColorPackage}}
 \ProcessOptions\relax
+
+\let\pgfutil@protected\protected
+\let\pgfutil@unexpanded\unexpanded
 
 \ifpst@useCalc
   \RequirePackage{pst-calculate}

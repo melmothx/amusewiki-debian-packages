@@ -9,11 +9,11 @@
 %% This is a generated file.
 %% 
 %% Project: ltxcmds
-%% Version: 2020-05-10 v1.25
+%% Version: 2023-12-04 v1.26
 %% 
 %% Copyright (C)
 %%    2009-2011 Heiko Oberdiek
-%%    2016-2020 Oberdiek Package Support Group
+%%    2016-2023 Oberdiek Package Support Group
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either
@@ -108,7 +108,7 @@
   \fi
 \expandafter\x\csname ver@ltxcmds.sty\endcsname
 \ProvidesPackage{ltxcmds}%
-  [2020-05-10 v1.25 LaTeX kernel commands for general use (HO)]%
+  [2023-12-04 v1.26 LaTeX kernel commands for general use (HO)]%
 \begingroup\catcode61\catcode48\catcode32=10\relax%
   \catcode13=5 % ^^M
   \endlinechar=13 %
@@ -421,9 +421,9 @@
 \def\ltx@ifl@t@r#1#2{%
   \ifnum\expandafter\ltx@parse@version@#1//00\@nil<%
         \expandafter\ltx@parse@version@#2//00\@nil
-    \expandafter\@secondoftwo
+    \expandafter\ltx@secondoftwo
   \else
-    \expandafter\@firstoftwo
+    \expandafter\ltx@firstoftwo
   \fi}
 \def\ltx@parse@version@#1{\ltx@parse@version0#1}
 \def\ltx@parse@version#1/#2/#3#4#5\@nil{%

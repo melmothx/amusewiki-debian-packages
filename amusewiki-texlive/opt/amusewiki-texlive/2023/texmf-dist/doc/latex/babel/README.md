@@ -1,18 +1,18 @@
-## Babel 3.89
+## Babel 24.1
 
-2023-05-11
+2024-01-07
 
 This package manages culturally-determined typographical (and other)
 rules, and hyphenation patterns for a wide range of languages. Many
 language styles work with pdflatex, as well as with xelatex and
 lualatex out of the box. A few even work with plain formats. Included
-is a set of ini files for about 250 languages.
+is a set of ini files for about 300 languages.
 
 The latest stable version is available on <https://ctan.org/pkg/babel>.
 
-Changes in version 3.89 are described in:
+Changes in version 24.1 are described in:
 
-https://latex3.github.io/babel/news/whats-new-in-babel-3.89.html
+https://latex3.github.io/babel/news/whats-new-in-babel-24.1.html
 
 Apart from the manual, you can find information on some aspects of babel at:
 
@@ -41,21 +41,18 @@ contact the developer, and not us!
 
 You may also report them to the current maintainer more informally on:
 
-   http://www.texnia.com/contact.html
+   https://latex3.github.io/babel/contact.html
 
 Bugs related to specific languages are best reported to their
 respective authors.
 
 ### Summary of latest changes
 ```
-3.89  2023-05-11
-      * Deprecating \SetCase, \aliasshorthands, and 'strings' package
-        options in the manual.
-      * The manual has been split in two documents: 'babel.pdf' is the
-        user guide, and 'babel-code.pdf' is the code.
-      * Alternative syntax to pass 'modifiers' to babel languages.
-      * Code cleaned up: babel.def has been shortened dramatically,
-        and babel.sty is a bit smaller.
+24.1 2024-01-07
+     * New version numbering scheme.
+     * New key in \babelprovide: interchar (xe).
+     * Definitions for French interchar=punctuation.space (xe) and
+       transforms=punctuation.space (lua).
 ```
 
 ### Previous changes

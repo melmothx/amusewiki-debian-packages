@@ -43,14 +43,14 @@
 %% find a complete unmodified copy of LaTeX2e at
 %% <http://mirror.ctan.org/tex-archive/macros/latex/base/>.
 %% 
-%%% From File: $Id: scrlayer.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrlayer.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: identify)
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{scrlayer}[%
-  2023/04/24 v3.40 KOMA-Script
+  2023/07/07 v3.41 KOMA-Script
   package
   (defining layers and page styles)]
-%%% From File: $Id: scrlayer.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrlayer.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: init)
 \newcommand*{\scrlayer@@inherited@options@cslist}{}
 \newcommand*{\scrlayer@@add@inherited@option}[1]{%
@@ -145,14 +145,14 @@
     \@namedef{scrlayer@deprecated@reported@for@#1}{\string #2}%
   }{}%
 }
-%%% From File: $Id: scrlayer.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrlayer.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: options)
 \KOMA@key{markcase}{%
   \begingroup
     \KOMA@set@ncmdkey{markcase}{reserved@a}{%
-      {upper}{0},{lower}{1},{used}{2},%
-      {ignoreuppercase}{3},{nouppercase}{3},%
-      {ignoreupper}{3},{noupper}{3}%
+      {upper}{0},{lower}{1},{title}{2},{used}{3},%
+      {ignoreuppercase}{4},{nouppercase}{4},%
+      {ignoreupper}{4},{noupper}{4}%
     }{#1}%
     \ifx\FamilyKeyState\FamilyKeyStateProcessed
       \aftergroup\FamilyKeyStateProcessed
@@ -163,6 +163,15 @@
           \aftergroup\scrlayer@forceignoreuppercasefalse
         \or
           \aftergroup\MakeLowercase
+          \aftergroup\scrlayer@forceignoreuppercasefalse
+        \or
+          \scr@ifundefinedorrelax{MakeTitlecase}{%
+            \PackageWarning{scrlayer}{`markcase=title' ignored because
+              \string\MakeTitlecase\space not available}%
+            \aftergroup\MakeMarkcase
+          }{%
+            \aftergroup\MakeTitlecase
+          }%
           \aftergroup\scrlayer@forceignoreuppercasefalse
         \or
           \aftergroup\@firstofone
@@ -189,9 +198,11 @@
     \KOMA@kav@replacevalue{scrlayer.sty}{markcase}{upper}%
   \else\ifx\MakeMarkcase\MakeLowercase
       \KOMA@kav@replacevalue{scrlayer.sty}{markcase}{lower}%
-    \else\ifx\MakeMarkcase\scr@ignoreuppercase
-        \KOMA@kav@replacevalue{scrlayer.sty}{markcase}{ignoreuppercase}%
-\fi\fi\fi\fi
+    \else\ifx\MakeMarkcase\MakeTitlecase
+        \KOMA@kav@replacevalue{scrlayer.sty}{markcase}{title}%
+      \else\ifx\MakeMarkcase\scr@ignoreuppercase
+          \KOMA@kav@replacevalue{scrlayer.sty}{markcase}{ignoreuppercase}%
+\fi\fi\fi\fi\fi
 \DeclareRobustCommand*{\scrlayer@ignoreuppercase}[1]{%
   \begingroup
     \let\uppercase\@firstofone
@@ -330,7 +341,7 @@
 \scrlayer@@add@inherited@option{forceoverwrite}
 \KOMA@ifkey{autoremoveinterfaces}{scrlayer@autoremoveinterfaces}
 \scrlayer@@add@inherited@option{autoremoveinterfaces}
-%%% From File: $Id: scrlayer.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrlayer.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: body)
 \KOMAProcessOptions\relax
 \newcommand*{\rightfirstmark}{\expandafter\@rightmark\firstmark\@empty\@empty}
@@ -470,11 +481,11 @@
       \expandafter\endgroup
       \if@tempswa
         \@mkright{%
-          \MakeMarkcase{%
-            \ifnum \c@secnumdepth<\numexpr \csname #1numdepth\endcsname +0\relax
-            \else\if@mainmatter \csname #1markformat\endcsname\fi\fi
-            ##1%
-          }%
+          \ifnum \c@secnumdepth<\numexpr \csname #1numdepth\endcsname +0\relax
+          \else
+            \if@mainmatter \MakeMarkcase{\csname #1markformat\endcsname}\fi
+          \fi
+          \MakeMarkcase{##1}%
         }%
       \fi
     }%
@@ -489,11 +500,11 @@
         \expandafter\@mkdouble
       \fi
       {%
-        \MakeMarkcase{%
-          \ifnum \c@secnumdepth<\numexpr \csname #1numdepth\endcsname +0\relax
-          \else\if@mainmatter \csname #1markformat\endcsname\fi\fi
-          ##1%
-        }%
+        \ifnum \c@secnumdepth<\numexpr \csname #1numdepth\endcsname +0\relax
+        \else
+          \if@mainmatter \MakeMarkcase{\csname #1markformat\endcsname}\fi
+        \fi
+        \MakeMarkcase{##1}%
       }{}%
     }%
   }{}%
@@ -509,14 +520,12 @@
                  = \numexpr \csname #2numdepth\endcsname +0\relax
           \expandafter\def\csname #2mark\endcsname##1{%
             \@mkdouble{%
-              \MakeMarkcase{%
-                \ifnum \c@secnumdepth<\numexpr
-                  \csname #2numdepth\endcsname +0\relax
-                \else
-                  \if@mainmatter \csname #2markformat\endcsname\fi
-                \fi
-                ##1%
-              }%
+              \ifnum \c@secnumdepth<\numexpr
+                \csname #2numdepth\endcsname +0\relax
+              \else
+                \if@mainmatter \MakeMarkcase{\csname #2markformat\endcsname}\fi
+              \fi
+              \MakeMarkcase{##1}%
             }%
           }%
         \else
@@ -528,25 +537,23 @@
             \expandafter\endgroup
             \if@tempswa
               \@mkleft{%
-                \MakeMarkcase{%
-                  \ifnum \c@secnumdepth
-                       < \numexpr\csname #1numdepth\endcsname +0\relax
-                  \else
-                    \if@mainmatter \csname #1markformat\endcsname\fi
-                  \fi
-                  ##1%
-                }%
+                \ifnum \c@secnumdepth
+                     < \numexpr\csname #1numdepth\endcsname +0\relax
+                \else
+                  \if@mainmatter \MakeMarkcase{\csname #1markformat\endcsname}\fi
+                \fi
+                \MakeMarkcase{##1}%
               }%
             \fi
           }%
           \expandafter\def\csname #2mark\endcsname##1{%
             \@mkboth{}{%
-              \MakeMarkcase{%
-                \ifnum \c@secnumdepth
-                     < \numexpr \csname #2numdepth\endcsname +0\relax
-                \else\if@mainmatter \csname #2markformat\endcsname\fi\fi
-                ##1%
-              }%
+              \ifnum \c@secnumdepth
+                   < \numexpr \csname #2numdepth\endcsname +0\relax
+              \else
+                \if@mainmatter \MakeMarkcase{\csname #2markformat\endcsname}\fi
+              \fi
+              \MakeMarkcase{##1}%
             }%
           }%
         \fi
@@ -2356,7 +2363,7 @@
   \@ifundefined{scrlayer@#1@onremove}{\@namedef{scrlayer@#1@onremove}{}}{}%
   \expandafter\l@addto@macro\csname scrlayer@#1@onremove\endcsname{#2}%
 }
-%%% From File: $Id: scrlayer.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrlayer.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: final)
 \DeclareNewPageStyleByLayers{@everystyle@}{}
 \RedeclarePageStyleByLayers{empty}{}

@@ -1,6 +1,6 @@
 name latex
 category Package
-revision 65161
+revision 69443
 shortdesc A TeX macro package that defines LaTeX
 longdesc LaTeX is a widely-used macro package for TeX, providing many
 longdesc basic document formating commands extended by a wide range of
@@ -21,11 +21,11 @@ depend latex-fonts
 depend latexconfig
 depend luatex
 depend pdftex
-containersize 229788
-containerchecksum de95ba089738862d57b1139a21da57a8263cbe9ff81a7ab43608ce23fde57b4630057a95c99ecb7be712bc864e0c07a56429019d7aa9f63c01f47a995d5d567d
-doccontainersize 31173536
-doccontainerchecksum 68ecd2a5c85afe7b39402db416bb7ad0f8e5662c77d77c0839a470f3f70da65377560fbcb5a6952e997da70868533f29a4b7c65d3f7dd63db13aa95ee7159b23
-docfiles size=9823
+containersize 238228
+containerchecksum b6696892356c87acc788255f0023f081078878f4f76408be138b8b9b62f0fe01f8dd8bb68c8049fea319b41dfe4dafadb3237869fcde797ff5580ba94d68a473
+doccontainersize 34918312
+doccontainerchecksum d599e1fb7c4433658aa65df89ca318467b3c6689d3e4e2d16bddd9397968888052937900d382fdd43fe627813e40d242d7728325a1bc15c8ab5658fd6ea4c912
+docfiles size=11016
  texmf-dist/doc/latex/base/README.md
  texmf-dist/doc/latex/base/alltt.pdf
  texmf-dist/doc/latex/base/bugs.txt
@@ -34,6 +34,8 @@ docfiles size=9823
  texmf-dist/doc/latex/base/changes.old.txt
  texmf-dist/doc/latex/base/changes.txt
  texmf-dist/doc/latex/base/classes.pdf
+ texmf-dist/doc/latex/base/clsguide-historic.pdf
+ texmf-dist/doc/latex/base/clsguide-historic.tex
  texmf-dist/doc/latex/base/clsguide.pdf
  texmf-dist/doc/latex/base/clsguide.tex
  texmf-dist/doc/latex/base/cmfonts.pdf
@@ -158,14 +160,26 @@ docfiles size=9823
  texmf-dist/doc/latex/base/ltnews35.tex
  texmf-dist/doc/latex/base/ltnews36.pdf
  texmf-dist/doc/latex/base/ltnews36.tex
+ texmf-dist/doc/latex/base/ltnews37.pdf
+ texmf-dist/doc/latex/base/ltnews37.tex
+ texmf-dist/doc/latex/base/ltnews38.pdf
+ texmf-dist/doc/latex/base/ltnews38.tex
  texmf-dist/doc/latex/base/ltpara-code.pdf
  texmf-dist/doc/latex/base/ltpara-code.tex
  texmf-dist/doc/latex/base/ltpara-doc.pdf
  texmf-dist/doc/latex/base/ltpara-doc.tex
+ texmf-dist/doc/latex/base/ltproperties-code.pdf
+ texmf-dist/doc/latex/base/ltproperties-code.tex
+ texmf-dist/doc/latex/base/ltproperties-doc.pdf
+ texmf-dist/doc/latex/base/ltproperties-doc.tex
  texmf-dist/doc/latex/base/ltshipout-code.pdf
  texmf-dist/doc/latex/base/ltshipout-code.tex
  texmf-dist/doc/latex/base/ltshipout-doc.pdf
  texmf-dist/doc/latex/base/ltshipout-doc.tex
+ texmf-dist/doc/latex/base/ltsockets-code.pdf
+ texmf-dist/doc/latex/base/ltsockets-code.tex
+ texmf-dist/doc/latex/base/ltsockets-doc.pdf
+ texmf-dist/doc/latex/base/ltsockets-doc.tex
  texmf-dist/doc/latex/base/ltx3info.pdf
  texmf-dist/doc/latex/base/ltx3info.tex
  texmf-dist/doc/latex/base/ltxdoc.pdf
@@ -182,6 +196,8 @@ docfiles size=9823
  texmf-dist/doc/latex/base/syntonly.pdf
  texmf-dist/doc/latex/base/tlc2.err
  texmf-dist/doc/latex/base/tlc2.pdf
+ texmf-dist/doc/latex/base/tlc3.err
+ texmf-dist/doc/latex/base/tlc3.pdf
  texmf-dist/doc/latex/base/tulm.pdf
  texmf-dist/doc/latex/base/usrguide-historic.pdf
  texmf-dist/doc/latex/base/usrguide-historic.tex
@@ -190,9 +206,9 @@ docfiles size=9823
  texmf-dist/doc/latex/base/utf8ienc.pdf
  texmf-dist/doc/latex/base/webcomp.err
  texmf-dist/doc/latex/base/webcomp.pdf
-srccontainersize 719884
-srccontainerchecksum 59d3d31147fc8a31c6348c2a5f371cd4dc69d2367f9ced0c62150c5d14ead49b4e195c328ad4791638e61b93f69143c0c93bbed5551b31e4de1284a4aa7b6d73
-runfiles size=644
+srccontainersize 750220
+srccontainerchecksum 4b156445e50bd24dc3ab2f90088b0ae5e25930818fa14b7db3ccc1aec4642cb3172f07c57bf0dab3e17f91cf22e1b5d5fa08e705e392635328fd366514da7a24
+runfiles size=674
  texmf-dist/makeindex/latex/gglo.ist
  texmf-dist/makeindex/latex/gind.ist
  texmf-dist/tex/latex/base/alltt.sty
@@ -363,4 +379,4 @@ runfiles size=644
 catalogue-contact-home http://www.latex-project.org/
 catalogue-license lppl1.3c
 catalogue-topics format
-catalogue-version 2022-11-01 PL1
+catalogue-version 2023-11-01 PL1

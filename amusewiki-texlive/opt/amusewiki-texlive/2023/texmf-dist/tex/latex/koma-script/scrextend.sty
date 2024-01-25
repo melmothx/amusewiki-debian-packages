@@ -78,7 +78,7 @@
   }%
   \expandafter\endinput
 \fi
-%%% From File: $Id: scrkernel-version.dtx 4038 2023-04-24 07:06:57Z kohm $
+%%% From File: $Id: scrkernel-version.dtx 4070 2023-07-07 07:08:40Z kohm $
 \begingroup
   \catcode`\@11\relax
   \ifx\KOMAScriptVersion\undefined
@@ -100,7 +100,7 @@
       \fi
     }
   \fi
-  \@CheckKOMAScriptVersion{2023/04/24 v3.40 KOMA-Script}%
+  \@CheckKOMAScriptVersion{2023/07/07 v3.41 KOMA-Script}%
 \endgroup
 \providecommand*{\scr@pkgextension}{\@pkgextension}
 \AtBeginDocument{%
@@ -109,7 +109,7 @@
 %%% From File: $Id: scrextend.dtx 4032 2023-04-17 09:45:11Z kohm $
 %%%            (run: prepare)
 \ProvidesPackage{scrextend}[%
-  2023/04/24 v3.40 KOMA-Script
+  2023/07/07 v3.41 KOMA-Script
   package (extend other classes with features of KOMA-Script classes)%
 ]
 \newcommand*{\scr@ext@activate}[1]{%
@@ -133,13 +133,13 @@
     \expandafter\g@addto@macro\csname scr@ext@activate@#1\endcsname
   }%
 }
-%%% From File: $Id: scrkernel-basics.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-basics.dtx 4051 2023-04-26 16:01:28Z kohm $
 %%%            (run: load)
 \RequirePackage{scrkbase}[\KOMAScriptVersion]
-%%% From File: $Id: scrkernel-sections.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-sections.dtx 4069 2023-06-29 08:55:54Z kohm $
 %%%            (run: prepare)
 \newcommand*{\sectfont}{\normalcolor\maybesffamily\bfseries}
-%%% From File: $Id: scrkernel-compatibility.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-compatibility.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: init)
 \providecommand*
   {\scr@compatibility}{\scr@v@last}
@@ -227,7 +227,8 @@
 \@namedef{scr@v@3.38}{20}
 \@namedef{scr@v@3.39}{20}
 \@namedef{scr@v@3.40}{20}
-\@namedef{scr@v@last}{20}
+\@namedef{scr@v@3.41}{21}
+\@namedef{scr@v@last}{21}
 %%% From File: $Id: scrextend.dtx 4032 2023-04-17 09:45:11Z kohm $
 %%%            (run: option)
 \KOMA@key{extendedfeature}{%
@@ -252,7 +253,7 @@
     \def\FamilyKeyState{Option `extendedfeature' too late}%
   }%
 }
-%%% From File: $Id: scrkernel-compatibility.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-compatibility.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: option)
 \KOMA@key{version}[last]{%
   \scr@ifundefinedorrelax{scr@v@#1}{%
@@ -535,9 +536,9 @@
 \KOMA@DeclareStandardOption%
   [scrextend]%
   {notitlepage}{titlepage=false}
-%%% From File: $Id: scrkernel-sections.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-sections.dtx 4069 2023-06-29 08:55:54Z kohm $
 %%%            (run: option)
-%%% From File: $Id: scrkernel-pagestyles.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-pagestyles.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: option)
 \KOMA@key{cleardoublepage}{%
   \begingroup
@@ -621,7 +622,7 @@
   {\pagestyle{#1}\cleardoublestandardpage}}
 \newcommand*{\cleardoubleemptypage}{\cleardoublepageusingstyle{empty}}
 \newcommand*{\cleardoubleplainpage}{\cleardoublepageusingstyle{plain}}
-%%% From File: $Id: scrkernel-floats.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-floats.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: option)
 %%% From File: $Id: scrkernel-footnotes.dtx 4032 2023-04-17 09:45:11Z kohm $
 %%%            (run: option)
@@ -696,12 +697,12 @@
   \relax}
 %%% From File: $Id: scrkernel-listsandtabulars.dtx 4032 2023-04-17 09:45:11Z kohm $
 %%%            (run: option)
-%%% From File: $Id: scrkernel-sections.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-sections.dtx 4069 2023-06-29 08:55:54Z kohm $
 %%%            (run: execoption)
 %%% From File: $Id: scrkernel-miscellaneous.dtx 4032 2023-04-17 09:45:11Z kohm $
 %%%            (run: execoption)
 \KOMAProcessOptions\relax
-%%% From File: $Id: scrkernel-compatibility.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-compatibility.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: body)
 \AtBeginDocument{%
   \begingroup
@@ -1516,7 +1517,7 @@
 \newcommand*{\scr@fnt@title}{\titlefont}%
 \newcommand*{\subject@font}{\normalfont\normalcolor\bfseries\Large}%
 \newcommand*{\scr@fnt@subject}{\subject@font}%
-%%% From File: $Id: scrkernel-sections.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-sections.dtx 4069 2023-06-29 08:55:54Z kohm $
 %%%            (run: body)
 \newcommand*{\scr@fnt@disposition}{\sectfont}
 \aliaskomafont{sectioning}{disposition}
@@ -1627,9 +1628,9 @@
   {\m@th\ensuremath{_{\mbox{\fontsize\sf@size\z@#1}}}}%
 }
 \providecommand*{\scr@endstrut}{\unskip\ifhmode\nobreak\strut\fi}
-%%% From File: $Id: scrkernel-pagestyles.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-pagestyles.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: body)
-%%% From File: $Id: scrkernel-floats.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-floats.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: body)
 %%% From File: $Id: scrkernel-footnotes.dtx 4032 2023-04-17 09:45:11Z kohm $
 %%%            (run: body)

@@ -24,7 +24,7 @@
 % ============================================================================
 
 \KOMAProvidesFile{scrbookreportarticle-en.tex}
-                 [$Date: 2023-04-20 10:04:17 +0200 (Do, 20. Apr 2023) $
+                 [$Date: 2023-05-10 17:45:46 +0200 (Mi, 10. Mai 2023) $
                   KOMA-Script guide (chapter: scrbook, scrreprt, scrartcl)]
 
 \translator{Jens-Uwe Morawski\and Gernot Hassenpflug\and Markus Kohm\and
@@ -2972,6 +2972,37 @@ standard classes, no longer work correctly when used with packages that modify
 the appearance of figure and table captions. This should be self-evident, but
 it is often overlooked.
 
+\begin{Declaration}
+  \begin{Environment}{figure}
+  \end{Environment}
+  \begin{Environment}{figure*}
+  \end{Environment}
+  \begin{Environment}{figure-}
+  \end{Environment}
+  \begin{Environment}{table}
+  \end{Environment}
+  \begin{Environment}{table*}
+  \end{Environment}
+  \begin{Environment}{table-}
+  \end{Environment}
+\end{Declaration}
+The KOMA-Script{} classes \Class{scrbook}, \Class{scrreprt},
+and \Class{scrartcl} use the \DescRef{tocbasic.cmd.DeclareNewTOC} statement
+documented in \autoref{sec:tocbasic.declarenewtoc},
+\DescPageRef{tocbasic.cmd.DeclareNewTOC} to define the \Environment{figure}
+and \Environment{table} environments familiar from the standard classes. Of
+course, this also defines the \Environment{figure*} and \Environment{table*}
+environments provided for the two-column mode, which are intended for
+cross-column figures and tables at the top of the page. Since in addition to
+the \Option{float} setting the definition also uses
+\Option{nonfloat}\ChangedAt{v3.36}{\Class{scrartcl}\and \Class{scrbook}\and
+  \Class{scrreprt}}, the non-floating environments \Environment{figure-} and
+\Environment{table-} are also defined. These can be used like the other
+environments and ultimately span a \Environment{minipage} with appropriate
+spacing before and after it. With\textnote{Attention!} mixed use of floating
+and non-floating environments, the user himself is responsible for the correct
+order in output and thus in numbering.%
+\EndIndexGroup
 
 \begin{Declaration}
   \OptionVName{captions}{setting}
@@ -3430,12 +3461,17 @@ option. But this feature may be lost if you load the
 \end{figure}%
 \end{Example}%
 You can produce a non-floating table with a caption in the same way as the
-table inside a figure environment in the example above. In such a case, a
-\Environment{minipage} environment should also be used to avoid page breaks
-between the caption and the table. In addition, you should embed the 
-\Environment{minipage} environment in a \Environment{flushleft} environment 
-both to achieve a pleasing separation between the surrounding text and to 
-avoid the paragraph indentation of the \Environment{minipage} environment.%
+table inside a figure environment in the example
+above. Thereby\ChangedAt{v3.41}{\Class{scrbook}\and \Class{scrreprt}\and
+  \Class{scrartcl}} \KOMAScript{} also tries to prevent a page break between
+the heading and the table. However, this cannot be ensured in all
+cases. Therefore, a \Environment{minipage} environment should also be used to
+avoid page breaks between the caption and the table. In addition, you should
+embed the \Environment{minipage} environment in a \Environment{flushleft}
+environment both to achieve a pleasing separation between the surrounding text
+and to avoid the paragraph indentation of the \Environment{minipage}
+environment. Of course, it is easier to use the environment
+\DescRef{\LabelBase.env.table-}\IndexEnv{table-} directly.%
 \EndIndexGroup
 
 

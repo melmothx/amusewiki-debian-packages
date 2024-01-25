@@ -1,6 +1,6 @@
 name platex
 category Package
-revision 66186
+revision 67315
 shortdesc pLaTeX2e and miscellaneous macros for pTeX
 longdesc The bundle provides pLaTeX2e and miscellaneous macros for pTeX
 longdesc and e-pTeX. This is a community edition forked from the
@@ -25,12 +25,12 @@ depend ptex-fonts
 depend tex-ini-files
 depend unicode-data
 depend uptex
-execute AddFormat name=platex engine=eptex options="*platex.ini"           patterns=language.dat           fmttriggers=atbegshi,atveryend,babel,cm,everyshi,firstaid,hyphen-base,l3backend,l3kernel,l3packages,latex,latex-fonts,tex-ini-files,unicode-data,ptex-fonts,latex
+execute AddFormat name=platex engine=euptex options="*platex.ini"           patterns=language.dat           fmttriggers=atbegshi,atveryend,babel,cm,everyshi,firstaid,hyphen-base,l3backend,l3kernel,l3packages,latex,latex-fonts,tex-ini-files,unicode-data,ptex-fonts,latex
 execute AddFormat name=platex-dev engine=euptex options="*platex.ini"           patterns=language.dat           fmttriggers=atbegshi,atveryend,babel,cm,everyshi,firstaid,hyphen-base,l3backend,l3kernel,l3packages,latex,latex-fonts,tex-ini-files,unicode-data,ptex-fonts,l3kernel,latex-base-dev,latex-firstaid-dev
 containersize 42308
-containerchecksum f258b1b54d2d0726fe97323c23f2bdcf1bccfdb1ee7dc1b9a32ac8af7b7c8b1a1f0a9958c5d43c3c33ff414358634be4c3c790f035625b7fe80a4f9f42b2adfa
-doccontainersize 1982668
-doccontainerchecksum 51992f6d3ed6749e9136db4930644b82c435efb6af85fcac1dc254c22e06c5fd017d9bc83f642060d814b86c56fdde6ff97056240b0ab857743203fe5ae2fd7d
+containerchecksum 4a2682c51dc82e078ad14b30545dccd95f600ab02d5d05fb5c44c214221a3947562432783b43ea505b5199f37a1175a792c709282999f77b17b532d2a61c6e54
+doccontainersize 1982676
+doccontainerchecksum faf91bdbc3e0d2ba0b13a914d54fbc4ce47e27c1225e5412b78c1217b2e3f6c22886a9f6f85b06e5e3f38a8b0c7a9aaadb4606721799749ae6ef5018f7bb08bc
 docfiles size=512
  texmf-dist/doc/man/man1/platex.1
  texmf-dist/doc/man/man1/platex.man1.pdf
@@ -42,7 +42,7 @@ docfiles size=512
  texmf-dist/doc/platex/base/platexrelease.pdf
  texmf-dist/doc/platex/base/pldoc.pdf
 srccontainersize 140240
-srccontainerchecksum e0cf572377102151ba3f49f58d27b352641fccfdc58cae60acadc36e26d12ff21f19119f940d5f54e7f0359b572ff746f07a86a8cd524b05d90efc43480756a2
+srccontainerchecksum a1ba3fe817e5f4aa23c2c4c9b7397cdda6ecc889ee244a05fd7eeda59fba1baa02fd29820107c887982983b2115631f1aac7d19ae281f88779b3e99253b12036
 runfiles size=169
  texmf-dist/tex/platex/base/exppl2e.sty
  texmf-dist/tex/platex/base/jarticle.cls

@@ -1,6 +1,6 @@
 name l3kernel
 category Package
-revision 67219
+revision 69537
 shortdesc LaTeX3 programming conventions
 longdesc The l3kernel bundle provides an implementation of the LaTeX3
 longdesc programmers' interface, as a set of packages that run under
@@ -9,11 +9,11 @@ longdesc LaTeX3 kernel and other future code are built: it is an API for
 longdesc TeX programmers. The packages are set up so that the LaTeX3
 longdesc conventions can be used with regular LaTeX2e packages.
 depend l3backend
-containersize 172608
-containerchecksum 61d01ad0010065fc3e70873397907f88a3199f3f3dc904c4b3c79d2a6ccb02584256878fee779f755259904678aa4aacf68b85a8fcc3af6f628323f4c1caa19b
-doccontainersize 11889472
-doccontainerchecksum f21622e02d931f525d33af33986718c439ef97d01506cad994b36ba85a480aba041a9016291c31b9b88a4e67c2ee0bd26b2338dc9a0401607b7173b5985254db
-docfiles size=3389
+containersize 176940
+containerchecksum fcf07bd170e627d3fadc58baf8f8fe6223b8eaa220a5992280f68631271b9510a43fcc4fc0c107120b02d3c76330574955dd8c75aaaa33a82513e24e47cc57e0
+doccontainersize 12220920
+doccontainerchecksum b7d6fe6adf8a609d2f232f2ab8ea94add44c953e1d12c5b5e4d4811984db9f7834adea5641f966d35366baed3cedfdc8cafb15b6d66f181a500c5f33205f24e7
+docfiles size=3471
  texmf-dist/doc/latex/l3kernel/CHANGELOG.md
  texmf-dist/doc/latex/l3kernel/README.md details="Readme"
  texmf-dist/doc/latex/l3kernel/expl3.pdf details="The LaTeX3 Programming Language"
@@ -60,9 +60,9 @@ docfiles size=3389
  texmf-dist/doc/latex/l3kernel/source3.pdf
  texmf-dist/doc/latex/l3kernel/source3.tex
  texmf-dist/doc/latex/l3kernel/source3body.tex
-srccontainersize 595984
-srccontainerchecksum b7293a527a0f83d4509a77695e80a61897d567d186352ec9e20a832ea044c1e8f62263191c0ca3eacf6249db9014dcbeb849766e3d39fd004b58124ea3decbae
-runfiles size=351
+srccontainersize 609872
+srccontainerchecksum 203d62cdf2deaf745397ce7b8a65065edf0ab8fe5669e084182f003d17988a721b7a9511ab5b0d91cf2e38ccd7b2cbe5d435c4fad9713c1022d5dae92ea10d6b
+runfiles size=361
  texmf-dist/tex/latex/l3kernel/expl3-code.tex
  texmf-dist/tex/latex/l3kernel/expl3-generic.tex
  texmf-dist/tex/latex/l3kernel/expl3.ltx

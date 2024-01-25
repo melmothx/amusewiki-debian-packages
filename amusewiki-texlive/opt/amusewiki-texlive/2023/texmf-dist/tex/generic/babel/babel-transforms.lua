@@ -7,7 +7,7 @@
 -- babel.dtx  (with options: `transforms')
 -- 
 --
--- Copyright (C) 2012-2023 Javier Bezos and Johannes L. Braams.
+-- Copyright (C) 2012-2024 Javier Bezos and Johannes L. Braams.
 -- Copyright (C) 1989-2012 Johannes L. Braams and
 --           any individual authors listed elsewhere in this file.
 -- All rights reserved.
@@ -36,7 +36,6 @@
 Babel.linebreaking.replacements = {}
 Babel.linebreaking.replacements[0] = {}  -- pre
 Babel.linebreaking.replacements[1] = {}  -- post
-Babel.linebreaking.replacements[2] = {}  -- post-line WIP
 
 -- Discretionaries contain strings as nodes
 function Babel.str_to_nodes(fn, matches, base)
@@ -188,7 +187,6 @@ Babel.us_char = string.char(31)
 function Babel.hyphenate_replace(head, mode)
   local u = unicode.utf8
   local lbkr = Babel.linebreaking.replacements[mode]
-  if mode == 2 then mode = 0 end -- WIP
 
   local word_head = head
 
@@ -518,4 +516,33 @@ function Babel.capture_kashida(key, wt)
     Babel.kashida_wts = { wt }
   end
   return 'kashida = ' .. wt
+end
+
+-- Experimental: applies prehyphenation transforms to a string (letters
+-- and spaces).
+function Babel.string_prehyphenation(str, locale)
+  local n, head, last, res
+  head = node.new(8, 0) -- dummy (hack just to start)
+  last = head
+  for s in string.utfvalues(str) do
+    if s == 20 then
+      n = node.new(12, 0)
+    else
+      n = node.new(29, 0)
+      n.char = s
+    end
+    node.set_attribute(n, Babel.attr_locale, locale)
+    last.next = n
+    last = n
+  end
+  head = Babel.hyphenate_replace(head, 0)
+  res = ''
+  for n in node.traverse(head) do
+    if n.id == 12 then
+      res = res .. ' '
+    elseif n.id == 29 then
+      res = res .. unicode.utf8.char(n.char)
+    end
+  end
+  tex.print(res)
 end

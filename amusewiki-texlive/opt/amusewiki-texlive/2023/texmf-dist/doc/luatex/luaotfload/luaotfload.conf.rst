@@ -6,9 +6,9 @@
                      Luaotfload configuration file
 -----------------------------------------------------------------------
 
-:Date:                  2022-10-03
+:Date:                  2023-08-31
 :Copyright:             GPL v2.0
-:Version:               3.23
+:Version:               3.26
 :Manual section:        5
 :Manual group:          text processing
 
@@ -125,25 +125,27 @@ the variable is unset.
 Section ``db``
 -----------------------------------------------------------------------
 
-+--------------------+--------+---------------------------+
-|  variable          |  type  |  default                  |
-+--------------------+--------+---------------------------+
-|  compress          |   b    |  ``true``                 |
-+--------------------+--------+---------------------------+
-|  designsize-dimen  |   b    |  ``bp``                   |
-+--------------------+--------+---------------------------+
-|  formats           |   s    |  ``"otf,ttf,ttc"``        |
-+--------------------+--------+---------------------------+
-|  max-fonts         |   n    |  ``2^51``                 |
-+--------------------+--------+---------------------------+
-|  scan-local        |   b    |  ``false``                |
-+--------------------+--------+---------------------------+
-|  skip-read         |   b    |  ``false``                |
-+--------------------+--------+---------------------------+
-|  strip             |   b    |  ``true``                 |
-+--------------------+--------+---------------------------+
-|  update-live       |   b    |  ``true``                 |
-+--------------------+--------+---------------------------+
++----------------------+--------+---------------------------+
+|  variable            |  type  |  default                  |
++----------------------+--------+---------------------------+
+|  compress            |   b    |  ``true``                 |
++----------------------+--------+---------------------------+
+|  designsize-dimen    |   b    |  ``bp``                   |
++----------------------+--------+---------------------------+
+|  formats             |   s    |  ``"otf,ttf,ttc"``        |
++----------------------+--------+---------------------------+
+|  location-precedence |   s    |  ``"system,texmf,local``  |
++----------------------+--------+---------------------------+
+|  max-fonts           |   n    |  ``2^51``                 |
++----------------------+--------+---------------------------+
+|  scan-local          |   b    |  ``false``                |
++----------------------+--------+---------------------------+
+|  skip-read           |   b    |  ``false``                |
++----------------------+--------+---------------------------+
+|  strip               |   b    |  ``true``                 |
++----------------------+--------+---------------------------+
+|  update-live         |   b    |  ``true``                 |
++----------------------+--------+---------------------------+
 
 The flag ``compress`` determines whether the font index (usually
 ``luaotfload-names.lua[.gz]`` will be stored in compressed forms.
@@ -171,6 +173,12 @@ It corresponds loosely to the ``--formats`` option to
 list does not contain any useful identifiers, the default list
 ``"otf,ttf,ttc"`` will be used.
 
+The variable ``location-precedence`` selects where and in which order
+luaotfload searches for fonts. Fonts in earlier locations are preferred.
+The three supported locations are ``system`` for system specific font
+directories, ``texmf`` for fonts which are part of the \TeX{} distribution
+and ``local`` for local fonts.
+
 The variable ``max-fonts`` determines after processing how many font
 files the font scanner will terminate the search. This is useful for
 debugging issues with the font index and has the same effect as the
@@ -180,7 +188,8 @@ The ``scan-local`` flag, if set, will incorporate the current working
 directory as a font search location. NB: This will potentially slow
 down document processing because a font index with local fonts will not
 be saved to disk, so these fonts will have to be re-indexed whenever
-the document is built.
+the document is built. Setting ``scan_local`` to ``false`` is the same
+as removing ``local`` from ``location-precedence``.
 
 The ``skip-read`` flag is only useful for debugging: It makes
 Luaotfload skip reading fonts. The font information for rebuilding the
@@ -277,21 +286,23 @@ version.
 Section ``run``
 -----------------------------------------------------------------------
 
-+------------------+--------+------------------------------+
-|  variable        |  type  |  default                     |
-+------------------+--------+------------------------------+
-|  anon-sequence   |   s    |  ``"tex,path,name"``         |
-+------------------+--------+------------------------------+
-|  color-callback  |   s    |  ``"post_linebreak_filter"`` |
-+------------------+--------+------------------------------+
-|  definer         |   s    |  ``"patch"``                 |
-+------------------+--------+------------------------------+
-|  log-level       |   n    |  ``0``                       |
-+------------------+--------+------------------------------+
-|  resolver        |   s    |  ``"cached"``                |
-+------------------+--------+------------------------------+
-|  fontloader      |   s    |  ``"default"``               |
-+------------------+--------+------------------------------+
++---------------------+--------+------------------------------+
+|  variable           |  type  |  default                     |
++---------------------+--------+------------------------------+
+|  anon-sequence      |   s    |  ``"tex,path,name"``         |
++---------------------+--------+------------------------------+
+|  color-callback     |   s    |  ``"post_linebreak_filter"`` |
++---------------------+--------+------------------------------+
+|  definer            |   s    |  ``"patch"``                 |
++---------------------+--------+------------------------------+
+|  log-level          |   n    |  ``0``                       |
++---------------------+--------+------------------------------+
+|  resolver           |   s    |  ``"cached"``                |
++---------------------+--------+------------------------------+
+|  fontloader         |   s    |  ``"default"``               |
++---------------------+--------+------------------------------+
+|  default_dvi_driver |   s    |  ``"dvisvgm"``               |
++---------------------+--------+------------------------------+
 
 Unqualified font lookups are treated with the flexible “anonymous”
 mechanism. This involves a chain of lookups applied successively until
@@ -365,6 +376,16 @@ and resolves every request individually. (Since to the restructuring of
 the font name index in Luaotfload 2.4 the performance difference
 between the cached and uncached lookups should be marginal.)
 
+When luaotfload is used in ``DVI`` mode, the ``default_dvi_driver`` option
+determines how OpenType fonts are represented in the DVI output. In most
+cases the default value ``dvisvgm`` should be set, it uses a format
+supported by multiple backends including ``dvipdfmx`` and ``dvisvgm``
+which uses GIDs to identify characters.
+Setting this to ``xdvipsk`` uses an unstable internal format instead
+which will change depending on the luaotfload, engine, or font version.
+No one should rely on the mapping between DVI character codes and font glyphs
+in this mode unless they tightly control all involved versions and are deeply
+familiar with the implementation.
 
 FILES
 =======================================================================

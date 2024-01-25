@@ -1,6 +1,6 @@
 name dvipdfmx
 category TLCore
-revision 66203
+revision 69127
 shortdesc An extended version of dvipdfm
 longdesc Dvipdfmx (formerly dvipdfm-cjk) is a development of dvipdfm
 longdesc created to support multi-byte character encodings and large
@@ -17,10 +17,10 @@ longdesc information on this page is maintained and should be current.
 depend dvipdfmx.ARCH
 depend glyphlist
 postaction script file=tlpkg/tlpostcode/dvipdfmx.pl
-containersize 26716
-containerchecksum dd9284fa286b423b63b0240634348f3355feeefb685216120753f2e5991cb662944cb7fc4d61434e9d4dc982dd1892ce4da2451743c02ee6f25aed408d687ca3
-doccontainersize 3125128
-doccontainerchecksum 33a7401c27496a49546683cd9cf9001badd1dbabd22a5ae9e3501a83273fe342980cddc9e2fa7784b1e0c77512098b1abdc0a409c9306fbc86c9f2fa414bc7bc
+containersize 26704
+containerchecksum 75703f600365c90379c5d009e00d35d2e514a76b2556c96c84fc2a717287441af419a26fc9ef087d111f2e77c7180f6371ca2ec33b66052ab63ca3d11f48e788
+doccontainersize 3125132
+doccontainerchecksum d2fb71e116470d2d629613401f448ad9aa8cfdfa9ada68ed324061e4ac614efc4fd2c4ea2542c8fae32f476b92aafbabe4a5be648f28f16708c43958d7aa99fd
 docfiles size=992
  texmf-dist/doc/dvipdfm/Makefile
  texmf-dist/doc/dvipdfm/dvipdfm.pdf

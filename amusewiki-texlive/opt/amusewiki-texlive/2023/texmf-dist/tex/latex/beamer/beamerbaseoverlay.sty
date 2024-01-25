@@ -1,7 +1,7 @@
 % Copyright 2003--2007 by Till Tantau
 % Copyright 2010--2013,2015 by Vedran Mileti\'c, Joseph Wright
 % Copyright 2017,2018 by Louis Stuart, Joseph Wright
-% Copyright 2020,2022 by Joseph Wright, samcarter
+% Copyright 2020-2024 by Joseph Wright, samcarter
 %
 % This file may be distributed and/or modified
 %
@@ -653,10 +653,10 @@
 % Insert area
 %
 \newenvironment{overlayarea}[2]{%
-  \beamer@animht=#1\relax
-  \beamer@animwd=#2\relax
-  \setbox\beamer@areabox=\vbox to\beamer@animwd\bgroup
-  \strut\begin{minipage}[t]{\beamer@animht}%
+  \beamer@animwd=#1\relax
+  \beamer@animht=#2\relax
+  \setbox\beamer@areabox=\vbox to\beamer@animht\bgroup
+  \strut\begin{minipage}[t]{\beamer@animwd}%
   % Make the minipage behave like the main part of the slide
   \normalfont
   \raggedright
@@ -664,8 +664,8 @@
   {%
   \end{minipage}\endgraf\vfil
   \egroup
-  \wd\beamer@areabox=\beamer@animht
-  \ht\beamer@areabox=\beamer@animwd
+  \wd\beamer@areabox=\beamer@animwd
+  \ht\beamer@areabox=\beamer@animht
   \dp\beamer@areabox=0pt %
   \box\beamer@areabox
 }

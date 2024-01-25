@@ -7,7 +7,7 @@
 %% germanb.dtx  (with options: `austrian')
 %% This is a generated file.
 %% 
-%% Copyright 1989--2021
+%% Copyright 1989--2024
 %%     Johannes L. Braams
 %%     Bernd Raichle
 %%     Walter Schmidt
@@ -34,7 +34,7 @@
 %%                     via: https://github.com/jspitz/babel-german
 %% 
 \ProvidesLanguage{austrian}
-        [2021/02/27 v2.13 German support for babel (pre-1996 orthography)]
+        [2024/01/19 v2.14 German support for babel (pre-1996 orthography)]
 \def\tmpa{germanb}
 \let\SaveCurrentOption\CurrentOption
 \ifx\CurrentOption\tmpa

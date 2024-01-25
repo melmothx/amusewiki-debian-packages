@@ -18,7 +18,7 @@
 %
 % This work consists of all files listed in MANIFEST.md.
 % ======================================================================
-%%% From File: $Id: tocbasic.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: tocbasic.dtx 4067 2023-06-28 14:37:03Z kohm $
 %<identify>%%%            (run: identify)
 %<prepare>%%%            (run: prepare)
 %<option>%%%            (run: option)
@@ -29,9 +29,9 @@
 \ifx\ProvidesFile\undefined\def\ProvidesFile#1[#2]{}\fi
 \begingroup
   \def\filedate$#1: #2-#3-#4 #5${\gdef\filedate{#2/#3/#4}}
-  \filedate$Date: 2023-04-17 11:45:11 +0200 (Mo, 17. Apr 2023) $
+  \filedate$Date: 2023-06-28 16:37:03 +0200 (Mi, 28. Jun 2023) $
   \def\filerevision$#1: #2 ${\gdef\filerevision{r#2}}
-  \filerevision$Revision: 4032 $
+  \filerevision$Revision: 4067 $
 \endgroup
 \ProvidesFile{tocbasic.dtx}[\filedate\space\filerevision\space
 %</dtx>
@@ -61,10 +61,9 @@
     \file{tocbasic.sty}{%
       \from{tocbasic.dtx}{package,identify}%
       \from{tocbasic.dtx}{package,prepare}%
-      \from{scrkernel-tocstyle.dtx}{package,prepare}%
       \from{tocbasic.dtx}{package,option}%
-      \from{scrkernel-tocstyle.dtx}{package,option}%
-      \from{tocbasic.dtx}{package,body}%
+      \from{tocbasic.dtx}{package,execoption}%
+      \from{tocbasic.dtx}{package,body,deprecated}%
       \from{scrkernel-tocstyle.dtx}{package,body}%
       \from{scrkernel-tocstyle.dtx}{package,style,gobble}%
       \from{scrkernel-tocstyle.dtx}{package,style,dottedtocline}%
@@ -145,6 +144,28 @@
 % out-sourced into file \file{scrkernel-tocbasic.dtx}.
 %
 %
+% \subsection{Required packages}
+% \label{sec:packages}
+%
+% \changes{v3.41}{2023/06/28}{required packages moved to \texttt{prepare} run}
+% \changes{v3.41}{2023/06/28}{\pkg{expl3} and \pkg{xparse} are required}
+% Package \pkg*{scrbase} is needed to process all macro options.
+%    \begin{macrocode}
+%<*prepare>
+\RequirePackage{scrbase}
+%</prepare>
+%    \end{macrocode}
+%
+% Now we can load \pkg{xparse} if needed, which also would load \pkg{expl3}:
+%    \begin{macrocode}
+%<*prepare>
+\scr@ifundefinedorrelax{NewDocumentCommand}{%
+  \RequirePackage{xparse}[2018-04-12]%
+}{}
+%</prepare>
+%    \end{macrocode}
+%
+%
 % \subsection{Options}
 % \label{sec:options}
 %
@@ -154,26 +175,10 @@
 % result in an option clash. Nevertheless, the not existing options are
 % processed.
 %    \begin{macrocode}
-%<*option>
+%<*execoption>
 \ProcessOptions\relax
-%</option>
+%</execoption>
 %    \end{macrocode}
-%
-%
-% \subsection{Required packages}
-% \label{sec:packages}
-%
-% Package \pkg*{scrbase} is needed to process all macro options. As long as
-% no package options are provided, the \texttt{body}-run is early enough to
-% load it.
-%    \begin{macrocode}
-%<*body>
-\RequirePackage{scrbase}
-%</body>
-%    \end{macrocode}
-% We load it after processing the options, because we don't need it for
-% processing options.
-%
 %
 %
 % \subsection{Unwanted packages}
@@ -272,19 +277,33 @@
 %    \end{macrocode}
 % \end{command}^^A \ifattoclist,\Ifattoclist
 %
+% \begin{macro}{\tb@optowner}
+% \changes{v3.41}{2023/06/28}{new}
+% Several of the following commands use an optional argument for the
+% owner. Almost always if the argument is not given but \cs{@currname} is not
+% empty \texttt{\cs{@currname}.\cs{@currext}} should be used. If the argument
+% is not given but \cs{@currname} is empty, an empty value should be used. And
+% if the optional argument is given, it should be used unchanged. So here is a
+% helper macro for exactly this logic. Note, that argument here is not
+% optional but mandatory and should be an optional argument of
+% \cs{NewDocumentCommand}.
+%    \begin{macrocode}
+\newcommand*{\tb@optowner}[1]{%
+  \IfValueTF{#1}{%
+    #1%
+  }{%
+    \ifx\@currname\@empty\else
+      \@currname.\@currext%
+    \fi
+  }%
+}
+%    \end{macrocode}
+% \end{macro}
 % \begin{command}{\addtotoclist}
 % \changes{v3.06a}{2010/09/14}{expand the arguments while adding them to the
 %   internal list}
-% \changes{v3.20}{2016/04/12}{\cs{@ifnextchar} replaced by
-%   \cs{kernel@ifnextchar}}
-% \begin{macro}{\@addtotoclist,\scr@addtotoclist}
-% \changes{v1.0a}{2008/11/11}{\cs{@addtotoclist} renamed to
-%   \cs{scr@addtotoclist} because of package \pkg{flowfram}}
-% \begin{macro}{\@@addtotoclist,\scr@@addtotoclist}
-% \changes{v1.0a}{2008/11/11}{\cs{@@addtotoclist} renamed to
-%   \cs{scr@@addtotoclist} because of package \pkg{flowfram}}
-% \changes{v3.28}{2019/11/19}{\cs{ifattoclist} replaced by
-%   \cs{Ifattoclist}}
+% \changes{v3.41}{2023/06/28}{using \cs{NewDocumentCommand} to not need all
+%   the helpers}
 % This command adds an extension to the list of toc-files. The first,
 % optional argument is the class or package name with the corresponding
 % extension of class or package files. If this argument was omitted
@@ -294,19 +313,8 @@
 % second, mandatory argument is the extension of the toc-file. NOTE: An
 % empty first argument is not the same like omitting the first argument!
 %    \begin{macrocode}
-\newcommand*{\addtotoclist}{%
-  \kernel@ifnextchar [%]
-    \scr@@addtotoclist\scr@addtotoclist
-}
-\newcommand*{\scr@addtotoclist}{%
-  \ifx\@currname\@empty
-    \def\reserved@a{\scr@@addtotoclist[]}%
-  \else
-    \edef\reserved@a{\noexpand\scr@@addtotoclist[\@currname.\@currext]}%
-  \fi
-  \reserved@a
-}
-\newcommand*{\scr@@addtotoclist}[2][]{%
+\NewDocumentCommand\addtotoclist{om}{%
+  \edef\reserved@b{\tb@optowner{#1}}%
   \Ifattoclist{#2}{%
     \PackageError{tocbasic}{%
       file extension `#2' cannot be used twice
@@ -320,15 +328,15 @@
     }%
   }{%
     \begingroup
-      \protected@edef\reserved@a{%
+      \edef\reserved@a{%
         \noexpand\g@addto@macro\noexpand\tb@listoftocs{%
-          \noexpand\do{#2}{#1}}}\reserved@a
+          \noexpand\do{#2}{\reserved@b}}}\reserved@a
     \endgroup
-    \ifx\relax #1\relax\else
-      \@ifundefined{tb@#1@add@hook}{}{%
+    \ifx\reserved@b\@empty\else
+      \@ifundefined{tb@\reserved@b @add@hook}{}{%
         \edef\reserved@a{%
           \noexpand\def\noexpand\@currext{#2}%
-          \noexpand\@nameuse{tb@#1@add@hook}%
+          \noexpand\@nameuse{tb@\reserved@b @add@hook}%
           \noexpand\def\noexpand\@currext{\@currext}%
         }\reserved@a
       }%
@@ -341,7 +349,15 @@
   }%
 }
 %    \end{macrocode}
-% \end{macro}
+% \begin{macro}[noprint]{\@addtotoclist,\scr@addtotoclist,
+%                        \@@addtotoclist,\scr@@addtotoclist}
+% \changes{v1.0a}{2008/11/11}{\cs{@addtotoclist} renamed to
+%   \cs{scr@addtotoclist} because of package \pkg{flowfram}}
+% \changes{v1.0a}{2008/11/11}{\cs{@@addtotoclist} renamed to
+% \cs{scr@@addtotoclist} because of package \pkg{flowfram}}
+% \changes{v3.28}{2019/11/19}{\cs{ifattoclist} replaced by
+%   \cs{Ifattoclist}}
+% \changes{v3.41}{2023/06/28}{removed}
 % \end{macro}
 % \end{command}
 %
@@ -371,7 +387,8 @@
 % \begin{command}{\AtAddToTocList}
 % \changes{v3.20}{2016/04/12}{\cs{@ifnextchar} replaced by
 %   \cs{kernel@ifnextchar}}
-% \begin{macro}{\@AtAddToTocList,\@@AtAddToTocList}
+% \changes{v3.41}{2023/06/28}{using \cs{NewDocumentCommand} to not need all
+%   the helpers}
 % Action to be done, when adding a toc-file of a known owner. The first
 % optional argument is the owner. The second, mandatory argument is the
 % action. While doing the action \cs{@currext} will be the extension of the
@@ -386,23 +403,16 @@
 % the general hook). But the individual hook will not be processed for
 % toc-files without any owner!
 %    \begin{macrocode}
-\newcommand*{\AtAddToTocList}{%
-  \kernel@ifnextchar [%]
-    \@@AtAddToTocList\@AtAddToTocList
-}
-\newcommand*{\@AtAddToTocList}{%
-  \ifx\@currname\@empty
-    \def\reserved@a{\@@AtAddToTocList[]}%
-  \else
-    \edef\reserved@a{\noexpand\@@AtAddToTocList[\@currname.\@currext]}%
-  \fi
-  \reserved@a
-}
-\newcommand*{\@@AtAddToTocList}[1][]{%
-  \@ifundefined{tb@#1@add@hook}{\@namedef{tb@#1@add@hook}{}}{}%
-  \expandafter\g@addto@macro\csname tb@#1@add@hook\endcsname
+\NewDocumentCommand\AtAddToTocList{o}{%
+  \edef\reserved@a{\tb@optowner{#1}}%
+  \@ifundefined{tb@\reserved@a @add@hook}%
+    {\@namedef{tb@\reserved@a @add@hook}{}}%
+    {}%
+  \expandafter\g@addto@macro\csname tb@\reserved@a @add@hook\endcsname
 }
 %    \end{macrocode}
+% \begin{macro}[noprint]{\@AtAddToTocList,\@@AtAddToTocList}
+% \changes{v3.41}{2023/06/28}{removed}
 % \end{macro}
 % \end{command}
 %
@@ -461,117 +471,104 @@
 % \begin{command}{\removefromtoclist}
 % \changes{v3.20}{2016/04/12}{\cs{@ifnextchar} replaced by
 %   \cs{kernel@ifnextchar}}
-% \begin{macro}{\scr@removefromtoclist,\@removefromtoclist}
 % \changes{v3.22}{2016/09/06}{missing \cs{global} added}
-% \changes{v3.28}{2019/11/22}{\cs{@removefromtoclist} renamed to
-%   \cs{scr@removefromtoclist}}
-% \begin{macro}{\scr@@removefromtoclist,\@@removefromtoclist}
-% \changes{v3.22}{2016/09/06}{missing \cs{global} added}
-% \changes{v3.28}{2019/11/22}{\cs{@@removefromtoclist} renamed to
-%   \cs{scr@removefromtoclist}}
+% \changes{v3.41}{2023/06/28}{using \cs{NewDocumentCommand} to not need all
+%   the helpers}
 % This command will remove an extension from the list of toc-files. If the
 % first, optional argument is given, the extension will only be removed, if
 % it was added by the given owner. NOTE: An empty first argument is not the
 % same like omitting the first argument!
 %    \begin{macrocode}
-\newcommand*{\removefromtoclist}{%
-  \kernel@ifnextchar [%]
-    \scr@removefromtoclist\scr@@removefromtoclist
-}  
-\newcommand*{\scr@removefromtoclist}[2][]{%
+\NewDocumentCommand\removefromtoclist{om}{%
   \begingroup
     \let\tb@oldlist\tb@listoftocs
+    \edef\reserved@b{#2}%
+    \global\let\tb@listoftocs\empty
     \def\do##1##2{%
       \edef\reserved@a{##1}%
       \ifx\reserved@a\reserved@b
-        \begingroup
-          \edef\@currext{##2}%
-          \edef\reserved@b{#1}%
-          \ifx\@currext\reserved@b
-          \else
-            \g@addto@macro\tb@listoftocs{\do{##1}{##2}}%
-          \fi
-        \endgroup
+        \IfValueT{#1}{%
+          \begingroup
+            \edef\@currext{##2}%
+            \edef\reserved@b{#1}%
+            \ifx\@currext\reserved@b
+            \else
+              \g@addto@macro\tb@listoftocs{\do{##1}{##2}}%
+            \fi
+          \endgroup
+        }%
       \else
         \g@addto@macro\tb@listoftocs{\do{##1}{##2}}%
       \fi
     }%
-    \edef\reserved@b{#2}\global\let\tb@listoftocs\@empty
-    \tb@oldlist
-  \endgroup
-}
-\newcommand*{\scr@@removefromtoclist}[1]{%
-  \begingroup
-    \let\tb@oldlist\tb@listoftocs
-    \def\do##1##2{%
-      \edef\reserved@a{##1}%
-      \ifx\reserved@a\reserved@b
-      \else
-        \g@addto@macro\tb@listoftocs{\do{##1}{##2}}%
-      \fi
-    }%
-    \edef\reserved@b{#1}\global\let\tb@listoftocs\@empty
     \tb@oldlist
   \endgroup
 }
 %    \end{macrocode}
-% \end{macro}
+% \begin{macro}[noprint]{\scr@removefromtoclist,\@removefromtoclist,
+%                        \scr@@removefromtoclist,\@@removefromtoclist}
+% \changes{v3.28}{2019/11/22}{\cs{@removefromtoclist} renamed to
+%   \cs{scr@removefromtoclist}}
+% \changes{v3.28}{2019/11/22}{\cs{@@removefromtoclist} renamed to
+%   \cs{scr@removefromtoclist}}
+% \changes{v3.41}{2023/06/28}{removed}
 % \end{macro}
 % \end{command}
 %
 % \begin{command}{\doforeachtocfile}
-% \changes{v3.20}{2016/04/12}{\cs{@ifnextchar} replaced by
-%   \cs{kernel@ifnextchar}}
-% \begin{macro}{\@doforeachtocfile,\@@doforeachtocfile}
 % \changes{v3.09}{2011/03/01}{\cs{@currext} defined using \cs{edef} instead
 %   of \cs{def}}
+% \changes{v3.20}{2016/04/12}{\cs{@ifnextchar} replaced by
+%   \cs{kernel@ifnextchar}}
+% \changes{v3.41}{2023/06/28}{using \cs{NewDocumentCommand} to not need all
+%   the helpers}
 % This command does the second, mandatory argument for each toc-file at the
 % list of toc-files. If the first, optional argument was given this will be
 % done only for the toc-files of that owner. NOTE: An empty first argument
 % is not the same like omitting the first argument!
-%
 % While processing the second argument \cs{@currext} is the extension of
 % the toc-file. The second argument will be processed with increased group
 % level!
-%
 % See \cs{addtoeachtocfile} for an example of usage of
 % \cs{doforeachtocfile}.
 %    \begin{macrocode}
-\newcommand{\doforeachtocfile}{%
-  \kernel@ifnextchar [%]
-    \@doforeachtocfile\@@doforeachtocfile
-}
-\newcommand{\@doforeachtocfile}[2][]{%
-  \def\do##1##2{%
-    \edef\reserved@a{#1}\edef\reserved@b{##2}\ifx\reserved@a\reserved@b
-      \edef\@currext{##1}#2%
-    \fi
+\NewDocumentCommand\doforeachtocfile{o+m}{%
+  \IfValueTF{#1}{%
+    \def\do##1##2{%
+      \edef\reserved@a{#1}\edef\reserved@b{##2}%
+      \ifx\reserved@a\reserved@b \edef\@currext{##1}#2\fi
+    }%
+  }{%
+    \def\do##1##2{\edef\@currext{##1}#2}%
   }%
   \edef\reserved@a{%
     \noexpand\tb@listoftocs
     \noexpand\def\noexpand\@currext{\@currext}%
   }\reserved@a
-  \let\do\relax
-}
-\newcommand{\@@doforeachtocfile}[1]{%
-  \def\do##1##2{%
-    \edef\@currext{##1}#1%
-  }%
-  \edef\reserved@a{%
-    \noexpand\tb@listoftocs
-    \noexpand\def\noexpand\@currext{\@currext}%
-  }\reserved@a
-  \let\do\relax
+%    \end{macrocode}
+% \changes{v3.41}{2023/05/16}{don't \cs{let}\cs{do}\cs{relax}}
+% Former versions of \KOMAScript{} have used |\let\do\relax| to undefined
+% \cs{do} after the walk-through. But some packages like \pkg{dynkin-diagrams}
+% have had problems using \cs{renewcommand} instead of \cs{def} or \cs{let} to
+% change \cs{do}. So from version 3.41 \KOMAScript{} has changed this to
+% |\let\do\noexpand|, because this is the default of \LaTeX{} after
+% |\begin{document}|. However, this is only a workaround for a
+% workaround. Best would be to remove the final change of \cs{do}. But this
+% could also break packages.
+%    \begin{macrocode}
+  \let\do\noexpand
 }
 %    \end{macrocode}
+% \begin{macro}[noprint]{\@doforeachtocfile,\@@doforeachtocfile}
+% \changes{v3.41}{2023/06/28}{removed}
 % \end{macro}
 % \end{command}
 % 
 % \begin{command}{\addtoeachtocfile}
 % \changes{v3.20}{2016/04/12}{\cs{@ifnextchar} replaced by
 %   \cs{kernel@ifnextchar}}
-% \begin{macro}{\@addtoeachtocfile,\@@addtoeachtocfile}
-% \changes{v3.03b}{2009/06/08}{typo fix at usage of \cs{doforeachtocfile}}
+% \changes{v3.41}{2023/06/28}{using \cs{NewDocumentCommand} to not need all
+%   the helpers}
 % This command calls \cs{addtocontents} with the section, mandatory
 % argument for each toc-file at the list of toc-files. If the first,
 % optional argument was given this will be done only for the toc-files of
@@ -579,18 +576,14 @@
 % the first argument! And don't forget to protect the commands, that should
 % not be expanded, at the mandatory argument.
 %    \begin{macrocode}
-\newcommand{\addtoeachtocfile}{%
-  \kernel@ifnextchar [%]
-    \@addtoeachtocfile\@@addtoeachtocfile
-}
-\newcommand{\@addtoeachtocfile}[2][]{%
+\NewDocumentCommand\addtoeachtocfile{o+m}{%
   \doforeachtocfile[{#1}]{\addtocontents{\@currext}{#2}}%
-}
-\newcommand{\@@addtoeachtocfile}[1]{%
-  \doforeachtocfile{\addtocontents{\@currext}{#1}}%
 }
 %</body>
 %    \end{macrocode}
+% \begin{macro}[noprint]{\@addtoeachtocfile,\@@addtoeachtocfile}
+% \changes{v3.03b}{2009/06/08}{typo fix at usage of \cs{doforeachtocfile}}
+% \changes{v3.41}{2023/06/28}{removed}
 % \end{macro}
 % \end{command}
 %
@@ -602,22 +595,19 @@
 % \begin{command}{\addcontentslinetoeachtocfile}
 % \changes{v3.20}{2016/04/12}{\cs{@ifnextchar} replaced by
 %   \cs{kernel@ifnextchar}}
-% \begin{macro}{\@addcontentslinetoeachtocfile,\@@addcontentslinetoeachtocfile}
+% \changes{v3.41}{2023/06/28}{using \cs{NewDocumentCommand} to not need all
+%   the helpers}
 % Something like a combination of \cs{addtoeachtocfile} and
 % \cs{addcontentsline}.
 %    \begin{macrocode}
 %<*body>
-\newcommand{\addcontentslinetoeachtocfile}{%
-  \kernel@ifnextchar [%]
-    \@addcontentslinetoeachtocfile\@@addcontentslinetoeachtocfile
-}
-\newcommand{\@addcontentslinetoeachtocfile}[3][]{%
-  \doforeachtocfile[{#1}]{\addcontentsline{\@currext}{#2}{#3}}%
-}
-\newcommand{\@@addcontentslinetoeachtocfile}[2]{%
-  \doforeachtocfile{\addcontentsline{\@currext}{#1}{#2}}%
-}
+\NewDocumentCommand\addcontentslinetoeachtocfile{omm}{%
+   \doforeachtocfile[{#1}]{\addcontentsline{\@currext}{#2}{#3}}%
+} 
 %    \end{macrocode}
+% \begin{macro}[noprint]{\@addcontentslinetoeachtocfile,
+%                        \@@addcontentslinetoeachtocfile}
+% \changes{v3.41}{2023/06/28}{removed}
 % \end{macro}
 % \end{command}
 % 
@@ -625,20 +615,14 @@
 % \changes{v3.12}{2013/09/24}{added}
 % \changes{v3.20}{2016/04/12}{\cs{@ifnextchar} replaced by
 %   \cs{kernel@ifnextchar}}
-% \begin{macro}{\@addxcontentsline}
-% \changes{v3.12}{2013/09/24}{added}
+% \changes{v3.41}{2023/06/28}{using \cs{NewDocumentCommand} to not need all
+%   the helpers}
 % This will be used instead of \cs{addcontentsline} to generate numbered or
 % not numbered entries to a toc-file. First argument is the toc-file, second
 % the entry type, e.g., |chapter|, the third is the entry number or empty and
 % the fourth and last is the entry text.
 %    \begin{macrocode}
-\newcommand*{\addxcontentsline}[2]{%
-  \kernel@ifnextchar [%]
-  {\@addxcontentsline{#1}{#2}}%
-  {\@addxcontentsline{#1}{#2}[]}%
-}
-\newcommand*{\@addxcontentsline}{}
-\def\@addxcontentsline#1#2[#3]#4{%
+\NewDocumentCommand\addxcontentsline{mmO{}m}{%
   \scr@ifundefinedorrelax{add#2#1entry}{%
     \tocbasic@addxcontentsline{#1}{#2}{#3}{#4}%
   }{%
@@ -646,6 +630,10 @@
   }%
 }
 %    \end{macrocode}
+% \begin{macro}[noprint]{\@addxcontentsline}
+% \changes{v3.12}{2013/09/24}{added}
+% \changes{v3.41}{2023/06/28}{removed}
+% \end{macro}
 % \begin{command}{\nonumberline}
 % \changes{v3.12}{2013/09/24}{added}
 % Either \cs{relax} or \cs{numberline} depending on the feature
@@ -654,21 +642,20 @@
 \newcommand*{\nonumberline}{}%
 %    \end{macrocode}
 % \end{command}
-% \begin{command}{\addxcontentsline}
+% \begin{macro}{\tocbasic@addxcontentsline}
 % This may be used to either use a heading type command or the general default
 % one. You are not allowed to use it in the definition of a heading type
 % command like \cs{addchaptertocentry}! You may use
 % \cs{tocbasic@addxcontentsline} at the definition of those commands.
 %    \begin{macrocode}
 \newcommand*{\tocbasic@addxcontentsline}[4]{%
-  \if\relax\detokenize{#3}\relax
+  \IfArgIsEmpty{#3}{%
     \addcontentsline{#1}{#2}{\protect\nonumberline#4}%
-  \else
+  }{%
     \addcontentsline{#1}{#2}{\protect\numberline{#3}#4}%
-  \fi
+  }%
 }
 %    \end{macrocode}
-% \end{command}
 % \end{macro}
 % \end{command}
 %
@@ -676,42 +663,22 @@
 % \changes{v3.12}{2013/09/24}{added}
 % \changes{v3.20}{2016/04/12}{\cs{@ifnextchar} replaced by
 %   \cs{kernel@ifnextchar}}
-% \begin{macro}{\@addxcontentslinetoeachtocfile,
-%               \@@addxcontentslinetoeachtocfile}
-% \changes{v3.12}{2013/09/24}{added}
-% \changes{v3.20}{2016/04/12}{\cs{@ifnextchar} replaced by
-%   \cs{kernel@ifnextchar}}
-% \begin{macro}{\@@@addxcontentslinetoeachtocfile,
-%               \@@@@addxcontentslinetoeachtocfile}
-% \changes{v3.12}{2013/09/24}{added}
+% \changes{v3.41}{2023/06/28}{using \cs{NewDocumentCommand} to not need all
+%   the helpers}
 % Similar to \cs{addcontentslinetoeachtocfile} using
 % \cs{addxcontentsline} instead of \cs{addcontentsline}.
 %    \begin{macrocode}
-\newcommand{\addxcontentslinetoeachtocfile}{%
-  \kernel@ifnextchar [%]
-    \@addxcontentslinetoeachtocfile\@@addxcontentslinetoeachtocfile
-}
-\newcommand{\@addxcontentslinetoeachtocfile}[2][]{%
-  \kernel@ifnextchar [%]
-    {\@@@addxcontentslinetoeachtocfile[{#1}]{#2}}%
-    {\@@@addxcontentslinetoeachtocfile[{#1}]{#2}[]}
-}
-\newcommand*{\@@@addxcontentslinetoeachtocfile}{}
-\def\@@@addxcontentslinetoeachtocfile[#1]#2[#3]#4{%
-  \doforeachtocfile[{#1}]{\addxcontentsline{\@currext}{#2}[#3]{#4}}%
-}
-\newcommand{\@@addxcontentslinetoeachtocfile}[1]{%
-  \kernel@ifnextchar [%]
-    {\@@@@addxcontentslinetoeachtocfile{#1}}%
-    {\@@@@addxcontentslinetoeachtocfile{#1}[]}%
-}
-\newcommand*{\@@@@addxcontentslinetoeachtocfile}{}
-\def\@@@@addxcontentslinetoeachtocfile#1[#2]#3{%
-  \doforeachtocfile{\addxcontentsline{\@currext}{#1}[{#2}]{#3}}%
+\NewDocumentCommand\addxcontentslinetoeachtocfile{omom}{%
+  \doforeachtocfile[{#1}]{\addxcontentsline{\@currext}{#2}[{#3}]{#4}}
 }
 %</body>
 %    \end{macrocode}
-% \end{macro}
+% \begin{macro}[noprint]{\@addxcontentslinetoeachtocfile,
+%                        \@@addxcontentslinetoeachtocfile,
+%                        \@@@addxcontentslinetoeachtocfile,
+%                        \@@@@addxcontentslinetoeachtocfile}
+% \changes{v3.12}{2013/09/24}{added}
+% \changes{v3.41}{2023/06/28}{removed}
 % \end{macro}
 % \end{command}
 %
@@ -810,7 +777,10 @@
     \g@addto@macro\tocbasic@@before@hook{#2}%
   \else
     \@ifundefined{tb@#1@before@hook}{%
-%<trace>      \PackageInfo{tocbasic}{defining new hook before starting `#1'}%
+%<*trace>
+      \PackageInfo{tocbasic}{defining new hook before starting
+        \IfArgIsEmpty{#1}{any toc}{`#1'}}%
+%</trace>
       \expandafter\global\expandafter\let\csname tb@#1@before@hook\endcsname
       \@empty
     }{}%
@@ -822,7 +792,10 @@
     \g@addto@macro\tocbasic@@after@hook{#2}%
   \else
     \@ifundefined{tb@#1@after@hook}{%
-%<trace>      \PackageInfo{tocbasic}{defining new hook after starting `#1'}%
+%<*trace>
+      \PackageInfo{tocbasic}{defining new hook after starting
+        \IfArgIsEmpty{#1}{any toc}{`#1'}}%
+%</trace>
       \expandafter\global\expandafter\let\csname tb@#1@after@hook\endcsname
       \@empty
     }{}%
@@ -933,23 +906,19 @@
 % \end{command}
 %
 % \begin{command}{\listofeachtoc}
+% \changes{v3.03b}{2009/06/08}{typo fix at usage of \cs{doforeachtocfile}}
 % \changes{v3.20}{2016/04/12}{\cs{@ifnextchar} replaced by
 %   \cs{kernel@ifnextchar}}
-% \begin{macro}{\@listofeachtoc,\@@listofeachtoc}
-% \changes{v3.03b}{2009/06/08}{typo fix at usage of \cs{doforeachtocfile}}
+% \changes{v3.41}{2023/06/28}{using \cs{NewDocumentCommand} to not need all
+%   the helpers}
 % Another example of using \cs{doforeachtocfile}.
 %    \begin{macrocode}
-\newcommand*{\listofeachtoc}{%
-  \kernel@ifnextchar [%]
-    \@listofeachtoc\@@listofeachtoc
-}
-\newcommand{\@listofeachtoc}[1][]{%
+\NewDocumentCommand\listofeachtoc{o}{%
   \doforeachtocfile[{#1}]{\listoftoc{\@currext}}%
 }
-\newcommand{\@@listofeachtoc}[1]{%
-  \doforeachtocfile{\listoftoc{\@currext}}%
-}
 %    \end{macrocode}
+% \begin{macro}[noprint]{\@listofeachtoc,\@@listofeachtoc}
+% \changes{v3.41}{2023/06/28}{removed}
 % \end{macro}
 % \end{command}
 %
@@ -1103,7 +1072,10 @@
 %    \begin{macrocode}
 \newcommand{\BeforeTOCHead}[2][]{%
   \@ifundefined{tb@#1@beforehead@hook}{%
-%<trace>    \PackageInfo{tocbasic}{defining new hook before heading of `#1'}%
+%<*trace>
+    \PackageInfo{tocbasic}{defining new hook before heading of
+      \IfArgIsEmpty{#1}{each toc}{`#1'}}%
+%</trace>
     \expandafter\global\expandafter\let\csname tb@#1@beforehead@hook\endcsname
     \@empty
   }{}%
@@ -1111,7 +1083,10 @@
 }
 \newcommand{\AfterTOCHead}[2][]{%
   \@ifundefined{tb@#1@afterhead@hook}{%
-%<trace>    \PackageInfo{tocbasic}{defining new hook after heading of `#1'}%
+%<*trace>
+    \PackageInfo{tocbasic}{defining new hook after heading of
+      \IfArgIsEmpty{#1}{each toc}{`#1'}}%
+%</trace>
     \expandafter\global\expandafter\let\csname tb@#1@afterhead@hook\endcsname
     \@empty
   }{}%
@@ -1198,6 +1173,7 @@
 % \changes{v3.28}{2019/11/19}{\cs{iftocfeature} renamed to \cs{Iftocfeature}}
 % We need a test for the features
 %    \begin{macrocode}
+%<*deprecated>
 \providecommand*{\iftocfeature}{%
   \PackageWarning{tocbasic}{Usage of deprecated command
     `\string\iftocfeature'.\MessageBreak
@@ -1207,6 +1183,7 @@
   }%
   \Iftocfeature
 }
+%</deprecated>
 \newcommand*{\Iftocfeature}[2]{%
   \scr@ifundefinedorrelax{tocbasic@#1@feature@#2}{%
     \expandafter\@secondoftwo

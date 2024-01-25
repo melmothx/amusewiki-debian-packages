@@ -1,7 +1,7 @@
-# $Id: GNUmakefile,v 1.6 2020/09/08 22:13:43 karl Exp $
+# $Id: GNUmakefile,v 1.7 2023/12/12 22:47:56 karl Exp $
 # Makefile for the mode_def collection. Public domain.
 
-version = 4.2
+version = 4.3
 
 default: check
 
@@ -100,7 +100,7 @@ check-mktextfm:
 # xerox info if requested:
 	tftopl ./logo10.tfm | fgrep CODING
 # This will fail unless the new mktextfm is in PATH, and
-# unless the correct modes.mf is compiled into mf.base,.
+# unless the correct modes.mf is compiled into mf.base.
 # It seems like overkill to have a new option to mktextfm so we can
 # specify a fake mf, something like "inimf \input plain \input modes ...".
 # We'll just test after installation.

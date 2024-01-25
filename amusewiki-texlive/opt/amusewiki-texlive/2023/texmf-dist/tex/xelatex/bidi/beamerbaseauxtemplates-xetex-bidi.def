@@ -20,7 +20,7 @@
 %%   by Vafa Khalighi.
 %% 
 %% 
-%% \CheckSum{58794}
+%% \CheckSum{58884}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -37,7 +37,35 @@
 %%   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %%   Right brace   \}     Tilde         \~}
 %%
-\ProvidesFile{beamerbaseauxtemplates-xetex-bidi.def}[2022/06/06 v0.2 bidi adaptations for beamerbaseauxtemplates package for XeTeX engine]
+\ProvidesFile{beamerbaseauxtemplates-xetex-bidi.def}[2023/08/02 v0.3 bidi adaptations for beamerbaseauxtemplates package for XeTeX engine]
+\bidi@csundef{beamer@@tmpop@subsection in toc@sections numbered}
+
+\bidi@csundef{beamer@@tmpop@subsubsection in toc@sections numbered}
+
+\bidi@csundef{beamer@@tmpop@section in toc@subsections numbered}
+
+\bidi@csundef{beamer@@tmpop@subsection in toc@subsections numbered}
+
+\bidi@csundef{beamer@@tmpop@subsubsection in toc@subsections numbered}
+
+\defbeamertemplate{subsection in toc}{sections numbered}
+{\leavevmode\bidi@beamer@leftskip=2.5em\inserttocsubsection\par}
+
+\defbeamertemplate{subsubsection in toc}{sections numbered}
+{\leavevmode\normalsize\usebeamerfont{subsection in toc}\bidi@beamer@leftskip=3.5em\usebeamerfont{subsubsection in toc}%
+  \inserttocsubsubsection\par}
+
+\defbeamertemplate{section in toc}{subsections numbered}
+{\leavevmode\bidi@beamer@leftskip=2em\inserttocsection\par}
+
+\defbeamertemplate{subsection in toc}{subsections numbered}
+{\leavevmode\bidi@beamer@leftskip=2em\rlap{\hskip-2em\inserttocsectionnumber.\inserttocsubsectionnumber}\inserttocsubsection\par}
+
+\defbeamertemplate{subsubsection in toc}{subsections numbered}
+{\leavevmode\normalsize\usebeamerfont{subsection in
+    toc}\bidi@beamer@leftskip=3em\usebeamerfont{subsubsection in toc}%
+  \inserttocsubsubsection\par}
+
 \bidi@csundef{beamer@@tmpop@section in toc@circle}
 
 \bidi@csundef{beamer@@tmpop@subsection in toc@circle}
@@ -81,7 +109,7 @@
 \bidi@csundef{beamer@@tmpop@enumerate mini template@square}
 
 \defbeamertemplate{section in toc}{square}
-{\leavevmode\bidi@beamer@leftskip=1.75ex%
+{\leavevmode\bidi@beamer@leftskip=3ex%
   \llap{{%
     \usebeamerfont*{section number projected}%
     \usebeamercolor[bg]{section number projected}%
@@ -95,8 +123,8 @@
       \hskip-2.25ex%
       \vrule width2.25ex height1.85ex depth.4ex%
     \fi
-    }}%
-  \kern1.25ex\inserttocsection\par}
+    }\kern1.25ex}%
+  \inserttocsection\par}
 
 \defbeamertemplate{subsection in toc}{square}
 {\leavevmode\bidi@beamer@leftskip=5ex\llap{{%
@@ -196,6 +224,28 @@
   }}%
 }
 
+\bidi@csundef{beamer@@tmpop@section in toc@ball unnumbered}
+
+\bidi@csundef{beamer@@tmpop@subsection in toc@ball unnumbered}
+
+\bidi@csundef{beamer@@tmpop@subsubsection in toc@ball unnumbered}
+
+\defbeamertemplate{section in toc}{ball unnumbered}
+{\leavevmode\bidi@beamer@leftskip=2.25ex%
+  \llap{%
+    \raise0.1ex\beamer@usesphere{section number projected}{bigsphere}\kern1.25ex}%
+  \inserttocsection\par}
+
+\defbeamertemplate{subsection in toc}{ball unnumbered}
+{\leavevmode\bidi@beamer@leftskip=5.1ex\llap{%
+    \raise0.2ex\beamer@usesphere{subsection number projected}{smallsphere}\kern1ex}\inserttocsubsection\par}
+
+\defbeamertemplate{subsubsection in toc}{ball unnumbered}
+{\leavevmode\normalsize\usebeamerfont{subsection in
+    toc}\bidi@beamer@leftskip=8.2ex\usebeamerfont{subsubsection in toc}%
+  \llap{%
+    \beamer@usesphere{subsubsection number projected}{smallsphere}\kern0.75ex}\inserttocsubsubsection\par}
+
 \bidi@csundef{beamer@@tmpop@section in toc@ball}
 
 \bidi@csundef{beamer@@tmpop@subsection in toc@ball}
@@ -265,6 +315,22 @@
     \bidi@beamer@ragged%
     \usebeamerfont{block body example}%
 }%
+
+\bidi@csundef{beamer@@tmpop@caption@caption name own line}
+
+\defbeamertemplate{caption}{caption name own line}
+{%
+  \begin{minipage}{\textwidth}
+    \leavevmode
+    \bidi@beamer@ragged
+  {%
+    \usebeamercolor[fg]{caption name}%
+    \usebeamerfont*{caption name}%
+    \insertcaptionname%
+    }\\
+      \insertcaption
+    \end{minipage}
+}
 
 \endinput
 %%

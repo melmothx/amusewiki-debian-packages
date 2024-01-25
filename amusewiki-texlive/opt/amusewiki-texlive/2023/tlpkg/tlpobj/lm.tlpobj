@@ -1,6 +1,6 @@
 name lm
 category Package
-revision 65956
+revision 67718
 shortdesc Latin modern fonts in outline formats
 longdesc The Latin Modern family of fonts consists of 72 text fonts and
 longdesc 20 mathematics fonts, and is based on the Computer Modern fonts
@@ -14,10 +14,10 @@ longdesc (qx-*.tfm); TeX'n'ANSI aka LY1 encoding (texnansi-*.tfm); T5
 longdesc (Vietnamese) encoding (t5-*.tfm); and Text Companion for EC
 longdesc fonts aka TS1 (ts1-*.tfm).
 execute addMap lm.map
-containersize 11944808
-containerchecksum 3539ed5b82a1722e6aa1d0ded3b589a39d0d3f0db12069ef160e570b69f7750bc9b2997c167617ac085772377d5ce624e9d5ac2a6563d96f486fba16037c5ac5
+containersize 11944816
+containerchecksum 9e05642ab07ebe05c13d5fa98f3212527aa66a9d049f8eade506cbd9f0652315363a01ae20a9df873055e5283bba7574d51251c7dd86e56ebc37055b92379421
 doccontainersize 2511620
-doccontainerchecksum 32bd34845a4f1dc011db635b036504a5488734802e9d2bb6780981e71a16cfb464ea98bd1a92a85ff8ba90159ef95b8954b05d5c8f0ac0e1ce8ff468feb7c891
+doccontainerchecksum d15569c1f55553b068b8d3a73efdbdb74137d02fdda5db5d57f29203dcd92dea7746b73a3f30293b2932f046e60697ea015b83d2587cde2783300fa41967c5b0
 docfiles size=883
  texmf-dist/doc/fonts/lm/GUST-FONT-LICENSE.TXT
  texmf-dist/doc/fonts/lm/MANIFEST-Latin-Modern.TXT
@@ -1115,7 +1115,7 @@ runfiles size=10645
  texmf-dist/tex/latex/lm/ts1lmtt.fd
  texmf-dist/tex/latex/lm/ts1lmvtt.fd
 catalogue-alias lmodern
-catalogue-contact-home http://www.gust.org.pl/projects/e-foundry/latin-modern
+catalogue-contact-home https://www.gust.org.pl/projects/e-foundry/latin-modern
 catalogue-ctan /fonts/lm
 catalogue-license gfl
 catalogue-topics font font-body font-serif font-sans font-proportional font-mono font-type1 font-otf font-cm

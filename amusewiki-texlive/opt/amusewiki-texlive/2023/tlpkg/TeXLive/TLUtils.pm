@@ -1,4 +1,4 @@
-# $Id: TLUtils.pm 66420 2023-03-07 08:30:26Z preining $
+# $Id: TLUtils.pm 69327 2024-01-07 11:10:51Z preining $
 # TeXLive::TLUtils.pm - the inevitable utilities for TeX Live.
 # Copyright 2007-2023 Norbert Preining, Reinhard Kotucha
 # This file is licensed under the GNU General Public License version 2
@@ -8,7 +8,7 @@ use strict; use warnings;
 
 package TeXLive::TLUtils;
 
-my $svnrev = '$Revision: 66420 $';
+my $svnrev = '$Revision: 69327 $';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
@@ -59,6 +59,8 @@ C<TeXLive::TLUtils> - TeX Live infrastructure miscellany
   TeXLive::TLUtils::copy($file, $target_dir);
   TeXLive::TLUtils::touch(@files);
   TeXLive::TLUtils::collapse_dirs(@files);
+  TeXLive::TLUtils::all_dirs_and_removed_dirs(@files);
+  TeXLive::TLUtils::dirs_of_files(@files);
   TeXLive::TLUtils::removed_dirs(@files);
   TeXLive::TLUtils::download_file($path, $destination);
   TeXLive::TLUtils::setup_programs($bindir, $platform);
@@ -210,6 +212,8 @@ BEGIN {
     &copy
     &touch
     &collapse_dirs
+    &all_dirs_and_removed_dirs
+    &dirs_of_files
     &removed_dirs
     &install_package
     &install_packages
@@ -1614,30 +1618,14 @@ sub collapse_dirs {
   return @ret;
 }
 
-=item C<removed_dirs(@files)>
+=item C<dirs_of_files(@files)>
 
-Returns all the directories from which all content will be removed.
-
-Here is the idea:
-
-=over 4
-
-=item create a hashes by_dir listing all files that should be removed
-   by directory, i.e., key = dir, value is list of files
-
-=item for each of the dirs (keys of by_dir and ordered deepest first)
-   check that all actually contained files are removed
-   and all the contained dirs are in the removal list. If this is the
-   case put that directory into the removal list
-
-=item return this removal list
-
-=back
+Returns all the directories in which at least one of the given
+files reside.
 =cut
 
-sub removed_dirs {
+sub dirs_of_files {
   my (@files) = @_;
-  my %removed_dirs;
   my %by_dir;
 
   # construct hash of all directories mentioned, values are lists of the
@@ -1662,6 +1650,21 @@ sub removed_dirs {
     push (@a, $abs_f);
     $by_dir{$d} = \@a;
   }
+
+  return %by_dir;
+}
+
+=item C<all_dirs_and_removed_dirs(@files)>
+
+Returns all the directories for files and those from which all
+content will be removed.
+
+=cut
+
+sub all_dirs_and_removed_dirs {
+  my (@files) = @_;
+  my %removed_dirs;
+  my %by_dir = dirs_of_files(@files);
 
   # for each of our directories, see if we are removing everything in
   # the directory.  if so, return the directory; else return the
@@ -1698,8 +1701,36 @@ sub removed_dirs {
       $removed_dirs{$d} = 1;
     }
   }
+  return (%by_dir, %removed_dirs);
+}
+
+=item C<removed_dirs(@files)>
+
+Returns all the directories from which all content will be removed.
+
+Here is the idea:
+
+=over 4
+
+=item create a hashes by_dir listing all files that should be removed
+   by directory, i.e., key = dir, value is list of files
+
+=item for each of the dirs (keys of by_dir and ordered deepest first)
+   check that all actually contained files are removed
+   and all the contained dirs are in the removal list. If this is the
+   case put that directory into the removal list
+
+=item return this removal list
+
+=back
+=cut
+
+sub removed_dirs {
+  my (@files) = @_;
+  my (%by_dir, %removed_dirs) = all_dirs_and_removed_dirs(@files);
   return keys %removed_dirs;
 }
+
 
 =item C<time_estimate($totalsize, $donesize, $starttime)>
 
@@ -4198,6 +4229,7 @@ false.
 =cut
 
 sub setup_persistent_downloads {
+  my $certs = shift;
   if ($TeXLive::TLDownload::net_lib_avail) {
     ddebug("setup_persistent_downloads has net_lib_avail set\n");
     if ($::tldownload_server) {
@@ -4205,10 +4237,10 @@ sub setup_persistent_downloads {
         debug("stop retrying to initialize LWP after 10 failures\n");
         return 0;
       } else {
-        $::tldownload_server->reinit();
+        $::tldownload_server->reinit(certificates => $certs);
       }
     } else {
-      $::tldownload_server = TeXLive::TLDownload->new;
+      $::tldownload_server = TeXLive::TLDownload->new(certificates => $certs);
     }
     if (!defined($::tldownload_server)) {
       ddebug("TLUtils:setup_persistent_downloads: failed to get ::tldownload_server\n");
@@ -5275,4 +5307,4 @@ GNU General Public License Version 2 or later.
 ### tab-width: 2
 ### indent-tabs-mode: nil
 ### End:
-# vim:set tabstop=2 expandtab: #
+# vim:set tabstop=2 shiftwidth=2 expandtab: #

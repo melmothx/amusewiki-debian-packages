@@ -11,7 +11,7 @@
 %% (but please observe conditions on bug reports sent to that address!)
 %% 
 %% 
-%% Copyright (C) 2020-2021
+%% Copyright (C) 2020-2023
 %% The LaTeX Project and any individual authors listed elsewhere
 %% in this file.
 %% 
@@ -34,8 +34,8 @@
 %%
 %% The LaTeX Project and any individual authors listed elsewhere
 %% in this file.
-\def\LaTeXFirstAidDate{2023/05/20}
-\def\LaTeXFirstAidVersion{v1.0z}
+\def\LaTeXFirstAidDate{2023/09/20}
+\def\LaTeXFirstAidVersion{v1.1b}
 \ProvidesFile{latex2e-first-aid-for-external-files.ltx}
              [\LaTeXFirstAidDate\space \LaTeXFirstAidVersion\space
                LaTeX kernel fixes to external files and packages]
@@ -167,19 +167,8 @@
 \ngermanTeX
 }%
 }
-\AddToHook{file/memoir.cls/before}[firstaid]{%
-  \expandafter\def\expandafter\@tempa\string\dimen{}%
-  \edef\kernel@stockheight{\expandafter\@tempa\meaning\stockheight}%
-  \edef\kernel@stockwidth{\expandafter\@tempa\meaning\stockwidth}%
-  \let\stockheight\@undefined
-  \let\stockwidth\@undefined
-}
-\AddToHook{file/memoir.cls/after}[firstaid]{%
-  \dimen\kernel@stockheight=\stockheight
-  \dimen\kernel@stockwidth=\stockwidth
-  \dimendef\stockheight=\kernel@stockheight
-  \dimendef\stockwidth=\kernel@stockwidth
-}
+\AddToHook{file/underscore.sty/after}[firstaid]{%
+  \FirstAidNeededT{underscore}{sty}{2006/09/13}{\RequirePackage{underscore-ltx}}}
 \endinput
 %%
 %% End of file `latex2e-first-aid-for-external-files.ltx'.

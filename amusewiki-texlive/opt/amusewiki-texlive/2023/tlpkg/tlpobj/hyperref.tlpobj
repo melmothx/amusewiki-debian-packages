@@ -1,6 +1,6 @@
 name hyperref
 category Package
-revision 67233
+revision 69523
 shortdesc Extensive support for hypertext in LaTeX
 longdesc The hyperref package is used to handle cross-referencing
 longdesc commands in LaTeX to produce hypertext links in the document.
@@ -29,17 +29,17 @@ depend rerunfilecheck
 depend stringenc
 depend url
 depend zapfding
-containersize 90480
-containerchecksum 0e8480cef5b923605934563dc8ad25cb8972eda33ac8afff86bb8163721af036a141f01cec6e395284c5ca7a4bbed92771302d1cf8a80521dce12fc0b17bc571
-doccontainersize 3672932
-doccontainerchecksum dc19c2635a6b756b55c1a76cf7611fa64f90be3607a11312888a756cf2fe5e50f84d05f49cb8decf75641dfed1ffb1ab22d9374eca8a98400b25a48f3adc1382
-docfiles size=1199
+containersize 88496
+containerchecksum 71d43dc16443357600d83779628922c0f6e4ee1b57b562b9a47cb7c11a2710ac1b573040c661819e71086107fbb6e7a98851c1a99a10fe5db19d406e98c0ed95
+doccontainersize 3975176
+doccontainerchecksum a2893e722d6aa2be885ebb15a96ab0f30c71811dc3b4e9791e2a6c2ea78c2cd6fdf90e485c7267e533f3e90eb71278074d6883cf4e6fd6c7d9f2a2c744ea6012
+docfiles size=1272
  texmf-dist/doc/latex/hyperref/ChangeLog.txt
  texmf-dist/doc/latex/hyperref/README.md details="Readme"
  texmf-dist/doc/latex/hyperref/backref.pdf
  texmf-dist/doc/latex/hyperref/hyperref-doc.css
  texmf-dist/doc/latex/hyperref/hyperref-doc.html details="Manual, HTML version"
- texmf-dist/doc/latex/hyperref/hyperref-doc.pdf details="Manual, PDF version" language="en"
+ texmf-dist/doc/latex/hyperref/hyperref-doc.pdf details="Manual, PDF version"
  texmf-dist/doc/latex/hyperref/hyperref-doc.tex
  texmf-dist/doc/latex/hyperref/hyperref-doc2.html
  texmf-dist/doc/latex/hyperref/hyperref-doc3.html
@@ -48,15 +48,17 @@ docfiles size=1199
  texmf-dist/doc/latex/hyperref/hyperref-doc6.html
  texmf-dist/doc/latex/hyperref/hyperref-doc7.html
  texmf-dist/doc/latex/hyperref/hyperref-doc8.html
+ texmf-dist/doc/latex/hyperref/hyperref-doc9.html
  texmf-dist/doc/latex/hyperref/hyperref-linktarget.pdf
  texmf-dist/doc/latex/hyperref/hyperref.pdf
  texmf-dist/doc/latex/hyperref/manifest.txt
  texmf-dist/doc/latex/hyperref/nameref.pdf
- texmf-dist/doc/latex/hyperref/paper.pdf details="Paper on tagging and navigation" language="en"
+ texmf-dist/doc/latex/hyperref/paper.pdf details="Paper on tagging and navigation"
  texmf-dist/doc/latex/hyperref/slides.pdf
-srccontainersize 413936
-srccontainerchecksum 4eefda3754a3f52c81ed4610b3228130519c6d932dd766a638ac41e3b59dbc9bea0690aaab8f118dc25163759b6192ff7427d9c170defcd45ac2cd74ed5311d8
-runfiles size=201
+ texmf-dist/doc/latex/hyperref/xr-hyper.pdf
+srccontainersize 417528
+srccontainerchecksum 1fcddde0f8e9c057d1ddfdc31616f1e362c57ee645f23c71cd9e94bc86f41de8ea32dd478f9df91cadcd66f1814072c5b0dbb2c2ee89f3f477302577ac603edb
+runfiles size=199
  texmf-dist/tex/latex/hyperref/backref.sty
  texmf-dist/tex/latex/hyperref/hdvipdfm.def
  texmf-dist/tex/latex/hyperref/hdvips.def
@@ -91,4 +93,4 @@ catalogue-contact-home https://github.com/latex3/hyperref
 catalogue-ctan /macros/latex/contrib/hyperref
 catalogue-license lppl1.3
 catalogue-topics hyper pdf-feat adobe-distiller form-fillin etex
-catalogue-version 7.00y
+catalogue-version 7.01h

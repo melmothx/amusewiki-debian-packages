@@ -7,7 +7,7 @@
 %% babel.dtx  (with options: `core')
 %% 
 %%
-%% Copyright (C) 2012-2023 Javier Bezos and Johannes L. Braams.
+%% Copyright (C) 2012-2024 Javier Bezos and Johannes L. Braams.
 %% Copyright (C) 1989-2012 Johannes L. Braams and
 %%           any individual authors listed elsewhere in this file.
 %% All rights reserved.
@@ -40,7 +40,7 @@
     \wlog{File: #1 #4 #3 <#2>}%
     \let\ProvidesFile\@undefined}
 \fi
-\ProvidesFile{babel.def}[2023/05/11 v3.89 Babel common definitions]
+\ProvidesFile{babel.def}[2024/01/07 v24.1 Babel common definitions]
 \ifx\AtBeginDocument\@undefined  % TODO. change test.
   \def\@empty{}
 \def\loadlocalcfg#1{%
@@ -595,8 +595,8 @@
     \toks@\expandafter{\bbl@tempc#3}%
     \expandafter\edef\csname extras\languagename\endcsname{\the\toks@}%
   \fi}
-\def\bbl@version{3.89}
-\def\bbl@date{2023/05/11}
+\def\bbl@version{24.1}
+\def\bbl@date{2024/01/07}
 \ifx\language\@undefined
   \csname newcount\endcsname\language
 \fi
@@ -1858,20 +1858,6 @@
 \def\bbl@disc#1#2{\nobreak\discretionary{#2-}{}{#1}\bbl@allowhyphens}
 \bbl@trace{Multiencoding strings}
 \def\bbl@toglobal#1{\global\let#1#1}
-\@ifpackagewith{babel}{nocase}%
-  {\let\bbl@patchuclc\relax}%
-  {\def\bbl@patchuclc{% TODO. Delete. Doesn’t work any more.
-    \global\let\bbl@patchuclc\relax
-    \g@addto@macro\@uclclist{\reserved@b{\reserved@b\bbl@uclc}}%
-    \gdef\bbl@uclc##1{%
-      \let\bbl@encoded\bbl@encoded@uclc
-      \bbl@ifunset{\languagename @bbl@uclc}% and resumes it
-        {##1}%
-        {\let\bbl@tempa##1\relax % Used by LANG@bbl@uclc
-         \csname\languagename @bbl@uclc\endcsname}%
-      {\bbl@tolower\@empty}{\bbl@toupper\@empty}}%
-    \gdef\bbl@tolower{\csname\languagename @bbl@lc\endcsname}%
-    \gdef\bbl@toupper{\csname\languagename @bbl@uc\endcsname}}}
 \@onlypreamble\StartBabelCommands
 \def\StartBabelCommands{%
   \begingroup
@@ -1893,11 +1879,17 @@
         \\\SetString\bbl@templ{\romannumeral\count@}{\the\toks@}%
         \count@=\the\count@\relax}}}%
   \newcommand\SetCase[3][]{%
-    \bbl@patchuclc
-    \bbl@forlang\bbl@tempa{%
-      \bbl@carg\bbl@encstring{\bbl@tempa @bbl@uclc}{\bbl@tempa##1}%
-      \bbl@carg\bbl@encstring{\bbl@tempa @bbl@uc}{##2}%
-      \bbl@carg\bbl@encstring{\bbl@tempa @bbl@lc}{##3}}}%
+    \def\bbl@tempa####1####2{%
+      \ifx####1\@empty\else
+        \bbl@carg\bbl@add{extras\CurrentOption}{%
+          \bbl@carg\babel@save{c__text_uppercase_\string####1_tl}%
+          \bbl@carg\def{c__text_uppercase_\string####1_tl}{####2}%
+          \bbl@carg\babel@save{c__text_lowercase_\string####2_tl}%
+          \bbl@carg\def{c__text_lowercase_\string####2_tl}{####1}}%
+        \expandafter\bbl@tempa
+      \fi}%
+    \bbl@tempa##1\@empty\@empty
+    \bbl@carg\bbl@toglobal{extras\CurrentOption}}%
   \newcommand\SetHyphenMap[1]{%
     \bbl@forlang\bbl@tempa{%
       \expandafter\bbl@stringdef
@@ -2026,24 +2018,7 @@
     \bbl@usehooks{stringprocess}{}%
     \expandafter\bbl@stringdef
       \csname\bbl@LC\expandafter\endcsname\expandafter{\BabelString}}}
-\ifx\bbl@opt@strings\relax
-  \def\bbl@scset#1#2{\def#1{\bbl@encoded#2}}
-  \bbl@patchuclc
-  \let\bbl@encoded\relax
-  \def\bbl@encoded@uclc#1{%
-    \@inmathwarn#1%
-    \expandafter\ifx\csname\cf@encoding\string#1\endcsname\relax
-      \expandafter\ifx\csname ?\string#1\endcsname\relax
-        \TextSymbolUnavailable#1%
-      \else
-        \csname ?\string#1\endcsname
-      \fi
-    \else
-      \csname\cf@encoding\string#1\endcsname
-    \fi}
-\else
-  \def\bbl@scset#1#2{\def#1{#2}}
-\fi
+\def\bbl@scset#1#2{\def#1{#2}}
 \def\bbl@aftercmds#1{%
   \toks@\expandafter{\bbl@scafter#1}%
   \xdef\bbl@scafter{\the\toks@}}

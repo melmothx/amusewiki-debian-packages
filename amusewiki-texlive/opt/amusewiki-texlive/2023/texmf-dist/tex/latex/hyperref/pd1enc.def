@@ -7,10 +7,10 @@
 %% hyperref.dtx  (with options: `pd1enc')
 %% 
 %% Copyright
-%% 1995-2001 Sebastian Rahtz, with portions written by David Carlisle and Heiko Oberdiek,
-%% 2001-2015 Heiko Oberdiek.
+%% 1995-2001 Sebastian Rahtz, with portions written by David Carlisle and Heiko Oberdiek
+%% 2001-2015 Heiko Oberdiek
 %% 2016-2019 Oberdiek Package Support Group
-%% 2019-2022 LaTeX Project
+%% 2019-2024 LaTeX Project
 %%      https://github.com/latex3/hyperref/issues
 %% 
 %% This file is part of the `Hyperref Bundle'.
@@ -33,7 +33,7 @@
 %% 
 %% File: hyperref.dtx
 \ProvidesFile{pd1enc.def}
-  [2023-05-16 v7.00y %
+  [2024-01-20 v7.01h %
   Hyperref: PDFDocEncoding definition (HO)]
 \DeclareFontEncoding{PD1}{}{}
 \DeclareTextAccent{\`}{PD1}{\textasciigrave}
@@ -112,7 +112,7 @@
 \DeclareTextCommand{\textbullet}{PD1}{\200}% U+2022
 \DeclareTextCommand{\textdagger}{PD1}{\201}% U+2020
 \DeclareTextCommand{\textdaggerdbl}{PD1}{\202}% U+2021
-\DeclareTextCommand{\textddagger}{PD1}{\textddagger}
+\DeclareTextCommand{\textddagger}{PD1}{\textdaggerdbl}
 \DeclareTextCommand{\textellipsis}{PD1}{\203}% U+2026
 \DeclareTextCommand{\textemdash}{PD1}{\204}% U+2014
 \DeclareTextCommand{\textendash}{PD1}{\205}% U+2013

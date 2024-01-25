@@ -1,5 +1,5 @@
 upTeX, upLaTeX  --- 内部unicode版 pTeX, pLaTeX の実装
-2023.01.12 Ver1.29
+2023.09.16 Ver1.30
 TANAKA, Takuji   ttk(at)t-lab(dot)opal(dot)ne(dot)jp
 
 ◇ upTeX開発のねらい
@@ -456,9 +456,10 @@ kcatcodeは原則としてUnicodeのblock毎に与えられる。
  (0x13D) 0x2B740..0x2B81F <16>  CJK Unified Ideographs Extension D
  (0x13E) 0x2B820..0x2CEAF <16>  CJK Unified Ideographs Extension E
  (0x13F) 0x2CEB0..0x2F7FF <16>  CJK Unified Ideographs Extension F
- (0x140) 0x2F800..0x2FFFF <16>  CJK Compatibility Ideographs Supplement
- (0x141) 0x30000..0x3134F <16>  CJK Unified Ideographs Extension G
- (0x142) 0x31350..0x323AF <16>  CJK Unified Ideographs Extension H
+ (0x140) 0x2EBF0..0x2EE5F <16>  CJK Unified Ideographs Extension I
+ (0x141) 0x2F800..0x2FFFF <16>  CJK Compatibility Ideographs Supplement
+ (0x142) 0x30000..0x3134F <16>  CJK Unified Ideographs Extension G
+ (0x143) 0x31350..0x323AF <16>  CJK Unified Ideographs Extension H
 (上記の文字の範囲は実装に基づいており、Blocks.txtに記述されている範囲より広い場合がある)
 ○Unicode blockの例外
  (0x1FD) 0xAA, 0xBA, 0xC0..0xD6, 0xD8..0xF6, 0xF8..0xFF <15>  Latin-1 Letters
@@ -578,7 +579,7 @@ dvips     TeX Live 2010 に取り込まれた。
 dvipdfmx  TeX Live svn に r24509 あたりで取り込まれた。
   set3も含めて動いている。
   ただし、set3で、「内部コードがUTF-32, CMapがUniXXX-UTF16」であること
-  を仮定したハードコーディングになっているおり、柔軟性は乏しい。
+  を仮定したハードコーディングになっており、柔軟性は乏しい。
   bookmark 作成は UTF8-UCS2, UTF8-UTF16 の CMap または、
   convbkmk.rbの-oオプションを必要とする。
 dvi2tty   TeX Live svn に r24634 あたりで取り込まれた。

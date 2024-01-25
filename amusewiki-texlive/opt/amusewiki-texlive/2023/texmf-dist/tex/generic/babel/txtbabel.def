@@ -7,7 +7,7 @@
 %% babel.dtx  (with options: `texxet')
 %% 
 %%
-%% Copyright (C) 2012-2023 Javier Bezos and Johannes L. Braams.
+%% Copyright (C) 2012-2024 Javier Bezos and Johannes L. Braams.
 %% Copyright (C) 1989-2012 Johannes L. Braams and
 %%           any individual authors listed elsewhere in this file.
 %% All rights reserved.
@@ -95,7 +95,7 @@
        \hskip\columnwidth}}}%
   {}
 \bbl@trace{Bidi footnotes}
-\ifnum\bbl@bidimode>\z@
+\ifnum\bbl@bidimode>\z@ % Any bidi=
   \def\bbl@footnote#1#2#3{%
     \@ifnextchar[%
       {\bbl@footnote@o{#1}{#2}{#3}}%
@@ -172,7 +172,7 @@
        \bbl@foreach\bbl@tempe{%
          \def\bbl@tempd{##1}%  Save last declared
          \advance\count@\@ne}%
-       \ifnum\count@>\@ne
+       \ifnum\count@>\@ne    % (1)
          \getlocaleproperty*\bbl@tempa{#1}{identification/encodings}%
          \ifx\bbl@tempa\relax \let\bbl@tempa\@empty \fi
          \bbl@replace\bbl@tempa{ }{,}%

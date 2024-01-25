@@ -3,9 +3,9 @@
 %%IncludeResource: ProcSet (CIDInit)
 %%BeginResource: CMap (UTF8-UTF16)
 %%Title: (UTF8-UTF16 UCS Conversion)
-%%Version: 1.009
+%%Version: 1.010
 %%Copyright: -----------------------------------------------------------
-%%Copyright: Copyright (c) 2012-2022 Takuji Tanaka
+%%Copyright: Copyright (c) 2012-2023 Takuji Tanaka
 %%Copyright: All rights reserved.
 %%Copyright:
 %%Copyright: Redistribution and use in source and binary forms, with or
@@ -36,9 +36,9 @@
 %%Copyright: SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 %%Copyright: -----------------------------------------------------------
 %%Comment: -------------------------------------------------------------
-%%Comment: Undefined code points in Unicode 15.0 are not included.
+%%Comment: Undefined code points in Unicode 15.1 are not included.
 %%Comment: Ref. http://www.unicode.org/Public/UNIDATA/Blocks.txt
-%%Comment:    "Blocks-15.0.0.txt Date: 2022-01-28, 20:58:00 GMT [KW]"
+%%Comment:    "Blocks-15.1.0.txt Date: 2023-07-28, 15:47:20 GMT"
 %%Comment: -------------------------------------------------------------
 %%EndComments
 
@@ -56,7 +56,7 @@ end def
 
 /CMapName /UTF8-UTF16 def
 
-/CMapVersion 1.009 def
+/CMapVersion 1.010 def
 /CMapType 2 def
 /WMode 0 def
 
@@ -2507,6 +2507,16 @@ endbfrange
 <f0aead80> <f0aeadbf> <d87adf40>
 <f0aeae80> <f0aeaebf> <d87adf80>
 <f0aeaf80> <f0aeafbf> <d87adfc0>
+<f0aeb080> <f0aeb0bf> <d87bdc00>
+<f0aeb180> <f0aeb1bf> <d87bdc40>
+<f0aeb280> <f0aeb2bf> <d87bdc80>
+<f0aeb380> <f0aeb3bf> <d87bdcc0>
+<f0aeb480> <f0aeb4bf> <d87bdd00>
+<f0aeb580> <f0aeb5bf> <d87bdd40>
+<f0aeb680> <f0aeb6bf> <d87bdd80>
+<f0aeb780> <f0aeb7bf> <d87bddc0>
+<f0aeb880> <f0aeb8bf> <d87bde00>
+<f0aeb980> <f0aeb9bf> <d87bde40>
 <f0afa080> <f0afa0bf> <d87edc00>
 <f0afa180> <f0afa1bf> <d87edc40>
 <f0afa280> <f0afa2bf> <d87edc80>
@@ -2531,6 +2541,9 @@ endbfrange
 <f0b08c80> <f0b08cbf> <d880df00>
 <f0b08d80> <f0b08dbf> <d880df40>
 <f0b08e80> <f0b08ebf> <d880df80>
+endbfrange
+
+100 beginbfrange
 <f0b08f80> <f0b08fbf> <d880dfc0>
 <f0b09080> <f0b090bf> <d881dc00>
 <f0b09180> <f0b091bf> <d881dc40>
@@ -2541,9 +2554,6 @@ endbfrange
 <f0b09680> <f0b096bf> <d881dd80>
 <f0b09780> <f0b097bf> <d881ddc0>
 <f0b09880> <f0b098bf> <d881de00>
-endbfrange
-
-100 beginbfrange
 <f0b09980> <f0b099bf> <d881de40>
 <f0b09a80> <f0b09abf> <d881de80>
 <f0b09b80> <f0b09bbf> <d881dec0>
@@ -2634,6 +2644,9 @@ endbfrange
 <f0b1b080> <f0b1b0bf> <d887dc00>
 <f0b1b180> <f0b1b1bf> <d887dc40>
 <f0b1b280> <f0b1b2bf> <d887dc80>
+endbfrange
+
+34 beginbfrange
 <f0b1b380> <f0b1b3bf> <d887dcc0>
 <f0b1b480> <f0b1b4bf> <d887dd00>
 <f0b1b580> <f0b1b5bf> <d887dd40>
@@ -2644,9 +2657,6 @@ endbfrange
 <f0b1ba80> <f0b1babf> <d887de80>
 <f0b1bb80> <f0b1bbbf> <d887dec0>
 <f0b1bc80> <f0b1bcbf> <d887df00>
-endbfrange
-
-24 beginbfrange
 <f0b1bd80> <f0b1bdbf> <d887df40>
 <f0b1be80> <f0b1bebf> <d887df80>
 <f0b1bf80> <f0b1bfbf> <d887dfc0>

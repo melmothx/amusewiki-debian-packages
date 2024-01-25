@@ -40,7 +40,7 @@
 %% find a complete unmodified copy of LaTeX2e at
 %% <http://mirror.ctan.org/tex-archive/macros/latex/base/>.
 %% 
-%%% From File: $Id: scrkernel-version.dtx 4038 2023-04-24 07:06:57Z kohm $
+%%% From File: $Id: scrkernel-version.dtx 4070 2023-07-07 07:08:40Z kohm $
 \begingroup
   \catcode`\@11\relax
   \ifx\KOMAScriptVersion\undefined
@@ -62,22 +62,36 @@
       \fi
     }
   \fi
-  \@CheckKOMAScriptVersion{2023/04/24 v3.40 KOMA-Script}%
+  \@CheckKOMAScriptVersion{2023/07/07 v3.41 KOMA-Script}%
 \endgroup
-%%% From File: $Id: scrhack.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrhack.dtx 4063 2023-06-28 08:28:26Z kohm $
 \ProvidesFile{listings.hak}[%
-  2023/04/24 v3.40 KOMA-Script
+  2023/07/07 v3.41 KOMA-Script
   scrhack part
   (hacking package
     listings)%
 ]
-%%% From File: $Id: scrhack.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrhack.dtx 4063 2023-06-28 08:28:26Z kohm $
 \newcommand*{\scr@do@hack@listings}{%
   \RequirePackage{tocbasic}%
   \addtotoclist[float]{lol}%
   \setuptoc{lol}{chapteratlist}%
   \PackageInfo{scrhack}{redefining \string\lstlistoflistings}%
   \renewcommand*{\lstlistoflistings}{\listoftoc[{\lstlistlistingname}]{lol}}%
+  \providecommand*{\ext@lstlisting}{lol}%
+  \@tempswafalse
+  \xpatchcmd\lst@MakeCaption
+    {\addcontentsline{lol}}%
+    {\addcontentsline{\ext@lstlisting}}%
+    {\PackageInfo{scrhack}{patching \string\lst@MakeCaption}\@tempswatrue}%
+    {\PackageWarning{scrhack}{cannot patch \string\lst@MakeCaption}}%
+  \@whilesw\if@tempswa\fi{%
+    \xpatchcmd\lst@MakeCaption
+      {\addcontentsline{lol}}%
+      {\addcontentsline{\ext@lstlisting}}%
+      {}%
+      {\@tempswafalse}%
+  }%
   \AtBeginDocument{%
     \scr@ifexpected{\float@addtolists}{%
       \def\float@addtolists##1{\addtocontents{lol}{##1}}%

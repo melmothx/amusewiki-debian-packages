@@ -14,7 +14,6 @@ Plain and LaTeX formats are supported.
 
 The bundle consists of the following files:
 
-* frenchb.ins: installation file to unpack the language definition files,
 * frenchb.dtx: packed language definition files and documentation,
 * frenchb.pdf: unpacked documentation for babel-french,
 * frenchb-doc.pdf: comprehensive documentation in French,
@@ -32,7 +31,7 @@ See http://www.latex-project.org/lppl.txt
 If the latest version of this package is not included in your LaTeX
 distribution, do the following:
 
-* issue "luatex frenchb.ins" to unpack the language definition files;
+* issue "luatex frenchb.dtx" to unpack the language definition files;
 * copy the files frenchb.lua, french.ldf, frenchb.ldf, francais.ldf,
   acadian.ldf and canadien.ldf to a location where TeX can find them
   (default location: $TEXMF/tex/generic/babel-french/);

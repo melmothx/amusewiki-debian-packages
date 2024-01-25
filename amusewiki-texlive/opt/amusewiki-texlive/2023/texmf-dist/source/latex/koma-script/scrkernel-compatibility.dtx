@@ -18,7 +18,7 @@
 %
 % This work consists of all files listed in MANIFEST.md.
 % ======================================================================
-%%% From File: $Id: scrkernel-compatibility.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-compatibility.dtx 4054 2023-05-10 14:35:36Z kohm $
 %<identify>%%%            (run: identify)
 %<init>%%%            (run: init)
 %<option>%%%            (run: option)
@@ -27,9 +27,9 @@
 \ifx\ProvidesFile\undefined\def\ProvidesFile#1[#2]{}\fi
 \begingroup
   \def\filedate$#1: #2-#3-#4 #5${\def\filedate{#2/#3/#4}}
-  \filedate$Date: 2023-04-17 11:45:11 +0200 (Mo, 17. Apr 2023) $
+  \filedate$Date: 2023-05-10 16:35:36 +0200 (Mi, 10. Mai 2023) $
   \def\filerevision$#1: #2 ${\def\filerevision{r#2}}
-  \filerevision$Revision: 4032 $
+  \filerevision$Revision: 4054 $
   \edef\reserved@a{%
     \noexpand\endgroup
     \noexpand\ProvidesFile{scrkernel-compatibility.dtx}%
@@ -458,6 +458,8 @@
 % \changes{v3.39}{2022/10/13}{added}
 % \begin{macro}{\scr@v@3.40}
 % \changes{v3.40}{2023/04/17}{added}
+% \begin{macro}{\scr@v@3.41}
+% \changes{v3.41}{2023/04/24}{added}
 % \begin{macro}{\scr@v@last}
 % \changes{v2.9u}{2005/03/05}{added}
 % Nun die unterschiedlichen möglichen Werte (|\scr@v@last| ist jeweils die
@@ -547,8 +549,10 @@
 \@namedef{scr@v@3.38}{20}
 \@namedef{scr@v@3.39}{20}
 \@namedef{scr@v@3.40}{20}
-\@namedef{scr@v@last}{20}
+\@namedef{scr@v@3.41}{21}
+\@namedef{scr@v@last}{21}
 %    \end{macrocode}
+% \end{macro}
 % \end{macro}
 % \end{macro}
 % \end{macro}

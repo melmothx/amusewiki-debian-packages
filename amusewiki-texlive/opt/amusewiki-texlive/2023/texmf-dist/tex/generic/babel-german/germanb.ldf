@@ -7,7 +7,7 @@
 %% germanb.dtx  (with options: `germanb')
 %% This is a generated file.
 %% 
-%% Copyright 1989--2021
+%% Copyright 1989--2024
 %%     Johannes L. Braams
 %%     Bernd Raichle
 %%     Walter Schmidt
@@ -34,7 +34,7 @@
 %%                     via: https://github.com/jspitz/babel-german
 %% 
 \ProvidesLanguage{germanb}
-        [2021/02/27 v2.13 German support for babel (pre-1996 orthography)]
+        [2024/01/19 v2.14 German support for babel (pre-1996 orthography)]
 \def\tmpa{germanb}
 \let\SaveCurrentOption\CurrentOption
 \ifx\CurrentOption\tmpa
@@ -237,6 +237,11 @@
 \declare@shorthand{german}{"=}{\penalty\@M-\hskip\z@skip}
 \declare@shorthand{german}{"/}{\textormath
   {\bbl@allowhyphens\discretionary{/}{}{/}\bbl@allowhyphens}{}}
+\def\mkgender{*}
+\declare@shorthand{german}{":}{\nobreak:\bbl@allowhyphens}
+\declare@shorthand{german}{"*}{\nobreak*\bbl@allowhyphens}
+\declare@shorthand{german}{"_}{\nobreak\_\bbl@allowhyphens}
+\declare@shorthand{german}{"x}{\nobreak\mkgender\bbl@allowhyphens}
 \def\mdqon{\shorthandon{"}}
 \def\mdqoff{\shorthandoff{"}}
 \def\ck{\bbl@allowhyphens\discretionary{k-}{k}{ck}\bbl@allowhyphens}

@@ -44,7 +44,7 @@
 %% find a complete unmodified copy of LaTeX2e at
 %% <http://mirror.ctan.org/tex-archive/macros/latex/base/>.
 %% 
-%%% From File: $Id: scrkernel-version.dtx 4038 2023-04-24 07:06:57Z kohm $
+%%% From File: $Id: scrkernel-version.dtx 4070 2023-07-07 07:08:40Z kohm $
 \begingroup
   \catcode`\@11\relax
   \ifx\KOMAScriptVersion\undefined
@@ -66,19 +66,19 @@
       \fi
     }
   \fi
-  \@CheckKOMAScriptVersion{2023/04/24 v3.40 KOMA-Script}%
+  \@CheckKOMAScriptVersion{2023/07/07 v3.41 KOMA-Script}%
 \endgroup
 \providecommand*{\scr@pkgextension}{\@pkgextension}
 \AtBeginDocument{%
   \let\scr@pkgextension\@pkgextension
 }
-%%% From File: $Id: scrkernel-basics.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-basics.dtx 4051 2023-04-26 16:01:28Z kohm $
 %%%            (run: prepare)
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \ProvidesPackage{%
   scrkbase%
 }[%
-  2023/04/24 v3.40 KOMA-Script
+  2023/07/07 v3.41 KOMA-Script
   package
   (%
     KOMA-Script-dependent
@@ -242,12 +242,12 @@
 }
 \newcommand*{\KOMAProcessOptions}{\FamilyProcessOptions{KOMA}}
 \@onlypreamble\KOMAProcessOptions
-%%% From File: $Id: scrkernel-basics.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-basics.dtx 4051 2023-04-26 16:01:28Z kohm $
 %%%            (run: option)
 \KOMAProcessOptions\relax
 %%% From File: $Id: scrkernel-fonts.dtx 4034 2023-04-20 08:03:46Z kohm $
 %%%            (run: option)
-%%% From File: $Id: scrkernel-basics.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-basics.dtx 4051 2023-04-26 16:01:28Z kohm $
 %%%            (run: body)
 \newcommand*{\KOMAExecuteOptions}[1][\@currname.\@currext]{%
   \Ifstrstart{#1}{.}{%

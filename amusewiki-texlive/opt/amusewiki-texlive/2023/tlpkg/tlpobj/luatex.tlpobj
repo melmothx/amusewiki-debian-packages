@@ -1,6 +1,6 @@
 name luatex
 category TLCore
-revision 66967
+revision 69182
 shortdesc The LuaTeX engine
 longdesc LuaTeX is a greatly extended version of pdfTeX using Lua as an
 longdesc embedded scripting language. The LuaTeX project's main
@@ -20,11 +20,11 @@ depend tex-ini-files
 depend unicode-data
 execute AddFormat name=dviluatex engine=luatex options="dviluatex.ini"   patterns=language.def,language.dat.lua   fmttriggers=cm,etex,hyphen-base,knuth-lib,plain,tex-ini-files,unicode-data,hyph-utf8
 execute AddFormat name=luatex engine=luatex options="luatex.ini"   patterns=language.def,language.dat.lua   fmttriggers=cm,etex,hyphen-base,knuth-lib,plain,tex-ini-files,unicode-data,hyph-utf8
-containersize 13712
-containerchecksum a857a84fa4d2b03a1ba8a7890dd52eb42c44174cf2117ea9ab1fb6d946decedacfa51af4cadcfe30580bc20152ca0403db641c5c61a5b86b726e994d0b4114c8
-doccontainersize 1948096
-doccontainerchecksum f77425653668fc4cc76383862c67a7a170d0021a7d946f55ee399e2400357083ea4524862f8c40360fe9f6c39d6d2c2dfc2babfb43db66a783649d0f4358b059
-docfiles size=749
+containersize 13432
+containerchecksum 5ddb75ca2e358bea261363cc19d39a37a9e467f9cbf4f8006f036a96fea61cb00f86c4000c09d7dd07f71f9b9a01ec165ddefb862aa84f0bc3da6a387ca1f42b
+doccontainersize 1956816
+doccontainerchecksum 36a5dfb6b7ca09adad807d2fa74df854363107eb3fb514977e3ed8c69eeb1181a19a55a49eb8c001a3532601c0a222a3ae9d130827caa19864df03705af7271c
+docfiles size=752
  texmf-dist/doc/luatex/base/NEWS
  texmf-dist/doc/luatex/base/graphics/luaharfbuzz.pdf
  texmf-dist/doc/luatex/base/luatex-backend.tex
@@ -60,9 +60,8 @@ docfiles size=749
  texmf-dist/doc/man/man1/texlua.man1.pdf
  texmf-dist/doc/man/man1/texluac.1
  texmf-dist/doc/man/man1/texluac.man1.pdf
-runfiles size=38
+runfiles size=37
  texmf-dist/tex/generic/config/luatex-unicode-letters.tex
- texmf-dist/tex/generic/config/luatexiniconfig.tex
  texmf-dist/web2c/texmfcnf.lua
 catalogue-contact-bugs https://mailman.ntg.nl/mailman/listinfo/dev-luatex
 catalogue-contact-home http://luatex.org

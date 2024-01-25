@@ -7,7 +7,7 @@
 %% ngermanb.dtx  (with options: `nswissgerman')
 %% This is a generated file.
 %% 
-%% Copyright 1989--2021
+%% Copyright 1989--2024
 %%     Johannes L. Braams
 %%     Bernd Raichle
 %%     Walter Schmidt
@@ -34,7 +34,7 @@
 %%                     via: https://github.com/jspitz/babel-german
 %% 
 \ProvidesLanguage{nswissgerman}
-        [2021/02/27 v2.13 German support for babel (post-1996 orthography)]
+        [2024/01/19 v2.14 German support for babel (post-1996 orthography)]
 \def\tmpa{ngermanb}
 \ifx\CurrentOption\tmpa
   \def\CurrentOption{ngerman}

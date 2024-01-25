@@ -1,7 +1,7 @@
 The LaTeX `tools` bundle
 ========================
 
-Release 2022-11-01
+Release 2023-11-01c
 
 Overview
 --------
@@ -51,4 +51,4 @@ of the package.
 
 -----
 
-<p>Copyright (C) 1993-2022 The LaTeX Project <br />
+<p>Copyright (C) 1993-2023 The LaTeX Project <br />

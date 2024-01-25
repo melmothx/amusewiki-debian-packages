@@ -1,4 +1,4 @@
-% Language definition file (part of polyglossia v1.62 -- 2023/04/22)
+% Language definition file (part of polyglossia v1.66 -- 2023/12/11)
 %
 \ProvidesFile{gloss-belarusian.ldf}[polyglossia: module for Belarusian]
 
@@ -85,7 +85,7 @@
 }{}
 
 \def\belarusian@shorthands{%
-  \bbl@activate{"}%
+  \xpg@activate@shorthands%
   \def\language@group{belarusian}%
   \declare@shorthand{belarusian}{"`}{„}%
   \declare@shorthand{belarusian}{"'}{“}%
@@ -124,7 +124,7 @@
 }
 
 \def\nobelarusian@shorthands{%
-  \@ifundefined{initiate@active@char}{}{\bbl@deactivate{"}}%
+  \xpg@deactivate@shorthands%
 }
 
 % Taken from babel-belarusian

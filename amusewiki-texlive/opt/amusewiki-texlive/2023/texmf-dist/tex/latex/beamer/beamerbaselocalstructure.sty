@@ -1,7 +1,7 @@
 % Copyright 2003--2007 by Till Tantau
 % Copyright 2010,2012--2015 by Vedran Mileti\'c, Joseph Wright
 % Copyright 2017,2018 by Louis Stuart, Joseph Wright
-% Copyright 2020--2023 by Joseph Wright, samcarter
+% Copyright 2020--2024 by Joseph Wright, samcarter
 %
 % This file may be distributed and/or modified
 %
@@ -86,8 +86,8 @@
       {\usebeamertemplate{alerted text end}}{\color{.}}{}\ignorespaces}{\ifhmode\unskip\fi\end{altenv}}
 
   \newenvironment<>{structureenv}{\begin{altenv}#1%
-      {\usebeamercolor[fg]{structure}\usebeamerfont{structure}\usebeamertemplate{structure text begin}}
-      {\usebeamertemplate{structure text end}}{\color{.}}{}\ignorespaces}{\ifhmode\unskip\fi\end{altenv}}
+      {\usebeamercolor[fg]{structure}\usebeamerfont{structure}\usebeamertemplate{structure begin}}
+      {\usebeamertemplate{structure end}}{\color{.}}{}\ignorespaces}{\ifhmode\unskip\fi\end{altenv}}
 
   \newcommand<>{\alert}[1]{\begin{alertenv}#2\relax#1\end{alertenv}}
   \newcommand<>{\structure}[1]{\begin{structureenv}#2\relax#1\end{structureenv}}

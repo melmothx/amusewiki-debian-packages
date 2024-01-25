@@ -1,14 +1,377 @@
-================================================================================
-This file lists changes to the LaTeX2e files in reverse chronological order of
-publication (therefore the dates might be out of sequence if there are hotfixes).
-It is provided for convenience only.  It therefore makes no claims to
-completeness or accuracy and it contains some references to files that
-are not part of the distribution.
-================================================================================
+================================================================================ 
+This file lists changes to the LaTeX2e files in reverse chronological order 
+of publication (therefore the dates might be out of sequence if there are 
+hotfixes). It is provided for convenience only.  It therefore makes no claims 
+to completeness or accuracy and it contains some references to files that are 
+not part of the distribution. 
+================================================================================ 
 
 ================================================================================
 All changes above are only part of the development branch for the next release.
 ================================================================================
+
+#########################
+# 2023-11-01 PL1 Release
+#########################
+
+2024-01-13 Jonathan P. Spratte <jspratte@yahoo.de>
+	* ltkeys.dtx: 
+	Trim spaces off key names taken from the raw-lists (gh1238)
+
+#########################
+# 2023-11-01 Release
+#########################
+
+2023-10-15 Ulrike Fischer <Ulrike.Fischer@latex-project.org> 
+	* ltproperties.dtx: 
+	Add support for pagetarget property.  
+
+2023-10-26  David Carlisle  <David.Carlisle@latex-project.org>
+	* ltboxes.dtx:
+	add check so \makebox[4cm][?]{abc} does not discard text (gh1072)
+
+2023-10-26 Joseph Wright  <Joseph.Wright@latex-project.org>
+	* ltspace.tex:
+	Use a protected definition for tilde which is safe in csnames
+
+2023-10-21 Yukai Chou  <muzimuzhi@gmai.com>
+	* ltfssbas.dtx, ltplain.dtx, ltspace.dtx:
+	Correct typos
+
+2023-10-14 Joseph Wright  <Joseph.Wright@latex-project.org>
+	* clsguide.tex:
+	Additional documentation
+
+2023-10-14 Joseph Wright  <Joseph.Wright@latex-project.org>
+	* clsguide.tex:
+	Add that \CurrentOption is available in \DeclareUnknownKeyHandler
+
+2023-10-13 Joseph Wright  <Joseph.Wright@latex-project.org>
+	* ltexpl.dtx:
+	Add \IfExplAtLeastTF
+
+2023-10-10  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* docstrip.dtx (section{Internal functions and variables}):
+	Explain the steps carried out by the replacement algorithm for @@.
+
+2023-09-13 Ulrike Fischer <Ulrike.Fischer@latex-project.org>
+	* ltproperties.dtx: 
+      Use \protected@edef for expansion in the LaTeX2e commands.
+      
+2023-09-13 Ulrike Fischer <Ulrike.Fischer@latex-project.org>
+	* ltproperties.dtx:
+	Expand consistently the label/property names in the LaTeX2e commands.
+
+2023-09-13 Joseph Wright  <Joseph.Wright@latex-project.org>
+	* ltmiscen.dtx:
+	Correct typo
+
+2023-09-05 Ulrike Fischer <Ulrike.Fischer@latex-project.org>
+	* ltproperties.dtx:
+	First implementation of properties module
+
+	* ltmiscen.dtx:
+	Add test to \enddocument for changes in property values.
+
+2023-09-01  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* ltmiscen.dtx
+	Provide global definition for active tab
+
+2023-06-15  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* ltmiscen.dtx
+	Refinements to tab support
+
+2023-06-14  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* ltmiscen.dtx, ltspace.dtx
+	Support (visible) tabs in verbatim material
+
+2023-08-19 Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* ltcmd.dtx, usrguide.tex
+	Remove \GetDocumentCommandArgSpec,
+	  \GetDocumentEnvironmentArgSpec,
+	  \ShowDocumentCommandArgSpec,
+	  \ShowDocumentEnvironmentArgSpec
+
+2023-08-05  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* ltsockets.dtx:
+	First implementation of the sockets module.
+
+2023-07-10 Marcel Krüger  <marcel.krueger@latex-project.org>
+
+	* ltluatex.dtx
+	Restore post_mlist_to_hlist_filter callback type to reverselist (gh1116)
+
+2023-07-10 Yukai Chou  <muzimuzhi@gmail.com>
+
+    * ltfilehook.dtx (subsection{Declaring a file substitution}):
+    Drop a redundant \ExplSyntaxOff
+
+2023-07-02  David Carlisle  <David.Carlisle@latex-project.org>
+
+	* ltluatex.dtx modify new_luafunction to ensure
+	\e@alloc@luafunction@count always matches the size of the Lua
+	table of function allocations (gh100)
+
+2023-06-12  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* usrguide.tex
+	Correct description of font encodings supported for case changing
+
+2023-06-09  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* usrguide.tex
+	Various refinements to descriptions of \NewDocumentCommand, etc.
+
+#########################
+# 2023-06-01 PL1 Release
+#########################
+
+2023-06-16  Yukai Chou <muzimuzhi@gmail.com>
+
+    * lthooks.dtx (subsection{Setting rules for hooks code}):
+    Sync \@expl@@@initialize@all@@ with \__hook_initialize_all: if latter is
+    rolled back (gh1088)
+
+2023-06-16  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* ltfiles.dtx
+	Allow for pipes in \input, etc.
+
+2023-06-16  Phelype Oleinik  <Joseph.Wright@latex-project.org>
+
+	* lthooks.dtx, ltcmdhooks.dtx
+	Correct some rollback labels and dates.
+
+#########################
+# 2023-06-01 Release
+#########################
+
+2023-05-21  Phelype Oleinik  <phelype.oleinik@latex-project.org>
+
+	* lthooks.dtx (subsection{Adding or removing hook code}):
+	Short-circuit when the hook is declared without args (gh1078).
+
+2023-05-31  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* usrguide.tex
+	Correct syntax of opt. arg. for \DeclareLowercaseMapping, etc.
+
+2023-05-30  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* ltfinal.dtx
+	Fix implementation of \DeclareLowercaseMapping
+
+2023-05-26  Yukai Chou <muzimuzhi@gmail.com>
+
+    * ltcmd.dtx (subsection{Structure of \pkg{xparse} commands}):
+    Use simpler 'NNno' variant instead of 'NNVo' for
+    \cs_generate_from_arg_count:NNnn
+
+2023-05-22  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* usrguide.tex
+	Ensure url package is always loaded
+
+2023-05-21  Phelype Oleinik  <phelype.oleinik@latex-project.org>
+
+	* lthooks.dtx, ltcmdhooks.dtx:
+	Add support for accessing arguments in 'cmd' hooks.
+
+2023-05-19  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* usrguide.tex (section Creating document commands and environments)
+	  Add details of result of trailing optional arguments on
+	  \inputlineno
+	
+2023-05-12  Ulrike Fischer <Ulrike.Fischer@latex-project.org>
+
+	* ltxref.dtx
+	extend \label to store five values and add a hook with argument
+
+2023-05-17  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* usrguide.tex (section Creating document commands and environments)
+	  Add details of brace stripping by \SplitList
+	  Add guidance on creating commands to use at start of
+	  tabular cells
+
+2023-05-15  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* ltfiles.dtx:
+	Use expl3-based file-existence test
+
+2023-05-13  David Carlisle  <David.Carlisle@latex-project.org>
+
+	* ltmath.dtx: Add \ignorespaces to \eqno (gh/1059)
+
+2023-04-19  Joseph Wright  <joseph.wright@latex-project.org>
+
+	* ltfinal.dtx (subsection{Lccodes and uccodes}):
+	Add \DeclareLowercaseMapping, \DeclareTitlecaseMapping and
+	\DeclareUppercaseMapping (gh/1033)
+
+2023-04-19  Phelype Oleinik  <phelype.oleinik@latex-project.org>
+
+	* lthooks.dtx (subsection{Specifying code for next invocation}):
+	Initialise hook structure when adding 'next' code (gh/1052)
+
+2023-04-17  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* ltfinal.dtx (subsubsection{Lccodes and uccodes}):
+	Add \BCPdata (gh/1035)
+	Adapt \MakeLowercase, \MakeTitlecase and \MakeLowercase
+	to use \BCPdata for locale info
+
+2023-04-16  Phelype Oleinik  <phelype.oleinik@latex-project.org>
+
+	* lthooks.dtx (subsubsection{Setting hooks up}):
+	Use \@@_replacing_args_false: in \@@_include_legacy_code_chunk:n.
+
+2023-04-15  David Carlisle  <David.Carlisle@latex-project.org>
+
+	* ltplain.dtx: adjust \extrafloats so it does not error if thousands
+	of float boxes are allocated. github/1041
+
+2023-04-14  Phelype Oleinik  <phelype.oleinik@latex-project.org>
+
+	* ltclass.dtx (\@onefilewithoptions):
+	When in latexrelease.sty, define \load@onefilewithoptions (gh/992).
+
+2023-04-13  David Carlisle  <David.Carlisle@latex-project.org>
+
+	* cmfonts.fdd: add missing substitution for U/cmtt/bx/sl gh/1037
+
+2023-04-12  Phelype Oleinik  <phelype.oleinik@latex-project.org>
+
+	* ltcmd.dtx (subsection{Grabbing arguments}):
+	Set \tex_endlinechar:D earlier to correct parsing of newlines in
+	special catcode settings (e.g., \ExplSyntaxOn) (gh/876).
+  
+2023-04-02  David Carlisle  <David.Carlisle@latex-project.org>
+
+	* ltfilehook.dtx: allow par as a filename. (gh/942)
+
+2023-04-06  Phelype Oleinik  <phelype.oleinik@latex-project.org>
+
+	* lthooks.dtx, ltcmdhooks.dtx:
+	Add support for providing and using arguments in hooks:
+	  - Modify hook data structures to allow access to arguments;
+	  - Add commands to declare hooks with arguments;
+	  - Add commands to add code that references hook arguments;
+	  - Add commands to use hooks with arguments.
+
+2023-04-01  David Carlisle  <David.Carlisle@latex-project.org>
+
+	* ltfssbas.dtx: locally reset frozen mathversions when the math
+	version changes. (gh/1028)
+
+2023-03-28  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* ltclass.dtx:
+	Add \IfFileAtLeastTF (gh/1015)
+
+2023-03-28  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* ltxdoc.dtx (section{Options}):
+	Define \cs if doc is rolled back to v2 (gh/981)
+
+2023-03-28  David Carlisle  <David.Carlisle@latex-project.org>
+
+	* ltfinal.dtx: Restore groups to \MakeUppercase and
+          \MakeLowercase, and add a group to \MakeTitlecase. (gh/1021)
+
+2023-03-22  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* ltspace.dtx:
+	Add \predisplaypenalty setting of 10000 to \samepage in case
+	that was changed (gh/1022)
+
+2023-03-11  Yukai Chou  <muzimuzhi@gmail.com>
+
+    * ltcmd.dtx (subsubsection{Showing the definition of a command}),
+                (subsubsection{Copying a command and its internal structure}):
+    Correctly recognize (non-expandable) document commands with empty or only
+    m-type arguments (gh/1009)
+
+2023-01-30  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* ltpara.dtx (subsection{Providing hooks for paragraphs}):
+	Backout \parskip at top of minipage if it shouldn't be there
+	but is due to whatsits (gh/989)
+
+2023-02-05 Yukai Chou <muzimuzhi@gmail.com>
+
+	* fntguide.tex:
+	Adjusted pagination due to recently added doc paragraphs (gh/994)
+
+2023-01-16 Yukai Chou <muzimuzhi@gmail.com>
+
+	* ltnews.cls:
+	Added full release date yyyy-mm-dd to _all_ ltnews issues (gh/982)
+	Added \publicationday{<day>} to specify day in a month in ltnews<n>.tex.
+	<day> defaults to 01.
+
+2023-01-12  Joseph Joseph  <Joseph.Joseph@latex-project.org>
+
+	* clsguide.tex, clsguide-historic,tex
+	Pre-2023 source moved to new name, re-worked material which remains
+	relevant in updated file
+
+2023-01-19  Josef Friedrich <josef@friedrich.rocks>
+
+	* ltluatex.dtx:
+	Remove unused local variable tex_setattribute (gh/978)
+
+2022-11-24  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* ltdefns.dtx (subsubsection{Copying robust commands}):
+	Added \NewEnvironmentCopy, \RenewEnvironmentCopy, and \DeclareEnvironmentCopy (gh/963)
+	Also added \ShowEnvironment.
+
+2022-11-16  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* ltclass.dtx:
+	Introduce key 'nowarn' on filecontents (gh/958)
+	Do not show "current dir" in message (gh/917)
+
+2022-11-14  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latexrelease.dtx (subsection{Ignoring \texttt{\string_new} errors when rolling back}):
+	Silence \cs{NewMarkClass} in rollback (gh/955)
+
+2022-11-13  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* doc.dtx:
+	Redefinitions of \verb removed as no longer needed (gh/953)
+
+	Redefinitions of \@verbatim changed to match the kernel
+	definition (gh/953)
+
+2022-11-08  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* ltshipout.dtx:
+	Add a shipout hook to be executed just before we
+	actually do the shipout (gh/920)
+
+2022-11-07  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* ltvers.dtx (section{Version Identification}):
+	Store release data in \LaTeXReleaseInfo for reuse at the end of
+	the .log file (gh/944)
+
+	* ltmiscen.dtx (subsection{Environments}): Add to a hook in
+	\end{document} to (re)display the LaTeX release information (gh/944)
+
+2022-11-03  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* doc.dtx: correctly handle \<space>  and allow it to be excluded
+	from the index (gh/943)
 
 #########################
 # 2022-11-01 PL1 Release
@@ -145,7 +508,7 @@ All changes above are only part of the development branch for the next release.
 
 	* doc.dtx
 	recast Package Option declarations using \DeclareKeys
- 
+
 2022-06-10  Ulrike Fischer <Ulrike.Fischer@latex-project.org>
 
 	* cmfonts.fdd

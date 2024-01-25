@@ -7,7 +7,7 @@
 %% ngermanb.dtx  (with options: `ngermanb')
 %% This is a generated file.
 %% 
-%% Copyright 1989--2021
+%% Copyright 1989--2024
 %%     Johannes L. Braams
 %%     Bernd Raichle
 %%     Walter Schmidt
@@ -34,7 +34,7 @@
 %%                     via: https://github.com/jspitz/babel-german
 %% 
 \ProvidesLanguage{ngermanb}
-        [2021/02/27 v2.13 German support for babel (post-1996 orthography)]
+        [2024/01/19 v2.14 German support for babel (post-1996 orthography)]
 \def\tmpa{ngermanb}
 \ifx\CurrentOption\tmpa
   \def\CurrentOption{ngerman}
@@ -135,10 +135,41 @@
   \addto\extrasnswissgerman{%
     \ifntoss\bbl@ntosstrue\else\bbl@ntossfalse\fi}
 \fi
+\newif\ifcapsz\capszfalse
+\newif\ifbbl@capsz\bbl@capszfalse
+\ifx\bbl@mod@ngerman\@undefined\else
+  \@expandtwoargs\in@{,capsz,}{,\bbl@mod@ngerman,}
+  \ifin@
+    \capsztrue
+  \fi
+  \addto\extrasngerman{%
+    \ifcapsz\bbl@capsztrue\bbl@csarg\xdef{casing@ngerman}{de-x-eszett}%
+    \else\bbl@csarg\xdef{casing@ngerman}{de}\bbl@capszfalse\fi}
+\fi
+\newif\if@at@capsz\@at@capszfalse
+\ifx\bbl@mod@naustrian\@undefined\else
+  \@expandtwoargs\in@{,capsz,}{,\bbl@mod@naustrian,}
+  \ifin@
+    \@at@capsztrue
+  \fi
+  \addto\extrasnaustrian{%
+    \if@at@capsz\bbl@capsztrue\bbl@csarg\xdef{casing@naustrian}{de-x-eszett}%
+    \else\bbl@csarg\xdef{casing@naustrian}{de}\bbl@capszfalse\fi}
+\fi
 \expandafter\addto\csname noextras\CurrentOption\endcsname{%
   \bbl@deactivate{"}}
 \ifx\CurrentOption\bbl@opt@nswissgerman
   \addto\noextrasnswissgerman{\bbl@ntossfalse}
+\fi
+\ifx\CurrentOption\bbl@opt@ngerman
+  \ifbbl@capsz
+    \addto\noextrasngerman{\bbl@capszfalse\bbl@csarg\xdef{casing@ngerman}{de}}
+  \fi
+\fi
+\ifx\CurrentOption\bbl@opt@naustrian
+  \ifbbl@capsz
+     \addto\noextrasnaustrian{\bbl@capszfalse\bbl@csarg\xdef{casing@naustrian}{de}}
+  \fi
 \fi
 \expandafter\addto\csname extras\CurrentOption\endcsname{%
   \babel@savevariable{\lccode25}%
@@ -157,7 +188,7 @@
   \def\dq{"}
   \def\@SS{\mathchar"7019 }
   \def\bbl@ss{\ifbbl@ntoss ss\else\textormath{\ss}{\@SS{}}\fi}
-  \def\bbl@SS{SS}
+  \def\bbl@SS{\ifbbl@capsz\MakeUppercase{\ss}\else SS\fi}
   \def\bbl@sz{\ifbbl@ntoss sz\else\textormath{\ss}{\@SS{}}\fi}
   \def\bbl@SZ{SZ}
 }
@@ -195,6 +226,11 @@
 \declare@shorthand{ngerman}{"=}{\penalty\@M-\hskip\z@skip}
 \declare@shorthand{ngerman}{"/}{\textormath
   {\bbl@allowhyphens\discretionary{/}{}{/}\bbl@allowhyphens}{}}
+\def\mkngender{*}
+\declare@shorthand{ngerman}{":}{\nobreak:\bbl@allowhyphens}
+\declare@shorthand{ngerman}{"*}{\nobreak*\bbl@allowhyphens}
+\declare@shorthand{ngerman}{"_}{\nobreak\_\bbl@allowhyphens}
+\declare@shorthand{ngerman}{"x}{\nobreak\mkngender\bbl@allowhyphens}
 \def\mdqon{\shorthandon{"}}
 \def\mdqoff{\shorthandoff{"}}
 \ldf@finish\CurrentOption

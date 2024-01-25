@@ -22,11 +22,11 @@
 %% in the same archive or directory.)
 %%
 \ProvidesPackage{xcolor}
- [2022/06/12 v2.14 LaTeX color extensions (UK)]
+ [2023/11/15 v3.01 LaTeX color extensions (UK)]
 %%
 %% ----------------------------------------------------------------
 %% Copyright (C) 2003-2021 by Dr. Uwe Kern <xcolor at ukern dot de>
-%%               2021-2022    LaTeX Project https://github.com/latex3/xcolor/issues
+%%               2021-2023    LaTeX Project https://github.com/latex3/xcolor/issues
 %% ----------------------------------------------------------------
 %%
 %% Please send error reports and suggestions for
@@ -39,7 +39,16 @@
 %%
 %% which is part of the Standard LaTeX `Graphics Bundle'.
 %%
+
+\providecommand\DeclareRelease[3]{}
+\providecommand\DeclareCurrentRelease[2]{}
+\DeclareRelease{v2}{0000-00-00}{xcolor-2022-06-12.sty}
+\DeclareCurrentRelease{}{2023-11-11}
 \NeedsTeXFormat{LaTeX2e}
+\providecommand\IfFormatAtLeastTF{\@ifl@t@r\fmtversion}
+\IfFormatAtLeastTF{2022/06/01}{}
+ {\RequirePackageWithOptions{xcolor-2022-06-12}}
+\IfFormatAtLeastTF{2022/06/01}{}{\endinput}
 \expandafter\edef\csname XC@catcodes\endcsname
  {\catcode33 \the\catcode33 % !
   \catcode34 \the\catcode34 % "
@@ -125,14 +134,6 @@
    {\@expandtwoargs\in@{,#1,}{,##1,}\ifin@
       \toks@{##2}\expandafter\remove@to@nnil\else\expandafter\XC@if@\fi}%
   \XC@if@#2{#1}{#3}\@nnil\the\toks@}
-\def\XC@@opt{,}
-\def\@ifXCopt#1%
- {\@expandtwoargs\in@{,#1,}{\XC@@opt}%
-  \ifin@\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi}
-\let\XC@@pkg\relax
-\let\XC@declareoption\@declareoption
-\long\def\@declareoption#1#2%
- {\XC@declareoption{#1}{\edef\XC@@opt{\XC@@opt#1,}#2}}
 \def\selectcolormodel#1%
  {\@ifundefined{XC@mod@#1}%
    {\c@lor@error{target model `#1'}}%
@@ -148,26 +149,47 @@
 \@tfor\@@tmp:={natural}{rgb}{cmy}{cmyk}{hsb}{gray}{RGB}{HTML}{HSB}{Gray}\do
  {\expandafter\XC@sdef\csname XC@mod@\@@tmp\endcsname{\@@tmp}%
   \edef\@@tmp
-   {\noexpand\DeclareOption{\@@tmp}{\noexpand\selectcolormodel{\@@tmp}}}%
+   {\noexpand\DeclareKeys{\@@tmp .code= {\noexpand\selectcolormodel{\@@tmp}}}}%
   \@@tmp}
-\DeclareOption{monochrome}
- {\ExecuteOptions{hideerrors}%
-  \AtEndOfPackage
-   {\colors@false
-    \def\set@color{\c@lor@special\m@ne
-      {color push \current@color}\aftergroup\reset@color}%
-    \def\reset@color{\c@lor@special\m@ne{color pop}}%
-    \def\set@page@color{\c@lor@special\m@ne{background \current@color}}}}
+\DeclareKeys
+ {
+    monochrome .code =
+    {
+      \colorerrors@false
+      \AtEndOfPackage
+       {\colors@false
+        \def\set@color{\c@lor@special\m@ne
+          {color push \current@color}\aftergroup\reset@color}%
+        \def\reset@color{\c@lor@special\m@ne{color pop}}%
+        \def\set@page@color{\c@lor@special\m@ne{background \current@color}}}
+    }
+   ,monochrome .usage = load
+ }
 \let\XC@@names\relax
 \providecommand*\colornameprefix{XC@}
 \let\XC@@nameprefix\colornameprefix
 \def\XC@declarenames#1#2#3%
- {\DeclareOption{#1}{\XC@append\XC@@names
-   {#3\definecolorstrue\input{#2.def}\definecolorstrue
-    \let\colornameprefix\XC@@nameprefix}}
-  \DeclareOption{#1*}{\XC@append\XC@@names
-   {#3\definecolorsfalse\input{#2.def}\definecolorstrue
-    \let\colornameprefix\XC@@nameprefix}}}
+ {%
+  \DeclareKeys
+   {
+    #1  .code =
+       {
+        \AddToHook{package/xcolor/after}
+          {#3\definecolorstrue\input{#2.def}\definecolorstrue
+           \let\colornameprefix\XC@@nameprefix}%
+        \DeclareKeys[xcolor]{#1 .code = {},#1* .code={}}
+       }
+   ,#1  .usage = preamble
+   ,#1* .code =
+       {
+         \AddToHook{package/xcolor/after}
+           {#3\definecolorsfalse\input{#2.def}\definecolorstrue
+            \let\colornameprefix\XC@@nameprefix}
+         \DeclareKeys[xcolor]{#1 .code = {},#1* .code={}}
+       }
+   ,#1* .usage = preamble
+   }%
+ }
 \XC@declarenames{dvipsnames}{dvipsnam}{\let\colornameprefix\@empty}
 \XC@declarenames{svgnames}{svgnam}{}
 \XC@declarenames{x11names}{x11nam}{}
@@ -175,47 +197,72 @@
  {hks\ifcase\paperquality k\or n\or k\or z\else n\fi nam}{}
 \XC@declarenames{pmsnames}{pmsnam}{}
 \XC@declarenames{ralnames}{ralnam}{}
-\DeclareOption{table}{\XC@append\XC@@pkg{\RequirePackage{colortbl}}}
-\DeclareOption{fixpdftex}{\XC@append\XC@@pkg{\RequirePackage{pdfcolmk}}}
-\DeclareOption{hyperref}
- {\@tfor\@@tmp:={cite}{file}{link}{menu}{page}{run}{url}\do
-   {\expandafter\edef\csname KV@Hyp@x\@@tmp bordercolor\endcsname #1%
-     {\noexpand\XC@bordercolor{\@@tmp}{#1}}}%
-  \AtEndOfPackage
-   {\GetGinDriver\def\KV@Hyp@xpdfborder#1{\edef\@pdfborder{#1}}%
-    \@tfor\@@tmp:={dvips}\do
-     {\ifx\GinDriver\@@tmp
-       \def\KV@Hyp@xpdfborder#1%
-        {\edef\@pdfborder{#1}\expandafter\XC@pdfborder\@pdfborder\relax}%
-      \@break@tfor\fi}}}
+\DeclareKeys
+ {
+    table .code  ={\AddToHook{package/xcolor/after}{\RequirePackage{colortbl}}}
+   ,table .usage = preamble
+ }
 \providecommand*\Gin@driver{}
 \@tfor\@@tmp:={dvipdf}{dvipdfmx}{dvips}{dvipsone}{dviwin}%
               {emtex}{luatex}{pctex32}{pctexhp}{pctexps}{pctexwin}{pdftex}%
               {tcidvi}{textures}{truetex}{vtex}{xetex}{dvisvgm}\do
- {\edef\@@tmp{\noexpand\DeclareOption{\@@tmp}%
-    {\def\noexpand\Gin@driver{\@@tmp.def}}}%
+ {\edef\@@tmp{%
+   \noexpand\DeclareKeys
+     {
+      \@@tmp .code = {\def\noexpand\Gin@driver{\@@tmp.def}},
+      \@@tmp .usage=load
+     }}%
   \@@tmp}
-\DeclareOption{dviwindo}{\ExecuteOptions{dvipsone}}
-\DeclareOption{oztex}{\ExecuteOptions{dvips}}
-\DeclareOption{xdvi}{\ExecuteOptions{dvips,monochrome}}
-\DeclareOption{dvipdfm}{\ExecuteOptions{dvipdfmx}}
-\DeclareOption{xcdraw}{\def\XC@@xcd@{1}}
-\DeclareOption{noxcdraw}{\def\XC@@xcd@{-1}}
-\DeclareOption{fixinclude}{\def\XC@@xcf@{1}}
-\DeclareOption{prologue}{\def\XC@@xcp@{1}}
-\DeclareOption{kernelfbox}{\XC@@fboxfalse}
-\DeclareOption{showerrors}{\colorerrors@true}
-\DeclareOption{hideerrors}{\colorerrors@false}
-\DeclareOption{debugshow}{\catcode`\^^A=9 \let\GDebug\typeout}
-\DeclareOption*%
- {\PackageInfo{xcolor}{Package option `\CurrentOption' ignored}}
+\DeclareKeys
+ {
+  ,dviwindo .code   = {\SetKeys{dvipsone}}
+  ,dviwindo .usage  = load
+  ,oztex    .code   = {\SetKeys{dvips}}
+  ,oztex    .usage  = load
+  ,xdvi     .code   = {\SetKeys{dvips,monochrome}}
+  ,xdvi     .usage  = load
+  ,dvipdfm  .code   = {\SetKeys{dvipdfmx}}
+  ,dvipdfm  .usage  = load
+ }
+\DeclareKeys
+ {
+   ,xcdraw   .code    = {\def\XC@@xcd@{1}}
+   ,xcdraw   .usage   = load %TODO check
+   ,noxcdraw .code    = {\def\XC@@xcd@{-1}}
+   ,noxcdraw .usage   = load %TODO check
+   ,fixinclude .code  = {\def\XC@@xcf@{1}}
+   ,fixinclude .usage = load %TODO check
+   ,prologue .code    = {\def\XC@@xcp@{1}}
+   ,prologue .usage   = load %TODO check
+   ,kernelfbox .code    = {\XC@@fboxfalse}
+   ,kernelfbox .usage   = load %TODO check
+   ,showerrors .code   = {\colorerrors@true}
+   ,hideerrors .code   = {\colorerrors@false}
+   ,debugshow .code    = {\catcode`\^^A=9 \let\GDebug\typeout}
+  }
+\DeclareKeys
+ {
+   ,usenames   .code    =
+     {\PackageWarning{xcolor}{Package option `usenames' is obsolete and ignored}}
+   ,usename    .usage   = preamble
+   ,hyperref   .code    =
+     {\PackageWarning{xcolor}{Package option `hyperref' is obsolete and ignored}}
+   ,hyperref   .usage   = preamble
+   ,fixpdftex  .code    =
+     {\PackageWarning{xcolor}{Package option `fixpdftex' is obsolete and ignored}}
+   ,fixpdftex  .usage   = preamble
+ }
 \def\XC@@xcd@{-1}
 \def\XC@@xcf@{-1}
 \def\XC@@xcp@{-1}
-\ExecuteOptions{natural,showerrors}
+\SetKeys{natural,showerrors}
+\let\XC@ExecuteOptions\ExecuteOptions
+\ExplSyntaxOn
+\def\ExecuteOptions{\keys_set_known:nn {xcolor}}
+\ExplSyntaxOff
 \InputIfFileExists{color.cfg}{}{}
-\let\@declareoption\XC@declareoption
-\ProcessOptions\relax
+\let\ExecuteOptions\XC@ExecuteOptions
+\ProcessKeyOptions
 \edef\Gin@driver{\Gin@driver}
 \if!\Gin@driver!
   \PackageError{xcolor}
@@ -266,7 +313,6 @@
   \fi
 \fi
 \@namedef{ver@color.sty}{1999/02/16}
-\XC@@pkg
 \long\def\@secondoffive#1#2#3#4#5{#2}
 \long\def\@thirdoffive#1#2#3#4#5{#3}
 \def\xglobal{\xglobal@stop\begingroup\futurelet\@@tok\xglobal@test}
@@ -474,7 +520,8 @@
 \def\XC@definecolor[#1]#2%
  {\@testopt{\XC@definec@lor[#1]{#2}}\colornameprefix}
 \def\XC@definec@lor[#1]#2[#3]#4#5%
- {\begingroup
+ {%
+  \begingroup
   \XC@sdef\@@cls{#1}\XC@edef\@@nam{#2}\edef\colornameprefix{#3}%
   \XC@logdef\@@nam
   \XC@getmodclr02{#4}{#5}{\let\@@tmp\relax}%
@@ -977,57 +1024,6 @@
 \def\XC@pdfborder#1 #2 #3\relax
  {\def\@@scl{80}\XC@calc@#1,#2,#3,,:S%
   \edef\@pdfborder{\expandafter\XC@strip@comma\@@tmp,,\@nnil}}
-\@ifXCopt{table}{%
- \def\rowcolors
-  {\@ifstar{\@rowcmdfalse\rowc@lors}{\@rowcmdtrue\rowc@lors}}
- \def\rowc@lors{\@testopt{\rowc@l@rs}{}}
- \def\rowc@l@rs[#1]#2#3#4%
-  {\global\rownum=\z@
-   \global\@rowcolorstrue
-   \@ifxempty{#3}%
-     {\def\@oddrowcolor{\@norowcolor}}%
-     {\def\@oddrowcolor{\gdef\CT@row@color{\CT@color{#3}}}}%
-   \@ifxempty{#4}%
-     {\def\@evenrowcolor{\@norowcolor}}%
-     {\def\@evenrowcolor{\gdef\CT@row@color{\CT@color{#4}}}}%
-   \if@rowcmd
-     \def\@rowcolors
-      {#1\if@rowcolors
-         \noalign{\relax\ifnum\rownum<#2\@norowcolor\else
-                  \ifodd\rownum\@oddrowcolor\else\@evenrowcolor\fi\fi}%
-       \fi}%
-   \else
-     \def\@rowcolors
-      {\if@rowcolors
-         \ifnum\rownum<#2\noalign{\@norowcolor}\else
-         #1\noalign{\ifodd\rownum\@oddrowcolor\else\@evenrowcolor\fi}\fi
-       \fi}%
-   \fi
-   \CT@everycr{\@rowc@lors\the\everycr}%
-   \ignorespaces}
- \def\@rowc@lors{\noalign{\global\advance\rownum\@ne}\@rowcolors}
- \let\@rowcolors\@empty
- \def\showrowcolors{\noalign{\global\@rowcolorstrue}\@rowcolors}
- \def\hiderowcolors{\noalign{\global\@rowcolorsfalse\@norowcolor}}
- \def\@norowcolor{\global\let\CT@row@color\relax}
- \@norowcolor
- \newif\if@rowcolors
- \newif\if@rowcmd
- \@ifundefined{rownum}{\newcount\rownum}{}
- \def\CT@extract#1\columncolor#2#3\@nil
-  {\if!#2%
-     \let\CT@column@color\@empty
-   \else
-     \if[#2%
-       \expandafter\CT@extractb
-     \else
-       \XC@edef\XC@@tmp{#2}%
-       \edef\CT@column@color{\noexpand\CT@color{\XC@@tmp}}%
-       \expandafter\CT@extractd
-     \fi
-     {#1}#3\@nil
-   \fi}
-}{}
 \def\extractcolorspec#1#2%
  {\XC@split{#1}\edef\@@tmp{{\@@mod}{\@@clr}}\aftergroupdef#2\@@tmp}
 \def\extractcolorspecs#1#2#3%
@@ -1232,6 +1228,7 @@
 \def\XC@cnv@gray#1,%
  {\XC@ifxcase\tm
    {\XC@mod@rgb {\XC@calcN{#1}\@@tmp \edef\@@tmp{\@@tmp,\@@tmp,\@@tmp}}%
+    \XC@mod@gray{}%
     \XC@mod@cmy {\XC@calcC{#1}\@@tmp \edef\@@tmp{\@@tmp,\@@tmp,\@@tmp}}%
     \XC@mod@cmyk{\XC@calcC{#1}\@@tmp \edef\@@tmp{0,0,0,\@@tmp}}%
     \XC@mod@RGB {\edef\@@scl{\rangeRGB}\XC@calcM{#1}\@@tmp
@@ -1405,7 +1402,10 @@
 \let\pst@getcolor\XC@getcolor
 \let\pst@usecolor\XC@usecolor
 \def\c@lor@special#1#2{\edef\@tempa{\write#1{#2}}\@tempa}
-\protected\def\normalcolor{\let\current@color\default@color\set@color}
+\protected\def\normalcolor{%
+  \let\current@color\default@color
+  \let\XC@current@color\XC@default@color\XC@display}
+\AtBeginDocument{\let\XC@default@color\XC@current@color}
 \AtBeginDocument{\let\default@color\current@color}
 \XC@ifcase\XC@@drv
  {{dvipdf,dvipdfm,dvipdfmx,dvips,pctex32}%

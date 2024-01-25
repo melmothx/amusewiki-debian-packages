@@ -1,6 +1,6 @@
 name amsmath
 category Package
-revision 63514
+revision 68720
 catalogue latex-amsmath
 shortdesc AMS mathematical facilities for LaTeX
 longdesc The package provides the principal packages in the AMS-LaTeX
@@ -15,11 +15,11 @@ longdesc contributed packages add still further to its appeal; examples
 longdesc are empheq, which provides functions for decorating and
 longdesc highlighting mathematics, and ntheorem, for specifying theorem
 longdesc (and similar) definitions.
-containersize 31240
-containerchecksum 3a1f01c2249557038d07f4294a378156cb1b83e9120164e88f5825e09c2d1d930e513d4e10d7db293072ff80cdd025fa52735de86056dc71d5a60742c19be85d
-doccontainersize 2420512
-doccontainerchecksum 5280ae6e465401c08d1ba4a28f6f4cb0581aef8f1df1a6299ddb314356927991fb4db0db84fdcc3ab289c019c476c289a4775c776a96d18877273e75179f5626
-docfiles size=717
+containersize 31276
+containerchecksum 39e87ac8255c577fa8b1c0cd155d4fa21bd0c0f789141e6d1e75cad1c34a78bf5fa44277342ae9d93d80f4f88f31ca9f88dba9c592ceba04961e601e3e8e9650
+doccontainersize 2420748
+doccontainerchecksum b1dff0cb1c09a184dfe9dd890ccb6e9e5bd5d2b109ce0b98336ca4cc1a45d4f398eb7822d02e9210c611c98a49fe41884b103e1b1e4f7c6b3b29b4de5be2ebf0
+docfiles size=718
  texmf-dist/doc/latex/amsmath/README.md details="General README" language="en"
  texmf-dist/doc/latex/amsmath/ams-external.txt
  texmf-dist/doc/latex/amsmath/ams-internal.txt
@@ -41,8 +41,8 @@ docfiles size=717
  texmf-dist/doc/latex/amsmath/technote.tex
  texmf-dist/doc/latex/amsmath/testmath.pdf details="Examples paper" language="en"
  texmf-dist/doc/latex/amsmath/testmath.tex
-srccontainersize 66312
-srccontainerchecksum 60817410435a93668e8e19e9e326833c49cf792fdef272d4ccf90ec62c8a9c0d27e7aceb3e1c74572fb44c291d9557309bdb818c4b10f520c0144df2d6286d37
+srccontainersize 66348
+srccontainerchecksum c1d052395b6f6291a269d610f713ce01383940685af91b1c2dd711b73f5d765e801524a538687d7f8cde055bb1dda9ca11900e4e8b58182b3cd792fdfbaca6be
 runfiles size=70
  texmf-dist/tex/latex/amsmath/amsbsy.sty
  texmf-dist/tex/latex/amsmath/amscd.sty

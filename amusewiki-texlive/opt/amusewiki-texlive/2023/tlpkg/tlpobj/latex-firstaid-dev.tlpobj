@@ -1,26 +1,26 @@
 name latex-firstaid-dev
 category Package
-revision 67225
+revision 68730
 shortdesc Development pre-release of the LaTeX firstaid package
 longdesc This is a pre-release version of the standard LaTeX firstaid
 longdesc package. It accompanies the pre-testing kernel code
 longdesc (latex-base-dev), and is intended for testing by knowledgeable
 longdesc users.
-containersize 3116
-containerchecksum 3ccda3d50e9224159910a28d5b8cdb5525fe5571fa8b3bacc5655e009405845b0cdadd01d0a2509f42edfea70132f816d42a85cff7fb6c1cec29718c04518afa
-doccontainersize 263200
-doccontainerchecksum 64d9f100dcfa400e23e7429883cc09285074a2e791177251d30ac6e2a3b38033d0837e3a976402bce353ceac207738772d1dd6c96c4aa2187212f2db5348080b
-docfiles size=69
+containersize 3100
+containerchecksum 837b36861d1c5c42107ebfca9de78df1e4426b2466c001532ff3717743babecb8f574c5b431cc821f27a8cf20e88fa7e6dda5633fa8fac28084007183621ac08
+doccontainersize 257320
+doccontainerchecksum 2f0676b179ec977da7d91135d2e9330bc37a67eba038754998445c49523d1630c34360bb857c108ab47a185a409d3924039d7b03f3b420d74c52fc98606ff408
+docfiles size=68
  texmf-dist/doc/latex-dev/firstaid/README.md details="Readme"
  texmf-dist/doc/latex-dev/firstaid/changes.txt
  texmf-dist/doc/latex-dev/firstaid/latex2e-first-aid-for-external-files.pdf details="Package documentation"
-srccontainersize 7960
-srccontainerchecksum b49726f2dcd2323df0e1ee70ed57074d4a52a8baed7d7a8f6c2dbbcfe4f0a30aa802b60710a4a4e6b09c093ee63910d2a34b49a52f67977b4788bab0d794b1a3
+srccontainersize 7396
+srccontainerchecksum c783d78612a76b55f49828ccd3f719ad94ab3a2a3d8b936e2049322c0c5fa773b8db76bc1a8d471d443bf3bc0d7897df7db628866287b64ee281764ae258f839
 runfiles size=4
- texmf-dist/tex/latex-dev/firstaid/everysel-ltx.sty
  texmf-dist/tex/latex-dev/firstaid/filehook-ltx.sty
  texmf-dist/tex/latex-dev/firstaid/latex2e-first-aid-for-external-files.ltx
+ texmf-dist/tex/latex-dev/firstaid/underscore-ltx.sty
 catalogue-ctan /macros/latex-dev/required/firstaid
 catalogue-license lppl1.3c
 catalogue-topics format bugfix latex-devel
-catalogue-version 1.0z
+catalogue-version 1.1b

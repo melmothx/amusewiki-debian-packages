@@ -7,12 +7,12 @@
 %% italian.dtx  (with options: `code')
 %% ------------------------------------------
 %% The Italian support for babel: italian.ldf.
-%% Copyright (C) 1990-2022 Claudio Beccari
+%% Copyright (C) 1990-2024 Claudio Beccari
 %% All rights reserved
 %% 
 %% License information appended.
 \ProvidesLanguage{italian}
-        [2022/03/27 v.1.4.07 Italian support for the babel system]
+      [2024/01/03 v.1.5.00 Italian support for the babel system]
 %%
 %% Please report errors to: claudio dot beccari at gmail dot com
 %%
@@ -52,9 +52,9 @@
     \else
       \number\day
     \fi~\ifcase\month\or
-    gennaio\or febbraio\or marzo\or aprile\or maggio\or giugno\or
-    luglio\or agosto\or settembre\or ottobre\or novembre\or
-    dicembre\fi\space \number\year}}%
+    gennaio\or febbraio\or marzo\or aprile\or maggio\or
+    giugno\or luglio\or agosto\or settembre\or ottobre\or
+    novembre\or dicembre\fi\space \number\year}}%
 \providehyphenmins{\CurrentOption}{\tw@\tw@}
 \addto\extrasitalian{%
   \babel@savevariable\clubpenalty
@@ -86,8 +86,8 @@
    z\else\@ctrerr\fi
 \or
    \ifcase#1\or a\or b\or c\or d\or e\or f\or g\or h\or i\or
-   j\or k\or l\or m\or n\or o\or p\or q\or r\or s\or t\or u\or v\or
-   w\or x\or y\or z\else\@ctrerr\fi
+   j\or k\or l\or m\or n\or o\or p\or q\or r\or s\or t\or u\or
+   v\or w\or x\or y\or z\else\@ctrerr\fi
 \fi}%
 \def\it@Alph#1{%
 \ifcase\it@lettering
@@ -96,8 +96,8 @@
    Z\else\@ctrerr\fi
 \or
    \ifcase#1\or A\or B\or C\or D\or E\or F\or G\or H\or I\or
-   J\or K\or L\or M\or N\or O\or P\or Q\or R\or S\or T\or U\or V\or
-   W\or X\or Y\or Z\else\@ctrerr\fi
+   J\or K\or L\or M\or N\or O\or P\or Q\or R\or S\or T\or U\or
+   V\or W\or X\or Y\or Z\else\@ctrerr\fi
 \fi}%
 \newcount\it@doublequoteactive \it@doublequoteactive=\z@
 \def\setactivedoublequote{\it@doublequoteactive=\@ne}
@@ -126,41 +126,43 @@
 \ifcat\noexpand\it@temp a%
     \def\it@@next{\it@@cwm}%
 \else
-    \if\noexpand\it@temp \string|%
-        \def\it@@next{\it@@cwm\@gobble}%
+  \if\noexpand\it@temp \string|%
+      \def\it@@next{\it@@cwm\@gobble}%
+  \else
+    \if\noexpand\it@temp \string<%
+        \def\it@@next{\it@@ocap}%
     \else
-        \if\noexpand\it@temp \string<%
-            \def\it@@next{\it@@ocap}%
+      \if\noexpand\it@temp \string>%
+          \def\it@@next{\it@@ccap}%
+      \else
+        \if\noexpand\it@temp\string/%
+            \def\it@@next{\it@@slash\@gobble}%
         \else
-            \if\noexpand\it@temp \string>%
-                \def\it@@next{\it@@ccap}%
-            \else
-                \if\noexpand\it@temp\string/%
-                    \def\it@@next{\it@@slash\@gobble}%
-                \else
-                    \ifcat\noexpand\it@temp\noexpand\it@@dqactive
-                        \def\it@@next{``\@gobble}%
-                    \else
-                        \if\noexpand\it@temp\string-%
-                            \def\it@@next{\it@@trattino\@gobble}%
-                        \fi
-                    \fi
-                \fi
+          \ifcat\noexpand\it@temp\noexpand\it@@dqactive
+                \def\it@@next{“\@gobble}%
+          \else
+            \if\noexpand\it@temp\string-%
+                \def\it@@next{\it@@trattino\@gobble}%
             \fi
+          \fi
         \fi
+      \fi
     \fi
+  \fi
 \fi
 \it@@next}%
 \newcount\it@ISOcompliance \it@ISOcompliance=\z@
 \def\setISOcompliance{\it@ISOcompliance=\@ne}
-\AtBeginDocument{\unless\ifnum\it@ISOcompliance=\z@%
+\AtBeginDocument{%
+\unless\ifnum\it@ISOcompliance=\z@%
 \def\activate@it@unit{\DeclareRobustCommand*{\bbl@it@unit}[1]{%
     \textormath{\,\textup{##1}}{\,\mathrm{##1}}}}
 \@ifpackageloaded{units}{}{\@ifpackageloaded{siunitx}{}{%
   \@ifpackageloaded{SIunits}{}{%
   \activate@it@unit\addto\extrasitalian{%
     \babel@save\unit\let\unit\bbl@it@unit}%
-  }}}\ifcsstring{bbl@main@language}{italian}{\selectlanguage{italian}}{}%
+  }}}%
+\ifcsstring{bbl@main@language}{italian}{\selectlanguage{italian}}{}%
 \fi}
 \DeclareRobustCommand*{\bbl@it@ap}[1]{%
   \textormath{\textsuperscript{#1}}{^{\mathrm{#1}}}}%
@@ -172,22 +174,23 @@
   \babel@save\ped\let\ped\bbl@it@ped
   }%
 \AtEndOfPackage{\RequirePackage{etoolbox}}
-\AtEndOfPackage{\AtEndPreamble{%
-\newcommand*\IntelligentComma{\mathcode`\,=\string"8000}% Active comma
-\newcommand*\NoIntelligentComma{\mathcode`\,=\string"613B}% Punctuation comma
-\@ifpackageloaded{icomma}{\let\IntelligentComma\relax
+\AtEndOfPackage{%
+\AtEndPreamble{%
+\newcommand*\IntelligentComma{\mathcode`\,=\string"8000}%
+\newcommand*\NoIntelligentComma{\mathcode`\,=\string"613B}%
+\@ifpackageloaded{icomma}{%
+  \let\IntelligentComma\relax
   \let\NoIntelligentComma\relax}{%
-  \@ifpackageloaded{ncccomma}{\let\IntelligentComma\relax
-  \let\NoIntelligentComma\relax}{%
-    \@ifpackageloaded{dcolumn}{\let\IntelligentComma\relax
+  \@ifpackageloaded{ncccomma}{%
+    \let\IntelligentComma\relax
+    \let\NoIntelligentComma\relax}{%
+    \@ifpackageloaded{dcolumn}{%
+      \let\IntelligentComma\relax
       \let\NoIntelligentComma\relax}{%
-      \@ifpackageloaded{polyglossia}{%
-        \ifcsstring{xpg@main@language}{english}{\relax}{%
-          \mathcode`\,=\string"613B}
-      }{%
-        \ifcsstring{languagename}{english}{\relax}{%
-          \mathcode`\,=\string"613B}
-      }%
+       \ProvideDocumentEnvironment{english}{}%
+         {\begin{otherlanguage}{english}%
+           \NoIntelligentComma}%
+         {\end{otherlanguage}}%
   }}}%
 }}
  \DeclareMathSymbol{\virgoladecimale}{\mathord}{letters}{"3B}
@@ -237,7 +240,7 @@
                 \expandafter\@secondoftwo
               \fi
               {\virgola}% \tempB actually is a macro
-              {\@math@@comma}% \tempB is an alias of something else
+              {\@math@@comma}% \tempB is an alias
             }%
           }%
         }%
@@ -256,35 +259,34 @@
   {% it's an implicit character of category 12
     \let\@tempVirgola\virgola
     \@tfor\@tempCifra:=0123456789\do{%
-      \expandafter\if\@tempCifra#1\let\@tempVirgola\virgoladecimale
+      \expandafter\if\@tempCifra#1\let\@tempVirgola
+      \virgoladecimale
       \@break@tfor\fi}\@tempVirgola
   }#1}%
 \def\LtxSymbCaporali{%
-     \DeclareRobustCommand*{\it@ocap}{\mbox{%
-        \fontencoding{U}\fontfamily{lasy}\selectfont(\kern-0.20em(}%
-        \ignorespaces}%
-     \DeclareRobustCommand*{\it@ccap}{\ifdim\lastskip>\z@\unskip\fi
-     \mbox{%
-        \fontencoding{U}\fontfamily{lasy}\selectfont)\kern-0.20em)}}%
+  \DeclareRobustCommand*{\it@ocap}{\mbox{%
+    \fontencoding{U}\fontfamily{lasy}\selectfont(\kern-0.20em(}%
+      \ignorespaces}%
+  \DeclareRobustCommand*{\it@ccap}{\@killglue
+    \mbox{\fontencoding{U}\fontfamily{lasy}\selectfont)%
+     \kern-0.20em)}}%
 }%
-\def\T@unoCaporali{\DeclareRobustCommand*{\it@ocap}{<<\ignorespaces}%
-     \DeclareRobustCommand*{\it@ccap}{\ifdim\lastskip>\z@\unskip\fi>>}}%
+\def\T@unoCaporali{% default setting
+  \DeclareRobustCommand*{\it@ocap}{<<\ignorespaces}%
+  \DeclareRobustCommand*{\it@ccap}{\@killglue >>}}%
 \T@unoCaporali
 \def\CaporaliFrom#1#2#3#4{%
   \DeclareFontEncoding{#1}{}{}%
   \DeclareTextCommand{\it@ocap}{T1}{%
-    {\fontencoding{#1}\fontfamily{#2}\selectfont\char#3\ignorespaces}}%
-  \DeclareTextCommand{\it@ccap}{T1}{\ifdim\lastskip>\z@\unskip\fi%
+    {\fontencoding{#1}\fontfamily{#2}%
+      \selectfont\char#3\ignorespaces}}%
+  \DeclareTextCommand{\it@ccap}{T1}{\@kilglue
     {\fontencoding{#1}\fontfamily{#2}\selectfont\char#4}}%
-  \DeclareTextCommand{\it@ocap}{OT1}{%
-    {\fontencoding{#1}\fontfamily{#2}\selectfont\char#3\ignorespaces}}%
-  \DeclareTextCommand{\it@ccap}{OT1}{\ifdim\lastskip>\z@\unskip\fi%
-    {\fontencoding{#1}\fontfamily{#2}\selectfont\char#4}}}
-
+}
 \def\get@ae#1#2#3!{\def\bbl@ae{#1#2}}%
 \def\@ifT@one@noCap{\expandafter\get@ae\f@family!%
 \def\bbl@temp{ae}\ifx\bbl@ae\bbl@temp\expandafter\@firstoftwo\else
-    \expandafter\@secondoftwo\fi}%
+  \expandafter\@secondoftwo\fi}%
 \AtBeginDocument{\normalfont\def\bbl@temp{OT1}%
   \ifx\cf@encoding\bbl@temp
     \LtxSymbCaporali
@@ -293,16 +295,17 @@
     With OT1 encoding guillemets are poorly faked\MessageBreak
     \space\space\space
     Use T1 encoding\MessageBreak\space\space\space
-    or specify a font with command \string\CaporaliFrom\MessageBreak
-    \space\space\space
-    See the documentation concerning the babel-italian typesetting
-    \MessageBreak\space\space}%
+    or specify a font with command %
+    \string\CaporaliFrom\MessageBreak\space\space\space
+    See the documentation concerning the babel-italian
+    typesetting\MessageBreak\space\space}%
   \else
     \ifx\cf@encoding\bbl@t@one
       \@ifT@one@noCap{%
         \LtxSymbCaporali
         \GenericWarning{italian.ldf\space}{%
-        File italian.ldf warning: \MessageBreak\space\space\space
+        File italian.ldf warning: \MessageBreak\space\space
+        \space
         The AE font collection does not contain the guillemets
         \MessageBreak\space\space\space
         Use the Latin Modern font collection instead
@@ -316,7 +319,7 @@
 %%
 %% \endinput
 %% 
-%% Copyright (C) 1990-2022 Claudio Beccari
+%% Copyright (C) 1990-2024 Claudio Beccari
 %% 
 %%  It may be distributed and/or modified under the
 %%  conditions of the LaTeX Project Public License, either version 1.3c

@@ -1,15 +1,15 @@
 name luatexja
 category Package
-revision 67003
+revision 69245
 shortdesc Typeset Japanese with Lua(La)TeX
 longdesc The package offers support for typesetting Japanese documents
 longdesc with LuaTeX. Either of the Plain and LaTeX2e formats may be
 longdesc used with the package.
 depend luatexbase
-containersize 193016
-containerchecksum 0fcc29db5abbc1af49f6717637fc4a893c29dc0bbfd27ebdd17710a63a6a2eb1e6e0b0512fbfb5c5b77b8c99c3296a7f4e145f0770d399fd78d76a262f04ab76
-doccontainersize 3244724
-doccontainerchecksum cb58a82f7df728833eeb54d4ac72575b58a3f5ecb7f0a8e15f0751ef6a14fc62fb024983689ec5b61ee5879bb72291e959bd6d836e87bc2ef7b9db7299f1ca2d
+containersize 193280
+containerchecksum 359e6852a954aaf5a0aa99881dab189e6d878e5ee4083487d93315652cfb5cbbd010d6dcc74c946ea231073122604f35966744f9e7870dcd1321277fe93074b9
+doccontainersize 3242564
+doccontainerchecksum d41556bac7106df19d9fb64c4093b9151e90ad237a72bb38d941d4fe1604c834800a7edc8d2bbeb7c82662c24fb2b2e1d8cd69a86ff76b2843daad90ac8f55ce
 docfiles size=977
  texmf-dist/doc/luatex/luatexja/COPYING
  texmf-dist/doc/luatex/luatexja/README details="Readme"
@@ -28,7 +28,7 @@ docfiles size=977
  texmf-dist/doc/luatex/luatexja/luatexja.dtx
  texmf-dist/doc/luatex/luatexja/luatexja.ins
 srccontainersize 83900
-srccontainerchecksum 6818359b324f145d0c0d80e566268218fadb4c3d3c74809ac7865b2dd2b71c20584cfe17e39137f95fb485b58daa0286f5ab9a8a44f35e5dc029d461e03dfe7b
+srccontainerchecksum 41f17265aa58ceb2bdd9b13e95f73552185654f459498337d34631e1fff3fd51f3fcdc06a2d426b466f0e21dcdc3fb81d1e4f031214b2e4c93582d04984aa66c
 runfiles size=414
  texmf-dist/tex/luatex/luatexja/addons/luatexja-adjust.sty
  texmf-dist/tex/luatex/luatexja/addons/luatexja-ajmacros.sty
@@ -123,10 +123,10 @@ runfiles size=414
  texmf-dist/tex/luatex/luatexja/patches/lltjp-tascmac.sty
  texmf-dist/tex/luatex/luatexja/patches/lltjp-unicode-math.sty
  texmf-dist/tex/luatex/luatexja/patches/lltjp-xunicode.sty
-catalogue-contact-bugs https://osdn.net/projects/luatex-ja/ticket/
-catalogue-contact-home https://osdn.net/projects/luatex-ja/wiki/FrontPage(en)
-catalogue-contact-repository https://osdn.net/projects/luatex-ja/scm/git/luatexja/
+catalogue-contact-bugs https://github.com/luatexja/luatexja/issues
+catalogue-contact-home https://github.com/luatexja/luatexja/wiki/Home(en)
+catalogue-contact-repository https://github.com/luatexja/luatexja
 catalogue-ctan /macros/luatex/generic/luatexja
 catalogue-license bsd
 catalogue-topics japanese luatex class macro-gen
-catalogue-version 20230503.0
+catalogue-version 20231230.0

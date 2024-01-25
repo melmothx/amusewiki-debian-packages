@@ -1,6 +1,6 @@
 name babel-greek
 category Package
-revision 66610
+revision 68532
 shortdesc Babel support for the Greek language and script
 longdesc The bundle provides comprehensive support for the Greek
 longdesc language and script via the Babel system. Document authors can
@@ -8,11 +8,11 @@ longdesc select between the monotonic (single-diacritic), polytonic
 longdesc (multiple-diacritic), and ancient orthography of the Greek
 longdesc language. Included are the packages grmath for Greek function
 longdesc names in mathematics, and athnum for Attic numerals.
-containersize 6668
-containerchecksum 49204fb947068ce3b031d001a0511430a878e41191e75ca7c19bbc0d4faf3e5fa5dd30d41f7d00673748ced9af87f483beac53a412f20992157605bb6d8d90eb
-doccontainersize 1677980
-doccontainerchecksum 3f1298b263443ad85fadd9f2b16824c59eae490937803c152f2cf517b1ecf451cd556f3e4bb68b9c09a82deb0665c2ebd0f4fbaf6200eda74a04dc4661a9d5fb
-docfiles size=460
+containersize 6976
+containerchecksum f81c220447f77f207dee02a5611edb3dfe68fb775abe932efc560de9a268570e688b3abe4eb3dcc094ac0c967360d52be02bc85c82daedcf173bcda269065938
+doccontainersize 1827288
+doccontainerchecksum deb5a889b55a93101ee4c8571dabf00f8f971a6a27c2531c9e71a74e4b972ac1fe3efc6a336a6f0a38bb746316ba38881fcb2b4a90b64fdb5fa1fed51a7d90a0
+docfiles size=500
  texmf-dist/doc/generic/babel-greek/README.md details="Readme"
  texmf-dist/doc/generic/babel-greek/athnum.pdf
  texmf-dist/doc/generic/babel-greek/babel-greek-doc.html details="Documentation (HTML)"
@@ -21,18 +21,19 @@ docfiles size=460
  texmf-dist/doc/generic/babel-greek/grmath.pdf
  texmf-dist/doc/generic/babel-greek/test-athnum.pdf
  texmf-dist/doc/generic/babel-greek/test-athnum.tex
- texmf-dist/doc/generic/babel-greek/test-case-changing.tex
+ texmf-dist/doc/generic/babel-greek/test-encoding-switch.tex
  texmf-dist/doc/generic/babel-greek/test-greek-8bitcompat.tex
  texmf-dist/doc/generic/babel-greek/test-greek-ini.tex
  texmf-dist/doc/generic/babel-greek/test-greek.pdf
  texmf-dist/doc/generic/babel-greek/test-greek.tex
+ texmf-dist/doc/generic/babel-greek/test-greeknum.pdf
  texmf-dist/doc/generic/babel-greek/test-greeknum.tex
  texmf-dist/doc/generic/babel-greek/test-lgr-fixes.tex
  texmf-dist/doc/generic/babel-greek/usage.pdf
  texmf-dist/doc/generic/babel-greek/usage.tex
-srccontainersize 24428
-srccontainerchecksum f9f0bd6b846a9f22e0068abb477b5308fdee265ebc94bba26fda641d7f4452c0dcd24eedb5b801b329800b54125b5dfce0a98007a1b61cb5aa9916f48db53141
-runfiles size=9
+srccontainersize 25304
+srccontainerchecksum aa891867efbcd19359dc6fa93334e43858ec9c4f7b0ae2d26c5d770fa2210fbfa16afe2ee8ca49fa3db1cd6b8680c8f06dc1069d760b65ebfbdcef0e54fc7da8
+runfiles size=10
  texmf-dist/tex/generic/babel-greek/athnum.sty
  texmf-dist/tex/generic/babel-greek/greek.ldf
  texmf-dist/tex/generic/babel-greek/grmath.sty
@@ -41,4 +42,4 @@ catalogue-contact-repository https://codeberg.org/milde/greek-tex
 catalogue-ctan /macros/latex/contrib/babel-contrib/greek
 catalogue-license lppl1.3
 catalogue-topics greek multilingual-addon
-catalogue-version 1.13.1
+catalogue-version 1.15

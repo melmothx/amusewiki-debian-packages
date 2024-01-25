@@ -73,7 +73,7 @@
 %% find a complete unmodified copy of LaTeX2e at
 %% <http://mirror.ctan.org/tex-archive/macros/latex/base/>.
 %% 
-%%% From File: $Id: scrkernel-version.dtx 4038 2023-04-24 07:06:57Z kohm $
+%%% From File: $Id: scrkernel-version.dtx 4070 2023-07-07 07:08:40Z kohm $
 \begingroup
   \catcode`\@11\relax
   \ifx\KOMAScriptVersion\undefined
@@ -95,7 +95,7 @@
       \fi
     }
   \fi
-  \@CheckKOMAScriptVersion{2023/04/24 v3.40 KOMA-Script}%
+  \@CheckKOMAScriptVersion{2023/07/07 v3.41 KOMA-Script}%
 \endgroup
 \providecommand*{\scr@clsextension}{\@clsextension}
 \AtBeginDocument{%
@@ -108,13 +108,13 @@
   letter%
 }
 \ProvidesClass{\KOMAClassName}[%
-  2023/04/24 v3.40 KOMA-Script
+  2023/07/07 v3.41 KOMA-Script
   document class (\ClassName)%
 ]
-%%% From File: $Id: scrkernel-basics.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-basics.dtx 4051 2023-04-26 16:01:28Z kohm $
 %%%            (run: load)
 \RequirePackage{scrkbase}[\KOMAScriptVersion]
-%%% From File: $Id: scrkernel-compatibility.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-compatibility.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: init)
 \newcommand*
   {\scr@compatibility}{\scr@v@last}
@@ -202,10 +202,11 @@
 \@namedef{scr@v@3.38}{20}
 \@namedef{scr@v@3.39}{20}
 \@namedef{scr@v@3.40}{20}
-\@namedef{scr@v@last}{20}
+\@namedef{scr@v@3.41}{21}
+\@namedef{scr@v@last}{21}
 %%% From File: $Id: scrkernel-typearea.dtx 4032 2023-04-17 09:45:11Z kohm $
 %%%            (run: init)
-%%% From File: $Id: scrkernel-compatibility.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-compatibility.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: option)
 \KOMA@key{version}[last]{%
   \scr@ifundefinedorrelax{scr@v@#1}{%
@@ -821,7 +822,7 @@
 \KOMA@DeclareDeprecatedOption{parindent}{parskip=false}
 \KOMA@kav@add{\KOMAClassFileName}{parskip}{false}
 \KOMA@kav@add{\KOMAClassFileName}{parskip}{absolute}
-%%% From File: $Id: scrkernel-pagestyles.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-pagestyles.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: option)
 \KOMA@ifkey{headsepline}{@hsl}%
 \KOMA@kav@add{\KOMAClassFileName}{headsepline}{false}
@@ -928,7 +929,7 @@
 \KOMA@DeclareDeprecatedOption{cleardoubleempty}{cleardoublepage=empty}
 \KOMA@DeclareDeprecatedOption{cleardoubleplain}{cleardoublepage=plain}
 \KOMA@DeclareDeprecatedOption{cleardoublestandard}{cleardoublepage=current}
-%%% From File: $Id: scrkernel-floats.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-floats.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: option)
 %%% From File: $Id: scrkernel-footnotes.dtx 4032 2023-04-17 09:45:11Z kohm $
 %%%            (run: option)
@@ -1567,7 +1568,7 @@
   parskip=false,%
 }
 \KOMAProcessOptions\relax
-%%% From File: $Id: scrkernel-compatibility.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-compatibility.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: body)
 \AtBeginDocument{%
   \begingroup
@@ -3488,7 +3489,7 @@
 \@lowpenalty  = 51
 \@medpenalty  =151
 \@highpenalty =301
-%%% From File: $Id: scrkernel-pagestyles.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-pagestyles.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: body)
 \newcommand*{\set@tempdima@hw}{%
   \setlength{\@tempdima}{\textwidth}%
@@ -3585,7 +3586,7 @@
 }
 \pagestyle{plain}
 \pagenumbering{arabic}
-%%% From File: $Id: scrkernel-floats.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-floats.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: body)
 %%% From File: $Id: scrkernel-footnotes.dtx 4032 2023-04-17 09:45:11Z kohm $
 %%%            (run: body)

@@ -1,6 +1,6 @@
 name firstaid
 category Package
-revision 64892
+revision 68720
 catalogue latex-firstaid
 shortdesc First aid for external LaTeX files and packages that need updating
 longdesc This package contains some first aid for LaTeX packages or
@@ -9,22 +9,22 @@ longdesc LaTeX kernel that are not yet reflected in the package's or
 longdesc class's code. The file latex2e-first-aid-for-external-files.ltx
 longdesc provided by this package is meant to be loaded during format
 longdesc generation and not by the user.
-containersize 3424
-containerchecksum 52a53933022700a5713b750c3ca34afda096592da577febc7442807290a8e04da79affe217a0e10cf8ee483779e771b6f610a88b45df52822ea54acd3a45b4c7
-doccontainersize 262428
-doccontainerchecksum da564e169ae9169b828c76f1c7299dcc44fd2588d776f8fde039429c4f9a5e18ac133c6aab61076b2a58705d31f07f63f0734e66edf5c229c6d2bfeb64eda76b
-docfiles size=69
+containersize 3148
+containerchecksum 0d15794f22485c3cb922b0d1108c33f1dc3dad9bf8db46278deb8079bb966ca0f3cc1c5454d82e43f604354b578c9da465a34440670b365fab4f7bab32809603
+doccontainersize 257304
+doccontainerchecksum 6ee8e2e67d8029551e8224a4548b425188ca85298e5cfc90f9f1b95579223c840a80aad4d4a56e36f8d0c336778cf62c8b025d3f4df215d94a310beac14b1181
+docfiles size=68
  texmf-dist/doc/latex/firstaid/README.md details="Readme"
  texmf-dist/doc/latex/firstaid/changes.txt
  texmf-dist/doc/latex/firstaid/latex2e-first-aid-for-external-files.pdf details="Package documentation"
-srccontainersize 7960
-srccontainerchecksum eb776d9961f9969a780dec2c1a1eee6f9900fd66458acf4c60f84eed94d0dc0bdf5441a2c343d0052cab9fbe8d4f643d010970c908aaa0c8041fd285cf1f87f3
+srccontainersize 7388
+srccontainerchecksum 2c091df08953ae216e713567d1af4f0dbfbe25c4d593ddda22791d353002cce85829d3a8b404d0a1a441f67264b778c3137842388159f3f551fed249e3ac711e
 runfiles size=4
- texmf-dist/tex/latex/firstaid/everysel-ltx.sty
  texmf-dist/tex/latex/firstaid/filehook-ltx.sty
  texmf-dist/tex/latex/firstaid/latex2e-first-aid-for-external-files.ltx
+ texmf-dist/tex/latex/firstaid/underscore-ltx.sty
 catalogue-contact-home https://www.latex-project.org
 catalogue-ctan /macros/latex/required/firstaid
 catalogue-license lppl1.3c
 catalogue-topics format bugfix
-catalogue-version 1.0u
+catalogue-version 1.1b

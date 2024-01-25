@@ -7,7 +7,7 @@
 %% babel.dtx  (with options: `luatex')
 %% 
 %%
-%% Copyright (C) 2012-2023 Javier Bezos and Johannes L. Braams.
+%% Copyright (C) 2012-2024 Javier Bezos and Johannes L. Braams.
 %% Copyright (C) 1989-2012 Johannes L. Braams and
 %%           any individual authors listed elsewhere in this file.
 %% All rights reserved.
@@ -295,7 +295,7 @@
 end
 }
 \endgroup
-\ifx\newattribute\@undefined\else
+\ifx\newattribute\@undefined\else % Test for plain
   \newattribute\bbl@attr@locale
   \directlua{ Babel.attr_locale = luatexbase.registernumber'bbl@attr@locale' }
   \AddBabelHook{luatex}{beforeextras}{%
@@ -601,7 +601,7 @@ end
   \catcode`_=11 \catcode`:=11
   \gdef\bblar@nofswarn{\gdef\msg_warning:nnx##1##2##3{}}
 \endgroup
-\gdef\bbl@arabicjust{%
+\gdef\bbl@arabicjust{% TODO. Allow for several locales.
   \let\bbl@arabicjust\relax
   \newattribute\bblar@kashida
   \directlua{ Babel.attr_kashida = luatexbase.registernumber'bblar@kashida' }%
@@ -618,8 +618,8 @@ end
 \def\bblar@fetchjalt#1#2#3#4{%
   \bbl@exp{\\\bbl@foreach{#1}}{%
     \bbl@ifunset{bblar@JE@##1}%
-      {\setbox\z@\hbox{^^^^200d\char"##1#2}}%
-      {\setbox\z@\hbox{^^^^200d\char"\@nameuse{bblar@JE@##1}#2}}%
+      {\setbox\z@\hbox{\textdir TRT ^^^^200d\char"##1#2}}%
+      {\setbox\z@\hbox{\textdir TRT ^^^^200d\char"\@nameuse{bblar@JE@##1}#2}}%
     \directlua{%
       local last = nil
       for item in node.traverse(tex.box[0].head) do
@@ -675,6 +675,7 @@ Babel.arabic.from = {}
 Babel.arabic.dest = {}
 Babel.arabic.justify_factor = 0.95
 Babel.arabic.justify_enabled = true
+Babel.arabic.kashida_limit = -1
 
 function Babel.arabic.justify(head)
   if not Babel.arabic.justify_enabled then return head end
@@ -703,6 +704,7 @@ function Babel.arabic.justify_hlist(head, line, gc, size, pack)
   local width, width_new, full, k_curr, wt_pos, goal, shift
   local subst_done = false
   local elong_map = Babel.arabic.elong_map
+  local cnt
   local last_line
   local GLYPH = node.id'glyph'
   local KASHIDA = Babel.attr_kashida
@@ -775,7 +777,7 @@ function Babel.arabic.justify_hlist(head, line, gc, size, pack)
     if #k_list == 0 then goto next_line end
 
     width = node.dimensions(line.head)    % The 'natural' width
-    k_curr = #k_list
+    k_curr = #k_list % Traverse backwards, from the end
     wt_pos = 1
 
     while width < goal do
@@ -784,11 +786,16 @@ function Babel.arabic.justify_hlist(head, line, gc, size, pack)
       if k_list[k_curr].weight == Babel.kashida_wts[wt_pos] then
         d = node.copy(k_item)
         d.char = 0x0640
+        d.yoffset = 0 % TODO. From the prev char. But 0 seems safe.
+        d.xoffset = 0
         line.head, new = node.insert_after(line.head, k_item, d)
         width_new = node.dimensions(line.head)
         if width > goal or width == width_new then
           node.remove(line.head, new) % Better compute before
           break
+        end
+        if Babel.fix_diacr then
+          Babel.fix_diacr(k_item.next)
         end
         width = width_new
       end
@@ -797,6 +804,22 @@ function Babel.arabic.justify_hlist(head, line, gc, size, pack)
         wt_pos = (wt_pos >= table.getn(Babel.kashida_wts)) and 1 or wt_pos+1
       else
         k_curr = k_curr - 1
+      end
+    end
+
+    % Limit the number of tatweel by removing them. Not very efficient,
+    % but it does the job in a quite predictable way.
+    if Babel.arabic.kashida_limit > -1 then
+      cnt = 0
+      for n in node.traverse_id(GLYPH, line.head) do
+        if n.char == 0x0640 then
+          cnt = cnt + 1
+          if cnt > Babel.arabic.kashida_limit then
+            node.remove(line.head, n)
+          end
+        else
+          cnt = 0
+        end
       end
     end
 
@@ -815,7 +838,7 @@ function Babel.arabic.justify_hlist(head, line, gc, size, pack)
 end
 }
 \endgroup
-\fi\fi % Arabic just block
+\fi\fi % ends Arabic just block: \ifnum\bbl@bidimode>100...
 \AddBabelHook{babel-fontspec}{afterextras}{\bbl@switchfont}
 \AddBabelHook{babel-fontspec}{beforestart}{\bbl@ckeckstdfonts}
 \DisableBabelHook{babel-fontspec}
@@ -957,6 +980,8 @@ end
       {}}}
 \def\bbl@fontspec@set#1#2#3#4{% eg \bbl@rmdflt@lang fnt-opt fnt-nme \xxfamily
   \let\bbl@tempe\bbl@mapselect
+  \edef\bbl@tempb{\bbl@stripslash#4/}% Catcodes hack (better pass it).
+  \bbl@exp{\\\bbl@replace\\\bbl@tempb{\bbl@stripslash\family/}{}}%
   \let\bbl@mapselect\relax
   \let\bbl@temp@fam#4%       eg, '\rmfamily', to be restored below
   \let#4\@empty      %       Make sure \renewfontfamily is valid
@@ -971,14 +996,26 @@ end
     \let\\\bbl@tempfs@nxx\<__fontspec_warning:nxx>%
     \let\<__fontspec_warning:nxx>\\\bbl@fs@warn@nxx
     \\\renewfontfamily\\#4%
-      [\bbl@cl{lsys},#2]}{#3}% ie \bbl@exp{..}{#3}
+      [\bbl@cl{lsys},%
+       \ifcase\bbl@engine\or RawFeature={family=\bbl@tempb},\fi
+       #2]}{#3}% ie \bbl@exp{..}{#3}
   \bbl@exp{%
     \let\<__fontspec_warning:nx>\\\bbl@tempfs@nx
     \let\<__fontspec_warning:nxx>\\\bbl@tempfs@nxx}%
   \begingroup
      #4%
      \xdef#1{\f@family}%     eg, \bbl@rmdflt@lang{FreeSerif(0)}
-  \endgroup
+  \endgroup % TODO. Find better tests:
+  \bbl@xin@{\string>\string s\string s\string u\string b\string*}%
+    {\expandafter\meaning\csname TU/#1/bx/sc\endcsname}%
+  \ifin@
+    \global\bbl@ccarg\let{TU/#1/bx/sc}{TU/#1/b/sc}%
+  \fi
+  \bbl@xin@{\string>\string s\string s\string u\string b\string*}%
+    {\expandafter\meaning\csname TU/#1/bx/scit\endcsname}%
+  \ifin@
+    \global\bbl@ccarg\let{TU/#1/bx/scit}{TU/#1/b/scit}%
+  \fi
   \let#4\bbl@temp@fam
   \bbl@exp{\let\<\bbl@stripslash#4\space>}\bbl@temp@pfam
   \let\bbl@mapselect\bbl@tempe}%
@@ -1063,22 +1100,35 @@ function Babel.locale_map(head)
             end
           end
         end
+        % Treat composite chars in a different fashion, because they
+        % 'inherit' the previous locale.
+        if (item.char >= 0x0300 and item.char <= 0x036F) or
+           (item.char >= 0x1AB0 and item.char <= 0x1AFF) or
+           (item.char >= 0x1DC0 and item.char <= 0x1DFF) then
+             Babel.chr_to_loc[item.char] = -2000
+             toloc = -2000
+        end
+        if not toloc then
+          Babel.chr_to_loc[item.char] = -1000
+        end
       end
-      % Now, take action, but treat composite chars in a different
-      % fashion, because they 'inherit' the previous locale. Not yet
-      % optimized.
-      if not toloc and
-          (item.char >= 0x0300 and item.char <= 0x036F) or
-          (item.char >= 0x1AB0 and item.char <= 0x1AFF) or
-          (item.char >= 0x1DC0 and item.char <= 0x1DFF) then
+      if toloc == -2000 then
         toloc = toloc_save
+      elseif toloc == -1000 then
+        toloc = nil
       end
       if toloc and Babel.locale_props[toloc] and
           Babel.locale_props[toloc].letters and
           tex.getcatcode(item.char) \string~= 11 then
         toloc = nil
       end
-      if toloc and toloc > -1 then
+      if toloc and Babel.locale_props[toloc].script
+          and Babel.locale_props[node.get_attribute(item, LOCALE)].script
+          and Babel.locale_props[toloc].script ==
+            Babel.locale_props[node.get_attribute(item, LOCALE)].script then
+        toloc = nil
+      end
+      if toloc then
         if Babel.locale_props[toloc].lg then
           item.lang = Babel.locale_props[toloc].lg
           node.set_attribute(item, LOCALE, toloc)
@@ -1086,8 +1136,8 @@ function Babel.locale_map(head)
         if Babel.locale_props[toloc]['/'..item.font] then
           item.font = Babel.locale_props[toloc]['/'..item.font]
         end
-        toloc_save = toloc
       end
+      toloc_save = toloc
     elseif not inmath and item.id == 7 then % Apply recursively
       item.replace = item.replace and Babel.locale_map(item.replace)
       item.pre     = item.pre and Babel.locale_map(item.pre)
@@ -1106,14 +1156,14 @@ end
   \else
     \bbl@error{\string\babelcharproperty\space can be used only in\\%
                vertical mode (preamble or between paragraphs)}%
-              {See the manual for futher info}%
+              {See the manual for further info}%
   \fi}
 \newcommand\bbl@chprop[3][\the\count@]{%
   \@tempcnta=#1\relax
   \bbl@ifunset{bbl@chprop@#2}%
     {\bbl@error{No property named '#2'. Allowed values are\\%
                 direction (bc), mirror (bmg), and linebreak (lb)}%
-               {See the manual for futher info}}%
+               {See the manual for further info}}%
     {}%
   \loop
     \bbl@cs{chprop@#2}{#3}%
@@ -1156,7 +1206,6 @@ end
   \@ifnextchar[{\bbl@settransform{0}}{\bbl@settransform{0}[]}}
 \gdef\babelposthyphenation{&%
   \@ifnextchar[{\bbl@settransform{1}}{\bbl@settransform{1}[]}}
-\gdef\bbl@postlinebreak{\bbl@settransform{2}[]} &% WIP
 \gdef\bbl@settransform#1[#2]#3#4#5{&%
   \ifcase#1
     \bbl@activateprehyphen
@@ -1237,7 +1286,7 @@ end
       local lbkr = Babel.linebreaking.replacements[#1]
       local u = unicode.utf8
       local id, attr, label
-      if #1 == 0 or #1 == 2 then
+      if #1 == 0 then
         id = \the\csname bbl@id@@#3\endcsname\space
       else
         id = \the\csname l@#3\endcsname\space
@@ -1252,7 +1301,7 @@ end
       \fi
       &% Convert pattern:
       local patt = string.gsub([==[#4]==], '%s', '')
-      if #1 == 0 or #1 == 2 then
+      if #1 == 0 then
         patt = string.gsub(patt, '|', ' ')
       end
       if not u.find(patt, '()', nil, true) then
@@ -1331,6 +1380,8 @@ end
     require('babel-transforms.lua')
     Babel.linebreaking.add_before(Babel.pre_hyphenate_replace)
   }}
+\newcommand\localeprehyphenation[1]{%
+  \directlua{ Babel.string_prehyphenation([==[#1]==], \the\localeid) }}
 \def\bbl@activate@preotf{%
   \let\bbl@activate@preotf\relax  % only once
   \directlua{
@@ -1368,7 +1419,8 @@ end
       luatexbase.priority_in_callback('hpack_filter',
         'luaotfload.node_processor') or nil)
   }}
-\ifnum\bbl@bidimode>\@ne % Excludes default=1
+\breakafterdirmode=1
+\ifnum\bbl@bidimode>\@ne % Any bidi= except default=1
   \let\bbl@beforeforeign\leavevmode
   \AtEndOfPackage{\EnableBabelHook{babel-bidi}}
   \RequirePackage{luatexbase}
@@ -1415,7 +1467,7 @@ end
 \def\bbl@bodydir{\bbl@setluadir{body}\bodydir}%   Used once
 \def\bbl@pagedir{\bbl@setluadir{page}\pagedir}%   Unused
 \def\bbl@dirparastext{\pardir\the\textdir\relax}% Used once
-\ifnum\bbl@bidimode>\z@
+\ifnum\bbl@bidimode>\z@ % Any bidi=
   \def\bbl@insidemath{0}%
   \def\bbl@everymath{\def\bbl@insidemath{1}}
   \def\bbl@everydisplay{\def\bbl@insidemath{2}}
@@ -1444,10 +1496,8 @@ end
   }}%
 \fi
 \bbl@trace{Redefinitions for bidi layout}
-\ifnum\bbl@bidimode>\z@
-  \ifx\matheqdirmode\@undefined\else
-    \matheqdirmode\@ne % A luatex primitive
-  \fi
+\ifnum\bbl@bidimode>\z@ % Any bidi=
+  \matheqdirmode\@ne % A luatex primitive
   \let\bbl@eqnodir\relax
   \def\bbl@eqdel{()}
   \def\bbl@eqnum{%
@@ -1460,17 +1510,21 @@ end
   \def\bbl@eqno@flip#1{%
     \ifdim\predisplaysize=-\maxdimen
       \eqno
-      \hb@xt@.01pt{\hb@xt@\displaywidth{\hss{#1}}\hss}%
+      \hb@xt@.01pt{%
+        \hb@xt@\displaywidth{\hss{#1\glet\bbl@upset\@currentlabel}}\hss}%
     \else
-      \leqno\hbox{#1}%
-    \fi}
+      \leqno\hbox{#1\glet\bbl@upset\@currentlabel}%
+    \fi
+    \bbl@exp{\def\\\@currentlabel{\[bbl@upset]}}}
   \def\bbl@leqno@flip#1{%
     \ifdim\predisplaysize=-\maxdimen
       \leqno
-      \hb@xt@.01pt{\hss\hb@xt@\displaywidth{{#1}\hss}}%
+      \hb@xt@.01pt{%
+        \hss\hb@xt@\displaywidth{{#1\glet\bbl@upset\@currentlabel}\hss}}%
     \else
-      \eqno\hbox{#1}%
-    \fi}
+      \eqno\hbox{#1\glet\bbl@upset\@currentlabel}%
+    \fi
+    \bbl@exp{\def\\\@currentlabel{\[bbl@upset]}}}
   \AtBeginDocument{%
     \ifx\bbl@noamsmath\relax\else
     \ifx\maketag@@@\@undefined % Normal equation, eqnarray
@@ -1557,10 +1611,13 @@ end
       \AddToHook{env/gather*/begin}{\bbl@ams@preset\bbl@ams@lap}%
       \AddToHook{env/align/begin}{\bbl@ams@preset\bbl@ams@lap}%
       \AddToHook{env/align*/begin}{\bbl@ams@preset\bbl@ams@lap}%
+      \AddToHook{env/alignat/begin}{\bbl@ams@preset\bbl@ams@lap}%
+      \AddToHook{env/alignat*/begin}{\bbl@ams@preset\bbl@ams@lap}%
       \AddToHook{env/eqnalign/begin}{\bbl@ams@preset\hbox}%
       % Hackish, for proper alignment. Don’t ask me why it works!:
       \bbl@exp{% Avoid a 'visible' conditional
-        \\\AddToHook{env/align*/end}{\<iftag@>\<else>\\\tag*{}\<fi>}}%
+        \\\AddToHook{env/align*/end}{\<iftag@>\<else>\\\tag*{}\<fi>}%
+        \\\AddToHook{env/alignat*/end}{\<iftag@>\<else>\\\tag*{}\<fi>}}%
       \AddToHook{env/flalign/begin}{\bbl@ams@preset\hbox}%
       \AddToHook{env/split/before}{%
         \def\bbl@mathboxdir{\def\bbl@insidemath{1}}%
@@ -1641,8 +1698,8 @@ end
   {\IfBabelLayout{notabular}%
     {\chardef\bbl@tabular@mode\z@}%
     {\chardef\bbl@tabular@mode\@ne}}% Mixed, with LTR cols
-\ifnum\bbl@bidimode>\@ne
-  \ifnum\bbl@tabular@mode=\@ne
+\ifnum\bbl@bidimode>\@ne % Any lua bidi= except default=1
+  \ifcase\bbl@tabular@mode\or % 1
     \let\bbl@parabefore\relax
     \AddToHook{para/before}{\bbl@parabefore}
     \AtBeginDocument{%
@@ -1666,16 +1723,31 @@ end
                 \\\bbl@sreplace\\\@classz
                   {\\\do@row@strut\<fi>}{\\\do@row@strut\<fi>\egroup}}}%
              {}}%
-    \fi}
+    \fi}%
+  \or % 2
+    \let\bbl@parabefore\relax
+    \AddToHook{para/before}{\bbl@parabefore}%
+    \AtBeginDocument{%
+      \@ifpackageloaded{colortbl}%
+        {\bbl@replace\@tabular{$}{$%
+           \def\bbl@insidemath{0}%
+           \def\bbl@parabefore{\localerestoredirs}}%
+         \bbl@sreplace\@classz
+           {\hbox\bgroup\bgroup}{\hbox\bgroup\bgroup\localerestoredirs}}%
+        {}}%
   \fi
   \AtBeginDocument{%
     \@ifpackageloaded{multicol}%
       {\toks@\expandafter{\multi@column@out}%
        \edef\multi@column@out{\bodydir\pagedir\the\toks@}}%
-      {}}
+      {}%
+    \@ifpackageloaded{paracol}%
+      {\edef\pcol@output{%
+        \bodydir\pagedir\unexpanded\expandafter{\pcol@output}}}%
+      {}}%
 \fi
 \ifx\bbl@opt@layout\@nnil\endinput\fi  % if no layout
-\ifnum\bbl@bidimode>\z@
+\ifnum\bbl@bidimode>\z@ % Any bidi=
   \def\bbl@nextfake#1{%  non-local changes, use always inside a group!
     \bbl@exp{%
       \def\\\bbl@insidemath{0}%
@@ -1709,7 +1781,10 @@ end
    \let\bbl@NL@@tabular\@tabular
    \AtBeginDocument{%
      \ifx\bbl@NL@@tabular\@tabular\else
-       \bbl@replace\@tabular{$}{\bbl@nextfake$}%
+       \bbl@exp{\\\in@{\\\bbl@nextfake}{\[@tabular]}}%
+       \ifin@\else
+         \bbl@replace\@tabular{$}{\bbl@nextfake$}%
+       \fi
        \let\bbl@NL@@tabular\@tabular
      \fi}}
    {}
@@ -1831,7 +1906,7 @@ end
       \let\bbl@OL@p@enumiii\p@enumiii
       \def\p@enumiii{\p@enumii)\theenumii(}}{}}{}
 \bbl@trace{Bidi footnotes}
-\ifnum\bbl@bidimode>\z@
+\ifnum\bbl@bidimode>\z@ % Any bidi=
   \def\bbl@footnote#1#2#3{%
     \@ifnextchar[%
       {\bbl@footnote@o{#1}{#2}{#3}}%
@@ -1882,9 +1957,12 @@ end
    \BabelFootnote\mainfootnote{}{}{}}
   {}
 \IfBabelLayout{extras}%
-  {\let\bbl@OL@underline\underline
-   \bbl@sreplace\underline{$\@@underline}{\bbl@nextfake$\@@underline}%
-   \let\bbl@OL@LaTeX2e\LaTeX2e
+  {\bbl@ncarg\let\bbl@OL@underline{underline }%
+   \bbl@carg\bbl@sreplace{underline }%
+     {$\@@underline}{\bgroup\bbl@nextfake$\@@underline}%
+   \bbl@carg\bbl@sreplace{underline }%
+     {\m@th$}{\m@th$\egroup}%
+   \let\bbl@OL@LaTeXe\LaTeXe
    \DeclareRobustCommand{\LaTeXe}{\mbox{\m@th
      \if b\expandafter\@car\f@series\@nil\boldmath\fi
      \babelsublr{%

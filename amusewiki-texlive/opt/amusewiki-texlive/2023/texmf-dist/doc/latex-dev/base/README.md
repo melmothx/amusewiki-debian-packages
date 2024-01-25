@@ -1,7 +1,7 @@
 The LaTeX kernel
 ================
 
-Release 2023-06-01 pre-release 3
+Release 2024-06-01 pre-release 0
 
 Overview
 --------
@@ -87,6 +87,6 @@ version 1.3c or later.
 
 -----
 
-<p>Copyright (C) 1989-2022 The LaTeX Project <br />
+<p>Copyright (C) 1989-2023 The LaTeX Project <br />
 <a href="http://latex-project.org/">http://latex-project.org/</a> <br />
 All rights reserved.</p>

@@ -1,6 +1,6 @@
 name koma-script
 category TLCore
-revision 66930
+revision 67573
 shortdesc A bundle of versatile classes and packages
 longdesc The KOMA-Script bundle provides replacements for the article,
 longdesc report, and book classes with emphasis on typography and
@@ -16,9 +16,9 @@ longdesc version number, the version number quoted only refers to the
 longdesc version of scrbook, scrreprt, scrartcl, scrlttr2 and typearea
 longdesc (which are the main parts of the bundle).
 depend footmisc
-containersize 7354452
-containerchecksum 10414c6bbb5a6b3840f177a3f8f8e05541e2f0a5e896b206d04340eb5ed54be322995386aa6e75e4110584bfee4caf3b0ce0085922173624ca4bcb0a15f654e0
-runfiles size=4091
+containersize 7348172
+containerchecksum 0ad55b5765ec907f39bbb8bba7deee4a131d76c81a0e7bd7379031c5a8771d47c121df5a55699706c886063a12bdf338e5b47b6a6784f0a23a72891a07b322b9
+runfiles size=4099
  texmf-dist/doc/latex/koma-script/MANIFEST.md
  texmf-dist/doc/latex/koma-script/README.md
  texmf-dist/doc/latex/koma-script/examples/ich.lco
@@ -365,4 +365,4 @@ catalogue-contact-repository https://sourceforge.net/p/koma-script/code
 catalogue-ctan /macros/latex/contrib/koma-script
 catalogue-license lppl1.3c
 catalogue-topics class letter book-pub page-hf geometry float toc-etc legal notes addr-list date-time keyval package-mgmt io-mgmt
-catalogue-version 3.40
+catalogue-version 3.41

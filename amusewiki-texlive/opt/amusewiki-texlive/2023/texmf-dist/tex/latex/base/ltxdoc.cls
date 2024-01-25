@@ -13,7 +13,7 @@
 %% (but please observe conditions on bug reports sent to that address!)
 %% 
 %% 
-%% Copyright (C) 1993-2022
+%% Copyright (C) 1993-2024
 %% The LaTeX Project and any individual authors listed elsewhere
 %% in this file.
 %% 
@@ -43,13 +43,16 @@
 %% extension .ins) which are part of the distribution.
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{ltxdoc}
-         [2022/06/22 v2.1i Standard LaTeX documentation class]
+         [2023/03/28 v2.1j Standard LaTeX documentation class]
 \DeclareOption{a5paper}{\@latexerr{Option not supported}%
    {}}
 \newif\ifltxdoc@load@cfg@ \ltxdoc@load@cfg@true
 \DeclareOption{nocfg}{\ltxdoc@load@cfg@false}
 \let\ltxdoc@doc@version\@empty  % use current version by default
-\DeclareOption{doc2}{\def\ltxdoc@doc@version{=v2}}
+\DeclareOption{doc2}{%
+  \def\ltxdoc@doc@version{=v2}%
+  \DeclareRobustCommand\cs[1]{\texttt{\bslash #1}}%
+}
 \DeclareOption*{%
     \PassOptionsToClass  {\CurrentOption}{article}}
 \ProcessOptions

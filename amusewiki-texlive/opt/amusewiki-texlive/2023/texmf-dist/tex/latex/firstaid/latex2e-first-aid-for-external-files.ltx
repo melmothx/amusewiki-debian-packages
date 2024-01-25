@@ -11,7 +11,7 @@
 %% (but please observe conditions on bug reports sent to that address!)
 %% 
 %% 
-%% Copyright (C) 2020-2021
+%% Copyright (C) 2020-2023
 %% The LaTeX Project and any individual authors listed elsewhere
 %% in this file.
 %% 
@@ -30,12 +30,12 @@
 %% `First Aid Bundle'. You may however distribute the LaTeX `First Aid Bundle'
 %% without such generated files.
 %% 
-%% File: latex2e-first-aid-for-external-files.dtx (C) Copyright 2020-2022
+%% File: latex2e-first-aid-for-external-files.dtx (C) Copyright 2020-2023
 %%
 %% The LaTeX Project and any individual authors listed elsewhere
 %% in this file.
-\def\LaTeXFirstAidDate{2022/10/29}
-\def\LaTeXFirstAidVersion{v1.0u}
+\def\LaTeXFirstAidDate{2023/09/20}
+\def\LaTeXFirstAidVersion{v1.1b}
 \ProvidesFile{latex2e-first-aid-for-external-files.ltx}
              [\LaTeXFirstAidDate\space \LaTeXFirstAidVersion\space
                LaTeX kernel fixes to external files and packages]
@@ -56,6 +56,8 @@
   \FirstAidNeededT{dinbrief}{cls}{2000/03/02 LaTeX2e class}%
                   {\AddToHook{env/document/begin}{\begingroup}}%
 }
+\AddToHook{package/unicode-math/after}{%
+  \AddToHook{cmd/mod@math@codes/after}{\mathcode`\|=28796 }}
 \ExplSyntaxOn
 \AddToHook{file/pgfpages.sty/after}[firstaid]{%
   \cs_gset_eq:NN \shipout \pgfpages@originalshipout
@@ -72,6 +74,39 @@
 }
 \ExplSyntaxOff
 \AddToHook{file/babel.sty/before}[firstaid]{\def\BabelCaseHack{}}
+\AddToHook{file/songs.sty/after}[firstaid]{%
+  \FirstAidNeededT{songs}{sty}{2018/09/12 v3.1 Songs package}%
+                  {%
+     \renewcommand\SB@obeylines{%
+         \let\obeyedline\SB@par%
+         \obeylines%
+         \let\@par\SB@@par%
+       }}%
+}
+\AddToHook{file/crop.sty/after}[firstaid]{%
+  \FirstAidNeededT{crop}{sty}{2017/11/19 1.10 crop marks (mf)}%
+                  {%
+  \ifdim\stockwidth  > 0pt \else \stockwidth\paperwidth \fi
+  \ifdim\stockheight > 0pt \else \stockheight\paperheight \fi
+  \renewcommand*\CROP@genreflect[1]{%
+    \leavevmode
+    \dimen0\CROP@horigin
+    \kern2\dimen0
+    \begingroup
+    \set@typeset@protect %change protect
+    \reflectbox{%
+        \hb@xt@\paperwidth{%
+            \vbox to\paperheight{%
+                #1%
+                \vss
+            }%
+            \hss
+        }%
+    }%
+   \endgroup
+   }
+  }%
+}
 \AddToHook{file/bigfoot.sty/after}{%
    \ifnum\count10<\insc@unt
      \global\count10=\insc@unt
@@ -132,66 +167,8 @@
 \ngermanTeX
 }%
 }
-\AddToHook{file/memoir.cls/before}[firstaid]{%
-  \expandafter\def\expandafter\@tempa\string\dimen{}%
-  \edef\kernel@stockheight{\expandafter\@tempa\meaning\stockheight}%
-  \edef\kernel@stockwidth{\expandafter\@tempa\meaning\stockwidth}%
-  \let\stockheight\@undefined
-  \let\stockwidth\@undefined
-}
-\AddToHook{file/memoir.cls/after}[firstaid]{%
-  \dimen\kernel@stockheight=\stockheight
-  \dimen\kernel@stockwidth=\stockwidth
-  \dimendef\stockheight=\kernel@stockheight
-  \dimendef\stockwidth=\kernel@stockwidth
-}
-\ExplSyntaxOn
-\sys_if_engine_luatex:T
-  {
-    \newluafunction \g__para_end_empty_par_id_int
-    \exp_args:Nx \everyjob {
-      \exp_not:V \everyjob
-      \exp_not:N \lua_now:n {
-        local~texnest, flush_list, par_token = tex.nest, node.flush_list, token.create'tex_par:D'~
-        lua.get_functions_table()[\int_use:N \g__para_end_empty_par_id_int] = function()
-          local~nest_level = texnest.top~
-          local~cur_head = nest_level.head~
-          flush_list(cur_head.next)
-          nest_level.tail, cur_head.next = cur_head, nil~
-          token.put_next(par_token)
-        end
-      }
-    }
-    \protected \luadef \__para_end_empty_par: \g__para_end_empty_par_id_int
-    \group_begin:
-    \cs_set:Npn \__para_extract_everypar:w #1 \the \toks #2 \s_stop
-      {
-        \tl_gset:Nn \g__para_standard_everypar_tl {
-          \box_gset_to_last:N \g_para_indent_box
-          \group_begin:
-            \__para_end_empty_par:
-          \group_end:
-          \tex_everypar:D { \msg_error:nnnn { hooks }{ para-mode }{before}{vertical} }
-          \@kernel@before@para@before
-          \hook_use:n {para/before}
-          \group_begin:
-            \tex_everypar:D {}
-            \skip_zero:N \tex_parskip:D
-            \tex_noindent:D
-          \group_end:
-          \tex_everypar:D{\g__para_standard_everypar_tl}
-          \@kernel@before@para@begin
-          \hook_use:n {para/begin}
-          \if_mode_horizontal: \else:
-            \msg_error:nnnn { hooks }{ para-mode }{begin}{vertical} \fi:
-          \__para_handle_indent:
-          \the \toks #2
-        }
-      }
-    \exp_last_unbraced:No \__para_extract_everypar:w \g__para_standard_everypar_tl \s_stop
-    \group_end:
-  }
-\ExplSyntaxOff
+\AddToHook{file/underscore.sty/after}[firstaid]{%
+  \FirstAidNeededT{underscore}{sty}{2006/09/13}{\RequirePackage{underscore-ltx}}}
 \endinput
 %%
 %% End of file `latex2e-first-aid-for-external-files.ltx'.

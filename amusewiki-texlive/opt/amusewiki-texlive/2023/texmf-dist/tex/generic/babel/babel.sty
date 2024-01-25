@@ -7,7 +7,7 @@
 %% babel.dtx  (with options: `package')
 %% 
 %%
-%% Copyright (C) 2012-2023 Javier Bezos and Johannes L. Braams.
+%% Copyright (C) 2012-2024 Javier Bezos and Johannes L. Braams.
 %% Copyright (C) 1989-2012 Johannes L. Braams and
 %%           any individual authors listed elsewhere in this file.
 %% All rights reserved.
@@ -34,7 +34,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}[2005/12/01]
-\ProvidesPackage{babel}[2023/05/11 v3.89 The Babel package]
+\ProvidesPackage{babel}[2024/01/07 v24.1 The Babel package]
 \@ifpackagewith{babel}{debug}
   {\providecommand\bbl@trace[1]{\message{^^J[ #1 ]}}%
    \let\bbl@debug\@firstofone
@@ -470,8 +470,8 @@
       \expandafter\@secondoftwo
     \fi}
 \fi
-\def\bbl@version{3.89}
-\def\bbl@date{2023/05/11}
+\def\bbl@version{24.1}
+\def\bbl@date{2024/01/07}
 \ifx\language\@undefined
   \csname newcount\endcsname\language
 \fi
@@ -1191,11 +1191,23 @@
     \immediate\write\@mainaux{\string\@nameuse{bbl@beforestart}}%
   \fi
   \expandafter\selectlanguage\expandafter{\bbl@main@language}%
+  \ifx\bbl@normalsf\@empty
+    \ifnum\sfcode`\.=\@m
+      \let\normalsfcodes\frenchspacing
+    \else
+      \let\normalsfcodes\nonfrenchspacing
+    \fi
+  \else
+    \let\normalsfcodes\bbl@normalsf
+  \fi
   \ifbbl@single  % must go after the line above.
     \renewcommand\selectlanguage[1]{}%
     \renewcommand\foreignlanguage[2]{#2}%
     \global\let\babel@aux\@gobbletwo  % Also as flag
   \fi}
+\AddToHook{begindocument/before}{%
+  \let\bbl@normalsf\normalsfcodes
+  \let\normalsfcodes\relax} % Hack, to delay the setting
 \ifcase\bbl@engine\or
   \AtBeginDocument{\pagedir\bodydir} % TODO - a better place
 \fi
@@ -1765,20 +1777,6 @@
 \def\bbl@disc#1#2{\nobreak\discretionary{#2-}{}{#1}\bbl@allowhyphens}
 \bbl@trace{Multiencoding strings}
 \def\bbl@toglobal#1{\global\let#1#1}
-\@ifpackagewith{babel}{nocase}%
-  {\let\bbl@patchuclc\relax}%
-  {\def\bbl@patchuclc{% TODO. Delete. Doesn’t work any more.
-    \global\let\bbl@patchuclc\relax
-    \g@addto@macro\@uclclist{\reserved@b{\reserved@b\bbl@uclc}}%
-    \gdef\bbl@uclc##1{%
-      \let\bbl@encoded\bbl@encoded@uclc
-      \bbl@ifunset{\languagename @bbl@uclc}% and resumes it
-        {##1}%
-        {\let\bbl@tempa##1\relax % Used by LANG@bbl@uclc
-         \csname\languagename @bbl@uclc\endcsname}%
-      {\bbl@tolower\@empty}{\bbl@toupper\@empty}}%
-    \gdef\bbl@tolower{\csname\languagename @bbl@lc\endcsname}%
-    \gdef\bbl@toupper{\csname\languagename @bbl@uc\endcsname}}}
 \@onlypreamble\StartBabelCommands
 \def\StartBabelCommands{%
   \begingroup
@@ -1800,11 +1798,17 @@
         \\\SetString\bbl@templ{\romannumeral\count@}{\the\toks@}%
         \count@=\the\count@\relax}}}%
   \newcommand\SetCase[3][]{%
-    \bbl@patchuclc
-    \bbl@forlang\bbl@tempa{%
-      \bbl@carg\bbl@encstring{\bbl@tempa @bbl@uclc}{\bbl@tempa##1}%
-      \bbl@carg\bbl@encstring{\bbl@tempa @bbl@uc}{##2}%
-      \bbl@carg\bbl@encstring{\bbl@tempa @bbl@lc}{##3}}}%
+    \def\bbl@tempa####1####2{%
+      \ifx####1\@empty\else
+        \bbl@carg\bbl@add{extras\CurrentOption}{%
+          \bbl@carg\babel@save{c__text_uppercase_\string####1_tl}%
+          \bbl@carg\def{c__text_uppercase_\string####1_tl}{####2}%
+          \bbl@carg\babel@save{c__text_lowercase_\string####2_tl}%
+          \bbl@carg\def{c__text_lowercase_\string####2_tl}{####1}}%
+        \expandafter\bbl@tempa
+      \fi}%
+    \bbl@tempa##1\@empty\@empty
+    \bbl@carg\bbl@toglobal{extras\CurrentOption}}%
   \newcommand\SetHyphenMap[1]{%
     \bbl@forlang\bbl@tempa{%
       \expandafter\bbl@stringdef
@@ -1933,24 +1937,7 @@
     \bbl@usehooks{stringprocess}{}%
     \expandafter\bbl@stringdef
       \csname\bbl@LC\expandafter\endcsname\expandafter{\BabelString}}}
-\ifx\bbl@opt@strings\relax
-  \def\bbl@scset#1#2{\def#1{\bbl@encoded#2}}
-  \bbl@patchuclc
-  \let\bbl@encoded\relax
-  \def\bbl@encoded@uclc#1{%
-    \@inmathwarn#1%
-    \expandafter\ifx\csname\cf@encoding\string#1\endcsname\relax
-      \expandafter\ifx\csname ?\string#1\endcsname\relax
-        \TextSymbolUnavailable#1%
-      \else
-        \csname ?\string#1\endcsname
-      \fi
-    \else
-      \csname\cf@encoding\string#1\endcsname
-    \fi}
-\else
-  \def\bbl@scset#1#2{\def#1{#2}}
-\fi
+\def\bbl@scset#1#2{\def#1{#2}}
 \def\bbl@aftercmds#1{%
   \toks@\expandafter{\bbl@scafter#1}%
   \xdef\bbl@scafter{\the\toks@}}
@@ -2283,9 +2270,10 @@
   \bbl@vforeach{captions,date,import,main,script,language,%
       hyphenrules,linebreaking,justification,mapfont,maparabic,%
       mapdigits,intraspace,intrapenalty,onchar,transforms,alph,%
-      Alph,labels,labels*,calendar,date,casing}%
+      Alph,labels,labels*,calendar,date,casing,interchar}%
     {\bbl@csarg\let{KVP@##1}\@nnil}%
   \global\let\bbl@release@transforms\@empty
+  \global\let\bbl@release@casing\@empty
   \let\bbl@calendars\@empty
   \global\let\bbl@inidata\@empty
   \global\let\bbl@extend@ini\@gobble
@@ -2429,9 +2417,7 @@
       % TODO - error/warning if no script
       \directlua{
         if Babel.script_blocks['\bbl@cl{sbcp}'] then
-          Babel.loc_to_scr[\the\localeid] =
-            Babel.script_blocks['\bbl@cl{sbcp}']
-          Babel.locale_props[\the\localeid].lc = \the\localeid\space
+          Babel.loc_to_scr[\the\localeid] = Babel.script_blocks['\bbl@cl{sbcp}']
           Babel.locale_props[\the\localeid].lg = \the\@nameuse{l@\languagename}\space
         end
       }%
@@ -2592,9 +2578,11 @@
         \let\\\@Alph\<bbl@cntr@\bbl@KVP@Alph @\languagename>}}%
   \fi
   % == Casing ==
-  \bbl@exp{\def\<bbl@casing@\languagename>%
-    {\<bbl@lbcp@\languagename>%
-     \ifx\bbl@KVP@casing\@nnil\else-x-\bbl@KVP@casing\fi}}%
+  \bbl@release@casing
+  \ifx\bbl@KVP@casing\@nnil\else
+    \bbl@csarg\xdef{casing@\languagename}%
+      {\@nameuse{bbl@casing@\languagename}\bbl@maybextx\bbl@KVP@casing}%
+  \fi
   % == Calendars ==
   \ifx\bbl@KVP@calendar\@nnil
     \edef\bbl@KVP@calendar{\bbl@cl{calpr}}%
@@ -2624,6 +2612,7 @@
          \let\BabelBeforeIni\@gobbletwo
          \chardef\atcatcode=\catcode`\@
          \catcode`\@=11\relax
+         \def\CurrentOption{#2}%
          \bbl@input@texini{\bbl@cs{rqtex@\languagename}}%
          \catcode`\@=\atcatcode
          \let\atcatcode\relax
@@ -2947,6 +2936,7 @@
        \bbl@cs{@kv@identification.warning#1}\\%
        Reported }}}
 \let\bbl@release@transforms\@empty
+\let\bbl@release@casing\@empty
 \def\bbl@ini@exports#1{%
   % Identification always exported
   \bbl@iniwarning{}%
@@ -2962,9 +2952,9 @@
   \bbl@exp{\\\bbl@exportkey{lname}{identification.name.opentype}%
     {\csname bbl@elname@\languagename\endcsname}}%
   \bbl@exportkey{tbcp}{identification.tag.bcp47}{}%
+  % Somewhat hackish. TODO:
+  \bbl@exportkey{casing}{identification.tag.bcp47}{}%
   \bbl@exportkey{lbcp}{identification.language.tag.bcp47}{}%
-  % Somewhat hackish. TODO
-  \bbl@exportkey{casing}{identification.language.tag.bcp47}{}%
   \bbl@exportkey{lotf}{identification.tag.opentype}{dflt}%
   \bbl@exportkey{esname}{identification.script.name}{}%
   \bbl@exp{\\\bbl@exportkey{sname}{identification.script.name.opentype}%
@@ -2979,6 +2969,11 @@
   % Also maps bcp47 -> languagename
   \ifbbl@bcptoname
     \bbl@csarg\xdef{bcp@map@\bbl@cl{tbcp}}{\languagename}%
+  \fi
+  \ifcase\bbl@engine\or
+    \directlua{%
+      Babel.locale_props[\the\bbl@cs{id@@\languagename}].script
+        = '\bbl@cl{sbcp}'}%
   \fi
   % Conditional
   \ifnum#1>\z@         % 0 = only info, 1, 2 = basic, (re)new
@@ -3008,8 +3003,23 @@
 \let\bbl@inikv@identification\bbl@inikv
 \let\bbl@inikv@date\bbl@inikv
 \let\bbl@inikv@typography\bbl@inikv
-\let\bbl@inikv@characters\bbl@inikv
 \let\bbl@inikv@numbers\bbl@inikv
+\def\bbl@maybextx{-\bbl@csarg\ifx{extx@\languagename}\@empty x-\fi}
+\def\bbl@inikv@characters#1#2{%
+  \bbl@ifsamestring{#1}{casing}%  eg, casing = uV
+    {\bbl@exp{%
+       \\\g@addto@macro\\\bbl@release@casing{%
+         \\\bbl@casemapping{}{\languagename}{\unexpanded{#2}}}}}%
+    {\in@{$casing.}{$#1}%  eg, casing.Uv = uV
+     \ifin@
+       \lowercase{\def\bbl@tempb{#1}}%
+       \bbl@replace\bbl@tempb{casing.}{}%
+       \bbl@exp{\\\g@addto@macro\\\bbl@release@casing{%
+         \\\bbl@casemapping
+           {\\\bbl@maybextx\bbl@tempb}{\languagename}{\unexpanded{#2}}}}%
+     \else
+       \bbl@inikv{#1}{#2}%
+     \fi}}
 \def\bbl@inikv@counters#1#2{%
   \bbl@ifsamestring{#1}{digits}%
     {\bbl@error{The counter name 'digits' is reserved for mapping\\%
@@ -3264,6 +3274,7 @@
       {There is little you can do. Sorry.}%
   \fi\fi\fi\fi}}
 \newcommand\BabelDateyyyy[1]{{\number#1}} % TODO - add leading 0
+\newcommand\BabelDateU[1]{{\number#1}}%
 \def\bbl@replace@finish@iii#1{%
   \bbl@exp{\def\\#1####1####2####3{\the\toks@}}}
 \def\bbl@TG@@date{%
@@ -3277,13 +3288,14 @@
   \bbl@replace\bbl@toreplace{[y]}{\BabelDatey{####1}}%
   \bbl@replace\bbl@toreplace{[yy]}{\BabelDateyy{####1}}%
   \bbl@replace\bbl@toreplace{[yyyy]}{\BabelDateyyyy{####1}}%
+  \bbl@replace\bbl@toreplace{[U]}{\BabelDateU{####1}}%
   \bbl@replace\bbl@toreplace{[y|}{\bbl@datecntr[####1|}%
+  \bbl@replace\bbl@toreplace{[U|}{\bbl@datecntr[####1|}%
   \bbl@replace\bbl@toreplace{[m|}{\bbl@datecntr[####2|}%
   \bbl@replace\bbl@toreplace{[d|}{\bbl@datecntr[####3|}%
   \bbl@replace@finish@iii\bbl@toreplace}
 \def\bbl@datecntr{\expandafter\bbl@xdatecntr\expandafter}
 \def\bbl@xdatecntr[#1|#2]{\localenumeral{#2}{#1}}
-\let\bbl@release@transforms\@empty
 \bbl@csarg\let{inikv@transforms.prehyphenation}\bbl@inikv
 \bbl@csarg\let{inikv@transforms.posthyphenation}\bbl@inikv
 \def\bbl@transforms@aux#1#2#3#4,#5\relax{%
@@ -3359,7 +3371,7 @@
            \fi
            \AtBeginDocument{%
              \bbl@patchfont{\bbl@xenohyph}%
-             \expandafter\select@language\expandafter{\languagename}}%
+             {\expandafter\select@language\expandafter{\languagename}}}%
         \fi}}%
   \fi
   \bbl@csarg\bbl@toglobal{lsys@#1}}
@@ -3438,7 +3450,7 @@
 \def\bbl@alphnumeral#1#2{%
   \expandafter\bbl@alphnumeral@i\number#2 76543210\@@{#1}}
 \def\bbl@alphnumeral@i#1#2#3#4#5#6#7#8\@@#9{%
-  \ifcase\@car#8\@nil\or   % Currenty <10000, but prepared for bigger
+  \ifcase\@car#8\@nil\or   % Currently <10000, but prepared for bigger
     \bbl@alphnumeral@ii{#9}000000#1\or
     \bbl@alphnumeral@ii{#9}00000#1#2\or
     \bbl@alphnumeral@ii{#9}0000#1#2#3\or
@@ -3489,6 +3501,11 @@
 \@namedef{bbl@info@extension.t.tag.bcp47}{extt}
 \@namedef{bbl@info@extension.u.tag.bcp47}{extu}
 \@namedef{bbl@info@extension.x.tag.bcp47}{extx}
+\ifcase\bbl@engine % Converts utf8 to its code (expandable)
+  \def\bbl@utftocode#1{\the\numexpr\decode@UTFviii#1\relax}
+\else
+  \def\bbl@utftocode#1{\expandafter`\string#1}
+\fi
 \providecommand\BCPdata{}
 \ifx\renewcommand\@undefined\else % For plain. TODO. It’s a quick fix
   \renewcommand\BCPdata[1]{\bbl@bcpdata@i#1\@empty}
@@ -3505,6 +3522,46 @@
         {\bbl@cs{\csname bbl@info@#1.tag.bcp47\endcsname @#2}}}}
 \fi
 \@namedef{bbl@info@casing.tag.bcp47}{casing}
+\newcommand\BabelUppercaseMapping[3]{%
+  \DeclareUppercaseMapping[\@nameuse{bbl@casing@#1}]{#2}{#3}}
+\newcommand\BabelTitlecaseMapping[3]{%
+  \DeclareTitlecaseMapping[\@nameuse{bbl@casing@#1}]{#2}{#3}}
+\newcommand\BabelLowercaseMapping[3]{%
+  \DeclareLowercaseMapping[\@nameuse{bbl@casing@#1}]{#2}{#3}}
+\def\bbl@casemapping#1#2#3{% 1:variant
+  \def\bbl@tempa##1 ##2{% Loop
+    \bbl@casemapping@i{##1}%
+    \ifx\@empty##2\else\bbl@afterfi\bbl@tempa##2\fi}%
+  \edef\bbl@templ{\@nameuse{bbl@casing@#2}#1}%  Language code
+  \def\bbl@tempe{0}%   Mode (upper/lower...)
+  \def\bbl@tempc{#3 }% Casing list
+  \expandafter\bbl@tempa\bbl@tempc\@empty}
+\def\bbl@casemapping@i#1{%
+  \def\bbl@tempb{#1}%
+  \ifcase\bbl@engine % Handle utf8 in pdftex, by surrounding chars with {}
+    \@nameuse{regex_replace_all:nnN}%
+      {[\x{c0}-\x{ff}][\x{80}-\x{bf}]*}{{\0}}\bbl@tempb
+  \else
+    \@nameuse{regex_replace_all:nnN}{.}{{\0}}\bbl@tempb % TODO. needed?
+  \fi
+  \expandafter\bbl@casemapping@ii\bbl@tempb\@@}
+\def\bbl@casemapping@ii#1#2#3\@@{%
+  \in@{#1#3}{<>}% ie, if <u>, <l>, <t>
+  \ifin@
+    \edef\bbl@tempe{%
+      \if#2u1 \else\if#2l2 \else\if#2t3 \fi\fi\fi}%
+  \else
+    \ifcase\bbl@tempe\relax
+      \DeclareUppercaseMapping[\bbl@templ]{\bbl@utftocode{#1}}{#2}%
+      \DeclareLowercaseMapping[\bbl@templ]{\bbl@utftocode{#2}}{#1}%
+    \or
+      \DeclareUppercaseMapping[\bbl@templ]{\bbl@utftocode{#1}}{#2}%
+    \or
+      \DeclareLowercaseMapping[\bbl@templ]{\bbl@utftocode{#1}}{#2}%
+    \or
+      \DeclareTitlecaseMapping[\bbl@templ]{\bbl@utftocode{#1}}{#2}%
+    \fi
+  \fi}
 \let\bbl@ensureinfo\@gobble
 \newcommand\BabelEnsureInfo{%
   \ifx\InputIfFileExists\@undefined\else
@@ -3539,6 +3596,12 @@
   \fi}
 \let\bbl@ini@loaded\@empty
 \newcommand\LocaleForEach{\bbl@foreach\bbl@ini@loaded}
+\def\ShowLocaleProperties#1{%
+  \typeout{}%
+  \typeout{*** Properties for language '#1' ***}
+  \def\bbl@elt##1##2##3{\typeout{##1/##2 = ##3}}%
+  \@nameuse{bbl@inidata@#1}%
+  \typeout{*******}}
 \newcommand\babeladjust[1]{%  TODO. Error handling.
   \bbl@forkv{#1}{%
     \bbl@ifunset{bbl@ADJ@##1@##2}%
@@ -3859,11 +3922,12 @@
   }
 \@onlypreamble\substitutefontfamily
 \bbl@trace{Encoding and fonts}
-\newcommand\BabelNonASCII{LGR,X2,OT2,OT3,OT6,LHE,LWN,LMA,LMC,LMS,LMU}
+\newcommand\BabelNonASCII{LGR,LGI,X2,OT2,OT3,OT6,LHE,LWN,LMA,LMC,LMS,LMU}
 \newcommand\BabelNonText{TS1,T3,TS3}
 \let\org@TeX\TeX
 \let\org@LaTeX\LaTeX
 \let\ensureascii\@firstofone
+\let\asciiencoding\@empty
 \AtBeginDocument{%
   \def\@elt#1{,#1,}%
   \edef\bbl@tempa{\expandafter\@gobbletwo\@fontenc@load@list}%
@@ -3873,10 +3937,10 @@
   \bbl@foreach\BabelNonASCII{% LGR loaded in a non-standard way
     \bbl@ifunset{T@#1}{}{\def\bbl@tempb{#1}}}%
   \bbl@foreach\bbl@tempa{%
-    \bbl@xin@{#1}{\BabelNonASCII}%
+    \bbl@xin@{,#1,}{,\BabelNonASCII,}%
     \ifin@
       \def\bbl@tempb{#1}% Store last non-ascii
-    \else\bbl@xin@{#1}{\BabelNonText}% Pass
+    \else\bbl@xin@{,#1,}{,\BabelNonText,}% Pass
       \ifin@\else
         \def\bbl@tempc{#1}% Store last ascii
       \fi
@@ -3886,8 +3950,9 @@
     \ifin@\else
       \edef\bbl@tempc{\cf@encoding}% The default if ascii wins
     \fi
-    \edef\ensureascii#1{%
-      {\noexpand\fontencoding{\bbl@tempc}\noexpand\selectfont#1}}%
+    \let\asciiencoding\bbl@tempc
+    \renewcommand\ensureascii[1]{%
+      {\fontencoding{\asciiencoding}\selectfont#1}}%
     \DeclareTextCommandDefault{\TeX}{\ensureascii{\org@TeX}}%
     \DeclareTextCommandDefault{\LaTeX}{\ensureascii{\org@LaTeX}}%
   \fi}
@@ -3924,7 +3989,7 @@
 \bbl@trace{Loading basic (internal) bidi support}
 \ifodd\bbl@engine
 \else % TODO. Move to txtbabel
-  \ifnum\bbl@bidimode>100 \ifnum\bbl@bidimode<200
+  \ifnum\bbl@bidimode>100 \ifnum\bbl@bidimode<200 % Any xe+lua bidi=
     \bbl@error
       {The bidi method 'basic' is available only in\\%
        luatex. I'll continue with 'bidi=default', so\\%
@@ -3940,9 +4005,14 @@
       \AtEndOfPackage{%
         \EnableBabelHook{babel-bidi}%
         \bbl@loadfontspec % bidi needs fontspec
-        \usepackage#1{bidi}}%
+        \usepackage#1{bidi}%
+        \let\bbl@digitsdotdash\DigitsDotDashInterCharToks
+        \def\DigitsDotDashInterCharToks{% See the 'bidi' package
+          \ifnum\@nameuse{bbl@wdir@\languagename}=\tw@ % 'AL' bidi
+            \bbl@digitsdotdash % So ignore in 'R' bidi
+          \fi}}%
     \fi}
-  \ifnum\bbl@bidimode>200
+  \ifnum\bbl@bidimode>200 % Any xe bidi=
     \ifcase\expandafter\@gobbletwo\the\bbl@bidimode\or
       \bbl@tentative{bidi=bidi}
       \bbl@loadxebidi{}
@@ -3953,7 +4023,7 @@
     \fi
   \fi
 \fi
-\ifnum\bbl@bidimode=\@ne
+\ifnum\bbl@bidimode=\@ne % Any bidi= except default=1
   \let\bbl@beforeforeign\leavevmode
   \ifodd\bbl@engine
     \newattribute\bbl@attr@dir
@@ -3981,7 +4051,7 @@
     \global\bbl@csarg\chardef{wdir@#1}\@ne
     \bbl@xin@{\csname bbl@sname@#1\endcsname}{\bbl@alscripts}%
     \ifin@
-      \global\bbl@csarg\chardef{wdir@#1}\tw@  % useless in xetex
+      \global\bbl@csarg\chardef{wdir@#1}\tw@
     \fi
   \else
     \global\bbl@csarg\chardef{wdir@#1}\z@
@@ -4015,9 +4085,11 @@
   \def\bbl@textdir#1{%
     \ifcase#1\relax
        \chardef\bbl@thetextdir\z@
+       \@nameuse{setlatin}%
        \bbl@textdir@i\beginL\endL
      \else
        \chardef\bbl@thetextdir\@ne
+       \@nameuse{setnonlatin}%
        \bbl@textdir@i\beginR\endR
     \fi}
   \def\bbl@textdir@i#1#2{%
@@ -4065,7 +4137,7 @@
     \newtoks\everypar
     \everypar=\bbl@severypar
     \bbl@severypar{\bbl@xeeverypar\the\everypar}}
-  \ifnum\bbl@bidimode>200
+  \ifnum\bbl@bidimode>200 % Any xe bidi=
     \let\bbl@textdir@i\@gobbletwo
     \let\bbl@xebidipar\@empty
     \AddBabelHook{bidi}{foreign}{%
@@ -4110,9 +4182,17 @@
         \csname bbl@mod@\CurrentOption\endcsname
      \bbl@exp{\\\AtBeginDocument{%
        \\\bbl@usehooks@lang{\CurrentOption}{begindocument}{{\CurrentOption}}}}}%
-    {\bbl@error{%
+    {\IfFileExists{babel-#1.tex}%
+      {\def\bbl@tempa{%
+         .\\There is a locale ini file for this language.\\%
+         If it’s the main language, try adding `provide=*'\\%
+         to the babel package options}}%
+      {\let\bbl@tempa\empty}%
+     \bbl@error{%
        Unknown option '\CurrentOption'. Either you misspelled it\\%
-       or the language definition file \CurrentOption.ldf was not found}{%
+       or the language definition file \CurrentOption.ldf\\%
+       was not found%
+       \bbl@tempa}{%
        Valid options are, among others: shorthands=, KeepShorthandsActive,\\%
        activeacute, activegrave, noconfigs, safe=, main=, math=\\%
        headfoot=, strings=, config=, hyphenmap=, or a language name.}}}

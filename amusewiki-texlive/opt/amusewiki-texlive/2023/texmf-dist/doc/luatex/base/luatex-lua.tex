@@ -73,6 +73,7 @@ consequence. The following command|-|line options are understood:
 \NC \type{--credits}                    \NC display credits and exit \NC \NR
 \NC \type{--debug-format}               \NC enable format debugging \NC \NR
 \NC \type{--draftmode}                  \NC switch on draft mode i.e.\ generate no output in \PDF\ mode \NC \NR
+\NC \type{--[no-]check-dvi-total-pages} \NC exit when DVI exceeds 65535 pages (default: check) \NC \NR
 \NC \type{--[no-]file-line-error}       \NC disable/enable \type {file:line:error} style messages \NC \NR
 \NC \type{--[no-]file-line-error-style} \NC aliases of \type {--[no-]file-line-error} \NC \NR
 \NC \type{--fmt=FORMAT}                 \NC load the format file \type {FORMAT} \NC\NR
@@ -236,7 +237,7 @@ deal with typesetting, like \type {tex}, \type {token}, \type {node} and
 \type {pdf}, are off|-|limits during the execution of the startup file (they
 are \type {nil}'d). Special care is taken that \type {texio.write} and \type
 {texio.write_nl} function properly, so that you can at least report your actions
-to the log file when (and if) it eventually becomes opened (note that \TEX\ does
+to the log file when (and if) it eventually becom1es opened (note that \TEX\ does
 not even know its \prm {jobname} yet at this point).
 
 Everything you do in the \LUA\ initialization script will remain visible during
@@ -262,6 +263,12 @@ finished: in order to initialize the built|-|in \KPATHSEA\ library properly,
 \LUATEX\ needs to know the correct program name to use, and for that it needs to
 check \type {--progname}, or \type {--ini} and \type {--fmt}, if \type
 {--progname} is missing.
+
+From version 1.17.1, in \DVI\ mode the new commandline switch \type {--check-dvi-total-pages},
+enabled by default, checks  that the total number of pages does not
+exceeds 65535, and in case the run abort. This breaks the compatibility with \PDFTEX\
+where, as in \TEX, when the total number of pages is greater than 65535 the file will lie.
+The previous behaviour can be restored with \type {--[no-]check-dvi-total-pages}.
 
 \stopsubsection
 

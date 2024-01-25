@@ -13,7 +13,7 @@
 -- (but please observe conditions on bug reports sent to that address!)
 -- 
 -- 
--- Copyright (C) 2015-2022
+-- Copyright (C) 2015-2024
 -- The LaTeX Project and any individual authors listed elsewhere
 -- in this file.
 -- 
@@ -45,7 +45,6 @@ luatexbase       = luatexbase or { }
 local luatexbase = luatexbase
 local string_gsub      = string.gsub
 local tex_count        = tex.count
-local tex_setattribute = tex.setattribute
 local tex_setcount     = tex.setcount
 local texio_write_nl   = texio.write_nl
 local flush_list       = node.flush_list
@@ -231,7 +230,11 @@ local luafunction_count_name =
                          luafunction_count_name or "e@alloc@luafunction@count"
 local function new_luafunction(name)
   tex_setcount("global", luafunction_count_name,
-                         tex_count[luafunction_count_name] + 1)
+                         math.max(
+                           #(lua.get_functions_table()),
+                           tex_count[luafunction_count_name])
+                          + 1)
+  lua.get_functions_table()[tex_count[luafunction_count_name]] = false
   if tex_count[luafunction_count_name] > 65534 then
     luatexbase_error("No room for a new luafunction register")
   end
@@ -759,7 +762,7 @@ end
 luatexbase.uninstall = uninstall
 create_callback('pre_mlist_to_hlist_filter', 'list')
 create_callback('mlist_to_hlist', 'exclusive', node.mlist_to_hlist)
-create_callback('post_mlist_to_hlist_filter', 'list')
+create_callback('post_mlist_to_hlist_filter', 'reverselist')
 function shared_callbacks.mlist_to_hlist.handler(head, display_type, need_penalties)
   local current = call_callback("pre_mlist_to_hlist_filter", head, display_type, need_penalties)
   if current == false then

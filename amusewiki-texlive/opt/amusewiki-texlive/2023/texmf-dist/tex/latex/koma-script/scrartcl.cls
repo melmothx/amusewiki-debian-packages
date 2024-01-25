@@ -84,7 +84,7 @@
 %% find a complete unmodified copy of LaTeX2e at
 %% <http://mirror.ctan.org/tex-archive/macros/latex/base/>.
 %% 
-%%% From File: $Id: scrkernel-version.dtx 4038 2023-04-24 07:06:57Z kohm $
+%%% From File: $Id: scrkernel-version.dtx 4070 2023-07-07 07:08:40Z kohm $
 \begingroup
   \catcode`\@11\relax
   \ifx\KOMAScriptVersion\undefined
@@ -106,7 +106,7 @@
       \fi
     }
   \fi
-  \@CheckKOMAScriptVersion{2023/04/24 v3.40 KOMA-Script}%
+  \@CheckKOMAScriptVersion{2023/07/07 v3.41 KOMA-Script}%
 \endgroup
 \providecommand*{\scr@clsextension}{\@clsextension}
 \AtBeginDocument{%
@@ -119,16 +119,16 @@
   article%
 }
 \ProvidesClass{\KOMAClassName}[%
-  2023/04/24 v3.40 KOMA-Script
+  2023/07/07 v3.41 KOMA-Script
   document class (\ClassName)%
 ]
-%%% From File: $Id: scrkernel-basics.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-basics.dtx 4051 2023-04-26 16:01:28Z kohm $
 %%%            (run: load)
 \RequirePackage{scrkbase}[\KOMAScriptVersion]
 %%% From File: $Id: scrkernel-listsof.dtx 4032 2023-04-17 09:45:11Z kohm $
 %%%            (run: prepare)
 \RequirePackage{tocbasic}[%
-  2023/04/24 v3.40 KOMA-Script
+  2023/07/07 v3.41 KOMA-Script
 ]
 \addtotoclist[ToC]{toc}
 \Ifstr{\ext@toc}{toc}{}{%
@@ -136,9 +136,9 @@
   \expandafter[\expandafter T\expandafter o\expandafter C\expandafter ]%
   \expandafter{\ext@toc}%
 }
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 %%%            (run: prepare)
-%%% From File: $Id: scrkernel-sections.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-sections.dtx 4069 2023-06-29 08:55:54Z kohm $
 %%%            (run: prepare)
 \newcommand*{\scr@dotchangeatdocument}[1]{%
   \ClassError{\KOMAClassName}{%
@@ -199,7 +199,7 @@
 \newcommand*{\size@subparagraph}{}
 \newcommand*{\scr@fnt@subparagraph}{\size@subparagraph}
 \newcommand*{\sectfont}{\normalcolor\maybesffamily\bfseries}
-%%% From File: $Id: scrkernel-compatibility.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-compatibility.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: init)
 \newcommand*
   {\scr@compatibility}{\scr@v@last}
@@ -287,10 +287,11 @@
 \@namedef{scr@v@3.38}{20}
 \@namedef{scr@v@3.39}{20}
 \@namedef{scr@v@3.40}{20}
-\@namedef{scr@v@last}{20}
+\@namedef{scr@v@3.41}{21}
+\@namedef{scr@v@last}{21}
 %%% From File: $Id: scrkernel-typearea.dtx 4032 2023-04-17 09:45:11Z kohm $
 %%%            (run: init)
-%%% From File: $Id: scrkernel-compatibility.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-compatibility.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: option)
 \newif\if@scr@emulatestandardclasses
 \let\scr@emulatestandardclassestrue\relax
@@ -925,9 +926,9 @@
 \KOMA@ifkey{abstract}{@abstrt}
 \KOMA@DeclareDeprecatedOption{abstracton}{abstract=true}
 \KOMA@DeclareDeprecatedOption{abstractoff}{abstract=false}
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 %%%            (run: option)
-%%% From File: $Id: scrkernel-sections.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-sections.dtx 4069 2023-06-29 08:55:54Z kohm $
 %%%            (run: option)
 \KOMA@key{numbers}{%
   \KOMA@set@ncmdkey{numbers}{@tempa}{%
@@ -1143,7 +1144,7 @@
 \KOMA@DeclareDeprecatedOption{bigheadings}{headings=big}
 \KOMA@DeclareDeprecatedOption{normalheadings}{headings=normal}
 \KOMA@DeclareDeprecatedOption{smallheadings}{headings=small}
-%%% From File: $Id: scrkernel-pagestyles.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-pagestyles.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: option)
 \KOMA@ifkey{headsepline}{@hsl}%
 \KOMA@kav@add{\KOMAClassFileName}{headsepline}{false}
@@ -1250,7 +1251,7 @@
 \KOMA@DeclareDeprecatedOption{cleardoubleempty}{cleardoublepage=empty}
 \KOMA@DeclareDeprecatedOption{cleardoubleplain}{cleardoublepage=plain}
 \KOMA@DeclareDeprecatedOption{cleardoublestandard}{cleardoublepage=current}
-%%% From File: $Id: scrkernel-floats.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-floats.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: option)
 \newif\if@captionabove\@captionabovefalse
 \newif\if@tablecaptionabove\@tablecaptionabovefalse
@@ -1858,7 +1859,7 @@
 \KOMA@DeclareStandardOption{openbib}{bibliography=openstyle}
 \KOMA@DeclareDeprecatedOption{bibtotoc}{bibliography=totoc}
 \KOMA@DeclareDeprecatedOption{bibtotocnumbered}{bibliography=totocnumbered}
-%%% From File: $Id: scrkernel-index.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-index.dtx 4052 2023-05-05 11:41:51Z kohm $
 %%%            (run: option)
 \newcommand*{\idx@@heading}{%
   \ifidx@leveldown
@@ -1867,6 +1868,25 @@
     \expandafter\section
   \fi*%
 }
+\newcommand*{\idx@@forcemark}[1]{%
+  \ifidx@leveldown
+    \begingroup
+      \value{secnumdepth}=-\maxdimen
+      \subsectionmark{#1}%
+    \endgroup
+  \else
+    \@mkdouble{\MakeMarkcase{#1}}%
+  \fi
+}
+\newcommand*{\idx@@forcemarknumbered}[1]{%
+  \ifidx@leveldown
+    \subsectionmark{#1}%
+  \else
+    \sectionmark{#1}%
+  \fi
+}
+\newcommand*{\idx@@mark}{}
+\let\idx@@mark\idx@@forcemark
 \newif\ifidx@leveldown
 \KOMA@key{index}{%
   \KOMA@set@ncmdkey{index}{@tempa}{%
@@ -1894,6 +1914,7 @@
         \expandafter\section
         \fi*%
       }%
+      \let\idx@@mark\idx@@forcemark
     \or
       \KOMA@kav@remove{\KOMAClassFileName}{toc}{noindex}%
       \KOMA@kav@remove{\KOMAClassFileName}{toc}{indexnumbered}%
@@ -1905,11 +1926,12 @@
       \KOMA@kav@add{\KOMAClassFileName}{index}{toc}%
       \renewcommand*{\idx@@heading}{%
         \ifidx@leveldown
-        \expandafter\subsection\expandafter*
+        \expandafter\expandafter\expandafter\subsection\expandafter*%
         \else
         \expandafter\addsec
         \fi
       }%
+      \let\idx@@mark\idx@@forcemark
     \or
       \KOMA@kav@remove{\KOMAClassFileName}{toc}{noindex}%
       \KOMA@kav@remove{\KOMAClassFileName}{toc}{indexnumbered}%
@@ -1926,6 +1948,7 @@
         \expandafter\section
         \fi
       }%
+      \let\idx@@mark\idx@@forcemarknumbered
     \or
       \KOMA@kav@remove{\KOMAClassFileName}{index}{leveldown}%
       \KOMA@kav@remove{\KOMAClassFileName}{index}{standardlevel}%
@@ -1945,7 +1968,7 @@
 \KOMA@DeclareDeprecatedOption{idxtotoc}{index=totoc}
 %%% From File: $Id: scrkernel-listsandtabulars.dtx 4032 2023-04-17 09:45:11Z kohm $
 %%%            (run: option)
-%%% From File: $Id: scrkernel-sections.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-sections.dtx 4069 2023-06-29 08:55:54Z kohm $
 %%%            (run: execoption)
 \KOMAExecuteOptions{numbers=autoendperiod}
 %%% From File: $Id: scrkernel-miscellaneous.dtx 4032 2023-04-17 09:45:11Z kohm $
@@ -1955,7 +1978,7 @@
   headings=big%
 }
 \KOMAProcessOptions\relax
-%%% From File: $Id: scrkernel-compatibility.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-compatibility.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: body)
 \AtBeginDocument{%
   \begingroup
@@ -3153,10 +3176,10 @@
 \newcommand*\abstractname{Abstract}
 \providecaptionname{american,australian,british,canadian,english,newzealand,%
   UKenglish,ukenglish,USenglish,usenglish}\abstractname{Abstract}
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 %%%            (run: body)
 \let\numberline\scr@numberline
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 %%%            (run: class,style,part)
 \CloneTOCEntryStyle{tocline}{part}
 \TOCEntryStyleStartInitCode{part}{%
@@ -3170,7 +3193,7 @@
   \expandafter\providecommand\expandafter*%
   \csname scr@tso@#1@beforeskip\endcsname{2.25em \@plus\p@}%
 }
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 %%%            (run: class,style,section)
 \CloneTOCEntryStyle{tocline}{section}
 \TOCEntryStyleStartInitCode{section}{%
@@ -3189,17 +3212,17 @@
   \expandafter\providecommand\expandafter*%
   \csname scr@tso@#1@beforeskip\endcsname{1.0em \@plus\p@}%
 }
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 %%%            (run: class,style,subsection)
 \CloneTOCEntryStyle{tocline}{subsection}
 \TOCEntryStyleStartInitCode{subsection}{%
   \expandafter\providecommand%
   \csname scr@tso@#1@linefill\endcsname{\TOCLineLeaderFill\relax}%
 }
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 %%%            (run: class,style,default)
 \CloneTOCEntryStyle{subsection}{default}
-%%% From File: $Id: scrkernel-sections.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-sections.dtx 4069 2023-06-29 08:55:54Z kohm $
 %%%            (run: body)
 \BeforeClosingMainAux{%
   \if@autodot\if@filesw\immediate\write\@mainaux{%
@@ -3662,10 +3685,23 @@
 \providecommand*\@currentlabelname{}
 \FamilyStringKey[.section]{KOMAarg}{tocentry}{\@currenttocentry}
 \FamilyStringKey[.section]{KOMAarg}{head}{\@currentheadentry}
+\IfLTXAtLeastTF{2020/10/01}{%
+  \NewHook{\KOMAClassName/option/section/reference/fallback}%
+}{}%
 \DefineFamilyKey[.section]{KOMAarg}{reference}{%
   \scr@ifundefinedorrelax{NR@gettitle}{%
     \scr@ifundefinedorrelax{GetTitleString}{%
-      \def\@currentlabelname{#1}%
+      \begingroup
+        \let\label\@gobble
+        \let\index\@gobble
+        \let\glossary\@gobble
+        \scr@ifundefinedorrelax{UseHook}{}{%
+          \UseHook{\KOMAClassName/option/section/reference/fallback}%
+        }%
+        \protected@edef\@currentlabelname{#1}%
+      \expandafter\expandafter\expandafter\endgroup
+      \expandafter\def\expandafter\@currentlabelname\expandafter{%
+        \@currentlabelname}%
     }{%
       \GetTitleString{#1}%
       \let\@currentlabelname\GetTitleStringResult
@@ -5410,7 +5446,7 @@
     \let\scr@mt@saved@sect\relax
   \fi
 }
-%%% From File: $Id: scrkernel-pagestyles.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-pagestyles.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: body)
 \newcommand*{\set@tempdima@hw}{%
   \setlength{\@tempdima}{\textwidth}%
@@ -5471,11 +5507,16 @@
             \if@twoside\else\hfil\fi}}}}\hss}%
   \renewcommand*{\sectionmark}[1]{%
     \if@twoside\expandafter\markboth\else\expandafter\markright\fi
-    {\MakeMarkcase{\Ifnumbered{section}{\sectionmarkformat}{}##1}}{}}%
+    {%
+      \Ifnumbered{section}{\MakeMarkcase{\sectionmarkformat}}{}%
+      \MakeMarkcase{##1}%
+    }{}%
+  }%
   \renewcommand*{\subsectionmark}[1]{%
     \if@twoside
       \markright{%
-        \MakeMarkcase{\Ifnumbered{subsection}{\subsectionmarkformat}{}##1}%
+        \Ifnumbered{subsection}{\MakeMarkcase{\subsectionmarkformat}}{}%
+        \MakeMarkcase{##1}%
       }%
     \fi
   }%
@@ -5506,7 +5547,7 @@
 \newcommand*{\indexpagestyle}{plain}
 \pagestyle{plain}
 \pagenumbering{arabic}
-%%% From File: $Id: scrlayer.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrlayer.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: body)
 \providecommand*{\@mkleft}{%
   \IfActiveMkBoth{\markleft}{\@gobble}%
@@ -5517,7 +5558,7 @@
 \providecommand{\@mkdouble}[1]{%
   \@mkboth{#1}{#1}%
 }
-%%% From File: $Id: scrkernel-floats.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-floats.dtx 4054 2023-05-10 14:35:36Z kohm $
 %%%            (run: body)
 \newlength{\abovecaptionskip}
 \newlength{\belowcaptionskip}
@@ -5671,15 +5712,20 @@
   \dofullc@pfalse\@capbreaktrue
 }
 \newcommand*{\setcaphanging}{\dofullc@ptrue\@capbreakfalse}
+\expandafter\ifnum\scr@v@is@ge{3.41}%
+  \newcommand*{\captionnopagebreak}{\nopagebreak}
+\else
+  \newcommand*{\captionnopagebreak}{}
+\fi
 \newcommand{\@makecaption}[2]{%
   \if@captionabove
     \vskip\belowcaptionskip
   \else
-    \vskip\abovecaptionskip
+    \captionnopagebreak\vskip\abovecaptionskip\captionnopagebreak
   \fi
   \@@makecaption\@firstofone{#1}{#2}%
   \if@captionabove
-    \vskip\abovecaptionskip
+    \captionnopagebreak\vskip\abovecaptionskip\captionnopagebreak
   \else
     \vskip\belowcaptionskip
   \fi
@@ -6673,7 +6719,7 @@
 }
 \newcommand{\AfterBibliographyPreamble}{\g@addto@macro\bib@before@hook}
 \newcommand{\AtEndBibliography}{\g@addto@macro\bib@after@hook}
-%%% From File: $Id: scrkernel-index.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-index.dtx 4052 2023-05-05 11:41:51Z kohm $
 %%%            (run: body)
 \newcommand*{\index@preamble}{}
 \let\index@preamble=\relax
@@ -6681,14 +6727,7 @@
 \newcommand*{\idx@heading}{%
   \twocolumn[%
                   \idx@@heading{\indexname}]%
-  \ifidx@leveldown
-    \begingroup
-      \c@secnumdepth=-\maxdimen
-      \subsectionmark{\indexname}%
-    \endgroup
-  \else
-    \@mkdouble{\MakeMarkcase{\indexname}}%
-  \fi
+  \idx@@mark{\indexname}%
 }
 \newenvironment{theindex}{%
   \if@twocolumn

@@ -18,16 +18,16 @@
 %
 % This work consists of all files listed in MANIFEST.md.
 % ======================================================================
-%%% From File: $Id: scrkernel-index.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-index.dtx 4052 2023-05-05 11:41:51Z kohm $
 %<option>%%%            (run: option)
 %<body>%%%            (run: body)
 %<*dtx>
 \ifx\ProvidesFile\undefined\def\ProvidesFile#1[#2]{}\fi
 \begingroup
   \def\filedate$#1: #2-#3-#4 #5${\gdef\filedate{#2/#3/#4}}
-  \filedate$Date: 2023-04-17 11:45:11 +0200 (Mo, 17. Apr 2023) $
+  \filedate$Date: 2023-05-05 13:41:51 +0200 (Fr, 05. Mai 2023) $
   \def\filerevision$#1: #2 ${\gdef\filerevision{r#2}}
-  \filerevision$Revision: 4032 $
+  \filerevision$Revision: 4052 $
   \edef\reserved@a{%
     \noexpand\endgroup
     \noexpand\ProvidesFile{scrkernel-index.dtx}%
@@ -137,6 +137,42 @@
   \fi*%
 }
 %    \end{macrocode}
+% \begin{macro}{\idx@@mark,\idx@@forcemark,\idx@@forcemarknumbered}
+% \changes{v3.41}{2023/05/05}{new}
+% We also need a command to do the mark for the running head to be used if a
+% sectioning command without automatic usage of \cs{chaptermark},
+% \cs{sectionmark} or \cs{subsectionmark} is used. For headings with automatic
+% usage of \cs{chaptermark}, \cs{sectionmark} or \cs{subsectionmark} it should
+% not be used, despite the fact, that this usually would result in not setting
+% both marks. The command has the same argument as \cs{idx@@heading}. This is
+% the same code, previously used in \cs{idx@heading}.
+%    \begin{macrocode}
+\newcommand*{\idx@@forcemark}[1]{%
+  \ifidx@leveldown
+%<report|book>    \addsecmark{#1}%
+%<*article>
+    \begingroup
+      \value{secnumdepth}=-\maxdimen
+      \subsectionmark{#1}%
+    \endgroup
+%</article>
+  \else
+    \@mkdouble{\MakeMarkcase{#1}}%
+  \fi
+}
+\newcommand*{\idx@@forcemarknumbered}[1]{%
+  \ifidx@leveldown
+%<report|book>    \sectionmark{#1}%
+%<article>    \subsectionmark{#1}%
+  \else
+%<report|book>    \chaptermark{#1}%
+%<article>    \sectionmark{#1}%
+  \fi
+}
+\newcommand*{\idx@@mark}{}
+\let\idx@@mark\idx@@forcemark
+%    \end{macrocode}
+% \end{macro}
 % \begin{macro}{\idx@leveldowntrue,\idx@leveldownfalse,\ifidx@leveldown}
 % \changes{v3.18}{2015/06/15}{added}
 % The boolean switch \cs{ididx@leveldown} is needed to distinguish the heading
@@ -171,6 +207,7 @@
 %<book|report>        \expandafter\chapter
         \fi*%
       }%
+      \let\idx@@mark\idx@@forcemark
     \or
       \KOMA@kav@remove{\KOMAClassFileName}{toc}{noindex}%
       \KOMA@kav@remove{\KOMAClassFileName}{toc}{indexnumbered}%
@@ -182,13 +219,14 @@
       \KOMA@kav@add{\KOMAClassFileName}{index}{toc}%
       \renewcommand*{\idx@@heading}{%
         \ifidx@leveldown
-%<article>        \expandafter\subsection\expandafter*
+%<article>        \expandafter\expandafter\expandafter\subsection\expandafter*%
 %<book|report>        \expandafter\addsec
         \else
 %<article>        \expandafter\addsec
 %<book|report>        \expandafter\addchap
         \fi
       }%
+      \let\idx@@mark\idx@@forcemark
     \or
       \KOMA@kav@remove{\KOMAClassFileName}{toc}{noindex}%
       \KOMA@kav@remove{\KOMAClassFileName}{toc}{indexnumbered}%
@@ -207,6 +245,7 @@
 %<book|report>        \expandafter\chapter
         \fi
       }%
+      \let\idx@@mark\idx@@forcemarknumbered
     \or
       \KOMA@kav@remove{\KOMAClassFileName}{index}{leveldown}%
       \KOMA@kav@remove{\KOMAClassFileName}{index}{standardlevel}%
@@ -277,24 +316,17 @@
 % \changes{v3.25}{2017/10/13}{using \cs{@mkright} and \cs{@mkdouble}}
 % \changes{v3.26}{2018/09/03}{usage of \cs{addsecmark} or \cs{subsectionmark}
 %   instead of \cs{@mkright}}
+% \changes{v3.41}{2023/05/05}{using \cs{idx@@mark}}
+% \changes{v3.41}{2023/05/05}{\cs{cleardoublepage} or \cs{clearpage} only, if
+%   not \opt{leveldown}}
 % Macro to make the index heading and preamble.
 %    \begin{macrocode}
 \newcommand*{\idx@heading}{%
-%<report|book>  \if@openright\cleardoublepage\else\clearpage\fi%
+%<report|book>  \ifidx@leveldown\else\if@openright\cleardoublepage\else\clearpage\fi\fi
   \twocolumn[%
 %<report|book>    \@chaptertolistsfalse
                   \idx@@heading{\indexname}]%
-  \ifidx@leveldown
-%<report|book>    \addsecmark{\indexname}%
-%<*article>
-    \begingroup
-      \c@secnumdepth=-\maxdimen
-      \subsectionmark{\indexname}%
-    \endgroup
-%</article>
-  \else
-    \@mkdouble{\MakeMarkcase{\indexname}}%
-  \fi
+  \idx@@mark{\indexname}%
 }
 %    \end{macrocode}
 % \end{macro}

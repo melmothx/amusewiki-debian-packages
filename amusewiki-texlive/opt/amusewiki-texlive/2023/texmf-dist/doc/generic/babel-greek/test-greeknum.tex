@@ -16,7 +16,7 @@
 \else
   \usepackage{lmodern}
   % \usepackage{kerkis}   % !! Data loss: \textStigma and \textSampi
-    			  %    characters missing!
+                          %    characters missing!
   % \usepackage{gfsdidot} % !! Data loss: \textsampi, \textSampi,
                           %    and \textStigma characters missing!
   % \usepackage{dejavu}   % !! Data loss: \textSampi character missing!
@@ -25,8 +25,8 @@
   % \renewcommand*{\greeknumeralNinety}{\textsampi}      % default \textSampi
 \fi
 
-
 \usepackage[greek,english]{babel}
+
 
 \begin{document}
 \section*{Test Greek (Milesian) numerals}
@@ -38,8 +38,15 @@ Babel-greek defines the functions \verb|\greeknumeral| and
 \verb|\romannumeral|. For details and configuration options, see
 \texttt{babel-greek.pdf}.
 
-Examples:
+% Compare also with the "ready-made" counter styles for CSS
+% https://www.w3.org/TR/predefined-counter-styles/#greek-styles
+%
+% CSS counters greek-lower-modern and greek-upper-modern
+% use Sigma+Tau instead of Stigma for 6.
+%
+% CSS counters greek-lower-ancient and greek-upper-ancient use Stigma
 
+Examples:
 \newcommand*{\greeknumeralsample}[1]{\mbox{#1 = \greeknumeral{#1}}}
 \newcommand*{\Greeknumeralsample}[1]{\mbox{#1 = \Greeknumeral{#1}}}
 

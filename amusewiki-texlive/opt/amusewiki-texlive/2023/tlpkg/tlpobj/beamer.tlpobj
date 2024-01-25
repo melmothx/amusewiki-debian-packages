@@ -1,6 +1,6 @@
 name beamer
 category Package
-revision 67124
+revision 69316
 shortdesc A LaTeX class for producing presentations and slides
 longdesc The beamer LaTeX class can be used for producing slides. The
 longdesc class works in both PostScript and direct PDF output modes,
@@ -29,11 +29,11 @@ depend iftex
 depend pgf
 depend translator
 depend xcolor
-containersize 167600
-containerchecksum 8d9966c367287594d3c2242075c3a6944955a95c55900631e718aeb848d1299a4a839701ebf57b70f225eb16b7f99bfe7e9cc7f33ebd09e1587f04367e4cc7c2
-doccontainersize 2920400
-doccontainerchecksum e4d40d126ae85b82c1fa7c2e29cddf380a7a959335e1a73224e8b4fa90358a8d2fb1df6da180c8e371713d73399351f45441efc0055feadf501a9bdc0ddead4d
-docfiles size=1169
+containersize 167656
+containerchecksum 25fd0161673badc509511fe31b4780a68011ac796e12a841ed185ccb5d9eeaa22c519ddbcd2fc0a5cb70ba94a0752b6b5880f86dd499e4c89f1a5b708f3d7fd0
+doccontainersize 2548424
+doccontainerchecksum 8893df96934b3325455557a8a4499113c9d69d563452a01a81107054d99bf4ab67308482a70a777491d208d3e008b60d9c8f76cd560f1fb8af82d97a2a121bc6
+docfiles size=1095
  texmf-dist/doc/latex/beamer/AUTHORS.md
  texmf-dist/doc/latex/beamer/CHANGELOG.md
  texmf-dist/doc/latex/beamer/LICENSE.md
@@ -241,4 +241,4 @@ catalogue-contact-repository https://github.com/josephwright/beamer
 catalogue-ctan /macros/latex/contrib/beamer
 catalogue-license lppl1.3c gpl2+ fdl
 catalogue-topics presentation class
-catalogue-version 3.70
+catalogue-version 3.71

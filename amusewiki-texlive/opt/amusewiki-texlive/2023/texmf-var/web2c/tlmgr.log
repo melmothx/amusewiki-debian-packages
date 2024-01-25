@@ -272,3 +272,73 @@
 [Fri Jun  2 09:58:21 2023] command: fmtutil-sys --byhyphen "/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/texmf-var/tex/generic/config/language.def" --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/_zRVVWX6yT/WPlopx5InF
 [Fri Jun  2 09:58:31 2023]   OK: euptex.fmt/euptex luahbtex.fmt/luahbtex pdftex.fmt/pdftex eptex.fmt/eptex xetex.fmt/xetex luatex.fmt/luatex etex.fmt/pdftex pdfetex.fmt/pdftex dviluatex.fmt/luatex
 [Fri Jun  2 09:58:31 2023] command: fmtutil-sys --byhyphen "/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/texmf-var/tex/generic/config/language.dat.lua" --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/_zRVVWX6yT/WPlopx5InF
+[Thu Jan 25 20:26:04 2024] update: texlive.infra (66822 -> 69447)
+[Thu Jan 25 20:26:04 2024] command: mktexlsr
+[Thu Jan 25 20:28:20 2024] update: amsmath (63514 -> 68720)
+[Thu Jan 25 20:28:22 2024] update: babel (67073 -> 69343)
+[Thu Jan 25 20:28:22 2024] update: babel-french (66513 -> 69205)
+[Thu Jan 25 20:28:22 2024] update: babel-german (57978 -> 69506)
+[Thu Jan 25 20:28:23 2024] update: babel-greek (66610 -> 68532)
+[Thu Jan 25 20:28:23 2024] update: babel-hebrew (30273 -> 68016)
+[Thu Jan 25 20:28:23 2024] update: babel-italian (62890 -> 69298)
+[Thu Jan 25 20:28:25 2024] update: beamer (67124 -> 69316)
+[Thu Jan 25 20:28:25 2024] update: bidi (65572 -> 67798)
+[Thu Jan 25 20:28:26 2024] update: bookmark (56885 -> 69084)
+[Thu Jan 25 20:28:26 2024] update: dvipdfmx (66203 -> 69127)
+[Thu Jan 25 20:28:26 2024] update: epstopdf (66695 -> 68301)
+[Thu Jan 25 20:28:27 2024] update: firstaid (64892 -> 68720)
+[Thu Jan 25 20:28:27 2024] update: footmisc (67232 -> 67556)
+[Thu Jan 25 20:28:28 2024] update: hyperref (67233 -> 69523)
+[Thu Jan 25 20:28:28 2024] update: hyphen-base (66413 -> 68321)
+[Thu Jan 25 20:28:30 2024] update: koma-script (66930 -> 67573)
+[Thu Jan 25 20:28:30 2024] update: kpathsea (67065 -> 69121)
+[Thu Jan 25 20:28:31 2024] update: l3backend (66896 -> 69310)
+[Thu Jan 25 20:28:33 2024] update: l3kernel (67219 -> 69537)
+[Thu Jan 25 20:28:34 2024] update: l3packages (65722 -> 68507)
+[Thu Jan 25 20:28:38 2024] update: latex (65161 -> 69443)
+[Thu Jan 25 20:28:42 2024] update: latex-base-dev (67218 -> 68730)
+[Thu Jan 25 20:28:43 2024] update: latex-firstaid-dev (67225 -> 68730)
+[Thu Jan 25 20:28:43 2024] update: latexconfig (53525 -> 68923)
+[Thu Jan 25 20:28:47 2024] update: lm (65956 -> 67718)
+[Thu Jan 25 20:28:47 2024] update: ltxcmds (56421 -> 69032)
+[Thu Jan 25 20:28:48 2024] update: luahbtex.x86_64-linux (66986 -> 68135)
+[Thu Jan 25 20:28:48 2024] update: lualibs (64615 -> 67994)
+[Thu Jan 25 20:28:49 2024] update: luaotfload (64616 -> 68143)
+[Thu Jan 25 20:28:49 2024] update: luatex.x86_64-linux (66986 -> 68135)
+[Thu Jan 25 20:28:50 2024] update: luatex (66967 -> 69182)
+[Thu Jan 25 20:28:50 2024] update: luatexja (67003 -> 69245)
+[Thu Jan 25 20:28:51 2024] update: marginnote (48383 -> 68204)
+[Thu Jan 25 20:28:51 2024] update: modes (61719 -> 69113)
+[Thu Jan 25 20:28:51 2024] update: mptopdf (65952 -> 69363)
+[Thu Jan 25 20:28:52 2024] update: platex.x86_64-linux (66079 -> 67315)
+[Thu Jan 25 20:28:52 2024] update: platex (66186 -> 67315)
+[Thu Jan 25 20:28:53 2024] update: polyglossia (66917 -> 69093)
+[Thu Jan 25 20:28:55 2024] update: pstricks (66973 -> 68767)
+[Thu Jan 25 20:28:56 2024] update: tex-ini-files (40533 -> 68920)
+[Thu Jan 25 20:28:56 2024] update: texlive-common (67094 -> 68510)
+[Thu Jan 25 20:28:56 2024] update: texlive-msg-translations (66901 -> 69346)
+[Thu Jan 25 20:28:57 2024] update: texlive-scripts (67257 -> 69570)
+[Thu Jan 25 20:28:58 2024] update: tools (64892 -> 68941)
+[Thu Jan 25 20:28:58 2024] update: unicode-data (64423 -> 68311)
+[Thu Jan 25 20:28:58 2024] update: uptex-base (65802 -> 68298)
+[Thu Jan 25 20:29:00 2024] update: uptex-fonts (65657 -> 68297)
+[Thu Jan 25 20:29:00 2024] update: xcolor (63563 -> 68864)
+[Thu Jan 25 20:29:01 2024] update: zref (62977 -> 68278)
+[Thu Jan 25 20:29:01 2024] command: mktexlsr
+[Thu Jan 25 20:29:01 2024] command: updmap-sys
+[Thu Jan 25 20:29:03 2024] command: fmtutil-sys --byengine euptex --no-error-if-no-format --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/fndlBkQoiz/Ph91G4XQI8
+[Thu Jan 25 20:29:33 2024]   OK: euptex.fmt/euptex uptex.fmt/euptex platex.fmt/euptex uplatex.fmt/euptex platex-dev.fmt/euptex uplatex-dev.fmt/euptex
+[Thu Jan 25 20:29:33 2024] command: fmtutil-sys --byengine luatex --no-error-if-no-format --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/fndlBkQoiz/Ph91G4XQI8
+[Thu Jan 25 20:29:41 2024]   OK: luatex.fmt/luatex dvilualatex.fmt/luatex dviluatex.fmt/luatex
+[Thu Jan 25 20:29:41 2024] command: fmtutil-sys --byengine eptex --no-error-if-no-format --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/fndlBkQoiz/Ph91G4XQI8
+[Thu Jan 25 20:29:42 2024]   OK: eptex.fmt/eptex ptex.fmt/eptex
+[Thu Jan 25 20:29:42 2024] command: fmtutil-sys --byengine xetex --no-error-if-no-format --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/fndlBkQoiz/Ph91G4XQI8
+[Thu Jan 25 20:29:52 2024]   OK: xetex.fmt/xetex xelatex.fmt/xetex
+[Thu Jan 25 20:29:52 2024] command: fmtutil-sys --byengine pdftex --no-error-if-no-format --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/fndlBkQoiz/Ph91G4XQI8
+[Thu Jan 25 20:30:08 2024]   OK: pdftex.fmt/pdftex latex.fmt/pdftex mptopdf.fmt/pdftex pdflatex.fmt/pdftex pdfetex.fmt/pdftex etex.fmt/pdftex
+[Thu Jan 25 20:30:08 2024] command: fmtutil-sys --byengine luahbtex --no-error-if-no-format --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/fndlBkQoiz/Ph91G4XQI8
+[Thu Jan 25 20:30:16 2024]   OK: luahbtex.fmt/luahbtex lualatex.fmt/luahbtex
+[Thu Jan 25 20:30:16 2024] command: fmtutil-sys --byengine tex --no-error-if-no-format --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/fndlBkQoiz/Ph91G4XQI8
+[Thu Jan 25 20:30:16 2024]   OK: tex.fmt/tex
+[Thu Jan 25 20:30:16 2024] command: fmtutil-sys --byfmt mf --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/fndlBkQoiz/Ph91G4XQI8
+[Thu Jan 25 20:30:16 2024]   OK: mf.fmt/mf-nowin

@@ -7,10 +7,10 @@
 %% hyperref.dtx  (with options: `nohyperref')
 %% 
 %% Copyright
-%% 1995-2001 Sebastian Rahtz, with portions written by David Carlisle and Heiko Oberdiek,
-%% 2001-2015 Heiko Oberdiek.
+%% 1995-2001 Sebastian Rahtz, with portions written by David Carlisle and Heiko Oberdiek
+%% 2001-2015 Heiko Oberdiek
 %% 2016-2019 Oberdiek Package Support Group
-%% 2019-2022 LaTeX Project
+%% 2019-2024 LaTeX Project
 %%      https://github.com/latex3/hyperref/issues
 %% 
 %% This file is part of the `Hyperref Bundle'.
@@ -34,9 +34,8 @@
 %% File: hyperref.dtx
 \NeedsTeXFormat{LaTeX2e}[2020/10/01]
 \ProvidesPackage{nohyperref}
-  [2023-05-16 v7.00y %
+  [2024-01-20 v7.01h %
   Dummy hyperref (SR)]
-\RequirePackage{letltxmacro}[2008/06/13]
 \let\hyper@@anchor\@gobble
 \def\hyper@link#1#2#3{#3}%
 \let\hyper@anchorstart\@gobble
@@ -61,23 +60,11 @@
 \let\hyperdef\@gobbletwo
 \let\hyperlink\@gobble
 \let\hypertarget\@gobble
-\def\hyperref{%
+\protected\def\hyperref{%
   \@ifnextchar[\@gobbleopt{\expandafter\@gobbletwo\@gobble}%
 }
 \long\def\@gobbleopt[#1]{}
 \let\hyperpage\@empty
-\@ifl@t@r\fmtversion{2022-06-01}
- {}%
- {%
-   \LetLtxMacro\NoHy@OrgRef\ref
-   \DeclareRobustCommand*{\ref}{%
-     \@ifstar\NoHy@OrgRef\NoHy@OrgRef
-   }
-   \LetLtxMacro\NoHy@OrgPageRef\pageref
-   \DeclareRobustCommand*{\pageref}{%
-     \@ifstar\NoHy@OrgPageRef\NoHy@OrgPageRef
-   }%
- }
 \endinput
 %%
 %% End of file `nohyperref.sty'.

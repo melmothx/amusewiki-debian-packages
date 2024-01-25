@@ -9,11 +9,11 @@
 %% This is a generated file.
 %% 
 %% Project: zref
-%% Version: 2022-04-07 v2.34
+%% Version: 2023-09-14 v2.35
 %% 
 %% Copyright (C)
 %%   2006-2012 Heiko Oberdiek
-%%   2016-2022 Oberdiek Package Support Group
+%%   2016-2023 Oberdiek Package Support Group
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either
@@ -47,16 +47,15 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{zref-lastpage}%
-  [2022-04-07 v2.34 Module lastpage for zref (HO)]%
+  [2023-09-14 v2.35 Module lastpage for zref (HO)]%
 \RequirePackage{zref-base}[2019/11/29]
 \RequirePackage{zref-abspage}[2019/11/29]
-\RequirePackage{atveryend}[2009/12/07]
 \ifx\ZREF@base@ok Y%
 \else
   \expandafter\endinput
 \fi
 \zref@newlist{LastPage}
-\AfterLastShipout{%
+\AddToHook {enddocument/afterlastpage}{%
   \if@filesw
     \begingroup
       \advance\c@page\m@ne

@@ -13,7 +13,7 @@
 %% (but please observe conditions on bug reports sent to that address!)
 %% 
 %% 
-%% Copyright (C) 1993-2022
+%% Copyright (C) 1993-2023
 %% The LaTeX Project and any individual authors listed elsewhere
 %% in this file.
 %% 
@@ -36,7 +36,7 @@
 %% given in the file `manifest.txt'.
 %% 
 %% Source File: shellesc.dtx
-%% Copyright (C) 2015-2022
+%% Copyright (C) 2015-2023
 %%
 %% The LaTeX Project and any individual authors listed elsewhere
 %% in this file.
@@ -49,7 +49,7 @@
 \ifx\PackageWarning\undefined\def\PackageWarning#1#2{\wlog{#1: #2}}\fi
 \expandafter\next\fi
 \ProvidesPackage{shellesc}
-       [2019/11/08 v1.0c unified shell escape interface for LaTeX]
+       [2023/07/08 v1.0d unified shell escape interface for LaTeX]
 \chardef\shellesc@quotecat\catcode`\"
 \chardef\shellesc@underscorecat\catcode`\_
 \@makeother\"
@@ -92,15 +92,15 @@ local status, msg = os.execute("\luaescapestring{#1}")%
 if status == nil then
     texio.write_nl("log",%
       "runsystem(" .. "\luaescapestring{#1}"%
-       .. ")...(" .. msg .. ")\string\n")
+       .. ")...(" .. msg .. ").\string\n")
   elseif status == 0 then
     texio.write_nl("log",%
       "runsystem(" .. "\luaescapestring{#1}"%
-      .. ")...executed\string\n")
+      .. ")...executed.\string\n")
   else
     texio.write_nl("log",%
       "runsystem(" .. "\luaescapestring{#1}"%
-       .. ")...failed " .. (msg or "") .. "\string\n")
+       .. ")...failed. " .. (msg or "") .. "\string\n")
   end
 }}
 \fi

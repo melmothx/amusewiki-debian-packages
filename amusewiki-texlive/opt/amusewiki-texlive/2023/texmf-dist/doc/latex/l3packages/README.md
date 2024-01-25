@@ -1,7 +1,7 @@
 LaTeX3 High-Level Concepts
 ==========================
 
-Release 2023-02-02
+Release 2023-10-10
 
 Overview
 --------
@@ -20,13 +20,13 @@ updated at the same time.
 
 Currently included in the CTAN release of `l3packages` are the following
 bundles:
-* `l3keys2e`
+* `l3keys2e` (deprecated in favor of updated LaTeX kernel methods)
 * `xfp`     (from 2022-06-01 part of the LaTeX format)
-* `xfrac`
-* `xparse`
+* `xfrac`   
+* `xparse`  (deprecated in favor of elements move to the LaTeX kernel)
 * `xtemplate`
 
-`l3keys2e`
+`l3keys2e` (deprecated)
 ----------
 
 The `l3keys2e` package allows keys defined using `l3keys` to be used as package
@@ -34,7 +34,7 @@ and class options with LaTeX2e. This is tied to the method the existing kernel
 uses for processing options, and so it is likely that a stand-alone LaTeX3
 kernel will use a very different approach.
 
-`xfp`
+`xfp` (deprecated)
 -----
 
 The `xfp` package provides a document-level interface for the LaTeX3
@@ -42,7 +42,8 @@ FPU. As such, it is a wrapper around the core `\fp_eval:n` function
 but does not require code syntax. It provides the expandable command
 `\fpeval`, which can be used inside for example `\edef` or contexts
 where TeX requires a number.
-From 2022-06-01 release if LaTeX this will be included in the format
+
+From 2022-06-01 release of LaTeX this will be included in the format
 so that the package  doesn't need loading any longer.
 
 `xfrac`
@@ -73,20 +74,6 @@ functions using a key=val syntax. This is designed to be
 "self-documenting", with the key definitions providing information
 on how they are to be used.
 
-Discussion
-----------
-
-Discussion concerning the approach, suggestions for improvements,
-changes, additions, _etc._ should be addressed to the list
-[LaTeX-L](https://listserv.uni-heidelberg.de/cgi-bin/wa?A0=LATEX-L).
-
-You can subscribe to this list by sending mail to
-
-    listserv@urz.uni-heidelberg.de
-
-with the body containing
-
-    subscribe LATEX-L  <Your-First-Name> <Your-Second-Name>
 
 Issues
 ------
@@ -94,8 +81,6 @@ Issues
 The issue tracker for LaTeX3 is currently located
 [on GitHub](https://github.com/latex3/latex3/issues).
 
-Please report specific issues with LaTeX3 code there; more general
-discussion should be directed to the [LaTeX-L list](#Discussion).
 
 The LaTeX Project
 ------------------

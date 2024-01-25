@@ -548,9 +548,10 @@ grmath.pdf
 README.md
 test-athnum.pdf
 test-athnum.tex
-test-case-changing.tex
+test-encoding-switch.tex
 test-greek-8bitcompat.tex
 test-greek-ini.tex
+test-greeknum.pdf
 test-greeknum.tex
 test-greek.pdf
 test-greek.tex
@@ -559,10 +560,8 @@ usage.pdf
 usage.tex
 
 ./doc/generic/babel-hebrew:
-00readme.heb
-heb209.pdf
-hebinp.pdf
 hebrew.pdf
+README.md
 
 ./doc/generic/babel-hungarian:
 README
@@ -1347,6 +1346,8 @@ cfgguide.tex
 changes.old.txt
 changes.txt
 classes.pdf
+clsguide-historic.pdf
+clsguide-historic.tex
 clsguide.pdf
 clsguide.tex
 cmfonts.pdf
@@ -1469,16 +1470,28 @@ ltnews35.pdf
 ltnews35.tex
 ltnews36.pdf
 ltnews36.tex
+ltnews37.pdf
+ltnews37.tex
+ltnews38.pdf
+ltnews38.tex
 ltnews.pdf
 ltnews.tex
 ltpara-code.pdf
 ltpara-code.tex
 ltpara-doc.pdf
 ltpara-doc.tex
+ltproperties-code.pdf
+ltproperties-code.tex
+ltproperties-doc.pdf
+ltproperties-doc.tex
 ltshipout-code.pdf
 ltshipout-code.tex
 ltshipout-doc.pdf
 ltshipout-doc.tex
+ltsockets-code.pdf
+ltsockets-code.tex
+ltsockets-doc.pdf
+ltsockets-doc.tex
 ltx3info.pdf
 ltx3info.tex
 ltxdoc.pdf
@@ -1496,6 +1509,8 @@ source2e.tex
 syntonly.pdf
 tlc2.err
 tlc2.pdf
+tlc3.err
+tlc3.pdf
 tulm.pdf
 usrguide-historic.pdf
 usrguide-historic.tex
@@ -1944,6 +1959,7 @@ hyperref-doc5.html
 hyperref-doc6.html
 hyperref-doc7.html
 hyperref-doc8.html
+hyperref-doc9.html
 hyperref-doc.css
 hyperref-doc.html
 hyperref-doc.pdf
@@ -1955,6 +1971,7 @@ nameref.pdf
 paper.pdf
 README.md
 slides.pdf
+xr-hyper.pdf
 
 ./doc/latex/ifplatform:
 ifplatform.pdf
@@ -2219,8 +2236,9 @@ makecmds.pdf
 README
 
 ./doc/latex/marginnote:
+LICENSE.md
 marginnote.pdf
-README.txt
+README.md
 
 ./doc/latex/mflogo:
 CATALOGUE
@@ -2313,6 +2331,8 @@ example-japanese.pdf
 example-japanese.tex
 example-korean.pdf
 example-korean.tex
+example-odia.pdf
+example-odia.tex
 examples.pdf
 examples.tex
 example-thai.pdf
@@ -2575,16 +2595,26 @@ ltnews36.pdf
 ltnews36.tex
 ltnews37.pdf
 ltnews37.tex
+ltnews38.pdf
+ltnews38.tex
 ltnews.pdf
 ltnews.tex
 ltpara-code.pdf
 ltpara-code.tex
 ltpara-doc.pdf
 ltpara-doc.tex
+ltproperties-code.pdf
+ltproperties-code.tex
+ltproperties-doc.pdf
+ltproperties-doc.tex
 ltshipout-code.pdf
 ltshipout-code.tex
 ltshipout-doc.pdf
 ltshipout-doc.tex
+ltsockets-code.pdf
+ltsockets-code.tex
+ltsockets-doc.pdf
+ltsockets-doc.tex
 ltx3info.pdf
 ltx3info.tex
 ltxdoc.pdf
@@ -5123,6 +5153,8 @@ farsidigits.map
 farsidigits.tec
 gurmukhidigits.map
 gurmukhidigits.tec
+odiadigits.map
+odiadigits.tec
 thaidigits.map
 thaidigits.tec
 
@@ -20362,6 +20394,7 @@ austrian.sty
 babel-bidi-basic.lua
 babel-bidi-basic-r.lua
 babel-ca-buddhist.tex
+babel-ca-chinese.tex
 babel-ca-coptic.tex
 babel-ca-ethiopic.tex
 babel-ca-hebrew.tex
@@ -20433,17 +20466,28 @@ xebabel.def
 ./tex/generic/babel/locale:
 aa
 ab
+ae
 af
 agq
 ak
+akk
+alt
 am
 ar
+arc
+arz
 as
 asa
 ast
+awa
+ay
 az
+ba
 bal
+ban
+bar
 bas
+bbc
 be
 bem
 bez
@@ -20456,10 +20500,13 @@ bo
 br
 brx
 bs
+bua
 byn
 ca
 cch
+ccp
 ce
+ceb
 cgg
 chr
 ckb
@@ -20467,17 +20514,21 @@ co
 cop
 cs
 cu
+cv
 cy
 da
 dav
 de
 dje
+doi
 dsb
 dua
+dv
 dyo
 dz
 ebu
 ee
+egy
 el
 en
 eo
@@ -20491,6 +20542,7 @@ fi
 fil
 fo
 fr
+frr
 fur
 fy
 ga
@@ -20499,6 +20551,7 @@ gd
 gez
 gl
 gn
+got
 grc
 gsw
 gu
@@ -20508,6 +20561,7 @@ ha
 haw
 he
 hi
+hnj
 hr
 hsb
 hu
@@ -20516,12 +20570,14 @@ ia
 id
 ig
 ii
+inh
 is
 it
 iu
 ja
 jgo
 jmc
+jv
 ka
 kab
 kaj
@@ -20530,6 +20586,7 @@ kcg
 kde
 kea
 kgp
+khb
 khq
 ki
 kk
@@ -20545,14 +20602,20 @@ ks
 ksb
 ksf
 ksh
+kv
 kw
 ky
 la
+lab
+lad
 lag
 lb
+lep
 lg
+lif
 lij
 lkt
+lmo
 ln
 lo
 lrc
@@ -20561,15 +20624,19 @@ lu
 luo
 luy
 lv
+mai
+mak
 mas
 mer
 mfe
 mg
 mgh
 mgo
+mi
 mk
 ml
 mn
+mni
 mr
 ms
 mt
@@ -20577,20 +20644,25 @@ mua
 mus
 my
 myv
+myz
 mzn
 naq
 nb
 nd
+nds
 ne
+new
 nl
 nmg
 nn
 nnh
 no
+non
 nqo
 nr
 nso
 nus
+nv
 ny
 nyn
 oc
@@ -20599,6 +20671,8 @@ or
 os
 pa
 pap
+pcm
+phn
 pl
 pms
 prg
@@ -20607,6 +20681,7 @@ pt
 qu
 raj
 rm
+rmo
 rn
 ro
 rof
@@ -20616,9 +20691,11 @@ rwk
 sa
 sah
 saq
+sat
 sbp
 sc
 scn
+sd
 se
 seh
 ses
@@ -20626,8 +20703,10 @@ sg
 shi
 si
 sk
+skr
 sl
 smn
+smp
 sn
 so
 sq
@@ -20635,13 +20714,16 @@ sr
 ss
 ssy
 st
+su
 sv
 sw
 syr
 szl
 ta
+tdd
 te
 teo
+tg
 th
 ti
 tig
@@ -20652,7 +20734,9 @@ tpi
 tr
 trv
 ts
+tt
 twq
+txg
 tzm
 ug
 uk
@@ -20665,6 +20749,9 @@ vo
 vun
 wae
 wal
+war
+wo
+xh
 xog
 yav
 yi
@@ -20683,6 +20770,10 @@ babel-afar.tex
 babel-ab.ini
 babel-abkhazian.tex
 
+./tex/generic/babel/locale/ae:
+babel-ae.ini
+babel-avestan.tex
+
 ./tex/generic/babel/locale/af:
 babel-af.ini
 babel-afrikaans.tex
@@ -20694,6 +20785,14 @@ babel-agq.ini
 ./tex/generic/babel/locale/ak:
 babel-akan.tex
 babel-ak.ini
+
+./tex/generic/babel/locale/akk:
+babel-akkadian.tex
+babel-akk.ini
+
+./tex/generic/babel/locale/alt:
+babel-alt.ini
+babel-southernaltai.tex
 
 ./tex/generic/babel/locale/am:
 babel-amharic.tex
@@ -20733,6 +20832,20 @@ babel-ar-SA.ini
 babel-ar-SY.ini
 babel-ar-TN.ini
 
+./tex/generic/babel/locale/arc:
+babel-aramaic-nabataean.tex
+babel-aramaic-nbat.tex
+babel-aramaic-palm.tex
+babel-aramaic-palmyrene.tex
+babel-aramaic.tex
+babel-arc.ini
+babel-arc-Nbat.ini
+babel-arc-Palm.ini
+
+./tex/generic/babel/locale/arz:
+babel-arz.ini
+babel-egyptianarabic.tex
+
 ./tex/generic/babel/locale/as:
 babel-as.ini
 babel-assamese.tex
@@ -20745,6 +20858,14 @@ babel-asu.tex
 babel-ast.ini
 babel-asturian.tex
 
+./tex/generic/babel/locale/awa:
+babel-awadhi.tex
+babel-awa.ini
+
+./tex/generic/babel/locale/ay:
+babel-ay.ini
+babel-aymara.tex
+
 ./tex/generic/babel/locale/az:
 babel-az-Cyrl.ini
 babel-azerbaijani-cyrillic.tex
@@ -20755,13 +20876,29 @@ babel-azerbaijani.tex
 babel-az.ini
 babel-az-Latn.ini
 
+./tex/generic/babel/locale/ba:
+babel-ba.ini
+babel-bashkir.tex
+
 ./tex/generic/babel/locale/bal:
 babel-bal.ini
 babel-baluchi.tex
 
+./tex/generic/babel/locale/ban:
+babel-balinese.tex
+babel-ban.ini
+
+./tex/generic/babel/locale/bar:
+babel-bar.ini
+babel-bavarian.tex
+
 ./tex/generic/babel/locale/bas:
 babel-basaa.tex
 babel-bas.ini
+
+./tex/generic/babel/locale/bbc:
+babel-bataktoba.tex
+babel-bbc.ini
 
 ./tex/generic/babel/locale/be:
 babel-be.ini
@@ -20818,6 +20955,10 @@ babel-bs-Cyrl.ini
 babel-bs.ini
 babel-bs-Latn.ini
 
+./tex/generic/babel/locale/bua:
+babel-bua.ini
+babel-buriat.tex
+
 ./tex/generic/babel/locale/byn:
 babel-blin.tex
 babel-byn.ini
@@ -20830,9 +20971,17 @@ babel-catalan.tex
 babel-atsam.tex
 babel-cch.ini
 
+./tex/generic/babel/locale/ccp:
+babel-ccp.ini
+babel-chakma.tex
+
 ./tex/generic/babel/locale/ce:
 babel-ce.ini
 babel-chechen.tex
+
+./tex/generic/babel/locale/ceb:
+babel-ceb.ini
+babel-cebuano.tex
 
 ./tex/generic/babel/locale/cgg:
 babel-cgg.ini
@@ -20874,6 +21023,10 @@ babel-cu-Cyrs.ini
 babel-cu-Glag.ini
 babel-cu.ini
 
+./tex/generic/babel/locale/cv:
+babel-chuvash.tex
+babel-cv.ini
+
 ./tex/generic/babel/locale/cy:
 babel-cy.ini
 babel-welsh.tex
@@ -20914,6 +21067,10 @@ babel-swisshighgerman.tex
 babel-dje.ini
 babel-zarma.tex
 
+./tex/generic/babel/locale/doi:
+babel-dogri.tex
+babel-doi.ini
+
 ./tex/generic/babel/locale/dsb:
 babel-dsb.ini
 babel-lowersorbian.tex
@@ -20922,6 +21079,10 @@ babel-lsorbian.tex
 ./tex/generic/babel/locale/dua:
 babel-dua.ini
 babel-duala.tex
+
+./tex/generic/babel/locale/dv:
+babel-divehi.tex
+babel-dv.ini
 
 ./tex/generic/babel/locale/dyo:
 babel-dyo.ini
@@ -20938,6 +21099,10 @@ babel-embu.tex
 ./tex/generic/babel/locale/ee:
 babel-ee.ini
 babel-ewe.tex
+
+./tex/generic/babel/locale/egy:
+babel-ancientegyptian.tex
+babel-egy.ini
 
 ./tex/generic/babel/locale/el:
 babel-el.ini
@@ -21003,6 +21168,7 @@ babel-ewondo.tex
 
 ./tex/generic/babel/locale/fa:
 babel-fa.ini
+babel-farsi.tex
 babel-persian.tex
 
 ./tex/generic/babel/locale/ff:
@@ -21023,23 +21189,27 @@ babel-fo.ini
 
 ./tex/generic/babel/locale/fr:
 babel-acadian.tex
+babel-canadianfrench.tex
 babel-fr-BE.ini
 babel-fr-CA.ini
 babel-fr-CH.ini
 babel-french-belgium.tex
 babel-french-be.tex
 babel-french-canada.tex
-babel-french-canadianfrench.tex
 babel-french-ca.tex
 babel-french-ch.tex
 babel-french-lu.tex
 babel-french-luxembourg.tex
-babel-french-swissfrench.tex
 babel-french-switzerland.tex
 babel-french.tex
 babel-fr.ini
 babel-fr-LU.ini
 babel-fr-x-acadian.ini
+babel-swissfrench.tex
+
+./tex/generic/babel/locale/frr:
+babel-frr.ini
+babel-northernfrisian.tex
 
 ./tex/generic/babel/locale/fur:
 babel-friulian.tex
@@ -21072,6 +21242,10 @@ babel-gl.ini
 ./tex/generic/babel/locale/gn:
 babel-gn.ini
 babel-guarani.tex
+
+./tex/generic/babel/locale/got:
+babel-gothic.tex
+babel-got.ini
 
 ./tex/generic/babel/locale/grc:
 babel-ancientgreek.tex
@@ -21115,6 +21289,10 @@ babel-he.ini
 babel-hi.ini
 babel-hindi.tex
 
+./tex/generic/babel/locale/hnj:
+babel-hmongnjua.tex
+babel-hnj.ini
+
 ./tex/generic/babel/locale/hr:
 babel-croatian.tex
 babel-hr.ini
@@ -21149,6 +21327,10 @@ babel-ig.ini
 babel-ii.ini
 babel-sichuanyi.tex
 
+./tex/generic/babel/locale/inh:
+babel-ingush.tex
+babel-inh.ini
+
 ./tex/generic/babel/locale/is:
 babel-icelandic.tex
 babel-is.ini
@@ -21172,6 +21354,10 @@ babel-ngomba.tex
 ./tex/generic/babel/locale/jmc:
 babel-jmc.ini
 babel-machame.tex
+
+./tex/generic/babel/locale/jv:
+babel-javanese.tex
+babel-jv.ini
 
 ./tex/generic/babel/locale/ka:
 babel-georgian.tex
@@ -21204,6 +21390,10 @@ babel-kea.ini
 ./tex/generic/babel/locale/kgp:
 babel-kaingang.tex
 babel-kgp.ini
+
+./tex/generic/babel/locale/khb:
+babel-khb.ini
+babel-lu.tex
 
 ./tex/generic/babel/locale/khq:
 babel-khq.ini
@@ -21273,6 +21463,10 @@ babel-ksf.ini
 babel-colognian.tex
 babel-ksh.ini
 
+./tex/generic/babel/locale/kv:
+babel-komi.tex
+babel-kv.ini
+
 ./tex/generic/babel/locale/kw:
 babel-cornish.tex
 babel-kw.ini
@@ -21282,7 +21476,9 @@ babel-ky.ini
 babel-kyrgyz.tex
 
 ./tex/generic/babel/locale/la:
+babel-classicallatin.tex
 babel-classiclatin.tex
+babel-ecclesiasticallatin.tex
 babel-ecclesiasticlatin.tex
 babel-la.ini
 babel-latin.tex
@@ -21290,6 +21486,14 @@ babel-la-x-classic.ini
 babel-la-x-ecclesia.ini
 babel-la-x-medieval.ini
 babel-medievallatin.tex
+
+./tex/generic/babel/locale/lab:
+babel-lab.ini
+babel-lineara.tex
+
+./tex/generic/babel/locale/lad:
+babel-lad.ini
+babel-ladino.tex
 
 ./tex/generic/babel/locale/lag:
 babel-lag.ini
@@ -21299,9 +21503,20 @@ babel-langi.tex
 babel-lb.ini
 babel-luxembourgish.tex
 
+./tex/generic/babel/locale/lep:
+babel-lepcha.tex
+babel-lep.ini
+
 ./tex/generic/babel/locale/lg:
 babel-ganda.tex
 babel-lg.ini
+
+./tex/generic/babel/locale/lif:
+babel-lif.ini
+babel-lif-Limb.ini
+babel-limbu-limb.tex
+babel-limbu-limbu.tex
+babel-limbu.tex
 
 ./tex/generic/babel/locale/lij:
 babel-ligurian.tex
@@ -21310,6 +21525,10 @@ babel-lij.ini
 ./tex/generic/babel/locale/lkt:
 babel-lakota.tex
 babel-lkt.ini
+
+./tex/generic/babel/locale/lmo:
+babel-lmo.ini
+babel-lombard.tex
 
 ./tex/generic/babel/locale/ln:
 babel-lingala.tex
@@ -21343,6 +21562,17 @@ babel-luy.ini
 babel-latvian.tex
 babel-lv.ini
 
+./tex/generic/babel/locale/mai:
+babel-mai.ini
+babel-maithili.tex
+
+./tex/generic/babel/locale/mak:
+babel-makasar-buginese.tex
+babel-makasar-bugi.tex
+babel-makasar.tex
+babel-mak-Bugi.ini
+babel-mak.ini
+
 ./tex/generic/babel/locale/mas:
 babel-masai.tex
 babel-mas.ini
@@ -21367,6 +21597,10 @@ babel-mgh.ini
 babel-meta.tex
 babel-mgo.ini
 
+./tex/generic/babel/locale/mi:
+babel-maori.tex
+babel-mi.ini
+
 ./tex/generic/babel/locale/mk:
 babel-macedonian.tex
 babel-mk.ini
@@ -21378,6 +21612,10 @@ babel-ml.ini
 ./tex/generic/babel/locale/mn:
 babel-mn.ini
 babel-mongolian.tex
+
+./tex/generic/babel/locale/mni:
+babel-manipuri.tex
+babel-mni.ini
 
 ./tex/generic/babel/locale/mr:
 babel-marathi.tex
@@ -21413,6 +21651,10 @@ babel-my.ini
 babel-erzya.tex
 babel-myv.ini
 
+./tex/generic/babel/locale/myz:
+babel-classicalmandaic.tex
+babel-myz.ini
+
 ./tex/generic/babel/locale/mzn:
 babel-mazanderani.tex
 babel-mzn.ini
@@ -21429,9 +21671,17 @@ babel-norwegianbokmal.tex
 babel-nd.ini
 babel-northndebele.tex
 
+./tex/generic/babel/locale/nds:
+babel-lowgerman.tex
+babel-nds.ini
+
 ./tex/generic/babel/locale/ne:
 babel-ne.ini
 babel-nepali.tex
+
+./tex/generic/babel/locale/new:
+babel-newari.tex
+babel-new.ini
 
 ./tex/generic/babel/locale/nl:
 babel-dutch.tex
@@ -21455,6 +21705,10 @@ babel-no.ini
 babel-norsk.tex
 babel-norwegian.tex
 
+./tex/generic/babel/locale/non:
+babel-non.ini
+babel-oldnorse.tex
+
 ./tex/generic/babel/locale/nqo:
 babel-nko.tex
 babel-nqo.ini
@@ -21470,6 +21724,10 @@ babel-nso.ini
 ./tex/generic/babel/locale/nus:
 babel-nuer.tex
 babel-nus.ini
+
+./tex/generic/babel/locale/nv:
+babel-navajo.tex
+babel-nv.ini
 
 ./tex/generic/babel/locale/ny:
 babel-nyanja.tex
@@ -21509,6 +21767,14 @@ babel-punjabi.tex
 ./tex/generic/babel/locale/pap:
 babel-papiamento.tex
 babel-pap.ini
+
+./tex/generic/babel/locale/pcm:
+babel-nigerianpidgin.tex
+babel-pcm.ini
+
+./tex/generic/babel/locale/phn:
+babel-phn.ini
+babel-phoenician.tex
 
 ./tex/generic/babel/locale/pl:
 babel-pl.ini
@@ -21550,6 +21816,10 @@ babel-raj.ini
 ./tex/generic/babel/locale/rm:
 babel-rm.ini
 babel-romansh.tex
+
+./tex/generic/babel/locale/rmo:
+babel-rmo.ini
+babel-sinteromani.tex
 
 ./tex/generic/babel/locale/rn:
 babel-rn.ini
@@ -21610,6 +21880,10 @@ babel-sakha.tex
 babel-samburu.tex
 babel-saq.ini
 
+./tex/generic/babel/locale/sat:
+babel-santali.tex
+babel-sat.ini
+
 ./tex/generic/babel/locale/sbp:
 babel-sangu.tex
 babel-sbp.ini
@@ -21621,6 +21895,19 @@ babel-sc.ini
 ./tex/generic/babel/locale/scn:
 babel-scn.ini
 babel-sicilian.tex
+
+./tex/generic/babel/locale/sd:
+babel-sd-Deva.ini
+babel-sd.ini
+babel-sd-Khoj.ini
+babel-sd-Sind.ini
+babel-sindhi-devanagari.tex
+babel-sindhi-deva.tex
+babel-sindhi-khojki.tex
+babel-sindhi-khoj.tex
+babel-sindhi-khudawadi.tex
+babel-sindhi-sind.tex
+babel-sindhi.tex
 
 ./tex/generic/babel/locale/se:
 babel-northernsami.tex
@@ -21657,6 +21944,10 @@ babel-sinhala.tex
 babel-sk.ini
 babel-slovak.tex
 
+./tex/generic/babel/locale/skr:
+babel-saraiki.tex
+babel-skr.ini
+
 ./tex/generic/babel/locale/sl:
 babel-sl.ini
 babel-slovene.tex
@@ -21665,6 +21956,10 @@ babel-slovenian.tex
 ./tex/generic/babel/locale/smn:
 babel-inarisami.tex
 babel-smn.ini
+
+./tex/generic/babel/locale/smp:
+babel-samaritan.tex
+babel-smp.ini
 
 ./tex/generic/babel/locale/sn:
 babel-shona.tex
@@ -21723,6 +22018,10 @@ babel-ssy.ini
 babel-southernsotho.tex
 babel-st.ini
 
+./tex/generic/babel/locale/su:
+babel-su.ini
+babel-sundanese.tex
+
 ./tex/generic/babel/locale/sv:
 babel-sv.ini
 babel-swedish.tex
@@ -21743,6 +22042,10 @@ babel-szl.ini
 babel-ta.ini
 babel-tamil.tex
 
+./tex/generic/babel/locale/tdd:
+babel-tainua.tex
+babel-tdd.ini
+
 ./tex/generic/babel/locale/te:
 babel-te.ini
 babel-telugu.tex
@@ -21750,6 +22053,10 @@ babel-telugu.tex
 ./tex/generic/babel/locale/teo:
 babel-teo.ini
 babel-teso.tex
+
+./tex/generic/babel/locale/tg:
+babel-tajik.tex
+babel-tg.ini
 
 ./tex/generic/babel/locale/th:
 babel-thai.tex
@@ -21791,9 +22098,17 @@ babel-trv.ini
 babel-ts.ini
 babel-tsonga.tex
 
+./tex/generic/babel/locale/tt:
+babel-tatar.tex
+babel-tt.ini
+
 ./tex/generic/babel/locale/twq:
 babel-tasawaq.tex
 babel-twq.ini
+
+./tex/generic/babel/locale/txg:
+babel-tangut.tex
+babel-txg.ini
 
 ./tex/generic/babel/locale/tzm:
 babel-centralatlastamazight.tex
@@ -21840,7 +22155,6 @@ babel-venda.tex
 
 ./tex/generic/babel/locale/vi:
 babel-vietnamese.tex
-babel-vietnam.tex
 babel-vi.ini
 
 ./tex/generic/babel/locale/vo:
@@ -21858,6 +22172,18 @@ babel-walser.tex
 ./tex/generic/babel/locale/wal:
 babel-wal.ini
 babel-wolaytta.tex
+
+./tex/generic/babel/locale/war:
+babel-waray.tex
+babel-war.ini
+
+./tex/generic/babel/locale/wo:
+babel-wo.ini
+babel-wolof.tex
+
+./tex/generic/babel/locale/xh:
+babel-xh.ini
+babel-xhosa.tex
 
 ./tex/generic/babel/locale/xog:
 babel-soga.tex
@@ -22007,40 +22333,12 @@ greek.ldf
 grmath.sty
 
 ./tex/generic/babel-hebrew:
-8859-8.def
-cp1255.def
-cp862.def
-he8aharoni.fd
-he8cmr.fd
-he8cmss.fd
-he8cmtt.fd
-he8david.fd
-he8drugulin.fd
-he8enc.def
-he8frankruehl.fd
-he8miriam.fd
-he8nachlieli.fd
-he8OmegaHebrew.fd
-he8yad.fd
 hebcal.sty
-hebfont.sty
 hebrew.ldf
 hebrew_newcode.sty
 hebrew_oldcode.sty
 hebrew_p.sty
-lheclas.fd
-lhecmr.fd
-lhecmss.fd
-lhecmtt.fd
-lhecrml.fd
-lheenc.def
-lhefr.fd
-lheredis.fd
-lheshold.fd
-lheshscr.fd
-lheshstk.fd
 rlbabel.def
-si960.def
 
 ./tex/generic/babel-hungarian:
 magyar.ldf
@@ -22185,7 +22483,6 @@ language.def
 language.us
 language.us.def
 language.us.lua
-luatexiniconfig.tex
 luatex-unicode-letters.tex
 pdftex-dvi.tex
 
@@ -23378,14 +23675,14 @@ se-utf8.def
 stringenc.sty
 
 ./tex/generic/tex-ini-files:
-dvilualatex.ini
 dviluatex.ini
-lualatex.ini
 luatexconfig.tex
 luatex.ini
+luatexiniconfig.tex
 pdftexconfig.tex
-xelatex.ini
+pdfxmltex.ini
 xetex.ini
+xmltex.ini
 
 ./tex/generic/ukrhyph:
 catlcy.tex
@@ -23506,6 +23803,7 @@ pst-text
 refcount
 rerunfilecheck
 svn-prov
+tex-ini-files
 tipa
 tools
 translator
@@ -23866,13 +24164,9 @@ perpage.sty
 suffix.sty
 
 ./tex/latex/bookmark:
-bkm-dvipdfm-2019-12-03.def
 bkm-dvipdfm.def
-bkm-dvips-2019-12-03.def
 bkm-dvips.def
-bkm-pdftex-2019-12-03.def
 bkm-pdftex.def
-bkm-vtex-2019-12-03.def
 bkm-vtex.def
 bookmark.sty
 
@@ -24283,9 +24577,9 @@ filehook.sty
 pgf-filehook.sty
 
 ./tex/latex/firstaid:
-everysel-ltx.sty
 filehook-ltx.sty
 latex2e-first-aid-for-external-files.ltx
+underscore-ltx.sty
 
 ./tex/latex/fontspec:
 fontspec.cfg
@@ -24537,12 +24831,7 @@ xtemplate.sty
 
 ./tex/latex/latexconfig:
 epstopdf-sys.cfg
-latex.ini
 lualatexiniconfig.tex
-lualatexquotejobname.lua
-lualatexquotejobname.tex
-mllatex.ini
-pdflatex.ini
 
 ./tex/latex/letltxmacro:
 letltxmacro.sty
@@ -24879,6 +25168,7 @@ gloss-farsi.ldf
 gloss-fi.ldf
 gloss-finnish.ldf
 gloss-fr-CA.ldf
+gloss-fr-CA-u-sd-canb.ldf
 gloss-fr-CH.ldf
 gloss-french.ldf
 gloss-fr-FR.ldf
@@ -24967,6 +25257,8 @@ gloss-norwegian.ldf
 gloss-nswissgerman.ldf
 gloss-nynorsk.ldf
 gloss-occitan.ldf
+gloss-odia.ldf
+gloss-or.ldf
 gloss-pa.ldf
 gloss-persian.ldf
 gloss-piedmontese.ldf
@@ -25013,6 +25305,7 @@ gurmukhidigits.sty
 hebrewcal.sty
 hijrical.sty
 nkonumbers.sty
+odiadigits.sty
 polyglossia-french.lua
 polyglossia-korean.lua
 polyglossia-latin.lua
@@ -25047,6 +25340,15 @@ rerunfilecheck.sty
 
 ./tex/latex/svn-prov:
 svn-prov.sty
+
+./tex/latex/tex-ini-files:
+dvilualatex.ini
+latex.ini
+lualatex.ini
+lualatexquotejobname.lua
+mllatex.ini
+pdflatex.ini
+xelatex.ini
 
 ./tex/latex/tipa:
 exaccent.sty
@@ -25612,6 +25914,7 @@ c6035.cmap
 ./tex/latex/xcolor:
 svgnam.def
 x11nam.def
+xcolor-2022-06-12.sty
 xcolor.sty
 
 ./tex/latex/xkeyval:
@@ -25852,9 +26155,9 @@ utf8enc.dfu
 x2enc.dfu
 
 ./tex/latex-dev/firstaid:
-everysel-ltx.sty
 filehook-ltx.sty
 latex2e-first-aid-for-external-files.ltx
+underscore-ltx.sty
 
 ./tex/luatex:
 ctablestack
@@ -25917,7 +26220,7 @@ lualibs-util-tpl.lua
 lualibs-util-zip.lua
 
 ./tex/luatex/luaotfload:
-fontloader-2022-10-03.lua
+fontloader-2023-08-19.lua
 fontloader-basics-chr.lua
 fontloader-basics-gen.lua
 fontloader-basics-nod.lua

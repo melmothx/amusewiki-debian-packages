@@ -66,7 +66,7 @@
   2023/04/17 v0.3.4032 KOMA-Script 
   package
   (end user interface for scrlayer)]
-%%% From File: $Id: scrlayer.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrlayer.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: init)
 \RequirePackage{scrlayer}
 \scr@ifundefinedorrelax{scrlayer@AtEndOfPackage}{%
@@ -110,14 +110,14 @@
   }%
   \batchmode\csname @@end\endcsname\end
 \fi
-%%% From File: $Id: scrlayer.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrlayer.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: options)
 \KOMA@key{markcase}{%
   \begingroup
     \KOMA@set@ncmdkey{markcase}{reserved@a}{%
-      {upper}{0},{lower}{1},{used}{2},%
-      {ignoreuppercase}{3},{nouppercase}{3},%
-      {ignoreupper}{3},{noupper}{3}%
+      {upper}{0},{lower}{1},{title}{2},{used}{3},%
+      {ignoreuppercase}{4},{nouppercase}{4},%
+      {ignoreupper}{4},{noupper}{4}%
     }{#1}%
     \ifx\FamilyKeyState\FamilyKeyStateProcessed
       \aftergroup\FamilyKeyStateProcessed
@@ -128,6 +128,15 @@
           \aftergroup\scrlayer@forceignoreuppercasefalse
         \or
           \aftergroup\MakeLowercase
+          \aftergroup\scrlayer@forceignoreuppercasefalse
+        \or
+          \scr@ifundefinedorrelax{MakeTitlecase}{%
+            \PackageWarning{scrlayer}{`markcase=title' ignored because
+              \string\MakeTitlecase\space not available}%
+            \aftergroup\MakeMarkcase
+          }{%
+            \aftergroup\MakeTitlecase
+          }%
           \aftergroup\scrlayer@forceignoreuppercasefalse
         \or
           \aftergroup\@firstofone
@@ -258,7 +267,7 @@
 %%%            (run: options)
 \KOMA@ifkey{autoclearnotecolumns}{slnc@autoclearnotecolumns}
 \slnc@autoclearnotecolumnstrue
-%%% From File: $Id: scrlayer.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrlayer.dtx 4058 2023-06-16 08:32:27Z kohm $
 %%%            (run: body)
 \KOMAProcessOptions\relax
 \expandafter\let

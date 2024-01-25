@@ -1,6 +1,6 @@
 name l3backend
 category Package
-revision 66896
+revision 69310
 shortdesc LaTeX3 backend drivers
 longdesc This package forms parts of expl3, and contains the code used
 longdesc to interface with backends (drivers) across the expl3 codebase.
@@ -8,17 +8,17 @@ longdesc The functions here are defined differently depending on the
 longdesc engine in use. As such, these are distributed separately from
 longdesc l3kernel to allow this code to be updated on an independent
 longdesc schedule.
-containersize 16240
-containerchecksum 6a9d1f0778ea64255988c85a95810d490f88ad8e34e8b41d493f8986bf1359822df34617c7db78d8916693c45cb3873fec4a1002c63ca2e1fa6174c1926e4931
-doccontainersize 888376
-doccontainerchecksum 965eeb732bcee7dfc878b42986525d6fb90f59005fa31797a268a64bcf9494104fe534df209dcbd348ad4e2702e6658606df16e22056b8ea5b1e24d34e5822a2
-docfiles size=234
+containersize 16232
+containerchecksum 06481bcaf4082b3f187a855eedc32abae8423ad5020911ba1ab10bf937c767f98ea8eb10f6a83dc41af126facf72bf4a52c9ac61b9a1d2b9065c4a20f86b617b
+doccontainersize 865796
+doccontainerchecksum 637728bdbdeccd2ec5ced361941b7e9cb560b53dc2ed95755d7a4da45d22004923c034e1aa55b9ca13c2b8d7980f99deead19774120a296339402fd71c9c7948
+docfiles size=228
  texmf-dist/doc/latex/l3backend/CHANGELOG.md
  texmf-dist/doc/latex/l3backend/README.md details="Readme"
  texmf-dist/doc/latex/l3backend/l3backend-code.pdf details="Package documentation"
  texmf-dist/doc/latex/l3backend/l3backend-code.tex
-srccontainersize 33852
-srccontainerchecksum 5d5a1b90a1aa9c3721e0fbedba14123aa48697400f5d9e2ac549f471b9f1d12df534a03a8e77cdfa27407fade9d84d280b33f36a54f1d98f79881fdf5786ce73
+srccontainersize 33924
+srccontainerchecksum 16ec201e41de548e9d6b65dba8a778a30a88729c186c18079e50dab46b310f8313847ce5e4402dd71a01dcde8a0e8a74ce96336403ef53adf8283a5491e33223
 runfiles size=51
  texmf-dist/dvips/l3backend/l3backend-dvips.pro
  texmf-dist/tex/latex/l3backend/l3backend-dvipdfmx.def

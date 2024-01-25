@@ -2,7 +2,7 @@
 
 File: source3body.tex
 
-Copyright (C) 1990-2012,2014-2021 The LaTeX Project
+Copyright (C) 1990-2012,2014-2023 The LaTeX Project
 
 It may be distributed and/or modified under the conditions of the
 LaTeX Project Public License (LPPL), either version 1.3c of this
@@ -44,8 +44,16 @@ for those people who are interested.
 \setlength\parskip{\baselineskip}
 
 \noindent
+\ifinterface
 This is the reference documentation for the \pkg{expl3}
-programming environment. The \pkg{expl3} modules set up an experimental
+programming environment; see the matching \pkg{source3} PDF
+for the typeset sources.
+\else
+This is the typset sources for the \pkg{expl3}
+programming environment; see the matching \pkg{interface3} PDF
+for the API reference manual.
+\fi
+The \pkg{expl3} modules set up a
 naming scheme for \LaTeX{} commands, which allow the \LaTeX{} programmer
 to systematically name functions and variables, and specify the argument
 types of functions.
@@ -228,11 +236,10 @@ following argument specifiers:
     this type of expansion. Functions which feature an \texttt{x}-type
     argument are \emph{not} expandable.
   \item[\texttt{e}] The \texttt{e} specifier is in many respects
-    identical to \texttt{x}, but with a very different implementation.
+    identical to \texttt{x}, but uses \tn{expanded} primitive.
+    Parameter character (usually~|#|) in the argument need not be doubled.
     Functions which feature an \texttt{e}-type argument may be
-    expandable.  The drawback is that \texttt{e} is extremely slow
-    (often more than $200$ times slower) in older engines, more
-    precisely in non-\LuaTeX{} engines older than 2019.
+    expandable.
   \item[\texttt{f}] The \texttt{f} specifier stands for \emph{full
     expansion}, and in contrast to \texttt{x} stops at the first
     non-expandable token (reading the argument from left to right) without
@@ -265,15 +272,7 @@ following argument specifiers:
     dependent and their name can change without warning, thus their
     use is \emph{strongly discouraged} in package code: programmers
     should instead use the interfaces documented in
-    \href{interface3.pdf}{interface3.pdf}%^^A
-    \footnote{If a primitive offers a functionality not yet in the
-      kernel, programmers and users are encouraged to write to the
-      \texttt{LaTeX-L} mailing list
-      (\url{mailto:LATEX-L@listserv.uni-heidelberg.de}) describing
-      their use-case and intended behaviour, so that a possible
-      interface can be discussed.  Temporarily, while an interface is
-      not provided, programmers may use the procedure described in the
-      \href{l3styleguide.pdf}{l3styleguide.pdf}.}.
+    \href{interface3.pdf}{interface3.pdf}.
 \end{description}
 Notice that the argument specifier describes how the argument is
 processed prior to being passed to the underlying function. For example,
@@ -299,7 +298,9 @@ function, typically starting with the module\footnote{The module names are
   \texttt{\string\l_int_tmpa_int} would be very unreadable.}  name
 and then a descriptive part.
 Variables end with a short identifier to show the variable type:
-\begin{description}
+\begin{description}%  
+  \item[\texttt{bitset}] a set of bits (a string made up of a series of \texttt{0}
+    and \texttt{1} tokens that are accessed by position).
   \item[\texttt{clist}] Comma separated list.
   \item[\texttt{dim}] \enquote{Rigid} lengths.
   \item[\texttt{fp}] Floating-point values;
@@ -320,7 +321,7 @@ following variable types:
   \item[\texttt{box}] Box register.
   \item[\texttt{coffin}] A \enquote{box with handles} --- a higher-level
     data type for carrying out \texttt{box} alignment operations.
-  \item[\texttt{flag}] Integer that can be incremented expandably.
+  \item[\texttt{flag}] Non-negative integer that can be incremented expandably.
   \item[\texttt{fparray}] Fixed-size array of floating point values.
   \item[\texttt{intarray}] Fixed-size array of integers.
   \item[\texttt{ior}/\texttt{iow}] An input or output stream, for
@@ -334,7 +335,7 @@ following variable types:
 
 Modules focussed on variable usage typically provide four scratch variables,
 two local and two global, with names of the form
-\cs{\meta{scope}_tmpa_\meta{type}}/\cs{\meta{scope}_tmpb_\meta{type}}. These
+\cs[no-index]{\meta{scope}_tmpa_\meta{type}}/\cs[no-index]{\meta{scope}_tmpb_\meta{type}}. These
 are never used by the core code. The nature of \TeX{} grouping means that as
 with any other scratch variable, these should only be set and used with no
 intervening third-party code.
@@ -510,9 +511,9 @@ logical construct.
 
 \section{\TeX{} concepts not supported by \LaTeX3{}}
 
-The \TeX{} concept of an \enquote{\cs{outer}} macro is \emph{not supported}
+The \TeX{} concept of an \enquote{\tn{outer}} macro is \emph{not supported}
 at all by \LaTeX3{}. As such, the functions provided here may break when
-used on top of \LaTeXe{} if \cs{outer} tokens are used in the arguments.
+used on top of \LaTeXe{} if \tn{outer} tokens are used in the arguments.
 
 \DisableImplementation
 
@@ -544,6 +545,7 @@ used on top of \LaTeXe{} if \cs{outer} tokens are used in the arguments.
 \part{Data types}
 
 \DocInput{l3tl.dtx}
+\DocInput{l3tl-build.dtx}
 \DocInput{l3str.dtx}
 \DocInput{l3str-convert.dtx}
 \DocInput{l3quark.dtx}
@@ -575,10 +577,14 @@ used on top of \LaTeXe{} if \cs{outer} tokens are used in the arguments.
     l3fp-trig.dtx ,
     l3fp-convert.dtx ,
     l3fp-random.dtx ,
+    l3fp-types.dtx ,
+    l3fp-symbolic.dtx ,
+    l3fp-functions.dtx
   }
 \ExplSyntaxOff
 
 \DocInput{l3fparray.dtx}
+\DocInput{l3bitset.dtx}
 \DocInput{l3cctab.dtx}
 
 \part{Text manipulation}
@@ -601,12 +607,11 @@ used on top of \LaTeXe{} if \cs{outer} tokens are used in the arguments.
 \DocInput{l3color.dtx}
 \DocInput{l3pdf.dtx}
 
-\part{Additions and removals}
-
-\DocInput{l3candidates.dtx}
+\part{Removals}
 
 \ExplSyntaxOn
 \clist_gput_right:Nn \g_docinput_clist { l3deprecation.dtx }
+\clist_gput_right:Nn \g_docinput_clist { l3debug.dtx }
 \ExplSyntaxOff
 
 \endinput

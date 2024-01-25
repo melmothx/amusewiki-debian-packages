@@ -18,7 +18,7 @@
 %
 % This work consists of all files listed in MANIFEST.md.
 % ======================================================================
-%%% From File: $Id: scrlayer.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrlayer.dtx 4058 2023-06-16 08:32:27Z kohm $
 %<identify>%%%            (run: identify)
 %<init>%%%            (run: init)
 %<options>%%%            (run: options)
@@ -28,9 +28,9 @@
 \ifx\ProvidesFile\undefined\def\ProvidesFile#1[#2]{}\fi
 \begingroup
   \def\filedate$#1: #2-#3-#4 #5${\gdef\filedate{#2/#3/#4}}
-  \filedate$Date: 2023-04-17 11:45:11 +0200 (Mo, 17. Apr 2023) $
+  \filedate$Date: 2023-06-16 10:32:27 +0200 (Fr, 16. Jun 2023) $
   \def\filerevision$#1: #2 ${\gdef\filerevision{r#2}}
-  \filerevision$Revision: 4032 $
+  \filerevision$Revision: 4058 $
   \edef\reserved@a{%
     \noexpand\endgroup
     \noexpand\ProvidesFile{scrlayer.dtx}%
@@ -311,9 +311,11 @@
 % \begin{option}{markcase}
 % \changes{v3.39}{2022/11/11}{initial dot in member argument of option storage
 %   commands removed}
+% \changes{v3.41}{2023/06/16}{new value \texttt{title} to support
+%   \cs{MakeTitlecase}}
 % \begin{description}
 % \item[\texttt{=\meta{setting}}] one of: \texttt{upper}, \texttt{lower},
-% \texttt{used}, or \texttt{ignoreuppercase}.
+%   \texttt{title}, \texttt{used}, or \texttt{ignoreuppercase}.
 % \end{description}\noindent
 % The two options \opt{markuppercase} and \opt{markusedcase} become
 % deprecated and are replace be the single option \opt{markcase}. Note,
@@ -325,9 +327,9 @@
 %<interface&scrpage>\scrlayer@AtEndOfPackage{%
   \begingroup
     \KOMA@set@ncmdkey{markcase}{reserved@a}{%
-      {upper}{0},{lower}{1},{used}{2},%
-      {ignoreuppercase}{3},{nouppercase}{3},%
-      {ignoreupper}{3},{noupper}{3}%
+      {upper}{0},{lower}{1},{title}{2},{used}{3},%
+      {ignoreuppercase}{4},{nouppercase}{4},%
+      {ignoreupper}{4},{noupper}{4}%
     }{#1}%
     \ifx\FamilyKeyState\FamilyKeyStateProcessed
       \aftergroup\FamilyKeyStateProcessed
@@ -340,6 +342,15 @@
           \aftergroup\MakeLowercase
           \aftergroup\scrlayer@forceignoreuppercasefalse
         \or
+          \scr@ifundefinedorrelax{MakeTitlecase}{%  
+            \PackageWarning{scrlayer}{`markcase=title' ignored because
+              \string\MakeTitlecase\space not available}%
+            \aftergroup\MakeMarkcase
+          }{%
+            \aftergroup\MakeTitlecase
+          }%
+          \aftergroup\scrlayer@forceignoreuppercasefalse
+        \or  
           \aftergroup\@firstofone
           \aftergroup\scrlayer@forceignoreuppercasefalse
         \else
@@ -376,9 +387,11 @@
     \KOMA@kav@replacevalue{scrlayer.sty}{markcase}{upper}%
   \else\ifx\MakeMarkcase\MakeLowercase
       \KOMA@kav@replacevalue{scrlayer.sty}{markcase}{lower}%
-    \else\ifx\MakeMarkcase\scr@ignoreuppercase
-        \KOMA@kav@replacevalue{scrlayer.sty}{markcase}{ignoreuppercase}%
-\fi\fi\fi\fi
+    \else\ifx\MakeMarkcase\MakeTitlecase
+        \KOMA@kav@replacevalue{scrlayer.sty}{markcase}{title}%
+      \else\ifx\MakeMarkcase\scr@ignoreuppercase
+          \KOMA@kav@replacevalue{scrlayer.sty}{markcase}{ignoreuppercase}%
+\fi\fi\fi\fi\fi
 %    \end{macrocode}
 % \begin{macro}{\scrlayer@ignoreuppercase}
 % We span a group and set \cs{uppercase} and \cs{MakeUppercase} to
@@ -784,6 +797,8 @@
 %    \end{macrocode}
 % \end{macro}^^A \automark@basics
 % \begin{macro}{\automark@righthigh}
+% \changes{v3.41}{2023/06/16}{split usage of \cs{MakeMarkcase} to support
+%   \cs{MakeTitlecase}}
 % Set up the right mark of a higher level, but in single-side layout only if
 % \opt{autooneside} hasn't been used. Note, that with this definition no
 % special handling for \KOMAScript's \cs{addchap} and \cs{addsec} is
@@ -799,11 +814,11 @@
       \expandafter\endgroup
       \if@tempswa
         \@mkright{%
-          \MakeMarkcase{%
-            \ifnum \c@secnumdepth<\numexpr \csname #1numdepth\endcsname +0\relax
-            \else\if@mainmatter \csname #1markformat\endcsname\fi\fi
-            ##1%
-          }%
+          \ifnum \c@secnumdepth<\numexpr \csname #1numdepth\endcsname +0\relax
+          \else
+            \if@mainmatter \MakeMarkcase{\csname #1markformat\endcsname}\fi
+          \fi
+          \MakeMarkcase{##1}%
         }%
       \fi
     }%
@@ -832,15 +847,17 @@
 % instead of only a left high mark, we set up both marks.
 % \changes{v3.27}{2019/07/25}{replaced \cs{@empty} by \texttt{\{\}} to avoid
 %   \textsf{babel} issue}
+% \changes{v3.41}{2023/06/16}{split usage of \cs{MakeMarkcase} to support
+%   \cs{MakeTitlecase}}
 %    \begin{macrocode}
         \expandafter\@mkdouble
       \fi
       {%
-        \MakeMarkcase{%
-          \ifnum \c@secnumdepth<\numexpr \csname #1numdepth\endcsname +0\relax
-          \else\if@mainmatter \csname #1markformat\endcsname\fi\fi
-          ##1%
-        }%
+        \ifnum \c@secnumdepth<\numexpr \csname #1numdepth\endcsname +0\relax
+        \else
+          \if@mainmatter \MakeMarkcase{\csname #1markformat\endcsname}\fi
+        \fi
+        \MakeMarkcase{##1}%
       }{}%
     }%
   }{}%
@@ -867,17 +884,17 @@
 %    \end{macrocode}
 % Level of left mark is equal to level of right mark. This is
 % nice and very easy to handle.
+% \changes{v3.41}{2023/06/16}{split usage of \cs{MakeMarkcase} to support
+%   \cs{MakeTitlecase}}
 %    \begin{macrocode}
           \expandafter\def\csname #2mark\endcsname##1{%
             \@mkdouble{%
-              \MakeMarkcase{%
-                \ifnum \c@secnumdepth<\numexpr 
-                  \csname #2numdepth\endcsname +0\relax
-                \else
-                  \if@mainmatter \csname #2markformat\endcsname\fi
-                \fi
-                ##1%
-              }%
+              \ifnum \c@secnumdepth<\numexpr 
+                \csname #2numdepth\endcsname +0\relax
+              \else
+                \if@mainmatter \MakeMarkcase{\csname #2markformat\endcsname}\fi
+              \fi
+              \MakeMarkcase{##1}%
             }%
           }%
         \else
@@ -893,25 +910,23 @@
             \expandafter\endgroup
             \if@tempswa
               \@mkleft{%
-                \MakeMarkcase{%
-                  \ifnum \c@secnumdepth
-                       < \numexpr\csname #1numdepth\endcsname +0\relax
-                  \else
-                    \if@mainmatter \csname #1markformat\endcsname\fi
-                  \fi
-                  ##1%
-                }%
+                \ifnum \c@secnumdepth
+                     < \numexpr\csname #1numdepth\endcsname +0\relax
+                \else
+                  \if@mainmatter \MakeMarkcase{\csname #1markformat\endcsname}\fi
+                \fi
+                \MakeMarkcase{##1}%
               }%
             \fi
           }%
           \expandafter\def\csname #2mark\endcsname##1{%
             \@mkboth{}{%
-              \MakeMarkcase{%
-                \ifnum \c@secnumdepth
-                     < \numexpr \csname #2numdepth\endcsname +0\relax
-                \else\if@mainmatter \csname #2markformat\endcsname\fi\fi
-                ##1%
-              }%
+              \ifnum \c@secnumdepth
+                   < \numexpr \csname #2numdepth\endcsname +0\relax
+              \else
+                \if@mainmatter \MakeMarkcase{\csname #2markformat\endcsname}\fi
+              \fi
+              \MakeMarkcase{##1}%
             }%
           }%
         \fi

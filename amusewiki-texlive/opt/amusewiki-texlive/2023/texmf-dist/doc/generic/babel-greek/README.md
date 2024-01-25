@@ -4,7 +4,7 @@ babel-greek
 Comprehensive support for the Greek language and script with
 [Babel](https://ctan.org/pkg/babel).
 
-**Version**: 1.13.1
+**Version**: 1.15
 
 **Copyright**: © 1997 Apostolos Syropoulos, Claudio Beccari, Johannes Brahms,
                © 2013 - 2023 Günter Milde.

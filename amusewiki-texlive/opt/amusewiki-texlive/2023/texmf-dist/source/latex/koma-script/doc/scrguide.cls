@@ -178,7 +178,6 @@
 % In future we should use biblatex instead of babelbib, but currently some
 % things are still missing:
 % \begin{itemize}
-% \item prefix \texttt{CTAN://},
 % \item line breaks after the author (but not full \texttt{openbib} style like
 %   \texttt{block=nbpar}),
 % \item removing language tag \texttt{ngerman} from output.
@@ -191,7 +190,18 @@
   \newcommand*{\printbibliography}[1][]{\bibliography{scrguide}}
 \else
   \RequirePackage[backend=bibtex,style=alphabetic,block=ragged]{biblatex}
-  \DeclareFieldFormat{url}{\url{#1}}
+  \DeclareSourcemap{
+    \maps[datatype=bibtex]{
+      \map{
+        \step[fieldsource=url, final=true]
+        \step[fieldset=verba, origfieldval, final=true]
+        \step[fieldsource=verba, match=\regexp{CTAN:\/\/}, replace={https://www.ctan.org/}]
+      }
+    }
+  }
+  \DeclareFieldFormat{url}{%
+    \href{\thefield{verba}}{\nolinkurl{#1}}%
+  }
 \fi  
 \RequirePackage{afterpage}
 \RequirePackage{makeidx}

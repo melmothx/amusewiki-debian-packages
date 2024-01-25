@@ -7,7 +7,7 @@
 %% babel.dtx  (with options: `xetex')
 %% 
 %%
-%% Copyright (C) 2012-2023 Javier Bezos and Johannes L. Braams.
+%% Copyright (C) 2012-2024 Javier Bezos and Johannes L. Braams.
 %% Copyright (C) 1989-2012 Johannes L. Braams and
 %%           any individual authors listed elsewhere in this file.
 %% All rights reserved.
@@ -232,6 +232,8 @@
       {}}}
 \def\bbl@fontspec@set#1#2#3#4{% eg \bbl@rmdflt@lang fnt-opt fnt-nme \xxfamily
   \let\bbl@tempe\bbl@mapselect
+  \edef\bbl@tempb{\bbl@stripslash#4/}% Catcodes hack (better pass it).
+  \bbl@exp{\\\bbl@replace\\\bbl@tempb{\bbl@stripslash\family/}{}}%
   \let\bbl@mapselect\relax
   \let\bbl@temp@fam#4%       eg, '\rmfamily', to be restored below
   \let#4\@empty      %       Make sure \renewfontfamily is valid
@@ -246,14 +248,26 @@
     \let\\\bbl@tempfs@nxx\<__fontspec_warning:nxx>%
     \let\<__fontspec_warning:nxx>\\\bbl@fs@warn@nxx
     \\\renewfontfamily\\#4%
-      [\bbl@cl{lsys},#2]}{#3}% ie \bbl@exp{..}{#3}
+      [\bbl@cl{lsys},%
+       \ifcase\bbl@engine\or RawFeature={family=\bbl@tempb},\fi
+       #2]}{#3}% ie \bbl@exp{..}{#3}
   \bbl@exp{%
     \let\<__fontspec_warning:nx>\\\bbl@tempfs@nx
     \let\<__fontspec_warning:nxx>\\\bbl@tempfs@nxx}%
   \begingroup
      #4%
      \xdef#1{\f@family}%     eg, \bbl@rmdflt@lang{FreeSerif(0)}
-  \endgroup
+  \endgroup % TODO. Find better tests:
+  \bbl@xin@{\string>\string s\string s\string u\string b\string*}%
+    {\expandafter\meaning\csname TU/#1/bx/sc\endcsname}%
+  \ifin@
+    \global\bbl@ccarg\let{TU/#1/bx/sc}{TU/#1/b/sc}%
+  \fi
+  \bbl@xin@{\string>\string s\string s\string u\string b\string*}%
+    {\expandafter\meaning\csname TU/#1/bx/scit\endcsname}%
+  \ifin@
+    \global\bbl@ccarg\let{TU/#1/bx/scit}{TU/#1/b/scit}%
+  \fi
   \let#4\bbl@temp@fam
   \bbl@exp{\let\<\bbl@stripslash#4\space>}\bbl@temp@pfam
   \let\bbl@mapselect\bbl@tempe}%
@@ -261,6 +275,117 @@
   \bbl@csarg\def{famrst@#4}{\bbl@font@set{#1}#2#3}}
 \def\bbl@font@fams{rm,sf,tt}
 \def\bbl@provide@extra#1{}
+\ifnum\xe@alloc@intercharclass<\thr@@
+  \xe@alloc@intercharclass\thr@@
+\fi
+\chardef\bbl@xeclass@default@=\z@
+\chardef\bbl@xeclass@cjkideogram@=\@ne
+\chardef\bbl@xeclass@cjkleftpunctuation@=\tw@
+\chardef\bbl@xeclass@cjkrightpunctuation@=\thr@@
+\chardef\bbl@xeclass@boundary@=4095
+\chardef\bbl@xeclass@ignore@=4096
+\AddBabelHook{babel-interchar}{beforeextras}{%
+  \@nameuse{bbl@xechars@\languagename}}
+\DisableBabelHook{babel-interchar}
+\protected\def\bbl@charclass#1{%
+  \ifnum\count@<\z@
+    \count@-\count@
+    \loop
+      \bbl@exp{%
+        \\\babel@savevariable{\XeTeXcharclass`\Uchar\count@}}%
+      \XeTeXcharclass\count@ \bbl@tempc
+      \ifnum\count@<`#1\relax
+      \advance\count@\@ne
+    \repeat
+  \else
+    \babel@savevariable{\XeTeXcharclass`#1}%
+    \XeTeXcharclass`#1 \bbl@tempc
+  \fi
+  \count@`#1\relax}
+\newcommand\IfBabelIntercharT[1]{%
+  \let\bbl@tempa\@gobble        % Assume to ignore
+  \edef\bbl@tempb{\zap@space#1 \@empty}%
+  \ifx\bbl@KVP@interchar\@nnil\else
+      \bbl@replace\bbl@KVP@interchar{ }{,}%
+      \bbl@foreach\bbl@tempb{%
+        \bbl@xin@{,##1,}{,\bbl@KVP@interchar,}%
+        \ifin@
+          \let\bbl@tempa\@firstofone
+        \fi}%
+  \fi
+  \bbl@tempa}
+\newcommand\babelcharclass[3]{%
+  \EnableBabelHook{babel-interchar}%
+  \bbl@csarg\newXeTeXintercharclass{xeclass@#2@#1}%
+  \def\bbl@tempb##1{%
+    \ifx##1\@empty\else
+      \ifx##1-%
+        \bbl@upto
+      \else
+        \bbl@charclass{%
+          \ifcat\noexpand##1\relax\bbl@stripslash##1\else\string##1\fi}%
+      \fi
+      \expandafter\bbl@tempb
+    \fi}%
+  \bbl@ifunset{bbl@xechars@#1}%
+    {\toks@{%
+       \babel@savevariable\XeTeXinterchartokenstate
+       \XeTeXinterchartokenstate\@ne
+      }}%
+    {\toks@\expandafter\expandafter\expandafter{%
+       \csname bbl@xechars@#1\endcsname}}%
+  \bbl@csarg\edef{xechars@#1}{%
+    \the\toks@
+    \bbl@usingxeclass\csname bbl@xeclass@#2@#1\endcsname
+    \bbl@tempb#3\@empty}}
+\protected\def\bbl@usingxeclass#1{\count@\z@ \let\bbl@tempc#1}
+\protected\def\bbl@upto{%
+  \ifnum\count@>\z@
+    \advance\count@\@ne
+    \count@-\count@
+  \else\ifnum\count@=\z@
+    \bbl@charclass{-}%
+  \else
+    \bbl@error{Double hyphens aren't allowed in \string\babelcharclass\\%
+               because it's potentially ambiguous}%
+              {See the manual for further info}%
+  \fi\fi}
+\newcommand\babelinterchar[5][]{%
+  \let\bbl@kv@label\@empty
+  \bbl@forkv{#1}{\bbl@csarg\edef{kv@##1}{##2}}%
+  \@namedef{\zap@space bbl@xeinter@\bbl@kv@label @#3@#4@#2 \@empty}%
+    {\ifnum\language=\l@nohyphenation
+       \expandafter\@gobble
+     \else
+       \expandafter\@firstofone
+     \fi
+     {#5}}%
+  \bbl@csarg\let{ic@\bbl@kv@label @#2}\@firstofone
+  \bbl@exp{\\\bbl@for\\\bbl@tempa{\zap@space#3 \@empty}}{%
+    \bbl@exp{\\\bbl@for\\\bbl@tempb{\zap@space#4 \@empty}}{%
+      \XeTeXinterchartoks
+        \@nameuse{bbl@xeclass@\bbl@tempa @%
+          \bbl@ifunset{bbl@xeclass@\bbl@tempa @#2}{}{#2}} %
+        \@nameuse{bbl@xeclass@\bbl@tempb @%
+          \bbl@ifunset{bbl@xeclass@\bbl@tempb @#2}{}{#2}} %
+        = \expandafter{%
+           \csname bbl@ic@\bbl@kv@label @#2\expandafter\endcsname
+           \csname\zap@space bbl@xeinter@\bbl@kv@label
+              @#3@#4@#2 \@empty\endcsname}}}}
+\DeclareRobustCommand\enablelocaleinterchar[1]{%
+  \bbl@ifunset{bbl@ic@#1@\languagename}%
+    {\bbl@error
+       {'#1' for '\languagename' cannot be enabled.\\%
+        Maybe there is a typo.}%
+       {See the manual for further details.}}%
+    {\bbl@csarg\let{ic@#1@\languagename}\@firstofone}}
+\DeclareRobustCommand\disablelocaleinterchar[1]{%
+  \bbl@ifunset{bbl@ic@#1@\languagename}%
+    {\bbl@error
+       {'#1' for '\languagename' cannot be disabled.\\%
+        Maybe there is a typo.}%
+       {See the manual for further details.}}%
+    {\bbl@csarg\let{ic@#1@\languagename}\@gobble}}
 \providecommand\bbl@provide@intraspace{}
 \bbl@trace{Redefinitions for bidi layout}
 \def\bbl@sspre@caption{%
@@ -323,7 +448,7 @@
        \hskip\columnwidth}}}%
   {}
 \bbl@trace{Bidi footnotes}
-\ifnum\bbl@bidimode>\z@
+\ifnum\bbl@bidimode>\z@ % Any bidi=
   \def\bbl@footnote#1#2#3{%
     \@ifnextchar[%
       {\bbl@footnote@o{#1}{#2}{#3}}%

@@ -18,7 +18,7 @@
 %
 % This work consists of all files listed in MANIFEST.md.
 % ======================================================================
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 % The runs of run-time file generation:
 %<preidentify>%%%            (run: preidentify)
 % - everything that is needed before selfidentification of resulting files
@@ -42,9 +42,9 @@
 \ifx\ProvidesFile\undefined\def\ProvidesFile#1[#2]{}\fi
 \begingroup
   \def\filedate$#1: #2-#3-#4 #5${\gdef\filedate{#2/#3/#4}}
-  \filedate$Date: 2023-04-17 11:45:11 +0200 (Mo, 17. Apr 2023) $
+  \filedate$Date: 2023-06-20 10:59:01 +0200 (Di, 20. Jun 2023) $
   \def\filerevision$#1: #2 ${\gdef\filerevision{r#2}}
-  \filerevision$Revision: 4032 $
+  \filerevision$Revision: 4060 $
   \edef\reserved@a{%
     \noexpand\endgroup
     \noexpand\ProvidesFile{scrkernel-tocstyle.dtx}%
@@ -1010,8 +1010,10 @@
 %    \end{macrocode}
 % \end{macro}^^A \@TOCEntryStyleNeedsCommandByOption
 %
-% \begin{command}{\TOCEntryStyleInitCode,\TOCEntryStyleStartInitCode}
+% \begin{command}{\TOCEntryStyleInitCode,\TOCEntryStyleInitCode*,
+%                 \TOCEntryStyleStartInitCode}
 % \changes{v3.20}{2015/11/25}{added}
+% \changes{v3.41}{2023/06/20}{star variant \cs{TOCEntryStyleInitCode*} added}
 % Executes commands before a ToC entry level command of this style is defined
 % and before the \emph{needs} list will be executed. The parameters are:
 % \begin{description}
@@ -1022,12 +1024,13 @@
 % \end{description}
 %    \begin{macrocode}
 %<*body>
-\newcommand{\TOCEntryStyleInitCode}[1]{%
-  \scr@ifundefinedorrelax{scr@dte@#1@init}{%
-    \expandafter\providecommand\expandafter*%
-    \csname scr@dte@#1@init\endcsname[1]%
+\NewDocumentCommand\TOCEntryStyleInitCode{sm}{%
+  \IfBooleanT{#1}{\expandafter\let\csname scr@dte@#2@init\endcsname\relax}%
+  \scr@ifundefinedorrelax{scr@dte@#2@init}{%
+    \expandafter\newcommand\expandafter*%
+    \csname scr@dte@#2@init\endcsname[1]%
   }{%
-    \expandafter\l@addto@macro@a\csname scr@dte@#1@init\endcsname
+    \expandafter\l@addto@macro@a\csname scr@dte@#2@init\endcsname
   }%
 }
 \newcommand{\TOCEntryStyleStartInitCode}[1]{%
@@ -1039,7 +1042,7 @@
   }%
 }
 %    \end{macrocode}
-% \end{command}^^A \TOCEntryStyleInitCode,\TOCEntryStyleStartInitCode
+% \end{command}^^A \TOCEntryStyleInitCode … \TOCEntryStyleStartInitCode
 % \begin{macro}{\@ExecuteTOCEntryStyleInitCode}
 % \changes{v3.20}{2015/12/04}{added}
 % Executes the init code of one style. The first argument is the name of the
@@ -1096,6 +1099,7 @@
 % \begin{command}{\DeclareTOCStyleEntry}
 % \changes{v3.20}{2015/11/13}{added}
 % \changes{v3.39}{2022/10/24}{error message about missing options improved}
+% \changes{v3.41}{2023/06/20}{usage of style definition files supported}
 % This user command defines a new ToC entry command. It tests, if all needed
 % style macros are already defined. Otherwise an error will be shown and the
 % ToC entry command will not be defined. The arguments are:
@@ -1111,6 +1115,16 @@
 %    \begin{macrocode}
 %<*body>
 \newcommand*{\DeclareTOCStyleEntry}[3][]{%
+  \scr@ifundefinedorrelax{scr@dte@def@l@#2}{%
+    \IfFileExists{tocbasic-tocstyle-#2.def}{%
+      \edef\reserved@a{%
+        \unexpanded{%
+          \makeatletter
+          \input{tocbasic-tocstyle-#2.def}%
+          \catcode`\@=}\the\catcode`\@\relax
+      }\reserved@a
+    }{}%
+  }{}%
   \scr@ifundefinedorrelax{scr@dte@def@l@#2}{%
     \PackageError{tocbasic}{toc entry style `#2' undefined}{%
       Somebody told me to define toc entry `#3' with style `#2',\MessageBreak
@@ -1229,6 +1243,8 @@
 % \changes{v3.20}{2015/11/17}{added}
 % \begin{macro}{\@DeclareTOCEntryStyle}
 % \changes{v3.20}{2015/11/17}{added}
+% \changes{v3.41}{2023/06/20}{using \cs{TOCEntryStyleInitCode*} instead of
+%   \cs{TOCEntryStyleInitCode}}
 % The user command is used to define a new style for ToC entries. The
 % arguments are:
 % \begin{description}
@@ -1257,7 +1273,7 @@
       \TOC@EntryEndHook{##1}%
     }%
   }%
-  \TOCEntryStyleInitCode{#1}{%
+  \TOCEntryStyleInitCode*{#1}{%
     \DefineTOCEntryNumberOption{level}{}{tocdepth}{toc entry level}%
     #2%
   }%

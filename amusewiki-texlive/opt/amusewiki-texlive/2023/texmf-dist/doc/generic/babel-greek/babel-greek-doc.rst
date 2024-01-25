@@ -3,7 +3,7 @@ babel-greek
 Babel support for the Greek language and script
 ===============================================
 
-:Version: 1.13.1 (changelog_)
+:Version: 1.15 (changelog_)
 
 :Copyright: © 1997 Apostolos Syropoulos, Claudio Beccari, Johannes Brahms,
             © 2013 -- 2023 Günter Milde.
@@ -26,21 +26,21 @@ Babel support for the Greek language and script
 Files
 -----
 
+`<athnum.dtx>`_
+  Athenian (Attic, Herodianic, or acrophonic) Numerals. [`<athnum.pdf>`_]
 `<babel-greek.dtx>`_
   Source of the language definition file ``greek.ldf`` for use with Babel_.
   [`<babel-greek.pdf>`_]
-`<athnum.dtx>`_
-  Athenian (Attic, Herodianic, or acrophonic) Numerals. [`<athnum.pdf>`_]
-`<grmath.dtx>`_
-  Greek log-like Operators. [`<grmath.pdf>`_]
 `<babel-greek.ins>`_
   DocStrip_ batch file.
-`<usage.tex>`_
-  Description of the `LGR Latin transliteration`_ and the `Greek numerals`_.
-  [`<usage.pdf>`_]
+`<grmath.dtx>`_
+  Greek log-like Operators. [`<grmath.pdf>`_]
 test-\*.tex
   Documented test samples.
   [`<test-greek.pdf>`_, `<test-greeknum.pdf>`_, `<test-athnum.pdf>`_]
+`<usage.tex>`_
+  Description of the `LGR Latin transliteration`_ and the `Greek numerals`_.
+  [`<usage.pdf>`_]
 
 
 Requirements
@@ -222,20 +222,24 @@ a b g d e z h j i k l m n x o p r s c t u f q y w
 
 Accent symbols and punctuation:
 
-============== ======= ==  ====================== ======= ==
-tonos/oxia     ``'a``  ά   right apostrophe       ``''``  ’
-varia          ```a``  ὰ   left apostrophe        \`\`    ‘
-dasia          ``<a``  ἁ   left quotation mark    ``((``  «
-psili          ``>a``  ἀ   right quotation mark   ``))``  »
-perispomeni    ``\~a`` ᾶ   erotimatiko            ``?``   ;
-dialytika      ``"i``  ϊ   ano teleia [#]_        ``;``   ·
-ypogegrammeni  ``a|``  ᾳ   zero width non-joiner  ``av|`` αͺ
-============== ======= ==  ====================== ======= ==
+================ ======= ==  ====================== ======= ==
+tonos/oxia       ``'a``  ά   right apostrophe       ``''``  ’
+varia            ```a``  ὰ   left apostrophe        \`\`    ‘
+dasia            ``<a``  ἁ   left quotation mark    ``((``  «
+psili            ``>a``  ἀ   right quotation mark   ``))``  »
+perispomeni [#]_ ``\~a`` ᾶ   erotimatiko            ``?``   ;
+dialytika        ``"i``  ϊ   ano teleia [#]_        ``;``   ·
+ypogegrammeni    ``a|``  ᾳ   zero width non-joiner  ``av|`` αͺ
+================ ======= ==  ====================== ======= ==
 
 The downside is, that you cannot print Latin letters and some symbols if
 LGR is the active font encoding. This means that for every Latin-written
 word or acronym in a Greek text part, an explicit font encoding switch is
 required.
+
+.. [#] The tilde can be used without backslash in the language variants
+   "ancient" and "polutoniko". In monotonic Greek, it keeps its default
+   expansion to a no-break space.
 
 .. [#] The "_`keep-semicolon`" language attribute prevents the mapping of
    a semicolon to a middle dot to allow its use as Greek question mark
@@ -261,7 +265,8 @@ They are still used in everyday life for ordinal numbers and
 more generally by the Orthodox church and certain scholars.
 
 Greek numerals use several now obsolete letters:
-digamma_ ϝ or stigma_ ϛ, koppa_ ϟ or ϙ, and sampi_ ϡ [Nicholas-05]_.
+digamma_ ϝ or stigma_ ϛ, koppa_ ϟ or ϙ, and sampi_ ϡ
+[Nicholas-05]_ [Haralambous-98]_.
 
 * Standing for 6 is the digamma_ ϝ, the sixth letter of the Ionic
   alphabet (just as its Latin equivalent F is the sixth letter of the
@@ -401,6 +406,23 @@ Changelog
 1.13.1 (2023-03-17)
      - Don't use text command in math mode with "keep-semicolon".
      - `athnum.dtx`_ 2.0.1: Fix behaviour in math mode.
+1.13.2 (2023-06-01)
+     - Warn of unsupported (or misspelled) "modifiers"
+       (code contributed by Javier Bezos).
+     - Fix upcasing of text using the `LGR Latin transliteration`_:
+       drop accents with ``\DeclareUppercaseMapping`` (`new in LaTeX 2023`_).
+1.14 (2023-08-18)
+     - Fix upcasing of Greek letters with standard accent macros.
+     - New modifier `local-MakeUppercase-fixes`.
+1.15 (2023-10-13)
+     - Switch to the previous ``\encodingdefault`` (not ``\cf@encoding``)
+       when exiting Greek text parts.
+       Exception: use ``\latinencoding`` if the initial ``\encodingdefault``
+       is LGR and "greek" is the main document language.
+     - Fix standard accent macros also with pre-2022 ``\MakeUppercase``.
+     - Rename modifier `local-MakeUppercase-fixes` to
+       `no-MakeUppercase-fixes`.
+
 
 .. _babel/4303: http://www.latex-project.org/cgi-bin/ltxbugs2html?pr=babel/4303
 .. _babel/4305: http://www.latex-project.org/cgi-bin/ltxbugs2html?pr=babel/4305
@@ -409,6 +431,8 @@ Changelog
 .. _LaTeX issue 987: https://github.com/latex3/latex2e/issues/987
 .. _default font encoding for Unicode engines:
     https://www.latex-project.org/news/latex2e-news/ltnews26.pdf
+.. _new in LaTeX 2023:
+    https://www.latex-project.org/news/latex2e-news/ltnews37.pdf
 
 
 References
@@ -440,7 +464,7 @@ References
 .. _e-TeX: http://www.tex.ac.uk/cgi-bin/texfaq2html?label=etex
 .. _grtimes: https://ctan.org/pkg/grtimes
 .. _hyperref: https://ctan.org/pkg/hyperref
-.. _textalpha:
+.. _textalpha: http://mirrors.ctan.org/language/greek/greek-fontenc/textalpha-doc.pdf
 .. _greek-fontenc: https://ctan.org/pkg/greek-fontenc
 .. _LGR: http://mirrors.ctan.org/language/greek/greek-fontenc/greek-fontenc-doc.html#lgr
 .. _greek-inputenc: https://ctan.org/pkg/greek-inputenc

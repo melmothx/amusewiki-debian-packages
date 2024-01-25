@@ -1,4 +1,4 @@
-% Language definition file (part of polyglossia v1.62 -- 2023/04/22)
+% Language definition file (part of polyglossia v1.66 -- 2023/12/11)
 %
 \ProvidesFile{gloss-divehi.ldf}[polyglossia: module for Divehi]
 
@@ -43,17 +43,5 @@
 %   \def\glossaryname{<++>}%
 %   }
 %\def\datedivehi{\def\today{<++>}}
-
-% Save original \MakeUppercase definition
-\let\xpg@save@MakeUppercase\MakeUppercase
-
-\def\blockextras@divehi{%
-   \def\MakeUppercase##1{##1}%
-}
-
-\def\noextras@divehi{%
-   % restore original \MakeUppercase definition
-   \let\MakeUppercase\xpg@save@MakeUppercase%
-}
 
 \endinput

@@ -1,4 +1,4 @@
-% Language definition file (part of polyglossia v1.62 -- 2023/04/22)
+% Language definition file (part of polyglossia v1.66 -- 2023/12/11)
 %
 \ProvidesFile{gloss-ukrainian.ldf}[polyglossia: module for Ukrainian]
 % Strings taken from Babel
@@ -73,7 +73,7 @@
 }{}
 
 \def\ukrainian@shorthands{%
-  \bbl@activate{"}%
+  \xpg@activate@shorthands%
   \def\language@group{ukrainian}%
 %  \declare@shorthand{ukrainian}{"`}{„}%
 %  \declare@shorthand{ukrainian}{"'}{“}%
@@ -113,7 +113,7 @@
 }
 
 \def\noukrainian@shorthands{%
-  \@ifundefined{initiate@active@char}{}{\bbl@deactivate{"}}%
+  \xpg@deactivate@shorthands%
 }
 
 \def\captionsukrainian{%

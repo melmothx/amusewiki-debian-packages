@@ -1,4 +1,4 @@
-% Language definition file (part of polyglossia v1.62 -- 2023/04/22)
+% Language definition file (part of polyglossia v1.66 -- 2023/12/11)
 %
 \ProvidesFile{gloss-portuguese.ldf}[polyglossia: module for Portuguese]
 
@@ -64,9 +64,10 @@
   \shorthandoff{"}%
 }{}
 
+\let\xpg@hyphen@char-
 \def\portuguese@@splhyphen#1{%
   \def\portuguese@sh@tmp{%
-       \if\portuguese@sh@next-#1%
+       \ifx\portuguese@sh@next\xpg@hyphen@char#1%
        \else\expandafter\portuguese@@@splhyphen{#1}\fi%
      }%
      \futurelet\portuguese@sh@next\portuguese@sh@tmp%
@@ -86,7 +87,7 @@
 }
 
 \def\portuguese@shorthands{%
-  \bbl@activate{"}%
+  \xpg@activate@shorthands%
   \def\language@group{portuguese}%
   \declare@shorthand{portuguese}{"=}{\portuguese@splhyphen}%
   \declare@shorthand{portuguese}{""}{\hskip\z@skip}%
@@ -103,7 +104,7 @@
 }
 
 \def\noportuguese@shorthands{%
-  \@ifundefined{initiate@active@char}{}{\bbl@deactivate{"}}%
+  \xpg@deactivate@shorthands%
 }
 
 \ifxetex

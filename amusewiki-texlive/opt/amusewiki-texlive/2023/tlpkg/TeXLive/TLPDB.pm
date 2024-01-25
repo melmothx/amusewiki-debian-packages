@@ -1,4 +1,4 @@
-# $Id: TLPDB.pm 65964 2023-02-20 17:13:02Z karl $
+# $Id: TLPDB.pm 68562 2023-10-16 17:17:01Z karl $
 # TeXLive::TLPDB.pm - tlpdb plain text database files.
 # Copyright 2007-2023 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
@@ -7,7 +7,7 @@
 use strict; use warnings;
 package TeXLive::TLPDB;
 
-my $svnrev = '$Revision: 65964 $';
+my $svnrev = '$Revision: 68562 $';
 my $_modulerevision = ($svnrev =~ m/: ([0-9]+) /) ? $1 : "unknown";
 sub module_revision { return $_modulerevision; }
 
@@ -2014,7 +2014,9 @@ sub remove_package {
   my $tlp = $localtlpdb->get_package($pkg);
   my $usertree = $localtlpdb->setting("usertree");
   if (!defined($tlp)) {
-    tlwarn ("TLPDB: package not present, so nothing to remove: $pkg\n");
+    # we should not be called.
+    tlwarn ("TLPDB::remove_package: package not present, ",
+            "so nothing to remove: $pkg\n");
   } else {
     my $currentarch = $self->platform();
     if ($pkg eq "texlive.infra" || $pkg eq "texlive.infra.$currentarch") {
@@ -2025,8 +2027,10 @@ sub remove_package {
     my $Master = $localtlpdb->root;
     chdir ($Master) || die "chdir($Master) failed: $!";
     my @files = $tlp->all_files;
+    #
     # also remove the .tlpobj file
     push @files, "tlpkg/tlpobj/$pkg.tlpobj";
+    #
     # and the ones from src/doc splitting
     if (-r "tlpkg/tlpobj/$pkg.source.tlpobj") {
       push @files, "tlpkg/tlpobj/$pkg.source.tlpobj";
@@ -2107,17 +2111,39 @@ sub remove_package {
         0, # tlpdbopt_desktop_integration, desktop part
         $localtlpdb->option("post_code"));
     }
-    # 
-    my @removals = &TeXLive::TLUtils::removed_dirs (@goodfiles);
+    # we want to check whether we can actually remove files
+    # there might be various reasons that this fails, like texmf-dist
+    # directory suddently becoming ro (for whatever definition of
+    # suddenly).
+    my (%by_dirs, %removed_dirs) = &TeXLive::TLUtils::all_dirs_and_removed_dirs (@goodfiles);
+    my @removals = keys %removed_dirs;
+
+    # we have already check for the existence of the dirs returned
+    for my $d (keys %by_dirs) {
+      if (! &TeXLive::TLUtils::dir_writable($d)) {
+        tlwarn("TLPDB::remove_package: directories are not writable, cannot remove files: $d\n");
+        return 0;
+      }
+    }
+
     # now do the removal
     for my $entry (@goodfiles) {
-      unlink $entry;
+      # sometimes the files might not be there: 1) we remove .tlpobj
+      # explicitly above; 2) we're called from tl-update-containers
+      # to update the network tlpdb, and that doesn't have an expanded
+      # texmf-dist.
+      next unless -e $entry;
+      #
+      unlink($entry)
+      || tlwarn("TLPDB::remove_package: Could not unlink $entry: $!\n");
     }
     for my $d (@removals) {
-      rmdir $d;
+      rmdir($d)
+      || tlwarn("TLPDB::remove_package: Could not rmdir $d: $!\n")
     }
     $localtlpdb->remove_tlpobj($pkg);
     TeXLive::TLUtils::announce_execute_actions("disable", $tlp);
+    
     # should we save at each removal???
     # advantage: the tlpdb actually reflects what is installed
     # disadvantage: removing a collection calls the save routine several times
@@ -2136,6 +2162,7 @@ sub remove_package {
     # files are already removed.
     # Again, desktop integration maps to desktop and menu links
     if (!$opts{'nopostinstall'}) {
+      debug(" TLPDB::remove_package: running remove postinstall");
       &TeXLive::TLUtils::do_postaction("remove", $tlp,
         $localtlpdb->option("file_assocs"),
         $localtlpdb->option("desktop_integration"),
@@ -3000,4 +3027,4 @@ GNU General Public License Version 2 or later.
 ### tab-width: 2
 ### indent-tabs-mode: nil
 ### End:
-# vim:set tabstop=2 expandtab autoindent: #
+# vim:set tabstop=2 shiftwidth=2 expandtab autoindent: #

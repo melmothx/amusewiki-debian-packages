@@ -13,7 +13,7 @@
 %% (but please observe conditions on bug reports sent to that address!)
 %% 
 %% 
-%% Copyright (C) 1993-2022
+%% Copyright (C) 1993-2023
 %% The LaTeX Project and any individual authors listed elsewhere
 %% in this file.
 %% 
@@ -39,15 +39,17 @@
 %% Copyright (C) 1989--2003 by Rainer Sch\"opf. All rights reserved.
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{verbatim}
-     [2022-07-02 v1.5u LaTeX2e package for verbatim enhancements]
+     [2023-11-06 v1.5v LaTeX2e package for verbatim enhancements]
 \@ifundefined{verbatim@@@}{}{\endinput}
 \newtoks\every@verbatim
 \every@verbatim={}
 \def\@makeother#1{\catcode`#112\relax}
 \begingroup
- \catcode`\ =\active%
- \def\x{\def\@vobeyspaces{\catcode`\ \active\let \@xobeysp}}
- \expandafter\endgroup\x
+\catcode`\ =\active%
+\@ifl@t@r\fmtversion{2023-11-01}%
+{\def\x{\def\@vobeyspaces{\catcode`\ \active\let \@xobeysp\@vobeytabs}}}%
+{\def\x{\def\@vobeyspaces{\catcode`\ \active\let \@xobeysp}}}%
+\expandafter\endgroup\x
 \def\@xobeysp{\leavevmode\penalty\@M\ }
 \newtoks\verbatim@line
 \def\verbatim@startline{\verbatim@line{}}

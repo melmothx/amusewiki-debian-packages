@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# $Id: install-tl 66578 2023-03-12 17:33:10Z karl $
+# $Id: install-tl 69327 2024-01-07 11:10:51Z preining $
 # Copyright 2007-2023
 # Reinhard Kotucha, Norbert Preining, Karl Berry, Siep Kroonenberg.
 # This file is licensed under the GNU General Public License version 2
@@ -12,7 +12,7 @@
 
 use strict; use warnings;
 
-my $svnrev = '$Revision: 66578 $';
+my $svnrev = '$Revision: 69327 $';
 $svnrev =~ m/: ([0-9]+) /;
 $::installerrevision = ($1 ? $1 : 'unknown');
 
@@ -914,7 +914,9 @@ sub final_remote_init {
   } elsif ($media eq "NET") {
     info("Distribution: net  (downloading)\n");
     info("Using URL: $TeXLiveURL\n");
-    TeXLive::TLUtils::setup_persistent_downloads() if $opt_persistent_downloads;
+    TeXLive::TLUtils::setup_persistent_downloads(
+      "$::installerdir/tlpkg/installer/curl/curl-ca-bundle.crt"
+    ) if $opt_persistent_downloads;
   } else {
     info("Distribution: $media\n");
   }
@@ -2238,7 +2240,10 @@ sub read_profile {
   # from the tlpdb do not overwrite -seed-profile values.
   my %pro;
   while (<PROFILE>) {
-    chomp;
+    # don't use chomp here since we might use files written for Windows
+    # on Unix or the other way round.
+    # \R is a general line terminator, \z is end of string
+    s{\R\z}{};
     next if m/^[[:space:]]*$/; # skip empty lines
     next if m/^[[:space:]]*#/; # skip comment lines
     s/^[[:space:]]+//;         # ignore leading (but not trailing) whitespace
@@ -3600,7 +3605,7 @@ This script and its documentation were written for the TeX Live
 distribution (L<https://tug.org/texlive>) and both are licensed under the
 GNU General Public License Version 2 or later.
 
-$Id: install-tl 66578 2023-03-12 17:33:10Z karl $
+$Id: install-tl 69327 2024-01-07 11:10:51Z preining $
 =cut
 
 # to remake HTML version: pod2html --cachedir=/tmp install-tl >/tmp/itl.html

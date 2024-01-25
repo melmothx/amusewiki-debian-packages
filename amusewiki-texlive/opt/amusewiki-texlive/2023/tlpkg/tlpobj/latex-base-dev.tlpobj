@@ -1,6 +1,6 @@
 name latex-base-dev
 category Package
-revision 67218
+revision 68730
 shortdesc Development pre-release of the LaTeX kernel
 longdesc This package provides a testing release for upcoming LaTeX2e
 longdesc kernel changes. Testing by the LaTeX team itself suggests that
@@ -9,11 +9,11 @@ longdesc users is required by adding these changes to the release LaTeX
 longdesc kernel. Typically, the code here will be used by a TeX system
 longdesc to create dedicated formats, for example pdflatex-dev, which
 longdesc can then be used explicitly for testing.
-containersize 234772
-containerchecksum 0d57a87780358df41932cd2306c40777188e46cda08c79a51d0c78d41d78e5562f15481cde67f190f958ddbec5c1962b27e8f32a80e0e981310c15e82c309afb
-doccontainersize 32794552
-doccontainerchecksum 324c9feba63feeecde4eddebb9688baf20c9f7e1b54bc9d6d4ebf4e777db2d045b93d3d47701887359d810b054db307f34f8622b6ec9887fff328d9e0a4f4943
-docfiles size=10285
+containersize 237572
+containerchecksum 88a5f4610e396128575a96bc20091a0bc66295aab4febe52a46e89e8bc1b4396ab33dda9bb3b94a643645b82c676e6e1fcf37544435ff2852af0417f97f24f52
+doccontainersize 34912744
+doccontainerchecksum 10214331abeb528bc4e594f9141c99c21cde74729652a7d4a3bce71e401493904377bbf49c1778e35461689f0b2eba9e59c9b52ea484c8ac1bf79413963124a1
+docfiles size=11018
  texmf-dist/doc/latex-dev/base/README.md details="Readme"
  texmf-dist/doc/latex-dev/base/alltt.pdf
  texmf-dist/doc/latex-dev/base/bugs.txt
@@ -150,14 +150,24 @@ docfiles size=10285
  texmf-dist/doc/latex-dev/base/ltnews36.tex
  texmf-dist/doc/latex-dev/base/ltnews37.pdf
  texmf-dist/doc/latex-dev/base/ltnews37.tex
+ texmf-dist/doc/latex-dev/base/ltnews38.pdf
+ texmf-dist/doc/latex-dev/base/ltnews38.tex
  texmf-dist/doc/latex-dev/base/ltpara-code.pdf
  texmf-dist/doc/latex-dev/base/ltpara-code.tex
  texmf-dist/doc/latex-dev/base/ltpara-doc.pdf
  texmf-dist/doc/latex-dev/base/ltpara-doc.tex
+ texmf-dist/doc/latex-dev/base/ltproperties-code.pdf
+ texmf-dist/doc/latex-dev/base/ltproperties-code.tex
+ texmf-dist/doc/latex-dev/base/ltproperties-doc.pdf
+ texmf-dist/doc/latex-dev/base/ltproperties-doc.tex
  texmf-dist/doc/latex-dev/base/ltshipout-code.pdf
  texmf-dist/doc/latex-dev/base/ltshipout-code.tex
  texmf-dist/doc/latex-dev/base/ltshipout-doc.pdf
  texmf-dist/doc/latex-dev/base/ltshipout-doc.tex
+ texmf-dist/doc/latex-dev/base/ltsockets-code.pdf
+ texmf-dist/doc/latex-dev/base/ltsockets-code.tex
+ texmf-dist/doc/latex-dev/base/ltsockets-doc.pdf
+ texmf-dist/doc/latex-dev/base/ltsockets-doc.tex
  texmf-dist/doc/latex-dev/base/ltx3info.pdf
  texmf-dist/doc/latex-dev/base/ltx3info.tex
  texmf-dist/doc/latex-dev/base/ltxdoc.pdf
@@ -184,9 +194,9 @@ docfiles size=10285
  texmf-dist/doc/latex-dev/base/utf8ienc.pdf
  texmf-dist/doc/latex-dev/base/webcomp.err
  texmf-dist/doc/latex-dev/base/webcomp.pdf
-srccontainersize 735896
-srccontainerchecksum d048b28535c553cb92feecf2b7c6a1bfdc2afff4375f1b1cc5f076d11554b8cfb854a9b0fb80ec422d6f9cfc14d41d63894231486be1a8b4308e55d709f5f784
-runfiles size=664
+srccontainersize 750228
+srccontainerchecksum c601183a89eb0d5fcacd7f40bcc867d668067228fcdc17ff5dd5dce57623a6ad21c51d0f5be8b5e99003e4eb683ed4cee33a201fee52c88f1f2a4d873d901197
+runfiles size=672
  texmf-dist/tex/latex-dev/base/alltt.sty
  texmf-dist/tex/latex-dev/base/ansinew.def
  texmf-dist/tex/latex-dev/base/applemac.def
@@ -356,4 +366,4 @@ catalogue-also latex-base
 catalogue-ctan /macros/latex-dev/base
 catalogue-license lppl1.3c
 catalogue-topics format class latex-devel
-catalogue-version 2023-06-01 pre-release 3
+catalogue-version 2024-06-01 pre-release 0

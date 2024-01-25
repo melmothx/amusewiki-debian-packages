@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
-# $Id: tlmgr.pl 66798 2023-04-08 00:15:21Z preining $
-# Copyright 2008-2023 Norbert Preining
+# $Id: tlmgr.pl 69413 2024-01-13 22:43:25Z karl $
+# Copyright 2008-2024 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
 # 
@@ -8,8 +8,8 @@
 
 use strict; use warnings;
 
-my $svnrev = '$Revision: 66798 $';
-my $datrev = '$Date: 2023-04-08 02:15:21 +0200 (Sat, 08 Apr 2023) $';
+my $svnrev = '$Revision: 69413 $';
+my $datrev = '$Date: 2024-01-13 23:43:25 +0100 (Sat, 13 Jan 2024) $';
 my $tlmgrrevision;
 my $tlmgrversion;
 my $prg;
@@ -37,7 +37,7 @@ our $allowed_verify_args_regex = qr/^(none|main|all)$/i;
 
 END {
   if ($opts{"pause"}) {
-    print "Press Enter to exit the program.\n";
+    print "\n$prg: Pausing at end of run as requested; press Enter to exit.\n";
     <STDIN>;
   }
 }
@@ -690,7 +690,9 @@ for the full story.\n";
   # if we are asked to use persistent connections try to start it here
   ddebug("tlmgr:main: do persistent downloads = $opts{'persistent-downloads'}\n");
   if ($opts{'persistent-downloads'}) {
-    TeXLive::TLUtils::setup_persistent_downloads() ;
+    TeXLive::TLUtils::setup_persistent_downloads(
+      "$Master/tlpkg/installer/curl/curl-ca-bundle.crt"
+    ) ;
   }
   if (!defined($::tldownload_server)) {
     debug("tlmgr:main: ::tldownload_server not defined\n");
@@ -2334,7 +2336,9 @@ sub write_w32_updater {
   my $root = $localtlpdb->root;
   my $temp = "$root/temp";
   TeXLive::TLUtils::mkdirhier($temp);
-  tlwarn("$prg: Backup option not implemented for infrastructure update.\n") if ($opts{"backup"});
+  tlwarn("$prg: warning: backup option not implemented for infrastructure "
+         . " update on Windows; continuing anyway.\n") 
+    if ($opts{"backup"});
   if ($media eq 'local_uncompressed') {
     tlwarn("$prg: Creating updater from local_uncompressed currently not implemented!\n");
     tlwarn("$prg: But it should not be necessary!\n");
@@ -3371,8 +3375,11 @@ sub action_update {
       if ($pkg =~ m/$CriticalPackagesRegexp/) {
         debug("Not removing critical package $pkg\n");
       } else {
-        $localtlpdb->remove_package($pkg, 
-          "remove-warn-files" => \%do_warn_on_move);
+        if (! $localtlpdb->remove_package($pkg, 
+                "remove-warn-files" => \%do_warn_on_move)) {
+          info("aborted\n") unless $::machinereadable;
+          next;
+        }
       }
       if ($remotetlpdb->install_package($pkg, $localtlpdb)) {
         # installation succeeded because we got a reference
@@ -4921,7 +4928,7 @@ sub action_option {
       }
     }
     if (!$found) {
-      tlwarn("$prg: option $what not supported!\n");
+      tlwarn("$prg: Option not supported: $what\n");
       return ($F_ERROR);
     }
   }
@@ -7337,9 +7344,56 @@ and the repository are not compatible:
     }
   }
 
+  # Check for remote main db being *older* than what we have seen
+  # before, to avoid wrongly removing packages because a stale mirror
+  # happens to be chosen.
+  # 
+  # The check we employ is heuristic: texlive-scripts is updated practically
+  # every day. We compare the locally-installed texlive-scripts with the
+  # remote revision, and if that does not line up, we error out.
+  # 
+  # We only do this check if the remote database contains texlive-scripts
+  # otherwise sub-repos (like tlgpg) will fail.
+  # Alternative approaches:
+  # - loop over all installed packages and take the maximum of revisions found
+  # - on every update, save the last seen remote main revision into
+  #   00texlive.installation
+  #
+  if ($is_main) {
+    my $rtlp = $remotetlpdb->get_package("texlive-scripts");
+    my $ltlp = $localtlpdb->get_package("texlive-scripts");
+    my $local_revision;
+    my $remote_revision;
+    if (!defined($rtlp)) {
+      # remote db does not contain texlive-scripts, so we skip all checks
+      debug("Remote database does not contain the texlive-scripts package, "
+            . "skipping version consistency check\n");
+      $remote_revision = 0;
+    } else {
+      $remote_revision = $rtlp->revision;
+    }
+    if (!defined($ltlp)) {
+      info("texlive-scripts package not found (?!), "
+           . "skipping version consistency check\n");
+      $local_revision = 0;
+    } else {
+      $local_revision = $ltlp->revision;
+    }
+    debug("texlive-scripts remote revision $remote_revision, "
+          . "texlive-scripts local revision $local_revision\n");
+    if ($remote_revision > 0 && $local_revision > $remote_revision) {
+      info("fail load $location\n") if ($::machinereadable);
+      return(undef, <<OLD_REMOTE_MSG);
+Remote database (revision $remote_revision of the texlive-scripts package)
+seems to be older than the local installation (rev $local_revision of
+texlive-scripts); please use a different mirror and/or wait a day or two.
+OLD_REMOTE_MSG
+    }
+  }
+
   # check for being frozen
   if ($remotetlpdb->config_frozen) {
-    my $frozen_msg = <<FROZEN;
+    my $frozen_msg = <<FROZEN_MSG;
 TeX Live $TeXLive::TLConfig::ReleaseYear is frozen
 and will no longer be routinely updated.  This happens when a new
 release is made, or will be made shortly.
@@ -7347,7 +7401,7 @@ release is made, or will be made shortly.
 For general status information about TeX Live, see its home page:
 https://tug.org/texlive
 
-FROZEN
+FROZEN_MSG
     # don't die here, we want to allow updates even if tlnet is frozen!
     tlwarn($frozen_msg);
   }
@@ -10243,7 +10297,7 @@ This script and its documentation were written for the TeX Live
 distribution (L<https://tug.org/texlive>) and both are licensed under the
 GNU General Public License Version 2 or later.
 
-$Id: tlmgr.pl 66798 2023-04-08 00:15:21Z preining $
+$Id: tlmgr.pl 69413 2024-01-13 22:43:25Z karl $
 =cut
 
 # test HTML version: pod2html --cachedir=/tmp tlmgr.pl >/tmp/tlmgr.html
@@ -10253,4 +10307,4 @@ $Id: tlmgr.pl 66798 2023-04-08 00:15:21Z preining $
 ### tab-width: 2
 ### indent-tabs-mode: nil
 ### End:
-# vim:set tabstop=2 expandtab: #
+# vim:set tabstop=2 shiftwidth=2 expandtab: #

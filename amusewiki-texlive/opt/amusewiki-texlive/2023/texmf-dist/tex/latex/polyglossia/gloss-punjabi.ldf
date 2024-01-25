@@ -1,4 +1,4 @@
-% Language definition file (part of polyglossia v1.62 -- 2023/04/22)
+% Language definition file (part of polyglossia v1.66 -- 2023/12/11)
 %
 % UTF-8 strings kindly provided by 
 % Arvinder Singh Kang, <17-11-2022>
@@ -95,18 +95,6 @@
     ਨਵੰਬਰ\or
     ਦਸੰਬਰ\fi
     \space\punjabinumber\year}%
-}
-
-% Save original \MakeUppercase definition
-\let\xpg@save@MakeUppercase\MakeUppercase
-
-\def\blockextras@punjabi{%
-  \def\MakeUppercase##1{##1}%
-}
-
-\def\noextras@punjabi{%
-   % restore original \MakeUppercase definition
-   \let\MakeUppercase\xpg@save@MakeUppercase%
 }
 
 \endinput

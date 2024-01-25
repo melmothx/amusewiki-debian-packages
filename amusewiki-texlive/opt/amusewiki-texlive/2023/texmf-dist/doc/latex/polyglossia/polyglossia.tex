@@ -18,7 +18,7 @@
     hyperindex=false,
     hyperfootnotes=false,
     pdftitle={Polyglossia: Modern multilingual typesetting with XeLaTeX and LuaLaTeX},
-    pdfauthor={F Charette, A Reutenauer, B Roucariès, J Spitzmüller},
+    pdfauthor={F Charette, A Reutenauer, U Fogiel, B Roucariès, J Spitzmüller},
     pdfkeywords={xetex, xelatex, luatex, lualatex, multilingual, babel, hyphenation}
     ]{hyperref}
 \usepackage{array}
@@ -156,11 +156,11 @@
 \hyphenation{Kha-li-ghi Reu-ten-auer new-zea-land}
 \GetFileInfo{polyglossia.sty}
 
-\title{{\textgreek{\xpgtitlefont\color{lightblue}\MakeUppercase[lang=el]{Πολυγλωσσία}}}
+\title{{\textgreek{\xpgtitlefont\color{lightblue}\MakeUppercase{Πολυγλωσσία}}}
 \\[16pt]
 \color{xpgblue}Polyglossia: Modern multilingual typesetting with \XeLaTeX\ and \LuaLaTeX}
 \author{\TA{François Charette} \and \TA{Arthur Reutenauer}\thanks{Current maintainer}
-	    \and \TA{Bastien Roucariès} \and \TA{Jürgen Spitzmüller}}
+	    \and \TA{Udi Fogiel} \and \TA{Bastien Roucariès} \and \TA{Jürgen Spitzmüller}}
 \date{\filedate \qquad \fileversion\thanks{Please report bugs to \url{http://github.com/reutenauer/polyglossia/issues}}\\
 \footnotesize (\textsc{pdf} file generated on \today)}
 
@@ -254,29 +254,29 @@ that are explained in section \ref{specific} below.
 
 \begin{table}[ht]\centering
 \caption{\label{tab:lang}Languages currently supported in \pkg{polyglossia}}
-% Produced with tools/insert-language-list.rb -- JS, 2022-11-23
-% Edited by hand -- JS, 2022-11-23
+% Produced with tools/insert-language-list.rb -- JS, 2023-11-06
 \begin{tabular}{lllll}
 	\toprule
-	\TX{afrikaans}	& danish		& icelandic		& nko			& \TX{spanish}	\\
-	albanian		& divehi		& interlingua	& \TX{norwegian}& swedish		\\
-	amharic			& \TX{dutch}	& \TX{italian}	& occitan		& \TX{syriac}	\\
-	\TX{arabic}		& \TX{english}	& japanese		& \TX{persian}	& tamil			\\
-	\TX{armenian}	& \TX{esperanto}& kannada		& piedmontese	& telugu		\\
-	asturian		& estonian		& khmer			& \TX{polish}	& \TX{thai}		\\
-	basque			& \TX{finnish}	& \TX{korean}	&\TX{portuguese}& \TX{tibetan}	\\
-	\TX{belarusian}	& \TX{french}	& \TX{kurdish}	& \TX{punjabi}	& turkish		\\
-	\TX{bengali}	& friulian		& \TX{lao}		& romanian		& turkmen		\\
-	bosnian			& \TX{gaelic}	& \TX{latin}	& romansh		& \TX{ukrainian}\\
-	breton			& galician		& latvian		& \TX{russian}	& urdu			\\
-	bulgarian		& \TX{georgian}	& lithuanian	& \TX{sami}		& \TX{uyghur}	\\
-	\TX{catalan}	& \TX{german}	& macedonian	& \TX{sanskrit}	& vietnamese	\\
-	\TX{chinese}	& \TX{greek}	& \TX{malay}	& \TX{serbian}	& \TX{welsh}	\\
-	coptic			& \TX{hebrew}	& malayalam		& \TX{slovak}	& 				\\
-	\TX{croatian}	& \TX{hindi}	& \TX{marathi}	& \TX{slovenian}& 				\\
-	\TX{czech}		& \TX{hungarian}& \TX{mongolian}& \TX{sorbian}	& 				\\
+	\TX{afrikaans} & danish       & icelandic          & nko    & \TX{sorbian}\\
+	albanian         & divehi       & interlingua & \TX{norwegian} & \TX{spanish}\\
+	amharic        & \TX{dutch} & \TX{italian} & occitan        & swedish       \\
+	\TX{arabic} & \TX{english} & japanese         & \TX{odia}          & \TX{syriac}\\
+	\TX{armenian} & \TX{esperanto} & kannada        & \TX{persian} & tamil     \\
+	asturian         & estonian         & khmer      & piedmontese & telugu      \\
+	basque       & \TX{finnish} & \TX{korean} & \TX{polish} & \TX{thai}         \\
+	\TX{belarusian} & \TX{french} & \TX{kurdish} & \TX{portuguese} & \TX{tibetan}\\
+	\TX{bengali} & friulian         & \TX{lao}         & \TX{punjabi} & turkish       \\
+	bosnian        & \TX{gaelic} & \TX{latin} & romanian         & turkmen       \\
+	breton       & galician         & latvian        & romansh        & \TX{ukrainian}\\
+	bulgarian          & \TX{georgian} & lithuanian & \TX{russian} & \TX{urdu}         \\
+	\TX{catalan} & \TX{german} & macedonian & \TX{sami}          & \TX{uyghur}\\
+	\TX{chinese} & \TX{greek} & \TX{malay} & \TX{sanskrit} & vietnamese\\
+	coptic       & \TX{hebrew} & malayalam          & \TX{serbian} & \TX{welsh}\\
+	\TX{croatian} & \TX{hindi} & \TX{marathi} & \TX{slovak} & \\
+	\TX{czech} & \TX{hungarian} & \TX{mongolian} & \TX{slovenian} & \\
 	\bottomrule
 \end{tabular}
+
 \end{table}
 
 \paragraph{Version Notes} The support for Amharic\new{1.0.1} should be considered an experimental attempt to
@@ -302,6 +302,8 @@ been renamed (\emph{farsi}\textrightarrow\emph{persian}, \emph{friulan}\textrigh
 compatibility reasons.
 Version 1.46\new{1.46} introduces support for Afrikaans, Belarusian, Bosnian and Georgian.
 Version 1.52\new{1.52} introduces support for Uyghur.
+Version 1.59\new{1.59} adds support for (simplified and traditional) Chinese and for Punjabi.
+Version 1.66\new{1.66} introduces support for Odia.
 
 
 \subsection{Relation to and use of Babel language names}\label{sec:babelnames}
@@ -324,7 +326,7 @@ Please refer to table~\ref{tab:bbllang} for the differing language names in both
 \toprule
 \textbf{Babel name} & \textbf{Polyglossia name} & \textbf{Polyglossia options}\tabularnewline
 \midrule
-acadien            & french     & variant=acadian                     \\
+acadian            & french     & variant=acadian                     \\
 american           & english    & variant=american [\emph{default}]   \\
 australian         & english    & variant=australian                  \\
 austrian           & german     & variant=austrian, spelling=old      \\
@@ -472,6 +474,7 @@ Table~\ref{tab:BCP47-polyglossia} lists the currently supported tags.
 	fi               & finnish     &                                                    \tabularnewline
 	fr               & french      &                                                    \tabularnewline
 	fr-CA            & french      & variant=canadian                                   \tabularnewline
+	fr-CA-u-sd-canb  & french      & variant=acadian                                    \tabularnewline
 	fr-CH            & french      & variant=swiss                                      \tabularnewline
 	fr-FR            & french      & variant=french [\emph{default}]                    \tabularnewline
 	fur              & friulian    &                                                    \tabularnewline
@@ -516,6 +519,7 @@ Table~\ref{tab:BCP47-polyglossia} lists the currently supported tags.
 	nl               & dutch       &                                                    \tabularnewline
 	nn               & norwegian   & variant=nynorsk [\emph{default}]                   \tabularnewline
 	oc               & occitan     &                                                    \tabularnewline
+	or               & odia        & changecounternumbering=false, numerals=Devanagari [\emph{default}] \tabularnewline
 	pa               & punjabi     & numerals=gurmukhi                                  \tabularnewline
 	pl               & polish      &                                                    \tabularnewline
 	pms              & piedmontese &                                                    \tabularnewline
@@ -846,19 +850,35 @@ and that passing \xpgvalue{babelshorthands} (without value) is equivalent to pas
 \paragraph*{Options:}
 	\begin{itemize}
 	\item \xpgchoicekey{calendar}{\xpgpresetvalue{gregorian} or \xpgvalue{islamic} (= \xpgvalue{hijri})}
+	\item \xpgoptkey{hijricorrection}{integer}[0]
+	    If \xpgvalue{calendar=hijri} or \xpgvalue{calendar=islamic} is selected, \cmd{\today} will output the date
+	    according to the lunar Islamic (Hijra) calendar. This option allows to shift the day of the output with respect
+	    to the current date. Both positive and negative integer values are allowed (negative decrease the day value).
+	    This corresponds to the optional argument of the \cmd{\Hijritoday} command which can be used to output Hijri
+	    dates irrespective of the \xpgvalue{calendar} option (see sec.~\ref{sec:hijrical}).
 	\item \xpgchoicekey{locale}{\xpgpresetvalue{default}, \xpgvalue{mashriq}, \xpgvalue{libya},
 		\xpgvalue{algeria}, \xpgvalue{tunisia}, \xpgvalue{morocco}, \xpgvalue{mauritania}}
 		This setting influences the spelling of the month names for the Gregorian calendar,
 		as well as the form of the numerals (unless overridden by the following option). Recommended settings are
 		\xpgvalue{default} for Egypt, Sudan, Yemen and the Gulf states, and \xpgvalue{mashriq} for Iraq, Syria,
 		Jordan, Lebanon and Palestine.
-	\item \xpgchoicekey{numerals}{\xpgpresetvalue{mashriq} or \xpgvalue{maghrib}}
-		The latter is the default when \xpgvalue{locale=algeria}, \xpgvalue{tunisia}, or \xpgvalue{morocco}.
+	\item \xpgchoicekey{numerals}{\xpgpresetvalue{mashriq} (=~\xpgvalue{eastern}\new{1.63}) or \xpgvalue{maghrib}
+		(=~\xpgvalue{western}\new{1.63})}
+		Use Eastern Arabic (a.k.a.\ Indic-Arabic) numerals (\xpgvalue{mashriq} or \xpgvalue{eastern}) or Western numerals
+		(\xpgvalue{maghrib} or \xpgvalue{western}).
+		The latter is the default when \xpgvalue{locale=algeria}, \xpgvalue{tunisia}, or \xpgvalue{morocco}, the former
+		is the default with all other Arabic locales.
+	\item \xpgcodekey[1.63]{sectionsep}¦.¦
+		This option allows to customize the separator between chapters, sections, and subsections (a dot by default),
+		\eg \xpgoption{sectionsep=-}.
+		This might be useful particularly with \xpgoption{numerals=mashriq} or \xpgoption{eastern}, as the dot looks
+		too similar to the zero	in many fonts.
 	\item \xpgboolkeyfalse[1.50]{abjadalph}
 	     Set this to true if you want the alphabetic counters to be output using \cmd\abjadalph\ rather than \cmd\abjad.
 	     Note that this limits the counter scope to 28 (see \cmd\abjadalph\ below).
 	\item \xpgboolkeyfalse[1.0.3]{abjadjimnotail}
-    Set this to true if you want the \textit{abjad} form of the number three to be \textarabic{ج‍} – as in the manuscript tradition – instead of the modern usage \textarabic{ج}.
+	    Set this to true if you want the \textit{abjad} form of the number three to be \textarabic{ج‍} – as in the manuscript
+	    tradition – instead of the modern usage \textarabic{ج}.
 	\end{itemize}
 \paragraph*{Commands:}
 	\begin{itemize}
@@ -876,8 +896,14 @@ and that passing \xpgvalue{babelshorthands} (without value) is equivalent to pas
 \subsection{armenian}\label{armenian}
 \paragraph*{Options:}
 \begin{itemize}
-  \item \xpgchoicekey[1.45]{variant}{\xpgvalue{eastern} or \xpgpresetvalue{western}}
+	\item \xpgchoicekey[1.45]{variant}{\xpgvalue{eastern} or \xpgpresetvalue{western}}
 	\item \xpgchoicekey[1.45]{numerals}{\xpgvalue{armenian} or \xpgpresetvalue{arabic}}
+	\item \xpgboolkeyfalse[1.63]{capitalyiwn}
+		If this is set to true, \cmd{\MakeUppercase} will upcase the ligature of letters ech and yiwn to capital
+		ech and yiwn. This conforms to the output outside Armenian language selection.
+		By default (and with this option set to \xpgvalue{false}), \cmd{\MakeUppercase} upcases the ech and yiwn
+		ligature to capital ech and \emph{vew}, adhering to Armenian reformed spelling regulations.
+		Note that this feature requires	\LaTeX\ kernel 2023/06 at least.
 \end{itemize}
 
 \subsection[belarusian]{belarusian\new{1.46}}\label{belarusian}
@@ -1064,10 +1090,19 @@ and that passing \xpgvalue{babelshorthands} (without value) is equivalent to pas
 \subsection{dutch}\label{dutch}
 \paragraph*{Options:}
 \begin{itemize}
+  \item \xpgboolkeytrue[1.63]{tremahyphenation}
+        Following Dutch orthography, words with tremata (such as \emph{geëxecuteerd}) lose the trema on hyphenation
+        before the trematized letter (\emph{ge-executeerd}). This is achieved by \pkg{polyglossia} by making those
+        letters active. If you set this option to false, this mechanism is deactivated (and the hyphenation wrong,
+        but you can still use the babelshorthands mentioned below).
   \item \xpgboolkeyfalse[1.1.1]{babelshorthands}
 		If this is turned on, the following shorthands defined for fine-tuning hyphenation and
 		micro-typography of Dutch words are activated:
 		\begin{shorthands}
+		\item[¦"a¦]\new{1.63} an \meta{ä} (a with trema) which is hyphenated as \meta{-a} as required by the Dutch standards.
+		            Also implemented for the other vowels (e, i, o, u), both lower and uppercase.
+		\item[¦"y¦]\new{1.63} the \ij\ ligature.
+		\item[¦"Y¦]\new{1.63} the \IJ\ ligature.
 		\item[¦"-¦] adds a hyphenation point that does still allow for hyphenation at the points preset
 			        in the hyphenation patterns (as opposed to \cmd\- in default \TeX).
 		\item[\texttt{"\textasciitilde}] for a hyphen sign without a breakpoint. Useful for
@@ -1126,7 +1161,7 @@ and that passing \xpgvalue{babelshorthands} (without value) is equivalent to pas
 \subsection{french}\label{french}
 \paragraph*{Options:}
 	\begin{itemize}
-		\item \xpgchoicekey{variant}{\xpgpresetvalue{french} or \xpgvalue{canadian} (=~\xpgvalue{acadian})\new{1.45}, \xpgvalue{swiss}\new{1.47}}
+		\item \xpgchoicekey{variant}{\xpgpresetvalue{french}, \xpgvalue{canadian}, \xpgvalue{acadian}\new{1.45} or \xpgvalue{swiss}\new{1.47}}
 			Currently, the only difference between the four variants is that \xpgvalue{swiss}
 			uses \xpgvalue{thincolonspace=true} by default since this conforms to the Swiss
 			conventions.
@@ -1252,6 +1287,14 @@ and that passing \xpgvalue{babelshorthands} (without value) is equivalent to pas
 	\item \xpgchoicekey{spelling}{\xpgpresetvalue{new} (= \xpgvalue{1996}) or \xpgvalue{old} (= \xpgvalue{1901})}
 		Indicates whether hyphenation patterns for traditional (1901) or reformed
 		(1996) orthography should be used. The latter is the default.
+	\item \xpgboolkeyfalse[1.63]{capitaleszett}
+	     If this is set to true, \cmd{\MakeUppercase} will upcase the eszett character ⟨ß⟩ to the
+	     capital counterpart ⟨\charifavailable{1E9E}{SS}⟩ that has been introduced to Unicode in 2008 and
+	     standardized in German regulations in 2017, rather than ⟨SS⟩. Note that this feature requires
+	     \LaTeX\ kernel 2023/06 at least and a font that contains the respective glyph.
+	\item \xpgchoicekey[1.2.0]{script}{\xpgpresetvalue{latin} or \xpgvalue{blackletter}\new{1.46} (= \xpgvalue{fraktur})}
+	     Setting ¦script=blackletter¦ adapts the captions for typesetting German in blackletter type, using the `long s' ⟨ſ\kern1.5pt⟩
+	     where appropriate.
 	\item \xpgboolkeyfalse[1.0.3]{babelshorthands}
 		If this is turned on, all shorthands defined in \pkg{babel}
 		for fine-tuning hyphenation and micro-typography of German words are activated.
@@ -1279,9 +1322,6 @@ and that passing \xpgvalue{babelshorthands} (without value) is equivalent to pas
 		\item[¦"<¦] for French-style left double quotes («)
 		\item[¦">¦] for French-style right double quotes (»).
 		\end{shorthands}
-	\item \xpgchoicekey[1.2.0]{script}{\xpgpresetvalue{latin} or \xpgvalue{blackletter}\new{1.46} (= \xpgvalue{fraktur})}
-		Setting ¦script=blackletter¦ adapts the captions for typesetting German in blackletter type (using the long s (ſ)
-		where appropriate).
 	\end{itemize}
 
 \subsection{greek}\label{greek}
@@ -1289,11 +1329,14 @@ and that passing \xpgvalue{babelshorthands} (without value) is equivalent to pas
 	\begin{itemize}
 	\item \xpgchoicekey{variant}{\xpgpresetvalue{monotonic} (= \xpgvalue{mono}), \xpgvalue{polytonic} (= \xpgvalue{poly}), or \xpgvalue{ancient}}
 	\item \xpgchoicekey{numerals}{\xpgpresetvalue{greek} or \xpgvalue{arabic}}
-	\item \xpgboolkeyfalse{attic}
+	\item \xpgboolkeyfalse[1.63]{capitaliota}
+		If this is set to true, \cmd{\MakeUppercase} will upcase the \emph{ypogegrammeni} (subscript muted iota) to capital iota.
+		By default (and with this option set to \xpgvalue{false}), \cmd{\MakeUppercase} retains the subscript versions.
+		Note that this feature requires	\LaTeX\ kernel 2023/06 at least.
 	\end{itemize}
 \paragraph*{Commands:}
 	\begin{itemize}
-	\item \Cmd\Greeknumber and \Cmd\greeknumber \ (see section \ref{abjad}).
+	\item \Cmd\Greeknumeral (= \Cmd\Greeknumber) and \Cmd\greeknumeral (= \Cmd\greeknumber) \ (see section \ref{abjad}).
 	\item The command \Cmd\atticnumeral (= \Cmd\atticnum) (activated with
 	  the option ¦attic=true¦), displays numbers using the acrophonic
           numbering system (defined in the Unicode range
@@ -1415,11 +1458,16 @@ and that passing \xpgvalue{babelshorthands} (without value) is equivalent to pas
 \paragraph*{Options:}
 \begin{itemize}
 	\item \xpgchoicekey{variant}{\xpgvalue{kurmanji} or \xpgpresetvalue{sorani}}
-	\item \xpgchoicekey{script}{\xpgvalue{Arabic} or \xpgvalue{Latin}}
-		Defaults are \xpgvalue{Arabic} for Sorani and \xpgvalue{Latin} for Kurmanji.
+	\item \xpgchoicekey{script}{\xpgvalue{arabic} or \xpgvalue{latin}}
+		Defaults are \xpgvalue{arabic} for Sorani and \xpgvalue{latin} for Kurmanji.
 	\item \xpgchoicekey{numerals}{\xpgvalue{western} or \xpgvalue{eastern}}
 		Defaults are \xpgvalue{western} for Latin and \xpgvalue{eastern} for Arabic script, depending
 		on the selection above.
+	\item \xpgcodekey[1.63]{sectionsep}¦.¦
+		This option allows to customize the separator between chapters, sections, and subsections (a dot by default),
+		\eg \xpgoption{sectionsep=-}.
+		This might be useful particularly with \xpgoption{numerals=eastern}, as the dot looks too similar to the zero
+		in many fonts.
 	\item \xpgboolkeyfalse{abjadjimnotail}
 		Set this to true if you want the \textit{abjad} form of the number three to
 		be \textarabic{ج‍} – as in the manuscript tradition – instead of the
@@ -1664,10 +1712,23 @@ Currently, only the Khalkha variety in Cyrillic script is supported.
 	\item \xpgchoicekey[1.45]{variant}{\xpgvalue{bokmal} or \xpgpresetvalue{nynorsk}}
 \end{itemize}
 
+\subsection[odia]{odia\new{1.66}}\label{odia}
+\paragraph*{Options:}
+\begin{itemize}
+	\item \xpgchoicekey{numerals}{\xpgvalue{western}, \xpgpresetvalue{devanagari}, or \xpgvalue{odia}}
+	\item \xpgboolkeyfalse{changecounternumbering}
+	Use specified numerals for headings and page numbers.
+\end{itemize}
+
 \subsection{persian}\label{persian}
 \paragraph*{Options:}
 \begin{itemize}
 	\item \xpgchoicekey{numerals}{\xpgvalue{western} or \xpgpresetvalue{eastern}}
+	\item \xpgcodekey[1.63]{sectionsep}¦.¦
+		This option allows to customize the separator between chapters, sections, and subsections (a dot by default),
+		\eg \xpgoption{sectionsep=-}.
+		This might be useful particularly with \xpgoption{numerals=eastern}, as the dot looks too similar to the zero
+		in many fonts.
 	\item \xpgboolkeyfalse[1.0.3]{abjadjimnotail}
 		Set this to \xpgvalue{true} if you want the \textit{abjad} form of the number three to
 		be \textarabic{ج‍} – as in the manuscript tradition – instead of the
@@ -1841,18 +1902,24 @@ Currently support for Sami is limited to Northern Sami.
 \subsection{sanskrit}\label{sanskrit}
 \paragraph*{Options:}
 	\begin{itemize}
-	\item \xpgchoicekey[1.0.2]{script}{\xpgpresetvalue{Devanagari}, \xpgvalue{Gujarati},
-	\xpgvalue{Malayalam}, \xpgvalue{Bengali}, \xpgvalue{Kannada}, \xpgvalue{Telugu}, \xpgvalue{Latin}}
+	\item \xpgchoicekey[1.0.2]{script}{\xpgpresetvalue{devanagari}, \xpgvalue{gujarati},
+	\xpgvalue{malayalam}, \xpgvalue{bengali}, \xpgvalue{kannada}, \xpgvalue{telugu}, \xpgvalue{latin}}
 		The value is passed to \pkg{fontspec} should the respective
 		\cmd{\⟨script⟩font} not be defined.  This can be useful if you typeset Sanskrit
 		texts in scripts other than Devanagari.
-	\item \xpgchoicekey[1.45]{numerals}{\xpgpresetvalue{Devanagari} or \xpgvalue{Western}}
+	\item \xpgchoicekey[1.45]{numerals}{\xpgpresetvalue{devanagari} or \xpgvalue{western}}
 	\end{itemize}
 
 \subsection{serbian}\label{serbian}
 \paragraph*{Options:}
 	\begin{itemize}
-	\item \xpgchoicekey{script}{\xpgpresetvalue{Cyrillic} or \xpgvalue{Latin}}
+	\item \xpgchoicekey[1.63]{variant}{\xpgpresetvalue{ekavian} or \xpgvalue{ijekavian}}
+	        With \xpgvalue{ijekavian}, the different spelling is reflected in some caption strings.
+	\item \xpgchoicekey{script}{\xpgpresetvalue{cyrillic} or \xpgvalue{latin}}
+	\item \xpgboolkeyfalse[1.63]{datei}
+	        If this is \xpgvalue{true}, the sixth and seventh month of the year are written in the date
+	        with the trailing \meta{i} or \meta{и} (\ie \emph{juni}, \emph{juli} or \emph{јуни}, \emph{јули}
+	        rather than \emph{jun}, \emph{jul} or \emph{јун}, \emph{јул}).
 	\item \xpgboolkeytrue[1.54]{splithyphens}
 			According to Serbian typesetting conventions, if a word with a hard hyphen (such as
 			\emph{калцијум-карбонат}) is hyphenated at this hyphen, a second hyphenation character is to be
@@ -1880,6 +1947,14 @@ Currently support for Sami is limited to Northern Sami.
           numbers up to 999\,999.\\
           \Eg ¦\textserbian{\AsbukTrad{page}}¦ produces \textrussian{\AsbukTrad{page}}.
     \item \Cmd\asbukTrad: same as \cmd\AsbukTrad\ but in lowercase.
+    \item \Cmd{\today*}: as opposed to the unstarred counterpart, this does not end the date with a punctuation.
+    \item \Cmd{\todayGen}: outputs the date with months in genitive inflection. This form is suggested when the date
+          is integrated into a sentence (as opposed to a standalone date statement). The starred form \Cmd{\todayGen*}
+          omits the trailing punctuation.
+    \item \Cmd{\todayArabic}: outputs the date with months in Arabic number. The starred form \Cmd{\todayArabic*} omits
+    	  the trailing punctuation.
+	\item \Cmd{\todayRoman}: outputs the date with months in Roman number. The starred form \Cmd{\todayRoman*} omits
+	      the trailing punctuation.
 \end{itemize}
 
 
@@ -1981,6 +2056,11 @@ Currently support for Sami is limited to Northern Sami.
 	\item \xpgchoicekey[1.0.1]{numerals}{\xpgpresetvalue{western} (\ie 1234567890), \xpgvalue{eastern}
 		(for which the Oriental Arabic numerals are used: \textarabic{١٢٣٤٥٦٧٨٩٠}), or
 		\xpgvalue{abjad}}
+	\item \xpgcodekey[1.63]{sectionsep}¦.¦
+		This option allows to customize the separator between chapters, sections, and subsections (a dot by default),
+		\eg \xpgoption{sectionsep=-}.
+		This might be useful particularly with \xpgoption{numerals=eastern}, as the dot looks too similar to the zero
+		in many fonts.
 	\end{itemize}
 \paragraph*{Commands:}
 	\begin{itemize}
@@ -2074,6 +2154,27 @@ The macros \cmd\Prob , \cmd\Variance , \cmd\NOD , \cmd\nod , \cmd\NOK , \cmd\nok
 \cmd\nsk , \cmd\Proj\ print some rare
 Ukrainian mathematical symbols.
 
+\subsection{urdu}\label{urdu}
+\paragraph*{Options:}
+\begin{itemize}
+	\item \xpgchoicekey{calendar}{\xpgpresetvalue{gregorian} or \xpgvalue{hijri}}
+	\item \xpgoptkey{hijricorrection}{integer}[0]
+		If \xpgvalue{calendar=hijri} is selected, \cmd{\today} will output the date
+		according to the lunar Islamic (Hijra) calendar. This option allows to shift the day of the output with respect
+		to the current date. Both positive and negative integer values are allowed (negative decrease the day value).
+		This corresponds to the optional argument of the \cmd{\Hijritoday} command which can be used to output Hijri
+		dates irrespective of the \xpgvalue{calendar} option (see sec.~\ref{sec:hijrical}).
+	\item \xpgchoicekey{numerals}{\xpgvalue{western} or \xpgpresetvalue{eastern}}
+	\item \xpgcodekey[1.63]{sectionsep}¦.¦
+		This option allows to customize the separator between chapters, sections, and subsections (a dot by default),
+		\eg \xpgoption{sectionsep=-}.
+		This might be useful particularly with \xpgoption{numerals=eastern}, as the dot looks too similar to the zero
+		in many fonts.
+	\item \xpgboolkeyfalse{abjadjimnotail}
+		Set this to \xpgvalue{true} if you want the \textit{abjad} form of the number three to
+		be \textarabic{ج‍} – as in the manuscript tradition – instead of the
+		modern usage \textarabic{ج}.
+\end{itemize}	
 
 \subsection{uyghur}\label{uyghur}
 \paragraph*{Options:}
@@ -2255,6 +2356,7 @@ Currently, the following macros are provided:
 	\item \Cmd\khmerdigits
 	\item \Cmd\laodigits
 	\item \Cmd\nkodigits
+	\item \Cmd\odiadigits
 	\item \Cmd\thaidigits
 	\item \Cmd\tibetandigits
 \end{itemize}
@@ -2398,7 +2500,7 @@ The command \Cmd\Hebrewtoday\ formats the current date in the Hebrew calendar
 (depending of the current writing direction this will automatically set either
 in Hebrew script or in roman transliteration).
 
-\subsection{Islamic calendar (hijrical.sty)}
+\subsection{Islamic calendar (hijrical.sty)}\label{sec:hijrical}
 This package computes dates in the lunar Islamic (Hijra) calendar.\footnote{ %
 	It makes use of the arithmetical algorithm in chapter 6 of
 	Reingold \& Gershowitz, \textit{Calendrical calculation: the Millenium edition}
@@ -2445,6 +2547,10 @@ the current font. If so, the character is printed, if not, the \meta{substitutio
 
 Example: ¦\charifavailable{1E9E}{SS}¦ prints the capital version of the German letter ⟨ß⟩ if available
 (\ie \charifavailable{1E9E}{SS}), else it prints the substitution digraph SS.
+
+With the test\new{1.66} \displaycmd{\IfCharIsAvailableTF\marg{char code}\marg{true condition}\marg{false condition}}{\IfCharIsAvailableTF}
+you can test for the availability of a character and execute different code depending whether or not this is the case
+(this replaces the undocument internal command \cmd{\xpg@if@char@available}).
 
 
 \section{Accessing language information}\label{sec:langinfo}
@@ -2527,9 +2633,106 @@ where \meta{type} is a supported language id type (such as ¦bcp-47¦) and \meta
 \noindent Finally, if you want to know whether a specific language option has been set, you can use\new{1.47}
 \displaycmd{\iflanguageoption\marg{lang}\marg{key}\marg{value}\marg{true}\marg{false}}{\iflanguageoption}
 
+
 \section{Revision history}
 
 \bgroup\footnotesize
+\subsection*{1.66 (2023/12/02)}
+
+\subsubsection*{Bug fixes}
+\begin{itemize}
+	\item Fix OpenType language and script tags in Chinese (\TXI{606}).
+	\item Fix resetting of language specifications at the end of a local font
+	      set with \pkg{babel} legacy means (\cmd{\foreignlanguage} or \texttt{otherlanguage*}
+	      environment) (\TXI{607}).
+	\item Fix lowercasing of \cmd{\textlang}'s first mandatory argument. 
+		  Now the casing does not change (language tag was lower-cased always) (\TXI{608}).
+	\item Add missing BCP-47 alias for Khmer (\TXI{611}).
+	\item Stop \cmd{\charifavailable} from looking ahead for more numbers or gobbling a space (\TXI{613}).
+\end{itemize}
+
+\subsubsection*{New Features}
+\begin{itemize}
+\item Add support for Odia, provided by \TA{Avisek Jena} and \TA{Ashok Das}.
+\item New auxiliary package ¦odiadigits¦
+\item Add auxiliary command \cmd{\IfCharIsAvailableTF} to complement \cmd{\charifavailable}.
+\end{itemize}
+
+\subsection*{1.65 (2023/10/01)}
+
+\subsubsection*{Bug fixes}
+\begin{itemize}
+	\item Fix spurious space in Hebrew captions (\TXP{601}).
+	\item Fix resetting of language specifications at end of inline switch
+	      (\TXI{603}).
+\end{itemize}
+
+\subsubsection*{Documentation improvements}
+\begin{itemize}
+	\item Refer to \cmd{\greeknumeral} and \cmd{\Greeknumeral} rather than to
+	      the synonyms \cmd{\greeknumber} and \cmd{\Greeknumber} (\TXI{602}).
+\end{itemize}
+
+
+\subsection*{1.64 (2023/07/21)}
+
+\subsubsection*{Bug fixes}
+\begin{itemize}
+	\item Fix conflict of \pkg{soul} with \xpgoption{splithyphens} on \XeLaTeX\ (\TXI{600}).
+\end{itemize}
+
+\subsection*{1.63 (2023/06/10)}
+
+\subsubsection*{Bug fixes}
+\begin{itemize}
+	\item Language options are now lowercased before they are handled. This fixes errors when
+	      using the options in \cmd{\MakeUppercase} context (\eg in headings).
+	\item Fix casing value for medieval Latin (this concerns ⟨u⟩ and ⟨V⟩ casing).
+	\item Remove hacks in some gloss files where \cmd\MakeUppercase\ has been redefined to a no-op
+		since the respective scripts do not have uppercasing. As \cmd\MakeUppercase\ is now locale-aware,
+		these hacks are no longer needed. This concerns Arabic, Divehi, Hebrew, Hindi, Kurdish,
+		Persian, Punjabi, Syriac, and Urdu.
+	\item Fix Eastern (Mashriq) Arabic numbering direction with \LuaLaTeX\ for Arabic, Kurdish, Persian,
+		Syriac, and Urdu (amends previous fix to \TXI{213}).
+	\item French \xpgoption{variant=acadian} refers to the Canadian French subvariety as spoken in the Acadian
+	     region (as opposed to Quebec French). To differentiate it we now use a dedicated subtag
+	     which can also be used to access the language (\texttt{fr-CA-u-sd-canb}).
+	     Note that Quebec French is currently connected with \texttt{fr-CA}, not the more specific
+	     \texttt{fr-CA-u-sd-caqc}, although the u extension is returned if requested via \cmd\BCPdata.
+	     In practice, the Canadian subvarieties of French are identical currently, anyway.
+	\item Do not blindly de-activate the quote character in languages that provide shorthands if the
+	     shorthands are not used. This allows to activate the character with other packages such as
+	     \pkg{csquotes} (\TXI{592}).
+	\item Do not flood the \LaTeX\ hooks with redundant French itemlabels and footnote settings (\TXI{593}).
+	\item Fix Korean patching of part format with hyperref (\TXP{595}).
+	\item Make Hebrew numerals expandable (\TXP{596}).
+	\item Avoid superfluous writing of language switches to aux file (\TXI{593}).
+\end{itemize}
+
+\subsubsection*{New features}
+\begin{itemize}
+	\item New option \xpgoption{capitalyiwn} for Armenian.
+	\item New option \xpgoption{capitaleszett} for German.
+	\item New option \xpgoption{capitaliota} for Greek.
+	\item New option \xpgoption{datei} for Serbian.
+	\item New option \xpgoption{sectionsep} for Arabic, Kurdish, Persian,
+		  Syriac, and Urdu (\TXI{589}).
+	\item Add aliases \xpgvalue{eastern} (=~\xpgvalue{mashriq}) and \xpgvalue{western} (=~\xpgvalue{maghrib})
+	      to Arabic \xpgoption{numerals}.
+	\item New date commands \cmd{\today*}, \cmd{\todayGen}, \cmd{\todayArabic}, and \cmd{\todayRoman} (all with
+	      starred counterparts) for Serbian (\TXI{524}).
+	\item Implement basic support for \xpgoption{variant=ijekavian} in Serbian.
+	\item Dutch now hyphenates properly on letters with tremata. The new option, \xpgoption{tremahyphenation},
+		  is provided to opt-out this feature.
+	\item Add shorthands ¦"a¦, ¦"e¦, ¦"i¦, ¦"o¦, ¦"u¦, ¦"A¦, ¦"E¦, ¦"I¦, ¦"O¦, ¦"U¦, ¦"y¦, and ¦"Y¦ to Dutch.
+\end{itemize}
+
+\subsubsection*{Interface changes}
+\begin{itemize}
+	\item All language options are now lowercase by default (though the mechanism is case-insensitive anyway).
+		  Changes cover Kurdish, Sanskrit, Serbian.
+\end{itemize}
+
 \subsection*{1.62 (2023/04/22)}
 
 \subsubsection*{Bug fixes}
@@ -3287,7 +3490,7 @@ where \meta{type} is a supported language id type (such as ¦bcp-47¦) and \meta
 				      Raised by \TA{Vadim Rodionov} on the XeTeX mailing list.
 				\item Deleted ¦\bgroup¦ and ¦\egroup¦ tokens from the definition of ¦otherlanguage*¦; they serve no purpose
 				      (we are already inside an environment) and conflict with \pkg{csquotes}. Noticed by \TA{P. Lehman}.
-				\item Changed the calls of ¦\input¦ to ¦\xpg@input,¦ which inputs the required file and resets the catcode
+				\item Changed the calls of \verb|\input| to ¦\xpg@input¦, which inputs the required file and resets the catcode
 				      of ¦@¦ to the same value as it had before the input. Since each ¦.ldf¦ file starts with ¦\makeatletter¦,
 				      the old behaviour would leave a category 11 @, which is wrong.
 				\item Added ¦\csuse{date#2}¦ to the definition of ¦otherlanguage*¦.
@@ -3472,13 +3675,14 @@ And of course my gratitude also goes to \TA{Jonathan Kew}, the formidable author
 \section{More acknowledgements (by the current development team)}
 Many thanks to all the people who have contributed bugfixes and new features to \pkg{polyglossia}
 since we took over.
-In alphabetical order: \TA{Ignas Anikevicius}, \TA{Sina Ahmadi}, \TA{Wouter Bolsterlee}, \TA{Christian Buhtz},
-\TA{Zgarbul Andrey}, \TA{Oleg Domanov}, user \TA{fakhriaunur}, \TA{Philipp Gesang}, \TA{Kevin Godby}, \TA{Enrico Gregorio},
-\TA{Khaled Hosny}, \TA{Najib Idrissi}, user \TA{julroy67}, \TA{Dohyun Kim}, \TA{Phil Kime}, \TA{Mike Kroutikov},
-\TA{Ivan Kokan}, \TA{Caleb Maclennan}, \TA{Gyula Magyarkuti}, \TA{José Mancera}, \TA{Miquel Ortega}, \TA{Yevgen Pogribnyi},
-\TA{Will Robertson}, \TA{Maïeul Rouquette}, \TA{Elie Roux}, \TA{Hugo Roy},  \TA{Guy Rutenberg}, \TA{Marcin Serwin},
-\TA{Arvinder Singh}, \TA{Philipp Stephani}, \TA{Niranjan Tambe}, \TA{Takuji Tanaka}, \TA{Osman Tursun}, \TA{Keno Wehr},
-\TA{Dominik Wujastyk}, \TA{Sertaç Ö. Yıldız}, \TA{Maksim Zholudev}, \TA{Yan Zhou}, and \TA{Stefan Zlatinov}.
+In alphabetical order: \TA{Ignas Anikevicius}, \TA{Sina Ahmadi}, \TA{Matthew Bertucci}, \TA{Wouter Bolsterlee}, \TA{Christian Buhtz},
+\TA{Ashok Das}, \TA{Oleg Domanov}, user \TA{fakhriaunur}, \TA{Philipp Gesang}, \TA{Kevin Godby},
+\TA{Enrico Gregorio}, \TA{Khaled Hosny}, \TA{Najib Idrissi}, user \TA{julroy67}, \TA{Dohyun Kim}, \TA{Phil Kime},
+\TA{Mike Kroutikov}, \TA{Ivan Kokan}, \TA{Caleb Maclennan}, \TA{Gyula Magyarkuti}, \TA{José Mancera}, \TA{Miquel Ortega},
+\TA{Yevgen Pogribnyi}, \TA{Will Robertson}, \TA{Maïeul Rouquette}, \TA{Elie Roux}, \TA{Hugo Roy},  \TA{Guy Rutenberg},
+\TA{Marcin Serwin}, \TA{Arvinder Singh}, \TA{Avisek Jena}, \TA{Philipp Stephani}, \TA{Niranjan Tambe}, \TA{Takuji Tanaka},
+\TA{Osman Tursun}, \TA{Keno Wehr}, \TA{Dominik Wujastyk}, \TA{Sertaç Ö. Yıldız}, \TA{Andrey Zgarbul}, \TA{Maksim Zholudev},
+\TA{Yan Zhou}, and \TA{Stefan Zlatinov}.
 Their respective contributions can be identified from the contributor statistics on
 \href{https://github.com/reutenauer/polyglossia/graphs/contributors}{GitHub}.
 

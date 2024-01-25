@@ -21,7 +21,7 @@
 % To create `scrhack.sty' run `tex scrhack.dtx'.  Using LaTeX instead
 % of TeX would generate the implementation documentation.
 % ======================================================================
-%%% From File: $Id: scrhack.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrhack.dtx 4063 2023-06-28 08:28:26Z kohm $
 %<package&identify>%%% using: package,identify
 %<package&option>%%% using: package,option
 %<package&body>%%% using: package,body
@@ -30,9 +30,9 @@
 \ifx\ProvidesFile\undefined\def\ProvidesFile#1[#2]{}\fi
 \begingroup
   \def\filedate$#1: #2-#3-#4 #5${\gdef\filedate{#2/#3/#4}}
-  \filedate$Date: 2023-04-17 11:45:11 +0200 (Mo, 17. Apr 2023) $
+  \filedate$Date: 2023-06-28 10:28:26 +0200 (Mi, 28. Jun 2023) $
   \def\filerevision$#1: #2 ${\gdef\filerevision{r#2}}
-  \filerevision$Revision: 4032 $
+  \filerevision$Revision: 4063 $
 \endgroup
 \ProvidesFile{scrhack.dtx}[\filedate\space\filerevision\space
 %</dtx>
@@ -766,14 +766,19 @@
 %
 %
 % \begin{macro}{\scr@do@hack@listings}
+% \changes{v3.41}{2023/06/28}{patching \cs{lst@MakeCaption} to use
+%   \cs{ext@lstlisting}}
 % \begin{command}{\lstlistoflistings}
 % \cs{scr@do@hack@listings} patches \pkg{listings} to use \pkg*{tocbasic} for
 % the whole output of the list of listings. This adds several new features to
 % \pkg{listings}.
-% \begin{macro}{\float@addtolists}
-% The deprecated macro \cs{float@addtolists} is not needed any longer an will
-% be reset to the original definition. But, because \pkg{listings} delays the
-% redefinition with \cs{AtBeginDocument} we have to do the same here.
+% \begin{macro}{\ext@lstlisting,\lst@MakeCaption,\float@addtolists}
+% Macro \cs{ext@lstlisting} is defined, to make \cs{captionof} work with
+% argument \texttt{lstlisting}. Additionally \cs{lst@MakeCaption} is patched
+% to use the new macro. The deprecated macro \cs{float@addtolists} is not
+% needed any longer an will be reset to the original definition. But, because
+% \pkg{listings} delays the redefinition with \cs{AtBeginDocument} we have to
+% do the same here.
 %    \begin{macrocode}
 %<*listings&body>
 \newcommand*{\scr@do@hack@listings}{%
@@ -782,6 +787,20 @@
   \setuptoc{lol}{chapteratlist}%
   \PackageInfo{scrhack}{redefining \string\lstlistoflistings}%
   \renewcommand*{\lstlistoflistings}{\listoftoc[{\lstlistlistingname}]{lol}}%
+  \providecommand*{\ext@lstlisting}{lol}%
+  \@tempswafalse
+  \xpatchcmd\lst@MakeCaption
+    {\addcontentsline{lol}}%
+    {\addcontentsline{\ext@lstlisting}}%
+    {\PackageInfo{scrhack}{patching \string\lst@MakeCaption}\@tempswatrue}%
+    {\PackageWarning{scrhack}{cannot patch \string\lst@MakeCaption}}%
+  \@whilesw\if@tempswa\fi{%
+    \xpatchcmd\lst@MakeCaption
+      {\addcontentsline{lol}}%
+      {\addcontentsline{\ext@lstlisting}}%
+      {}%
+      {\@tempswafalse}%
+  }%
   \AtBeginDocument{%
     \scr@ifexpected{\float@addtolists}{%
       \def\float@addtolists##1{\addtocontents{lol}{##1}}%

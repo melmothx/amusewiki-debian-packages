@@ -1,9 +1,8 @@
-# $Id: dvipdfmx.pl 65953 2023-02-20 12:26:39Z siepo $
+# $Id: dvipdfmx.pl 69127 2023-12-14 21:41:41Z karl $
 # post action for dvipdfmx to handle upgrades of map files
-# Copyright 2011-2021 Norbert Preining
+# Copyright 2011-2023 Norbert Preining
 # This file is licensed under the GNU General Public License version 2
 # or any later version.
-#
 
 my $texdir;
 my $mode;

@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage{parskip}
+\usepackage{lmodern}
+
+% We load LGR last, which as a bad idea (see below).
+% play with the font encodings:
+% \usepackage[T1]{fontenc}
+\usepackage[T1,T2A,LGR]{fontenc}
+
+\DeclareFontFamilySubstitution{T2A}{lmr}{cmr}
+
+\usepackage[english,greek.ancient]{babel}
+
+\makeatletter % we want to see the value of some internal macros
+
+\@ifl@aded{def}{t1enc}
+  {\newcommand*{\T@one@detected}{loaded}}
+  {\newcommand*{\T@one@detected}{\textbf{not} loaded}}
+
+\newcommand*{\cs}[1]{\ensureascii{\texttt{\textbackslash#1}}}
+
+% the title may be given before or after \begin{document}
+\title{\foreignlanguage{english}{Test font encoding switches}}
+\author{\ensureascii{Günter Milde}}
+
+\begin{document}
+
+\maketitle
+
+\ensureascii{The document's main language is \texttt{\bbl@main@language}}
+(Ελληνικά).
+
+\ensureascii{The initial font encodings are:}
+\cs{cf@encoding}:     \cf@encoding,
+\cs{encodingdefault}: \encodingdefault.
+
+\selectlanguage{english}
+
+After switching to \texttt{english}, we get:\\
+\cs{cf@encoding}:     \cf@encoding,
+\cs{encodingdefault}: \encodingdefault.
+
+\subsection*{\LaTeX2e Font Encodings}
+
+\emph{Fontenc} stores known encodings in \cs{@fontenc@load@list}:\\
+\@fontenc@load@list\ (sic! note the missing comma).
+The last encoding in this list becomes the document's
+default font encoding. It should be a \emph{standard text encoding}
+(cf. encguide.pdf).
+
+\emph{Babel} defines a \cs{latinencoding} (\latinencoding) and
+\cs{ensureascii}, which uses the standard last loaded text encoding
+(\ensureascii{\cf@encoding}).
+
+\emph{Babel-Greek} ensures that a font encoding supporting the Greek
+script is used in Greek text parts.
+The previous font encoding is restored in \cs{noextrasgreek}.
+Exception:
+If the default language is \texttt{greek} and the initial
+\cs{encodingdefault} is LGR, \cs{noextrasgreek} switches to
+\cs{latinencoding} because the LGR font encoding is only suited for the
+Greek script.
+% cf. https://github.com/latex3/babel/pull/263
+% and https://www.lyx.org/trac/ticket/12882
+
+\newpage
+\subsection*{Tests}
+
+Test that we are using a \emph{standard text encoding}:
+język polski.\footnote{The ogonek accent fails with LGR or OT1.}
+
+% A command local to the Polish QX font encoding: \textanglearc
+
+Call fontencoding T2A: \fontencoding{T2A} \selectfont
+\cs{cf@encoding} \cf@encoding, \cs{encodingdefault} \encodingdefault.
+\\
+Now I can use Кириллица\footnote{
+  exept for footnotes, where encodingdefault is used:
+  \cf@encoding, \encodingdefault}
+and Latin (including the ogonek) język polski
+(caveat: wrong result with drag-and-drop from the PDF).
+
+Greek with \cs{foreignlanguage}: \foreignlanguage{greek}{Ελληνικά \\
+\cs{cf@encoding} \cf@encoding, \cs{encodingdefault}: \encodingdefault{}
+}
+\\
+Back to English -- the font encoding is restored to what it was
+outside the group:
+\cs{cf@encoding} \cf@encoding, \cs{encodingdefault} \encodingdefault.
+I can still use Кириллица.
+
+Greek with \cs{selectlanguage}: \selectlanguage{greek} Ελληνικά\\
+\cs{cf@encoding} \cf@encoding, \cs{encodingdefault} \encodingdefault.
+
+\selectlanguage{english}
+Back to English -- the font encoding
+is restored by babel-greek to the previous default encoding:
+\cs{cf@encoding} \cf@encoding, \cs{encodingdefault} \encodingdefault.
+I can use the ogonek (język) but Cyrillic fails because it was not set
+as \cs{encodingdefault} before the switch to Greek.
+% Кириллица fails
+
+\subsection*{\emph{fontenc} curiosities}
+
+The encodings OT1 and T1 are always pre-loaded.
+However, according to \cs{@ifl@aded} the encoding file ``t1enc.def'' is
+\T@one@detected{}.
+
+\end{document}

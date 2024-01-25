@@ -18,7 +18,7 @@
 %
 % This work consists of all files listed in MANIFEST.md.
 % ======================================================================
-%%% From File: $Id: scrkernel-basics.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-basics.dtx 4051 2023-04-26 16:01:28Z kohm $
 %<prepare>%%%            (run: prepare)
 %<option>%%%            (run: option)
 %<body>%%%            (run: body)
@@ -28,9 +28,9 @@
 \ifx\ProvidesFile\undefined\def\ProvidesFile#1[#2]{}\fi
 \begingroup
   \def\filedate$#1: #2-#3-#4 #5${\def\filedate{#2/#3/#4}}
-  \filedate$Date: 2023-04-17 11:45:11 +0200 (Mo, 17. Apr 2023) $
+  \filedate$Date: 2023-04-26 18:01:28 +0200 (Mi, 26. Apr 2023) $
   \def\filerevision$#1: #2 ${\def\filerevision{r#2}}
-  \filerevision$Revision: 4032 $
+  \filerevision$Revision: 4051 $
   \edef\reserved@a{%
     \noexpand\endgroup
     \noexpand\ProvidesFile{scrkernel-basics.dtx}%
@@ -916,7 +916,13 @@
       \@for\CurrentOption:=\@raw@classoptionslist\do{%
         \scr@trim@spaces\CurrentOption
         \ifx\CurrentOption\@empty\else
-          \@ifundefined{ds@\CurrentOption}{%
+%    \end{macrocode}
+% \changes{v3.41}{2023/04/26}{only one step expansion while classic option
+% test}
+% Because we are using the raw option list, we do only a one step expansion of
+% \cs{CurrentOption} here, because a full expansion could break.
+%    \begin{macrocode}
+          \@ifundefined{ds@\expandafter\detokenize\expandafter{\CurrentOption}}{%
             \scr@ifprocess@curroption{#1}{#2}{%
               \@expandtwoargs\@removeelement{%
                 \expandafter\@remove@eq@value\CurrentOption=\@nil}%
@@ -942,7 +948,13 @@
 %<*dontusethis>
   \@for\CurrentOption:=\@curroptions\do{%
     \scr@trim@spaces\CurrentOption
-    \@ifundefined{ds@\CurrentOption}{%
+%    \end{macrocode}
+% \changes{v3.41}{2023/04/26}{only one step expansion while classic option
+% test}
+% Because we are using the raw option list, we do only a one step expansion of
+% \cs{CurrentOption} here, because a full expansion could break.
+%    \begin{macrocode}
+    \@ifundefined{ds@\expandafter\detokenize\expandafter{\CurrentOption}}{%
       \@use@ption
       \scr@ifprocess@curroption{#1}{#2}{}\default@ds
     }\@use@ption
@@ -982,7 +994,13 @@
     \else
       \let\CurrentOption\reserved@a
     \fi
-    \@ifundefined{ds@\CurrentOption}{%
+%    \end{macrocode}
+% \changes{v3.41}{2023/04/26}{only one step expansion while classic option
+% test}
+% Because we are using the raw option list, we do only a one step expansion of
+% \cs{CurrentOption} here, because a full expansion could break.
+%    \begin{macrocode}
+    \@ifundefined{ds@\expandafter\detokenize\expandafter{\CurrentOption}}{%
       \@use@ption
       \scr@ifprocess@curroption{#1}{#2}{}\default@ds
     }\@use@ption

@@ -1,6 +1,6 @@
 name luaotfload
 category Package
-revision 64616
+revision 68143
 shortdesc OpenType 'loader' for Plain TeX and LaTeX
 longdesc The package adopts the TrueType/OpenType Font loader code
 longdesc provided in ConTeXt, and adapts it to use in Plain TeX and
@@ -10,11 +10,11 @@ depend lua-alt-getopt
 depend lua-uni-algos
 depend lualibs
 depend luaotfload.ARCH
-containersize 617256
-containerchecksum 70f27796fdfe61e0337239a2962052eb2896478358fca0f271287db06a1d2de2f83cd7394d0ec6c281e9a5779ec396e2993f53b8b045ed7a09cb17f100a4a477
-doccontainersize 628076
-doccontainerchecksum 9e1c223ec2589f32640aefd2692d031b8ba324da30a814eea98768443eeb76d92d2700c320e6f96006e54635d31a655cae0a27c76931e7640748889ead4fbfb4
-docfiles size=272
+containersize 620612
+containerchecksum 7781db14c45e5e2d5cba50e91e9eb356260e4cf1e55f45b6f584164f1be0a4b31818be7fe3e08cb51e8ed43fde49c0a3ddcecb860848f8bf02096a60e45a58f6
+doccontainersize 637060
+doccontainerchecksum a929c941695de38ee029d60564346581153bf233db5ea873dbd8f84d1922df2621e7d9a5aad3ad6423392798c5007342f0a886249eb85d3c598b06bf8e271348
+docfiles size=276
  texmf-dist/doc/luatex/luaotfload/COPYING
  texmf-dist/doc/luatex/luaotfload/NEWS
  texmf-dist/doc/luatex/luaotfload/README.md details="Readme"
@@ -39,10 +39,10 @@ docfiles size=272
  texmf-dist/doc/man/man5/luaotfload.conf.5
  texmf-dist/doc/man/man5/luaotfload.conf.man5.pdf
 srccontainersize 7292
-srccontainerchecksum 3ed04272b887f434bfe2dd166974889318597e22c57109647946f2b255efca2fb6d1ecc1f02485a1bf387e77956c64a9f42c4af237b29f9fc7a38400d8cfbef1
-runfiles size=1908
+srccontainerchecksum 62c77656a4ab2bb93e8403ebe197418914644d99384f74bd8b78c75c255537bfd947a32aafe3f92e576b0e2596eac3308e2d837b41604ad1725e145882916799
+runfiles size=1912
  texmf-dist/scripts/luaotfload/luaotfload-tool.lua
- texmf-dist/tex/luatex/luaotfload/fontloader-2022-10-03.lua
+ texmf-dist/tex/luatex/luaotfload/fontloader-2023-08-19.lua
  texmf-dist/tex/luatex/luaotfload/fontloader-basics-chr.lua
  texmf-dist/tex/luatex/luaotfload/fontloader-basics-gen.lua
  texmf-dist/tex/luatex/luaotfload/fontloader-basics-nod.lua
@@ -140,4 +140,4 @@ catalogue-contact-support https://github.com/latex3/luaotfload/issues
 catalogue-ctan /macros/luatex/generic/luaotfload
 catalogue-license gpl2
 catalogue-topics font-use luatex
-catalogue-version 3.23
+catalogue-version 3.26

@@ -1,7 +1,7 @@
 The LaTeX kernel
 ================
 
-Release 2022-11-01 patch level 1
+Release 2023-11-01 patch level 1
 
 Overview
 --------
@@ -87,6 +87,6 @@ version 1.3c or later.
 
 -----
 
-<p>Copyright (C) 1989-2022 The LaTeX Project <br />
+<p>Copyright (C) 1989-2023 The LaTeX Project <br />
 <a href="http://latex-project.org/">http://latex-project.org/</a> <br />
 All rights reserved.</p>

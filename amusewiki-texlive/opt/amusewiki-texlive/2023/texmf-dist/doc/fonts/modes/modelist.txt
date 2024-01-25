@@ -133,6 +133,7 @@ mode_def phaserfs =                 % Tektronix Phaser 560 (1200dpi)
 mode_def phasertf =                 % Tektronix Phaser 350 (600x300dpi)
 mode_def phasertl =                 % Tektronix Phaser 350 landscape (300x600)
 mode_def pixpt =                    % one pixel per point (72.27dpi)
+mode_def potrace =                  % potrace use in LMTX
 mode_def prntware =                 % Printware 720IQ (1200dpi)
 mode_def qms =                      % QMS (Xerox engine) (300dpi)
 mode_def qmsostf =                  % QMS 1725 (600dpi)

@@ -32,7 +32,7 @@
 %% and covered by LPPL is defined by the unpacking script (babel-greek.ins)
 %% which is part of the package.
 \ProvidesLanguage{greek}
-        [2023/03/17 1.13.1 Greek support for the babel system]
+        [2023/10/13 1.15 Greek support for the babel system]
 %% File `babel-greek.dtx'
 %% Greek language Definition File
 %% Copyright © 1997, 2005 Apostolos Syropoulos, Johannes Braams
@@ -41,6 +41,7 @@
 \LdfInit\CurrentOption{captions\CurrentOption}
 \gdef\CurrentOption{greek}
 \addto\extrasgreek{\languageshorthands{greek}}
+\def\bbl@greek@LGR{LGR}
 \ifx\l@greek\@undefined
   \@nopatterns{greek}
   \adddialect\l@greek 0
@@ -62,13 +63,9 @@
 \providehyphenmins{\CurrentOption}{\@ne\@ne}
 \def\bbl@greek@setup@polytonic{%
   \expandafter\addto\expandafter\extrasgreek
-  \expandafter{\extraspolutonikogreek}%
+    \expandafter{\extraspolutonikogreek}%
   \let\captionsgreek\captionspolutonikogreek
   \let\gr@month\gr@polutoniko@month
-  \def\bbl@tempa{LGR}
-  \ifx\greekfontencoding\bbl@tempa
-    \declare@shorthand{greek}{~}{\bbl@greek@tilde}
-  \fi
 }
 \bbl@declare@ttribute{greek}{polutoniko}{%
   \bbl@greek@setup@polytonic
@@ -89,8 +86,7 @@
   \renewcommand{\greeknumeralNinety}{\textQoppa}%
 }
 \bbl@declare@ttribute{greek}{keep-semicolon}{%
-  \def\bbl@tempa{LGR}
-  \ifx\greekfontencoding\bbl@tempa
+    \ifx\greekfontencoding\bbl@greek@LGR
     \ProvideTextCommandDefault{\textsemicolon}{;}
     \ProvideTextCommand{\textsemicolon}{LGR}{\texterotimatiko}
     \initiate@active@char{;}
@@ -99,28 +95,39 @@
     \declare@shorthand{greek}{;}{\TextOrMath{\textsemicolon}{;}}
   \fi
 }
+\def\bbl@greek@modifiers{,%
+  polutoniko,polytonic,ancient,keep-semicolon,%
+  local-LGR-fixes,no-LGR-fixes,no-MakeUppercase-fixes,}
+\ifx\BabelModifiers\relax\else
+  \bbl@foreach\BabelModifiers{%
+    \@expandtwoargs\in@{,#1,}{\bbl@greek@modifiers}
+    \ifin@\else
+      \bbl@warning
+        {Unknown/misspelled modifier '#1' in '\CurrentOption'.
+         See "babel-greek.pdf" for valid modifiers.}
+    \fi}%
+\fi
+
 \ifdefined\UnicodeEncodingName % set by XeTeX/LuaTeX
   \providecommand*{\greekfontencoding}{\UnicodeEncodingName}
   \providecommand*{\bbl@greek@fontencdef}{tuenc-greek}
 \else
   \providecommand*{\greekfontencoding}{LGR}
   \providecommand*{\bbl@greek@fontencdef}{lgrenc}
-  % TODO the more generic version fails :(
-  % \edef\bbl@greek@fontencdef{\lowercase{\greekfontencoding}enc}
 \fi
-\@ifl@aded{def}{\bbl@greek@fontencdef}{}
-{% else
-  \InputIfFileExists{\bbl@greek@fontencdef .def}{}
-  {% else
-    \bbl@error{Font support for the Greek script missing.\\
-               babel-greek can't typeset Greek.\\
-               Install the "greek-fontenc" package\\
-               or use XeTeX/LuaTeX with polyglossia.}
-              {I can't find the \bbl@greek@fontencdef .def file
-               for the Greek fonts (encoding \greekfontencoding)}
-    \@@end
+\@ifl@aded{def}{\bbl@greek@fontencdef}
+  {}
+  {\InputIfFileExists{\bbl@greek@fontencdef .def}
+     {}
+     {\bbl@error{Font support for the Greek script missing.\\
+                 babel-greek can't typeset Greek.\\
+                 Install the "greek-fontenc" package\\
+                 or use XeTeX/LuaTeX with polyglossia.}
+                {I can't find the \bbl@greek@fontencdef .def file
+                 for the Greek fonts (encoding \greekfontencoding)}
+      \@@end
+     }
   }
-}
 \AtBeginDocument{%
   \@ifl@aded{def}{puenc}%
     {\@ifl@aded{def}{puenc-greek}
@@ -129,30 +136,35 @@
         \makeatletter
         \InputIfFileExists{puenc-greek.def}%
           {}%
-          {\bbl@warning{I cannot find the "puenc" Greek fixes
-                        from "greek-fontenc".}%
+          {\bbl@warning{I cannot find the Greek fixes for PDF strings
+                        ("punec-greek.def" from "greek-fontenc").}%
           }%
         \RestoreAtCatcode
        }%
     }% end "puenc.def loaded" branch
     {}% empty "puenc.def not loaded" branch
 }
+\addto\extrasgreek{%
+  \let\BabelGreekPreviousFontEncoding\encodingdefault
+  \greekscript}
+\addto\noextrasgreek{\BabelGreekRestoreFontEncoding}
 \ProvideTextCommandDefault{\greekscript}{%
   \fontencoding{\greekfontencoding}\selectfont
   \def\encodingdefault{\greekfontencoding}}
 \ProvideTextCommandDefault{\ensuregreek}[1]{%
   \leavevmode {\greekscript #1}}
 \def\BabelGreekRestoreFontEncoding{%
-  \ifx\cf@encoding\BabelGreekPreviousFontEncoding
+  \ifx\encodingdefault\BabelGreekPreviousFontEncoding
   \else
     \let\encodingdefault\BabelGreekPreviousFontEncoding
     \fontencoding{\encodingdefault}\selectfont
   \fi
 }
-\addto\extrasgreek{%
-  \let\BabelGreekPreviousFontEncoding\cf@encoding
-  \greekscript}
-\addto\noextrasgreek{\BabelGreekRestoreFontEncoding}
+\AtBeginDocument{
+  \ifx\BabelGreekPreviousFontEncoding\bbl@greek@LGR
+    \let\BabelGreekPreviousFontEncoding\latinencoding
+  \fi
+}
 \@ifl@aded{def}{lgrenc}{%
   \DeclareRobustCommand{\greektext}{%
     \fontencoding{LGR}\selectfont
@@ -171,15 +183,18 @@
     \ensureascii{\bbl@greek@original@amp}}
   \ProvideTextCommandDefault{\EnsureStandardFontEncoding}{\@firstofone}
   \ProvideTextCommand{\EnsureStandardFontEncoding}{LGR}[1]{%
-                                                      \ensureascii{#1}}
-  \AtBeginDocument{\@ifpackageloaded{hyperref}
-                     {\pdfstringdefDisableCommands{%
-                         \let\EnsureStandardFontEncoding\@firstofone}}
-                     {}}
+    \ensureascii{#1}
+  }
+  \AtBeginDocument{%
+    \@ifpackageloaded{hyperref}
+      {\pdfstringdefDisableCommands{%
+         \let\EnsureStandardFontEncoding\@firstofone}
+      }
+      {}
+  }
 }{}
 
-\def\bbl@tempa{LGR}
-\ifx\greekfontencoding\bbl@tempa
+\ifx\greekfontencoding\bbl@greek@LGR
   \def\bbl@greek@roman#1{\expandafter\EnsureStandardFontEncoding%
                          \expandafter{\romannumeral#1}}
   \def\bbl@greek@Roman#1{\expandafter\EnsureStandardFontEncoding%
@@ -525,8 +540,7 @@
   \let\@alph\greek@alph
   \let\@Alph\greek@Alph
 }
-\def\bbl@tempa{LGR}
-\ifx\greekfontencoding\bbl@tempa
+\ifx\greekfontencoding\bbl@greek@LGR
   \addto\extrasgreek{%
     \babel@savevariable{\lccode`v}\lccode`v=`v%
     \babel@savevariable{\lccode`\'}\lccode`\'=`\'%
@@ -559,11 +573,33 @@
     \lccode219=240% GREEK CAPITAL LETTER IOTA WITH DIALYTIKA
     \lccode223=244% GREEK CAPITAL LETTER UPSILON WITH DIALYTIKA
   }
-  % fallback for for LaTeX versions older than 2020-10-01
-  \providecommand\IfFormatAtLeastTF{\@ifl@t@r\fmtversion}
-  \IfFormatAtLeastTF{2022/06/01}%
-    {}
-    {% else
+  \DeclareTextSymbol{\bbl@greek@tilde}{LGR}{126}
+  \addto\bbl@greek@setup@polytonic{
+    \declare@shorthand{greek}{~}{\bbl@greek@tilde}
+  }
+\fi % End of LGR-specific code.
+\bbl@xin@{,no-MakeUppercase-fixes,}{,\BabelModifiers,}%
+\ifin@
+\else
+  \ProvideTextCommandDefault{\accACUTE}{\@tabacckludge'}
+  \ProvideTextCommandDefault{\accGRAVE}{\@tabacckludge`}
+  \ProvideTextCommandDefault{\accTILDE}{\@tabacckludge~}
+  \ProvideTextCommandDefault{\accDIAERESIS}{\@tabacckludge"}
+  \addto\@uclclist{\'\accACUTE \`\accGRAVE \~\accTILDE \"\accDIAERESIS}%
+\fi
+\ifx\greekfontencoding\bbl@greek@LGR
+  \ifdefined\DeclareUppercaseMapping % new in 2023
+    % \DeclareUppercaseMapping[el]{"1FBE}{\prosgegrammeni}%
+    \DeclareUppercaseMapping[el]{"0027}{}% '
+    \addto\bbl@greek@setup@polytonic{
+      \DeclareUppercaseMapping[el]{"003C}{}% <
+      \DeclareUppercaseMapping[el]{"003E}{}% >
+      \DeclareUppercaseMapping[el]{"0060}{}% `
+      \DeclareUppercaseMapping[el]{"007E}{}% ~
+    }
+  \fi
+  \IfFormatAtLeastTF{2022/06/01}{}
+    {% else (LaTeX format older than 2022/06/01)
      \addto\extrasgreek{%
        \babel@savevariable{\uccode`\"}\uccode`\"=`\"%
        \babel@savevariable{\uccode`\'}\uccode`\'=159% 159 == ^^9f
@@ -572,7 +608,6 @@
        \babel@savevariable{\uccode`\~}\uccode`\~=159%
        \babel@savevariable{\uccode`\>}\uccode`\>=159%
        \babel@savevariable{\uccode`\<}\uccode`\<=159%
-       \babel@savevariable{\uccode`\|}\uccode`\|=`\|%
        \babel@savevariable{\uccode`\`}\uccode`\`=159%
      }
      \bgroup
@@ -588,7 +623,6 @@
        \DeclareTextCompositeCommand{\"}{TU}{^^9f}{\accdialytika}
      \fi
     }% end of the \IfFormatAtLeastTF else block
-  \DeclareTextSymbol{\bbl@greek@tilde}{LGR}{126}
 \fi % End of LGR-specific code.
 \providecommand*{\anwtonos}{\textdexiakeraia}
 \providecommand*{\katwtonos}{\textaristerikeraia}

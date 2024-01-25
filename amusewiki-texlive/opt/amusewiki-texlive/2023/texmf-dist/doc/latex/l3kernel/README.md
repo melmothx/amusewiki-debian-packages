@@ -1,7 +1,7 @@
 LaTeX3 Programming Conventions
 ==============================
 
-Release 2023-05-22
+Release 2024-01-22
 
 Overview
 --------
@@ -30,6 +30,7 @@ The `l3kernel` bundle requires the e-TeX extensions and a number of additional
 particular, the functionality equivalent to the following pdfTeX primitives must
 be available
 
+- `\ifincsname`
 - `\ifpdfprimitive`
 - `\pdfcreationdate`
 - `\pdfelapsedtime`
@@ -57,14 +58,13 @@ since the release of version 1.40.0 in 2007; `\expanded` was added for TeX Live
 2019. Similarly, the full set of these utility primitives has been available in
 XeTeX from the 2019 TeX Live release, and has always been available in LuaTeX
 (some by Lua emulation). The Japanese pTeX and upTeX gained all of the above
-(except `\ifincsname`) for TeX Live 2019 `\ifincsname` for TeX Live 2020.
+(except `\ifincsname`) for TeX Live 2019 and `\ifincsname` for TeX Live 2020.
 
-At present, the `\expanded` primitive is emulated if unavailable. This code is
-slow and imposes some coding restrictions. As such, it will be *removed* for TeX
-Live 2022.
+Starting from release 2023-05-15, the `\expanded` primitive is *required*.
+Its slow emulation has been removed.
 
 In addition to the above, engines which are fully Unicode-compatible
-must provde the functionality of the following primitives, documented in the
+must provide the functionality of the following primitives, documented in the
 LuaTeX manual
 
 - `\Uchar`
@@ -91,6 +91,6 @@ by e-mail: <latex-team@latex-project.org>.
 
 -----
 
-<p>Copyright (C) 1998-2012,2015-2023 The LaTeX Project <br />
+<p>Copyright (C) 1998-2012,2015-2024 The LaTeX Project <br />
 <a href="http://latex-project.org/">http://latex-project.org/</a> <br />
 All rights reserved.</p>

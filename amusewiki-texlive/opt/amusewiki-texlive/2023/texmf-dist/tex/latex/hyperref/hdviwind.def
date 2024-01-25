@@ -7,10 +7,10 @@
 %% hyperref.dtx  (with options: `dviwindo,pdfmarkbase')
 %% 
 %% Copyright
-%% 1995-2001 Sebastian Rahtz, with portions written by David Carlisle and Heiko Oberdiek,
-%% 2001-2015 Heiko Oberdiek.
+%% 1995-2001 Sebastian Rahtz, with portions written by David Carlisle and Heiko Oberdiek
+%% 2001-2015 Heiko Oberdiek
 %% 2016-2019 Oberdiek Package Support Group
-%% 2019-2022 LaTeX Project
+%% 2019-2024 LaTeX Project
 %%      https://github.com/latex3/hyperref/issues
 %% 
 %% This file is part of the `Hyperref Bundle'.
@@ -33,7 +33,7 @@
 %% 
 %% File: hyperref.dtx
 \ProvidesFile{hdviwind.def}
-  [2023-05-16 v7.00y %
+  [2024-01-20 v7.01h %
   Hyperref driver for dviwindo]
 \Hy@VersionCheck{hdviwind.def}
 \begingroup
@@ -110,7 +110,7 @@
       |ifx|\#2|\%%
       |else
         \\%
-        |ltx@ReturnAfterFi{%
+        |Hy@ReturnAfterFi{%
           |Hy@ExchangeBackslash#2|@nil
         }%
       |fi
@@ -121,7 +121,7 @@
     \ifx\\#2\\%
     \else
       \@backslashchar(%
-      \ltx@ReturnAfterFi{%
+      \Hy@ReturnAfterFi{%
         \Hy@ExchangeLeftParenthesis#2\@nil
       }%
     \fi
@@ -131,7 +131,7 @@
     \ifx\\#2\\%
     \else
       \@backslashchar)%
-      \ltx@ReturnAfterFi{%
+      \Hy@ReturnAfterFi{%
         \Hy@ExchangeRightParenthesis#2\@nil
       }%
     \fi
@@ -445,7 +445,7 @@
   \edef\@processme{\noexpand\pdf@toks={\the\pdf@defaulttoks}}%
   \@processme
   \let\pdf@type\relax
-  \let\pdf@objdef\ltx@empty
+  \let\pdf@objdef\@empty
   \kvsetkeys{PDF}{#2}%
   \ifHy@pdfmarkerror
   \else
@@ -459,14 +459,14 @@
        \ifx\\#1\\%
          \literalps@out{%
            [%
-           \ifx\pdf@objdef\ltx@empty
+           \ifx\pdf@objdef\@empty
            \else
              /_objdef\string{\pdf@objdef\string}%
            \fi
            \the\pdf@toks\space\pdf@type\space pdfmark%
          }%
        \else
-         \ltx@IfUndefined{@\pdf@linktype color}{%
+         \@ifundefined{@\pdf@linktype color}{%
            \Hy@colorlink\@linkcolor
          }{%
            \expandafter\Hy@colorlink
@@ -475,7 +475,7 @@
          \pdf@rect{#1}%
          \literalps@out{%
            [%
-           \ifx\pdf@objdef\ltx@empty
+           \ifx\pdf@objdef\@empty
            \else
              /_objdef\string{\pdf@objdef\string}%
            \fi
@@ -494,7 +494,7 @@
   \begingroup
     \chardef\x=1 %
     \def\Hy@temp{#1}%
-    \ifx\Hy@temp\ltx@empty
+    \ifx\Hy@temp\@empty
       \chardef\x=0 %
     \else
       \def\y{\anchor@spot}%
@@ -515,7 +515,7 @@
     \ifmmode
       \def\Hy@LinkMath{$}%
     \else
-      \let\Hy@LinkMath\ltx@empty
+      \let\Hy@LinkMath\@empty
     \fi
     \ifHy@breaklinks
       \Hy@setouterhbox\pdf@box{%
@@ -579,7 +579,7 @@
 \define@key{PDF}{linktype}{\def\pdf@linktype{#1}}
 \def\pdf@linktype{link}
 \define@key{PDF}{objdef}{\edef\pdf@objdef{#1}}
-\let\pdf@objdef\ltx@empty
+\let\pdf@objdef\@empty
 \define@key{PDF}{Raw}{\pdf@addtoksx{#1}}
 \define@key{PDF}{Action}{\pdf@addtoks{#1}{Action}}
 \define@key{PDF}{Border}{%

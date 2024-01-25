@@ -7,10 +7,10 @@
 %% hyperref.dtx  (with options: `vtex,outlines')
 %% 
 %% Copyright
-%% 1995-2001 Sebastian Rahtz, with portions written by David Carlisle and Heiko Oberdiek,
-%% 2001-2015 Heiko Oberdiek.
+%% 1995-2001 Sebastian Rahtz, with portions written by David Carlisle and Heiko Oberdiek
+%% 2001-2015 Heiko Oberdiek
 %% 2016-2019 Oberdiek Package Support Group
-%% 2019-2022 LaTeX Project
+%% 2019-2024 LaTeX Project
 %%      https://github.com/latex3/hyperref/issues
 %% 
 %% This file is part of the `Hyperref Bundle'.
@@ -33,7 +33,7 @@
 %% 
 %% File: hyperref.dtx
 \ProvidesFile{hvtex.def}
-  [2023-05-16 v7.00y %
+  [2024-01-20 v7.01h %
   Hyperref driver for VTeX in PDF/PS mode]
 \Hy@VersionCheck{hvtex.def}
 \providecommand*{\XR@ext}{pdf}
@@ -102,7 +102,7 @@
       |ifx|\#2|\%%
       |else
         \\%
-        |ltx@ReturnAfterFi{%
+        |Hy@ReturnAfterFi{%
           |Hy@ExchangeBackslash#2|@nil
         }%
       |fi
@@ -113,7 +113,7 @@
     \ifx\\#2\\%
     \else
       \@backslashchar(%
-      \ltx@ReturnAfterFi{%
+      \Hy@ReturnAfterFi{%
         \Hy@ExchangeLeftParenthesis#2\@nil
       }%
     \fi
@@ -123,7 +123,7 @@
     \ifx\\#2\\%
     \else
       \@backslashchar)%
-      \ltx@ReturnAfterFi{%
+      \Hy@ReturnAfterFi{%
         \Hy@ExchangeRightParenthesis#2\@nil
       }%
     \fi
@@ -205,7 +205,7 @@
   \Hy@VerboseLinkStart{#1}{#2}%
   \Hy@pstringdef\Hy@pstringURI{#2}%
   \expandafter\Hy@colorlink\csname @#1color\endcsname
-  \ltx@IfUndefined{@#1bordercolor}{%
+  \@ifundefined{@#1bordercolor}{%
     \let\CurrentBorderColor\relax
   }{%
     \edef\CurrentBorderColor{%
@@ -308,7 +308,7 @@
 }
 \def\hyper@link#1#2#3{%
   \Hy@VerboseLinkStart{#1}{#2}%
-  \ltx@IfUndefined{@#1bordercolor}{%
+  \@ifundefined{@#1bordercolor}{%
     \let\CurrentBorderColor\relax
   }{%
     \edef\CurrentBorderColor{\csname @#1bordercolor\endcsname}%
@@ -743,9 +743,9 @@
   \def\HyPsd@SanitizeOut@BraceLeft#1(#2\@nil{%
     #1%
     \ifx\\#2\\%
-      \expandafter\ltx@gobble
+      \expandafter\@gobble
     \else
-      \expandafter\ltx@firstofone
+      \expandafter\@firstofone
     \fi
     {%
       \string\173%
@@ -755,9 +755,9 @@
   \def\HyPsd@SanitizeOut@BraceRight#1)#2\@nil{%
     #1%
     \ifx\\#2\\%
-      \expandafter\ltx@gobble
+      \expandafter\@gobble
     \else
-      \expandafter\ltx@firstofone
+      \expandafter\@firstofone
     \fi
     {%
       \string\175%
@@ -913,6 +913,7 @@
     \hss
   }%
 }
+\AddToNoCaseChangeList{\Hy@@SectionAnchor}
 \@ifundefined{hyper@nopatch@sectioning}
 {
 \let\H@old@ssect\@ssect
@@ -940,7 +941,7 @@
   \endgroup
   \H@old@schapter{#1}%
 }
-\ltx@IfUndefined{@chapter}{}{%
+\@ifundefined{@chapter}{}{%
   \let\Hy@org@chapter\@chapter
   \def\@chapter{%
     \def\Hy@next{%
@@ -950,7 +951,7 @@
       }%
     }%
     \ifnum\c@secnumdepth>\m@ne
-      \ltx@IfUndefined{if@mainmatter}%
+      \@ifundefined{if@mainmatter}%
       \iftrue{\csname if@mainmatter\endcsname}%
         \let\Hy@next\relax
       \fi

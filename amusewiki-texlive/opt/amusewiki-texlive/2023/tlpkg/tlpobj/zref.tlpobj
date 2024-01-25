@@ -1,6 +1,6 @@
 name zref
 category Package
-revision 62977
+revision 68278
 shortdesc A new reference scheme for LaTeX
 longdesc This package offers a means to remove the limitation, of only
 longdesc two properties, that is inherent in the way LaTeX's reference
@@ -24,18 +24,18 @@ longdesc zref-savepos, make positions on a page available; zref-dotfill,
 longdesc controlled dot-filling; zref-env, record the latest
 longdesc environment's name and the line it started on; and zref-xr,
 longdesc provide the facilities of the xr and xr-hyper packages.
-containersize 14476
-containerchecksum 4516c2b785e26dac293dd028c314bdaf75d195c454cd2acd54aeaf6a298b0494031a86926abc670d27bed1ce8622a9607ea71d2b4d268bacdff26b8937c67dfa
-doccontainersize 668676
-doccontainerchecksum f65ebb760d1cac9dbc1c6ed4e48a9015c2cd2c5cbeb28e4776802ea84ac6b08c5302eb2126619e93f5bdf7ca76b4b8cdfad3ee9369aea364f680c1deda7bf396
+containersize 14528
+containerchecksum 1c21d99dc4f1627520914ed3620606c724f22754662797b93c4161aaf3e36d5a42a586ae7e4b227cdf67d55c88d3979635e78661d7029f1a5967c503a9f9dde5
+doccontainersize 668780
+doccontainerchecksum 24cf22b54cb13e1458266f4962ba589fa9385f3b8d58493747824d815c372cfa6fa8a8a24d0310264b299ce43148ca001b5c6b73961d1504e1ab6e8a4ac246c0
 docfiles size=176
  texmf-dist/doc/latex/zref/README.md details="Readme"
  texmf-dist/doc/latex/zref/zref-example-lastpage.tex
  texmf-dist/doc/latex/zref/zref-example-nextpage.tex
  texmf-dist/doc/latex/zref/zref-example.tex
  texmf-dist/doc/latex/zref/zref.pdf details="Package documentation"
-srccontainersize 37216
-srccontainerchecksum c4d4fa3cd9921f0c60361c7aafd000998c8bf7f04ccdd39406d51258b006851cce26e1acc6fa4ca91369764b012020b60ac73bd8b540a2212cce236f1335b9c3
+srccontainersize 37528
+srccontainerchecksum 251cc99a193371ca0e11d1690ce6ce545cdf077a483f81d2d5ac5c3495b24c25f383ba6b73e9607578adb0940441247ac4027c7719d2ada0c1b77f7876f9767a
 runfiles size=37
  texmf-dist/tex/latex/zref/zref-abspage.sty
  texmf-dist/tex/latex/zref/zref-abspos.sty
@@ -63,4 +63,4 @@ catalogue-contact-repository https://github.com/ho-tex/zref
 catalogue-ctan /macros/latex/contrib/zref
 catalogue-license lppl1.3c
 catalogue-topics label-ref
-catalogue-version 2.34
+catalogue-version 2.35

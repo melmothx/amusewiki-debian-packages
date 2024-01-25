@@ -7,10 +7,10 @@
 %% hyperref.dtx  (with options: `puenc')
 %% 
 %% Copyright
-%% 1995-2001 Sebastian Rahtz, with portions written by David Carlisle and Heiko Oberdiek,
-%% 2001-2015 Heiko Oberdiek.
+%% 1995-2001 Sebastian Rahtz, with portions written by David Carlisle and Heiko Oberdiek
+%% 2001-2015 Heiko Oberdiek
 %% 2016-2019 Oberdiek Package Support Group
-%% 2019-2022 LaTeX Project
+%% 2019-2024 LaTeX Project
 %%      https://github.com/latex3/hyperref/issues
 %% 
 %% This file is part of the `Hyperref Bundle'.
@@ -33,7 +33,7 @@
 %% 
 %% File: hyperref.dtx
 \ProvidesFile{puenc.def}
-  [2023-05-16 v7.00y %
+  [2024-01-20 v7.01h %
       Hyperref: PDF Unicode definition (HO)]
 \DeclareFontEncoding{PU}{}{}
 \DeclareTextCommand{\`}{PU}[1]{#1\83\000}% U+0300
@@ -786,7 +786,7 @@
 \DeclareTextCommand{\CYRABHHA}{PU}{\84\250}% U+04A8
 \DeclareTextCommand{\cyrabhha}{PU}{\84\251}% U+04A9
 \DeclareTextCommand{\CYRSDSC}{PU}{\84\252}% U+04AA
-\DeclareTextCompositeCommand{\CYRSDSC}{PU}{\CYRS}{\84\252}% U+04AA
+\DeclareTextCompositeCommand{\k}{PU}{\CYRS}{\84\252}% U+04AA
 \DeclareTextCommand{\cyrsdsc}{PU}{\84\253}% U+04AB
 \DeclareTextCompositeCommand{\k}{PU}{\cyrs}{\84\253}% U+04AB
 \DeclareTextCommand{\CYRTDSC}{PU}{\84\254}% U+04AC
@@ -853,7 +853,7 @@
 \DeclareTextCompositeCommand{\"}{PU}{\CYROTLD}{\84\352}% U+04EA
 \DeclareTextCompositeCommand{\"}{PU}{\cyrotld}{\84\353}% U+04EB
 \DeclareTextCompositeCommand{\"}{PU}{\CYREREV}{\84\354}% U+04EC
-\DeclareTextCompositeCommand{\"}{PU}{\cyreref}{\84\355}% U+04ED
+\DeclareTextCompositeCommand{\"}{PU}{\cyrerev}{\84\355}% U+04ED
 \DeclareTextCompositeCommand{\=}{PU}{\CYRU}{\84\356}% U+04EE
 \DeclareTextCompositeCommand{\=}{PU}{\cyru}{\84\357}% U+04EF
 \DeclareTextCompositeCommand{\"}{PU}{\CYRU}{\84\360}% U+04F0
@@ -1808,7 +1808,7 @@
 \DeclareTextCommand{\textSquareTopRight}{PU}{\9047\120}%* U+2750
 \DeclareTextCommand{\textSquareCastShadowBottomRight}{PU}{\9047\121}%* U+2751
 \DeclareTextCommand{\textSquareCastShadowTopRight}{PU}{\9047\122}%* U+2752
-\DeclareTextCommand{\textDiamandSolid}{PU}{\9047\126}%* U+2756
+\DeclareTextCommand{\textDiamondSolid}{PU}{\9047\126}%* U+2756
 \DeclareTextCommand{\textRectangleThin}{PU}{\9047\130}%* U+2758
 \DeclareTextCommand{\textRectangle}{PU}{\9047\131}%* U+2759
 \DeclareTextCommand{\textRectangleBold}{PU}{\9047\132}%* U+275A

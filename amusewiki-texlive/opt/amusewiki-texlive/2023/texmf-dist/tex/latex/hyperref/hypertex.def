@@ -7,10 +7,10 @@
 %% hyperref.dtx  (with options: `hypertex')
 %% 
 %% Copyright
-%% 1995-2001 Sebastian Rahtz, with portions written by David Carlisle and Heiko Oberdiek,
-%% 2001-2015 Heiko Oberdiek.
+%% 1995-2001 Sebastian Rahtz, with portions written by David Carlisle and Heiko Oberdiek
+%% 2001-2015 Heiko Oberdiek
 %% 2016-2019 Oberdiek Package Support Group
-%% 2019-2022 LaTeX Project
+%% 2019-2024 LaTeX Project
 %%      https://github.com/latex3/hyperref/issues
 %% 
 %% This file is part of the `Hyperref Bundle'.
@@ -33,11 +33,11 @@
 %% 
 %% File: hyperref.dtx
 \ProvidesFile{hypertex.def}
-  [2023-05-16 v7.00y %
+  [2024-01-20 v7.01h %
   Hyperref driver for HyperTeX specials]
 \Hy@VersionCheck{hypertex.def}
 \providecommand*{\XR@ext}{dvi}
-\let\PDF@FinishDoc\ltx@empty
+\let\PDF@FinishDoc\@empty
 \def\PDF@SetupDoc{%
   \ifx\@baseurl\@empty
   \else
@@ -140,7 +140,7 @@
 \def\@Form[#1]{%
   \Hy@Message{Sorry, HyperTeX does not support FORMs}%
 }
-\let\@endForm\ltx@empty
+\let\@endForm\@empty
 \def\@Gauge[#1]#2#3#4{% parameters, label, minimum, maximum
   \Hy@Message{Sorry, HyperTeX does not support FORM gauges}%
 }
@@ -178,6 +178,7 @@
     \hss
   }%
 }
+\AddToNoCaseChangeList{\Hy@@SectionAnchor}
 \@ifundefined{hyper@nopatch@sectioning}
 {
 \let\H@old@ssect\@ssect
@@ -205,7 +206,7 @@
   \endgroup
   \H@old@schapter{#1}%
 }
-\ltx@IfUndefined{@chapter}{}{%
+\@ifundefined{@chapter}{}{%
   \let\Hy@org@chapter\@chapter
   \def\@chapter{%
     \def\Hy@next{%
@@ -215,7 +216,7 @@
       }%
     }%
     \ifnum\c@secnumdepth>\m@ne
-      \ltx@IfUndefined{if@mainmatter}%
+      \@ifundefined{if@mainmatter}%
       \iftrue{\csname if@mainmatter\endcsname}%
         \let\Hy@next\relax
       \fi

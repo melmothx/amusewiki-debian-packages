@@ -1,15 +1,15 @@
-This is e-pTeX, Version 3.141592653-p4.1.0-230214-2.6 (utf8.euc) (TeX Live 2023) (INITEX)  2 JUN 2023 09:56
+This is e-pTeX, Version 3.141592653-p4.1.0-230214-2.6 (utf8.euc) (TeX Live 2023) (INITEX)  25 JAN 2024 20:29
  restricted \write18 enabled.
  %&-line parsing enabled.
 **ptex.ini
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
-xmf-dist/tex/ptex/ptex-base/ptex.ini
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
-xmf-dist/tex/ptex/ptex-base/ptex.tex
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
-xmf-dist/tex/plain/base/plain.tex Preloading the plain format: codes,
-registers,
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2023/texmf-dist/tex/ptex/ptex-base/ptex.ini
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2023/texmf-dist/tex/ptex/ptex-base/ptex.tex
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2023/texmf-dist/tex/plain/base/plain.tex
+Preloading the plain format: codes, registers,
 \maxdimen=\dimen10
 \hideskip=\skip10
 \centering=\skip11
@@ -32,7 +32,8 @@ registers,
 \slfam=\fam5
 \bffam=\fam6
 \ttfam=\fam7
- macros,
+
+macros,
 \strutbox=\box11
 \mscount=\count25
 \tabs=\box12
@@ -41,25 +42,24 @@ registers,
  math definitions,
 \rootbox=\box15
 \p@renwd=\dimen15
-
-output routines,
+ output routines,
 \headline=\toks10
 \footline=\toks11
 \footins=\insert254
 \topins=\insert253
  hyphenation
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
-xmf-dist/tex/generic/hyphen/hyphen.tex))
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2023/texmf-dist/tex/generic/hyphen/hyphen.tex))
 \minfam=\fam8
 \gtfam=\fam9
 \tminfam=\fam10
 \tgtfam=\fam11
 
-(/home/melmothx/build/amusewiki-debian-packages/amusewiki/local/texlive/2023/te
-xmf-dist/tex/ptex/ptex-base/kinsoku.tex)) )
+(/home/melmothx/build/amusewiki-debian-packages/amusewiki-texlive/opt/amusewiki
+-texlive/2023/texmf-dist/tex/ptex/ptex-base/kinsoku.tex)) )
 Beginning to dump on file ptex.fmt
- (preloaded format=ptex 2023.6.2)
-2412 strings of total length 35942
+ (preloaded format=ptex 2024.1.25)
+2412 strings of total length 36151
 5060 memory locations dumped; current usage is 132&4907
 1013 multiletter control sequences
 \font\nullfont=nullfont

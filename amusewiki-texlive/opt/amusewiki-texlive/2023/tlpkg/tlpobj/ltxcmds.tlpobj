@@ -1,24 +1,24 @@
 name ltxcmds
 category Package
-revision 56421
+revision 69032
 shortdesc Some LaTeX kernel commands for general use
 longdesc This package exports some utility macros from the LaTeX kernel
 longdesc into a separate namespace and also makes them available for
 longdesc other formats such as plain TeX.
-containersize 4124
-containerchecksum 052303cd90b960cc5a9bf89c8938af95d8959ba6bdc603b4d53b68666b443b620417c9ec4ac65867b04eae8cb0a88940f905eac78d2c3718ce7a40ea249c9f94
-doccontainersize 391720
-doccontainerchecksum d82f046eee3892b5a241f78b44910c801b14583cf7f9a693f861ab04d9b05e0cd7639d8f85eaf46f95d2d325688fd1ba3c76421c6ceec5969046db497b0d698f
-docfiles size=98
+containersize 4120
+containerchecksum 9d9a9835f4547200b160b42c07e918fb8b2cdf9eba91c30647c6fb1c74cb6f9ba60ab40bed63514ecbf334d527148b31fb1ec90af60075d19e28d10d675ded68
+doccontainersize 405944
+doccontainerchecksum 21be07f4f98531621f90b7ed23c06fa4b39fafa12a83c45784b83b5f9728817657b5c2ac2c09e4988ce0c6df0918a7c93d29d7ab89159cca5ce5fc9e0eb017dd
+docfiles size=104
  texmf-dist/doc/generic/ltxcmds/README.md details="Readme"
  texmf-dist/doc/generic/ltxcmds/ltxcmds.pdf details="Package documentation"
-srccontainersize 12916
-srccontainerchecksum 55f04ec6375c0b38b9e9d78fb658378c0e35c9d72127495e824376b1d54155138c65f6bfa804f7795b3a4514fbf1c5a7505e7500f51decb9b4d7c65b47d2909b
+srccontainersize 12948
+srccontainerchecksum becad978f8b2303a44057f165cdc6d22ddec03e58a26a0d6350bfbaf6d681ba43b105b65492c5be2382ee1e4f814129f86abc2ce376d2d42ddb0fdbdd2671d01
 runfiles size=5
  texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 catalogue-contact-bugs https://github.com/ho-tex/ltxcmds/issues
 catalogue-contact-repository https://github.com/ho-tex/ltxcmds
 catalogue-ctan /macros/generic/ltxcmds
-catalogue-license lppl1.3
-catalogue-topics macro-supp
-catalogue-version 1.25
+catalogue-license lppl1.3c
+catalogue-topics macro-supp macro-gen
+catalogue-version 1.26

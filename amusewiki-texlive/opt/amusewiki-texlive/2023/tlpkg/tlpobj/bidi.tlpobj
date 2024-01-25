@@ -1,15 +1,15 @@
 name bidi
 category Package
-revision 65572
+revision 67798
 shortdesc Bidirectional typesetting in plain TeX and LaTeX, using XeTeX
 longdesc A convenient interface for typesetting bidirectional texts with
 longdesc plain TeX and LaTeX. The package includes adaptations for use
 longdesc with many other commonly-used packages.
-containersize 132944
-containerchecksum b4d94dc0e539c0c0e4d91586ff9d121fe58af5c4729c603d6eb22f16a19e5edbea722b7576faf2b56a46f6fc68fc3e1cdc3c2f1941bba51a60337f091a248045
-doccontainersize 4231356
-doccontainerchecksum 002f65b1fff0798a2bdb87999910c848d94ce1e03c5dd4e61fd173cde8bdb5e153086616274cc1d97b711ee9a2d0d11b06e11de303d03e38ff577c2f941e1caa
-docfiles size=1167
+containersize 133180
+containerchecksum e589f50dbd63df9d711540ad90b53384e52a5a0b353e2ba050657af3273f3dd7b65925101465d89831ea133504701c6d05d01ef959fcaa2570bb1188384c621d
+doccontainersize 4236404
+doccontainerchecksum 09ac7b97d9d1a93b80e8dac120cd6e70932ca9239dc94202449a476979caadd596677a210b27700e3638c3cf0bcecf98c4f903ea228f94545a2cf5cb206abcc8
+docfiles size=1168
  texmf-dist/doc/xelatex/bidi/README details="Readme"
  texmf-dist/doc/xelatex/bidi/bidi-bibitem.pdf
  texmf-dist/doc/xelatex/bidi/bidi-doc.pdf details="Package user documentation"
@@ -34,8 +34,8 @@ docfiles size=1167
  texmf-dist/doc/xelatex/bidi/test2-colortbl.tex
  texmf-dist/doc/xelatex/bidi/test2-wrapfig.tex
  texmf-dist/doc/xelatex/bidi/test3-wrapfig.tex
-srccontainersize 149772
-srccontainerchecksum e43b88ae4423bb1075a432f9034bf51ebe403bf5e5b8c0ab899e49a46257e45228b65ea4b0150542748830c74e3d9cbc59e9df49d75fdaf2fabc0b33b0a59714
+srccontainersize 149884
+srccontainerchecksum 1bdd170bb3065027106944aa23b99311482fd90a019a6bd1e87044f03a04f672e0b01a31d4d09e213db7b228718f7e9ad15d77acfcef7412af8ae180935fd77c
 runfiles size=367
  texmf-dist/tex/xelatex/bidi/adjmulticol-xetex-bidi.def
  texmf-dist/tex/xelatex/bidi/algorithm2e-xetex-bidi.def
@@ -208,4 +208,4 @@ catalogue-contact-support https://github.com/kvafa/bidi/discussions
 catalogue-ctan /macros/xetex/latex/bidi
 catalogue-license lppl1.3c
 catalogue-topics typesetting xetex bidi class
-catalogue-version 39.7
+catalogue-version 39.8

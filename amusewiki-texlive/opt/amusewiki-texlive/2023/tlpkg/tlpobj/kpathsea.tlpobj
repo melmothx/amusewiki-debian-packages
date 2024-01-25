@@ -1,6 +1,6 @@
 name kpathsea
 category TLCore
-revision 67065
+revision 69121
 shortdesc Path searching library for TeX-related files
 longdesc Kpathsea is a library and utility programs which provide path
 longdesc searching facilities for TeX file types, including the
@@ -9,10 +9,10 @@ longdesc layered on top of a general search mechanism. It is not
 longdesc distributed separately, but rather is released and maintained
 longdesc as part of the TeX Live sources.
 depend kpathsea.ARCH
-containersize 32572
-containerchecksum 8230dc9b02a5f97455cd24be1d606b79d267fe3333dd1678d0e4f13364aa6d4522e1c029bff08dbc6b5c7e288960de60d4fa096deb16e67481e088ec7dc6fa40
-doccontainersize 1040300
-doccontainerchecksum b914cb11df243dd5d517b106d748f1468ff07f1a9be6cb651cdc1a0e63511d958ba28bed14ea51c13916ab239d2b85da7a61cda5dacbd52a9a2e3793d625031a
+containersize 32636
+containerchecksum 08b2ebc546de9615927f9933937c81a5fbae702e20e389055c62f13b70ce81a87995dcf402d8b94d0025eea80f9fbc1500270b615fe3f26f1e9c12a245dbd1d4
+doccontainersize 1040296
+doccontainerchecksum 17687e289d912120a0dc0b79829145521dcb660fee024f249153235bb2591936bedae9370ff20d8eb137d54d40d73d2854e4312651eff8a6763bf70040e0bf47
 docfiles size=577
  texmf-dist/doc/info/dir
  texmf-dist/doc/info/kpathsea.info

@@ -13,7 +13,7 @@
 %% (but please observe conditions on bug reports sent to that address!)
 %% 
 %% 
-%% Copyright (C) 1993-2022
+%% Copyright (C) 1993-2023
 %% The LaTeX Project and any individual authors listed elsewhere
 %% in this file.
 %% 
@@ -46,7 +46,7 @@
 \DeclareCurrentRelease{}{2022-06-01}
 
 \ProvidesPackage{showkeys}
-          [2022/04/12 v3.18 Show cite and label keys (DPC, MH)]
+          [2023/07/08 v3.19 Show cite and label keys (DPC, MH)]
 \DeclareOption{notref}{\let\SK@ref\@empty}
 \DeclareOption{notcite}{\let\SK@cite\@empty}
 \let\SK@refcolor\relax
@@ -65,13 +65,15 @@
 \let\SK@label\label
 \let\SK@bibitem\@bibitem
 \let\SK@lbibitem\@lbibitem
-\def\label#1{%
+\@ifl@t@r\fmtversion{2023-06-01}
+ {\AddToHookWithArguments{label}{\SK@\SK@@label{#1}}}
+ {\def\label#1{%
   \@bsphack
   \SK@\SK@@label{#1}%
   \begingroup
     \SK@label{#1}%
   \endgroup
-  \@esphack}
+  \@esphack}}
 \def\@bibitem#1{%
   \SK@bibitem{#1}\SK@\SK@@label{#1}\ignorespaces}
 \def\@lbibitem[#1]#2{%

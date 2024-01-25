@@ -24,7 +24,7 @@
 % ============================================================================
 
 \KOMAProvidesFile{scrlttr2-de.tex}%
-                 [$Date: 2023-04-20 10:04:17 +0200 (Do, 20. Apr 2023) $
+                 [$Date: 2023-04-25 09:00:44 +0200 (Di, 25. Apr 2023) $
                   KOMA-Script guide (chapter: scrlttr2)]
 
 \chapter{Briefe mit Klasse \Class{scrlttr2} oder Paket \Package{scrletter}}
@@ -4475,16 +4475,33 @@ Folgeseiten bei \Class{scrlttr2}\OnlyAt{\Class{scrlttr2}} im Seitenstil
 \IndexPagestyle{letter}\important{\DescRef{\LabelBase.pagestyle.letter}}
 frei. Dazu setzt man den gewünschten Aufbau als \PName{Inhalt} der
 Variablen\ChangedAt{v3.08}{\Class{scrlttr2}} \Variable{nexthead}
-beziehungsweise \Variable{nextfoot}. Innerhalb des Inhalts von
-\Variable{nexthead} und \Variable{nextfoot} können beispielsweise mit Hilfe
-der \Macro{parbox}-Anweisung (siehe \cite{latex:usrguide}) mehrere Boxen
+beziehungsweise \Variable{nextfoot}.
+
+Da die Seitenstile von \Class{scrlttr2}\important{\Class{scrlttr2}} nicht für
+mehrzeilige Köpfe und Füße ausgelegt sind, geben sie die beider Variablen in
+einer horizontalen Box aus. Damit sind zunächst weder Absätze noch
+Zeilenumbrüche oder ähnliches möglich.  Innerhalb des Inhalts von
+\Variable{nexthead} und \Variable{nextfoot} können aber beispielsweise mit
+Hilfe der \Macro{parbox}-Anweisung (siehe \cite{latex:usrguide}) mehrere Boxen
 neben- und untereinander gesetzt werden.  Einem versierten Anwender sollte es
-so möglich sein, eigene Seitenköpfe und "~füße zu gestalten. Natürlich kann
+so möglich sein, eigene Seitenköpfe und "~füße zu gestalten.  Natürlich kann
 und sollte im \PName{Inhalt} mit Hilfe von \DescRef{\LabelBase.cmd.usekomavar}
-auch auf weitere Variablen zugegriffen werden. Die \PName{Bezeichnung} wird
-von \KOMAScript{} bei beiden Variablen nicht genutzt.%
-\EndIndexGroup \EndIndexGroup
-%
+auch auf weitere Variablen zugegriffen werden.
+
+Als Alternative für mehrzeilige Köpf und Füße bietet sich die Verwendung des
+in \autoref{cha:scrlayer-scrpage} beschriebenen Pakets
+\Package{scrlayer-scrpage}\IndexPackage{scrlayer-scrpage}%
+\important{\Package{scrlayer-scrpage}} an. Das Paket
+\Package{scrletter}\important{\Package{scrletter}} verwendet für die
+Definition von Seitenstil \DescRef{\LabelBase.pagestyle.letter}%
+\IndexPagestyle{letter}\important{\DescRef{\LabelBase.pagestyle.letter}}
+ohnehin bereits \Package{scrlayer-scrpage} und ist daher von der genannten
+Beschränkung nicht betroffen.
+
+Die \PName{Bezeichnung} wird von \KOMAScript{} bei beiden Variablen
+nicht genutzt.%
+\EndIndexGroup%
+\EndIndexGroup%
 \EndIndexGroup
 
 

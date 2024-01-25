@@ -1,5 +1,4 @@
-\RequirePackage{pdfmanagement-testphase}
-\DeclareDocumentMetadata{pdfstandard=A-2b, lang=fr-FR}
+\DocumentMetadata{pdfstandard=A-2b, lang=fr-FR}
 \documentclass[a4paper,12pt,german,english,french]{article}
 
 % LuaTeX ONLY!
@@ -28,7 +27,7 @@
 
 %%% *** APRÈS fontspec ***
 \usepackage{babel}
-\frenchbsetup{og=«, fg=», AutoSpacePunctuation=false}
+\frenchbsetup{og=«, fg=»}
 \frenchbsetup{ListItemsAsPar}
 
 \usepackage{microtype}
@@ -121,7 +120,7 @@
 
 \title{Mode d’emploi du module \ext{babel-french}}
 \author{\href{mailto:daniel.flipo@free.fr}{Daniel \textsc{Flipo}}}
-\newcommand*{\latestversion}{3.5q}
+\newcommand*{\latestversion}{3.5r}
 \date{Version {\latestversion} -- \today}
 
 \begin{document}
@@ -158,8 +157,6 @@
   \vspace{-\baselineskip}\noindent
   \descindentFB=0pt
   \begin{description}
-  \item[30 janvier 2017] Le comportement par défaut de la commande
-    |\frquote{}| sous LuaTeX est modifié, voir p.~\pageref{frquote}.
   \item[30 avril 2017] Utiliser |\frenchsetup{}| de préférence à
     |\frenchbsetup{}|, voir p.~\pageref{sec:Perso}.
     Personnalisation de la commande |\part{}|, voir p.~\pageref{ssec:captions}.
@@ -184,6 +181,8 @@
     voir p.~\pageref{decimalmathcomma}.
   \item[8 mars 2023] Correction de bug dans les listes,
     voir p.~\pageref{par-in-lists}.
+  \item[19 déc. 2023] \ext{babel-french} est maintenant compatible
+    avec \pkg{ucharclasses} (XeLaTeX). \file{frenchb.ins} supprimée.
   \end{description}
 \end{abstract}
 \egroup
@@ -268,9 +267,9 @@ le faire dépend du format utilisé :
   commandes\\
   |\usepackage[T1]{fontenc}|\\
   |\usepackage{lmodern}|\\
-  la déclaration du codage d’entrée n’est nécessaire que si celui-ci n’est
-  pas le codage par défaut (|utf8| depuis 2018), par exemple |latin9| ou
-  |latin1| ou |applemac|, etc.\\
+  rapellons que la déclaration du codage d’entrée n’est nécessaire que si
+  celui-ci n’est pas le codage par défaut (|utf8| depuis 2018), par exemple
+  |latin9| ou |latin1| ou |applemac|, etc.\\
   |\usepackage[latin9]{inputenc}|
 \item avec LuaLaTeX ou XeLaTeX on peut ajouter |\usepackage{fontspec}| mais
   ceci est devenu facultatif avec les formats LaTeX récents (2017).
@@ -391,9 +390,9 @@ document (ou maquette) est modifiée de la façon suivante%
   ajoutée en français ; lorsque l’ajout échoue, un message est affiché dans le
   fichier \file{.log}.
 
-  Certaines classes ou extensions modifient la présentation des légendes;
-  parmi elles, les classes (\cls{memoir}, \cls{beamer}, koma-script et AMS
-  et les extensions(\ext{caption} et \ext{floatrow} sont compatibles avec
+  Certaines classes ou extensions modifient la présentation des légendes ;
+  parmi elles, les classes \cls{memoir}, \cls{beamer}, koma-script et AMS
+  et les extensions \ext{caption} et \ext{floatrow} sont compatibles avec
   \ext{babel-french}.
 
   Un avertissement est inséré dans le fichier \file{.log} lorsqu’il y a risque
@@ -405,7 +404,6 @@ document (ou maquette) est modifiée de la façon suivante%
 En ce qui concerne les conventions typographiques locales (variables avec la
 langue) la commande |\selectlanguage{french}|
 produit les effets suivants :
-\enlargethispage*{\baselineskip}
 \begin{itemize}
 
 \item Les motifs de césures françaises sont activés.
@@ -421,14 +419,6 @@ produit les effets suivants :
   qui disposent d’un mécanisme permettant d’accéder aux mêmes fonctionnalités
   sans recours aux caractères actifs.
 
-\item la définition de |\dots| est modifiée pour
-  supprimer l’espace qui suit (cet espace est gênant devant une
-  parenthèse par exemple\dots)%
-  \footnote{Certains auteurs préfèrent en français «...» (codé \code{...}
-    sans espace) à «\dots» (codé \cs{dots}). Le mieux est d’utiliser
-    directement le caractère … dans le texte source dès lors que celui-ci est
-    codé en utf-8.}.
-
 \item La commande |\today| retourne la date en français.
 
 \item Les titres («caption names» en anglais) sont traduits en
@@ -436,8 +426,24 @@ produit les effets suivants :
   « Chapitre » au lieu de « Chapter ». Voir section~\ref{ssec:captions}
   p.~\pageref{ssec:captions} comment modifier ces intitulés.
 
+\item La définition de |\dots| est modifiée%
+\footnote{en mode texte seulement, en fait c’est \cs{textellipsis} qui est
+  modifiée.}, \emph{uniquement} avec les moteurs 8-bits (pdftex), afin de
+  supprimer l’espace qui suit, espace gênant devant une parenthèse par exemple.
+  Ceci dit, la commande |\dots| \emph{ne devrait plus être utilisée}
+  dès lors que le texte source est codé en utf-8 :
+  il est plus facile de saisir |…|%
+\footnote{Il s’agit du glyphe \texttt{…} obtenu par exemple grâce à une touche
+  \texttt{Compose}, \emph{pas} de \texttt{...} (trois points consécutifs).}
+  que |\dots|, le texte source est plus lisible et on évite les
+  problèmes d’avalement des espaces après une commande.
+  Avec les moteurs Unicode (xetex, luatex), la commande |\dots| standard
+  utilise le glyphe de la police de sortie sans ajout d’espace,
+  \ext{babel-french} ne la redéfinit donc pas.
+
 \end{itemize}
 
+\vspace{\parskip}
 La commande |\selectlanguage{english}| ramène
 au comportement standard de LaTeX (typographie américaine).
 
@@ -473,6 +479,7 @@ Des commandes ont été prévues pour faciliter la saisie :
 
   Pour les citations imbriquées, plusieurs présentations sont proposées selon
   les options choisies :
+  \enlargethispage*{\baselineskip}
   \begin{itemize}
   \item Les citations internes sont balisées par des guillemets anglais
     ``comme ceci’’ (recommandation de Aurel Ramat) sauf si
@@ -493,10 +500,9 @@ Des commandes ont été prévues pour faciliter la saisie :
   ce faire, il suffit de coder la citation interne avec |\frquote*{}| au lieu
   de |\frquote{}|.
 
-\pagebreak
 Exemple de citation imbriquée :
 
-\vspace{0.5\baselineskip}
+\vspace{\parskip}
 \begin{minipage}[t]{.47\textwidth}
 \hspace*{\fill}%
 \fbox{\begin{minipage}[t]{.95\textwidth}
@@ -532,7 +538,7 @@ Exemple de citation imbriquée :
 \hspace*{\fill}LuaLaTeX + \fbo{EveryLineGuill=open}\hspace*{\fill}%
 \end{minipage}
 
-\vspace{0.5\baselineskip}
+\vspace{\parskip}
 Le codage est le suivant :
 {\ttfamily\ColorVerb Xavier raconte… |\frquote{|Au moment… l’hôtesse m’a
  dit tout bonnement : |\frquote*{|Je suis désolée, …  en anglais.|}}|}
@@ -621,7 +627,6 @@ vertical des lettres supérieures simulées par |\fup|
   coupure sur les espaces mais d’autoriser éventuellement celle du mois
   (jan-vier, dé-cembre, …) qui est interdite par défaut.
 
-\enlargethispage{\baselineskip}
 \item En mode mathématique, la virgule est toujours suivie d’une espace car
   elle est traitée comme un signe de ponctuation et non comme une virgule
   décimale%
@@ -638,9 +643,9 @@ vertical des lettres supérieures simulées par |\fup|
   corps du document \emph{en mode texte} et dans une partie \emph{en français},
   son effet survit à un changement de langue (passage en anglais et retour en
   français par exemple), sauf bien sûr si elle est placée dans un groupe.
-
    Une solution alternative consiste à utiliser l’extension \ext{icomma}.
 
+\vspace{\parskip}
 \item La commande |\nombre|, destinée à formater
   automatiquement les nombres entiers ou décimaux par tranches de
   trois chiffres séparées par des espaces en français et par des
@@ -656,15 +661,20 @@ vertical des lettres supérieures simulées par |\fup|
 
 \end{itemize}
 
+\vspace{\parskip}
 En ajoutant |\usepackage{xspace}| dans le préambule, les espaces suivant
 les commandes
 |\ier|,…, |\ieres|,
 |\ieme|, |\iemes|,
-|\fg| et |\dots| sont
-respectés sans avoir à les forcer par des |{}| ou
-des~\code{\boi\textvisiblespace}. Noter cependant que l’auteur de \pkg{xspace}
-ne recommande plus vraiment son utilisation, aussi peut-on préférer
-\emph{ne pas charger} \pkg{xspace} et gérer les espaces soi-même :
+|\fg| et |\dots| sont respectés sans avoir à les forcer par des |{}| ou
+des~\code{\boi\textvisiblespace}.  Le recours à l’extension \pkg{xspace} est
+cependant une \emph{fausse simplification} car \emph{certaines} commandes sont
+affectées mais \emph{pas toutes}. Un exemple extrême est fourni par la
+commande |\dots| : lorsqu’elle est redéfinie par \pkg{babel-french} (moteurs
+8-bits et en français seulement) on peut omettre la paire d’accolades, mais
+celle-ci est indispensable dans une partie en anglais par exemple ou avec les
+moteurs Unicode (|\dots| garde sa définition standard)… Il me paraît plus simple
+d’éviter le recours à \pkg{xspace} et de gérer les espaces soi-même :
 « |les 1\ier, 2 et 3~mai| » ou « |le 1\ier~mai| » (espace insécable).
 
 \section{Personnalisation}
@@ -1079,26 +1089,26 @@ La liste étant longue, les options sont regroupées par thèmes.
 
 \begin{description}
 
-\item [SmallCapsFigTabcaptions=false (true*)]; si cette option est mise
+\item [SmallCapsFigTabCaptions=false (true*)]; si cette option est mise
   à \fbo{false}, le recours aux petites capitales dans les intitulés des
   légendes de figures et tables est supprimé, on obtient « Figure » et
   « Table » au lieu de « \textsc{Figure} » et « \textsc{Table} ».
   Noter que le même résultat peut être obtenu en définissant |\FBfigtabshape|
   comme |\relax| avant le chargement de \ext{babel}.\hlabel{scfigtab}
 
-\item [CustomiseFigTabcaptions=false (true*)] ; si cette option est mise
+\item [CustomiseFigTabCaptions=false (true*)] ; si cette option est mise
   à \fbo{false}, le séparateur défini par |\CaptionSeparator| est remplacé par
   le séparateur par défaut (deux-points) dans les légendes des figures et des
   tables, ceci pour toutes les langues.  En français, \ext{babel-french} ajoute
   si possible une espace insécable adéquate devant le deux-points ou affiche
   un message dans le fichier \file{.log}.
 
-\item [OldFigTabcaptions=true (false)] peut être utilisée pour retrouver
+\item [OldFigTabCaptions=true (false)] peut être utilisée pour retrouver
   la présentation antérieure (pré~3.0) des légendes de figures et tables,
   c.-à-d. |\CaptionSeparator| en français et deux-points pour les autres
   langues.  Cette option ne fonctionne que pour les classes standard
   \cls{article}, \cls{report}, \cls{book} et rend inopérante l’option
-  \fbo{CustomiseFigTabcaptions}.
+  \fbo{CustomiseFigTabCaptions}.
 
 \end{description}
 
@@ -1271,7 +1281,7 @@ listes \env{itemize}, \env{enumerate} et \env{description} :
   gauche au lieu d’être décalées vers la droite.
 
 % Illustration de \parindent et \listindentFB
-\vspace{.5\baselineskip}
+\vspace{\parskip}
 \begin{minipage}[t]{.45\textwidth}
 \fbox{\begin{minipage}[t]{0.9\textwidth}\raggedright
         \FBListItemsAsParfalse \parindent=0pt \listindentFB=1.5em
@@ -1372,7 +1382,7 @@ listes \env{itemize}, \env{enumerate} et \env{description} :
   |\setlength{\descindentFB}{0pt}|.
 
 % Illustration de \parindent et \descindentFB
-\vspace{.5\baselineskip}
+\vspace{\parskip}
 \begin{minipage}[t]{.45\textwidth}
 \fbox{\begin{minipage}[t]{0.9\textwidth}\raggedright
         \FBListItemsAsParfalse
@@ -1430,7 +1440,7 @@ sections~\ref{sec:description} (listes \env{itemize}) et
 \ref{sec:Perso} (listes \env{description}).
 
 % Illustration de l’option \fbo{ListItemsAsPar}
-\vspace{.5\baselineskip}
+\vspace{\parskip}
 \begin{minipage}[t]{.45\textwidth}
 \fbox{\begin{minipage}[t]{0.9\textwidth}\raggedright
         \FBListItemsAsParfalse \parindent=1.5em \listindentFB=1.5em
@@ -1580,12 +1590,18 @@ Voir section~\ref{decimalmathcomma} p.~\pageref{decimalmathcomma} pour plus de
 détails.
 
 \vspace{\parskip}
-La version 3.5q corrige un bug concernant les listes signalé par Denis Bitouzé :
-les alinéas inclus dans une liste n’étaient pas distinguables.  Dorénavant
-|\listparindent| est défini comme |\parindent| et si|\parskip > 0|, |\parsep|
-est défini comme |\parskip|.  Il est possible de revenir à l’ancienne
-présentation en ajoutant \emph{dans l’environnement de liste} les commandes
-|\parskip=0pt| et |\parindent=0pt|.\hlabel{par-in-lists}
+La version 3.5q corrige un bug concernant les listes signalé par Denis
+Bitouzé : les alinéas inclus dans une liste n’étaient pas distinguables.
+Dorénavant |\listparindent| est défini comme |\parindent| et si|\parskip > 0|,
+|\parsep| est défini comme |\parskip|.  Il est possible de revenir
+à l’ancienne présentation en ajoutant \emph{dans l’environnement de liste}
+les commandes |\parskip=0pt| et |\parindent=0pt|.\hlabel{par-in-lists}
+
+\vspace{\parskip}
+La version 3.5r est compatible avec \pkg{ucharclasses.sty} qui est maintenant
+chargé avec l’extension \pkg{fontsetup} lorsque le moteur XeTeX est utilisé.
+D’autre part le fichier \file{frenchb.ins} n’est plus nécessaire pour extraire
+les fichiers \file{*.ldf} de \file{frenchb.dtx} (voir~\file{README.md}).
 
 \subsection{Changements entre les versions  3.4d et 3.3d}
 \label{ssec:changes-3.4}
@@ -2005,7 +2021,7 @@ La solution \biblatex/\biber{} présente des nombreux avantages par rapport
   document en français ;
 
 \item \biblatex{}, associé à \biber{}, permet le traitement des fichiers
-  ~\file{.bib} codés en UTF-8 ce qui facilite grandement la coexistence
+  ~\file{.bib} codés en utf-8 ce qui facilite grandement la coexistence
   de références à des ouvrages en français, en russe et en grec par exemple ;
 
 \item \biblatex{} possède des options qui remplacent de nombreuses extensions
@@ -2042,7 +2058,7 @@ introduisent automatiquement des espaces insécables et plus fines pour un
 meilleur rendu typographique.
 
 Les points de suspensions sont saisis |...| avec
-\ext{e-french} et |\dots| avec \ext{babel-french}.
+\ext{e-french} et |…| (ou |\dots|) avec \ext{babel-french}.
 
 Les commandes suivantes peuvent être ajoutées au préambule pour
 émuler certaines commandes de \ext{e-french} :
@@ -2062,7 +2078,7 @@ Pour ceux qui éditent leurs sources LaTeX avec emacs, une fonction Lisp
 \file{french2b} opère une adaptation \emph{partielle} d’un fichier conçu pour
 \ext{e-french} facilitant sa compilation avec \ext{babel-french}.  L’appel
 à \ext{e-french} est remplacé en un appel à \ext{babel-french}, les guillemets
-|<<| et |>>| sont convertis en |\og| et |\fg| et les |...| en |\dots|, enfin
+|<<| et |>>| sont convertis en |\og| et |\fg| et les |...| en |…|, enfin
 quelques commandes spécifiques à \ext{e-french} sont ajoutées dans le
 préambule.
 

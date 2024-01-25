@@ -1962,6 +1962,11 @@ the executable after loading and executing the startup file.
     {\tracingmacros} is set; levels above this value will be clipped with
     the level shown up front
 \NC \NR
+\NC \type{check_dvi_total_pages} \NC boolean \NC
+\NC 
+     in \DVI\ output mode, if true abort run when the number of pages exceeds 65535. 
+     This is the default behaviour. If false, the run goes on as is in \TEX.
+\NC \NR
 \LL
 \stoptabulate
 
@@ -2817,6 +2822,32 @@ Like kpsewhich's \type {-expand-braces}:
 \stopfunctioncall
 
 \stopsubsection
+
+\startsubsection[title={\type {in_name_ok}}]
+
+\libindex{in_name_ok}
+
+Return true if \type{fname} is acceptable to open for reading. 
+
+\startfunctioncall
+<boolean> r = kpse_in_name_ok(<string> fname)
+\stopfunctioncall
+
+\stopsubsection
+
+\startsubsection[title={\type {out_name_ok}}]
+
+\libindex{out_name_ok}
+
+Return true if \type{fname} is acceptable to open for writing. 
+
+\startfunctioncall
+<boolean> r = kpse_out_name_ok(<string> fname)
+\stopfunctioncall
+
+\stopsubsection
+
+
 
 \startsubsection[title={\type {show_path}}]
 

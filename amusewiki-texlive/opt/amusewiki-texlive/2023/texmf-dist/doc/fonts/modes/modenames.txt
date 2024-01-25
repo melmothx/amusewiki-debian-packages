@@ -133,6 +133,7 @@ phaserfs
 phasertf
 phasertl
 pixpt
+potrace
 prntware
 qms
 qmsostf

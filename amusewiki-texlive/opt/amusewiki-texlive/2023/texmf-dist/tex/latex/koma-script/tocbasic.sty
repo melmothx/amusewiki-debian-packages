@@ -6,10 +6,9 @@
 %%
 %% tocbasic.dtx  (with options: `package,identify')
 %% tocbasic.dtx  (with options: `package,prepare')
-%% scrkernel-tocstyle.dtx  (with options: `package,prepare')
 %% tocbasic.dtx  (with options: `package,option')
-%% scrkernel-tocstyle.dtx  (with options: `package,option')
-%% tocbasic.dtx  (with options: `package,body')
+%% tocbasic.dtx  (with options: `package,execoption')
+%% tocbasic.dtx  (with options: `package,body,deprecated')
 %% scrkernel-tocstyle.dtx  (with options: `package,body')
 %% scrkernel-tocstyle.dtx  (with options: `package,style,gobble')
 %% scrkernel-tocstyle.dtx  (with options: `package,style,dottedtocline')
@@ -53,26 +52,27 @@
 %% find a complete unmodified copy of LaTeX2e at
 %% <http://mirror.ctan.org/tex-archive/macros/latex/base/>.
 %% 
-%%% From File: $Id: tocbasic.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: tocbasic.dtx 4067 2023-06-28 14:37:03Z kohm $
 %%%            (run: identify)
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{tocbasic}[%
-  2023/04/24 v3.40 KOMA-Script
+  2023/07/07 v3.41 KOMA-Script
   package
   (handling toc-files)%
 ]
-%%% From File: $Id: tocbasic.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: tocbasic.dtx 4067 2023-06-28 14:37:03Z kohm $
 %%%            (run: prepare)
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
-%%%            (run: prepare)
-%%% From File: $Id: tocbasic.dtx 4032 2023-04-17 09:45:11Z kohm $
-%%%            (run: option)
-\ProcessOptions\relax
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
-%%%            (run: option)
-%%% From File: $Id: tocbasic.dtx 4032 2023-04-17 09:45:11Z kohm $
-%%%            (run: body)
 \RequirePackage{scrbase}
+\scr@ifundefinedorrelax{NewDocumentCommand}{%
+  \RequirePackage{xparse}[2018-04-12]%
+}{}
+%%% From File: $Id: tocbasic.dtx 4067 2023-06-28 14:37:03Z kohm $
+%%%            (run: option)
+%%% From File: $Id: tocbasic.dtx 4067 2023-06-28 14:37:03Z kohm $
+%%%            (run: execoption)
+\ProcessOptions\relax
+%%% From File: $Id: tocbasic.dtx 4067 2023-06-28 14:37:03Z kohm $
+%%%            (run: body)
 \AfterPackage*{multitoc}{%
   \@ifpackagelater{multitoc}{2022/02/10}{}{%
     \PackageWarningNoLine{tocbasic}{%
@@ -116,19 +116,17 @@
     \if@tempswa\aftergroup\@firstoftwo\else\aftergroup\@secondoftwo\fi
   \endgroup
 }
-\newcommand*{\addtotoclist}{%
-  \kernel@ifnextchar [%]
-    \scr@@addtotoclist\scr@addtotoclist
+\newcommand*{\tb@optowner}[1]{%
+  \IfValueTF{#1}{%
+    #1%
+  }{%
+    \ifx\@currname\@empty\else
+      \@currname.\@currext%
+    \fi
+  }%
 }
-\newcommand*{\scr@addtotoclist}{%
-  \ifx\@currname\@empty
-    \def\reserved@a{\scr@@addtotoclist[]}%
-  \else
-    \edef\reserved@a{\noexpand\scr@@addtotoclist[\@currname.\@currext]}%
-  \fi
-  \reserved@a
-}
-\newcommand*{\scr@@addtotoclist}[2][]{%
+\NewDocumentCommand\addtotoclist{om}{%
+  \edef\reserved@b{\tb@optowner{#1}}%
   \Ifattoclist{#2}{%
     \PackageError{tocbasic}{%
       file extension `#2' cannot be used twice
@@ -142,15 +140,15 @@
     }%
   }{%
     \begingroup
-      \protected@edef\reserved@a{%
+      \edef\reserved@a{%
         \noexpand\g@addto@macro\noexpand\tb@listoftocs{%
-          \noexpand\do{#2}{#1}}}\reserved@a
+          \noexpand\do{#2}{\reserved@b}}}\reserved@a
     \endgroup
-    \ifx\relax #1\relax\else
-      \@ifundefined{tb@#1@add@hook}{}{%
+    \ifx\reserved@b\@empty\else
+      \@ifundefined{tb@\reserved@b @add@hook}{}{%
         \edef\reserved@a{%
           \noexpand\def\noexpand\@currext{#2}%
-          \noexpand\@nameuse{tb@#1@add@hook}%
+          \noexpand\@nameuse{tb@\reserved@b @add@hook}%
           \noexpand\def\noexpand\@currext{\@currext}%
         }\reserved@a
       }%
@@ -170,21 +168,12 @@
   \reserved@a
 }
 \newcommand*{\categoryoftoc}{\owneroftoc}
-\newcommand*{\AtAddToTocList}{%
-  \kernel@ifnextchar [%]
-    \@@AtAddToTocList\@AtAddToTocList
-}
-\newcommand*{\@AtAddToTocList}{%
-  \ifx\@currname\@empty
-    \def\reserved@a{\@@AtAddToTocList[]}%
-  \else
-    \edef\reserved@a{\noexpand\@@AtAddToTocList[\@currname.\@currext]}%
-  \fi
-  \reserved@a
-}
-\newcommand*{\@@AtAddToTocList}[1][]{%
-  \@ifundefined{tb@#1@add@hook}{\@namedef{tb@#1@add@hook}{}}{}%
-  \expandafter\g@addto@macro\csname tb@#1@add@hook\endcsname
+\NewDocumentCommand\AtAddToTocList{o}{%
+  \edef\reserved@a{\tb@optowner{#1}}%
+  \@ifundefined{tb@\reserved@a @add@hook}%
+    {\@namedef{tb@\reserved@a @add@hook}{}}%
+    {}%
+  \expandafter\g@addto@macro\csname tb@\reserved@a @add@hook\endcsname
 }
 \newcommand*{\tocbasic@extend@babel}[1]{%
   \Iftocfeature{#1}{nobabel}{%
@@ -219,99 +208,53 @@
   }%
 }
 \AtAddToTocList[]{\expandafter\tocbasic@extend@babel\expandafter{\@currext}}
-\newcommand*{\removefromtoclist}{%
-  \kernel@ifnextchar [%]
-    \scr@removefromtoclist\scr@@removefromtoclist
-}
-\newcommand*{\scr@removefromtoclist}[2][]{%
+\NewDocumentCommand\removefromtoclist{om}{%
   \begingroup
     \let\tb@oldlist\tb@listoftocs
+    \edef\reserved@b{#2}%
+    \global\let\tb@listoftocs\empty
     \def\do##1##2{%
       \edef\reserved@a{##1}%
       \ifx\reserved@a\reserved@b
-        \begingroup
-          \edef\@currext{##2}%
-          \edef\reserved@b{#1}%
-          \ifx\@currext\reserved@b
-          \else
-            \g@addto@macro\tb@listoftocs{\do{##1}{##2}}%
-          \fi
-        \endgroup
+        \IfValueT{#1}{%
+          \begingroup
+            \edef\@currext{##2}%
+            \edef\reserved@b{#1}%
+            \ifx\@currext\reserved@b
+            \else
+              \g@addto@macro\tb@listoftocs{\do{##1}{##2}}%
+            \fi
+          \endgroup
+        }%
       \else
         \g@addto@macro\tb@listoftocs{\do{##1}{##2}}%
       \fi
     }%
-    \edef\reserved@b{#2}\global\let\tb@listoftocs\@empty
     \tb@oldlist
   \endgroup
 }
-\newcommand*{\scr@@removefromtoclist}[1]{%
-  \begingroup
-    \let\tb@oldlist\tb@listoftocs
+\NewDocumentCommand\doforeachtocfile{o+m}{%
+  \IfValueTF{#1}{%
     \def\do##1##2{%
-      \edef\reserved@a{##1}%
-      \ifx\reserved@a\reserved@b
-      \else
-        \g@addto@macro\tb@listoftocs{\do{##1}{##2}}%
-      \fi
+      \edef\reserved@a{#1}\edef\reserved@b{##2}%
+      \ifx\reserved@a\reserved@b \edef\@currext{##1}#2\fi
     }%
-    \edef\reserved@b{#1}\global\let\tb@listoftocs\@empty
-    \tb@oldlist
-  \endgroup
-}
-\newcommand{\doforeachtocfile}{%
-  \kernel@ifnextchar [%]
-    \@doforeachtocfile\@@doforeachtocfile
-}
-\newcommand{\@doforeachtocfile}[2][]{%
-  \def\do##1##2{%
-    \edef\reserved@a{#1}\edef\reserved@b{##2}\ifx\reserved@a\reserved@b
-      \edef\@currext{##1}#2%
-    \fi
+  }{%
+    \def\do##1##2{\edef\@currext{##1}#2}%
   }%
   \edef\reserved@a{%
     \noexpand\tb@listoftocs
     \noexpand\def\noexpand\@currext{\@currext}%
   }\reserved@a
-  \let\do\relax
+  \let\do\noexpand
 }
-\newcommand{\@@doforeachtocfile}[1]{%
-  \def\do##1##2{%
-    \edef\@currext{##1}#1%
-  }%
-  \edef\reserved@a{%
-    \noexpand\tb@listoftocs
-    \noexpand\def\noexpand\@currext{\@currext}%
-  }\reserved@a
-  \let\do\relax
-}
-\newcommand{\addtoeachtocfile}{%
-  \kernel@ifnextchar [%]
-    \@addtoeachtocfile\@@addtoeachtocfile
-}
-\newcommand{\@addtoeachtocfile}[2][]{%
+\NewDocumentCommand\addtoeachtocfile{o+m}{%
   \doforeachtocfile[{#1}]{\addtocontents{\@currext}{#2}}%
 }
-\newcommand{\@@addtoeachtocfile}[1]{%
-  \doforeachtocfile{\addtocontents{\@currext}{#1}}%
+\NewDocumentCommand\addcontentslinetoeachtocfile{omm}{%
+   \doforeachtocfile[{#1}]{\addcontentsline{\@currext}{#2}{#3}}%
 }
-\newcommand{\addcontentslinetoeachtocfile}{%
-  \kernel@ifnextchar [%]
-    \@addcontentslinetoeachtocfile\@@addcontentslinetoeachtocfile
-}
-\newcommand{\@addcontentslinetoeachtocfile}[3][]{%
-  \doforeachtocfile[{#1}]{\addcontentsline{\@currext}{#2}{#3}}%
-}
-\newcommand{\@@addcontentslinetoeachtocfile}[2]{%
-  \doforeachtocfile{\addcontentsline{\@currext}{#1}{#2}}%
-}
-\newcommand*{\addxcontentsline}[2]{%
-  \kernel@ifnextchar [%]
-  {\@addxcontentsline{#1}{#2}}%
-  {\@addxcontentsline{#1}{#2}[]}%
-}
-\newcommand*{\@addxcontentsline}{}
-\def\@addxcontentsline#1#2[#3]#4{%
+\NewDocumentCommand\addxcontentsline{mmO{}m}{%
   \scr@ifundefinedorrelax{add#2#1entry}{%
     \tocbasic@addxcontentsline{#1}{#2}{#3}{#4}%
   }{%
@@ -320,33 +263,14 @@
 }
 \newcommand*{\nonumberline}{}%
 \newcommand*{\tocbasic@addxcontentsline}[4]{%
-  \if\relax\detokenize{#3}\relax
+  \IfArgIsEmpty{#3}{%
     \addcontentsline{#1}{#2}{\protect\nonumberline#4}%
-  \else
+  }{%
     \addcontentsline{#1}{#2}{\protect\numberline{#3}#4}%
-  \fi
+  }%
 }
-\newcommand{\addxcontentslinetoeachtocfile}{%
-  \kernel@ifnextchar [%]
-    \@addxcontentslinetoeachtocfile\@@addxcontentslinetoeachtocfile
-}
-\newcommand{\@addxcontentslinetoeachtocfile}[2][]{%
-  \kernel@ifnextchar [%]
-    {\@@@addxcontentslinetoeachtocfile[{#1}]{#2}}%
-    {\@@@addxcontentslinetoeachtocfile[{#1}]{#2}[]}
-}
-\newcommand*{\@@@addxcontentslinetoeachtocfile}{}
-\def\@@@addxcontentslinetoeachtocfile[#1]#2[#3]#4{%
-  \doforeachtocfile[{#1}]{\addxcontentsline{\@currext}{#2}[#3]{#4}}%
-}
-\newcommand{\@@addxcontentslinetoeachtocfile}[1]{%
-  \kernel@ifnextchar [%]
-    {\@@@@addxcontentslinetoeachtocfile{#1}}%
-    {\@@@@addxcontentslinetoeachtocfile{#1}[]}%
-}
-\newcommand*{\@@@@addxcontentslinetoeachtocfile}{}
-\def\@@@@addxcontentslinetoeachtocfile#1[#2]#3{%
-  \doforeachtocfile{\addxcontentsline{\@currext}{#1}[{#2}]{#3}}%
+\NewDocumentCommand\addxcontentslinetoeachtocfile{omom}{%
+  \doforeachtocfile[{#1}]{\addxcontentsline{\@currext}{#2}[{#3}]{#4}}
 }
 \newcommand*{\tocbasic@starttoc}[1]{%
   \begingroup
@@ -478,15 +402,8 @@
   }%
 }
 \newcommand*{\listofname}{List of}
-\newcommand*{\listofeachtoc}{%
-  \kernel@ifnextchar [%]
-    \@listofeachtoc\@@listofeachtoc
-}
-\newcommand{\@listofeachtoc}[1][]{%
+\NewDocumentCommand\listofeachtoc{o}{%
   \doforeachtocfile[{#1}]{\listoftoc{\@currext}}%
-}
-\newcommand{\@@listofeachtoc}[1]{%
-  \doforeachtocfile{\listoftoc{\@currext}}%
 }
 \providecommand*{\ext@toc}{toc}
 \newcommand*{\tocbasic@listhead}[1]{%
@@ -1095,7 +1012,7 @@
   }%
 }
 \newcommand*{\tb@nt@autofloattype}{16}
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 %%%            (run: body)
 \newcommand*{\scr@numberline}[1]{%
   \numberline@box{%
@@ -1587,12 +1504,13 @@
     \do{#2}{#3}{#4}{#5}%
   }%
 }
-\newcommand{\TOCEntryStyleInitCode}[1]{%
-  \scr@ifundefinedorrelax{scr@dte@#1@init}{%
-    \expandafter\providecommand\expandafter*%
-    \csname scr@dte@#1@init\endcsname[1]%
+\NewDocumentCommand\TOCEntryStyleInitCode{sm}{%
+  \IfBooleanT{#1}{\expandafter\let\csname scr@dte@#2@init\endcsname\relax}%
+  \scr@ifundefinedorrelax{scr@dte@#2@init}{%
+    \expandafter\newcommand\expandafter*%
+    \csname scr@dte@#2@init\endcsname[1]%
   }{%
-    \expandafter\l@addto@macro@a\csname scr@dte@#1@init\endcsname
+    \expandafter\l@addto@macro@a\csname scr@dte@#2@init\endcsname
   }%
 }
 \newcommand{\TOCEntryStyleStartInitCode}[1]{%
@@ -1634,6 +1552,16 @@
   }%
 }
 \newcommand*{\DeclareTOCStyleEntry}[3][]{%
+  \scr@ifundefinedorrelax{scr@dte@def@l@#2}{%
+    \IfFileExists{tocbasic-tocstyle-#2.def}{%
+      \edef\reserved@a{%
+        \unexpanded{%
+          \makeatletter
+          \input{tocbasic-tocstyle-#2.def}%
+          \catcode`\@=}\the\catcode`\@\relax
+      }\reserved@a
+    }{}%
+  }{}%
   \scr@ifundefinedorrelax{scr@dte@def@l@#2}{%
     \PackageError{tocbasic}{toc entry style `#2' undefined}{%
       Somebody told me to define toc entry `#3' with style `#2',\MessageBreak
@@ -1731,7 +1659,7 @@
       \TOC@EntryEndHook{##1}%
     }%
   }%
-  \TOCEntryStyleInitCode{#1}{%
+  \TOCEntryStyleInitCode*{#1}{%
     \DefineTOCEntryNumberOption{level}{}{tocdepth}{toc entry level}%
     #2%
   }%
@@ -1747,10 +1675,10 @@
 \providecommand*\@pnumwidth{1.55em}
 \providecommand*\@tocrmarg {2.55em}
 \providecommand*\@dotsep   {4.5}
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 %%%            (run: style,gobble)
 \DeclareTOCEntryStyle{gobble}{}%
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 %%%            (run: style,dottedtocline)
 \DeclareTOCEntryStyle{dottedtocline}[{%
   \DefineTOCEntryLengthOption{indent}%
@@ -1894,7 +1822,7 @@
                    {\@nameuse{scr@tso@#1@numwidth}}{##1}{##2}%
   }%
 }
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 %%%            (run: style,undottedtocline)
 \DeclareTOCEntryStyle{undottedtocline}[{%
   \DefineTOCEntryLengthOption{indent}%
@@ -2064,7 +1992,7 @@
     \endgroup
   \fi
 }
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 %%%            (run: style, largetocline)
 \DeclareTOCEntryStyle{largetocline}[{%
   \DefineTOCEntryLengthOption{indent}%
@@ -2185,7 +2113,7 @@
     \endgroup
   \fi
 }
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 %%%            (run: style,tocline)
 \DeclareTOCEntryStyle{tocline}[{%
   \DefineTOCEntryLengthOption{beforeskip}%
@@ -2726,7 +2654,7 @@
     \mkern \@dotsep mu\hbox{#1}\mkern \@dotsep
     mu$}\hfill
 }
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 %%%            (run: style,toctext)
 \DeclareTOCEntryStyle{toctext}[{%
   \DefineTOCEntryLengthOption{beforeskip}%
@@ -2978,10 +2906,10 @@
 \newcommand*{\scr@dte@toctext@raggedright}{}
 \newcommand*{\scr@dte@toctext@parend}{}
 \newcommand*{\scr@dte@toctext@lastend}{}
-%%% From File: $Id: scrkernel-tocstyle.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: scrkernel-tocstyle.dtx 4060 2023-06-20 08:59:01Z kohm $
 %%%            (run: style,dottedtocline)
 \CloneTOCEntryStyle{dottedtocline}{default}
-%%% From File: $Id: tocbasic.dtx 4032 2023-04-17 09:45:11Z kohm $
+%%% From File: $Id: tocbasic.dtx 4067 2023-06-28 14:37:03Z kohm $
 %%%            (run: exit)
 \AtBeginDocument{%
   \@ifundefined{MakeMarkcase}{%

@@ -1,4 +1,4 @@
-# THE POLYGLOSSIA PACKAGE v1.62
+# THE POLYGLOSSIA PACKAGE v1.66
 ## Multilingual typesetting with XeLaTeX and LuaLaTeX
 
 This package provides an alternative to Babel for users of XeLaTeX and LuaLaTeX.
@@ -27,7 +27,7 @@ Polyglossia makes it possible to automate the following tasks:
 # LICENCE
 
 Copyright (c) 2008-2010 François Charette, 2013 Élie Roux, 2011-2023 Arthur Reutenauer,
-Copyright (c) 2019-2023 Bastien Roucariès, 2019-2023 Jürgen Spitzmüller
+Copyright (c) 2019-2023 Bastien Roucariès, 2019-2023 Jürgen Spitzmüller, 2023 Udi Fogiel
 
 Except where otherwise noted, Polyglossia is placed under the terms of the MIT licence
 (https://opensource.org/licenses/MIT).

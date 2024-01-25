@@ -1,4 +1,4 @@
-% {\tt\catcode`\$=12 $Id: modes.mf,v 1.29 2020/09/08 22:12:43 karl Exp $ }
+% {\tt\catcode`\$=12 $Id: modes.mf,v 1.31 2023/12/12 22:49:08 karl Exp $ }
 %%\font\tenlogosl=logosl10
 %%\def\logofont{\ifdim\fontdimen1\font>0pt \tenlogosl\else\tenlogo\fi}
 %%\def\MF{{\logofont META}\-{\logofont FONT}}
@@ -24,11 +24,14 @@
 % be used freely.  You can retrieve the latest version from {\tt
 % https://ctan.org/pkg/modes}, among other places.
 %
+% For bug reports, discussion, or to submit a new |mode_def|, please
+% send it to {\tt tex-k@tug.org} (explanations below).
+%
+% For general discussion about \MF, the mailing list {\tt
+% tex-fonts@math.utah.edu} is a good place.
+%
 % Feel free to change the definitions of |localfont|, |screen_cols|,
 % and |screen_rows| at the end of file (see explanations below).
-%
-% If you make a new |mode_def|, please send it to
-% {\tt tex-fonts@math.utah.edu} (explanations below also).
 %
 % The mode definitions start at `Here are the modes', several hundred
 % lines down.  The companion files {\tt modelist.txt} and {\tt
@@ -48,11 +51,11 @@
 %%\begingroup \tt \catcode`\{=12 \catcode`\}=12 \obeyspaces
 % @mffile{
 %   author = "The Metafont community",
-%   version = "4.2",
-%   date = "Tue Sep  8 15:13:58 PDT 2020"
+%   version = "4.3",
+%   date = "Tue Dec 12 14:49:12 PST 2023"
 %   filename = "modes.mf",
-%   email = "tex-fonts@math.utah.edu"
-%   checksum = "2662 13333 97582",
+%   email = "tex-k@tug.org"
+%   checksum = "2674 13389 97995",
 %   codetable = "ISO/ASCII",
 %   supported = "yes",
 %   docstring = "
@@ -431,10 +434,10 @@
 
 % Don't let ourselves be processed twice.
 if known modes_mf: endinput; fi;
-modes_mf := 4.2;
+modes_mf := 4.3;
 
 % Identify ourselves in the format file.
-base_version := base_version & "/modes 4.2";
+base_version := base_version & "/modes 4.3";
 
 % Here are useful macros (also called definitions) we use throughout.
 
@@ -2222,6 +2225,15 @@ mode_def pixpt =                    %\[ one pixel per point (72.27dpi)
   mode_param (fillin, 0);
   mode_param (o_correction, 1);
   mode_common_setup_;
+enddef;
+
+% For Hans Hagen and Mikael Sundqvist's use of bitmaps, December 2023.
+mode_def potrace =                  %\[ potrace use in LMTX
+     mode_param (pixels_per_inch, 2 * 3600);
+     mode_param (blacker, 0);
+     mode_param (fillin, 0);
+     mode_param (o_correction, 1);
+     mode_common_setup_;
 enddef;
 
 % This is a write-white PostScript laser-setter, made by a Xerox

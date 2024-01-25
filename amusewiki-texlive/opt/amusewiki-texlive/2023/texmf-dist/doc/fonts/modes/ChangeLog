@@ -1,3 +1,8 @@
+2023-12-12  Karl Berry  <karl@freefriends.org>
+
+	* GNUmakefile (version): 4.3.
+	* modes.mf (potrace): new mode for hans/mikael.
+
 2020-09-08  Karl Berry  <karl@freefriends.org>
 
 	* version 4.2.

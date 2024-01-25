@@ -1,6 +1,6 @@
 name babel-german
 category Package
-revision 57978
+revision 69506
 shortdesc Babel support for documents written in German
 longdesc This bundle is an extension to the babel package for
 longdesc multilingual typesetting. It provides all the necessary macros,
@@ -8,17 +8,17 @@ longdesc definitions and settings to typeset German documents. The
 longdesc bundle includes support for the traditional and reformed German
 longdesc orthography as well as for the Austrian and Swiss varieties of
 longdesc German.
-containersize 3964
-containerchecksum 0d7ee8aaf0b8df0040e3c7b6e41b999e21d79502dc084ef657392e2e4704101b49ef7b99d5b8059a6f271683c01a09ab19db3ec2a9c923a8bcdd14db819f6107
-doccontainersize 497832
-doccontainerchecksum 59dbbb949ee4390c9891b0b2c44b93cf81c9b5da1be6c75ec6aa3b38a657aee6e28e7d02d0e188fa37c15647f40e553f13fd0f18845f4a8a3dfd9eb169886fb2
-docfiles size=189
+containersize 4208
+containerchecksum 372ba15d67ae4a5299a8d193d4fbe1c01a89db686c4d152ce2fef05088be63e7d85a7cf4fb712629d1ec8b21517bf3881ad3de947e03e127af940714a6d059ec
+doccontainersize 570756
+doccontainerchecksum e4ca225a4fcb681c0b59d833fcc8a3781f1315adaf26e7db62f85aca145028f9f5f3bc7a19b7909220ebbbcbd25d2fdf2136d0f1ff5a5823e63c3362a24d9750
+docfiles size=197
  texmf-dist/doc/generic/babel-german/README details="Readme"
  texmf-dist/doc/generic/babel-german/germanb.pdf details="Package documentation (traditional orthography)"
  texmf-dist/doc/generic/babel-german/ngermanb.pdf details="Package documentation  (new orthography)"
-srccontainersize 14968
-srccontainerchecksum 64880138c89fae929df6d7aea149ccfa79c7ec558ca307cd28218d891ae6f72e9042358ab0038b1850aa3d30b2d7d80eff2a60328ba37699f68c3d00cd341611
-runfiles size=11
+srccontainersize 15872
+srccontainerchecksum 786bf7b892f48e09496c99b998c692f8cbcd40c2727700291fe1cc35518c3acd1caaeb0841bf3b1d05c3ed931aaa0d7ee6cd564f40b41e30fbec0f42eac48da1
+runfiles size=12
  texmf-dist/tex/generic/babel-german/austrian.ldf
  texmf-dist/tex/generic/babel-german/german.ldf
  texmf-dist/tex/generic/babel-german/germanb.ldf
@@ -31,4 +31,4 @@ catalogue-contact-repository https://github.com/jspitz/babel-german
 catalogue-ctan /macros/latex/contrib/babel-contrib/german
 catalogue-license lppl1.3
 catalogue-topics german multilingual-addon
-catalogue-version 2.13
+catalogue-version 2.14

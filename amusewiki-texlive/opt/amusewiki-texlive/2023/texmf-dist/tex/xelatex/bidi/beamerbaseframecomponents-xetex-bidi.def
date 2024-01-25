@@ -20,7 +20,7 @@
 %%   by Vafa Khalighi.
 %% 
 %% 
-%% \CheckSum{58794}
+%% \CheckSum{58884}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -37,7 +37,7 @@
 %%   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %%   Right brace   \}     Tilde         \~}
 %%
-\ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2023/01/18 v0.5 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
+\ProvidesFile{beamerbaseframecomponents-xetex-bidi.def}[2023/08/02 v0.6 bidi adaptations for beamerbaseframecomponents package for XeTeX engine]
 \renewcommand{\setbeamersize}[1]{%
   \beamer@dogeometryfalse%
   \setkeys{beamer@margin}{#1}%
@@ -196,7 +196,7 @@
     \endgroup%
   }
   \def\@oddfoot{{\normalcolor{\hfil%
-    \setbox\beamer@tempbox=\hbox{\usebeamertemplate***{navigation symbols}\hskip-\Gm@rmargin\hskip2pt}%
+    \setbox\beamer@tempbox=\hbox{\usebeamertemplate***{navigation symbols}\hskip-\bidi@beamer@Gm@rmargin\hskip2pt}%
     \ht\beamer@tempbox=0pt%
     \dp\beamer@tempbox=0pt%
     \box\beamer@tempbox}}}
