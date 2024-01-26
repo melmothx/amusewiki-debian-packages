@@ -1232,6 +1232,7 @@ etoolbox
 euenc
 everyhook
 everyshi
+fgruler
 filehook
 firstaid
 fontspec
@@ -1905,6 +1906,10 @@ README
 ./doc/latex/everyshi:
 everyshi.pdf
 README.md
+
+./doc/latex/fgruler:
+fgruler.pdf
+README
 
 ./doc/latex/filehook:
 DEPENDS.txt
@@ -23796,6 +23801,7 @@ etoolbox
 euenc
 everyhook
 everyshi
+fgruler
 filehook
 firstaid
 fontspec
@@ -24599,6 +24605,9 @@ everyhook.sty
 ./tex/latex/everyshi:
 everyshi-2001-05-15.sty
 everyshi.sty
+
+./tex/latex/fgruler:
+fgruler.sty
 
 ./tex/latex/filehook:
 filehook-2019.sty

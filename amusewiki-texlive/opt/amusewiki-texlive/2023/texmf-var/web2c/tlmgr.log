@@ -344,3 +344,5 @@
 [Thu Jan 25 20:30:16 2024]   OK: mf.fmt/mf-nowin
 [Thu Jan 25 20:36:51 2024] install: bookcover
 [Thu Jan 25 20:36:51 2024] command: mktexlsr
+[Fri Jan 26 08:51:14 2024] install: fgruler
+[Fri Jan 26 08:51:14 2024] command: mktexlsr
