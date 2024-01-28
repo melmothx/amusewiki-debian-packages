@@ -1243,6 +1243,7 @@ gettitlestring
 graphics
 graphics-cfg
 graphics-def
+grfext
 hycolor
 hyperref
 ifplatform
@@ -1978,6 +1979,10 @@ trig.pdf
 README.md
 
 ./doc/latex/graphics-def:
+README.md
+
+./doc/latex/grfext:
+grfext.pdf
 README.md
 
 ./doc/latex/hycolor:
@@ -23812,6 +23817,7 @@ geometry
 graphics
 graphics-cfg
 graphics-def
+grfext
 hycolor
 hyperref
 ifplatform
@@ -24704,6 +24710,9 @@ dvisvgm.def
 luatex.def
 pdftex.def
 xetex.def
+
+./tex/latex/grfext:
+grfext.sty
 
 ./tex/latex/hycolor:
 hycolor.sty

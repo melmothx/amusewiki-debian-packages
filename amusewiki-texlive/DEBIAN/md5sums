@@ -366,6 +366,7 @@ e466f337232b03b2c154c39dc3fa1afd  opt/amusewiki-texlive/2023/tlpkg/tlpobj/ulem.t
 66ce1c22aa3034bcd6cd94cedb50202c  opt/amusewiki-texlive/2023/tlpkg/tlpobj/babel-english.tlpobj
 a4ca200457b7f66c0a3e8104ed24989d  opt/amusewiki-texlive/2023/tlpkg/tlpobj/hyphen-basque.tlpobj
 7bc26cd1124c37e7059757a17f26596c  opt/amusewiki-texlive/2023/tlpkg/tlpobj/intcalc.tlpobj
+81cb761c88ec6caf1e64a4bbc4d44401  opt/amusewiki-texlive/2023/tlpkg/tlpobj/grfext.tlpobj
 a367a25562a6735e2a65efac0a4b8a83  opt/amusewiki-texlive/2023/tlpkg/tlpobj/pdfescape.tlpobj
 078c8a114c29aabdf0fff258f89caca0  opt/amusewiki-texlive/2023/tlpkg/tlpobj/luatex.x86_64-linux.tlpobj
 4ba269af5707ae36ca9ff511118d0b38  opt/amusewiki-texlive/2023/tlpkg/tlpobj/bibtex.tlpobj
@@ -425,7 +426,7 @@ d41d8cd98f00b204e9800998ecf8427e  opt/amusewiki-texlive/2023/tlpkg/gpg/secring.g
 35bf56f2313024be55ae83a729879b73  opt/amusewiki-texlive/2023/tlpkg/gpg/pubring.gpg
 510aff7a69ff836c84f78f69c3943c67  opt/amusewiki-texlive/2023/tlpkg/gpg/tl-key-extension.txt
 9c64f178674c1514eb5855d2118bd125  opt/amusewiki-texlive/2023/tlpkg/gpg/random_seed
-53ba00de9cfbe813b5aa4bc12653296e  opt/amusewiki-texlive/2023/tlpkg/texlive.tlpdb
+b4d5fb97190bcfa469638b8eca79c632  opt/amusewiki-texlive/2023/tlpkg/texlive.tlpdb
 9d94a04603d78c949580b4d006bc0fb4  opt/amusewiki-texlive/2023/tlpkg/TeXLive/TLTREE.pm
 be8eecb131fa7acaec0ea6be9b2d9d75  opt/amusewiki-texlive/2023/tlpkg/TeXLive/TLDownload.pm
 65bc8968285b5ab585facc8ec656583c  opt/amusewiki-texlive/2023/tlpkg/TeXLive/TLUtils.pm
@@ -448,7 +449,7 @@ eba30c17873307475603ca9e6643a3d1  opt/amusewiki-texlive/2023/tlpkg/installer/COP
 bb272c0499e5c65f0226aedd1689dda5  opt/amusewiki-texlive/2023/tlpkg/installer/install-menu-text.pl
 12f0bfe2d8778da53addca4dc0f4b768  opt/amusewiki-texlive/2023/tlpkg/installer/lz4/lz4.x86_64-linux
 34dca08cdf22a6e51f7961ee55a089fe  opt/amusewiki-texlive/2023/tlpkg/installer/xz/xz.x86_64-linux
-3b24129c269d99cdfcc454eff809a8b1  opt/amusewiki-texlive/2023/tlpkg/texlive.tlpdb.main.649da3c40d6b6d1f72dc2e3dccf9a681
+486a804cdba66c5ded5c4da7ad62b06e  opt/amusewiki-texlive/2023/tlpkg/texlive.tlpdb.main.649da3c40d6b6d1f72dc2e3dccf9a681
 331e6735bc969cc4accaa2e23d70a474  opt/amusewiki-texlive/2023/texmf-dist/xdvi/XDvi
 b775633b9777ce7c880617aeb7a196c6  opt/amusewiki-texlive/2023/texmf-dist/xdvi/pixmap/toolbar.xpm
 d9672d0d891f80e6876f70ebb67a56c1  opt/amusewiki-texlive/2023/texmf-dist/xdvi/pixmap/toolbar2.xpm
@@ -500,7 +501,7 @@ fcf4bb8076867d2221e8e05d1a93e057  opt/amusewiki-texlive/2023/texmf-dist/web2c/na
 6aded70d09124c4a585bb6f38449482f  opt/amusewiki-texlive/2023/texmf-dist/web2c/mktexupd
 8e32e6b7854d889126138b271ff40d20  opt/amusewiki-texlive/2023/texmf-dist/web2c/il2-cs.tcx
 bdaa51da478bcf6f61c31d48d2cdcc21  opt/amusewiki-texlive/2023/texmf-dist/web2c/mktex.opt
-dd827e185dd8ed7b5b02619b2e65f24a  opt/amusewiki-texlive/2023/texmf-dist/ls-R
+c53017488967499f3bb030d2f933008c  opt/amusewiki-texlive/2023/texmf-dist/ls-R
 4d1e346a95e3a566786597499457f08c  opt/amusewiki-texlive/2023/texmf-dist/metafont/base/plain.mf
 8153f2ea78491094378d71fe55c2dd9a  opt/amusewiki-texlive/2023/texmf-dist/metafont/base/mf.mf
 2ff4166ae1bda7b8f7a20f014c51aad5  opt/amusewiki-texlive/2023/texmf-dist/metafont/config/mf.ini
@@ -1687,6 +1688,8 @@ e73c1a3300eb70e93e14fdd24e126acf  opt/amusewiki-texlive/2023/texmf-dist/doc/late
 48b77c91de672c7272b4c09d3a680a18  opt/amusewiki-texlive/2023/texmf-dist/doc/latex/platex-tools/plextarray.tex
 62531706f59391b78e1b9273c0c0a9b3  opt/amusewiki-texlive/2023/texmf-dist/doc/latex/platex-tools/pxeverysel.tex
 d63557d883c0cdb056f3e3e5ae3dde8b  opt/amusewiki-texlive/2023/texmf-dist/doc/latex/platex-tools/plextcolortbl.pdf
+83e7a1bcbac2f516253290151c840d9e  opt/amusewiki-texlive/2023/texmf-dist/doc/latex/grfext/README.md
+a48de982360ed9ef5c2b1aef259140b8  opt/amusewiki-texlive/2023/texmf-dist/doc/latex/grfext/grfext.pdf
 7141c5518a37eaba5d660905f3c60e12  opt/amusewiki-texlive/2023/texmf-dist/doc/latex/zref/zref-example-nextpage.tex
 0ee435920fe11f9e5215a33cb3af98b1  opt/amusewiki-texlive/2023/texmf-dist/doc/latex/zref/README.md
 47c4ad21ea77f32638e8f32199cadafa  opt/amusewiki-texlive/2023/texmf-dist/doc/latex/zref/zref-example-lastpage.tex
@@ -20230,6 +20233,7 @@ e4dc051777a4a7c2de92565a9e2b27f2  opt/amusewiki-texlive/2023/texmf-dist/tex/late
 a34c502a0392865dd80ef26aa61502e6  opt/amusewiki-texlive/2023/texmf-dist/tex/latex/platex-tools/pldocverb.sty
 c9a932b703ec775d4c47e1507d7ad29a  opt/amusewiki-texlive/2023/texmf-dist/tex/latex/platex-tools/plarray.sty
 7bd5abbb9fcfa2c36702c059e0dd471e  opt/amusewiki-texlive/2023/texmf-dist/tex/latex/platex-tools/plextcolortbl.sty
+b94bbacbee6e4fdccdc7f810b2aec370  opt/amusewiki-texlive/2023/texmf-dist/tex/latex/grfext/grfext.sty
 488aff047a3fc0eb4b481f257d4735a6  opt/amusewiki-texlive/2023/texmf-dist/tex/latex/zref/zref-titleref.sty
 780ba3c0645b9c6ffca0e5cd73ef2bfd  opt/amusewiki-texlive/2023/texmf-dist/tex/latex/zref/zref-savepos.sty
 4fe6fb3396214c91f164d45faf9bec45  opt/amusewiki-texlive/2023/texmf-dist/tex/latex/zref/zref-abspage.sty
@@ -24069,7 +24073,7 @@ d339db2e5008b67a34d9763a23b33888  opt/amusewiki-texlive/2023/texmf-var/web2c/eup
 95220c3d9852308afea87743bc8080f3  opt/amusewiki-texlive/2023/texmf-var/web2c/euptex/platex-dev.fmt
 1ad6d4f7d5fd7c1b1a48d4e8e5f65d62  opt/amusewiki-texlive/2023/texmf-var/web2c/metafont/mf.log
 2e1f31e10e52624a9cf810826260a34c  opt/amusewiki-texlive/2023/texmf-var/web2c/metafont/mf.base
-e12f961494c16214e6b6641be2dec820  opt/amusewiki-texlive/2023/texmf-var/web2c/tlmgr-commands.log
+4812b73213064c9c9b980ab722c06b97  opt/amusewiki-texlive/2023/texmf-var/web2c/tlmgr-commands.log
 6c9f9a5ca6b5c714ba5cb1831420c8b8  opt/amusewiki-texlive/2023/texmf-var/web2c/xetex/xelatex.fmt
 76827688108bb2a44ea2d24a7d893ad3  opt/amusewiki-texlive/2023/texmf-var/web2c/xetex/xelatex.log
 6fe47ab868f5989bb7849d1d4dc90fd5  opt/amusewiki-texlive/2023/texmf-var/web2c/xetex/xetex.log
@@ -24082,7 +24086,7 @@ f721c0cf38553897462f7216c1e18476  opt/amusewiki-texlive/2023/texmf-var/web2c/ept
 e6975cd81dafe90de35be3ce90a943ea  opt/amusewiki-texlive/2023/texmf-var/web2c/eptex/eptex.fmt
 8c710450eb518baa36b46ddfd3e1cae0  opt/amusewiki-texlive/2023/texmf-var/web2c/eptex/platex.fmt
 be8efef1b91828457eb08fe52c89a63b  opt/amusewiki-texlive/2023/texmf-var/web2c/eptex/ptex.log
-fecbb61214862bacdac172879f0df048  opt/amusewiki-texlive/2023/texmf-var/web2c/tlmgr.log
+a3eddda5c6e5cb8310e0d167b2b0ef75  opt/amusewiki-texlive/2023/texmf-var/web2c/tlmgr.log
 7aca3d3871b5279b7be0719da904a328  opt/amusewiki-texlive/2023/texmf-var/web2c/updmap.log
 21f5c239ca92a70f2222519f4bb0d91e  opt/amusewiki-texlive/2023/texmf-var/web2c/luatex/dviluatex.fmt
 70f551710c092d692858f8ef2112421d  opt/amusewiki-texlive/2023/texmf-var/web2c/luatex/dvilualatex.log
