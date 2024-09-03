@@ -4,7 +4,7 @@ $prefix = "it";
 $script = "latin";
 
 $alphabet = [
-['A',  ['a','A'],[],[],['à','À']],
+['A',  ['a','A'],[],[],['à','À'], ['á', 'Á']],
                    [], # a with breve (romanian)
                    [], # a with circumflex (romanian)
                    [], # a with ogonek (polish)
