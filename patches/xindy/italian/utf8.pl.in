@@ -64,7 +64,7 @@ $alphabet = [
                    [], # l with stroke (polish)
                    [], # l with caron (slovak/large)
 ['M',  ['m','M']],
-['N',  ['n','N']],
+['N',  ['n','N'], ['ñ', 'Ñ']],
                    [], # nj (albanian, croatian)
                    [], # ny (hungarian)
                    [], # n with caron (slovak/large)
