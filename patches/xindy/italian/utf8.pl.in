@@ -1,5 +1,4 @@
 #!/usr/bin/perl
-
 $language = "Italian";
 $prefix = "it";
 $script = "latin";
@@ -11,7 +10,7 @@ $alphabet = [
                    [], # a with ogonek (polish)
 ['B',  ['b','B']],
                    [], # b with hook (hausa)
-['C',  ['c','C']],
+['C',  ['c','C'], ['ç', 'Ç'], ['č', 'Č'], ['ć', 'Ć']],
                    [], # ch (spanish/traditional)
                    [], # cs (hungarian)
                    [], # c with caron (many)
@@ -28,7 +27,7 @@ $alphabet = [
                    [], # d with stroke (croatian)
                    [], # d with hook (hausa)
                    [], # eth (icelandic)
-['E',  ['e','E'],[],['é','É'],['è','È']],
+['E',  ['e','E'],[],['é','É'],['è','È'], ['ë', 'Ë']],
                    [], # e with caron (lower/upper sorbian)
                    [], # e with circumflex (kurdish)
                    [], # e with diaeresis (albanian)
@@ -72,7 +71,7 @@ $alphabet = [
                    [], # n with acute (lower/upper sorbian, polish)
                    [], # n with tilde (spanish/modern, spanish/traditional)
                    [], # n with cedilla/comma (latvian)
-['O',  ['o','O'],[],['ó','Ó'],['ò','Ò']],
+['O',  ['o','O'],[],['ó','Ó'],['ò','Ò'], ['ö', 'Ö']],
                    [], # o with acute (polish, upper sorbian)
                    [], # o with circumflex (vietnamese)
                    [], # o with horn (vietnamese)
@@ -85,7 +84,7 @@ $alphabet = [
                    [], # r with caron (czech, slovak/large, upper sorbian)
                    [], # r with acute (lower sorbian)
                    [], # r with cedilla/comma (latvian)
-['S',  ['s','S']],
+['S',  ['s','S'], [ 'š', 'Š']],
                    [], # sh (albanian)
                    [], # sz (hungarian)
                    [], # s with caron (many)
@@ -101,7 +100,7 @@ $alphabet = [
                    [], # t with caron (slovak/large)
                    [], # t with comma below (romanian)
                    [], # c with acute (upper sorbian)
-['U',  ['u','U'],['ú','Ú'],['ù','Ù']],
+['U',  ['u','U'],['ú','Ú'],['ù','Ù'], ['ü', 'Ü']],
                    [], # u with breve (esperanto)
                    [], # u with circumflex (kurdish)
                    [], # u with horn (vietnamese)
@@ -117,7 +116,7 @@ $alphabet = [
 ['Y',  ['y','Y']],
                    [], # y preceded by apostrophe (hausa)
                    [], # yogh (english)
-['Z',  ['z','Z']],
+['Z',  ['z','Z'], ['ž', 'Ž']],
                    [], # zs (hungarian)
                    [], # zh (albanian)
                    [], # z with caron (many)
