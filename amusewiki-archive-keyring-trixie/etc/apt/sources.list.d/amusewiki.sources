@@ -1,0 +1,5 @@
+Types: deb
+URIs: http://deb.amusewiki.org/debian
+Suites: trixie
+Components: main
+Signed-By: /usr/share/keyrings/amusewiki.gpg

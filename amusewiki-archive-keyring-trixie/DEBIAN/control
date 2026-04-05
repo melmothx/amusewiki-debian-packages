@@ -1,0 +1,10 @@
+Package: amusewiki-archive-keyring-trixie
+Version: 1.0.0
+Section: misc
+Priority: optional
+Homepage: https://deb.amusewiki.org
+Architecture: all
+Maintainer: Marco Pessotto <melmothx@gmail.com>
+Description: Archive keyring and APT source for Amusewiki
+ Installs the public signing key and APT source configuration
+ for the amusewiki repository.
