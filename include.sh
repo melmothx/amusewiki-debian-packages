@@ -14,11 +14,8 @@ cd ~
 
 for p in "$@"; do
     if [ -f "$p" ]; then
-        # reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb jessie $p
-        reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb stretch $p
-        reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb buster $p
-        reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb bullseye $p
-        reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian includedeb bookworm $p
+        reprepro -b /var/www/deb.amusewiki.org/repos/apt/debian includedeb bookworm $p
+        reprepro -b /var/www/deb.amusewiki.org/repos/apt/debian includedeb trixie $p
         mkdir -p uploaded
         mv $p uploaded
     else
@@ -26,32 +23,25 @@ for p in "$@"; do
     fi
 done
 
-rm -rf amusewiki-packages
-mkdir amusewiki-packages
-reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian checkpool
-find /var/www/packages.amusewiki.org/repos/apt/debian -iname "*.deb" -exec cp {} amusewiki-packages \;
-tar -czvf amusewiki-debian-packages.tar.gz amusewiki-packages
-gpg2 --detach-sign amusewiki-debian-packages.tar.gz
-mv amusewiki-debian-packages.tar.gz /var/www/packages.amusewiki.org/repos/apt/
-mv amusewiki-debian-packages.tar.gz.sig /var/www/packages.amusewiki.org/repos/apt/
+reprepro -b /var/www/deb.amusewiki.org/repos/apt/debian checkpool
 
-
-cat <<EOF > /var/www/packages.amusewiki.org/repos/apt/index.html
+cat <<EOF > /var/www/deb.amusewiki.org/repos/apt/index.html
 <!doctype html>
 <html>
   <head>
     <title>Amusewiki debian packages</title>
   </head>
   <body>
-    <h1>How to install <a href="https://amusewiki.org">amusewiki</a> in 4 commands (on Debian Stretch/Buster/Bullseye/Bookworm and Ubuntu 18.04 LTS)</h1>
+    <h1>How to install <a href="https://amusewiki.org">amusewiki</a> in 4 commands (on Debian Bookworm/Trixie/Ubuntu)</h1>
 
 <p>Please note that the .deb packages provided here are fully compatible for Debian and Ubuntu, and the instructions are the same
 even if the source list will say <code>debian</code>.</p>
 
-<p>Existing packages for Jessie and Ubuntu 16.04 (see below) are
-still provided, but the support for them has stopped with Amusewiki
-release 2.390. You can still run Amusewiki on such systems using the
-<a href="https://amusewiki.org/library/install">manual
+<p>Existing packages for older Debian and Ubuntu releases are still
+provided at <a href="https://packages.amusewiki.org">https://packages.amusewiki.org</a>,
+but support for them has stopped with Amusewiki release 2.611 (December 2026).
+You can still run Amusewiki on such systems
+using the <a href="https://amusewiki.org/library/install">manual
 installation</a>.</p>
 
 <p>Supported database are mysql, postgresql and sqlite3. 
@@ -67,22 +57,27 @@ See for example <a href="http://kbeezie.com/apache-with-nginx/">this
 article</a> for a combined setup Apache/Nginx.
 </p>
 
+<h2>Add the keyring and the APT source list</h2>
 
-    <h2>Add the key</h2>
-    <pre>
-# wget -qO- https://packages.amusewiki.org/amusewiki.gpg.key | tee /etc/apt/trusted.gpg.d/amusewiki.asc
-    </pre>
-    <h2>Add a source list entry</h2>
-    <p>Please use <code>bullseye</code> (for Debian Bullseye) or <code>buster</code> (for Debian Buster) or <code>bookworm</code> (for Debian Bookworm) instead of <code>stretch</code> (Debian Stretch and Ubuntu 18.04) depending on your distribution. See below for the details.</p>
-    <pre>
-# echo 'deb http://packages.amusewiki.org/debian stretch main' &gt; /etc/apt/sources.list.d/amusewiki.list
-    </pre>
-    <h2>Install amusewiki</h2>
-    <pre>
+For Trixie:
+
+<pre>
+wget http://deb.amusewiki.org/debian/pool/main/a/amusewiki-archive-keyring-trixie/amusewiki-archive-keyring-trixie_1.0.0_all.deb
+</pre>
+
+For Bookworm:
+
+<pre>
+wget http://deb.amusewiki.org/debian/pool/main/a/amusewiki-archive-keyring-bookworm/amusewiki-archive-keyring-bookworm_1.0.0_all.deb
+</pre>
+
+Then run:
+<pre>
 # apt-get update      
 # apt-get install amusewiki-extra-fonts # this is optional
 # apt-get install --no-install-recommends amusewiki
-    </pre>
+</pre>
+
 <p>
 The output is going to prompt you to change the nginx configuration and give you the credentials for the login.
 </p>
@@ -112,80 +107,35 @@ it, you can look at <code>/var/log/amusewiki/installation.log</code>
       <a href="/debian/pool">You can browse them here</a>
     </p>
     <div>
-      <h2>Bookworm</h2>
+      <h2>Trixie</h2>
     <pre>
-# echo 'deb http://packages.amusewiki.org/debian bookworm main' &gt; /etc/apt/sources.list.d/amusewiki.list
+# echo 'deb http://deb.amusewiki.org/debian bookworm main' &gt; /etc/apt/sources.list.d/amusewiki.list
     </pre>
 
       <pre>
 EOF
 
-reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list bookworm | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
+reprepro -b /var/www/deb.amusewiki.org/repos/apt/debian list trixie | sed -e 's/^.*: //' | sort | uniq >> /var/www/deb.amusewiki.org/repos/apt/index.html
 
-cat <<EOF>>/var/www/packages.amusewiki.org/repos/apt/index.html
+cat <<EOF>>/var/www/deb.amusewiki.org/repos/apt/index.html
       </pre>
     </div>
 
     <div>
       <h2>Bullseye</h2>
     <pre>
-# echo 'deb http://packages.amusewiki.org/debian bullseye main' &gt; /etc/apt/sources.list.d/amusewiki.list
+# echo 'deb http://deb.amusewiki.org/debian bullseye main' &gt; /etc/apt/sources.list.d/amusewiki.list
     </pre>
 
       <pre>
 EOF
 
-reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list bullseye | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
+reprepro -b /var/www/deb.amusewiki.org/repos/apt/debian list bookworm | sed -e 's/^.*: //' | sort | uniq >> /var/www/deb.amusewiki.org/repos/apt/index.html
 
-cat <<EOF>>/var/www/packages.amusewiki.org/repos/apt/index.html
+
+cat <<EOF >> /var/www/deb.amusewiki.org/repos/apt/index.html
       </pre>
     </div>
-    <div>
-      <h2>Buster</h2>
-    <pre>
-# echo 'deb http://packages.amusewiki.org/debian buster main' &gt; /etc/apt/sources.list.d/amusewiki.list
-    </pre>
-
-      <pre>
-EOF
-
-reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list buster | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
-
-cat <<EOF>>/var/www/packages.amusewiki.org/repos/apt/index.html
-      </pre>
-    </div>
-    <div>
-      <h2>Stretch (and Ubuntu 18.04 LTS)</h2>
-    <pre>
-# echo 'deb http://packages.amusewiki.org/debian stretch main' &gt; /etc/apt/sources.list.d/amusewiki.list
-    </pre>
-
-      <pre>
-EOF
-
-reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list stretch | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
-
-
-
-cat <<EOF>>/var/www/packages.amusewiki.org/repos/apt/index.html
-      </pre>
-    </div>
-    <div>
-      <h2>Jessie (and Ubuntu 16.04 LTS). [ARCHIVED]</h2>
-    <pre>
-# echo 'deb http://packages.amusewiki.org/debian jessie main' &gt; /etc/apt/sources.list.d/amusewiki.list
-    </pre>
-
-      <pre>
-EOF
-
-reprepro -b /var/www/packages.amusewiki.org/repos/apt/debian list jessie | sed -e 's/^.*: //' | sort | uniq >> /var/www/packages.amusewiki.org/repos/apt/index.html
-
-
-cat <<EOF >> /var/www/packages.amusewiki.org/repos/apt/index.html
-      </pre>
-    </div>
-    <div><a href="amusewiki-debian-packages.tar.gz">Get all the package here if you want to install them without apt.<a> <a href="amusewiki-debian-packages.tar.gz.sig">Signature.</a> <a href="https://github.com/melmothx/amusewiki-debian-packages">Sources</a></div>
     <h1>Contact and bug reports</h1>
     <p>Marco Pessotto <code>melmothx -at- gmail -dot- com</code></p>
     <p><a href="https://github.com/melmothx/amusewiki/issues">Github bug tracker</a></p>
