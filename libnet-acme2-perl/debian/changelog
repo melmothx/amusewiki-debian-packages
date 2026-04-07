@@ -1,3 +1,9 @@
+libnet-acme2-perl (0.35-1) unstable; urgency=medium
+
+  * Update to last non-AI release
+
+ -- Marco Pessotto <melmothx@gmail.com>  Tue, 07 Apr 2026 10:08:03 +0200
+
 libnet-acme2-perl (0.30-1) unstable; urgency=low
 
   * Initial Release.
