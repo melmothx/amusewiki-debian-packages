@@ -1,3 +1,9 @@
+libdbix-class-inflatecolumn-authen-passphrase-perl (0.03-2) unstable; urgency=medium
+
+  * Updated Debian metadata
+
+ -- Marco Pessotto <melmothx@gmail.com>  Tue, 07 Apr 2026 14:18:26 +0200
+
 libdbix-class-inflatecolumn-authen-passphrase-perl (0.03-1) unstable; urgency=medium
 
   * Upgrade to new upstream release (no changes in code)
