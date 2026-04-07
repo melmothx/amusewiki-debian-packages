@@ -129,7 +129,7 @@ sub _new {
     return bless [ $string, \%attrs ], $class;
 }
 
-=head2 I<OBJ>->get_messaage()
+=head2 I<OBJ>->get_message()
 
 Return the exception’s main MESSAGE.
 This is useful for contexts where you want to encapsulate the error
@@ -198,7 +198,7 @@ sub new {
 
     my $self = $class->_new(@args);
 
-    $CALL_STACK{$self->_get_strval()} = [ _get_call_stack(2) ];
+    $CALL_STACK{$self->_get_strval()} = [ _get_printable_call_stack(2) ];
 
     return $self;
 }
@@ -223,7 +223,12 @@ sub _check_overload {
 
     $_OVERLOADED{$class} ||= eval qq{
         package $class;
-        use overload (q<""> => __PACKAGE__->can('__spew'));
+
+        use overload (
+            q<""> => __PACKAGE__->can('__spew'),
+            bool => __PACKAGE__->can('_TRUE'),
+        );
+
         1;
     };
 
@@ -245,7 +250,7 @@ sub _get_strval {
     return q<> . $self;
 }
 
-sub _get_call_stack {
+sub _get_printable_call_stack {
     my ($level) = @_;
 
     my @stack;
@@ -259,7 +264,7 @@ sub _get_call_stack {
         my ($pkg) = ($call[0] =~ m<(.+)::>);
 
         if (!$pkg || !$pkg->isa(__PACKAGE__)) {
-            push @call, [ @DB::args ];  #need to copy the array
+            push @call, [ map { X::Tiny::Base::_arg_to_printable() } @DB::args ];  #need to copy the array
             push @stack, \@call;
         }
 
@@ -269,25 +274,46 @@ sub _get_call_stack {
     return @stack;
 }
 
+sub _arg_to_printable {
+
+    return "$_" if ref;
+
+    return 'undef' if !defined;
+
+    my $copy;
+
+    my $err = $@;
+
+    # In order to avoid warn()ing on undefined values
+    # (and to distinguish '' from undef) we now quote scalars.
+    #
+    # We also eval the assignment in case the item was already freed.
+    #
+    if ( eval { $copy = $_ } ) {
+        $copy =~ s<'><\\'>g;
+        substr($copy, 0, 0, q<'>);
+        $copy .= q<'>;
+    }
+    else {
+        $copy = '** argument not available anymore (already freed) **';
+    }
+
+    $@ = $err;
+
+    return $copy;
+}
+
+use constant _TRUE => 1;
+
 sub __spew {
     my ($self) = @_;
 
     my $spew = $self->to_string();
 
     if ( rindex($spew, $/) != (length($spew) - length($/)) ) {
-        my ($args, @printable);
+        my ($args);
         $spew .= $/ . join( q<>, map {
-
-            #Oof. In order to avoid warn()ing on undefined values
-            #(and to distinguish '' from undef) we now quote scalars.
-            @printable = map {
-                ref() ? $_ : !defined() ? 'undef' : do {
-                    s<'><\\'>g;
-                    "'$_'"
-                }
-            } @{ $_->[3] };
-
-            $args = join(', ', @printable );
+            $args = join(', ', @{ $_->[3] } );
             "\t==> $_->[0]($args) (called in $_->[1] at line $_->[2])$/"
         } @{ $CALL_STACK{$self->_get_strval()} } );
     }

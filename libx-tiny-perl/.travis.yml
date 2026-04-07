@@ -3,6 +3,7 @@ os:
   - linux
 #  - osx    #doesn’t install the correct perl
 perl:
+  - "5.30"
   - "5.28"
   - "5.26"
   - "5.24"
@@ -14,6 +15,9 @@ perl:
   - "5.12"
   - "5.10"
 
+before_install:
+    - eval $(curl https://travis-perl.github.io/init) --auto
+    - cpanm ExtUtils::MakeMaker
 
 jobs:
   include:

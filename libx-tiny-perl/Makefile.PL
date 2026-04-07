@@ -10,7 +10,7 @@ WriteMakefile(
     ABSTRACT     => 'Super-lightweight exception framework',
     LICENSE      => 'perl',
 
-    MIN_PERL_VERSION => 5.010000,
+    MIN_PERL_VERSION => '5.010000',
 
     META_MERGE => {
         'meta-spec' => { version => 2 },
@@ -35,6 +35,7 @@ WriteMakefile(
         'parent'          => 0,
         'Test::More'      => 0,
         'Test::Simple'    => 0,
+        'Test::FailWarnings' => 0,
     },
 );
 
