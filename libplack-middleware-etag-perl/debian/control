@@ -2,11 +2,11 @@ Source: libplack-middleware-etag-perl
 Section: perl
 Priority: optional
 Maintainer: Marco Pessotto <melmothx@gmail.com>
-Build-Depends: debhelper (>= 9)
+Build-Depends: debhelper-compat (= 13)
 Build-Depends-Indep: libhttp-message-perl,
  libplack-perl,
  perl
-Standards-Version: 3.9.6
+Standards-Version: 4.5.1
 Homepage: https://metacpan.org/release/Plack-Middleware-ETag
 
 Package: libplack-middleware-etag-perl

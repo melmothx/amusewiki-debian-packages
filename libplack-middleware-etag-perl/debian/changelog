@@ -1,3 +1,9 @@
+libplack-middleware-etag-perl (0.05-3) unstable; urgency=medium
+
+  * Rebuilt
+
+ -- Marco Pessotto <melmothx@gmail.com>  Tue, 07 Apr 2026 14:53:40 +0200
+
 libplack-middleware-etag-perl (0.05-2) unstable; urgency=medium
 
   * Fixed metadata
