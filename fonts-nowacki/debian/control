@@ -3,8 +3,8 @@ Section: fonts
 Priority: optional
 Maintainer: Marco Pessotto <melmothx@gmail.com>
 Uploaders: Marco Pessotto <melmothx@gmail.com>
-Build-Depends: debhelper (>= 7)
-Standards-Version: 3.8.3
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.5.1
 Homepage: http://jmn.pl/en/kurier-i-iwona/
 
 Package: fonts-nowacki
