@@ -4,8 +4,8 @@ use warnings;
 use Test::More 0.88;
 use Path::Tiny;
 
-use_ok('Log::Dispatch');
-use_ok('Log::Dispatch::File::Stamped');
+use Log::Dispatch;
+use Log::Dispatch::File::Stamped;
 
 my $tempdir = Path::Tiny->tempdir;
 my ($hour,$mday,$mon,$year) = (localtime)[2..5];

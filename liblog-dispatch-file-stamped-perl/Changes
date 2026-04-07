@@ -1,5 +1,27 @@
 Revision history for Log-Dispatch-File-Stamped
 
+0.21      2022-10-23 02:19:49Z
+          - fix Specio prereq (RT#144903)
+
+0.20      2022-10-22 18:27:55Z
+          - new config value "stamp_sep", for changing the separator character
+            in the log filename (PR #2, thanks Sven Willenbuecher!)
+
+0.19      2017-02-21 03:59:32Z
+          - fix unit tests for different path separator on MSWin32
+
+0.18      2017-02-18 19:21:37Z
+          - fix checking of close_after_write option that changed internally
+            in Log::Dispatch 2.59
+
+0.17      2017-02-18 06:25:35Z
+          - fix test that changed behaviour with Log::Dispatch 2.59
+          - new 'time_function' argument, for optionally using gmtime instead
+            of localtime for generating the filename timestamp (see RT#113276)
+          - additional internal caching layer added, to avoid unnecessary
+            system calls when several messages are logged at once (thanks to
+            Doug Hoyte for the suggestion; see RT#113275)
+
 0.16      2016-01-28 01:25:59Z
           - fix close-after-write tests that broke with Log::Dispatch::File
             2.53, which now deletes the stored filehandle after closing

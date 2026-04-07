@@ -3,6 +3,10 @@ use warnings;
 
 use Test::More 0.88;
 use Path::Tiny;
+use Log::Dispatch;
+use Log::Dispatch::File::Stamped;
+
+plan skip_all => 'the UTF-8 encoding is not reliably available before perl 5.8' if "$]" < 5.008;
 
 my $tempdir = Path::Tiny->tempdir;
 my ($hour,$mday,$mon,$year) = (localtime)[2..5];
@@ -20,13 +24,10 @@ my @tests = (
   },
 );
 
-use_ok('Log::Dispatch');
-use_ok('Log::Dispatch::File::Stamped');
-
 SKIP:
 {
     skip "Cannot test utf8 files with this version of Perl ($])", 5 * @tests
-        unless $] >= 5.008;
+        unless "$]" >= 5.008;
 
     for my $t (@tests) {
         my $dispatcher = Log::Dispatch->new;

@@ -1,15 +1,13 @@
 use strict;
 use warnings;
 
-use Test::More;
+use Test::More 0.88;
 use Path::Tiny;
-plan tests => 6;
-
-use_ok('Log::Dispatch');
-use_ok('Log::Dispatch::File::Stamped');
+use Log::Dispatch;
+use Log::Dispatch::File::Stamped;
 
 my $dispatcher = Log::Dispatch->new;
-ok($dispatcher);
+ok($dispatcher, 'we have a generic logger');
 
 my $tempdir = Path::Tiny->tempdir;
 my ($hour,$mday,$mon,$year) = (localtime)[2..5];
@@ -18,15 +16,15 @@ my $file = $tempdir->child(sprintf("logfile-%04d%02d%02d.txt", $year+1900, $mon+
 my %params = (
     name        => 'file',
     min_level   => 'debug',
-    permissions => 0600,
+    permissions => 0521,
     filename  => $tempdir->child('logfile.txt')->stringify,
 );
 my $stamped = Log::Dispatch::File::Stamped->new(%params);
-ok($stamped);
+ok($stamped, 'we have a timestamped logger');
 
 $dispatcher->add($stamped);
 $dispatcher->log( level => 'info', message => 'foo' );
-ok(-e $file);
+ok(-e $file, 'the log file exists');
 
 SKIP: {
     skip("different file permission semantics on $^O", 1)
@@ -34,5 +32,7 @@ SKIP: {
             || $^O eq 'MSWin32' || $^O eq 'dos'
             || $^O eq 'cygwin' || $^O eq 'MacOS';
 
-    is((stat($file))[2] & 07777, 0600, 'permissions are correct');
+    is((stat($file))[2] & 07777, 0521, 'permissions are correct');
 }
+
+done_testing;

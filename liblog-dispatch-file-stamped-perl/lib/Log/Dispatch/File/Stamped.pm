@@ -1,11 +1,11 @@
 use strict;
 use warnings;
-package Log::Dispatch::File::Stamped; # git description: v0.15-14-g292364f
+package Log::Dispatch::File::Stamped; # git description: v0.20-2-g046d6cc
+# vim: set ts=8 sts=4 sw=4 tw=115 et :
 # ABSTRACT: Logging to date/time stamped files
 # KEYWORDS: log logging output file timestamp date rolling rotate
-# vim: set ts=8 sts=4 sw=4 tw=115 et :
 
-our $VERSION = '0.16';
+our $VERSION = '0.21';
 
 use File::Basename        qw(fileparse);
 use File::Spec::Functions qw(catfile);
@@ -14,10 +14,18 @@ use POSIX                 qw(strftime);
 use Log::Dispatch::File 2.38;
 use parent 'Log::Dispatch::File';
 
-use Params::Validate qw(validate SCALAR);
-Params::Validate::validation_options( allow_extra => 1 );
+use Params::ValidationCompiler qw(validation_for);
+
+use Specio::Library::Builtins;
+use Specio::Library::String;
+use Specio::Declare 0.48;
 
 use namespace::clean 0.19;
+
+enum(
+    'TimeFunctions',
+    values => [qw(localtime gmtime)],
+);
 
 sub _basic_init
 {
@@ -25,22 +33,34 @@ sub _basic_init
 
     $self->SUPER::_basic_init(@_);
 
-    my %p = validate(
-        @_,
-        {
+    my $validator = validation_for(
+        params => {
             stamp_fmt => {
-                type => SCALAR,
+                type => t('SimpleStr'),
                 default => '%Y%m%d',
             },
+            stamp_sep => {
+                type => t('SimpleStr'),
+                default => '-',
+            },
+            time_function => {
+                type => t('TimeFunctions'),
+                default => 'localtime',
+            },
         },
+        slurpy => 1,
     );
+    my %p = $validator->(@_);
 
     $self->{stamp_fmt} = $p{stamp_fmt};
+    $self->{stamp_sep} = $p{stamp_sep};
+    $self->{time_function} = $p{time_function};
 
     # cache of last timestamp used
     $self->{_stamp} = '';
+    $self->{_time} = 0;
 
-    # split pathname into path, basename, extension
+    # split pathname into basename, path, extension
     @$self{qw(_name _path _ext)} = fileparse($self->{filename}, '\.[^.]+');
 
     # stored in $self->{filename} (overwrites original); used by _open_file()
@@ -51,15 +71,20 @@ sub _make_filename
 {
     my $self = shift;
 
-    my $stamp = strftime($self->{stamp_fmt}, localtime);
+    # re-use last filename if the time has not changed
+    my $time = time();
+    return $self->{filename} if $time eq $self->{_time};
+
+    $self->{_time} = $time;
+    my $stamp = strftime($self->{stamp_fmt}, $self->{time_function} eq 'localtime' ? localtime : gmtime);
 
     # re-use last filename if the stamp has not changed
     return $self->{filename} if $stamp eq $self->{_stamp};
 
-    # build the stamped file name
-    my $filename = join '-', $self->{_name}, $stamp;
-    $filename .= $self->{_ext} if $self->{_ext};
-    $self->{filename} = catfile($self->{_path}, $filename);
+    $self->{filename} = catfile(
+        $self->{_path},
+        join($self->{stamp_sep}, $self->{_name}, $stamp) . ($self->{_ext} ? $self->{_ext} : '')
+    );
 }
 
 sub log_message
@@ -71,7 +96,8 @@ sub log_message
     $self->_make_filename;
 
     # don't re-open if we use close-after-write - the superclass will do it
-    if (not $self->{close} and $old_filename ne $self->{filename})
+    if (not $self->{ Log::Dispatch->VERSION >= '2.59' ? 'close_after_write' : 'close' }
+            and $old_filename ne $self->{filename})
     {
         $self->_open_file;
     }
@@ -93,7 +119,7 @@ Log::Dispatch::File::Stamped - Logging to date/time stamped files
 
 =head1 VERSION
 
-version 0.16
+version 0.21
 
 =head1 SYNOPSIS
 
@@ -104,14 +130,19 @@ version 0.16
     min_level => 'info',
     filename  => 'Somefile.log',
     stamp_fmt => '%Y%m%d',
-    mode      => 'append' );
+    stamp_sep => ':',
+    time_function => 'localtime',
+    mode      => 'append',
+  );
 
   $file->log( level => 'emerg', message => "I've fallen and I can't get up\n" );
 
 =head1 DESCRIPTION
 
-This module subclasses L<Log::Dispatch::File> for logging to date/time
-stamped files, respecting all its configuration options.
+This module subclasses L<Log::Dispatch::File> for logging to date/time-stamped
+files, respecting all its configuration options. As with other L<Log::Dispatch>
+handlers, the destination file is kept open for as long as the filename remains
+constant (unless C<close_after_write> is set).
 
 =head1 METHODS
 
@@ -136,6 +167,17 @@ Refer to your platform's C<strftime> documentation for the list of allowed
 tokens.
 
 Defaults to C<%Y%m%d>.
+
+=item * stamp_sep ($)
+
+The separator character(s) used between components in the log filename.
+
+Defaults to C<->.
+
+=item * time_function ($)
+
+The function used to determine the current time; present choices are L<perlfunc/localtime> or
+L<perlfunc/gmtime>. Defaults to C<localtime>.
 
 =back
 
@@ -201,7 +243,7 @@ L<Log::Dispatch::FileWriteRotate>
 
 =for stopwords Rolsky
 
-Dave Rolsky, author of the Log::Dispatch suite and many other
+Dave Rolsky, author of the L<Log::Dispatch> suite and many other
 fine modules on CPAN.
 
 This module was rewritten to respect all present (and future) options to
@@ -225,6 +267,12 @@ Eric Cholet <cholet@logilune.com>
 Karen Etheridge <ether@cpan.org>
 
 =back
+
+=head1 CONTRIBUTOR
+
+=for stopwords Sven Willenbuecher
+
+Sven Willenbuecher <sven.willenbuecher@kuehne-nagel.com>
 
 =head1 COPYRIGHT AND LICENCE
 
