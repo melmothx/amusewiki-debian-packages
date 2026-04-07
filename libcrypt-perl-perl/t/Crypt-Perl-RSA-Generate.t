@@ -9,11 +9,13 @@ BEGIN {
     }
 }
 
+use Config;
+
 use FindBin;
 use lib "$FindBin::Bin/../lib";
 
 use Test::More;
-use Test::NoWarnings;
+use Test::FailWarnings;
 use Test::Deep;
 use Test::Exception;
 
@@ -32,16 +34,12 @@ use Crypt::Perl::BigInt ();
 
 use Crypt::Perl::RSA::Generate ();
 
-if ( !caller ) {
-    my $test_obj = __PACKAGE__->new();
-    plan tests => $test_obj->expected_tests(+1);
-    $test_obj->runtests();
-}
+__PACKAGE__->new()->runtests() if !caller;
 
 #----------------------------------------------------------------------
 
-sub _ACCEPT_BIGINT_LIBS {
-    return qw( Math::BigInt::GMP  Math::BigInt::Pari );
+sub _REJECT_BIGINT_LIBS {
+    return qw( Math::BigInt::Calc );
 }
 
 sub SKIP_CLASS {
@@ -56,43 +54,43 @@ sub SKIP_CLASS {
     }
 
 
-    if ( !grep { $_ eq $bigint_lib } _ACCEPT_BIGINT_LIBS() ) {
-        return "“$bigint_lib” isn’t recognized as a C-based Math::BigInt backend. RSA key generation in pure Perl is probably too slow for now. Skipping …";
+    if ( grep { $_ eq $bigint_lib } _REJECT_BIGINT_LIBS() ) {
+        return "RSA key generation with “$bigint_lib” is probably too slow for now. Skipping …";
     }
 
     return;
 }
 
-sub test_generate : Tests(1) {
+sub test_generate : Tests(50) {
     my ($self) = @_;
 
     my $ossl_bin = $self->_get_openssl();
 
-    my $CHECK_COUNT = 50;
+    my $CHECK_COUNT = $self->num_tests();
 
     my $mod_length = 512;
 
-    lives_ok(
-        sub {
-            for ( 1 .. $CHECK_COUNT ) {
-                note "Key generation $_ …";
+    for my $iteration ( 1 .. $CHECK_COUNT ) {
+        my $exp = ( 3, 65537 )[int( 0.5 + rand )];
 
-                my $exp = ( 3, 65537 )[int( 0.5 + rand )];
+        diag "Key generation $iteration (exponent=$exp) …";
 
-                my $key_obj = Crypt::Perl::RSA::Generate::create($mod_length, $exp);
-                my $pem = $key_obj->to_pem();
+        my $key_obj = Crypt::Perl::RSA::Generate::create($mod_length, $exp);
+        my $pem = $key_obj->to_pem();
 
-                my ($fh, $path) = File::Temp::tempfile( CLEANUP => 1 );
-                print {$fh} $pem or die $!;
-                close $fh;
+        my ($fh, $path) = File::Temp::tempfile( CLEANUP => 1 );
+        print {$fh} $pem or do {
+            diag "Failed to write PEM to temp file: $!";
+            skip "Failed to write PEM to temp file: $!", 1;
+        };
+        close $fh;
 
-                my $ossl_out = `$ossl_bin rsa -check -in $path 2>&1`;
-                die $ossl_out if $ossl_out !~ m<RSA key ok>;
-                note "OK";
-            }
-        },
-        "Generated and verified $CHECK_COUNT $mod_length-bit RSA keys",
-    );
+        my $ossl_out = OpenSSL_Control::run( qw(rsa -check -in), $path );
+        like( $ossl_out, qr<RSA key ok>, "key generation" ) or do {
+            diag $pem;
+            diag $ossl_out;
+        };
+    }
 
     return;
 }

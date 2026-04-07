@@ -3,13 +3,27 @@ package Crypt::Perl::BigInt;
 use strict;
 use warnings;
 
-#Even though Crypt::Perl intends to be pure Perl, there’s no reason
-#not to use faster computation methods when they’re available.
-use Math::BigInt try => 'GMP,Pari';
-
+# Even though Crypt::Perl intends to be pure Perl, there’s no reason
+# not to use faster computation methods when they’re available.
+#
 #No FastCalc because of bugs shown in the following test runs:
 #http://www.cpantesters.org/cpan/report/a03dce70-c698-11e6-a1ce-1a99c671d6e6
 #http://www.cpantesters.org/cpan/report/0a3e797e-c693-11e6-8c46-2488c671d6e6
+
+use constant _LTM_IS_OK => eval {
+    require CryptX;
+    CryptX->VERSION('0.074');
+};
+
+use constant _TRY => join(
+    ',',
+    'GMP',
+    ( _LTM_IS_OK ? 'LTM' : () ),
+    qw( GMPz Pari BitVect ),
+);
+
+# Sorted in descending order of observed speed:
+use Math::BigInt try => _TRY;
 
 #To test pure Perl speed, comment out the above and enable:
 #use Math::BigInt;
@@ -27,10 +41,22 @@ BEGIN {
         *as_bytes = \&_pp_as_bytes;
     }
 
+    # Accommodate Math::BigInt::GMP 1.51 …
+    if ( !eval { __PACKAGE__->new(1234)->to_bin() } ) {
+        *to_bin = \&_pp_to_bin;
+    }
+    if ( !eval { __PACKAGE__->new(1234)->to_hex() } ) {
+        *to_hex = \&_pp_to_hex;
+    }
+
     $@ = q<>;
 }
 
 use Crypt::Perl::X ();
+
+sub _pp_to_hex {
+    return substr( $_[0]->as_hex(), 2 );
+}
 
 sub _pp_from_bytes {
     my $class = shift;
@@ -54,6 +80,15 @@ sub _pp_as_bytes {
     }
 
     return pack 'H*', $hex;
+}
+
+sub _pp_to_bin {
+    my ($self) = @_;
+
+    my $bin = unpack 'B*', $self->as_bytes();
+    $bin =~ s<\A0+><>;
+
+    return $bin;
 }
 
 sub bit_length {
