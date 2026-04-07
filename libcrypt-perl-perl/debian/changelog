@@ -1,3 +1,9 @@
+libcrypt-perl-perl (0.38) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Marco Pessotto <melmothx@gmail.com>  Tue, 07 Apr 2026 09:21:26 +0200
+
 libcrypt-perl-perl (0.29-1) unstable; urgency=low
 
   * Initial Release.
