@@ -1,5 +1,26 @@
 Revision history for Perl module Net::ACME2
 
+0.35 13 April 2020
+- Fix mis-parse of subproblem identifiers in to_string().
+
+0.34 13 March 2020
+- Fix warning in error objects if there is no “status”.
+
+0.33 10 September 2019
+- Fix documentation of base class for exception objects. (No code changes.)
+
+0.32 26 August 2019
+- Fix creation of subproblem objects.
+- Add subproblem “identifier” to those objects’ to_string() output.
+
+0.31 9 August 2019
+- Prevent nonce reuse.
+- Add badNonce retry (cf. RFC 8555/6.5).
+- Add http_timeout() method.
+- Tweak internals not to reuse “_ua” for instances of 2 different classes.
+- Replace legacy function names in demos and tests.
+- Improve internal eval {} usage.
+
 0.30 18 July 2019
 - Fix (internal?) error when newNonce is not called.
 - Fix MANIFEST.

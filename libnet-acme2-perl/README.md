@@ -1,6 +1,6 @@
 # NAME
 
-Net::ACME2 - Client logic for the ACME (Let’s Encrypt) protocol
+Net::ACME2 - Client logic for the ACME (Let's Encrypt) protocol
 
   
 
@@ -92,6 +92,7 @@ a new version of this module.
 - Support for both ECDSA and RSA encrytion.
 - Support for http-01, dns-01, and [tls-alpn-01](https://datatracker.ietf.org/doc/draft-ietf-acme-tls-alpn/) challenges.
 - Comprehensive error handling with typed, [X::Tiny](https://metacpan.org/pod/X::Tiny)-based exceptions.
+- [Retry POST on `badNonce` errors.](https://tools.ietf.org/html/rfc8555#section-6.5)
 - This is a pure-Perl solution. Most of its dependencies are
 either core modules or pure Perl themselves. XS is necessary to
 communicate with the ACME server via TLS; however, most Perl installations
@@ -102,7 +103,7 @@ already include the necessary logic (i.e., [Net::SSLeay](https://metacpan.org/po
 
 # ERROR HANDLING
 
-All thrown exceptions are instances of [Net::ACME2::X::Base](https://metacpan.org/pod/Net::ACME2::X::Base).
+All thrown exceptions are instances of [Net::ACME2::X::Generic](https://metacpan.org/pod/Net::ACME2::X::Generic).
 Specific error classes aren’t yet defined.
 
 # CRYPTOGRAPHY & SPEED
@@ -146,15 +147,15 @@ emptor.
 Returns the object’s cached key ID, either as given at instantiation
 or as fetched in `create_account()`.
 
+## _OBJ_->http\_timeout( \[$NEW\] )
+
+A passthrough interface to the underlying [HTTP::Tiny](https://metacpan.org/pod/HTTP::Tiny) object’s
+`timeout()` method.
+
 ## $url = _CLASS_->get\_terms\_of\_service()
 
 Returns the URL for the terms of service. Callable as either
 a class method or an instance method.
-
-**NOTE:** For [Let’s Encrypt](http://letsencrypt.org) you can
-unofficially resolve against
-[https://acme-v01.api.letsencrypt.org/terms](https://acme-v01.api.letsencrypt.org/terms) to see the terms
-of service.
 
 ## $created\_yn = _OBJ_->create\_account( %OPTS )
 
@@ -241,6 +242,8 @@ simple as possible.)
 - Add (more) tests.
 
 # SEE ALSO
+
+[Crypt::LE](https://metacpan.org/pod/Crypt::LE) is another ACME client library.
 
 [Crypt::Perl](https://metacpan.org/pod/Crypt::Perl) provides this library’s default cryptography backend.
 See this distribution’s `/examples` directory for sample usage

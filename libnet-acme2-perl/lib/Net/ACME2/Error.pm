@@ -29,6 +29,8 @@ use warnings;
 
 use parent qw( Net::ACME2::AccessorBase );
 
+use Call::Context ();
+
 my $URN_PREFIX = 'urn:ietf:params:acme:error:';
 
 use constant _ACCESSORS => qw(
@@ -112,13 +114,13 @@ sub subproblems {
 
     my $subs_ar = $self->{'_subproblems'} or return;
 
-    return map { Net::ACME2::Error::Subproblem->new($_) } @$subs_ar;
+    return map { Net::ACME2::Error::Subproblem->new(%$_) } @$subs_ar;
 }
 
 sub to_string {
     my ($self) = @_;
 
-    my $str = $self->status() . ' ' . $self->type();
+    my $str = join( q< >, grep { defined } $self->status(), $self->type() );
 
     for my $attribute ( qw( title description detail instance ) ) {
         my $value = $self->$attribute();
@@ -145,5 +147,13 @@ use constant _ACCESSORS => (
     __PACKAGE__->SUPER::_ACCESSORS(),
     'identifier',
 );
+
+sub to_string {
+    my ($self) = @_;
+
+    my $identifier_str = join('/', @{ $self->identifier() }{'type', 'value'});
+
+    return "$identifier_str: " . $self->SUPER::to_string();
+}
 
 1;
