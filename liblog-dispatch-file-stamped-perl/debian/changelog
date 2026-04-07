@@ -1,3 +1,9 @@
+liblog-dispatch-file-stamped-perl (0.21-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Marco Pessotto <melmothx@gmail.com>  Tue, 07 Apr 2026 15:57:21 +0200
+
 liblog-dispatch-file-stamped-perl (0.16-2) unstable; urgency=medium
 
   * Fixed metadata
