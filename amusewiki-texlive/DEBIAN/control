@@ -1,13 +1,13 @@
 Package: amusewiki-texlive
 Source: amusewiki-texlive
-Version: 20240128-1
+Version: 20260407-1
 Architecture: amd64
 Maintainer: Marco Pessotto <marco@pessotto.hr>
-Installed-Size: 836524
+Installed-Size: 814968
 Section: tex
 Priority: optional
 Homepage: https://amusewiki.org
-Description: Minimal TeX Live 2023 installation for Amusewiki
+Description: Minimal TeX Live 2026 installation for Amusewiki
  This package contains a minimal and portable installation of TeX Live.
  .
  It is meant to be used by the Amusewiki compiler, but can be used
