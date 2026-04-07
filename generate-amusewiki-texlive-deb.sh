@@ -12,7 +12,7 @@ set -e
 
 basedir=`pwd`
 build=${BUILD:-1}
-year=2023
+year=2026
 
 if [ "$1" = "bootstrap" ]; then
     rm -rf amusewiki-texlive/opt
@@ -22,12 +22,6 @@ if [ "$1" = "bootstrap" ]; then
     # cleanup the installation directory
     rm -rf amusewiki/local/install-texlive
 fi
-
-# patch serbian data
-
-cat amusewiki-texlive/opt/amusewiki-texlive/$year/texmf-dist/tex/generic/babel/locale/sr/babel-sr-Latn.ini > amusewiki-texlive/opt/amusewiki-texlive/$year/texmf-dist/tex/generic/babel/locale/sr/babel-sr.ini
-
-cat patches/italian-utf8.xdy > amusewiki-texlive/opt/amusewiki-texlive/$year/texmf-dist/xindy/modules/lang/italian/utf8.xdy
 
 # create symbolic links
 rm -f      amusewiki-texlive/opt/amusewiki-texlive/current
