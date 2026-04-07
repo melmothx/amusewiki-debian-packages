@@ -1,3 +1,9 @@
+libx-tiny-perl (0.22-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Marco Pessotto <melmothx@gmail.com>  Tue, 07 Apr 2026 09:52:09 +0200
+
 libx-tiny-perl (0.18-1) unstable; urgency=low
 
   * Initial Release.

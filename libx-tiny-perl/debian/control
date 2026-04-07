@@ -2,10 +2,10 @@ Source: libx-tiny-perl
 Section: perl
 Priority: optional
 Maintainer: Marco Pessotto <melmothx@gmail.com>
-Build-Depends: debhelper (>= 9)
+Build-Depends: debhelper-compat (= 13)
 Build-Depends-Indep: libmodule-runtime-perl,
  perl
-Standards-Version: 3.9.8
+Standards-Version: 4.5.1
 Homepage: https://metacpan.org/release/X-Tiny
 
 Package: libx-tiny-perl
