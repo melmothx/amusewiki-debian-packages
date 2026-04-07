@@ -2,11 +2,11 @@ Source: libhttp-tiny-ua-perl
 Section: perl
 Priority: optional
 Maintainer: Marco Pessotto <melmothx@gmail.com>
-Build-Depends: debhelper (>= 9)
+Build-Depends: debhelper-compat (= 13)
 Build-Depends-Indep: libclass-tiny-perl (>= 1.000),
  libsuperclass-perl,
  perl (>= 5.19.5)
-Standards-Version: 3.9.8
+Standards-Version: 4.5.1
 Homepage: https://metacpan.org/release/HTTP-Tiny-UA
 
 Package: libhttp-tiny-ua-perl
