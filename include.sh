@@ -44,10 +44,10 @@ You can still run Amusewiki on such systems
 using the <a href="https://amusewiki.org/library/install">manual
 installation</a>.</p>
 
-<p>Supported database are mysql, postgresql and sqlite3. 
+<p>Supported database are mysql/mariadb, postgresql and sqlite3.
 Please install <code>postgresql</code> or
-<code>mysql-server</code> <strong>before starting the installation</strong>. You will
-be prompted to choose which one to use.</p>
+<code>mariadb-server</code> <strong>before starting the installation</strong>. You will
+be prompted to choose which one to use, but use =postgresql= if you can choose.</p>
 
 <p>
 Amusewiki uses nginx as frontend server, so <strong>if you have Apache
@@ -62,13 +62,13 @@ article</a> for a combined setup Apache/Nginx.
 For Trixie:
 
 <pre>
-wget http://deb.amusewiki.org/debian/pool/main/a/amusewiki-archive-keyring-trixie/amusewiki-archive-keyring-trixie_1.0.0_all.deb
+wget https://deb.amusewiki.org/amusewiki-archive-keyring-trixie_1.0.0_all.deb
 </pre>
 
 For Bookworm:
 
 <pre>
-wget http://deb.amusewiki.org/debian/pool/main/a/amusewiki-archive-keyring-bookworm/amusewiki-archive-keyring-bookworm_1.0.0_all.deb
+wget https://deb.amusewiki.org/amusewiki-archive-keyring-bookworm_1.0.0_all.deb
 </pre>
 
 Then run:
@@ -79,13 +79,23 @@ Then run:
 </pre>
 
 <p>
-The output is going to prompt you to change the nginx configuration and give you the credentials for the login.
+The output is going to prompt you to change the nginx configuration and give you the credentials for the login and a hostname to use.
 </p>
 
 <p>
 The virtual host used by nginx is roughly a blind guess, so probably
-you will need to <strong>put the hostname on /etc/hosts</strong> to access it for the
-initial configuration.
+you will need to <strong>put the ip/hostname association in the
+<code>/etc/hosts</code> file on the client machine</strong> (i.e.
+yours, not the server) to access the server for the initial
+configuration.
+</p>
+
+<p>This is the point where people get stuck. Amusewiki is multisite,
+so it is not going to respond unless you request the correct hostname.
+The initial configuration assigned a guessed hostname (say,
+<code>amusewiki.yournetwork.org</code>) and you need to use that to
+access the dashboard, hence the <code>/etc/hosts</code> trick. Once
+you reach the dashboard you can update them it to the correct one.
 </p>
 
 <p>The initial site with documentation is created to give you a way to
@@ -94,7 +104,6 @@ reach the admin panel, where you should create a brand new site from
 one.</p>
 
 <p>
-
 The installation procedure will send a mail to
 <code>root@localhost</code> with the credentails to login in and the
 nginx configuration instructions. If for some reason you didn't get
@@ -108,10 +117,6 @@ it, you can look at <code>/var/log/amusewiki/installation.log</code>
     </p>
     <div>
       <h2>Trixie</h2>
-    <pre>
-# echo 'deb http://deb.amusewiki.org/debian bookworm main' &gt; /etc/apt/sources.list.d/amusewiki.list
-    </pre>
-
       <pre>
 EOF
 
@@ -122,11 +127,7 @@ cat <<EOF>>/var/www/deb.amusewiki.org/repos/apt/index.html
     </div>
 
     <div>
-      <h2>Bullseye</h2>
-    <pre>
-# echo 'deb http://deb.amusewiki.org/debian bullseye main' &gt; /etc/apt/sources.list.d/amusewiki.list
-    </pre>
-
+      <h2>Bookworm</h2>
       <pre>
 EOF
 
