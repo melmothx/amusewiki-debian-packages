@@ -1,3 +1,9 @@
+libcrypt-xkcdpassword-perl (0.009-3) unstable; urgency=medium
+
+  * Updated debian metadata
+
+ -- Marco Pessotto <melmothx@gmail.com>  Tue, 07 Apr 2026 14:11:31 +0200
+
 libcrypt-xkcdpassword-perl (0.009-2) unstable; urgency=medium
 
   * Fixed deb metadata
