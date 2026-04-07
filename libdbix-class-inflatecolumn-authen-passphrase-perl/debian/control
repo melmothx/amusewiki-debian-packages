@@ -6,6 +6,7 @@ Build-Depends: debhelper-compat (= 13)
 Build-Depends-Indep: libauthen-passphrase-perl,
  libdbix-class-perl,
  libsql-translator-perl,
+ libdbd-sqlite3-perl,
  perl
 Standards-Version: 4.5.1
 Homepage: https://metacpan.org/release/DBIx-Class-InflateColumn-Authen-Passphrase
