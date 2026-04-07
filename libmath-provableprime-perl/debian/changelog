@@ -1,3 +1,9 @@
+libmath-provableprime-perl (0.51-1) unstable; urgency=medium
+
+  * Upstream update
+
+ -- Marco Pessotto <melmothx@gmail.com>  Tue, 07 Apr 2026 09:13:07 +0200
+
 libmath-provableprime-perl (0.045-1) unstable; urgency=low
 
   * Initial Release.

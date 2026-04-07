@@ -2,7 +2,7 @@ Source: libmath-provableprime-perl
 Section: perl
 Priority: optional
 Maintainer: Marco Pessotto <melmothx@gmail.com>
-Build-Depends: debhelper (>= 9)
+Build-Depends: debhelper-compat (= 13)
 Build-Depends-Indep: libbytes-random-secure-tiny-perl (>= 1.008),
  libfile-which-perl,
  libmath-bigint-perl (>= 1.999806),
@@ -11,7 +11,7 @@ Build-Depends-Indep: libbytes-random-secure-tiny-perl (>= 1.008),
  libtest-exception-perl,
  libtest-nowarnings-perl,
  perl
-Standards-Version: 3.9.8
+Standards-Version: 4.5.1
 Homepage: https://metacpan.org/release/Math-ProvablePrime
 
 Package: libmath-provableprime-perl
