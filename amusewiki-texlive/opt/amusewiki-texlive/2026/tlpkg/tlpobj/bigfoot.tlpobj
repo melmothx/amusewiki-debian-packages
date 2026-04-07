@@ -1,0 +1,36 @@
+name bigfoot
+category Package
+revision 77682
+shortdesc Footnotes for critical editions
+longdesc The package aims to provide a 'one-stop' solution to
+longdesc requirements for footnotes. It offers: Multiple footnote
+longdesc apparatus superior to that of manyfoot Footnotes can be
+longdesc formatted in separate paragraphs, or be run into a single
+longdesc paragraph (this choice may be selected per footnote series);
+longdesc Things you might have expected (such as \verb-like material in
+longdesc footnotes, and colour selections over page breaks) now work.
+longdesc Note that the majority of the bigfoot package's interface is
+longdesc identical to that of manyfoot; users should seek information
+longdesc from that package's documentation. The bigfoot bundle also
+longdesc provides the perpage and suffix packages.
+containersize 11368
+containerchecksum bbd39341a6f1de3a75a8f29884043b1b43b0ed76a74854abcbdd4f91170067cdc2466803e46d140b4460e6526ba4879a2fc97a7d4e1919b29b97886a9e6b5da7
+doccontainersize 736348
+doccontainerchecksum 04a329ab42c010d2e6c2fc2b55992577d2d20c9e0f902f4fc32dbbe5be18f9c693b979aaa501284f77970c975d7022b23349675d89ec9114f2471d8bb6afe334
+docfiles size=202
+ texmf-dist/doc/latex/bigfoot/COPYING
+ texmf-dist/doc/latex/bigfoot/Makefile
+ texmf-dist/doc/latex/bigfoot/README details="Readme"
+ texmf-dist/doc/latex/bigfoot/bigfoot.pdf details="Package documentation"
+ texmf-dist/doc/latex/bigfoot/perpage.pdf
+ texmf-dist/doc/latex/bigfoot/suffix.pdf
+srccontainersize 43760
+srccontainerchecksum c0973f2357a6ffa202bfcd0be5c0a77bcc514eae0f104d247e589958051a15f9862965d28edb54bbbe4ceb0dc7715d0faa8c4376cc2c27153695691df101ce65
+runfiles size=14
+ texmf-dist/tex/latex/bigfoot/bigfoot.sty
+ texmf-dist/tex/latex/bigfoot/perpage.sty
+ texmf-dist/tex/latex/bigfoot/suffix.sty
+catalogue-ctan /macros/latex/contrib/bigfoot
+catalogue-license gpl2
+catalogue-topics footnote tagged-pdf-incompatible
+catalogue-version 2.1

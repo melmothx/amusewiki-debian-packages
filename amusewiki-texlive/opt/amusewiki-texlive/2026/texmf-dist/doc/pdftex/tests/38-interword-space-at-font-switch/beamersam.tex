@@ -1,0 +1,22 @@
+% Public domain. From samcarter:
+% https://tug.org/pipermail/tex-live/2025-February/051139.html
+\documentclass{beamer}
+
+\usepackage{tabularray}
+
+\begin{document}
+
+\begin{frame}
+  \scriptsize
+  \begin{longtblr}[]{}
+    foo\TblrNote{*} & bar \\
+  \end{longtblr}
+\end{frame}
+
+\end{document}
+
+% In the following example, I get different font sizes for "foo" and "bar"
+% if compiled with pdflatex from the 2025 pretest. Both words are
+% displayed in the same size with lualatex/xelatex from TL2025 or
+% pdflatex/lualatex/xelatex from TL2024.
+ 

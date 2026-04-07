@@ -1,0 +1,175 @@
+%!euptex
+
+% Copyright 2024 Japanese TeX Development Community <issue@texjp.org>
+% You may freely use, modify and/or distribute this file.
+%
+\parindent=0pt
+
+\input udhr-common
+
+\spaceskip 0.36em plus 0.17em minus 0.15em
+
+
+\font\f=cmr10
+{\f SourceSerifPro, SourceSansPro, SourceCodePro}
+
+\vskip 2.0ex
+{\f T1}
+
+\font in T1\ToneZZZSerifRegular=SourceSerifPro-Regular-tlf-t1
+\ToneZZZSerifRegular
+\TextA
+
+\font in T1\ToneZZZSerifItalic=SourceSerifPro-It-tlf-t1
+\ToneZZZSerifItalic
+\TextA
+
+\font in T1\ToneZZZSansRegular=SourceSansPro-Regular-tlf-t1
+\ToneZZZSansRegular
+\TextA
+
+\font in T1\ToneZZZSansItalic=SourceSansPro-It-tlf-t1
+\ToneZZZSansItalic
+\TextA
+
+\font in T1\ToneZZZCodeRegular=SourceCodePro-Regular-tlf-t1
+\ToneZZZCodeRegular
+\TextA
+
+\font in T1\ToneZZZCodeItalic=SourceCodePro-It-tlf-t1
+\ToneZZZCodeItalic
+\TextA
+
+\vskip 2.0ex
+{\f LY1}
+
+\font in LY1\LYoneZZZSerifRegular=SourceSerifPro-Regular-tlf-ly1
+\LYoneZZZSerifRegular
+\TextB
+
+\font in LY1\LYoneZZZSerifItalic=SourceSerifPro-It-tlf-ly1
+\LYoneZZZSerifItalic
+\TextB
+
+\font in LY1\LYoneZZZSansRegular=SourceSansPro-Regular-tlf-ly1
+\LYoneZZZSansRegular
+\TextB
+
+\font in LY1\LYoneZZZSansItalic=SourceSansPro-It-tlf-ly1
+\LYoneZZZSansItalic
+\TextB
+
+\font in LY1\LYoneZZZCodeRegular=SourceCodePro-Regular-tlf-ly1
+\LYoneZZZCodeRegular
+\TextB
+
+\font in LY1\LYoneZZZCodeItalic=SourceCodePro-It-tlf-ly1
+\LYoneZZZCodeItalic
+\TextB
+
+\vskip 2.0ex
+{\f T2A}
+
+\font in T2A\TtwoaZZZCodeRegular=SourceCodePro-Regular-tlf-t2a
+\TtwoaZZZCodeRegular
+\TextC
+
+%% It does not work.
+%\font in T2A\TtwoaZZZCodeItalic=SourceCodePro-It-tlf-t2a
+%\TtwoaZZZCodeItalic
+%\TextC
+
+\vskip 2.0ex
+{\f LGR}
+\catcode"97=11
+
+\font in LGR\LgrZZZSansRegular=SourceSansPro-Regular-tlf-lgr
+\LgrZZZSansRegular
+\TextG
+
+\TextH
+
+\font in LGR\LgrZZZSansItalic=SourceSansPro-It-tlf-lgr
+\LgrZZZSansItalic
+\TextG
+
+\TextH
+
+
+\vfil
+\eject
+\spaceskip 0.12em plus 0.10em minus 0.05em
+
+\font in TS1\TSoneZZZSerifRegular=SourceSerifPro-Regular-lf-ts1
+
+{\f TS1}
+
+\TSoneZZZSerifRegular
+\ChrA="80 \ChrB="180
+\PrintCode
+\ChrA="2B0 \ChrB="300
+\PrintCode
+\ChrA="2010 \ChrB="2E19
+\PrintCode
+
+{\f T1}
+
+\ToneZZZSerifRegular
+\ChrA="80 \ChrB="180
+\PrintCode
+\ChrA="237 \ChrB="300
+\PrintCode
+\ChrA="2010 \ChrB="203B
+\PrintCode
+\ChrA="2423 \ChrB="2424
+\PrintCode
+
+{\f LY1}
+
+\LYoneZZZSerifRegular
+\ChrA="80 \ChrB="180
+\PrintCode
+\ChrA="237 \ChrB="300
+\PrintCode
+\ChrA="2010 \ChrB="20AD
+\PrintCode
+
+{\f T2A}
+
+\TtwoaZZZCodeRegular
+\ChrA="A4 \ChrB="BC
+\PrintCode
+\ChrA="131 \ChrB="2DE
+\PrintCode
+\ChrA="400 \ChrB="500
+\PrintCode
+\ChrA="2010 \ChrB="2117
+\PrintCode
+
+{\f LGR}
+
+\LgrZZZSansRegular
+\ChrA="A4 \ChrB="BC
+\PrintCode
+\ChrA="259 \ChrB="260
+\PrintCode
+\ChrA="370 \ChrB="400
+\PrintCode
+\ChrA="1F00 \ChrB="1FFF
+\PrintCode
+\ChrA="2010 \ChrB="20AD
+\PrintCode
+
+{\f sigma:} ^^63^^73^^73
+
+\catcode"0C=12
+
+[\char"39F] [\char"38C] ['\relax Ο] ['Ο],
+[\char"391] ['\char"0C] [\char"27\char"391/\char"27\char"395/\char"27\char"397/\char"27\char"399/\char"27\char"39F],
+[\char"3B1] ['\char"0E] [\char"27\char"3B1/\char"27\char"3B5/\char"27\char"3B7/\char"27\char"3B9/\char"27\char"3BF/\char"27\char"3C5/\char"27\char"3C9]
+
+[^^^^039f] [^^^^038c] ['\relax ^^^^039f] [^^27^^^^039f],
+[^^^^0391] [^^27^^0c] [^^^^0386/^^^^0388/^^^^0389/^^^^038a/^^^^038c],
+[^^^^03b1] [^^27^^0e] [^^^^03ac/^^^^03ad/^^^^03ae/^^^^03af/^^^^03cc/^^^^03cd/^^^^03ce]
+
+\bye

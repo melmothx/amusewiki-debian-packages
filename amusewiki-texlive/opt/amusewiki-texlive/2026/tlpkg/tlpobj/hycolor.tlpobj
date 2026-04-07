@@ -1,0 +1,25 @@
+name hycolor
+category Package
+revision 77682
+shortdesc Implements colour for packages hyperref and bookmark
+longdesc This package provides the code for the color option that is
+longdesc used by packages hyperref and bookmark. It is not intended as
+longdesc package for the user.
+containersize 4048
+containerchecksum 8677b8a98db7b116f7fa2dfe3e482b80bce3c5122e0895455547ab8d63fe7d8f5cfc8e4a3a407725a4f393c286b00ccdc728c2b8ebcc398845689b882af3855b
+doccontainersize 375200
+doccontainerchecksum 73a44202170a861faef677a02fe18e0594ff2c8b2cb4813d31361057d25d2668ea3b29e5b5d388ef322a793f9c9911a507713a1415dcad09ac7cde3627071826
+docfiles size=94
+ texmf-dist/doc/latex/hycolor/README.md
+ texmf-dist/doc/latex/hycolor/hycolor.pdf details="Package documentation" language="en"
+srccontainersize 9680
+srccontainerchecksum e3054850543089ba17d4b39e146f6c70e4f3e80fda5f54582bc3eb456b56c669c380d870eab657a200ced460b3d513aaea27abf0c9c04ed51bfba4246a4fa8e5
+runfiles size=7
+ texmf-dist/tex/latex/hycolor/hycolor.sty
+ texmf-dist/tex/latex/hycolor/xcolor-patch.sty
+catalogue-contact-bugs https://github.com/ho-tex/hycolor/issues
+catalogue-contact-repository https://github.com/ho-tex/hycolor
+catalogue-ctan /macros/latex/contrib/hycolor
+catalogue-license lppl1.3
+catalogue-topics colour tagged-pdf
+catalogue-version 1.10

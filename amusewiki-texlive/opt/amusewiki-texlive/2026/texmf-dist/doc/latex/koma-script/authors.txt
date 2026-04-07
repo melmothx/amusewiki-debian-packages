@@ -1,0 +1,5 @@
+kohm  =  kohm 
+mjk  =  mjk 
+stephan-hennig  =  stephan-hennig 
+texhackse  =  texhackse 
+tok  =  tok 

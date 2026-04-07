@@ -1,0 +1,147 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+%\usepackage{geometry}
+\usepackage{pst-all}
+\usepackage{showexpl}
+\usepackage{tabularx}
+\SpecialCoor
+%\usepackage[ps2pdf,colorlinks,linktocpage]{hyperref}
+\usepackage[colorlinks,linktocpage]{hyperref}
+\def\UrlFont{\small\ttfamily}
+\makeatletter
+\def\verbatim@font{\small\normalfont\ttfamily}
+\makeatother
+%\usepackage{color}
+\definecolor{hellgelb}{rgb}{1,1,0.8}
+\definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{1,0,0}
+\definecolor{colString}{rgb}{0,0.5,0}
+%
+\usepackage{listings}
+\lstset{%
+    language=PSTricks,%
+    float=hbp,%
+    basicstyle=\ttfamily\small, %
+    identifierstyle=\color{colIdentifier}, %
+    keywordstyle=\color{colKeys}, %
+    stringstyle=\color{colString}, %
+    commentstyle=\color{colComments}, %
+    columns=flexible, %
+    tabsize=4, %
+    frame=single, %
+    extendedchars=true, %
+    showspaces=false, %
+    showstringspaces=false, %
+    numbers=left, %
+    numberstyle=\tiny, %
+    breaklines=true, %
+%    backgroundcolor=\color{hellgelb}, %
+    breakautoindent=true, %
+    captionpos=b,%
+	xleftmargin=0pt%
+}
+
+%\parindent=0pt
+\newcommand\verbI[1]{{\small\texttt{#1}}}
+\newcommand\CMD[1]{{\texttt{\textbackslash#1}}}
+%
+%\psset{subgriddiv=0,griddots=5,gridlabels=7pt}
+%
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+\def\PS{PostScript}
+%
+\begin{document}
+\title{\texttt{PSTricks -- version 1.12}\\new macros and bugfixes for \texttt{pstricks}}
+\author{Herbert Voß\thanks{%
+\url{Herbert.Voss@perce.de}}}
+\date{\today}
+
+\maketitle
+
+\begin{abstract}
+This new version of \texttt{pstricks.tex} depends on the also new prologue file
+\texttt{pstricks.pro} (v 1.00), which should go into the local \TeX-directory \url{$TEXMFLOCAL/dvips/}.
+\end{abstract}
+
+
+\tableofcontents
+
+%--------------------------------------------------------------------------------------
+\section{New macro names}
+%--------------------------------------------------------------------------------------
+In general \texttt{PSTricks} uses macronames with a preceeding \verb+ps+ to prevent 
+clashes with other packages. However, some macros have names without the \verb+ps+ and
+these ones have now new names:
+
+\begin{verbatim}
+  \scalebox    -> \psscalebox
+  \scaleboxto  -> \psscaleboxto
+  \rotateleft  -> \psrotateleft
+  \rotateright -> \psrotateright
+  \rotatedown  -> \psrotatedown
+\end{verbatim}
+
+The first change is important, because there were a lot of problems in the past;
+\verb+graphicx+ also defines a \verb+scalebox+ but with diffent syntax.
+
+
+%--------------------------------------------------------------------------------------
+\section{\texttt{shift} Option}
+%--------------------------------------------------------------------------------------
+The new \verb+shift+ option now expects a length with a \verb+PSTricks+ compatible dimension.
+
+\bgroup
+\begin{LTXexample}[pos=t]
+\small
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}[shift=0.5cm](-0.5,-0.5)(0.5,0.5)
+  \psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){0.5cm}
+\end{pspicture}%
+\textcolor{red}{\rule{5mm}{1pt}}\hspace{1cm}\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}(-0.5,-0.5)(0.5,0.5)
+  \psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){0}
+\end{pspicture}%
+\textcolor{red}{\rule{5mm}{1pt}}\hspace{1cm}\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}[shift=-0.5cm](-0.5,-0.5)(0.5,0.5)
+  \psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){-0.5cm}
+\end{pspicture}%
+\textcolor{red}{\rule{5mm}{1pt}}
+\end{LTXexample}
+\egroup
+
+%--------------------------------------------------------------------------------------
+\section{New arrows}
+%--------------------------------------------------------------------------------------
+
+\verb+pstricks now contains the missing arrow ends \verb+]-[+ and \verb+)-(+.
+
+\begin{LTXexample}[width=4cm]
+\begin{pspicture}(4,3)
+  \psset{arrowscale=2,linewidth=1pt}
+  \psline{]-[}(4,0)
+  \psline{)-(}(0,1)(4,1)
+  \psline{)->}(0,2)(4,2)
+  \psline{]->>}(0,3)(4,3)
+\end{pspicture}
+\end{LTXexample}
+
+%--------------------------------------------------------------------------------------
+\section{New otions for \texttt{pstricks.sty}}
+%--------------------------------------------------------------------------------------
+
+\begin{description}
+\item[\texttt{noxcolor}] load package \verb+color+ instead of  \verb+xcolor+;
+\item[\texttt{plain}] do nothing else as a \CMD{input\{pstricks\}}; 
+\item[\texttt{DIA}] a bug fix for the \verb+PSTricks+-export of the garfic program DIA.
+\end{description}
+
+
+%--------------------------------------------------------------------------------------
+\section{New \texttt{pstricks.pro}}
+%--------------------------------------------------------------------------------------
+
+this file now contains the PostScript code for arcs of an ellipse.
+
+\end{document}

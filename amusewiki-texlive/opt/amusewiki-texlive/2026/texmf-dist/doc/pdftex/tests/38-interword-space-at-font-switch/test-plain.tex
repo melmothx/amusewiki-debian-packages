@@ -1,0 +1,109 @@
+\input plain    % Load Plain TeX macros
+\font\tt=cmtt10 % Define a monospace font
+
+% Title
+\centerline{\bf Extended Plain TeX Testing Document}
+\bigskip
+\centerline{\it Test User}
+\bigskip
+\centerline{Date: \the\year-\the\month-\the\day}
+\bigskip
+
+% Table of Contents (simulated with simple text alignment)
+\centerline{\bf Contents}
+\vskip 10pt
+\halign{\hskip 2em #\hfill & \hskip 1em #\hfil\cr
+1. Introduction & \dotfill\ Page 2\cr
+2. Text Formatting & \dotfill\ Page 2\cr
+3. Mathematics & \dotfill\ Page 3\cr
+4. Tables & \dotfill\ Page 3\cr
+5. Figures & \dotfill\ Page 4\cr
+6. Conclusion & \dotfill\ Page 5\cr
+}
+\eject
+
+% ---------------------- SECTIONS BEGIN -------------------------
+
+\section Introduction
+This is an extended test file written in Plain TeX. The intention is to test fundamental typesetting capabilities like text formatting, math equations, tables, and figures in a lightweight and basic TeX environment.
+
+\medskip
+
+\section Text Formatting
+You can apply different text styles:
+
+\smallskip
+{\bf Bold text}: Produced with {\tt\char`\\bf}. For example, {\bf This is bold text.}\\
+{\it Italic text}: Produced with {\tt\char`\\it}. For example, {\it This is italic text.}\\
+{\tt Monospaced text}: Produced with {\tt\char`\\tt}. For example, {\tt This is monospaced text.}\\
+
+\medskip
+\centerline{\bf Example of Aligning Text:}
+\smallskip
+\halign{#\hfill\quad&#\cr
+Left-aligned text: & This text is aligned to the left.\cr
+Center-aligned text: &\hfil This text is centered.\hfil\cr
+Right-aligned text: &\hfil This text is aligned to the right.\cr}
+
+\section Mathematics
+Inline expressions: \( E = mc^2 \)\\
+Displayed equations:
+$$
+\int_{a}^{b} x^2 \, dx = \frac{b^3}{3} - \frac{a^3}{3}
+$$
+
+You can also write matrices and arrays:
+$$
+\pmatrix{
+  a & b \cr
+  c & d \cr
+}
+$$
+
+Mathematical operators look like this:
+$$
+\sum_{i=1}^n i = \frac{n(n+1)}{2}, \quad
+\sqrt{x+y}, \quad
+x^2 + y^2 = z^2
+$$
+
+\section Tables
+Tables are implemented manually in Plain TeX. For example:
+
+\smallskip
+\hbox{\vbox{
+\hrule
+\halign{
+\vrule#\quad & #\hfill\quad & \hfil#\quad\vrule\cr
+\noalign{\hrule}
+\bf Item & \bf Quantity & \bf Price (\$)\cr
+\noalign{\hrule}
+Apple  & 5  & 3.50\cr
+Orange & 3  & 2.25\cr
+Banana & 6  & 4.10\cr
+\noalign{\hrule}
+}
+\hrule
+}}
+
+\smallskip
+
+For more advanced tables, use external tools or macros.
+
+\section Figures
+Including figures in Plain TeX requires external tools like `epsf` or `pdftex` for direct image embedding.
+
+Here’s how you might include an image with a caption:
+
+% \centerline{\hbox{\epsfbox{example-image.eps}}} \centerline{\it Figure 1: Example placeholder image.}
+
+To test without images, you can use placeholders instead:
+\medskip
+\hbox to \hsize{\hfil \vrule height 2in width 3in \hfil}
+\centerline{\it Placeholder for a figure.}
+
+\section Conclusion
+This Plain TeX test file demonstrates basic text formatting, math typesetting, tables, and figures. Unlike LaTeX, Plain TeX doesn’t include higher-level structures like environments, so everything is done manually or with custom macros.
+
+% End of test document
+\bye

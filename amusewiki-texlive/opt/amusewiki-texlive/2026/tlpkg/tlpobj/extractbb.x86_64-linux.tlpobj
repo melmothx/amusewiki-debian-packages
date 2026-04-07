@@ -1,0 +1,8 @@
+name extractbb.x86_64-linux
+category Package
+revision 73777
+shortdesc x86_64-linux files of extractbb
+containersize 344
+containerchecksum 7efc0f88886640a1b07424a8f5d55da9d6aa9390012a066c2765e64e38b3ad9857cde2d524921971769460dae85ed4b84fd786d7b0a9a1de2bc31ece1e7ca9a4
+binfiles arch=x86_64-linux size=1
+ bin/x86_64-linux/extractbb

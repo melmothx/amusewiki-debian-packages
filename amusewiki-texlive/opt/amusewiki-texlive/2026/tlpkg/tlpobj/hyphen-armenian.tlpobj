@@ -1,0 +1,17 @@
+name hyphen-armenian
+category TLCore
+revision 78069
+shortdesc Armenian hyphenation patterns.
+longdesc Hyphenation patterns for Armenian for Unicode engines.
+longdesc Auto-generated from a script included in hyph-utf8.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=armenian 	lefthyphenmin=1 	righthyphenmin=2 	file=loadhyph-hy.tex 	file_patterns=hyph-hy.pat.txt 	file_exceptions=
+containersize 2620
+containerchecksum da11b8894bcca538acdd879bb5a34d78f0b80e542d363cc6ee59af321c6a6562627ec1c7eba1a950d44084555996323ac9a0e117fe6f145d7693da81d5823cf8
+srccontainersize 1200
+srccontainerchecksum d46076974413062460a55986602dc0a7bb16701a6fe1b01b8dbd8d762102a210a262b05837468d9f4be7c208cea047dfa622b2bc68ece56f55aa249b4b182b1b
+runfiles size=8
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hy.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-hy.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-hy.pat.txt

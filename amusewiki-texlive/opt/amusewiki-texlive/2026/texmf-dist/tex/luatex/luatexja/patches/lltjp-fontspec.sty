@@ -1,0 +1,47 @@
+%
+% lltjp-fontspec.sty 2025-10-27
+%
+
+\NeedsTeXFormat{LaTeX2e}
+
+\RequirePackage{fontspec}
+\ExplSyntaxOn
+
+%%%%%% Following patches is not needed in fontspec v2.9g
+\tl_replace_all:cnn { rmfamily~ } { \fontfamily }{ \romanfamily }
+\tl_replace_all:cnn { sffamily~ } { \fontfamily }{ \romanfamily }
+\tl_replace_all:cnn { ttfamily~ } { \fontfamily }{ \romanfamily }
+\cs_if_exist:NF \@rmfamilyhook {
+  \tl_replace_all:cnn { rmfamily~ } { \selectfont } {
+    \if@ltj@match@family
+      \prepare@family@series@update@kanji{mc}\mcdefault
+    \fi\selectfont
+  }
+  \tl_replace_all:cnn { sffamily~ } { \selectfont } {
+    \if@ltj@match@family
+      \prepare@family@series@update@kanji{gt}\gtdefault
+    \fi\selectfont
+  }
+  \tl_replace_all:cnn { ttfamily~ } { \selectfont } {
+    \if@ltj@match@family
+      \prepare@family@series@update@kanji{jtt}\jttdefault
+    \fi\selectfont
+  }
+}
+
+\cs_set:Nn \fontspec_visible_space:
+ {
+ \__fontspec_primitive_font_glyph_if_exist:NnTF \font {"2423}
+   { \ltjalchar"2423\scan_stop: }
+   { \fontspec_visible_space_fallback: }
+ }
+
+\cs_set:Npn \emshape { \gtfamily \itshape }
+\cs_set:Npn \eminnershape { \mcfamily \upshape }
+%%%%%% ... until here.
+
+\ExplSyntaxOff
+\expandafter\patchcmd\csname TU\string\textasteriskcentered\endcsname{\char}{\ltjalchar}{}{}
+
+\endinput
+

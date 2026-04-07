@@ -1,0 +1,22 @@
+% Public domain. From Ulrike:
+% https://tug.org/pipermail/pdftex/2024-July/009424.html
+% Original problem, that spaces are lost at font switches.
+
+\pdfcompresslevel0
+\pdfobjcompresslevel0
+\font\test=cmss10
+\pdfinterwordspaceon
+
+text text {\test cmss cmss} text text
+
+\end
+
+% there is a space char between "text text" and "cmss cmss":
+%
+%    [(text)]TJ/F51 9.9626 Tf( )Tj/F1 9.9626 Tf 20.756 0 Td [(text)]
+%    [(cmss)]TJ/F51 9.9626 Tf( )Tj/F20 9.9626 Tf 23.302 0 Td [(cmss)]
+%
+% But nothing between "text cmss" and "cmss text"
+%
+%    [(text)]TJ/F20 9.9626 Tf 20.755 0 Td [(cmss)]
+%    [(cmss)]TJ/F1 9.9626 Tf 23.301 0 Td [(text)]

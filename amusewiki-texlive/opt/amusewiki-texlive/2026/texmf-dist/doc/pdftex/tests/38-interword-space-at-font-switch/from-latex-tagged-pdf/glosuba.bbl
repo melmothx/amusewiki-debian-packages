@@ -1,0 +1,37 @@
+\begin{thebibliography}{1}
+
+\bibitem{foster2019complexity}
+Dylan~J Foster, Ayush Sekhari, Ohad Shamir, Nathan Srebro, Karthik Sridharan,
+  and Blake Woodworth.
+\newblock The complexity of making the gradient small in stochastic convex
+  optimization.
+\newblock In {\em Conference on Learning Theory}, pages 1319--1345. PMLR, 2019.
+
+\bibitem{globook}
+R.~Horst and H.~Tuy.
+\newblock {\em Global Optimization: Deterministic Approaches}.
+\newblock Springer-Verlag.
+
+\bibitem{nest}
+Y.~Nesterov.
+\newblock {\em Introductory Lectures on Convex Optimization A Basic Course}.
+\newblock Kluwer Academic Publishers.
+
+\bibitem{pour}
+M.~Pour-El and J.~Richards.
+\newblock {\em Computability in analysis and physics}.
+\newblock Springer, Heidelberg, 1989.
+
+\bibitem{sorbook}
+R.I. Soare.
+\newblock {\em Turing Computability: Theory and Applications}.
+\newblock Springer-Verlag.
+
+\bibitem{zhang2020complexity}
+Jingzhao Zhang, Hongzhou Lin, Stefanie Jegelka, Suvrit Sra, and Ali Jadbabaie.
+\newblock Complexity of finding stationary points of nonconvex nonsmooth
+  functions.
+\newblock In {\em International Conference on Machine Learning}, pages
+  11173--11182. PMLR, 2020.
+
+\end{thebibliography}

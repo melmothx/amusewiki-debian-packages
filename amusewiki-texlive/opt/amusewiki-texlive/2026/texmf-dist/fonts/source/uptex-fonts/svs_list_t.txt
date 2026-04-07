@@ -1,0 +1,49 @@
+%
+% This file is generated from the data of UniCNS-UTF32
+% in cid2code.txt (Version 10/24/2017)
+% for Adobe-CNS1-7
+%
+% Reference:
+%   https://github.com/adobe-type-tools/cmap-resources/
+%   Adobe-CNS1-7/cid2code.txt
+%
+% A newer CMap may be required for some code points.
+%
+%
+% And also referred to data of Unicode Standardized Variants
+% in StandardizedVariants-16.0.0.txt
+%
+% Reference:
+%   https://www.unicode.org/Public/UCD/latest/ucd/StandardizedVariants.txt
+%
+456B FE00	2F9B2	14339
+4FBB FE00	2F806	15843
+5140 FE00	FA0C	628
+52C7 FE01	2F825	15704
+52FA FE01	2F828	17316
+5305 FE00	2F829	16486
+537F FE01	2F832	16510
+5406 FE00	2F83B	18411
+54A2 FE00	2F840	18727
+55C0 FE00	FA0D	9089
+5C6E FE01	2F878	17634
+5F22 FE00	2F894	16715
+6148 FE00	2F8A6	16757
+6649 FE00	2F8CD	15842
+6674 FE00	FA12	16828
+675E FE00	2F8DB	16841
+6E2F FE00	2F908	16943
+716E FE00	FA48	16997
+7250 FE00	2F922	16392
+745C FE00	2F92F	17056
+8005 FE00	FA5B	14224
+8291 FE00	2F98F	14263
+82B3 FE00	2F994	14270
+8728 FE00	2F9BC	15241
+8CAB FE00	2F9D4	14408
+8D77 FE00	2F9D7	14421
+90FD FE00	FA26	14465
+9F16 FE00	2FA1B	14662
+9F9C FE00	F907	17686
+%
+% end

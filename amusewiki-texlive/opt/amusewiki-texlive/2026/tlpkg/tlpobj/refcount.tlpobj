@@ -1,0 +1,28 @@
+name refcount
+category Package
+revision 77682
+shortdesc Counter operations with label references
+longdesc Provides commands \setcounterref and \addtocounterref which use
+longdesc the section (or whatever) number from the reference as the
+longdesc value to put into the counter, as in: ...\label{sec:foo} ...
+longdesc \setcounterref{foonum}{sec:foo} Commands \setcounterpageref and
+longdesc \addtocounterpageref do the corresponding thing with the page
+longdesc reference of the label. No .ins file is distributed; process
+longdesc the .dtx with plain TeX to create one.
+containersize 3052
+containerchecksum 6901f2ab8128d7023bdd0d41d106b8cd329e2343ddf89051dfbf6f8dce0b1e1333da08ae03aa80662c495b72630a9bbaf7b428a69e31609c575c4460e8812d11
+doccontainersize 325416
+doccontainerchecksum db6b0925fb6fbd70c968599d2a255f8cf019dd49770846e2c2c21a556e4ae195242a02a6e9412725e4a7a6c21dc2956b936514eb877336975d57fda119c1148a
+docfiles size=81
+ texmf-dist/doc/latex/refcount/README.md
+ texmf-dist/doc/latex/refcount/refcount.pdf details="Package documentation"
+srccontainersize 7472
+srccontainerchecksum 4afcc5b894e46e9418230b4bf6201b8a8e88b0e641b6144054894d2531c2849be5a36b6f4865624343440d265b69da81bf4ab290d5ceb66758a035e1dceb625b
+runfiles size=3
+ texmf-dist/tex/latex/refcount/refcount.sty
+catalogue-contact-bugs https://github.com/ho-tex/refcount/issues
+catalogue-contact-repository https://github.com/ho-tex/refcount
+catalogue-ctan /macros/latex/contrib/refcount
+catalogue-license lppl1.3
+catalogue-topics label-ref tagged-pdf
+catalogue-version 3.6

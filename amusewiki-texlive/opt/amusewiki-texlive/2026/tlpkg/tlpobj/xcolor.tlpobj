@@ -1,0 +1,41 @@
+name xcolor
+category Package
+revision 77682
+shortdesc Driver-independent color extensions for LaTeX and pdfLaTeX
+longdesc The package starts from the basic facilities of the color
+longdesc package, and provides easy driver-independent access to several
+longdesc kinds of color tints, shades, tones, and mixes of arbitrary
+longdesc colors. It allows a user to select a document-wide target color
+longdesc model and offers complete tools for conversion between eight
+longdesc color models. Additionally, there is a command for alternating
+longdesc row colors plus repeated non-aligned material (like horizontal
+longdesc lines) in tables. Colors can be mixed like
+longdesc \color{red!30!green!40!blue}.
+containersize 18300
+containerchecksum 3ba03742b310e82e5d51df140ac1322afd46d0e18700e3b827f6d5771fd94ee2d82e3d284c548c8159f1360a8ec0c085c65e33c03dc71fb9f308ad66e4f930aa
+doccontainersize 935036
+doccontainerchecksum 300988b2d84b97365c95063552c1bf1c8eb2a4b2e5be1819c1f1e81026ff775855fed33b67f8bb8d1f6e837dde95e2dd95e78159674134c143917c6c54cd148b
+docfiles size=248
+ texmf-dist/doc/latex/xcolor/ChangeLog
+ texmf-dist/doc/latex/xcolor/README.md details="Readme"
+ texmf-dist/doc/latex/xcolor/xcolor.lox
+ texmf-dist/doc/latex/xcolor/xcolor.pdf details="Package documentation"
+ texmf-dist/doc/latex/xcolor/xcolor1.tex
+ texmf-dist/doc/latex/xcolor/xcolor2.pdf details="Examples of usage with pstricks"
+ texmf-dist/doc/latex/xcolor/xcolor2.tex
+ texmf-dist/doc/latex/xcolor/xcolor3.tex
+ texmf-dist/doc/latex/xcolor/xcolor4.tex
+srccontainersize 77232
+srccontainerchecksum fabf3014ede7786ddbd3588ad4fa2859fa9c1d451e4e12c01137be342440ffc4d8fea2b90cea48917a1b460c5c2c02dd3f7b89e849b9e8db2b8b3f92c2ecccf5
+runfiles size=34
+ texmf-dist/dvips/xcolor/xcolor.pro
+ texmf-dist/tex/latex/xcolor/svgnam.def
+ texmf-dist/tex/latex/xcolor/x11nam.def
+ texmf-dist/tex/latex/xcolor/xcolor-2022-06-12.sty
+ texmf-dist/tex/latex/xcolor/xcolor.sty
+catalogue-contact-bugs https://github.com/latex3/xcolor/issues
+catalogue-contact-home https://github.com/latex3/xcolor
+catalogue-ctan /macros/latex/contrib/xcolor
+catalogue-license lppl1.3c
+catalogue-topics colour tagged-pdf
+catalogue-version 3.02

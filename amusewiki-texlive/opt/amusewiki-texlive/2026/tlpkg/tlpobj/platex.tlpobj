@@ -1,0 +1,93 @@
+name platex
+category Package
+revision 77830
+shortdesc pLaTeX2e and miscellaneous macros for pTeX
+longdesc The bundle provides pLaTeX2e and miscellaneous macros for pTeX
+longdesc and e-pTeX. This is a community edition forked from the
+longdesc original ASCII edition (ptex-texmf-2.5).
+depend babel
+depend cm
+depend firstaid
+depend hyphen-base
+depend knuth-lib
+depend l3backend
+depend l3backend-dev
+depend l3kernel
+depend l3kernel-dev
+depend latex
+depend latex-base-dev
+depend latex-firstaid-dev
+depend latex-fonts
+depend platex.ARCH
+depend ptex
+depend ptex-fonts
+depend tex-ini-files
+depend unicode-data
+depend uptex
+execute AddFormat name=platex engine=euptex options="*platex.ini"           patterns=language.dat           fmttriggers=ptex-fonts,l3backend,l3kernel,latex,firstaid,babel,cm,hyphen-base,knuth-lib,latex-fonts,tex-ini-files,unicode-data
+execute AddFormat name=platex-dev engine=euptex options="*platex.ini"           patterns=language.dat           fmttriggers=ptex-fonts,l3backend-dev,l3kernel-dev,latex-base-dev,latex-firstaid-dev,babel,cm,hyphen-base,knuth-lib,latex-fonts,tex-ini-files,unicode-data
+containersize 42308
+containerchecksum 5f46fff3ee07030ba831c2d6bcd91e503c5262b2648e5f27fc4b0a908c2d6929a79462173809d9633f11c16dcf6d36923a3cb0b899c7a1183cc11556f8eaba68
+doccontainersize 1984916
+doccontainerchecksum 2119bc769266dcbbd6c1a623c9741af092e211c9e282568594a502d6f3842ebef8ea8502ccd943602c4f140081032cb8cd06b768f52e803792bae64cb7b9ff74
+docfiles size=513
+ texmf-dist/doc/man/man1/platex.1
+ texmf-dist/doc/man/man1/platex.man1.pdf
+ texmf-dist/doc/platex/base/LICENSE
+ texmf-dist/doc/platex/base/README.md details="Readme"
+ texmf-dist/doc/platex/base/exppl2e.pdf
+ texmf-dist/doc/platex/base/platex-en.pdf details="Package documentation"
+ texmf-dist/doc/platex/base/platex.pdf details="Package documentation" language="ja"
+ texmf-dist/doc/platex/base/platexrelease.pdf
+ texmf-dist/doc/platex/base/pldoc.pdf
+srccontainersize 140240
+srccontainerchecksum aa8569b30c3c605d66f0a90aa1488c16173896fe062053ce52a02cef63677da4e5cb71cc426e39ca484f57f84d9928f0fd96c52bb32264ffbbcab7047b3bfcb1
+runfiles size=169
+ texmf-dist/tex/platex/base/exppl2e.sty
+ texmf-dist/tex/platex/base/jarticle.cls
+ texmf-dist/tex/platex/base/jarticle.sty
+ texmf-dist/tex/platex/base/jbk10.clo
+ texmf-dist/tex/platex/base/jbk11.clo
+ texmf-dist/tex/platex/base/jbk12.clo
+ texmf-dist/tex/platex/base/jbook.cls
+ texmf-dist/tex/platex/base/jbook.sty
+ texmf-dist/tex/platex/base/jltxdoc.cls
+ texmf-dist/tex/platex/base/jreport.cls
+ texmf-dist/tex/platex/base/jreport.sty
+ texmf-dist/tex/platex/base/jsize10.clo
+ texmf-dist/tex/platex/base/jsize11.clo
+ texmf-dist/tex/platex/base/jsize12.clo
+ texmf-dist/tex/platex/base/jt1gt.fd
+ texmf-dist/tex/platex/base/jt1mc.fd
+ texmf-dist/tex/platex/base/jy1gt.fd
+ texmf-dist/tex/platex/base/jy1mc.fd
+ texmf-dist/tex/platex/base/kinsoku.tex
+ texmf-dist/tex/platex/base/oldpfont.sty
+ texmf-dist/tex/platex/base/pfltrace.sty
+ texmf-dist/tex/platex/base/pl209.def
+ texmf-dist/tex/platex/base/platex.ltx
+ texmf-dist/tex/platex/base/platexrelease.sty
+ texmf-dist/tex/platex/base/plcore.ltx
+ texmf-dist/tex/platex/base/pldefs.ltx
+ texmf-dist/tex/platex/base/plexpl3.ltx
+ texmf-dist/tex/platex/base/plexpl3.sty
+ texmf-dist/tex/platex/base/plext.sty
+ texmf-dist/tex/platex/base/plnews.cls
+ texmf-dist/tex/platex/base/ptrace.sty
+ texmf-dist/tex/platex/base/tarticle.cls
+ texmf-dist/tex/platex/base/tarticle.sty
+ texmf-dist/tex/platex/base/tbk10.clo
+ texmf-dist/tex/platex/base/tbk11.clo
+ texmf-dist/tex/platex/base/tbk12.clo
+ texmf-dist/tex/platex/base/tbook.cls
+ texmf-dist/tex/platex/base/tbook.sty
+ texmf-dist/tex/platex/base/treport.cls
+ texmf-dist/tex/platex/base/treport.sty
+ texmf-dist/tex/platex/base/tsize10.clo
+ texmf-dist/tex/platex/base/tsize11.clo
+ texmf-dist/tex/platex/base/tsize12.clo
+ texmf-dist/tex/platex/config/platex.ini
+catalogue-contact-repository https://github.com/texjporg/platex
+catalogue-ctan /macros/jptex/latex/platex
+catalogue-license bsd3
+catalogue-topics format class japanese tagged-pdf-incompatible

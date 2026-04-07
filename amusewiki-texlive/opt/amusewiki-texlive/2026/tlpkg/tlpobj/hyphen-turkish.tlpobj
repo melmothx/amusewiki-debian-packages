@@ -1,0 +1,27 @@
+name hyphen-turkish
+category TLCore
+revision 78069
+catalogue tkhyph
+shortdesc Turkish hyphenation patterns.
+longdesc Hyphenation patterns for Turkish in T1/EC and UTF-8 encodings.
+longdesc Auto-generated from a script included in the distribution. The
+longdesc patterns for Turkish were first produced for the Ottoman Texts
+longdesc Project in 1987 and were suitable for both Modern Turkish and
+longdesc Ottoman Turkish in Latin script, however the required character
+longdesc set didn't fit into EC encoding, so support for Ottoman Turkish
+longdesc had to be dropped to keep compatibility with 8-bit engines.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=turkish 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-tr.tex 	file_patterns=hyph-tr.pat.txt 	file_exceptions=
+containersize 3868
+containerchecksum c28157280dad4ac8ce003a8a68c546dda74dc51fd137280b883e3249306f1dca58611986a275ec43af71e1038c0b10f473577321cd8bbe325a29aff2c7237fcc
+srccontainersize 2724
+srccontainerchecksum b3da2b2ed5760e9945b7653e7a344951d2a5b8ed5c6c74fc28e1061a534a92231cfefb31bd311bf1d7d42668c0b1a6c09727a5f7ff91089790ee1e176910d00d
+runfiles size=5
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-tr.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-tr.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-tr.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-tr.pat.txt
+catalogue-ctan /language/hyphenation/tkhyph.tex
+catalogue-license other-free
+catalogue-topics hyphenation turkish

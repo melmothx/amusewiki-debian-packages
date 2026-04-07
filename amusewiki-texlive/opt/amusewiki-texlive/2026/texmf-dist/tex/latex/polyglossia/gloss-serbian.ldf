@@ -1,0 +1,446 @@
+% Language definition file (part of polyglossia v2.9 -- 2025/12/01)
+%
+\ProvidesFile{gloss-serbian.ldf}[polyglossia: module for Serbian]
+%TODO split into gloss-serbiancyr.ldf and gloss-serbianlat.ldf
+%% load these automatically from polyglossia.sty according to the script option ??
+%% same thing for all languages that have a "script" key !
+%% BETTER APPROACH: see gloss-sanskrit!
+
+\RequirePackage{xpg-cyrillicnumbers}
+
+\PolyglossiaSetup{serbian}{
+  bcp47=sr-Latn,
+  bcp47-language=sr,
+  bcp47-variant=ekavsk,
+  bcp47-script=Latn,
+  bcp47-casing=sr-Latn,
+  langtag=SRB,
+  hyphennames={serbian},
+  hyphenmins={2,2},
+  frenchspacing=true, % Правопис српскога језика, Матица српска, 2010. (измењено и допуњено, четврто издање): т. 188, под Обликовање ступца и пасуса
+  indentfirst=true, % Правопис српскога језика, Матица српска, 2010. (измењено и допуњено, четврто издање): т. 188, под Обликовање ступца и пасуса
+   localnumeral=serbiannumerals,
+  Localnumeral=Serbiannumerals,
+  babelname=serbian
+  %TODO localalph
+}
+
+% BCP-47 compliant aliases
+\setlanguagealias*{serbian}{sr}
+\setlanguagealias*[script=cyrillic]{serbian}{sr-Cyrl}
+\setlanguagealias*[script=latin]{serbian}{sr-Latn}
+
+% Babel aliases
+\setlanguagealias[script=cyrillic]{serbian}{serbianc}
+
+\ifluatex
+  \RequirePackage{luavlna}
+\fi
+
+\newif\if@serbian@cyr
+\newif\if@serbian@ijekavian
+
+\newif\ifcyrillic@numerals
+\newif\ifcyrillic@asbuk@numerals
+
+\def\serbian@set@languagekeys{%
+   \if@serbian@cyr
+     \if@serbian@ijekavian
+        \SetLanguageKeys{serbian}{scripttag=cyrl,script=Cyrillic,babelname=serbianc,bcp47=sr-Cyrl-ijekavsk,bcp47-language=sr,bcp47-script=Cyrl,bcp47-variant=ijekavsk,bcp47-casing=sr-Cyrl}%
+     \else
+        \SetLanguageKeys{serbian}{scripttag=cyrl,script=Cyrillic,babelname=serbianc,bcp47=sr-Cyrl,bcp47-language=sr,bcp47-script=Cyrl,bcp47-variant=ekavsk,bcp47-casing=sr-Cyrl}%
+     \fi
+   \else
+     \if@serbian@ijekavian
+       \SetLanguageKeys{serbian}{scripttag=latn,script=Latin,babelname=serbian,bcp47=sr-Latn-ijekavsk,bcp47-language=sr,bcp47-script=Latn,bcp47-variant=ijekavsk,bcp47-casing=sr-Latn}%
+     \else
+       \SetLanguageKeys{serbian}{scripttag=latn,script=Latin,babelname=serbian,bcp47=sr-Latn,bcp47-language=sr,bcp47-script=Latn,bcp47-variant=ekavsk,bcp47-casing=sr-Latn}%
+     \fi
+   \fi
+}
+
+\DeclareKeys[polyglossia/gloss/serbian]
+  {
+    splithyphens.if = serbian@splithyphens,
+    splithyphens.default:n = true,
+    datei.if = serbian@datei,
+    datei.default:n = true,
+    variant.choice:,
+    variant / ekavian.code =
+      {%
+        \@serbian@ijekavianfalse
+        \serbian@set@languagekeys
+      },
+    variant / ijekavian.code =
+      {%
+        \@serbian@ijekaviantrue
+        \serbian@set@languagekeys
+      },
+    variant.default:n = ekavian,
+    variant/unknown.code = \xpg@warning{Unknown Serbian variant `#1'},
+    script.choice:,
+    script / cyrillic.code =
+      {%
+        \@serbian@cyrtrue
+        \serbian@set@languagekeys
+      },
+    script / latin.code =
+      {%
+        \@serbian@cyrfalse
+          %TODO \def\serbian@language{\language=\l@serbianlat}%
+          % or should we use Croatian patterns as a fallback for the time being???
+        \serbian@set@languagekeys
+      },
+    script.default:n = cyrillic,
+    script/unknown.code = \xpg@warning{Unknown Serbian script `#1'},
+    numerals.choice:,
+    numerals / arabic.code =
+      {%
+        \cyrillic@numeralsfalse
+        \cyrillic@asbuk@numeralsfalse
+        \SetLanguageKeys{serbian}{bcp47-extension-u=nu-latn}%
+      },
+    numerals / cyrillic.code =
+      {%
+        \cyrillic@numeralstrue
+        \cyrillic@asbuk@numeralsfalse
+        \SetLanguageKeys{serbian}{bcp47-extension-u=nu-cyrl}%
+      },
+    numerals / cyrillic-trad.code =
+      {%
+        \cyrillic@numeralstrue
+        \cyrillic@asbuk@numeralsfalse
+        \SetLanguageKeys{serbian}{bcp47-extension-u=nu-cyrl}%
+      },
+    numerals / cyrillic-alph.code =
+      {%
+        \cyrillic@numeralstrue
+        \cyrillic@asbuk@numeralstrue
+        \SetLanguageKeys{serbian}{bcp47-extension-u=nu-cyrl}%
+      },
+    numerals.default:n = arabic,
+    numerals/unknown.code = \xpg@warning{Unknown Serbian numerals value `#1'}
+  }
+
+\SetGlossOptions{serbian}{script,numerals}
+
+% Register default options
+\InitializeGlossOptions{serbian}{script=cyrillic,numerals=arabic,splithyphens=true}
+
+\def\captionsserbian{%
+   \if@serbian@cyr\captionsserbian@cyr\else\captionsserbian@lat\fi
+}
+
+\def\dateserbian{%
+   \if@serbian@cyr\dateserbian@cyr\else\dateserbian@lat\fi
+}
+
+\def\captionsserbian@lat{%
+   \def\refname{Bibliografija}%
+   \def\abstractname{Sažetak}%
+   \def\bibname{Literatura}%
+   \def\prefacename{Predgovor}%
+   \def\chaptername{Glava}%
+   \def\appendixname{Dodatak}%
+   \def\contentsname{Sadržaj}%
+   \def\listfigurename{Spisak slika}%
+   \def\listtablename{Spisak tabela}%
+   \def\indexname{Registar}%
+   \def\figurename{Slika}%
+   \def\tablename{Tabela}%
+   \def\partname{Deo}%
+   \renewcommand\thepart{\ifcase\value{part}\or Prvi\or Drugi\or
+      Treći\or Četvrti\or Peti\or Šesti\or Sedmi\or Osmi\or
+      Deveti\or Deseti\or Jedanaesti\or Dvanaesti\or Trinaesti\or
+      Četrnaesti\or Petnaesti\or Šesnaesti\or Sedamnaesti\or
+      Osamnaesti\or Devetnaesti\or Dvadeseti\fi}%
+   \def\pagename{Strana}%
+   \def\seename{Vidi}%
+   \def\alsoname{Vidi takođe}%
+   \def\enclname{Prilozi}%
+   \def\ccname{Kopije}%
+   \def\headtoname{Prima}%
+   \def\proofname{Dokaz}%
+   \def\glossaryname{Rečnik nepoznatih reči}%
+   \if@serbian@ijekavian%
+     \def\partname{Dio}%
+     \def\glossaryname{Rječnik nepoznatih riječi}%
+   \fi
+}
+
+\def\month@serbian@lat{%
+  \ifcase\month\or
+    januar\or
+    februar\or
+    mart\or
+    april\or
+    maj\or
+    \ifserbian@datei juni\else jun\fi\or
+    \ifserbian@datei juli\else jul\fi\or
+    avgust\or
+    septembar\or
+    oktobar\or
+    novembar\or
+    decembar%
+  \fi%
+}%
+
+\def\month@serbian@lat@gen{%
+  \ifcase\month\or
+    januara\or
+    februara\or
+    marta\or
+    aprila\or
+    maja\or
+    juna\or
+    jula\or
+    avgusta\or
+    septembra\or
+    oktobra\or
+    novembra\or
+    decembra%
+  \fi%
+}%
+
+\def\dateserbian@lat{%  
+    \def\today{\number\day.~\month@serbian@lat\ \number\year\@ifstar{}{.}}%
+    \def\todayRoman{\number\day.~\@Roman\month~\number\year\@ifstar{}{.}}%
+    \def\todayGen{\number\day.~\month@serbian@lat@gen\ \number\year\@ifstar{}{.}}%
+    \def\todayArabic{\number\day.~\number\month.~\number\year\@ifstar{}{.}}%
+}
+
+\def\captionsserbian@cyr{%
+   \def\refname{Библиографија}%
+   \def\abstractname{Сажетак}%
+   \def\bibname{Литература}%
+   \def\prefacename{Предговор}%
+   \def\chaptername{Глава}%
+   \def\appendixname{Додатак}%
+   \def\contentsname{Садржај}%
+   \def\listfigurename{Списак слика}%
+   \def\listtablename{Списак табела}%
+   \def\indexname{Регистар}%
+   \def\figurename{Слика}%
+   \def\tablename{Табела}%
+   \def\partname{Део}%
+   \renewcommand\thepart{\ifcase\value{part}\or Први\or Други\or Трећи\or
+   Четврти\or Пети\or Шести\or Седми\or Осми\or Девети\or Десети\or
+   Једанаести\or Дванаести\or Тринаести\or Четрнаести\or Петнаести\or
+   Шеснаести\or Седамнаести\or Осамнаести\or Деветнаести\or Двадесети\fi}%
+   \def\pagename{Страна}%
+   \def\seename{Види}%
+   \def\alsoname{Види такође}%
+   \def\enclname{Прилози}%
+   \def\ccname{Копије}%
+   \def\headtoname{Прима}%
+   \def\proofname{Доказ}%
+   \def\glossaryname{Речник непознатих речи}%
+   \if@serbian@ijekavian%
+     \def\partname{Дио}%
+     \def\glossaryname{Рјечник непознатих ријечи}%
+   \fi
+}
+
+\def\month@serbian@cyr{%
+  \ifcase\month\or
+    јануар\or
+    фебруар\or
+    март\or
+    април\or
+    мај\or
+    \ifserbian@datei јуни\else јун\fi\or
+    \ifserbian@datei јули\else јул\fi\or
+    август\or
+    септембар\or
+    октобар\or
+    новембар\or
+    децембар%
+  \fi%
+}%
+
+\def\month@serbian@cyr@gen{%
+  \ifcase\month\or
+    јануара\or
+    фебруара\or
+    марта\or
+    априла\or
+    маја\or
+    јуна\or
+    јула\or
+    августа\or
+    септембра\or
+    октобра\or
+    новембра\or
+    децембра%
+  \fi%
+}%
+
+\def\dateserbian@cyr{%  
+    \def\today{\number\day.~\month@serbian@cyr\ \number\year\@ifstar{}{.}}%
+    \def\todayRoman{\number\day.~\@Roman\month~\number\year\@ifstar{}{.}}%
+    \def\todayGen{\number\day.~\month@serbian@cyr@gen\ \number\year\@ifstar{}{.}}%
+    \def\todayArabic{\number\day.~\number\month.~\number\year\@ifstar{}{.}}%
+}
+
+% Use \providecommand here as the ldf file might
+% be reloaded via serbianc.
+\providecommand{\serbiannumerals}[2]{\serbiannumber{#2}}
+\providecommand{\Serbiannumerals}[2]{\Serbiannumber{#2}}
+
+\def\serbiannumber#1{%
+  \ifcyrillic@numerals
+    \ifcyrillic@asbuk@numerals
+      \serbian@asbuk@alph{#1}%
+    \else
+      \cyr@alph{#1}%
+    \fi
+  \else
+    \number#1%
+  \fi%
+}
+
+\def\Serbiannumber#1{%
+  \ifcyrillic@numerals
+    \ifcyrillic@asbuk@numerals
+      \serbian@asbuk@Alph{#1}%
+    \else
+      \cyr@Alph{#1}%
+    \fi
+  \else
+    \number#1%
+  \fi%
+}
+
+\let\serbiannumeral=\serbiannumber
+\let\Serbiannumeral=\Serbiannumber
+
+\def\serbian@numbers{%
+   \let\latin@alph\@alph
+   \let\latin@Alph\@Alph
+   \ifcyrillic@numerals
+     \def\serbian@alph##1{\expandafter\serbiannumeral\expandafter{\the##1}}%
+     \def\serbian@Alph##1{\expandafter\Serbiannumeral\expandafter{\the##1}}%
+      \let\@alph\serbian@alph%
+      \let\@Alph\serbian@Alph%
+   \fi
+}
+
+\def\noserbian@numbers{%
+   \let\@alph\latin@alph
+   \let\@Alph\latin@Alph
+}
+
+\let\xpg@hyphen@char-
+\def\serbian@@splhyphen#1{%
+  \def\serbian@sh@tmp{%
+       \ifx\serbian@sh@next\xpg@hyphen@charx#1%
+       \else\expandafter\serbian@@@splhyphen{#1}\fi%
+     }%
+     \futurelet\serbian@sh@next\serbian@sh@tmp%
+}
+
+\def\serbian@@@splhyphen#1{%
+  \ifnum\hyphenchar \font>0%
+    \kern\z@\discretionary{-}{\char\hyphenchar\the\font}{#1}%
+    \nobreak\hskip\z@%
+  \else%
+    #1%
+  \fi%
+}
+
+\def\serbian@splhyphen{%
+  \serbian@@splhyphen{-}%
+}
+
+\ifxetex
+  % splithyphens
+  \newXeTeXintercharclass\serbian@hyphen % -
+  \newXeTeXintercharclass\serbian@nonsyllabicpreposition%
+\fi
+
+\def\serbian@hyphens{%
+    \ifluatex
+      \AfterPreamble{\enablesplithyphens{serbian}}%
+    \else
+      \XeTeXinterchartokenstate=1
+      \XeTeXcharclass `\- \serbian@hyphen
+      \XeTeXinterchartoks \z@ \serbian@hyphen = {\serbian@@splhyphen}% "-" -> "\serbian@@splhyphen-"
+      % necessary if used together with vlna:
+      \XeTeXinterchartoks \serbian@nonsyllabicpreposition \serbian@hyphen = {\serbian@@splhyphen}% "-" -> "\serbian@@splhyphen-"
+    \fi%
+}
+
+\def\noserbian@hyphens{%
+    \ifluatex
+      \AfterPreamble{\disablesplithyphens{serbian}}%
+    \else
+      \XeTeXcharclass `\- \z@
+    \fi%
+}
+
+\def\blockextras@serbian{%
+  \ifcyrillic@numerals\serbian@numbers\else\noserbian@numbers\fi%
+  \ifserbian@splithyphens\serbian@hyphens\else\noserbian@hyphens\fi%
+}
+
+\def\inlineextras@serbian{%
+  \ifserbian@splithyphens\serbian@hyphens\else\noserbian@hyphens\fi%
+}
+
+\def\nestedextras@serbian{%
+  \ifluatex%
+    \ifserbian@splithyphens\serbian@hyphens\else\noserbian@hyphens\fi%
+  \fi%
+}
+ 
+\def\noextras@serbian{%
+   \ifcyrillic@numerals\noserbian@numbers\fi%
+   \noserbian@hyphens%
+}
+
+\def\Asbuk#1{\expandafter\serbian@asbuk@Alph\csname c@#1\endcsname}
+\def\asbuk#1{\expandafter\serbian@asbuk@alph\csname c@#1\endcsname}
+
+\def\AsbukTrad#1{\expandafter\cyr@Alph\csname c@#1\endcsname}
+\def\asbukTrad#1{\expandafter\cyr@alph\csname c@#1\endcsname}
+
+% This is a poor man's cyrillic alphanumeric.
+% It just uses the alphabet and thus ends at 30.
+\def\serbian@asbuk@Alph#1{\ifcase#1\or
+   А\or Б\or В\or Г\or Д\or Ђ\or Е\or Ж\or
+   З\or И\or Ј\or К\or Л\or Љ\or М\or Н\or
+   Њ\or О\or П\or Р\or С\or Т\or Ћ\or У\or
+   Ф\or Х\or Ц\or Ч\or Џ\or Ш%
+   \else\xpg@ill@value{#1}{serbian@asbuk@Alph}\fi%
+}
+
+\def\serbian@asbuk@alph#1{\ifcase#1\or
+   а\or б\or в\or г\or д\or ђ\or е\or ж\or
+   з\or и\or ј\or к\or л\or љ\or м\or н\or
+   њ\or о\or п\or р\or с\or т\or ћ\or у\or
+   ф\or х\or ц\or ч\or џ\or ш%
+   \else\xpg@ill@value{#1}{serbian@asbuk@alph}\fi%
+}
+
+ 
+\endinput
+
+% TODO ? stuff from babel
+% If you implement this, add an option mathfunction as in gloss-russian.ldf
+
+\def\sh{\mathop{\operator@font sh}\nolimits} % same as \sinh
+\def\ch{\mathop{\operator@font ch}\nolimits} % same as \cosh
+\def\th{\mathop{\operator@font th}\nolimits} % same as \tanh
+\def\cth{\mathop{\operator@font cth}\nolimits} % same as \coth
+\def\arsh{\mathop{\operator@font arsh}\nolimits}
+\def\arch{\mathop{\operator@font arch}\nolimits}
+\def\arth{\mathop{\operator@font arth}\nolimits}
+\def\arcth{\mathop{\operator@font arcth}\nolimits}
+\def\tg{\mathop{\operator@font tg}\nolimits} % same as \tan
+\def\ctg{\mathop{\operator@font ctg}\nolimits} % same as \cot
+\def\arctg{\mathop{\operator@font arctg}\nolimits} % same as \arctan
+\def\arcctg{\mathop{\operator@font arcctg}\nolimits}
+\def\Prob{\mathop{\mathsf P\hskip0pt}\nolimits}
+\def\Expect{\mathop{\mathsf E\hskip0pt}\nolimits}
+\def\Variance{\mathop{\mathsf D\hskip0pt}\nolimits}
+

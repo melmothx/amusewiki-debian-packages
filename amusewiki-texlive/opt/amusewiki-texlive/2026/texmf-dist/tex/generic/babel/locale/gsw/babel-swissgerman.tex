@@ -1,0 +1,23 @@
+% This file is part of babel. For further details see:
+% https://www.ctan.org/pkg/babel
+\ifx\BabelBeforeIni\undefined
+  \PackageError{babel}%
+    {This file is a component of babel and cannot\MessageBreak
+     be loaded directly. I'll stop immediately}%
+    {Just use babel as documented.}%
+  \stop
+\fi
+\BabelBeforeIni{gsw}{%
+  \BabelDefinitionFile{0}{swissgerman}{%
+    \PackageWarning{babel}{%
+      Name 'swissgerman' is currently assigned to Swiss High\MessageBreak
+      German, with tag 'de-CH', not to Swiss German\MessageBreak
+      (tag 'gsw'). For the latter, load either the 'ini'\MessageBreak
+      version with 'provide', or else 'alemannic' (see\MessageBreak
+      the manual). Reported}%
+    \def\BabelIniTag{de-CH}%
+    \csname clist\string_if\string_in\string:NnT\endcsname
+      \BabelLocalesTentative{nswissgerman}% Still tentative
+      {\def\BabelIniTag{de-CH-1901}}}%
+}
+\endinput

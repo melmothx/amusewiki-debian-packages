@@ -1,0 +1,221 @@
+.TH PDFTEX 1 "14 February 2026" "Web2C 2026"
+.\"=====================================================================
+.if t .ds TX \fRT\\h'-0.10m'\\v'0.17v'E\\v'-0.17v'\\h'-0.06m'X\fP
+.if n .ds TX TeX
+.ie t .ds OX \fIT\h'-0.17m'\v'+0.21m'E\v'-0.21m'\h'-0.04m'X\fP
+.el .ds OX TeX
+.\" LX definition must follow TX so LX can use TX
+.if t .ds LX \fRL\\h'-0.36m'\\v'-0.15v'\s-2A\s+2\\h'-0.15m'\\v'0.15v'\fP\*(TX
+.if n .ds LX LaTeX
+.\"=====================================================================
+.SH NAME
+pdftex, pdfetex \- PDF output from TeX
+.SH SYNOPSIS
+.B pdftex
+.RI [ options ]
+.RI [ \fB&\fPformat ]
+\h'.25' [ \fIfile\fP [ \fImore-input\fP ] \h'.5'|\h'.5' [ \fB\e\fP\fImore-input\fP ]
+.\"=====================================================================
+.SH DESCRIPTION
+Run the pdf\*(TX typesetter on
+.IR file [.tex],
+usually creating
+.IR file.pdf .
+If the file argument has no extension, ".tex" will be appended to it. See
+.BR tex (1)
+for details of command-line parsing.
+.PP
+pdf\*(TX is a descendant of \*(TX that can create pdf files directly as
+well as dvi files (determined by the value of the \epdfoutput primitive
+parameter). It includes the
+.BR etex (1)
+extensions, and adds many more extensions of its own. In dvi mode,
+pdf\*(TX can be used as an upward-compatible replacement for the \*(TX
+engine.
+.PP
+The typical use of pdf\*(TX is with pregenerated \*(TX formats
+(\fI.fmt\fP files), usually with pdf output enabled. For example, the
+.B pdftex
+command uses the plain \*(TX format, and the
+.BR pdflatex (1)
+command uses the \*(LX format.  As described in 
+.BR etex (1),
+the e-\*(TX extensions are enabled when building the \fI.fmt\fP file.
+.PP
+.B Image formats supported
+.PP
+In pdf mode, pdf\*(TX can natively handle the
+.IR pdf ,
+.IR jpg ,
+.IR jbig2 ,
+and
+.I png
+graphics formats. It cannot include PostScript or Encapsulated
+PostScript (eps) graphics files; you can convert them to pdf using, for
+example,
+.BR epstopdf (1).
+The PostScript files output by
+.BR mpost (1),
+which are highly restricted in their use of PostScript, can be handled
+directly using the \fIsupp-pdf.tex\fP macros, or converted to pdf with
+.BR mptopdf (1).
+.PP
+.B Program variants
+.PP
+Starting with version 1.40 (around 2007), pdf\*(TX incorporated the
+e-\*(TX extensions, and the
+.B pdfetex
+and
+.B etex
+executables became symlinks to the
+.B pdftex
+binary. The
+.B etex
+executable generates dvi files by default; \fBpdfetex\fP has the same
+behavior as \fBpdftex\fP.
+.PP
+.B Both engine and driver
+.PP
+When generating pdf output, pdf\*(TX must have all necessary font and
+device information and thus is acting like a device driver with dvi
+output, similar to, say,
+.BR dvips (1).
+Therefore there are various primitives to specify the device
+information, such as the height, width, resolution, and so forth. Also,
+pdf\*(TX reads glyph information for the fonts used, e.g., from Type\~1
+or PK bitmap files.  pdf\*(TX also supports TrueType fonts, but it's
+necessary to define an encoding before using them (see references).
+OpenType fonts are not supported.
+.\"=====================================================================
+.SH OPTIONS
+For the common \*(TX command-line options and handling, see
+.BR tex (1).
+The following pdf\*(TX-specific options are also supported:
+.\" from Master/tlpkg/bin/tloptdiff.
+.TP
+.B -draftmode
+Enabled \epdfdraftmode, in which pdf\*(TX doesn't write a pdf and
+doesn't read any included images, thus speeding up execution.
+.TP
+.B -etex
+Enable the e-\*(TX extensions.  This option is only effective in
+combination with
+.BR -ini .
+It is typically enabled implicitly, with a leading "*" on the format
+initialization file, as described in
+.BR etex (1).
+.TP
+.BI -output-format \ format
+Set the output format mode;
+.I format
+must be either ``pdf'' or ``dvi''.
+.TP
+.BI -synctex \ number
+generate Sync\*(TX data for previewers according to bits of \fInumber\fP.
+See
+.BR synctex (1).
+.\"=====================================================================
+.SH ENVIRONMENT
+See
+.BR tex (1).
+Also, this environment variable is specific to pdf\*(TX:
+.TP
+.B TEXMF_DEBUG_PNG_COPY
+If set to "1", pdf\*(TX reports various attributes of each png image,
+including whether the image is copied. This is useful when a document uses
+numerous png images, since reencoding (instead of copying) can take
+considerable time. See the Graphics chapter in the pdf\*(TX manual for
+more information.
+.PP
+Also, these environment variables are considered for all engines except
+original \*(TX:
+.TP
+.B SOURCE_DATE_EPOCH
+If set, its value, taken to be in epoch-seconds, will be used for the
+timestamps in the PDF output, such as the CreationDate and ModDate keys.
+This is useful for making reproducible builds.
+.TP
+.B FORCE_SOURCE_DATE
+If set to the value "1", the time-related \*(TX primitives
+.RI ( \eyear ,
+.IR \emonth ,
+.IR \eday ,
+.IR \etime )
+are also initialized from the value of SOURCE_DATE_EPOCH.  This is not
+recommended if there is any viable alternative.
+.br
+pdf\*(TX also has several primitives to support reproducible builds;
+see the manual.
+.\"=====================================================================
+.SH FILES
+See
+.BR tex (1).
+Also:
+.TP
+.I $TEXMFMAIN/tex/plain/config/etex.ini
+The driver file that builds the plain format files for pdf\*(TX,
+\fIpdftex.fmt\fP and \fIpdfetex.fmt\fP, in \*(TX Live.
+.TP
+.I $TEXMFMAIN/tex/plain/config/pdftexmagfix.tex
+Make \emagnification work as expected under pdf\*(TX. Included in the
+format files.
+.TP
+.I $TEXMFMAIN/tex/generic/tex-ini-files/pdftexconfig.tex
+Define shared pdf settings, such as the default pdf version, the pdf
+height and width, etc.
+.TP
+.I $TEXMF[SYS]CONFIG/tex/generic/tex-ini-files/pdftexconfig.tex
+The installation-specific version of the above (in \*(TX Live), since
+the default paper size is defined by the installation.
+.TP
+.I $TEXMF[SYS]VAR/fonts/map/pdftex/updmap/pdftex.map
+Mapping of tfm files to Type\~1 fonts; generally maintained
+automatically in \*(TX Live.
+.\"=====================================================================
+.SH BUGS
+See
+.BR tex (1).
+.\"=====================================================================
+.SH "SEE ALSO"
+.BR epstopdf (1),
+.BR etex (1),
+.BR luatex (1),
+.BR mptopdf (1),
+.BR tex (1).
+.PP
+Micro-typographic extensions to the \*(TX typesetting system, by
+H\[`a]n The Th\[`a]nh
+(thesis describing the major new typesetting feature in pdf\*(TX):
+https://tug.org/TUGboat/tb21-4/
+.br
+A closer look at TrueType fonts and pdf\*(TX, by 
+H\[`a]n The Th\[`a]nh (on using TrueType fonts with \*(TX):
+https://tug.org/TUGboat/tb30-1/tb94thanh.pdf
+.br
+pdf\*(TX home page: https://www.pdftex.org
+.br
+Package page on CTAN: https://ctan.org/pkg/pdftex
+.br
+pdf\*(TX manual: https://mirror.ctan.org/systems/doc/pdftex/manual/pdftex-a.pdf
+.br
+Web2c manual: https://tug.org/web2c
+.br
+Kpathsea manual: https://tug.org/kpathsea
+.br
+Sources for the \*(TX-world literate programs, as pdf:
+https://ctan.org/pkg/knuth-pdf
+.\"=====================================================================
+.SH AUTHORS
+\*(TX was created by Donald E. Knuth. The primary author of the
+pdf\*(TX enhancements is H\[`a]n The Th\[`a]nh, with major contributions
+from Petr Sojka, Jiri Zlatuska, and Peter Breitenlohner (e-\*(TX).
+.\" the double accent 0x1EBF in Thanh's name is not easily available.
+.PP
+Public discussion list for pdf\*(TX-specific issues:
+https://lists.tug.org/pdftex
+.br
+Public discussion list for \*(TX Live:
+https://lists.tug.org/tex-live
+.br
+Public discussion list for all things \*(TX (and \*(LX):
+https://lists.tug.org/texhax

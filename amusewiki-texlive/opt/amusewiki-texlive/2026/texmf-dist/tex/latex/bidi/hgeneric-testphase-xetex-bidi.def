@@ -1,0 +1,285 @@
+%%
+%% This is file `hgeneric-testphase-xetex-bidi.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% bidi.dtx  (with options: `table,hgeneric-testphase-xetex-bidi.def')
+%% 
+%%   __________________________________________________
+%%   Vafa Khalighi
+%% 
+%%   Copyright (c) 2007--2026  Vafa Khalighi
+%%   Copyright (c) 2018--2020 bidi-tex GitHub Organization
+%% 
+%%   It may be distributed and/or modified under the LaTeX Project Public License,
+%%   version 1.3c or higher (your choice). The latest version of
+%%   this license is at: http://www.latex-project.org/lppl.txt
+%% 
+%%   This work is “author-maintained” (as per LPPL maintenance status)
+%%   by Vafa Khalighi.
+%% 
+%% 
+
+%% \CheckSum{54343}
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+\ProvidesFile{hgeneric-testphase-xetex-bidi.def}[2025/09/26 v0.3 bidi adaptations for generic Hyperref driver for the LaTeX PDF management bundle for XeTeX engine]
+\ExplSyntaxOn
+\bidi@undef\hyper@linkstart
+\bidi@undef\hyper@linkend
+\cs_new_protected:Npn \hyper@linkstart #1 #2 %#1 context, #2=destination name
+  {
+    \bool_if:NT \l__hyp_annot_GoTo_bool
+      {
+        \int_gincr:N\g__hyp_linknestlevel_int
+        \__hyp_check_link_nesting:TF
+          {
+            \Hy@VerboseLinkStart{#1}{#2}% only for debug
+            \group_begin:
+            \tl_set:Nn \l_hyp_current_dest_name_tl {#2}
+            \socket_use:nnn{hyp/link/GoTo/Contents}{#2}{}
+            \hook_use:n {hyp/link/#1}
+            \ifmmode\else\beginL\fi
+            \__hyp_link_goto_begin:nw {#2}
+          }
+          {
+            \group_begin:
+          }
+      }
+  }
+
+\cs_new_protected:Npn \hyper@linkend
+  {
+    \bool_if:NT \l__hyp_annot_GoTo_bool
+      {
+        \__hyp_check_link_nesting:TF
+          {
+            \__hyp_link_goto_end:
+            \ifmmode\else\endL\fi
+            \group_end:
+            \Hy@VerboseLinkStop
+          }
+          {
+            \group_end:
+          }
+        \int_gdecr:N\g__hyp_linknestlevel_int
+      }
+  }
+\AtBeginDocument{%
+\bidi@undef\hyper@link
+\bidi@undef\hyper@linkfile
+\bidi@undef\hyper@linkurl
+\bidi@undef\hyper@linknamed
+\cs_new_protected:Npn \hyper@link #1 #2 #3 %#1 context, #2=destination name, #3 content
+  {
+    \bool_if:NTF \l__hyp_annot_GoTo_bool
+      {
+        \int_gincr:N\g__hyp_linknestlevel_int
+        \__hyp_check_link_nesting:TF
+          {
+            \Hy@VerboseLinkStart{#1}{#2}
+            \group_begin:
+            \tl_set:Nn \l_hyp_current_dest_name_tl {#2}
+            \socket_use:nnn{hyp/link/GoTo/Contents}{#2}{#3}
+            \hook_use:n {hyp/link/#1}
+            \ifmmode\else\beginL\fi
+            \__hyp_link_goto_begin:nw {#2}\ifmmode\else\if@RTL\beginR\fi\fi#3\ifmmode\else\if@RTL\endR\fi\fi\Hy@xspace@end
+            \__hyp_link_goto_end:
+            \ifmmode\else\endL\fi
+            \group_end:
+            \Hy@VerboseLinkStop
+          }
+          {
+            \group_begin: #3\group_end:
+          }
+        \int_gdecr:N\g__hyp_linknestlevel_int
+      }
+      {{\let\protect\relax#3}}
+  }
+\cs_new_protected:Npn \hyper@linkfile #1 #2 #3 % link text, filename, destname
+  {
+   \bool_if:NTF \l__hyp_annot_GoToR_bool
+     {
+        \int_gincr:N\g__hyp_linknestlevel_int
+        \__hyp_check_link_nesting:TF
+          {
+            \group_begin:
+            \tl_set:Ne \l__hyp_filename_tmpa_tl { \text_expand:n { #2 } }
+            \exp_args:Ne
+              \pdf_object_if_exist:nF { __hyp_file_\tl_to_str:N \l__hyp_filename_tmpa_tl }
+                {
+                  \pdfdict_put:nne { l_pdffile/Filespec}{Subtype}{\pdf_name_from_unicode_e:n {application/pdf}}
+                  \pdffile_embed_file:noe
+                    {}
+                    {\l__hyp_filename_tmpa_tl }
+                    {__hyp_file_\tl_to_str:N \l__hyp_filename_tmpa_tl }
+                }
+            \pdfdict_put:nne
+               {l_hyp/annot/A/GoToR}
+               {F}
+               {\pdf_object_ref:e {__hyp_file_\tl_to_str:N \l__hyp_filename_tmpa_tl}}
+            \__hyp_text_pdfstring:nnN
+              { #3 }
+              { \l__hyp_text_enc_dest_print_tl }
+              \l__hyp_dest_name_tmpa_tl
+            \socket_use:nn{hyp/link/GoToR/Contents}{#2}
+            \tl_if_blank:eTF {#3}
+              {
+                \pdfdict_put:nne {l_hyp/annot/A/GoToR}{D}
+                  {
+                   [
+                     \int_eval:n
+                      { \int_max:nn {0}{ 0\l__hyp_href_pdf_page_tl - 1 }}
+                     /\l__hyp_dest_pdfremotestartview_tl
+                   ]
+                  }
+              }
+              {
+                \pdfdict_put:nno {l_hyp/annot/A/GoToR}{D}{\l__hyp_dest_name_tmpa_tl}
+              }
+            \mode_leave_vertical:
+            \pdf_object_unnamed_write:ne{dict}{\pdfdict_use:n {l_hyp/annot/A/GoToR}}
+            \pdfannot_dict_put:nne {link/GoToR}{A}{\pdf_object_ref_last:}
+            \ifmmode\else\beginL\fi
+            \pdfannot_link:nnn %expansion??
+              { GoToR }
+              {
+              }
+              {
+               \let\protect\relax
+                \ifmmode\else\if@RTL\beginR\fi\fi#1\ifmmode\else\if@RTL\endR\fi\fi\Hy@xspace@end
+                \Hy@VerboseLinkStop %where is the start??
+              }
+            \ifmmode\else\endL\fi
+            \group_end:
+          }
+          {
+            \group_begin: #1 \group_end:
+          }
+        \int_gdecr:N\g__hyp_linknestlevel_int
+     }
+     {{\let\protect\relax#1}}
+  }
+\cs_new_protected:Npn \hyper@linkurl #1 #2  %#1:link text #2: URI,
+  {
+    \bool_if:NTF \l__hyp_annot_URI_bool
+      {
+        \int_gincr:N\g__hyp_linknestlevel_int
+        \__hyp_check_link_nesting:TF
+          {
+           \group_begin:
+            \__hyp_text_pdfstring:eoN
+              { #2}
+              { \l__hyp_text_enc_uri_print_tl }
+              \l__hyp_uri_tmpa_tl
+            \pdfdict_put:nno{l_hyp/annot/A/URI}{URI}{\l__hyp_uri_tmpa_tl}
+            \bool_if:NT \l__hyp_href_url_ismap_bool
+              {
+               \pdfdict_put:nnn{l_hyp/annot/A/URI}{IsMap}{true}
+              }
+            \socket_use:nn{hyp/link/URI/Contents}{#2}
+            \cs_set_eq:NN \# \c_hash_str
+            \cs_set_eq:NN \% \c_percent_str
+            \Hy@safe@activestrue
+            \mode_leave_vertical:
+            \pdfannot_dict_put:nne {link/URI}{A}{<<\pdfdict_use:n {l_hyp/annot/A/URI}>>}
+            \ifmmode\else\beginL\fi
+            \pdfannot_link:nen { URI }
+              {
+              }
+              {
+                \let\protect\relax
+                \ifmmode\else\if@RTL\beginR\fi\fi#1\ifmmode\else\if@RTL\endR\fi\fi
+                \Hy@xspace@end
+                \Hy@VerboseLinkStop %where is the start??
+              }
+            \ifmmode\else\endL\fi
+            \group_end:
+           }
+           {
+             \group_begin: #1 \group_end:
+           }
+         \int_gdecr:N\g__hyp_linknestlevel_int
+      }
+      {{\let\protect\relax#1}}
+  }
+\RenewDocumentCommand \Acrobatmenu { m m }
+  {
+    \hyper@linknamed {#1} {#2}
+  }
+\cs_new_protected:Npn \hyper@linknamed #1 #2 %#1 action, #2 link text
+  {
+    \bool_if:NTF \l__hyp_annot_Named_bool
+      {
+         \int_gincr:N\g__hyp_linknestlevel_int
+         \__hyp_check_link_nesting:TF
+          {
+            \group_begin:
+            \pdfmeta_standard_verify:nnTF {named_actions}{#1}
+              {
+                \mode_leave_vertical:
+                \pdfdict_put:nne {l_hyp/annot/A/Named}{N}
+                  {\pdf_name_from_unicode_e:n{#1}}
+                \pdfannot_dict_put:nne {link/Named}{A}{<<\pdfdict_use:n {l_hyp/annot/A/Named}>>}
+                \ifmmode\else\beginL\fi
+                \pdfannot_link:nnn { Named }
+                 {
+   %                /A
+   %                  <<
+   %                    \pdfdict_use:n { l_hyp/annot/A/Named }
+   %                  >>
+                 }
+                 {
+                   \ifmmode\else\if@RTL\beginR\fi\fi#2\ifmmode\else\if@RTL\endR\fi
+                   \Hy@xspace@end
+                   \Hy@VerboseLinkStop
+                 }
+                 \ifmmode\else\endL\fi
+              }
+              {
+                \msg_warning:nnn { hyp } { pdfa-no-named-action }{#1}
+                #2
+              }
+           \group_end:
+          }
+          { \group_begin: #2 \group_end: }
+        \int_gdecr:N\g__hyp_linknestlevel_int
+      }
+      {{\let\protect\relax#2}}
+  }
+}
+\bidi@patchcmd\@TextField{%
+  \pdfannot_box:nnnn
+}{%
+  \if@RTL
+    \hskip\Fld@width
+  \fi
+  \pdfannot_box:nnnn
+}{}{}
+\bidi@patchcmd\@TextField{%
+  \MakeTextField{\Fld@width}{\Fld@height}
+}{%
+  \if@RTL
+    \hskip-\Fld@width
+  \fi
+  \MakeTextField{\Fld@width}{\Fld@height}
+}{}{}
+\ExplSyntaxOff
+\endinput
+%%
+%% End of file `hgeneric-testphase-xetex-bidi.def'.

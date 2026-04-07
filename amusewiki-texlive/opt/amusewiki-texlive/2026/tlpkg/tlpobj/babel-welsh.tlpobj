@@ -1,0 +1,22 @@
+name babel-welsh
+category Package
+revision 77682
+shortdesc Babel support for Welsh
+longdesc The package provides the language definition file for Welsh.
+longdesc (Mostly Welsh-language versions of the standard names in a
+longdesc LaTeX file.)
+containersize 1816
+containerchecksum 921e7843a2628b97b3a2051435620000122c4fddead77367fabd011517a184b852b87964638d52630818faa905a1acc84f401ce2af8928143c768caac400406d
+doccontainersize 118632
+doccontainerchecksum 468ee5cc95573f48415fc22babefd9c83548315e40761f4bbbdfd86adbcba26d55c5f1c0b0c0eefdd31877648d262bd9a8302a4252a0b85809751a577790a318
+docfiles size=31
+ texmf-dist/doc/generic/babel-welsh/README.md details="Readme"
+ texmf-dist/doc/generic/babel-welsh/welsh.pdf details="Package documentation (code listing)"
+srccontainersize 4092
+srccontainerchecksum 30c461859fa7edb4ceed538e088ba0c435290c313b9b9bb3c464c4f46198270d28e8ffc0ff49fdc8dda33cbece60532830a4584f0fb698207b5a2a5be143a0f5
+runfiles size=1
+ texmf-dist/tex/generic/babel-welsh/welsh.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/welsh
+catalogue-license lppl1.3
+catalogue-topics welsh multilingual-addon tagged-pdf
+catalogue-version 1.1c

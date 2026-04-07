@@ -1,0 +1,54 @@
+(CHARACTER H 405140
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA0C)
+     )
+  )
+(CHARACTER H 4051C9
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F979)
+     )
+  )
+(CHARACTER H 4055C0
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA0D)
+     )
+  )
+(CHARACTER H 40793C
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA18)
+     )
+  )
+(CHARACTER H 4079CA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F995)
+     )
+  )
+(CHARACTER H 408612
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA20)
+     )
+  )
+(CHARACTER H 4088CF
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9E7)
+     )
+  )
+(CHARACTER H 4090CE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F92C)
+     )
+  )
+(CHARACTER H 4096A3
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9F1)
+     )
+  )

@@ -1,0 +1,24 @@
+name intcalc
+category Package
+revision 77682
+shortdesc Expandable arithmetic operations with integers
+longdesc This package provides expandable arithmetic operations with
+longdesc integers, using the e-TeX extension \numexpr if it is
+longdesc available.
+containersize 5448
+containerchecksum 2cb46839e4bb2ff133c129ff421a72736f1d7964898ccd9bbab1d110b802c404d6851c77b1289d66d7001c34c9eb31ad6b9893ce90f2712b8e98b645d809cd45
+doccontainersize 423200
+doccontainerchecksum 7a2c19c1c32a5485513728993d452649a8c58fd3f97f6ffd1a0702804f9f1b37b6fbc3897ebe95f45a95e52ec5ce88614dd46125f178e41e37ec20465f47bbf0
+docfiles size=107
+ texmf-dist/doc/latex/intcalc/README.md
+ texmf-dist/doc/latex/intcalc/intcalc.pdf details="Package documentation"
+srccontainersize 12576
+srccontainerchecksum 41ef7de5b3438c1f855f314f0e04d0e90406d4c9a7df866b56c165b492f3572cb6dd6e019f4850be605c3d45c7b758295a4c9b66fbb8639449ae271ddf7aa09d
+runfiles size=8
+ texmf-dist/tex/generic/intcalc/intcalc.sty
+catalogue-contact-bugs https://github.com/ho-tex/intcalc/issues
+catalogue-contact-repository https://github.com/ho-tex/intcalc
+catalogue-ctan /macros/latex/contrib/intcalc
+catalogue-license lppl1.3
+catalogue-topics arithmetic calculation tagged-pdf
+catalogue-version 1.3

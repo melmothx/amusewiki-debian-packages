@@ -1,0 +1,22 @@
+name xpatch
+category Package
+revision 77682
+shortdesc Extending etoolbox patching commands
+longdesc The package generalises the macro patching commands provided by
+longdesc Philipp Lehmann's etoolbox.
+depend etoolbox
+containersize 1944
+containerchecksum 05b299a20058aca84f0d953977dd6463a053394d663ed3e71f4bccee3d0ab3e398214856c07b84184a0843f541e92ef8f89e5fdb11249914860bd717ac2c2aee
+doccontainersize 469996
+doccontainerchecksum 507546f508639abd56ff0451be062a7b872842decbc8860c4db09fa7c5854767d04a1c9acc90bb1d387cdc4a47c6edbf8d0f48ae02953bea9b57554134d36362
+docfiles size=116
+ texmf-dist/doc/latex/xpatch/README details="Readme"
+ texmf-dist/doc/latex/xpatch/xpatch.pdf details="Package documentation"
+srccontainersize 7508
+srccontainerchecksum def8a2b56f8f3ae35b11f2e5b7a897e0e6d7de5ea049ce033fe80ae04711e8ccf75ea4daa57125e9532fcaca05e6d48927b03e5e649085ff54523446f310aea2
+runfiles size=3
+ texmf-dist/tex/latex/xpatch/xpatch.sty
+catalogue-ctan /macros/latex/contrib/xpatch
+catalogue-license lppl1.3
+catalogue-topics macro-supp tagged-pdf
+catalogue-version 0.3

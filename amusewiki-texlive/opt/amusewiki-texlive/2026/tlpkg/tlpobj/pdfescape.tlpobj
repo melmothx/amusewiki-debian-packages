@@ -1,0 +1,24 @@
+name pdfescape
+category Package
+revision 77682
+shortdesc Implements pdfTeX's escape features using TeX or e-TeX
+longdesc This package implements pdfTeX's escape features
+longdesc (\pdfescapehex, \pdfunescapehex, \pdfescapename,
+longdesc \pdfescapestring) using TeX or e-TeX.
+containersize 4252
+containerchecksum 8b5093b09a74dae2471338765258ec40050e55c36dfc2096c543ddf9e932b2c13e8641ae5dd86ca6bdd90e10385fb9c9fe400370a33942df5b3dafee80a48f0c
+doccontainersize 342648
+doccontainerchecksum 476874371a5033debc95f5731ba7fe9a89727a49dac88bebeff52751afdbe544a7771b26a24b47d077da9aa559ea47cc7c50a76e561ea485e57e1c7cce317e02
+docfiles size=86
+ texmf-dist/doc/latex/pdfescape/README.md
+ texmf-dist/doc/latex/pdfescape/pdfescape.pdf details="Package documentation"
+srccontainersize 8308
+srccontainerchecksum e8587b2daf880a095ed1c0973f5a2138628f7223e24d366251dc7532951c39723511f531a20b8efae6133318ede306937e7867d52244ed3098a0286f16c464f6
+runfiles size=5
+ texmf-dist/tex/generic/pdfescape/pdfescape.sty
+catalogue-contact-bugs https://github.com/ho-tex/pdfescape/issues
+catalogue-contact-repository https://github.com/ho-tex/pdfescape
+catalogue-ctan /macros/latex/contrib/pdfescape
+catalogue-license lppl1.3
+catalogue-topics macro-supp tagged-pdf
+catalogue-version 1.15

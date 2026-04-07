@@ -1,0 +1,26 @@
+name fgruler
+category Package
+revision 77333
+shortdesc Draw rulers on the foreground or in the text
+longdesc This package draws horizontal and vertical rulers on the
+longdesc foreground of every (or the current) page at absolute
+longdesc positions. In this way, you can check the page layout
+longdesc dimensions. You can also draw various rulers in the text. The
+longdesc fgruler package requires the services of the following
+longdesc packages: kvoptions, etoolbox, xcolor, graphicx, eso-pic.
+containersize 5984
+containerchecksum 33990faa94383078c3fbe5a2cb5b9f9079d45249510707336763122e86c71e0372651040f18119041703c361a09a172f9b3f1ced9e082b960e3d116e3b68cf41
+doccontainersize 471676
+doccontainerchecksum 698fe9042d9e0c7552aecf6dab3dbab96700c1669ed28308bf441af3e6e8de1ec10d3c305c8ca9d7668a8e4b46973c24481fa97509c02d339e13d8110939ea93
+docfiles size=120
+ texmf-dist/doc/latex/fgruler/README details="Readme"
+ texmf-dist/doc/latex/fgruler/fgruler.pdf details="Package documentation"
+srccontainersize 12140
+srccontainerchecksum c5c4263e96ddd3e309c5c9d8ea3fca51c745d3d4d546c4b57ec06ee8e9b5cda67e21ede7179af6532bad582ab4ff40ed99e5fae98870024ca42d86d96d223cc2
+runfiles size=15
+ texmf-dist/tex/latex/fgruler/fgruler.sty
+catalogue-also ruler
+catalogue-ctan /macros/latex/contrib/fgruler
+catalogue-license lppl1.3
+catalogue-topics misc-support
+catalogue-version 1.7

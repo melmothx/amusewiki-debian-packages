@@ -1,0 +1,27 @@
+name rerunfilecheck
+category Package
+revision 77682
+shortdesc Checksum based rerun checks on auxiliary files
+longdesc The package provides additional rerun warnings if some
+longdesc auxiliary files have changed. It is based on MD5 checksum
+longdesc provided by pdfTeX, LuaTeX, XeTeX.
+depend atveryend
+depend uniquecounter
+containersize 3144
+containerchecksum bf0859dc5db985b29599b7093ec298c1a4c342e2f17d752692f67dc2a927b37591dbc6fef523b5b36bdc5da485004baba42b35a97f16df9f87d5d360d26344d0
+doccontainersize 330220
+doccontainerchecksum 4fab0b5e7c13fbcdf43625302207dfd501964d301fcd276e50bf8ad09feb45ed0a76cb01f6da8ab9190097ff7342a39b802fd6c65e8624775269bcde8c71d0e0
+docfiles size=86
+ texmf-dist/doc/latex/rerunfilecheck/README.md
+ texmf-dist/doc/latex/rerunfilecheck/rerunfilecheck-example.cfg
+ texmf-dist/doc/latex/rerunfilecheck/rerunfilecheck.pdf details="Package documentation"
+srccontainersize 7248
+srccontainerchecksum 31da53a43085f4eeb73931035bc628f9f6c359d502f1b60d54cba9157bbbdfc3ee02fbb38d03b4e7edf912ba1d556d7efdc851a6671dbe53306a94971a343ba3
+runfiles size=3
+ texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+catalogue-contact-bugs https://github.com/ho-tex/rerunfilecheck/issues
+catalogue-contact-repository https://github.com/ho-tex/rerunfilecheck
+catalogue-ctan /macros/latex/contrib/rerunfilecheck
+catalogue-license lppl1.3c
+catalogue-topics compilation tagged-pdf
+catalogue-version 1.11

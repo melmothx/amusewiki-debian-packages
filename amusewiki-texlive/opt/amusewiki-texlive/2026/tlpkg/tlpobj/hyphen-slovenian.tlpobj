@@ -1,0 +1,16 @@
+name hyphen-slovenian
+category TLCore
+revision 78069
+shortdesc Slovenian hyphenation patterns.
+longdesc Hyphenation patterns for Slovenian in T1/EC and UTF-8
+longdesc encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=slovenian synonyms=slovene 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-sl.tex 	file_patterns=hyph-sl.pat.txt 	file_exceptions=
+containersize 6200
+containerchecksum 6edeccb96458ed2f31ad0b909b1a68de28e2e2be5c5b23999e466e48ec891e695d4d9c16b91d7a10e8bbf0c4c85a882212d2cc70c9638820838b81c1cded6ba4
+runfiles size=8
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sl.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-sl.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-sl.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-sl.pat.txt

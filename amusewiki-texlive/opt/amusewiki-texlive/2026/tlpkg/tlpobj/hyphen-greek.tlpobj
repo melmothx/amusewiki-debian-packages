@@ -1,0 +1,39 @@
+name hyphen-greek
+category TLCore
+revision 78069
+catalogue elhyphen
+shortdesc Modern Greek hyphenation patterns.
+longdesc Hyphenation patterns for Modern Greek in monotonic and
+longdesc polytonic spelling in LGR and UTF-8 encodings. Patterns in
+longdesc UTF-8 use two code positions for each of the vowels with acute
+longdesc accent (a.k.a tonos, oxia), e.g., U+03AC, U+1F71 for alpha.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=greek synonyms=polygreek 	lefthyphenmin=1 	righthyphenmin=1 	file=loadhyph-el-polyton.tex 	file_patterns=hyph-el-polyton.pat.txt 	file_exceptions=
+execute AddHyphen 	name=monogreek 	lefthyphenmin=1 	righthyphenmin=1 	file=loadhyph-el-monoton.tex 	file_patterns=hyph-el-monoton.pat.txt 	file_exceptions=
+containersize 13296
+containerchecksum 284b572141afbf06496e0ff27b2b2a25f7ad13bdf2f3d187bf4b1daa83366c52f82e44ca53460c7bf61a033fed44829c635ad42e3a48df13220ac6f198061f21
+doccontainersize 727508
+doccontainerchecksum cb9101cde0b3709e0f63cbacf2344e5b81af9b2518c4190b6c66160670fee99d70a2c606b2760d7b1ecde0d132de6d0839fee23779549516c7d1b5fdbbd8622a
+docfiles size=463
+ texmf-dist/doc/generic/elhyphen/README details="Readme"
+ texmf-dist/doc/generic/elhyphen/anc-test.ltx
+ texmf-dist/doc/generic/elhyphen/anc-test.pdf
+ texmf-dist/doc/generic/elhyphen/ancient.pdf
+ texmf-dist/doc/generic/elhyphen/compound.ltx
+ texmf-dist/doc/generic/elhyphen/compound.pdf
+ texmf-dist/doc/generic/elhyphen/copyrite.txt
+ texmf-dist/doc/generic/elhyphen/modern.pdf
+runfiles size=20
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-el-monoton.tex
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-el-polyton.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-el-monoton.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-el-polyton.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-el-monoton.pat.txt
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-el-polyton.pat.txt
+ texmf-dist/tex/generic/hyphen/grmhyph5.tex
+ texmf-dist/tex/generic/hyphen/grphyph5.tex
+catalogue-ctan /language/hyphenation/elhyphen
+catalogue-license other-free
+catalogue-topics greek hyphenation
+catalogue-version 5

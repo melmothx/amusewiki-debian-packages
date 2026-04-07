@@ -1,0 +1,9 @@
+%
+% lltjp-footmiscs.sty
+%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lltjp-footmisc}[2024-07-22 Patch to footmisc for LuaTeX-ja]
+
+\patchcmd{\@makenormalcolbox}{\vskip -\@outputbox@depth\@textbottom}%
+  {\pltx@adjust@wd@outputbox\vskip -\@outputbox@depth\@textbottom}{}{}%

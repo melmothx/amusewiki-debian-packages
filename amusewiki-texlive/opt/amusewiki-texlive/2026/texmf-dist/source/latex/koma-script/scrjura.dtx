@@ -1,0 +1,215 @@
+% \iffalse meta-comment
+% ======================================================================
+% scrjura.dtx
+% Copyright (c) Markus Kohm, 2007-2025
+%
+% This file is part of the LaTeX2e KOMA-Script bundle.
+%
+% This work may be distributed and/or modified under the conditions of
+% the LaTeX Project Public License, version 1.3c of the license.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3c or later is part of all distributions of LaTeX
+% version 2005/12/01 or later and of this work.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% The Current Maintainer and author of this work is Markus Kohm.
+%
+% The KOMA-Script bundle consists of all files listed in MANIFEST.md.
+% ======================================================================
+%%% From File: $Id: scrjura.dtx 4242 2025-11-12 08:18:22Z kohm $
+%<identify>%%%            (run: identify)
+%<init>%%%            (run: init)
+%<options>%%%            (run: options)
+%<postoptions>%%%            (run: postoptions)
+%<body>%%%            (run: body)
+%<final>%%%            (run: final)
+%<*dtx>
+\begingroup
+  \def\filedate$#1: #2-#3-#4 #5${\gdef\filedate{#2/#3/#4}}
+  \filedate$Date: 2025-11-12 09:18:22 +0100 (Mi, 12 Nov 2025) $
+  \def\filerevision$#1: #2 ${\gdef\filerevision{r#2}}
+  \filerevision$Revision: 4242 $
+\endgroup
+\expandafter\ifx\csname ProvidesFile\endcsname\relax
+\def\ProvidesFile#1[#2]{}
+\fi
+\ProvidesFile{scrjura.dtx}[\filedate\space\filerevision\space
+%</dtx>
+%<package&identify>\NeedsTeXFormat{LaTeX2e}[2022/06/01]
+%<package&identify>\ProvidesPackage{scrjura}[%
+%<*dtx|(package&identify)>
+%!KOMAScriptVersion
+  package
+%<*dtx>
+  source
+%</dtx>
+  (for jurists)
+]
+%</dtx|(package&identify)>
+%<*dtx>
+\ifx\documentclass\undefined
+%</dtx>
+%<*ins>
+  \input scrdocstrip.tex
+  \@@input scrkernel-version.dtx
+  \@@input scrstrip.inc
+  \KOMAdefVariable{COPYRIGHTFROM}{2007}
+  \generate{\usepreamble\defaultpreamble
+    \file{scrjura.ins}{%
+      \from{scrjura.dtx}{ins}%
+    }%
+    \file{scrjura.sty}{%
+      \from{scrjura.dtx}{package,identify}%
+      \from{scrjura.dtx}{package,body}%
+      \from{scrlogo.dtx}{logo}%
+    }%
+  }%
+  \@@input scrstrop.inc
+%</ins>
+%<*dtx>
+\else
+  \let\endbatchfile\relax
+\fi
+%</dtx>
+%<*ins>
+\endbatchfile
+%</ins>
+%<*dtx>
+\documentclass{koma-script-source-doc}
+\usepackage[USenglish]{babel}
+\setcounter{StandardModuleDepth}{2}
+\begin{document}
+  \DocInput{scrjura.dtx}
+\end{document}
+%</dtx>
+% \fi
+%
+% \changes{v3.36}{2022/01/25}{switch over from \cls*{scrdoc} to
+%   \cls*{koma-script-source-doc}}
+% \changes{v3.40}{2023/04/17}{guide names changed}
+% \changes{v3.42}{2024/02/13}{compatibility wrapper to \pkg*{contract}}
+%
+% \GetFileInfo{scrjura.dtx}
+% \title{\KOMAScript{} in the Law Office\\
+%   with Package \pkg*{scrjura}}
+% \date{Version \fileversion{} of \filedate}
+% \author{\href{mailto:komascript@gmx.info}{Markus Kohm}}
+% \maketitle
+% \begin{abstract}
+% From \KOMAScript{} version~3.42, the \pkg*{scrjura} package is deprecated
+% and only a compatibility wrapper to package \pkg{contract}.
+% \end{abstract}
+%
+% \tableofcontents
+%
+% \section{User Manual}
+%
+% You can find the user manual of \pkg*{scrjura} in the \KOMAScript{} manual,
+% either the German \file{scrguide-de.pdf} or the English
+% \file{scrguide-en.pdf}.
+%
+% \MaybeStop{\PrintIndex}
+%
+% \section{Implementation}
+%
+%    \begin{macrocode}
+%<*package&body>
+\RequirePackageWithOptions{contract}[=v0.9]
+%    \end{macrocode}
+%
+% \begin{macro}{\contract@paragraph,\contract@subparagraph}
+% Both macros of \pkg{contract} support an optional argument, but
+% \pkg*{scrjura} expects a mandatory argument instead.
+%    \begin{macrocode}
+\NewCommandCopy{\scrjura@paragraph}{\contract@paragraph}
+\NewCommandCopy{\scrjura@subparagraph}{\contract@subparagraph}
+\RenewDocumentCommand\contract@paragraph{m}{\scrjura@paragraph[{#1}]}
+\RenewDocumentCommand\contract@subparagraph{m}{\scrjura@subparagraph[{#1}]}
+%    \end{macrocode}
+% \end{macro}
+%
+% \section{Detection and Handling of Deprecated Paragraph Commands}
+%
+% All these commands are deprecated and now generate error messages instead of
+% code.
+%
+% \begin{command}{\Paragraph,\SubParagraph,\refParagraph,\refParagraphN,
+%                 \DeprecatedParagraph,\ParagraphCompatibilityHacks}
+% \changes{scrjura-v1.0}{2014/11/22}{throw error for deprecated commands but
+%   only once}
+% \changes{v3.49}{2025/11/12}{moved from package \pkg{contract}}
+% \begin{description}
+% \item[Todo:] Remove deprecated commands, because they already throw errors
+%   for about nine years.
+% \end{description}
+%    \begin{macrocode}
+%<*body>
+\providecommand*{\DeprecatedParagraph}{%
+  \PackageError{contract}{modification of old document needed}{%
+    It seem that this document was made for scrjura up to version
+    0.7a.\MessageBreak
+    Since scrjura version 0.9 \string\Paragraph, \string\SubParagraph, and all
+    depending\MessageBreak
+    commands, options, and counters have been renamed.\MessageBreak
+    You should replace the terms `Paragraph' and `paragraph` by `Clause`
+    and\MessageBreak
+    `clause` if they are part of the name of a contract feature, otherwise
+    this\MessageBreak
+    document may produce severall additional error messages and maybe the
+    wrong\MessageBreak
+    result. Sorry for the inconvenience.%
+  }%
+  \ParagraphCompatibilityHacks
+}
+\providecommand*{\ParagraphCompatibilityHacks}{%
+  \PackageWarning{contract}{compatibility hacks for `\string\Paragraph'
+    executed.\MessageBreak
+    There is no support for documents using these hacks!\MessageBreak
+    There is no warranty for real compatibility!\MessageBreak
+    Even if the LaTeX run of the document doesn't report\MessageBreak
+    any error, the result may be completely wrong.\MessageBreak
+    Therefore it is recommended to solve the problem,\MessageBreak
+    instead of trying to work around using the\MessageBreak
+    compatibility hacks%
+  }%
+  \gdef\Paragraph{\Clause}%
+  \gdef\SubParagraph{\SubClause}%
+  \gdef\c@Paragraph{\c@Clause}%
+  \gdef\cl@Paragraph{\cl@Clause}%
+  \gdef\c@SubParagraph{\c@SubClause}%
+  \gdef\cl@SubParagraph{\cl@SubClause}%
+  \gdef\theParagraph{\theClause}%
+  \gdef\theSubParagraph{\theSubClause}%
+  \gdef\refParagraph{\refClause}%
+  \gdef\refParagraphN{\refClauseN}%
+  \aliaskomafont{Paragraph}{Clause}%
+  \scr@ifundefinedorrelax{Paragraphmark}{}{%
+    \global\let\Clausemark\Paragraphmark
+  }%
+}
+\providecommand*{\Paragraph}{\DeprecatedParagraph\Paragraph}
+\providecommand*{\SubParagraph}{\DeprecatedParagraph\SubParagraph}
+\providecommand*{\refParagraph}{\DeprecatedParagraph\refParagraph}
+\providecommand*{\refParagraphN}{\DeprecatedParagraph\refParagraphN}
+%</body>
+%    \end{macrocode}
+% \end{command}
+%
+% \iffalse
+%</package&body>
+% \fi
+%
+% \Finale
+% \PrintChanges
+%
+\endinput
+% Local Variables:
+% mode: doctex
+% ispell-local-dictionary: "en_US"
+% eval: (flyspell-mode 1)
+% TeX-master: t
+% TeX-engine: luatex-dev
+% eval: (setcar (or (cl-member "Index" (setq-local TeX-command-list (copy-alist TeX-command-list)) :key #'car :test #'string-equal) (setq-local TeX-command-list (cons nil TeX-command-list))) '("Index" "mkindex %s" TeX-run-index nil t :help "makeindex for dtx"))
+% End:

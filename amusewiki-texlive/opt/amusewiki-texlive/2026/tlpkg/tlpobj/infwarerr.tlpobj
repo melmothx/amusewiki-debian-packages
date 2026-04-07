@@ -1,0 +1,25 @@
+name infwarerr
+category Package
+revision 77682
+shortdesc Complete set of information/warning/error message macros
+longdesc This package provides a complete set of macros for information,
+longdesc warning and error messages. Under LaTeX, the commands are
+longdesc wrappers for the corresponding LaTeX commands; under Plain TeX
+longdesc they are available as complete implementations.
+containersize 2656
+containerchecksum 8dcd3f6d937db984751686893668c3b9b7d2a249c054d356c930750b9eb47a0cae1de7e18c20391072c2a7a35999fde337b22dbbb3520865010f6e2fe1582b1b
+doccontainersize 284916
+doccontainerchecksum 7de0ca0379b64bdbbbb456c689a8051da7631b7b79ef34e4cf38b981b7215c29452a4589cbf70a5c23204846f91e93060e32e476372372c1b54ce9e97e9f6400
+docfiles size=71
+ texmf-dist/doc/latex/infwarerr/README.md
+ texmf-dist/doc/latex/infwarerr/infwarerr.pdf details="Package documentation"
+srccontainersize 5716
+srccontainerchecksum b81118674c963b1713299bd13404be61bc8713c0b577786760e7b6732d4da67564ad3989d5e925be8096bd470f392837753fc8a5c46810ed6ce6719588235ab2
+runfiles size=3
+ texmf-dist/tex/generic/infwarerr/infwarerr.sty
+catalogue-contact-bugs https://github.com/ho-tex/infwarerr/issues
+catalogue-contact-repository https://github.com/ho-tex/infwarerr
+catalogue-ctan /macros/latex/contrib/infwarerr
+catalogue-license lppl1.3
+catalogue-topics messages tagged-pdf
+catalogue-version 1.5

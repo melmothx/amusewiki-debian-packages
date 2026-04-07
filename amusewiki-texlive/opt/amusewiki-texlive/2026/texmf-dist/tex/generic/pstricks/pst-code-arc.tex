@@ -1,0 +1,404 @@
+%
+% see pstricks.tex for license and copyright
+%
+\define@key[psset]{pstricks}{arcsepA}[0]{\pst@getlength{#1}\psk@arcsepA}
+\define@key[psset]{pstricks}{arcsepB}[0]{\pst@getlength{#1}\psk@arcsepB}
+\define@key[psset]{pstricks}{arcsep}[0]{%
+  \pst@getlength{#1}\psk@arcsepA\let\psk@arcsepB\psk@arcsepA}
+\psset[pstricks]{arcsep=0}
+\def\tx@ArcArrow{ArcArrow }
+%
+\def\psarc{\pst@object{psarc}}
+\def\psarc@i{\@ifnextchar({\psarc@iii}{\psarc@ii}}
+\def\psarc@ii#1{\addto@par{arrows=#1}\@ifnextchar(\psarc@iii{\psarc@iii(0,0)}}
+\def\psarc@iii(#1)#2#3#4{%
+  \pst@getangle{#3}\pst@tempa
+  \pst@getangle{#4}\pst@tempb
+  \ifx\pst@tempa\pst@tempb
+  \else
+    \begin@OpenObj
+      \pst@@getcoor{#1}%
+      \pssetlength\pst@dima{#2}%
+      \addto@pscode{\psarc@iv \psarc@v
+        \ifPst@variableLW \pst@flattenpath \fi
+      }%
+      \gdef\psarc@type{0}%
+      \showpointsfalse
+    \end@OpenObj
+  \fi
+}
+%
+\def\psarcOA{\pst@object{psarcOA}}% \psarcOA[..](O)(A){angle1}{angle2}
+\def\psarcOA@i{\@ifnextchar({\psarcOA@iii}{\psarcOA@ii}}
+\def\psarcOA@ii#1{\addto@par{arrows=#1}\@ifnextchar(\psarcOA@iii{\psarcOA@iii(0,0)}}
+\def\psarcOA@iii(#1)(#2)#3#4{%
+  \pst@getangle{#3}\pst@tempa
+  \pst@getangle{#4}\pst@tempb
+  \ifx\pst@tempa\pst@tempb
+  \else
+    \begin@OpenObj
+      \pst@getcoor{#1}\pst@tempA
+      \pst@getcoor{#2}\pst@tempB
+      \addto@pscode{
+        \pst@tempA 2 copy /y ED /x ED \pst@tempB Pyth2 /r ED 
+        x y translate
+        /c 57.2957 r \tx@Div def
+        /angleA
+          \pst@tempa
+          \psk@arcsepA c mul 2 div
+          \ifcase\psarc@type add \or sub \fi def
+       /angleB
+         \pst@tempb
+         \psk@arcsepB c mul 2 div
+         \ifcase\psarc@type sub \or add \fi def
+       \ifshowpoints\psarc@showpoints\fi
+       \ifx\psk@arrowA\@empty
+         \ifnum\psk@liftpen=2
+           r angleA \tx@PtoC moveto
+         \fi
+       \fi
+  /angleAtoB angleB angleA gt { true }{ false } ifelse def
+  0 0 r
+  angleA
+  \ifx\psk@arrowA\@empty\else
+    { ArrowA CP }
+    r 0 gt \pslbrace
+    { \ifcase\psarc@type add \or sub \fi } \psrbrace\pslbrace
+    { \ifcase\psarc@type sub \or add \fi } \psrbrace ifelse
+%    { \ifcase\psarc@type add \or sub \fi }
+    \tx@ArcArrow
+%    dup AngleA gt AngleAtoB exor { neg } fi
+  \fi
+  angleB
+  \ifx\psk@arrowB\@empty\else
+    { ArrowB }
+    r 0 gt \pslbrace
+      { \ifcase\psarc@type sub \or add \fi } \psrbrace\pslbrace
+      { \ifcase\psarc@type add \or sub \fi } \psrbrace ifelse
+%      { \ifcase\psarc@type sub \or add \fi }
+    \tx@ArcArrow
+    dup angleA gt angleAtoB xor { pop angleA } if
+  \fi
+  \ifcase\psarc@type arc \or arcn \fi
+       \ifPst@variableLW \pst@flattenpath \fi
+     x neg  y neg translate
+     }%
+     \gdef\psarc@type{0}%
+     \showpointsfalse
+    \end@OpenObj
+  \fi
+}
+\def\psarc@iv{%
+  \pst@coor /y ED /x ED
+  /r \ifPst@SpecialLength \pst@SpecialLength \else \pst@number\pst@dima \fi def
+  /c 57.2957 r \tx@Div def
+  /angleA
+    \pst@tempa
+    \psk@arcsepA c mul 2 div
+    \ifcase\psarc@type add \or sub \fi
+  def
+  /angleB
+    \pst@tempb
+    \psk@arcsepB c mul 2 div
+    \ifcase\psarc@type sub \or add \fi
+  def
+  \ifshowpoints\psarc@showpoints\fi
+  \ifx\psk@arrowA\@empty
+    \ifnum\psk@liftpen=2
+      r angleA \tx@PtoC
+      y add exch x add exch moveto
+    \fi
+  \fi}
+% hv ---- 1.10 2005-05-05 ----------------------> hv begin
+\def\psarc@v{%
+  /angleAtoB angleB angleA gt { true }{ false } ifelse def
+  x y r
+  angleA
+  \ifx\psk@arrowA\@empty\else
+    { ArrowA CP }
+    r 0 gt \pslbrace
+    { \ifcase\psarc@type add \or sub \fi } \psrbrace\pslbrace
+    { \ifcase\psarc@type sub \or add \fi } \psrbrace ifelse
+%    { \ifcase\psarc@type add \or sub \fi }
+    \tx@ArcArrow
+%    dup AngleA gt AngleAtoB exor { neg } fi
+  \fi
+  angleB
+  \ifx\psk@arrowB\@empty\else
+    { ArrowB }
+    r 0 gt \pslbrace
+      { \ifcase\psarc@type sub \or add \fi } \psrbrace\pslbrace
+      { \ifcase\psarc@type add \or sub \fi } \psrbrace ifelse
+%      { \ifcase\psarc@type sub \or add \fi }
+    \tx@ArcArrow
+    dup angleA gt angleAtoB xor { pop angleA } if
+  \fi
+  \ifcase\psarc@type arc \or arcn \fi
+}
+% hv ----- 1.10 2005-05-05 ------------------------> end
+%
+\def\psarc@type{0}
+\def\psarc@showpoints{%
+  gsave
+  newpath
+  x y moveto
+  x y r \pst@tempa \pst@tempb
+  \ifcase\psarc@type arc \or arcn \fi
+  closepath
+  CLW 2 div SLW
+  [ \psk@dash\space ] 0 setdash stroke
+  grestore }
+\def\psarcn{\def\pst@par{}\pst@object{psarcn}}
+\def\psarcn@i{\def\psarc@type{1}\psarc@i}
+%
+\def\psarcAB{\pst@object{psarcAB}}%		hv 2008-11-26
+\def\psarcAB@i{%
+  \addbefore@par{psscale=1}% be sure, that it is defined
+  \pst@getarrows{%
+    \begin@OpenObj%
+      \pst@getcoors{}%
+      \psarcAB@ii
+    }%
+}
+\def\psarcAB@ii{%
+  \addto@pscode{
+  /y ED /x ED /yA ED /xA ED /yB ED /xB ED 
+  /r xB yB x y Pyth2 \psk@psscale\space mul def
+  /c 57.2957 r \tx@Div def
+  /angleA
+    yA y sub xA x sub atan
+    \psk@arcsepA c mul 2 div
+    \ifcase\psarc@type add \else sub \fi
+  def
+  /angleB
+    yB y sub xB x sub atan
+    \psk@arcsepB c mul 2 div
+    \ifcase\psarc@type sub \else add \fi 
+  def
+  \ifx\psk@arrowA\@empty
+    \ifnum\psk@liftpen=2
+      r angleA \tx@PtoC
+      y add exch x add exch moveto
+    \fi
+  \fi
+  \psarc@v}%
+  \gdef\psarc@type{0}%
+  \showpointsfalse%
+  \end@OpenObj%
+}
+\def\psarcnAB{\def\pst@par{}\pst@object{psarcnAB}}
+\def\psarcnAB@i{\def\psarc@type{1}\psarcAB@i}
+%
+%------------------ tvz/DG/hv (2004-05-10) begin -------------------%%
+% from Denis Giroux: http://www.tug.org/pipermail/pstricks/2001/000507.html
+%
+% I - Definition of \psellipticwedge, a generalization of \pswedge for wedges
+%     of ellipses (from the code of \pswedge and \psellipse)
+%
+\def\psellipticwedge{\pst@object{psellipticwedge}}
+\def\psellipticwedge@i(#1){%
+  \@ifnextchar({\psellipticwedge@ii(#1)}{\psellipticwedge@ii(0,0)(#1)}}
+\def\psellipticwedge@ii(#1)(#2)#3#4{%
+  \begin@ClosedObj
+    \pst@getangle{#3}\pst@tempa
+    \pst@getangle{#4}\pst@tempb
+    \pst@getcoor{#1}\pst@tempc
+    \pst@@getcoor{#2}%
+    \def\pst@linetype{1}%
+    \addto@pscode{%
+      \pst@coor /ry ED /rx ED
+      \ifx\psk@rot\@empty \else \psk@rot\space rotate \fi
+      \pst@tempa 
+      \ifPst@correctAngle
+       cvi 90 mod 0 eq { \pst@tempa } 
+         { rx abs ry abs sub cvi 0 eq { \pst@tempa }{ rx ry
+           \tx@UserCoor exch \pst@tempa tan mul exch atan 
+            \pst@tempa 180 div 0.5 add floor 
+            180 mul sub } ifelse } ifelse
+      \fi
+      \pst@tempb
+      \ifPst@correctAngle
+       cvi 90 mod 0 eq { \pst@tempb } 
+         { rx abs ry abs sub cvi 0 eq { \pst@tempb }{ rx ry
+           \tx@UserCoor exch \pst@tempb tan mul exch atan 
+            \pst@tempb 180 div 0.5 add floor 
+            180 mul sub } ifelse } ifelse
+      \fi
+      rx ry
+      \pst@tempc moveto
+      \ifdim\psk@dimen\p@=\z@\else
+        \psk@dimen CLW mul dup 3 1 roll
+        sub 3 1 roll sub exch
+      \fi
+      \pst@tempc
+      \tx@Ellipse
+      closepath
+    }%
+  \showpointsfalse
+  \end@ClosedObj%
+}
+%
+% Code mainly from "pstricks.tex'' 0.94 beta (TvZ)
+%
+\def\psellipticarcn{\pst@object{psellipticarcn}}
+\def\psellipticarcn@i{\let\if@psarcn\iftrue\psellipticarc@ii}
+%
+\def\psellipticarc{\pst@object{psellipticarc}}
+\def\psellipticarc@i{\let\if@psarcn\iffalse\psellipticarc@ii}
+
+\define@boolkey[psset]{pstricks}[Pst@]{correctAngle}[true]{}
+\psset{correctAngle}
+
+\let\if@psarcn\iffalse
+
+\def\psellipticarc@ii{\pst@getarrows\psellipticarc@iii}
+\def\psellipticarc@iii(#1){%
+  \@ifnextchar({\psellipticarc@iv(#1)}{\psellipticarc@iv(0,0)(#1)}}
+\def\psellipticarc@iv(#1)(#2)#3#4{%
+%  \addbefore@par{correctAngle=false}
+  \pst@getangle{#3}\pst@tempc	%	start angle
+  \pst@getangle{#4}\pst@tempd	% 	end angle
+  \ifx\pst@tempc\pst@tempd
+  \else % same angles? then do nothing
+    \begin@OpenObj
+    \pst@getcoor{#1}\pst@tempa    %	origin
+    \pst@getcoor{#2}\pst@tempb	%	a b
+      \addto@pscode{ 
+        \psellipticarc@definearg \psellipticarc@draw
+        \ifPst@variableLW \pst@flattenpath \fi 
+      \ifshowpoints{}
+          gsave
+          xOrig yOrig T % set origin to ellipse origin
+          \ifx\psk@rot\@empty \else \psk@rot\space rotate \fi
+          rx ry scale   % now we draw a circle :-)
+          1 \pst@tempc  % start angle
+          \ifPst@correctAngle
+            cvi 90 mod 0 eq { \pst@tempc } 
+             { rx abs ry abs sub cvi 0 eq { \pst@tempc }{ rx ry
+               \tx@UserCoor exch \pst@tempc tan mul exch atan 
+               \pst@tempc 180 div 0.5 add floor 
+               180 mul sub } ifelse } ifelse
+          \fi
+        PtoC moveto 
+        0 0 lineto 
+        1 \pst@tempd % end angle
+        \ifPst@correctAngle
+          cvi 90 mod 0 eq { \pst@tempd } 
+           { rx ry \tx@UserCoor exch \pst@tempd tan mul exch atan 
+             \pst@tempd 180 div .5 add floor 180 mul sub } ifelse 
+        \fi
+        PtoC lineto 0 0 lineto 
+        closepath
+   %  \ifcase\psarc@type arc \or arcn \fi
+        CLW 3 div \pst@number\psunit div SLW 
+        [ 1 1 \tx@UserCoor 2 mul ] 0 setdash 
+        stroke
+        grestore 
+      \fi
+    }%
+      \showpointsfalse
+    \end@OpenObj
+  \fi
+}
+\def\psellipticarc@definearg{%
+%  \ifx\psk@rot\@empty \else \psk@rot\space rotate \fi
+  \pst@tempa /yOrig ED /xOrig ED  % Origin
+  \pst@tempb                      % radii. Now adjust:
+  \ifdim\psk@dimen\p@=\z@\else
+    \psk@dimen CLW mul dup 3 1 roll
+    sub 3 1 roll sub exch
+  \fi
+  /ry ED /rx ED		% a b
+  /angleA
+    /d { \if@psarcn sub \else add \fi } def
+%    \pst@tempc 
+% the angle in the parameter equation is not proportional to the real angle!
+% phi=atan(b*tan(angle)/a)+floor(angle/180+0.5)*180
+   \pst@tempc 
+   \ifPst@correctAngle 
+     cvi 90 mod 0 eq { \pst@tempc } 
+       { rx ry \tx@UserCoor exch \pst@tempc tan mul exch atan 
+          \pst@tempc 180 div .5 add floor 180 mul sub } ifelse 
+    \fi
+    \psk@arcsepA 2 div
+    ArcAdjust
+  def
+  /angleB
+    /d { \if@psarcn add \else sub \fi } def
+%    \pst@tempd 
+  \pst@tempd 
+  \ifPst@correctAngle
+     cvi 90 mod 0 eq { \pst@tempd } 
+       { rx ry \tx@UserCoor exch \pst@tempd tan mul exch atan 
+          \pst@tempd 180 div .5 add floor 180 mul sub } ifelse 
+  \fi
+  \psk@arcsepB 2 div ArcAdjust  def
+%  \ifshowpoints\psellipticarc@showpoints\fi
+  \ifx\psk@arrowA\@empty
+    \ifnum\psk@liftpen=2
+      angleA cos rx mul xOrig add
+      angleA sin ry mul yOrig add
+      moveto
+    \fi%
+  \fi%
+}
+\def\psellipticarc@draw{%
+  0 0 1
+  angleA
+  \ifx\psk@arrowA\@empty\else
+    { ArrowA CP }
+    { \if@psarcn sub \else add \fi }
+    EllipticArcArrow
+  \fi
+  angleB
+  \ifx\psk@arrowB\@empty\else
+    { ArrowB }
+    { \if@psarcn add \else sub \fi }
+    EllipticArcArrow
+  \fi
+  /mtrx CM def
+  xOrig yOrig T
+  \ifx\psk@rot\@empty \else \psk@rot\space rotate \fi
+  rx ry scale
+  \pst@ifcustom\else
+    0 0 moveto 
+    exch dup dup               % end start start start
+    cos exch sin moveto        % end start
+    exch                       % start end 
+  \fi
+%%  \if@star 0 0 moveto \fi	% for filling
+  \if@psarcn arcn \else arc \fi
+%%  \if@star 0 0 moveto \fi
+  mtrx setmatrix%
+}
+\def\psellipticarc@showpoints{%
+  gsave
+  /mtrx CM def
+  xOrig yOrig T
+  rx ry scale
+  0 0 moveto
+  0 0 1 
+  \pst@tempc % start angle
+  \ifPst@correctAngle
+     cvi 90 mod 0 eq { \pst@tempc } 
+       { rx abs ry abs sub cvi 0 eq { \pst@tempc }{ rx ry
+         \tx@UserCoor exch \pst@tempc tan mul exch atan 
+          \pst@tempc 180 div 0.5 add floor 
+          180 mul sub } ifelse } ifelse
+    \fi
+  \pst@tempd % end angle
+   \ifPst@correctAngle
+     cvi 90 mod 0 eq { \pst@tempd } 
+       { rx abs ry abs sub cvi 0 eq { \pst@tempd } { rx ry 
+         \tx@UserCoor exch \pst@tempd tan mul exch atan 
+          \pst@tempd 180 div 0.5 add floor 
+          180 mul sub } ifelse } ifelse
+    \fi
+  \ifcase\psarc@type arc \or arcn \fi
+  closepath
+  mtrx setmatrix
+  CLW 2 div SLW
+  [ \psk@dash\space ] 0 setdash 
+  stroke
+  grestore %
+}

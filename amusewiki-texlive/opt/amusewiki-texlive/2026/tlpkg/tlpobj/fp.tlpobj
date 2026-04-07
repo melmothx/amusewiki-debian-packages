@@ -1,0 +1,34 @@
+name fp
+category Package
+revision 77682
+shortdesc Fixed point arithmetic
+longdesc An extensive collection of arithmetic operations for fixed
+longdesc point real numbers of high precision.
+containersize 19240
+containerchecksum 6e7c0781e86dc5601613a0166d573fec66be51c91979fd6b675be0d19e702db1ee062d3b94a7bba565ce5219001876d1c3c1c88d48f40b9987ac35722666dadf
+doccontainersize 218960
+doccontainerchecksum 52fd8fd0669c60f090ca1e28fcca6f2d0a967c94824cbfd5f19121f58887fd587425d551b9206a8332d982bdfd5584e66382b337b920302298c81e368e82183a
+docfiles size=59
+ texmf-dist/doc/latex/fp/README details="Readme"
+ texmf-dist/doc/latex/fp/documentation.pdf details="Documentation"
+ texmf-dist/doc/latex/fp/fp.tex
+runfiles size=37
+ texmf-dist/tex/latex/fp/defpattern.sty
+ texmf-dist/tex/latex/fp/fp-addons.sty
+ texmf-dist/tex/latex/fp/fp-basic.sty
+ texmf-dist/tex/latex/fp/fp-eqn.sty
+ texmf-dist/tex/latex/fp/fp-eval.sty
+ texmf-dist/tex/latex/fp/fp-exp.sty
+ texmf-dist/tex/latex/fp/fp-pas.sty
+ texmf-dist/tex/latex/fp/fp-random.sty
+ texmf-dist/tex/latex/fp/fp-snap.sty
+ texmf-dist/tex/latex/fp/fp-trigo.sty
+ texmf-dist/tex/latex/fp/fp-upn.sty
+ texmf-dist/tex/latex/fp/fp.sty
+ texmf-dist/tex/latex/fp/lfp.sty
+ texmf-dist/tex/plain/fp/fp.tex
+catalogue-also fltpoint
+catalogue-ctan /macros/latex/contrib/fp
+catalogue-license lppl
+catalogue-topics arithmetic calculation tagged-pdf
+catalogue-version 2.1d

@@ -1,0 +1,139 @@
+%
+% see pstricks.tex for license and copyright
+%
+%% Rotating and ref point
+%%
+\def\tx@Rot{Rot }
+\def\psrotateleft{%
+  \ifPSTlualatex
+    \def\pst@tempA{-90 }%
+    \def\pst@tempB{90 }%
+  \else
+    \def\pst@tempA{90 }%
+    \def\pst@tempB{-90 }%
+  \fi
+  \pst@makebox{\ps@rotateleft\pst@hbox}}
+\def\ps@rotateleft#1{%
+  \leavevmode\hbox{\hskip\ht#1\hskip\dp#1\vbox{\vskip\wd#1%
+    \pst@Verb{\pst@tempA \tx@Rot}%
+    \vbox to \z@{\vss\hbox to \z@{\box#1\hss}\vskip\z@}%
+      \pst@Verb{\pst@tempB \tx@Rot}}}}
+%
+\def\psrotateright{%
+  \ifPSTlualatex
+    \def\pst@tempA{90 }%
+    \def\pst@tempB{-90 }%
+  \else
+    \def\pst@tempA{-90 }%
+    \def\pst@tempB{90 }%
+  \fi
+  \pst@makebox{\ps@rotateright\pst@hbox}}
+\def\ps@rotateright#1{%
+% ----------- hv begin 2004-05-07 ----------- patch 15
+%    \hbox{%
+  \leavevmode\hbox{%
+% ----------- hv end 2004-05-07 ----------- patch 15
+  \hskip\ht#1\hskip\dp#1\vbox{\vskip\wd#1%
+  \pst@Verb{\pst@tempA \tx@Rot}
+  \vbox to \z@{\hbox to \z@{\hss\box#1}\vss}%
+  \pst@Verb{\pst@tempB \tx@Rot}}}}
+\def\psrotatedown{\pst@makebox{\ps@rotatedown\pst@hbox}}
+\def\ps@rotatedown#1{%
+\hbox{\hskip\wd#1\vbox{\vskip\ht#1\vskip\dp#1%
+\pst@Verb{180 \tx@Rot}%
+\vbox to \z@{\hbox to \z@{\box#1\hss}\vss}%
+\pst@Verb{-180 \tx@Rot}}}}
+\pslongbox{Rotateleft}{\psrotateleft}
+\pslongbox{Rotateright}{\psrotateright}
+\pslongbox{Rotatedown}{\psrotatedown}
+% ----------- hv begin 2004-09-23 ----------- 1.11
+% compatibility stuff 
+\let\rotateleft\psrotateleft
+\let\rotateright\psrotateright
+\let\rotatedown\psrotatedown
+% ----------- hv end 2005-09-23 ----------- 1.11
+
+\define@key[psset]{pstricks}{ref}[c]{\pst@expandafter\psset@@ref{#1}\@empty,,\@nil}
+\def\psset@@ref#1#2,#3,#4\@nil{%
+  \def\psk@xref{.5}%
+  \def\psk@yref{.5}%
+  \let\pst@makesmall\pst@@@makesmall
+  \ifx\@empty#3\@empty
+    \@nameuse{getref@#1}%
+    \@nameuse{getref@#2}%
+  \else
+    \pst@checknum{#1#2}\psk@xref
+    \pst@checknum{#3}\psk@yref
+  \fi}
+%
+\def\getref@c{\let\pst@makesmall\pst@@makesmall}
+\def\getref@t{\def\psk@yref{1}}
+\def\getref@b{\def\psk@yref{0}}
+\def\getref@B{\let\psk@yref\relax}
+\def\getref@l{\def\psk@xref{0}}
+\def\getref@r{\def\psk@xref{1}}
+\psset[pstricks]{ref=c}
+%
+%
+%  U Up 0 
+%  L Left 90 
+%  D Down 180 
+%  R Right 270
+%  
+%  N North *0 
+%  W West *90 
+%  S South *180 
+%  E East *270
+%
+\ifPSTlualatex
+  \def\pst@rotlist{ mark RAngle /ps@a ED cleartomark ps@a }%
+\else
+  \def\pst@rotlist{ mark RAngle /ps@a ED cleartomark ps@a neg }%
+\fi
+
+\def\pst@rottable{%
+@0=%
+@U=%
+@L=90 %
+@D=180 %
+@R=-90 %
+@N=\pst@rotlist
+@W=\pst@rotlist 90 add %
+@S=\pst@rotlist 180 add %
+@E=\pst@rotlist 90 sub }
+%
+\define@key[psset]{pstricks}{rot}[0]{%
+  \pst@expandafter{\@ifnextchar*{\psset@@@rot}{\psset@@rot}}{#1}\@nil}
+\def\psset@@rot#1\@nil{%
+  \def\next##1@#1=##2@##3\@nil{%
+    \ifx##2\relax\pst@getangle{#1}\psk@rot \else\def\psk@rot{##2}\fi%
+    \pst@Verb{ gsave  STV CP T /ps@rot \ifx\psk@rot\@empty 0 \else \psk@rot \fi def grestore }% (MJS)
+  }%
+  \expandafter\next\pst@rottable @#1=\relax @\@nil}
+%
+\def\psset@@@rot#1#2\@nil{%
+  \psset@@rot#2\@nil%
+  \edef\psk@rot{\pst@rotlist \ifx\psk@rot\@empty\else\space ps@rot add \fi}%
+  \pst@Verb{ gsave  STV CP T /ps@rot \ifx\psk@rot\@empty 0 \else \psk@rot \fi def grestore }}% (MJS)
+%
+%\def\psset@@rot#1\@nil{%
+%\def\ps@next##1@#1=##2@##3\@nil{%
+%\ifx\relax##2\pst@getangle{#1}\psk@rot\else\def\psk@rot{##2}\fi}%
+%\expandafter\ps@next\pst@rottable @#1=\relax @\@nil}
+%
+%\def\psset@@@rot#1#2\@nil{%
+%\psset@@rot#2\@nil
+%\edef\psk@rot{\pst@rotlist \ifx\psk@rot\@empty\else\psk@rot add \fi}}
+\psset[pstricks]{rot=0}
+%
+\def\tx@RotBegin{ RotBegin }
+\def\tx@RotEnd{ RotEnd }
+
+\def\pst@rotate#1#2{%
+  \ifx\relax#1\relax\else  
+    \setbox#2=\hbox{\pst@Verb{%  check for empty #1 
+      (#1) /strAngle ED strAngle length 0 eq { 0 }{ #1 } ifelse 
+	 %\ifPSTlualatex neg \fi 
+    \tx@RotBegin}\box#2\pst@Verb{\tx@RotEnd}}%
+  \fi
+ }%

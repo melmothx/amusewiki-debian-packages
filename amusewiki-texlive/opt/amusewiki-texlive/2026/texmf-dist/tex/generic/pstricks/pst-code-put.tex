@@ -1,0 +1,269 @@
+%
+% see pstricks.tex for license and copyright
+%
+%% The \??put macros -----------
+%
+%    \setbox#2=\hbox{\pst@Verb{%  check for empty #1 
+%      (#1) /strAngle ED strAngle length 0 eq { 0 }{ #1 } ifelse 
+%	 %\ifPSTlualatex neg \fi 
+%    \tx@RotBegin}\box#2\pst@Verb{\tx@RotEnd}}%
+
+\def\psput@cartesian#1{%
+\hbox to \z@{\kern\pst@dimg{\vbox to \z@{\vss\box#1\vskip\pst@dimh}\hss}}%
+}
+\def\psput@special#1{%
+  \hbox{%
+    \pst@Verb{{ \pst@coor \pstnodescale } \tx@PutCoor \tx@PutBegin }%  20150911 hv
+    \box#1%
+    \pst@Verb{ \tx@PutEnd }%
+  }%
+}
+\def\tx@PutCoor{PutCoor }
+\def\tx@PutBegin{PutBegin }
+\def\tx@PutEnd{PutEnd }
+\def\rput{\def\pst@par{}\pst@ifstar{\@ifnextchar[{\rput@i}{\rput@ii}}}
+\def\rput@i[#1]{%
+  \test@for@options#1=\@nil
+  \ifnum\the\pst@cntm=\z@ 
+    \addto@par{ref={#1}}%
+  \else
+    \expandafter\addto@par\expandafter{#1}%
+  \fi
+  \rput@ii
+}
+\def\test@for@options#1=#2\@nil{%
+  \if$#2$%        #2 is empty -> old syntax
+    \pst@cntm=\z@
+  \else           % something like foo=bar
+    \pst@cntm=\@ne
+  \fi
+}
+
+\def\rput@ii{\@ifnextchar({\rput@iv}{\rput@iii}}
+\def\rput@iii#1{\addto@par{rot={#1}}\@ifnextchar({\rput@iv}{\rput@iv(\z@,\z@)}}
+\def\rput@iv(#1){\pst@killglue\pst@makebox{\rput@v{#1}}}
+\def\rput@v#1{%
+    \begingroup
+    \use@par
+    \if@star\pst@starbox\fi
+    \pst@makesmall\pst@hbox
+    \ifx\psk@rot\@empty\else\pst@rotate{ ps@rot \ifPSTlualatex neg \fi  }\pst@hbox\fi% (MJS)
+%    \pst@rotate\psk@rot\pst@hbox%
+    \psput@{#1}\pst@hbox%
+  \endgroup
+  \ignorespaces}
+%
+\def\multirput{%
+  \def\pst@par{}%
+  \pst@ifstar{\@ifnextchar[{\multirput@i}{\multirput@ii}}}
+\def\multirput@i[#1]{\addto@par{ref={#1}}\multirput@ii}
+\def\multirput@ii{\@ifnextchar({\multirput@iv}{\multirput@iii}}
+\def\multirput@iii#1{\addto@par{rot={#1}}\multirput@iv}
+\def\multirput@iv(#1){%
+  \@ifnextchar({\multirput@v(#1)}{\multirput@v(\z@,\z@)(#1)}}
+\def\multirput@v(#1,#2)(#3,#4)#5{%
+  \pst@makebox{\multirput@vi(#1,#2)(#3,#4){#5}}}
+\def\multirput@vi(#1,#2)(#3,#4)#5{%
+  \pst@killglue%
+  \global\psLoopIndex=\@ne\relax
+  \begingroup
+    \use@par
+    \if@star\pst@starbox\fi
+    \pst@makesmall\pst@hbox
+    \ifx\psk@rot\@empty\else\pst@rotate{ps@rot }\pst@hbox\fi% (MJS)
+%    \pst@rotate\psk@rot\pst@hbox
+    \pssetxlength\pst@dima{#1}%
+    \pssetylength\pst@dimb{#2}%
+    \pssetxlength\pst@dimc{#3}%
+    \pssetylength\pst@dimd{#4}%
+    \pst@cntg=#5\relax
+    \leavevmode
+    \loop
+      \vbox to \z@{%
+        \vss
+        \hbox to \z@{\kern\pst@dima\copy\pst@hbox\hss}%
+        \vskip\pst@dimb%
+      }%
+      \ifnum\pst@cntg>\psLoopIndex
+        \advance\pst@dima\pst@dimc
+        \advance\pst@dimb\pst@dimd
+        \global\advance\psLoopIndex by \@ne
+    \repeat 
+  \endgroup
+  \ignorespaces%
+}
+%
+\newif\if@fixedradius
+\def\cput{\def\pst@par{}\pst@object{cput}}
+\def\cput@i{\@fixedradiusfalse\cput@ii}
+\def\cput@ii{\pst@killglue\@ifnextchar({\cput@iv}{\cput@iii}}
+\def\cput@iii#1{%
+  \addto@par{rot={#1}}%
+  \@ifnextchar({\cput@iv}{\cput@iv(\z@,\z@)}%
+}
+\def\cput@iv(#1){\pst@makebox{\cput@v{#1}}}
+\def\cput@v#1{%
+  \begingroup
+    \use@par
+    \setbox\pst@hbox=\hbox{%
+      \psboxsepfalse
+      \if@fixedradius\psCirclebox@ii\else\pscirclebox@ii\fi%
+    }%
+    \pst@@makesmall\pst@hbox
+    \ifx\psk@rot\@empty\else\pst@rotate{ps@rot }\pst@hbox\fi% (MJS)
+%    \pst@rotate\psk@rot\pst@hbox
+    \psput@{#1}\pst@hbox
+  \endgroup
+  \ignorespaces%
+}
+%
+\def\Cput{\def\pst@par{}\pst@object{Cput}}
+\def\Cput@i{\@fixedradiustrue\cput@ii}
+\newdimen\pslabelsep
+\define@key[psset]{pstricks}{labelsep}[5pt]{%
+  \pssetlength\pslabelsep{#1}%
+  \ifx\PSTplotLoaded\endinput% Set labels for pst-plot, if laoded
+    \let\psxlabelsep\pslabelsep%
+    \let\psylabelsep\pslabelsep%
+  \fi}
+\psset[pstricks]{labelsep=5pt}
+%
+\define@key[psset]{pstricks}{refangle}[0]{\pst@expandafter\psset@@refangle{#1}\@nil}
+\def\psset@@refangle#1\@nil{%
+  \def\next##1@#1=##2"##3@##4\@nil{%
+    \ifx\relax##2%
+      \pst@getangle{#1}\psk@refangle
+      \def\psk@uputref{}%
+    \else
+      \def\psk@refangle{##2 }%
+      \def\psk@uputref{##3}%
+    \fi}%
+  \expandafter\next\pst@refangletable @#1=\relax"@\@nil%
+  \pst@Verb{ gsave STV CP T /ps@refangle \psk@refangle\space def grestore }%ADDED (MJS)
+}
+%
+\def\pst@refangletable{%
+@r=0"20%
+@u=90"02%
+@l=180"10%
+@d=-90"01%
+@ur=45"22%
+@ul=135"12%
+@dr=-135"21%
+@dl=-45"11}
+\psset[pstricks]{refangle=0}
+
+% DG/SR modification begin - Mar. 24, 1999 - Patch 10
+%\def\uput{\def\pst@par{}\@ifnextchar[{\uput@ii}{\uput@i}}
+\def\uput{\def\pst@par{}\pst@ifstar{\@ifnextchar[{\uput@ii}{\uput@i}}} 
+% DG/SR modification end
+\def\uput@i#1{\addto@par{labelsep=#1}\uput@ii}
+%
+\def\uput@ii[#1]{%
+  \addto@par{refangle={#1}}%
+  \@ifnextchar({\uput@iv}{\uput@iii}}
+%
+\def\uput@iii#1{%
+  \addto@par{rot={#1}}%
+  \@ifnextchar({\uput@iv}{\uput@iv(\z@,\z@)}}
+%
+\def\uput@iv(#1){\pst@killglue\pst@makebox{\uput@v{#1}}}
+%
+\def\uput@v#1{%
+  \begingroup
+  \use@par
+  \if@star\pst@starbox\fi
+  \pstCheckCoorType{#1}% needed for \uput@vii
+  \uput@vi
+  \psput@{#1}\pst@hbox
+  \endgroup
+  \ignorespaces}
+%
+\def\uput@vi{%
+  \ifx\psk@uputref\@empty\uput@vii\tx@UUput{}%
+  \else
+    \ifx\psk@rot\@empty\expandafter\uput@viii\psk@uputref
+    \else\uput@vii\tx@UUput{}\fi
+  \fi}
+% 
+\def\uput@vii#1#2{%
+  \edef\pst@coor{%
+    \ifPst@SpecialLength\pst@SpecialLength\else\pst@number\pslabelsep\fi
+%    \pst@number\pslabelsep % \ifdim\pslabelsep<\z@  neg \fi
+    #2%
+    \pst@number{\wd\pst@hbox}%
+    \pst@number{\ht\pst@hbox}%
+    \pst@number{\dp\pst@hbox}%
+    \ifnum\pst@C@@rType=7
+      ps@refangle % CHANGED (MJS) FROM \psk@refangle\space
+      \ifx\psk@rot\@empty\else ps@rot\space sub \fi
+    \else
+      \psk@refangle\space 
+      \ifx\psk@rot\@empty\else \psk@rot\space sub \fi
+    \fi
+    \tx@Uput #1}%
+    %\show\pst@coor
+  \setbox\pst@hbox=\hbox to\z@{\hss\vbox to\z@{\vss\box\pst@hbox\vss}\hss}%
+  \setbox\pst@hbox=\psput@special\pst@hbox
+  \ifPSTlualatex
+    \ifnum\pst@C@@rType=7
+      \ifx\psk@rot\@empty\else\pst@rotate{ps@rot neg}\pst@hbox\fi% CHANGED FROM \psk@rot (MJS)
+    \else
+      \ifx\psk@rot\@empty\else\pst@rotate{\psk@rot\space neg}\pst@hbox\fi% 
+    \fi
+  \else
+    \ifnum\pst@C@@rType=7
+      \ifx\psk@rot\@empty\else\pst@rotate{ps@rot }\pst@hbox\fi% CHANGED FROM \psk@rot (MJS)
+    \else
+      \ifx\psk@rot\@empty\else\pst@rotate{\psk@rot}\pst@hbox\fi% 
+    \fi
+  \fi
+}
+%
+%
+\def\uput@viii#1#2{%
+  \ifnum#1>\z@\relax\ifnum#2>\z@\relax\pslabelsep=.707\pslabelsep\fi\fi
+  \setbox\pst@hbox=\vbox to\z@{%
+    \ifnum#2=1\relax\vskip\pslabelsep\else\vss\fi
+    \hbox to\z@{%
+      \ifnum#1=2\relax\hskip\pslabelsep \else\hss\fi
+      \box\pst@hbox%
+      \ifnum#1=1\relax\hskip\pslabelsep\else\hss\fi}%
+    \ifnum#2=2\relax\vskip\pslabelsep\else\vss\fi}}
+%
+\def\tx@Uput{Uput }
+\def\tx@UUput{UUput }
+%
+\def\Rput{\def\pst@par{}\pst@ifstar{\@ifnextchar[{\Rput@ii}{\Rput@i}}}
+\def\Rput@i#1{\addto@par{labelsep=#1}\Rput@ii}
+\def\Rput@ii[#1]{\addto@par{ref={#1}}\@ifnextchar({\Rput@iv}{\Rput@iii}}
+\def\Rput@iii#1{\addto@par{rot={#1}}\@ifnextchar({\Rput@iv}{\Rput@iv(\z@,\z@)}}
+\def\Rput@iv(#1){\pst@killglue\pst@makebox{\Rput@v{#1}}}
+\def\Rput@v#1{%
+  \begingroup
+  \use@par
+  \if@star\pst@starbox\fi
+  \Rput@vi
+  \pst@makesmall\pst@hbox
+  \ifx\psk@rot\@empty\else\pst@rotate{ps@rot }\pst@hbox\fi% (MJS)
+%  \pst@rotate\psk@rot\pst@hbox
+  \psput@{#1}\pst@hbox
+  \endgroup
+  \ignorespaces}
+%
+\def\Rput@vi{%
+  \pst@dimg=\dp\pst@hbox
+  \advance\pst@dimg\pslabelsep
+  \dp\pst@hbox=\pst@dimg
+  \pst@dimg=\ht\pst@hbox
+  \advance\pst@dimg\pslabelsep
+  \ht\pst@hbox=\pst@dimg
+  \setbox\pst@hbox\hbox{\kern\pslabelsep\box\pst@hbox\kern\pslabelsep}}%
+%
+\def\oldpsput{\def\pst@par{}\pst@ifstar{\@ifnextchar[{\oldpsput@i}{\oldpsput@ii}}}
+\def\oldpsput@i[#1]{\addto@par{ref={#1}}\oldpsput@ii}
+\def\oldpsput@ii{\@ifnextchar<{\oldpsput@iii}{\oldpsput@iv}}
+\def\oldpsput@iii<#1>{\rput@iii{#1}}
+\def\OldPsput{\let\psput\oldpsput}
+\def\NewPsput{\let\psput\rput}
+%

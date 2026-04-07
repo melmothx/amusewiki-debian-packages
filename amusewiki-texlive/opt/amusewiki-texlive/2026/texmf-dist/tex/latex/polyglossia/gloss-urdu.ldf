@@ -1,0 +1,237 @@
+% Language definition file (part of polyglossia v2.9 -- 2025/12/01)
+%
+%%% Adapted from a file contributed by Kamal Abdali
+\ProvidesFile{gloss-urdu.ldf}[polyglossia: module for Urdu]
+
+\RequireBidi
+\RequirePackage{arabicnumbers}
+\RequirePackage{hijrical}
+
+\PolyglossiaSetup{urdu}{
+  bcp47=ur,
+  bcp47-language=ur,
+  bcp47-script=Arab,
+  script=Arabic,
+  direction=RL,
+  scripttag=arab,
+  langtag=URD,
+  hyphennames={urdu,nohyphenation},
+  localnumeral=urdunumerals,
+  Localnumeral=urdunumerals
+  %TODO localalph={abjad,abjad}
+}
+
+% BCP-47 compliant aliases
+\setlanguagealias*{urdu}{ur}
+
+\newif\if@western@numerals
+\newif\ifurdu@customsep\urdu@customsepfalse
+\def\xpg@sepmark{}
+\newif\if@hijrical
+
+\DeclareKeys[polyglossia/gloss/urdu]
+  {
+    abjadjimnotail.if = abjad@jim@notail,
+    abjadjimnotail.default:n = true,
+    sectionsep.code = \gdef\xpg@sepmark{#1}\urdu@customseptrue,
+    sectionsep.default:n = .,
+    hijricorrection.code = \gdef\urdu@hijri@correction{#1},
+    hijricorrection.default:n = 0,
+    calendar.choice:,
+    calendar / gregorian.code =
+      {%
+        \@hijricalfalse
+      },
+    calendar / hijri.code =
+      {%
+        \@hijricaltrue
+      },
+    calendar.default:n = gregorian,
+    calendar/unknown.code = \xpg@warning{Unknown Urdu calendar option `#1'},
+    numerals.choice:,
+    numerals / eastern.code =
+      {%
+        \@western@numeralsfalse
+        \SetLanguageKeys{urdu}{bcp47-extension-u=nu-arab}%
+      },
+    numerals / western.code =
+      {%
+        \@western@numeralstrue
+        \SetLanguageKeys{urdu}{bcp47-extension-u=nu-latn}%
+      },
+    numerals.default:n = eastern,
+    numerals/unknown.code = \xpg@warning{Unknown Urdu numerals option `#1'}
+  }
+
+% This should set the defaults
+\SetGlossOptions{urdu}{calendar,numerals,hijricorrection}
+
+\def\urdugregmonth#1{\ifcase#1%
+  \or جنوری\or فروری\or مارچ\or اپریل\or مئی\or جون\or جولائی\or اگست\or  ستمبر\or اکتوبر\or نومبر\or دسمبر\fi}
+
+\def\urduhijrimonth#1{\ifcase#1%
+ \or محرّم\or صفر\or ربیع الاوّل\or ربیع الثّانی\or جمادی الاوّل\or جمادی الثّانی\or رجب\or شعبان\or  رمضان\or شوّال\or ذیقعدہ\or ذی الحجّہ\fi}
+
+%\Hijritoday is now locale-aware and will format the date with this macro:
+\DefineFormatHijriDate{urdu}{\@ensure@RTL{%
+  \urdunumber{\value{Hijriday}}؍\space\urduhijrimonth{\value{Hijrimonth}}\space\urdunumber{\value{Hijriyear}}}}
+
+\def\captionsurdu{%
+  \def\refname{\@ensure@RTL{حوالہ جات}}%
+  \def\abstractname{\@ensure@RTL{ملخّص}}%
+  \def\bibname{\@ensure@RTL{کتابیات}}%
+  \def\prefacename{\@ensure@RTL{دیباچہ}}%
+  \def\chaptername{\@ensure@RTL{باب}}%
+  \def\appendixname{\@ensure@RTL{ضمیمہ}}%
+  \def\contentsname{\@ensure@RTL{فہرست عنوانات}}%
+  \def\listfigurename{\@ensure@RTL{فہرست اشکال}}%
+  \def\listtablename{\@ensure@RTL{فہرست جداول}}%
+  \def\indexname{\@ensure@RTL{اشاریہ}}%
+  \def\figurename{\@ensure@RTL{شكل}}%
+  \def\tablename{\@ensure@RTL{جدول}}%
+  %\def\thepart{}%
+  \def\partname{\@ensure@RTL{حصّہ}}%
+  \def\pagename{\@ensure@RTL{صفحہ}}%
+  \def\seename{\@ensure@RTL{ملاحظہ ہو}}%
+  \def\alsoname{\@ensure@RTL{ایضاً}}%
+  \def\enclname{\@ensure@RTL{منسلک}}%
+  \def\ccname{\@ensure@RTL{نقل}}%
+  \def\headtoname{\@ensure@RTL{بملاحظہ}}%
+  \def\proofname{\@ensure@RTL{ثبوت}}%
+  \def\glossaryname{\@ensure@RTL{لغت}}%
+  \def\sectionname{\@ensure@RTL{فصل}}%
+}
+
+\def\dateurdu{%
+  \def\today{%
+    \if@hijrical
+     \Hijritoday[\urdu@hijri@correction]%
+    \else
+      \@ensure@RTL{\urdunumber\day؍\space\urdugregmonth{\month}%
+         \space\urdunumber\year}%
+    \fi}%
+}
+
+\def\urdunumber#1{%
+  \if@western@numerals
+    \number#1%
+  \else
+    %%FIXME use farsidigits instead???
+    \@ensure@LTR{\protect\arabicdigits{\number#1}}%
+  \fi}
+
+\def\urdu@numbers{%
+  \let\@alph\abjad%
+  \let\@Alph\abjad%
+}
+
+\def\nourdu@numbers{%
+  \let\@alph\latin@alph%
+  \let\@Alph\latin@Alph%
+}
+
+\newcommand{\urdunumerals}[2]{\urdunumber{#2}}
+
+% Store original definition
+\let\xpg@save@arabic\@arabic
+
+\def\urdu@globalnumbers{%
+  \let\@arabic\urdunumber%
+  % For some reason \thefootnote needs to be set separately:
+  \renewcommand\thefootnote{\localnumeral*{footnote}}%
+}
+
+\def\nourdu@globalnumbers{
+  \let\@arabic\xpg@save@arabic%
+}
+
+\def\urdu@xetex@capsformat{%
+  \let\xpg@save@sepmark\@SepMark%
+  \SepMark{\xpg@sepmark}
+}
+
+\def\nourdu@xetex@capsformat{%
+   \ifcsname xpg@save@sepmark\endcsname%
+     \SepMark{\xpg@save@sepmark}
+   \fi%
+}
+
+\def\urdu@luatex@capsformat{%
+  %
+  % change chapter and part headings
+  \ifurdu@customsep
+     \ifcsname chapter\endcsname%
+        \let\xpg@save@thesection\thesection%
+        \renewcommand*\thesection{\thechapter\xpg@sepmark\@arabic\c@section}
+        \let\xpg@save@theequation\theequation%
+        \renewcommand*\theequation{%
+	    \ifnum \c@chapter>\z@ \thechapter\xpg@sepmark\fi\@arabic\c@equation}
+        \let\xpg@save@thefigure\thefigure%
+	\renewcommand*\thefigure{%
+	    \ifnum\c@chapter>\z@\thechapter\xpg@sepmark\fi\@arabic\c@figure}
+        \let\xpg@save@thetable\thetable%
+	\renewcommand*\thetable{%
+	    \ifnum\c@chapter>\z@\thechapter\xpg@sepmark\fi\@arabic\c@table}
+     \fi%
+     \let\xpg@save@thesubsection\thesubsection%
+     \renewcommand\thesubsection
+	{\thesection\xpg@sepmark\@arabic\c@subsection}
+     \let\xpg@save@thesubsubsection\thesubsubsection%
+     \renewcommand\thesubsubsection{\thesubsection\xpg@sepmark\@arabic\c@subsubsection}
+     \let\xpg@save@theparagraph\theparagraph%
+     \renewcommand\theparagraph
+         {\thesubsubsection\xpg@sepmark\@arabic\c@paragraph}
+     \let\xpg@save@thesubparagraph\thesubparagraph%
+     \renewcommand\thesubparagraph{\theparagraph\xpg@sepmark\@arabic\c@subparagraph}
+  \fi% (end \ifurdu@customsep)
+}
+
+\def\nourdu@luatex@capsformat{%
+   \ifcsname xpg@save@thesection\endcsname%
+        \let\thesection\xpg@save@thesection%
+   \fi%
+   \ifcsname xpg@save@theequation\endcsname%
+        \let\theequation\xpg@save@theequation%
+   \fi%
+   \ifcsname xpg@save@thefigure\endcsname%
+        \let\thefigure\xpg@save@thefigure%
+   \fi%
+   \ifcsname xpg@save@thetable\endcsname%
+        \let\thetable\xpg@save@thetable%
+   \fi%
+   \ifcsname xpg@save@thesubsection\endcsname%
+        \let\thesubsection\xpg@save@thesubsection%
+      \ifcsname xpg@save@thesubsubsection\endcsname%
+        \let\thesubsubsection\xpg@save@thesubsubsection%
+      \fi%
+   \fi%
+   \ifcsname xpg@save@theparagraph\endcsname%
+        \let\theparagraph\xpg@save@theparagraph%
+   \fi%
+   \ifcsname xpg@save@thesubparagraph\endcsname%
+        \let\thesubparagraph\xpg@save@thesubparagraph%
+   \fi%
+}
+
+\def\blockextras@urdu{%
+   \ifurdu@customsep
+      \ifxetex
+        \urdu@xetex@capsformat
+      \else
+        \urdu@luatex@capsformat
+      \fi   
+   \fi
+}
+%
+\def\noextras@urdu{%
+    \ifurdu@customsep
+      \ifxetex
+        \nourdu@xetex@capsformat
+      \else
+        \nourdu@luatex@capsformat
+      \fi   
+   \fi
+}
+
+\endinput
+

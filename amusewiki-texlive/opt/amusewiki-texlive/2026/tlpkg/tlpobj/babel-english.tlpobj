@@ -1,0 +1,31 @@
+name babel-english
+category Package
+revision 77682
+shortdesc Babel support for English
+longdesc The package provides the language definition file for support
+longdesc of English in babel. Care is taken to select british
+longdesc hyphenation patterns for British English and Australian text,
+longdesc and default ('american') patterns for Canadian and USA text.
+depend hyphen-english
+containersize 3032
+containerchecksum 7fd348777fef761e1a3b89b729ee0b89a20331d1cd7637a9a809043f2397b0cc3e889925967bf221824e245ea1f2ecdb4598e6568fa76b34fdaa6976b6e31f31
+doccontainersize 130656
+doccontainerchecksum 4275a9df3ae7740f742997b9cb0a4fab23bd6b737bde2610c4695e5efe40a8f2bf577c266f936d42f03b3f0e3f7fc466510674b910a4f01871384a0ba7382a93
+docfiles size=33
+ texmf-dist/doc/generic/babel-english/README details="Readme"
+ texmf-dist/doc/generic/babel-english/english.pdf details="Package documentation"
+srccontainersize 6256
+srccontainerchecksum bad17e20ded019e7128cbff600377b5a393c7b1a360a4402a8705eb79194a41a32aa4021c486563d6bbcafb992ccf832742e2555a9e6b91de26cb467e8a5ce7e
+runfiles size=9
+ texmf-dist/tex/generic/babel-english/UKenglish.ldf
+ texmf-dist/tex/generic/babel-english/USenglish.ldf
+ texmf-dist/tex/generic/babel-english/american.ldf
+ texmf-dist/tex/generic/babel-english/australian.ldf
+ texmf-dist/tex/generic/babel-english/british.ldf
+ texmf-dist/tex/generic/babel-english/canadian.ldf
+ texmf-dist/tex/generic/babel-english/english.ldf
+ texmf-dist/tex/generic/babel-english/newzealand.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/english
+catalogue-license lppl1.3
+catalogue-topics english multilingual-addon tagged-pdf
+catalogue-version 3.3r

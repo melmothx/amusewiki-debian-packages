@@ -1,0 +1,9 @@
+% $Id: doc.tex 919 2024-01-15 15:36:33Z karl $
+% Public domain.
+% https://bugs.ghostscript.com/show_bug.cgi?id=706940
+\catcode`\{=1 \catcode`\}=2
+\output={\shipout\box255}
+\pdfoutput=1
+\pdfminorversion=7
+\pdfximage{shadowbox.pdf}\pdfrefximage\pdflastximage
+\end

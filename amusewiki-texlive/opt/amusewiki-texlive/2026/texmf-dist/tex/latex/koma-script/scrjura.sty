@@ -1,0 +1,109 @@
+%%
+%% This is file `scrjura.sty',
+%% generated with the docstrip utility, extended by scrdocstrip.
+%%
+%% The original source files were:
+%%
+%% scrjura.dtx  (with options: `package,identify')
+%% scrjura.dtx  (with options: `package,body')
+%% scrlogo.dtx  (with options: `logo')
+%% 
+%% Copyright (c) 2007-2026 Markus Kohm [komascript at gmx info]
+%% 
+%% This file was generated from file(s) of the KOMA-Script bundle.
+%% ---------------------------------------------------------------
+%% 
+%% It may be distributed under the conditions of the
+%% LaTeX Project Public License in the version distributed together
+%% with KOMA-Script, see file `lppl.txt' or `lppl-de.txt'.
+%% 
+%% This file may only be distributed together with a copy of the
+%% KOMA-Script bundle.  You may however distribute the
+%% KOMA-Script bundle without all such generated files.  See also
+%% `lppl.txt' or `lppl-de.txt' for additional information.
+%% 
+%% The list of files belonging to KOMA-Script distribution is given in
+%% the file `MANIFEST.md'.  See also `lppl.txt' or `lppl-de.txt' for
+%% additional information.
+%% 
+%% If this file is a beta version, you may not be allowed to distribute
+%% it.  Look at the comments below to see if this is the case.
+%% 
+%% English and German manuals are part of KOMA-Script bundle.
+%% ----------------------------------------------------------
+%% 
+%% See `README'.
+%% 
+%% The KOMA-Script bundle (but maybe not this file) was based upon the
+%% LaTeX 2.09 Script family created by Frank Neukam 1993 and the LaTeX2e
+%% standard classes created by The LaTeX3 Project 1994-1996.  You can
+%% find a complete unmodified copy of LaTeX2e at
+%% <http://mirror.ctan.org/tex-archive/macros/latex/base/>.
+%% 
+%%% From File: $Id: scrjura.dtx 4242 2025-11-12 08:18:22Z kohm $
+%%%            (run: identify)
+\NeedsTeXFormat{LaTeX2e}[2022/06/01]
+\ProvidesPackage{scrjura}[%
+  2026/02/02 v3.49.2 KOMA-Script
+  package
+  (for jurists)
+]
+%%% From File: $Id: scrjura.dtx 4242 2025-11-12 08:18:22Z kohm $
+%%%            (run: body)
+\RequirePackageWithOptions{contract}[=v0.9]
+\NewCommandCopy{\scrjura@paragraph}{\contract@paragraph}
+\NewCommandCopy{\scrjura@subparagraph}{\contract@subparagraph}
+\RenewDocumentCommand\contract@paragraph{m}{\scrjura@paragraph[{#1}]}
+\RenewDocumentCommand\contract@subparagraph{m}{\scrjura@subparagraph[{#1}]}
+\providecommand*{\DeprecatedParagraph}{%
+  \PackageError{contract}{modification of old document needed}{%
+    It seem that this document was made for scrjura up to version
+    0.7a.\MessageBreak
+    Since scrjura version 0.9 \string\Paragraph, \string\SubParagraph, and all
+    depending\MessageBreak
+    commands, options, and counters have been renamed.\MessageBreak
+    You should replace the terms `Paragraph' and `paragraph` by `Clause`
+    and\MessageBreak
+    `clause` if they are part of the name of a contract feature, otherwise
+    this\MessageBreak
+    document may produce severall additional error messages and maybe the
+    wrong\MessageBreak
+    result. Sorry for the inconvenience.%
+  }%
+  \ParagraphCompatibilityHacks
+}
+\providecommand*{\ParagraphCompatibilityHacks}{%
+  \PackageWarning{contract}{compatibility hacks for `\string\Paragraph'
+    executed.\MessageBreak
+    There is no support for documents using these hacks!\MessageBreak
+    There is no warranty for real compatibility!\MessageBreak
+    Even if the LaTeX run of the document doesn't report\MessageBreak
+    any error, the result may be completely wrong.\MessageBreak
+    Therefore it is recommended to solve the problem,\MessageBreak
+    instead of trying to work around using the\MessageBreak
+    compatibility hacks%
+  }%
+  \gdef\Paragraph{\Clause}%
+  \gdef\SubParagraph{\SubClause}%
+  \gdef\c@Paragraph{\c@Clause}%
+  \gdef\cl@Paragraph{\cl@Clause}%
+  \gdef\c@SubParagraph{\c@SubClause}%
+  \gdef\cl@SubParagraph{\cl@SubClause}%
+  \gdef\theParagraph{\theClause}%
+  \gdef\theSubParagraph{\theSubClause}%
+  \gdef\refParagraph{\refClause}%
+  \gdef\refParagraphN{\refClauseN}%
+  \aliaskomafont{Paragraph}{Clause}%
+  \scr@ifundefinedorrelax{Paragraphmark}{}{%
+    \global\let\Clausemark\Paragraphmark
+  }%
+}
+\providecommand*{\Paragraph}{\DeprecatedParagraph\Paragraph}
+\providecommand*{\SubParagraph}{\DeprecatedParagraph\SubParagraph}
+\providecommand*{\refParagraph}{\DeprecatedParagraph\refParagraph}
+\providecommand*{\refParagraphN}{\DeprecatedParagraph\refParagraphN}
+%%% From File: $Id: scrlogo.dtx 4032 2023-04-17 09:45:11Z kohm $
+\RequirePackage{scrlogo}
+\endinput
+%%
+%% End of file `scrjura.sty'.

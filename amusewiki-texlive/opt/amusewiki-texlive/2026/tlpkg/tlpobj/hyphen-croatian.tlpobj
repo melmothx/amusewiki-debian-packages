@@ -1,0 +1,19 @@
+name hyphen-croatian
+category TLCore
+revision 78069
+catalogue hrhyph
+shortdesc Croatian hyphenation patterns.
+longdesc Hyphenation patterns for Croatian in T1/EC and UTF-8 encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=croatian 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-hr.tex 	file_patterns=hyph-hr.pat.txt 	file_exceptions=
+containersize 5568
+containerchecksum e0a77801b4f104bf3ffa03db61b8cdd51824c8ee1e6dd40c120f604c62390777110f90b0eaf39c7a392296159bac68e182d1aef32375ed9733ca9d63d9a57867
+runfiles size=9
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-hr.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-hr.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-hr.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-hr.pat.txt
+catalogue-ctan /language/hyphenation/hrhyph.tex
+catalogue-license lppl1.3
+catalogue-topics hyphenation croatian

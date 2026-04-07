@@ -1,0 +1,10 @@
+% Language definition file (part of polyglossia v2.9 -- 2025/12/01)
+%
+\ProvidesFile{gloss-friulan.ldf}[polyglossia: module for Friulian]
+
+% We only provide this gloss for babel compatibility.
+
+\InheritGlossFile{friulian}
+
+\endinput
+

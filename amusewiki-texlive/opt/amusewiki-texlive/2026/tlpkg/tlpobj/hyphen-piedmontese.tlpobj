@@ -1,0 +1,17 @@
+name hyphen-piedmontese
+category TLCore
+revision 78069
+shortdesc Piedmontese hyphenation patterns.
+longdesc Hyphenation patterns for Piedmontese in ASCII encoding.
+longdesc Compliant with 'Gramatica dla lengua piemonteisa' by Camillo
+longdesc Brero.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=piedmontese 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-pms.tex 	file_patterns=hyph-pms.pat.txt 	file_exceptions=
+containersize 3336
+containerchecksum a3c2edcb1df6087bed0ed1b84603b9efc4d4b9f159410c1a600ce247d7aab95e3d8e8fc400d8f77e4b7048b923e3a42e96a9bca73c0ebddf0a9a4e1482db95c8
+runfiles size=5
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pms.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-pms.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-pms.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-pms.pat.txt

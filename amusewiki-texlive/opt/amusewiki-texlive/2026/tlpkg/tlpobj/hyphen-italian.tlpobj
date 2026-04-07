@@ -1,0 +1,23 @@
+name hyphen-italian
+category TLCore
+revision 78069
+catalogue ithyph
+shortdesc Italian hyphenation patterns.
+longdesc Hyphenation patterns for Italian in ASCII encoding. Compliant
+longdesc with the Recommendation UNI 6461 on hyphenation issued by the
+longdesc Italian Standards Institution (Ente Nazionale di Unificazione
+longdesc UNI).
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=italian 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-it.tex 	file_patterns=hyph-it.pat.txt 	file_exceptions=
+containersize 3508
+containerchecksum 3919040b226d049fcf14aea73e9f91584aae7924d71cf37955e986beeb2caee7f84e36c5c2634e261401c88b67d392cc01c587c2ff0ba6cf0062e45d064ab6cd
+runfiles size=5
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-it.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-it.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-it.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-it.pat.txt
+catalogue-ctan /language/hyphenation/ithyph.tex
+catalogue-license lgpl
+catalogue-topics hyphenation italian
+catalogue-version 4.8g

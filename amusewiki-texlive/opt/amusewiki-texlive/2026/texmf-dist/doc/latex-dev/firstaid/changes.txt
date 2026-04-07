@@ -1,0 +1,254 @@
+2026-01-18  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx (subsection{The \pkg{cellspace} package first aid}):
+	Firstaid for cellspace added as the package is broken since June 2025.
+
+2026-01-16  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx (subsection{The \pkg{calc} package first aid}):
+	improve zref-perpage firstaid
+
+2025-12-31  Ulrike Fischer  <Ulrike.Fischer@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx: ams and cleveref firstaid for alias counter support
+
+2025-11-08  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Take the listings firstaid out again. Package is fixed---that was quick.
+
+2025-11-03  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx (subsection{The \pkg{listings} package first aid}):
+	Fix an internal kernel overwrite in listings to work with 2025/11 kernel (sx/754347)
+
+2025-10-21  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx (subsection{First aid for AMS classes}):
+	Fix AMS classes with respect to marks (gh/1887)
+
+2025-06-05  Ulrike Fischer  <Ulrike.Fischer@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx: cleveref firstaid for issue #1684 (amsmath change)
+
+2025-05-14  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Firstaid to help with retiring legacy mark mechanism (gh/1724)
+
+	First aid to avoid breaking the  morewrites package
+
+2025-03-10  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx (subsection{\pkg{marginfix} first aid}):
+	Add first aid so that the patch is applied to \@outputbox@attachfloats as
+	well as to \@combinefloats. This is needed from 2025-06 onwards.
+
+2025-03-07  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx (subsection{The \pkg{cleveref} package first aid}):
+	Replace cleveref's use of \edef by \protected@edef (gh/1613)
+
+2025-02-06  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx (section{The Implementation}):
+	Add \typeout to indicate that a first aid was applied.
+
+	Redo the firstaid for index.sty, because the new version still fails with
+	LaTeX 2025/06/01 - \markboth and \markright should not be redefined (gh/1653)
+
+2025-01-18  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Add first aid for index package so that it works with new march mechanism.
+
+2024-11-24  Ulrike Fischer  <Ulrike.Fischer@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx: add iftag@-test to cleveref firstaid for issue #1560
+
+2024-11-08  Ulrike Fischer  <Ulrike.Fischer@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx: add missing \expandafter for issue #1544
+
+2024-11-04  Ulrike Fischer  <Ulrike.Fischer@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx: correct spurious space
+
+2024-10-16  Ulrike Fischer  <Ulrike.Fischer@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx: extend firstaid for cleveref
+      for issue #1393 and longtable.
+
+2024-06-25  David Carlisle  <David.Carlisle@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx: add firstaid for arydshln
+	define two internal macros as \protected to be safe in colortbl
+
+2024-03-22  Ulrike Fischer  <Ulrike.Fischer@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx: add firstaid for cleveref
+      to support five data in \newlabel.
+
+2024-03-18  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	add first aid for acro to not patch longtable (never worked in
+	the past, but now errors)
+
+2024-02-29  Joseph Wright  <Joseph.Wright@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+      - add first aid for acro to declare a temporary prop
+      - add first aid for chemformula to load l3keys2e
+      - add chemnum for acro to declare a temporary prop
+
+2023-09-20  Ulrike Fischer  <Ulrike.Fischer@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx: add firstaid for underscore to
+      make the active char protected and safe for use in csnames.
+
+2023-07-18  Ulrike Fischer  <Ulrike.Fischer@latex-project.org>
+	* latex2e-first-aid-for-external-files.dtx:
+	remove no longer needed code for  everysel
+	remove no longer needed code for bidi
+	remove no longer needed code for memoir/stockheight
+
+2023-05-20  Ulrike Fischer  <Ulrike.Fischer@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx: removed temporary fix for
+	GitHub issue 591, unneeded now and it breaks for luatex the fix for gh 989
+	(minipage/list spacing)
+
+2022-12-06  Ulrike Fischer  <Ulrike.Fischer@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx (subsection{the crop package first aid}):
+	A first aid for crop after changes to \rlap and \stockwidth/\stockheight
+
+2022-11-28  Ulrike Fischer  <Ulrike.Fischer@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx (subsection{the songs package first aid}):
+	A first aid for songs after a change to \obeylines
+
+2022-11-04  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx (subsection{The unicode-math package first aid}):
+	A first aid for unicode-math used together with the doc package.
+
+2022-10-27 Joseph Wright <Joseph.Wright@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Much easier babel patch
+
+2022-10-27 Joseph Wright <Joseph.Wright@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Add first aid for babel to undo a no-longer required patch
+
+2022-10-03 Joseph Wright <Joseph.Wright@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Add first aid for memoir to support kernel-provided
+	\stock... dimens
+
+2022-02-20  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Fixes for biditools because taken out as package is updated
+
+2021-11-18  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* All *.dtx: Replaced \StopEventually by \MaybeStop
+
+2021-11-11  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Drop first aid no longer needed.
+
+2021-10-22  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx (subsection{The \pkg{CJK} package first aid}):
+	With its 2021/10/26 release the firstaid for CJK is no longer needed.
+
+2021-06-28  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Add first aid for strange bogus para/end error due to listings's
+	redefinition of \vskip.
+
+2021-06-24  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx (subsection{\footref first aid}):
+	Taken out first aid for memoir and scrbase, they are now fixed
+
+	(section{The Implementation}): show more details if a first aid
+	is not applied.
+
+2021-06-23  Marcel Krüger  <Marcel.Krueger@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Temporary fix for gh591 to be taken out when the engine is fixed.
+
+2021-06-08  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	ulem doesn't handle \hspace gracefully now that it is calc aware.
+	varwidth needs an additional \unskip when unraveling a vertical list
+	(but only if that skip is 0pt)
+
+2021-03-15  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	bigfoot incorrectly assumes insertions being ordered, so this is
+	enforced for now.
+	We also fix \FN@allmarks which can blow as it loops using the
+	wrong counter (so the loops runs a random number of times)
+
+2021-01-06  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Add replacement code for everysel package.
+	Add first aid for CJK (as it overwrite \selectfont with an
+	old definition).
+
+2020-12-14  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	bandage for pgfmorepages got detached, so need to adjust the first
+	aid (gh/455)
+
+2020-10-29  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Add temporary aid for pgfpages and pfgmorepages.
+	To be replaced when LaTeX offers configuration point interfaces.
+
+2020-10-25  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx
+	Fix for gh408 taken out as now in the kernel.
+
+2020-10-13  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Fix for gh408 to be taken out later when it moves to the kernel.
+
+2020-10-04  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Fix for gh400 taken out and moved into the kernel instead for PL1.
+
+2020-10-03  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Added a fix for gh400. This will soon move into the kernel.
+
+2020-09-29  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	filehook doesn't need first aid any longer.
+
+2020-09-27  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* latex2e-first-aid-for-external-files.dtx:
+	Initial version for 2020-10-01 release containing first aid
+	for packages bidi, filehook and class dinbrief.

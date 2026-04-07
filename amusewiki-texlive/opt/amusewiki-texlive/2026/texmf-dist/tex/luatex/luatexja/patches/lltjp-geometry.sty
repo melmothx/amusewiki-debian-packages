@@ -1,0 +1,547 @@
+%
+% lltjp-geometry.sty
+%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lltjp-geometry}[2024-05-16 Patch to geometry for LuaTeX-ja with vertical writing mode]
+\RequirePackage{expl3}
+\ifdefined\if@ltj@@geometry@tate\expandafter\endinput\fi
+\newif\if@ltj@@geometry@tate
+\newif\if@ltj@@geometry@forceoff
+\@ltj@@geometry@tatefalse
+\@ltj@@geometry@forceofffalse
+\DeclareOption{force}{\@ltj@@geometry@tatetrue}
+\DeclareOption{disable}{\@ltj@@geometry@forceofftrue}
+
+\ProcessOptions\relax
+
+\RequirePackage{ifluatex}
+\ifluatex
+  \ifdefined\luatexjaLoaded\else
+    \PackageError{lltjp-geometry}{%
+	  lltjp-geometry does not work without luatexja.
+	}{}
+\fi
+\else % pTeX
+\def \AtBeginDvi #1{%
+  \global \setbox \@begindvibox
+    \vbox{\yoko\unvbox \@begindvibox #1}%
+}
+\fi
+
+%============================================
+\unless\ifdefined\ltj@ExecuteAfterPackage
+  %% \ltj@ExecuteBeforePackage <package><code>  and \ltj@ExecuteAfterPackage <package><code>
+  %% no-starred version: do nothing if the <package> is loaded
+  %% starred version: do <code> right away if the <package> is loaded
+  \def\ltj@ExecuteAfterPackage{\@ifstar\@@ltj@ExecuteAfterPackage@star\@@ltj@ExecuteAfterPackage}
+  \def\ltj@ExecuteBeforePackage{\@ifstar\@@ltj@ExecuteBeforePackage@star\@@ltj@ExecuteBeforePackage}
+  \@ifl@t@r\fmtversion{2021-11-15}{% 2021-11-15
+    \def\@@ltj@ExecuteAfterPackage@star#1{\AddToHook{package/#1/after}}
+    \def\@@ltj@ExecuteBeforePackage@star#1{\AddToHook{package/#1/before}}
+    \long\def\@@ltj@ExecuteAfterPackage#1#2{%
+      \@ifpackageloaded{#1}{}{\AddToHook{package/#1/after}{#2}}%
+    }
+    \long\def\@@ltj@ExecuteBeforePackage#1#2{%
+      \@ifpackageloaded{#1}{}{\AddToHook{package/#1/before}{#2}}%
+    }
+  }{
+    \def\@@ltj@ExecuteAfterPackage#1{\AddToHook{package/after/#1}}
+    \def\@@ltj@ExecuteBeforePackage#1{\AddToHook{package/before/#1}}
+    \long\def\@@ltj@ExecuteAfterPackage@star#1#2{%
+      \@ifpackageloaded{#1}{#2}{\@@ltj@ExecuteAfterPackage{#1}{#2}}%
+    }
+    \long\def\@@ltj@ExecuteBeforePackage@star#1#2{%
+      \@ifpackageloaded{#1}{#2}{\@@ltj@ExecuteBeforePackage{#1}{#2}}%
+    }
+  }
+\fi
+%============================================
+
+\RequirePackage{etoolbox}
+\newif\ifGm@ltj@layoutswitch
+\let\orig@PackageWarningNoLine=\PackageWarningNoLine
+% define ifGm@swap@papersize if it is undefined
+\expandafter\newif\csname ifGm@swap@papersize\endcsname
+
+\ExplSyntaxOn
+\ltj@ExecuteBeforePackage{geometry}{%
+  \edef\Gm@ltj@topskip{\the\topskip}
+  \edef\Gm@ltj@headsep{\the\headsep}
+  \edef\Gm@ltj@footskip{\the\footskip}
+\bool_set_false:N \l_tmpa_bool
+\ifluatex
+  \ifnum\ltjgetparameter{direction}=3 \bool_set_true:N \l_tmpa_bool \fi
+\else
+  \@gobble\iftrue\csname iftdir\endcsname \bool_set_true:N \l_tmpa_bool \fi
+\fi
+\prop_map_inline:Nn \g__hook_begindocument_code_prop
+  { \tl_if_in:nnT {#2} {\tate} {\bool_set_true:N \l_tmpa_bool} }
+\bool_if:NT \l_tmpa_bool {
+  \if@ltj@@geometry@forceoff
+    \@ltj@@geometry@tatefalse
+  \else
+    \@ltj@@geometry@tatetrue
+    \let\PackageWarningNoLine\@gobbletwo% 警告抑止
+  \fi
+}
+}
+\ExplSyntaxOff
+\ltj@ExecuteAfterPackage{geometry}{%
+\let\PackageWarningNoLine=\orig@PackageWarningNoLine
+\if@ltj@@geometry@tate
+  \let\PackageWarningNoLine=\orig@PackageWarningNoLine
+%%% ここからパッチ開始
+
+% TODO: 
+%  * pTeX, LuaTeX ともに truedimen が正しく動作しない
+%  * pTeX  resetpaper が正しく動作しない
+% 
+% `h', `v' は「水平」「垂直」を意味するが：
+% ユーザー側では「紙の物理的な水平方向」「物理的な垂直方向」を，
+% しかしパッケージ内部処理では「字送り方向」「行送り方向」を表す．
+% そのため，key-value interface 内で h, v の交換を行う必要がある．
+
+% twoside 指定時は，lmargin は小口側，rmargin はノド側の余白を指す．
+% また，bindingoffset 偶数ページを右に，奇数ページを左にずらす．
+\define@key{Gm}{hdivide}{\Gm@parse@divide{#1}{lmargin}{height}{rmargin}}%
+
+\define@key{Gm}{vscale}{\Gm@hbodytrue\edef\Gm@hscale{#1}}%
+\define@key{Gm}{hscale}{\Gm@vbodytrue\edef\Gm@vscale{#1}}%
+\define@key{Gm}{vdivide}{\Gm@parse@divide{#1}{tmargin}{width}{bmargin}}%
+\define@key{Gm}{divide}{\Gm@parse@divide{#1}{tmargin}{width}{bmargin}%
+  \Gm@parse@divide{#1}{lmargin}{height}{rmargin}}%
+\define@key{Gm}{vmargin}{\Gm@branch{#1}{tmargin}{bmargin}}%
+\define@key{Gm}{hmargin}{\Gm@branch{#1}{lmargin}{rmargin}}%
+\define@key{Gm}{margin}{\Gm@branch{#1}{tmargin}{lmargin}%
+  \Gm@branch{#1}{bmargin}{rmargin}}%
+\define@key{Gm}{headsep}{\Gm@defbylen{ltj@headsep}{#1}}%
+\define@key{Gm}{footskip}{\Gm@defbylen{ltj@footskip}{#1}}%
+\let\KV@Gm@foot\KV@Gm@footskip
+\define@key{Gm}{vmarginratio}{\edef\Gm@hmarginratio{#1}}%
+\define@key{Gm}{hmarginratio}{\edef\Gm@vmarginratio{#1}}%
+\define@key{Gm}{nohead}[true]{\Gm@doifelse{nohead}{#1}%
+  {\Gm@setlength\headheight\z@\Gm@defbylen{ltj@headsep}\z@}{}}%
+\define@key{Gm}{nofoot}[true]{\Gm@doifelse{nofoot}{#1}%
+  {\Gm@defbylen{ltj@footskip}\z@}{}}%
+\define@key{Gm}{noheadfoot}[true]{\Gm@doifelse{noheadfoot}{#1}%
+  {\Gm@setlength\headheight\z@\Gm@defbylen{ltj@headsep}\z@
+  \Gm@defbylen{ltj@footskip}\z@}{}}%
+\define@key{Gm}{layoutwidth}{\Gm@layouttrue\Gm@setlength\Gm@layoutheight{#1}}%
+\define@key{Gm}{layoutheight}{\Gm@layouttrue\Gm@setlength\Gm@layoutwidth{#1}}%
+\define@key{Gm}{layoutsize}{\Gm@branch{#1}{layoutwidth}{layoutheight}}%
+\define@key{Gm}{layout}{\Gm@layouttrue\@nameuse{Gm@#1}{Gm@layout}%
+  \Gm@setlength\@tempdima{\Gm@layoutheight}%
+  \Gm@setlength\Gm@layoutheight{\Gm@layoutwidth}%
+  \Gm@setlength\Gm@layoutwidth{\@tempdima}%
+}%
+
+% \@mparswitch は傍注の出力位置を左右ページで変えるスイッチだが，
+% geometry.sty はこれを左右ページのレイアウトを変えるか否かの判定にも使っている．
+% 縦組クラスの場合は \@mparswitch は常に偽でないとおかしなことになるので
+% \@mparswitch -> \Gm@ltj@layoutswitch と名称変更する．
+
+\let\Gm@ltj@layoutswitch\@mparswitch
+\@mparswitchfalse
+\define@key{Gm}{twoside}[true]{\Gm@doifelse{twoside}{#1}%
+  {\@twosidetrue\Gm@ltj@layoutswitchtrue}{\@twosidefalse\Gm@ltj@layoutswitchfalse}}%
+\define@key{Gm}{asymmetric}[true]{\Gm@doifelse{asymmetric}{#1}%
+  {\@twosidetrue\Gm@ltj@layoutswitchfalse}{}}%
+
+% includemp 指定時は，\headsep (if reversemp || twocolumn) や，
+% \footskip (if !reversemp || twocolumn) を傍注幅だけ増加させる．
+
+% h <-> v
+\def\Gm@Dhratio{2:3}% = top:bottom default
+\def\Gm@Dvratio{1:1}% = left:right default for oneside
+\def\Gm@Dvratiotwo{3:2}% = inner:outer default for twoside.
+\ifGm@swap@papersize
+  % geometry.sty ロード時に landscape オプションが指定されていた場合，
+  % それによって用紙サイズの縦横が入れ替わってしまっているので補正する．
+  \setlength\@tempdima{\paperwidth}%
+  \setlength\paperwidth{\paperheight}%
+  \setlength\paperheight{\@tempdima}%
+\fi
+
+% save length
+\def\Gm@save{%
+  \Gm@savelength{paperwidth}%
+  \Gm@savelength{paperheight}%
+  \Gm@savelength{textwidth}%
+  \Gm@savelength{textheight}%
+  \Gm@savelength{evensidemargin}%
+  \Gm@savelength{oddsidemargin}%
+  \Gm@savelength{topmargin}%
+  \Gm@savelength{headheight}%
+  %\Gm@savelength{headsep}%
+  \Gm@savelength{topskip}%
+  %\Gm@savelength{footskip}%
+  \Gm@savelength{baselineskip}%
+  \Gm@savelength{marginparwidth}%
+  \Gm@savelength{marginparsep}%
+  \Gm@savelength{columnsep}%
+  \Gm@savelength{hoffset}%
+  \Gm@savelength{voffset}
+  \Gm@savelength{Gm@layoutwidth}%
+  \Gm@savelength{Gm@layoutheight}%
+  \Gm@savelength{Gm@layouthoffset}%
+  \Gm@savelength{Gm@layoutvoffset}%
+  \Gm@saveboolean{@twocolumn}%
+  \Gm@saveboolean{@twoside}%
+  \Gm@saveboolean{Gm@ltj@layoutswitch}%
+  \Gm@saveboolean{@reversemargin}}%
+
+% frame
+\ifluatex
+  \def\Gm@pageframe@cmd{\vb@xt@\z@}
+\else
+  \def\Gm@pageframe@cmd{\vb@xt@\z@\bgroup\yoko\aftergroup\egroup}
+\fi
+\renewcommand*{\Gm@pageframes}{%
+  \Gm@pageframe@cmd{%
+   \ifGm@showcrop
+    \vb@xt@\z@{\vskip-1\Gm@truedimen in\vskip\Gm@layoutvoffset%
+     \hb@xt@\z@{\hskip-1\Gm@truedimen in\hskip\Gm@layouthoffset%
+      \vb@xt@\Gm@layoutwidth{%
+       \let\protect\relax
+       \hb@xt@\Gm@layoutheight{\Gm@cropmark(-1,1,-3,3)\hfil\Gm@cropmark(1,1,3,3)}%
+       \vfil
+       \hb@xt@\Gm@layoutheight{\Gm@cropmark(-1,-1,-3,-3)\hfil\Gm@cropmark(1,-1,3,-3)}}%
+     \hss}%
+    \vss}%
+   \fi%
+   \ifGm@showframe
+    \if@twoside
+     \ifodd\count\z@
+       \let\@themargin\oddsidemargin
+     \else
+       \let\@themargin\evensidemargin
+     \fi
+    \fi
+    \moveright\@themargin%
+    \vb@xt@\z@{%
+     \vskip\topmargin\vb@xt@\z@{\vss\Gm@hrule}%
+     \vskip\headheight\vb@xt@\z@{\vss\Gm@hruled}%
+     \vskip\headsep\vb@xt@\z@{\vss\Gm@hrule}%
+     \if@reversemargin\vb@xt@\z@{%
+       \vss\vb@xt@\z@{\vss\Gm@hrule}%
+       \vskip\marginparwidth\vb@xt@\z@{\vss\Gm@hrule}%
+       \vskip\marginparsep
+     }\fi
+     \hb@xt@\textwidth{\llap{\Gm@vrule}\hfil\Gm@vrule}%
+     \vb@xt@\z@{\vss\Gm@hruled}%
+     \unless\if@reversemargin\vb@xt@\z@{%
+       \vskip\marginparsep\vb@xt@\z@{\vss\Gm@hrule}%
+       \vskip\marginparwidth\vb@xt@\z@{\vss\Gm@hruled}\vss%
+     }\fi%
+     \vskip\footskip\vb@xt@\z@{\vss\Gm@hruled}%
+     \vss}%
+    \fi%
+  }}
+\def\Gm@detall#1#2#3#4{%
+  \@tempcnta\z@
+  \if#1h
+    \let\Gm@mratio\Gm@hmarginratio
+    \edef\Gm@Dmratio{\Gm@Dhratio}%
+  \else
+    \let\Gm@mratio\Gm@vmarginratio
+    \edef\Gm@Dmratio{\if@twoside\Gm@Dvratiotwo\else\Gm@Dvratio\fi}%
+  \fi
+  \if#1h
+    \ifx\Gm@tmargin\@undefined\else\advance\@tempcnta4\relax\fi
+    \ifGm@hbody\advance\@tempcnta2\relax\fi
+    \ifx\Gm@bmargin\@undefined\else\advance\@tempcnta1\relax\fi
+    \Gm@cnth\@tempcnta
+  \else
+    \ifx\Gm@lmargin\@undefined\else\advance\@tempcnta4\relax\fi
+    \ifGm@vbody\advance\@tempcnta2\relax\fi
+    \ifx\Gm@rmargin\@undefined\else\advance\@tempcnta1\relax\fi
+    \Gm@cntv\@tempcnta
+  \fi
+  \ifcase\@tempcnta
+    \if#1h
+      \Gm@defbylen{width}{\Gm@Dhscale\Gm@layoutwidth}%
+    \else
+      \Gm@defbylen{height}{\Gm@Dvscale\Gm@layoutheight}%
+    \fi
+    \Gm@detiiandiii{#2}{#3}{#4}%
+  \or
+    \ifx\Gm@mratio\@undefined
+      \if#1h
+        \Gm@defbylen{width}{\Gm@Dhscale\Gm@layoutwidth}%
+      \else
+        \Gm@defbylen{height}{\Gm@Dvscale\Gm@layoutheight}%
+      \fi
+      \setlength\@tempdimc{\@nameuse{Gm@#4}}%
+      \Gm@detiiandiii{#2}{#3}{#4}%
+      \expandafter\let\csname Gm@#2\endcsname\@undefined
+      \Gm@defbylen{#4}{\@tempdimc}%
+    \else
+      \Gm@setbyratio[f]{#1}{#4}{#3}%
+    \fi
+    \Gm@detiv{#2}{#3}{#4}{#2}%
+  \or\Gm@detiiandiii{#2}{#3}{#4}%
+  \or\Gm@detiv{#2}{#2}{#4}{#3}%
+  \or
+    \ifx\Gm@mratio\@undefined
+      \if#1h
+        \Gm@defbylen{width}{\Gm@Dhscale\Gm@layoutwidth}%
+      \else
+        \Gm@defbylen{height}{\Gm@Dvscale\Gm@layoutheight}%
+      \fi
+      \setlength\@tempdimc{\@nameuse{Gm@#3}}%
+      \Gm@detiiandiii{#2}{#4}{#3}%
+      \expandafter\let\csname Gm@#2\endcsname\@undefined
+      \Gm@defbylen{#3}{\@tempdimc}%
+    \else
+      \Gm@setbyratio[b]{#1}{#3}{#4}%
+    \fi
+    \Gm@detiv{#2}{#3}{#4}{#2}%
+  \or\Gm@detiv{#2}{#3}{#4}{#2}%
+  \or\Gm@detiv{#2}{#2}{#3}{#4}%
+  \or\Gm@warning{Over-specification in `#1'-direction.%
+                  ^^J\@spaces `#2' (\@nameuse{Gm@#2}) is ignored}%
+    \Gm@detiv{#2}{#3}{#4}{#2}%
+  \else\fi}%
+\def\Gm@clean{%
+  \ifnum\Gm@cnth<4\let\Gm@tmargin\@undefined\fi
+  \ifodd\Gm@cnth\else\let\Gm@bmargin\@undefined\fi
+  \ifnum\Gm@cntv<4\let\Gm@lmargin\@undefined\fi
+  \ifodd\Gm@cntv\else\let\Gm@rmargin\@undefined\fi
+  \ifGm@hbody\else
+    \let\Gm@hscale\@undefined
+    \let\Gm@width\@undefined
+    \let\Gm@textwidth\@undefined
+  \fi
+  \ifGm@vbody\else
+    \let\Gm@vscale\@undefined
+    \let\Gm@height\@undefined
+    \let\Gm@textheight\@undefined
+  \fi
+  }%
+\def\Gm@adjustpaper{%
+  \ifdim\paperwidth>\p@\else
+    \PackageError{geometry}{%
+    \string\paperwidth\space(\the\paperwidth) too short}{%
+    Set a paper type (e.g., `a4paper').}%
+  \fi
+  \ifdim\paperheight>\p@\else
+    \PackageError{geometry}{%
+    \string\paperheight\space(\the\paperheight) too short}{%
+    Set a paper type (e.g., `a4paper').}%
+  \fi
+  \ifGm@swap@papersize
+    \setlength\@tempdima{\paperwidth}%
+    \setlength\paperwidth{\paperheight}%
+    \setlength\paperheight{\@tempdima}%
+  \fi
+  \ifGm@layout\else
+    \setlength\Gm@layoutwidth{\paperheight}%
+    \setlength\Gm@layoutheight{\paperwidth}%
+  \fi}%
+\def\Gm@adjustbody{
+  \ifGm@hbody
+    \ifx\Gm@width\@undefined
+      \ifx\Gm@hscale\@undefined
+        \Gm@defbylen{width}{\Gm@Dhscale\Gm@layoutwidth}%
+      \else
+        \Gm@defbylen{width}{\Gm@hscale\Gm@layoutwidth}%
+      \fi
+    \fi
+    \ifx\Gm@textwidth\@undefined\else
+      \setlength\@tempdima{\Gm@textwidth}%
+      \ifGm@includemp
+        \advance\@tempdima\Gm@wd@mp
+      \fi
+      \ifGm@includehead
+        \addtolength\@tempdima{\headheight}%
+        \addtolength\@tempdima{\headsep}%
+      \fi
+      \ifGm@includefoot
+        \addtolength\@tempdima{\footskip}%
+      \fi
+      \edef\Gm@width{\the\@tempdima}%
+    \fi
+  \fi
+  \ifGm@vbody
+    \ifx\Gm@height\@undefined
+      \ifx\Gm@vscale\@undefined
+        \Gm@defbylen{height}{\Gm@Dvscale\Gm@layoutheight}%
+      \else
+        \Gm@defbylen{height}{\Gm@vscale\Gm@layoutheight}%
+      \fi
+    \fi
+    \setlength\topskip\Gm@ltj@topskip
+    \ifx\Gm@lines\@undefined\else
+      \@tempdima=\f@size\p@ \@tempdima=.5\@tempdima
+      \ifluatex
+        \advance\@tempdima\ltjgetparameter{talbaselineshift}%
+      \else
+        \advance\@tempdima\tbaselineshift
+      \fi
+      \ifdim\maxdepth<\@tempdima
+        \PackageWarningNoLine{lltjp-geometry}%
+          {\noexpand\maxdepth was changed from \the\maxdepth\space
+            to \the\@tempdima}
+        \maxdepth\@tempdima
+      \fi
+      \setbox\z@=\hbox{\tate% next \ifdim must be executed in tate dir.
+        \ifdim\topskip<\ht\tstrutbox
+          \@tempdima\topskip
+          \global\topskip\ht\tstrutbox
+          \PackageWarningNoLine{lltjp-geometry}%
+            {\noexpand\topskip was changed from \the\@tempdima\space
+              to \the\topskip}
+        \fi}%
+      \setlength\@tempdima{\baselineskip}%
+      \multiply\@tempdima\Gm@lines
+      \addtolength\@tempdima{\topskip}%
+      \addtolength\@tempdima{-\baselineskip}%
+      \edef\Gm@textheight{\the\@tempdima}%
+    \fi
+    \ifx\Gm@textheight\@undefined\else
+      \edef\Gm@height{\Gm@textheight}%
+    \fi
+  \fi}%
+
+\def\Gm@adjustmp{%
+  \ifGm@includemp
+    \@tempdimb\marginparwidth
+    \advance\@tempdimb\marginparsep
+    \Gm@wd@mp\@tempdimb
+    \if@twocolumn
+      \Gm@wd@mp2\@tempdimb
+    \fi
+  \fi}%
+\def\Gm@@process{%
+  \Gm@expandlengths
+  \Gm@adjustpaper
+  \addtolength\Gm@layoutheight{-\Gm@bindingoffset}%
+  \Gm@adjustmp
+  \Gm@adjustbody
+  \Gm@detall{h}{width}{tmargin}{bmargin}%
+  \Gm@detall{v}{height}{lmargin}{rmargin}%
+  \setlength\textwidth{\Gm@width}%
+  \setlength\textheight{\Gm@height}%
+  \setlength\headsep{\Gm@ltj@headsep}%
+  \setlength\footskip{\Gm@ltj@footskip}%
+  \setlength\topmargin{\Gm@tmargin}%
+  \setlength\oddsidemargin{\Gm@lmargin}%
+  \addtolength\oddsidemargin{-1\Gm@truedimen in}%
+  \ifGm@ltj@layoutswitch
+    \setlength\evensidemargin{\Gm@rmargin}%
+    \addtolength\evensidemargin{-1\Gm@truedimen in}%
+  \else
+    \evensidemargin\oddsidemargin
+  \fi
+  \advance\evensidemargin\Gm@bindingoffset
+  \addtolength\topmargin{-1\Gm@truedimen in}%
+  \ifGm@includehead
+    \addtolength\textwidth{-\headheight}%
+    \addtolength\textwidth{-\headsep}%
+  \else
+    \addtolength\topmargin{-\headheight}%
+    \addtolength\topmargin{-\headsep}%
+  \fi
+  \ifGm@includefoot
+    \addtolength\textwidth{-\footskip}%
+  \fi
+  \ifGm@includemp
+    \advance\textwidth-\Gm@wd@mp
+    \if@twocolumn
+      \advance\headsep.5\Gm@wd@mp
+      \advance\footskip.5\Gm@wd@mp
+    \else\if@reversemargin
+      \advance\headsep\Gm@wd@mp
+    \else
+      \advance\footskip\Gm@wd@mp
+    \fi\fi
+  \fi
+  \ifGm@heightrounded
+    \setlength\@tempdima{\textheight}%
+    \addtolength\@tempdima{-\topskip}%
+    \@tempcnta\@tempdima
+    \@tempcntb\baselineskip
+    \divide\@tempcnta\@tempcntb
+    \setlength\@tempdimb{\baselineskip}%
+    \multiply\@tempdimb\@tempcnta
+    \advance\@tempdima-\@tempdimb
+    \multiply\@tempdima\tw@
+    \ifdim\@tempdima>\baselineskip
+      \addtolength\@tempdimb{\baselineskip}%
+    \fi
+    \addtolength\@tempdimb{\topskip}%
+    \textheight\@tempdimb
+  \fi
+  \advance\oddsidemargin\Gm@layouthoffset%
+  \advance\evensidemargin\Gm@layouthoffset%
+  \advance\topmargin\Gm@layoutvoffset%
+  \addtolength\Gm@layoutheight{\Gm@bindingoffset}%
+}% end of \Gm@@process
+% log
+\def\Gm@logcontent#1{%
+  *geometry* verbose mode - [ #1 ] result:^^J%
+  \ifGm@pass * pass: disregarded the geometry package!^^J%
+  \else
+  * driver: \if\Gm@driver<none>\else\Gm@driver\fi^^J%
+  * paper: \ifx\Gm@paper\@undefined<default>\else\Gm@paper\fi^^J%
+  * layout: \ifGm@layout<custom>\else<same size as paper>\fi^^J%
+  \ifGm@layout
+  * layout(width,height): (\the\Gm@layoutwidth,\the\Gm@layoutheight)^^J%
+  \fi
+  * layoutoffset:(h,v)=(\the\Gm@layouthoffset,\the\Gm@layoutvoffset)^^J%
+  \@ifundefined{Gm@lines}{}{* lines: \Gm@lines^^J}%
+  \@ifundefined{Gm@hmarginratio}{}{* hratio: \Gm@hmarginratio^^J}%
+  \@ifundefined{Gm@vmarginratio}{}{* vratio: \Gm@vmarginratio^^J}%
+  \ifdim\Gm@bindingoffset=\z@\else
+  * bindingoffset: \the\Gm@bindingoffset^^J\fi
+  * modes: %
+   \Gm@showbool{landscape}%
+   \Gm@showbool{includehead}%
+   \Gm@showbool{includefoot}%
+   \Gm@showbool{includemp}%
+   \if@twoside twoside\space\fi%
+   \ifGm@ltj@layoutswitch\else\if@twoside asymmetric\space\fi\fi%
+   \Gm@showbool{heightrounded}%
+   \ifx\Gm@truedimen\@empty\else truedimen\space\fi%
+   \Gm@showbool{showframe}%
+   \Gm@showbool{showcrop}%
+  ^^J%
+  * h-part:(L,W,R)=(\Gm@lmargin, \Gm@height, \Gm@rmargin)^^J%
+  * v-part:(T,H,B)=(\Gm@tmargin, \Gm@width, \Gm@bmargin)^^J%
+  \fi
+  \Gm@showdim{\paperwidth}%
+  \Gm@showdim{\paperheight}%
+  \Gm@showdim{\textwidth}%
+  \Gm@showdim{\textheight}%
+  \Gm@showdim{\oddsidemargin}%
+  \Gm@showdim{\evensidemargin}%
+  \Gm@showdim{\topmargin}%
+  \Gm@showdim{\headheight}%
+  \Gm@showdim{\headsep}%
+  \Gm@showdim{\topskip}%
+  \Gm@showdim{\footskip}%
+  \Gm@showdim{\marginparwidth}%
+  \Gm@showdim{\marginparsep}%
+  \Gm@showdim{\columnsep}%
+  * \string\skip\string\footins=\the\skip\footins^^J%
+  \Gm@showdim{\hoffset}%
+  \Gm@showdim{\voffset}%
+  \Gm@showdim{\mag}%
+  * \string\@twocolumn\if@twocolumn true\else false\fi^^J%
+  * \string\@twoside\if@twoside true\else false\fi^^J%
+  * \string\@mparswitch\if@mparswitch true\else false\fi^^J%
+  * \string\@reversemargin\if@reversemargin true\else false\fi^^J%
+  * (1in=72.27pt=25.4mm, 1cm=28.453pt)^^J}%
+
+
+\Gm@initall
+\Gm@processconfig
+\ProcessOptionsKV[c]{Gm}%
+\Gm@setdefaultpaper
+\ProcessOptionsKV[p]{Gm}%
+\Gm@process
+
+%%% 終了
+\fi}
+\endinput

@@ -1,0 +1,25 @@
+name ulem
+category Package
+revision 77682
+shortdesc Package for underlining
+longdesc The package provides an \ul (underline) command which will
+longdesc break over line ends; this technique may be used to replace \em
+longdesc (both in that form and as the \emph command), so as to make
+longdesc output look as if it comes from a typewriter. The package also
+longdesc offers double and wavy underlining, and striking out (line
+longdesc through words) and crossing out (/// over words). The package
+longdesc works with both Plain TeX and LaTeX.
+containersize 6532
+containerchecksum d960165e7b65b92fa579e1fa28a7d212a69e106c0eb22126ab8d0081467256a99a1a45e18243777873ad7772f6c62e27edb98718719b06512817bfcfe94e606f
+doccontainersize 166256
+doccontainerchecksum 278003b6add605226acc4213451914252f5eda6a527d212b7550ce81dde70bb559b6da68a0dca3a37a1ebbb60c1cad661032212075408a9dfaf07c5117e54afb
+docfiles size=45
+ texmf-dist/doc/generic/ulem/README details="Readme"
+ texmf-dist/doc/generic/ulem/ulem.ltx
+ texmf-dist/doc/generic/ulem/ulem.pdf details="Package documentation"
+runfiles size=4
+ texmf-dist/tex/generic/ulem/ulem.sty
+catalogue-also underlin-gen soul
+catalogue-ctan /macros/latex/contrib/ulem
+catalogue-license other-free
+catalogue-topics underline emphasis tagged-pdf-incompatible

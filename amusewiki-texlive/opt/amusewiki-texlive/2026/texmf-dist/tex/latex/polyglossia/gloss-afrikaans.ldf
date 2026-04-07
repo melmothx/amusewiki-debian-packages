@@ -1,0 +1,97 @@
+% Language definition file (part of polyglossia v2.9 -- 2025/12/01)
+%
+\ProvidesFile{gloss-afrikaans.ldf}[polyglossia: module for Afrikaans]
+
+\PolyglossiaSetup{afrikaans}{
+  bcp47=af,
+  bcp47-language=af,
+  bcp47-script=Latn,
+  hyphennames={afrikaans,dutch},
+  hyphenmins={2,2},
+  langtag=AFK,
+  frenchspacing=true,
+ }
+
+% BCP-47 compliant aliases
+\setlanguagealias*{afrikaans}{af}
+
+\DeclareKeys[polyglossia/gloss/afrikaans]
+  {
+    babelshorthands.if = afrikaans@babelshorthands,
+    babelshorthands.default:n = true,
+  }
+
+\ifsystem@babelshorthands
+  \SetGlossOptions{afrikaans}{babelshorthands=true}
+  % Register default options
+  \InitializeGlossOptions{afrikaans}{babelshorthands=true}
+\else
+  \SetGlossOptions{afrikaans}{babelshorthands=false}
+  % Register default options
+  \InitializeGlossOptions{afrikaans}{babelshorthands=false}
+\fi
+
+\InitializeBabelShorthands
+
+\def\afrikaans@shorthands{%
+  \xpg@activate@shorthands%
+  \def\language@group{afrikaans}%
+  \declare@shorthand{afrikaans}{"-}{\nobreak-\bbl@allowhyphens}
+  \declare@shorthand{afrikaans}{"~}{\textormath{\leavevmode\hbox{-}}{-}}
+  \declare@shorthand{afrikaans}{"|}{%
+    \textormath{\discretionary{-}{}{\kern.03em}}{}}
+  \declare@shorthand{afrikaans}{""}{\hskip\z@skip}
+  \declare@shorthand{afrikaans}{"/}{\textormath
+    {\bbl@allowhyphens\discretionary{/}{}{/}\bbl@allowhyphens}{}}%
+  \def\-{\bbl@allowhyphens\discretionary{-}{}{}\bbl@allowhyphens}%
+}
+
+\def\noafrikaans@shorthands{%
+  \xpg@deactivate@shorthands%
+}
+
+\def\captionsafrikaans{%
+    \def\prefacename{Voorwoord}%
+    \def\refname{Verwysings}%
+    \def\abstractname{Samevatting}%
+    \def\bibname{Bibliografie}%
+    \def\chaptername{Hoofstuk}%
+    \def\appendixname{Bylae}%
+    \def\contentsname{Inhoudsopgawe}%
+    \def\listfigurename{Lys van figure}%
+    \def\listtablename{Lys van tabelle}%
+    \def\indexname{Inhoud}%
+    \def\figurename{Figuur}%
+    \def\tablename{Tabel}%
+    \def\partname{Deel}%
+    \def\enclname{Bylae(n)}%
+    \def\ccname{a.\,a.}%
+    \def\headtoname{Aan}%
+    \def\pagename{Bladsy}%
+    \def\seename{sien}%
+    \def\alsoname{sien ook}%
+    \def\proofname{Bewys}%
+%   \def\glossaryname{}%
+}
+
+\def\dateafrikaans{%
+    \def\today{\number\day~\ifcase\month\or
+      Januarie\or Februarie\or Maart\or April\or Mei\or Junie\or
+      Julie\or  Augustus\or September\or Oktober\or November\or
+      Desember\fi
+      \space \number\year}%
+}
+
+\def\noextras@afrikaans{%
+  \ifafrikaans@babelshorthands\noafrikaans@shorthands\fi%
+}
+
+\def\blockextras@afrikaans{%
+  \ifafrikaans@babelshorthands\afrikaans@shorthands\else\noafrikaans@shorthands\fi%
+}
+
+\def\inlineextras@afrikaans{%
+  \ifafrikaans@babelshorthands\afrikaans@shorthands\else\noafrikaans@shorthands\fi%
+}
+
+\endinput

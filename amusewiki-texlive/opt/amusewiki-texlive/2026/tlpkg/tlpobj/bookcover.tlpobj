@@ -1,0 +1,44 @@
+name bookcover
+category Package
+revision 77334
+shortdesc A class for book covers and dust jackets
+longdesc This class helps typesetting book covers and dust jackets.
+containersize 6820
+containerchecksum 6ed30400d67354888be89afd715ed7d8a7fd32af0a3adfae4a32e851ad801c6f941a901f86733d61eaa9bee024a09ff0f61d8862075c5ee7499761ff4b8ae6f8
+doccontainersize 1769780
+doccontainerchecksum e3edd48fc6a08fa52372427c021e3fec27f609b009055fcabf2d5af6cb1ad4d6cb9649f7144b1e8e284dc8fe6b8119ce3525d7d9970e427f3990e1ed2538b846
+docfiles size=934
+ texmf-dist/doc/latex/bookcover/README details="Readme"
+ texmf-dist/doc/latex/bookcover/bookcover-example1.pdf details="Examples of use 1"
+ texmf-dist/doc/latex/bookcover/bookcover-example1.tex
+ texmf-dist/doc/latex/bookcover/bookcover-example2.pdf details="Examples of use 2"
+ texmf-dist/doc/latex/bookcover/bookcover-example2.tex
+ texmf-dist/doc/latex/bookcover/bookcover.pdf details="Package documentation"
+ texmf-dist/doc/latex/bookcover/figures/bookcover-barcode.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-bg.jpg
+ texmf-dist/doc/latex/bookcover/figures/bookcover-cards.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-description.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-dice.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-dustjacket.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-foldingmargin.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-margins.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-newpart.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-parts.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-pi.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-ruler.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-scheme-foldingmargin.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-scheme-widthflaps.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-scheme-withflaps.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-scheme-withoutflaps.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-showonly.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-tikz.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-tikzclip.pdf
+ texmf-dist/doc/latex/bookcover/figures/bookcover-trimming.pdf
+srccontainersize 15600
+srccontainerchecksum 73eeb047942c6d0a202f37d00bbd06c9a8b3674ad3bfbc83a9675df3893d2289c464da2c97d7250a2976924a27782c3ba664df84a70b4983da7143a90760451e
+runfiles size=14
+ texmf-dist/tex/latex/bookcover/bookcover.cls
+catalogue-ctan /macros/latex/contrib/bookcover
+catalogue-license lppl1.2
+catalogue-topics class covers
+catalogue-version 3.9

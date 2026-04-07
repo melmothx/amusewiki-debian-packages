@@ -1,0 +1,73 @@
+.TH PKTYPE 1 "25 January 2026" "Web2C 2026"
+.\"=====================================================================
+.if n .ds MF Metafont
+.if t .ds MF Metafont
+.if t .ds TX \fRT\\h'-0.10m'\\v'0.17v'E\\v'-0.17v'\\h'-0.06m'X\fP
+.if n .ds TX TeX
+.\"=====================================================================
+.SH NAME
+pktype \- verify and translate a packed font (pk) bitmap file to plain text
+.SH SYNOPSIS
+.B pktype
+.IR pk_file [pk]
+.\"=====================================================================
+.SH DESCRIPTION
+The
+.B pktype
+program translates a packed font file
+.RI ( pk )
+output by, for example,
+.BR gftopk (1),
+to a file that humans can read. It also serves as a
+.I pk
+file-validating program (i.e., if
+.B pktype
+can read it, it's correct) and as an example of a
+.IR pk -reading
+program for other software that wants to read
+.I pk
+files.
+.PP
+The input
+.I pk_file
+on the command line may omit the suffix "pk".
+The plain text translation is always written to standard output.
+.PP
+The output file gives a compact encoding of the packed encoding, using
+conventions described in the source code. Run lengths of black pixels
+alternate with parenthesized run lengths of white pixels, and brackets
+are used to indicate when a row should be repeated.
+.\"=====================================================================
+.SH OPTIONS
+See
+.BR tex (1)
+for details of command-line parsing.
+.PP
+The standard
+.B -help
+and
+.B -version
+options are supported.
+.\"=====================================================================
+.SH ENVIRONMENT
+The program looks for
+.I pk_file
+using the environment variables PKFONTS, TEXPKS, GLYPHFONTS, and
+TEXFONTS, in that order. If none are set, it uses the system default.
+See the Kpathsea manual at https://tug.org/kpathsea for the details of
+the searching.
+.\"=====================================================================
+.SH "SEE ALSO"
+.BR dvitype (1),
+.BR gftopk (1),
+.BR gftype (1).
+.br
+Donald E. Knuth et al.,
+.IR \*(MFware .
+.\"=====================================================================
+.SH AUTHORS
+Tomas Rokicki wrote the program.
+Donald E. Knuth originally ported it to Unix.
+Pierre MacKay originally adapted it for compilation with Web2c.
+.PP
+Public discussion list and bug reports: https://lists.tug.org/tex-k

@@ -1,0 +1,24 @@
+name grfext
+category Package
+revision 77682
+shortdesc Manipulate the graphics package's list of extensions
+longdesc This package provides macros for adding to, and reordering the
+longdesc list of graphics file extensions recognised by package
+longdesc graphics.
+containersize 2328
+containerchecksum ea53cf11265b6ec86d54780e958ed85dba4e83bc578b3c32400c42a8edd09348956ddd744bf6d5705a1d3671f8ce1cfd295beb8e51edc86787bd7b9dd36a3d4a
+doccontainersize 308376
+doccontainerchecksum 348a73ed950c28b84d35590553f725a3fe8c79f64ff810718a4549a14d5a06560b906ed05404757a5df07d39b246658243eac8acf1ee3adff8ed9b1d0d6df29d
+docfiles size=77
+ texmf-dist/doc/latex/grfext/README.md
+ texmf-dist/doc/latex/grfext/grfext.pdf details="Package documentation"
+srccontainersize 6152
+srccontainerchecksum 68c792958c61a84e97649fc15c4332b8bf32f979fa6e31029278bdd8b9c06af11f6e4eef1b19f3d11a1dc62cb0eaf7634839e20e7ce52d196a120ebb1cda8c69
+runfiles size=2
+ texmf-dist/tex/latex/grfext/grfext.sty
+catalogue-contact-bugs https://github.com/ho-tex/grfext/issues
+catalogue-contact-repository https://github.com/ho-tex/grfext
+catalogue-ctan /macros/latex/contrib/grfext
+catalogue-license lppl1.3
+catalogue-topics graphics-supp tagged-pdf
+catalogue-version 1.3

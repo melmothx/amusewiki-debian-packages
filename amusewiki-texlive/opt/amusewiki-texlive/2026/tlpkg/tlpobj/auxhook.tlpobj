@@ -1,0 +1,23 @@
+name auxhook
+category Package
+revision 77682
+shortdesc Hooks for auxiliary files
+longdesc This package auxhook provides hooks for adding stuff at the
+longdesc begin of .aux files.
+containersize 1672
+containerchecksum 3106f809b24c33e0ca09df0a3d1d37a7a12ad81212ec98a5fa9e42599d5605e8bceb59c5e4b65dd139f289adb4f011e5024c9c041237510fc7992f69ad3a8a50
+doccontainersize 285640
+doccontainerchecksum a55ba617854507895023f5d9dbd7158ec485006653c5d85c6f1498aaff8df79a0e7cc588eed5d352d0a58104e4c79f767822198929432976626f3301561be510
+docfiles size=71
+ texmf-dist/doc/latex/auxhook/README.md
+ texmf-dist/doc/latex/auxhook/auxhook.pdf details="Package documentation"
+srccontainersize 5244
+srccontainerchecksum 638d4c34173b8f2a68e179d1844d4b8901329bbf3f4fb85b44f3321ec65159f770ba4418eb0dd15b2ffc10cd8f7eab37b87e8777cf7bbb1829bbec3a7233ced4
+runfiles size=1
+ texmf-dist/tex/latex/auxhook/auxhook.sty
+catalogue-contact-bugs https://github.com/ho-tex/auxhook/issues
+catalogue-contact-repository https://github.com/ho-tex/auxhook
+catalogue-ctan /macros/latex/contrib/auxhook
+catalogue-license lppl1.3
+catalogue-topics defer-stuff tagged-pdf
+catalogue-version 1.6

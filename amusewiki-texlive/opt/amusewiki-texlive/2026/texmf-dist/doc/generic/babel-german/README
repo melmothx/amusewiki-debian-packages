@@ -1,0 +1,70 @@
+=========================================================================
+The babel-german bundle
+
+German language support for the babel multilingual package
+
+Copyright 1989--2026 Johannes L. Braams
+                     Bernd Raichle
+                     Walter Schmidt,
+                     Jürgen Spitzmüller
+
+Current Maintainer: Jürgen Spitzmüller
+E-mail: juergen (at) spitzmueller (dot) org
+
+Please report bugs or requests at
+https://codeberg.org/jspitz/babel-german/issues
+
+Released under the LaTeX Project Public License v1.3 or later
+See http://www.latex-project.org/lppl.txt
+=========================================================================
+
+== PURPOSE ==
+
+This bundle is an extension to the babel package for multilingual
+typesetting. It provides all necessary macros, definitions and settings
+to typeset German documents. The bundle includes support for the
+traditional and reformed German orthography as well as for the Austrian
+and Swiss (standard) varieties of German.
+
+
+== CONTENTS ==
+
+The bundle consists of the following files:
+
+* babel-german.ins (installation file to unpack the language definition files)
+* babel-german.dtx (packed language definition files and documentation)
+* babel-german.pdf: unpacked documentation
+* README (this file)
+
+
+== INSTALLATION ==
+
+If the latest version of this package is not included in your LaTeX
+distribution, do the following:
+
+* issue "latex babel-german.ins" to unpack the core definition file (*.def)
+  and the language definition files (*.ldf).
+* copy the files (babel-german.def, austrian.ldf, german.ldf, germanb.ldf,
+  german-at.ldf, german-ch.ldf, german-de.ldf, german-at-1901.ldf,
+  german-ch-1901.ldf, german-de-1901.ldf, german-austria.ldf, german-germany.ldf,
+  german-switzerland.ldf, german-austria-1901.ldf, german-germany-1901.ldf,
+  german-switzerland-1901.ldf, naustrian.ldf, ngerman.ldf, ngermanb.ldf,
+  nswissgerman.ldf and swissgerman.ldf) to a location where TeX can find them
+  (default location: $TEXMF/tex/generic/babel-german/)
+
+To re-generate the manual, issue
+* pdflatex babel-german.dtx
+* makeindex -s gglo.ist -o babel-german.gls babel-german.glo
+* pdflatex babel-german.dtx
+* pdflatex babel-german.dtx
+
+
+== DOCUMENTATION ==
+
+See the included manual for usage instructions.
+
+
+== CHANGES ==
+
+See the included manual, section "Change History".
+

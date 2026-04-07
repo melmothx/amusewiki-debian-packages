@@ -1,0 +1,74 @@
+\documentclass{book}
+
+\usepackage[enablepatch={chapter,listoffigures}]{tocbasic}
+
+\DeclareNewTOC[%
+  type=remarkbox,%
+  types=remarkboxes,%
+  float,% definiere floating environment
+  counterwithin=chapter,% counter depends on chapter
+  floattype=4,%
+  name=Remark,%
+  tocentryindent=1.5em,%
+  tocentrynumwidth=2.3em,%
+  listname={List of Remarks}%
+]{lor}
+
+% add entries to the table of contents
+\setuptoc{lof}{totoc}% list of figures
+\setuptoc{lor}{totoc}% list of remarks
+
+\usepackage{mwe}
+
+\begin{document}
+\tableofcontents
+\listoffigures
+\listofremarkboxes
+
+\chapter{First Example Chapter}
+\blindtext
+\begin{figure}
+  \centering
+  \rule{1cm}{1cm}
+  \caption{First Figure}
+\end{figure}
+\begin{remarkbox}
+  \caption{First Remark}
+\end{remarkbox}
+
+\blindtext
+\begin{figure}
+  \centering
+  \rule{1cm}{1cm}
+  \caption{Second Figure}
+\end{figure}
+\begin{remarkbox}
+  \caption{Second Remark}
+\end{remarkbox}
+
+\blindtext
+
+\chapter{Second Example Chapter}
+\blindtext
+\begin{figure}
+  \centering
+  \rule{1cm}{1cm}
+  \caption{Third Figure}
+\end{figure}
+\begin{remarkbox}
+  \caption{Third Remark}
+\end{remarkbox}
+
+\blindtext
+\begin{figure}
+  \centering
+  \rule{1cm}{1cm}
+  \caption{Fourth Figure}
+\end{figure}
+\begin{remarkbox}
+  \caption{Fourth Remark}
+\end{remarkbox}
+
+\blindtext
+
+\end{document}

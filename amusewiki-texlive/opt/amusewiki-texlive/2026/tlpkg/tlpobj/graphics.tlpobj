@@ -1,0 +1,63 @@
+name graphics
+category Package
+revision 78282
+catalogue latex-graphics
+shortdesc The LaTeX standard graphics bundle
+longdesc This is a collection of LaTeX packages for: producing colour
+longdesc including graphics (eg PostScript) files rotation and scaling
+longdesc of text in LaTeX documents. It comprises the packages color,
+longdesc graphics, graphicx, trig, epsfig, keyval, and lscape.
+depend epstopdf-pkg
+depend graphics-cfg
+depend graphics-def
+containersize 15988
+containerchecksum f9a79da983829555339723c1fa5eff3802945f129248307c1edf9002002341de6b39b22d798155c1704d25fa16f804fdcf54437596514a094f8a7e14915a66c1
+doccontainersize 2475552
+doccontainerchecksum eee0743bf05e44dd29bbfdce00d84acc871e301f99399b9f07ef9f8aaeb9e72b243a412ed96cef95554185ef238e64ca984694f470624bc797bdb0b6f9c959fb
+docfiles size=775
+ texmf-dist/doc/latex/graphics/README.md details="Readme"
+ texmf-dist/doc/latex/graphics/cat.eps
+ texmf-dist/doc/latex/graphics/changes.txt
+ texmf-dist/doc/latex/graphics/color.pdf
+ texmf-dist/doc/latex/graphics/drivers.pdf
+ texmf-dist/doc/latex/graphics/epsfig.pdf
+ texmf-dist/doc/latex/graphics/graphics.pdf
+ texmf-dist/doc/latex/graphics/graphicx.pdf
+ texmf-dist/doc/latex/graphics/grfguide.pdf details="Bundle documentation"
+ texmf-dist/doc/latex/graphics/grfguide.tex
+ texmf-dist/doc/latex/graphics/keyval.pdf
+ texmf-dist/doc/latex/graphics/lscape.pdf
+ texmf-dist/doc/latex/graphics/mathcolor.pdf
+ texmf-dist/doc/latex/graphics/rotating.pdf
+ texmf-dist/doc/latex/graphics/rotex.pdf
+ texmf-dist/doc/latex/graphics/rotex.tex
+ texmf-dist/doc/latex/graphics/trig.pdf
+srccontainersize 57432
+srccontainerchecksum 8ee236e29b95ab41c75c887f27bdb511394079c141c52a274d43f2ee44598afd7d408abcf5c21c62e4386a78cfb8e2b594434ba92257d19ea7b07de2ddee6d04
+runfiles size=36
+ texmf-dist/tex/latex/graphics/color.sty
+ texmf-dist/tex/latex/graphics/dvipdf.def
+ texmf-dist/tex/latex/graphics/dvipsnam.def
+ texmf-dist/tex/latex/graphics/dvipsone.def
+ texmf-dist/tex/latex/graphics/dviwin.def
+ texmf-dist/tex/latex/graphics/emtex.def
+ texmf-dist/tex/latex/graphics/epsfig.sty
+ texmf-dist/tex/latex/graphics/graphics-2017-06-25.sty
+ texmf-dist/tex/latex/graphics/graphics.sty
+ texmf-dist/tex/latex/graphics/graphicx.sty
+ texmf-dist/tex/latex/graphics/keyval.sty
+ texmf-dist/tex/latex/graphics/lscape.sty
+ texmf-dist/tex/latex/graphics/mathcolor.ltx
+ texmf-dist/tex/latex/graphics/pctex32.def
+ texmf-dist/tex/latex/graphics/pctexhp.def
+ texmf-dist/tex/latex/graphics/pctexps.def
+ texmf-dist/tex/latex/graphics/pctexwin.def
+ texmf-dist/tex/latex/graphics/rotating.sty
+ texmf-dist/tex/latex/graphics/tcidvi.def
+ texmf-dist/tex/latex/graphics/trig.sty
+ texmf-dist/tex/latex/graphics/truetex.def
+catalogue-contact-bugs https://www.latex-project.org/bugs/
+catalogue-contact-home https://www.latex-project.org/
+catalogue-ctan /macros/latex/required/graphics
+catalogue-license lppl1.3c
+catalogue-topics graphics collection

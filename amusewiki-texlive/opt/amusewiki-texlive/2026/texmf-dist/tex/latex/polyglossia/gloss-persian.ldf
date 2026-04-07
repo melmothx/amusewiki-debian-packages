@@ -1,0 +1,226 @@
+% Language definition file (part of polyglossia v2.9 -- 2025/12/01)
+%
+\ProvidesFile{gloss-persian.ldf}[polyglossia: module for Persian]
+
+\RequireBidi
+\RequirePackage{arabicnumbers}
+\RequirePackage{farsical}
+\RequirePackage{hijrical}
+\PolyglossiaSetup{persian}{
+  bcp47=fa,
+  bcp47-language=fa,
+  bcp47-script=Arab,
+  babelname=farsi,
+  script=Arabic,
+  direction=RL,
+  scripttag=arab,
+  langtag=FAR,
+  hyphennames={nohyphenation},
+  localnumeral=farsinumerals,
+  Localnumeral=farsinumerals
+}
+
+% BCP-47 compliant aliases
+\setlanguagealias*{persian}{fa}
+
+% Babel and backwards compat. alias
+\setlanguagealias{persian}{farsi}
+
+\newif\if@western@numerals
+\newif\ifpersian@customsep\persian@customsepfalse
+\def\xpg@sepmark{}
+
+%TODO add option for CALENDAR
+
+\DeclareKeys[polyglossia/gloss/persian]
+  {
+    sectionsep.code = \gdef\xpg@sepmark{#1}\persian@customseptrue,
+    sectionsep.default:n = .,
+    abjadjimnotail.if = abjad@jim@notail,
+    abjadjimnotail.default:n = true,
+    locale.store = \@persian@locale,
+    locale.default:n = default,
+    numerals.choice:,
+    numerals / eastern.code =
+      {%
+          \@western@numeralsfalse
+          \SetLanguageKeys{persian}{bcp47-extension-u=nu-arab}%
+      },
+    numerals / western.code =
+      {%
+          \@western@numeralstrue
+          \SetLanguageKeys{persian}{bcp47-extension-u=nu-latn}%
+      },
+    numerals.default:n = eastern,
+    numerals/unknown.code = \xpg@warning{Unknown Persian numerals option `#1'}
+  }
+
+% Register default options
+\InitializeGlossOptions{persian}{locale=default,numerals=eastern,abjadjimnotail=false}
+
+\def\farsigregmonth#1{\ifcase#1%
+  \or ژانویه\or فوریه\or مارس\or آوریل\or مه\or ژوئن\or ژوئیه\or اوت\or سپتامبر\or اکتبر\or نوامبر\or دسامبر\fi}
+\def\farsimonth#1{\ifcase#1%
+  \or کانون ثانی\or شباط\or اذار%%or ادار
+    \or نیسان\or ایار\or حزیران\or تموز\or آب\or ایلول\or تشرین اول\or تشرین ثانی\or کانون اول\fi}
+
+%\Hijritoday is now locale-aware and will format the date with this macro:
+\DefineFormatHijriDate{persian}{\@ensure@RTL{%
+\farsinumber{\value{Hijriday}}\space\HijriMonthArabic{\value{Hijrimonth}}\space\farsinumber{\value{Hijriyear}}}}
+
+\def\captionspersian{%
+\def\prefacename{\@ensure@RTL{پیشگفتار}}%
+\def\refname{\@ensure@RTL{مراجع}}%
+\def\abstractname{\@ensure@RTL{چکیده}}%
+\def\bibname{\@ensure@RTL{کتاب‌نامه}}%
+\def\chaptername{\@ensure@RTL{فصل}}%
+\def\appendixname{\@ensure@RTL{پیوست}}%
+\def\contentsname{\@ensure@RTL{فهرست مطالب}}%
+\def\listfigurename{\@ensure@RTL{لیست تصاویر}}%
+\def\listtablename{\@ensure@RTL{لیست جداول}}%
+\def\indexname{\@ensure@RTL{نمایه}}%
+\def\figurename{\@ensure@RTL{شكل}}%
+\def\tablename{\@ensure@RTL{جدول}}%
+\def\partname{\@ensure@RTL{بخش}}%
+\def\enclname{\@ensure@RTL{پیوست}}%
+\def\ccname{\@ensure@RTL{رونوشت}}%
+\def\headtoname{\@ensure@RTL{به}}%
+\def\pagename{\@ensure@RTL{صفحة}}%
+\def\seename{\@ensure@RTL{ببینید}}%
+\def\alsoname{\@ensure@RTL{نیز ببینید}}%
+\def\proofname{\@ensure@RTL{برهان}}%
+\def\glossaryname{\@ensure@RTL{دانش‌نامه}}%
+}
+\def\datepersian{%
+   \def\today{\@ensure@RTL{\farsinumber\day\space\farsigregmonth{\month}\space\farsinumber\year}}%
+}
+
+\newcommand{\farsinumerals}[2]{\farsinumber{#2}}
+
+\def\farsinumber#1{%
+  \if@western@numerals
+    \number#1%
+  \else
+    \IfCharIsAvailableTF{06F0}%
+          {\@ensure@LTR{\farsidigits{\number#1}}}%
+          {\@ensure@LTR{\arabicdigits{\number#1}}}%
+  \fi
+}
+
+%\def\farsinum#1{\expandafter\farsinumber\csname c@#1\endcsname}
+%\def\farsibracenum#1{(\expandafter\farsinumber\csname c@#1\endcsname)}
+%\def\farsiornatebracenum#1{\char"FD3E\expandafter\farsinumber\csname c@#1\endcsname\char"FD3F}
+%\def\farsialph#1{\expandafter\@farsialph\csname c@#1\endcsname}
+
+\def\persian@numbers{%
+   \let\@alph\abjad%
+   \let\@Alph\abjad%
+}
+
+\def\nopersian@numbers{%
+  \let\@alph\@latinalph%
+  \let\@Alph\@latinAlph%
+}
+
+\def\persian@globalnumbers{%
+   \let\@arabic\farsinumber%
+   \renewcommand\thefootnote{\localnumeral*{footnote}}%
+   \renewcommand\theequation{\localnumeral*{equation}}%
+}
+
+% Store original definition
+\let\xpg@save@arabic\@arabic
+
+\def\nopersian@globalnumbers{
+   \let\@arabic\xpg@save@arabic%
+}
+
+\def\persian@xetex@capsformat{%
+  \let\xpg@save@sepmark\@SepMark%
+  \SepMark{\xpg@sepmark}
+}
+
+\def\nopersian@xetex@capsformat{%
+   \ifcsname xpg@save@sepmark\endcsname%
+     \SepMark{\xpg@save@sepmark}
+   \fi%
+}
+
+\def\persian@luatex@capsformat{%
+  %
+  % change chapter and part headings
+  \ifpersian@customsep
+     \ifcsname chapter\endcsname%
+        \let\xpg@save@thesection\thesection%
+        \renewcommand*\thesection{\thechapter\xpg@sepmark\@arabic\c@section}
+        \let\xpg@save@theequation\theequation%
+        \renewcommand*\theequation{%
+	    \ifnum \c@chapter>\z@ \thechapter\xpg@sepmark\fi\@arabic\c@equation}
+        \let\xpg@save@thefigure\thefigure%
+	\renewcommand*\thefigure{%
+	    \ifnum\c@chapter>\z@\thechapter\xpg@sepmark\fi\@arabic\c@figure}
+        \let\xpg@save@thetable\thetable%
+	\renewcommand*\thetable{%
+	    \ifnum\c@chapter>\z@\thechapter\xpg@sepmark\fi\@arabic\c@table}
+     \fi%
+     \let\xpg@save@thesubsection\thesubsection%
+     \renewcommand\thesubsection
+	{\thesection\xpg@sepmark\@arabic\c@subsection}
+     \let\xpg@save@thesubsubsection\thesubsubsection%
+     \renewcommand\thesubsubsection{\thesubsection\xpg@sepmark\@arabic\c@subsubsection}
+     \let\xpg@save@theparagraph\theparagraph%
+     \renewcommand\theparagraph
+         {\thesubsubsection\xpg@sepmark\@arabic\c@paragraph}
+     \let\xpg@save@thesubparagraph\thesubparagraph%
+     \renewcommand\thesubparagraph{\theparagraph\xpg@sepmark\@arabic\c@subparagraph}
+  \fi% (end \ifpersiancustomsep)
+}
+
+\def\nopersian@luatex@capsformat{%
+   \ifcsname xpg@save@thesection\endcsname%
+        \let\thesection\xpg@save@thesection%
+   \fi%
+   \ifcsname xpg@save@theequation\endcsname%
+        \let\theequation\xpg@save@theequation%
+   \fi%
+   \ifcsname xpg@save@thefigure\endcsname%
+        \let\thefigure\xpg@save@thefigure%
+   \fi%
+   \ifcsname xpg@save@thetable\endcsname%
+        \let\thetable\xpg@save@thetable%
+   \fi%
+   \ifcsname xpg@save@thesubsection\endcsname%
+        \let\thesubsection\xpg@save@thesubsection%
+      \ifcsname xpg@save@thesubsubsection\endcsname%
+        \let\thesubsubsection\xpg@save@thesubsubsection%
+      \fi%
+   \fi%
+   \ifcsname xpg@save@theparagraph\endcsname%
+        \let\theparagraph\xpg@save@theparagraph%
+   \fi%
+   \ifcsname xpg@save@thesubparagraph\endcsname%
+        \let\thesubparagraph\xpg@save@thesubparagraph%
+   \fi%
+}
+
+\def\blockextras@persian{%
+   \ifpersian@customsep
+      \ifxetex
+        \persian@xetex@capsformat
+      \else
+        \persian@luatex@capsformat
+      \fi   
+   \fi
+}
+%
+\def\noextras@persian{%
+    \ifpersian@customsep
+      \ifxetex
+        \nopersian@xetex@capsformat
+      \else
+        \nopersian@luatex@capsformat
+      \fi   
+   \fi
+}
+
+\endinput

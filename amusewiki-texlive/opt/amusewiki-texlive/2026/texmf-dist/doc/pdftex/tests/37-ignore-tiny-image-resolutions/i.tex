@@ -1,0 +1,48 @@
+% $Id$
+% Public domain. From Max Chernoff.
+% https://tex.stackexchange.com/questions/734919
+
+\catcode`\{=1 \catcode`\}=2
+\output={\global\advance\count0 by 1 \shipout\box255 }
+\pdfoutput=1
+\hsize=6.5in \vsize=11in
+\pdfpagewidth=\hsize \pdfpageheight=\vsize
+\def\eject{\par \penalty-10000 }
+
+\def\loggingall{\tracingcommands2\tracingstats2
+   \tracingpages1\tracingoutput1\tracinglostchars1
+   \tracingmacros2\tracingparagraphs1\tracingrestores1
+   \showboxbreadth1073741823 \showboxdepth1073741823
+}%
+%\loggingall
+
+%% Generate images with ImageMagick:
+%%     for n in $(seq 1 6); do
+%%         convert -units PixelsPerInch -size 1000x1000 xc:#ff0000 -density $n test-$n.jpg
+%%     done
+
+% because these are zero height, they all come out on the same page?
+\pdfximage{test-1.jpg}\pdfrefximage\pdflastximage\eject
+\pdfximage{test-2.jpg}\pdfrefximage\pdflastximage\eject
+\pdfximage{test-3.jpg}\pdfrefximage\pdflastximage\eject
+\pdfximage{test-4.jpg}\pdfrefximage\pdflastximage\eject
+\pdfximage{test-5.jpg}\pdfrefximage\pdflastximage\eject
+\pdfximage{test-6.jpg}\pdfrefximage\pdflastximage\eject
+\end
+
+%\input graphicx
+%\includegraphics{test-1.jpg}
+%\end
+
+% luatex equivalents (from luatex85.sty)
+%\let\pdfximage           \saveimageresource
+%\let\pdflastximage       \lastsavedimageresourceindex
+%\let\pdflastximagepages  \lastsavedimageresourcepages
+%\let\pdfrefximage        \useimageresource
+
+%\documentclass{article}
+%\usepackage{graphicx}
+%\begin{document}
+%\includegraphics{test-1.jpg}
+%\end{document}
+

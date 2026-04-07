@@ -1,0 +1,64 @@
+2025-05-09  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* footmisc.dtx (section{Code: Preliminaries}):
+	Use \IfFormatAtLeastTF because \IfFormatAtLeastF was introduced
+	only fairly recently (gh/20)
+
+2025-03-10  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* footmisc.dtx:
+	Make use of the new sockets in LaTeX 2025-06-01
+
+2024-12-24  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* footmisc.dtx (subsection{The requirements of \cs{@footnotetext}}):
+	Add \@currentcounter added to LaTeX a while back (gh/15)
+
+2023-07-05  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* footmisc.dtx:
+	Account for indentation due to hang option so that quote, itemize, etc are
+	properly positioned inside the footnote text (gh/11)
+
+2023-05-26  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* footmisc.dtx (subsection{The output routine configuration components}):
+	Fix a loading order incompatibility with marginfix package (gh/10)
+
+2022-03-08  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* footmisc.dtx (subsection{The other footnote commands}):
+	Also support optional arg of \cs{MakePerPage} (gh/03)
+
+2022-03-07  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* footmisc.dtx (subsection{The other footnote commands}):
+	Fix an issue in the perpage package (gh/03)
+	Footnotes on chapter pages in report/book class started with 2.
+	This should really be fixed in the perpage package.
+
+2022-02-14  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* footmisc.dtx:
+	Corrected the "bottom" option so that it behaves like in v5. Dropped
+	"bottomfootnotes", because everything can be expressed with combinations
+	of the four options "bottom" (footnotes at the bottom), "bottomfloats",
+	"abovefloats", and "belowfloats". (gh/1)
+
+2022-02-05  Frank Mittelbach  <Frank.Mittelbach@latex-project.org>
+
+	* footmisc.dtx:
+	Previous version was 5.5b from 2011. This is now version 6.
+	A few bugs have been fixed and the following new options have
+	been added:
+
+	  - bottomfloats
+	  - bottomfootnotes
+	  - abovefloats
+	  - belowfloats
+
+	For details see the package documentation.
+
+	There is a rollback possibility using either a date
+	'[=YYYY-MM-DD]' or the string '[=v5]' as the second optional
+	argument to \usepackage, e.g., \usepackage{footmisc}[=v5].

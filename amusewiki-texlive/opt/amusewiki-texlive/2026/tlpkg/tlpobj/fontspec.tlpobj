@@ -1,0 +1,40 @@
+name fontspec
+category Package
+revision 77682
+shortdesc Advanced font selection in XeLaTeX and LuaLaTeX
+longdesc Fontspec is a package for XeLaTeX and LuaLaTeX. It provides an
+longdesc automatic and unified interface to feature-rich AAT and
+longdesc OpenType fonts through the NFSS in LaTeX running on XeTeX or
+longdesc LuaTeX engines. The package requires the l3kernel and xparse
+longdesc bundles from the LaTeX3 development team.
+depend euenc
+depend iftex
+depend l3kernel
+depend l3packages
+depend lm
+depend xunicode
+containersize 27436
+containerchecksum c9026cd0a06dca00b9f431fa0b6dcdba5cfb17969e0d3124a11ccdcce7bf03fa78f1678b93bbeb72b7c8208cc567bf0f17f6c22a86fecc57ef5757a51a06a31d
+doccontainersize 1174192
+doccontainerchecksum a395224f16f75e1d80929175b81162d032e18bb4332d25468d5a5c44cfba965011d84ce6a68b05891158c23dbeeb662d4654ebb10a53e4f622b228f1fdca2e07
+docfiles size=315
+ texmf-dist/doc/latex/fontspec/CHANGES.md
+ texmf-dist/doc/latex/fontspec/LICENSE
+ texmf-dist/doc/latex/fontspec/README.md details="Package README"
+ texmf-dist/doc/latex/fontspec/fontspec-code.pdf
+ texmf-dist/doc/latex/fontspec/fontspec-example.tex
+ texmf-dist/doc/latex/fontspec/fontspec.pdf details="Package documentation"
+srccontainersize 87224
+srccontainerchecksum d19bcf7ab4fb4b12a9f9df4d357ce6cedc87d719779b9e25f6d7611e79e286303d7f46cc0304c10eff037e4d94d0f54d739be01dc26a7273486ba1fa2eec4be3
+runfiles size=82
+ texmf-dist/tex/latex/fontspec/fontspec-luatex.sty
+ texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+ texmf-dist/tex/latex/fontspec/fontspec.cfg
+ texmf-dist/tex/latex/fontspec/fontspec.lua
+ texmf-dist/tex/latex/fontspec/fontspec.sty
+catalogue-contact-bugs https://github.com/latex3/fontspec/issues
+catalogue-contact-repository https://github.com/latex3/fontspec/
+catalogue-ctan /macros/unicodetex/latex/fontspec
+catalogue-license lppl1.3c
+catalogue-topics font-sel luatex xetex tagged-pdf
+catalogue-version 2.9g

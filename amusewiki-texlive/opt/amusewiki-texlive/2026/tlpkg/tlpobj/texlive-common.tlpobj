@@ -1,0 +1,26 @@
+name texlive-common
+category TLCore
+revision 77830
+shortdesc TeX Live documentation (common elements)
+postaction shortcut type=menu name="TeX Live documentation" 	cmd=TEXDIR/texmf-dist/doc/texlive/index.html
+containersize 348
+containerchecksum 1d1cb8eb3927ff04fa6f5ed3e3806170fa400f453a6dce5993e9f101d67e033a285c81c63f7eb1bac0653893a58fe00e40322111be46d354a107dad77b807d6a
+doccontainersize 495264
+doccontainerchecksum b93741c1dafecb6933a2b45f1785bdf8ff3d3dc0243ae029d615b2da83c93444c6dd4afca63d53f453507dc62abb664a6f6de9d3b41a30402ce89b53f15babfb
+docfiles size=174
+ texmf-dist/doc/texlive/index.html
+ texmf-dist/doc/texlive/install-tl.html
+ texmf-dist/doc/texlive/texlive-common/advanced-lnx.png
+ texmf-dist/doc/texlive/texlive-common/basic-w32.png
+ texmf-dist/doc/texlive/texlive-common/examples/ex5.tex
+ texmf-dist/doc/texlive/texlive-common/examples/ex6.tex
+ texmf-dist/doc/texlive/texlive-common/examples/ex6a.tex
+ texmf-dist/doc/texlive/texlive-common/examples/ex6b.tex
+ texmf-dist/doc/texlive/texlive-common/examples/ex6c.tex
+ texmf-dist/doc/texlive/texlive-common/nsis_installer.png
+ texmf-dist/doc/texlive/texlive-common/stdcoll.png
+ texmf-dist/doc/texlive/texlive-common/tlcockpit-packages.png
+ texmf-dist/doc/texlive/texlive-common/tlmgr-gui.png
+ texmf-dist/doc/texlive/texlive-common/tlshell-linux.png
+ texmf-dist/doc/texlive/texlive-common/tray-menu.png
+ texmf-dist/doc/texlive/tlmgr.html

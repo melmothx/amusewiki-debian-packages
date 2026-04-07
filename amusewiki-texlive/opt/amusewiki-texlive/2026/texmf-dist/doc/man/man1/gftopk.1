@@ -1,0 +1,97 @@
+.TH GFTOPK 1 "25 January 2026" "Web2C 2026"
+.\"=====================================================================
+.if n .ds MF Metafont
+.if t .ds MF Metafont
+.if t .ds TX \fRT\\h'-0.10m'\\v'0.17v'E\\v'-0.17v'\\h'-0.06m'X\fP
+.if n .ds TX TeX
+.\"=====================================================================
+.SH NAME
+gftopk \- convert generic font (gf) bitmap files to packed font (pk) files
+.SH SYNOPSIS
+.B gftopk
+.RB [ -v ]
+.IR gf_file [gf]
+.RI [ pk_file ]
+.\"=====================================================================
+.SH DESCRIPTION
+The
+.B gftopk
+program converts a generic font
+.RI ( gf )
+bitmap file output by, typically,
+.BR mf (1),
+to a
+packed font bitmap file for use by DVI-reading programs; notably,
+.BR dvips (1)
+only supports \fIpk\fP files.
+Packed font files
+.RI ( pk " files)"
+are much smaller than the corresponding
+.I gf
+files.
+.PP
+The
+.I gf_file
+on the command line must include the resolution, but can omit the suffix
+"gf". The
+.I pk_file
+defaults to the same (stripped) name as
+.IR gf_file ,
+and it is placed in the current
+working directory with the
+.B pk
+suffix replacing
+.BR gf .
+For example, the input file
+.I /some/directory/cmr10.300gf
+would become
+.IR cmr10.300pk .
+.\"=====================================================================
+.SH OPTIONS
+See
+.BR tex (1)
+for details of command-line parsing.
+.PP
+By default,
+.B gftodvi
+operates silently.  With the \fB-v\fP (a.k.a\&. \fB-verbose\fP) option,
+some reports are printed on stdout.
+.PP
+The standard
+.B -help
+and
+.B -version
+options are also supported.
+.\"=====================================================================
+.SH ENVIRONMENT
+The program looks for
+.I gf_file
+using the environment variables GFFONTS, GLYPHFONTS, and TEXFONTS, in
+that order. If none are set, it uses the system default. See the
+Kpathsea manual at https://tug.org/kpathsea for the details of the
+searching.
+.\"=====================================================================
+.SH "SEE ALSO"
+.BR dvips (1),
+.BR gftype (1),
+.BR pktogf (1),
+.BR pktype (1).
+.br
+Donald E. Knuth et al.,
+.IR \*(MFware .
+.PP
+Package page on CTAN: https://ctan.org/pkg/gftopk
+.br
+Section in the Web2c manual:
+https://tug.org/texinfohtml/web2c.html#gftopk-invocation
+.br
+Typeset source code, including file format descriptions:
+https://ctan.org/pkg/knuth-pdf
+.\"=====================================================================
+.SH AUTHORS
+Tomas Rokicki wrote the program. It was published as
+part of the
+.I \*(MFware
+technical report. Paul Richards originally ported it to Unix.
+.PP
+Public discussion list and bug reports: https://lists.tug.org/tex-k

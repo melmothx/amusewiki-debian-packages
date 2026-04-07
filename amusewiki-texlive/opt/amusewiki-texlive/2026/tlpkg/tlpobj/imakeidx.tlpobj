@@ -1,0 +1,28 @@
+name imakeidx
+category Package
+revision 77682
+shortdesc A package for producing multiple indexes
+longdesc The package enables the user to produce and typeset one or more
+longdesc indexes simultaneously with a document. The package is known to
+longdesc work in LaTeX documents processed with pdfLaTeX, XeLaTeX and
+longdesc LuaLaTeX. If makeindex is used for processing the index
+longdesc entries, no particular setting up is needed when TeX Live is
+longdesc used. Using xindy or other programs it is necessary to enable
+longdesc shell escape; shell escape is also needed if splitindex is
+longdesc used.
+containersize 4056
+containerchecksum c8d7a51151189e36bf41e3f4ed3824f85fee655cb7170d1105a1599ffd9f4aae7eaadc72e2e15a3dce4257132fd290e1637a71745d602a6894f69487578c5d9a
+doccontainersize 518160
+doccontainerchecksum f15ed352e3cc0d2cfcdf97683a33678d891348d36a8c74231cad8dd4f78d779a0b2540f9d968e7884ec4660934d1522ae8f06cedb72b2ce5b397f0131a6723f2
+docfiles size=129
+ texmf-dist/doc/latex/imakeidx/README details="Readme"
+ texmf-dist/doc/latex/imakeidx/imakeidx.pdf details="Package documentation"
+ texmf-dist/doc/latex/imakeidx/manifest.txt
+srccontainersize 20124
+srccontainerchecksum 2425074fe379325ce676fabf85d051a8c3efbd796aa526764ec7ea38f2e9e228626b2630ecd7ce8edb542a27163ee98783c71cecb31b2ff65ccea446498eb065
+runfiles size=4
+ texmf-dist/tex/latex/imakeidx/imakeidx.sty
+catalogue-ctan /macros/latex/contrib/imakeidx
+catalogue-license lppl1.3
+catalogue-topics index tagged-pdf
+catalogue-version 1.3e

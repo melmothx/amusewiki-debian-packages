@@ -1,0 +1,237 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+%\usepackage{geometry}
+\usepackage{pst-all}
+\usepackage{showexpl}
+\SpecialCoor
+%\usepackage[ps2pdf,colorlinks,linktocpage]{hyperref}
+\usepackage[colorlinks,linktocpage]{hyperref}
+\def\UrlFont{\small\ttfamily}
+\makeatletter
+\def\verbatim@font{\small\normalfont\ttfamily}
+\makeatother
+%\usepackage{color}
+\definecolor{hellgelb}{rgb}{1,1,0.8}
+\definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{1,0,0}
+\definecolor{colString}{rgb}{0,0.5,0}
+%
+\usepackage{listings}
+\lstset{%
+    language=[PSTricks]TEX,%
+    float=hbp,%
+    basicstyle=\ttfamily\small, %
+    identifierstyle=\color{colIdentifier}, %
+    keywordstyle=\color{colKeys}, %
+    stringstyle=\color{colString}, %
+    commentstyle=\color{colComments}, %
+    columns=flexible, %
+    tabsize=4, %
+    frame=single, %
+    extendedchars=true, %
+    showspaces=false, %
+    showstringspaces=false, %
+    numbers=left, %
+    numberstyle=\tiny, %
+    breaklines=true, %
+%    backgroundcolor=\color{hellgelb}, %
+    breakautoindent=true, %
+    captionpos=b,%
+	xleftmargin=0pt%
+}
+
+%\parindent=0pt
+\newcommand\verbI[1]{{\small\texttt{#1}}}
+\newcommand\CMD[1]{{\texttt{\textbackslash#1}}}
+%
+%\psset{subgriddiv=0,griddots=5,gridlabels=7pt}
+%
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+\def\PS{PostScript}
+%
+\begin{document}
+\title{\texttt{PSTricks -- version 1.10}\\new macros and bugfixes for \texttt{pstricks}}
+\author{Herbert Voß\thanks{%
+\url{Herbert.Voss@perce.de}}}
+\date{\today}
+
+\maketitle
+
+\begin{abstract}
+This new version 1.10 has some minor but important changes; it is not compatible
+to older versions when using the vertical shift option for the \verb+pspicture+
+environment.
+\end{abstract}
+
+\clearpage
+\tableofcontents
+
+\clearpage
+
+\section{New and modified option for {pspicture}}\label{sec:option}
+
+Table~\ref{tab:pspicture} shows the two new options for the  \verb+pspicture+ environment.
+
+\begin{table}[htb]
+\caption{Optionen der \texttt{pspicture}-Umgebung}\label{tab:pspicture}
+\centering
+\begin{tabular}{@{}lll@{}}
+\textrm{\emph{name}}  & \emph{meaning}   & \emph{default}\\\hline
+\verb+shift+  & vertical shift & $0$ \\
+\verb+showgrid+ & show grid & \verb+false+\\
+\end{tabular}
+\end{table}
+
+
+% ---------------------------------------------------------------------------------------
+\subsection{\texttt{shift}}\label{subsubsec:shift}
+% ---------------------------------------------------------------------------------------
+This option is the known one from older \texttt{PSTricks} version, but now with the
+usual syntax for options. The shift is relative to the height of the defined \verb+pspicture+
+environment, its lower left corner is by deafult on the base line. For older versions
+the shift depends with its value to the baseline, a negative value raised up the \verb+pspicture+
+box. Now the \verb+shift+ option works similiar to the known \CMD{raisebox} makro, except that
+\verb+shift+ is relative to the box height. A positive \verb+shift+ value raises up the box
+and vice versa for a negative value.
+
+\begin{figure}[htb]
+\centering
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}[shift=0.5](-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){-0.5}
+\end{pspicture}%
+\textcolor{red}{\rule{5mm}{1pt}}
+\hspace{1cm}%
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}(-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){0}
+\end{pspicture}\textcolor{red}{\rule{5mm}{1pt}}
+\hspace{1cm}%
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}[shift=-0.5](-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){0.5}
+\end{pspicture}%
+\textcolor{red}{\rule{5mm}{1pt}}
+\caption{Meaning of the \texttt{shift} option}\label{fig:baseline}
+\end{figure}
+
+%\begin{lstlisting}[caption={Vertikale Verschiebung der Baseline}]
+\begin{lstlisting}
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}[shift=0.5](-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){-0.5}
+\end{pspicture}%
+\textcolor{red}{\rule{5mm}{1pt}}
+\hspace{1cm}%
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}(-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){0}
+\end{pspicture}\textcolor{red}{\rule{5mm}{1pt}}
+\hspace{1cm}%
+\textcolor{red}{\rule{5mm}{1pt}}%
+\begin{pspicture}[shift=-0.5](-0.5,-0.5)(0.5,0.5)
+	\psframe[linecolor=blue](-0.5,-0.5)(0.5,0.5)\rput(0,0){0.5}
+\end{pspicture}%
+\textcolor{red}{\rule{5mm}{1pt}}
+\end{lstlisting}
+
+
+% ---------------------------------------------------------------------------------------
+\subsection{\texttt{showgrid}}\label{subsubsec:showgrid}
+% ---------------------------------------------------------------------------------------
+This new version of \texttt{PSTricks} defines internally a special grid style
+
+\begin{lstlisting}
+\newpsstyle{gridstyle}{%
+  subgriddiv=0,gridcolor=lightgray,griddots=10,gridlabels=8pt}
+\end{lstlisting}
+
+which can be overwritten by the user. This style is only used for the \verb+showgrid+
+option of the \verb+pspicture+ environment. The macro \verb+\psgrid+ doesn't use this predefined
+style and works in the usual way. However, the user can use it like all
+other self defined styles: \verb+\psgrid[style=gridstyle]+.
+
+
+\begin{LTXexample}[width=3.5cm]
+\begin{pspicture}[showgrid=true](-1,0)(2,1)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=3.5cm]
+\newpsstyle{gridstyle}{%
+  subgriddiv=2,subgridcolor=lightgray}
+\begin{pspicture}[showgrid=true](-1,0)(2,1)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=3.5cm]
+\newpsstyle{gridstyle}{}
+\begin{pspicture}[showgrid=true](-1,0)(2,1)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=3.5cm]
+\begin{pspicture}(-1,0)(2,1)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[width=3.5cm]
+\begin{pspicture}(-1,0)(2,1)
+  \psgrid
+\end{pspicture}
+\end{LTXexample}
+
+Depending to the internal structure of the \verb+pspicture+ environment it is not possible
+to set the \verb+shift+ option global by \CMD{psset}, it must always be locally defined
+with optional part of the parameter, as seen in the above examples.
+
+
+\section{Bugfixes}
+\subsection{\texttt{origin}}
+
+There were several mailings in the past to the \verb+origin+ option, which worked the other
+way round than expected. Now the coordinates work realtive to the current origin.
+
+
+\begin{LTXexample}[width=3cm]
+\begin{pspicture}(-1,-1)(2,1.25)
+  \psaxes{->}(0,0)(-1,-1)(2,1.25)
+  \psset{linewidth=1.5pt}
+  \parabola[linestyle=dashed](-1,1)(0,0)
+  \parabola[origin={0.5,-0.5}](-1,1)(0,0)
+  \qdisk(0.5,-0.5){2pt}
+\end{pspicture}
+\end{LTXexample}
+
+\subsection{Empty parameter}
+\sloppy
+To prevent some problems with empty arrow definitions in macros like \verb+\psline[...]{}(..)(...)+,
+which makes no sense, but should be possible, there is now a check before setting the values.
+
+\subsection{\CMD{nccircle}}
+With some modification to \CMD{psarc\@iv} it is now possible to get the loops in any direction
+and above or below the node.
+
+\begin{LTXexample}[width=.35\linewidth]
+\psscalebox{1.5}{%
+  \circlenode{A}{A}
+  \nccircle{->}{A}{1.5em} \nbput{foo}
+  \nccircle{<-}{A}{-1.5em}\naput{bar}}
+%
+\hspace{1cm}
+\psscalebox{1.5}{%
+  \circlenode{A}{A}
+  \nccircle{<-}{A}{1.5em} \nbput{foo}
+  \nccircle{->}{A}{-1.5em}\naput{bar}}
+\end{LTXexample}
+
+\subsection{\CMD{psscalebox} and \CMD{psscaleboxto}}
+To prevent clashes with the \verb+graphicx+ package, which also defines a \CMD{scalebox} macro
+with different syntax,
+\verb+PSTricks+ now defines \CMD{psscalebox} and \CMD{psscaleboxto}. For some compatibility reasons the old
+names are still supported. With the new names it doesn'r matter if \verb+pstricks+ is loaded before or after
+\verb+graphicx+.
+
+\end{document}

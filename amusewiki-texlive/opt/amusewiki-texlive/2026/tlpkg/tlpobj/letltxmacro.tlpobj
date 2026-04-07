@@ -1,0 +1,27 @@
+name letltxmacro
+category Package
+revision 77682
+shortdesc Let assignment for LaTeX macros
+longdesc TeX's \let assignment does not work for LaTeX macros with
+longdesc optional arguments or for macros that are defined as robust
+longdesc macros by \DeclareRobustCommand. This package defines
+longdesc \LetLtxMacro that also takes care of the involved internal
+longdesc macros.
+containersize 2084
+containerchecksum b8c2917a7807d74aafa93ffb86cc6363c152f065c5d162d1f438deef7c0d6f720a74d684e1c274fb02ad5dc78182ce0922cfe8b88ba8793940d90f112f969cdd
+doccontainersize 290940
+doccontainerchecksum 59cb3d174607f5cd2613a329351bde0052b9988bf9acf37801d2b6306a251422923116973e0d50a78e358eba95bff602f14e62186815f8a291939ac919de469d
+docfiles size=73
+ texmf-dist/doc/latex/letltxmacro/README.md
+ texmf-dist/doc/latex/letltxmacro/letltxmacro-showcases.tex
+ texmf-dist/doc/latex/letltxmacro/letltxmacro.pdf details="Package documentation" language="en"
+srccontainersize 5916
+srccontainerchecksum b53231e2dbb293b025e68bbecf1bb19eb21c8f9d448dbaad39323c2ffd5b158d76d9c82de7aa6a4511137d6a6b03efb5db458936bb8920ceefa7c633d28249f4
+runfiles size=2
+ texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+catalogue-contact-bugs https://github.com/ho-tex/letltxmacro/issues
+catalogue-contact-repository https://github.com/ho-tex/letltxmacro
+catalogue-ctan /macros/latex/contrib/letltxmacro
+catalogue-license lppl1.3
+catalogue-topics macro-def tagged-pdf
+catalogue-version 1.6

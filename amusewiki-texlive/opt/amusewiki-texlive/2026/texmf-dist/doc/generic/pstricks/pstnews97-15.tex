@@ -1,0 +1,470 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+%\usepackage{geometry}
+\usepackage{url,calc}
+\usepackage{pstricks}
+\usepackage{pst-plot}
+\SpecialCoor
+%\usepackage[ps2pdf,colorlinks,linktocpage]{hyperref}
+\usepackage[colorlinks,linktocpage]{hyperref}
+\def\UrlFont{\small\ttfamily}
+\makeatletter
+\def\verbatim@font{\small\normalfont\ttfamily}
+\makeatother
+%\usepackage{color}
+\definecolor{hellgelb}{rgb}{1,1,0.8}
+\definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{1,0,0}
+\definecolor{colString}{rgb}{0,0.5,0}
+%
+\usepackage{listings}
+\lstset{%
+    language=[LaTeX]TEX,%
+    float=hbp,%
+    basicstyle=\ttfamily\small, %
+    identifierstyle=\color{colIdentifier}, %
+    keywordstyle=\color{colKeys}, %
+    stringstyle=\color{colString}, %
+    commentstyle=\color{colComments}, %
+    columns=flexible, %
+    tabsize=4, %
+    frame=single, %
+    extendedchars=true, %
+    showspaces=false, %
+    showstringspaces=false, %
+    numbers=left, %
+    numberstyle=\tiny, %
+    breaklines=true, %
+%    backgroundcolor=\color{hellgelb}, %
+    breakautoindent=true, %
+    captionpos=b,%
+	xleftmargin=0pt%
+}
+
+%\parindent=0pt
+\newcommand\verbI[1]{{\small\texttt{#1}}}
+\newcommand\CMD[1]{{\texttt{\textbackslash#1}}}
+%
+\psset{subgriddiv=0,griddots=5,gridlabels=7pt}
+%
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+\def\PS{PostScript}
+%
+\begin{document}
+\title{\texttt{pstricks -- patch 15}\\new macros and bugfixes for \texttt{pstricks}}
+\author{Herbert Voﬂ\thanks{%
+\url{Herbert.Voss@perce.de}} \and Rolf Niepraschk\thanks{\url{Rolf.Niepraschk@ptb.de}}}
+\date{2004/05/12}
+
+\maketitle
+
+\begin{abstract}
+It is long time ago since \verb+pstricks.tex patch 14+ came out. The new version
+\verb+patch 15+ fixes some bugs and provides three new elliptic macros, which were
+already present in the old beta version of \verb+PSTricks+.
+
+There is also a new \verb+pstricks.sty+, which makes the \verb+\pstcol+ package
+obsolete. It uses the new color package \verb+xcolor+, which provides a much more
+powerful color management than \verb+color.sty+ does. The \verb+pstricks.sty+ is
+a real \LaTeX{} package, it makes no sense for \TeX{} users. Nevertheless, using
+of \verb+pstcol+ or package \verb+color+ is still possible.
+
+Timothy Van Zandt was the one, who creates \verb+PSTricks+, but Denis Girou was
+the one who makes it run over many years. Needless to say, how important his work is
+for \verb+PSTricks+. Since more than nine month we are unable to get in touch with
+Denis, which is the reason why this update of \verb+PSTricks+ comes without any
+comments from Denis.
+\end{abstract}
+
+\clearpage
+\tableofcontents
+
+\clearpage
+
+\section{New fill style \texttt{eofill}}
+\PS\ has a special fillstyle, called \verb|eofill|, which is now available 
+with the option
+\verb|fillstyle=eofill|. The following two images show the difference, 
+the first one is filled with
+\verb|fillstyle=solid| and the second one with the new option \verb|fillstyle=eofill|.
+
+\begin{minipage}{5.5cm}
+\begin{pspicture}(5,2.5)
+\pspolygon[unit=0.5cm,%
+     fillstyle=solid,%
+     fillcolor=yellow](7,3)(0,0)(1,3)
+     (5,5)(10,3)(2,2)(7,5)(7,3)
+\end{pspicture}
+\end{minipage}\hfill%
+\begin{minipage}{\linewidth-6cm}
+\begin{lstlisting}
+\begin{pspicture}(5,2.5)
+\pspolygon[unit=0.5cm,%
+     fillstyle=solid,%
+     fillcolor=yellow](7,3)(0,0)(1,3)
+     (5,5)(10,3)(2,2)(7,5)(7,3)
+\end{pspicture}
+\end{lstlisting}
+\end{minipage}
+
+
+\begin{minipage}{5.5cm}
+\begin{pspicture}(5,2.5)
+\pspolygon[unit=0.5cm,%
+    fillstyle=eofill,%
+    fillcolor=yellow](7,3)(0,0)(1,3)%
+    (5,5)(10,3)(2,2)(7,5)(7,3)
+\end{pspicture}
+\end{minipage}\hfill%
+\begin{minipage}{\linewidth-6cm}
+\begin{lstlisting}
+\begin{pspicture}(5,2.5)
+\pspolygon[unit=0.5cm,%
+    fillstyle=eofill,%
+    fillcolor=yellow](7,3)(0,0)(1,3)%
+    (5,5)(10,3)(2,2)(7,5)(7,3)
+\end{pspicture}
+\end{lstlisting}
+\end{minipage}
+
+\section{Dashed lines}
+By default a dash line can be set with the option \verb+dash=<black> <white>+, 
+e.g. \verb+dash=10pt 5pt+. This definition makes it impossible to define a 
+dashed/dotted line. \verb+pstricks-add+ redefines this option for a use with 
+four parameters \verb+dash=<black> <white> <black> <white>+,
+where the last two can be omit. The following examples show different values for these
+parameters:
+
+
+\medskip
+\begin{center}
+\begin{minipage}{10.5cm}%
+\psset{linestyle=dashed,dashadjust=false}
+\noindent
+\psline[dash=1 1](0,0)(10,0)\\
+\psline[linewidth=1mm,dash=2 0.5](0,0)(10,0)\\
+\psline[dash=1 0.2 0.05 0.2](0,0)(10,0)\\
+\psline[dash=0.05 0.2 1 0.2](0,0)(10,0)\\
+\psline[linewidth=1mm,dash=2 1 1 2](0,0)(10,0)\\
+
+\psset{dashadjust=true}
+\noindent
+\psline[dash=1 1](0,0)(10,0)\\
+\psline[linewidth=1mm,dash=2 0](0,0)(10,0)\\
+\psline[dash=1 0.2 0.05 0.2](0,0)(10,0)\\
+\psline[dash=0.05 0.2 1 0.2](0,0)(10,0)\\
+\psline[linewidth=1mm,dash=2 1 1 2](0,0)(10,0)
+\end{minipage}
+\end{center}
+
+
+\medskip
+\begin{lstlisting}
+{\psset{linestyle=dashed,dashadjust=false}
+\psline[dash=1 1](0,0)(10,0)\\
+\psline[linewidth=1mm,dash=2 0.5](0,0)(10,0)\\
+\psline[dash=1 0.2 0.05 0.2](0,0)(10,0)\\
+\psline[dash=0.05 0.2 1 0.2](0,0)(10,0)\\
+\psline[linewidth=1mm,dash=2 1 1 2](0,0)(10,0)\\
+
+\psset{dashadjust=true}
+\psline[dash=1 1](0,0)(10,0)\\
+\psline[linewidth=1mm,dash=2 0](0,0)(10,0)\\
+\psline[dash=1 0.2 0.05 0.2](0,0)(10,0)\\
+\psline[dash=0.05 0.2 1 0.2](0,0)(10,0)\\
+\psline[linewidth=1mm,dash=2 1 1 2](0,0)(10,0)}
+\end{lstlisting}
+
+
+As seen in the above code, it is no problem to use dashed lines in the usual way 
+with two parameters.
+
+
+\section{Ellipses}
+\verbI{pstricks - patch 14} has only the following macro for drawing an ellipse:
+
+{\small\begin{verbatim}
+\psellipse[<option>](x,y)(a,b)
+\psellipse*[<option>](x,y)(a,b)
+\end{verbatim}}
+
+\noindent whith \verbI{(x,y)} as the center and \verbI{(a,b)} as the two radians 
+(figure \ref{pstricks}).
+
+\begin{figure}[htb]
+\begin{minipage}{0.39\columnwidth}
+\begin{pspicture}(0,-0.25)(5,3.25)
+  \psgrid
+  \psellipse[%
+    linewidth=0.2,%
+    linecolor=red](2.5,1.5)(2,1)
+  \psellipse*[%
+  	linecolor=blue](2.5,1.5)(0.5,1.5)
+\end{pspicture}%
+\end{minipage}%
+\hfill%
+\begin{minipage}{0.59\columnwidth}
+\begin{lstlisting}
+\begin{pspicture}(0,-0.25)(5,3.25)
+  \psgrid
+  \psellipse[%
+    linewidth=0.2,%
+    linecolor=red](2.5,1.5)(2,1)
+  \psellipse*[%
+    linecolor=blue](2.5,1.5)(0.5,1.5)
+\end{pspicture}%
+\end{lstlisting}
+\end{minipage}%
+\caption{The \verbI{pstricks} macro \CMD{psellipse}}\label{pstricks}
+\end{figure}
+
+\subsection{Ellipse based on \texttt{pst-plot}}
+
+With the \CMD{parametricplot} macro from \verbI{pst-plot} we can define a new macro for 
+drawing ellipses:
+
+\begin{lstlisting}
+% #1 options
+% #2 a
+% #3 b
+% #4 start angle
+% #5 end angle
+\newcommand{\pstEllipse}[5][]{%
+  \psset{#1}
+  \parametricplot{#4}{#5}{#2\space t cos mul #3\space t sin mul}}
+\end{lstlisting}
+
+\noindent which has the syntax
+
+{\small\begin{verbatim}
+\pstEllipse[<options>]{a}{b}{start angle}{end angle}
+\end{verbatim}}
+
+This macro is not part of of \verb|pstricks.tex|, it is only defined for some demonstration.
+
+\newcommand*{\pstEllipse}[5][]{%
+  \psset{#1}
+  \parametricplot{#4}{#5}{#2\space t cos mul #3\space t sin mul}%
+}
+
+\begin{figure}[htb]
+\begin{minipage}{0.39\columnwidth}
+\begin{pspicture}(-2.25,-1.75)(2.25,1.75)
+	\psgrid
+	\pstEllipse[%
+		linewidth=0.2,%
+		linecolor=red]{2}{1}{0}{360}
+	\pstEllipse[%
+		linewidth=0.1,%
+		arrows=|->,%
+		arrowsize=0.5,%
+		linecolor=blue]{1}{2}{-30}{250}
+\end{pspicture}%
+\end{minipage}%
+\hfill%
+\begin{minipage}{0.59\columnwidth}
+\begin{lstlisting}
+\begin{pspicture}(-2.25,-1.75)(2.25,1.75)
+  \psgrid
+  \pstEllipse[%
+    linewidth=0.2,%
+    linecolor=red]{2}{1}{0}{360}
+  \pstEllipse[%
+    linewidth=0.1,arrows=|->,%
+    arrowsize=0.5,%
+    linecolor=blue]{1}{2}{-30}{250}
+\end{pspicture}%
+\end{lstlisting}
+\end{minipage}%
+\caption{The macro \CMD{pstEllipse} which uses the \CMD{parametricplot} macro 
+from \verbI{pst-plot}}\label{parametric}
+\end{figure}
+
+As seen in figure \ref{parametric} it is no problem to draw arcs of an ellipse. 
+The center of these ellipses are by default $(0,0)$, with the \CMD{rput} macro 
+it is also not a problem to put the ellipse anywhere in the coordinate system with
+any angle of rotating.
+
+
+\subsubsection{Wedge of an ellipse}
+To define a macro for a wedge of an ellipse (figure \ref{parametric-wedge}) is also easy with
+the \verb+\pscustom+ macro. which uses the following code:
+
+
+%
+\newcommand*{\pstEllipseWedge}[5][]{%
+  \psset{#1}%
+  \pscustom{%
+    \parametricplot{#4}{#5}{#2\space t cos mul #3\space t sin mul}%
+      \psline(! #2\space #5\space cos mul #3\space #5\space sin mul)%
+        (0,0)%
+	(! #2\space #4\space cos mul #3\space #4\space sin mul)%
+  }%
+}
+%
+
+\begin{lstlisting}
+% #1 options
+% #2 a
+% #3 b
+% #4 start angle
+% #5 end angle
+\newcommand{\pstEllipseWedge}[5][]{%
+  \psset{#1}
+  \pscustom{%
+    \parametricplot{#4}{#5}{#2\space t cos mul #3\space t sin mul}%
+    \psline(! #2\space #5\space cos mul #3\space #5\space sin mul)%
+	(0,0)%
+	(! #2\space #4\space cos mul #3\space #4\space sin mul)%
+  }%
+}
+\end{lstlisting}
+
+This macro is also not part of of \verb|pstricks.tex|, it is only defined for some 
+demonstration.
+
+\begin{figure}[htb]
+\begin{minipage}{0.39\columnwidth}
+\begin{pspicture}(-2.25,-1.75)(2.25,1.75)
+  \psgrid
+  \pstEllipseWedge[%
+    linewidth=0.05,linecolor=red,%
+    fillstyle=hlines,%
+    fillcolor=red]{2}{1}{0}{130}
+  \pstEllipseWedge[%
+    linewidth=0.1,%
+    linecolor=blue,%
+    fillstyle=vlines,%
+    fillcolor=blue]{1}{2}{-30}{190}
+\end{pspicture}%
+\end{minipage}%
+\hfill%
+\begin{minipage}{0.59\columnwidth}
+\begin{lstlisting}
+\begin{pspicture}(-2.25,-1.75)(2.25,1.75)
+  \psgrid
+  \pstEllipseWedge[%
+    linewidth=0.05,linecolor=red,%
+    fillstyle=hlines,%
+    fillcolor=red]{2}{1}{0}{130}
+  \pstEllipseWedge[%
+    linewidth=0.1,linecolor=blue,%
+    fillstyle=vlines,%
+    fillcolor=blue]{1}{2}{-30}{190}
+\end{pspicture}%
+\end{lstlisting}
+\end{minipage}%
+\caption{The macro \CMD{pstEllipseWedge} which uses the \CMD{parametricplot} 
+macro from \verbI{pst-plot}}\label{parametric-wedge}
+\end{figure}
+
+\subsection{New ellipse macros}
+
+All macros defined in this package are original from Timothy Van Zandt and Denis Girou and 
+modified by several other authors. The available macros are
+
+{\small\begin{verbatim}
+\psellipticarc[<options>]
+    {<arrows>}(<center>)(a,b){start angle}{end angle}
+\psellipticarcn[<options>]
+    {<arrows>}(<center>)(a,b){start angle}{end angle}
+\psellipticwedge[<options>]
+    {<arrows>}(<center>)(a,b){start angle}{end angle}
+\end{verbatim}}
+
+\subsubsection{Arc of an ellipse}
+
+Figure \ref{pst-ellipse-arc} shows different examples for this macro.
+
+\begin{figure}[htb]
+\begin{minipage}{0.39\columnwidth}
+\begin{pspicture}(-2.25,-2.25)(2.25,2.25)
+  \psgrid
+  \psellipticarc[linewidth=0.1]{|->}(0,0)(1.5,1){0}{180}
+  \psellipticarc[linecolor=red](0,0)(0.5,1.5){30}{320}
+\end{pspicture}
+\end{minipage}%
+\hfill%
+\begin{minipage}{0.59\columnwidth}
+\begin{lstlisting}
+\begin{pspicture}(-2.25,-2.25)(2.25,2.25)
+  \psellipticarc[linewidth=0.1]{|->}(0,0)(1.5,1){0}{180}
+  \psellipticarc[linecolor=red](0,0)(0.5,1.5){30}{320}
+\end{pspicture}
+\end{lstlisting}
+\end{minipage}%
+\caption{The macro \CMD{psellipticarc}}\label{pst-ellipse-arc}
+\end{figure}
+
+\subsection{Arc of an ellipse with anti clockwise direction}
+
+Figure \ref{pst-ellipse-arcN} shows different examples for this macro which is the same than the one figure \ref{{pst-ellipse-arc}} only drawn anti clockwise.
+
+\begin{figure}[htb]
+\begin{minipage}{0.39\columnwidth}
+\begin{pspicture}(-2.25,-2.25)(2.25,2.25)
+	\psgrid
+	\psellipticarcn[linewidth=0.1]{|->}(0,0)(1.5,1){0}{180}
+	\psellipticarcn[linecolor=red](0,0)(0.5,1.5){30}{320}
+\end{pspicture}
+\end{minipage}%
+\hfill%
+\begin{minipage}{0.59\columnwidth}
+\begin{lstlisting}
+\begin{pspicture}(-2.25,-2.25)(2.25,2.25)
+  \psellipticarcn[linewidth=0.1]{|->}(0,0)(1.5,1){0}{180}
+  \psellipticarcn[linecolor=red](0,0)(0.5,1.5){30}{320}
+\end{pspicture}
+\end{lstlisting}
+\end{minipage}%
+\caption{The macro \CMD{psellipticarcn}}\label{pst-ellipse-arcN}
+\end{figure}
+
+
+\subsubsection{Wedge of an ellipse}
+
+Figure \ref{pst-ellipse-wedge} shows different examples for this macro.
+
+\begin{figure}[htb]
+\begin{minipage}{0.39\columnwidth}
+\begin{pspicture}(-2.25,-2.25)(2.25,2.25)
+	\psgrid
+	\psellipticwedge[%
+		fillstyle=vlines,%
+		linewidth=0.1](0,0)(1.5,1){0}{200}
+	\psellipticwedge[%
+		fillstyle=hlines,%
+		linecolor=red](0,0)(0.5,1.5){30}{220}
+\end{pspicture}
+\end{minipage}%
+\hfill%
+\begin{minipage}{0.59\columnwidth}
+\begin{lstlisting}
+\begin{pspicture}(-2.25,-2.25)(2.25,2.25)
+  \psgrid
+  \psellipticwedge[%
+    fillstyle=vlines,%
+    linewidth=0.1](0,0)(1.5,1){0}{200}
+  \psellipticwedge[%
+    fillstyle=hlines,%
+    linecolor=red](0,0)(0.5,1.5){30}{220}
+\end{pspicture}
+\end{lstlisting}
+\end{minipage}%
+\caption{The macro \CMD{psellipticwedge}}\label{pst-ellipse-wedge}
+\end{figure}
+
+\section{\texttt{pstricks.sty}}
+In the past there were some problems with \verb+pstricks.tex+ and the package \verb+color.sty+. 
+\verb+pstcol.sty+ tried to get rid of them but not with success in any case. The
+new package \verb+pstricks.sty+ loads first \verb+pstricks.tex+, does some modifcation
+to \verb+pstricks+, loads \verb+xcolor.sty+ and some more modifications to the the code to
+get \verb+pstricks+ and colors work in a right way. It also renames the \verb+\scalebox+
+macro to \verb+\psscalebox+ to prevend clashes with the one from the package \verb+graphicx.sty+ which has the
+same name but another syntax. If you want to use the macro from \verb+graphicx+, then load this
+package as the last one.
+
+
+\end{document}

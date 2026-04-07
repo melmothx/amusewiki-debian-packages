@@ -1,0 +1,264 @@
+%
+% see pstricks.tex for license and copyright
+%
+% -----------  hv 20120219 -------------------
+\newpsstyle{gridstyle}{subgriddiv=0,gridcolor=lightgray,griddots=10,gridlabels=8pt}
+\newpsstyle{gridstyleA}{subgriddiv=5,gridcolor=red!30,subgridcolor=green!20!black!10,gridlabels=0pt}
+\newif\ifshowgrid
+\newdimen\sh@wgridXunit
+\newdimen\sh@wgridYunit
+
+\def\pst@@showgrid#1#2#3\@nil{%                            hv 20130403
+  \def\showgridp@s{0}%
+  \ifx#1b\showgridtrue\else%                               bottom
+    \ifx#1f\showgridfalse\else
+      \ifx#1t
+        \ifx#2r \showgridtrue\else%  			   true->bottom
+                \showgridtrue\def\showgridp@s{1}\fi%        top
+  \fi\fi\fi
+  \ifnum\showgridp@s>0\relax
+    \sh@wgridXunit=\psxunit
+    \sh@wgridYunit=\psyunit
+  \fi
+}
+
+\define@key[psset]{pstricks}{showgrid}[b]{\expandafter\pst@@showgrid#1!!\@nil}
+\define@boolkey[psset]{pstricks}[Pst@]{showframe}[true]{}
+\define@boolkey[psset]{pstricks}[Pst@]{calcframe}[true]{}
+\psset[pstricks]{showgrid=f,showframe=false,calcframe=false}
+
+\define@boolkey[psset]{pstricks}[Pst@]{pgffunctions}[true]{}
+\psset[pstricks]{pgffunctions=false}
+%
+\newdimen\pst@shift
+\newif\ifPst@shift@star
+\define@key[psset]{pstricks}{shift}[0]{%
+  \ifx#1*
+    \global\Pst@shift@startrue
+    \pst@shift=\p@
+  \else
+    \global\Pst@shift@starfalse
+    \pssetlength\pst@dimg{#1}
+    \global\pst@shift\pst@dimg%   only the outer pspicture env can have a shift
+  \fi}
+\psset[pstricks]{shift=0}
+%
+% The main pspciture environment
+%------------------------------- pspicture ------------------------------
+%
+\def\ps@readmargin#1,#2,#3,#4,#5\@nil{%
+  \ifx\\#2\\
+%    \typeout{>>> Case 1 para}%
+    \pst@getlength{#1}\ps@margin@left
+    \let\ps@margin@right\ps@margin@left
+    \let\ps@margin@top\ps@margin@left
+    \let\ps@margin@bottom\ps@margin@left
+  \else
+    \ifx\\#3\\%
+%        \typeout{>>> Case 2 para: #1,#2}%
+        \pst@getlength{#1}\ps@margin@left
+        \def\ps@margin@right{0}%        
+        \pst@getlength{#2}\ps@margin@bottom
+        \def\ps@margin@top{0}
+    \else
+%        \typeout{>>> Case 4 para: #1,#2,#3,#4}%
+        \pst@getlength{#1}\ps@margin@left
+        \pst@getlength{#2}\ps@margin@bottom
+        \pst@getlength{#3}\ps@margin@right
+        \pst@getlength{#4}\ps@margin@top
+    \fi\fi
+%\typeout{>>>>>>>>>\ps@margin@left,\ps@margin@bottom,\ps@margin@right,\ps@margin@top}%
+}%
+\define@key[psset]{pstricks}{margin}[0pt]{\ps@readmargin#1,,,,\@nil}
+\psset[pstricks]{margin=0pt}
+%
+
+\ExplSyntaxOn
+\define@key[psset]{pstricks}{alt}[]{\tl_set:Ne\l__tag_graphic_alt_tl{\text_purify:n{#1}}}
+%\define@boolkey[psset]{pstricks}[]{artifact}[true]{}
+\define@key[psset]{pstricks}{artifact}{%
+    \bool_set_true:N \l__tag_graphic_artifact_bool
+    \bool_set_false:N \l__tag_graphic_BBox_bool
+}
+\define@key[psset]{pstricks}{actualtext}[]{%
+    \tl_set:Ne\l__tag_graphic_actual_tl{\text_purify:n{#1}}
+    \bool_set_false:N \l__tag_graphic_BBox_bool
+}
+\define@key[psset]{pstricks}{correct-BBox}{%
+    \bool_set_true:N \l__tag_graphic_bboxcorr_bool
+    \seq_set_split:Nnn\l__tag_graphic_bboxcorr_seq{~}{#1~0pt~0pt~0pt~0pt}%
+}
+\define@key[psset]{pstricks}{tag}[]{%
+    \str_case:nnF {#1}{
+      {artifact}
+            {
+               \bool_set_true:N \l__tag_graphic_artifact_bool
+               \bool_set_false:N \l__tag_graphic_BBox_bool
+            }
+            {false}{\tag_stop:}
+          }
+          {\tl_set:Nn\l__tag_graphic_struct_tl{#1}}
+      }
+
+\ExplSyntaxOff
+
+\newcount\ps@imagectr
+\ps@imagectr=0
+%\newif\ifPst@findcoor
+%\Pst@findcoorfalse
+%
+
+\def\pspicture{\begingroup\pst@ifstar\pst@picture}
+\def\pst@picture{\@ifnextchar[{\pst@@picture}{\pst@@picture[]}}
+\def\pst@@picture[#1]{%
+  % showgrid=false%      for nested pspicture environemnets
+  \def\pst@tempA{showgrid=false,#1}%     added 20250612  hv
+  \psset{#1}% sets the shift and grid option
+  \@ifnextchar({\pst@@picture@i[#1]}{\pst@@picture@@i[#1]}}%
+\def\pst@@picture@@i[#1]{%
+  \def\pic@coor{(0,0)(0,0)}%
+  \gdef\pscoor{(10,10)}%
+  \ifPst@calcframe
+    \typeout{>>>Check for file \jobname-\the\numexpr\ps@imagectr+1.psaux}%
+    \IfFileExists{\jobname-\the\numexpr\ps@imagectr+1.psaux}
+      {\input{\jobname-\the\numexpr\ps@imagectr+1.psaux}%
+       \xdef\pic@coor{(0,0)\pscoor}%
+       \typeout{----->>\pic@coor}%
+       \typeout{----->>\pscoor}%
+      }
+      {%\gdef\pscoor{(10,10)}
+       %\def\pic@coor{(0,0)(0,0)(10,10)}
+       }%
+    %  \typeout{>>>\pscoor}%
+  \fi
+  \edef\@temp{[\noexpand#1]\pscoor}%
+  \expandafter\pst@@picture@i\@temp}
+%
+\def\pst@@picture@i[#1]#2(#3,#4){\@ifnextchar(%   ignore anything between [] and ()
+  {\pst@@@picture[#1](#3,#4)}%
+  {\pst@@@picture[#1](0,0)(#3,#4)}}
+%
+\def\pst@@@picture[#1](#2,#3)(#4,#5){%
+  \pssetxlength\pst@dima{#2}%
+  \pssetylength\pst@dimb{#3}%
+  \pssetxlength\pst@dimc{#4}%
+  \pssetylength\pst@dimd{#5}%
+  \pstVerb{/xCanvasLeft \pst@number\pst@dima def
+           /yCanvasLeft \pst@number\pst@dimb def
+           /xCanvasRight \pst@number\pst@dimc def
+           /yCanvasRight \pst@number\pst@dimd def 
+  }%
+  \ifdim\pst@dima>\pst@dimc
+    \pst@dimg=\pst@dima 
+    \pst@dima=\pst@dimc
+    \pst@dimc=\pst@dimg
+  \fi
+  \ifdim\pst@dimb>\pst@dimd
+    \pst@dimg=\pst@dimb
+    \pst@dimb=\pst@dimd
+    \pst@dimd=\pst@dimg
+  \fi
+  \setbox\pst@hbox=\hbox\bgroup
+  \begingroup\KillGlue
+  \@ifundefined{@latexerr}{}{\let\unitlength\psunit}%
+  \edef\pic@coor{(#2,#3)(#2,#3)(#4,#5)}%
+% ----------- 1.10/12 beg hv -------------------
+%  \psset{showgrid=false}%                % for nested pspicture environemnets
+%  \def\pst@tempA{#1}%
+%  \ifx\pst@tempA\@empty\else\psset{#1}\fi% sets the shift and grid option
+  \ifx\pst@bgcolor\@empty\else\psframe*[linecolor=\pst@bgcolor](#2,#3)(#4,#5)\fi
+  \ifshowgrid\ifnum\showgridp@s=0\psgrid[style=gridstyle]\fi\fi
+% ----------- 1.10/12 end hv -------------------
+  \ignorespaces%			% 2008-12-07
+  \ifPst@calcframe\pstVerb{ .trackbbox }\global\advance\ps@imagectr by 1 \fi
+  \ifPst@pgffunctions\pstVerb{ pgffunctions }\fi% hv 2013-04-17
+}
+
+%\def\pic@coor{(0,0)(0,0)(10,10)}
+\def\endpspicture{%
+  \ifPst@calcframe
+    \ifPSTlualatex   
+     \pstVerb{
+     .trackedbbox        % xmin ymin xmax ymax
+     % Die Koordinaten sind relativ zur Seite, also verschieben wir sie
+     % zum aktuellen Punkt.
+     currentpoint matrix translate dup invertmatrix dup 4 1 roll
+     transform
+     /YMAX exch def /XMAX exch def
+     transform
+     /YMIN exch def /XMIN exch def
+     % Now we have all absolute coordinates
+     \ifPst@showframe
+       % Um jetzt an diesen Koordinaten zu zeichnen, ist das natürlich
+       % ungünstig und wir müssen zurück schieben... (Oder den Code
+       % umordnen, aber warum einfach wenns auch kompliziert geht ;P)
+       XMIN YMIN XMAX XMIN sub YMAX YMIN sub    % lower left, width, height
+       4 copy
+       gsave 
+       currentpoint translate newpath rectstroke 
+       newpath 0 0 moveto                                            % x0 y0 x1 y1
+       \ps@margin@top\space add \ps@margin@bottom\space add 4 1 roll % y1 x0 y0 x1 
+       \ps@margin@right\space add \ps@margin@left\space add 4 1 roll % x1 y1 x0 y0
+       \ps@margin@bottom\space sub 4 1 roll                          % y0 x1 y1 x0 
+       \ps@margin@left\space sub   4 1 roll                          % x0 y0 x1 y1
+       [3 3] 0 setdash rectstroke 
+       grestore 
+     \fi
+     (\jobname-\the\ps@imagectr.psaux) (w) file /CoorFile exch def
+     (\\gdef\\pscoor{\string\() CoorFile exch writestring
+     XMIN %\pst@number\psxunit div 
+     \ps@margin@left\space sub 20 string cvs CoorFile exch writestring
+     (pt, ) CoorFile exch writestring
+     YMIN %\pst@number\psyunit div 
+     \ps@margin@bottom\space sub 20 string cvs CoorFile exch writestring
+     (pt\string\)\string\() CoorFile exch writestring
+     XMAX %\pst@number\psxunit div 
+     \ps@margin@right\space add 20 string cvs CoorFile exch writestring
+     (pt, ) CoorFile exch writestring
+     YMAX %\pst@number\psyunit div 
+     \ps@margin@top\space add 20 string cvs CoorFile exch writestring
+     (pt\string\)}\% ) CoorFile exch writestring
+     %(Unit is \pst@number\psyunit/\pst@number\psyunit) 40 string cvs CoorFile exch writestring
+     CoorFile closefile
+     }%  
+  \else
+    \global\Pst@calcframefalse
+    \PackageError{PSTricks}{You need to run lualatex for calculating the bounding box or set calcframe=false}{}%\@ehpa
+  \fi
+  \fi
+  \ifshowgrid\ifnum\showgridp@s>0
+    \psgrid[xunit=\sh@wgridXunit,yunit=\sh@wgridYunit,style=gridstyle]\fi\fi
+  \pst@killglue
+  \endgroup
+  \egroup
+  \ht\pst@hbox=\pst@dimd
+  \dp\pst@hbox=-\pst@dimb
+  \setbox\pst@hbox=\hbox{%
+    \kern-\pst@dima
+    \ifPst@shift@star%\typeout{==pstricks== old behaviour of the shift option}%     shift=*
+      \advance\pst@dimd-\pst@dimb
+      \pst@dimd=0.5\pst@dimd
+    \else\pst@dimd-\pst@shift\fi
+    \advance\pst@dimd\pst@dimb
+    \lower\pst@dimd\box\pst@hbox
+    \kern\pst@dimc}%
+  \if@star\setbox\pst@hbox=\hbox{\psclipbox@@\z@}\fi
+  \leavevmode
+  \ifPst@draft
+    \expandafter\ifx\csname @latexerr\endcsname\relax
+      \box\pst@hbox
+    \else%	do we have LaTeX? 
+      \fboxsep=0pt
+      \fbox{\rule[-\pst@shift]{0pt}{\ht\pst@hbox}\rule{\wd\pst@hbox}{0pt}}%
+    \fi
+  \else
+    \box\pst@hbox
+  \fi
+  \endgroup
+  \psset[pstricks]{shift=0}% reset value
+}
+%
+\@namedef{pspicture*}{\pspicture*}
+\@namedef{endpspicture*}{\endpspicture}
+%
+%

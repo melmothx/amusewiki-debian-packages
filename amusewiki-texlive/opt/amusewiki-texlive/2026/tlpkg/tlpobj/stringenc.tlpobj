@@ -1,0 +1,64 @@
+name stringenc
+category Package
+revision 77682
+shortdesc Converting a string between different encodings
+longdesc This package provides \StringEncodingConvert for converting a
+longdesc string between different encodings. Both LaTeX and plain-TeX
+longdesc are supported.
+containersize 23368
+containerchecksum ee01e0d205bb3b21f8bc009ac43fbade8ca672858bfc03d7884b312baa702cdca51742057440dd2d474d87573e57f4d50918c0dcb5d09989327968700ee49bf4
+doccontainersize 664772
+doccontainerchecksum aab6ccebb47bcc496d99c5f205b0fbabc3c49fe77504308a7278f597a6363808d1bad35468072e0f39c4e15ce484af5eb9f5fab9887838dcf679f4b0c3df8450
+docfiles size=178
+ texmf-dist/doc/latex/stringenc/README.md
+ texmf-dist/doc/latex/stringenc/stringenc.pdf details="Package documentation"
+srccontainersize 30632
+srccontainerchecksum 56e33af6083925cab61f1495dbc5da7f20523371b613abc126195bdd4de4cdace8360e59fc039c340eb09d168126d6487e47b033f5b47801b098f4191393573e
+runfiles size=108
+ texmf-dist/tex/generic/stringenc/se-ascii-print.def
+ texmf-dist/tex/generic/stringenc/se-ascii.def
+ texmf-dist/tex/generic/stringenc/se-clean7bit.def
+ texmf-dist/tex/generic/stringenc/se-cp1250.def
+ texmf-dist/tex/generic/stringenc/se-cp1251.def
+ texmf-dist/tex/generic/stringenc/se-cp1252.def
+ texmf-dist/tex/generic/stringenc/se-cp1257.def
+ texmf-dist/tex/generic/stringenc/se-cp437.def
+ texmf-dist/tex/generic/stringenc/se-cp850.def
+ texmf-dist/tex/generic/stringenc/se-cp852.def
+ texmf-dist/tex/generic/stringenc/se-cp855.def
+ texmf-dist/tex/generic/stringenc/se-cp858.def
+ texmf-dist/tex/generic/stringenc/se-cp865.def
+ texmf-dist/tex/generic/stringenc/se-cp866.def
+ texmf-dist/tex/generic/stringenc/se-dec-mcs.def
+ texmf-dist/tex/generic/stringenc/se-iso-8859-1.def
+ texmf-dist/tex/generic/stringenc/se-iso-8859-10.def
+ texmf-dist/tex/generic/stringenc/se-iso-8859-11.def
+ texmf-dist/tex/generic/stringenc/se-iso-8859-13.def
+ texmf-dist/tex/generic/stringenc/se-iso-8859-14.def
+ texmf-dist/tex/generic/stringenc/se-iso-8859-15.def
+ texmf-dist/tex/generic/stringenc/se-iso-8859-16.def
+ texmf-dist/tex/generic/stringenc/se-iso-8859-2.def
+ texmf-dist/tex/generic/stringenc/se-iso-8859-3.def
+ texmf-dist/tex/generic/stringenc/se-iso-8859-4.def
+ texmf-dist/tex/generic/stringenc/se-iso-8859-5.def
+ texmf-dist/tex/generic/stringenc/se-iso-8859-6.def
+ texmf-dist/tex/generic/stringenc/se-iso-8859-7.def
+ texmf-dist/tex/generic/stringenc/se-iso-8859-8.def
+ texmf-dist/tex/generic/stringenc/se-iso-8859-9.def
+ texmf-dist/tex/generic/stringenc/se-koi8-r.def
+ texmf-dist/tex/generic/stringenc/se-mac-centeuro.def
+ texmf-dist/tex/generic/stringenc/se-mac-cyrillic.def
+ texmf-dist/tex/generic/stringenc/se-mac-roman.def
+ texmf-dist/tex/generic/stringenc/se-nextstep.def
+ texmf-dist/tex/generic/stringenc/se-pdfdoc.def
+ texmf-dist/tex/generic/stringenc/se-utf16le.def
+ texmf-dist/tex/generic/stringenc/se-utf32be.def
+ texmf-dist/tex/generic/stringenc/se-utf32le.def
+ texmf-dist/tex/generic/stringenc/se-utf8.def
+ texmf-dist/tex/generic/stringenc/stringenc.sty
+catalogue-contact-bugs https://github.com/ho-tex/stringenc/issues
+catalogue-contact-repository https://github.com/ho-tex/stringenc
+catalogue-ctan /macros/latex/contrib/stringenc
+catalogue-license lppl1.3
+catalogue-topics enc-juggle tagged-pdf
+catalogue-version 1.12

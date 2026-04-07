@@ -1,0 +1,27 @@
+name kvsetkeys
+category Package
+revision 77682
+shortdesc Key value parser with default handler support
+longdesc This package provides \kvsetkeys, a variant of package keyval's
+longdesc \setkeys. It allows the user to specify a handler that deals
+longdesc with unknown options. Active commas and equal signs may be used
+longdesc (e.g. see babel's shorthands) and only one level of curly
+longdesc braces are removed from the values.
+containersize 3580
+containerchecksum 947f76786e1f8d116642b423c78949f5cf01cbefd21215cc69ec5c734421ea896e86d1ea991dc5da36f19baaf1383512e00423a3335b55199970bd3f8afcc439
+doccontainersize 390780
+doccontainerchecksum 0ccb9d065e6aefcaa309445b1ed17342dcfc2694798d928656a3e0b2917694548cd58e701ca95f9f5a3a970923191a2ff4a70b724a28639239b0e67b693f22b0
+docfiles size=101
+ texmf-dist/doc/latex/kvsetkeys/README.md
+ texmf-dist/doc/latex/kvsetkeys/kvsetkeys-example.tex
+ texmf-dist/doc/latex/kvsetkeys/kvsetkeys.pdf details="Package documentation" language="en"
+srccontainersize 10608
+srccontainerchecksum 2c84e44c3a4eb4f150809460fa7c010cf5dd5bd8a30b4625e042edf53c6c1b8e5668b9cfdfc2526aa935afc3730e1b1429cd6fe261234947da88f9b8cf43a34f
+runfiles size=4
+ texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+catalogue-contact-bugs https://github.com/ho-tex/kvsetkeys/issues
+catalogue-contact-repository https://github.com/ho-tex/kvsetkeys
+catalogue-ctan /macros/latex/contrib/kvsetkeys
+catalogue-license lppl1.3
+catalogue-topics keyval tagged-pdf
+catalogue-version 1.19

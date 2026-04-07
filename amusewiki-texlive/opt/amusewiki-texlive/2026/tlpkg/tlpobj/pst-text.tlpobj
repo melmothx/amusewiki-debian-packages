@@ -1,0 +1,27 @@
+name pst-text
+category Package
+revision 77682
+shortdesc Text and character manipulation in PSTricks
+longdesc Pst-text is a PSTricks based package for plotting text along a
+longdesc different path and manipulating characters. It includes the
+longdesc functionality of the old package pst-char.
+containersize 4204
+containerchecksum 0dc1866cf1f16a49bca514478f2bd008dc637662edfbc1f0a3de0845e1b041ebbd807870db9f6a4f0e3640dfce56a925a5c76b8339627e988fdb293be492a889
+doccontainersize 169864
+doccontainerchecksum 51b38242939400839ac3d6e2ce549fbead312208ae7f3c1559fa4e5fe5115a18310f382170c7a8d67f40555fdbc072261e1a80962704dc5ead69f8f081e6b289
+docfiles size=59
+ texmf-dist/doc/generic/pst-text/Changes
+ texmf-dist/doc/generic/pst-text/README details="Package README"
+ texmf-dist/doc/generic/pst-text/pst-text-doc.bib
+ texmf-dist/doc/generic/pst-text/pst-text-doc.pdf details="Package documentation"
+ texmf-dist/doc/generic/pst-text/pst-text-doc.tex
+runfiles size=5
+ texmf-dist/dvips/pst-text/pst-text.pro
+ texmf-dist/tex/generic/pst-text/pst-text.tex
+ texmf-dist/tex/latex/pst-text/pst-char.sty
+ texmf-dist/tex/latex/pst-text/pst-text.sty
+catalogue-also textpath
+catalogue-ctan /graphics/pstricks/contrib/pst-text
+catalogue-license lppl
+catalogue-topics graphics-subpic tagged-pdf-incompatible
+catalogue-version 1.02

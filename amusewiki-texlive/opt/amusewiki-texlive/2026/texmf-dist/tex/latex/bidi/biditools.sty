@@ -1,0 +1,1752 @@
+%%
+%% This is file `biditools.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% bidi.dtx  (with options: `table,biditools.sty')
+%% 
+%%   __________________________________________________
+%%   Vafa Khalighi
+%% 
+%%   Copyright (c) 2007--2026  Vafa Khalighi
+%%   Copyright (c) 2018--2020 bidi-tex GitHub Organization
+%% 
+%%   It may be distributed and/or modified under the LaTeX Project Public License,
+%%   version 1.3c or higher (your choice). The latest version of
+%%   this license is at: http://www.latex-project.org/lppl.txt
+%% 
+%%   This work is “author-maintained” (as per LPPL maintenance status)
+%%   by Vafa Khalighi.
+%% 
+%% 
+
+%% \CheckSum{54343}
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{biditools}[2025/12/19 v2.9 Programming tools for bidi package]
+\providecommand{\@bidi@saveprimitive}[2]{\begingroup\escapechar`\\\relax
+  \edef\@tempa{\string#1}\edef\@tempb{\meaning#1}%
+  \ifx\@tempa\@tempb \global\let#2#1%
+  \else
+    \edef\@tempb{\meaning#2}%
+    \ifx\@tempa\@tempb
+    \else
+      \@latex@error{Unable to properly define \string#2; primitive
+      \noexpand#1no longer primitive}\@eha
+    \fi
+  \fi
+  \endgroup}
+\newtoks\@bidi@envbody
+\newtoks\@bidi@emptytoks
+\def\bidi@addto@envbody#1{\global\@bidi@envbody\expandafter{\the\@bidi@envbody#1}}
+\def\bidi@collect@body#1{%
+  \@bidi@envbody{\expandafter#1\expandafter{\the\@bidi@envbody}}%
+  \edef\bidi@process@envbody{\the\@bidi@envbody\noexpand\end{\@currenvir}}%
+  \@bidi@envbody\@bidi@emptytoks \def\begin@bidi@stack{b}%
+  \begingroup
+  \expandafter\let\csname\@currenvir\endcsname\bidi@collect@@body
+  \edef\bidi@process@envbody{\expandafter\noexpand\csname\@currenvir\endcsname}%
+  \bidi@process@envbody
+}
+\def\bidi@push@begins#1\begin#2{%
+  \ifx\end#2\else b\expandafter\bidi@push@begins\fi
+}
+\def\bidi@collect@@body#1\end#2{%
+  \edef\begin@bidi@stack{\bidi@push@begins#1\begin\end \expandafter\@gobble\begin@bidi@stack}%
+  \ifx\@empty\begin@bidi@stack
+    \endgroup
+    \@checkend{#2}%
+    \bidi@addto@envbody{#1}%
+  \else
+    \bidi@addto@envbody{#1\end{#2}}%
+  \fi
+  \bidi@process@envbody % A little tricky! Note the grouping
+}
+\long\def\bidi@addto@long@envbody#1{\global\@bidi@envbody\expandafter{\the\@bidi@envbody#1}}
+\long\def\bidi@collect@long@body#1{%
+  \@bidi@envbody{\expandafter#1\expandafter{\the\@bidi@envbody}}%
+  \edef\bidi@process@envbody{\the\@bidi@envbody\noexpand\end{\@currenvir}}%
+  \@bidi@envbody\@bidi@emptytoks \def\begin@bidi@stack{b}%
+  \begingroup
+  \expandafter\let\csname\@currenvir\endcsname\bidi@collect@long@@body
+  \edef\bidi@process@envbody{\expandafter\noexpand\csname\@currenvir\endcsname}%
+  \bidi@process@envbody
+}
+\long\def\bidi@push@long@begins#1\begin#2{%
+  \ifx\end#2\else b\expandafter\bidi@push@long@begins\fi
+}
+\long\def\bidi@collect@long@@body#1\end#2{%
+  \edef\begin@bidi@stack{\bidi@push@long@begins#1\begin\end \expandafter\@gobble\begin@bidi@stack}%
+  \ifx\@empty\begin@bidi@stack
+    \endgroup
+    \@checkend{#2}%
+    \bidi@addto@long@envbody{#1}%
+  \else
+    \bidi@addto@long@envbody{#1\end{#2}}%
+  \fi
+  \bidi@process@envbody % A little tricky! Note the grouping
+}
+\long\def\bidi@new@ifnextchar#1#2#3{%
+  \let\reserved@d= #1%
+  \def\reserved@a{#2}\def\reserved@b{#3}%
+  \futurelet\@let@token\bidi@new@ifnch
+}
+\def\bidi@new@ifnch{%
+  \ifx\@let@token\reserved@d \let\reserved@b\reserved@a \fi
+  \reserved@b
+}
+\def\bidi@matrix@check#1{%
+  \expandafter\ifx\csname\@currenvir\endcsname#1%
+  \else\bidi@matrix@error#1%
+    \expandafter\@gobble
+  \fi
+}
+\def\bidi@matrix@error#1{%
+  \PackageError{biditools}{%
+Old form `\string#1' should be \string\begin{\expandafter\@gobble\string#1}%
+  }{%
+`\string#1{...}' is old bidi package syntax whose use is
+ill-advised in the old versions of bidi package.%
+  }%
+}
+\def\eqnewif#1#2{%
+  \count@\escapechar \escapechar\m@ne
+    \let#1\iffalse
+    \let#2\iffalse
+    \eq@if#1#2\iftrue
+    \eq@if#1#2\iffalse
+  \escapechar\count@}
+\def\eq@if#1#2#3{%
+  \expandafter\def\csname\expandafter\@gobbletwo\string#1%
+                    \expandafter\@gobbletwo\string#3\endcsname
+                       {\let#1#3%
+                       \let#2#3}%
+  \expandafter\def\csname\expandafter\@gobbletwo\string#2%
+                    \expandafter\@gobbletwo\string#3\endcsname
+                       {\let#2#3%
+                       \let#1#3}}
+\def\noteqnewif#1#2{%
+  \count@\escapechar \escapechar\m@ne
+    \let#1\iffalse
+    \let#2\iffalse
+    \not@eq@if#1#2\iftrue\iffalse
+  \escapechar\count@}
+\def\not@eq@if#1#2#3#4{%
+  \expandafter\def\csname\expandafter\@gobbletwo\string#1%
+                    \expandafter\@gobbletwo\string#3\endcsname
+                       {\let#1#3%
+                       \let#2#4}%
+  \expandafter\def\csname\expandafter\@gobbletwo\string#1%
+                    \expandafter\@gobbletwo\string#4\endcsname
+                       {\let#1#4%
+                       \let#2#3}%
+  \expandafter\def\csname\expandafter\@gobbletwo\string#2%
+                    \expandafter\@gobbletwo\string#3\endcsname
+                       {\let#2#3%
+                       \let#1#4}%
+  \expandafter\def\csname\expandafter\@gobbletwo\string#2%
+                    \expandafter\@gobbletwo\string#4\endcsname
+                       {\let#2#4%
+                       \let#1#3}}
+\newcommand*{\SetBoolean}[2]{%
+  \lowercase{\def\@tempa{#2}}%
+  \@ifundefined{@tempswa\@tempa}%
+    {\PackageError{biditools}%
+       {You can only set a boolean to `true' or `false'}\@ehc}%
+    {\@ifundefined{#1\@tempa}%
+      {\PackageError{biditools}{Boolean #1 undefined}\@ehc}%
+      {\csname#1\@tempa\endcsname}}}
+\newcommand*{\GlobalSetBoolean}[2]{%
+  \lowercase{\def\@tempa{#2}}%
+  \@ifundefined{@tempswa\@tempa}%
+    {\PackageError{biditools}%
+       {You can only set a boolean to `true' or `false'}\@ehc}%
+    {\@ifundefined{#1\@tempa}%
+      {\PackageError{biditools}{Boolean #1 undefined}\@ehc}%
+      {\global\csname#1\@tempa\endcsname}}}
+\newcommand*{\SetatBoolean}[2]{%
+  \lowercase{\def\@tempa{#2}}%
+  \@ifundefined{@tempswa\@tempa}%
+    {\PackageError{biditools}%
+       {You can only set a boolean to `true' or `false'}\@ehc}%
+    {\@ifundefined{@#1\@tempa}%
+      {\PackageError{biditools}{Boolean @#1 undefined}\@ehc}%
+      {\csname @#1\@tempa\endcsname}}}
+\newcommand*{\GlobalSetatBoolean}[2]{%
+  \lowercase{\def\@tempa{#2}}%
+  \@ifundefined{@tempswa\@tempa}%
+    {\PackageError{biditools}%
+       {You can only set a boolean to `true' or `false'}\@ehc}%
+    {\@ifundefined{@#1\@tempa}%
+      {\PackageError{biditools}{Boolean @#1 undefined}\@ehc}%
+      {\global\csname @#1\@tempa\endcsname}}}
+\def\@bidi@removefromreset#1#2{{%
+  \expandafter\let\csname c@#1\endcsname\@bidi@removefromreset
+  \def\@elt##1{%
+    \expandafter\ifx\csname c@##1\endcsname\@bidi@removefromreset
+    \else
+      \noexpand\@elt{##1}%
+    \fi}%
+  \expandafter\xdef\csname cl@#2\endcsname{%
+    \csname cl@#2\endcsname}}}
+\newcommand*{\ifRtoL}{%
+  \if@RTL
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi}
+\newcommand*{\ifLtoR}{%
+  \if@RTL
+    \expandafter\@secondoftwo
+  \else
+    \expandafter\@firstoftwo
+  \fi}
+\newcommand*{\ifRtoLtable}{%
+  \if@RTLtab
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi}
+\newcommand*{\ifLtoRtable}{%
+  \if@RTLtab
+    \expandafter\@secondoftwo
+  \else
+    \expandafter\@firstoftwo
+  \fi}
+\newcommand*{\ifRtoLhboxconstruct}{%
+  \if@hboxRconstruct
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi}
+\newcommand*{\ifLtoRhboxconstruct}{%
+  \if@hboxRconstruct
+    \expandafter\@secondoftwo
+  \else
+    \expandafter\@firstoftwo
+  \fi}
+\newcommand*{\iflatin}{%
+  \if@nonlatin
+    \expandafter\@secondoftwo
+  \else
+    \expandafter\@firstoftwo
+  \fi}
+\newcommand*{\ifnonlatin}{%
+  \if@nonlatin
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi}
+
+\newcommand*{\bidi@@convert@dimen@t@unit}[2]{%
+    \strip@pt\dimexpr #1*65536/\dimexpr 1#2\relax #2}
+
+\newcommand*{\bidi@@convert@dimen@t@pt}[1]{%
+    \dimexpr #1*65536/\dimexpr 1pt\relax}
+
+\newcommand*{\IfPackageVersionAtLeastTF}[1]{%
+  \expandafter\@if@ver@pkg@least\csname #1@version\endcsname
+}
+\newcommand*{\@if@ver@pkg@least}[2]{%
+  \ifnum\expandafter\bidi@parse@ver@#100\@nil<\expandafter\bidi@parse@ver@#200\@nil
+    \expandafter\@secondoftwo
+  \else
+    \expandafter\@firstoftwo
+  \fi
+}
+\newcommand*{\bidi@parse@ver@}[1]{\bidi@parse@ver0#1}
+\def\bidi@parse@ver#1.#2.#3#4#5\@nil{%
+  \if\relax#2\relax\else#1\fi#2#3#4
+}
+\newcommand*{\IfPackageVersionAtMostTF}[1]{%
+  \expandafter\@if@ver@pkg@most\csname #1@version\endcsname
+}
+\newcommand*{\@if@ver@pkg@most}[2]{%
+  \ifnum\expandafter\bidi@parse@ver@#100\@nil>\expandafter\bidi@parse@ver@#200\@nil
+    \expandafter\@secondoftwo
+  \else
+    \expandafter\@firstoftwo
+  \fi
+}
+\newcommand*{\IfPackageVersionTF}[1]{%
+  \expandafter\@if@ver@pkg@\csname #1@version\endcsname
+}
+\newcommand*{\@if@ver@pkg@}[2]{%
+  \ifnum\expandafter\bidi@parse@ver@#100\@nil=\expandafter\bidi@parse@ver@#200\@nil
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi
+}
+
+\newcommand*{\if@bidi@csdef}[1]{%
+  \ifcsname#1\endcsname
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi}
+\newcommand*{\if@bidi@csundef}[1]{%
+  \ifcsname#1\endcsname
+    \expandafter\ifx\csname#1\endcsname\relax
+      \expandafter\expandafter
+      \expandafter\@firstoftwo
+    \else
+      \expandafter\expandafter
+      \expandafter\@secondoftwo
+    \fi
+  \else
+    \expandafter\@firstoftwo
+  \fi}
+\newcommand{\if@bidi@def}[1]{%
+  \ifdefined#1%
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi}
+\newcommand{\if@bidi@undef}[1]{%
+  \ifdefined#1%
+    \ifx#1\relax
+      \expandafter\expandafter
+      \expandafter\@firstoftwo
+    \else
+      \expandafter\expandafter
+      \expandafter\@secondoftwo
+    \fi
+  \else
+    \expandafter\@firstoftwo
+  \fi}
+\newcommand{\if@bidi@blank}[1]{% from url.sty
+  \bidi@ifblank@i#1&&\@secondoftwo\@firstoftwo:}
+\long\def\bidi@ifblank@i#1#2&#3#4#5:{#4}
+\newcommand{\bidi@notblank}[1]{%
+  \bidi@ifblank@i#1&&\@firstoftwo\@secondoftwo:}
+\newcommand{\if@bidi@defmacro}{}
+\long\edef\if@bidi@defmacro#1{%
+  \noexpand\expandafter\noexpand\bidi@ifdefmacro
+  \noexpand\meaning#1\detokenize{macro}:&}
+\edef\bidi@ifdefmacro{%
+  \def\noexpand\bidi@ifdefmacro##1\detokenize{macro}:##2&}
+\bidi@ifdefmacro{\bidi@notblank{#2}}
+\newcommand*{\if@bidi@csmacro}[1]{%
+  \if@bidi@csdef{#1}
+    {\expandafter\if@bidi@defmacro\csname#1\endcsname}
+    {\@secondoftwo}}
+\newcommand{\if@bidi@defprimitive}[1]{%
+  \ifprimitive#1%
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi}
+\newcommand{\if@bidi@csprimitive}[1]{%
+ \begingroup\expandafter\expandafter\expandafter\endgroup%
+  \expandafter\ifprimitive\csname#1\endcsname%
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi}
+\newcommand*{\bidi@csdefcs}[2]{%
+\expandafter\@ifdefinable  \csname#1\endcsname{%
+\expandafter\def\csname#1\expandafter\endcsname{\csname#2\endcsname}}}
+\newcommand*{\bidi@csletcs}[2]{%
+\expandafter\@ifdefinable  \csname#1\endcsname{%
+\expandafter\let\csname#1\expandafter\endcsname\csname#2\endcsname}}
+\newcommand*{\bidi@cslet}[2]{%
+\expandafter\@ifdefinable  \csname#1\endcsname{%
+\expandafter\let\csname#1\endcsname#2}}
+\newcommand{\bidi@namelongdef}[1]{%
+  \long\expandafter\def\csname #1\endcsname}
+\newcommand{\bidi@namelonggdef}[1]{%
+  \long\expandafter\gdef\csname #1\endcsname}
+\newcommand{\bidi@namelongedef}[1]{%
+  \long\expandafter\edef\csname #1\endcsname}
+\newcommand{\bidi@namelongxdef}[1]{%
+  \long\expandafter\xdef\csname #1\endcsname}
+\def\bidi@ensure@newcommand{\@star@or@long\bidi@ensure@new@command}
+\def\bidi@ensure@new@command#1{%
+  \begingroup \escapechar\m@ne\xdef\@gtempa{{\string#1}}\endgroup
+  \expandafter\if@bidi@csundef\@gtempa
+     {\new@command#1}{\relax%
+  \let\@ifdefinable\@rc@ifdefinable%
+  \new@command#1}}
+\def\bidi@ensure@newlength#1{\if@bidi@undef#1{\newskip#1}{}}
+
+\protected\def\bidi@error{\PackageError{bidi}}
+\protected\def\bidi@warning{\PackageWarning{bidi}}
+\protected\def\bidi@warningnoline{\PackageWarningNoLine{bidi}}
+\protected\def\bidi@info{\PackageInfo{bidi}}
+
+\def\bidi@pos#1#2#3#4{\bidi@namegdef{bidi@#1pos@@#2@#3}{#4}}
+
+\newcount\bidi@poscount
+
+\newcommand*{\WriteStartXPostoaux}{%
+  \global\advance\bidi@poscount\@ne
+    \edef\@tempa{%
+      \write\@auxout{%
+        \string\bidi@pos{x}{start}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastxpos}%
+      }%
+    }%
+    \ifvmode
+      \leavevmode
+    \fi
+  \if@RTL
+       \if@filesw
+    \@tempa
+  \fi
+  \pdfsavepos
+    \else
+  \pdfsavepos
+  \if@filesw
+    \@tempa
+  \fi
+  \fi
+  \if@bidi@csundef{bidi@xpos@@start@\number\bidi@poscount}{%
+        \PackageWarningNoLine{biditools}{%
+          The start x position `\number\bidi@poscount' is not known yet.
+          Rerun to get this x position%
+          }%
+  }{}%
+}
+
+\newcommand*{\WriteEndXPostoaux}{%
+      \edef\@tempa{%
+        \write\@auxout{%
+          \string\bidi@pos{x}{end}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastxpos}%
+      }%
+    }%
+  \if@RTL
+    \if@filesw
+    \@tempa
+  \fi
+  \pdfsavepos
+  \else
+  \pdfsavepos
+  \if@filesw
+    \@tempa
+  \fi
+  \fi
+  \if@bidi@csundef{bidi@xpos@@end@\number\bidi@poscount}{%
+          \PackageWarningNoLine{biditools}{%
+          The end x position `\number\bidi@poscount' is not known yet.
+          Rerun to get this x position%
+          }%
+  }{}%
+}
+
+\newcommand*{\WriteStartYPostoaux}{%
+  \global\advance\bidi@poscount\@ne
+    \edef\@tempa{%
+      \write\@auxout{%
+        \string\bidi@pos{y}{start}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastypos}%
+      }%
+    }%
+    \ifvmode
+      \leavevmode
+    \fi
+  \if@RTL
+       \if@filesw
+    \@tempa
+  \fi
+  \pdfsavepos
+    \else
+  \pdfsavepos
+  \if@filesw
+    \@tempa
+  \fi
+  \fi
+  \if@bidi@csundef{bidi@ypos@@start@\number\bidi@poscount}{%
+        \PackageWarningNoLine{biditools}{%
+          The start y position `\number\bidi@poscount' is not known yet.
+          Rerun to get this y position%
+          }%
+  }{}%
+}
+
+\newcommand*{\WriteEndYPostoaux}{%
+      \edef\@tempa{%
+        \write\@auxout{%
+          \string\bidi@pos{y}{end}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastypos}%
+      }%
+    }%
+  \if@RTL
+    \if@filesw
+    \@tempa
+  \fi
+  \pdfsavepos
+  \else
+  \pdfsavepos
+  \if@filesw
+    \@tempa
+  \fi
+  \fi
+  \if@bidi@csundef{bidi@ypos@@end@\number\bidi@poscount}{%
+          \PackageWarningNoLine{biditools}{%
+          The end y position `\number\bidi@poscount' is not known yet.
+          Rerun to get this y position%
+          }%
+  }{}%
+}
+
+\newcommand*{\WriteStartXYPostoaux}{%
+  \global\advance\bidi@poscount\@ne
+    \edef\@tempa{%
+      \write\@auxout{%
+        \string\bidi@pos{x}{start}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastxpos}%
+      }%
+      \write\@auxout{%
+        \string\bidi@pos{y}{start}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastypos}%
+      }%
+    }%
+    \ifvmode
+      \leavevmode
+    \fi
+  \if@RTL
+       \if@filesw
+    \@tempa
+  \fi
+  \pdfsavepos
+    \else
+  \pdfsavepos
+  \if@filesw
+    \@tempa
+  \fi
+  \fi
+  \if@bidi@csundef{bidi@xpos@@start@\number\bidi@poscount}{%
+        \PackageWarningNoLine{biditools}{%
+          The start x position `\number\bidi@poscount' is not known yet.
+          Rerun to get this x position%
+          }%
+  }{}%
+  \if@bidi@csundef{bidi@ypos@@start@\number\bidi@poscount}{%
+        \PackageWarningNoLine{biditools}{%
+          The start y position `\number\bidi@poscount' is not known yet.
+          Rerun to get this y position%
+          }%
+  }{}%
+}
+
+\newcommand*{\WriteEndXYPostoaux}{%
+      \edef\@tempa{%
+        \write\@auxout{%
+          \string\bidi@pos{x}{end}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastxpos}%
+      }%
+        \write\@auxout{%
+          \string\bidi@pos{y}{end}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastypos}%
+      }%
+    }%
+  \if@RTL
+    \if@filesw
+    \@tempa
+  \fi
+  \pdfsavepos
+  \else
+  \pdfsavepos
+  \if@filesw
+    \@tempa
+  \fi
+  \fi
+  \if@bidi@csundef{bidi@xpos@@end@\number\bidi@poscount}{%
+          \PackageWarningNoLine{biditools}{%
+          The end x position `\number\bidi@poscount' is not known yet.
+          Rerun to get this x position%
+          }%
+  }{}%
+  \if@bidi@csundef{bidi@ypos@@end@\number\bidi@poscount}{%
+          \PackageWarningNoLine{biditools}{%
+          The end y position `\number\bidi@poscount' is not known yet.
+          Rerun to get this y position%
+          }%
+  }{}%
+}
+
+\newcommand*{\currentposxwidth}{%
+  \if@bidi@csundef{bidi@xpos@@end@\number\bidi@poscount}{\z@}
+  {%
+    \ifnum\csname bidi@xpos@@start@\number\bidi@poscount
+    \endcsname < \csname   bidi@xpos@@end@\number\bidi@poscount
+    \endcsname
+    \dimexpr \csname bidi@xpos@@end@\number\bidi@poscount
+    \endcsname sp - \csname   bidi@xpos@@start@\number\bidi@poscount
+    \endcsname sp\relax
+  \else
+    \dimexpr \csname bidi@xpos@@start@\number\bidi@poscount
+    \endcsname sp - \csname   bidi@xpos@@end@\number\bidi@poscount
+    \endcsname sp\relax
+  \fi
+  }%
+}
+
+\newcommand*{\currentposyheight}{%
+  \if@bidi@csundef{bidi@ypos@@end@\number\bidi@poscount}{\z@}
+  {%
+    \dimexpr \csname bidi@ypos@@start@\number\bidi@poscount
+    \endcsname sp - \csname   bidi@ypos@@end@\number\bidi@poscount
+    \endcsname sp\relax
+  }%
+}
+
+\newcommand*{\setbaselineskip}[1]{%
+    \linespread{\strip@pt\dimexpr\numexpr\dimexpr#1\relax*65536/\dimexpr\baselineskip\relax\relax sp\relax}
+    \selectfont
+}
+
+\newcommand*{\bidi@newrobustcmd}{}
+\protected\def\bidi@newrobustcmd{\@star@or@long\bidi@new@command}
+
+\def\bidi@new@command#1{\@testopt{\bidi@newcommand#1}0}
+
+\def\bidi@newcommand#1[#2]{%
+  \@ifnextchar[%]
+    {\bidi@xargdef#1[#2]}
+    {\ifx\l@ngrel@x\relax
+       \let\l@ngrel@x\protected
+     \else
+       \protected\def\l@ngrel@x{\protected\long}%
+     \fi
+     \@argdef#1[#2]}}
+
+\long\def\bidi@xargdef#1[#2][#3]#4{%
+  \@ifdefinable#1{%
+    \expandafter\protected
+    \expandafter\def
+    \expandafter#1%
+    \expandafter{%
+      \expandafter\@testopt
+      \csname\string#1\endcsname{#3}}%
+    \expandafter\@yargdef\csname\string#1\endcsname\tw@{#2}{#4}}}
+
+\bidi@newrobustcmd*{\bidi@renewrobustcmd}{\@star@or@long\bidi@renew@command}
+
+\def\bidi@renew@command#1{%
+  \if@bidi@undef{#1}
+     {\bidi@error{\string#1 undefined}\@ehc}
+     {}%
+  \let\@ifdefinable\@rc@ifdefinable
+  \bidi@new@command#1}
+
+\bidi@newrobustcmd*{\bidi@providerobustcmd}{\@star@or@long\bidi@provide@command}
+
+\def\bidi@provide@command#1{%
+  \if@bidi@undef{#1}
+    {\def\reserved@a{\bidi@new@command#1}}
+    {\def\reserved@a{\bidi@renew@command\reserved@a}}%
+  \reserved@a}
+
+\newcommand*{\bidi@csuse}[1]{%
+  \ifcsname#1\endcsname
+    \csname#1\expandafter\endcsname
+  \fi}
+
+\newcommand{\bidi@expandonce}[1]{%
+  \unexpanded\expandafter{#1}}
+
+\def\bidi@protected{%
+  \let\@@protect\protect
+  \let\protect\@unexpandable@protect
+  \afterassignment\restore@protect}
+
+\bidi@newrobustcmd{\bidi@appto}[2]{%
+  \if@bidi@undef{#1}
+    {\edef#1{\unexpanded{#2}}}
+    {\edef#1{\bidi@expandonce#1\unexpanded{#2}}}}
+\bidi@newrobustcmd{\bidi@eappto}[2]{%
+  \if@bidi@undef{#1}
+    {\edef#1{#2}}
+    {\edef#1{\bidi@expandonce#1#2}}}
+\bidi@newrobustcmd{\bidi@gappto}[2]{%
+  \if@bidi@undef{#1}
+    {\xdef#1{\unexpanded{#2}}}
+    {\xdef#1{\bidi@expandonce#1\unexpanded{#2}}}}
+\bidi@newrobustcmd{\bidi@xappto}[2]{%
+  \if@bidi@undef{#1}
+    {\xdef#1{#2}}
+    {\xdef#1{\bidi@expandonce#1#2}}}
+
+\bidi@newrobustcmd*{\bidi@protected@eappto}{\bidi@protected\bidi@eappto}
+\bidi@newrobustcmd*{\bidi@protected@xappto}{\bidi@protected\bidi@xappto}
+
+\bidi@newrobustcmd{\bidi@preto}[2]{%
+  \if@bidi@undef{#1}
+    {\edef#1{\unexpanded{#2}}}
+    {\edef#1{\unexpanded{#2}\bidi@expandonce#1}}}
+\bidi@newrobustcmd{\bidi@epreto}[2]{%
+  \if@bidi@undef{#1}
+    {\edef#1{#2}}
+    {\edef#1{#2\bidi@expandonce#1}}}
+\bidi@newrobustcmd{\bidi@gpreto}[2]{%
+  \if@bidi@undef{#1}
+    {\xdef#1{\unexpanded{#2}}}
+    {\xdef#1{\unexpanded{#2}\bidi@expandonce#1}}}
+\bidi@newrobustcmd{\bidi@xpreto}[2]{%
+  \if@bidi@undef{#1}
+    {\xdef#1{#2}}
+    {\xdef#1{#2\bidi@expandonce#1}}}
+
+\bidi@newrobustcmd*{\bidi@protected@epreto}{\bidi@protected\bidi@epreto}
+\bidi@newrobustcmd*{\bidi@protected@xpreto}{\bidi@protected\bidi@xpreto}
+
+\bidi@newrobustcmd*{\bidi@csappto}[1]{\expandafter\bidi@appto\csname#1\endcsname}
+\bidi@newrobustcmd*{\bidi@cseappto}[1]{\expandafter\bidi@eappto\csname#1\endcsname}
+\bidi@newrobustcmd*{\bidi@csgappto}[1]{\expandafter\bidi@gappto\csname#1\endcsname}
+\bidi@newrobustcmd*{\bidi@csxappto}[1]{\expandafter\bidi@xappto\csname#1\endcsname}
+\bidi@newrobustcmd*{\bidi@protected@cseappto}{\bidi@protected\bidi@cseappto}
+\bidi@newrobustcmd*{\bidi@protected@csxappto}{\bidi@protected\bidi@csxappto}
+
+\bidi@newrobustcmd*{\bidi@cspreto}[1]{\expandafter\bidi@preto\csname#1\endcsname}
+\bidi@newrobustcmd*{\bidi@csepreto}[1]{\expandafter\bidi@epreto\csname#1\endcsname}
+\bidi@newrobustcmd*{\bidi@csgpreto}[1]{\expandafter\bidi@gpreto\csname#1\endcsname}
+\bidi@newrobustcmd*{\bidi@csxpreto}[1]{\expandafter\bidi@xpreto\csname#1\endcsname}
+\bidi@newrobustcmd*{\bidi@protected@csepreto}{\bidi@protected\bidi@csepreto}
+\bidi@newrobustcmd*{\bidi@protected@csxpreto}{\bidi@protected\bidi@csxpreto}
+
+\bidi@newrobustcmd{\if@bidi@patchable}{%
+  \bidi@dbg@trce\if@bidi@patchable
+  \begingroup
+  \@makeother\#%
+  \@ifstar\bidi@ifpatchable@i\bidi@ifpatchable}
+
+\long\def\bidi@ifpatchable#1#2{%
+  \endgroup
+  \bidi@dbg@init#1%
+  \if@bidi@undef{#1}
+    {\bidi@dbg@fail{def}\@secondoftwo}
+    {\bidi@dbg@info{def}%
+     \if@bidi@defmacro{#1}
+       {\bidi@dbg@info{mac}%
+        \bidi@ifscanable{#1}
+          {\bidi@ifhashcheck{#2}
+             {\bidi@dbg@info{tok}%
+              \bidi@ifpattern#1{#2}
+                 {\bidi@dbg@info{pat}%
+                  \bidi@dbg@info{pos}\@firstoftwo}
+                 {\bidi@dbg@fail{pat}\@secondoftwo}}
+             {\bidi@dbg@fail{hsh}\@secondoftwo}}
+          {\bidi@dbg@fail{tok}\@secondoftwo}}
+       {\bidi@dbg@fail{mac}\@secondoftwo}}}
+
+\long\def\bidi@ifpatchable@i#1{%
+  \endgroup
+  \bidi@dbg@init#1%
+  \if@bidi@undef{#1}
+    {\bidi@dbg@fail{def}\@secondoftwo}
+    {\bidi@dbg@info{def}%
+     \if@bidi@defmacro{#1}
+       {\bidi@dbg@info{mac}%
+        \if@bidi@defparam{#1}
+          {\bidi@dbg@info{prm}%
+           \bidi@ifscanable{#1}
+             {\bidi@dbg@info{tok}%
+              \bidi@dbg@info{pos}\@firstoftwo}
+             {\bidi@dbg@fail{tok}\@secondoftwo}}
+          {\bidi@dbg@info{prl}%
+           \if@bidi@defprotected{#1}
+             {\bidi@dbg@info{pro}}
+             {}%
+           \bidi@dbg@info{pos}\@firstoftwo}}
+       {\bidi@dbg@fail{mac}\@secondoftwo}}}
+
+\bidi@newrobustcmd*{\bidi@patchcmd}{%
+  \bidi@dbg@trce\bidi@patchcmd
+  \begingroup
+  \@makeother\#%
+  \bidi@@patchcmd}
+
+\newcommand{\bidi@@patchcmd}[4][########1]{%
+  \bidi@ifpatchable#2{#3}
+    {\bidi@dbg@succ{ret}%
+     \begingroup
+     \edef\bidi@resrvda{%
+       \def\noexpand\bidi@resrvda####1\detokenize{macro:}####2->####3&{%
+         #1\def\string\bidi@resrvda\space####2{\noexpand\bidi@resrvdb####3&}}%
+       \def\noexpand\bidi@resrvdb####1\detokenize{#3}####2&{%
+         ####1\detokenize{#4}####2}%
+       \edef\noexpand\bidi@resrvda{%
+         \noexpand\bidi@resrvda\meaning#2&}}%
+     \bidi@resrvda
+     \bidi@patchcmd@scantoks\bidi@resrvda
+     \let#2\bidi@resrvda
+     \bidi@undef\bidi@resrvda
+     \@firstoftwo}
+    {\@secondoftwo}}
+
+\def\bidi@patchcmd@scantoks#1{%
+  \edef\bidi@resrvda{\endgroup
+    \unexpanded{\makeatletter\scantokens}{#1}%
+    \catcode\number`\@=\the\catcode`\@\relax}%
+  \bidi@resrvda}
+
+\protected\def\bidi@ifscanable#1{%
+  \begingroup
+  \edef\bidi@resrvda{%
+    \def\noexpand\bidi@resrvda####1\detokenize{macro}:####2->####3&{%
+      ####1\def\string\bidi@resrvda####2{####3}}%
+    \edef\noexpand\bidi@resrvda{\noexpand\bidi@resrvda\meaning#1&}}%
+  \bidi@resrvda
+  \makeatletter
+  \scantokens\expandafter{\bidi@resrvda}%
+  \expandafter\endgroup\ifx#1\bidi@resrvda
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi}
+
+\protected\long\def\bidi@ifhashcheck#1{%
+  \begingroup
+  \edef\bidi@resrvda{\detokenize{#1}}%
+  \expandafter\endgroup
+  \expandafter\bidi@ifhashcheck@i\meaning\bidi@resrvda&}
+
+\edef\bidi@ifhashcheck@i#1&{%
+  \noexpand\expandafter
+  \noexpand\bidi@ifhashcheck@ii
+  \noexpand\strip@prefix#1\string#\string#&}
+
+\edef\bidi@ifhashcheck@ii{%
+  \def\noexpand\bidi@ifhashcheck@ii##1\string#\string###2&}
+\bidi@ifhashcheck@ii{\if@bidi@blank{#2}}
+
+\protected\long\def\bidi@ifpattern#1#2{%
+  \begingroup
+  \edef\bidi@resrvda{%
+    \def\noexpand\bidi@resrvda####1\detokenize{#2}####2&{%
+      \endgroup\noexpand\noexpand\noexpand\if@bidi@blank{####2}}%
+    \edef\noexpand\bidi@resrvda{\noexpand\bidi@resrvda
+      \expandafter\strip@prefix\meaning#1\detokenize{#2}&}%
+    \noexpand\bidi@resrvda}
+  \bidi@resrvda\@secondoftwo\@firstoftwo}
+
+\newcommand{\if@bidi@defparam}{}
+\long\edef\if@bidi@defparam#1{%
+  \noexpand\expandafter\noexpand\bidi@ifdefparam
+  \noexpand\meaning#1\detokenize{macro}:->&}
+\edef\bidi@ifdefparam{%
+  \def\noexpand\bidi@ifdefparam##1\detokenize{macro}:##2->##3&}
+\bidi@ifdefparam{\bidi@notblank{#2}}
+
+\newcommand{\if@bidi@defprotected}{}
+\long\edef\if@bidi@defprotected#1{%
+  \noexpand\expandafter\noexpand\bidi@ifdefprotected
+  \noexpand\meaning#1\string\protected&}
+\edef\bidi@ifdefprotected{%
+  \def\noexpand\bidi@ifdefprotected##1\string\protected##2&}
+\bidi@ifdefprotected{\bidi@notblank{#2}}
+
+\bidi@newrobustcmd{\bidi@undef}[1]{\let#1\bidi@undefined}
+\bidi@newrobustcmd{\bidi@csundef}[1]{%
+  \expandafter\let\csname #1\endcsname\bidi@undefined
+}
+
+\let\bidi@dbg@trce\@gobble
+\let\bidi@dbg@init\@gobble
+\let\bidi@dbg@info\@gobble
+\let\bidi@dbg@succ\@gobble
+\let\bidi@dbg@fail\@gobble
+
+\bidi@newrobustcmd*{\bidi@apptocmd}{%
+  \bidi@dbg@trce\bidi@apptocmd
+  \begingroup
+  \@makeother\#%
+  \bidi@hooktocmd\bidi@append}
+
+\bidi@newrobustcmd*{\bidi@pretocmd}{%
+  \bidi@dbg@trce\bidi@pretocmd
+  \begingroup
+  \@makeother\#%
+  \bidi@hooktocmd\bidi@prepend}
+
+\long\def\bidi@hooktocmd#1#2#3{%
+  \endgroup
+  \bidi@dbg@init#2%
+  \if@bidi@undef{#2}
+    {\bidi@dbg@fail{def}\@secondoftwo}
+    {\bidi@dbg@info{def}%
+     \if@bidi@defmacro{#2}
+       {\bidi@dbg@info{mac}%
+        \if@bidi@defparam{#2}
+          {\bidi@dbg@info{prm}%
+           \bidi@ifscanable{#2}
+             {\bidi@ifhashcheck{#3}
+                {\bidi@dbg@info{tok}%
+                 \bidi@dbg@succ{ret}%
+                 \bidi@hooktocmd@i#1#2{#3}%
+                 \@firstoftwo}
+                {\bidi@dbg@fail{hsh}\@secondoftwo}}
+             {\bidi@dbg@fail{tok}\@secondoftwo}}
+          {\bidi@dbg@info{prl}%
+           \if@bidi@defprotected{#2}
+             {\bidi@dbg@info{pro}%
+              \bidi@dbg@succ{red}%
+              \protected}
+             {\bidi@dbg@succ{red}}%
+           \edef#2{#1{\bidi@expandonce#2}{\unexpanded{#3}}}%
+           \@firstoftwo}}
+       {\bidi@dbg@fail{mac}\@secondoftwo}}}
+
+\long\def\bidi@hooktocmd@i#1#2#3{%
+  \begingroup
+  \edef\bidi@resrvda{%
+    \def\noexpand\bidi@resrvda####1\detokenize{macro}:####2->####3&{%
+      ####1\def\string\bidi@resrvda\space####2{#1{####3}{\detokenize{#3}}}}%
+    \edef\noexpand\bidi@resrvda{%
+      \noexpand\bidi@resrvda\meaning#2&}}%
+  \bidi@resrvda
+  \bidi@patchcmd@scantoks\bidi@resrvda
+  \let#2\bidi@resrvda
+  \bidi@undef\bidi@resrvda}
+
+\long\def\bidi@append#1#2{#1#2}
+\long\def\bidi@prepend#1#2{#2#1}
+
+
+\bidi@newrobustcmd*{\bidi@AtEndPreamble}{\AddToHook{begindocument/before}}%
+
+\bidi@newrobustcmd*{\bidi@BeforeOutputPageShipOut}{\bidi@gappto\bidi@beforeoutputpageshipouthook}
+\newcommand*{\bidi@beforeoutputpageshipouthook}{}
+
+\bidi@newrobustcmd*{\bidi@BeforeHeader}{\bidi@gappto\bidi@beforeheaderhook}
+\newcommand*{\bidi@beforeheaderhook}{}
+
+\bidi@newrobustcmd*{\bidi@BeforeOutputBoxOutputPage}{\bidi@gappto\bidi@beforeoutputboxoutputpagehook}
+\newcommand*{\bidi@beforeoutputboxoutputpagehook}{}
+
+\bidi@newrobustcmd*{\bidi@AfterOutputBoxOutputPage}{\bidi@gappto\bidi@afteroutputboxoutputpagehook}
+\newcommand*{\bidi@afteroutputboxoutputpagehook}{}
+
+\bidi@newrobustcmd*{\bidi@BeforeFooter}{\bidi@gappto\bidi@beforefooterhook}
+\newcommand*{\bidi@beforefooterhook}{}
+
+\bidi@newrobustcmd*{\bidi@AfterFooter}{\bidi@gappto\bidi@afterfooterhook}
+\newcommand*{\bidi@afterfooterhook}{}
+
+\bidi@newrobustcmd*{\bidi@AfterOutputPageShipOut}{\bidi@gappto\bidi@afteroutputpageshipouthook}
+\newcommand*{\bidi@afteroutputpageshipouthook}{}
+
+\bidi@newrobustcmd*{\bidi@AtEndOutputPage}{\bidi@gappto\bidi@atendoutputpagehook}
+\newcommand*{\bidi@atendoutputpagehook}{}
+
+
+\bidi@newrobustcmd*{\bidi@AfterPreamble}{\AtBeginDocument}
+\bidi@AtEndPreamble{\let\bidi@AfterPreamble\@firstofone}
+
+
+\bidi@newrobustcmd*{\bidi@AfterEndPreamble}{\AddToHook{begindocument/end}}%
+
+
+\bidi@newrobustcmd*{\bidi@AfterEndDocumentCheckLabelsRerun}{\bidi@gappto\bidi@afterenddocumentchecklabelsrerunhook}
+\newcommand*{\bidi@afterenddocumentchecklabelsrerunhook}{}
+
+\bidi@patchcmd\enddocument
+  {\fi}
+  {\let\bidi@AfterEndDocumentCheckLabelsRerun\@firstofone
+   \bidi@afterenddocumentchecklabelsrerunhook
+   \fi}
+   {}
+   {\PackageWarning{biditools}{Patching `\string\enddocument' failed}}
+
+\AtEndDocument{\let\bidi@AfterEndPreamble\@gobble}
+
+\bidi@newrobustcmd*{\bidi@AfterLastShipout}{\bidi@gappto\bidi@afterlastshipouthook}
+\newcommand*{\bidi@afterlastshipouthook}{}
+
+\bidi@patchcmd\enddocument
+  {\clearpage}
+  {\clearpage
+   \let\bidi@AfterLastShipout\@firstofone
+   \bidi@afterlastshipouthook}
+  {}
+  {\let\bidi@clearpage\clearpage
+   \def\clearpage{%
+     \bidi@clearpage
+     \let\bidi@AfterLastShipout\@firstofone
+     \bidi@afterlastshipouthook}}
+
+
+\bidi@newrobustcmd*{\bidi@AfterEndDocument}{\AddToHook{enddocument/end}}%
+
+
+\bidi@newrobustcmd{\bidi@AtBeginEnvironment}[1]{%
+  \bidi@csgappto{@bidi@begin@#1@hook}}
+
+\expandafter\bidi@patchcmd\csname begin\ifcsname begin \endcsname\space\fi\endcsname
+  {\csname #1\endcsname}
+  {\bidi@csuse{@bidi@begin@#1@hook}%
+   \csname #1\endcsname}
+  {}
+  {\bidi@warning{%
+     Patching '\string\begin' failed!\MessageBreak
+     '\string\bidi@AtBeginEnvironment' will not work\@gobble}}
+
+\bidi@newrobustcmd{\bidi@AtEndEnvironment}[1]{%
+  \bidi@csgappto{@bidi@end@#1@hook}}
+
+\expandafter\bidi@patchcmd\csname end\ifcsname end \endcsname\space\fi\endcsname
+  {\csname end#1\endcsname}
+  {\bidi@csuse{@bidi@end@#1@hook}%
+   \csname end#1\endcsname}
+  {}
+  {\bidi@warning{%
+     Patching '\string\end' failed!\MessageBreak
+     '\string\bidi@AtEndEnvironment' will not work\@gobble}}
+
+\bidi@newrobustcmd{\bidi@BeforeBeginEnvironment}[1]{%
+  \bidi@csgappto{@bidi@beforebegin@#1@hook}}
+
+\expandafter\bidi@pretocmd\csname begin\ifcsname begin \endcsname\space\fi\endcsname
+  {\bidi@csuse{@bidi@beforebegin@#1@hook}}
+  {}
+  {\bidi@warning{%
+     Patching '\string\begin' failed!\MessageBreak
+     '\string\bidi@BeforeBeginEnvironment' will not work\@gobble}}
+
+\bidi@newrobustcmd{\bidi@AfterEndEnvironment}[1]{%
+  \bidi@csgappto{@bidi@afterend@#1@hook}}
+
+\expandafter\bidi@patchcmd\csname end\ifcsname end \endcsname\space\fi\endcsname
+  {\if@ignore}
+  {\bidi@csuse{@bidi@afterend@#1@hook}%
+   \if@ignore}
+  {}
+  {\bidi@warning{%
+     Patching '\string\end' failed!\MessageBreak
+     '\string\bidi@AfterEndEnvironment' will not work\@gobble}}
+
+\def\bidi@namedef#1{\expandafter\def\csname #1\endcsname}
+\def\bidi@namegdef#1{\expandafter\gdef\csname #1\endcsname}
+\def\bidi@nameedef#1{\expandafter\edef\csname #1\endcsname}
+\def\bidi@namexdef#1{\expandafter\xdef\csname #1\endcsname}
+
+
+\let\@bidi@stepcounter\stepcounter
+\let\@bidi@@stpelt\@stpelt
+
+\def\@stpelt#1{%
+  \ifcsname bidi@reset@#1@perpage\endcsname
+    \begingroup
+      \let\stepcounter\@bidi@stepcounter
+      \@bidi@@stpelt{#1}%
+    \endgroup
+    \expandafter\@gobbletwo
+  \fi
+  \@bidi@@stpelt{#1}%
+}
+
+\bidi@pretocmd\stepcounter
+  {%
+    \if@bidi@csundef{bidi@stepcounterhook@@#1}{}{%
+      \csname bidi@stepcounterhook@@#1\endcsname
+    }%
+  }{}%
+  {\PackageWarning{biditools}{Patching `\string\stepcounter' failed}}
+
+\chardef\bidi@backslash`\\
+\def\bidics#1{\texttt{\char\bidi@backslash#1}}
+
+\newcount\bidi@tempcountb
+\newtoks\bidi@temptoksa
+\newtoks\bidi@temptoksb
+
+\def\bidi@storecatcode#1%
+   {\escapechar\m@ne
+    \bidi@csarg\edef{bidi@restorecatcode\string#1}%
+          {\catcode`\string#1=
+                \the\catcode\expandafter`\string#1}%
+    \catcode\expandafter`\string#1=12\relax
+    \escapechar`\\\relax}
+\def\bidi@restorecatcode#1%
+   {\escapechar\m@ne
+    \csname bidi@restorecatcode\string#1\endcsname
+    \escapechar`\\\relax}
+
+\def\bidi@csname#1{\expandafter\noexpand\csname#1\endcsname}
+
+\def\bidi@csarg#1#2{\expandafter#1\csname#2\endcsname}
+
+\def\bidi@pickescape#1{\ifnum`#1=\escapechar\else#1\fi}
+
+\def\bidi@EqualString#1#2{00\fi\def\bidi@eqs@a{#1}\def\bidi@eqs@b{#2}%
+    \ifx\bidi@eqs@a\bidi@eqs@b}
+
+\def\bidi@EqualStringX#1#2{00\fi
+    \csname if\@bidi@EqualStringX#1&$#2&$\endcsname}
+\def\@bidi@EqualStringX#1#2$#3#4${\ifx#1#3%
+        \ifx#1&true\else\bidi@hop@ES\@bidi@EqualStringX#2$#4$\fi
+    \else false\fi}
+\def\bidi@hop@ES#1\fi#2\fi{\fi\fi#1}
+
+{\catcode0=12 \catcode255=12 \catcode127=12
+\gdef\bidi@StringBeforeNC#1#2{00\fi
+  \bidi@CharsBefore#1^^@^^?#2^^ff^^?}
+\gdef\bidi@CharsBeforeNC#1#2^^?#3#4^^?{%
+  \ifcat#1\relax\def\bidi@next{\bidi@CharsBefore#2^^@^^?#3#4^^ff^^?}%
+  \else\ifcat#3\relax\def\bidi@next{\bidi@CharsBefore#1#2^^@^^?#4^^ff^^?}%
+       \else\ifnum\lccode`#1<\lccode`#3
+              \def\bidi@next{\csname iftrue\endcsname}%
+            \else\ifnum\lccode`#1>\lccode`#3
+                   \def\bidi@next{\csname iffalse\endcsname}%
+                 \else\def\bidi@next{\bidi@CharsBefore#2^^?#4^^?}%
+  \fi  \fi  \fi  \fi
+  \bidi@next}
+\gdef\bidi@StringBefore#1#2{00\fi
+  \bidi@CharsBefore#1^^@^^?#2^^ff^^?}
+\gdef\bidi@CharsBefore#1#2^^?#3#4^^?{%
+  \ifnum`#1<`#3
+       \def\bidi@next{\csname iftrue\endcsname}%
+  \else\ifnum`#1>`#3
+       \def\bidi@next{\csname iffalse\endcsname}%
+       \else\def\bidi@next{\bidi@CharsBefore#2^^?#4^^?}%
+  \fi\fi
+  \bidi@next}
+}
+
+\def\bidi@empty{}
+\def\bidi@ifempty#1{00\fi\expandafter\ifx\csname bidi@#1@null\endcsname\bidi@@null}
+\def\bidi@ifEmptyX#1{\expandafter\ifx\csname bidi@#1@null\endcsname\bidi@@null}
+\def\bidi@IsEmptyList#1{00\fi\def\bidi@cs@a{#1}\ifx\cs@a\bidi@empty}
+
+\def\bidi@NextChar#1#2#3{00\fi
+    \let\bidi@nxt@ch#1\def\bidi@nxt@a{#2}\def\bidi@nxt@b{#3}%
+    \futurelet\bidi@nxt@c\@bidi@ifnxtc}
+\def\bidi@ifNextChar#1#2#3{%
+    \let\bidi@nxt@ch#1\def\bidi@nxt@a{#2}\def\bidi@nxt@b{#3}%
+    \futurelet\bidi@nxt@c\@bidi@ifnxtc}
+\def\@bidi@ifnxtc{\ifx\bidi@nxt@ch\bidi@nxt@c \expandafter\bidi@nxt@a
+    \else \expandafter\bidi@nxt@b \fi}
+
+\def\bidi@undefinedcs#1{00\fi\bidi@csarg\ifx{#1}\relax}
+
+\newcount\bidi@dummies
+\def\DefNewDummy#1{
+    \if\bidi@undefinedcs{#1}\bidi@csarg\edef{#1}{bidi@dum\the\bidi@dummies}
+        \advance\bidi@dummies\@ne
+    \else
+        \bidi@error{Attempt at second definition of `#1'}
+    \fi}
+
+\let\@bidi@fi\fi \let\endbidi@switch\relax \DefNewDummy{bidi@default}
+\def\bidi@switch@exit #1 \@bidi@fi #2 \endbidi@switch {\fi #1}
+\def\bidi@switch #1#2#3{\bidi@csarg\ifx{#2}\bidi@default\bidi@switch@exit #3 \@bidi@fi
+  #1{#2}\bidi@switch@exit #3 \@bidi@fi
+  \bidi@switch {#1}
+}
+\def\bidi@oswitch #1 in: #2 #3; {\bidi@csarg\ifx{#2}\bidi@default\bidi@switch@exit #3 \@bidi@fi
+  #1{#2}\bidi@switch@exit #3 \@bidi@fi
+  \bidi@switch #1 in:
+}
+\def\bidi@cswitch #1 in: #2 #3; {\bidi@csarg\ifx{#2}\bidi@default\bidi@switch@exit #3 \@bidi@fi
+  #1#2\bidi@switch@exit #3 \@bidi@fi
+  \bidi@cswitch #1 in:
+}
+\def\bidi@bswitch #1 in: #2 #3; {\bidi@csarg\ifx{#2}\bidi@default\bidi@switch@exit #3 \@bidi@fi
+  #1#2 \bidi@switch@exit #3 \@bidi@fi
+  \bidi@bswitch #1 in:
+}
+\def\bidi@mswitch #1 in: #2:#3; {\bidi@csarg\ifx{#2}\bidi@default\bidi@switch@exit #3 \@bidi@fi
+  #1{#2}\bidi@switch@exit #3 \@bidi@fi
+  \bidi@mswitch #1 in:
+}
+\def\bidi@fswitch #1 in: #2:#3; {\bidi@csarg\ifx{#2}\bidi@default\bidi@switch@exit #3 \@bidi@fi
+  #1#2 \bidi@switch@exit #3 \@bidi@fi
+  \bidi@fswitch #1 in:
+}
+
+
+\def\bidi@w@w#1{\if\bidi@undefinedcs{#1}#1\else \the\csname#1\endcsname\fi}
+
+\def\@bidi@ww#1{\if\bidi@undefinedcs{#1}#1\else \csname#1\endcsname \fi}
+
+\newif\ifbidi@in@label
+\def\@bidi@w@w#1{\if\bidi@undefinedcs{#1}#1\else
+            \ifbidi@in@label\noexpand\protect\fi \bidi@csname{#1}\fi}
+\newtoks\bidi@are@these@correct
+\def\bidi@t@w@w#1{%
+    \if\bidi@undefinedcs{#1}#1%
+        \ifdefining\bidi@append@to@list\bidi@are@these@correct{#1 }\fi
+    \else
+        \ifin@label\noexpand\protect\fi \bidi@csname{#1}\fi}
+
+\newtoks\bidi@toks@lista \newtoks\bidi@toks@listb
+\long\def\@bidi@append@to@cslist#1#2#3{\begingroup\bidi@toks@lista=#2{#3}%
+  \global#1=\expandafter\expandafter\expandafter{\expandafter\the\expandafter#1\the\bidi@toks@lista}\endgroup}
+\long\def\@bidi@prepend@to@cslist#1#2#3{\begingroup\bidi@toks@lista=#2{#3}%
+  \global#1=\expandafter\expandafter\expandafter{\expandafter\the\expandafter\bidi@toks@lista\the#1}\endgroup}
+\def\@bidi@append@to@list{\bidi@csarg\@bidi@append@to@cslist}
+\def\@bidi@prepend@to@list{\bidi@csarg\@bidi@prepend@to@cslist}
+\long\def\bidi@append@to@list#1#2{\@bidi@append@to@list{#1}{}{#2}}
+\long\def\bidi@prepend@to@list#1#2{\@bidi@prepend@to@list{#1}{}{#2}}
+\def\bidi@append@list@to@list#1#2{%
+  \@bidi@append@to@list{#1}{\expandafter\expandafter\expandafter}{\expandafter\the\csname#2\endcsname}}
+\def\bidi@prepend@list@to@list#1#2{%
+  \@bidi@prepend@to@list{#1}{\expandafter\expandafter\expandafter}{\expandafter\the\csname#2\endcsname}}
+\def\bidi@append@cslist@to@cslist#1#2{%
+  \@bidi@append@to@cslist{#1}\expandafter{\the#2}}
+\def\bidi@prepend@cslist@to@cslist#1#2{%
+  \@bidi@prepend@to@cslist{#1}\expandafter{\the#2}}
+\def\bidi@append@toks@cs@to@list#1#2{\@bidi@append@to@list{#1}\expandafter{\the#2}}
+\def\bidi@prepend@toks@cs@to@list#1#2{\@bidi@prepend@to@list{#1}\expandafter{\the#2}}
+
+\let\bidi@willbeunhskip\unhskip
+
+\def\NewTokenList:#1 {\bidi@csarg\newtoks{#1}\global\csname#1\endcsname{}}
+\def\EmptyTokenList:#1 {\global\csname#1\endcsname{}}
+\long\def\AppendToTokenList:#1=#2 {\@bidi@append@to@list{#1}{}{#2}}
+\long\def\PrependToTokenList:#1=#2 {\@bidi@prepend@to@list{#1}{}{#2}}
+\def\TheTokenList:#1 {\let\bidi@oldwbuskip\bidi@willbeunhskip \let\bidi@willbeunhskip\@empty
+    \if\bidi@undefinedcs{#1}\bidi@error{Token List <#1> undefined}
+    \else\bidi@csarg\the{#1}\fi
+    \let\bidi@willbeunhskip\bidi@oldwbuskip}
+
+\def\bidi@del@tok@from@list#1#2{\begingroup
+    \long\def\bidi@cs@liste##1#2##2\bidi@tok@SM
+       {\bidi@toks@lista{##1}\bidi@toks@listb{##2}%
+        \edef\bidi@cs@listb{\global\bidi@csname{#1}=
+                {\the\bidi@toks@lista\the\bidi@toks@listb}}%
+        \bidi@cs@listb}%
+    \edef\bidi@cs@lista{\noexpand\bidi@cs@liste{}\expandafter\the\csname#1\endcsname\noexpand\bidi@tok@SM}%
+    \bidi@cs@lista \endgroup}
+\def\bidi@in@front@of@list#1{\bidi@csarg{\let\expandafter\bidi@cs@lista}{#1}%
+  \bidi@in@front@of@cslist\bidi@cs@lista}
+\long\def\bidi@in@front@of@cslist#1#2{\begingroup\bidi@toks@lista={#2}%
+  \global#1=\expandafter\expandafter\expandafter{\expandafter\the\expandafter\bidi@toks@lista \the#1}%
+  \endgroup}
+\long\def\bidi@local@in@front@of@list#1#2{\bidi@toks@lista={#2}%
+    \csname#1\endcsname\expandafter\expandafter\expandafter\expandafter\expandafter\expandafter\expandafter
+                {\expandafter\expandafter\expandafter\the\expandafter\expandafter\expandafter\bidi@toks@lista
+                 \expandafter\the\csname#1\endcsname}%
+    }
+\def\bidi@set@list#1{\bidi@csarg{\let\expandafter\bidi@cs@lista}{#1}%
+  \bidi@set@cslist\bidi@cs@lista}
+\long\def\bidi@set@cslist#1#2{\begingroup\bidi@toks@lista={#2}%
+   \global#1=\expandafter{\the\bidi@toks@lista}\endgroup}
+
+%%%%%%%%%%%%%%%% Stack macros
+\def\bidi@push@cs@onto@cs#1#2{\@bidi@prepend@to@cslist#1\expandafter{\expandafter\\\expandafter{\the#2}}}
+\def\bidi@push@onto#1{\bidi@csarg\bidi@push@onto@cs{#1}}
+\def\bidi@push@onto@cs#1#2{\@bidi@prepend@to@cslist#1{}{\\{#2}}}
+\def\bidi@local@push@onto#1#2{\let\\=\relax
+    \bidi@local@in@front@of@list{#1}{\\{#2}}}
+\def\bidi@pop@cs@into#1#2{\edef\bidi@cs@e
+   {\noexpand\@@bidi@popinto\noexpand#1\noexpand#2\the#2\noexpand\@@bidi@pop}\bidi@cs@e}
+\def\bidi@pop@into#1#2{\edef\bidi@cs@e
+   {\noexpand\@@bidi@popinto\bidi@csname{#1}\bidi@csname{#2}\bidi@csarg\the{#2}\noexpand\@@bidi@pop}\bidi@cs@e}
+\long\def\@@bidi@popinto#1#2\\#3#4\@@bidi@pop{#1{#3}#2{#4}}
+\def\bidi@copy@stacktop#1#2{%
+    \edef\bidi@cs@e{\noexpand\@bidi@copy@stacktop
+                   {#1}\bidi@csarg\the{#2}\noexpand\@@bidi@pop}%
+    \bidi@cs@e}
+\def\@bidi@copy@stacktop#1\\#2#3\@@bidi@pop{\csname#1\endcsname#2\relax}
+\newcount\bidi@stack@length \newtoks\bidi@empty@stack \bidi@empty@stack{\\{}}
+\def\bidi@length@of@stack#1{\bidi@csarg\bidi@length@of@csstack{#1}}
+\def\bidi@length@of@csstack#1{\def\\##1{\advance\bidi@stack@length\@ne}%
+  \bidi@stack@length\m@ne \the#1}
+\def\bidi@invert@csstack#1{\bidi@length@of@csstack{#1}%
+  \bidi@tempcountb\z@ \bidi@temptoksa\bidi@empty@stack
+  \loop\ifnum\bidi@tempcountb<\bidi@stack@length
+    \bidi@pop@cs@into\bidi@temptoksb#1\advance\bidi@stack@length\m@ne
+    \bidi@push@cs@onto@cs\bidi@temptoksa\bidi@temptoksb
+    \repeat% copy b to a
+  #1\bidi@temptoksa \bidi@temptoksa\bidi@empty@toks}
+\def\bidi@x@stack@to@list#1{\bidi@length@of@stack{#1}%
+  \bidi@tempcountb\z@ \bidi@temptoksa\bidi@empty@toks
+  \loop\ifnum\bidi@tempcountb<\bidi@stack@length
+    \bidi@pop@into{bidi@temptoksb}{#1}\advance\bidi@stack@length\m@ne
+    \bidi@append@list@to@list{bidi@temptoksb}{bidi@temptoksa}\repeat
+  \csname#1\endcsname\bidi@temptoksa \bidi@temptoksa\bidi@empty@toks}
+
+
+\def\bidi@looprepeat@csarg#1#2{\expandafter#1\csname#2\endcsname}
+\def\bidi@looprepeat@csromannumeral#1{\csname #1\romannumeral\bidi@looprepeat@depth\endcsname}
+\def\bidi@looprepeat@csargromannumeral#1#2{\expandafter#1\csname#2\romannumeral\bidi@looprepeat@depth\endcsname}
+
+\newcount\bidi@looprepeat@depth
+\let\endlooprepeat\relax \def\bidi@csprotect{}
+\let\bidi@looprepeat@traceinit\relax \let\bidi@looprepeat@traceexit\relax
+
+\def\looprepeat#1\doloopbody{\bidi@looprepeat@traceinit % exit in \breakrepeatloop
+  \advance\bidi@looprepeat@depth\@ne\relax
+  \bidi@looprepeat@csargromannumeral\ifx{bidi@looprepeat@count}\relax
+    \bidi@looprepeat@csargromannumeral{\csname newcount\expandafter\endcsname}{bidi@looprepeat@count}%
+    \bidi@looprepeat@csargromannumeral{\csname newtoks\expandafter\endcsname}{bidi@looprepeat@toks}%
+    \bidi@looprepeat@csargromannumeral{\csname newtoks\expandafter\endcsname}{bidi@looprepeat@wtest}%
+    \bidi@looprepeat@csargromannumeral{\csname newtoks\expandafter\endcsname}{bidi@looprepeat@utest}%
+  \fi \bidi@looprepeat@zero \def\bidi@looprepeat@sign{}\def\bidi@looprepeat@comp{>}\bidi@looprepeat@setup{#1}%
+  \edef\bidi@looprepeat@tmp
+     {\def\bidi@looprepeat@csargromannumeral\noexpand{bidi@looprepeat@looprepeat}{\bidi@looprepeat@csargromannumeral\noexpand{bidi@looprepeat@body}}}\bidi@looprepeat@tmp
+  \afterassignment\bidi@looprepeat@dxbody\bidi@looprepeat@csromannumeral{bidi@looprepeat@toks}}
+
+\def\bidi@looprepeat@dxbody{\bidi@looprepeat@csargromannumeral\edef{bidi@looprepeat@body}{%
+    \bidi@looprepeat@csargromannumeral\the{bidi@looprepeat@wtest}%
+      \noexpand\the\bidi@looprepeat@csargromannumeral\noexpand{bidi@looprepeat@toks}%
+        \bidi@looprepeat@csargromannumeral\the{bidi@looprepeat@utest}%
+    \global\bidi@looprepeat@csargromannumeral\advance{bidi@looprepeat@count} by \bidi@looprepeat@sign\bidi@looprepeat@csromannumeral{bidi@looprepeat@inc}\relax
+    \noexpand\endlooprepeat
+    \bidi@looprepeat@csargromannumeral\noexpand{bidi@looprepeat@looprepeat}}%
+  \bidi@looprepeat@csromannumeral{bidi@looprepeat@body}\ignorespaces}
+
+%% In order to stop, issue a
+\def\breaklooprepeat#1\endlooprepeat{\bidi@looprepeat@zero\bidi@looprepeat@csargromannumeral\let{bidi@looprepeat@looprepeat}\relax
+  \advance\bidi@looprepeat@depth\m@ne \bidi@looprepeat@traceexit
+  }
+
+\def\bidi@looprepeat@setup#1{%
+  \begingroup
+    \def\forvariable##1{%
+      \edef\bidi@looprepeat@tmp{%
+        \global\let\bidi@looprepeat@csarg\noexpand{##1}\bidi@looprepeat@csromannumeral{bidi@looprepeat@count}\ignorespaces}%
+      \bidi@looprepeat@tmp}%
+    \def\fromvalue##1{\bidi@looprepeat@csargromannumeral\global{bidi@looprepeat@count}##1\ignorespaces}%
+    \def\tovalue##1{%
+      \edef\bidi@looprepeat@tmp{\global\bidi@looprepeat@csargromannumeral\noexpand{bidi@looprepeat@wtest}=
+       {\bidi@looprepeat@csargromannumeral\the{bidi@looprepeat@wtest}%
+        \noexpand\ifnum\bidi@looprepeat@csargromannumeral\noexpand{bidi@looprepeat@count}\bidi@looprepeat@comp##1\relax
+          \noexpand\expandafter \noexpand\breaklooprepeat
+        \noexpand\fi}\ignorespaces}%
+      \bidi@looprepeat@tmp}%
+    \def\downtovalue##1{%
+      \gdef\bidi@looprepeat@sign{-}\gdef\bidi@looprepeat@comp{<}\tovalue{##1}\ignorespaces}%
+    \def\bystep##1{\ifnum##1<0 \bidi@error{LOOPREPEAT: increment has to be a positive value}\@ehc%
+               \bidi@looprepeat@csargromannumeral\gdef{bidi@looprepeat@inc}{-##1}\else
+               \bidi@looprepeat@csargromannumeral\gdef{bidi@looprepeat@inc}{##1}\fi\ignorespaces}%
+    \def\untilcondition##1{%
+      \edef\bidi@looprepeat@tmp{\global\bidi@looprepeat@csargromannumeral\noexpand{bidi@looprepeat@utest}=
+         {\noexpand##1\relax
+          \noexpand\expandafter \noexpand\breaklooprepeat \noexpand\fi}\ignorespaces}%
+      \bidi@looprepeat@tmp}%
+    \def\whilecondition##1{%
+      \edef\bidi@looprepeat@tmp{\global\bidi@looprepeat@csargromannumeral\noexpand{bidi@looprepeat@wtest}=
+         {\noexpand##1\relax \noexpand\else
+          \noexpand\expandafter \noexpand\breaklooprepeat \noexpand\fi}\ignorespaces}%
+    \bidi@looprepeat@tmp}%
+    \fromvalue{\@ne}\bystep{\@ne}#1%
+  \endgroup}
+\def\bidi@looprepeat@zero
+   {\bidi@looprepeat@csromannumeral{bidi@looprepeat@toks}{}\bidi@looprepeat@csromannumeral{bidi@looprepeat@utest}{}\bidi@looprepeat@csromannumeral{bidi@looprepeat@wtest}{}%
+    \bidi@looprepeat@csargromannumeral\def{bidi@looprepeat@body}{}}
+
+
+
+
+
+
+
+
+
+
+\ExplSyntaxOn
+\NewDocumentCommand \bidi@AfterClass { s m o +m }
+  {
+    \IfBooleanTF { #1 }
+      {
+        \@ifclassloaded{ #2 }
+          { #4 }
+          {
+            \hook_gput_code:nnn
+              { file / #2.\@clsextension / after }
+              { #3 }
+              { #4 }
+          }
+      }
+      {
+        \hook_gput_code:nnn { file / #2.\@clsextension / after } { #3 } { #4 }
+      }
+  }
+
+\seq_new:N \g__biditools_input_file_seq
+
+\prg_new_protected_conditional:Npnn \__bidi_if_loading:n #1 { T, F, TF }
+  {
+    \str_set:Nx \l_tmpa_str { #1 }
+    \seq_if_in:NxTF \g__biditools_input_file_seq { \str_use:N \l_tmpa_str }
+      { \prg_return_true: }
+      { \prg_return_false: }
+  }
+
+\prg_new_protected_conditional:Npnn \bidi_if_class_loaded:n #1 { T, F, TF }
+  {
+    \@ifclassloaded { #1 }
+      {
+        \__bidi_if_loading:nTF { #1.\@clsextension }
+          { \prg_return_false: }
+          { \prg_return_true: }
+      }
+      {
+        \prg_return_false:
+      }
+  }
+
+\prg_new_protected_conditional:Npnn \bidi_if_package_loaded:n #1 { T, F, TF }
+  {
+    \@ifpackageloaded { #1 }
+      {
+        \__bidi_if_loading:nTF { #1.\@pkgextension }
+          { \prg_return_false: }
+          { \prg_return_true: }
+      }
+      {
+        \prg_return_false:
+      }
+  }
+
+\NewDocumentCommand \bidi@AfterAtEndOfClass { s m o +m }
+  {
+    \IfBooleanTF { #1 }
+      {
+        \bidi_if_class_loaded:nTF { #2 }
+          { #4 }
+          { \hook_gput_code:nnn { class / #2 / after } { #3 } { #4 } }
+      }
+      {
+        \bidi_if_class_loaded:nF
+          { #2 }
+          { \hook_gput_code:nnn { class / #2 / after } { #3 } { #4 } }
+      }
+  }
+
+\NewDocumentCommand \bidi@AfterPackage { s m o +m }
+  {
+    \IfBooleanTF { #1 }
+      {
+        \@ifpackageloaded{ #2 }
+          { #4 }
+          {
+            \hook_gput_code:nnn
+              { file / #2.\@pkgextension / after }
+              { #3 }
+              { #4 }
+          }
+      }
+      {
+        \hook_gput_code:nnn { file / #2.\@pkgextension / after } { #3 } { #4 }
+      }
+  }
+
+\NewDocumentCommand \bidi@AfterAtEndOfPackage { s m o +m }
+  {
+    \IfBooleanTF { #1 }
+      {
+        \bidi_if_package_loaded:nTF { #2 }
+          { #4 }
+          { \hook_gput_code:nnn { package / #2 / after } { #3 } { #4 } }
+      }
+      {
+        \bidi_if_package_loaded:nF
+          { #2 }
+          { \hook_gput_code:nnn { package / #2 / after } { #3 } { #4 } }
+      }
+  }
+
+\clist_new:N \l__biditools_package_clist
+\msg_new:nnn { biditools } { cannot-prevent-for-already-loaded-package }
+  {
+    Can~not~prevent~package~`#1'~from~being~loaded,~
+    since~it~has~been~loaded~already~before~line~\msg_line_number:
+  }
+\clist_new:N \g__biditools_prevent_clist
+
+\NewDocumentCommand \bidi@PreventPackageFromLoading { s +o m }
+  {
+    \clist_set:Nx \l__biditools_package_clist { #3 }
+    \clist_map_inline:Nn \l__biditools_package_clist
+      {
+        \@ifpackageloaded { ##1 }
+          {
+            \IfBooleanTF { #1 } { \msg_info:nnn } { \msg_warning:nnn }
+              { biditools } { cannot-prevent-for-already-loaded-package } { ##1 }
+          }
+          {
+            \clist_if_in:NnF \g__biditools_prevent_clist { ##1 }
+              { \clist_gput_right:Nn \g__biditools_prevent_clist { ##1 } }
+            \tl_if_exist:cF { g__biditools_exclude_package_##1_tl }
+              {
+                \tl_new:c { g__biditools_exclude_package_##1_tl }
+              }
+            \IfValueT { #2 }
+              {
+                \tl_gput_right:cn { g__biditools_exclude_package_##1_tl } { #2 }
+              }
+            \disable@package@load { ##1 }
+              { \tl_use:c { g__biditools_exclude_package_##1_tl } }
+          }
+      }
+    \clist_clear:N \l__biditools_package_clist
+  }
+
+\NewDocumentCommand \bidi@ResetPreventPackageFromLoading {}
+  {
+    \clist_map_function:NN \g__biditools_prevent_clist \reenable@package@load
+    \clist_gclear:N \g__biditools_prevent_clist
+  }
+
+\NewDocumentCommand \bidi@StorePreventPackageFromLoading { m }
+  { \edef #1 { \clist_use:Nn \g__biditools_prevent_clist { , } } }
+
+\NewDocumentCommand \bidi@UnPreventPackageFromLoading { s m }
+  {
+    \clist_set:Nx \l__biditools_package_clist { #2 }
+    \clist_map_inline:Nn \l__biditools_package_clist
+      {
+        \clist_if_in:NnT \g__biditools_prevent_clist { ##1 }
+          {
+            \clist_gremove_all:Nn \g__biditools_prevent_clist { ##1 }
+            \reenable@package@load { ##1 }
+            \IfBooleanT { #1 }
+              { \cs_undefine:c { g__biditools_exclude_package_##1_tl } }
+          }
+      }
+  }
+
+\NewDocumentCommand \bidi@BeforeClosingMainAux { o m }
+  {
+    \hook_gput_code:nnn { enddocument / afterlastpage } { #1 }
+      {
+        \debug_suspend:
+        \RenewDocumentCommand \bidi@BeforeClosingMainAux { m } { ##1 }
+        \cs_set_eq:NN \__biditools_protected@write:Nnn \protected@write
+        \cs_set_eq:NN \protected@write \bidi@protected@immediate@write
+        #2
+        \cs_set_eq:NN \protected@write \__biditools_protected@write:Nnn
+        \debug_resume:
+      }
+  }
+
+\NewDocumentCommand \bidi@AfterReadingMainAux { o m }
+  {
+    \hook_gput_code:nnn { enddocument / afteraux } { #1 }
+      {
+        \debug_suspend:
+        \RenewDocumentCommand \bidi@AfterReadingMainAux { m } { ##1 }
+        \cs_set_eq:NN \__biditools_protected@write:Nnn \protected@write
+        \cs_set_eq:NN \protected@write \bidi@protected@immediate@write
+        #2
+        \cs_set_eq:NN \protected@write \__biditools_protected@write:Nnn
+        \debug_resume:
+      }
+  }
+
+\clist_new:N \l__biditools_file_patch_clist
+
+\NewDocumentCommand \ApplyPatchToFiles { m O{def} O{bidi} }
+  {
+    \clist_set:Nx \l__biditools_file_patch_clist { #1 }
+    \clist_map_inline:Nn \l__biditools_file_patch_clist
+      {
+        \ApplyPatchToFile { ##1 } [ #2 ] [ #3 ]
+      }
+    \clist_clear:N \l__biditools_file_patch_clist
+  }
+
+\clist_new:N \l__biditools_package_patch_clist
+
+\NewDocumentCommand \ApplyPatchToPackages { m O{bidi} }
+  {
+    \clist_set:Nx \l__biditools_package_patch_clist { #1 }
+    \clist_map_inline:Nn \l__biditools_package_patch_clist
+      {
+        \ApplyPatchToPackage { ##1 } [ #2 ]
+      }
+    \clist_clear:N \l__biditools_package_patch_clist
+  }
+
+\clist_new:N \l__biditools_class_patch_clist
+
+\NewDocumentCommand \ApplyPatchToClasses { m O{bidi} }
+  {
+    \clist_set:Nx \l__biditools_class_patch_clist { #1 }
+    \clist_map_inline:Nn \l__biditools_class_patch_clist
+      {
+        \ApplyPatchToClass { ##1 } [ #2 ]
+      }
+    \clist_clear:N \l__biditools_class_patch_clist
+  }
+
+\ExplSyntaxOff
+
+\newcommand*{\bidi@ReplaceInput}{\declare@file@substitution}
+\newcommand*{\bidi@UnReplaceInput}
+{\undeclare@file@substitution}
+\newcommand*{\bidi@ReplacePackage}[2]{%
+  \declare@file@substitution{#1.\@pkgextension}{#2.\@pkgextension}%
+}
+\newcommand*{\bidi@UnReplacePackage}[1]{%
+  \undeclare@file@substitution{#1.\@pkgextension}%
+}
+\newcommand*{\bidi@ReplaceClass}[2]{%
+  \declare@file@substitution{#1.\@clsextension}{#2.\@clsextension}%
+}
+\newcommand*{\bidi@UnReplaceClass}[1]{%
+  \undeclare@file@substitution{#1.\@clsextension}%
+}
+\newcommand*{\bidi@BeforeFile}[1]{%
+  \AddToHook{file/#1/before}%
+}
+\newcommand*{\bidi@AfterFile}[1]{%
+  \AddToHook{file/#1/after}%
+}
+\newcommand*{\bidi@BeforeClass}[1]{%
+    \bidi@BeforeFile{#1.\@clsextension}%
+}
+\newcommand*{\bidi@BeforePackage}[1]{%
+  \bidi@BeforeFile{#1.\@pkgextension}%
+}
+
+\long\def\bidi@protected@immediate@write#1#2#3{%
+  \begingroup
+    #2%
+    \let\protect\@unexpandable@protect
+    \edef\reserved@a{\immediate\write#1{#3}}%
+    \reserved@a
+  \endgroup
+  \if@nobreak\ifvmode\nobreak\fi\fi
+}
+
+\def\bidi@patch@BeforePackage#1{%
+  \@ifpackageloaded{#1}{%
+    \@firstofone
+  }{%
+    \AddToHook{package/#1/before}%
+  }%
+}
+
+\def\bidi@patch@AfterPackage#1{%
+  \@ifpackageloaded{#1}{%
+    \@firstofone
+  }{%
+    \AddToHook{package/#1/after}%
+  }%
+}
+
+\def\bidi@patch@AfterFile#1{%
+  \IfFileLoadedTF{#1}{%
+    \@firstofone
+  }{%
+    \AddToHook{file/#1/after}%
+  }%
+}
+
+\NewDocumentCommand \ApplyPatchToFile { m O{def} O{bidi} }
+  {
+    \bidi@patch@AfterFile{#1.#2}{%
+      \ifnum\catcode`\@=11
+        \input{#1-xetex-#3.def}%
+      \else
+        \bidi@storecatcode\@
+        \makeatletter
+        \input{#1-xetex-#3.def}%
+        \bidi@restorecatcode\@
+      \fi
+    }%
+  }
+
+\NewDocumentCommand \ApplyPatchCodeToFile { m +m O{def} }
+  {
+    \bidi@patch@AfterFile{#1.#3}{#2}%
+  }
+
+\NewDocumentCommand \ApplyPatchToFilesIfPackageLoadedF { m m O{def} O{bidi} }
+  {
+    \AddToHook{begindocument/before}{%
+      \IfPackageLoadedF{#1}{%
+        \ApplyPatchToFiles{#2}[#3][#4]%
+      }%
+    }
+  }
+
+\NewDocumentCommand \ApplyPatchToClassIfPackageLoadedF { m m O{bidi} }
+  {
+    \AddToHook{begindocument/before}{%
+      \IfPackageLoadedF{#2}{%
+        \ifnum\catcode`\@=11
+          \@ifclassloaded{#1}{%
+            \input{#1-xetex-#3.def}%
+          }{}%
+        \else
+          \bidi@storecatcode\@
+          \makeatletter
+          \@ifclassloaded{#1}{%
+            \input{#1-xetex-#3.def}%
+          }{}%
+          \bidi@restorecatcode\@
+        \fi
+      }%
+    }
+  }
+
+\NewDocumentCommand \ApplyPatchToPackageIfPackageLoadedF { m m O{bidi} }
+  {
+    \AddToHook{begindocument/before}{%
+      \IfPackageLoadedF{#2}{%
+        \IfPackageLoadedT{#1}{%
+          \ifnum\catcode`\@=11
+            \input{#1-xetex-#3.def}%
+          \else
+            \bidi@storecatcode\@
+            \makeatletter
+            \input{#1-xetex-#3.def}%
+            \bidi@restorecatcode\@
+          \fi
+        }%
+      }%
+    }
+  }
+
+\NewDocumentCommand \ApplyPatchIfPackageLoaded { m +m +m }
+  {
+    \AddToHook{begindocument/before}{%
+       \ifnum\catcode`\@=11
+         \@ifpackageloaded{#1}{#2}{#3}%
+       \else
+         \bidi@storecatcode\@
+         \makeatletter
+         \@ifpackageloaded{#1}{#2}{#3}%
+         \bidi@restorecatcode\@
+       \fi
+    }
+  }
+
+\NewDocumentCommand \ApplyPatchIfPackageLoadedT { m +m }
+  {
+    \ApplyPatchIfPackageLoaded{#1}{#2}{}%
+  }
+
+\NewDocumentCommand \ApplyPatchIfPackageLoadedF { m +m }
+  {
+    \ApplyPatchIfPackageLoaded{#1}{}{#2}%
+  }
+
+\NewDocumentCommand \ApplyPatchToPackage { m O{bidi} }
+  {
+    \bidi@patch@AfterPackage{#1}{\input{#1-xetex-#2.def}}%
+  }
+
+\NewDocumentCommand \ApplyPatchCodeBeforePackage { m +m }
+  {
+    \bidi@patch@BeforePackage{#1}{#2}%
+  }
+
+\NewDocumentCommand \ApplyPatchCodeToPackage { m +m }
+  {
+    \bidi@patch@AfterPackage{#1}{#2}%
+  }
+
+\NewDocumentCommand \ApplyPatchToClass { m O{bidi} }
+  {
+    \@ifclassloaded{#1}{\input{#1-xetex-#2.def}}{}%
+  }
+\endinput
+%%
+%% End of file `biditools.sty'.

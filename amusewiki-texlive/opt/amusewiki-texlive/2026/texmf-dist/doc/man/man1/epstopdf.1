@@ -1,0 +1,176 @@
+.TH EPSTOPDF 1 "29 April 2024"
+.\" $Id: epstopdf.1 71121 2024-04-29 17:27:25Z karl $
+.SH NAME
+epstopdf, repstopdf \- convert an EPS file to PDF
+.SH SYNOPSIS
+\fBepstopdf\fP [\fIoptions\fP] [\fIepsfile\fP [\fIpdffile\fP.pdf]]
+.SH DESCRIPTION
+\fBepstopdf\fP converts the input PostScript file to PDF, by default
+using Ghostscript.
+.PP
+In more detail: \fBepstopdf\fP transforms the Encapsulated PostScript
+file \fIepsfile\fP (or standard input) so that it is guaranteed to start
+at the 0,0 coordinate, and it sets a page size exactly corresponding to
+the BoundingBox. Thus, the result needs no cropping, and the PDF
+MediaBox is correct.
+.PP
+By default, the output name is the input name with any extension
+replaced by \fB.pdf\fP.  An output name ending with .pdf can also be given
+as a second argument on the command line, or the \fB--outfile\fP
+(\fB-o\fP) option can be used with any name.
+.PP
+The output is PDF 1.5 by default. To change this, use, for example
+.nf
+--gsopt=-dCompatibilityLevel=1.7
+.fi
+(Until epstopdf 2.28 (released September 2018), the
+PDF version was whatever the underlying Ghostscript or other interpreter
+produced by default.)
+.PP
+PJL commands at the start of a file are removed.  DOS EPS binary files
+(TN 5002) are supported. Seeking from a pipe is not supported.
+.PP
+If the bounding box in the input is incorrect, inevitably there will
+be resulting problems.
+.SH OPTIONS
+Options may start with either "\fB-\fP" or "\fB--\fP", and may be
+unambiguously abbreviated.  It is best to use the full option name in
+scripts to avoid possible collisions with new options in the future.
+.PP
+General script options:
+.IP "\fB--help\fP
+display help message and exit
+.IP "\fB--version\fP
+display version information and exit
+.IP "\fB--outfile\fP=\fIfile\fP"
+write result to \fIfile\fP.  If this option is not given, and
+\fB--nogs\fP or \fB--filter\fP is specified, write to standard output;
+otherwise, the default is to construct the output file name by replacing
+any extension in the input file with `.pdf'.
+.IP "\fB--\fP[\fBno\fP]\fBdebug\fP"
+write debugging info (default: false). For maximum output, use \fB--debug\fP
+as the first option.
+.IP "\fB--\fP[\fBno\fP]\fBexact\fP"
+scan ExactBoundingBox (default: false).
+.IP "\fB--\fP[\fBno\fP]\fBfilter\fP"
+read standard input and (unless \fB--outfile\fP is given) write standard
+output (default: false).
+.IP "\fB--\fP[\fBno\fP]\fBgs\fP"
+run Ghostscript (default: true).  With \fB--nogs\fP, output (to standard
+output by default) the PostScript that would normally be converted; that
+is, the input PostScript as modified by \fBepstopdf\fP.
+.IP "\fB--\fP[\fBno\fP]\fBhires\fP"
+scan HiresBoundingBox (default: false).
+.IP "\fB--restricted\fP=\fIval\fP"
+turn on restricted mode (default: [true for repstopdf, else false]);
+this forbids the use of \fB--gscmd\fP, among other options, and imposes
+restrictions on the input and output file names according to the values
+of openin_any and openout_any (see the Web2c manual, https://tug.org/web2c).
+On Windows, the Ghostscript command is forced to be the TeX Live builtin
+gs, installed under \fB.../tlpkg/tlgs/bin/\fP.
+.PP
+Options for Ghostscript (more info below):
+.IP "\fB--gscmd\fP=\fIval\fP"
+pipe output to \fIval\fP (default: [\fBgswin64c.exe\fP on 64-bit Windows,
+\fBgswin32c.exe\fP on 32-bit Windows, else \fBgs\fP])
+.IP "\fB--gsopt\fP=\fIval\fP"
+include \fIval\fP as one argument in the gs command (can be repeated).
+.IP "\fB--gsopts\fP=\fIval\fP"
+split \fIval\fP at whitespace and include each resulting word as an
+argument in the gs command (can be repeated).
+.IP "\fB--autorotate\fP=\fIval\fP"
+set AutoRotatePages (default: None); recognized \fIval\fP choices:
+None, All, PageByPage.  For EPS files, PageByPage is equivalent to All.
+.IP "\fB--\fP[\fBno\fP]\fBcompress\fP"
+use compression in the output (default: true); if turned off, passes
+.BR -dUseFlateCompression=false .
+.IP "\fB--device\fP=\fIdev\fP"
+use \fB-sDEVICE=\fIdev\fR (default: pdfwrite); not allowed in restricted mode.
+.IP "\fB--\fP[\fBno\fP]\fBembed\fP"
+embed fonts (default: true); passes
+.B -dMaxSubsetPct=100 -dSubsetFonts=true -dEmbedAllFonts=true.
+.IP "\fB--\fP[\fBno\fP]\fBgray\fP"
+grayscale output (default: false); passes
+.B -sColorConversionStrategy=Gray -dProcessColorModel=/DeviceGray.
+.IP "\fB--pdfsettings\fP=\fIval\fP"
+use -dPDFSETTINGS=/\fIval\fP (default is `prepress' if \fB--embed\fP,
+else empty); recognized \fIval\fP choices: screen, ebook, printer,
+prepress, default.
+.IP "\fB--\fP[\fBno\fP]\fBquiet\fP"
+use -q, a.k.a. -dQUIET (default: false).
+.IP "\fB--res\fP=\fIdpi, dpi\fPx\fIdpi\fP"
+set image resolution (default: [use gs default]).
+.IP "\fB--\fP[\fBno\fP]\fBsafer\fP"
+use -d(NO)SAFER (default: true).
+.PP
+In addition to the specific options above, additional options to be used
+with gs can be specified with either or both of the two cumulative
+options \fB--gsopts\fP and \fB--gsopt.\fP
+.PP
+\fB--gsopts\fP takes a single string of options, which is split at
+whitespace; each resulting word then added to the gs command line
+individually.
+.PP
+\fB--gsopt\fP adds its argument as a single option to the gs command
+line.  It can be used multiple times to specify options separately.
+This form must be used if a gs option or its value contains whitespace.
+.PP
+In restricted mode, options are limited to those with names and values
+known to be safe.  Some options taking booleans, integers or fixed
+names are allowed, those taking general strings are not.
+.PP
+In order to give a comprehensible error message, epstopdf checks whether
+kpsewhich and (the specified) gs are found in the current PATH, or
+executable if they are specified as absolute names.
+
+.SH EXAMPLES
+These examples all equivalently convert `test.eps' to `test.pdf':
+.nf
+epstopdf test.eps
+epstopdf test.eps test.pdf
+cat test.eps | epstopdf --filter >test.pdf
+cat test.eps | epstopdf -f -o=test.pdf
+.fi
+.PP
+Example for using HiResBoundingBox instead of BoundingBox:
+.nf
+epstopdf --hires test.eps
+.fi
+.PP
+Example for \fBepstopdf\fP's attempt at correcting PostScript:
+.nf
+epstopdf --nogs test.ps >testcorr.ps
+.fi
+.PP
+In all cases, you can add \fB--debug\fP to see more about
+what \fBepstopdf\fP is doing.  Use \fB--debug\fP as the first option for
+maximum output.
+.SH BUGS
+The case of "%%BoundingBox: (atend)" when input is not seekable (e.g.,
+from a pipe) is not supported.
+.PP
+Report bugs in the program or this man page to tex-k@tug.org
+(https://lists.tug.org/tex-k). When reporting bugs, please include an
+input file and the command line options specified, so the problem can be
+reproduced.
+.SH SEE ALSO
+\fBgs\fP(1),
+\fBpdfcrop\fP(1).
+.PP
+The epstopdf LaTeX package, which automates running this script on the
+fly under LaTeX: https://ctan.org/pkg/epstopdf-pkg.
+.SH AUTHOR
+Originally written by Sebastian Rahtz, for Elsevier Science, with
+subsequent contributions from Thomas Esser, Gerben Wierda, Heiko
+Oberdiek, and many others.  Currently maintained by Karl Berry.
+.PP
+Man page originally written by Jim Van Zandt.
+.PP
+epstopdf package page on CTAN: https://ctan.org/pkg/epstopdf.
+.PP
+epstopdf home page: https://tug.org/epstopdf.
+.PP
+You may freely use, modify and/or distribute this man page.
+The epstopdf script is released under the modified BSD license.
+.PP
+$Id: epstopdf.1 71121 2024-04-29 17:27:25Z karl $

@@ -1,0 +1,101 @@
+%
+% see pstricks.tex for license and copyright
+%
+\define@key[psset]{pstricks}{gridwidth}[0.8pt]{\pst@getlength{#1}\psk@gridwidth}
+\psset[pstricks]{gridwidth=.8pt}
+\define@key[psset]{pstricks}{griddots}[0]{%
+  \pst@cntg=#1\relax
+  \edef\psk@griddots{\the\pst@cntg}}
+\psset[pstricks]{griddots=0}
+\define@key[psset]{pstricks}{gridcolor}[black]{\pst@getcolor{#1}\psgridcolor}
+\psset[pstricks]{gridcolor=black}
+\define@key[psset]{pstricks}{subgridwidth}[0.4pt]{\pst@getlength{#1}\psk@subgridwidth}
+\psset[pstricks]{subgridwidth=0.4pt}
+\define@key[psset]{pstricks}{subgridcolor}[gray]{\pst@getcolor{#1}\pssubgridcolor}
+\psset[pstricks]{subgridcolor=gray}
+\define@key[psset]{pstricks}{subgriddots}[0]{%
+  \pst@cntg=#1\relax\edef\psk@subgriddots{\the\pst@cntg}}
+\psset[pstricks]{subgriddots=0}
+\define@key[psset]{pstricks}{subgriddiv}[5]{%
+  \pst@cntg=#1\relax\edef\psk@subgriddiv{\the\pst@cntg}}
+\psset[pstricks]{subgriddiv=5}
+%
+\define@key[psset]{pstricks}{gridfont}[NimbusSanL-Regu]{%
+  \ifPSTlualatex
+    \ifx\relax#1\relax
+       \def\psk@gridfont{\fontid\font\space .findfontid }%
+    \else
+      \def\psk@gridfont{/#1 findfont }%   hv 2007-11-13
+     \fi
+  \else
+     \def\psk@gridfont{/#1 findfont }%   hv 2007-11-13
+  \fi
+}%
+   
+\ifpst@psfonts
+  \psset[pstricks]{gridfont=Helvetica}%
+\else
+  \psset[pstricks]{gridfont=NimbusSanL-Regu}%
+\fi
+%
+\define@key[psset]{pstricks}{gridlabels}[10pt]{\pst@getlength{#1}\psk@gridlabels}
+\psset[pstricks]{gridlabels=10pt}
+\define@key[psset]{pstricks}{gridlabelcolor}[black]{\pst@getcolor{#1}\psgridlabelcolor}
+\psset[pstricks]{gridlabelcolor=black}
+\define@key[psset]{pstricks}{griddx}[1]{\def\psk@xgridDX{#1 }}
+\define@key[psset]{pstricks}{griddy}[1]{\def\psk@ygridDY{#1 }}
+\define@key[psset]{pstricks}{xgridoffset}[0]{\pst@getlength{#1}\psk@xgridoffset}
+\define@key[psset]{pstricks}{ygridoffset}[0]{\pst@getlength{#1}\psk@ygridoffset}
+\psset[pstricks]{xgridoffset=0,ygridoffset=0,griddx=1,griddy=1}
+
+\def\tx@Grid{Grid }
+
+\def\psgrid{\pst@object{psgrid}}
+\def\psgrid@i{\@ifnextchar({\psgrid@ii}{\expandafter\psgrid@iv\pic@coor}}
+\def\psgrid@ii(#1){\@ifnextchar({\psgrid@iii(#1)}{\psgrid@iv(0,0)(0,0)(#1)}}
+\def\psgrid@iii(#1)(#2){\@ifnextchar({\psgrid@iv(#1)(#2)}{\psgrid@iv(#1)(#1)(#2)}}
+\def\psgrid@iv(#1)(#2)(#3){%
+  \begin@SpecialObj
+    \pst@getcoor{#1}\pst@tempA%  hv 1.11
+    \pst@getcoor{#2}\pst@tempB%  hv 1.11
+    \pst@@getcoor{#3}%
+    \ifnum\psk@subgriddiv>1\relax
+      \addto@pscode{
+        /xGridOffset \psk@xgridoffset\space def
+        /yGridOffset \psk@ygridoffset\space def
+        /GridDX \psk@xgridDX def
+        /GridDY \psk@ygridDY def
+        gsave
+        \tx@setStrokeTransparency
+        \psk@subgridwidth SLW 
+        \pst@usecolor\pssubgridcolor
+        \pst@tempB \pst@coor \pst@tempA                 % hv 1.11
+%        \pst@number\psxunit \pst@number\psyunit        % hv 1.11
+        \pst@number\psxunit abs \pst@number\psyunit abs % hv 1.11
+        \psk@subgriddiv\space \psk@subgriddots\space
+        {} 0 
+        \psk@gridfont 0 scalefont setfont      % hv 1.16
+	\tx@Grid 
+	grestore
+      }%
+    \fi
+    \addto@pscode{
+      gsave
+      /xGridOffset \psk@xgridoffset def
+      /yGridOffset \psk@ygridoffset def
+      /GridDX \psk@xgridDX def
+      /GridDY \psk@ygridDY def
+      \tx@setStrokeTransparency
+      \psk@gridwidth SLW 
+      \pst@usecolor\psgridcolor
+      \pst@tempB \pst@coor \pst@tempA                 % hv 1.11
+      \pst@number\psxunit abs \pst@number\psyunit abs % hv 1.11
+%      \pst@number\psxunit \pst@number\psyunit        % hv 1.11
+      1 \psk@griddots\space { \pst@usecolor\psgridlabelcolor }
+      \psk@gridlabels 
+      \psk@gridfont \psk@gridlabels scalefont setfont  % hv 1.16
+      \tx@Grid 
+      grestore
+    }%
+  \end@SpecialObj
+  \ignorespaces}

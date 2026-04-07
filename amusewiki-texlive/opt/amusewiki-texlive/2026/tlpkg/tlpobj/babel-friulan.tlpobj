@@ -1,0 +1,21 @@
+name babel-friulan
+category Package
+revision 77682
+shortdesc Babel/Polyglossia support for Friulan(Furlan)
+longdesc The package provides a language description file that enables
+longdesc support of Friulan either with babel or with polyglossia.
+containersize 1560
+containerchecksum b823e6236f586bd4f18ca7f40bd5665e020444ba785ea106b396fb5dba80afb4bba465a1ac9054efc409496c82a8041a275602144205641b457bfb4fbe1d1019
+doccontainersize 138624
+doccontainerchecksum 4bfa5e267d16913c9ae7602bbe906f855f77cccd49815d8b7f4e504abfb76d5cea58051bc407464d0a85ba0a26f2c19b1e1c1b8a9873f7e54ae157090b781155
+docfiles size=35
+ texmf-dist/doc/generic/babel-friulan/README.txt details="Readme"
+ texmf-dist/doc/generic/babel-friulan/friulan.pdf details="Package documentation"
+srccontainersize 3456
+srccontainerchecksum 68bf88d09e3d2c17418bc563aa61ee4ad591f3a3f6e71d20461aa827729e80a19a61a4ac9d937f4a5fbe5ec4bce1854cca4b5046d67480c3f8f7cf7fa2441620
+runfiles size=1
+ texmf-dist/tex/generic/babel-friulan/friulan.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/friulan
+catalogue-license lppl1.3
+catalogue-topics multilingual-addon tagged-pdf
+catalogue-version 1.3

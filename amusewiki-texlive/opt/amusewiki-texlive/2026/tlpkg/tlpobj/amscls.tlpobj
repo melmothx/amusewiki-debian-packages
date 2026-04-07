@@ -1,0 +1,50 @@
+name amscls
+category Package
+revision 77682
+shortdesc AMS document classes for LaTeX
+longdesc This bundle contains three AMS classes, amsart (for writing
+longdesc articles for the AMS), amsbook (for books) and amsproc (for
+longdesc proceedings), together with some supporting material. This
+longdesc material forms one branch of what was originally the AMS-LaTeX
+longdesc distribution. The other branch, amsmath, is now maintained and
+longdesc distributed separately. The user documentation can be found in
+longdesc the package amscls-doc.
+containersize 32244
+containerchecksum 84f4f0dcd7844ed51c6f2ab5bfb97b78e4beabd77f6f037ba2b853fd048646f746a4b39218a0b36e5f67a63d563046a2c4aa2169c3131577f369927659531792
+doccontainersize 1072480
+doccontainerchecksum 5ff54709e3d2071ab7e6121de366334dc942cea2f32a70a81f9c55c3720d990aa9f77b91975cdbc29918523c646efcd472d568fcb4fcafef7064e0d6cad6d7b6
+docfiles size=298
+ texmf-dist/doc/latex/amscls/00LICENSE.txt
+ texmf-dist/doc/latex/amscls/README details="Readme"
+ texmf-dist/doc/latex/amscls/amsart-template.tex
+ texmf-dist/doc/latex/amscls/amsbook-template.tex
+ texmf-dist/doc/latex/amscls/amsbooka.pdf
+ texmf-dist/doc/latex/amscls/amsclass.pdf details="Code with documentation"
+ texmf-dist/doc/latex/amscls/amsdtx.pdf
+ texmf-dist/doc/latex/amscls/amsmidx.pdf
+ texmf-dist/doc/latex/amscls/amsproc-template.tex
+ texmf-dist/doc/latex/amscls/amsthdoc.pdf
+ texmf-dist/doc/latex/amscls/diffs-c.txt
+ texmf-dist/doc/latex/amscls/manifest.txt
+ texmf-dist/doc/latex/amscls/thmtest.pdf
+ texmf-dist/doc/latex/amscls/upref.pdf
+srccontainersize 365984
+srccontainerchecksum cce18b4529df7b39d72bf41a99a0dda9688933c4af1454d74f1165d5f69e8917da5de982d1a3ff3ca3577211083a870a3d2de0e8f41f2d2c8f9b3b3e36a9a10b
+runfiles size=79
+ texmf-dist/bibtex/bst/amscls/amsalpha.bst
+ texmf-dist/bibtex/bst/amscls/amsplain.bst
+ texmf-dist/tex/latex/amscls/amsart.cls
+ texmf-dist/tex/latex/amscls/amsbook.cls
+ texmf-dist/tex/latex/amscls/amsbooka.sty
+ texmf-dist/tex/latex/amscls/amsdtx.cls
+ texmf-dist/tex/latex/amscls/amsldoc.cls
+ texmf-dist/tex/latex/amscls/amsmidx.sty
+ texmf-dist/tex/latex/amscls/amsproc.cls
+ texmf-dist/tex/latex/amscls/amsthm.sty
+ texmf-dist/tex/latex/amscls/upref.sty
+catalogue-also amslatex amscls-doc
+catalogue-contact-home http://www.ams.org/tex/amslatex.html
+catalogue-ctan /macros/latex/required/amscls
+catalogue-license lppl1.3c
+catalogue-topics class maths tagged-pdf-incompatible
+catalogue-version 2.20.6

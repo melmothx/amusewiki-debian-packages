@@ -1,0 +1,81 @@
+% ======================================================================
+% scrjura-en.tex
+% Copyright (c) Markus Kohm, 2011-2024
+%
+% This file is part of the LaTeX2e KOMA-Script bundle.
+%
+% This work may be distributed and/or modified under the conditions of
+% the LaTeX Project Public License, version 1.3c of the license.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3c or later is part of all distributions of LaTeX 
+% version 2005/12/01 or later and of this work.
+%
+% This work has the LPPL maintenance status "author-maintained".
+%
+% The Current Maintainer and author of this work is Markus Kohm.
+%
+% This work consists of all files listed in MANIFEST.md.
+% ======================================================================
+%
+% Chapter about scrjura of the KOMA-Script guide
+% Maintained by Markus Kohm
+%
+% ======================================================================
+
+\KOMAProvidesFile{scrjura-en.tex}%
+                 [$Date: 2024-10-15 10:33:25 +0200 (Di, 15. Okt 2024) $
+                  KOMA-Script guide (chapter: scrjura)]
+
+\translator{Markus Kohm}
+
+\chapter{Support for the Law Office with \Package{scrjura}}
+\labelbase{scrjura}
+\BeginIndexGroup
+\BeginIndex{Package}{scrjura}
+\BeginIndex{Package}{contract}
+
+Up to and including version~3.41, \KOMAScript{} officially provided the
+package \Package{scrjura} to support legal documents. These were mainly
+statutes, laws, commentaries on them or, in the broadest sense, contracts of
+all kinds. In the course of the restructuring of \KOMAScript{}, the package
+was spun off. Since the contract is the central element of the package, it was
+given the new name \Package{contract}. Under this name it can not only be
+found on CTAN (see \cite{package:contract}). It has also been integrated into
+common \TeX{} distributions and can be installed via their package manager.
+
+For compatibility reasons, there will still be a package \Package{scrjura} in
+\KOMAScript{} for the time being. However, this is merely a different
+packaging of the new \Package{contract}, in which some of the
+incompatibilities between the new package and the previous \Package{scrjura}
+have been fixed. Therefore, it should generally be possible to continue
+editing existing documents based on \Package{scrjura}. For new documents, it
+is strongly recommended to switch to \Package{contract} instead. Switching is
+also recommended when revising old documents. Please refer to the
+\Package{contract} user manual for the changes to be taken into account.
+
+\begin{Declaration}
+  \Macro{Clause}\Parameter{options}%
+  \Macro{SubClause}\Parameter{options}
+\end{Declaration}
+The most important difference when using \Package{scrjura} compared to
+\Package{contract} is that the \PName{options} for the two instructions
+\Macro{Clause} and \Macro{SubClause} within a \Environment{contract}
+environment with package \Package{contract} represent an optional argument,
+i.e. must be specified in square brackets. In the \Package{scrjura} package,
+however, the \PName{options} were always a required argument, i.e. to be
+specified in braces. This is still the case with \Package{scrjura}.%
+%
+\EndIndexGroup
+%
+\EndIndexGroup
+
+\endinput
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "scrguide-en.tex"
+%%% coding: utf-8
+%%% ispell-local-dictionary: "en_GB"
+%%% eval: (flyspell-mode 1)
+%%% End: 

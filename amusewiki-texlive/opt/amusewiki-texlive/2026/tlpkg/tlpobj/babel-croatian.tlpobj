@@ -1,0 +1,21 @@
+name babel-croatian
+category Package
+revision 77682
+shortdesc Babel contributed support for Croatian
+longdesc The package establishes Croatian conventions in a document (or
+longdesc a subset of the conventions, if Croatian is not the main
+longdesc language of the document).
+containersize 2160
+containerchecksum 6f03d6984d248451ce8d9781a6949a6d811e15878b72bff2415e5c84a104bec75a5176d5aaceca982a33f51074334cfe80aeaf0c54e0218a45d055a3b8b7f6ba
+doccontainersize 114148
+doccontainerchecksum 2ca1ba6a4ace7ced845c18c7d6670c7b9bef48554615f60023bcedf84ec837dbceab64252fee2a0c619c306641ae977bc295ba6cd2a58ff0b5e4cfd22a4fb610
+docfiles size=30
+ texmf-dist/doc/generic/babel-croatian/croatian.pdf details="Package documentation"
+srccontainersize 4420
+srccontainerchecksum 081108db1e87db96e0a5693794a80f875386d5aa57c717f1b6feee1eaedf8b6296e4f5ed394b3c3a3a7aba1097ab8d858adbda65b8f7078b46ec87da1259823c
+runfiles size=1
+ texmf-dist/tex/generic/babel-croatian/croatian.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/croatian
+catalogue-license lppl1.3
+catalogue-topics croatian multilingual-addon tagged-pdf
+catalogue-version 1.3l

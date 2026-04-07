@@ -1,0 +1,21 @@
+name babel-finnish
+category Package
+revision 77682
+shortdesc Babel support for Finnish
+longdesc The package provides a language description file that enables
+longdesc support of Finnish with babel.
+containersize 2432
+containerchecksum 8bbefe78d6a9aad3d8d7fda63144d245cbe52381f30e58de9425d9e147fd1213ae47203a22b4e9d552ecc713485f1d174f7bf46ae7b43f8c9247921a7d2e8ed3
+doccontainersize 147992
+doccontainerchecksum 0d0d0a0dafcfef50aa495c28da2ba3b51aa3e57a4f5aa0679b90f37c4f993ccc2c8facb9301249b9b89065009c60f15fd630db7824eeef5af416bf73c54059a1
+docfiles size=38
+ texmf-dist/doc/generic/babel-finnish/README.md details="Readme"
+ texmf-dist/doc/generic/babel-finnish/finnish.pdf details="Package documentation"
+srccontainersize 6224
+srccontainerchecksum 46d74eb4582bbaf7e4d6ee15875d47cf7c8e1ecee25129705c13f30aecab991b3c10a6d2ec1a719b82718d4c19178a438f1b995eab9bb8288db768f61beb5c73
+runfiles size=2
+ texmf-dist/tex/generic/babel-finnish/finnish.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/finnish
+catalogue-license lppl1.3
+catalogue-topics multilingual-addon finnish tagged-pdf
+catalogue-version 1.3s

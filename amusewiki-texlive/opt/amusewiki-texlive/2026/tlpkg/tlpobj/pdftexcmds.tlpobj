@@ -1,0 +1,27 @@
+name pdftexcmds
+category Package
+revision 77682
+shortdesc LuaTeX support for pdfTeX utility functions
+longdesc LuaTeX provides most of the commands of pdfTeX 1.40. However, a
+longdesc number of utility functions are not available. This package
+longdesc tries to fill the gap and implements some of the missing
+longdesc primitives using Lua.
+containersize 6324
+containerchecksum 2a5adf584abae1465ef4642cf8ff9ef74a8923d3b3d7dac9d2e08418cac40b77c6c6703b531921f117122c9fdf4338c82ee5f2dbe54108c7615e532fb8d39e86
+doccontainersize 379848
+doccontainerchecksum 575fe01b760d8874c7c0c17756be0c1324dd312cee3de1ba5d164e45941db30044bcc05eb096173412cc76f6c3c6bbc5d68b69c6603ec3a79ccff2eefa187ee4
+docfiles size=96
+ texmf-dist/doc/generic/pdftexcmds/README.md details="Readme"
+ texmf-dist/doc/generic/pdftexcmds/pdftexcmds.bib
+ texmf-dist/doc/generic/pdftexcmds/pdftexcmds.pdf details="Package documentation"
+srccontainersize 14052
+srccontainerchecksum 987d2c780a887326c4a498a1910da7c1573891ee795bfbf18f47c8358ff7f356a6b1d387bf92de57c58d44972aac306309b87d8649a5c12df7d578bf7ee9a558
+runfiles size=8
+ texmf-dist/tex/generic/pdftexcmds/pdftexcmds.lua
+ texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+catalogue-contact-bugs https://github.com/ho-tex/pdftexcmds/issues
+catalogue-contact-repository https://github.com/ho-tex/pdftexcmds
+catalogue-ctan /macros/generic/pdftexcmds
+catalogue-license lppl1.3c
+catalogue-topics macro-supp macro-gen tagged-pdf
+catalogue-version 0.33

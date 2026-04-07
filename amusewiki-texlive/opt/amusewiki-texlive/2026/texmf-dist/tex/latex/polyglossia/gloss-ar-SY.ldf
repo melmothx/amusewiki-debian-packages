@@ -1,0 +1,11 @@
+% Language definition file (part of polyglossia v2.9 -- 2025/12/01)
+%
+\ProvidesFile{gloss-ar-SY.ldf}[polyglossia: module for ar-SY (Arabic)]
+
+% We provide this as a bcp47-compliant alias
+
+\InheritGlossFile{arabic}
+
+\SetLanguageKeys{arabic}{bcp47=ar-SY,bcp47-language=ar,bcp47-region=SY}%
+
+\endinput

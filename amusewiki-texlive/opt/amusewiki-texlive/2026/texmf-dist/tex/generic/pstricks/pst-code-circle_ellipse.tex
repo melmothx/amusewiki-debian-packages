@@ -1,0 +1,171 @@
+%
+% see pstricks.tex for license and copyright
+%
+\def\pscircle{\def\pst@par{}\pst@object{pscircle}}
+\def\pscircle@i{\@ifnextchar({\pscircle@do}{\pscircle@do(0,0)}}
+\def\pscircle@do(#1)#2{%
+  \if@star{\use@par\qdisk(#1){#2}}%   	qdisk does not allow
+  \else%				to use opacity option
+%    \addbefore@par{dimen=middle}%     20220109 hv
+    \begin@ClosedObj
+    \pst@@getcoor{#1}%
+    \pssetlength\pst@dimc{#2}%
+    \def\pst@linetype{4}%
+    \addto@pscode{
+      \pst@coor 2 copy moveto
+      \ifPst@SpecialLength \pst@SpecialLength \else \pst@number\pst@dimc \fi 
+      \psk@dimen CLW mul round % prevent rounding errors
+      sub 
+      dup 0 rmoveto
+      0 360 arc
+      \ifPst@variableLW \pst@flattenpath \fi
+      closepath
+    }%
+    \showpointsfalse
+    \end@ClosedObj
+  \fi
+  \ignorespaces}
+%
+\def\pscircleOA{\def\pst@par{}\pst@object{pscircleOA}}%	hv 2008-04-14
+\def\pscircleOA@i(#1)(#2){%
+%  \addbefore@par{dimen=middle}%     20220109  hv
+  \begin@ClosedObj
+  \pst@getcoor{#1}\pst@tempA
+  \pst@@getcoor{#2}%
+  \def\pst@linetype{4}%
+  \addto@pscode{
+    \pst@tempA			% x0 y0
+    2 copy			% xO yO xO yO 
+    \pst@coor			% xO yO xO yO xA yA 
+    Pyth2			% xO yO radius
+    \psk@dimen CLW mul sub
+    \if@star \tx@SD \else
+      0 360 arc
+      closepath 
+    \fi }%
+  \showpointsfalse
+  \end@ClosedObj
+  \ignorespaces}
+%
+\def\qdisk(#1)#2{%
+  \def\pst@par{}%
+  \begin@SpecialObj
+  \pst@@getcoor{#1}%
+  \pssetlength\pst@dimg{#2}%
+  \addto@pscode{ 
+    \pst@coor 
+    \ifPst@SpecialLength \pst@SpecialLength \else \pst@number\pst@dimg \fi
+%    \pst@number\pst@dimg 
+    \tx@SD }%
+  \end@SpecialObj}
+%
+\define@key[psset]{pstricks}{radius}[0.25cm]{\pst@@getlength{#1}\psk@radius}
+\psset[pstricks]{radius=.25cm}
+%
+\def\psCircle{\pst@object{psCircle}}% same as \pscircle, but uses \psk@radius
+\def\psCircle@i{\@ifnextchar({\psCircle@ii}{\psCircle@ii(0,0)}}
+\def\psCircle@ii(#1){\pscircle@do(#1){\psk@radius}}
+%
+\def\psRing{\def\pst@par{}\pst@object{psRing}}%% hv 20130405
+\def\psRing@i{\@ifnextchar({\psRing@ii}{\psRing@ii(0,0)}}
+\def\psRing@ii(#1){%
+  \pst@@getcoor{#1}%
+  \@ifnextchar[{\psRing@iii}{\psRing@iii[0,360]}}
+\def\psRing@iii[#1,#2]#3#4{%   origin, inner radius, outer radius
+  \begin@ClosedObj
+  \pssetlength\pst@dimc{#3}%
+  \edef\pst@tempA{\ifPst@SpecialLength \pst@SpecialLength \else \pst@number\pst@dimc \fi}%
+  \pssetlength\pst@dimd{#4}%
+  \edef\pst@tempB{\ifPst@SpecialLength \pst@SpecialLength \else \pst@number\pst@dimd \fi}%
+  \pst@getangle{#1}\pst@tempa
+  \pst@getangle{#2}\pst@tempb
+  \def\pst@linetype{4}%
+  \addto@pscode{
+    \pst@coor translate 
+%    \pst@number\pst@dimc \psk@dimen CLW mul sub /InnerRadius ED
+%    \pst@number\pst@dimd \psk@dimen CLW mul sub /OuterRadius ED
+    \pst@tempA\space \psk@dimen CLW mul sub /InnerRadius ED
+    \pst@tempB\space \psk@dimen CLW mul sub /OuterRadius ED
+    InnerRadius 0 moveto newpath
+    0 0 InnerRadius \pst@tempa\space \pst@tempb\space arc 
+    OuterRadius \pst@tempb\space PtoC 
+    \pst@tempb\space \pst@tempa\space sub abs 360 eq { moveto }{ lineto } ifelse % whole circle or not??
+    0 0 OuterRadius \pst@tempb\space \pst@tempa\space arcn 
+    closepath
+  }%
+  \showpointsfalse
+  \end@ClosedObj
+  \ignorespaces}
+%
+\def\pswedge{\def\pst@par{}\pst@object{pswedge}}
+\def\pswedge@i{\@ifnextchar({\pswedge@ii}{\pswedge@ii(0,0)}}
+\def\pswedge@ii(#1)#2#3#4{%
+  \begin@ClosedObj
+  \pssetlength\pst@dimc{#2}%
+  \pst@getangle{#3}\pst@tempa
+  \pst@getangle{#4}\pst@tempb
+  \pst@@getcoor{#1}%
+  \def\pst@linetype{1}%
+  \addto@pscode{
+    \ifx\psk@rot\@empty 0 \else \psk@rot \fi rotate
+    \pst@coor
+    2 copy
+    moveto
+    \ifPst@SpecialLength \pst@SpecialLength \else \pst@number\pst@dimc \fi
+    \psk@dimen CLW mul sub % Adjusted radius
+    \pst@tempa \pst@tempb
+    arc
+    closepath}%
+  \showpointsfalse
+  \end@ClosedObj
+}
+\def\tx@ellipse#1{ \ifx\psk@rot\@empty 0 \else \psk@rot \fi #1  Ellipse }
+\def\tx@Ellipse{ \ifx\psk@rot\@empty 0 \else \psk@rot \fi Ellipse }
+%
+\def\psellipse{\def\pst@par{}\pst@object{psellipse}}
+\def\psellipse@i(#1){\@ifnextchar({\psellipse@ii(#1)}{\psellipse@ii(0,0)(#1)}}
+\def\psellipse@ii(#1)(#2){%
+  \begin@ClosedObj
+  \pst@getcoor{#1}\pst@tempa
+  \pst@@getcoor{#2}%
+  \addto@pscode{
+    0 360
+    \pst@coor 
+    \ifdim\psk@dimen\p@=\z@\else
+      \psk@dimen CLW mul
+      dup 4 -1 roll sub neg 3 1 roll sub
+    \fi
+    \pst@tempa 
+    \tx@ellipse{true}
+    \ifPst@variableLW \pst@flattenpath \fi
+    closepath
+  }%
+  \def\pst@linetype{2}%
+  \end@ClosedObj%
+}
+\def\psellipseAB{\def\pst@par{}\pst@object{psellipseAB}}
+\def\psellipseAB@i(#1)(#2)#3{%
+  \begin@ClosedObj
+  \pst@getcoor{#1}\pst@tempa
+  \pst@getcoor{#2}\pst@tempb
+  \addto@pscode{
+    0 360
+    #3 \pst@number\psxunit mul
+    \pst@tempa /yA ED /xA ED
+    \pst@tempb /yB ED /xB ED
+    xA xB sub dup mul
+    yA yB sub dup mul add sqrt 2 div
+    \ifdim\psk@dimen\p@=\z@\else
+      \psk@dimen CLW mul
+      dup 4 -1 roll sub neg 3 1 roll sub
+    \fi
+    xA xB add 2 div yA yB add 2 div
+    translate 0 0
+    xB xA sub yA yB sub atan 
+    Ellipse  % on stack is rotate coordinates
+    \ifPst@variableLW \pst@flattenpath \fi
+    closepath
+  }%
+  \def\pst@linetype{2}%
+  \end@ClosedObj
+}

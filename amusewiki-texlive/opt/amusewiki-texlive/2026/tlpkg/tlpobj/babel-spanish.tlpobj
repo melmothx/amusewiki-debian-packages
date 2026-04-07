@@ -1,0 +1,25 @@
+name babel-spanish
+category Package
+revision 77682
+shortdesc Babel support for Spanish
+longdesc This bundle provides the means to typeset Spanish text, with
+longdesc the support provided by the LaTeX standard package babel. Note
+longdesc that separate support is provided for those who wish to typeset
+longdesc Spanish as written in Mexico.
+containersize 8896
+containerchecksum e889f793f24be713cc701ce042603a8e9fb99aad4bb59757ec29047383e3db942977644b38dd48674c6aab2359ee495348b17dc348a1c855883c64ab8a5fe46e
+doccontainersize 183144
+doccontainerchecksum f83aaab4af2d5368e174df7caedf7b6157636fc27c4eb025f9f50366d293bcadb41a63c37f6e58850e1fb533e202bdf2b470f26c917290a45a25b220dfc62ff2
+docfiles size=46
+ texmf-dist/doc/generic/babel-spanish/README.md details="Readme"
+ texmf-dist/doc/generic/babel-spanish/spanish.pdf details="Package documentation" language="es"
+srccontainersize 29796
+srccontainerchecksum 694c62d971da591165fc684f79de682b3760bd375cbc1ddd7ccfb69cd776d96890de6cd76ccf850f5f495b02487d5b5c40a2014b6e821cce7fa0c8fc7b64a128
+runfiles size=9
+ texmf-dist/tex/generic/babel-spanish/romanidx.sty
+ texmf-dist/tex/generic/babel-spanish/spanish.ldf
+catalogue-alias spanish
+catalogue-ctan /macros/latex/contrib/babel-contrib/spanish
+catalogue-license lppl1.3
+catalogue-topics spanish multilingual-addon tagged-pdf-incompatible
+catalogue-version 5.0q

@@ -1,0 +1,159 @@
+.TH GFTODVI 1 "25 January 2026" "Web2C 2026"
+.\"=====================================================================
+.if n .ds MF Metafont
+.if t .ds MF Metafont
+.if t .ds TX \fRT\\h'-0.10m'\\v'0.17v'E\\v'-0.17v'\\h'-0.06m'X\fP
+.if n .ds TX TeX
+.\"=====================================================================
+.SH NAME
+gftodvi \- make proof sheets from generic font bitmap files
+.SH SYNOPSIS
+.B gftodvi
+.RB [ -overflow-label-offset=\fI\,real\/\fP ]
+.RB [ -verbose ]
+.IR gf_file [gf]
+.\"=====================================================================
+.SH DESCRIPTION
+The
+.B gftodvi
+program converts a generic font
+.RI ( gf )
+bitmap file output by, typically,
+.BR mf (1),
+to a device independent (DVI) file, which can then be typeset using the same
+software that has already been written for \*(TX. The characters in the
+.I gf
+file will appear one per page, with labels, titles, and annotations
+as specified in Appendix H (Hardcopy Proofs) of
+.IR "The \*(MFbook" .
+.PP
+.B gftodvi
+uses other fonts in addition to the main
+.I gf
+file.
+A `gray' font is used to typeset the
+pixels that actually make up the character. (We wouldn't
+want all the pixels to be simply black, since then labels,
+key points, and other information would be lost.)  A `title' font
+is used for the information at the top of the page. A `label' font
+is used for the labels on key points of the figure. A `slant'
+font is used to typeset diagonal lines, which
+otherwise have to be simulated using horizontal and vertical rules.
+The default gray, title, and label fonts are
+.IR gray ,
+.IR cmr8 ,
+and
+.IR cmtt10 ,
+respectively; there is no default slant font.
+.PP
+To change the default fonts, you can give
+.B special
+commands in your
+\*(MF source file, or you can change the fonts online. An online dialog
+ensues if you end the
+.I gf_file
+with a `/'. For example,
+.br
+.ti +2
+gftodvi cmr10.300gf/
+.br
+.ti +2
+Special font substitution: grayfont black
+.br
+.ti +2
+OK; any more? grayfontarea /home/art/don/
+.br
+.ti +2
+OK; any more? slantfont /home/fonts/slantimagen6
+.br
+.ti +2
+OK; any more? <RET>
+.br
+will use
+.I /home/art/don/black
+as the `gray' font and
+.I /home/fonts/slantimagen6
+as the `slant' font (this name indicates
+a font for lines with slope 1/6 at the resolution of an Imagen printer).
+.PP
+The
+.I gf_file
+on the command line must include the resolution, but can omit the suffix
+"gf". The output dvi file has same base name as
+.IR gf_file ,
+and it is placed in the current
+working directory with the
+.B dvi
+suffix replacing
+.BR gf .
+For example, the input file
+.I /some/directory/cmr10.2602gf
+would become
+.IR cmr10.dvi .
+.\"=====================================================================
+.SH OPTIONS
+See
+.BR tex (1)
+for details of command-line parsing.
+.PP
+The argument to
+.B -overflow-label-offset
+specifies the distance from the right edge of the character
+bounding box at which the overflow equations (if any) are typeset.
+The value is given in \*(TX points. The default is a little over two
+inches.
+.PP
+By default,
+.B gftodvi
+operates silently. With the \fB-verbose\fP option, a banner and progress
+report are printed on stdout.
+.PP
+The standard
+.B -help
+and
+.B -version
+options are also supported.
+.\"=====================================================================
+.SH ENVIRONMENT
+The program looks for
+.I gf_file
+using the environment variables GFFONTS, GLYPHFONTS, and TEXFONTS, in
+that order. If none are set, it uses the system default. See the
+Kpathsea manual at https://tug.org/kpathsea for the details of the
+searching.
+.\"=====================================================================
+.SH FILES
+.TP
+.I {gray.tfm,slant.tfm,black.tfm,.\|.\|.}
+The default fonts.
+.TP
+.I {gray.mf,slant.mf,black.mf,.\|.\|.}
+The \*(MF sources.
+.\"=====================================================================
+.SH "SEE ALSO"
+.BR tex (1),
+.BR mf (1).
+.br
+Donald E.\& Knuth,
+.I "The \*(MFbook"
+(Volume C of
+.IR "Computers & Typesetting" ).
+.br
+Donald E.\& Knuth et al.,
+.IR \*(MFware .
+.PP
+Package page on CTAN: https://ctan.org/pkg/gftodvi
+.br
+Section in the Web2c manual:
+https://tug.org/texinfohtml/web2c.html#gftodvi-invocation
+.br
+Typeset source code, including file format descriptions:
+https://ctan.org/pkg/knuth-pdf
+.\"=====================================================================
+.SH AUTHORS
+Donald E.\& Knuth wrote and still maintains the program. It was
+published as part of the
+.I \*(MFware
+technical report. Paul Richards originally ported it to Unix. 
+.PP
+Public discussion list and bug reports: https://lists.tug.org/tex-k

@@ -1,0 +1,161 @@
+.TH LUATEX 1 "14 February 2026" "Web2C 2026"
+.\"=====================================================================
+.if t .ds TX \fRT\\h'-0.10m'\\v'0.17v'E\\v'-0.17v'\\h'-0.06m'X\fP
+.if n .ds TX TeX
+.\"=====================================================================
+.SH NAME
+luatex, dviluatex, luahbtex, luajithbtex, luajittex, texlua, texluac, texluajit, texluajitc \- TeX extended with Lua as an embedded scripting language
+.SH SYNOPSIS
+.B luatex
+.RB [ --lua=\fIluafile\fP ]
+\h'.25'
+.RI [ options ]
+.RI [ \fB&\fPformat ]
+\h'.25' [ \fIfile\fP [ \fImore-input\fP ] \h'.5'|\h'.5' [ \fB\e\fP\fImore-input\fP ]
+.\"=====================================================================
+.SH DESCRIPTION
+Run the Lua\*(TX typesetter on
+.IR file [.tex],
+usually creating
+.IR file\fB.pdf\fP .
+If the file argument has no extension, ".tex" will be appended to it. See
+.BR tex (1)
+for details of command-line parsing, with the exceptions described here.
+.PP
+Lua\*(TX began as an extended version of pdf\*(TX with \fBlua\fP(1) as
+an embedded scripting language, Unicode and OpenType/TrueType font
+support, the e-\*(TX and Omega extensions, as well as an integrated
+MetaPost library. It can generate either pdf or dvi output. For more
+information about Lua\*(TX, see https://www.luatex.org; or you can read
+the Lua\*(TX manual using the texdoc utility (\fBtexdoc luatex\fR).
+.PP
+All Lua\*(TX text input and output is read natively as Unicode text,
+although filters make it possible to support any encoding. Caveat: just
+because any Unicode character can be recognized as input does not mean
+it can be typeset as output; you still have to load the necessary fonts.
+.PP
+If the program is called as \fBtexlua\fR it acts as a Lua interpreter.
+If called as \fBtexluac\fR it acts as a Lua bytecode compiler.
+.PP
+By default, \fBluatex\fP produces pdf output, and \fBdviluatex\fP
+produces dvi output; both executables behave identically otherwise,
+within the limits of the output format. Both variants can be configured
+to produce either dvi or pdf output.
+.PP
+In pdf mode, Lua\*(TX can natively handle the pdf, jpg, jbig2, and png
+graphics formats, but not PostScript or Encapsulated PostScript (eps)
+graphics; see
+.BR pdftex (1).
+As a special case, the PostScript files output by MetaPost can be
+handled directly via the \fIsupp-pdf.tex\fP and \fIsupp-pdf.mkii\fP macros.
+.PP
+The regular \fBluatex\fP programs embed Lua 5.3, developed by PUC-Rio;
+the \fBjit\fP variants such as \fBluajittex\fP embed LuaJIT for
+just-in-time compilation, developed by Mike Pall.
+.PP
+The \fBluahbtex\fP variant includes the HarfBuzz engine for glyph
+shaping. HarfBuzz must still be explicitly enabled at the \*(TX level.
+.PP
+By default, Lua\*(TX does not provide any primitives beyond those from
+\*(TX3. All extended primitives must be enabled at runtime using
+\edirectlua; see the Lua\*(TX manual and existing format-building files,
+e.g., luatex.ini.
+.\"=====================================================================
+.SH "OPTIONS"
+For the common \*(TX command-line options and handling, see 
+.BR tex (1).
+.PP
+When the Lua\*(TX executable starts, it looks for the \fB--lua\fR
+command-line option. If there is no \fB--lua\fR option, the command line
+is interpreted similarly to traditional pdf\*(TX and Aleph. But if the
+option is present, Lua\*(TX will enter an alternative mode of
+command-line parsing, unrelated to the standard Web2C programs. The
+presence of \fB--lua\fR thus makes all other options unreliable, because
+the Lua initialization file can disable the default file searching via
+Kpathsea and/or hook functions into various callbacks. 
+.TP
+.BI "--lua=" luafile
+The Lua initialization file. The Lua\*(TX executables embed a default
+initialization file (luatex-core.lua); if this option is used,
+\fIluafile\fP will be used instead. The Lua initialization file is
+responsible for setting up security restrictions, path searching
+behaviour, and other low-level settings, so you must be careful when
+using a custom file or else you will likely crash the engine. If this
+option is used, you must pass the same file both when dumping the format
+and when typesetting a document. This option is used by Con\*(TXt.
+.PP
+The following two options alter the executable behaviour:
+.TP
+.B --luaonly
+Start Lua\*(TX as a Lua interpreter. In this mode, it will set Lua's
+\fIarg[0]\fR to the found script name, pushing preceding options in
+negative values and the rest of the command line in the positive values,
+just like the Lua interpreter. Lua\*(TX will exit immediately after
+executing the specified Lua script.
+.TP
+.BI --luaconly
+Start Lua\*(TX as a Lua bytecode compiler. In this mode, Lua\*(TX is exactly
+like \fBluac\fR from the standalone Lua distribution, except that it
+does not have the \fB-l\fR switch, and that it accepts and ignores
+the \fB--luaconly\fR switch.
+.TP
+.B --safer
+Disable most file-modifying and program-executing Lua functions.
+This option is disabled by default since it breaks most
+documents.
+.TP
+.B --luadebug
+Enables the standard Lua \fIdebug\fP module, which is disabled by
+default for security reasons. This option is implicitly enabled
+when unrestricted shell-escape is enabled.
+.TP
+.B --[no-]socket
+Enables the Lua \fIsocket\fP module, which allows \*(TX documents to
+make arbitrary network requests, and is disabled by default for
+security reasons. This option is implicitly enabled when
+unrestricted shell escape is enabled.
+.\"=====================================================================
+.SH ENVIRONMENT
+See
+.BR tex (1)
+and
+.BR pdftex (1).
+.SH BUGS
+See
+.BR tex (1).
+.\"=====================================================================
+.SH "SEE ALSO"
+.BR aleph (1),
+.BR etex (1),
+.BR lua (1),
+.BR mpost (1),
+.BR pdftex (1),
+.BR tex (1).
+.PP
+Lua\*(TX home page: https://luatex.org
+.br
+Package page on CTAN: https://ctan.org/pkg/luatex
+.br
+Lua\*(TX reference manual: https://mirror.ctan.org/systems/doc/luatex/luatex.pdf
+.br
+Web2c manual: https://tug.org/web2c
+.br
+Kpathsea manual: https://tug.org/kpathsea
+.PP
+Numerous articles have been published in \fITUGboat\fP about Lua\*(TX:
+https://tug.org/TUGboat/Contents
+.\"=====================================================================
+.SH "AUTHORS"
+\*(TX was created by Donald E. Knuth.
+The primary authors of the Lua\*(TX enhancements are Taco Hoekwater,
+Hartmut Henkel, Hans Hagen, and Luigi Scarso, with help from Martin
+Schr\[:o]der, Karel Skoup\['y], and H\[`a]n The Th\[`a]nh.
+.\" the double accent 0x1EBF in Thanh's name is not easily available.
+.PP
+Bug reports: dev-luatex@ntg.nl
+.br
+Public discussion list for Lua\*(TX-specific issues:
+https://lists.tug.org/luatex
+.br
+Public discussion list for all things \*(TX:
+https://lists.tug.org/texhax

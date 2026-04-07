@@ -1,0 +1,114 @@
+% Copyright 2024 Japanese TeX Development Community <issue@texjp.org>
+% You may freely use, modify and/or distribute this file.
+%
+
+% for {,e}uptex
+\ifx\kcatcode\undefined\else
+\kcatcode"80=14
+\kcatcode"A7=14
+\kcatcode"C0=14
+\kcatcode"100=14
+\kcatcode"180=14
+\kcatcode"250=14
+\kcatcode"2B0=14
+\kcatcode"370=14
+\kcatcode"400=14
+\kcatcode"500=14
+\kcatcode"1E00=14
+\kcatcode"1F00=14
+\kcatcode"2000=14
+\kcatcode"20A0=14
+\kcatcode"2100=14
+\kcatcode"2190=14
+\kcatcode"2200=14
+\kcatcode"2300=14
+\kcatcode"2400=14
+\kcatcode"25A0=14
+\kcatcode"2600=14
+\kcatcode"2700=14
+\kcatcode"27C0=14
+\kcatcode"2E00=14
+\fi
+
+\catcode"C0=11
+
+\newcount\ChrA\newcount\ChrB
+\def\SetCatCode#1{%
+ \loop\ifnum\ChrA<\ChrB
+  \catcode\ChrA=#1
+  \sfcode\ChrA=1000
+  \lccode\ChrA=\ChrA
+  \advance\ChrA 1\relax \repeat
+}
+
+\def\PrintCode{%
+ \loop\ifnum\ChrA<\ChrB
+  \catcode\ChrA=11
+  \iffontchar\font\ChrA{\f(}{\char\ChrA}{\f)} \fi
+  \advance\ChrA 1\relax \repeat
+}
+
+\ChrA="100 \ChrB="250
+\SetCatCode{11}
+\ChrA="370 \ChrB="530
+\SetCatCode{11}
+\ChrA="1E00 \ChrB="1F00
+\SetCatCode{11}
+\ChrA="1F00 \ChrB="2000
+\SetCatCode{11}
+\ChrA="2019 \ChrB="201E
+\SetCatCode{11}
+\ChrA="2190 \ChrB="2200
+\SetCatCode{11}
+
+
+\def\TextA{%  Czech
+Všichni lidé rodí se svobodní a sobě rovní co do důstojnosti a práv.
+Jsou nadáni rozumem a svědomím a mají spolu jednat v duchu bratrství.
+}
+
+\def\TextB{%  Danish
+Alle mennesker er født frie og lige i værdighed og rettigheder.
+De er udstyret med fornuft og samvittighed, og de bør handle mod hverandre i en broderskabets ånd.
+}
+
+\def\TextF{%  Vietnamese
+Mọi người sinh ra đều tự do và bình đẳng về nhân phẩm và các quyền.
+Con người được ban cho lý trí và lương tâm, và phải hành động với tinh thần huynh đệ.
+}
+
+\def\TextI{%  Lithuanian
+Visi žmonės gimsta laisvi ir lygūs savo orumu ir teisėmis.
+Jiems suteiktas protas ir sąžinė ir jie turi elgtis vienas kito atžvilgiu kaip broliai.
+}
+
+\def\TextC{%  Serbian (Cyrillic)
+Cвa људскa бићa рaђajу сe слoбoднa и jeднaкa у дoстojaнству и прaвимa.
+Oнa су oбдaрeнa рaзумoм и свeшћу и трeбajeдни прeмa другимa дa пoступajу у духу брaтствa.
+}
+
+%\def\TextC{%  Ukrainian
+%Всі люди народжуються вільними і рівними у своїй гідності та правах.
+%Вони наділені розумом і совістю і повинні діяти у відношенні один до одного в дусі братерства.
+%}
+
+\def\TextD{%  Belorussian
+Усе людзi нараджаюцца свабоднымi i роўнымi ў сваёй годнасцi i правах.
+Яны надзелены розумам i сумленнем i павiнны ставiцца адзiн да аднаго ў духу брацтва.
+}
+
+\hyphenation{наде-лены}
+\def\TextE{%  Russian
+Все люди рождаются свободными и равными в своем достоинстве и правах.
+Они наделены разумом и совестью и должны поступать в отношении друг друга в духе братства.
+}
+
+\hyphenation{αδελφο-σύνης προι-κι-σμέ-ν-οι αξιο-πρέ-πε-ια ἀλλή-λοις}
+\def\TextG{%  Greek Monotonic
+'Ολοι οι άνθρωποι γεννιούνται ελεύθεροι και ίσοι στην αξιοπρέπεια και τα δικαιώματα.
+Είναι προικισμένοι με λογική και συνείδηση, και οφείλουν να συμπεριφέρονται μεταξύ τους με πνεύμα αδελφοσύνης.
+}
+\def\TextH{%  Greek Polytonic
+'Ολοι οἱ ἄνθρωποι γεννῶνται ἐλεύθεροι καὶ ἴσοι ἐν τῇ ἀξιοπρεπείᾳ καὶ ταῖς ἐξουσίαις.
+Εἰσὶ προικισμένοι μετὰ λογικῆς καὶ συνειδήσεως, καὶ ὀφείλουσιν συμπεριφέρεσθαι ἀλλήλοις ἐν πνεύματι ἀδελφοσύνης.
+}

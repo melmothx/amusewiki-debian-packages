@@ -1,0 +1,10 @@
+% Language definition file (part of polyglossia v2.9 -- 2025/12/01)
+%
+\ProvidesFile{gloss-farsi.ldf}[polyglossia: module for Farsi]
+
+% We only provide this gloss for babel compatibility.
+% The proper English language name is Persian.
+
+\InheritGlossFile{persian}
+
+\endinput

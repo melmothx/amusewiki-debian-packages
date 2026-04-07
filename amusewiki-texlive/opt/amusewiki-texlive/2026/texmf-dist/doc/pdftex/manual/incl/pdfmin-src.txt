@@ -1,0 +1,124 @@
+%PDF-1.4
+%ÐÔÅØ
+3 0 obj
+<<
+/Length 334
+>>
+stream
+BT
+/F1 9.9626 Tf 72 713.245 Td [(W)]TJ 8.608
+0 Td [(e)]TJ 4.423 0 Td [(l)]TJ 2.77 0 Td
+[(c)]TJ 4.423 0 Td [(o)]TJ 4.981 0 Td
+[(m)]TJ 7.751 0 Td [(e)]TJ 6.914 0 Td
+[(t)]TJ 2.77 0 Td [(o)]TJ 7.472 0 Td [(p)]TJ
+4.981 0 Td [(d)]TJ 4.981 0 Td [(f)]TJ 3.318
+0 Td [(T)]TJ 4.426 -2.241 Td [(E)]TJ 4.842
+2.241 Td [(X)]TJ 7.193 0 Td [(!)]TJ
+ET
+endstream
+endobj
+2 0 obj
+<<
+/Type /Page
+/Contents 3 0 R
+/Resources 1 0 R
+/MediaBox [0 0 612 792]
+/Parent 5 0 R
+>>
+endobj
+1 0 obj
+<<
+/Font << /F1 4 0 R >>
+/ProcSet [ /PDF /Text ]
+>>
+endobj
+7 0 obj
+[333 408 500 500 833 778 333 333 333 500 564
+250 333 250 278 500 500 500 500 500 500 500
+500 500 500 278 278 564 564 564 444 921 722
+667 667 722 611 556 722 722 333 389 722 611
+889 722 722 556 722 667 556 611 722 722 944
+722 722 611 333 278 333 469 500 333 444 500
+444 500 444 333 500 500 278 278 500 278 778
+500 500 500 500 333 389 278]
+endobj
+8 0 obj
+<<
+/Type /FontDescriptor
+/FontName /Times-Roman
+/Flags 2
+/FontBBox [0 -216 1000 678]
+/Ascent 678
+/CapHeight 651
+/Descent -216
+/ItalicAngle 0
+/StemV 83
+/XHeight 450
+>>
+endobj
+6 0 obj
+<<
+/Type /Encoding
+/Differences [33/exclam 69/E 84/T 87/W/X
+99/c/d/e/f 108/l/m 111/o/p 116/t]
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Times-Roman
+/FontDescriptor 8 0 R
+/FirstChar 33
+/LastChar 116
+/Widths 7 0 R
+/Encoding 6 0 R
+>>
+endobj
+5 0 obj
+<<
+/Type /Pages
+/Count 1
+/Kids [2 0 R]
+>>
+endobj
+9 0 obj
+<<
+/Type /Catalog
+/Pages 5 0 R
+>>
+endobj
+10 0 obj
+<<
+/Producer (pdfTeX-1.40.29)
+/Creator (TeX)
+/CreationDate (D:20260119143458-08'00')
+/ModDate (D:20260119143458-08'00')
+/Trapped /False
+/PTEX.Fullbanner (This is pdfTeX, Version
+3.141592653-2.6-1.40.29 (TeX Live 2026)
+kpathsea version 6.4.2)
+>>
+endobj
+xref
+0 11
+0000000000 65535 f
+0000000511 00000 n
+0000000407 00000 n
+0000000015 00000 n
+0000001225 00000 n
+0000001377 00000 n
+0000001113 00000 n
+0000000578 00000 n
+0000000931 00000 n
+0000001434 00000 n
+0000001483 00000 n
+trailer
+<< /Size 11
+/Root 9 0 R
+/Info 10 0 R
+/ID [<92180468990E5BCB5BC592DDCBA25820>
+<92180468990E5BCB5BC592DDCBA25820>] >>
+startxref
+1744
+%%EOF

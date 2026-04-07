@@ -1,0 +1,74 @@
+\documentclass{book}
+\usepackage[ngerman]{babel}
+\usepackage{tocbasic}
+
+\DeclareNewTOC[%
+  type=remarkbox,%
+  types=remarkboxes,%
+  float,% Gleitumgebungen sollen definiert werden.
+  counterwithin=chapter,% Zähler von Kapitel abhängig.
+  floattype=4,%
+  name=Merksatz,%
+  tocentryindent=1.5em,%
+  tocentrynumwidth=2.3em,%
+  listname={Verzeichnis der Merksätze}%
+]{lor}
+
+% Einträge im Inhaltsverzeichnis:
+\setuptoc{lof}{totoc}% für das Abbildungsverzeichnis
+\setuptoc{lor}{totoc}% für das Verzeichnis der Merksätze
+
+\usepackage{mwe}
+
+\begin{document}
+\tableofcontents
+\listoffigures
+\listofremarkboxes
+
+\chapter{Erstes Beispielkapitel}
+\blindtext
+\begin{figure}
+  \centering
+  \rule{1cm}{1cm}
+  \caption{Erste Abbildung}
+\end{figure}
+\begin{remarkbox}
+  \caption{Erster Merksatz}
+\end{remarkbox}
+
+\blindtext
+\begin{figure}
+  \centering
+  \rule{1cm}{1cm}
+  \caption{Zweite Abbildung}
+\end{figure}
+\begin{remarkbox}
+  \caption{Zweiter Merksatz}
+\end{remarkbox}
+
+\blindtext
+
+\chapter{Zweites Beispielkapitel}
+\blindtext
+\begin{figure}
+  \centering
+  \rule{1cm}{1cm}
+  \caption{Dritte Abbildung}
+\end{figure}
+\begin{remarkbox}
+  \caption{Dritter Merksatz}
+\end{remarkbox}
+
+\blindtext
+\begin{figure}
+  \centering
+  \rule{1cm}{1cm}
+  \caption{Vierte Abbildung}
+\end{figure}
+\begin{remarkbox}
+  \caption{Vierter Merksatz}
+\end{remarkbox}
+
+\blindtext
+
+\end{document}

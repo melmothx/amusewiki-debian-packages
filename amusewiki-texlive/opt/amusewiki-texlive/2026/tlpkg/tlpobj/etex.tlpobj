@@ -1,0 +1,44 @@
+name etex
+category Package
+revision 77830
+shortdesc An extended version of TeX, from the NTS project
+longdesc An extended version of TeX (capable of running as if it were
+longdesc unmodified TeX). E-TeX has been specified by the LaTeX team as
+longdesc the base engine for LaTeX2e. Thus, LaTeX programmers may assume
+longdesc e-TeX functionality, along with additional extensions. The
+longdesc pdftex engine and others directly incorporate the e-TeX
+longdesc extensions. The etex program in most distributions is an
+longdesc incarnation of pdftex running in DVI mode. The development
+longdesc source for e-TeX is the TeX Live source repository, although
+longdesc further extensions have taken place in the pdftex and other
+longdesc engine sources, keeping e-TeX stable.
+containersize 11568
+containerchecksum 70b4b5bbdc2b554ca8eb69dc0607e535cc8c068e793592c13ddab4b90caee504856b66c59f6a6e3f9aa83175829e74e136f16cc59e534020068d760cbd5394e4
+doccontainersize 327356
+doccontainerchecksum 2a7a3ff52a4cfb9fa0eb317a22341dfd8719ec85ea0dbf7a62224c6dc9aa4374faad6e178947a1f832bf6618b22775adbd2adbd16dbda621698c9027596fbd38
+docfiles size=126
+ texmf-dist/doc/etex/base/ChangeLog
+ texmf-dist/doc/etex/base/NTS-FAQ
+ texmf-dist/doc/etex/base/README details="Readme"
+ texmf-dist/doc/etex/base/etex_gen.tex
+ texmf-dist/doc/etex/base/etex_man.pdf details="System documentation (v2.0)"
+ texmf-dist/doc/etex/base/etex_man.sty
+ texmf-dist/doc/etex/base/etex_man.tex
+ texmf-dist/doc/etex/base/etex_ref.html
+ texmf-dist/doc/etex/base/etex_src.html
+ texmf-dist/doc/etex/base/legal.html
+ texmf-dist/doc/etex/base/nts-group.html
+ texmf-dist/doc/etex/base/webmerge.tex
+ texmf-dist/doc/man/man1/etex.1
+ texmf-dist/doc/man/man1/etex.man1.pdf
+runfiles size=11
+ texmf-dist/fonts/source/public/etex/xbmc10.mf
+ texmf-dist/fonts/tfm/public/etex/xbmc10.tfm
+ texmf-dist/tex/plain/etex/etex.src
+ texmf-dist/tex/plain/etex/etexdefs.lib
+catalogue-alias e-tex
+catalogue-contact-bugs https://lists.tug.org/tex-k
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/etexdir
+catalogue-contact-support https://lists.tug.org/tex-k
+catalogue-license knuth
+catalogue-topics engine

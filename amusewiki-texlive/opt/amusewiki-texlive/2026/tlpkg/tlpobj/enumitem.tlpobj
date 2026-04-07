@@ -1,0 +1,27 @@
+name enumitem
+category Package
+revision 77682
+shortdesc Control layout of itemize, enumerate, description
+longdesc This package provides user control over the layout of the three
+longdesc basic list environments: enumerate, itemize and description. It
+longdesc supersedes both enumerate and mdwlist (providing
+longdesc well-structured replacements for all their functionality), and
+longdesc in addition provides functions to compute the layout of labels,
+longdesc and to 'clone' the standard environments, to create new
+longdesc environments with counters of their own.
+containersize 13816
+containerchecksum 6db1fce1693592b99f3781135319d649ce7bbb6b3e35f813054444dd7462633962bf1d11b225b5d6541ce57117b5c8f2321fcd724f720cd8383de53940dffd01
+doccontainersize 169256
+doccontainerchecksum 0aeed987316fd4389314adc4094da4c5189d0aeb91b04c8cde93f25ad5997a0b13da12dbe6475e59233c49a71bb631f280c3557c80fbeb9c539891c913835aeb
+docfiles size=56
+ texmf-dist/doc/latex/enumitem/README.md details="Readme"
+ texmf-dist/doc/latex/enumitem/enumitem.pdf details="Package documentation"
+ texmf-dist/doc/latex/enumitem/enumitem.tex
+runfiles size=13
+ texmf-dist/tex/latex/enumitem/enumitem.sty
+catalogue-contact-home http://www.texnia.com/enumitem.html
+catalogue-contact-repository https://github.com/jbezos/enumitem
+catalogue-ctan /macros/latex/contrib/enumitem
+catalogue-license mit
+catalogue-topics list tagged-pdf-partially
+catalogue-version 3.11

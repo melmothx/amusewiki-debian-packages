@@ -1,0 +1,23 @@
+name hyphen-polish
+category TLCore
+revision 78069
+catalogue plhyph
+shortdesc Polish hyphenation patterns.
+longdesc Hyphenation patterns for Polish in QX and UTF-8 encodings.
+longdesc These patterns are also used by Polish TeX formats MeX and
+longdesc LaMeX.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=polish 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-pl.tex 	file_patterns=hyph-pl.pat.txt 	file_exceptions=hyph-pl.hyp.txt
+containersize 12500
+containerchecksum d7265e7c76e29763641a5cd208427902fdb2c347f09578f199d403795210a173301a2a069921302a0ac1c124c618defadaced5c1cf96e001def8185a21b297aa
+runfiles size=28
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-pl.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-pl.qx.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-pl.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-pl.hyp.txt
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-pl.pat.txt
+catalogue-ctan /language/polish/plhyph.tex
+catalogue-license knuth
+catalogue-topics hyphenation polish
+catalogue-version 3.0b

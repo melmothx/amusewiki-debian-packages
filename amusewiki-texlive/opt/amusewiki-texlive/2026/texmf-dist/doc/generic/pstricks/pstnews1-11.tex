@@ -1,0 +1,167 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+%\usepackage{geometry}
+\usepackage{pst-all}
+\usepackage{showexpl}
+\usepackage{tabularx}
+\SpecialCoor
+%\usepackage[ps2pdf,colorlinks,linktocpage]{hyperref}
+\usepackage[colorlinks,linktocpage]{hyperref}
+\def\UrlFont{\small\ttfamily}
+\makeatletter
+\def\verbatim@font{\small\normalfont\ttfamily}
+\makeatother
+%\usepackage{color}
+\definecolor{hellgelb}{rgb}{1,1,0.8}
+\definecolor{colKeys}{rgb}{0,0,1}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{1,0,0}
+\definecolor{colString}{rgb}{0,0.5,0}
+%
+\usepackage{listings}
+\lstset{%
+    language=PSTricks,%
+    float=hbp,%
+    basicstyle=\ttfamily\small, %
+    identifierstyle=\color{colIdentifier}, %
+    keywordstyle=\color{colKeys}, %
+    stringstyle=\color{colString}, %
+    commentstyle=\color{colComments}, %
+    columns=flexible, %
+    tabsize=4, %
+    frame=single, %
+    extendedchars=true, %
+    showspaces=false, %
+    showstringspaces=false, %
+    numbers=left, %
+    numberstyle=\tiny, %
+    breaklines=true, %
+%    backgroundcolor=\color{hellgelb}, %
+    breakautoindent=true, %
+    captionpos=b,%
+	xleftmargin=0pt%
+}
+
+%\parindent=0pt
+\newcommand\verbI[1]{{\small\texttt{#1}}}
+\newcommand\CMD[1]{{\texttt{\textbackslash#1}}}
+%
+%\psset{subgriddiv=0,griddots=5,gridlabels=7pt}
+%
+\DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+\def\PS{PostScript}
+%
+\begin{document}
+\title{\texttt{PSTricks -- version 1.11}\\new macros and bugfixes for \texttt{pstricks}}
+\author{Herbert Voß\thanks{%
+\url{Herbert.Voss@perce.de}}}
+\date{\today}
+
+\maketitle
+
+\begin{abstract}
+This new version of \texttt{pstricks.tex} depends on the also new prologue file
+\texttt{pstricks.pro} (v 1.00), which should go into the local \TeX-directoory \url{$TEXMFLOCAL/dvips/}.
+\end{abstract}
+
+
+\tableofcontents
+
+%--------------------------------------------------------------------------------------
+\section{New macro names}
+%--------------------------------------------------------------------------------------
+In general \texttt{PSTricks} uses macronames with a preceeding \verb+ps+ to prevent 
+clashes with other packages. However, some macros have names without the \verb+ps+ and
+these ones have now new names:
+
+\begin{verbatim}
+  \scalebox    -> \psscalebox
+  \scaleboxto  -> \psscaleboxto
+  \rotateleft  -> \psrotateleft
+  \rotateright -> \psrotateright
+  \rotatedown  -> \psrotatedown
+\end{verbatim}
+
+The first change is important, because there were a lot of problems in the past;
+\verb+graphicx+ also defines a \verb+scalebox+ but with diffent syntax.
+
+%--------------------------------------------------------------------------------------
+\section{New fill options}
+%--------------------------------------------------------------------------------------
+For the fillstyles \verb+hlines+, \verb+vlines+ and \verb+crosshatch+ there are two new
+options to get increasing line widths and/or increasing whitespace. Both options are 
+lengths and can be set as usual for PSTricks, with or without a unit.
+
+\bigskip\noindent
+\begin{tabularx}{\linewidth}{lXc}
+\emph{name} & \emph{meaning} & \emph{default}\\\hline
+\verb|hatchsepinc| & additional increasing space between two hatch lines & 0\tabularnewline
+\verb|hatchwidthinc| & value for the increasing line width of two hatch lines & 0
+\end{tabularx}
+
+
+
+\bigskip
+\begin{LTXexample}[pos=t]
+\begin{pspicture}(\linewidth,3)
+  \psframe[fillstyle=vlines,hatchangle=0,hatchsep=.5pt,%
+     hatchwidth=1pt,hatchwidthinc=0.25pt](\linewidth,3)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}(\linewidth,3)
+  \psframe[fillstyle=hlines,hatchangle=0,%
+     hatchwidth=1pt,hatchsep=0.5pt,hatchsepinc=0.1pt](\linewidth,3)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}(\linewidth,3)
+  \psframe[fillstyle=vlines,hatchangle=0,hatchsep=0.6pt,%
+     hatchwidth=1pt,hatchwidthinc=0.3pt,hatchangle=60,
+     hatchcolor=red](\linewidth,3)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}(\linewidth,3)
+  \psframe[fillstyle=hlines,hatchangle=0,hatchangle=-60,%
+     hatchwidth=1pt,hatchsep=0.5pt,hatchsepinc=0.1pt,
+     hatchcolor=blue](\linewidth,3)
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}(\linewidth,4)
+  \pscircle[fillstyle=vlines,hatchangle=0,hatchsep=0.6pt,%
+     hatchwidth=1pt,hatchwidthinc=0.3pt,hatchangle=90,
+     hatchcolor=red](2,2){2}
+  \pscircle[fillstyle=vlines,hatchangle=0,hatchsep=0.6pt,%
+     hatchwidth=1pt,hatchwidthinc=0.3pt,hatchangle=-45,
+     hatchcolor=green](7,2){2}
+  \pscircle[fillstyle=hlines,hatchangle=0,hatchsep=0.6pt,%
+     hatchwidth=1pt,hatchwidthinc=0.3pt,hatchangle=45,
+     hatchcolor=blue](12,2){2}
+\end{pspicture}
+\end{LTXexample}
+
+\begin{LTXexample}[pos=t]
+\begin{pspicture}(\linewidth,3)
+  \psframe[fillstyle=crosshatch,hatchangle=0,hatchangle=-90,%
+     hatchwidth=1pt,hatchsep=0.5pt,hatchsepinc=0.1pt,
+     hatchcolor=blue](\linewidth,3)
+\end{pspicture}
+\end{LTXexample}
+
+%--------------------------------------------------------------------------------------
+\section{Other changes}
+%--------------------------------------------------------------------------------------
+\texttt{pstricks.tex} defined the PostScript subroutines for arcs of an ellipse.
+This code now moved into the appropriate \texttt{pstricks.pro}, which holds the
+pure PostScript code of \texttt{PSTricks}. This in not important for user until
+the newest \texttt{pstricks.pro} \textbf{and} \texttt{pstricks.tex} are installed. 
+
+
+\end{document}

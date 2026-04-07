@@ -1,0 +1,24 @@
+name babel-interlingua
+category Package
+revision 77682
+shortdesc Babel support for Interlingua
+longdesc The package provides the language definition file for support
+longdesc of Interlingua in babel. Translations to Interlingua of
+longdesc standard "LaTeX names" (no shortcuts are provided). Interlingua
+longdesc itself is an auxiliary language, built from the common
+longdesc vocabulary of Spanish/Portuguese, English, Italian and French,
+longdesc with some normalisation of spelling.
+containersize 2240
+containerchecksum 5fb27adaad0923bc0f8ac8a6ff39dc0fd24172ad4f48789361048a268f2b667c99aa08bc50f0cb21a50b5e49945856672efd2ac79e0dc2a6292b619f1d3adf5b
+doccontainersize 109964
+doccontainerchecksum c2ac5e710fb7fb584723bee3770b33b175c52dbf29574e73cde57cc291302d1658f7423256bff15a71b0d92ea52de3591122950f7ae33384ea2c4cb9e732eb71
+docfiles size=27
+ texmf-dist/doc/generic/babel-interlingua/interlingua.pdf details="Package documentation"
+srccontainersize 3988
+srccontainerchecksum 9f002001ffe73d7010a3efc9010c7a71f3fb77c6d6fe2a688eaeacbc9fae0c1816d31cec950c7285d2454a1e592a5029800e210f71f5c97769491dade92bf2f0
+runfiles size=1
+ texmf-dist/tex/generic/babel-interlingua/interlingua.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/interlingua
+catalogue-license lppl1.3
+catalogue-topics interlingua tagged-pdf
+catalogue-version 1.6

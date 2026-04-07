@@ -1,0 +1,18 @@
+name hyphen-romansh
+category TLCore
+revision 78069
+shortdesc Romansh hyphenation patterns.
+longdesc Hyphenation patterns for Romansh. All Romansh idioms and
+longdesc Rumantsch Grischun taken into account, developed in
+longdesc collaboration with Fundaziun Medias Rumantschas (Romansh news
+longdesc agency) and Lia Rumantscha (Romansh umbrella organisation).
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=romansh 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-rm.tex 	file_patterns=hyph-rm.pat.txt 	file_exceptions=
+containersize 4236
+containerchecksum 859bdc09a249117ebdf23798284044ed2ef073d00643ce3370626e3e93f7bcf1b3f9d9d724b3dd5a71d0f1e85abb253bd550bafb237a1ec146ad88311ef1ca5c
+runfiles size=5
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-rm.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-rm.ec.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-rm.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-rm.pat.txt

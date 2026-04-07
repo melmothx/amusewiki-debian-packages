@@ -1,0 +1,20 @@
+name hyphen-ethiopic
+category TLCore
+revision 78069
+shortdesc Hyphenation patterns for Ethiopic scripts.
+longdesc Hyphenation patterns for languages written using the Ethiopic
+longdesc script for Unicode engines. They are not supposed to be
+longdesc linguistically relevant in all cases and should, for proper
+longdesc typography, be replaced by files tailored to individual
+longdesc languages.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=ethiopic synonyms=amharic,geez 	lefthyphenmin=1 	righthyphenmin=1 	file=loadhyph-mul-ethi.tex 	file_patterns=hyph-mul-ethi.pat.txt 	file_exceptions=
+containersize 4460
+containerchecksum a3fc85e7d1d84ecfc6bbdf16e06ae3f3475f975d59ece3f64d10cc1b24f05402018686eee1b7fccf7899633be67b1c0cbcbe7de78b0ecd93d45aa8d76872c690
+srccontainersize 2620
+srccontainerchecksum f7ba865dabe442354033b0220d7d00fa0901bf51f946ad65803329ea8af29f93ad649d9143071dd304f30a49651136cf106210490fa6aaf975c437f5ab4a5c07
+runfiles size=5
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-mul-ethi.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-mul-ethi.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-mul-ethi.pat.txt

@@ -1,0 +1,89 @@
+name l3kernel-dev
+category Package
+revision 78446
+shortdesc Development pre-release of l3kernel
+longdesc This is a pre-release version of the l3kernel package. It
+longdesc accompanies the pre-testing kernel code (latex-base-dev), and
+longdesc is intended for testing by knowledgeable users.
+depend l3backend-dev
+depend lua-uni-algos
+containersize 190736
+containerchecksum d6c7785bfc277093a99642fd71b9e46f947afd69f93c7cc74a972c404f70606693c4afb2759e25ab048a113071c2933937a350b870110ad3a43b29381512765f
+doccontainersize 12174248
+doccontainerchecksum e4694e51de4bfb36fc0a84eb0461f2a8fe65dbe37c9fa5f68df53cccf7faa14ddec2bf4c113497f3dc1e7af25c92e863ab67345869862052c6fd6d898a2d59d9
+docfiles size=3521
+ texmf-dist/doc/latex-dev/l3kernel/CHANGELOG.md
+ texmf-dist/doc/latex-dev/l3kernel/README.md details="Readme"
+ texmf-dist/doc/latex-dev/l3kernel/expl3.pdf details="The LaTeX3 Programming Language"
+ texmf-dist/doc/latex-dev/l3kernel/interface3.pdf details="The LaTeX3 interfaces"
+ texmf-dist/doc/latex-dev/l3kernel/interface3.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3doc.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3docstrip.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3news.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3news.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3news01.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3news01.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3news02.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3news02.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3news03.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3news03.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3news04.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3news04.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3news05.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3news05.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3news06.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3news06.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3news07.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3news07.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3news08.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3news08.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3news09.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3news09.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3news10.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3news10.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3news11.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3news11.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3news12.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3news12.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3obsolete.txt
+ texmf-dist/doc/latex-dev/l3kernel/l3prefixes.csv
+ texmf-dist/doc/latex-dev/l3kernel/l3prefixes.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3prefixes.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3styleguide.pdf details="LaTeX3 style guide"
+ texmf-dist/doc/latex-dev/l3kernel/l3styleguide.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3syntax-changes.pdf details="Syntax changes"
+ texmf-dist/doc/latex-dev/l3kernel/l3syntax-changes.tex
+ texmf-dist/doc/latex-dev/l3kernel/l3term-glossary.pdf
+ texmf-dist/doc/latex-dev/l3kernel/l3term-glossary.tex
+ texmf-dist/doc/latex-dev/l3kernel/source3.pdf
+ texmf-dist/doc/latex-dev/l3kernel/source3.tex
+ texmf-dist/doc/latex-dev/l3kernel/source3body.tex
+srccontainersize 654976
+srccontainerchecksum df51c611994b6e725cf91ac511b4da46288c47309515e44129c8bbad84c881ae201f29c2086cf22d059ab15442776b0352759c5c76672123c3c9a656026f2ca3
+runfiles size=393
+ texmf-dist/tex/latex-dev/l3kernel/expl3-code.tex
+ texmf-dist/tex/latex-dev/l3kernel/expl3-generic.tex
+ texmf-dist/tex/latex-dev/l3kernel/expl3.ltx
+ texmf-dist/tex/latex-dev/l3kernel/expl3.lua
+ texmf-dist/tex/latex-dev/l3kernel/expl3.sty
+ texmf-dist/tex/latex-dev/l3kernel/l3debug.def
+ texmf-dist/tex/latex-dev/l3kernel/l3doc.cls
+ texmf-dist/tex/latex-dev/l3kernel/l3docstrip.tex
+ texmf-dist/tex/latex-dev/l3kernel/l3str-enc-iso88591.def
+ texmf-dist/tex/latex-dev/l3kernel/l3str-enc-iso885910.def
+ texmf-dist/tex/latex-dev/l3kernel/l3str-enc-iso885911.def
+ texmf-dist/tex/latex-dev/l3kernel/l3str-enc-iso885913.def
+ texmf-dist/tex/latex-dev/l3kernel/l3str-enc-iso885914.def
+ texmf-dist/tex/latex-dev/l3kernel/l3str-enc-iso885915.def
+ texmf-dist/tex/latex-dev/l3kernel/l3str-enc-iso885916.def
+ texmf-dist/tex/latex-dev/l3kernel/l3str-enc-iso88592.def
+ texmf-dist/tex/latex-dev/l3kernel/l3str-enc-iso88593.def
+ texmf-dist/tex/latex-dev/l3kernel/l3str-enc-iso88594.def
+ texmf-dist/tex/latex-dev/l3kernel/l3str-enc-iso88595.def
+ texmf-dist/tex/latex-dev/l3kernel/l3str-enc-iso88596.def
+ texmf-dist/tex/latex-dev/l3kernel/l3str-enc-iso88597.def
+ texmf-dist/tex/latex-dev/l3kernel/l3str-enc-iso88598.def
+ texmf-dist/tex/latex-dev/l3kernel/l3str-enc-iso88599.def
+catalogue-ctan /macros/latex-dev/required/l3kernel
+catalogue-license lppl1.3c
+catalogue-topics format latex3 pre-release

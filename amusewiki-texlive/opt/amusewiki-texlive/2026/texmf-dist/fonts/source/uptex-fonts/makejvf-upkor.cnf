@@ -1,0 +1,38 @@
+% makejvf settings for upkor* in uptex-fonts
+% based on Blocks-16.0.0.txt (Date: 2024-02-02)
+% and Adobe-Korea1-2/cid2code.txt (Version 01/31/2012)
+%
+
+CHARSET	0000..007F,% Basic Latin
++	0080..00FF,% Latin-1 Supplement
++	0100..017F,% Latin Extended-A
++	02B0..02FF,% Spacing Modifier Letters
++	0370..03FF,% Greek and Coptic
++	0400..04FF,% Cyrillic
++	1100..11FF,% Hangul Jamo
++	2000..206F,% General Punctuation
++	2070..209F,% Superscripts and Subscripts
++	20A0..20CF,% Currency Symbols
++	2100..214F,% Letterlike Symbols
++	2150..218F,% Number Forms
++	2190..21FF,% Arrows
++	2200..22FF,% Mathematical Operators
++	2300..23FF,% Miscellaneous Technical
++	2460..24FF,% Enclosed Alphanumerics
++	2500..257F,% Box Drawing
++	2580..259F,% Block Elements
++	25A0..25FF,% Geometric Shapes
++	2600..26FF,% Miscellaneous Symbols
++	2700..27BF,% Dingbats
++	2F00..2FDF,% Kangxi Radicals
++	3000..303F,% CJK Symbols and Punctuation
++	3040..309F,% Hiragana
++	30A0..30FF,% Katakana
++	3130..318F,% Hangul Compatibility Jamo
++	3200..32FF,% Enclosed CJK Letters and Months
++	3300..33FF,% CJK Compatibility
++	4E00..9FFF,% CJK Unified Ideographs
++	AC00..D7AF,% Hangul Syllables
++	E000..F8FF,% Private Use Area
++	F900..FAFF,% CJK Compatibility Ideographs
++	FF00..FFEF,% Halfwidth and Fullwidth Forms

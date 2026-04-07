@@ -1,0 +1,9 @@
+% Language definition file (part of polyglossia v2.9 -- 2025/12/01)
+%
+\ProvidesFile{gloss-ga.ldf}[polyglossia: module for ga (Gaelic)]
+
+% We provide this as a bcp47-compliant alias
+
+\InheritGlossFile{gaelic}
+
+\endinput

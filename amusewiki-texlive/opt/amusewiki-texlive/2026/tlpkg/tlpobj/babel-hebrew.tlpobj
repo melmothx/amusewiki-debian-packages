@@ -1,0 +1,40 @@
+name babel-hebrew
+category Package
+revision 77914
+shortdesc Babel support for Hebrew
+longdesc The package provides the language definition file for support
+longdesc of Hebrew in babel. Macros to control the use of text direction
+longdesc control of TeX--XeT and e-TeX are provided (and may be used
+longdesc elsewhere). Some shortcuts are defined, as well as translations
+longdesc to Hebrew of standard "LaTeX names". For questions, bug
+longdesc reports, or support, please open an issue in the repository.
+longdesc Note: the package is in maintenance mode. Bugs will be fixed,
+longdesc but no new features will be added. The .ldf file is only
+longdesc compatible with pdfLaTeX or LaTeX. Even then, for documents
+longdesc containing more than a short text in Hebrew, it is strongly
+longdesc recommended to use LuaTeX (with babel's .ini file or
+longdesc polyglossia). For short texts with pdfTeX, use the .ini file.
+longdesc Consult the documentation of babel for better settings for
+longdesc Hebrew.
+containersize 14208
+containerchecksum acedab649ecf14a4ff1daf79dc7b35378fd0be4f1c6cf89d38ce8a7eb9adfbe7778c02a00f62e0a67d7ffc6cce4a25508a3e7d0a8fa57ec26b555185b233b879
+doccontainersize 400264
+doccontainerchecksum 44e7c24f0d179aa547f32fe4b4b8d1eab72f3f0e698632fc4f0f4dd1b8c4010656bc85a998f9fbc744b5690a06ae8bd6b4d5dc69ab754b335dd4c19a13478762
+docfiles size=102
+ texmf-dist/doc/generic/babel-hebrew/README.md details="Readme"
+ texmf-dist/doc/generic/babel-hebrew/hebrew.pdf details="Package documentation"
+srccontainersize 33588
+srccontainerchecksum 5e9f73e8ca0ba179f3198e46353411cbec8d49a37709d3cc376be0d852c0d22624733577d87deb207c6a08531d03607b4267bcaa499e8ba33023c4e111a6f582
+runfiles size=21
+ texmf-dist/tex/generic/babel-hebrew/hebcal.sty
+ texmf-dist/tex/generic/babel-hebrew/hebrew.ldf
+ texmf-dist/tex/generic/babel-hebrew/hebrew_newcode.sty
+ texmf-dist/tex/generic/babel-hebrew/hebrew_oldcode.sty
+ texmf-dist/tex/generic/babel-hebrew/hebrew_p.sty
+ texmf-dist/tex/generic/babel-hebrew/rlbabel.def
+catalogue-contact-bugs https://codeberg.org/Udi-Fogiel/babel-hebrew/issues
+catalogue-contact-repository https://codeberg.org/Udi-Fogiel/babel-hebrew
+catalogue-ctan /macros/latex/contrib/babel-contrib/hebrew
+catalogue-license lppl1.3
+catalogue-topics hebrew
+catalogue-version 2.5

@@ -1,0 +1,9 @@
+% $Id: test-doc1incl25.tex 868 2021-11-04 17:23:17Z karl $
+% Public domain.
+% PDF1 document, include PDF2.4 image.
+\pdfcompresslevel=0 \pdfobjcompresslevel=0 % get greppable output
+\pdfoutput=1
+\catcode`\{=1 \catcode`\}=2
+\pdfximage{incl2.5.pdf}
+\hbox{\pdfrefximage\pdflastximage}
+\end

@@ -1,0 +1,158 @@
+%
+% lltjdefs.sty
+%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lltjdefs}[2024-05-16 Default font settings of LuaTeX-ja]
+
+\ifdefined\ltj@stdmcfont\else\def\ltj@stdmcfont{file:HaranoAjiMincho-Regular.otf}\fi
+\ifdefined\ltj@stdgtfont\else\def\ltj@stdgtfont{file:HaranoAjiGothic-Medium.otf}\fi
+\ifdefined\ltj@stdyokojfm\else\def\ltj@stdyokojfm{ujis}\fi
+\ifdefined\ltj@stdtatejfm\else\def\ltj@stdtatejfm{ujisv}\fi
+\InputIfFileExists{luatexja.cfg}{%
+  \typeout{*************************^^J%
+           * Loading luatexja.cfg.^^J%
+           *************************}%
+}{}
+
+\DeclareKanjiEncodingDefaults{}{}
+\DeclareErrorKanjiFont{JY3}{mc}{m}{n}{10}
+\kanjifamily{mc}
+\def\k@series{m}
+\def\k@shape{n}
+\fontsize{10}{10}
+\DeclareYokoKanjiEncoding{JY3}{}{}
+\DeclareKanjiSubstitution{JY3}{mc}{m}{n}
+\DeclareTateKanjiEncoding{JT3}{}{}
+\DeclareKanjiSubstitution{JT3}{mc}{m}{n}
+
+\newcommand\mcdefault{mc}
+\newcommand\gtdefault{gt}
+\newcommand\jttdefault{\mcdefault}
+\newcommand\kanjiencodingdefault{JY3}
+\newcommand\kanjifamilydefault{\mcdefault}
+\newcommand\kanjiseriesdefault{\mddefault}
+\newcommand\kanjishapedefault{\shapedefault}
+
+\DeclareKanjiFamily{JY3}{mc}{}
+\DeclareFontShape{JY3}{mc}{m}{n}{<-> s*[\ifdefined\Cjascale\Cjascale\else 0.962216\fi]
+  \ltj@stdmcfont:-kern;jfm=\ltj@stdyokojfm}{}
+\DeclareKanjiFamily{JY3}{gt}{}
+\DeclareFontShape{JY3}{gt}{m}{n}{<-> s*[\ifdefined\Cjascale\Cjascale\else 0.962216\fi]
+  \ltj@stdgtfont:-kern;jfm=\ltj@stdyokojfm}{}
+\DeclareFontShape{JY3}{mc}{bx}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontShape{JY3}{gt}{bx}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontShape{JY3}{mc}{b}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontShape{JY3}{gt}{b}{n}{<-> ssub*gt/m/n}{}
+
+\DeclareKanjiFamily{JT3}{mc}{}
+\DeclareFontShape{JT3}{mc}{m}{n}{<-> s*[\ifdefined\Cjascale\Cjascale\else 0.962216\fi]
+  \ltj@stdmcfont:-kern;jfm=\ltj@stdtatejfm}{}
+\DeclareKanjiFamily{JT3}{gt}{}
+\DeclareFontShape{JT3}{gt}{m}{n}{<-> s*[\ifdefined\Cjascale\Cjascale\else 0.962216\fi]
+  \ltj@stdgtfont:-kern;jfm=\ltj@stdtatejfm}{}
+\DeclareFontShape{JT3}{mc}{bx}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontShape{JT3}{gt}{bx}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontShape{JT3}{mc}{b}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontShape{JT3}{gt}{b}{n}{<-> ssub*gt/m/n}{}
+\KanjiEncodingPair{JY3}{JT3}
+
+\DeclareRelationFont{JY3}{gt}{m}{}{TU}{lmr}{bx}{}
+\DeclareRelationFont{JY3}{mc}{m}{}{TU}{lmr}{m}{}
+\DeclareRelationFont{JY3}{mc}{bx}{}{TU}{lmr}{bx}{}
+\DeclareRelationFont{JY3}{mc}{b}{}{TU}{lmr}{b}{}
+\DeclareRelationFont{JT3}{gt}{m}{}{TU}{lmr}{bx}{}
+\DeclareRelationFont{JT3}{mc}{m}{}{TU}{lmr}{m}{}
+\DeclareRelationFont{JT3}{mc}{bx}{}{TU}{lmr}{bx}{}
+\DeclareRelationFont{JT3}{mc}{b}{}{TU}{lmr}{b}{}
+
+\kanjiencoding{JY3}\selectfont\adjustbaseline
+
+\DeclareTextFontCommand{\textmc}{\mcfamily}
+\DeclareTextFontCommand{\textgt}{\gtfamily}
+\DeclareOldFontCommand{\mc}{\normalfont\mcfamily}{}
+\DeclareOldFontCommand{\gt}{\normalfont\gtfamily}{}
+
+\unless\ifltj@disablejfam
+  \DeclareSymbolFont{mincho}{JY3}{mc}{m}{n}\jfam\symmincho
+  \SetSymbolFont{mincho}{bold}{JY3}{gt}{m}{n}
+  \DeclareSymbolFontAlphabet{\mathmc}{mincho}
+  \DeclareMathAlphabet{\mathgt}{JY3}{gt}{m}{n}
+\fi
+
+\edef\bfseries@mc{\bfdefault}
+\edef\bfseries@gt{\bfdefault}
+\def\bfseries@jtt{\bfseries@mc}
+\edef\mdseries@mc{\mddefault}
+\edef\mdseries@gt{\mddefault}
+\def\mdseries@jtt{\mdseries@mc}
+
+\newif\if@ltj@match@family
+\@ltj@match@familyfalse
+\def\verbatim@font{\normalfont\ttfamily\kanjifamily\jttdefault\selectfont}
+
+\AddToHook{rmfamily}{%
+  \if@ltj@match@family
+    \prepare@family@series@update@kanji{mc}\mcdefault
+  \fi
+}
+\AddToHook{sffamily}{%
+  \if@ltj@match@family
+    \prepare@family@series@update@kanji{gt}\gtdefault
+  \fi
+}
+\AddToHook{ttfamily}{%
+  \if@ltj@match@family
+    \prepare@family@series@update@kanji{jtt}\jttdefault
+  \fi
+}
+
+\expandafter\def\expandafter\kanjiseriesdefault
+  \expandafter{\kanjiseriesdefault\@empty}
+\let\kanjiseriesdefault@kernel\kanjiseriesdefault
+
+%%% \eminnershape
+\expandafter\patchcmd\csname em \endcsname{\itshape}{\gtfamily\itshape}{}{}
+\def\eminnershape{\mcfamily \upshape}
+
+\ltjsetparameter{autospacing, autoxspacing, differentjfm=paverage}
+
+\ltjdefcharrange{1}{"80-"36F, "1E00-"1EFF}
+\ltjdefcharrange{2}{"370-"4FF, "1F00-"1FFF}
+\ltjdefcharrange{3}{%
+  "2000-"243F, "2500-"27BF, "2900-"29FF, "2B00-"2BFF}
+\ltjdefcharrange{4}{%
+   "500-"10FF, "1200-"1DFF, "2440-"245F, "27C0-"28FF, "2A00-"2AFF,
+  "2C00-"2E7F, "4DC0-"4DFF, "A4D0-"A95F, "A980-"ABFF, "E000-"F8FF,
+  "FB00-"FE0F, "FE20-"FE2F, "FE70-"FEFF, "10000-"1AFEF, "1B170-"1F0FF,
+  "1F300-"1FFFF, "2000-"206F
+} % non-Japanese
+\ltjdefcharrange{5}{"D800-"DFFF, "E0000-"E00FF, "E01F0-"10FFFF}
+\ltjdefcharrange{6}{%
+  "2460-"24FF, "2E80-"2EFF, "3000-"30FF, "3190-"319F, "31F0-"4DBF,
+  "4E00-"9FFF, "F900-"FAFF, "FE10-"FE1F, "FE30-"FE6F, "FF00-"FFEF,
+  "1AFF0-"1B16F, "1F100-"1F2FF, "20000-"3FFFF, "E0100-"E01EF
+}
+\ltjdefcharrange{7}{%
+  "1100-"11FF, "2F00-"2FFF, "3100-"318F, "31A0-"31EF, "A000-"A4CF,
+  "A960-"A97F, "AC00-"D7FF
+}
+\ltjdefcharrange{8}{"A7, "A8, "B0, "B1, "B4, "B6, "D7, "F7}
+\ltjdefcharrange{9}{
+  "2002, "2010, "2011, "2013, "2014, "2015, "2016, "2018, "2019,
+  "201A, "201C, "201D, "201E, "2020, "2021, "2022, "2025, "2026,
+  "2030, "2032, "2033, "2039, "203A, "203B, "203C, "203E, "203F,
+  "2042, "2044, "2047, "2048, "2049, "2051
+}
+\ltjsetparameter{jacharrange={-1, +2, +3, -4, -5, +6, +7, -8, +9}}
+
+\directlua{for x=128,255 do luatexja.math.is_math_letters[x] = true end}
+\protected\def\<{\ifvmode\leavevmode\fi\inhibitglue}
+
+\directlua{luatexja.jfont.register_vert_replace{
+  ['，']='、', ['．']='。', ['“']=0x301D, ['”']=0x301F,
+}}
+
+% END OF FILE
+\endinput
+

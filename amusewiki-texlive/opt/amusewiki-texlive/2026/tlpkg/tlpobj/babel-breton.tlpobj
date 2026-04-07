@@ -1,0 +1,23 @@
+name babel-breton
+category Package
+revision 77470
+shortdesc Babel contributed support for Breton
+longdesc Breton (being, principally, a spoken language) does not have
+longdesc typographic rules of its own; this package provides an
+longdesc "appropriate" selection of French and British typographic
+longdesc rules.
+containersize 2500
+containerchecksum a4f6b618904355d98c7344d9099d11e19890e524988ca53e6ec18952945777c6bfbc535e3473ed82382466384c45c1c2fbbfc50c86e34b2bb16115deb3f3c92a
+doccontainersize 124244
+doccontainerchecksum 45517084c6f8d46d7c858c172dbc050f8be2f80e7b06a3940e1ade5314465710b99d41e9f214cdab5d049b5d2dca21778adb2e3d9b6df6108403eabd75a1a711
+docfiles size=32
+ texmf-dist/doc/generic/babel-breton/README.md details="Readme"
+ texmf-dist/doc/generic/babel-breton/breton.pdf details="Package documentation"
+srccontainersize 5144
+srccontainerchecksum 48f373a7cf796c570c59d9373d78d583401bdfacaef08f0fb7040e8c6527ecdebd353d9878ddbb1412c335e7c85eab55609b965250462a23b029828c2c16db4a
+runfiles size=2
+ texmf-dist/tex/generic/babel-breton/breton.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/babel-breton
+catalogue-license lppl1.3
+catalogue-topics breton multilingual-addon
+catalogue-version 1.0i

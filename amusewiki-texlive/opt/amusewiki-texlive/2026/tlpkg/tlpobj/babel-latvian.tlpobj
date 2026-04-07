@@ -1,0 +1,21 @@
+name babel-latvian
+category Package
+revision 71108
+shortdesc Babel support for Latvian
+longdesc The package provides the language definition file for support
+longdesc of Latvian in babel.
+containersize 4112
+containerchecksum b277fcc4c1cc58650722016eb9489fca635f7faed3788a93cceddb48ea25e6168b575b2554f616916f3f201100d69233b34c66871f085fa470473f47fe0c553a
+doccontainersize 277076
+doccontainerchecksum bbb2654b2ccef7a91d536a9a66f309f457459fc5c9d72ead212d10bbb2f8d8410128886fa388b5572e0ba4227ff54b421d0ef40a954c4be7c4dc902da3178166
+docfiles size=70
+ texmf-dist/doc/generic/babel-latvian/README.md details="Readme"
+ texmf-dist/doc/generic/babel-latvian/latvian.pdf details="Package documentation"
+srccontainersize 6232
+srccontainerchecksum 5f2c7b88cfaa1630b74dca9630d617342ea383b44f688f7d5ef09a5cd8104dfa4ebe2de278c2a30f06bf01afd311cdf50cfa7fa39f5dba726784c62a86d288a1
+runfiles size=3
+ texmf-dist/tex/generic/babel-latvian/latvian.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/latvian
+catalogue-license lppl1.3
+catalogue-topics latvian multilingual-addon
+catalogue-version 2.0c

@@ -1,0 +1,20 @@
+name hyphen-sanskrit
+category TLCore
+revision 78069
+shortdesc Sanskrit hyphenation patterns.
+longdesc Hyphenation patterns for Sanskrit and Prakrit in
+longdesc transliteration, and in Devanagari, Bengali, Kannada, Malayalam
+longdesc and Telugu scripts for Unicode engines.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=sanskrit 	lefthyphenmin=1 	righthyphenmin=3 	file=loadhyph-sa.tex 	file_patterns=hyph-sa.pat.txt 	file_exceptions=
+containersize 3596
+containerchecksum 322a1b50d4964953e7aebea49dd03b6b1cbc97b4d07d08783bb607a3f20e900be2358e870fe706f321d1312dceaa8777856e01ffc104028cb2f99904b9316884
+doccontainersize 992
+doccontainerchecksum 4b5abd027bfe41b6270dc903c80d233027351f21693c35664eb4b4f2526161a6307801e472f4d415c5475741336bca0b1be8aa378651de380cdc7f075b521ddd
+docfiles size=1
+ texmf-dist/doc/generic/hyph-utf8/languages/sa/hyphenmin.txt
+runfiles size=6
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-sa.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-sa.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-sa.pat.txt

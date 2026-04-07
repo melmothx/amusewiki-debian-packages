@@ -1,0 +1,16 @@
+% $Id: type1-segfault.tex 910 2023-08-26 17:47:24Z karl $
+% Public domain.
+% Test parsing of invalid Type 1. Original report:
+%   Date: Fri, 25 Aug 2023 14:54:10 +0800
+%   From: Gregory James DUCK
+%   To:  <tex-live@tug.org>
+% https://tug.org/pipermail/tex-live/2023-August/049400.html
+
+\catcode`\{=1 \catcode`\}=2
+\output={\global\advance\count0 by 1 \shipout\box255 }
+\pdfoutput=1 \hsize=4in \parfillskip=0pt plus1fil
+
+\pdfmapline{=cmr10 CMR10 <cmr10-corrupt.pfb}
+
+\font\x = ./cmr10 \x x
+\end

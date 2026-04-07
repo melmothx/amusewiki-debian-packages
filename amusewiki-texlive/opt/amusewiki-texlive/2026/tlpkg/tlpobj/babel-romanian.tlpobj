@@ -1,0 +1,22 @@
+name babel-romanian
+category Package
+revision 77682
+shortdesc Babel support for Romanian
+longdesc The package provides the language definition file for support
+longdesc of Romanian in babel. Translations to Romanian of standard
+longdesc "LaTeX names" are provided.
+containersize 2136
+containerchecksum c2ed9093ab202be8ade1abfdf257c21347ddaaabb6fa933f69464a8074082be5ff552dfc76ddbc06b5f1904fca5e053bf5cf90093307f6b427f7fa721d7df8a6
+doccontainersize 113060
+doccontainerchecksum 1d999a967433f30950f04659265ced6462bcec778ea2878ca7fc7f05e823d9008b49f9a3e136265eefa192ad0aced05d3161691fede729e9e28ad038fd1ca7ad
+docfiles size=29
+ texmf-dist/doc/generic/babel-romanian/README.md
+ texmf-dist/doc/generic/babel-romanian/romanian.pdf details="Package documentation"
+srccontainersize 4312
+srccontainerchecksum 4620618d1e4dad1d4efe6ff9ac7941b3a5e11a8069d6025438e31992dfece3ce336cfe1a4616ee11d2bb5db84a26e50fe2f3210756c1d21dac805f8d06e4cf49
+runfiles size=1
+ texmf-dist/tex/generic/babel-romanian/romanian.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/romanian
+catalogue-license lppl1.3
+catalogue-topics romanian tagged-pdf
+catalogue-version 1.2m

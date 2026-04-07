@@ -1,0 +1,23 @@
+name babel-indonesian
+category Package
+revision 77682
+shortdesc Support for Indonesian within babel
+longdesc This is the babel style for Indonesian.
+containersize 2488
+containerchecksum 99e72fc367dc5cef35be2b7308bd7bcf53c211ae3f3d203d15e8ee716e31c50703bb8c71731f3d07b249cb3edc72f0d01f23d663697be7a99bf5959c492b25cf
+doccontainersize 120964
+doccontainerchecksum de963df363a6b8969eb05200fda92396d3102cf270123a30ddf045f98437ccf31f6fec8d23cd22913bac76b9fdeef8144b5eb362580dc7a991abfca6aaf8c8fc
+docfiles size=31
+ texmf-dist/doc/generic/babel-indonesian/README.md
+ texmf-dist/doc/generic/babel-indonesian/indonesian.pdf details="Documentation for Bahasa indonesia version"
+srccontainersize 4984
+srccontainerchecksum 7bb245c1b89c2159270681b257bd656c082660fe3536b4782974d6a03452b9d1293107e22eca599cb4c107b38565d48156c834fae7b3e5b6f1a74230e012b943
+runfiles size=5
+ texmf-dist/tex/generic/babel-indonesian/bahasa.ldf
+ texmf-dist/tex/generic/babel-indonesian/bahasai.ldf
+ texmf-dist/tex/generic/babel-indonesian/indon.ldf
+ texmf-dist/tex/generic/babel-indonesian/indonesian.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/indonesian
+catalogue-license lppl1.3
+catalogue-topics bahasa-indonesia+malaysia multilingual tagged-pdf
+catalogue-version 1.0n

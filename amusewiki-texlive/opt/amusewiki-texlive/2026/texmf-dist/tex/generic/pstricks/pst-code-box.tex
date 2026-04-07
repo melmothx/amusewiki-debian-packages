@@ -1,0 +1,597 @@
+%
+% see pstricks.tex for license and copyright
+%
+\newif\ifpsmathbox
+\psmathboxtrue
+\def\pst@mathflag{\z@}
+\newtoks\everypsbox
+\let\pst@thisbox\relax
+%
+\long\def\pst@makenotverbbox#1#2{%
+  \edef\pst@mathflag{%
+  \ifpsmathbox\ifmmode\ifinner 1\else 2\fi\else\z@\fi\else\z@\fi}%
+  \setbox\pst@hbox=\hbox{%
+    \ifcase\pst@mathflag\or$\m@th\textstyle\or$\m@th\displaystyle\fi%
+    {\pst@thisbox\the\everypsbox#2}%
+    \ifnum\pst@mathflag>\z@$\fi%                                     $
+  }%
+  #1}
+%
+\def\pst@makeverbbox#1{%
+  \def\pst@afterbox{#1}%
+  \edef\pst@mathflag{\ifpsmathbox\ifmmode\ifinner1\else2\fi\else\z@\fi\else\z@\fi}%
+  \afterassignment\pst@beginbox%
+  \setbox\pst@hbox\hbox%
+}
+\def\pst@beginbox{%
+  \ifcase\pst@mathflag\or$\m@th\or$\m@th\displaystyle\fi%
+  \bgroup\aftergroup\pst@endbox%
+  \pst@thisbox%
+  \the\everypsbox%
+}
+\def\pst@endbox{%
+  \ifnum\pst@mathflag>\z@\relax$\fi%                      $
+  \egroup%
+  \pst@afterbox%
+}
+\def\pst@makebox{\pst@@makebox}
+\def\psverbboxtrue{\def\pst@@makebox{\pst@makeverbbox}}
+\def\psverbboxfalse{\def\pst@@makebox{\pst@makenotverbbox}}
+\psverbboxfalse
+\def\pst@longbox{%
+  \def\pst@makebox{%
+    \gdef\pst@makebox{\pst@@makebox}%
+    \pst@makelongbox%
+  }%
+}
+\def\pst@makelongbox#1{%
+  \def\pst@afterbox{#1}%
+  \edef\pst@mathflag{%
+    \ifpsmathbox\ifmmode\ifinner 1\else 2\fi\else \z@\fi\else \z@\fi%
+  }%
+  \setbox\pst@hbox\hbox\bgroup
+  \aftergroup\pst@afterbox
+  \ifcase\pst@mathflag\or$\m@th\or$\m@th\displaystyle\fi
+  \begingroup
+  \pst@thisbox
+  \the\everypsbox%
+}
+\def\pst@endlongbox{%
+  \endgroup
+  \ifnum\pst@mathflag>\z@$\fi		%$
+  \egroup%
+}
+\def\pslongbox#1#2{%
+  \@namedef{#1}{\pst@longbox#2}%
+  \@namedef{end#1}{\pst@endlongbox}}
+%
+\newdimen\psframesep
+\define@key[psset]{pstricks}{framesep}[3pt]{\pssetlength\psframesep{#1}}
+\psset[pstricks]{framesep=3pt}
+%
+\define@boolkey[psset]{pstricks}[ps]{boxsep}[true]{}
+\psset[pstricks]{boxsep}
+%
+\def\pst@useboxpar{%
+  \use@par
+  \if@star
+    \let\pslinecolor\psfillcolor
+    \solid@star
+    \let\solid@star\relax
+  \fi
+  \ifpsdoubleline \pst@setdoublesep \fi}
+%
+\def\psframebox{\def\pst@par{}\pst@object{psframebox}}
+\def\psframebox@i{\pst@makebox\psframebox@ii}
+\def\psframebox@ii{%
+  \begingroup
+  \pst@useboxpar
+  \pst@dima=\pslinewidth
+  \advance\pst@dima by \psframesep
+  \pst@dimc=\wd\pst@hbox\advance\pst@dimc by \pst@dima
+  \pst@dimb=\dp\pst@hbox\advance\pst@dimb by \pst@dima
+  \pst@dimd=\ht\pst@hbox\advance\pst@dimd by \pst@dima
+  \setbox\pst@hbox=\hbox{%
+    \ifpsboxsep\kern\pst@dima\fi
+    \begin@ClosedObj
+    \addto@pscode{%
+      \psk@cornersize % arcradius boolean
+      \pst@number\pst@dima neg
+      \pst@number\pst@dimb neg
+      \pst@number\pst@dimc
+      \pst@number\pst@dimd
+      .5
+      \tx@Frame%
+    }%
+    \def\pst@linetype{2}%
+    \showpointsfalse
+    \end@ClosedObj
+    \box\pst@hbox
+    \ifpsboxsep\kern\pst@dima\fi%
+  }%
+  \ifpsboxsep\dp\pst@hbox=\pst@dimb\ht\pst@hbox=\pst@dimd\fi
+  \leavevmode\box\pst@hbox
+  \endgroup}
+%
+\def\psdblframebox{\def\pst@par{}\pst@object{psdblframebox}}
+\def\psdblframebox@i{\addto@par{doubleline=true}\psframebox@i}
+%
+\define@key[psset]{pstricks}{clipcommand}[clip]{\def\pst@clipcommand{#1 }}
+\psset[pstricks]{clipcommand=clip}% alternative is eoclip
+%
+\def\psclip{\@ifnextchar[\psclip@i{\psclip@i[]}}%
+\def\psclip@i[#1]#2{%
+  \leavevmode%
+  \begingroup%
+    \ifx\relax#1\relax\else\psset{#1}\fi%
+    \begin@psclip%
+      \begingroup%
+        \def\use@pscode{%
+          \pstVerb{
+            \pst@dict
+            /mtrxc CM def
+            CP CP T
+            \tx@STV
+            \psk@origin
+            \psk@swapaxes
+            newpath
+            \pst@code
+            \pst@clipcommand
+            newpath
+            mtrxc setmatrix
+            moveto
+            0 setgray
+            end
+	  }%
+          \gdef\pst@code{}}%
+  \def\@multips(##1)(##2)##3##4{\pst@misplaced\multips}%
+  \def\nc@object##1##2##3##4{\pst@misplaced{node connection}}%
+  \hbox to\z@{#2}%
+  \endgroup%
+  \def\endpsclip{%
+    \end@psclip%
+    \endgroup}%
+  \ignorespaces}
+%
+\def\endpsclip{\pst@misplaced\endpsclip}
+\let\begin@psclip\relax
+\def\end@psclip{\pstVerb{currentpoint initclip moveto}}
+%
+\def\AltClipMode{%
+  \def\end@psclip{\pstVerb{\pst@grestore}}%
+  \def\begin@psclip{\pstVerb{gsave}}}
+
+\ifPSTlualatex
+  \AltClipMode
+\fi
+
+\def\psclipbox{\@ifnextchar[{\psclipbox@}{\psclipbox@[\z@]}}
+% DG modification begin - Apr. 3, 1997
+% From paulus@immd5.informatik.uni-erlangen.de (Dietrich Paulus)
+%\def\clipbox@[#1]{\pst@makebox\clipbox@@{#1}}
+\def\psclipbox@[#1]{\pst@makebox{\psclipbox@@{#1}}}
+% DG modification end
+\def\psclipbox@@#1{%
+  \pssetlength\pst@dimg{#1}%
+  \leavevmode\hbox{%
+  \begin@psclip%
+  \pst@Verb{
+    CM \tx@STV CP T newpath
+    /a \pst@number\pst@dimg def
+    /w \pst@number{\wd\pst@hbox}a add def
+    /d \pst@number{\dp\pst@hbox}a add neg def
+    /h \pst@number{\ht\pst@hbox}a add def
+    a neg d moveto
+    a neg h L
+    w h L
+    w d L
+    closepath
+    \pst@clipcommand
+    newpath
+    0 0 moveto
+    setmatrix}%
+  \unhbox\pst@hbox%
+  \end@psclip}}
+%
+\def\psshadowbox{\def\pst@par{}\pst@object{psshadowbox}}
+\def\psshadowbox@i{\pst@makebox\psshadowbox@ii}
+\def\psshadowbox@ii{%
+\begingroup
+\pst@useboxpar
+\psshadowtrue
+\psboxseptrue
+\def\psk@shadowangle{-45 }%
+\setbox\pst@hbox=\hbox{\psframebox@ii}%
+\pst@dimh=\psk@shadowsize\p@
+\pst@dimh=.7071\pst@dimh
+\pst@dimg=\dp\pst@hbox
+\advance\pst@dimg\pst@dimh
+\dp\pst@hbox=\pst@dimg
+\pst@dimg=\wd\pst@hbox
+\advance\pst@dimg\pst@dimh
+\wd\pst@hbox=\pst@dimg
+\leavevmode
+\box\pst@hbox
+\endgroup}
+%
+\def\pscirclebox{\pst@object{pscirclebox}}
+\def\pscirclebox@i{\pst@makebox\pscirclebox@ii}
+\def\pscirclebox@ii{%
+  \begingroup
+  \pst@useboxpar
+  \setbox\pst@hbox=\hbox{%
+    \pst@nodehook
+    \pscirclebox@iii
+    \box\pst@hbox}%
+  \ifpsboxsep\pscirclebox@sep\fi
+  \leavevmode
+  \box\pst@hbox
+  \endgroup
+  \ignorespaces
+}
+\def\pscirclebox@iii{%
+\if@star
+    \pslinewidth\z@
+    \pstverb{\pst@dict \tx@STP \pst@usecolor\psfillcolor
+             newpath \pscirclebox@iv \tx@SD end}%
+\else
+    \begin@ClosedObj
+    \def\pst@linetype{4}\showpointsfalse
+    \addto@pscode{ \pscirclebox@iv\space CLW 2 div add 0 360 arc closepath}%
+    \end@ClosedObj
+\fi
+}
+%
+\def\pscirclebox@iv{
+  \pst@number{\wd\pst@hbox} 2 div
+  \pst@number{\ht\pst@hbox} \pst@number{\dp\pst@hbox} add 2 div
+  2 copy \pst@number{\dp\pst@hbox} sub 4 2 roll
+  \tx@Pyth \pst@number\psframesep add }
+%
+\def\pscirclebox@sep{%
+  \pst@dimn=\ht\pst@hbox%			% the height of the box
+  \advance\pst@dimn by \dp\pst@hbox%		% the depth  of the box added to \pst@dimn
+  \divide\pst@dimn by 2%			% \pst@dimn/2
+  \pst@dimm=0.5\wd\pst@hbox%			% the half of the width
+  \pst@Pyth\pst@dimm\pst@dimn\pst@dimo%		% the diameter
+  \advance\pst@dimo by \pslinewidth%
+  \advance\pst@dimo by \psframesep%
+  \advance\pst@dimn by -\pst@dimo%
+  \setbox\pst@hbox=\hbox to 2\pst@dimo{\hss\vbox{\kern-\pst@dimn\box\pst@hbox}\hss}%
+  \advance\pst@dimn by -\dp\pst@hbox%
+  \dp\pst@hbox=-\pst@dimn}
+%  
+\let\pst@nodehook\relax
+%
+\def\psCirclebox{\def\pst@par{}\pst@object{psCirclebox}}
+\def\psCirclebox@i{\pst@makebox\psCirclebox@ii}
+\def\psCirclebox@ii{%
+  \begingroup
+  \pst@useboxpar
+  \pst@dima=\ht\pst@hbox
+  \advance\pst@dima by -\dp\pst@hbox
+  \divide\pst@dima\tw@
+  \pssetlength\pst@dimb\psk@radius
+  \setbox\pst@hbox=\hbox{%
+    \pst@nodehook
+    \pscircle(.5\wd\pst@hbox,\pst@dima){\pst@dimb}%
+    \box\pst@hbox}%
+  \ifpsboxsep \psCirclebox@sep \fi
+  \leavevmode
+  \box\pst@hbox
+  \endgroup
+}
+%
+\def\psCirclebox@sep{%
+  \pst@dimc=\pst@dimb
+  \advance\pst@dimb-\pst@dima
+  \advance\pst@dima\pst@dimc
+  \setbox\pst@hbox=\hbox to\tw@\pst@dimc{%
+    \hss\vrule width \z@ depth \pst@dimb height \pst@dima
+    \box\pst@hbox\hss}}
+%
+\def\psovalbox{\def\pst@par{}\pst@object{psovalbox}}
+\def\psovalbox@i{\pst@makebox{\psovalbox@ii}}
+\def\psovalbox@ii{%
+  \begingroup
+  \pst@useboxpar
+  \psovalbox@iii
+  \ifpsboxsep\psovalbox@sep\fi
+  \leavevmode
+  \box\pst@hbox
+  \endgroup}
+%
+\def\psovalbox@iii{%
+  \psovalbox@iv
+  \setbox\pst@hbox=\hbox{%
+    \begin@ClosedObj
+    \addto@pscode{%
+      0 360
+      \pst@number\pst@dimc CLW 2 div sub
+      \pst@number\pst@dimd CLW 2 div sub
+      \pst@number\pst@dima
+      \pst@number\pst@dimb
+      \tx@Ellipse
+      closepath }%
+    \def\pst@linetype{2}%
+    \end@ClosedObj
+    \unhbox\pst@hbox}}
+%
+\def\psovalbox@iv{%
+  \pst@dimc=\pslinewidth\advance\pst@dimc\psframesep
+  \pst@dimd=\ht\pst@hbox\advance\pst@dimd\dp\pst@hbox
+  \pst@dima=.5\wd\pst@hbox
+  \pst@dimb=.5\pst@dimd\advance\pst@dimb-\dp\pst@hbox
+  \pst@dimd=.707\pst@dimd
+  \advance\pst@dimd\pst@dimc
+  \advance\pst@dimc.707\wd\pst@hbox}
+%
+\def\psovalbox@sep{%
+  \setbox\pst@hbox\hbox to 2\pst@dimc{\hss\unhbox\pst@hbox\hss}%
+  \pst@dimg=\pst@dimd
+  \advance\pst@dimg-\pst@dimb
+  \dp\pst@hbox=\pst@dimg
+  \advance\pst@dimd\pst@dimb
+  \ht\pst@hbox=\pst@dimd}
+%
+\def\psdiabox{\def\pst@par{}\pst@object{psdiabox}}
+\def\psdiabox@i{\pst@makebox{\psdiabox@ii}}
+\def\psdiabox@ii{%
+\begingroup
+\pst@useboxpar
+\psdiabox@iii
+\ifpsboxsep\psdiabox@sep\fi
+\leavevmode
+\box\pst@hbox
+\endgroup}
+\def\psdiabox@iv{%
+\pst@dimg=.707\pslinewidth
+\advance\pst@dimg.707\psframesep
+\pst@dima=\wd\pst@hbox
+\divide\pst@dima 2
+\pst@dimc=\pst@dima
+\advance\pst@dimc\pst@dimg
+\pst@dimd=\ht\pst@hbox
+\advance\pst@dimd\dp\pst@hbox
+\divide\pst@dimd 2
+\pst@dimb=\pst@dimd
+\advance\pst@dimb-\dp\pst@hbox
+\advance\pst@dimd\pst@dimg}
+\def\psdiabox@iii{%
+\psdiabox@iv
+\setbox\pst@hbox=\hbox{%
+\begin@ClosedObj
+\addto@pscode{%
+\psline@iii
+pop
+.5
+\pst@number\pst@dimc 2 mul \pst@number\pst@dimd 2 mul
+0
+\pst@number\pst@dima \pst@number\pst@dimb
+\tx@Diamond}%
+\def\pst@linetype{4}%
+\end@ClosedObj
+\box\pst@hbox}}
+\def\psdiabox@sep{%
+\setbox\pst@hbox\hbox to 4\pst@dimc{\hss\unhbox\pst@hbox\hss}%
+\multiply\pst@dimd 2
+\advance\pst@dimd\pst@dimb
+\ht\pst@hbox\pst@dimd
+\advance\pst@dimd-2\pst@dimb
+\dp\pst@hbox\pst@dimd}
+%
+\define@key[psset]{pstricks}{trimode}[U]{\pst@expandafter\psset@@trimode{#1}\@empty\@empty\@nil}
+\def\psset@@trimode#1#2#3\@nil{%
+  \let\pst@tempg#1\relax
+  \ifx\pst@tempg*
+    \let\psk@@trimode\@empty
+    \let\pst@tempg#2\relax
+  \else
+    \let\psk@@trimode\relax
+  \fi
+  \edef\psk@trimode{%
+    \ifx R\pst@tempg 1 % Right
+    \else
+      \ifx D\pst@tempg 2 % Down
+      \else
+        \ifx L\pst@tempg 3 % Left
+        \else 
+          \ifx l\pst@tempg 4 % |_
+          \else
+            \ifx r\pst@tempg 5 % _|
+            \else 0 \fi     % Up
+          \fi
+        \fi
+      \fi
+    \fi}%
+}
+\psset[pstricks]{trimode=U}
+%
+\def\pstribox{\pst@object{pstribox}}
+\def\pstribox@i{\pst@makebox{\pstribox@ii}}
+\def\pstribox@ii{%
+  \begingroup
+  \pst@useboxpar
+  \pstribox@iii
+  \ifpsboxsep\pstribox@sep\fi
+  \leavevmode
+  \box\pst@hbox
+  \endgroup}
+%
+\def\pstribox@iii{%
+  \pstribox@iv
+  \setbox\pst@hbox=\hbox{%
+    \begin@ClosedObj
+    \addto@pscode{
+      \psline@iii
+      pop
+      0.5
+      \pst@number\pst@dimc % Width
+      \pst@number\pst@dimd % Height
+      \ifcase\psk@trimode  
+             \or  %% 0
+        exch \or  %% 1
+             \or  %% 2
+        exch \or  %% 3
+             \or  %% 4
+             \or  %% 5
+      \fi
+      \psk@trimode -90 mul
+      \pst@number\pst@dima % x coor for text
+      \pst@number\pst@dimb % y coor for text
+      \tx@Triangle}%
+    \def\pst@linetype{2}%
+    \end@ClosedObj
+    \box\pst@hbox}%
+}
+%
+\def\pstribox@iv{%
+  \pst@dimh=\pslinewidth
+  \advance\pst@dimh\psframesep
+  \pst@dimg=\ht\pst@hbox
+  \advance\pst@dimg-\dp\pst@hbox         % totalheight
+  \divide\pst@dimg 2                     % 0.5 totalheight
+  \edef\pst@tempa{\number\pst@dimg sp}%  % For use by nodes.
+  \ifodd\psk@trimode                     % 
+    \pst@dimb\pst@dimg
+  \else
+    \pst@dima=\wd\pst@hbox
+    \divide\pst@dima 2
+  \fi
+  \ifcase\psk@trimode
+    \pst@dimb=-\dp\pst@hbox
+    \advance\pst@dimb-\pst@dimh
+  \or\pst@dima=-\pst@dimh
+  \or\pst@dimb=\ht\pst@hbox
+     \advance\pst@dimb\pst@dimh
+  \or\pst@dima=\wd\pst@hbox
+     \advance\pst@dima\pst@dimh
+  \fi
+  \pst@dimd=\dp\pst@hbox
+  \advance\pst@dimd\ht\pst@hbox
+  \ifx\psk@@trimode\relax% no star for trimode=
+    \pst@dimc=\wd\pst@hbox
+    \advance\pst@dimc\ifodd\psk@trimode 1.447\else 1.789\fi\pst@dimh
+    \multiply\pst@dimc 2
+    \advance\pst@dimd\ifodd\psk@trimode 1.789\else 1.447\fi\pst@dimh
+    \multiply\pst@dimd 2
+  \else% trimode=R*,L*,U*,D*
+    \ifodd\psk@trimode
+      \advance\pst@dimd 1.1547\wd\pst@hbox
+      \advance\pst@dimd 3.4641\pst@dimh
+      \pst@dimc=.866\pst@dimd
+    \else
+      \advance\pst@dimd .866\wd\pst@hbox %.866=(sqrt(3)/2)
+      \advance\pst@dimd 3\pst@dimh 
+      \pst@dimc=1.1547\pst@dimd % 1.1547=(2/sqrt(3))
+    \fi
+  \fi}
+%
+\def\pstribox@sep{%
+\ifodd\psk@trimode
+\advance\pst@dimb.5\pst@dimd
+\ht\pst@hbox=\pst@dimb
+\advance\pst@dimd-\pst@dimb
+\dp\pst@hbox=\pst@dimd
+\else
+\setbox\pst@hbox\hbox to \pst@dimc{\hss\unhbox\pst@hbox\hss}%
+\global\pst@dimg=.5\pst@dimc
+\fi
+\ifcase\psk@trimode
+\dp\pst@hbox-\pst@dimb
+\advance\pst@dimd\pst@dimb
+\ht\pst@hbox\pst@dimd
+\or
+\pst@dimg=.5\wd\pst@hbox
+\global\advance\pst@dimg-\pst@dima
+\setbox\pst@hbox\hbox to \pst@dimc{\kern-\pst@dima\box\pst@hbox\hss}%
+\or
+\ht\pst@hbox\pst@dimb
+\advance\pst@dimd-\pst@dimb
+\dp\pst@hbox\pst@dimd
+\or
+\pst@dimg=\pst@dimc
+\advance\pst@dimg-\pst@dima
+\global\advance\pst@dimg.5\wd\pst@hbox
+\setbox\pst@hbox\hbox to \pst@dimc{%
+\hss\box\pst@hbox\kern\psframesep\kern\pslinewidth}%
+\fi}
+%
+\def\pst@starbox{%
+\setbox\pst@hbox\hbox{\psframebox*[boxsep=false]{\unhbox\pst@hbox}}}
+\def\pst@@makesmall#1{%
+\setbox#1=\hbox to\z@{\hss\vbox to \z@{\vss\box#1\vss}\hss}}
+\def\pst@@@makesmall#1{%
+\pst@dimh=\psk@xref\wd#1%
+\ifx\psk@yref\relax
+\pst@dimg=\dp#1%
+\else
+\pst@dimg=\psk@yref\ht#1%
+\advance\pst@dimg\psk@yref\dp#1%
+\fi
+\setbox#1=\hbox to\z@{%
+\kern-\pst@dimh\vbox to\z@{\vss\box#1\kern-\pst@dimg}\hss}}
+%
+\def\psscalebox#1{\pst@makebox{\ps@scalebox{#1}}}
+\def\ps@scalebox#1{%
+  \begingroup%
+  \pst@getscale{#1}\pst@tempa%
+  \let\pst@tempc\pst@tempg%
+  \let\pst@tempd\pst@temph%
+  \ps@@scalebox%
+  \endgroup}
+\def\ps@@scalebox{%
+  \leavevmode%
+  \hbox{%
+    \ifdim\pst@tempd\p@<\z@%
+      \pst@dimg=\pst@tempd\ht\pst@hbox%
+      \pst@dimh=\pst@tempd\dp\pst@hbox%
+      \dp\pst@hbox=-\pst@dimg%
+      \ht\pst@hbox=-\pst@dimh%
+    \else%
+      \ht\pst@hbox=\pst@tempd\ht\pst@hbox%
+      \dp\pst@hbox=\pst@tempd\dp\pst@hbox%
+    \fi%
+    \pst@dima=\pst@tempc\wd\pst@hbox%
+    \ifdim\pst@dima<\z@\kern-\pst@dima\fi%
+    \pst@Verb{CP CP translate \pst@tempa \tx@NET}%
+    \hbox to \z@{\box\pst@hbox\hss}%
+    \pst@Verb{
+      CP CP translate
+      1 \pst@tempc div 1 \pst@tempd div scale
+      \tx@NET}%
+    \ifdim\pst@dima>\z@\kern\pst@dima\fi%
+  }%
+}
+\pslongbox{Scalebox}{\psscalebox}
+%
+\def\psscaleboxto(#1,#2){\pst@makebox{\ps@scaleboxto(#1,#2)}}
+\def\ps@scaleboxto(#1,#2){%
+  \begingroup
+  \pssetlength\pst@dima{#1}%
+  \pssetlength\pst@dimb{#2}%
+  \ifdim\pst@dima=\z@\else
+    \pst@divide{\pst@dima}{\wd\pst@hbox}\pst@tempc
+    \edef\pst@tempc{\pst@tempc\space}%
+  \fi
+  \ifdim\pst@dimb=\z@
+    \ifdim\pst@dima=\z@
+      \@pstrickserr{%
+        \string\psscaleboxto\space dimensions cannot both be zero}\@ehpa
+      \def\pst@tempa{}%
+      \def\pst@tempc{1 }%
+      \def\pst@tempd{1 }% 
+    \else
+      \let\pst@tempd\pst@tempc
+    \fi
+  \else
+    \pst@dimc=\ht\pst@hbox
+    \advance\pst@dimc\dp\pst@hbox
+    \pst@divide{\pst@dimb}{\pst@dimc}\pst@tempd
+    \edef\pst@tempd{\pst@tempd\space}%
+    \ifdim\pst@dima=\z@ \let\pst@tempc\pst@tempd \fi
+  \fi
+  \edef\pst@tempa{\pst@tempc \pst@tempd scale }%
+  \ps@@scalebox
+  \endgroup}
+\pslongbox{Scaleboxto}{\psscaleboxto}

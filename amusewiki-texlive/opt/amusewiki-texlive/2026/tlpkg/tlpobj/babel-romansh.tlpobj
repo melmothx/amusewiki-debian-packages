@@ -1,0 +1,19 @@
+name babel-romansh
+category Package
+revision 77682
+shortdesc Babel/Polyglossia support for the Romansh language
+longdesc The package provides a language description file that enables
+longdesc support of Romansh either with babel or with polyglossia.
+containersize 1116
+containerchecksum c0a4570e8a53c6add9e35d8fd44e30b6d252c31695a49f62a4564832f94af9bc89db9c1062c14d1184fce5bea4d6916242fd13b9d36510b9fffbb4f9ca3fe536
+doccontainersize 111840
+doccontainerchecksum 81927ea97549ea2d227b135bc33fc181437e467ba304b428ac0d8fe220dd49c46d483cc13f23d58e6cb93d1457125d1e0a4df2451b39e17d844f24e387116647
+docfiles size=28
+ texmf-dist/doc/generic/babel-romansh/romansh.pdf details="Package documentation"
+srccontainersize 3200
+srccontainerchecksum 667578db93d687df7964d1a0182e2e4f60f461404a67a3d8a37dbeb44fbb56d93addfe99fe32b2564ca0209f6858649826c89daf5cdaf04ed79a3475be09c7ad
+runfiles size=1
+ texmf-dist/tex/generic/babel-romansh/romansh.ldf
+catalogue-ctan /macros/latex/contrib/babel-contrib/romansh
+catalogue-license lppl1.3
+catalogue-topics multilingual-addon tagged-pdf

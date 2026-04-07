@@ -1,0 +1,16 @@
+name hyphen-georgian
+category TLCore
+revision 78069
+shortdesc Georgian hyphenation patterns.
+longdesc Hyphenation patterns for Georgian in T8M, T8K and UTF-8
+longdesc encodings.
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=georgian 	lefthyphenmin=1 	righthyphenmin=2 	file=loadhyph-ka.tex 	file_patterns=hyph-ka.pat.txt 	file_exceptions=
+containersize 11040
+containerchecksum 7b56c77c6c9c9b8d68b58622358524915f0e96e8fedcf7646fa29d64e4966c94086f2321a5f61fc062fe42fdff3a7fd6b86e868cd5ea07af049286e956ad003b
+runfiles size=24
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-ka.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-ka.t8m.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-ka.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-ka.pat.txt

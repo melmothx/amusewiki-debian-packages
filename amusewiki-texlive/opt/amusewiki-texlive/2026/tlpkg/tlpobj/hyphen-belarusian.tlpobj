@@ -1,0 +1,16 @@
+name hyphen-belarusian
+category TLCore
+revision 78069
+shortdesc Belarusian hyphenation patterns.
+longdesc Belarusian hyphenation patterns in T2A and UTF-8 encodings
+depend hyph-utf8
+depend hyphen-base
+execute AddHyphen 	name=belarusian 	lefthyphenmin=2 	righthyphenmin=2 	file=loadhyph-be.tex 	file_patterns=hyph-be.pat.txt 	file_exceptions=
+containersize 11972
+containerchecksum 88533d558299c2af60f7bb71c88e3d453cfc16aca78b2fb91dd68a8bce322c8552451698dec40d2d6c04125cf8529f8728a615b60fc4b269e453d4ddbd2c0d64
+runfiles size=30
+ texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-be.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/ptex/hyph-be.t2a.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/quote/hyph-quote-be.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-be.tex
+ texmf-dist/tex/generic/hyph-utf8/patterns/txt/hyph-be.pat.txt

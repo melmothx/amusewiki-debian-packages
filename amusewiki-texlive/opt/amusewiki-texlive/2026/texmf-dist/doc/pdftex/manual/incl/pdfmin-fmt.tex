@@ -1,0 +1,48 @@
+% $Id: pdfmin-fmt.tex 976 2026-01-19 22:40:55Z karl $
+% ConTeXt file to generate the two-column PDF output we show at the
+% beginning. Since this code was already written, and still works,
+% we just keep using it, instead of rewriting in LaTeX or plain TeX.
+
+\setuppapersize[letter][letter]
+
+\starttext
+% The number of lines on the title page depends on exactly
+% what \PDF\ code is generated; the Makefile outputs this.
+% See frontispiece.txt.
+\setvariables[pdftex][titlepagelines=63]
+
+% title page
+
+\definelayout
+  [titlepage]
+  [backspace=0pt, % left margin
+   cutspace=1.5in,  % less between columns
+   topspace=0pt,
+   bottomspace=0pt,
+   header=0pt,
+   footer=0pt,
+   lines=\getvariable{pdftex}{titlepagelines},
+   grid=yes,
+   width=middle]
+
+\definecolumnset
+  [titlepage]
+  [n=2,distance=.66in]
+
+\start
+    \chardef\fontdigits=2
+    \switchtobodyfont[11pt,tt]
+    \setupinterlinespace
+      [line=\dimexpr((\paperheight)/\getvariable{pdftex}{titlepagelines})]
+    \setuptyping[margin=,color=]
+    \setuplayout[titlepage]
+
+    \startcolumnset[titlepage]
+      \typefile{incl/pdfmin-src.txt}
+    \stopcolumnset
+
+    \page
+    \setuplayout
+\stop
+
+\stoptext

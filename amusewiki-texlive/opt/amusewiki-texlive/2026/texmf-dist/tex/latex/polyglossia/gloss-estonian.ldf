@@ -1,0 +1,48 @@
+% Language definition file (part of polyglossia v2.9 -- 2025/12/01)
+%
+\ProvidesFile{gloss-estonian.ldf}[polyglossia: module for Estonian]
+\PolyglossiaSetup{estonian}{
+  bcp47=et,
+  bcp47-language=et,
+  bcp47-region=EE,
+  bcp47-script=Latn,
+  hyphennames={estonian},
+  hyphenmins={2,2},
+  langtag=ETI,
+  frenchspacing=true,
+ }
+
+% BCP-47 compliant aliases
+\setlanguagealias*{estonian}{et}
+
+\def\captionsestonian{%
+   \def\refname{Viited}%
+   \def\abstractname{Kokkuvõte}%
+   \def\bibname{Kirjandus}%
+   \def\prefacename{Sissejuhatus}%
+   \def\chaptername{Peatükk}%
+   \def\appendixname{Lisa}%
+   \def\contentsname{Sisukord}%
+   \def\listfigurename{Joonised}%
+   \def\listtablename{Tabelid}%
+   \def\indexname{Indeks}%
+   \def\figurename{Joonis}%
+   \def\tablename{Tabel}%
+   %\def\thepart{}%
+   \def\partname{Osa}%
+   \def\pagename{Lk.}%
+   \def\seename{vt.}%
+   \def\alsoname{vt. ka}%
+   \def\enclname{Lisa(d)}%
+   \def\ccname{Koopia(d)}%
+   %\def\headtoname{}%
+   \def\proofname{Korrektuur}%
+   \def\glossaryname{Sõnastik}%
+   }
+\def\dateestonian{%
+   \def\today{\number\day.\space\ifcase\month\or
+    jaanuar\or veebruar\or märts\or aprill\or mai\or juuni\or
+    juuli\or august\or september\or oktoober\or november\or
+    detsember\fi\space\number\year.\space a.}}
+
+\endinput

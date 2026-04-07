@@ -1,0 +1,16 @@
+% Public domain. From Ulrike Fischer:
+% https://tug.org/pipermail/tex-live/2025-February/051136.html
+
+\ExplSyntaxOn\sys_ensure_backend:\pdf_uncompress:\ExplSyntaxOff
+
+\documentclass{article}
+
+\begin{document}
+\pdfinterwordspaceon
+$ a b \mathbf{u} $ $ a\mathbf{u} $ $ a\mathbf{b} $
+
+\end{document}
+
+% When I compile this the first equation is correct. But the second is
+% missing the bold u, and the third uses an mathitalic b instead of a
+% bold b.

@@ -1,0 +1,1620 @@
+(CHARACTER H 404E0D
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F967)
+     )
+  )
+(CHARACTER H 404E32
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F905)
+     )
+  )
+(CHARACTER H 404E39
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F95E)
+     )
+  )
+(CHARACTER H 404E82
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F91B)
+     )
+  )
+(CHARACTER H 404E86
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9BA)
+     )
+  )
+(CHARACTER H 404EAE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F977)
+     )
+  )
+(CHARACTER H 404EC0
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9FD)
+     )
+  )
+(CHARACTER H 404EE4
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9A8)
+     )
+  )
+(CHARACTER H 404F86
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F92D)
+     )
+  )
+(CHARACTER H 404F8B
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9B5)
+     )
+  )
+(CHARACTER H 404FBF
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F965)
+     )
+  )
+(CHARACTER H 40502B
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9D4)
+     )
+  )
+(CHARACTER H 4050DA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9BB)
+     )
+  )
+(CHARACTER H 405169
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F978)
+     )
+  )
+(CHARACTER H 40516D
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9D1)
+     )
+  )
+(CHARACTER H 4051B7
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F92E)
+     )
+  )
+(CHARACTER H 4051C9
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F979)
+     )
+  )
+(CHARACTER H 4051CC
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F955)
+     )
+  )
+(CHARACTER H 4051DC
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F954)
+     )
+  )
+(CHARACTER H 405207
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA00)
+     )
+  )
+(CHARACTER H 405217
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F99C)
+     )
+  )
+(CHARACTER H 405229
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9DD)
+     )
+  )
+(CHARACTER H 40523A
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9FF)
+     )
+  )
+(CHARACTER H 405289
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9C7)
+     )
+  )
+(CHARACTER H 40529B
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F98A)
+     )
+  )
+(CHARACTER H 4052A3
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F99D)
+     )
+  )
+(CHARACTER H 4052D2
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F952)
+     )
+  )
+(CHARACTER H 4052DE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F92F)
+     )
+  )
+(CHARACTER H 4052F5
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F97F)
+     )
+  )
+(CHARACTER H 405317
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F963)
+     )
+  )
+(CHARACTER H 40533F
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9EB)
+     )
+  )
+(CHARACTER H 405375
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F91C)
+     )
+  )
+(CHARACTER H 4053C3
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F96B)
+     )
+  )
+(CHARACTER H 4053E5
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F906)
+     )
+  )
+(CHARACTER H 40540F
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9DE)
+     )
+  )
+(CHARACTER H 40541D
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9ED)
+     )
+  )
+(CHARACTER H 405442
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F980)
+     )
+  )
+(CHARACTER H 4054BD
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F99E)
+     )
+  )
+(CHARACTER H 405587
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F90B)
+     )
+  )
+(CHARACTER H 4056F9
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9A9)
+     )
+  )
+(CHARACTER H 40585E
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F96C)
+     )
+  )
+(CHARACTER H 4058D8
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F94A)
+     )
+  )
+(CHARACTER H 4058DF
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F942)
+     )
+  )
+(CHARACTER H 405948
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F90C)
+     )
+  )
+(CHARACTER H 405951
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F909)
+     )
+  )
+(CHARACTER H 405973
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F981)
+     )
+  )
+(CHARACTER H 405B85
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA04)
+     )
+  )
+(CHARACTER H 405BE7
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F95F)
+     )
+  )
+(CHARACTER H 405BEE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9BC)
+     )
+  )
+(CHARACTER H 405C3F
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9BD)
+     )
+  )
+(CHARACTER H 405C62
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F94B)
+     )
+  )
+(CHARACTER H 405C65
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9DF)
+     )
+  )
+(CHARACTER H 405D19
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9D5)
+     )
+  )
+(CHARACTER H 405D50
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F921)
+     )
+  )
+(CHARACTER H 405DBA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9AB)
+     )
+  )
+(CHARACTER H 405E74
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F98E)
+     )
+  )
+(CHARACTER H 405EA6
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA01)
+     )
+  )
+(CHARACTER H 405EC9
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9A2)
+     )
+  )
+(CHARACTER H 405ECA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F928)
+     )
+  )
+(CHARACTER H 405ED3
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA0B)
+     )
+  )
+(CHARACTER H 405EEC
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F982)
+     )
+  )
+(CHARACTER H 405F04
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F943)
+     )
+  )
+(CHARACTER H 405F8B
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9D8)
+     )
+  )
+(CHARACTER H 405FA9
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F966)
+     )
+  )
+(CHARACTER H 405FF5
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9A3)
+     )
+  )
+(CHARACTER H 406012
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F960)
+     )
+  )
+(CHARACTER H 40601C
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9AC)
+     )
+  )
+(CHARACTER H 4060E1
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9B9)
+     )
+  )
+(CHARACTER H 406144
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9D9)
+     )
+  )
+(CHARACTER H 406190
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F98F)
+     )
+  )
+(CHARACTER H 4061F6
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F90D)
+     )
+  )
+(CHARACTER H 406200
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F990)
+     )
+  )
+(CHARACTER H 40622E
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9D2)
+     )
+  )
+(CHARACTER H 4062C9
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F925)
+     )
+  )
+(CHARACTER H 4062CF
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F95B)
+     )
+  )
+(CHARACTER H 4062D3
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA02)
+     )
+  )
+(CHARACTER H 4062FE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F973)
+     )
+  )
+(CHARACTER H 40637B
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9A4)
+     )
+  )
+(CHARACTER H 4063A0
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F975)
+     )
+  )
+(CHARACTER H 40649A
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F991)
+     )
+  )
+(CHARACTER H 4064C4
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F930)
+     )
+  )
+(CHARACTER H 406578
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F969)
+     )
+  )
+(CHARACTER H 406599
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9BE)
+     )
+  )
+(CHARACTER H 4065C5
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F983)
+     )
+  )
+(CHARACTER H 406613
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9E0)
+     )
+  )
+(CHARACTER H 406688
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9C5)
+     )
+  )
+(CHARACTER H 4066B4
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA06)
+     )
+  )
+(CHARACTER H 4066C6
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F98B)
+     )
+  )
+(CHARACTER H 4066F4
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F901)
+     )
+  )
+(CHARACTER H 406717
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F929)
+     )
+  )
+(CHARACTER H 40674E
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9E1)
+     )
+  )
+(CHARACTER H 40677B
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9C8)
+     )
+  )
+(CHARACTER H 406797
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9F4)
+     )
+  )
+(CHARACTER H 4067F3
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9C9)
+     )
+  )
+(CHARACTER H 406817
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9DA)
+     )
+  )
+(CHARACTER H 406881
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F97A)
+     )
+  )
+(CHARACTER H 4068A8
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9E2)
+     )
+  )
+(CHARACTER H 406A02
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F914)
+     )
+  )
+(CHARACTER H 406A13
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F94C)
+     )
+  )
+(CHARACTER H 406AD3
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F931)
+     )
+  )
+(CHARACTER H 406B04
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F91D)
+     )
+  )
+(CHARACTER H 406B77
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F98C)
+     )
+  )
+(CHARACTER H 406BAE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9A5)
+     )
+  )
+(CHARACTER H 406BBA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F970)
+     )
+  )
+(CHARACTER H 406C88
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F972)
+     )
+  )
+(CHARACTER H 406CCC
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F968)
+     )
+  )
+(CHARACTER H 406CE5
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9E3)
+     )
+  )
+(CHARACTER H 406D1B
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F915)
+     )
+  )
+(CHARACTER H 406D1E
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA05)
+     )
+  )
+(CHARACTER H 406D41
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9CA)
+     )
+  )
+(CHARACTER H 406D6A
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F92A)
+     )
+  )
+(CHARACTER H 406DCB
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9F5)
+     )
+  )
+(CHARACTER H 406DDA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F94D)
+     )
+  )
+(CHARACTER H 406DEA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9D6)
+     )
+  )
+(CHARACTER H 406E9C
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9CB)
+     )
+  )
+(CHARACTER H 406EBA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9EC)
+     )
+  )
+(CHARACTER H 406ED1
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F904)
+     )
+  )
+(CHARACTER H 406F0F
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F94E)
+     )
+  )
+(CHARACTER H 406F23
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F992)
+     )
+  )
+(CHARACTER H 406FEB
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F922)
+     )
+  )
+(CHARACTER H 406FFE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F984)
+     )
+  )
+(CHARACTER H 407099
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9FB)
+     )
+  )
+(CHARACTER H 4070C8
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F99F)
+     )
+  )
+(CHARACTER H 4070D9
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F916)
+     )
+  )
+(CHARACTER H 407149
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F993)
+     )
+  )
+(CHARACTER H 4071CE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9C0)
+     )
+  )
+(CHARACTER H 4071D0
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9EE)
+     )
+  )
+(CHARACTER H 407210
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F932)
+     )
+  )
+(CHARACTER H 40721B
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F91E)
+     )
+  )
+(CHARACTER H 407262
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F946)
+     )
+  )
+(CHARACTER H 4072C0
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9FA)
+     )
+  )
+(CHARACTER H 4072FC
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F92B)
+     )
+  )
+(CHARACTER H 407375
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9A7)
+     )
+  )
+(CHARACTER H 407387
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F961)
+     )
+  )
+(CHARACTER H 4073B2
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9AD)
+     )
+  )
+(CHARACTER H 4073DE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F917)
+     )
+  )
+(CHARACTER H 407406
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9E4)
+     )
+  )
+(CHARACTER H 407409
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9CC)
+     )
+  )
+(CHARACTER H 407469
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9AE)
+     )
+  )
+(CHARACTER H 407489
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F994)
+     )
+  )
+(CHARACTER H 407498
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9EF)
+     )
+  )
+(CHARACTER H 407559
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9CD)
+     )
+  )
+(CHARACTER H 407565
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F976)
+     )
+  )
+(CHARACTER H 407570
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F962)
+     )
+  )
+(CHARACTER H 4075E2
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9E5)
+     )
+  )
+(CHARACTER H 407642
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9C1)
+     )
+  )
+(CHARACTER H 407669
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F90E)
+     )
+  )
+(CHARACTER H 4076E7
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F933)
+     )
+  )
+(CHARACTER H 407701
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F96D)
+     )
+  )
+(CHARACTER H 40786B
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9CE)
+     )
+  )
+(CHARACTER H 40788C
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F93B)
+     )
+  )
+(CHARACTER H 4078CA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F947)
+     )
+  )
+(CHARACTER H 4078FB
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F964)
+     )
+  )
+(CHARACTER H 40792A
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F985)
+     )
+  )
+(CHARACTER H 40797F
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F93C)
+     )
+  )
+(CHARACTER H 4079AE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9B6)
+     )
+  )
+(CHARACTER H 4079CA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F995)
+     )
+  )
+(CHARACTER H 407A1C
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F956)
+     )
+  )
+(CHARACTER H 407ACB
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9F7)
+     )
+  )
+(CHARACTER H 407B20
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9F8)
+     )
+  )
+(CHARACTER H 407C3E
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9A6)
+     )
+  )
+(CHARACTER H 407C60
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F944)
+     )
+  )
+(CHARACTER H 407C92
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9F9)
+     )
+  )
+(CHARACTER H 407CD6
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA03)
+     )
+  )
+(CHARACTER H 407CE7
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F97B)
+     )
+  )
+(CHARACTER H 407D10
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9CF)
+     )
+  )
+(CHARACTER H 407D22
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F96A)
+     )
+  )
+(CHARACTER H 407D2F
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F94F)
+     )
+  )
+(CHARACTER H 407DA0
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F93D)
+     )
+  )
+(CHARACTER H 407DBE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F957)
+     )
+  )
+(CHARACTER H 407DF4
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F996)
+     )
+  )
+(CHARACTER H 407E37
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F950)
+     )
+  )
+(CHARACTER H 407F79
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9E6)
+     )
+  )
+(CHARACTER H 407F85
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F90F)
+     )
+  )
+(CHARACTER H 407F9A
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9AF)
+     )
+  )
+(CHARACTER H 408001
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F934)
+     )
+  )
+(CHARACTER H 408046
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9B0)
+     )
+  )
+(CHARACTER H 40806F
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F997)
+     )
+  )
+(CHARACTER H 40807E
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F945)
+     )
+  )
+(CHARACTER H 40808B
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F953)
+     )
+  )
+(CHARACTER H 4081D8
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F926)
+     )
+  )
+(CHARACTER H 4081E8
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9F6)
+     )
+  )
+(CHARACTER H 40826F
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F97C)
+     )
+  )
+(CHARACTER H 4082E5
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F974)
+     )
+  )
+(CHARACTER H 408336
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9FE)
+     )
+  )
+(CHARACTER H 4083C9
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F93E)
+     )
+  )
+(CHARACTER H 4083F1
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F958)
+     )
+  )
+(CHARACTER H 40843D
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F918)
+     )
+  )
+(CHARACTER H 408449
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F96E)
+     )
+  )
+(CHARACTER H 4084EE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F999)
+     )
+  )
+(CHARACTER H 4084FC
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9C2)
+     )
+  )
+(CHARACTER H 4085CD
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F923)
+     )
+  )
+(CHARACTER H 4085FA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9F0)
+     )
+  )
+(CHARACTER H 408606
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F935)
+     )
+  )
+(CHARACTER H 40862D
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F91F)
+     )
+  )
+(CHARACTER H 40863F
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F910)
+     )
+  )
+(CHARACTER H 40865C
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F936)
+     )
+  )
+(CHARACTER H 4087BA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F911)
+     )
+  )
+(CHARACTER H 40881F
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F927)
+     )
+  )
+(CHARACTER H 40884C
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA08)
+     )
+  )
+(CHARACTER H 4088C2
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9A0)
+     )
+  )
+(CHARACTER H 4088CF
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9E7)
+     )
+  )
+(CHARACTER H 4088E1
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9E8)
+     )
+  )
+(CHARACTER H 4088F8
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F912)
+     )
+  )
+(CHARACTER H 408964
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F924)
+     )
+  )
+(CHARACTER H 40898B
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA0A)
+     )
+  )
+(CHARACTER H 408AAA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F96F)
+     )
+  )
+(CHARACTER H 408AD2
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F97D)
+     )
+  )
+(CHARACTER H 408AD6
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F941)
+     )
+  )
+(CHARACTER H 408AFE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F95D)
+     )
+  )
+(CHARACTER H 408B58
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9FC)
+     )
+  )
+(CHARACTER H 408B80
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F95A)
+     )
+  )
+(CHARACTER H 408C48
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F900)
+     )
+  )
+(CHARACTER H 408CC2
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F948)
+     )
+  )
+(CHARACTER H 408CC8
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F903)
+     )
+  )
+(CHARACTER H 408DEF
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F937)
+     )
+  )
+(CHARACTER H 408ECA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F902)
+     )
+  )
+(CHARACTER H 408F26
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F998)
+     )
+  )
+(CHARACTER H 408F2A
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9D7)
+     )
+  )
+(CHARACTER H 408F3B
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA07)
+     )
+  )
+(CHARACTER H 408F62
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F98D)
+     )
+  )
+(CHARACTER H 408FB0
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F971)
+     )
+  )
+(CHARACTER H 409023
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F99A)
+     )
+  )
+(CHARACTER H 40907C
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9C3)
+     )
+  )
+(CHARACTER H 40908F
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F913)
+     )
+  )
+(CHARACTER H 4090CE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F92C)
+     )
+  )
+(CHARACTER H 4090DE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA2E)
+     )
+  )
+(CHARACTER H 40916A
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F919)
+     )
+  )
+(CHARACTER H 4091B4
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9B7)
+     )
+  )
+(CHARACTER H 4091CC
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9E9)
+     )
+  )
+(CHARACTER H 4091CF
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F97E)
+     )
+  )
+(CHARACTER H 4091D1
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F90A)
+     )
+  )
+(CHARACTER H 409234
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9B1)
+     )
+  )
+(CHARACTER H 409304
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F93F)
+     )
+  )
+(CHARACTER H 40934A
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F99B)
+     )
+  )
+(CHARACTER H 4095AD
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F986)
+     )
+  )
+(CHARACTER H 40962E
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9C6)
+     )
+  )
+(CHARACTER H 40964B
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F951)
+     )
+  )
+(CHARACTER H 40964D
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA09)
+     )
+  )
+(CHARACTER H 409675
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F959)
+     )
+  )
+(CHARACTER H 409678
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9D3)
+     )
+  )
+(CHARACTER H 409686
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9DC)
+     )
+  )
+(CHARACTER H 4096A3
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9F1)
+     )
+  )
+(CHARACTER H 4096B7
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H FA2F)
+     )
+  )
+(CHARACTER H 4096B8
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9B8)
+     )
+  )
+(CHARACTER H 4096E2
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9EA)
+     )
+  )
+(CHARACTER H 4096F6
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9B2)
+     )
+  )
+(CHARACTER H 4096F7
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F949)
+     )
+  )
+(CHARACTER H 409732
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F938)
+     )
+  )
+(CHARACTER H 409748
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9B3)
+     )
+  )
+(CHARACTER H 409818
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9B4)
+     )
+  )
+(CHARACTER H 40985E
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9D0)
+     )
+  )
+(CHARACTER H 4099F1
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F91A)
+     )
+  )
+(CHARACTER H 409A6A
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F987)
+     )
+  )
+(CHARACTER H 409B6F
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F939)
+     )
+  )
+(CHARACTER H 409C57
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9F2)
+     )
+  )
+(CHARACTER H 409DFA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F93A)
+     )
+  )
+(CHARACTER H 409E1E
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F920)
+     )
+  )
+(CHARACTER H 409E7F
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F940)
+     )
+  )
+(CHARACTER H 409E97
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F988)
+     )
+  )
+(CHARACTER H 409E9F
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9F3)
+     )
+  )
+(CHARACTER H 409ECE
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F989)
+     )
+  )
+(CHARACTER H 409F8D
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9C4)
+     )
+  )
+(CHARACTER H 409F9C
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F907)
+     )
+  )
+(CHARACTER H 445BE7
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9AA)
+     )
+  )
+(CHARACTER H 446A02
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F95C)
+     )
+  )
+(CHARACTER H 447387
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9DB)
+     )
+  )
+(CHARACTER H 448AAA
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9A1)
+     )
+  )
+(CHARACTER H 449F9C
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F908)
+     )
+  )
+(CHARACTER H 486A02
+  (CHARWD R 1.0)
+  (MAP
+     (SETCHAR H F9BF)
+     )
+  )

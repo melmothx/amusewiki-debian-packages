@@ -1,0 +1,23 @@
+name atveryend
+category Package
+revision 77682
+shortdesc Hooks at the very end of a document
+longdesc This LaTeX package provides some wrapper commands around LaTeX
+longdesc end document hooks.
+containersize 1172
+containerchecksum f855537340e2fb78a9b7335eaf34c77365da97b77195df424afb8c1848a9a4aefb165cbefad8ab542286e5cfe60e279e5e0166f6e9f4a7affdd5cad2333dc246
+doccontainersize 281796
+doccontainerchecksum d7c5bc15ead570df8e74fb41943897f20133a57be12a7b2c33af4caf8cdc478c997e384042b2ab9093986c09f270b05c712114cf3bf6a24699db206fdbc961f1
+docfiles size=72
+ texmf-dist/doc/latex/atveryend/README.md details="README"
+ texmf-dist/doc/latex/atveryend/atveryend.pdf details="Package documentation"
+srccontainersize 4276
+srccontainerchecksum ba0c2789ae1a9f7b03049512d7ad0502679bfab45df9dd041b6901a3b094decd3eeca35f73635acaba75c8da6a6d34a9b02adaa8c01bbdc7d45977acb9d08fa3
+runfiles size=1
+ texmf-dist/tex/latex/atveryend/atveryend.sty
+catalogue-contact-bugs https://github.com/ho-tex/atveryend/issues
+catalogue-contact-repository https://github.com/ho-tex/atveryend
+catalogue-ctan /macros/latex/contrib/atveryend
+catalogue-license lppl1.3c
+catalogue-topics defer-stuff tagged-pdf
+catalogue-version 1.12

@@ -1,0 +1,105 @@
+.TH XETEX 1 "1 February 2026" "Web2C 2026"
+.\"=====================================================================
+.if t .ds TX \fRT\\h'-0.10m'\\v'0.17v'E\\v'-0.17v'\\h'-0.06m'X\fP
+.if n .ds TX TeX
+.\"=====================================================================
+.SH NAME
+xetex \- extended TeX with native support for Unicode, OpenType, system fonts
+.SH SYNOPSIS
+.B xetex
+.RI [ options ]
+.RI [ \fB&\fPformat ]
+.RI [ file | \fB\e\fPcommands ]
+.\"=====================================================================
+.SH DESCRIPTION
+Xe\*(TX (\fBxetex\fR) is a \*(TX engine with native support for Unicode,
+OpenType, and system-installed fonts, using third-party libraries such
+as ICU, HarfBuzz, and FreeType. It outputs an extended dvi format (xdv),
+which by default is translated to pdf by
+.BR xdvipdfmx (1).
+.PP
+Xe\*(TX includes the e-\*(TX extensions and many extensions from pdf\*(TX,
+sometimes using different primitive names.
+.\"=====================================================================
+.SH OPTIONS
+For the common \*(TX command-line options and handling, see 
+.BR tex (1).
+The following Xe\*(TX-specific options are also supported:
+.TP
+.B -no-pdf
+Generate Xe\*(TX's extended DVI (.xdv) output instead of pdf.
+.TP
+.BI -output-driver \ cmd
+Run
+.I cmd
+instead of xdvipdfmx to translate xdv to pdf.
+.TP
+.BI -papersize \ string
+Set pdf media size to
+.IR string .
+.PP
+Options removed:
+.BR -draftmode ,
+.BR -enc ,
+.BR -ipc ,
+.BR -ipc-start ,
+.BR -translate-file .
+.\"=====================================================================
+.SH ENVIRONMENT
+See
+.BR tex (1)
+and
+.BR pdftex (1).
+.\"=====================================================================
+.SH FILES
+See
+.BR tex (1).
+Also:
+.TP
+.I $TEXMFMAIN/tex/generic/tex-ini-files/xetex.ini
+The driver file that builds the plain format file for Xe\*(TX,
+\fIxetex.fmt\fP, in \*(TX Live.
+.\"=====================================================================
+.SH BUGS
+See
+.BR tex (1).
+.\"=====================================================================
+.SH "SEE ALSO"
+.BR tex (1),
+.BR dvipdfmx (1),
+.BR etex (1),
+.BR latex (1),
+.BR luatex (1),
+.BR pdftex (1).
+.PP
+\fITUGboat\fP articles by Jonathan Kew:
+https://tug.org/TUGboat/listauthor.html#Kew,Jonathan
+.br
+Home page: https://tug.org/xetex
+.br
+Xe\*(TX package page on CTAN: https://ctan.org/pkg/xetex
+.br
+Xe\*(TX reference manual: https://ctan.org/pkg/xetexref
+.br
+Web2c manual: https://tug.org/web2c
+.br
+Kpathsea manual: https://tug.org/kpathsea
+.br
+Sources for the \*(TX-world literate programs, as pdf, including Xe\*(TX:
+https://ctan.org/pkg/knuth-pdf
+.\"=====================================================================
+.SH AUTHORS
+Xe\*(TX was created and is maintained by Jonathan Kew and others. It is
+released as part of \*(TX Live. This manual page was written by Karl
+Berry. It is released to the public domain.
+.PP
+Bug reports: https://sourceforge.net/p/xetex/bugs/
+.br
+Public discussion list for pdf\*(TX-specific issues:
+https://lists.tug.org/pdftex
+.br
+Public discussion list for \*(TX Live:
+https://lists.tug.org/tex-live
+.br
+Public discussion list for all things \*(TX:
+https://lists.tug.org/texhax

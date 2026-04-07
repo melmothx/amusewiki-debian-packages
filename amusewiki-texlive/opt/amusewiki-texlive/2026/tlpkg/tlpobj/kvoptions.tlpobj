@@ -1,0 +1,25 @@
+name kvoptions
+category Package
+revision 77682
+shortdesc Key value format for package options
+longdesc This package offers support for package authors who want to use
+longdesc options in key-value format for their package options.
+containersize 7192
+containerchecksum 8f01f60a41910c10e9912637b839adb5a96561d5cb37f85273eb97e2bc8b058065225f64b4b78037872b0c9e7bd73defef3ba2baf944a6d72a35e23ef48ec1e3
+doccontainersize 485348
+doccontainerchecksum 3f85abe85691ee0025f80a5d80b68fb161514c1c97359bbb7646f2466101718e23540d476c251d16c9acfb56ed3c6749f7278dbfbbff5d2e2d64254cf8c5e1e1
+docfiles size=126
+ texmf-dist/doc/latex/kvoptions/README.md details="Readme"
+ texmf-dist/doc/latex/kvoptions/example-mycolorsetup.sty
+ texmf-dist/doc/latex/kvoptions/kvoptions.pdf details="Package documentation" language="en"
+srccontainersize 21144
+srccontainerchecksum a31a35eded96d530e41109323716209dbb8595cd68c55965631d584ddc088b7f320a6d063a72dd52f32acc5c0bf805178dd776a43492df01df0472faf8f85410
+runfiles size=10
+ texmf-dist/tex/latex/kvoptions/kvoptions-patch.sty
+ texmf-dist/tex/latex/kvoptions/kvoptions.sty
+catalogue-contact-bugs https://github.com/ho-tex/kvoptions/issues
+catalogue-contact-repository https://github.com/ho-tex/kvoptions
+catalogue-ctan /macros/latex/contrib/kvoptions
+catalogue-license lppl1.3
+catalogue-topics keyval tagged-pdf
+catalogue-version 3.15

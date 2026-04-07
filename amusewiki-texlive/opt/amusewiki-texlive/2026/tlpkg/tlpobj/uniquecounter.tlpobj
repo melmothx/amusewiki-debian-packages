@@ -1,0 +1,25 @@
+name uniquecounter
+category Package
+revision 77682
+shortdesc Provides unlimited unique counter
+longdesc This package provides a kind of counter that provides unique
+longdesc number values. Several counters can be created with different
+longdesc names. The numeric values are not limited.
+containersize 2284
+containerchecksum 221b4df63ed478dafa9d71d6d9c91d1321d0b323f212a624068c2db83dc373c034acc4f92700c72b3deddef708f10c8a8acdd5eab26a4a8ae7a5be0c0da517ff
+doccontainersize 291272
+doccontainerchecksum cba9fe645e64f5e3f9b9b3cd5724af0a5d1b43565d523991fb1d7011f41219c789ca8daa557d536cfd51b5aa36a576e66aa8e5e8c5dd02626bf6aa793f20d84f
+docfiles size=74
+ texmf-dist/doc/latex/uniquecounter/README.md
+ texmf-dist/doc/latex/uniquecounter/uniquecounter-example.tex
+ texmf-dist/doc/latex/uniquecounter/uniquecounter.pdf details="Package documentation"
+srccontainersize 5324
+srccontainerchecksum b7a57bacc7e93b2a44decda8e15750c7b1304b014226f8493c3f67c0e00e5af483a4328ee2fe0a17a95e22786200aa69b4ee1deb127d909fe07be0333d229ec5
+runfiles size=2
+ texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+catalogue-contact-bugs https://github.com/ho-tex/uniquecounter/issues
+catalogue-contact-repository https://github.com/ho-tex/uniquecounter
+catalogue-ctan /macros/latex/contrib/uniquecounter
+catalogue-license lppl1.3
+catalogue-topics numbers tagged-pdf
+catalogue-version 1.4

@@ -1,0 +1,31 @@
+name babel-latin
+category Package
+revision 76176
+shortdesc Babel support for Latin
+longdesc The babel-latin package provides the babel languages latin,
+longdesc classicallatin, medievallatin, and ecclesiasticallatin. It also
+longdesc defines several useful shorthands as well as some modifiers for
+longdesc typographical fine-tuning.
+containersize 7420
+containerchecksum a64ff7b7aab3a3f440a8f3491a8809931d6f9d4c3b65b35a5ab10d46cedeac1746c9b6701c31abb50ab7ff8477b65222cec73342c33d008d1132c83e9fb89cdf
+doccontainersize 187756
+doccontainerchecksum 791544c5062ea0744d3e353ad380551cb674267fc268a0f21b649b896db2a23101969244b8f862c6c6785fb806a9d8a576eedbe1cce19117e05e210c0560feec
+docfiles size=48
+ texmf-dist/doc/generic/babel-latin/README details="Readme"
+ texmf-dist/doc/generic/babel-latin/latin.pdf details="Package documentation"
+srccontainersize 21292
+srccontainerchecksum 0b5f6636513a371d368ddee232c41cc6dcc971c0c9ae6750999fb62ca888ca3fe33ce73d7710e0f0f054d28a55a43f8c505263d54ecfaadb07a20549976e56c0
+runfiles size=15
+ texmf-dist/tex/generic/babel-latin/classicallatin.ldf
+ texmf-dist/tex/generic/babel-latin/classiclatin.ldf
+ texmf-dist/tex/generic/babel-latin/ecclesiasticallatin.ldf
+ texmf-dist/tex/generic/babel-latin/ecclesiasticallatin.lua
+ texmf-dist/tex/generic/babel-latin/ecclesiasticlatin.ldf
+ texmf-dist/tex/generic/babel-latin/latin.ldf
+ texmf-dist/tex/generic/babel-latin/medievallatin.ldf
+catalogue-contact-bugs https://github.com/wehro/babel-latin/issues
+catalogue-contact-repository https://github.com/wehro/babel-latin
+catalogue-ctan /macros/latex/contrib/babel-contrib/latin
+catalogue-license lppl1.3
+catalogue-topics latin multilingual-addon
+catalogue-version 4.3

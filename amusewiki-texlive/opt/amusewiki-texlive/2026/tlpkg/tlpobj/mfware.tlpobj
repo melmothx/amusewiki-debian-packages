@@ -1,0 +1,39 @@
+name mfware
+category TLCore
+revision 77830
+shortdesc Supporting tools for Metafont: gftodvi, gftopk, gftype, mft
+longdesc A collection of programs (as web source) for processing the
+longdesc output of Metafont. They include: gftodvi (for making proof
+longdesc sheets of letters); gftopk (translate gf bitmap files to pk
+longdesc bitmaps); gftype (human-readable dump of gf files); mft
+longdesc (prettyprint Metafont source).
+depend mfware.ARCH
+containersize 3308
+containerchecksum 72fc9a1b0b017942f2bb7dc34d817ded57860d263790f70c545ee932dc4c62b8ce4a4fbce66f35e1cfd6b37d6742a5e3ded297e091f5ce473f0c2d00e4a12749
+doccontainersize 112436
+doccontainerchecksum 9c164dcbd1deefcfcfbac6aa89f3493d194b8436b5edb013991bfe75642a3c4836df642180984f6f9768c319a1db9d0eab06c8b96ad1b53dc26cce4896856438
+docfiles size=45
+ texmf-dist/doc/man/man1/gftodvi.1
+ texmf-dist/doc/man/man1/gftodvi.man1.pdf
+ texmf-dist/doc/man/man1/gftopk.1
+ texmf-dist/doc/man/man1/gftopk.man1.pdf
+ texmf-dist/doc/man/man1/gftype.1
+ texmf-dist/doc/man/man1/gftype.man1.pdf
+ texmf-dist/doc/man/man1/mft.1
+ texmf-dist/doc/man/man1/mft.man1.pdf
+ texmf-dist/doc/man/man1/pktogf.1
+ texmf-dist/doc/man/man1/pktogf.man1.pdf
+ texmf-dist/doc/man/man1/pktype.1
+ texmf-dist/doc/man/man1/pktype.man1.pdf
+runfiles size=4
+ texmf-dist/mft/base/README
+ texmf-dist/mft/base/cmbase.mft
+ texmf-dist/mft/base/mplain.mft
+ texmf-dist/mft/base/plain.mft
+catalogue-alias gftodvi gftopk gftype mft
+catalogue-contact-bugs https://lists.tug.org/tex-k
+catalogue-contact-repository https://tug.org/svn/texlive/trunk/Build/source/texk/web2c/
+catalogue-contact-support https://lists.tug.org/tex-k
+catalogue-ctan /systems/knuth/dist/mfware
+catalogue-license pd
+catalogue-topics debug-supp font-util collection

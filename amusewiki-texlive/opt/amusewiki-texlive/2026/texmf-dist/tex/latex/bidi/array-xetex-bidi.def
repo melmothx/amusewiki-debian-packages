@@ -1,0 +1,141 @@
+%%
+%% This is file `array-xetex-bidi.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% bidi.dtx  (with options: `table,array-xetex-bidi.def')
+%% 
+%%   __________________________________________________
+%%   Vafa Khalighi
+%% 
+%%   Copyright (c) 2007--2026  Vafa Khalighi
+%%   Copyright (c) 2018--2020 bidi-tex GitHub Organization
+%% 
+%%   It may be distributed and/or modified under the LaTeX Project Public License,
+%%   version 1.3c or higher (your choice). The latest version of
+%%   this license is at: http://www.latex-project.org/lppl.txt
+%% 
+%%   This work is “author-maintained” (as per LPPL maintenance status)
+%%   by Vafa Khalighi.
+%% 
+%% 
+
+%% \CheckSum{54343}
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+\ProvidesFile{array-xetex-bidi.def}[2025/12/06 v0.8 bidi adaptations for array package for XeTeX engine]
+\def\@testpach{\@chclass
+ \ifnum \@lastchclass=6 \@ne \@chnum \@ne \else
+  \ifnum \@lastchclass=7 5 \else
+   \ifnum \@lastchclass=8 \tw@ \else
+    \ifnum \@lastchclass=9 \thr@@
+   \else \z@
+   \ifnum \@lastchclass = 10 \else
+   \edef\@nextchar{\expandafter\string\@nextchar}%
+   \@chnum
+   \if \@nextchar c\z@ \else
+    \if \@nextchar \if@RTLtab r\else l\fi\@ne \else
+     \if \@nextchar \if@RTLtab l\else r\fi\tw@ \else
+   \z@ \@chclass
+   \if\@nextchar |\@ne \else
+    \if \@nextchar !6 \else
+     \if \@nextchar @7 \else
+      \if \@nextchar <8 \else
+       \if \@nextchar >9 \else
+  10
+  \@chnum
+  \if \@nextchar m\thr@@ \else
+   \if \@nextchar p4 \else
+    \if \@nextchar b5 \else
+   \z@ \@chclass \z@ \@preamerr \z@ \fi \fi \fi \fi
+   \fi \fi  \fi  \fi  \fi  \fi  \fi \fi \fi \fi \fi \fi}
+\def\@tabular{%
+  \leavevmode
+  \UseTaggingSocket{tbl/hmode/begin}%
+  \hbox \bgroup\if@RTLtab\beginR \fi
+    \UseMathForPositioningText $%
+    \col@sep\tabcolsep
+    \let\d@llarbegin\begingroup
+    \let\d@llarend\endgroup
+   \@kernel@tabular@init
+  \@tabarray}
+\def\endtabular{\endarray\m@th $\if@RTLtab\endR\fi\egroup
+  \UseTaggingSocket{tbl/hmode/end}%
+}
+\expandafter\let\csname endtabular*\endcsname=\endtabular
+\ExplSyntaxOn
+\def\@array[#1]#2{
+  \@tempdima \ht \strutbox
+  \advance \@tempdima by\extrarowheight
+  \setbox \@arstrutbox \hbox{\vrule
+             \@height \arraystretch \@tempdima
+             \@depth \arraystretch \dp \strutbox
+             \@width \z@}%
+  \tbl_init_cell_data_for_table:
+  \begingroup
+  \@mkpream{#2}%
+  \tbl_count_table_cols:
+  \xdef\@preamble{
+    \noexpand \ar@ialign
+    \@halignto
+       \bgroup \@arstrut
+      \UseTaggingSocket{tbl/row/begin}
+      \tbl_init_cell_data_for_row:
+      \@preamble
+      \tabskip \z@ \cr}
+  \endgroup
+  \@arrayleft
+  \if #1t\vtop \else \if#1b\vbox \else \vcenter \fi \fi
+  \bgroup
+  \let \@sharp ##\let \protect \relax
+  \lineskip \z@
+  \baselineskip \z@
+  \mathsurround \z@
+  \let\\\@arraycr \let\tabularnewline\\%
+  \def\par{\ifnum\currentgrouptype=6~ \else\@@par\fi}%
+  \if@RTLtab\hbox\bgroup\beginR\@hboxRconstructtrue\if #1t\vtop \else \vbox  \fi\bgroup\fi
+  \UseTaggingSocket{tbl/init}
+  \@preamble
+}
+\let\@@array\@array
+\def\endarray {
+  \tbl_crcr:n{endarray}
+  \tag_socket_use_expandable:n { math/luamml/array/save }
+  \egroup
+  \tag_socket_use:n { tbl/finalize }
+  \tbl_restore_outer_cell_data:
+  \if@RTLtab\egroup\endR\egroup\fi
+  \egroup
+  \tag_socket_use:n { math/luamml/array/finalize }
+  \@arrayright \gdef\@preamble{}%
+}
+\def\array{\col@sep\arraycolsep
+  \def\d@llarbegin{$\tag_socket_use:n { math/luamml/array/initcol }}
+  \def\d@llarend
+   {
+     \tag_socket_use:nn { math/luamml/save/nn }{{}{mtd}}
+     $
+     \tag_socket_use:nn { math/luamml/array/finalizecol}{\the\@chnum}
+   }
+  \def\@halignto{}%
+  \@RTLtabfalse
+  \@tabarray}
+\ExplSyntaxOff
+\endinput
+%%
+%% End of file `array-xetex-bidi.def'.

@@ -1,0 +1,427 @@
+%%
+%% This is file `bidi.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% bidi.dtx  (with options: `table,bidi.sty')
+%% 
+%%   __________________________________________________
+%%   Vafa Khalighi
+%% 
+%%   Copyright (c) 2007--2026  Vafa Khalighi
+%%   Copyright (c) 2018--2020 bidi-tex GitHub Organization
+%% 
+%%   It may be distributed and/or modified under the LaTeX Project Public License,
+%%   version 1.3c or higher (your choice). The latest version of
+%%   this license is at: http://www.latex-project.org/lppl.txt
+%% 
+%%   This work is “author-maintained” (as per LPPL maintenance status)
+%%   by Vafa Khalighi.
+%% 
+%% 
+
+%% \CheckSum{54343}
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+\NeedsTeXFormat{LaTeX2e}
+\def\bididate{2026/01/08}
+\def\bidi@version{26.01.08}
+\def\bidi@releasename{Iran}
+\newcommand*{\bidireleasename}{\bidi@releasename}
+\ProvidesPackage{bidi}[\bididate\space v\bidi@version\space (Release \bidi@releasename)\space
+Bidirectional typesetting in plain TeX and LaTeX]
+\newif\if@bidi@banner
+\newif\if@bidi@pdfbanner
+\newif\iffootdir@debug
+\newif\if@extrafootnotefeatures
+\newif\if@nonlatin
+\newif\if@bidi@pdfm@mark
+\ExplSyntaxOn
+\clist_new:N \l__bidi_counter_clist
+\msg_new:nnn {bidi} {cannot-use-engine}
+  {
+    Oops!~can~not~use~\c_sys_engine_str.\\\\
+    The~bidi~package~requires~XeTeX.
+  }
+ \sys_if_engine_xetex:F
+  {
+    \msg_fatal:nn {bidi} {cannot-use-engine}
+  }
+
+\keys_define:nn { bidi }
+  {
+    banner .choice: ,
+    banner / on .code:n = \@bidi@bannertrue ,
+    banner / off .code:n = \@bidi@bannerfalse ,
+    banner .default:n = on
+  }
+\keys_define:nn { bidi }
+  {
+    PDFbanner .choice: ,
+    PDFbanner / on .code:n = \@bidi@pdfbannertrue ,
+    PDFbanner / off .code:n = \@bidi@pdfbannerfalse ,
+    PDFbanner .default:n = on
+  }
+\keys_define:nn { bidi }
+  {
+    RTLdocument .choice: ,
+    RTLdocument / on .code:n = \AtEndOfPackage{\@RTLtrue} ,
+    RTLdocument / off .code:n = \AtEndOfPackage{\@RTLfalse} ,
+    RTLdocument .default:n = on
+  }
+\keys_define:nn { bidi }
+  {
+    rldocument .choice: ,
+    rldocument / on .code:n = \AtEndOfPackage{\@RTLtrue} ,
+    rldocument / off .code:n = \AtEndOfPackage{\@RTLfalse} ,
+    rldocument .default:n = on
+  }
+\keys_define:nn { bidi }
+  {
+    documentdirection .choice: ,
+    documentdirection / righttoleft .code:n = \AtEndOfPackage{\@RTLtrue} ,
+    documentdirection / lefttoright .code:n = \AtEndOfPackage{\@RTLfalse}
+  }
+\keys_define:nn { bidi }
+  {
+    tabledirection .choice: ,
+    tabledirection / righttoleft .code:n = \AtEndOfPackage{\@RTLtabtrue} ,
+    tabledirection / lefttoright .code:n = \AtEndOfPackage{\@RTLtabfalse}
+  }
+\keys_define:nn { bidi }
+  {
+    footnotedirection .choice: ,
+    footnotedirection / righttoleft .code:n = \AtEndOfPackage{\@RTL@footnotetrue} ,
+    footnotedirection / lefttoright .code:n = \AtEndOfPackage{\@RTL@footnotefalse}
+  }
+\keys_define:nn { bidi }
+  {
+    debugfootnotedirection .choice: ,
+    debugfootnotedirection / on .code:n = \footdir@debugtrue ,
+    debugfootnotedirection / off .code:n = \footdir@debugfalse ,
+    debugfootnotedirection .default:n = on
+  }
+\keys_define:nn { bidi }
+  {
+    footnoterule .choice: ,
+    footnoterule / automatic .code:n = \AtEndOfPackage{\autofootnoterule} ,
+    footnoterule / left .code:n = \AtEndOfPackage{\leftfootnoterule} ,
+    footnoterule / right .code:n = \AtEndOfPackage{\rightfootnoterule} ,
+    footnoterule / split .code:n = \AtEndOfPackage{\SplitFootnoteRule} ,
+    footnoterule / textwidth .code:n = \AtEndOfPackage{\textwidthfootnoterule}
+  }
+\keys_define:nn { bidi }
+  {
+    extrafootnotefeatures .choice: ,
+    extrafootnotefeatures / on .code:n = \@extrafootnotefeaturestrue ,
+    extrafootnotefeatures / off .code:n = \@extrafootnotefeaturesfalse ,
+    extrafootnotefeatures .default:n = on
+  }
+\keys_define:nn { bidi }
+  {
+    script .choice: ,
+    script / latin .code:n = \@nonlatinfalse ,
+    script / nonlatin .code:n = \@nonlatintrue ,
+    script .default:n = latin
+  }
+\keys_define:nn { bidi }
+  {
+    DetectColumn .choice: ,
+    DetectColumn / on .code:n =
+      \def\bidi@firstcolumn@status@write{%
+        \protected@write\@auxout{}%
+          {\string\bidi@column@status
+            {1}}}
+      \def\bidi@lastcolumn@status@write{%
+        \protected@write\@auxout{}%
+          {\string\bidi@column@status{2}}} ,
+    DetectColumn / off .code:n =
+       \let\bidi@firstcolumn@status@write\relax
+       \let\bidi@lastcolumn@status@write\relax ,
+    DetectColumn .default:n = on
+  }
+\keys_define:nn { bidi }
+  {
+    logo .choice: ,
+    logo / on .code:n = \AtEndOfPackage{\AtBeginDocument{\@bidi@inslogo@}} ,
+    logo / off .code:n = \AtEndOfPackage{\let\@bidi@logo@\@empty \let\@bidi@inslogo@\@empty} ,
+    logo .default:n = on
+  }
+\keys_define:nn { bidi }
+  {
+    pdfinfo .choice: ,
+    pdfinfo / on .code:n = \@bidi@pdfm@marktrue ,
+    pdfinfo / off .code:n = \@bidi@pdfm@markfalse ,
+    pdfinfo .default:n = on
+  }
+\keys_define:nn { bidi }
+  {
+    resetcounterperpage .code:n = \clist_set:Nx \l__bidi_counter_clist { #1 }
+  }
+\keys_set:nn { bidi }
+  {
+    banner = on ,
+    PDFbanner = on ,
+    DetectColumn = off
+
+  }
+\ExplSyntaxOff
+\ProcessKeyOptions
+\edef\@bidi@info{****************************************************^^J%
+* ^^J%
+* bidi package (Bidirectional typesetting with^^J%
+* plain TeX and LaTeX formats in XeTeX and LuaTeX engines)^^J%
+* ^^J%
+* Description: A convenient interface for^^J%
+* typesetting bidirectional texts in plain TeX^^J%
+* and LaTeX.  The package includes adaptations^^J%
+* for use with many other commonly-used packages.^^J%
+* ^^J%
+* Copyright (c) 2007--2026 Vafa Khalighi^^J%
+* Copyright (c) 2018--2020 bidi-tex GitHub organization^^J%
+* ^^J%
+* v\bidi@version\space (Release \bidi@releasename), \bididate^^J%
+* ^^J%
+* License: LaTeX Project Public License, version^^J%
+* 1.3c or higher (your choice)^^J%
+* ^^J%
+* Location on CTAN: /macros/unicodetex/generic/bidi^^J%
+* ^^J%
+* Issue tracker: https://github.com/xepersian/bidi/issues^^J%
+* ^^J%
+* Primary author of bidi package: Vafa Khalighi.^^J%
+* ^^J%
+****************************************************}
+\edef\bidi@everyjob{\the\everyjob}
+\if@bidi@banner
+  \typeout{\@bidi@info}
+  \everyjob{\bidi@everyjob\typeout{\@bidi@info}}
+\fi
+\newcommand*{\bidiversion}{\ensuremath\bidi@version}
+\RequirePackage{biditools}
+\RequirePackage{zref-abspage}
+\RequirePackage{auxhook}
+\RequirePackage{ltxcmds}
+\eqnewif{\if@RTLmain}{\if@rlmain}
+\eqnewif{\if@RTL}{\if@rl}
+\newcommand*{\setlatin}{\@nonlatinfalse}
+\newcommand*{\setnonlatin}{\@nonlatintrue}
+\eqnewif{\if@RTLtab}{\if@tab@rl}
+\newif\if@hboxRconstruct
+\newif\if@bidi@pdfencrypt
+\newcommand*{\setRTLtable}{\@RTLtabtrue}
+\newcommand*{\setLTRtable}{\@RTLtabfalse}
+\newif\if@RTLmarginpar
+\newif\if@LTRmarginpar
+\newif\if@LTRbibitems
+\newif\if@RTLbibitems
+\eqnewif{\if@RTL@footnote}{\if@rl@footnote}
+\newif\if@bidi@list@minipage@parbox
+\newif\if@bidi@list@minipage@parbox@not@nob
+\newcommand*{\@bidi@pdfcreator}{%
+  The bidi package, v\bidi@version\space (Release \bidi@releasename), \bididate
+}
+\newcommand*{\@bidi@pdfproducer}{%
+  The bidi package, v\bidi@version\space (Release \bidi@releasename), \bididate
+}
+\newcommand*{\@bidi@pdfcustomproperties}{%
+  This is the bidi package, Version \bidi@version\space (Release \bidi@releasename),
+  Released January 8, 2026.
+}
+\newcommand*{\bidi@beamer@ragged}{}
+\@RTLmainfalse
+\AtBeginDocument{%
+  \if@RTLmain\else
+    \if@RTL\@RTLmaintrue%
+    \else\@RTLmainfalse%
+    \fi%
+  \fi%
+}
+\let\n@xt=\
+\bidi@newrobustcmd*{\LRE}{\protect\pLRE}%
+\def\pLRE{\protect\afterassignment\moreLRE \let\n@xt= }
+\bidi@newrobustcmd*{\RLE}{\protect\pRLE}
+\def\pRLE{\protect\afterassignment\moreRLE \let\n@xt= }
+\def\bracetext{\ifcat\n@xt{\else\ifcat\n@xt}\fi
+  \errmessage{Missing left brace has been substituted}\fi \bgroup}
+\newinsert\@bidi@copyins@
+\skip\@bidi@copyins@=12\p@
+\dimen\@bidi@copyins@=40pc
+\count\@bidi@copyins@=1000
+\newcommand*{\@bidi@inslogo@}{\insert\@bidi@copyins@{\@bidi@logo@}}
+\newcommand*{\@bidi@logo@hb@xt@columnwidth}{%
+  \if@RTLmain
+    \if@twocolumn
+      \hboxR to \columnwidth
+    \else
+      \hboxR to \textwidth
+    \fi
+  \else
+    \if@twocolumn
+      \hboxL to \columnwidth
+    \else
+      \hboxL to \textwidth
+    \fi
+  \fi
+}
+\newcommand*{\@bidi@logo}[1]{%
+  \toks@{%
+    \setbox\z@\hbox{%
+      \special{%
+        pdf:image width 50pt height 50pt (#1)%
+      }
+    }%
+    \dp\z@\z@
+    \ht\z@=50pt
+    \wd\z@=50pt
+    \beginL
+      \lower20pt\box\z@
+    \endL
+  }%
+  \the\toks@
+}
+\newcount\bidi@typesethour
+\newcount\bidi@typesetminute
+\bidi@typesethour=\time
+\divide\bidi@typesethour 60
+\bidi@typesetminute=-\bidi@typesethour
+\multiply\bidi@typesetminute 60
+\advance\bidi@typesetminute \time
+\newcommand*{\TypesetHour}{\two@digits\bidi@typesethour}
+\newcommand*{\TypesetMinute}{\two@digits\bidi@typesetminute}
+\newcommand*{\TypesetTime}{\TypesetHour:\TypesetMinute}
+\newcommand*{\@bidi@logo@}{%
+  \@bidi@logo@hb@xt@columnwidth
+    {\hss\LRE{\bfseries Typeset {\today} at {\TypesetTime} by the \textsf{bidi}
+    package\quad\@bidi@logo{bidi-logo.pdf}}}}
+\ExplSyntaxOn
+\keys_define:nn { bidi / pdfencrypt }
+  {
+    userpassword .code:n = \def\bidi@pdfencrypt@userpassword{#1} ,
+    userpassword .default:n =
+  }
+\keys_define:nn { bidi / pdfencrypt }
+  {
+    ownerpassword .code:n = \def\bidi@pdfencrypt@ownerpassword{#1} ,
+    ownerpassword .default:n =
+  }
+\keys_define:nn { bidi / pdfencrypt }
+  {
+    keylength .code:n = \def\bidi@pdfencrypt@keylength{#1} ,
+    keylength .default:n = 128
+  }
+\keys_define:nn { bidi / pdfencrypt }
+  {
+    permissionflags .code:n = \def\bidi@pdfencrypt@permissionflags{#1} ,
+    permissionflags .default:n = 2052
+  }
+\NewDocumentCommand \pdfencryptsetup {m} { \keys_set:nn { bidi / pdfencrypt } {#1} }
+\clist_if_empty:NF \l__bidi_counter_clist
+  {
+    \RequirePackage{bidi-perpage}
+    \clist_map_inline:Nn \l__bidi_counter_clist
+      {
+        \ResetCounterPerPage{#1}
+      }
+    \clist_clear:N \l__bidi_counter_clist
+  }
+\ExplSyntaxOff
+\@onlypreamble\pdfencryptsetup
+\input{latex-xetex-bidi.def}
+
+\pdfencryptsetup{%
+  userpassword,%
+  ownerpassword,%
+  keylength,%
+  permissionflags%
+}
+
+\if@extrafootnotefeatures
+  \input{extrafootnotefeatures-xetex-bidi.def}
+\fi
+\newcount\bidi@digits
+\XeTeXinterchartokenstate=\@ne
+\newXeTeXintercharclass\bidi@digits@charclass
+\newXeTeXintercharclass\bidi@sepmark@charclass
+\XeTeXcharclass `\. \bidi@sepmark@charclass
+\XeTeXcharclass `\- \bidi@sepmark@charclass
+\bidi@digits=`\0 \loop \XeTeXcharclass \bidi@digits \bidi@digits@charclass \ifnum\bidi@digits<`\9 \advance\bidi@digits \@ne \repeat
+\bidi@digits=`\٠ \loop \XeTeXcharclass \bidi@digits \bidi@digits@charclass \ifnum\bidi@digits<`\٩ \advance\bidi@digits \@ne \repeat
+\bidi@digits=`\۰ \loop \XeTeXcharclass \bidi@digits \bidi@digits@charclass \ifnum\bidi@digits<`\۹ \advance\bidi@digits \@ne \repeat
+\XeTeXinterchartoks \bidi@sepmark@charclass  \bidi@digits@charclass = {\DigitsDotDashInterCharToks}
+\newcommand*{\DigitsDotDashInterCharToks}{\if@nonlatin\char"200F \fi}
+\bidi@AtEndPreamble{%
+  \ifx\bidi@pdfencrypt@ownerpassword\bidi@empty
+    \ifx\bidi@pdfencrypt@userpassword\bidi@empty
+      \@bidi@pdfencryptfalse
+    \else
+      \@bidi@pdfencrypttrue
+    \fi
+  \else
+    \@bidi@pdfencrypttrue
+  \fi
+  \if@bidi@pdfencrypt
+    \special{pdf:encrypt
+      userpw (\bidi@pdfencrypt@userpassword)
+      ownerpw (\bidi@pdfencrypt@ownerpassword)
+      length \bidi@pdfencrypt@keylength
+      perm \bidi@pdfencrypt@permissionflags
+    }%
+  \fi
+}
+\if@bidi@pdfbanner
+  \if@bidi@pdfm@mark
+    \AtEndDocument{%
+      \special{pdf:%
+        docinfo<<%
+          /Creator(\@bidi@pdfcreator)%
+          /Producer(\@bidi@pdfproducer)%
+          /BIDI.Fullbanner(\@bidi@pdfcustomproperties)%
+          \if@bidi@csdef{@xepersian@pdfcustomproperties}{%
+            /XEPERSIAN.Fullbanner(\@xepersian@pdfcustomproperties)%
+          }{}%
+        >>%
+      }%
+    }
+  \else
+    \AtEndDocument{%
+      \special{pdf:%
+        docinfo<<%
+          /BIDI.Fullbanner(\@bidi@pdfcustomproperties)%
+          \if@bidi@csdef{@xepersian@pdfcustomproperties}{%
+            /XEPERSIAN.Fullbanner(\@xepersian@pdfcustomproperties)%
+          }{}%
+        >>%
+      }%
+    }
+  \fi
+\else
+  \if@bidi@pdfm@mark
+    \AtEndDocument{%
+      \special{pdf:%
+        docinfo<<%
+          /Creator(\@bidi@pdfcreator)%
+          /Producer(\@bidi@pdfproducer)%
+        >>%
+      }%
+    }
+  \fi
+\fi
+\endinput
+%%
+%% End of file `bidi.sty'.

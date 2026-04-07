@@ -1,0 +1,29 @@
+%
+% This file is generated from the data of UniGB-UTF32
+% in cid2code.txt (Version 09/21/2023)
+% for Adobe-GB1-6
+%
+% Reference:
+%   https://github.com/adobe-type-tools/cmap-resources/
+%   Adobe-GB1-6/cid2code.txt
+%
+% A newer CMap may be required for some code points.
+%
+%
+% And also referred to data of Unicode Standardized Variants
+% in StandardizedVariants-16.0.0.txt
+%
+% Reference:
+%   https://www.unicode.org/Public/UCD/latest/ucd/StandardizedVariants.txt
+%
+5140 FE00	FA0C	4697
+51C9 FE00	F979	2562
+55C0 FE00	FA0D	22032
+793C FE00	FA18	22038
+79CA FE00	F995	16595
+8612 FE00	FA20	22040
+88CF FE00	F9E7	8204
+90CE FE00	F92C	22031
+96A3 FE00	F9F1	20611
+%
+% end

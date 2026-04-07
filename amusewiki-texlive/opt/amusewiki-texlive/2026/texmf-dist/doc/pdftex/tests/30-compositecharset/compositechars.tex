@@ -1,0 +1,56 @@
+% $Id: compositechars.tex 910 2023-08-26 17:47:24Z karl $
+% Public domain.
+
+\pdfoutput=1
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\catcode`\{=1 \catcode`\}=2
+\hsize=6in \vsize=6in
+
+\pdfmapline{DejaVuSerif-tlf-t1--base DejaVuSerif     %
+ " AutoEnc_6paffcekw62ffq4g6cgalfhbtd ReEncodeFont " % 
+ <[dejavuserif_t1-type1.enc <DejaVuSerif.pfb}
+
+\output={\shipout\box255}
+%\font\x = DejaVuSerif-tlf-t1
+\font\x = DejaVuSerif-tlf-t1--base
+\x \char"E9 \end
+
+% https://tug.org/TUGboat/tb30-1/tb94thanh.pdf
+% ttf2afm -e texnansi.enc -o gentium-8y.afm GentiumPlus-Regular.ttf
+% afm2tfm gentium-8y.afm -T texnansi.enc
+% ->
+% !pdfTeX error: pdftex (file /u/texlive/karl/Master/texmf-dist/fonts/truetype/pu
+% blic/gentium-tug/GentiumPlus-Regular.ttf): unknown version of OS/2 table (0004)
+
+%% type 1 loads ok.
+%\documentclass{article}
+%\usepackage{gentium}
+%\begin{document}
+%\huge\bfseries Hello, World!
+%\end{document}
+
+%\pdfcompresslevel=0 \pdfobjecompresslevel=0
+\DocumentMetadata
+{
+            uncompress,
+            pdfstandard = a-3u,
+}
+\documentclass[letterpaper]{book}
+
+\usepackage[T1]{fontenc} 
+\usepackage{dejavu}
+% pdf/a validates if fontenc is NOT loaded. (dejavu.sty does NOT load
+% fontenc internally)
+
+%\usepackage{lipsum}
+
+% This solves the problem that occurs when fontenc is loaded.
+%\pdfomitcharset = 1
+
+\begin{document}
+%\lipsum[1]
+
+\'{e} %\`{e}
+
+%? ?
+\end{document}

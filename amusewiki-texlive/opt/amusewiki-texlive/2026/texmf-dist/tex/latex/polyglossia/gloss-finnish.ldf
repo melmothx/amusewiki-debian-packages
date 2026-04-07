@@ -1,0 +1,165 @@
+% Language definition file (part of polyglossia v2.9 -- 2025/12/01)
+%
+\ProvidesFile{gloss-finnish.ldf}[polyglossia: module for Finnish]
+\PolyglossiaSetup{finnish}{
+  bcp47=fi,
+  bcp47-language=fi,
+  bcp47-region=FI,
+  bcp47-script=Latn,
+  hyphennames={finnish},
+  hyphenmins={2,2},
+  langtag=FIN,
+  frenchspacing=true,
+ }
+
+% BCP-47 compliant aliases
+\setlanguagealias*{finnish}{fi}
+
+\newif\if@finnish@schoolhyphens
+\newif\if@finnish@babelhyphens
+
+\DeclareKeys[polyglossia/gloss/finnish]
+  {
+    babelshorthands.if = finnish@babelshorthands,
+    babelshorthands.default:n = true,
+    hyphens.choice:,
+    hyphens / default.code =
+      {%
+        \@finnish@schoolhyphensfalse
+        \@finnish@babelhyphensfalse
+      },
+    hyphens / school.code =
+      {%
+        \@finnish@schoolhyphenstrue
+        \@finnish@babelhyphensfalse
+      },
+    hyphens / babel.code =
+      {%
+        \@finnish@schoolhyphensfalse
+        \@finnish@babelhyphenstrue
+      },
+    hyphens.default:n = default,
+    hyphens/unknown.code = \xpg@warning{Unknown Finnish hyphens `#1'},
+    schoolhyphens.choice:,
+    schoolhyphens / true.code =
+      {%
+        \@finnish@schoolhyphenstrue
+        \@finnish@babelhyphensfalse
+      },
+    schoolhyphens / false.code =
+      {%
+        \@finnish@schoolhyphensfalse
+      },
+    schoolhyphens.default:n = true
+  }
+
+\ifsystem@babelshorthands
+  \SetGlossOptions{finnish}{babelshorthands=true}
+  % Register default options
+  \InitializeGlossOptions{finnish}{babelshorthands=true,hyphens=default}
+\else
+  \SetGlossOptions{finnish}{babelshorthands=false}
+  % Register default options
+  \InitializeGlossOptions{finnish}{babelshorthands=false,hyphens=default}
+\fi
+
+\InitializeBabelShorthands
+
+\def\finnish@shorthands{%
+  \xpg@activate@shorthands%
+  \def\language@group{finnish}%
+  \declare@shorthand{finnish}{"-}{\nobreak-\bbl@allowhyphens}
+  \declare@shorthand{finnish}{"|}{\textormath{\penalty\@M\discretionary{-}{}{\kern.03em}}{}}%
+  \declare@shorthand{finnish}{""}{\hskip\z@skip}%
+  \declare@shorthand{finnish}{"~}{\textormath{\leavevmode\hbox{-}}{-}}%
+  \declare@shorthand{finnish}{"=}{\hbox{-}\bbl@allowhyphens}%
+  \declare@shorthand{finnish}{"/}{\textormath
+    {\bbl@allowhyphens\discretionary{/}{}{/}\bbl@allowhyphens}{}}%
+}
+
+\def\nofinnish@shorthands{%
+  \xpg@deactivate@shorthands%
+}
+
+\def\captionsfinnish{%
+   \def\refname{Viitteet}%
+   \def\abstractname{Tiivistelmä}%
+   \def\bibname{Kirjallisuutta}%
+   \def\prefacename{Esipuhe}%
+   \def\chaptername{Luku}%
+   \def\appendixname{Liite}%
+   \def\contentsname{Sisällys}%
+   \def\listfigurename{Kuvat}%
+   \def\listtablename{Taulukot}%
+   \def\indexname{Hakemisto}%
+   \def\figurename{Kuva}%
+   \def\tablename{Taulukko}%
+   %\def\thepart{}%
+   \def\partname{Osa}%
+   \def\pagename{Sivu}%
+   \def\seename{katso}%
+   \def\alsoname{katso myös}%
+   \def\enclname{Liitteet}%
+   \def\ccname{Jakelu}%
+   \def\headtoname{Vastaanottaja}%
+   \def\proofname{Todistus}%
+   \def\glossaryname{Sanasto}%
+}
+
+\def\finnish@language{%
+  \if@finnish@schoolhyphens
+      \IfLanguageDefinedTF{schoolfinnish}{%
+         \SetupPolyglossiaLangPatterns{schoolfinnish}%
+      }{%
+           \xpg@warning{Finnish 'School' hyphenation patterns (schoolfinnish) not available.\MessageBreak
+	                I will use the standard patterns for Finnish instead}%
+	   \SetupPolyglossiaLangPatterns{finnish}%
+     }%
+  \else
+      \SetupPolyglossiaLangPatterns{finnish}%
+  \fi
+}
+
+% activate babel-style hyphen settings if requested
+\AtBeginDocument{%
+    \if@finnish@babelhyphens
+	\let\xpg@save@hyphenpenalty\hyphenpenalty%
+	\let\xpg@save@exhyphenpenalty\exhyphenpenalty%
+	\let\xpg@save@doublehyphendemerits\doublehyphendemerits%
+	\let\xpg@save@finalhyphendemerits\finalhyphendemerits%
+	\addto\blockextras@finnish{%
+	  \hyphenpenalty=30%
+	  \exhyphenpenalty=30%
+	  \doublehyphendemerits=5000%
+	  \finalhyphendemerits=5000%
+	}%
+	\addto\noextras@finnish{%
+	  \let\hyphenpenalty\xpg@save@hyphenpenalty%
+	  \let\exhyphenpenalty\xpg@save@exhyphenpenalty%
+	  \let\doublehyphendemerits\xpg@save@doublehyphendemerits%
+	  \let\finalhyphendemerits\xpg@save@finalhyphendemerits%
+	}%
+    \fi
+}
+
+\def\datefinnish{%
+   \def\today{\number\day.~\ifcase\month\or
+    tammikuuta\or helmikuuta\or maaliskuuta\or huhtikuuta\or
+    toukokuuta\or kesäkuuta\or heinäkuuta\or elokuuta\or
+    syyskuuta\or lokakuuta\or marraskuuta\or joulukuuta\fi
+    \space\number\year}}
+
+\def\noextras@finnish{%
+  \iffinnish@babelshorthands\nofinnish@shorthands\fi%
+}
+
+\def\blockextras@finnish{%
+  \iffinnish@babelshorthands\finnish@shorthands\else\nofinnish@shorthands\fi%
+}
+
+\def\inlineextras@finnish{%
+  \iffinnish@babelshorthands\finnish@shorthands\else\nofinnish@shorthands\fi%
+}
+
+\endinput
+

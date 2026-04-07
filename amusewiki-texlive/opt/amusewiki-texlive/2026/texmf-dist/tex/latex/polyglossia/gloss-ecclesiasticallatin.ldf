@@ -1,0 +1,9 @@
+% Language definition file (part of polyglossia v2.9 -- 2025/12/01)
+%
+\ProvidesFile{gloss-ecclesiasticallatin.ldf}[polyglossia: module for ecclesiastical Latin]
+
+% We provide this as a babel alias
+
+\InheritGlossFile{latin}
+
+\endinput
