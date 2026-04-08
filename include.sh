@@ -29,7 +29,7 @@ cat <<EOF > /var/www/deb.amusewiki.org/repos/apt/index.html
 <!doctype html>
 <html>
   <head>
-    <title>Amusewiki debian packages</title>
+    <title>Amusewiki Debian Packages</title>
   </head>
   <body>
     <h1>How to install <a href="https://amusewiki.org">amusewiki</a> in 4 commands (on Debian Bookworm/Trixie/Ubuntu)</h1>
@@ -47,7 +47,7 @@ installation</a>.</p>
 <p>Supported database are mysql/mariadb, postgresql and sqlite3.
 Please install <code>postgresql</code> or
 <code>mariadb-server</code> <strong>before starting the installation</strong>. You will
-be prompted to choose which one to use, but use =postgresql= if you can choose.</p>
+be prompted to choose which one to use, but use <code>postgresql</code> if you can choose.</p>
 
 <p>
 Amusewiki uses nginx as frontend server, so <strong>if you have Apache
@@ -74,7 +74,6 @@ wget https://deb.amusewiki.org/amusewiki-archive-keyring-bookworm_1.0.0_all.deb
 Then run:
 <pre>
 # apt-get update      
-# apt-get install amusewiki-extra-fonts # this is optional
 # apt-get install --no-install-recommends amusewiki
 </pre>
 
