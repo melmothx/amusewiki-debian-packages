@@ -39,7 +39,7 @@ even if the source list will say <code>debian</code>.</p>
 
 <p>Existing packages for older Debian and Ubuntu releases are still
 provided at <a href="https://packages.amusewiki.org">https://packages.amusewiki.org</a>,
-but support for them has stopped with Amusewiki release 2.611 (December 2026).
+but support for them has stopped with Amusewiki release 2.611 (December 2025).
 You can still run Amusewiki on such systems
 using the <a href="https://amusewiki.org/library/install">manual
 installation</a>.</p>
