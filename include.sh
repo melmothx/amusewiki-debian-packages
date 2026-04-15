@@ -62,13 +62,15 @@ article</a> for a combined setup Apache/Nginx.
 For Trixie:
 
 <pre>
-wget https://deb.amusewiki.org/amusewiki-archive-keyring-trixie_1.0.0_all.deb
+# wget https://deb.amusewiki.org/amusewiki-archive-keyring-trixie_1.0.0_all.deb
+# dpkg -i amusewiki-archive-keyring-trixie_1.0.0_all.deb
 </pre>
 
 For Bookworm:
 
 <pre>
-wget https://deb.amusewiki.org/amusewiki-archive-keyring-bookworm_1.0.0_all.deb
+# wget https://deb.amusewiki.org/amusewiki-archive-keyring-bookworm_1.0.0_all.deb
+# dpkg -i amusewiki-archive-keyring-bookworm_1.0.0_all.deb
 </pre>
 
 Then run:
