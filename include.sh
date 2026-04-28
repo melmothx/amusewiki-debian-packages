@@ -47,7 +47,7 @@ installation</a>.</p>
 <p>Supported database are mysql/mariadb, postgresql and sqlite3.
 Please install <code>postgresql</code> or
 <code>mariadb-server</code> <strong>before starting the installation</strong>. You will
-be prompted to choose which one to use, but use <code>postgresql</code> if you can choose.</p>
+be prompted to choose which one to use, but use <code>postgresql</code> if you can.</p>
 
 <p>
 Amusewiki uses nginx as frontend server, so <strong>if you have Apache
@@ -96,7 +96,7 @@ so it is not going to respond unless you request the correct hostname.
 The initial configuration assigned a guessed hostname (say,
 <code>amusewiki.yournetwork.org</code>) and you need to use that to
 access the dashboard, hence the <code>/etc/hosts</code> trick. Once
-you reach the dashboard you can update them it to the correct one.
+you reach the dashboard you can update the server name to the correct one.
 </p>
 
 <p>The initial site with documentation is created to give you a way to
@@ -106,7 +106,7 @@ one.</p>
 
 <p>
 The installation procedure will send a mail to
-<code>root@localhost</code> with the credentails to login in and the
+<code>root@localhost</code> with the credentials to login and the
 nginx configuration instructions. If for some reason you didn't get
 it, you can look at <code>/var/log/amusewiki/installation.log</code>
 (since version 2.310). 
